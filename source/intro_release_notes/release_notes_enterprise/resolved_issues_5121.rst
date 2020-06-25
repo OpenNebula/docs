@@ -10,6 +10,7 @@ The following new features has been backported to 5.12.1:
 - `Add support for VM Charters in the CLI <https://github.com/OpenNebula/one/issues/4552>`__.
 - `New failover combinations for Provision module <https://github.com/OpenNebula/one/issues/4205>`__.
 - `Better same host detection for ssh/mv TM driver action <https://github.com/OpenNebula/one/issues/3460>`__.
+- `PyONE call of system.config() returns correct object <https://github.com/OpenNebula/one/issues/4229>`__.
 
 The following issues has been solved in 5.12.1:
 
