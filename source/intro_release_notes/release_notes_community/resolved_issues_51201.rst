@@ -8,6 +8,7 @@ A complete list of solved issues for 5.12.0.1 can be found in the `project devel
 The following new features has been backported to 5.12.0.1:
 
 - `Better same host detection for ssh/mv TM driver action <https://github.com/OpenNebula/one/issues/3460>`__.
+- `PyONE call of system.config() returns correct object <https://github.com/OpenNebula/one/issues/4229>`__.
 
 The following issues has been solved in 5.12.0.1:
 
@@ -16,3 +17,5 @@ The following issues has been solved in 5.12.0.1:
 - `Fix issue with hashed SSH known_hosts file and upcased hostname <https://github.com/OpenNebula/one/issues/4935>`__.
 - `Fix Ruby library paths to support local overrides <https://github.com/OpenNebula/one/issues/4929>`__.
 - `Fix systemd cleaning of SSH sockets that may lead to increased CPU usage <https://github.com/OpenNebula/one/issues/4939>`__.
+- `Fix an error in monitoring that prevents state updates when there are wild VMs <https://github.com/OpenNebula/one/issues/4954>`__.
+- `Fix microVM kernel boot process does not end properly when using docker image thingsboard/tb-postgres:3.0.1 <https://github.com/OpenNebula/one/issues/4952>`__.
