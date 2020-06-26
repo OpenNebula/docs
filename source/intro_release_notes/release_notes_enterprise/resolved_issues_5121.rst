@@ -9,7 +9,7 @@ The following new features has been backported to 5.12.1:
 
 - `Add support for VM Charters in the CLI <https://github.com/OpenNebula/one/issues/4552>`__.
 - `New failover combinations for Provision module <https://github.com/OpenNebula/one/issues/4205>`__.
-- `Order sub commands, arguments and format in CLI help in alphabetical order <https://github.com/OpenNebula/one/issues/4943>`__.
+- `Arguments and format in CLI tools help messages are sorted in alphabetical order <https://github.com/OpenNebula/one/issues/4943>`__.
 
 The following issues has been solved in 5.12.1:
 
