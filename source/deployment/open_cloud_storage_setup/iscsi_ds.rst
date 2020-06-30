@@ -15,6 +15,7 @@ No addtional configuration is needed
 Node Setup
 ================================================================================
 The nodes need to meet the following requirements:
+
 * The devices you want to attach to a VM should be accessible by the hypervisor.
 * Qemu needs to be compiled with Libiscsi support.
 
