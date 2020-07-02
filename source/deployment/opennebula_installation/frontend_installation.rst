@@ -95,30 +95,32 @@ On **RHEL 8**, you enable EPEL by running:
 Install OpenNebula
 ^^^^^^^^^^^^^^^^^^
 
-Install the CentOS/RHEL OpenNebula Front-end with packages from **our repository** by executing the following as root:
+Install the CentOS/RHEL/Fedora OpenNebula Front-end with packages from **our repository** by executing the following as root:
 
 .. prompt:: bash # auto
 
     # yum install opennebula-server opennebula-sunstone opennebula-ruby opennebula-gate opennebula-flow
 
-**CentOS/RHEL Package Description**
+**CentOS/RHEL/Fedora Package Description**
 
 The packages for the OpenNebula frontend and the virtualization host are as follows:
 
 * **opennebula**: Command Line Interface.
-* **opennebula-server**: Main OpenNebula daemon, scheduler, etc.
+* **opennebula-server**: OpenNebula Daemon and Scheduler.
 * **opennebula-sunstone**: :ref:`Sunstone <sunstone>` (the GUI) and the :ref:`EC2 API <introc>`.
 * **opennebula-gate**: :ref:`OneGate <onegate_overview>` server that enables communication between VMs and OpenNebula.
 * **opennebula-flow**: :ref:`OneFlow <oneflow_overview>` manages services and elasticity.
 * **opennebula-provision**: :ref:`OneProvision <ddc_overview>` deploys new clusters on remote bare-metal cloud providers.
-* **opennebula-node-kvm**: Meta-package that installs the oneadmin user, libvirt and kvm.
-* **opennebula-common**: Common files for OpenNebula packages.
-* **opennebula-rubygems**: All Ruby gem dependencies.
+* **opennebula-node-kvm**: Dependencies and configurations for KVM hypervisor node.
+* **opennebula-node-firecracker**: Dependencies and configurations for Firecracker hypervisor node.
+* **opennebula-common**: Shared content for OpenNebula packages.
+* **opennebula-common-onescape**: Helpers for OneScape project.
+* **opennebula-rubygems**: Bundled Ruby gem dependencies.
 * **opennebula-debuginfo**: Package with debug information.
 * **opennebula-ruby**: Ruby Bindings.
 * **opennebula-java**: Java Bindings.
-* **python-pyone**: Python Bindings.
-* **python3-pyone**: Python3 Bindings.
+* **python-pyone**: Python 2 Bindings (not on Fedora).
+* **python3-pyone**: Python 3 Bindings.
 
 .. note::
 
@@ -138,23 +140,25 @@ To install OpenNebula on a Debian/Ubuntu Front-end using packages from **our rep
 
 These are the packages available for these distributions:
 
-* **opennebula**: OpenNebula Daemon.
-* **opennebula-common**: Provides the user and common files.
-* **opennebula-tools**: Command Line interface.
-* **opennebula-sunstone**: :ref:`Sunstone <sunstone>` (the GUI).
+* **opennebula**: OpenNebula Daemon and Scheduler.
+* **opennebula-common**: Shared content for OpenNebula packages.
+* **opennebula-common-onescape**: Helpers for OneScape project.
+* **opennebula-tools**: Command Line Interface.
+* **opennebula-sunstone**: :ref:`Sunstone <sunstone>` (the GUI) and the :ref:`EC2 API <introc>`.
 * **opennebula-gate**: :ref:`OneGate <onegate_overview>` server that enables communication between VMs and OpenNebula.
 * **opennebula-flow**: :ref:`OneFlow <oneflow_overview>` manages services and elasticity.
 * **opennebula-provision**: :ref:`OneProvision <ddc_overview>` deploys new clusters on remote bare-metal cloud providers.
-* **opennebula-node**: Prepares a node as an opennebula KVM node.
-* **opennebula-node-lxd**: Prepares a node as an opennebula LXD node.
-* **opennebula-lxd-snap**: Installs LXD snap (only on Ubuntu 16.04 and 18.04).
-* **opennebula-rubygems**: All Ruby gem dependencies.
+* **opennebula-node**: Dependencies and configurations for KVM hypervisor node.
+* **opennebula-node-firecracker**: Dependencies and configurations for Firecracker hypervisor node.
+* **opennebula-node-lxd**: Dependencies and configurations for LXD hypervisor node.
+* **opennebula-lxd-snap**: Meta-package to install LXD snap (only on Ubuntu 16.04 and 18.04).
+* **opennebula-rubygems**: Bundled Ruby gem dependencies.
 * **opennebula-dbgsym**: Package with debug information.
-* **ruby-opennebula**: Ruby API.
-* **libopennebula-java**: Java API.
-* **libopennebula-java-doc**: Java API Documentation.
-* **python-pyone**: Python API.
-* **python3-pyone**: Python3 Bindings.
+* **ruby-opennebula**: Ruby Bindings.
+* **libopennebula-java**: Java Bindings.
+* **libopennebula-java-doc**: Java Bindings Documentation.
+* **python-pyone**: Python 2 Bindings (not on Ubuntu 20.04 and later).
+* **python3-pyone**: Python 3 Bindings.
 
 .. note::
 
