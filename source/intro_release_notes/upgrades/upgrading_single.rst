@@ -19,6 +19,8 @@ Step 3. Stop OpenNebula
 
 Stop OpenNebula and any other related services you may have running: OneFlow, EC2, and Sunstone. Preferably use the system tools, like `systemctl` or `service` as `root` in order to stop the services.
 
+.. warning:: Make sure that every OpenNebula process is stopped. The output of `systemctl list-units | grep opennebula` should be empty.
+
 Step 4. Backup OpenNebula Configuration
 ================================================================================
 
