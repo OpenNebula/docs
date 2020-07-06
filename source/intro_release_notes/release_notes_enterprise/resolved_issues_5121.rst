@@ -15,6 +15,9 @@ The following new features has been backported to 5.12.1:
 - `PyONE call of system.config() returns correct object <https://github.com/OpenNebula/one/issues/4229>`__.
 - `Contextualization packages are now included in the OpenNebula distribution <https://github.com/OpenNebula/one/issues/4944>`__.
 - `LDAP auth driver allows choosing the LDAP server by maching username to a list of regexp <https://github.com/OpenNebula/one/issues/4924>`__.
+- `Implement update operation in OneFlow <https://github.com/OpenNebula/one/issues/4912>`__.
+- `Be able to change min_vms in flow service <https://github.com/OpenNebula/one/issues/4403>`__.
+- `Be able to update elasticity policies of a running service <https://github.com/OpenNebula/one/issues/4956>`__.
 
 The following issues has been solved in 5.12.1:
 
