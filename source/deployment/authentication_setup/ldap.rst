@@ -96,6 +96,11 @@ The configuration file for the auth module is located at ``/etc/one/auth/ldap_au
         :user_field: 'cn'
      
      
+    # There are 2 (mutually exclusive) options of how the servers are chosen
+    #
+    # 1. :order:
+    # ----------
+    #
     # List the order the servers are queried
     #
     # :order is defined as a list of server names and/or nested lists
@@ -125,8 +130,25 @@ The configuration file for the auth module is located at ``/etc/one/auth/ldap_au
     :order:
         - server 1
         #- server 2
+    #
+    # 2. :match_user_regex:
+    # ---------------------
+    #
+    # Allows mapping user by matching a regex to a particual LDAP server
+    # or server list
+    #
+    # Example:
+    #
+    # :match_user_regex:
+    #   "^.*@orgA$": server1
+    #   "^.*@orgB$": server2
+    #   "^.*@orgC$": ['server3', 'server4']
+    #
+    #  In this example user `joe@orgA` will be searched in server1 and user
+    #  `paul@orgC` will be searched in server3 (and server4 if not found)
 
-The structure is a hash where any key different to ``:order`` will contain the configuration of one LDAP server we want to query. The special key ``:order`` holds an array with the order we want to query the configured servers.
+
+The structure is a hash where any key different to ``:order`` or ``:match_user_regex:`` will contain the configuration of one LDAP server we want to query. The special key ``:order`` holds an array with the order we want to query the configured servers. Another special key ``:match_user_regex:`` holds a hash where keys are regular expressions and values are either names of the servers or list of them. Keys ``:order`` and ``:match_user_regex:`` are mutually exclusive.
 
 .. note:: Items of the ``:order`` are the server names, or nested arrays of server names, representing the **availability group**. The items in the ``:order`` are processed one by one until the user is successfully authenticated, or the end of the list is reached. Inside the availability group, only the very first server which can be successfully connected to is queried. Any server not listed in ``:order`` won't be queried.
 

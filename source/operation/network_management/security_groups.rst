@@ -44,6 +44,9 @@ A Security Group is composed of several Rules. Each Rule is defined with the fol
 | **NETWORK_ID** | Optional  | Specify a network ID to which this Security Group will apply  | A valid networkd ID                         |
 +----------------+-----------+---------------------------------------------------------------+---------------------------------------------+
 
+.. note::
+   When using ``IPSEC`` value for ``PROTOCOL``, rules for the Encapsulating Security Payload (ESP) protocol of IPSec are set.
+
 To create a Security Group, use the Sunstone web interface, or create a template file following this example:
 
 .. code::
