@@ -538,6 +538,41 @@ Some common failures can be resolved without manual intervention, calling the ``
 
 You can use the option ``--delete`` to delete the current service and its VMs.
 
+Update Service
+==============
+
+You can update a service in running state, to do that you need to use the command ``oneflow update <service_id>``. It will prompt an editor with
+the service template body in JSON format.
+
+You can update all the values, except the following ones:
+
+Service
+-------
+
+- **custom_attrs**: it only has sense when deploying, not in running.
+- **custom_attrs_values**: it only has sense when deploying, not in running.
+- **deployment**: changing this, changes the undeploy operation.
+- **log**: this is just internal information, no sense to change it.
+- **name**: this has to be changed using rename operation.
+- **networks**: it only has sense when deploying, not in running.
+- **networks_values**: it only has sense when deploying, not in running.
+- **ready_status_gate**: it only has sense when deploying, not in running.
+- **state**: this is internal information managed by OneFlow server.
+
+Role
+----
+
+- **cardinality**: this is internal information managed by OneFlow server.
+- **last_vmname**: this is internal information managed by OneFlow server.
+- **nodes**: this is internal information managed by OneFlow server.
+- **parents**: this has only sense in deploy operation.
+- **state**: this is internal information managed by OneFlow server.
+- **vm_template**: this will affect scale operation.
+
+.. warning:: If you try to change one of these values above, you will get an error. The server will also check the schema in case there is another error.
+
+.. note:: If you change the value of min_vms the OneFlow server will adjust the cardinality automatically. Also, if you add or edit elasticity rules they will be automatically evaluated.
+
 Advanced Usage
 ================================================================================
 
