@@ -85,3 +85,68 @@ The error you might experience:
     /usr/share/rubygems/rubygems/specification.rb:1419: warning: already initialized constant Gem::Specification::DateTimeFormat
     /usr/local/share/ruby/site_ruby/rubygems/specification.rb:1764: warning: previous definition of DateTimeFormat was here
     Error: wrong number of arguments (0 for 1)
+
+Failing monitoring for EC2 driver
+=================================
+
+When there are more than 1 AWS instances monitored, the monitoring probe fails due to a bug.
+
+As workaround, apply the following patch to the ec2_driver.rb
+
+Save the patch to a file called ec2_driver.patch
+
+.. code-block:: bash
+
+    --- /usr/lib/one/ruby/ec2_driver.rb
+    +++ /usr/lib/one/ruby/ec2_driver.rb.new
+    @@ -728,10 +728,10 @@
+                 @ec2.instances.each {|i| work_q.push i }
+             else
+                 # The same but just for a single VM
+    -            vm = OpenNebula::VirtualMachine.new_with_id(deploy_id,
+    +            one_vm = OpenNebula::VirtualMachine.new_with_id(deploy_id,
+                                                             OpenNebula::Client.new)
+    -            vm.info
+    -            onevm_info[deploy_id] = vm
+    +            one_vm.info
+    +            onevm_info[deploy_id] = one_vm
+
+                 work_q.push get_instance(deploy_id)
+             end
+
+And then run
+
+.. code-block:: bash
+
+    patch /usr/lib/one/ruby/ec2_driver.rb < ec2_driver.patch
+
+vCenter monitoring stuck
+========================
+
+vCenter monitoring can fail due to too many open sockets. This is due to a wrong disposal of vCenter connections.
+
+As a workaround, apply the following patch to the vcenter_cluster.rb.
+
+Save the patch to a file called vcenter_cluster.patch
+
+.. code-block:: bash
+
+    --- /var/lib/one/remotes/im/lib/vcenter_cluster.rb
+    +++ /var/lib/one/remotes/im/lib/vcenter_cluster.rb.new
+    @@ -145,8 +145,10 @@ class Cluster
+             cluster_monitoring
+         end
+
+    +    # Try connectivity to a vCenter instance and close the connection
+         def beacon_host
+    -        VCenterDriver::VIClient.new(connection, @host.id)
+    +        vi_client = VCenterDriver::VIClient.new(connection, @host.id)
+    +        vi_client.close_connection
+             Time.now.to_s
+         end
+
+And then run
+
+.. code-block:: bash
+
+    patch /var/lib/one/remotes/im/lib/vcenter_cluster.rb < vcenter_cluster.patch
