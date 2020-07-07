@@ -20,7 +20,7 @@ Using Container Images with Firecracker
 
 In order to deploy a Firecracker MicroVM using one of the images mentioned above, an uncompressed kernel image is required. The Firecracker project provides a recommended `configuration file <https://github.com/firecracker-microvm/firecracker/blob/master/resources/microvm-kernel-x86_64.config>`__ for building the kernel image.
 
-Once the image is in ready state the only think needed to boot the MicroVM is to add the kernel image to the VM template.
+Once the image is in ready state, the only thing left to boot the MicroVM is to add the kernel image to the VM template.
 
 Using Container Images with KVM
 ====================================================
@@ -31,7 +31,7 @@ In order to deploy KVM VMs using container images OpenNebula use the PVH entry p
 - Linux kernel >= 4.21
 - `CONFIG_PVH` enabled for the guest kernel.
 
-If the requirements are fulfilled, the only think need to book the container image as a VM is to add the kernel image to the VM template and set the root device (e.g ``vda``).
+If the requirements are fulfilled, the only thing needed to boot the container image as a VM is to add the kernel image to the VM template and set the root device (e.g ``vda``).
 
 Getting Kernel Images
 ====================================================
