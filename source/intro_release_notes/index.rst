@@ -9,5 +9,5 @@ Introduction and Release Notes
 
    Concepts and Terminology <concepts_terminology/index>
    Release Notes 5.12.0 <release_notes_community/index>
-   Release Notes 5.12.1 Enterprise Edition <release_notes_enterprise/index>
+   Release Notes 5.12.2 Enterprise Edition <release_notes_enterprise/index>
    Upgrades <upgrades/index>
