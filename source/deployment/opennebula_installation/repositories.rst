@@ -51,6 +51,10 @@ Debian/Ubuntu
 
 To add OpenNebula enterprise repository on Debian/Ubuntu execute as root:
 
+.. prompt:: bash # auto
+
+    # wget -q -O- https://downloads.opennebula.io/repo/repo.key | apt-key add -
+
 **Debian 9**
 
 .. prompt:: bash # auto
@@ -88,11 +92,10 @@ To add OpenNebula enterprise repository on Debian/Ubuntu execute as root:
 
 .. note::
 
-   Please note that you can point to a specific 5.12.x version changing the occurrence of 5.12 in any of the above to the specific version number. For instance, to point to version 5.12.1 in Ubuntu 18.04:
+   Please note that you can point to a specific 5.12.x version by changing the occurrence of shorter version 5.12 in any of the above commands to the particular full 3 components version number (X.Y.Z). For instance, to point to version 5.12.1 on Ubuntu 18.04:
 
     .. prompt:: bash # auto
 
-       Ubuntu 18.04
        # echo "deb https://<token>@enterprise.opennebula.io/repo/5.12.1/Ubuntu/18.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
        # apt-get update
 
