@@ -35,4 +35,4 @@ The following issues has been solved in 5.12.1:
 - `Fix Cloud View dashboard doesn't have a correct value for running VMs quota in Sunstone <https://github.com/OpenNebula/one/issues/4951>`__.
 - `Fix microVM kernel boot process does not end properly when using docker image thingsboard/tb-postgres:3.0.1 <https://github.com/OpenNebula/one/issues/4952>`__.
 - `Fix an error in monitoring that prevents state updates when there are wild VMs <https://github.com/OpenNebula/one/issues/4954>`__.
-- `Fix for vCenter monitoring memory consumption <https://github.com/OpenNebula/one/issues/4965>`.
+- `Fix for vCenter monitoring memory consumption <https://github.com/OpenNebula/one/issues/4965>`__.
