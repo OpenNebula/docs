@@ -458,17 +458,21 @@ Example:
 
 * **batch** (``--batch``). It's expected to be run from scripts. No questions are asked, and the tool tries to deal automatically with the problem according to the failover method specified as a command line parameter:
 
-+-------------------------+------------------------------------------------+
-| Parameter               | Description                                    |
-+=========================+================================================+
-| ``--fail-quit``         | Set batch failover mode to quit (default)      |
-+-------------------------+------------------------------------------------+
-| ``--fail-retry`` number | Set batch failover mode to number of retries   |
-+-------------------------+------------------------------------------------+
-| ``--fail-cleanup``      | Set batch failover mode to clean up and quit   |
-+-------------------------+------------------------------------------------+
-| ``--fail-skip``         | Set batch failover mode to skip failing part   |
-+-------------------------+------------------------------------------------+
++-------------------------+---------------------------------------------------------------------------+
+| Parameter               | Description                                                               |
++=========================+===========================================================================+
+| ``--fail-quit``         | Set batch failover mode to quit (default)                                 |
++-------------------------+---------------------------------------------------------------------------+
+| ``--fail-retry`` number | Set batch failover mode to number of retries                              |
++-------------------------+---------------------------------------------------------------------------+
+| ``--fail-cleanup``      | Set batch failover mode to clean up and quit                              |
++-------------------------+---------------------------------------------------------------------------+
+| ``--fail-skip``         | Set batch failover mode to skip failing part                              |
++-------------------------+---------------------------------------------------------------------------+
+| ``--fail-sleep`` number | Time in seconds between each fail mode is executed and between each retry |
++-------------------------+---------------------------------------------------------------------------+
+| ``--fail-modes`` array  | Fail modes to apply in order                                              |
++-------------------------+---------------------------------------------------------------------------+
 
 Example of automatic retry:
 
@@ -499,3 +503,24 @@ Example of non-interactive provision with automatic clean up in case of failure:
     2018-11-27 13:52:02 INFO  : Deleting provision 18e85ef4-b29f-4391-8d89-c72702ede54e
     2018-11-27 13:52:02 INFO  : Undeploying hosts
     2018-11-27 13:52:05 INFO  : Deleting provision objects
+
+Example of non-interactive provision with multiple fail modes:
+
+.. prompt:: bash $ auto
+
+    $ oneprovision create simple.yaml -d --batch --fail-modes retry,cleanup
+    2020-06-17 10:30:54 INFO  : Creating provision objects
+    ERROR: Failed to create some resources
+    [one.vn.allocate] VN_MAD named "alias_sdnat" is not defined in oned.conf
+    ERROR: Failed to create some resources
+    [one.vn.allocate] VN_MAD named "alias_sdnat" is not defined in oned.conf
+    ERROR: Failed to create some resources
+    [one.vn.allocate] VN_MAD named "alias_sdnat" is not defined in oned.conf
+    ERROR: Failed to create some resources
+    [one.vn.allocate] VN_MAD named "alias_sdnat" is not defined in oned.conf
+    ERROR: Failed to create some resources
+    [one.vn.allocate] VN_MAD named "alias_sdnat" is not defined in oned.conf
+    2020-06-17 10:30:54 INFO  : Deleting provision 5949d07f-eb06-4b0b-8e8c-60c29ff30bb1
+    2020-06-17 10:30:54 INFO  : Undeploying hosts
+    2020-06-17 10:30:54 INFO  : Deleting provision virtual objects
+    2020-06-17 10:30:54 INFO  : Deleting provision objects

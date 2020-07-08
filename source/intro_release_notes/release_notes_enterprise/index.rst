@@ -1,10 +1,12 @@
 .. _rn_enterprise:
 
 ================================================================================
-Release Notes 5.12.0 Enterprise Edition
+Release Notes 5.12.1 Enterprise Edition
 ================================================================================
 
 .. toctree::
    :maxdepth: 1
 
    What Is <what_is>
+   Resolved Issues in 5.12.1 <resolved_issues_5121>
+   Known Issues <known_issues>
