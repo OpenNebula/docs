@@ -18,4 +18,4 @@ OpenNebula 5.12 Enterprise Edition comes with everything available in the 5.12 C
 * :ref:`Migration Packages <upgrade>` to easily upgrade your production cloud to the latest version.
 * `OneScape <http://docs.opennebula.io/onescape>`__ enterprise tool to simplify maintenance, management and upgrade of the OpenNebula deployments. Although current features are limited to managing configuration files and generating diagnostics, it is evolving into the central control, maintenance and monitoring point of the installation.
 
-The upcoming maintenance versions of the Enterprise Edition will bring bug fixes, security patches and minor enhancements to ensure full production capabilities.
+The maintenance versions of the Enterprise Edition bring bug fixes, security patches and minor enhancements to ensure full production capabilities.
