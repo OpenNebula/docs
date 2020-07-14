@@ -78,3 +78,21 @@ The error you might experience:
     /usr/share/rubygems/rubygems/specification.rb:1419: warning: already initialized constant Gem::Specification::DateTimeFormat
     /usr/local/share/ruby/site_ruby/rubygems/specification.rb:1764: warning: previous definition of DateTimeFormat was here
     Error: wrong number of arguments (0 for 1)
+
+vCenter monitoring of non oneadmin VMs
+======================================
+
+Regular users vCenter VMs are not correctly monitored. In order to fix this issue, please apply the following patch to your installation.
+
+.. code-block::
+
+		--- /var/lib/one/remotes/im/lib/vcenter_cluster.rb.new	2020-07-14 18:20:23.000000000 +0200
+		+++ s/var/lib/one/remotes/im/lib/vcenter_cluster.rb	2020-07-14 18:19:12.000000000 +0200
+		@@ -241,7 +241,7 @@
+		         view.DestroyView
+
+		         vmpool = OpenNebula::VirtualMachinePool.new(@onec)
+		-        rc     = vmpool.info(-2)
+		+        rc     = vmpool.info
+
+		         return {} if OpenNebula.is_error?(rc)
