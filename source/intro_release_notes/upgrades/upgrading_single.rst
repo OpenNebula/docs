@@ -28,8 +28,8 @@ Backup the configuration files located in **/etc/one** and **/var/lib/one/remote
 
 .. prompt:: text # auto
 
-    # cp -r /etc/one /etc/one.$(date +'%Y-%m-%d')
-    # cp -r /var/lib/one/remotes/etc /var/lib/one/remotes/etc.$(date +'%Y-%m-%d')
+    # cp -ra /etc/one /etc/one.$(date +'%Y-%m-%d')
+    # cp -ra /var/lib/one/remotes/etc /var/lib/one/remotes/etc.$(date +'%Y-%m-%d')
 
 Step 5. Upgrade to the New Version
 ================================================================================
