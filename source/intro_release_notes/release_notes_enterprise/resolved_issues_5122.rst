@@ -11,7 +11,7 @@ The following new features has been backported to 5.12.2:
 
 The following issues has been solved in 5.12.2:
 
-- `vCenter monitoring fails for non oneadmin users <https://github.com/OpenNebula/one/issues/4978>`__.
-- `Error when you try to instantiate a cloned template with recursive option <https://github.com/OpenNebula/one/issues/4979>`__.
-- `LXD image marketplace didn't auto-contextualize due to oned output changed <https://github.com/OpenNebula/one/issues/4953>`__.
-- `Incomplete rescue clause in LXD deploy <https://github.com/OpenNebula/one/issues/4977>`__.
+- `Fix vCenter monitoring fails for non oneadmin users <https://github.com/OpenNebula/one/issues/4978>`__.
+- `Fix an error when you try to instantiate a cloned template with recursive option <https://github.com/OpenNebula/one/issues/4979>`__.
+- `Fix LXD image marketplace import to properly execute auto-contextualization process <https://github.com/OpenNebula/one/issues/4953>`__.
+- `Fix incomplete rescue clause in LXD deploy <https://github.com/OpenNebula/one/issues/4977>`__.
