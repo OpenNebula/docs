@@ -126,6 +126,12 @@ Available options are:
 | :paginate                 | Array for paginate, the first position is for internal use. the second is used to put         |
 |                           | names to each value                                                                           |
 +---------------------------+-----------------------------------------------------------------------------------------------+
+| :threshold_min            | Minimum percentage value for green color on thresholds                                        |
++---------------------------+-----------------------------------------------------------------------------------------------+
+| :threshold_low            | Minimum percentage value for orange color on thresholds                                       |
++---------------------------+-----------------------------------------------------------------------------------------------+
+| :threshold_high           | Minimum percentage value for red color on thresholds                                          |
++---------------------------+-----------------------------------------------------------------------------------------------+
 
 .. note:: To use Sunstone with IPv6 only systems and thin HTTP sever, use the full IPv6 address in the field `:host`. If you need to set the localhost address (::1) or the unspecified address (::) please use the following:
 
