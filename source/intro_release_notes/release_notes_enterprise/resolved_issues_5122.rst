@@ -15,3 +15,4 @@ The following issues has been solved in 5.12.2:
 - `Fix an error when you try to instantiate a cloned template with recursive option <https://github.com/OpenNebula/one/issues/4979>`__.
 - `Fix LXD image marketplace import to properly execute auto-contextualization process <https://github.com/OpenNebula/one/issues/4953>`__.
 - `Fix incomplete rescue clause in LXD deploy <https://github.com/OpenNebula/one/issues/4977>`__.
+- `Fix onevm updateconf command on non existing VM <https://github.com/OpenNebula/one/issues/4982>`__.
