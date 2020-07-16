@@ -84,15 +84,15 @@ vCenter monitoring of non oneadmin VMs
 
 Regular users vCenter VMs are not correctly monitored. In order to fix this issue, please apply the following patch to your installation.
 
-.. code-block:: bash
+.. code-block::
 
-               --- /var/lib/one/remotes/im/lib/vcenter_cluster.rb.new  2020-07-14 18:20:23.000000000 +0200
-               +++ s/var/lib/one/remotes/im/lib/vcenter_cluster.rb     2020-07-14 18:19:12.000000000 +0200
-               @@ -241,7 +241,7 @@
-                        view.DestroyView
+		--- /var/lib/one/remotes/im/lib/vcenter_cluster.rb.new	2020-07-14 18:20:23.000000000 +0200
+		+++ s/var/lib/one/remotes/im/lib/vcenter_cluster.rb	2020-07-14 18:19:12.000000000 +0200
+		@@ -241,7 +241,7 @@
+		         view.DestroyView
 
-                        vmpool = OpenNebula::VirtualMachinePool.new(@onec)
-               -        rc     = vmpool.info(-2)
-               +        rc     = vmpool.info
+		         vmpool = OpenNebula::VirtualMachinePool.new(@onec)
+		-        rc     = vmpool.info(-2)
+		+        rc     = vmpool.info
 
-                        return {} if OpenNebula.is_error?(rc)
+		         return {} if OpenNebula.is_error?(rc)
