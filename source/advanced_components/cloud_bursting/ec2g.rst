@@ -132,7 +132,7 @@ In order to deploy an instance in EC2 through OpenNebula, you must include an EC
     NIC      = [ NETWORK_ID = 7 ]
      
     # PUBLIC_CLOUD template, this will be use wen submitting this VM to EC2
-    PUBLIC_CLOUD = [ TYPE="EC2",
+    PUBLIC_CLOUD = [ TYPE="ec2",
                      AMI="ami-00bafcb5",
                      KEYPAIR="gsg-keypair",
                      INSTANCETYPE=m1.small]
@@ -174,7 +174,7 @@ These values can furthermore be requested from the user using :ref:`user inputs 
 
 .. code::
 
-    PUBLIC_CLOUD = [ TYPE="EC2",
+    PUBLIC_CLOUD = [ TYPE="ec2",
                      AMI="ami-00bafcb5",
                      KEYPAIR="gsg-keypair",
                      INSTANCETYPE=m1.small,
@@ -341,7 +341,7 @@ Also you can see information (like IP addresses) related to the EC2 instance lau
 
     USER TEMPLATE
     PUBLIC_CLOUD=[
-      TYPE="EC2",
+      TYPE="ec2",
       AMI="ami-6f5f1206",
       INSTANCETYPE="m1.small",
       KEYPAIR="gsg-keypair" ]
