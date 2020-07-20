@@ -20,4 +20,3 @@ The following issues has been solved in 5.12.0.1:
 - `Fix microVM kernel boot process does not end properly when using docker image thingsboard/tb-postgres:3.0.1 <https://github.com/OpenNebula/one/issues/4952>`__.
 - `Fix wrong monitoring of non oneadmin VMs <https://github.com/OpenNebula/one/issues/4978>`__.
 - `Fix an error when you try to instantiate a cloned template with recursive option <https://github.com/OpenNebula/one/issues/4979>`__.
-- `Fix LXD image marketplace import to properly execute auto-contextualization process <https://github.com/OpenNebula/one/issues/4953>`__.

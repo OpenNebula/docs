@@ -9,4 +9,4 @@ The following new features has been backported to 5.12.0.2:
 
 The following issues has been solved in 5.12.0.2:
 
-- `Write some nice description here <https://github.com/OpenNebula/one/issues/XXX>`__.
+- `Fix LXD image marketplace import to properly execute auto-contextualization process <https://github.com/OpenNebula/one/issues/4953>`__.
