@@ -17,3 +17,4 @@ The following issues has been solved in 5.12.2:
 - `Fix incomplete rescue clause in LXD deploy <https://github.com/OpenNebula/one/issues/4977>`__.
 - `Fix onevm updateconf command on non existing VM <https://github.com/OpenNebula/one/issues/4982>`__.
 - `Fix error reporting and logging when importing LXD images <https://github.com/OpenNebula/one/issues/4964>`__.
+- `Fix VM config form when update as user <https://github.com/OpenNebula/one/issues/4987>`__.
