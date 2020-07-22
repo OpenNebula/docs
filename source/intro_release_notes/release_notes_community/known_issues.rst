@@ -162,3 +162,5 @@ To request errors with translations, you must download the following po2json.rb 
 
      # wget https://raw.githubusercontent.com/OpenNebula/one/master/share/scons/po2json.rb
      # ruby po2json.rb /usr/lib/one/sunstone/public/locale/languages/es_ES.po > /usr/lib/one/sunstone/public/locale/languages/es_ES.js
+     
+ Afterwards please make sure you clear your browser cache.
