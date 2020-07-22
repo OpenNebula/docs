@@ -154,10 +154,11 @@ And then run
 Sunstone Translate
 =======================
 
-To request errors with translations, you must download the following `file <https://github.com/OpenNebula/one/blob/master/share/scons/po2json.rb>`_. and run the following command for each of the languages ​​that exist.
+To request errors with translations, you must download the following po2json.rb from the OpenNebula repository and run it for each of the languages that exist.
 
-.. note:: to see the existing languages ​​go to ``/usr/lib/one/sunstone/public/locale/languages``. are each of files with the extension **.po**).
+.. note:: to see the existing languages go to ``/usr/lib/one/sunstone/public/locale/languages``. Each language is contained in the  each of files with the extension **.po**).
 
 .. code-block:: bash
 
-    # ruby po2json.rb /usr/lib/one/sunstone/public/locale/languages/es_ES.po > /usr/lib/one/sunstone/public/locale/languages/es_ES.js
+     # wget https://raw.githubusercontent.com/OpenNebula/one/master/share/scons/po2json.rb
+     # ruby po2json.rb /usr/lib/one/sunstone/public/locale/languages/es_ES.po > /usr/lib/one/sunstone/public/locale/languages/es_ES.js
