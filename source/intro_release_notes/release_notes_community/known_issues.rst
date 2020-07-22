@@ -150,3 +150,14 @@ And then run
 .. code-block:: bash
 
     patch /var/lib/one/remotes/im/lib/vcenter_cluster.rb < vcenter_cluster.patch
+
+Sunstone Translate
+=======================
+
+To request errors with translations, you must download the following `file <https://github.com/OpenNebula/one/blob/master/share/scons/po2json.rb>`_. and run the following command for each of the languages ​​that exist.
+
+.. note:: to see the existing languages ​​go to ``/usr/lib/one/sunstone/public/locate/``. are each of files with the extension **.po**).
+
+.. code-block:: bash
+
+    # ruby po2json.rb /home/jorge/Documentos/projects/one-ee/src/sunstone/public/locale/languages/es_ES.po > /home/jorge/Documentos/projects/one-ee/src/sunstone/public/locale/languages/es_ES.js
