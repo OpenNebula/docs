@@ -151,20 +151,22 @@ And then run
 
     patch /var/lib/one/remotes/im/lib/vcenter_cluster.rb < vcenter_cluster.patch
 
-vCenter monitoring of non oneadmin VMs
-======================================
+Sunstone Translate
+==================
 
-Regular users vCenter VMs are not correctly monitored. In order to fix this issue, please apply the following patch to your installation.
+If you are experiencing translation errors switching Suntone language, this fix might alleviate the issue. Download the following po2json.rb from the OpenNebula repository and run it for each of the languages that you are planing to use.
 
 .. code-block:: bash
 
-               --- /var/lib/one/remotes/im/lib/vcenter_cluster.rb.new  2020-07-14 18:20:23.000000000 +0200
-               +++ s/var/lib/one/remotes/im/lib/vcenter_cluster.rb     2020-07-14 18:19:12.000000000 +0200
-               @@ -241,7 +241,7 @@
-                        view.DestroyView
+     # wget https://raw.githubusercontent.com/OpenNebula/one/master/share/scons/po2json.rb
 
-                        vmpool = OpenNebula::VirtualMachinePool.new(@onec)
-               -        rc     = vmpool.info(-2)
-               +        rc     = vmpool.info
+.. note:: to see the existing languages proceed to ``/usr/lib/one/sunstone/public/locale/languages``. Each language is contained in separate file with the **.po** extension).
 
-                        return {} if OpenNebula.is_error?(rc)
+To apply the fix for a given language, adapt the following instructions for spanish.
+
+.. code-block:: bash
+
+     # wget https://raw.githubusercontent.com/OpenNebula/one/master/src/sunstone/public/locale/languages/es_ES.po
+     # ruby po2json.rb es_ES.po > /usr/lib/one/sunstone/public/locale/languages/es_ES.js
+
+Afterwards please make sure you clear your browser cache.
