@@ -152,16 +152,17 @@ And then run
     patch /var/lib/one/remotes/im/lib/vcenter_cluster.rb < vcenter_cluster.patch
 
 Sunstone Translate
-=======================
-To request errors with translations, you must download the following po2json.rb from the OpenNebula repository and run it for each of the languages that exist.
+==================
+
+If you are experiencing translation errors switching Suntone language, this fix might alleviate the issue. Download the following po2json.rb from the OpenNebula repository and run it for each of the languages that you are planing to use.
 
 .. code-block:: bash
 
      # wget https://raw.githubusercontent.com/OpenNebula/one/master/share/scons/po2json.rb
 
+.. note:: to see the existing languages proceed to ``/usr/lib/one/sunstone/public/locale/languages``. Each language is contained in separate file with the **.po** extension).
 
-.. note:: to see the existing languages go to ``/usr/lib/one/sunstone/public/locale/languages``. Each language is contained in the each of files with the extension **.po**).
-
+To apply the fix for a given language, adapt the following instructions for spanish.
 
 .. code-block:: bash
 
