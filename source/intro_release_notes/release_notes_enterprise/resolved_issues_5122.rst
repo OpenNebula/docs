@@ -7,7 +7,7 @@ A complete list of solved issues for 5.12.2 can be found in the `project develop
 
 The following new features has been backported to 5.12.2:
 
-- `Write some nice description here <https://github.com/OpenNebula/one/issues/XXX>`__.
+- `Add RDP and virt-viewer buttons in Sunstone Cloud view <https://github.com/OpenNebula/one/issues/3969>`__.
 
 The following issues has been solved in 5.12.2:
 
