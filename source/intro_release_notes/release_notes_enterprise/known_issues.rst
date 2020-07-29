@@ -86,16 +86,17 @@ Regular users vCenter VMs are not correctly monitored. In order to fix this issu
 
 .. code-block:: bash
 
-		--- /var/lib/one/remotes/im/lib/vcenter_cluster.rb.new	2020-07-14 18:20:23.000000000 +0200
-		+++ /var/lib/one/remotes/im/lib/vcenter_cluster.rb	2020-07-14 18:19:12.000000000 +0200
+		--- /var/lib/one/remotes/im/lib/vcenter_cluster.rb.orig	2020-07-08 12:34:43.000000000 +0000
+		+++ /var/lib/one/remotes/im/lib/vcenter_cluster.rb.new	2020-07-29 08:31:37.957901969 +0000
 		@@ -241,7 +241,7 @@
 		         view.DestroyView
 
 		         vmpool = OpenNebula::VirtualMachinePool.new(@onec)
-		-        rc     = vmpool.info(-2)
-		+        rc     = vmpool.info
+		-        rc     = vmpool.info
+		+        rc     = vmpool.info(-2)
 
 		         return {} if OpenNebula.is_error?(rc)
+
 
 Sunstone Translate
 ==================
