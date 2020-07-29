@@ -20,3 +20,4 @@ The following issues has been solved in 5.12.2:
 - `Fix error reporting and logging when importing LXD images <https://github.com/OpenNebula/one/issues/4964>`__.
 - `Fix VM config form when update as user <https://github.com/OpenNebula/one/issues/4987>`__.
 - `Fix enable RDP when instantiate vm template from instantiation form <https://github.com/OpenNebula/one/issues/4988>`__.
+- `Fix a bug in group membership update that creates adds non-existent user for external drivers (e.g. LDAP) <https://github.com/OpenNebula/one/issues/4992>`__.
