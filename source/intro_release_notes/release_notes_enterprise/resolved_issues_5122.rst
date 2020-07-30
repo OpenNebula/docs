@@ -22,3 +22,4 @@ The following issues has been solved in 5.12.2:
 - `Fix enable RDP when instantiate vm template from instantiation form <https://github.com/OpenNebula/one/issues/4988>`__.
 - `Fix a bug in group membership update that creates adds non-existent user for external drivers (e.g. LDAP) <https://github.com/OpenNebula/one/issues/4992>`__.
 - `Fix how same host is deteted in TM ssh/mv driver action <https://github.com/OpenNebula/one/issues/3460>`__.
+- `Fix missing gem for S3 private marketplaces <https://github.com/OpenNebula/one/issues/5003>`__.
