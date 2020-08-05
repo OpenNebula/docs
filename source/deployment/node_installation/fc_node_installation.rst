@@ -17,6 +17,11 @@ Step 2. Installing the Software
 Installing on CentOS/RHEL
 -------------------------
 
+.. include:: ../opennebula_installation/epel.txt
+
+Install Node Package
+^^^^^^^^^^^^^^^^^^^^
+
 Execute the following commands to install the Firecracker node package:
 
 .. prompt:: bash $ auto

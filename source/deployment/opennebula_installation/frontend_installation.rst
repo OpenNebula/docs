@@ -60,37 +60,7 @@ Step 3. Installing the Software
 Installing on CentOS/RHEL
 -------------------------
 
-OpenNebula depends on packages which are not in the base repositories.
-The following repositories have to be enabled before installation:
-
-* only RHEL 7: **optional** and **extras** RHEL repositories
-* `EPEL <https://fedoraproject.org/wiki/EPEL>`__ (Extra Packages for Enterprise Linux)
-
-Repository EPEL
-^^^^^^^^^^^^^^^
-
-On **CentOS**, enabling EPEL is as easy as installation of the package with additional repository configuration:
-
-.. prompt:: bash # auto
-
-    # yum install epel-release
-
-
-On **RHEL 7**, you enable EPEL by running:
-
-.. note:: RHEL 7 **optional** and **extras** repositories must be configured first.
-
-.. prompt:: bash # auto
-
-    # subscription-manager repos --enable rhel-7-server-optional-rpms
-    # subscription-manager repos --enable rhel-7-server-extras-rpms
-    # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-
-On **RHEL 8**, you enable EPEL by running:
-
-.. prompt:: bash # auto
-
-    # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+.. include:: epel.txt
 
 Install OpenNebula
 ^^^^^^^^^^^^^^^^^^
@@ -187,7 +157,7 @@ Step 4. Ruby Runtime Installation (Optional)
 
         # export GEM_PATH=/usr/share/one/gems/
         # export GEM_HOME=/usr/share/one/gems/
-        # gem install --no-document --conservative $GEM_NAME
+        # gem install --install-dir /usr/share/one/gems/ --bindir /usr/share/one/gems/bin/ --no-document --conservative $GEM_NAME
 
 Some OpenNebula components need Ruby libraries. OpenNebula provides a script that installs the required gems as well as some development library packages needed.
 
