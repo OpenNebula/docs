@@ -79,45 +79,6 @@ The error you might experience:
     /usr/local/share/ruby/site_ruby/rubygems/specification.rb:1764: warning: previous definition of DateTimeFormat was here
     Error: wrong number of arguments (0 for 1)
 
-vCenter monitoring of non oneadmin VMs
-======================================
-
-Regular users vCenter VMs are not correctly monitored. In order to fix this issue, please apply the following patch to your installation.
-
-.. code-block:: bash
-
-		--- /var/lib/one/remotes/im/lib/vcenter_cluster.rb.orig	2020-07-08 12:34:43.000000000 +0000
-		+++ /var/lib/one/remotes/im/lib/vcenter_cluster.rb.new	2020-07-29 08:31:37.957901969 +0000
-		@@ -241,7 +241,7 @@
-		         view.DestroyView
-
-		         vmpool = OpenNebula::VirtualMachinePool.new(@onec)
-		-        rc     = vmpool.info
-		+        rc     = vmpool.info(-2)
-
-		         return {} if OpenNebula.is_error?(rc)
-
-
-Sunstone Translate
-==================
-
-If you are experiencing translation errors switching Suntone language, this fix might alleviate the issue. Download the following po2json.rb from the OpenNebula repository and run it for each of the languages that you are planing to use.
-
-.. code-block:: bash
-
-     # wget https://raw.githubusercontent.com/OpenNebula/one/master/share/scons/po2json.rb
-
-.. note:: to see the existing languages proceed to ``/usr/lib/one/sunstone/public/locale/languages``. Each language is contained in separate file with the **.po** extension).
-
-To apply the fix for a given language, adapt the following instructions for spanish.
-
-.. code-block:: bash
-
-     # wget https://raw.githubusercontent.com/OpenNebula/one/master/src/sunstone/public/locale/languages/es_ES.po
-     # ruby po2json.rb es_ES.po > /usr/lib/one/sunstone/public/locale/languages/es_ES.js
-
-Afterwards please make sure you clear your browser cache.
-
 Sunstone Browser
 ================
 
