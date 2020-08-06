@@ -21,6 +21,11 @@ Step 2. Installing the Software
 Installing on CentOS/RHEL
 -------------------------
 
+.. include:: ../opennebula_installation/epel.txt
+
+Install Node Package
+^^^^^^^^^^^^^^^^^^^^
+
 Execute the following commands to install the node package and restart libvirt to use the OpenNebula provided configuration file:
 
 .. prompt:: bash $ auto
@@ -28,8 +33,8 @@ Execute the following commands to install the node package and restart libvirt t
     $ sudo yum install opennebula-node-kvm
     $ sudo systemctl restart libvirtd
 
-Newer QEMU/KVM (only CentOS/RHEL 7)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Optional: Newer QEMU/KVM (only CentOS/RHEL 7)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You may benefit from using the more recent and feature-rich enterprise QEMU/KVM release. The differences between the base (``qemu-kvm``) and enterprise (``qemu-kvm-rhev`` on RHEL or ``qemu-kvm-ev`` on CentOS) packages are described on the `Red Hat Customer Portal <https://access.redhat.com/solutions/629513>`__.
 
