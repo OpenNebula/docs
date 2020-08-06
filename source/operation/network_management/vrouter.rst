@@ -9,13 +9,13 @@ Virtual Routers provide routing across Virtual Networks. The administrators can 
 Download the Virtual Router Appliance
 ================================================================================
 
-OpenNebula provides a light weight Alpine-based virtual router. The virtual router image is prepared to run in a HA mode, and process the context information from OpenNebula. So its base capabilities can be easily extended.
+OpenNebula provides appliance which implements various Virtual Network Functions (VNFs), including the virtual router. The virtual router image is prepared to run in a HA mode, and process the context information from OpenNebula. So its base capabilities can be easily extended. Continue to the `VNF appliance documention <https://docs.opennebula.io/appliances/service/vnf.html>`_ for more details about the advanced usage and other implemented functions.
 
-- Download the appliance from the market place. For example to put the virtual router image in the default datastore and create a Virtual Router template named vrouter_alpine use:
+- Download the appliance from the OpenNebula Marketplace. For example to put the virtual router image in the default datastore and create a Virtual Router template named ``Service Virtual Router`` use:
 
 .. code::
 
-    $onemarketapp export 'alpine-vrouter (KVM)' vrouter_alpine --datastore default --vmname vrouter_alpine
+    $ onemarketapp export 'Service Virtual Router' vr --datastore default --vmname vr
     IMAGE
         ID: 9
     VMTEMPLATE
@@ -27,12 +27,6 @@ OpenNebula provides a light weight Alpine-based virtual router. The virtual rout
 
     $ oneimage show 9 # 9 is the IMAGE ID from the previous onemarketapp command
     $ onetemplate show 8 # 8 is for the VMTEMPLATE ID
-
-.. note:: For vCenter infrastructures an ova with the preconfigured image can be imported from the following URL:
-
-    https://s3-eu-west-1.amazonaws.com/opennebula-marketplace/alpine-quagga.ova
-
-    After that you'll only need to import new templates from vcenter and set the template as Virtual Router at the bottom of the General tab of the template update wizard.
 
 Creating a new Virtual Router
 ================================================================================
@@ -146,7 +140,7 @@ Customization
 You can provide two optional parameters in the context to configure the keepalived service started in the Virtual Router VM:
 
 * ``VROUTER_KEEPALIVED_PASSWORD``: Password used for the service to protect the service from packages of rogue machines. By default the service is configured without password.
-* ``VROUTER_KEEPALIVED_ID``: Number identifier of the service (0-255). This is useful when you have several virtual routers or other keepalived services in the same network. By default it is generated from the Virtual Router ID (``$vrouter_id & 255``) but you can specify it manually if needed.
+* ``VROUTER_KEEPALIVED_ID``: Number identifier of the service (1-255). This is useful when you have several virtual routers or other keepalived services in the same network. By default it is generated from the Virtual Router ID (``$vrouter_id & 255``) but you can specify it manually if needed.
 
 These parameters can also be provided in the Virtual Router creation wizard of Sunstone.
 
