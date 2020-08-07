@@ -11,4 +11,4 @@ The following new features has been backported to 5.12.3:
 
 The following issues has been solved in 5.12.3:
 
-- `Write some !NICE AND CLEAR! description <https://github.com/OpenNebula/one/issues/XXX>`__.
+- `Fix onehook show output to correctly show execution logs <https://github.com/OpenNebula/one/issues/5022>`__.
