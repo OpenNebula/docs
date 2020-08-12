@@ -15,7 +15,7 @@ What's New in X.Y
 
 OpenNebula Core
 ================================================================================
-
+- `Add option to disable raw section validation <http://github.com/OpenNebula/one/issues/2983>`__.
 
 Networking
 ================================================================================

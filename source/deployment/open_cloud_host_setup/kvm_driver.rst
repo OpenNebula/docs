@@ -278,6 +278,7 @@ The **raw** attribute offers the end user the possibility of passing by attribut
 .. code::
 
       RAW = [ type = "kvm",
+              validate = "yes",
               data = "<devices><serial type=\"pty\"><source path=\"/dev/pts/5\"/><target port=\"0\"/></serial><console type=\"pty\" tty=\"/dev/pts/5\"><source path=\"/dev/pts/5\"/><target port=\"0\"/></console></devices>" ]
 
 

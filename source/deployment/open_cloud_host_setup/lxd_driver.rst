@@ -169,6 +169,7 @@ The **raw** attribute offers the end user the possibility of passing by attribut
 .. code::
 
       RAW = [ type = "lxd",
+              validate = "yes",
               "boot.autostart": "true", "limits.processes": "10000"]
 
 Importing VMs
