@@ -1121,15 +1121,17 @@ You can also tune several low-level hypervisor attributes.
 
 The ``RAW`` attribute (optional) section of the VM template is used pass VM information directly to the underlying hypervisor. Anything placed in the data attribute gets passed straight to the hypervisor unmodified.
 
-+-------------------+---------------------------------------------------+-----+---------+---------+
-| RAW     Attribute |                    Description                    | KVM | vCenter | LXD     |
-+===================+===================================================+=====+=========+=========+
-| **TYPE**          | Possible values are: ``kvm``, ``lxd``, ``vmware`` | O   | \-      | O       |
-+-------------------+---------------------------------------------------+-----+---------+---------+
-| **DATA**          | Raw data to be passed directly to the hypervisor  | O   | \-      | O       |
-+-------------------+---------------------------------------------------+-----+---------+---------+
-| **DATA\_VMX**     | Raw data to be added directly to the .vmx file    | \-  | \-      | \-      |
-+-------------------+---------------------------------------------------+-----+---------+---------+
++-------------------+----------------------------------------------------------------------------------------+-----+---------+-----+
+| RAW     Attribute |                    Description                                                         | KVM | vCenter | LXD |
++===================+========================================================================================+=====+=========+=====+
+| **TYPE**          | Possible values are: ``kvm``, ``lxd``, ``vmware``                                      | O   | \-      | O   |
++-------------------+----------------------------------------------------------------------------------------+-----+---------+-----+
+| **VALIDATE**      | Validate DATA agains xml schema, posible values ``yes``, ``no``. Default value ``yes`` | O   | \-      | \-  |
++-------------------+----------------------------------------------------------------------------------------+-----+---------+-----+
+| **DATA**          | Raw data to be passed directly to the hypervisor                                       | O   | \-      | O   |
++-------------------+----------------------------------------------------------------------------------------+-----+---------+-----+
+| **DATA\_VMX**     | Raw data to be added directly to the .vmx file                                         | \-  | \-      | \-  |
++-------------------+----------------------------------------------------------------------------------------+-----+---------+-----+
 
 Example:
 
@@ -1137,6 +1139,7 @@ Example:
 
        RAW = [
            type = "kvm",
+           validate = "yes",
            data = "<devices><serial type=\"pty\"><source path=\"/dev/pts/5\"/><target port=\"0\"/></serial><console type=\"pty\" tty=\"/dev/pts/5\"><source path=\"/dev/pts/5\"/><target port=\"0\"/></console></devices>"
        ]
 
