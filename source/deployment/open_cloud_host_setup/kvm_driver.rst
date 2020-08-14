@@ -273,7 +273,7 @@ For disks you can also use SCSI bus (``sd``) and it will use virtio-scsi control
 Additional Attributes
 ~~~~~~~~~~~~~~~~~~~~~
 
-The **raw** attribute offers the end user the possibility of passing by attributes not known by OpenNebula to KVM. Basically, everything placed here will be written literally into the KVM deployment file (**use libvirt xml format and semantics**).
+The **raw** attribute offers the end user the possibility of passing by attributes not known by OpenNebula to KVM. Basically, everything placed here will be written literally into the KVM deployment file (**use libvirt xml format and semantics**). You can selectively disable validation of the RAW data by adding `VALIDATE = "no"` to the `RAW` section. By default the data will be checked against the libvirt schema. 
 
 .. code::
 
