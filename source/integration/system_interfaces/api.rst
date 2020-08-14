@@ -1390,6 +1390,8 @@ The action String must be one of the following:
 * **resched**
 * **unresched**
 
+.. _one_vm_migrate:
+
 one.vm.migrate
 --------------------------------------------------------------------------------
 

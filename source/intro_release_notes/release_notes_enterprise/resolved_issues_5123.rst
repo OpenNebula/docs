@@ -7,7 +7,7 @@ A complete list of solved issues for 5.12.3 can be found in the `project develop
 
 The following new features has been backported to 5.12.3:
 
-- `Write some !NICE AND CLEAR! description <https://github.com/OpenNebula/one/issues/XXX>`__.
+- `Option to set cold migration type for rescheduling <https://github.com/OpenNebula/one/issues/2983>`__.
 
 The following issues has been solved in 5.12.3:
 

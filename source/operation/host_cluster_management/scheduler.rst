@@ -63,6 +63,7 @@ The behavior of the scheduler can be tuned to adapt it to your infrastructure wi
 * ``MAX_DISPATCH``: Maximum number of Virtual Machines actually dispatched to a host in each scheduling action (Default: 30)
 * ``MAX_HOST``: Maximum number of Virtual Machines dispatched to a given host in each scheduling action (Default: 1)
 * ``LIVE_RESCHEDS``: Perform live (1) or cold migrations (0) when rescheduling a VM
+* ``COLD_MIGRATION_MODE``: In case of cold migration, defines the type of VM migration. Possible values are 0 save, 1 poweroff, 2 poweroff hard. :ref:`See one.vm.migrate <one_vm_migrate>`
 * ``MEMORY_SYSTEM_DS_SCALE``: This factor scales the VM usage of the system DS with the memory size. This factor can be use to make the scheduler consider the overhead of checkpoint files: system_ds_usage = system_ds_usage + memory_system_ds_scale * memory
 * ``DIFFERENT_VNETS``: When set (YES) the NICs of a VM will be forced to be in different Virtual Networks.
 
