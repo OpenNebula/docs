@@ -1126,7 +1126,7 @@ The ``RAW`` attribute (optional) section of the VM template is used pass VM info
 +===================+========================================================================================+=====+=========+=====+
 | **TYPE**          | Possible values are: ``kvm``, ``lxd``, ``vmware``                                      | O   | \-      | O   |
 +-------------------+----------------------------------------------------------------------------------------+-----+---------+-----+
-| **VALIDATE**      | Validate DATA agains xml schema, posible values ``yes``, ``no``. Default value ``yes`` | O   | \-      | O   |
+| **VALIDATE**      | Validate DATA agains xml schema, posible values ``yes``, ``no``. Default value ``yes`` | O   | \-      | \-  |
 +-------------------+----------------------------------------------------------------------------------------+-----+---------+-----+
 | **DATA**          | Raw data to be passed directly to the hypervisor                                       | O   | \-      | O   |
 +-------------------+----------------------------------------------------------------------------------------+-----+---------+-----+
