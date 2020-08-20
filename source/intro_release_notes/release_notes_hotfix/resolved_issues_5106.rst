@@ -11,4 +11,4 @@ The following new features has been backported to 5.10.6:
 
 The following issues has been solved in 5.10.6:
 
-- `Write some nice description here <https://github.com/OpenNebula/one/issues/XXX>`__.
+- `Avoid gathering KVM I/O statistics for saving VMs <https://github.com/OpenNebula/one/issues/5041>`__.
