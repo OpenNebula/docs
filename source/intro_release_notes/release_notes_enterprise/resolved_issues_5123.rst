@@ -17,3 +17,4 @@ The following issues has been solved in 5.12.3:
 - `Fix LDAP auth when user_field is empty <https://github.com/OpenNebula/one/issues/5042>`__.
 - `Fix occasional crash of oned in LogDB::purge_log <https://github.com/OpenNebula/one/issues/5040>`__.
 - `Avoid gathering KVM I/O statistics for saving VMs <https://github.com/OpenNebula/one/issues/5041>`__.
+- `Fix OneFlow expiration token error <https://github.com/OpenNebula/one/issues/5045>`__.
