@@ -598,12 +598,12 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 | **VARIABLE**                      | Variables that store values related to this virtual machine or others . The name  | O                            | O       | Linux   |
 |                                   | of the variable is arbitrary (in the example, we use hostname).                   |                              |         |         |
 +-----------------------------------+-----------------------------------------------------------------------------------+------------------------------+---------+---------+
-| **FILES \***                      | space-separated list of paths to include in context device.                       | O                            | \-      | \-      |
+| **FILES \***                      | space-separated list of paths to include in context device.                       | O                            | O       | \-      |
 +-----------------------------------+-----------------------------------------------------------------------------------+------------------------------+---------+---------+
-| **FILES\_DS**                     | space-separated list of File images to include in context device. (Not supported  | O                            | \-      | \-      |
+| **FILES\_DS**                     | space-separated list of File images to include in context device. (Not supported  | O                            | O       | \-      |
 |                                   | for vCenter)                                                                      |                              |         |         |
 +-----------------------------------+-----------------------------------------------------------------------------------+------------------------------+---------+---------+
-| **INIT\_SCRIPTS**                 | If the VM uses the OpenNebula contextualization package the init.sh file is       | O                            | \-      | \-      |
+| **INIT\_SCRIPTS**                 | If the VM uses the OpenNebula contextualization package the init.sh file is       | O                            | O       | \-      |
 |                                   | executed by default. When the init script added is not called init.sh or more     |                              |         |         |
 |                                   | than one init script is added, this list contains the scripts to run and the      |                              |         |         |
 |                                   | order. Ex. "init.sh users.sh mysql.sh"                                            |                              |         |         |
