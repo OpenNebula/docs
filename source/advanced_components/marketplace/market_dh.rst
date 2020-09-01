@@ -23,6 +23,8 @@ Requirements and limitations
 - Approximately 6GB of storage plus the container image size configured on your frontend.
 - As images are builded in the OpenNebula Frontend node the architecture of this node will limit the images architecture.
 
+.. warning:: OpenNebula service must be restarted after providing permissions to ``oneadmin`` for  running docker.
+
 Configuration
 ================================================================================
 
