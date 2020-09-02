@@ -171,3 +171,4 @@ Other Issues Solved
 - `Fixed incorrect assignation of network type when import NSX-V networks <https://github.com/OpenNebula/one/issues/4004>`_.
 - `MySQL can be configured to perform case-sensitive object name searches <https://github.com/OpenNebula/one/issues/4115>`_.
 - :ref:` Timeout for SQLite DB lock can be configured in oned.conf <oned_conf>`.
+- `Support for INIT_SCRIPTS in vCenter <https://github.com/OpenNebula/one/issues/5004>`_.
