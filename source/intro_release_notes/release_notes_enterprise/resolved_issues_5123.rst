@@ -19,3 +19,4 @@ The following issues has been solved in 5.12.3:
 - `Avoid gathering KVM I/O statistics for saving VMs <https://github.com/OpenNebula/one/issues/5041>`__.
 - `Fix OneFlow expiration token error <https://github.com/OpenNebula/one/issues/5045>`__.
 - `Unable to login from Sunstone when quotes present in password <https://github.com/OpenNebula/one/issues/5049>`__.
+- `Support for INIT_SCRIPTS in vCenter <https://github.com/OpenNebula/one/issues/5004>`_.
