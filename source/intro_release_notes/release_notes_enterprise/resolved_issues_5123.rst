@@ -8,7 +8,6 @@ A complete list of solved issues for 5.12.3 can be found in the `project develop
 The following issues has been solved in 5.12.3:
 
 - `Fix onehook show output to correctly show execution logs <https://github.com/OpenNebula/one/issues/5022>`__.
-- `Fix DB migration from 5.10 to 5.12 <https://github.com/OpenNebula/one/issues/5013>`__.
 - `Fix group vms widget in Sunstone cloud view <https://github.com/OpenNebula/one/issues/5014>`__.
 - `Fix LDAP auth when user_field is empty <https://github.com/OpenNebula/one/issues/5042>`__.
 - `Fix occasional crash of oned in LogDB::purge_log <https://github.com/OpenNebula/one/issues/5040>`__.
