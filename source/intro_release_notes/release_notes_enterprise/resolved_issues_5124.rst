@@ -8,3 +8,4 @@ A complete list of solved issues for 5.12.4 can be found in the `project develop
 The following issues has been solved in 5.12.4:
 
 - `Fix DB migration from 5.10 to 5.12 <https://github.com/OpenNebula/one/issues/5013>`__.
+- `Fix force IP when instantiate a vm in Sunstone <https://github.com/OpenNebula/one/issues/5061>`__.
