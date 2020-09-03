@@ -27,7 +27,7 @@ Authentication
 
 Sunstone
 ================================================================================
-
+- `Add option to hot resize disk on vcenter <http://github.com/OpenNebula/one/issues/4569>`__.
 
 Scheduler
 ================================================================================
