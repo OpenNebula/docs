@@ -30,9 +30,9 @@ To stop, start, or restart service use following commands:
 
 .. prompt:: bash $ auto
 
-    $ sudo systemctl stop openenbula-ssh-agent.service
-    $ sudo systemctl start openenbula-ssh-agent.service
-    $ sudo systemctl restart openenbula-ssh-agent.service
+    $ sudo systemctl stop opennenbula-ssh-agent.service
+    $ sudo systemctl start opennenbula-ssh-agent.service
+    $ sudo systemctl restart opennenbula-ssh-agent.service
 
 .. important::
 
@@ -42,7 +42,7 @@ SSH Authentication Agent service doesn't need to be enabled to start on boot of 
 
 .. prompt:: bash $ auto
 
-    $ sudo systemctl mask openenbula-ssh-agent.service
+    $ sudo systemctl mask opennebula-ssh-agent.service
 
 Add Custom Keys
 ---------------
