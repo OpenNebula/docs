@@ -144,6 +144,10 @@ Available options are:
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :threshold_high           | Minimum percentage value for red color on thresholds                                          |
 +---------------------------+-----------------------------------------------------------------------------------------------+
+| :zeromq_server            | Endpoint to connect to the ZeroMQ server.                                                     |
++---------------------------+-----------------------------------------------------------------------------------------------+
+| :autorefresh_ip           | IP address where the sunstone is running.                                                     |
++---------------------------+-----------------------------------------------------------------------------------------------+
 
 .. note:: To use Sunstone with IPv6 only systems and thin HTTP sever, use the full IPv6 address in the 
     field `:host`. If you need to set the localhost address (::1) or the unspecified address (::) please 

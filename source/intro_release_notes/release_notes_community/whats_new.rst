@@ -27,6 +27,7 @@ Authentication
 
 Sunstone
 ================================================================================
+- VM info autorefresh with ZeroMQ. Check :ref:`this <autorefresh>` for more information.
 
 
 Scheduler
