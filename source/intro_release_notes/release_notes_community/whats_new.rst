@@ -54,3 +54,4 @@ MicroVMs
 
 Other Issues Solved
 ================================================================================
+- Allow live migration over SSH for KVM `<http://github.com/OpenNebula/one/issues/1644>`__.
