@@ -63,7 +63,7 @@ The shared transfer driver assumes that the datastore is mounted in all the host
 
 When a VM is created, its disks (the ``disk.i`` files) are copied or linked in the corresponding directory of the system datastore. These file operations are always performed remotely on the target host.
 
-This transfer mode usually reduces VM deployment times and **enables live-migration**, but it can also become a bottleneck in your infrastructure and degrade your Virtual Machines performance if the virtualized services perform disk-intensive workloads. Usually this limitation may be overcome by:
+This transfer mode usually reduces VM deployment times, but it can also become a bottleneck in your infrastructure and degrade your Virtual Machines performance if the virtualized services perform disk-intensive workloads. Usually this limitation may be overcome by:
 
 * Using different file-system servers for the images datastores, so the actual I/O bandwidth is balanced
 * Using an ssh System Datastore instead, the images are copied locally to each host
@@ -73,7 +73,7 @@ This transfer mode usually reduces VM deployment times and **enables live-migrat
 
 SSH Transfer Mode
 --------------------------------------------------------------------------------
-In this case the System Datastore is distributed among the hosts. The ssh transfer driver uses the hosts' local storage to place the images of running Virtual Machines. All the operations are then performed locally but images have to be copied always to the hosts, which in turn can be a very resource demanding operation. Also this driver prevents the use of live-migrations between hosts.
+In this case the System Datastore is distributed among the hosts. The ssh transfer driver uses the hosts' local storage to place the images of running Virtual Machines. All the operations are then performed locally but images have to be copied always to the hosts, which in turn can be a very resource demanding operation.
 
 |image2|
 
