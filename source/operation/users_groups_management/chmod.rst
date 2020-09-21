@@ -280,7 +280,7 @@ The **Resources** column lists the existing Resource types initials. Each rule f
 -  ``M : MARKETPLACE``
 -  ``A : MARKETPLACEAPP``
 -  ``P : VMGROUP``
--  ``t : WNTEMPLATE``
+-  ``t : VNTEMPLATE``
 
 **RID** stands for Resource ID, it can be an individual object (#), group (@) or cluster (%) id; or all (\*) objects.
 
