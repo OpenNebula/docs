@@ -40,6 +40,11 @@ CLI
 ================================================================================
 - CLI can output JSON and YAML formats.  e.g: ``onevm list --json`` or ``onevm show --yaml 23``
 
+Distributed Edge Provisioning
+================================================================================
+
+- Provision information is stored using a JSON document. New commands has been also added in the CLI, you can check all the information :ref:`here <ddc>`.
+
 Packaging
 ================================================================================
 
