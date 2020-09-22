@@ -470,21 +470,6 @@ The actions available for a given VM can be customized and extended by modifying
 
 |customizecloudview|
 
-
-Autorefresh
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-VM autorefresh time (ms) of the individual VM view. By default, 10 seconds. You must add the following line in ``vms-tab`` in the different views:
-
-.. code-block:: yaml
-
-    actions:
-        VM.refresh: true
-        ...
-        VM.menu_labels: true
-    autorefresh_info: 5000 # ms
-
-
 .. |sunstone_dashboard| image:: /images/sunstone_dashboard.png
 .. |labels_edit| image:: /images/labels_edit.png
 .. |labels_persis| image:: /images/labels_persis.png
