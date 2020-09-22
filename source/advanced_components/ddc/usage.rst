@@ -475,7 +475,7 @@ The ``oneprovision template list`` command lists all templates.
     ID USER     GROUP    NAME                                                                                                                          REGTIME
     0  oneadmin oneadmin test_template                                                                                                          09/21 14:17:28
 
-Tempalte Delete
+Template Delete
 ^^^^^^^^^^^^^^^
 
 The ``oneprovision template delete`` command deletes the template.
