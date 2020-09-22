@@ -94,7 +94,7 @@ Once the deployment has finished, we can check that all the objects have been co
  111 EC2Cluster-system    0M -   106           0 sys  -       ssh     on
  110 EC2Cluster-image    80G 97% 106           0 img  fs      ssh     on
 
-    $ oneprovision vnet list
+    $ oneprovision network list
   ID USER     GROUP    NAME                             CLUSTERS   BRIDGE   LEASES
   15 oneadmin oneadmin EC2Cluster-private                    106  vxbr100        0
   14 oneadmin oneadmin EC2Cluster-private-host-only-nat      106      br0        0
@@ -214,7 +214,7 @@ Once the deployment has finished, we can check that all the objects have been co
  117 PacketCluster-system     0M -   108           0 sys  -       ssh     on
  116 PacketCluster-image     80G 97% 108           0 img  fs      ssh     on
 
-    $ oneprovision vnet list
+    $ oneprovision network list
   ID USER     GROUP    NAME                             CLUSTERS   BRIDGE   LEASES
   22 oneadmin oneadmin PacketCluster-public             108        onebr22       0
   21 oneadmin oneadmin PacketCluster-private            108        vxbr100       0

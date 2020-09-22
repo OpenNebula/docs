@@ -408,27 +408,27 @@ The ``oneprovision datastore delete`` command deletes the datastore.
 Virtual Networks Management
 ---------------------------
 
-Individual virtual networks from the provision can be managed by the ``oneprovision vnet`` subcommands.
+Individual virtual networks from the provision can be managed by the ``oneprovision network`` subcommands.
 
 Vnet List
 ^^^^^^^^^
 
-The ``oneprovision vnet list`` command lists all virtual networks.
+The ``oneprovision network list`` command lists all virtual networks.
 
 .. prompt:: bash $ auto
 
-    $ oneprovision vnet list
+    $ oneprovision network list
       ID USER            GROUP        NAME                CLUSTERS   BRIDGE   PROVIDER LEASES
      136 oneadmin        oneadmin     myprovision-hostonl 184        br0      packet        0
 
 Vnet Delete
 ^^^^^^^^^^^
 
-The ``oneprovision vnet delete`` command deletes the virtual network.
+The ``oneprovision network delete`` command deletes the virtual network.
 
 .. prompt:: bash $ auto
 
-    $ oneprovision vnet delete 136 -d
+    $ oneprovision network delete 136 -d
     2018-11-27 13:02:08 INFO  : Deleting vnet 136
     VNET 136: deleted
 
