@@ -110,11 +110,9 @@ Example:
       <NAME>provision-c968cbcf40716f8e18caddbb8757c2ca7ed0942a357d511b</NAME>
       <IM_MAD>kvm</IM_MAD>
       <VM_MAD>kvm</VM_MAD>
-      <PM_MAD>packet</PM_MAD>
       <TEMPLATE>
         <IM_MAD>kvm</IM_MAD>
         <VM_MAD>kvm</VM_MAD>
-        <PM_MAD>packet</PM_MAD>
         <PROVISION>
           <PACKET_TOKEN>*****</PACKET_TOKEN>
           <PACKET_PROJECT>*****</PROJECT>
