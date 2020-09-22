@@ -502,7 +502,7 @@ The ``oneprovision vntemplate list`` command lists all VNet templates.
     ID USER     GROUP    NAME                                                                                                                          REGTIME
     0  oneadmin oneadmin vntemplate                                                                                                             09/21 14:17:28
 
-VNet Tempalte Delete
+VNet Template Delete
 ^^^^^^^^^^^^^^^^^^^^
 
 The ``oneprovision vntemplate delete`` command deletes the VNet template.
@@ -518,7 +518,7 @@ Flow Templates
 
 Individual Flow templates from the provision can be managed by the ``oneprovision flowtemplate`` subcommands.
 
-Flow Tempalte Delete
+Flow Template Delete
 ^^^^^^^^^^^^^^^^^^^^
 
 The ``oneprovision flowtemplate delete`` command deletes the Flow template.
