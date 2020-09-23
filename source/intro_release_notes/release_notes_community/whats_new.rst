@@ -52,6 +52,10 @@ Containers
 MicroVMs
 ========
 
+Hooks
+=====
+- Change the way arguments are passed to ``host_error.rb`` from command line to standard input to avoid potential argument overflow `issue <https://github.com/OpenNebula/one/issues/5101>`__. When upgrading from previous OpenNebula versions, if :ref:`Host Failures <ftguide>` configured, it is needed to update the hook (``onehook update``) with ``ARGUMENTS_STDIN = "yes"``.
+
 Other Issues Solved
 ================================================================================
 - Allow live migration over SSH for KVM `<http://github.com/OpenNebula/one/issues/1644>`__.
