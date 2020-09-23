@@ -22,3 +22,8 @@ As a workaround you can use the other browsers:
 
 - Chrome (61.0 - 67.0)
 - Firefox (59.0 - 61.0)
+
+Hooks
+=====
+
+Potential issue with `host_error.rb` hook when receiving the host template argument from command line. You can check all the information `here <https://github.com/OpenNebula/one/issues/5101>`__
