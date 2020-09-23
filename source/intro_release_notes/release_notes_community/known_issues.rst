@@ -73,3 +73,18 @@ To apply the fix for a given language, adapt the following instructions for span
      # ruby po2json.rb es_ES.po > /usr/lib/one/sunstone/public/locale/languages/es_ES.js
 
 Afterwards please make sure you clear your browser cache.
+
+Sunstone Browser
+================
+
+Current implementation of Sunstone is not working on Internet Explorer due to new Javascript version.
+
+As a workaround you can use the other browsers:
+
+- Chrome (61.0 - 67.0)
+- Firefox (59.0 - 61.0)
+
+Hooks
+=====
+
+Potential issue with `host_error.rb` hook when receiving the host template argument from command line. You can check all the information `here <https://github.com/OpenNebula/one/issues/5101>`__
