@@ -12,4 +12,5 @@ Release Notes 5.12.4 Enterprise
    Resolved Issues in 5.12.2 <resolved_issues_5122>
    Resolved Issues in 5.12.3 <resolved_issues_5123>
    Resolved Issues in 5.12.4 <resolved_issues_5124>
+   Resolved Issues in 5.12.5 <resolved_issues_5125>
    Known Issues <known_issues>
