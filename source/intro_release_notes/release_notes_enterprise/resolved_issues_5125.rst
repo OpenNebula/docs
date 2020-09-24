@@ -7,4 +7,4 @@ A complete list of solved issues for 5.12.5 can be found in the `project develop
 
 The following issues has been solved in 5.12.5:
 
-- `Provide nice and clear! description <https://github.com/OpenNebula/one/issues/XXX>`__.
+- `Fix oned monitoring API bug with PostgreSQL <https://github.com/OpenNebula/one/issues/5081>`__.
