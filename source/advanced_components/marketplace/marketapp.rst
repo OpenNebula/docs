@@ -193,7 +193,7 @@ The following table summarizes the command to import each app type:
 +--------------------------+------------------------------------------+--------------------------------------------------------------------------------------------------+
 | Virtual Machine Template | ``onemarketapp vm-template import``      | Imports a VM template into the marketplace and recursively all the images associated.            |
 +--------------------------+------------------------------------------+--------------------------------------------------------------------------------------------------+
-| Virtual Machine          | ``onemarketapp vm import``               | Imports a VM into the marketplace, and recursively all the disks associated
+| Virtual Machine          | ``onemarketapp vm import``               | Imports a VM into the marketplace, and recursively all the disks associated                      |
 +--------------------------+------------------------------------------+--------------------------------------------------------------------------------------------------+
 
 These three commands are interactive, although they can run in batch mode (see below). The process is as follows:
