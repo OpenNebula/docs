@@ -178,6 +178,94 @@ Using Sunstone:
 
 .. _marketapp_download:
 
+Importing into Marketplace
+--------------------------------------------------------------------------------
+
+Marketplaceis support three different types of apps. You can create an app of any type with the **import** operation. This operation is available in Sunstone and CLI.
+
+Using the CLI:
+
+The following table summarizes the command to import each app type:
+
++--------------------------+------------------------------------------+--------------------------------------------------------------------------------------------------+
+| Object                   | Command                                  | Description                                                                                      |
++==========================+==========================================+==================================================================================================+
+| Service Template         | ``onemarketapp service-template import`` | Imports a service template into the marketplace and recursively all the VM templates associated. |
++--------------------------+------------------------------------------+--------------------------------------------------------------------------------------------------+
+| Virtual Machine Template | ``onemarketapp vm-template import``      | Imports a VM template into the marketplace and recursively all the images associated.            |
++--------------------------+------------------------------------------+--------------------------------------------------------------------------------------------------+
+| Virtual Machine          | ``onemarketapp vm import``               | Imports a VM into the marketplace, and recursively all the disks associated
++--------------------------+------------------------------------------+--------------------------------------------------------------------------------------------------+
+
+The three above commands are interactive, although they can run in batch mode (see below). The process is as follows:
+
+- Ask the user if she wants to import everything (service template and VM template or VM template and images) or not.
+- Ask the marketplace to import the main template to.
+- Ask the marketplace to import the VM template to in case you are importing a service template.
+
+.. code::
+
+    $ onemarketapp service-template import 0
+    Do you want to import VM templates too? (yes/no): yes
+
+    Available Marketplaces (please enter ID)
+    - 100: testmarket
+
+    Where do you want to import the service template? 100
+
+    Available Marketplaces for roles (please enter ID)
+    - 100: testmarket
+
+    Where do you want to import `RoleA`? 100
+    ID: 440
+    ID: 441
+    ID: 442
+
+.. code::
+
+    $ onemarketapp vm-template import 0
+    Do you want to import images too? (yes/no): yes
+
+    Available Marketplaces (please enter ID)
+    - 100: testmarket
+
+    Where do you want to import the VM template? 100
+    ID: 443
+    ID: 444
+
++------------------------+----------------------------------------------+
+| Parameter              | Description                                  |
++========================+==============================================+
+| ``--market market_id`` | Marketplace to import everything.            |
++------------------------+----------------------------------------------+
+| ``--vmname name``      | Name of the app that is going to be created. |
++------------------------+----------------------------------------------+
+| ``--yes``              | Import everything.                           |
++------------------------+----------------------------------------------+
+| ``--no``               | Import just the main template.               |
++------------------------+----------------------------------------------+
+
+You can use the parameter ``--market`` together with ``--yes`` or ``--no`` to run the command in batch mode:
+
+.. code::
+
+    $ onemarketapp service-template import 0 --market 100 --yes
+    ID: 445
+    ID: 446
+    ID: 447
+
+.. code::
+
+    $ onemarketapp vm-template import 0 --market 100 --yes
+    ID: 448
+    ID: 449
+
+.. note:: If the Virtual Machine Template has some kernel or context files, these will be uploaded to the marketplace too. NICs are marked as auto, so they can work when downloading it.
+
+.. warning:: If you have NIC_ALIAS in the template, NICs are **not** marked as auto, you need to select the network when you instantiate it.
+
+.. warning:: To avoid clashing names, if no name is specified, a hash is added at the end of the main object name. Sub objects like disks or VM templates in case of Service Template, have always the hash.
+
 Downloading a MarketPlaceApp
 --------------------------------------------------------------------------------
 
@@ -205,7 +293,7 @@ Like any other OpenNebula Resource, MarketPlaceApps respond to the base actions,
 * enable
 * disable
 
-Please take a look at the CLI reference to see how to use these actions. These  options are also available in Sunstone.
+Please take a look at the CLI reference to see how to use these actions. These options are also available in Sunstone.
 
 Tuning & Extending
 ==================
