@@ -180,7 +180,6 @@ Using Sunstone:
 
 Importing into Marketplace
 --------------------------------------------------------------------------------
-
 Marketplaceis support three different types of apps. You can create an app of any type with the **import** operation. This operation is available in Sunstone and CLI.
 
 Using the CLI:
@@ -197,7 +196,7 @@ The following table summarizes the command to import each app type:
 | Virtual Machine          | ``onemarketapp vm import``               | Imports a VM into the marketplace, and recursively all the disks associated
 +--------------------------+------------------------------------------+--------------------------------------------------------------------------------------------------+
 
-The three above commands are interactive, although they can run in batch mode (see below). The process is as follows:
+These three commands are interactive, although they can run in batch mode (see below). The process is as follows:
 
 - Ask the user if she wants to import everything (service template and VM template or VM template and images) or not.
 - Ask the marketplace to import the main template to.
