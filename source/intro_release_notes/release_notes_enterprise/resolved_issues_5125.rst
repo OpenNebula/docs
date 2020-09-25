@@ -9,3 +9,4 @@ The following issues has been solved in 5.12.5:
 
 - `Fix HookLog for PostgreSQL <https://github.com/OpenNebula/one/issues/5072>`__.
 - `Fix oned monitoring API bug with PostgreSQL <https://github.com/OpenNebula/one/issues/5081>`__.
+- `Fix quotas misbehavior when resuming a running VM <https://github.com/OpenNebula/one/issues/5106>`__
