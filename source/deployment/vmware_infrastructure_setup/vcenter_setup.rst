@@ -510,6 +510,11 @@ Importing running Virtual Machines
 
 Once a vCenter cluster is monitored, OpenNebula will display any existing VM as Wild. These VMs can be imported and managed through OpenNebula once the host has been successfully acquired.
 
+*Requirements*
+
+* **Before** you import a Wild VM you must have imported the datastores where the VM's hard disk files are located as it was explained before. OpenNebula requires the datastores to exist before the image that represents an existing virtual hard disk is created.
+* Running VM cannot have snapshots. Please remove them before importing.
+
 In the command line we can list wild VMs with the one host show command:
 
 .. prompt:: text $ auto
@@ -536,7 +541,6 @@ In Sunstone we have the Wild tab in the host's information:
 
 VMs in running state can be imported, and also VMs defined in vCenter that are not in Power On state (this will import the VMs in OpenNebula as in the poweroff state).
 
-.. important:: **Before** you import a Wild VM you must have imported the datastores where the VM's hard disk files are located as it was explained before. OpenNebula requires the datastores to exist before the image that represents an existing virtual hard disk is created.
 
 .. warning:: While the VM is being imported, OpenNebula will inspect the virtual disks and virtual nics and it will create images and virtual networks referencing the disks and port-groups used by the VM so the process may take some time, please be patient.
 

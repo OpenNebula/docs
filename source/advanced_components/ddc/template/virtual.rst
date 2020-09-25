@@ -71,7 +71,7 @@ We are going to deploy a cluster with the following elements:
     marketplaceapps:
       - appname: "Ttylinux - KVM"
         name: "TTY"
-        dsid: <%= @datastores[0]['ID'] %>
+        dsid: <%= @body['provision']['infrastructure']['datastores'][0]['id'] %>
         meta:
           wait: true
           wait_timeout: 30
@@ -95,7 +95,7 @@ This will deploy the host in Packet, will configure it and will create all the o
     marketplaceapps:
     - appname: "Ttylinux - KVM"
       name: "TTY"
-      dsid: <%= @datastores[0]['ID'] %>
+      dsid: <%= @body['provision']['infrastructure']['datastores'][0]['id'] %>
       meta:
         wait: true
         wait_timeout: 30
@@ -107,31 +107,30 @@ The final result would be the following:
 
 .. prompt:: bash $ auto
 
-    $ oneprovision show 24959b5c-8eca-4cd8-a3bb-dac36a7b5c1d -x
-    <PROVISION>
-    <ID>24959b5c-8eca-4cd8-a3bb-dac36a7b5c1d</ID>
-    <NAME>packet_cluster</NAME>
-    <STATUS>pending</STATUS>
-    <CLUSTERS>
-        <ID>100</ID>
-    </CLUSTERS>
-    <DATASTORES>
-        <ID>101</ID>
-        <ID>100</ID>
-    </DATASTORES>
-    <HOSTS>
-        <ID>0</ID>
-    </HOSTS>
-    <NETWORKS>
-        <ID>0</ID>
-    </NETWORKS>
-    <IMAGES>
-        <ID>0</ID>
-    </IMAGES>
-    <TEMPLATES>
-        <ID>0</ID>
-    </TEMPLATES>
-    </PROVISION>
+    $ oneprovision show 18 -x
+    <DOCUMENT>
+    <ID>18</ID>
+    <UID>0</UID>
+    <GID>0</GID>
+    <UNAME>oneadmin</UNAME>
+    <GNAME>oneadmin</GNAME>
+    <NAME>testing</NAME>
+    <TYPE>103</TYPE>
+    <PERMISSIONS>
+        <OWNER_U>1</OWNER_U>
+        <OWNER_M>1</OWNER_M>
+        <OWNER_A>0</OWNER_A>
+        <GROUP_U>0</GROUP_U>
+        <GROUP_M>0</GROUP_M>
+        <GROUP_A>0</GROUP_A>
+        <OTHER_U>0</OTHER_U>
+        <OTHER_M>0</OTHER_M>
+        <OTHER_A>0</OTHER_A>
+    </PERMISSIONS>
+    <TEMPLATE>
+        <BODY><![CDATA[{"name":"testing","description":null,"start_time":1600684065,"state":3,"provider":"packet","provision":{"infrastructure":{"datastores":[{"name":"tf-images","id":128},{"name":"tf-system","id":129}],"networks":[{"name":"tf-hostonly_nat","id":14}],"hosts":[{"name":"provision-cbbe1e477a1bd5e1324ae66bdffc20e28ae0b0b93f10db43","id":"18"}],"clusters":[{"name":"tf","id":114}]},"resource":{"images":[{"id":18,"name":"test_image"}],"templates":[{"id":15,"name":"test_template"}],"vntemplates":[{"id":11,"name":"vntemplate"}],"flowtemplates":[{"id":19,"name":"my_service"}]}}}]]></BODY>
+    </TEMPLATE>
+    </DOCUMENT>
 
 As you can see all the objects have been created and they belong to the same provision. This means, that when you for example delete the provision
 all the objects are going to be deleted as once.
@@ -382,11 +381,11 @@ For this, ERB expressions are available, so you can reference objects that have 
 
     images:
       - name: "test_image"
-        ds_id: <%= @datastores[0]['ID'] %>
+        ds_id: <%= @body['provision']['infrastructure']['datastores'][0]['id'] %>
         size: 2048
 
 In this example, we create two datastores (system and images) and an image. We want to store the image in the image datastore we just created, so we can
-reference it using the ERB expression ``@datastores[0]['ID']``.
+reference it using the ERB expression ``@body['provision']['infrastructure']['datastores'][0]['id']``.
 
 .. code::
 
@@ -400,10 +399,10 @@ reference it using the ERB expression ``@datastores[0]['ID']``.
         memory: 1
         cpu: 1
         disk:
-          - image_id: <%= @images[0]['ID'] %>
+          - image_id: <%= @body['provision']['resource']['images'][0]['id'] %>
 
 In this example, we create an image and a template. We want the template to have a disk referencing to the new image, so we can reference it using
-the ERB expression ``<%= @images[0]['ID'] %>``.
+the ERB expression ``@body['provision']['resource']['images'][0]['id']``.
 
 .. warning:: The order of objects creation is the following:
 
@@ -482,7 +481,7 @@ Here you can check a full provision template example:
 
     images:
       - name: "test_image"
-        ds_id: <%= @datastores[0]['ID'] %>
+        ds_id: <%= @body['provision']['infrastructure']['datastores'][0]['id'] %>
         size: 2048
         meta:
           uid: 1
@@ -492,7 +491,7 @@ Here you can check a full provision template example:
     marketplaceapps:
       - appid: 238
         name: "test_image2"
-        dsid: <%= @datastores[0]['ID'] %>
+        dsid: <%= @body['provision']['infrastructure']['datastores'][0]['id'] %>
         meta:
           uid: 1
           gid: 100
@@ -504,9 +503,9 @@ Here you can check a full provision template example:
         memory: 1
         cpu: 1
         disk:
-          - image_id: <%= @images[1]['ID'] %>
+          - image_id: <%= @body['provision']['resource']['images'][1]['id'] %>
         nic:
-          - network_id: <%= @networks[0]['ID'] %>
+          - network_id: <%= @body['provision']['infrastructure']['networks'][0]['id'] %>
         meta:
           uid: 1
           gid: 100
@@ -519,14 +518,14 @@ Here you can check a full provision template example:
           - ip: "10.0.0.1"
             size: 10
             type: "IP4"
-        cluster_ids: <%= @clusters[0]['ID'] %>
+        cluster_ids: <%= @body['provision']['infrastructure']['clusters'][0]['id'] %>
 
     flowtemplates:
       - name: "my_service"
         deployment: "straight"
         roles:
           - name: "frontend"
-            vm_template: <%= @templates[0]['ID'] %>
+            vm_template: <%= @body['provision']['resource']['templates'][0]['id'] %>
         meta:
           uid: 1
           gid: 100

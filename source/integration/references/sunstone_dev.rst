@@ -354,3 +354,14 @@ After the installation you can initialize ESLint with your own rules or use Open
   The usage of ESLint is not mandatory but we recomend our contributors to use it, to be sure that the code is standardiced.
 
 More information about `ESlint <https://eslint.org/>`__ project.
+
+.. _autorefresh:
+
+Autorefresh
+================================================================================
+
+Sunstone is on constant communication with the ZeroMQ server of OpenNebula, which means no more clicks on the refresh button at the VM instances view. 
+
+It works in a simple way when you execute the command sunstone-server start Sunstone will create a thread which is in charge of receiving all the information about the VMs and send it back to the front-end where the javascript functions update the views when they receive new information.
+
+In order to configure the autorefresh feature to use non standard values, you need to tune the parameters ":zeromq_server", ":autorefresh_ip" in :ref:`sunstone-server.conf <sunstone_sunstone_server_conf>`.

@@ -316,6 +316,8 @@ Default values for the Ceph drivers can be set in ``/var/lib/one/remotes/etc/dat
 * ``STAGING_DIR``: Default path for image operations in the storage bridges
 * ``RBD_FORMAT``: Default format for RBD volumes.
 * ``DD_BLOCK_SIZE``: Block size for `dd` operations (default: 64kB).
+* ``SUPPORTED_FS``: Comma separated list with every file system supported for creating formatted datablocks. Can be set in ``/var/lib/one/remotes/etc/datastore/datastore.conf``.
+* ``FS_OPTS_<FS>``: Options for creating the filesystem for formatted datablocks. Can be set in ``/var/lib/one/remotes/etc/datastore/datastore.conf`` for each filesystem type.
 
 Using different modes
 --------------------------------------------------------------------------------

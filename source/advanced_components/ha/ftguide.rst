@@ -18,6 +18,7 @@ To set up this Host hook, to be triggered in the ERROR state, you need to create
     $ cat /usr/share/one/examples/host_hooks/error_hook
 
     ARGUMENTS = "$TEMPLATE -m -p 5"
+    ARGUMENTS_STDIN = "yes"
     COMMAND   = "ft/host_error.rb"
     NAME      = "host_error"
     STATE     = "ERROR"

@@ -155,3 +155,11 @@ Example:
 
     #  Block size for the dd commands
     DD_BLOCK_SIZE=32M
+
+Additional Configuration
+--------------------------------------------------------------------------------
+
+The following attribute can be set for every datastore type:
+
+* ``SUPPORTED_FS``: Comma separated list with every file system supported for creating formatted datablocks. Can be set in ``/var/lib/one/remotes/etc/datastore/datastore.conf``.
+* ``FS_OPTS_<FS>``: Options for creating the filesystem for formatted datablocks. Can be set in ``/var/lib/one/remotes/etc/datastore/datastore.conf`` for each filesystem type.

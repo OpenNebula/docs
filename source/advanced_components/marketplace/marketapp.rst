@@ -180,12 +180,11 @@ Using Sunstone:
 
 Importing into Marketplace
 --------------------------------------------------------------------------------
-
-As told before, in the marketplace you can have three different types of apps. In order to create these apps, there is an **import** operation available. These operations are available in Sunstone and CLI.
+Marketplaceis support three different types of apps. You can create an app of any type with the **import** operation. This operation is available in Sunstone and CLI.
 
 Using the CLI:
 
-The following table summarizes object to import and the command to do that:
+The following table summarizes the command to import each app type:
 
 +--------------------------+------------------------------------------+--------------------------------------------------------------------------------------------------+
 | Object                   | Command                                  | Description                                                                                      |
@@ -194,14 +193,14 @@ The following table summarizes object to import and the command to do that:
 +--------------------------+------------------------------------------+--------------------------------------------------------------------------------------------------+
 | Virtual Machine Template | ``onemarketapp vm-template import``      | Imports a VM template into the marketplace and recursively all the images associated.            |
 +--------------------------+------------------------------------------+--------------------------------------------------------------------------------------------------+
-| Virtual Machine          | ``onemarketapp vm import``               | Imports a VM into the marketplace, this is a way to backup the VM information.                   |
+| Virtual Machine          | ``onemarketapp vm import``               | Imports a VM into the marketplace, and recursively all the disks associated
 +--------------------------+------------------------------------------+--------------------------------------------------------------------------------------------------+
 
-The three above commands are interactive, although it can be disabled by some options (see them below). The process is the following:
+These three commands are interactive, although they can run in batch mode (see below). The process is as follows:
 
-- Ask if the user wants to import everything (service template and VM template or VM template and images) or not.
-- Ask the marketplace to import the main template.
-- Ask the marketplace to import the VM template in case you are importing a service template.
+- Ask the user if she wants to import everything (service template and VM template or VM template and images) or not.
+- Ask the marketplace to import the main template to.
+- Ask the marketplace to import the VM template to in case you are importing a service template.
 
 .. code::
 
@@ -245,7 +244,7 @@ The three above commands are interactive, although it can be disabled by some op
 | ``--no``               | Import just the main template.               |
 +------------------------+----------------------------------------------+
 
-With the combination of the parameter ``market`` and ``yes`` or ``no``, you can avoid the interactive part:
+You can use the parameter ``--market`` together with ``--yes`` or ``--no`` to run the command in batch mode:
 
 .. code::
 

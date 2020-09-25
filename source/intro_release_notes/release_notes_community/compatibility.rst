@@ -24,3 +24,22 @@ To be able to use them, you need to extend from the extensions file:
 
     vm_new = VirtualMachine.new(VirtualMachine.build_xml(@pe_id), @client)
     vm_new.extend(VirtualMachineExt)
+
+Distributed Edge Provisioning
+=============================
+
+Information about provision is stored in a JSON document. For this reason, the ERB evaluation must be done using the variable ``@body['provision']``.
+
+To access to infrastructure resources, just access to key ``infrastrcuture`` following by the object, e.g:
+
+.. code::
+
+    @body['provision']['infrastructure']['datastores'][0]['id']
+
+To access to resources, just access to key ``resource`` following by the object, e.g:
+
+.. code::
+
+    @body['provision']['resource']['images'][0]['id']
+
+Check more information :ref:`here <ddc_virtual>`.
