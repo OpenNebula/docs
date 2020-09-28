@@ -107,7 +107,7 @@ Action scripts for generic image datastores:
    -  ``host`` is the target host to deploy the VM
    -  ``remote_system_ds`` is the path for the system datastore in the host
    -  ``vm_id`` is the id of the VM
-   -  ``ds_id`` is the target datastore (the system datastore)
+   -  ``ds_id`` is the source datastore (the images datastore)
 
 -  **ln**: Links the image from the datastore (persistent images)
 
@@ -117,7 +117,7 @@ Action scripts for generic image datastores:
    -  ``host`` is the target host to deploy the VM
    -  ``remote_system_ds`` is the path for the system datastore in the host
    -  ``vm_id`` is the id of the VM
-   -  ``ds_id`` is the target datastore (the system datastore)
+   -  ``ds_id`` is the source datastore (the images datastore)
 
 -  **mvds**: moves an image back to its datastore (persistent images)
 
@@ -212,7 +212,7 @@ Action scripts needed when the TM is used for the system datastore:
    -  ``host`` is the target host to deploy the VM
    -  ``remote_system_ds`` is the path for the system datastore in the host
    -  ``vm_id`` is the id of the VM
-   -  ``ds_id`` is the target datastore (the system datastore)
+   -  ``ds_id`` is the source datastore (the images datastore) for normal disks or target datastore (the system datastore) for volatiled disks
 
 -  **mkimage**: creates an image on-the-fly bypassing the datastore/image workflow
 
