@@ -17,14 +17,14 @@ Located under ``/var/lib/one/remotes/datastore/<ds_mad>``
 -  **cp**: copies/dumps the image to the datastore
 
    -  **ARGUMENTS**: ``datastore_image_dump image_id``
-   -  **RETURNS**: ``image_source size``
+   -  **RETURNS**: ``image_source image_format``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`.
    -  ``image_source`` is the image source which will be later sent to the transfer manager
 
 -  **mkfs**: creates a new empty image in the datastore
 
    -  **ARGUMENTS**: ``datastore_image_dump image_id``
-   -  **RETURNS**: ``image_source size``
+   -  **RETURNS**: ``image_source``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`.
    -  ``image_source`` is the image source which will be later sent to the transfer manager.
 

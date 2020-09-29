@@ -43,3 +43,12 @@ To access to resources, just access to key ``resource`` following by the object,
     @body['provision']['resource']['images'][0]['id']
 
 Check more information :ref:`here <ddc_virtual>`.
+
+Datastore Driver Changes
+=============================
+
+   - Now the CP datastore action needs to return also de format of the file copied (e.g raw or qcow2). This way, when a file is uploaded by the user, the format of the file is automatically retrieved avoiding user mistakes.
+
+   - The ``DRIVER`` and ``FSTYPE`` attributes are deprecated and they won't be taking into account any more.
+
+.. note:: The ``DRIVER`` attribute will be set automatically for each disk.
