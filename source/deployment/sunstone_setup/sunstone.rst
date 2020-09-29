@@ -104,11 +104,6 @@ Available options are:
 | :vnc\_request\_password   | Request VNC password for external windows. By default it will not be requested                |
 |                           | (true or false)                                                                               |
 +---------------------------+-----------------------------------------------------------------------------------------------+
-| :guac_port                | Base port for the Guacamole Server.                                                           |
-|                           | The server will run on this port as long as Sunstone server does. ``29877`` by default.       |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :guacd_port               | The port where Guacamole daemon proxy (guacd) is listening on. ``4822`` by default            |
-+---------------------------+-----------------------------------------------------------------------------------------------+
 | :table\_order             | Default table order. Resources get ordered by ID in ``asc`` or ``desc`` order.                |
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :marketplace\_username    | Username credential to connect to the Marketplace.                                            |
@@ -304,32 +299,7 @@ connections and connects to the remote desktop on their behalf.
 The **OpenNebula packages will configure Guacamole server and client automatically**, therefore 
 you don’t need to take any extra steps.
 
-.. _requirements_guacamole_sunstone_source:
-
-If you are building OpenNebula from source code...
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-To install guacamole-server, you need to build it from the source. This, therefore,
-requires that you need install the required build tools.
-
-`You can follow the official Guacamole server installation 
-<https://guacamole.apache.org/doc/gug/installing-guacamole.html#building-guacamole-server>`_
-
-The above link will show you how to install all required dependencies to successfully 
-compile the source code and also to provide the support for VNC, RDP, and ssh.
-
-.. important:: For Guacamole to work in Sunstone, **just guacd service must be installed**.
-
-.. note:: The value of the Guacamole client port is defined in ``sunstone-server.conf`` as 
-    ``:guac_port``.
-
-Make sure there are **not firewalls blocking the connections and websockets enabled in your 
-browser**. Your browser must support websockets, and have them enabled. This is the default 
-in current Chrome and Firefox, but former versions of Firefox (i.e. 3.5) required manual 
-activation. Otherwise Flash emulation will be used. 
-
-You can retrieve useful information from ``/var/log/one/guac.log`` and 
-``/var/log/one/guac.error``, where open and closed connections are saved.
+.. important:: For Guacamole to work in Sunstone, **Fireedge server must be running**. See :ref:`Fireedge setup<fireedge_setup>` for more information.
 
 .. _requirements_guacamole_vnc_sunstone:
 
