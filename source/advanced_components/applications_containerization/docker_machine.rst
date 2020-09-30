@@ -27,9 +27,14 @@ This guide shows how to specify all the required command line  attributes to cre
 Step 1 - Install Docker Machine OpenNebula Driver
 --------------------------------------------------------------------------------
 
-In order to install the Docker Machine OpenNebula Driver you just need to download the OpenNebula software bundle available as an `archive <https://opennebula.io/use/>`_ (for your Linux distribution) and install the one package ``docker-machine-opennebula`` inside.
+The recommended way to install the driver is to configure the :ref:`repositories <repositories>` and perform one of the following depending on the package manager available in your distibution:
 
-Alternatively in the case that you already have it installed in the OpenNebula frontend (or any other host) you can instead copy the ``/usr/bin/docker-machine-driver-opennebula`` file directly from the the frontend into any directory on your desktop which is included in your ``$PATH``.
+- ``yum install docker-machine-opennebula``
+- ``apt-get install docker-machine-opennebula``
+
+Alternatively you can get the binary `here <https://downloads.opennebula.io/packages/opennebula-5.12.0.1/opennebula-docker-machine-5.12.0.1.tar.gz>`__.
+
+Lastly, in the case that you already have it installed in the OpenNebula frontend (or any other host) you can instead copy the ``/usr/bin/docker-machine-driver-opennebula`` file directly from the the frontend into any directory on your desktop which is included in your ``$PATH``.
 
 
 Step 2 - Configure Client Machine to Access the OpenNebula Cloud
@@ -271,7 +276,7 @@ If you try to specify an attribute in the *incompatible* list, along with either
 The template must have a reference to an image, however, referencing a network is entirely optional. It the template has a network, the `--opennebula-network-*` options will override it, using the one in the template by default; if the template doesn't reference any networks, the `docker-machine` user **must** specify one.
 
 .. prompt:: bash $ auto
-    
+
     # A template that references a network doesn't require any --opennebula-network-* attribute:
     $ docker-machine create --driver opennebula --opennebula-template-id 10 mydockerengine
 
@@ -312,4 +317,3 @@ Not Using Templates
 --------------------------------------------------------------------------------
 
 if you don't specify neither ``-opennebula-template-id`` nor ``--opennebula-template-name``, then you must specify the image: ``--opennebula-image-*``, and the network: ``--opennebula-network-*``, and optionally the other parameters.
-
