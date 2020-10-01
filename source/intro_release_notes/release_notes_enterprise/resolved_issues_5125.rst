@@ -11,3 +11,4 @@ The following issues has been solved in 5.12.5:
 - `Fix oned monitoring API bug with PostgreSQL <https://github.com/OpenNebula/one/issues/5081>`__.
 - `Fix quotas misbehavior when resuming a running VM <https://github.com/OpenNebula/one/issues/5106>`__
 - `Fix boolean user inputs <https://github.com/OpenNebula/one/issues/5107>`__
+- `Fix marketplace not displayed in federation zones (slaves) <https://github.com/OpenNebula/one/issues/5114>`__
