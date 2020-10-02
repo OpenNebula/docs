@@ -14,3 +14,4 @@ The following issues has been solved in 5.12.5:
 - `Fix marketplace not displayed in federation zones (slaves) <https://github.com/OpenNebula/one/issues/5114>`__
 - `Fix hosts remain in ERROR state on vCenter restart <https://github.com/OpenNebula/one/issues/5108>`__
 - `Fix keep opennebula_manage attribute when disks are updated <https://github.com/OpenNebula/one/issues/5115>`__
+- `Fix race condition when creating VDCs in a federated environment  <https://github.com/OpenNebula/one/issues/5110>`__
