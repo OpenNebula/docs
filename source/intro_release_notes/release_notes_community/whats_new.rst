@@ -19,6 +19,10 @@ OpenNebula Core
 - `Add option set cold migration type for rescheduling <http://github.com/OpenNebula/one/issues/2983>`__.
 - `Add option to create formatted datablocks <https://github.com/OpenNebula/one/issues/4989>`__.
 
+Storage
+================================================================================
+- New SSH transfer manager extension called :ref:`replica<replica_tm>`
+
 Networking
 ================================================================================
 
