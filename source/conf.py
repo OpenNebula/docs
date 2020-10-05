@@ -39,7 +39,6 @@ todo_include_todos = True
 site_conf = yaml.load(open('site_conf.yml').read())
 
 versions  = site_conf['versions']
-downloads = site_conf['downloads']
 
 github_version = 'master/'
 
