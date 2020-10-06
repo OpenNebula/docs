@@ -15,3 +15,4 @@ The following issues has been solved in 5.12.5:
 - `Fix hosts remain in ERROR state on vCenter restart <https://github.com/OpenNebula/one/issues/5108>`__
 - `Fix keep opennebula_manage attribute when disks are updated <https://github.com/OpenNebula/one/issues/5115>`__
 - `Fix race condition when creating VDCs in a federated environment  <https://github.com/OpenNebula/one/issues/5110>`__
+- `Fix user input when is empty <https://github.com/OpenNebula/one/issues/5120>`__
