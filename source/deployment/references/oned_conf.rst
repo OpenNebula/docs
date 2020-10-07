@@ -744,6 +744,8 @@ OpenNebula evaluates these attributes:
 - on VM create (``onevm create``)
 - on VM attach NIC (``onevm nic-attach``), for example, to prevent using NIC/MAC
 
+.. _encrypted_attrs:
+
 Encrypted Attributes Configuration
 ==================================
 
