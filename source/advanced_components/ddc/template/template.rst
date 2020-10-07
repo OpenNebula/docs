@@ -34,7 +34,7 @@ Example:
     # Global defaults:
     defaults:
       provision:
-        driver: packet
+        provider: packet
         packet_token: ********************************
         packet_project: ************************************
         facility: ams1
@@ -161,12 +161,12 @@ This section contains parameters for the remote SSH connection on the privileged
 provision
 ^^^^^^^^^
 
-This section contains parameters for the provisioning driver. Most parameters are specific to each driver. The only valid common parameters are:
+This section contains parameters for the provisioning provider. Most parameters are specific to each driver. The only valid common parameters are:
 
 +-----------------+--------------------------------------+-----------------------------------------------+
 | Parameter       | Default                              | Description                                   |
 +=================+======================================+===============================================+
-| ``driver``      | none, needs to be specified          | Host provision driver. Options:               |
+| ``provider``    | none, needs to be specified          | Host provision driver. Options:               |
 |                 |                                      |                                               |
 |                 |                                      | - :ref:`packet <ddc_driver_packet>`           |
 |                 |                                      | - :ref:`ec2 <ddc_driver_ec2>`                 |
