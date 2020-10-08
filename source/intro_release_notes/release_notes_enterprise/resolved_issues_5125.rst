@@ -18,3 +18,4 @@ The following issues has been solved in 5.12.5:
 - `Fix user input when is empty <https://github.com/OpenNebula/one/issues/5120>`__
 - `Fix Sunstone doesn't work with remote oned <https://github.com/OpenNebula/one/issues/5019>`__
 - `Fix Sunstone VM charters illegible on data tables <https://github.com/OpenNebula/one/issues/4997>`__
+- `Fix reconnect to MySQL and PostgreSQL DB <https://github.com/OpenNebula/one/issues/5094>`__
