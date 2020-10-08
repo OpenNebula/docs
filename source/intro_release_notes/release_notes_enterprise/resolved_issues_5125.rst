@@ -19,3 +19,6 @@ The following issues has been solved in 5.12.5:
 - `Fix Sunstone doesn't work with remote oned <https://github.com/OpenNebula/one/issues/5019>`__
 - `Fix Sunstone VM charters illegible on data tables <https://github.com/OpenNebula/one/issues/4997>`__
 - `Fix reconnect to MySQL and PostgreSQL DB <https://github.com/OpenNebula/one/issues/5094>`__
+- `Fix NIC attribute overrides <https://github.com/OpenNebula/one/issues/5095>`__
+
+.. warning:: Note that this version solves NIC attribute overrides. It preserves the precedence of NIC values so Virtual Network attributes can be overridden. Please update your oned.conf file ``VM_RESTRICTED_ATTR`` to prevent users from sensible overwriting Virtual Network values.
