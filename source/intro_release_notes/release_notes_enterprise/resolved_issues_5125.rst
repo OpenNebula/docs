@@ -17,3 +17,4 @@ The following issues has been solved in 5.12.5:
 - `Fix race condition when creating VDCs in a federated environment  <https://github.com/OpenNebula/one/issues/5110>`__
 - `Fix user input when is empty <https://github.com/OpenNebula/one/issues/5120>`__
 - `Fix Sunstone doesn't work with remote oned <https://github.com/OpenNebula/one/issues/5019>`__
+- `Fix reconnect to MySQL and PostgreSQL DB <https://github.com/OpenNebula/one/issues/5094>`__
