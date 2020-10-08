@@ -86,4 +86,4 @@ To delete the provider use the command ``oneprovider delete``, e,g:
 
     $ oneprovider delete 2
 
-.. warning:: If you try to delete a provider that is being used by a provision, you will get an error.
+.. warning:: If you try to delete a provider that is being used by a provision or provision template, you will get an error.
