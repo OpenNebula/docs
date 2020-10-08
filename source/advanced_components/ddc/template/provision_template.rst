@@ -28,36 +28,35 @@ To create a provision template use the command ``oneprovision-template create``,
 .. prompt:: bash $ auto
 
     $ cat template.yaml
-      ---
+    ---
+    name: docs
+    playbook:
+      - default
+
+    # Global defaults:
+    defaults:
+      provision:
+          provider: packet
+      connection:
+          public_key: '/var/lib/one/.ssh/id_rsa.pub'
+          private_key: '/var/lib/one/.ssh/id_rsa'
+      configuration:
+          opennebula_node_kvm_param_nested: true
+
+    cluster:
       name: docs
-      playbook:
-        - default
 
-      # Global defaults:
-      defaults:
+    hosts:
+      - reserved_cpu: 100
+        im_mad: kvm
+        vm_mad: kvm
         provision:
-            provider: packet
-        connection:
-            public_key: '/var/lib/one/.ssh/id_rsa.pub'
-            private_key: '/var/lib/one/.ssh/id_rsa'
-        configuration:
-            opennebula_node_kvm_param_nested: true
+          plan: baremetal_0
+          os: centos_7
+          hostname: "docs-host"
 
-      cluster:
-        name: docs
-
-      hosts:
-        - reserved_cpu: 100
-          im_mad: kvm
-          vm_mad: kvm
-          provision:
-            facility: ams1
-            plan: baremetal_0
-            os: centos_7
-            hostname: "docs-host"
-
-      $ oneprovision-template create template.yaml
-        ID: 1
+    $ oneprovision-template create template.yaml
+    ID: 1
 
 .. note:: You need to first create the provider you can to use. Check :ref:`this <ddc_provider>` for more information.
 
@@ -69,47 +68,46 @@ To check provision template information use the command ``oneprovision-template 
 .. prompt:: bash $ auto
 
     $ oneprovision-template show 1
-      PROVISION TEMPLATE 2 INFORMATION
-      ID   : 1
-      NAME : docs
+    PROVISION TEMPLATE 2 INFORMATION
+    ID   : 1
+    NAME : docs
 
-      PROVISION TEMPLATE
-      {
-        "name": "docs",
-        "provider": "0",
-        "registration_time": 1602065880,
-        "playbooks": [
-            "default"
-        ],
-        "defaults": {
+    PROVISION TEMPLATE
+    {
+      "name": "docs",
+      "provider": "0",
+      "registration_time": 1602065880,
+      "playbooks": [
+          "default"
+      ],
+      "defaults": {
+          "provision": {
+            "provider": "packet"
+          },
+          "connection": {
+            "public_key": "/var/lib/one/.ssh/id_rsa.pub",
+            "private_key": "/var/lib/one/.ssh/id_rsa"
+          },
+          "configuration": {
+            "opennebula_node_kvm_param_nested": true
+          }
+      },
+      "hosts": [
+          {
+            "reserved_cpu": 100,
+            "im_mad": "kvm",
+            "vm_mad": "kvm",
             "provision": {
-              "provider": "packet"
-            },
-            "connection": {
-              "public_key": "/var/lib/one/.ssh/id_rsa.pub",
-              "private_key": "/var/lib/one/.ssh/id_rsa"
-            },
-            "configuration": {
-              "opennebula_node_kvm_param_nested": true
+                "hostname": "docs-host",
+                "plan": "baremetal_0",
+                "os": "centos_7"
             }
-        },
-        "hosts": [
-            {
-              "reserved_cpu": 100,
-              "im_mad": "kvm",
-              "vm_mad": "kvm",
-              "provision": {
-                  "hostname": "docs-host",
-                  "facility": "ams1",
-                  "plan": "baremetal_0",
-                  "os": "centos_7"
-              }
-            }
-        ],
-        "cluster": {
-            "name": "docs"
-        }
+          }
+      ],
+      "cluster": {
+          "name": "docs"
       }
+    }
 
 Update
 ^^^^^^
@@ -124,18 +122,18 @@ When you instantiate a provision template, it will deploy all the objects define
 .. prompt:: bash $ auto
 
     $ oneprovision-template instantiate 1
-      ID: 2
+    ID: 2
 
     $ oneprovision list --no-expand
-      ID NAME            CLUSTERS HOSTS NETWORKS DATASTORES         STAT
-       2 docs                   1     1        0          0      RUNNING
+    ID NAME            CLUSTERS HOSTS NETWORKS DATASTORES         STAT
+     2 docs                   1     1        0          0      RUNNING
 
 .. note:: All the options in the command ``oneprovision create`` are supported.
 
 Delete
 ^^^^^^
 
-To delete the template use the command ``oneprovision-template delete``, e,g:
+To delete the provision template use the command ``oneprovision-template delete``, e,g:
 
 .. prompt:: bash $ auto
 
