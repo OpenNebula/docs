@@ -52,6 +52,8 @@ Step 6. Update Configuration Files
 
 If you haven't modified any configuration files, you can skip this step and proceed to the next one.
 
+For HA setup it is necessary to change in ``/etc/one/monitord.conf`` the default value ``auto`` of ``MONITOR_ADDRESS`` attribute by the virtual IP address used in RAFT_LEADER_HOOK and RAFT_FOLLOWER_HOOK in ``/etc/one/oned.conf``.
+
 Community Edition
 -----------------
 
