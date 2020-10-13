@@ -44,6 +44,8 @@ To access to resources, just access to key ``resource`` following by the object,
 
 Check more information :ref:`here <ddc_virtual>`.
 
+In provision template, the attribute ``driver`` has be changed by ``provider``.
+
 Datastore Driver Changes
 =============================
 

@@ -74,7 +74,7 @@ The following template describes provisioning a cluster with a single host deplo
         vm_mad: kvm
         provision:
           hostname: "ex2-host1"
-          driver: ec2
+          provider: ec2
           ec2_access: ********************
           ec2_secret: ****************************************
           region_name: "us-east-1"
@@ -110,7 +110,7 @@ The newly-provisioned hosts are mostly a fresh installation without anything nec
         vm_mad: kvm
         provision:
           hostname: "ex3-host1"
-          driver: ec2
+          provider: ec2
           ec2_access: ********************
           ec2_secret: ****************************************
           region_name: "us-east-1"
@@ -150,7 +150,7 @@ In the following example, we explain how to use defaults:
 
     defaults:
       provision:
-        driver: ec2
+        provider: ec2
         ec2_access: ********************
         ec2_secret: ****************************************
         region_name: "us-east-1"
@@ -204,7 +204,7 @@ The following example shows the provisioning of a complete cluster with host, da
 
     defaults:
       provision:
-        driver: ec2
+        provider: ec2
         ec2_access: ********************
         ec2_secret: ****************************************
         region_name: "us-east-1"
@@ -295,7 +295,7 @@ The main template extends the datastores and network with one EC2 host:
 
     defaults:
       provision:
-        driver: ec2
+        provider: ec2
         ec2_access: ********************
         ec2_secret: ****************************************
         region_name: "us-east-1"
@@ -363,7 +363,7 @@ The main template extends the datastores and network with one EC2 host:
 
     defaults:
       provision:
-        driver: ec2
+        provider: ec2
         ec2_access: ********************
         ec2_secret: ****************************************
         region_name: "us-east-1"
@@ -411,7 +411,7 @@ In the following example we use the ``default`` and a custom ``mycustom`` playbo
 
     defaults:
       provision:
-        driver: ec2
+        provider: ec2
         ec2_access: ********************
         ec2_secret: ****************************************
         region_name: "us-east-1"

@@ -76,7 +76,7 @@ Example of a minimal EC2 provision template:
 
     defaults:
       provision:
-        driver: ec2
+        provider: ec2
         ec2_access: *********************
         ec2_secret: ****************************************
         region_name: "us-east-1"

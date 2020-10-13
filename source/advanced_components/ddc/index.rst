@@ -11,6 +11,7 @@ Distributed Edge Provisioning
    Introduction and Installation <install>
    Cluster Provisioning Example <default>
    OneProvision Usage <usage>
+   Provider <provider>
    Provision Template <template/index>
    Provision Drivers <drivers/index>
    Automated Configuration <config/index>

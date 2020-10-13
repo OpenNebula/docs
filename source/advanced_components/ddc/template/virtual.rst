@@ -23,7 +23,7 @@ We are going to deploy a cluster with the following elements:
 
     defaults:
     provision:
-        driver: "packet"
+        provider: "packet"
         packet_token: "***************************"
         packet_project: "*************************"
         facility: "ams1"
@@ -425,7 +425,7 @@ Here you can check a full provision template example:
     # Global defaults:
     defaults:
     provision:
-      driver: packet
+      provider: packet
       packet_token: **************
       packet_project: ************
       facility: ams1

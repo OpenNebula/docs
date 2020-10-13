@@ -47,7 +47,7 @@ Example of a minimal Packet provision template:
 
     defaults:
       provision:
-        driver: packet
+        provider: packet
         packet_token: ********************************
         packet_project: ************************************
         facility: ams1
@@ -90,7 +90,7 @@ Example provision template with network-only-related configuration:
 
     defaults:
       provision:
-        driver: packet
+        provider: packet
         packet_token: ********************************
         packet_project: ************************************
         facility: ams1

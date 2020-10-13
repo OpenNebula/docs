@@ -18,6 +18,7 @@ OpenNebula Core
 - `Add option to disable raw section validation <http://github.com/OpenNebula/one/issues/5015>`__.
 - `Add option set cold migration type for rescheduling <http://github.com/OpenNebula/one/issues/2983>`__.
 - `Add option to create formatted datablocks <https://github.com/OpenNebula/one/issues/4989>`__.
+- Add support for document encrypted attributes, check :ref:`this <encrypted_attrs>` for more information.
 
 Storage
 ================================================================================
@@ -49,6 +50,8 @@ Distributed Edge Provisioning
 ================================================================================
 
 - Provision information is stored using a JSON document. New commands has been also added in the CLI, you can check all the information :ref:`here <ddc>`.
+- Provider concept has been included in OpenNebula, you can check all the information :ref:`here <ddc_provider>`.
+- Provision template concept has been included in OpenNebula, you can check all the information :ref:`here <ddc_provision_template_document>`.
 
 Packaging
 ================================================================================
