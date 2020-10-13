@@ -79,7 +79,7 @@ In this case the System Datastore is distributed among the hosts. The ssh transf
 
 .. _replica_tm:
 
-SSH Tranfer with Image Replication Mode
+SSH Transfer with Image Replication Mode
 --------------------------------------------------------------------------------
 
 The scalability and performance of the SSH transfer mode can be greatly improved by using the replication mode. In this mode the images are cached in each cluster and so available close to the hypervisors. This effectively reduce the bandwidth pressure of the image datastore servers and reduces deployment times. This is especially import for the edge-like deployments where copying images from the frontend to the hypervisor for each VM could be slow.
