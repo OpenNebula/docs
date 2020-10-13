@@ -130,6 +130,23 @@ When you instantiate a provision template, it will deploy all the objects define
 
 .. note:: All the options in the command ``oneprovision create`` are supported.
 
+You can also overwrite provision information by using an extra file when instantiating, e.g:
+
+.. prompt:: bash $ auto
+
+    $ cat extra.yaml
+    ---
+    defaults:
+    provision:
+        plan: 'baremetal_0'
+        os: 'centos_7'
+
+    $ oneprovision-template instantiate 1 extra.yaml
+    ID: 3
+
+This will overwrite template defaults section. You can also combine this with ``--provider`` to be able to have a provision template that works
+in any provider.
+
 Delete
 ^^^^^^
 
