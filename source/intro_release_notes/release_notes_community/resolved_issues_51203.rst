@@ -3,10 +3,6 @@
 Resolved Issues in 5.12.0.3
 --------------------------------------------------------------------------------
 
-The following new features has been backported to 5.12.0.3:
+This release fixes the incorrect display of the version by Sunstone, OCA and onegate.
 
-- `Write some nice description here <https://github.com/OpenNebula/one/issues/XXXX>`__
-
-The following issues has been solved in 5.12.0.3:
-
-- `Write some nice description here <https://github.com/OpenNebula/one/issues/XXXX>`__
+- `This commit <https://github.com/OpenNebula/one/commit/2948346c3d87254b5581d885871bf7d8df753146>`__ is the only difference between 5.12.0.3 and 5.12.0.2.
