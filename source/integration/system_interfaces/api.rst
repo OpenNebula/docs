@@ -7615,4 +7615,4 @@ one.hooklog.info
 XSD Reference
 =============
 
-The XML schema files that describe the XML documents returned by the one.*.info methods `can be found here <https://github.com/OpenNebula/one/tree/master/share/doc/xsd>`
+The XML schema files that describe the XML documents returned by the one.*.info methods `can be found here <https://github.com/OpenNebula/one/tree/master/share/doc/xsd>`__.
