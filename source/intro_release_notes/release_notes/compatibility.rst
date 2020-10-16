@@ -14,6 +14,17 @@ OneFlow revamp
 
 In the new OneFlow server, the state **poweroff** sets the service state to **warning**.
 
+The information stored **vm_info** has been reduced to avoid large documents. The information available now is: ID UID GID UNAME GNAME NAME. If you want
+to retrieve more information you can use the **ID**, e.g:
+
+.. prompt:: bash $ auto
+
+    client = OpenNebula::Client.new
+    vm     = OpenNebula::VirtualMachine.new_with_id(client, id)
+
+    # Retrieve VM information that previosly was stored in vm_info variable
+    vm.info
+
 MySQL Backend
 =============
 
