@@ -353,16 +353,13 @@ Each Role has an individual state, described in the following table:
 Life-Cycle Operations
 ---------------------
 
-Services are deployed automatically by the Life Cycle Manager. To undeploy a running Service, users can use the commands ``oneflow shutdown`` and ``oneflow delete``.
+Services are deployed automatically by the Life Cycle Manager. To undeploy a running Service, users can use the command ``oneflow delete``.
 
-The command ``oneflow shutdown`` will perform a graceful a ``terminate`` on all the running VMs (see :ref:`onevm terminate <vm_instances>`). If the ``straight`` deployment strategy is used, the Roles will be shutdown in the reverse order of the deployment.
+The command ``oneflow delete`` will perform a graceful a ``terminate`` on all the running VMs (see :ref:`onevm terminate <vm_instances>`). If the ``straight`` deployment strategy is used, the Roles will be shutdown in the reverse order of the deployment.
 
-After a successful shutdown, the Service will remain in the ``DONE`` state. If any of the VM terminate operations cannot be performed, the Service state will show ``FAILED``, to indicate that manual intervention is required to complete the cleanup. In any case, the Service can be completely removed using the command ``oneflow delete``.
-
-If a Service and its VMs must be immediately undeployed, the command ``oneflow delete`` can be used from any Service state. This will execute a terminate operation for each VM and delete the Service. Please be aware that **this is not recommended**, because failed terminate actions may leave VMs in the system.
+After a successful shutdown, the Service will remain in the ``DONE`` state. If any of the VM terminate operations cannot be performed, the Service state will show ``FAILED``, to indicate that manual intervention is required to complete the cleanup. In any case, the Service can be completely removed using the command ``oneflow recover --delete``.
 
 When a Service fails during a deployment, undeployment or scaling operation, the command ``oneflow recover`` can be used to retry the previous action once the problem has been solved.
-
 
 Managing Permissions
 ====================

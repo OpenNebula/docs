@@ -69,7 +69,7 @@ Service
 +--------------+----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
 | **POST**     | ``/service/<id>/action``               | **Perform** an action on the ``SERVICE`` resource identified by <id>. Available actions: shutdown, recover, chown, chgrp, chmod. It can also be used to perform an action in all the Virtual Machines. Available actions: shutdown, shutdown-hard, undeploy, undeploy-hard, hold, release, stop, suspend, resume, boot, delete, delete-recreate, reboot, reboot-hard, poweroff, poweroff-hard, snapshot-create, snapshot-revert, snapshot-delete, disk-snapshot-create, disk-snapshot-revert, disk-snapshot-delete | **204**:                                                               |
 +--------------+----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
-| **PUT**      | ``/service/<id>``                      | **Update** the ``SERVICE`` resource identified by <id>.                                                                                                                                                                                                                                                                                                                                                                                                                                                            | **200 OK**:                                                            |
+| **PUT**      | ``/service/<id>``                      | **Update** the ``SERVICE`` resource identified by <id>.                                                                                                                                                                                                                                                                                                                                                                                                                                                            | **204**:                                                               |
 +--------------+----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
 | **POST**     | ``/service/<id>/scale``                | **Perform** an scale operation on the ``SERVICE`` resource identified by <id>.                                                                                                                                                                                                                                                                                                                                                                                                                                     | **204**:                                                               |
 +--------------+----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
@@ -90,7 +90,7 @@ Service Template
 +--------------+-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
 | **POST**     | ``/service_template``               | **Create** a new ``SERVICE_TEMPLATE`` resource.                                                                                      | **201 Created**: A JSON representation of the new ``SERVICE_TEMPLATE`` resource in the http body   |
 +--------------+-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
-| **PUT**      | ``/service_template/<id>``          | **Update** the ``SERVICE_TEMPLATE`` resource identified by <id>.                                                                     | **200 OK**:                                                                                        |
+| **PUT**      | ``/service_template/<id>``          | **Update** the ``SERVICE_TEMPLATE`` resource identified by <id>.                                                                     | **200 OK**: A JSON representation of the collection in the http body                               |
 +--------------+-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
 | **POST**     | ``/service_template/<id>/action``   | **Perform** an action on the ``SERVICE_TEMPLATE`` resource identified by <id>. Available actions: instantiate, chown, chgrp, chmod   | **201**:                                                                                           |
 +--------------+-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
@@ -185,6 +185,8 @@ And each scheduled policy is defined as:
 | recurrence          | string    | No          | Time for recurring adjustements. Time is specified with the `Unix cron syntax <http://en.wikipedia.org/wiki/Cron>`__                                                |
 +---------------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | start\_time         | string    | No          | Exact time for the adjustement                                                                                                                                      |
++---------------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cooldown            | integer   | No          | Cooldown period duration after a scale operation, in seconds. If it is not set, the one set for the Role will be used                                               |
 +---------------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. code::
@@ -585,7 +587,7 @@ Get Detailed Information of a Given Service Template
 
 .. code::
 
-    curl -u 'oneadmin:opennebula' http://127.0.0.1:2474/service_template/4 -v
+    curl -u 'oneadmin:password' http://127.0.0.1:2474/service_template/4 -v
 
 .. code::
 
@@ -632,7 +634,7 @@ List the Available Service Templates
 
 .. code::
 
-    curl -u 'oneadmin:opennebula' http://127.0.0.1:2474/service_template -v
+    curl -u 'oneadmin:password' http://127.0.0.1:2474/service_template -v
 
 .. code::
 
@@ -689,7 +691,7 @@ Update a Given Template
 
 .. code::
 
-    curl http://127.0.0.1:2474/service_template/4 -u 'oneadmin:opennebula' -v -X PUT --data '{
+    curl http://127.0.0.1:2474/service_template/4 -u 'oneadmin:password' -v -X PUT --data '{
       "name":"web-application",
       "deployment":"straight",
       "roles":[
@@ -811,7 +813,7 @@ Available actions:
 
 .. code::
 
-    curl http://127.0.0.1:2474/service_template/4/action -u 'oneadmin:opennebula' -v -X POST --data '{
+    curl http://127.0.0.1:2474/service_template/4/action -u 'oneadmin:password' -v -X POST --data '{
       "action": {
         "perform":"instantiate"
       }
@@ -856,7 +858,7 @@ Aditional parameters can be passed using the ``merge_template`` inside the ``par
 
 .. code::
 
-    curl http://127.0.0.1:2474/service_template/4/action -u 'oneadmin:opennebula' -v -X POST --data '{
+    curl http://127.0.0.1:2474/service_template/4/action -u 'oneadmin:password' -v -X POST --data '{
       "action": {
         "perform":"instantiate",
         "params": {"merge_template":{"name":"new_name"}}
@@ -879,7 +881,7 @@ Delete a Given Template
 
 .. code::
 
-    curl http://127.0.0.1:2474/service_template/4 -u 'oneadmin:opennebula' -v -X DELETE
+    curl http://127.0.0.1:2474/service_template/4 -u 'oneadmin:password' -v -X DELETE
 
 .. code::
 
@@ -908,7 +910,7 @@ Get Detailed Information of a Given Service
 
 .. code::
 
-    curl http://127.0.0.1:2474/service/5 -u 'oneadmin:opennebula' -v
+    curl http://127.0.0.1:2474/service/5 -u 'oneadmin:password' -v
 
 .. code::
 
@@ -1092,7 +1094,7 @@ List the Available Services
 
 .. code::
 
-    curl http://127.0.0.1:2474/service -u 'oneadmin:opennebula' -v
+    curl http://127.0.0.1:2474/service -u 'oneadmin:password' -v
 
 .. code::
 
@@ -1141,8 +1143,6 @@ Perform an Action on a Given Service
 
 Available actions:
 
-* shutdown: Shutdown a service.
-   * From RUNNING or WARNING shuts down the Service
 * recover: Recover a failed service, cleaning the failed VMs.
    * From FAILED\_DEPLOYING continues deploying the Service
    * From FAILED\_SCALING continues scaling the Service
@@ -1156,15 +1156,7 @@ Available actions:
 
 .. code::
 
-    curl http://127.0.0.1:2474/service/5/action -u 'oneadmin:opennebula' -v -X POST --data '{
-      "action": {
-        "perform":"shutdown"
-      }
-    }'
-
-.. code::
-
-    curl http://127.0.0.1:2474/service/5/action -u 'oneadmin:opennebula' -v -X POST --data '{
+    curl http://127.0.0.1:2474/service/5/action -u 'oneadmin:password' -v -X POST --data '{
       "action": {
         "perform":"chgrp",
         "params" : {
@@ -1172,42 +1164,6 @@ Available actions:
         }
       }
     }'
-
-Update the Cardinality of a Given Role
---------------------------------------------------------------------------------
-
-+--------------+---------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
-| **Method**   | **URL**                         | **Meaning / Entity Body**                                                                                                                                           | **Response**   |
-+==============+=================================+=====================================================================================================================================================================+================+
-| **PUT**      | ``/service/<id>/role/<name>``   | **Update** the ``ROLE`` identified by <name> of the ``SERVICE`` resource identified by <id>. Currently the only attribute that can be updated is the cardinality.   | **200 OK**:    |
-+--------------+---------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
-
-You can force a cardinality outside the defined range with the force param.
-
-.. code::
-
-    curl http://127.0.0.1:2474/service/5/role/frontend -u 'oneadmin:opennebula' -X PUT -v --data '{
-      "cardinality" : 2,
-      "force" : true
-    }'
-
-.. code::
-
-    > PUT /service/5/role/frontend HTTP/1.1
-    > Authorization: Basic b25lYWRtaW46b3Blbm5lYnVsYQ==
-    > User-Agent: curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.14.0.0 zlib/1.2.3 libidn/1.18 libssh2/1.4.2
-    > Host: 127.0.0.1:2474
-    > Accept: */*
-    > Content-Length: 41
-    > Content-Type: application/x-www-form-urlencoded
-    >
-    < HTTP/1.1 200 OK
-    < Content-Type: text/html;charset=utf-8
-    < X-XSS-Protection: 1; mode=block
-    < Content-Length: 0
-    < X-Frame-Options: sameorigin
-    < Connection: keep-alive
-    < Server: thin 1.2.8 codename Black Keys
 
 Perform an Action on All the VMs of a Given Role
 --------------------------------------------------------------------------------
@@ -1252,7 +1208,7 @@ Instead of performing the action immediately on all the VMs, you can perform it 
 
 .. code::
 
-    curl http://127.0.0.1:2474/service/5/role/frontend/action -u 'oneadmin:opennebula' -v -X POST --data '{
+    curl http://127.0.0.1:2474/service/5/role/frontend/action -u 'oneadmin:password' -v -X POST --data '{
       "action": {
         "perform":"stop",
         "params" : {
