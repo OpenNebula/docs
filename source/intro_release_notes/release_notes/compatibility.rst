@@ -25,6 +25,8 @@ to retrieve more information you can use the **ID**, e.g:
     # Retrieve VM information that previosly was stored in vm_info variable
     vm.info
 
+When using **ready_status_gate**, the role will be considered as running when the VM has ``READY=YES`` in the template. This has been implemented using ZMQ, so the old attribute ``"running": true`` has been removed.
+
 MySQL Backend
 =============
 
