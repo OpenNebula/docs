@@ -184,6 +184,8 @@ And each scheduled policy is defined as:
 +---------------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | start\_time         | string    | No          | Exact time for the adjustement                                                                                                                                      |
 +---------------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cooldown            | integer   | No          | Cooldown period duration after a scale operation, in seconds. If it is not set, the one set for the Role will be used                                               |
++---------------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. code::
 
@@ -583,7 +585,7 @@ Get Detailed Information of a Given Service Template
 
 .. code::
 
-    curl -u 'oneadmin:opennebula' http://127.0.0.1:2474/service_template/4 -v
+    curl -u 'oneadmin:password' http://127.0.0.1:2474/service_template/4 -v
 
 .. code::
 
@@ -630,7 +632,7 @@ List the Available Service Templates
 
 .. code::
 
-    curl -u 'oneadmin:opennebula' http://127.0.0.1:2474/service_template -v
+    curl -u 'oneadmin:password' http://127.0.0.1:2474/service_template -v
 
 .. code::
 
@@ -687,7 +689,7 @@ Update a Given Template
 
 .. code::
 
-    curl http://127.0.0.1:2474/service_template/4 -u 'oneadmin:opennebula' -v -X PUT --data '{
+    curl http://127.0.0.1:2474/service_template/4 -u 'oneadmin:password' -v -X PUT --data '{
       "name":"web-application",
       "deployment":"straight",
       "roles":[
@@ -809,7 +811,7 @@ Available actions:
 
 .. code::
 
-    curl http://127.0.0.1:2474/service_template/4/action -u 'oneadmin:opennebula' -v -X POST --data '{
+    curl http://127.0.0.1:2474/service_template/4/action -u 'oneadmin:password' -v -X POST --data '{
       "action": {
         "perform":"instantiate"
       }
@@ -854,7 +856,7 @@ Aditional parameters can be passed using the ``merge_template`` inside the ``par
 
 .. code::
 
-    curl http://127.0.0.1:2474/service_template/4/action -u 'oneadmin:opennebula' -v -X POST --data '{
+    curl http://127.0.0.1:2474/service_template/4/action -u 'oneadmin:password' -v -X POST --data '{
       "action": {
         "perform":"instantiate",
         "params": {"merge_template":{"name":"new_name"}}
@@ -877,7 +879,7 @@ Delete a Given Template
 
 .. code::
 
-    curl http://127.0.0.1:2474/service_template/4 -u 'oneadmin:opennebula' -v -X DELETE
+    curl http://127.0.0.1:2474/service_template/4 -u 'oneadmin:password' -v -X DELETE
 
 .. code::
 
@@ -906,7 +908,7 @@ Get Detailed Information of a Given Service
 
 .. code::
 
-    curl http://127.0.0.1:2474/service/5 -u 'oneadmin:opennebula' -v
+    curl http://127.0.0.1:2474/service/5 -u 'oneadmin:password' -v
 
 .. code::
 
@@ -1090,7 +1092,7 @@ List the Available Services
 
 .. code::
 
-    curl http://127.0.0.1:2474/service -u 'oneadmin:opennebula' -v
+    curl http://127.0.0.1:2474/service -u 'oneadmin:password' -v
 
 .. code::
 
@@ -1154,7 +1156,7 @@ Available actions:
 
 .. code::
 
-    curl http://127.0.0.1:2474/service/5/action -u 'oneadmin:opennebula' -v -X POST --data '{
+    curl http://127.0.0.1:2474/service/5/action -u 'oneadmin:password' -v -X POST --data '{
       "action": {
         "perform":"shutdown"
       }
@@ -1162,7 +1164,7 @@ Available actions:
 
 .. code::
 
-    curl http://127.0.0.1:2474/service/5/action -u 'oneadmin:opennebula' -v -X POST --data '{
+    curl http://127.0.0.1:2474/service/5/action -u 'oneadmin:password' -v -X POST --data '{
       "action": {
         "perform":"chgrp",
         "params" : {
@@ -1184,7 +1186,7 @@ You can force a cardinality outside the defined range with the force param.
 
 .. code::
 
-    curl http://127.0.0.1:2474/service/5/role/frontend -u 'oneadmin:opennebula' -X PUT -v --data '{
+    curl http://127.0.0.1:2474/service/5/role/frontend -u 'oneadmin:password' -X PUT -v --data '{
       "cardinality" : 2,
       "force" : true
     }'
@@ -1250,7 +1252,7 @@ Instead of performing the action immediately on all the VMs, you can perform it 
 
 .. code::
 
-    curl http://127.0.0.1:2474/service/5/role/frontend/action -u 'oneadmin:opennebula' -v -X POST --data '{
+    curl http://127.0.0.1:2474/service/5/role/frontend/action -u 'oneadmin:password' -v -X POST --data '{
       "action": {
         "perform":"stop",
         "params" : {

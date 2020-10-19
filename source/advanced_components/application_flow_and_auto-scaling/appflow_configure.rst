@@ -31,11 +31,15 @@ The OneFlow configuration file can be found at ``/etc/one/oneflow-server.conf``.
 +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :port                 | Port where OneFlow will listen                                                                                                                                          |
 +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :force_deletion       | Force deletion of VMs on terminate signal                                                                                                                               |
++-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Defaults**                                                                                                                                                                                    |
 +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :default\_cooldown    | Default cooldown period after a scale operation, in seconds                                                                                                             |
 +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :default_wait_timeout | Default time to wait VMs states changes, in seconds                                                                                                                     |
+| :wait_timeout         | Default time to wait VMs states changes, in seconds                                                                                                                     |
++-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :concurrency          | Number of threads to make actions with flows                                                                                                                            |
 +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :shutdown\_action     | Default shutdown action. Values: 'shutdown', 'shutdown-hard'                                                                                                            |
 +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -75,7 +79,7 @@ This is the default file
     #
     :one_xmlrpc: http://localhost:2633/RPC2
 
-    # Time in seconds between each time elasticity rules are evaluated
+    # Time in seconds between each time scale rules are evaluated
     #
     :autoscaler_interval: 90
 
@@ -92,6 +96,14 @@ This is the default file
 
     # Default cooldown period after a scale operation, in seconds
     :default_cooldown: 300
+
+    # Default timeout in seconds to wait VMs to report different states
+    # This timeout is used when option report ready is true and for normal actions
+    :wait_timeout: 30
+
+    # Number of threads to make actions with flows
+    # Tune this depending of the load you will have
+    :concurrency: 10
 
     # Default shutdown action. Values: 'terminate', 'terminate-hard'
     :shutdown_action: 'terminate'
@@ -111,7 +123,6 @@ This is the default file
 
     :vm_name_template: '$ROLE_NAME_$VM_NUMBER_(service_$SERVICE_ID)'
     #:vn_name_template: '$ROLE_NAME(service_$SERVICE_ID)'
-
     #############################################################
     # Auth
     #############################################################
