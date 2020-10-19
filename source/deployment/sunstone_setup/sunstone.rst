@@ -300,7 +300,7 @@ To configure this in Virtual Machine template in **advanced mode**:
 .. note:: Make sure the attribute ``IP`` is set correctly (``0.0.0.0`` to allow connections 
     from everywhere), otherwise, no connections will be allowed from the outside.
 
-.. _rdp_sunstone::
+.. _rdp_sunstone:
 
 RDP
 --------------------------------------------------------------------------------
