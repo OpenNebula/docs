@@ -187,7 +187,7 @@ You can find the Sunstone server log file in ``/var/log/one/sunstone.log``. Erro
 Accesing your VMs Console and Desktop
 ================================================================================
 Sunstone provides several different methods to access your VM console and desktop: VNC, SPICE, 
-RDP, VMRC, ssh, and virt-viewer. If configured, these can be accessed by users through Sunstone. 
+RDP, VMRC, ssh, and virt-viewer. If configured in the VM, these metods can be used to access the VM console through Sunstone. 
 For some of those connections, we will need to start our brand new Fireedge server to establish 
 the remote connection. This section shows how these different technologies can be configured and 
 what are each requirement.
