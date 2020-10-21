@@ -89,6 +89,8 @@ If no argument is provided, the information of the current Virtual Machine will 
     STATE               : RUNNING
     IP                  : 192.168.122.23
 
+.. note:: Specifying a VM ID different of a different VM will only works to retrieve information of VMs in the same OneFlow Service or the same Virtual Router.
+
 Retrieving information of the Service
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -132,6 +134,31 @@ You can use the option ``onegate service show --extended`` to get all the inform
     STATE               : RUNNING
 
 For a detailed version use the ``--json`` option and all the information will be returned in JSON format. You can combine **extended** and **json** to get all the information in JSON format.
+
+Retrieving Information of the Virtual Router
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Using the ``onegate vrouter show`` command the information of the Virtual Machine will be retrieved. For a detailed version use the ``--json`` option and all the information will be returned in JSON format.
+
+.. code::
+
+    $ onegate vrouter show
+    VROUTER 0
+    NAME                : vr
+    VMS                 : 1
+
+Retrieving Information of the Virtual Network
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Using the ``onegate vnet show <ID>`` command the information of a Virtual Network will be retrieved. For a detailed version use the ``--json`` option and all the information will be returned in JSON format, when using this option the ``--extended`` option can be used to increase the information retrieved by the command.
+
+.. code::
+
+    $ onegate vnet show 0
+      VNET
+      ID                  : 0
+
+.. note:: This option is only available for Virtual Routers and only Virtual Networks related to that Virtual Router (i.e Virtual Network attached or related somehow in the reservation hierarchy with another attached Virtual Network) can be retrieved.
 
 Updating the VM Information
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -403,6 +430,88 @@ Self-awareness
           "vm_info": "http://<onegate_endpoint>/vm",
           "service_info": "http://<onegate_endpoint>/service"
       }
+
+* ``GET ${ONEGATE_ENDPOINT}/vrouter``: To request information about the Virtual Router. The information is returned in JSON format and is ready for public cloud usage.
+
+  .. prompt:: text $ auto
+
+      $ curl -X "GET" "${ONEGATE_ENDPOINT}/vrouter" \
+          --header "X-ONEGATE-TOKEN: `cat token.txt`" \
+          --header "X-ONEGATE-VMID: $VMID"
+
+      {
+        "VROUTER": {
+            "NAME": "vr",
+            "ID": "0",
+            "VMS": {
+            "ID": [
+                "1"
+            ]
+            },
+            "TEMPLATE": {
+            "NIC": [
+                {
+                "NETWORK": "vnet",
+                "NETWORK_ID": "0",
+                "NIC_ID": "0"
+                }
+            ],
+            "TEMPLATE_ID": "0"
+            }
+        }
+      }
+
+* ``GET ${ONEGATE_ENDPOINT}/vnet``: To request information about a Virtual Network. The information is returned in JSON format and is ready for public cloud usage.
+
+  .. prompt:: text $ auto
+
+      $ curl -X "GET" "${ONEGATE_ENDPOINT}/vnet/<VNET_ID>" \
+          --header "X-ONEGATE-TOKEN: `cat token.txt`" \
+          --header "X-ONEGATE-VMID: $VMID"
+
+      {
+        "VNET": {
+            "ID": "0",
+            "NAME": "vnet",
+            "USED_LEASES": "1",
+            "VROUTERS": {
+            "ID": [
+                "0"
+            ]
+            },
+            "PARENT_NETWORK_ID": {
+            },
+            "AR_POOL": {
+            "AR": [
+                {
+                "AR_ID": "0",
+                "IP": "192.168.122.100",
+                "MAC": "02:00:c0:a8:7a:64",
+                "SIZE": "10",
+                "TYPE": "IP4",
+                "MAC_END": "02:00:c0:a8:7a:6d",
+                "IP_END": "192.168.122.109",
+                "USED_LEASES": "1",
+                "LEASES": {
+                    "LEASE": [
+                    {
+                        "IP": "192.168.122.100",
+                        "MAC": "02:00:c0:a8:7a:64",
+                        "VM": "1"
+                    }
+                    ]
+                }
+                }
+            ]
+            },
+            "TEMPLATE": {
+            "NETWORK_ADDRESS": "192.168.122.0",
+            "NETWORK_MASK": "255.255.255.0",
+            "GATEWAY": "192.168.122.1",
+            "DNS": "1.1.1.1"
+            }
+          }
+        }
 
 
 Self-configuration
