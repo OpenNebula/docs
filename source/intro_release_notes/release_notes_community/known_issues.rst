@@ -47,3 +47,8 @@ Hooks
 =====
 
 Potential issue with `host_error.rb` hook when receiving the host template argument from command line. You can check all the information `here <https://github.com/OpenNebula/one/issues/5101>`__
+
+OneFlow
+=======
+
+Elasticity rules that apply to monitoring information do not work. This issue will be fixed on 5.12.6 and 5.12.0.4 versions.
