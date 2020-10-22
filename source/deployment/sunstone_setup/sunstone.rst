@@ -192,7 +192,7 @@ For some of those connections, we will need to start our brand new Fireedge serv
 the remote connection. This section shows how these different technologies can be configured and 
 what are each requirement.
 
-When the Fireedge server is installed, automatically install dependencies for  Guacamole 
+When the Fireedge server is installed, it automatically install dependencies for  Guacamole 
 connections and the VMRC proxy, which are necessary for use VNC, RDP, SSH, and VMRC.
 
 .. note:: For VMRC connections Sunstone and Fireedge must be installed on the same server.
@@ -269,12 +269,11 @@ Also, if Fireedge is on another server, you must manually copy the file fireedge
 
 .. _requirements_guacamole_sunstone:
 
-Requirements for Guacamole integration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-**Apache Guacamole is a free and open source web application** which lets you access your 
-dashboard from anywhere using a modern web browser. It is a **clientless remote desktop 
-gateway** which only requires Guacamole installed on a server and a web browser supporting HTML5.
+Fireedge uses Guacamole, a free and open source web application which lets you access your 
+dashboard from anywhere using a modern web browser. It is a clientless remote desktop 
+gateway which only requires Guacamole installed on a server and a web browser supporting HTML5. 
+The OpenNebula packages will configure Guacamole server and client automatically, therefore 
+you don’t need to take any extra steps.
 
 Guacamole supports multiple connection methods such as **VNC, RDP and ssh**.
 
@@ -284,11 +283,7 @@ Guacamole server consists of the native server-side libraries required to connec
 server and the "guacd" tool. **guacd is the Guacamole proxy daemon** which accepts the user’s 
 connections and connects to the remote desktop on their behalf.
 
-The **OpenNebula packages will configure Guacamole server and client automatically**, therefore 
-you don’t need to take any extra steps.
-
 .. important:: For Guacamole to work in Sunstone, **Fireedge server must be running**. See :ref:`Fireedge setup<fireedge_setup>` for more information.
-
 
 .. _vnc_sunstone:
 
@@ -392,12 +387,10 @@ connect via browser**.
 Configuring your VM for SSH
 --------------------------------------------------------------------------------
 
-Unlike VNC or RDP, SSH is a text protocol. For both, noVNC and guacamole connection you will have 
-to follow the same configuration steps.
-
-SSH connections require a hostname or IP address defining the destination machine. :ref:`Like 
-the RDP connection <requirements_guacamole_rdp_sunstone>`, you need to enable the SSH connection 
-on one of VM template networks.
+**SSH connections are available only when a reachable Firedge server is found **. Unlike VNC or RDP, 
+SSH is a text protocol. SSH connections require a hostname or IP address defining 
+the destination machine. :ref:`Like the RDP connection <requirements_guacamole_rdp_sunstone>`, 
+you need to enable the SSH connection on one of VM template networks.
 
 For example, to configure this in Virtual Machine template in **advanced mode**:
 
@@ -422,8 +415,9 @@ not using the standard port.
 Configuring your VM for SPICE
 --------------------------------------------------------------------------------
 
-SPICE support in Sunstone share a similar architecture to the VNC implementation. Sunstone use a 
-``SPICE-HTML5`` widget in its console dialog that communicates with the proxy by using websockets.
+SPICE connections are channeled only through the noVNC proxy. SPICE support in Sunstone share 
+a similar architecture to the VNC implementation. Sunstone use a ``SPICE-HTML5`` widget in 
+its console dialog that communicates with the proxy by using websockets.
 
 .. note:: For the correct functioning of the SPICE Web Client, we recommend defining by default 
     some SPICE parameters in ``/etc/one/vmm_mad/vmm_exec_kvm.conf``. In this way, once modified the 
@@ -433,11 +427,12 @@ SPICE support in Sunstone share a similar architecture to the VNC implementation
 
 .. _virt_viewer_sunstone:
 
-Configuring your VM for  Virt-Viewer
+Configuring your VM for virt-viewer
 --------------------------------------------------------------------------------
 
-Virt-viewer is a minimal tool for displaying the graphical console of a virtual machine. It can 
-**display VNC or SPICE protocol**, and uses libvirt to lookup the graphical connection details.
+virt-viewer connections are channeled only through the noVNC proxy. virt-viewer is a minimal tool 
+for displaying the graphical console of a virtual machine. It can **display VNC or SPICE protocol**, 
+and uses libvirt to lookup the graphical connection details.
 
 In this case, Sunstone allows you to download **the virt-viewer configuration file** for the VNC and 
 SPICE protocols. The only requirement is the ``virt-viewer`` package.
@@ -451,6 +446,8 @@ To use this option, you will only have to enable any of two protocols in the VM.
 
 Configuring your VM for VMRC
 --------------------------------------------------------------------------------
+
+**VMRC connections are available only when a reachable Firedge server is found **. 
 
 VMware Remote Console provides console access and client device connection to VMs on a remote host. 
 
