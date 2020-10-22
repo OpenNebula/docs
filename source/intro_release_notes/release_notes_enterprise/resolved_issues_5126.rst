@@ -13,3 +13,4 @@ The following new features has been backported to 5.12.6:
 The following issues has been solved in 5.12.6:
 
 - `Fix bug when terminating a VM that belongs to a service <https://github.com/OpenNebula/one/issues/5142>`__.
+- `Fix issue when using elasticity rules that reference to monitoring information <https://github.com/OpenNebula/one/issues/5143>`__.
