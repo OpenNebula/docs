@@ -107,9 +107,12 @@ Prints the current DB version.
 .. prompt:: text $ auto
 
     $ onedb version --sqlite /var/lib/one/one.db
-    Shared: 6.0.0
-    Local:  6.0.0
-    Source: 6.0.0
+    Shared: 5.12.0
+    Local:  5.12.0
+    Required local version:  5.12.0
+    Required shared version: 5.12.0
+
+
 
 Use the ``-v`` flag to see the complete version and comment.
 
