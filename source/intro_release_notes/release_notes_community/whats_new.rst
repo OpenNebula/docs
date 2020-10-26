@@ -46,6 +46,11 @@ CLI
 ================================================================================
 - CLI can output JSON and YAML formats.  e.g: ``onevm list --json`` or ``onevm show --yaml 23``
 
+onedb
+================================================================================
+- ``version`` command have been improved to be aware of available upgrades.
+- ``upgrade`` command have been improved to create backup only if necessary. Also ``--no-backup`` have been added to avoid backup creation always.
+
 Distributed Edge Provisioning
 ================================================================================
 
