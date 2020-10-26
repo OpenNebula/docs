@@ -14,6 +14,10 @@ We'll explain the templating basics with a few simple examples. Continue to the 
 
 .. _ddc_usage_example1:
 
+.. important::
+
+    Before following any of below examples, you need to create the provider you want to use. Please refer to :ref:`this guide <ddc_provider>` for more information.
+
 Example 1: Empty cluster with datastores
 ----------------------------------------
 
@@ -55,7 +59,7 @@ Check the :ref:`Datastores <ds_op>` section in the Operation Guide for suitable 
 
 .. _ddc_usage_example2:
 
-Example 2: Cluster with EC2 host
+Example 2: Cluster with AWS host
 --------------------------------
 
 The following template describes provisioning a cluster with a single host deployed on Amazon EC2:
@@ -74,10 +78,7 @@ The following template describes provisioning a cluster with a single host deplo
         vm_mad: kvm
         provision:
           hostname: "ex2-host1"
-          provider: ec2
-          ec2_access: ********************
-          ec2_secret: ****************************************
-          region_name: "us-east-1"
+          provider: aws
           cloud_init: true
           ami: ami-66a7871c
           instancetype: "i3.metal"
@@ -111,9 +112,6 @@ The newly-provisioned hosts are mostly a fresh installation without anything nec
         provision:
           hostname: "ex3-host1"
           provider: ec2
-          ec2_access: ********************
-          ec2_secret: ****************************************
-          region_name: "us-east-1"
           cloud_init: true
           ami: ami-66a7871c
           instancetype: "i3.metal"
@@ -151,9 +149,6 @@ In the following example, we explain how to use defaults:
     defaults:
       provision:
         provider: ec2
-        ec2_access: ********************
-        ec2_secret: ****************************************
-        region_name: "us-east-1"
         cloud_init: true
         ami: ami-66a7871c
         instancetype: "i3.metal"
@@ -204,9 +199,6 @@ The following example shows the provisioning of a complete cluster with host, da
 
     defaults:
       provision:
-        provider: ec2
-        ec2_access: ********************
-        ec2_secret: ****************************************
         region_name: "us-east-1"
         cloud_init: true
         ami: ami-66a7871c
@@ -285,7 +277,7 @@ In the following example, we separate datastore and network definitions into the
             size: 253
             type: IP4
 
-The main template extends the datastores and network with one EC2 host:
+The main template extends the datastores and network with one AWS host:
 
 .. code::
 
@@ -296,9 +288,6 @@ The main template extends the datastores and network with one EC2 host:
     defaults:
       provision:
         provider: ec2
-        ec2_access: ********************
-        ec2_secret: ****************************************
-        region_name: "us-east-1"
         cloud_init: true
         ami: ami-66a7871c
         instancetype: "i3.metal"
@@ -351,7 +340,7 @@ In the following example, we separate datastore and network definitions into the
             size: 253
             type: IP4
 
-The main template extends the datastores and network with one EC2 host:
+The main template extends the datastores and network with one AWS host:
 
 .. code::
 
@@ -364,9 +353,6 @@ The main template extends the datastores and network with one EC2 host:
     defaults:
       provision:
         provider: ec2
-        ec2_access: ********************
-        ec2_secret: ****************************************
-        region_name: "us-east-1"
         cloud_init: true
         ami: ami-66a7871c
         instancetype: "i3.metal"
@@ -412,9 +398,6 @@ In the following example we use the ``default`` and a custom ``mycustom`` playbo
     defaults:
       provision:
         provider: ec2
-        ec2_access: ********************
-        ec2_secret: ****************************************
-        region_name: "us-east-1"
         cloud_init: true
         ami: ami-66a7871c
         instancetype: "i3.metal"

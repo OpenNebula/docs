@@ -1,14 +1,14 @@
 .. _ddc_driver_ec2:
 
 =================
-Amazon EC2 Driver
+Amazon AWS Driver
 =================
 
 Requirements:
 
 * AWS API credentials (access and secret key)
 
-Supported EC2 hosts:
+Supported AWS hosts:
 
 * operating systems: CentOS 7, Ubuntu 16.04 and 18.04
 * AMIs (us-east1): ``ami-66a7871c`` (CentOS 7), ``ami-759bc50a`` (Ubuntu 16.04)
@@ -19,22 +19,22 @@ Supported EC2 hosts:
 Provision parameters
 ====================
 
-The following table shows base provision parameters for the EC2 driver:
+The following table shows base provision parameters for the AWS driver:
 
 ===================== ========= ===========
 Parameter             Mandatory Description
 ===================== ========= ===========
-``ec2_access``        **YES**   AWS access key
-``ec2_secret``        **YES**   AWS secret key
-``region_name``       **YES**   AWS deployment's region
+``aws_access``        **YES**   AWS access key
+``aws_secret``        **YES**   AWS secret key
+``aws_region``        **YES**   AWS deployment's region
 ``instancetype``      **YES**   Type of HW plan
 ``ami``               **YES**   AWS image ID (operating system)
 ``securitygroupids``  **YES**   AWS security group IDs
 ``subnetid``          **YES**   AWS subnet ID
 ``hostname``          NO        Hostname set in the booted operating system (and on EC2 dashboard)
 ``userdata``          NO        Custom user data
-``keypair``           NO        EC2 keypair name
-``tags``              NO        Host tags in the EC2 inventory
+``keypair``           NO        AWS keypair name
+``tags``              NO        Host tags in the AWS inventory
 ``cloud_init``        NO        Generate ``cloud-init`` contextualization data if no custom ``userdata`` specified (default: ``no``). See :ref:`Cloud-init <ddc_driver_ec2_cloudinit>`.
 ===================== ========= ===========
 
@@ -77,9 +77,6 @@ Example of a minimal EC2 provision template:
     defaults:
       provision:
         provider: ec2
-        ec2_access: *********************
-        ec2_secret: ****************************************
-        region_name: "us-east-1"
         cloud_init: true
         ami: ami-66a7871c
         instancetype: "i3.metal"

@@ -50,6 +50,8 @@ Parameters:
 +---------------------------+----------------------------------------------------+-----------+
 | ``--skip-config``         | Skip hosts configuration                           | NO        |
 +---------------------------+----------------------------------------------------+-----------+
+| ``--provider`` string     | Selects provider to deploy the provision           | NO        |
++---------------------------+----------------------------------------------------+-----------+
 
 Example:
 
@@ -253,54 +255,10 @@ The ``host list`` command lists all provisioned hosts, and ``host top`` command 
 .. prompt:: bash $ auto
 
     $ oneprovision host list
-      ID NAME            CLUSTER   RVM PROVIDER VM_MAD   STAT
-     766 147.75.33.113   conf-prov   0 packet   kvm      on
+      ID NAME            CLUSTER   RVM VM_MAD   STAT
+     766 147.75.33.113   conf-prov   0 kvm      on
 
     $ oneprovision host top
-
-Host Power Off
-^^^^^^^^^^^^^^
-
-The ``host poweroff`` command offlines the host in OpenNebula (making it unavailable to users) and powers off the physical resource.
-
-.. prompt:: bash $ auto
-
-    $ oneprovision host poweroff 766 -d
-    2018-11-27 12:21:40 INFO  : Powering off host: 766
-    HOST 766: disabled
-
-Host Resume
-^^^^^^^^^^^
-
-The ``host resume`` command powers on the physical resource, and re-enables the OpenNebula host (making it available again to users).
-
-.. prompt:: bash $ auto
-
-    $ oneprovision host resume 766 -d
-    2018-11-27 12:22:57 INFO  : Resuming host: 766
-    HOST 766: enabled
-
-Host Reboot
-^^^^^^^^^^^
-
-The ``host reboot`` command offlines the OpenNebula host (making it unavailable for users), cleanly reboots the physical resource and re-enables the OpenNebula host (making it available again for users after successful OpenNebula host monitoring).
-
-.. prompt:: bash $ auto
-
-    $ oneprovision host reboot 766 -d
-    2018-11-27 12:25:10 INFO  : Rebooting host: 766
-    HOST 766: enabled
-
-Host Reset
-^^^^^^^^^^
-
-The ``host reboot --hard`` command offlines the OpenNebula host (making it unavailable for users), resets the physical resource and re-enables the OpenNebula host.
-
-.. prompt:: bash $ auto
-
-    $ oneprovision host reboot --hard 766 -d
-    2018-11-27 12:27:55 INFO  : Resetting host: 766
-    HOST 766: enabled
 
 Host SSH
 ^^^^^^^^
@@ -390,9 +348,9 @@ The ``oneprovision datastore list`` command lists all provisioned datastores.
 .. prompt:: bash $ auto
 
     $ oneprovision datastore list
-      ID NAME                SIZE AVAIL CLUSTERS     IMAGES TYPE DS      PROVIDER TM      STA
-     318 conf-provisio     271.1G 7%    184               0 img  fs      packet   ssh     on
-     319 conf-provisio         0M -     184               0 sys  -       packet   ssh     on
+      ID NAME                SIZE AVAIL CLUSTERS     IMAGES TYPE DS      TM      STA
+     318 conf-provisio     271.1G 7%    184               0 img  fs      ssh     on
+     319 conf-provisio         0M -     184               0 sys  -       ssh     on
 
 Datastore Delete
 ^^^^^^^^^^^^^^^^
@@ -418,8 +376,8 @@ The ``oneprovision network list`` command lists all virtual networks.
 .. prompt:: bash $ auto
 
     $ oneprovision network list
-      ID USER            GROUP        NAME                CLUSTERS   BRIDGE   PROVIDER LEASES
-     136 oneadmin        oneadmin     myprovision-hostonl 184        br0      packet        0
+      ID USER            GROUP        NAME                CLUSTERS   BRIDGE   LEASES
+     136 oneadmin        oneadmin     myprovision-hostonl 184        br0      0
 
 Vnet Delete
 ^^^^^^^^^^^

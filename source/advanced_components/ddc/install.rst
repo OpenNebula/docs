@@ -28,6 +28,12 @@ All functionality is distributed as an optional operating system package ``openn
 
     Supported versions: Ansible 2.8.x and 2.9.x.
 
+.. important::
+
+    The tool rquires `Terraform <https://www.terraform.io/>`__ to be installed on the same host(s) as well. There is **no automatic dependecy** which would install Terraform automatically; you have to manage the installation of the required Terraform version on your own.
+
+    Supported versions: Terraform 0.13.4.
+
 Tools
 -----
 
