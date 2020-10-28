@@ -9,6 +9,7 @@ The following new features has been backported to 5.12.6:
 
 - `Add OneGate features for VNF <https://github.com/OpenNebula/one/issues/5112>`__.
 - `Add new infoset API call for vm pool <https://github.com/OpenNebula/one/issues/5112>`__.
+- `Improve monitoring API calls performance <https://github.com/OpenNebula/one/issues/5147>`__.
 
 The following issues has been solved in 5.12.6:
 
