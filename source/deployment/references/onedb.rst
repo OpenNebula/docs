@@ -107,16 +107,29 @@ Prints the current DB version.
 .. prompt:: text $ auto
 
     $ onedb version --sqlite /var/lib/one/one.db
-    3.8.0
+    Shared: 5.12.0
+    Local:  5.12.0
+    Required shared version: 5.12.0
+    Required local version:  5.12.0
+
+
 
 Use the ``-v`` flag to see the complete version and comment.
 
 .. prompt:: text $ auto
 
     $ onedb version -v --sqlite /var/lib/one/one.db
-    Version:   3.8.0
-    Timestamp: 10/19 16:04:17
-    Comment:   Database migrated from 3.7.80 to 3.8.0 (OpenNebula 3.8.0) by onedb command.
+    Shared tables version:   5.12.0
+    Required version:        5.12.0
+    Timestamp: 09/08 11:52:46
+    Comment:   Database migrated from 5.6.0 to 5.12.0 (OpenNebula 5.12.0) by onedb command.
+
+    Local tables version:    5.12.0
+    Required version:        5.12.0
+    Timestamp: 09/08 11:58:27
+    Comment:   Database migrated from 5.8.0 to 5.12.0 (OpenNebula 5.12.0) by onedb command.
+
+.. note:: ``onedb version`` command will return different RCs depending on the state of the installation. Run ``onedb version --help`` for more information.
 
 If the MySQL database password contains special characters, such as ``@`` or ``#``, the onedb command will fail to connect to it.
 
