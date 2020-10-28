@@ -35,9 +35,6 @@ Example:
     defaults:
       provision:
         provider: packet
-        packet_token: ********************************
-        packet_project: ************************************
-        facility: ams1
         plan: baremetal_0
         os: centos_7
       connection:
@@ -169,7 +166,7 @@ This section contains parameters for the provisioning provider. Most parameters 
 | ``provider``    | none, needs to be specified          | Host provision driver. Options:               |
 |                 |                                      |                                               |
 |                 |                                      | - :ref:`packet <ddc_driver_packet>`           |
-|                 |                                      | - :ref:`ec2 <ddc_driver_ec2>`                 |
+|                 |                                      | - :ref:`aws <ddc_driver_ec2>`                 |
 +-----------------+--------------------------------------+-----------------------------------------------+
 
 .. _ddc_provision_template_configuration:
@@ -308,16 +305,16 @@ Template with the following resources:
 
 .. _ddc_provision_template_ec2:
 
-Amazon EC2 Cluster
+Amazon AWS Cluster
 ------------------
 
 .. note::
 
-    Installed into ``/usr/share/one/oneprovision/examples/example_ec2.yaml``.
+    Installed into ``/usr/share/one/oneprovision/examples/example_aws.yaml``.
 
 Template with the following resources:
 
-- disabled hosts with CentOS 7 and Ubuntu 16.04 to be deployed on EC2
+- disabled hosts with CentOS 7 and Ubuntu 16.04 to be deployed on AWS
 - image and system datastores (driver SSH)
 - networks:
 

@@ -48,9 +48,6 @@ Example of a minimal Packet provision template:
     defaults:
       provision:
         provider: packet
-        packet_token: ********************************
-        packet_project: ************************************
-        facility: ams1
         plan: baremetal_0
         os: ubuntu_18_04
 
@@ -91,9 +88,6 @@ Example provision template with network-only-related configuration:
     defaults:
       provision:
         provider: packet
-        packet_token: ********************************
-        packet_project: ************************************
-        facility: ams1
         plan: baremetal_0
         os: ubuntu_18_04
       configuration:

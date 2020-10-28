@@ -46,6 +46,19 @@ Check more information :ref:`here <ddc_virtual>`.
 
 In provision template, the attribute ``driver`` has be changed by ``provider``.
 
+The driver EC2 has been renamed to AWS to follow Terraform provider name. Consequently, the keys has been renamed in the following way:
+
+- ec2_access -> aws_access
+- ec2_secret -> aws_secret
+- region_name -> aws_region
+
+Provision drivers has been changed by Terraform, so the following commands are no longer avaialble:
+
+- ``oneprovision host resume``
+- ``oneprovision host poweroff``
+- ``oneprovision host reboot``
+- ``oneprovision host reboot --hard``
+
 Datastore Driver Changes
 =============================
 
