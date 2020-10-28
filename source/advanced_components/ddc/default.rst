@@ -187,6 +187,14 @@ First of all, you need to create a provider using your Packet credentials and fa
 
 In the template you have to change ``******`` by a valid token. You can create one in your Packet user portal. And to get the project ID just go to project settings tab in Packet.
 
+.. note::
+
+    To get the facility identifier you can use the following command:
+
+    .. prompt:: bash $ auto
+
+        curl -X GET --header 'Accept: application/json' --header 'X-Auth-Token: <YOUR_TOKEN>' 'https://api.equinix.com/metal/v1/facilities'
+
 Then you need to add the hosts you want to deploy. You have to uncomment the Ubuntu or CentOS hosts, in case of CentOS the final result would be the following:
 
 .. code::
