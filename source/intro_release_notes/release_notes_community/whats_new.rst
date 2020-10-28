@@ -42,6 +42,9 @@ Scheduler
 OneFlow & OneGate
 ===============================================================================
 
+- Registration time has been added to service templates.
+- Start time has been added to services.
+
 CLI
 ================================================================================
 - CLI can output JSON and YAML formats.  e.g: ``onevm list --json`` or ``onevm show --yaml 23``

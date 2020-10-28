@@ -76,8 +76,8 @@ To list the available Service Templates, use ``oneflow-template list/show/top``:
 .. code::
 
     $ oneflow-template list
-            ID USER            GROUP           NAME
-             0 oneadmin        oneadmin        my_service
+            ID USER            GROUP           NAME         REGTIME
+             0 oneadmin        oneadmin        my_service   10/28 17:42:46
 
     $ oneflow-template show 0
     SERVICE TEMPLATE 0 INFORMATION
@@ -85,6 +85,7 @@ To list the available Service Templates, use ``oneflow-template list/show/top``:
     NAME                : my_service
     USER                : oneadmin
     GROUP               : oneadmin
+    REGISTRATION_TIME   : 10/28 17:42:46
 
     PERMISSIONS
     OWNER               : um-
@@ -218,8 +219,8 @@ To list the available Services, use ``oneflow list/top``:
 .. prompt:: bash $ auto
 
     $ oneflow list
-            ID USER            GROUP           NAME                      STATE
-             1 oneadmin        oneadmin        my_service                PENDING
+            ID USER            GROUP           NAME          STARTTIME          STATE
+             1 oneadmin        oneadmin        my_service    10/28 17:42:46     PENDING
 
 |image3|
 
@@ -235,6 +236,7 @@ The Service will eventually change to ``DEPLOYING``. You can see information for
     GROUP               : oneadmin
     STRATEGY            : straight
     SERVICE STATE       : DEPLOYING
+    START TIME          : 10/28 17:42:46
 
     PERMISSIONS
     OWNER               : um-
@@ -371,8 +373,8 @@ For example, to change the owner and group of the Service 1, we can use ``oneflo
 .. code::
 
     $ oneflow list
-            ID USER            GROUP           NAME                      STATE
-             1 oneadmin        oneadmin        my_service                RUNNING
+            ID USER            GROUP           NAME           STARTTIME         STATE
+             1 oneadmin        oneadmin        my_service     10/28 17:42:46    RUNNING
 
     $ onevm list
         ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
@@ -383,8 +385,8 @@ For example, to change the owner and group of the Service 1, we can use ``oneflo
     $ oneflow chown my_service johndoe apptools
 
     $ oneflow list
-            ID USER            GROUP           NAME                      STATE
-             1 johndoe         apptools        my_service                RUNNING
+            ID USER            GROUP           NAME           STARTTIME         STATE
+             1 johndoe         apptools        my_service     10/28 17:42:46    RUNNING
 
     $ onevm list
         ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
@@ -432,6 +434,7 @@ Another common scenario is having Service Templates created by oneadmin that can
     NAME                : my_service
     USER                : oneadmin
     GROUP               : oneadmin
+    REGISTRATION_TIME   : 10/28 17:42:46
 
     PERMISSIONS
     OWNER               : um-
@@ -447,6 +450,7 @@ Another common scenario is having Service Templates created by oneadmin that can
     NAME                : my_service
     USER                : oneadmin
     GROUP               : oneadmin
+    REGISTRATION_TIME   : 10/28 17:42:46
 
     PERMISSIONS
     OWNER               : um-
