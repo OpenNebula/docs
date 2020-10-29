@@ -16,3 +16,4 @@ The following issues has been solved in 5.12.6:
 - `Fix issue when using elasticity rules that reference to monitoring information <https://github.com/OpenNebula/one/issues/5143>`__.
 - `Fix services not progressing from COOLDOWN when VMS are deleted <https://github.com/OpenNebula/one/issues/5145>`__.
 - `Fix visual feedback about READY status in role VM list in Sunstone <https://github.com/OpenNebula/one/issues/5146>`__.
+- `Fix user inputs when instantiate flow template in Sunstone <https://github.com/OpenNebula/one/issues/5152>`__.
