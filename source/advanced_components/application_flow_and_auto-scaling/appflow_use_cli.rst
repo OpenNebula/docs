@@ -100,7 +100,7 @@ To list the available Service Templates, use ``oneflow-template list/show/top``:
 
     ....
 
-.. _delete_service_template:
+.. _appflow_use_cli_delete_service_template:
 
 Templates can be deleted with ``oneflow-template delete``.
 
@@ -110,6 +110,23 @@ You can also delete VM templates associated to the service template:
 - ``--delete-images``: this will delete all the VM templates and images associated and the service template.
 
 You can also create and manage Service Templates from Sunstone.
+
+.. _appflow_use_cli_automatic_delete:
+
+Automatic delete service if all roles are terminated
+----------------------------------------------------
+
+Service VMs can be terminated using scheduled actions or VM charters. This can lead to a situation where you have a running service with no VMs associated to it.
+To avoid this you can use automatic deletion feature.
+
+CLI
+^^^
+
+To enable it using the CLI, you need to add the following attribute to the service template:
+
+.. prompt:: bash $ auto
+
+    "automatic_deletion": true
 
 .. _appflow_use_cli_running_state:
 
