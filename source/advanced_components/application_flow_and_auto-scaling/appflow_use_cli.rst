@@ -100,7 +100,14 @@ To list the available Service Templates, use ``oneflow-template list/show/top``:
 
     ....
 
+.. _delete_service_template:
+
 Templates can be deleted with ``oneflow-template delete``.
+
+You can also delete VM templates associated to the service template:
+
+- ``--delete-vm-templates``: this will delete all the VM templates associated and the service template.
+- ``--delete-images``: this will delete all the VM templates and images associated and the service template.
 
 You can also create and manage Service Templates from Sunstone.
 

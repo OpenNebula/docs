@@ -44,6 +44,7 @@ OneFlow & OneGate
 
 - Registration time has been added to service templates.
 - Start time has been added to services.
+- Add new option to delete VM templates associated to a service template when deleting it. Check more information about new parameters :ref:`here <delete_service_template>`.
 
 CLI
 ================================================================================
