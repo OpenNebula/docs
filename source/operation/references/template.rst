@@ -554,7 +554,7 @@ The following I/O interfaces can be defined for a VM:
 |              | * **BUS**: values are ``usb``, ``ps2``                                               |     |         |         |             |
 |              |                                                                                      |     |         |         |             |
 +--------------+--------------------------------------------------------------------------------------+-----+---------+---------+-------------+
-| **GRAPHICS** | Wether the VM should export its graphical display and how, available sub-attributes: | O   | O       | O       | O           |
+| **GRAPHICS** | Whether the VM should export its graphical display and how, available sub-attributes:| O   | O       | O       | O           |
 |              |                                                                                      |     |         |         |             |
 |              +--------------------------------------------------------------------------------------+-----+---------+---------+-------------+
 |              | * **TYPE**: values: ``vnc``, ``sdl``, ``spice``                                      |     |         | O (vnc) | O (vnc)     |
@@ -569,6 +569,8 @@ The following I/O interfaces can be defined for a VM:
 |              +--------------------------------------------------------------------------------------+-----+---------+---------+-------------+
 |              | * **RANDOM_PASSWD**: if "YES", generate a random password for each VM                |     |         | O       | O           |
 +--------------+--------------------------------------------------------------------------------------+-----+---------+---------+-------------+
+
+**Note** if the GRAPHICS contains both attributes PASSWD and RANDOM_PASSWD the password will not be generated
 
 Example:
 
