@@ -19,3 +19,4 @@ The following issues has been solved in 5.12.6:
 - `Fix visual feedback about READY status in role VM list in Sunstone <https://github.com/OpenNebula/one/issues/5146>`__.
 - `Fix user inputs when instantiate flow template in Sunstone <https://github.com/OpenNebula/one/issues/5152>`__.
 - `Do not recreate VNC password if password already exists <https://github.com/OpenNebula/one/issues/5139>`__. Note: If the VM template contains both attributes PASSWD and RANDOM_PASSWD the password will not be generated.
+- `Fix RANK expressions that contains DATASTORES metrics MAX_DISK, FREE_DISK, USED_DISK and DISK_USAGE <https://github.com/OpenNebula/one/issues/5154>`__.
