@@ -11,12 +11,12 @@ This page will be updated with relevant information about bugs affecting OpenNeb
 Scheduler
 =========
 
-Metrics referring to Datastore monitoring (``MAX_DISK``, ``FREE_DISK``, ``USED_DISK`` and ``DISK_USAGE``) no longer works because of a missing XPATH route. Until a proper fix is released you need to update the ``RANK`` or ``REQUIREMENTS`` expressions using the new location with double quotes e.g. ``"DATASTORES/MAX_DISK"``. You can check all the information `here <https://github.com/OpenNebula/one/issues/5154>`_.
+Metrics referring to Datastore monitoring (``MAX_DISK``, ``FREE_DISK``, ``USED_DISK`` and ``DISK_USAGE``) no longer works because of a missing XPATH route. Until a proper fix is released you need to update the ``RANK`` or ``REQUIREMENTS`` expressions using the new location with double quotes e.g. ``"DATASTORES/MAX_DISK"``. You can check all the information `here <https://github.com/OpenNebula/one/issues/5154>`__.
 
 Accounting and Showback
 =======================
 
-A bug that might lead to inaccurate hours in accounting and showback has been fixed. You can check all the information `here <https://github.com/OpenNebula/one/issues/1662>`_. But, old VMs won't be updated, so the bug might still be on those VMs.
+A bug that might lead to inaccurate hours in accounting and showback has been fixed. You can check all the information `here <https://github.com/OpenNebula/one/issues/1662>`__. But, old VMs won't be updated, so the bug might still be on those VMs.
 
 Sunstone Translate
 ==================
