@@ -8,6 +8,11 @@ A complete list of `known issues for OpenNebula is maintained here <https://gith
 
 This page will be updated with relevant information about bugs affecting OpenNebula, as well as possible workarounds until a patch is officially published.
 
+Scheduler
+=========
+
+Metrics referring to Datastore monitoring (``MAX_DISK``, ``FREE_DISK``, ``USED_DISK`` and ``DISK_USAGE``) no longer works because of a missing XPATH route. Until a proper fix is released you need to update the ``RANK`` or ``REQUIREMENTS`` expressions using the new location with double quotes e.g. ``"DATASTORES/MAX_DISK"``. You can check all the information `here <https://github.com/OpenNebula/one/issues/5154>`_.
+
 Accounting and Showback
 =======================
 
