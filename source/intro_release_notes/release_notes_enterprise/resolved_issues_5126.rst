@@ -18,3 +18,4 @@ The following issues has been solved in 5.12.6:
 - `Fix services not progressing from COOLDOWN when VMS are deleted <https://github.com/OpenNebula/one/issues/5145>`__.
 - `Fix visual feedback about READY status in role VM list in Sunstone <https://github.com/OpenNebula/one/issues/5146>`__.
 - `Fix user inputs when instantiate flow template in Sunstone <https://github.com/OpenNebula/one/issues/5152>`__.
+- `Do not recreate VNC password if password already exists <https://github.com/OpenNebula/one/issues/5139>`__. Note: If the VM template contains both attributes PASSWD and RANDOM_PASSWD the password will not be generated.
