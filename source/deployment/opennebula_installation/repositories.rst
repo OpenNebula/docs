@@ -82,6 +82,13 @@ Debian/Ubuntu
     # echo "deb https://<token>@enterprise.opennebula.io/repo/5.12/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
+*Ubuntu 20.10*
+
+.. prompt:: bash # auto
+
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/5.12/Ubuntu/20.10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # apt-get update
+
 .. note::
 
    Please note that you can point to a specific 5.12.x version changing the occurrence of 5.12 in any of the above to the specific version number. For instance, to point to version 5.12.1 in Ubuntu 18.04:
