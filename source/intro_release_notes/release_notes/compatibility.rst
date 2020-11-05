@@ -70,3 +70,16 @@ All the states that make Virtual Machines to remain in the host are taken in acc
 Azure driver
 ============
 Azure driver was revamped to support Azure Resource Manager, there are new attributes requried to be defined for the Azure host. Please refer to the :ref:`Azure driver <azg>`.
+
+New OneGate commands
+====================
+New commands ``onegate vnet show <ID>`` and ``onegate vrouter show`` have been added. In order to be able to use them the corresponding permissions needs to be added at ``/etc/one/onegate-server.conf``:
+
+.. code::
+
+  :permissions:
+    ...
+    :vrouter:
+      :show: true
+    :vnet:
+      :show_by_id: true

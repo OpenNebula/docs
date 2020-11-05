@@ -2183,6 +2183,31 @@ one.vmpool.infoextended
 | OUT  | Int       | ID of the object that caused the error.                               |
 +------+-----------+-----------------------------------------------------------------------+
 
+one.vmpool.infoset
+--------------------------------------------------------------------------------
+
+-  **Description**: Retrieves information for a specific set of VMs.
+-  **Parameters**
+
++------+-----------+-----------------------------------------------------------------------+
+| Type | Data Type |                              Description                              |
++======+===========+=======================================================================+
+| IN   | String    | The session string.                                                   |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | String    | VMs set. A comma separated list of VMs IDs to be retrieved            |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Bool      | Extended. If true the entire VM will be retrived (similar to          |
+|      |           | one.vmpool.infoextended)                                              |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not                           |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | String    | Version of the VM Pool containing the set of VMs.                     |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Int       | Error code.                                                           |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Int       | ID of the object that caused the error.                               |
++------+-----------+-----------------------------------------------------------------------+
+
 The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
 The state filter can be one of the following:
