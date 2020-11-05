@@ -21,6 +21,6 @@ The following issues has been solved in 5.12.5:
 - `Fix reconnect to MySQL and PostgreSQL DB <https://github.com/OpenNebula/one/issues/5094>`__
 - `Fix NIC attribute overrides <https://github.com/OpenNebula/one/issues/5095>`__
 - `Fix VNC allocation when migrating across clusters <https://github.com/OpenNebula/one/issues/5131>`__
-- `Fix VM created from "Schedule Actions for VM <https://github.com/OpenNebula/one/issues/5016>"`__
+- `Fix VM created from "Schedule Actions for VM" <https://github.com/OpenNebula/one/issues/5016>`__
 
 .. warning:: Note that this version solves NIC attribute overrides. It preserves the precedence of NIC values so Virtual Network attributes can be overridden. Please update your oned.conf file ``VM_RESTRICTED_ATTR`` to prevent users from sensible overwriting Virtual Network values.
