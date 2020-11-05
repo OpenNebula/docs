@@ -40,14 +40,14 @@ To create a provider use the command ``oneprovider create``, e.g:
 
 .. prompt:: bash $ auto
 
-    $ cat ec2.yaml
+    $ cat aws.yaml
     ---
-    name: ec2
+    name: aws
     connection:
-      ec2_access:  '*********************'
-      ec2_secret:  '*********************'
-      region_name: 'eu-central-1'
-    $ oneprovider create ec2.yaml
+      aws_access:  '*********************'
+      aws_secret:  '*********************'
+      aws_region: 'eu-central-1'
+    $ oneprovider create aws.yaml
     ID: 1
 
 .. note:: You need to specify a valid credentials.

@@ -128,7 +128,7 @@ OpenNebula brings the following advanced components:
 
 -  **Cloud bursting** gives support to build a :ref:`hybrid cloud <introh>`, an extension of a private cloud to combine local resources with resources from remote cloud providers. A whole public cloud provider can be encapsulated as a local resource to be able to use extra computational capacity to satisfy peak demands. Out of the box connectors are shipped to support :ref:`Amazon EC2 <ec2g>` and :ref:`Microsoft Azure <azg>` cloudbursting.
 
--  :ref:`Disaggregated Data Centers <ddc_overview>` provides tools to build and grow the physical infrastructure with resources from public bare-metal cloud providers, e.g. :ref:`Amazon EC2 <ddc_driver_ec2>` and :ref:`Packet <ddc_driver_packet>`. New physical machines are allocated from the provider, configured to run the hypervisor and added into OpenNebula as new clusters with hosts, datastores and virtual networks.
+-  :ref:`Disaggregated Data Centers <ddc_overview>` provides tools to build and grow the physical infrastructure with resources from public bare-metal cloud providers, e.g. :ref:`Amazon EC2 <ddc_driver_aws>` and :ref:`Packet <ddc_driver_packet>`. New physical machines are allocated from the provider, configured to run the hypervisor and added into OpenNebula as new clusters with hosts, datastores and virtual networks.
 
 Step 6. Integrate with other Components
 ===============================================

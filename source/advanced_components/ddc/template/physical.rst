@@ -62,7 +62,7 @@ Check the :ref:`Datastores <ds_op>` section in the Operation Guide for suitable 
 Example 2: Cluster with AWS host
 --------------------------------
 
-The following template describes provisioning a cluster with a single host deployed on Amazon EC2:
+The following template describes provisioning a cluster with a single host deployed on Amazon AWS:
 
 .. code::
 
@@ -111,7 +111,7 @@ The newly-provisioned hosts are mostly a fresh installation without anything nec
         vm_mad: kvm
         provision:
           hostname: "ex3-host1"
-          provider: ec2
+          provider: aws
           cloud_init: true
           ami: ami-66a7871c
           instancetype: "i3.metal"
@@ -148,7 +148,7 @@ In the following example, we explain how to use defaults:
 
     defaults:
       provision:
-        provider: ec2
+        provider: aws
         cloud_init: true
         ami: ami-66a7871c
         instancetype: "i3.metal"
@@ -287,7 +287,7 @@ The main template extends the datastores and network with one AWS host:
 
     defaults:
       provision:
-        provider: ec2
+        provider: aws
         cloud_init: true
         ami: ami-66a7871c
         instancetype: "i3.metal"
@@ -352,7 +352,7 @@ The main template extends the datastores and network with one AWS host:
 
     defaults:
       provision:
-        provider: ec2
+        provider: aws
         cloud_init: true
         ami: ami-66a7871c
         instancetype: "i3.metal"
@@ -397,7 +397,7 @@ In the following example we use the ``default`` and a custom ``mycustom`` playbo
 
     defaults:
       provision:
-        provider: ec2
+        provider: aws
         cloud_init: true
         ami: ami-66a7871c
         instancetype: "i3.metal"
