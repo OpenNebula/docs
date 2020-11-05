@@ -11,4 +11,4 @@ The following new features has been backported to 5.12.7:
 
 The following issues has been solved in 5.12.7:
 
-- `Provide nice and clear! description <https://github.com/OpenNebula/one/issues/XXX>`__.
+- `Fix formatting in monitoring section in Sunstone <https://github.com/OpenNebula/one/issues/5161>`__.
