@@ -12,3 +12,4 @@ The following new features has been backported to 5.12.7:
 The following issues has been solved in 5.12.7:
 
 - `Fix formatting in monitoring section in Sunstone <https://github.com/OpenNebula/one/issues/5161>`__.
+- `OneGate vnet fails when extended flag is used and the VNET contains held leases <https://github.com/OpenNebula/one/issues/5163>`__.
