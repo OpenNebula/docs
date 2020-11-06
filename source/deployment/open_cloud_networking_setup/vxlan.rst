@@ -193,7 +193,7 @@ Note that this a simple scenario using the same configuration for all the VNIs. 
 Configuring OpenNebula
 --------------------------------------------------------------------------------
 
-You need to update ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf`` file to:
+You need to update ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf`` file to:
 
 1. Set BGP EVPN as the control plane for your BUM traffic, ``vxlan_mode``.
 2. Select the hypervisor is going to send the traffic to the VTEP. This can be either ``dev``, to forward the traffic through the ``PHY_DEV`` interface defined in the Virtual Network template, or ``local_ip`` to route the traffic using the first IP configured in ``PHY_DEV``.
