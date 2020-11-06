@@ -166,7 +166,7 @@ This section contains parameters for the provisioning provider. Most parameters 
 | ``provider``    | none, needs to be specified          | Host provision driver. Options:               |
 |                 |                                      |                                               |
 |                 |                                      | - :ref:`packet <ddc_driver_packet>`           |
-|                 |                                      | - :ref:`aws <ddc_driver_ec2>`                 |
+|                 |                                      | - :ref:`aws <ddc_driver_aws>`                 |
 +-----------------+--------------------------------------+-----------------------------------------------+
 
 .. _ddc_provision_template_configuration:
@@ -303,7 +303,7 @@ Template with the following resources:
  - ``private-host-only`` (to be used with ``public`` network)
  - ``private``
 
-.. _ddc_provision_template_ec2:
+.. _ddc_provision_template_aws:
 
 Amazon AWS Cluster
 ------------------
