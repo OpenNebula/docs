@@ -4,6 +4,27 @@
 Upgrading Single Front-end Deployments
 ================================================================================
 
+Upgrading from 5.12.x
+^^^^^^^^^^^^^^^^^^^^^
+
+To upgrade minor releases, please follow:
+
+.. toctree::
+   :maxdepth: 1
+
+   Upgrading from 5.12.x  <upgrade_512>
+
+Upgrading from 5.6.x+
+^^^^^^^^^^^^^^^^^^^^^
+
+After following all the steps, please review corresponding guide:
+
+.. toctree::
+   :maxdepth: 1
+
+   Additional Steps for 5.8.x <upgrade_58>
+   Additional Steps for 5.6.x <upgrade_56>
+
 Step 1. Check Virtual Machine Status
 ================================================================================
 
