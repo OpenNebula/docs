@@ -4,6 +4,8 @@
 Upgrading Single Front-end Deployments
 ================================================================================
 
+If you are upgrading from a :ref:`5.12.x <upgrade_512>` installation you only need to follow a reduced set of steps. If you are running a 5.10.x version or older, please check these :ref:`set of steps <upgrading_from_previous_extended_steps>` (some additional ones may apply, please review them at the end of the section).
+
 .. _upgrade_512:
 
 Upgrading from 5.12.x
@@ -99,6 +101,9 @@ Restoring the Previous Version
 ==============================
 
 If for any reason you need to restore your previous OpenNebula, simply uninstall OpenNebula |version|, and install again your previous version. After that, update the drivers as described above.
+
+.. _upgrading_from_previous_extended_steps:
+
 
 Upgrading from 5.6.x+
 ^^^^^^^^^^^^^^^^^^^^^
