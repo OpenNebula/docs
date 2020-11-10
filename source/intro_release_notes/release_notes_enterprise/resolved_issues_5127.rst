@@ -14,3 +14,4 @@ The following issues has been solved in 5.12.7:
 - `Fix formatting in monitoring section in Sunstone <https://github.com/OpenNebula/one/issues/5161>`__.
 - `OneGate vnet fails when extended flag is used and the VNET contains held leases <https://github.com/OpenNebula/one/issues/5163>`__.
 - `Fix visual feedback about READY status in role VM list in Sunstone <https://github.com/OpenNebula/one/issues/5146>`__.
+- `Fix user inputs on instantiation flow form in Sunstone <https://github.com/OpenNebula/one/issues/5172>`__.
