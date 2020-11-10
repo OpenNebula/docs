@@ -19,6 +19,7 @@ OpenNebula Core
 - `Add option set cold migration type for rescheduling <http://github.com/OpenNebula/one/issues/2983>`__.
 - `Add option to create formatted datablocks <https://github.com/OpenNebula/one/issues/4989>`__.
 - Add support for document encrypted attributes, check :ref:`this <encrypted_attrs>` for more information.
+- `VM terminate, poweroff and undeploy hard overrides their soft counterpart <https://github.com/OpenNebula/one/issues/2586>`__.
 
 Storage
 ================================================================================
