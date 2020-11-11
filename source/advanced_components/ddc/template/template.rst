@@ -187,6 +187,24 @@ Sections ``cluster``, ``hosts``, ``datastores``, ``networks`` contain list of Op
 
     It's possible to deploy only a single cluster. The section ``cluster`` is a dictionary. All other sections are lists.
 
+.. note::
+
+    Hosts have an special attribute ``count``, this attribute allow you to deploy the same host multiple times, without having to specify all of them.
+
+    The following example, deploy two hosts with the same configuration:
+
+    .. prompt:: bash $ auto
+
+        hosts:
+        - reserved_cpu: 100
+          im_mad: kvm
+          vm_mad: kvm
+          provision:
+            hostname: "myhost1"
+          count: 2
+
+    The resulting hostanmes would be ``myhost1_0`` and ``myhost1_1``.
+
 Example of datastore defined from regular template:
 
 .. prompt:: bash $ auto
