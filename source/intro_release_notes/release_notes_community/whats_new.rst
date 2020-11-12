@@ -24,6 +24,7 @@ OpenNebula Core
 Storage
 ================================================================================
 - New SSH transfer manager extension called :ref:`replica<replica_tm>`
+- Usage of ``scp`` is deprecated in favour of `ssh+tar <https://github.com/OpenNebula/one/issues/5058>`__ and ssh+rsync. File based images are (re)sparsified.
 
 Networking
 ================================================================================
