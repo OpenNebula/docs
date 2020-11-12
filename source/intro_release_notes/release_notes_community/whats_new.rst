@@ -66,6 +66,7 @@ Distributed Edge Provisioning
 - Provision operations has been implemented using Terraform. The same functionality is supported, but actions are triggered using Terraform.
 - Terraform is able to create more resources on the remote provider. Check more information :ref:`here <terraform_advanced>`.
 - Count attribute has been addded. This allow you to create multiple same hosts. Check more information :ref:`here <ddc_provision_template_devices>`.
+- ERB syntax has been changed by a new syntax. Check more information :ref:`here <ddc_virtual_all>`.
 
 Packaging
 ================================================================================
