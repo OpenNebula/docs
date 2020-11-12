@@ -142,11 +142,11 @@ Example of a AWS provision template that creates an VPC:
         im_mad: 'kvm'
         vm_mad: 'kvm'
         provision:
-          hostname: '<%= @name %>-host'
+          hostname: '${provision}-host'
           ami: 'ami-0e1ce3e0deb8896d2'
 
     networks:
-      - name: '<%= @name %>-vpc'
+      - name: '${provision}-vpc'
         vn_mad: 'dummy'
         bridge: 'br0'
         provision:
