@@ -209,13 +209,23 @@ When using replication the following attributes can be tuned in ``sshrc`` file i
 | ``REPLICA_SSH_FE_OPTS``        | ssh options when copying from the frontend to the replica. Prefer stronger ciphers on public networks                             |
 +--------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
 
-Additionally, when replication is activated it is also enabled the recovery snapshots. Whenever a disk snapshot is created a copy of it is made and located at the replica host. Later, should the host where the VM is running fail, it could be recovered using, either manually or through the fault tolerance hooks:
+Additionally, in replica mode you can enable recovery snapshots for particular VM disks. You can do it by adding an option ``RECOVERY_SNAPSHOT_FREQ`` to DISK in the VM template.
+
+.. prompt:: text $ auto
+
+    # onetemplate show 100
+    ...
+    DISK=[
+      IMAGE="image-name",
+      RECOVERY_SNAPSHOT_FREQ="3600" ]
+
+Using this setting the disk will be snapshotted every hour and a copy of the snapshot will be prepared on the replica, later should the host where the VM is running fail, it could be recovered, either manually or through the fault tolerance hooks:
 
 .. prompt:: bash $ auto
 
    # onevm recover --recreate [VMID]
 
-During the recovery the VM is recreated from the last snapshot available.
+During the recovery the VM is recreated from the recovery snapshot.
 
 
 Create an Image Datastore
