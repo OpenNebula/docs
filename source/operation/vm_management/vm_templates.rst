@@ -174,6 +174,8 @@ These inputs will be presented to the user when the Template is instantiated. Th
 
 .. note:: If a VM Template with user inputs is used by a :ref:`Service Template Role <appflow_use_cli>`, the user will be also asked for these inputs when the Service is created.
 
+.. note:: You can use the flag ``--user-inputs ui1,ui2,ui3`` to use them in a non-interactive way.
+
 .. _sched_actions_templ:
 
 Scheduling Actions
