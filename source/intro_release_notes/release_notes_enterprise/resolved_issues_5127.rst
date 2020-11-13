@@ -17,3 +17,4 @@ The following issues has been solved in 5.12.7:
 - `Fix visual feedback about READY status in role VM list in Sunstone <https://github.com/OpenNebula/one/issues/5146>`__.
 - `Fix user inputs on instantiation flow form in Sunstone <https://github.com/OpenNebula/one/issues/5172>`__.
 - `Fix CLI fails to instantiate some VM templates with user inputs <https://github.com/OpenNebula/one/issues/5170>`__.
+- `Show correct value of USED (REAL) attribute in vCenter hosts <https://github.com/OpenNebula/one/issues/5113>`__.
