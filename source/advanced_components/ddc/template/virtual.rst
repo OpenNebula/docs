@@ -428,6 +428,117 @@ reference it in the following way:
     - VNetTemplates
     - Service templates
 
+.. _ddc_user_inputs:
+
+User Inputs
+===========
+
+These user inputs work in the same way as OpenNebula ones do. They allow you to define multiple variables that should be asked to the user. The available types are:
+
+- Boolean
+- Fixed
+- Float
+- List
+- Number
+- Password
+- Range
+- Text
+- Text64
+
+To use them you need to add the key ``inputs`` into your provision template, e.g:
+
+.. prompt:: bash $ auto
+
+    inputs:
+      - name: 'text_i'
+        type: 'text'
+        default: 'This is a text'
+      - name: 'bool_i'
+        type: 'boolean'
+        default: 'NO'
+      - name: 'password_i'
+        type: 'password'
+        default: '1234'
+      - name: 'count_i'
+        description: 'Number of hosts of this provision'
+        type: 'range'
+        min_value: 1
+        max_value: 100
+        default: 2
+     - name: 'list_i'
+       type: 'list'
+       options:
+         - 'OPT 1'
+         - 'OPT 2'
+         - 'OPT 3'
+         - 'OPT 4'
+       default: 'OPT 1'
+
+Then to use them in your template, you need to use the syntax defined above: ``${input.name}``, where ``name`` is the name of the user input, e.g:
+
+.. prompt:: bash $ auto
+
+    networks:
+      - name: 'vpc'
+        vn_mad: 'dummy'
+        bridge: 'br0'
+        provision:
+          t: ${input.text_i}
+          b: ${input.bool_i}
+          p: ${input.password_i}
+          l: ${input.list_i}
+
+When you create a provision using a template with user inputs on it, the tool will ask for the value of each of them, e.g:
+
+.. prompt:: bash $ auto
+
+    $ oneprovision create test.yaml -D --skip-provision
+
+    Text `text_i` (default=This is a text): test
+
+    Bool `bool_i` (default=NO): YES
+
+    Pass `password_i` (default=1234):
+
+        0  OPT 1
+        1  OPT 2
+        2  OPT 3
+        3  OPT 4
+
+    Please type the selection number (default=1): 0
+
+    2020-11-16 17:08:48 INFO  : Creating provision objects
+    2020-11-16 17:08:48 DEBUG : Creating OpenNebula cluster: AWS
+    2020-11-16 17:08:48 DEBUG : Cluster created with ID: 102
+    2020-11-16 17:08:48 DEBUG : Creating datastore my_system
+    2020-11-16 17:08:48 DEBUG : datastore created with ID: 100
+    2020-11-16 17:08:48 DEBUG : Creating network vpc
+    2020-11-16 17:08:48 DEBUG : network created with ID: 2
+    2020-11-16 17:08:48 DEBUG : Creating OpenNebula host: provision-be36728d598f5d976994c2a98485114875a4219b2da3c8e9
+    2020-11-16 17:08:49 DEBUG : host created with ID: 3
+    2020-11-16 17:08:49 DEBUG : Creating OpenNebula host: provision-c6d9631cef25c88e39c94ad1d33767348bb2e9541aabab51
+    2020-11-16 17:08:49 DEBUG : host created with ID: 4
+    ID: 3
+
+.. prompt:: bash $ auto
+
+    $ onevnet show 2
+    ....
+    VIRTUAL NETWORK TEMPLATE
+    BRIDGE="br0"
+    BRIDGE_TYPE="linux"
+    OUTER_VLAN_ID=""
+    PHYDEV=""
+    PROVISION=[ B="YES", L="OPT 1", P="1111", SUB_CIDR="10.0.1.0/24", T="test" ]
+    PROVISION_ID="3"
+    SECURITY_GROUPS="0"
+    VLAN_ID=""
+    VN_MAD="dummy"
+
+As you can see the user inputs are resolved and the value is copied to the object template.
+
+.. note:: If you want to use them in a non interactive way, you can use the parameter ``--user-inputs ui1,ui2,ui3``.
+
 Full Example
 ------------
 
