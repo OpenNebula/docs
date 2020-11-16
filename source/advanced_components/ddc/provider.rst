@@ -31,6 +31,7 @@ To create a provider use the command ``oneprovider create``, e.g:
     $ cat packet.yaml
     ---
     name: packet
+    provider: packet
     connection:
       packet_token:   '****************************'
       packet_project: '****************************'
@@ -43,6 +44,7 @@ To create a provider use the command ``oneprovider create``, e.g:
     $ cat aws.yaml
     ---
     name: aws
+    provider: aws
     connection:
       aws_access:  '*********************'
       aws_secret:  '*********************'
@@ -51,6 +53,8 @@ To create a provider use the command ``oneprovider create``, e.g:
     ID: 1
 
 .. note:: You need to specify a valid credentials.
+
+.. warning:: Supported providers are ``aws`` and ``packet``.
 
 Check Information
 ^^^^^^^^^^^^^^^^^

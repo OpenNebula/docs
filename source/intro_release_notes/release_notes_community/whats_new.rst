@@ -68,6 +68,7 @@ Distributed Edge Provisioning
 - Terraform is able to create more resources on the remote provider. Check more information :ref:`here <terraform_advanced>`.
 - Count attribute has been addded. This allow you to create multiple same hosts. Check more information :ref:`here <ddc_provision_template_devices>`.
 - ERB syntax has been changed by a new syntax. Check more information :ref:`here <ddc_virtual_all>`.
+- Dynamic user inputs has been added. This allow you to set multiple values inside the template. Check more information :ref:`here <ddc_user_inputs>`.
 
 Packaging
 ================================================================================
