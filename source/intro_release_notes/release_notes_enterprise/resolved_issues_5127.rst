@@ -19,3 +19,4 @@ The following issues has been solved in 5.12.7:
 - `Fix CLI fails to instantiate some VM templates with user inputs <https://github.com/OpenNebula/one/issues/5170>`__.
 - `Show correct value of USED (REAL) attribute in vCenter hosts <https://github.com/OpenNebula/one/issues/5113>`__.
 - `Fix a situation where the 802.1Q network driver would fail if the vlan being used already existed on the host <https://github.com/OpenNebula/one/issues/4903>`__.
+- `Fix VM IPs malformed on datatables on Sunstone <https://github.com/OpenNebula/one/issues/5037>`__.
