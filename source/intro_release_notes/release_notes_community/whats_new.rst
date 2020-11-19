@@ -20,6 +20,7 @@ OpenNebula Core
 - `Add option to create formatted datablocks <https://github.com/OpenNebula/one/issues/4989>`__.
 - Add support for document encrypted attributes, check :ref:`this <encrypted_attrs>` for more information.
 - `VM terminate, poweroff and undeploy hard overrides their soft counterpart <https://github.com/OpenNebula/one/issues/2586>`__.
+- `AR inherits IPAM_MAD from VNET <https://github.com/OpenNebula/one/issues/2593>`__.
 
 Storage
 ================================================================================
