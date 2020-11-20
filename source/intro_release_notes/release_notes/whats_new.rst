@@ -48,6 +48,7 @@ OpenNebula Core
 - `Allow 'onevm disk-saveas' in undeployed and stopped state <https://github.com/OpenNebula/one/issues/1112>`__.
 - `Terminate oned in HA in case of lost DB connection <https://github.com/OpenNebula/one/issues/5186>`__.
 - `Unique VM identification, allow to force uuid to VM <https://github.com/OpenNebula/one/issues/1048>`__.
+- `Enable live CPU and memory resize <https://github.com/OpenNebula/one/issues/1660>`__.
 
 Storage
 ================================================================================
