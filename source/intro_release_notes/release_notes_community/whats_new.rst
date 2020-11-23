@@ -38,7 +38,7 @@ Sunstone
 ================================================================================
 - VM info autorefresh with ZeroMQ. Check :ref:`this <autorefresh>` for more information.
 - Add option to disable network configuration for service template instantiation. Check more information :ref:`here <suns_views_custom>`.
-- Registration time has been added to service templates.
+- Registration time has been added to :ref:`service templates <appflow_elasticity>`.
 
 
 Scheduler
