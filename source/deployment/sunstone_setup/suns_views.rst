@@ -233,7 +233,7 @@ For the dashboard, the following widgets can be configured:
         - network
     widgets_one_footer:
 
-Inside ``features`` there are twelve settings:
+Inside ``features`` there are settings:
 
 * ``showback``: When this is false, all :ref:`Showback <showback>` features are hidden. The monthly report tables, and the cost for new VMs in the create VM wizard.
 * ``secgroups``: If true, the create VM wizard will allow adding security groups to each network interface.
@@ -242,11 +242,12 @@ Inside ``features`` there are twelve settings:
 * ``instantiate_persistent``: True to show the option to make an instance persistent.
 * ``vcenter_vm_folder``: True to show an input to specify the VMs and Template path/folder where a vCenter VM will be deployed.
 * ``show_ds_instantiate``: True to show the datastore datatable to instantiate the VM.
-* ``show_vmgroup_instantiate``: True to show the vmgroup datatable to instantiathe VM.
+* ``show_vmgroup_instantiate``: True to show the vmgroup datatable to instantiate the VM.
 * ``show_vnet_instantiate``: True to show the vnet datatable to instantiate the VM.
 * ``show_host_instantiate``: True to show the host datatable to instantiate the VM.
 * ``show_monitoring_info``: True to show monitoring info (VM & VRouters).
 * ``show_attributes_info``: True to show attributes info (VM & VRouters).
+* ``show_vnet_instantiate_flow``: True to show the network configuration to instantiate service template.
 * ``resize_enforce``: If set to True, the host capacity will be checked. This will only affect oneadmin requests; limits on regular users' resize requests will always be enforced.
 * ``deploy_enforce``: If set to True, the host capacity will be checked. This will only affect oneadmin requests; limits on regular users' resize requests will always be enforced.
 * ``migrate_enforce``: If set to True, the host capacity will be checked. This will only affect oneadmin requests; limits on regular users' resize requests will always be enforced.
@@ -360,6 +361,7 @@ Features
 * ``show_attributes_info``: True to show the attributes info (VM & VRouters).
 * ``show_attach_disk_advanced``: True to show advanced options in the attach disk dialog.
 * ``show_attach_nic_advanced``: True to show advanced options in the attach NIC dialog.
+* ``show_vnet_instantiate_flow``: True to show the network configuration to instantiate service template.
 
 .. code-block:: yaml
 

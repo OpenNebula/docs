@@ -37,6 +37,7 @@ Authentication
 Sunstone
 ================================================================================
 - VM info autorefresh with ZeroMQ. Check :ref:`this <autorefresh>` for more information.
+- Add option to disable network configuration for service template instantiation. Check more information :ref:`here <suns_views_custom>`.
 
 
 Scheduler
