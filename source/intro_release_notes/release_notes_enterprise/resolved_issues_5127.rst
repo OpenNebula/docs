@@ -22,3 +22,4 @@ The following issues has been solved in 5.12.7:
 - `Fix a situation where the 802.1Q network driver would fail if the vlan being used already existed on the host <https://github.com/OpenNebula/one/issues/4903>`__.
 - `Fix VM IPs malformed on datatables on Sunstone <https://github.com/OpenNebula/one/issues/5037>`__.
 - `Fix scheduler PCI logging to show devices in hexadecimal format <https://github.com/OpenNebula/one/issues/5181>`__.
+- `Fix Sunstone error reducing memory overcommitment <https://github.com/OpenNebula/one/issues/5179>`__.
