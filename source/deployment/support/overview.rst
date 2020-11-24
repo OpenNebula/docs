@@ -2,7 +2,7 @@
 Overview
 =========
 
-The aim of the **Support Module** is to provide tool to generate diagnostic bundles with all details necessary handle support cases. It has following functionality:
+The aim of the **Onesupport** is to provide a tool to generate diagnostic bundles with all details necessary handle support cases. It has following functionality:
 
 - Gather configuration state of operating system and services on front-end and nodes.
 - Inspect OpenNebula configuration, state and metadata of VMs, hosts, vnets, etc.

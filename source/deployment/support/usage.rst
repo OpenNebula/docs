@@ -2,7 +2,7 @@
 Basic Usage
 ===========
 
-The support module comes with 2 specialized tools to
+The support tool comes with 2 specialized tools to
 
 - :ref:`generate support diagnostic bundle <supp_bundle>`,
 - :ref:`scan vCenter permissions <supp_perms>`.

@@ -4,7 +4,7 @@
 Basic Usage
 ===========
 
-The configuration module is controlled via ``onecfg`` CLI tool. This section covers subcommands provided by the tool:
+This section covers ``onecfg`` tool subcommands:
 
 - :ref:`status <cfg_status>` - Versions status
 - :ref:`init <cfg_init>` - Initialize version management state

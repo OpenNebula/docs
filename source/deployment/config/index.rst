@@ -1,8 +1,8 @@
 .. _mod_config:
 
-===============================
-Configuration Management Module
-===============================
+=====================================
+Configuration Management (Enterprise)
+=====================================
 
 .. toctree::
    :maxdepth: 2

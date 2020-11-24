@@ -25,7 +25,7 @@ This section describes the typical OpenNebula upgrade process incorporating the 
 Step 1 - Prepare Onecfg
 --------------------------
 
-Before upgrading OpenNebula, you need to ensure that state of Onecfg configuration module is clean without any pending migrations from past or outdated configurations. Run ``onecfg status`` to check the configuration state.
+Before upgrading OpenNebula, you need to ensure that state of Onecfg configuration tool is clean without any pending migrations from past or outdated configurations. Run ``onecfg status`` to check the configuration state.
 
 Clean state might look like:
 
@@ -55,7 +55,7 @@ If you get error message about unknown configuration version, you don't need to 
 Configuration Metadata Outdated Error
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If the configuration module complains about outdated metadata, you have missed to run configuration upgrade during some of OpenNebula upgrades in the past. Please note configuration must be upgraded or processed with even OpenNebula maintenance releases.
+If the ``onecfg`` tool complains about outdated metadata, you have missed to run configuration upgrade during some of OpenNebula upgrades in the past. Please note configuration must be upgraded or processed with even OpenNebula maintenance releases.
 
 Following invalid state:
 
@@ -85,7 +85,7 @@ Step 2 - Upgrade OpenNebula
 
 Update your OpenNebula packages by following **Upgrading from OpenNebula X.Y** document from official `OpenNebula Documentation <https://docs.opennebula.org/>`__ for the version you are upgrading to.
 
-Take into account that step 5, "Update Configuration Files" is automated with ``onecfg``, so no need for manual configuration files editing as indicated in the public documentation guide. Onecfg configuration module completely automates the step by running ``onecfg upgrade``. Follow :ref:`onecfg upgrade <cfg_upgrade>` documentation on how to upgrade and troubleshoot the configurations.
+Take into account that step 5, "Update Configuration Files" is automated with ``onecfg``, so no need for manual configuration files editing as indicated in the public documentation guide. Onecfg configuration tool completely automates the step by running ``onecfg upgrade``. Follow :ref:`onecfg upgrade <cfg_upgrade>` documentation on how to upgrade and troubleshoot the configurations.
 
 .. important::
 
