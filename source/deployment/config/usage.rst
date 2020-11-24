@@ -1,3 +1,5 @@
+.. _cfg_usage:
+
 ===========
 Basic Usage
 ===========
@@ -130,7 +132,7 @@ Or, force reinitialization on own provided version:
 Example
 -------
 
-Initialization is necessary when the OneScape is not sure about the version of current configuration files. When running ``onecfg status`` in the uninitialized environment, you might get the following error:
+Initialization is necessary when the Onecfg is not sure about the version of current configuration files. When running ``onecfg status`` in the uninitialized environment, you might get the following error:
 
 .. prompt:: bash # auto
 

@@ -4,7 +4,7 @@
 OpenNebula Upgrade Workflow
 ===========================
 
-This section describes the typical OpenNebula upgrade process incorporating the OneScape.
+This section describes the typical OpenNebula upgrade process incorporating the Onecfg.
 
 .. important::
 
@@ -22,27 +22,10 @@ This section describes the typical OpenNebula upgrade process incorporating the 
         Config:      5.8.0
         ERROR: Configurations metadata are outdated.
 
-Step 1 - Get OneScape
----------------------
-
-Follow the :ref:`installation <install>` section to install or **update** the existing OneScape installation.
-
-.. note::
-
-    New OpenNebula major releases require the latest OneScape. You may experience the following error if your OneScape version is too old:
-
-    .. prompt:: bash # auto
-
-        # onecfg status
-        --- Versions ------------------------------
-        OpenNebula:  5.12.0
-        Config:      5.8.0
-        ERROR: Unsupported OpenNebula version 5.12.0
-
-Step 2 - Prepare OneScape
+Step 1 - Prepare Onecfg
 --------------------------
 
-Before upgrading OpenNebula, you need to ensure that state of OneScape configuration module is clean without any pending migrations from past or outdated configurations. Run ``onecfg status`` to check the configuration state.
+Before upgrading OpenNebula, you need to ensure that state of Onecfg configuration module is clean without any pending migrations from past or outdated configurations. Run ``onecfg status`` to check the configuration state.
 
 Clean state might look like:
 
@@ -97,12 +80,12 @@ needs to be fixed by reinitialization of the configuration state. Any unprocesse
         --- Available Configuration Updates -------
         No updates available.
 
-Step 3 - Upgrade OpenNebula
+Step 2 - Upgrade OpenNebula
 ---------------------------
 
 Update your OpenNebula packages by following **Upgrading from OpenNebula X.Y** document from official `OpenNebula Documentation <https://docs.opennebula.org/>`__ for the version you are upgrading to.
 
-Take into account that step 5, "Update Configuration Files" is automated with ``onecfg``, so no need for manual configuration files editing as indicated in the public documentation guide. OneScape configuration module completely automates the step by running ``onecfg upgrade``. Follow :ref:`onecfg upgrade <cfg_upgrade>` documentation on how to upgrade and troubleshoot the configurations.
+Take into account that step 5, "Update Configuration Files" is automated with ``onecfg``, so no need for manual configuration files editing as indicated in the public documentation guide. Onecfg configuration module completely automates the step by running ``onecfg upgrade``. Follow :ref:`onecfg upgrade <cfg_upgrade>` documentation on how to upgrade and troubleshoot the configurations.
 
 .. important::
 
@@ -111,7 +94,7 @@ Take into account that step 5, "Update Configuration Files" is automated with ``
 
 After ``onecfg upgrade`` follow the rest steps from **Upgrading from OpenNebula X.Y** document. It might be necessary to upgrade database, or do some other OpenNebula version-specific steps.
 
-Step 4 - Validation
+Step 3 - Validation
 -------------------
 
 When all steps are done, run the OpenNebula and check the working state.

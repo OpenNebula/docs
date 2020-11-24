@@ -171,7 +171,7 @@ Enterprise Edition
 
 If you have modified configuration files lets's use onecfg to automate the configuration file upgrades.
 
-Before upgrading OpenNebula, you need to ensure that state of OneScape configuration module is clean without any pending migrations from past or outdated configurations. Run ``onecfg status`` to check the configuration state.
+Before upgrading OpenNebula, you need to ensure that state of Onecfg configuration module is clean without any pending migrations from past or outdated configurations. Run ``onecfg status`` to check the configuration state.
 
 Clean state might look like:
 
@@ -226,7 +226,7 @@ needs to be fixed by reinitialization of the configuration state. Any unprocesse
         --- Available Configuration Updates -------
         No updates available.<Paste>
 
-After checking the state of OneScape, in most cases running the following command without any extra parameters will suffice, as it will upgrade based on internal configuration version tracking and currently installed OpenNebula.
+After checking the state of Onecfg, in most cases running the following command without any extra parameters will suffice, as it will upgrade based on internal configuration version tracking and currently installed OpenNebula.
 
 .. prompt:: text # auto
 
@@ -234,7 +234,7 @@ After checking the state of OneScape, in most cases running the following comman
      ANY   : Backup stored in '/tmp/onescape/backups/2020-6
      ANY   : Configuration updated to 5.12.0
 
-If you get conflicts when running onecfg upgrade refer to the `onecfg upgrade basic usage documentation <http://docs.opennebula.io/onescape/5.12/module/config/usage.html>`__ on how to upgrade and troubleshoot the configurations, in particular the `onecfg upgrade doc <http://docs.opennebula.io/onescape/5.12/module/config/usage.html#cfg-upgrade>`__ and the `troubleshooting section <http://docs.opennebula.io/onescape/5.12/module/config/conflicts.html>`__.
+If you get conflicts when running onecfg upgrade refer to the :ref:`onecfg upgrade basic usage documentation <cfg_usage>` on how to upgrade and troubleshoot the configurations, in particular the :ref:`onecfg upgrade doc <cfg_upgrade>` and the :ref:`troubleshooting section <cfg_conflicts>`.
 
 .. todo: Is onescape ready for 5.12
 

@@ -39,9 +39,9 @@ Debian/Ubuntu
 Enterprise Edition
 ------------------
 
-OneScape is an enterprise tool that includes an upgrade facilitator, 'onecfg'. Please `install or upgrade your existing OneScape installation <http://docs.opennebula.io/onescape/5.12/install/index.html>`__.
+Onecfg is an enterprise tool that includes an upgrade facilitator.
 
-New OpenNebula major releases require the latest OneScape. You may experience the following error if your OneScape version is too old:
+New OpenNebula major releases require the latest Onecfg. You may experience the following error if your Onecfg version is too old:
 
  .. prompt:: bash # auto
 
@@ -53,7 +53,7 @@ New OpenNebula major releases require the latest OneScape. You may experience th
 
 .. important::
 
-    **For each OpenNebula upgrade (even between minor versions, e.g. 5.10.2 and 5.10.3), configuration files must be processed via 'onecfg upgrade'**. If you skip configuration upgrade step for some OpenNebula upgrade, the tool will lose the current version state and you'll have to handle files upgrade manually and `reinitialize <http://docs.opennebula.io/onescape/5.12/module/config/usage.html#cfg-init>`__ the configuration version management state.
+    **For each OpenNebula upgrade (even between minor versions, e.g. 5.10.2 and 5.10.3), configuration files must be processed via 'onecfg upgrade'**. If you skip configuration upgrade step for some OpenNebula upgrade, the tool will lose the current version state and you'll have to handle files upgrade manually and :ref:`reinitialize <cfg_init>` the configuration version management state.
 
     .. prompt:: bash # auto
 
@@ -77,7 +77,7 @@ Update your OpenNebula packages by only following the guide that applies to your
 - :ref:`Upgrading an HA Cluster <upgrade_ha>`
 - :ref:`Upgrading a Federation <upgrade_federation>`
 
-Follow `onecfg upgrade <http://docs.opennebula.io/onescape/5.12/module/config/usage.html#cfg-upgrade>`__ documentation on how to upgrade and troubleshoot the configurations.
+Follow :ref:`onecfg upgrade <cfg_upgrade>` documentation on how to upgrade and troubleshoot the configurations.
 
 .. important::
 
