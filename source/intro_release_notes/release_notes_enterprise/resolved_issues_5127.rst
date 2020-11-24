@@ -9,6 +9,7 @@ The following new features has been backported to 5.12.7:
 
 - `Provide nice and clear! description <https://github.com/OpenNebula/one/issues/XXX>`__.
 - `VM XML stored in LXD container user.xml config key is now base64 encoded <https://github.com/OpenNebula/one/issues/5177>`__.
+- `LXD Version Support is now enforced on the driver execution  <https://github.com/OpenNebula/one/issues/4661>`__.
 
 The following issues has been solved in 5.12.7:
 
