@@ -2,7 +2,7 @@
 Overview
 =========
 
-The aim of the **Onecfg** tool is to provide the means to manage and interact with configuration files. It provides the following functionality:
+The aim is to provide the means to manage and interact with configuration files. It covers the following functionality:
 
 - Upgrade your configuration files for the new OpenNebula version.
 - Check the versions status of the current installation.

@@ -39,17 +39,7 @@ Debian/Ubuntu
 Enterprise Edition
 ------------------
 
-Onecfg is an enterprise tool that includes an upgrade facilitator.
-
-New OpenNebula major releases require the latest Onecfg. You may experience the following error if your Onecfg version is too old:
-
- .. prompt:: bash # auto
-
-        # onecfg status
-        --- Versions ------------------------------
-        OpenNebula:  5.10.2
-        Config:      5.8.0
-        ERROR: Unsupported OpenNebula version 5.10.2
+Enterprise Edition is distributed with a tool ``onecfg`` as part of the main server package (in 5.12 and earlier it was provided via the OneScape project and repository). This tool simplifies the upgrade process of configuration files and always comes in the latest version corresponding to the installed OpenNebula version.
 
 .. important::
 

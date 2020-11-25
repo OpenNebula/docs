@@ -171,7 +171,7 @@ Enterprise Edition
 
 If you have modified configuration files lets's use onecfg to automate the configuration file upgrades.
 
-Before upgrading OpenNebula, you need to ensure that state of Onecfg configuration module is clean without any pending migrations from past or outdated configurations. Run ``onecfg status`` to check the configuration state.
+Before upgrading OpenNebula, you need to ensure that configuration state is clean without any pending migrations from past or outdated configurations. Run ``onecfg status`` to check the configuration state.
 
 Clean state might look like:
 
@@ -201,7 +201,7 @@ If you get error message about unknown configuration version, you don't need to 
 Configuration Metadata Outdated Error
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If the configuration module complains about outdated metadata, you have missed to run configuration upgrade during some of OpenNebula upgrades in the past. Please note configuration must be upgraded or processed with even OpenNebula maintenance releases.
+If the configuration tool complains about outdated metadata, you have missed to run configuration upgrade during some of OpenNebula upgrades in the past. Please note configuration must be upgraded or processed with even OpenNebula maintenance releases.
 
 Following invalid state:
 
@@ -226,7 +226,7 @@ needs to be fixed by reinitialization of the configuration state. Any unprocesse
         --- Available Configuration Updates -------
         No updates available.<Paste>
 
-After checking the state of Onecfg, in most cases running the following command without any extra parameters will suffice, as it will upgrade based on internal configuration version tracking and currently installed OpenNebula.
+After checking the state of configuration, in most cases running the following command without any extra parameters will suffice, as it will upgrade based on internal configuration version tracking and currently installed OpenNebula.
 
 .. prompt:: text # auto
 

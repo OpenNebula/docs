@@ -20,4 +20,4 @@ Deployment Guide
    Open Cloud Networking Setup <open_cloud_networking_setup/index>
    References <references/index>
    Configuration Management (Enterprise) <config/index>
-   Support Utility (Enterprise) <support/index>
+   Support Utilities (Enterprise) <support/index>

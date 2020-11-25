@@ -1,8 +1,8 @@
 .. _mod_support:
 
-============================
-Support Utility (Enterprise)
-============================
+==============================
+Support Utilities (Enterprise)
+==============================
 
 .. toctree::
    :maxdepth: 2
