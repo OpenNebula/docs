@@ -435,6 +435,7 @@ User Inputs
 
 These user inputs work in the same way as OpenNebula ones do. They allow you to define multiple variables that should be asked to the user. The available types are:
 
+- Array
 - Boolean
 - Fixed
 - Float
@@ -450,6 +451,9 @@ To use them you need to add the key ``inputs`` into your provision template, e.g
 .. prompt:: bash $ auto
 
     inputs:
+      - name: 'array_i'
+        type: 'array'
+        default: 'h1,h2,h3'
       - name: 'text_i'
         type: 'text'
         default: 'This is a text'
@@ -538,6 +542,19 @@ When you create a provision using a template with user inputs on it, the tool wi
 As you can see the user inputs are resolved and the value is copied to the object template.
 
 .. note:: If you want to use them in a non interactive way, you can use the parameter ``--user-inputs ui1,ui2,ui3``.
+
+You can use the ``array`` to define multiple host names, e.g:
+
+.. prompt:: bash $ auto
+
+    hosts:
+      - im_mad: 'kvm'
+        vm_mad: 'kvm'
+        provision:
+          hostname: ${input.array_i}
+        count: ${input.count_i}
+
+This will create ``count`` hosts and will add them the host name included in the array.
 
 Full Example
 ------------
