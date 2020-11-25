@@ -19,3 +19,5 @@ Deployment Guide
    Open Cloud Storage Setup <open_cloud_storage_setup/index>
    Open Cloud Networking Setup <open_cloud_networking_setup/index>
    References <references/index>
+   Configuration Management (Enterprise) <config/index>
+   Support Utilities (Enterprise) <support/index>

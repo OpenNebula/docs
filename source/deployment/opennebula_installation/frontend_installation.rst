@@ -84,7 +84,7 @@ The packages for the OpenNebula frontend and the virtualization host are as foll
 * **opennebula-node-kvm**: Dependencies and configurations for KVM hypervisor node.
 * **opennebula-node-firecracker**: Dependencies and configurations for Firecracker hypervisor node.
 * **opennebula-common**: Shared content for OpenNebula packages.
-* **opennebula-common-onescape**: Helpers for OneScape project.
+* **opennebula-common-onecfg**: Helpers for onecfg tool.
 * **opennebula-rubygems**: Bundled Ruby gem dependencies.
 * **opennebula-debuginfo**: Package with debug information.
 * **opennebula-ruby**: Ruby Bindings.
@@ -112,7 +112,7 @@ These are the packages available for these distributions:
 
 * **opennebula**: OpenNebula Daemon and Scheduler.
 * **opennebula-common**: Shared content for OpenNebula packages.
-* **opennebula-common-onescape**: Helpers for OneScape project.
+* **opennebula-common-onecfg**: Helpers for onecfg tool.
 * **opennebula-tools**: Command Line Interface.
 * **opennebula-sunstone**: :ref:`Sunstone <sunstone>` (the GUI) and the :ref:`EC2 API <introc>`.
 * **opennebula-gate**: :ref:`OneGate <onegate_overview>` server that enables communication between VMs and OpenNebula.
