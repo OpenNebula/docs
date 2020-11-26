@@ -67,3 +67,11 @@ Datastore Driver Changes
    - The ``DRIVER`` and ``FSTYPE`` attributes are deprecated and they won't be taking into account any more.
 
 .. note:: The ``DRIVER`` attribute will be set automatically for each disk.
+
+KVM Driver Defaults Changed
+===========================
+
+KVM driver comes with new defaults, which better reflect modern use of this technology (i.e., leverage paravirtualized interfaces or rely more on QEMU guest agent). Consult the current defaults in following vanilla configuration files provided with the OpenNebula:
+
+- ``/etc/one/vmm_exec/vmm_exec_kvm.conf``
+- ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc``

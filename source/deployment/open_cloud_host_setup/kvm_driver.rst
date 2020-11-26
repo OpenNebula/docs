@@ -125,7 +125,7 @@ Optionally, you can set a timeout for the VM Shutdown operation can be set up. T
 .. code-block:: bash
 
     # Seconds to wait after shutdown until timeout
-    export SHUTDOWN_TIMEOUT=300
+    export SHUTDOWN_TIMEOUT=180
 
     # Uncomment this line to force VM cancellation after shutdown timeout
     #export FORCE_DESTROY=yes
@@ -273,7 +273,7 @@ For disks you can also use SCSI bus (``sd``) and it will use virtio-scsi control
 Additional Attributes
 ~~~~~~~~~~~~~~~~~~~~~
 
-The **raw** attribute offers the end user the possibility of passing by attributes not known by OpenNebula to KVM. Basically, everything placed here will be written literally into the KVM deployment file (**use libvirt xml format and semantics**). You can selectively disable validation of the RAW data by adding `VALIDATE = "no"` to the `RAW` section. By default the data will be checked against the libvirt schema. 
+The **raw** attribute offers the end user the possibility of passing by attributes not known by OpenNebula to KVM. Basically, everything placed here will be written literally into the KVM deployment file (**use libvirt xml format and semantics**). You can selectively disable validation of the RAW data by adding `VALIDATE = "no"` to the `RAW` section. By default the data will be checked against the libvirt schema.
 
 .. code::
 
@@ -452,7 +452,7 @@ The parameters that can be changed here are as follows:
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``VIRSH_RETRIES``                             | Number of "virsh" command retries when required. Currently used in detach-interface and restore.                                                                                                                |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``SYNC_TIME``                                 | Trigger VM time synchronization from RTC on resume and after migration. QEMU guest agent must be running. Valid values: ``no`` (default) or ``yes``.                                                            |
+| ``SYNC_TIME``                                 | Trigger VM time synchronization from RTC on resume and after migration. QEMU guest agent must be running. Valid values: ``no`` or ``yes`` (default).                                                            |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``FORCE_DESTROY``                             | Force VM cancellation after shutdown timeout                                                                                                                                                                    |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
