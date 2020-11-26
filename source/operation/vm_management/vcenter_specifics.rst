@@ -324,3 +324,26 @@ To assign a Label and Category to a VM add the following block to the Template d
 OpenNebula uses the ``CATEGORY_NAME`` field to create a Category in case there is no Category with this name. If a ``CATEGORY_NAME`` is not supplied, OpenNebula will create a default category called ``OpenNebula``.
 
 OpenNebula uses the ``NAME`` and ``DESCRIPTION`` fields to create a ``TAG`` with this name and description that belongs to the category.
+
+.. _vcenter_live_resize:
+
+vCenter Live Resize
+================================================================================
+
+To enable resize for a virtual machine, add the following block to the template definition before creating an instance or in the ``USER_TEMPLATE`` directly in the Virtual Machine.
+
+.. code-block:: text
+
+    HOT_RESIZE = [
+        CPU_HOT_ADD_ENABLED = "YES",
+        MEMORY_HOT_ADD_ENABLED = "YES"]
+
+OpenNebula uses the ``CPU_HOT_ADD_ENABLED`` field to activate or desactivate the CPU Hot resize in vCenter. If a ``CPU_HOT_ADD_ENABLED`` is not supplied or the value is ``NO``, OpenNebula will desactivate the CPU Hot resize in vCenter.
+
+OpenNebula uses the ``MEMORY_HOT_ADD_ENABLED`` field to activate or desactivate the MEMORY Hot resize in vCenter. If a ``MEMORY_HOT_ADD_ENABLED`` is not supplied or the value is ``NO``, OpenNebula will desactivate the MEMORY Hot resize in vCenter.
+
+.. important:: To activate or deactivate these options it is necessary to turn off and resume the Virtual Machine. since vCenter does not allow changing these settings with the Virtual Machine turned on.
+
+.. warning:: CPU Hot Add is a feature that allows the addition of vCPUs to a running virtual machine. Enabling this feature disables vNUMA for that Virtual Machine. You can find more info here in this `VMware KB article 2040375 <https://kb.vmware.com/s/article/2040375>`__ 
+
+You can find more information on how to resize a Virtual Machine in OpenNebula using the CLI or in Sunstone :ref:`here <vm_guide2_resizing_a_vm>`

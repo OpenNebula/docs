@@ -459,6 +459,8 @@ From Sunstone:
 
 |image5|
 
+.. warning:: If the Virtual Machine is from vCenter, other considerations are needed, check :ref:`here <vcenter_live_resize>` for more information.
+
 .. _vm_guide2_resize_disk:
 
 Resizing VM Disks
