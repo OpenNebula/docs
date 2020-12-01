@@ -139,9 +139,8 @@ Available options are:
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :threshold_high           | Minimum percentage value for red color on thresholds                                          |
 +---------------------------+-----------------------------------------------------------------------------------------------+
-| :zeromq_server            | Endpoint to connect to the ZeroMQ server.                                                     |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :autorefresh_ip           | IP address where the sunstone is running.                                                     |
+| :fireedge_endpoint        | URL or IP address where the FireEdge server is running.                                       |
+|                           | This endpoint must be accessible for Sunstone clients and Sunstone server.                    |
 +---------------------------+-----------------------------------------------------------------------------------------------+
 
 .. note:: To use Sunstone with IPv6 only systems and thin HTTP sever, use the full IPv6 address in the
