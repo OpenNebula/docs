@@ -68,6 +68,8 @@ Datastore Driver Changes
 
 .. note:: The ``DRIVER`` attribute will be set automatically for each disk.
 
+.. _compatibility_kvm:
+
 KVM Driver Defaults Changed
 ===========================
 
@@ -75,3 +77,5 @@ KVM driver comes with new defaults, which better reflect modern use of this tech
 
 - ``/etc/one/vmm_exec/vmm_exec_kvm.conf``
 - ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc``
+
+Default path to QEMU emulator (parameter ``EMULATOR`` in ``/etc/one/vmm_exec/vmm_exec_kvm.conf``) has changed from distribution specific-path to an unified symbolic link ``/usr/bin/qemu-kvm-one``, which is created on hypervisors during the installation of KVM node package, and points to the QEMU binary of each node operating system.
