@@ -76,6 +76,11 @@ Distributed Edge Provisioning
 Packaging
 ================================================================================
 
+KVM
+===
+- KVM defaults changed to leverage paravirtualized interfaces, see :ref:`here <compatibility_kvm>`.
+- Default path to EMULATOR on points to unified symbolic link ``/usr/bin/qemu-kvm-one``, see :ref:`here <compatibility_kvm>`.
+
 VMware Virtualization driver
 ===============================================================================
 
