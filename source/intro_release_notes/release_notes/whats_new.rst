@@ -94,6 +94,7 @@ DockerHub
 ================================================================================
 
 - Dockerfiles used to download images from DockerHub have been moved to external templates so they can be customized. You can find them under ``/usr/share/one/dockerhub`` directory.
+- Export of Docker Hub images into OpenNebula preferably uses FUSE based ext2/3/4 mounts on front-end, instead of kernel native mounts.
 
 Hooks
 =====
