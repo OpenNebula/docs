@@ -27,3 +27,4 @@ The following issues has been solved in 5.12.7:
 - `Fix instantiation vm dialog when change nic from template <http://github.com/OpenNebula/one/issues/5187>`__.
 - `Fix capacity select when is disabled in cloud view <http://github.com/OpenNebula/one/issues/5116>`__.
 - `Fix core per sockets input on Sunstone create dialog <http://github.com/OpenNebula/one/issues/5117>`__.
+- `Fix vCenter IM memory leak <http://github.com/OpenNebula/one/issues/5201>`__.
