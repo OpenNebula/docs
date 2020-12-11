@@ -139,8 +139,11 @@ Available options are:
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :threshold_high           | Minimum percentage value for red color on thresholds                                          |
 +---------------------------+-----------------------------------------------------------------------------------------------+
-| :fireedge_endpoint        | URL or IP address where the FireEdge server is running.                                       |
-|                           | This endpoint must be accessible for Sunstone clients and Sunstone server.                    |
+| :public_fireedge_endpoint | URL or IP address where the FireEdge server is running.                                       |
+|                           | This endpoint must be accessible for Sunstone clients.                                        |
++---------------------------+-----------------------------------------------------------------------------------------------+
+| :private_fireedge_endpoint| URL or IP address where the FireEdge server is running.                                       |
+|                           | This endpoint must be accessible for Sunstone server.                                         |
 +---------------------------+-----------------------------------------------------------------------------------------------+
 
 .. note:: To use Sunstone with IPv6 only systems and thin HTTP sever, use the full IPv6 address in the
