@@ -212,8 +212,6 @@ Simply create the users with the create command:
     $ oneuser create regularuser password
     ID: 3
 
-The enabled flag can be ignored as it doesn't provide any functionality. It may be used in future releases to temporarily disable users instead of deleting them.
-
 Public Users
 --------------------------------------------------------------------------------
 
@@ -247,6 +245,11 @@ and then change its auth method to ``server_cipher`` (for other auth methods ple
     $ oneuser chauth serveruser server_cipher
 
 .. _manage_users_managing_users:
+
+Disable User
+--------------------------------------------------------------------------------
+
+To temporarily disable user you can use command ``oneuser disable`` to enable it use ``oneuser enable``. Disabled users can't execute any action and can't log to sunstone.
 
 Managing Users
 ================================================================================
