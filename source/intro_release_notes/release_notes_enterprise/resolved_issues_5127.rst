@@ -24,3 +24,4 @@ The following issues has been solved in 5.12.7:
 - `Fix scheduler PCI logging to show devices in hexadecimal format <https://github.com/OpenNebula/one/issues/5181>`__.
 - `Fix Sunstone error reducing memory overcommitment <https://github.com/OpenNebula/one/issues/5179>`__.
 - `Fix resched of VM with NICs using netowrk mode auto <http://github.com/OpenNebula/one/issues/5052>`__.
+- `Fix core per sockets input on Sunstone create dialog <http://github.com/OpenNebula/one/issues/5117>`__.
