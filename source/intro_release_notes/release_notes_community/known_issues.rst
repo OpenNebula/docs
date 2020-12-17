@@ -57,3 +57,8 @@ OneFlow
 =======
 
 Elasticity rules that apply to monitoring information do not work. This issue will be fixed on 5.12.6 and 5.12.0.4 versions.
+
+vCenter Monitoring Memory Leak
+==============================
+
+Process vcenter_monitor.rb has a memory leak problem. Fix will be available in the next stable OpenNebula release. The workaround is to periodically restart the process. This can be done by performing a kill operation on the process, no need to restart the OpenNebula service.
