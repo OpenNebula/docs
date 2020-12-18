@@ -389,6 +389,10 @@ After a successful shutdown, the Service will remain in the ``DONE`` state. If a
 
 When a Service fails during a deployment, undeployment or scaling operation, the command ``oneflow recover`` can be used to retry the previous action once the problem has been solved.
 
+.. _flow_purge_done:
+
+In order to delete all the services in ``DONE`` state, to free some space in your database, you can use the command ``oneflow purge-done``.
+
 Managing Permissions
 ====================
 
