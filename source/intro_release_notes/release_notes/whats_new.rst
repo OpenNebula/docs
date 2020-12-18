@@ -105,3 +105,4 @@ Hooks
 Other Issues Solved
 ================================================================================
 - Allow live migration over SSH for KVM `<http://github.com/OpenNebula/one/issues/1644>`__.
+- Make automatic LDAP group admin mapping configurable `<http://github.com/OpenNebula/one/issues/5210>`__.
