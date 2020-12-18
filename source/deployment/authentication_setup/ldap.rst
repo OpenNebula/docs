@@ -185,6 +185,13 @@ The structure is a hash where any key different to ``:order`` will contain the c
 | ``:group_admin_group_dn:`` | DN of a group, if user is member of that group  |
 |                            | in LDAP, this user will be a group admin of all |
 |                            | mapped LDAP groups in ONE.                      |
+|                            |                                                 |
+|                            | Automatic assignment of group admins can be     |
+|                            | disabled by changing                            |
+|                            | ``DRIVER_MANAGED_GROUP_ADMIN`` to ``NO``        |
+|                            | in the ``ldap`` ``AUTH_MAD_CONF`` section in    |
+|                            | oned.conf. Then user needs to maintain group    |
+|                            | admins manually.                                |
 +----------------------------+-------------------------------------------------+
 
 To enable ``ldap`` authentication the described parameters should be configured. OpenNebula must be also configured to enable external authentication. Add this line in ``/etc/one/oned.conf``
