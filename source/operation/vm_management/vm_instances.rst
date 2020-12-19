@@ -978,7 +978,7 @@ The command can also be set for each container, by updating the ``GRAPHICS`` sec
 
 .. note:: For the correct functioning of the SPICE Web Client, we recommend defining by default some SPICE parameters in ``/etc/one/vmm_mad/vmm_exec_kvm.conf``.
   In this way, once modified the file and restarted OpenNebula, it will be applied to all the VMs instantiated from now on.
-  You can also override these SPICE parameters ​​in VM Template. For more info check :ref:`Driver Defaults <kvmg_default_attributes>` section.
+  You can also override these SPICE parameters in VM Template. For more info check :ref:`Driver Defaults <kvmg_default_attributes>` section.
 
 .. warning:: It is advised for RPM distros to update the command since it doesn't work when running it through ``lxc exec``. For example, a valid command would be ``/bin/bash``. Keep in mind it grants a root shell inside the container.
 
