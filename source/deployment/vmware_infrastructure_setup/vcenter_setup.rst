@@ -325,6 +325,10 @@ A vCenter template name is only unique inside a folder, so you may have two temp
     :width: 50%
     :align: center
 
+.. _vcenter_template_nic_alias_import:
+
+.. note:: It is important to clarify that in the event that a VM Template has multiple NICs and NIC ALIAS, they will be imported during this process.
+
 .. _vcenter_template_import:
 
 Import a VM Template with onevcenter

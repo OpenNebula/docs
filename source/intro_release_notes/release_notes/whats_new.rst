@@ -86,7 +86,7 @@ KVM
 
 VMware Virtualization driver
 ===============================================================================
-- `Import secondary IPs as a NIC_ALIAS in OpenNebula <https://github.com/OpenNebula/one/issues/4386>`__.
+- Import secondary IPs as a NIC_ALIAS in OpenNebula, see :ref:`here <vcenter_template_nic_alias_import>`.
 
 Containers
 ==========
