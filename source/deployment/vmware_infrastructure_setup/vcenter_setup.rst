@@ -325,10 +325,6 @@ A vCenter template name is only unique inside a folder, so you may have two temp
     :width: 50%
     :align: center
 
-.. _vcenter_template_nic_alias_import:
-
-.. note:: It is important to clarify that in the event that a VM Template has multiple NICs and NIC ALIAS, they will be imported during this process.
-
 .. _vcenter_template_import:
 
 Import a VM Template with onevcenter
@@ -545,6 +541,11 @@ In Sunstone we have the Wild tab in the host's information:
 
 VMs in running state can be imported, and also VMs defined in vCenter that are not in Power On state (this will import the VMs in OpenNebula as in the poweroff state).
 
+.. _vcenter_wild_vm_nic_disc_import:
+
+A Wild VM import process creates images to represent the VM disks as well as new Virtual Networks if they are not already represented. If a Virtual Network exists already in OpenNebula, a network lease (IP/MAC) is requested for each IP reported for the VM by the VMware tools. If no AR contains the IP address space of the IP reported by the VM, a new AR is created and a lease requested. If the same NIC in the vCenter VM reports more than one IP, this is represented using NIC_ALIAS.
+
+It is important to clarify that in the event that a VM Template has multiple NICs and NIC ALIAS, they will be imported during this process.
 
 .. warning:: While the VM is being imported, OpenNebula will inspect the virtual disks and virtual nics and it will create images and virtual networks referencing the disks and port-groups used by the VM so the process may take some time, please be patient.
 
