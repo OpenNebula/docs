@@ -81,12 +81,14 @@ Packaging
 
 KVM
 ===
+
 - KVM defaults changed to leverage paravirtualized interfaces, see :ref:`here <compatibility_kvm>`.
 - Default path to EMULATOR on points to unified symbolic link ``/usr/bin/qemu-kvm-one``, see :ref:`here <compatibility_kvm>`.
 
 VMware Virtualization driver
-===============================================================================
-- Import secondary IPs as a NIC_ALIAS in OpenNebula, see :ref:`here <vcenter_template_nic_alias_import>`.
+============================
+
+- Import secondary IPs as a NIC_ALIAS in OpenNebula, see :ref:`here <vcenter_wild_vm_nic_disc_import>`.
 
 Containers
 ==========
@@ -95,8 +97,7 @@ MicroVMs
 ========
 
 DockerHub
-================================================================================
-
+==========
 - Dockerfiles used to download images from DockerHub have been moved to external templates so they can be customized. You can find them under ``/usr/share/one/dockerhub`` directory.
 - Export of Docker Hub images into OpenNebula preferably uses FUSE based ext2/3/4 mounts on front-end, instead of kernel native mounts.
 
