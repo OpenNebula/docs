@@ -1,4 +1,4 @@
-.. _mod_config:
+.. _cfg_index:
 
 =====================================
 Configuration Management (Enterprise)
@@ -9,6 +9,7 @@ Configuration Management (Enterprise)
 
    Overview <overview>
    Basic Usage <usage>
+   Diff Formats <diff_formats>
    Troubleshooting <conflicts>
    OpenNebula Upgrade Workflow <workflow>
    Appendix - List of Configurations <appendix>

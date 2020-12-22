@@ -58,6 +58,7 @@ CLI
 ================================================================================
 - CLI can output JSON and YAML formats.  e.g: ``onevm list --json`` or ``onevm show --yaml 23``
 - `Command to disable and enable user. <https://github.com/OpenNebula/one/issues/649>`__ Disabled users can't execute any commnad and can't log in to sunstone.
+- Configuration management tool ``onecfg`` with new ad-hoc patch functionality is part of server package. See documentation :ref:`here <cfg_index>`.
 
 onedb
 ================================================================================
