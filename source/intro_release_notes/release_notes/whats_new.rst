@@ -43,6 +43,7 @@ Sunstone
 
 Scheduler
 ================================================================================
+- `Read http_proxy from config file <http://github.com/OpenNebula/one/issues/678>`__, override environment variable http_proxy .
 
 OneFlow & OneGate
 ===============================================================================
