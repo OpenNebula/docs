@@ -314,7 +314,7 @@ The snapshot operations are implemented differently depending on the storage bac
 Exporting Disk Images with ``disk-saveas``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Any VM disk can be exported to a new image (if the VM is in ``RUNNING``, ``POWEROFF`` or ``SUSPENDED`` states). This is a live operation that happens immediately. This operation accepts ``--snapshot <snapshot_id>`` as an optional argument, which specifies a disk snapshot to use as the source of the clone, instead of the current disk state (value by default).
+Any VM disk can be exported to a new image (if the VM is in ``RUNNING``, ``POWEROFF``, ``SUSPENDED``, ``UNDEPLOYED`` or ``STOPPED`` states). This is a live operation that happens immediately. This operation accepts ``--snapshot <snapshot_id>`` as an optional argument, which specifies a disk snapshot to use as the source of the clone, instead of the current disk state (value by default).
 
 .. warning::
 
