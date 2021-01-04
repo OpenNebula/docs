@@ -9,6 +9,10 @@ This guide is aimed at OpenNebula 5.12.x users and administrators who want to up
 
 Visit the :ref:`Features list <features>` and the `Release Notes <https://opennebula.io/use/>`__ for a comprehensive list of what's new in OpenNebula 5.12.
 
+HTTP_PROXY and XMLRPC API
+=========================
+Scheduler clears the http_proxy environment variable. If your oned xml-rpc API is behind a HTTP_PROXY you need to update ``sched.conf`` and set the right value there.
+
 Ruby API
 ========
 
