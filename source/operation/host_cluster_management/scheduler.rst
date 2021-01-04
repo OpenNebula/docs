@@ -58,6 +58,7 @@ The behavior of the scheduler can be tuned to adapt it to your infrastructure wi
 
 * ``MESSAGE_SIZE``: Buffer size in bytes for XML-RPC responses.
 * ``ONE_XMLRPC``: URL to connect to the OpenNebula daemon (oned) (Default: http://localhost:2633/RPC2)
+* ``HTTP_PROXY``: Proxy for ONE_XMLRPC (Default empty)
 * ``SCHED_INTERVAL``: Seconds between two scheduling actions (Default: 15)
 * ``MAX_VM``: Maximum number of Virtual Machines scheduled in each scheduling action (Default: 5000). Use 0 to schedule all pending VMs each time.
 * ``MAX_DISPATCH``: Maximum number of Virtual Machines actually dispatched to a host in each scheduling action (Default: 30)
