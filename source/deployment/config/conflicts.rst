@@ -8,6 +8,8 @@ The configuration files upgrade is a complex process, during which many problems
 
 In case of a problem, the upgrade process terminates and leaves the state of configuration files unchanged. There is no automatic mechanism preconfigured, but the user has to instruct the tool on how to resolve the problem. This is done by specifying a **patch modes** globally for the whole process, for a particular file, or for a particular file and (intermediate) version we upgrade to.
 
+.. _cfg_patch_modes:
+
 Patch Modes
 ===========
 
