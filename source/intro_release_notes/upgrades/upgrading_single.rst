@@ -79,7 +79,7 @@ For deb based distros use:
 .. prompt:: bash
 
    apt-get update
-   apt-get install opennebula-node-kvm
+   apt-get install opennebula-node
 
 .. note:: If you are using LXD the package is opennebula-node-lxd
 
