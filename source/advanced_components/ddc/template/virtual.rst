@@ -24,9 +24,6 @@ We are going to deploy a cluster with the following elements:
     defaults:
     provision:
         provider: "packet"
-        packet_token: "***************************"
-        packet_project: "*************************"
-        facility: "ams1"
         plan: "baremetal_0"
         os: "centos7"
     connection:
@@ -570,9 +567,6 @@ Here you can check a full provision template example:
     defaults:
     provision:
       provider: packet
-      packet_token: **************
-      packet_project: ************
-      facility: ams1
       plan: baremetal_0
       os: centos_7
     connection:

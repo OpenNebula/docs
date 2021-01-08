@@ -256,8 +256,8 @@ Parameter          Value           Description
 ``IPAM_MAD``       ``packet``      IPAM driver name
 ``PACKET_IP_TYPE`` ``public_ipv4`` Types of IPs to request
 ``FACILITY``                       Packet datacenter name
-``PACKET_PROJECT``                 Packet project ID
-``PACKET_TOKEN``                   Packet API token
+``PROJECT``                        Packet project ID
+``TOKEN``                          Packet API token
 ================== =============== ===========
 
 .. warning::
@@ -275,9 +275,6 @@ To create the address range:
             SIZE           = 2,
             IPAM_MAD       = "packet",
             PACKET_IP_TYPE = "public_ipv4",
-            FACILITY       = "ams1",
-            PACKET_PROJECT = "****************",
-            PACKET_TOKEN   = "****************",
         ]
 
     $ onevnet addar <vnetid> --file packet_ar

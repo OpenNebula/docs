@@ -24,8 +24,8 @@ The parameters specifying the Packet provision are set in the **provision sectio
 ================== ========= ===========
 Parameter          Mandatory Description
 ================== ========= ===========
-``packet_project`` **YES**   ID of the existing project you want to deploy the new host
-``packet_token``   **YES**   API token
+``project``        **YES**   ID of the existing project you want to deploy the new host
+``token``          **YES**   API token
 ``facility``       **YES**   Datacenter to deploy the host
 ``plan``           **YES**   Type of HW plan (Packet ID or slug)
 ``os``             **YES**   Operating system (Packet ID or slug)
@@ -114,6 +114,3 @@ Example provision template with network-only-related configuration:
             type: IP4
             ipam_mad: packet
             packet_ip_type: public_ipv4
-            facility: ams1
-            packet_token: ********************************
-            packet_project: ********************************
