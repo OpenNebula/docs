@@ -24,9 +24,9 @@ The following table shows base provision parameters for the AWS driver:
 ===================== ========= ===========
 Parameter             Mandatory Description
 ===================== ========= ===========
-``aws_access``        **YES**   AWS access key
-``aws_secret``        **YES**   AWS secret key
-``aws_region``        **YES**   AWS deployment's region
+``access_key``        **YES**   AWS access key
+``secret_key``        **YES**   AWS secret key
+``region``            **YES**   AWS deployment's region
 ``instancetype``      **YES**   Type of HW plan
 ``ami``               **YES**   AWS image ID (operating system)
 ``securitygroupids``  **YES**   AWS security group IDs

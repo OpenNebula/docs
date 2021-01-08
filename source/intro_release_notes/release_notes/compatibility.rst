@@ -52,9 +52,9 @@ In provision template, the attribute ``driver`` has be changed by ``provider``.
 
 The driver EC2 has been renamed to AWS to follow Terraform provider name. Consequently, the keys has been renamed in the following way:
 
-- ec2_access -> aws_access
-- ec2_secret -> aws_secret
-- region_name -> aws_region
+- ec2_access -> access_key
+- ec2_secret -> secret_key
+- region_name -> region
 
 Provision drivers has been changed by Terraform, so the following commands are no longer avaialble:
 

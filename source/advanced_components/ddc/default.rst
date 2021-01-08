@@ -34,9 +34,9 @@ The deployment file provided by OpenNebula (``/usr/share/one/oneprovision/exampl
 
 First of all, you need to create a provider using your AWS credentials and region:
 
-- aws_access
-- aws_secret
-- aws_region
+- access_key
+- secret_key
+- region
 
 .. prompt:: bash $ auto
 
@@ -44,9 +44,9 @@ First of all, you need to create a provider using your AWS credentials and regio
     ---
     name: "aws"
     connection:
-        aws_access: "**********"
-        aws_secret: "**********"
-        aws_region: "us-east-1"
+        access_key: "**********"
+        secret_key: "**********"
+        region:     "us-east-1"
 
     $ oneprovider create aws.yaml
     ID: 0
@@ -168,8 +168,8 @@ The deployment file provided by OpenNebula (``/usr/share/one/oneprovision/exampl
 
 First of all, you need to create a provider using your Packet credentials and facility:
 
-- packet_token
-- packet_project
+- token
+- project
 - facility
 
 .. prompt:: bash $ auto
@@ -178,9 +178,9 @@ First of all, you need to create a provider using your Packet credentials and fa
     ---
     name: "packet"
     connection:
-        packet_token:   "**********"
-        packet_project: "**********"
-        facility:       "ams1"
+        token:    "**********"
+        project:  "**********"
+        facility: "ams1"
 
     $ oneprovider create packet.yaml
     ID: 1

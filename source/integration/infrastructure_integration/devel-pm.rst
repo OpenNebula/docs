@@ -114,9 +114,6 @@ Example:
         <IM_MAD>kvm</IM_MAD>
         <VM_MAD>kvm</VM_MAD>
         <PROVISION>
-          <PACKET_TOKEN>*****</PACKET_TOKEN>
-          <PACKET_PROJECT>*****</PROJECT>
-          <FACILITY>ams1</FACILITY>
           <PLAN>baremetal_0</PLAN>
           <HOSTNAME>TestOneProvision1-C7</HOSTNAME>
           <BILLING_CYCLE>hourly</BILLING_CYCLE>

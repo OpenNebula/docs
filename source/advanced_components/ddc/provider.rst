@@ -33,9 +33,9 @@ To create a provider use the command ``oneprovider create``, e.g:
     name: packet
     provider: packet
     connection:
-      packet_token:   '****************************'
-      packet_project: '****************************'
-      facility:       'ams1'
+      token:    '****************************'
+      project:  '****************************'
+      facility: 'ams1'
     $ oneprovider create packet.yaml
     ID: 0
 
@@ -46,9 +46,9 @@ To create a provider use the command ``oneprovider create``, e.g:
     name: aws
     provider: aws
     connection:
-      aws_access:  '*********************'
-      aws_secret:  '*********************'
-      aws_region: 'eu-central-1'
+      access_key: '*********************'
+      secret_key: '*********************'
+      region:     'eu-central-1'
     $ oneprovider create aws.yaml
     ID: 1
 
@@ -70,9 +70,9 @@ To check provider information use the command ``oneprovider show``, e.g:
     NAME : packet
 
     CONNECTION INFORMATION
-    packet_token   : ************************************
-    packet_project : ************************************
-    facility       : ams1
+    token    : ************************************
+    project  : ************************************
+    facility : ams1
 
 .. warning:: Information is showed unecrypted.
 
