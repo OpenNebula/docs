@@ -37,31 +37,20 @@ Step 2 Upgrade frontend to the new version
 
 Upgrade the OpenNebula software using the package manager of your OS. Refer to the :ref:`Installation guide <ignc>` for a complete list of the OpenNebula packages installed in your system. Package repos need to be pointing to the latest version (|version|).
 
-For example, in a rpm based Linux distribution simply execute:
-
-.. prompt:: bash
-
-   yum update opennebula
-
-For deb based distros use:
-
-.. prompt:: bash
-
-   apt-get update
-   apt-get install opennebula
-
-Step 3 Reload start scripts
-================================
-
-Follow this section if you are using a `systemd` base distribution, like CentOS 7+, Ubuntu 16.04+, etc.
-
-In order for the system to re-read the configuration files you should issue the following command after the installation of the new packages:
+For example, in CentOS/RHEL simply execute:
 
 .. prompt:: text # auto
 
-    # systemctl daemon-reload
+    # yum upgrade opennebula
 
-Step 4 Upgrade hypervisors to the new version
+For Debian/Ubuntuy use:
+
+.. prompt:: text # auto
+
+   # apt-get update
+   # apt-get install --only-upgrade opennebula
+
+Step 3 Upgrade hypervisors to the new version
 =============================================
 
 You can skip this section for vCenter hosts.
@@ -70,18 +59,18 @@ Upgrade the OpenNebula node KVM or LXD packages, using the package manager of yo
 
 For example, in a rpm based Linux distribution simply execute:
 
-.. prompt:: bash
+.. prompt:: text # auto
 
-   yum update opennebula-node-kvm
+   # yum upgrade opennebula-node-kvm
 
 For deb based distros use:
 
-.. prompt:: bash
+.. prompt:: text # auto
 
-   apt-get update
-   apt-get install opennebula-node-kvm
+   # apt-get update
+   # apt-get install --only-upgrade opennebula-node-kvm
 
-.. note:: If you are using LXD the package is opennebula-node-lxd
+.. note:: If you are using LXD the package is ``opennebula-node-lxd``.
 
 Update the Drivers
 ==================
@@ -142,14 +131,14 @@ Ubuntu/Debian
 
 .. prompt:: text # auto
 
-    # apt-get install --only-upgrade opennebula opennebula-sunstone opennebula-gate opennebula-flow python-pyone
+    # apt-get update
+    # apt-get install --only-upgrade opennebula opennebula-sunstone opennebula-gate opennebula-flow opennebula-provision python3-pyone
 
-CentOS
+CentOS/RHEL
 
 .. prompt:: text # auto
 
-    # yum upgrade opennebula-server opennebula-sunstone opennebula-ruby opennebula-gate opennebula-flow
-
+    # yum upgrade opennebula opennebula-sunstone opennebula-gate opennebula-flow opennebula-provision python-pyone python3-pyone
 
 Step 6. Update Configuration Files
 ================================================================================
@@ -224,14 +213,14 @@ needs to be fixed by reinitialization of the configuration state. Any unprocesse
         Config:      5.8.5
 
         --- Available Configuration Updates -------
-        No updates available.<Paste>
+        No updates available.
 
 After checking the state of configuration, in most cases running the following command without any extra parameters will suffice, as it will upgrade based on internal configuration version tracking and currently installed OpenNebula.
 
 .. prompt:: text # auto
 
      # onecfg upgrade
-     ANY   : Backup stored in '/tmp/onescape/backups/2020-6
+     ANY   : Backup stored in '/tmp/onescape/backups/2020-6...
      ANY   : Configuration updated to 5.12.0
 
 If you get conflicts when running onecfg upgrade refer to the :ref:`onecfg upgrade basic usage documentation <cfg_usage>` on how to upgrade and troubleshoot the configurations, in particular the :ref:`onecfg upgrade doc <cfg_upgrade>` and the :ref:`troubleshooting section <cfg_conflicts>`.
@@ -265,13 +254,11 @@ First, move the |version| backup file created by the upgrade command to a safe p
 Step 9. Start OpenNebula
 ================================================================================
 
-Make the system re-read the service configuration files of the new packages:
+Now you should be able to start OpenNebula as usual by running as ``root``:
 
 .. prompt:: text # auto
 
-    # systemctl daemon-reload
-
-Now you should be able to start OpenNebula as usual, running ``service opennebula start`` as ``root``. Do not forget to restart also any associated service like Sunstone, OneGate or OneFlow.
+    # systemctl start opennebula
 
 At this point OpenNebula will continue the monitoring and management of your previous Hosts and VMs.  As a measure of caution, look for any error messages in ``oned.log``, and check that all drivers are loaded successfully. You may also try some  **show** subcommand for some resources to check everything is working (e.g. ``onehost show``, or ``onevm show``).
 
@@ -296,7 +283,7 @@ Ubuntu/Debian
 
 .. prompt:: text # auto
 
-    # apt-get install --only-upgrade opennebula-node
+    # apt-get install --only-upgrade opennebula-node-kvm
     # service libvirtd restart # debian
     # service libvirt-bin restart # ubuntu
 

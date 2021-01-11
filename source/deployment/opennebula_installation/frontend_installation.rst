@@ -54,8 +54,75 @@ Step 2. Add OpenNebula Repositories
 
 Refer to this :ref:`guide <repositories>` to add the community or enterprise edition repositories.
 
+.. _packages:
+
 Step 3. Installing the Software
 ================================================================================
+
+.. important::
+
+   Few main packages were renamed in OpenNebula 6.0, see :ref:`Compatibility Guide <compatibility_pkg>`.
+
+Available packages for the OpenNebula frontend and virtualization hosts:
+
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+|              Package                  |                                     Description                                                               |
++=======================================+===============================================================================================================+
+| **opennebula**                        | OpenNebula Daemon and Scheduler                                                                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **opennebula-tools**                  | Command Line Interface                                                                                        |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **opennebula-ee-tools**               | Additional features for Enterprise Edition                                                                    |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **opennebula-sunstone**               | GUI :ref:`Sunstone <sunstone>` and the :ref:`EC2 API <introc>`                                                |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **opennebula-fireedge**               | next-generation GUI FireEdge                                                                                  |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **opennebula-gate**                   | :ref:`OneGate <onegate_overview>` server which allows communication between VMs and OpenNebula                |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **opennebula-flow**                   | :ref:`OneFlow <oneflow_overview>` manages services and elasticity                                             |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **opennebula-provision**              | :ref:`OneProvision <ddc_overview>` deploys new clusters on remote bare-metal cloud providers                  |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **opennebula-provision-data**         | Data for :`OneProvision <ddc_overview>` tool                                                                  |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **opennebula-node-kvm**               | Dependencies and conf. for KVM hypervisor node                                                                |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **opennebula-node-firecracker**       | Dependencies and conf. for Firecracker hypervisor node                                                        |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **opennebula-node-lxd**               | Dependencies and conf. for LXD hypervisor node (*only on Ubuntu and Debian 10*)                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **opennebula-lxd-snap**               | Meta-package to install LXD snap (*only on Ubuntu 16.04 and 18.04*)                                           |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **opennebula-guacd**                  | Proxy daemon for Guacamole                                                                                    |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **opennebula-rubygems**               | Bundled Ruby gem dependencies                                                                                 |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **opennebula-libs**                   | Shared Ruby libraries among various components                                                                |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **opennebula-common**                 | Shared content for OpenNebula packages                                                                        |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **opennebula-common-onecfg**          | Helpers for onecfg tool                                                                                       |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| rpm: **opennebula-debuginfo** |br|    | Package with debug information                                                                                |
+| deb: **opennebula-dbgsym**            |                                                                                                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| rpm: **opennebula-java** |br|         | :ref:`Java OCA <java>` Bindings                                                                               |
+| deb: **libopennebula-java** |br|      |                                                                                                               |
+| deb: **libopennebula-java-doc**       |                                                                                                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **python3-pyone**                     | :ref:`Python 3 OCA <python>` Bindings                                                                         |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **python-pyone**                      | :ref:`Python 2 OCA <python>` Bindings (*not on Fedora, Ubuntu 20.04 and later*)                               |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **docker-machine-opennebula**         | OpenNebula driver for :ref:`Docker Machine <docker_machine_overview>`                                         |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+
+.. note::
+
+   There are a few differencies in package names among distributions. Those with varying package names contain mostly integration libraries and since they are for general use on installation hosts, their names are left to follow the distribution conventions. Find above the CentOS/RHEL/Fedora specific packages prefixed with "*rpm:*" and Debian/Ubuntu specific packages prefixed with "*deb:*".
+
+The configuration files are located in ``/etc/one`` and ``/var/lib/one/remotes/etc``.
 
 Installing on CentOS/RHEL
 -------------------------
@@ -69,32 +136,7 @@ Install the CentOS/RHEL/Fedora OpenNebula Front-end with packages from **our rep
 
 .. prompt:: bash # auto
 
-    # yum install opennebula-server opennebula-sunstone opennebula-ruby opennebula-gate opennebula-flow
-
-**CentOS/RHEL/Fedora Package Description**
-
-The packages for the OpenNebula frontend and the virtualization host are as follows:
-
-* **opennebula**: Command Line Interface.
-* **opennebula-server**: OpenNebula Daemon and Scheduler.
-* **opennebula-sunstone**: :ref:`Sunstone <sunstone>` (the GUI) and the :ref:`EC2 API <introc>`.
-* **opennebula-gate**: :ref:`OneGate <onegate_overview>` server that enables communication between VMs and OpenNebula.
-* **opennebula-flow**: :ref:`OneFlow <oneflow_overview>` manages services and elasticity.
-* **opennebula-provision**: :ref:`OneProvision <ddc_overview>` deploys new clusters on remote bare-metal cloud providers.
-* **opennebula-node-kvm**: Dependencies and configurations for KVM hypervisor node.
-* **opennebula-node-firecracker**: Dependencies and configurations for Firecracker hypervisor node.
-* **opennebula-common**: Shared content for OpenNebula packages.
-* **opennebula-common-onecfg**: Helpers for onecfg tool.
-* **opennebula-rubygems**: Bundled Ruby gem dependencies.
-* **opennebula-debuginfo**: Package with debug information.
-* **opennebula-ruby**: Ruby Bindings.
-* **opennebula-java**: Java Bindings.
-* **python-pyone**: Python 2 Bindings (not on Fedora).
-* **python3-pyone**: Python 3 Bindings.
-
-.. note::
-
-    The configuration files are located in ``/etc/one`` and ``/var/lib/one/remotes/etc``.
+    # yum install opennebula opennebula-sunstone opennebula-gate opennebula-flow
 
 Installing on Debian/Ubuntu
 ---------------------------
@@ -105,34 +147,6 @@ To install OpenNebula on a Debian/Ubuntu Front-end using packages from **our rep
 
     # apt-get update
     # apt-get install opennebula opennebula-sunstone opennebula-gate opennebula-flow
-
-**Debian/Ubuntu Package Description**
-
-These are the packages available for these distributions:
-
-* **opennebula**: OpenNebula Daemon and Scheduler.
-* **opennebula-common**: Shared content for OpenNebula packages.
-* **opennebula-common-onecfg**: Helpers for onecfg tool.
-* **opennebula-tools**: Command Line Interface.
-* **opennebula-sunstone**: :ref:`Sunstone <sunstone>` (the GUI) and the :ref:`EC2 API <introc>`.
-* **opennebula-gate**: :ref:`OneGate <onegate_overview>` server that enables communication between VMs and OpenNebula.
-* **opennebula-flow**: :ref:`OneFlow <oneflow_overview>` manages services and elasticity.
-* **opennebula-provision**: :ref:`OneProvision <ddc_overview>` deploys new clusters on remote bare-metal cloud providers.
-* **opennebula-node**: Dependencies and configurations for KVM hypervisor node.
-* **opennebula-node-firecracker**: Dependencies and configurations for Firecracker hypervisor node.
-* **opennebula-node-lxd**: Dependencies and configurations for LXD hypervisor node.
-* **opennebula-lxd-snap**: Meta-package to install LXD snap (only on Ubuntu 16.04 and 18.04).
-* **opennebula-rubygems**: Bundled Ruby gem dependencies.
-* **opennebula-dbgsym**: Package with debug information.
-* **ruby-opennebula**: Ruby Bindings.
-* **libopennebula-java**: Java Bindings.
-* **libopennebula-java-doc**: Java Bindings Documentation.
-* **python-pyone**: Python 2 Bindings (not on Ubuntu 20.04 and later).
-* **python3-pyone**: Python 3 Bindings.
-
-.. note::
-
-    The configuration files are located in ``/etc/one`` and ``/var/lib/one/remotes/etc``.
 
 .. _ruby_runtime:
 
@@ -275,7 +289,7 @@ The following table lists some notable paths that are available in your Frontend
 +-------------------------------------+--------------------------------------------------------------------------------------+
 |                 Path                |                                     Description                                      |
 +=====================================+======================================================================================+
-| ``/etc/one/``                       | Configuration Files                                                                  |
+| ``/etc/one/``                       | Configuration files                                                                  |
 +-------------------------------------+--------------------------------------------------------------------------------------+
 | ``/var/log/one/``                   | Log files, notably: ``oned.log``, ``sched.log``, ``sunstone.log`` and ``<vmid>.log`` |
 +-------------------------------------+--------------------------------------------------------------------------------------+
@@ -288,6 +302,8 @@ The following table lists some notable paths that are available in your Frontend
 | ``/var/lib/one/.one/one_auth``      | ``oneadmin`` credentials                                                             |
 +-------------------------------------+--------------------------------------------------------------------------------------+
 | ``/var/lib/one/remotes/``           | Probes and scripts that will be synced to the Hosts                                  |
++-------------------------------------+--------------------------------------------------------------------------------------+
+| ``/var/lib/one/remotes/etc``        | Configuration files for probes and scripts                                           |
 +-------------------------------------+--------------------------------------------------------------------------------------+
 | ``/var/lib/one/remotes/hooks/``     | Hook scripts                                                                         |
 +-------------------------------------+--------------------------------------------------------------------------------------+
@@ -343,3 +359,7 @@ Now that you have successfully started your OpenNebula service, head over to the
     Test that everything works using `oneuser show`.
 
 .. |image0| image:: /images/debian-opennebula.png
+
+.. |br| raw:: html
+
+  <br/>

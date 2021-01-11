@@ -83,6 +83,8 @@ Distributed Edge Provisioning
 Packaging
 ================================================================================
 
+- OpenNebula package names unified across distributions, see :ref:`here <compatibility_pkg>`.
+
 KVM
 ===
 
