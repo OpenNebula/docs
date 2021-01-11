@@ -42,6 +42,7 @@ Sunstone
 - Add option to disable network configuration for service template instantiation. Check more information :ref:`here <suns_views_custom>`.
 - Registration time has been added to :ref:`service templates <appflow_elasticity>`.
 - Added remove template and images when delete a service. Check :ref:`this <appflow_use_cli_delete_service_template>`.
+- Registration time has been added to :ref:`services instances <suns_views>`.
 
 
 Scheduler
