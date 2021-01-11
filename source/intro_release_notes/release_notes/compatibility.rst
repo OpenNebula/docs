@@ -83,3 +83,23 @@ KVM driver comes with new defaults, which better reflect modern use of this tech
 - ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc``
 
 Default path to QEMU emulator (parameter ``EMULATOR`` in ``/etc/one/vmm_exec/vmm_exec_kvm.conf``) has changed from distribution specific-path to an unified symbolic link ``/usr/bin/qemu-kvm-one``, which is created on hypervisors during the installation of KVM node package, and points to the QEMU binary of each node operating system.
+
+.. _compatibility_pkg:
+
+Distribution Packages Renamed
+=============================
+
+Names of main distribution packages were unified across the distributions to eliminate differences and avoid confusion. Users might need to update their custom scripts (e.g., own Ansible installation tasks, Dockerfiles) to deal with new packages. Upgrades of existing deployments shouldn't be negatively affected as the deprecations are automatically handled by the package managers.
+
+On CentOS/RHEL renamed package
+
+* **opennebula** (formerly CLI tools) to **opennebula-tools**
+* **opennebula-server** (formerly OpenNebula daemon and scheduler) to **opennebula**
+* **opennebula-ruby** to **opennebula-libs**
+
+On Debian/Ubuntu renamed package
+
+* **opennebula-node** to **opennebula-node-kvm**
+* **ruby-opennebula** to **opennebula-libs**
+
+See the curent :ref:`list of shipped packages <packages>`.
