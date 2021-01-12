@@ -31,35 +31,12 @@ Assuming you are going to use the default values, log in to your MySQL server an
     Enter password:
     Welcome to the MySQL monitor. [...]
 
-    mysql> GRANT ALL PRIVILEGES ON opennebula.* TO 'oneadmin' IDENTIFIED BY '<thepassword>';
-    Query OK, 0 rows affected (0.00 sec)
-
-Visit the `MySQL documentation <http://dev.mysql.com/doc/refman/5.7/en/user-account-management.html>`__ to learn how to manage accounts.
-
-For users running MySQL Version 8, you are most likely going to encounter the following error output if you run the above command:
-
-.. code::
-
-    $ mysql -u root -p
-    Enter password:
-    Welcome to the MySQL monitor. [...]
-
-    mysql> GRANT ALL PRIVILEGES ON opennebula.* TO 'oneadmin' IDENTIFIED BY '<thepassword>';
-    ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IDENTIFIED BY '<thepassword>'' at line 1
-
-The solution is to run the user creation command as well as the GRANT ALL PRIVILEGES command as two separate statements using the following commmands:
-
-.. code::
-
-    $ mysql -u root -p
-    Enter password:
-    Welcome to the MySQL monitor. [...]
-
     mysql> CREATE USER 'oneadmin' IDENTIFIED BY '<thepassword>';
     Query OK, 0 rows affected (0.00 sec)
     mysql> GRANT ALL PRIVILEGES ON opennebula.* TO 'oneadmin';
     Query OK, 0 rows affected (0.00 sec)
 
+Visit the `MySQL documentation <http://dev.mysql.com/doc/refman/5.7/en/user-account-management.html>`__ to learn how to manage accounts.
 
 Now configure the transaction isolation level:
 
