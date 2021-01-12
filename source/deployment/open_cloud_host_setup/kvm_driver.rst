@@ -158,7 +158,7 @@ OpenNebula automatically generates a number of CPU shares proportional to the CP
     ...
     |-- cpu.shares
     |-- cpu.stat
-    |-- machine-qemu\x2d1\x2done\x2d73.scope
+    |-- machine-qemu-1-one-73.scope
     |   |-- cgroup.clone_children
     |   |-- cgroup.event_control
     |   |-- cgroup.procs
@@ -167,7 +167,7 @@ OpenNebula automatically generates a number of CPU shares proportional to the CP
     |   `-- vcpu0
     |       |-- cgroup.clone_children
     |       ...
-    |-- machine-qemu\x2d2\x2done\x2d74.scope
+    |-- machine-qemu-2-one-74.scope
     |   |-- cgroup.clone_children
     |   |-- cgroup.event_control
     |   |-- cgroup.procs
@@ -183,9 +183,9 @@ with the CPU shares for each VM:
 
 .. prompt:: bash $ auto
 
-    $ cat '/sys/fs/cgroup/cpu,cpuacct/machine.slice/machine-qemu\x2d1\x2done\x2d73.scope/cpu.shares'
+    $ cat '/sys/fs/cgroup/cpu,cpuacct/machine.slice/machine-qemu-1-one-73.scope/cpu.shares'
     512
-    $ cat '/sys/fs/cgroup/cpu,cpuacct/machine.slice/machine-qemu\x2d2\x2done\x2d74.scope/cpu.shares'
+    $ cat '/sys/fs/cgroup/cpu,cpuacct/machine.slice/machine-qemu-2-one-74.scope/cpu.shares'
     1024
 
 .. note:: The cgroups (directory) layout can be different based on your operating system and configuration. The `libvirt documentation <https://libvirt.org/cgroups.html>`__ describes all the cases and a way the cgroups are managed by libvirt/KVM.

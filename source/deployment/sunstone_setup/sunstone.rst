@@ -424,7 +424,7 @@ its console dialog that communicates with the proxy by using websockets.
 .. note:: For the correct functioning of the SPICE Web Client, we recommend defining by default
     some SPICE parameters in ``/etc/one/vmm_mad/vmm_exec_kvm.conf``. In this way, once modified the
     file and restarted OpenNebula, it will be applied to all the VMs instantiated from now on. You can
-    also override these SPICE parameters ​​in VM Template. For more info check :ref:`Driver Defaults
+    also override these SPICE parameters in VM Template. For more info check :ref:`Driver Defaults
     <kvmg_default_attributes>` section.
 
 .. _virt_viewer_sunstone:
