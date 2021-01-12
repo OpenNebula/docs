@@ -30,6 +30,7 @@ Daemon Configuration Attributes
    -  ``encoding`` (MySQL only): charset to use for the db connections
    -  ``connections`` (MySQL only): maximum number of connections to the MySQL server.
    -  ``timeout`` (SQLite only): timeout in ms for acquiring lock to DB, should be at least 100 ms
+   -  ``errors_limit``: number of consecutive DB errors to stop oned node in HA. Default 25, use -1 to disable this feature.
 
 -  ``VNC_PORTS``: VNC port pool for automatic VNC port assignment. If possible, the port will be set to ``START`` + ``VMID``. Refer to the :ref:`VM template reference <template>` for further information:
 
