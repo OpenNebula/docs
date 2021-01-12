@@ -31,7 +31,9 @@ Assuming you are going to use the default values, log in to your MySQL server an
     Enter password:
     Welcome to the MySQL monitor. [...]
 
-    mysql> GRANT ALL PRIVILEGES ON opennebula.* TO 'oneadmin' IDENTIFIED BY '<thepassword>';
+    mysql> CREATE USER 'oneadmin' IDENTIFIED BY '<thepassword>';
+    Query OK, 0 rows affected (0.00 sec)
+    mysql> GRANT ALL PRIVILEGES ON opennebula.* TO 'oneadmin';
     Query OK, 0 rows affected (0.00 sec)
 
 Visit the `MySQL documentation <http://dev.mysql.com/doc/refman/5.7/en/user-account-management.html>`__ to learn how to manage accounts.
