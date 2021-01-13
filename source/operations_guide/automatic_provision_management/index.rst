@@ -1,7 +1,7 @@
 .. _ddc:
 
 ==================================
-Distributed Edge Provisioning
+Automatic Provision Management
 ==================================
 
 .. toctree::
