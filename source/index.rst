@@ -12,6 +12,7 @@ Here comes description ...
    Overview <overview/index>
    Quick Start <quick_start/index>
    Operations Guide <operations_guide/index>
+   Configuration Guide <configuration_guide/index>
    Deployment Guide <deployment_guide/index>
    Developers Guide <developers_guide/index>
    Release Notes <intro_release_notes/index>

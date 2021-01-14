@@ -3,8 +3,11 @@
 .. _mysql_setup:
 
 ==============
-MySQL Setup
+Database Setup
 ==============
+
+MySQL Setup
+===========
 
 The MySQL/MariaDB back-end is an alternative to the default SQLite back-end. In this guide and in the rest of OpenNebula's documentation and configuration files we will refer to this database as MySQL. However, OpenNebula can use either MySQL or MariaDB.
 
@@ -100,7 +103,6 @@ When a VM is terminated, OpenNebula changes its state to DONE but it keeps the V
 .. _postgresql:
 .. _postgresql_setup:
 
-================
 PostgreSQL Setup
 ================
 

@@ -13,5 +13,5 @@ Deployment Guide
    Customized Clusters Installation <node_installation/index>
    VMware Infrastructure Setup <vmware_infrastructure_setup/index>
    Open Cloud Host Setup <open_cloud_host_setup/index>
-   Open Cloud Storage Setup <open_cloud_networking_setup/index>
+   Open Cloud Storage Setup <open_cloud_storage_setup/index>
    Open Cloud Networking Setup <open_cloud_networking_setup/index>

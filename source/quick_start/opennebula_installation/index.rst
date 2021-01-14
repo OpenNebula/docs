@@ -1,15 +1,15 @@
-.. _ha:
+.. _opennebula_installation:
 
 ================================================================================
-High Availability
+OpenNebula Installation
 ================================================================================
 
 .. toctree::
    :maxdepth: 2
 
    Overview <overview>
-   OpenNebula Repository Configuration <repository>
+   OpenNebula Repository Configuration <opennebula_repository_configuration>
    Database Setup <database_setup>
-   Single Front-end Installation <frontend_installation>
+   Single Front-end Installation <single_frontend_installation>
    Public Marketplaces <public_marketplaces>
    Automatic Cluster Deployment <automatic_cluster_deployment>

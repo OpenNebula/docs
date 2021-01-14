@@ -1,7 +1,10 @@
 .. _accounting_and_showback:
 .. _accounting:
 
-==================
+=======================
+Accounting and Showback
+=======================
+
 Accounting Client
 ==================
 
@@ -357,7 +360,6 @@ Developers interacting with OpenNebula using the Ruby bindings can use the `Virt
 
 .. _showback:
 
-================================================================================
 Showback
 ================================================================================
 
