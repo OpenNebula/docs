@@ -10,9 +10,6 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 **INTERFACES FOR CLOUD CONSUMERS**
 
-- :ref:`De-facto standard cloud APIs <introc>` with compatibility with cloud ecosystem tools
-
-- :ref:`Simple, clean, intuitive GUI for cloud consumers <cloud_view>` to allow non-IT end users to easily create, deploy and manage compute, storage and network resources
 
 
 **VIRTUAL MACHINE AND CONTAINER MANAGEMENT**
@@ -159,11 +156,6 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 - :ref:`Configurable behavior in the event of host or KVM/LXD/Firecracker instance failure <ftguide>` to provide easy to use and cost-effective failover solutions
 
 
-**CLOUD BURSTING**
-
-- Build a :ref:`hybrid cloud <introh>` to combine your local resources with resources from remote cloud provider and use extra computational capacity to satisfy peak demands
-
-
 **PLATFORM**
 
 - Fully platform independent
@@ -179,7 +171,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - :ref:`Modular and extensible architecture <intro_integration>` to fit into any existing datacenter
 
-- Customizable drivers for the main subsystems to easily leverage existing IT infrastructure and system management products: :ref:`storage <sd>`, :ref:`monitoring <devel-im>`, :ref:`networking <devel-nm>`, :ref:`authentication <devel-auth>`, :ref:`virtualization <devel-vmm>`, :ref:`cloud bursting <devel_cloudbursting>` and :ref:`market <devel-market>`
+- Customizable drivers for the main subsystems to easily leverage existing IT infrastructure and system management products: :ref:`storage <sd>`, :ref:`monitoring <devel-im>`, :ref:`networking <devel-nm>`, :ref:`authentication <devel-auth>`, :ref:`virtualization <devel-vmm>` and :ref:`market <devel-market>`
 
 - :ref:`API for integration with higher level tools <introapis>` such as billing, self-service portals…
 

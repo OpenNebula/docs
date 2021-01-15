@@ -11,4 +11,4 @@ Usage Basics
    User Interfaces <user_interfaces>
    Running Applcations <running_applications>
    Elastic Application Workflows <elastic_application_workflows>
-   Kubernetes Clusteris <kubernetes_clusters>
+   Kubernetes Clusters <kubernetes_clusters>

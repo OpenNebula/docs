@@ -214,6 +214,7 @@ latex_elements = {
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
+# WARNING: This is outdated!!
 latex_documents = [
   ( 'intro_release_notes/index',
     file_main_title  + 'intro_release_notes.tex',

@@ -1,3 +1,5 @@
+.. _advanced_components:
+.. _design_and_installation_guide:
 .. _deployment_guide:
 
 ================================================================================

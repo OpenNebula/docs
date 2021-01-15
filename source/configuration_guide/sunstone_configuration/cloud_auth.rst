@@ -4,16 +4,16 @@
 Cloud Servers Authentication
 =============================
 
-OpenNebula ships with two servers: :ref:`Sunstone <sunstone>` and :ref:`EC2 <ec2qcg>`. When a user interacts with one of them, the server authenticates the request and then forwards the requested operation to the OpenNebula daemon.
+When a user interacts with :ref:`Sunstone <sunstone>`, the server authenticates the request and then forwards the requested operation to the OpenNebula daemon.
 
-The forwarded requests between the servers and the core daemon include the original user name, and are signed with the credentials of a special ``server`` user.
+The forwarded requests between the server and the core daemon include the original user name, and are signed with the credentials of a special ``server`` user.
 
 In this guide this request forwarding mechanism is explained, and how it is secured with a symmetric-key algorithm or x509 certificates.
 
 Server Users
 ============
 
-The :ref:`Sunstone <sunstone>` and :ref:`EC2 <ec2qcg>` services communicate with the core using a ``server`` user. OpenNebula creates the **serveradmin** account at bootstrap, with the authentication driver **server\_cipher** (symmetric key).
+The :ref:`Sunstone <sunstone>` server communicate with the core using a ``server`` user. OpenNebula creates the **serveradmin** account at bootstrap, with the authentication driver **server\_cipher** (symmetric key).
 
 This ``server`` user uses a special authentication mechanism that allows the servers to perform an operation on behalf of another user.
 
@@ -32,7 +32,6 @@ This mechanism is enabled by default, you will have a user named **serveradmin**
 To use it, you need a user with the driver **server\_cipher**. Enable it in the relevant configuration file in ``/etc/one``:
 
 -  :ref:`Sunstone <sunstone>`: ``/etc/one/sunstone-server.conf``
--  :ref:`EC2 <ec2qcg>`: ``/etc/one/econe.conf``
 
 .. code-block:: yaml
 
@@ -100,7 +99,6 @@ Copy the certificate and the private key to the paths set in ``:one_cert:`` and 
 Then edit the relevant configuration file in ``/etc/one``:
 
 -  :ref:`Sunstone <sunstone>`: ``/etc/one/sunstone-server.conf``
--  :ref:`EC2 <ec2qcg>`: ``/etc/one/econe.conf``
 
 .. code-block:: yaml
 

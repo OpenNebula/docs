@@ -9,9 +9,9 @@ The Frontend is the central part of an OpenNebula installation. This is the mach
 How Should I Read This Chapter
 ================================================================================
 
-Before reading this chapter make sure you have read and understood the :ref:`Cloud Design <cloud_design>` chapter.
+Before reading this chapter make sure you have picked the :ref:`Architecture Blueprint <architecture_blueprints>` that better fits your needs.
 
-The aim of this chapter is to give you a quick-start guide to deploy OpenNebula. This is the simplest possible installation, but it is also the foundation for a more complex setup, with :ref:`Advanced Components <advanced_components>` (like :ref:`Host and VM High Availability <ha>`, :ref:`Cloud Bursting <introh>`, etc...).
+The aim of this chapter is to give you a quick-start guide to deploy OpenNebula. This is the simplest possible installation, but it is also the foundation for a more complex setup, with :ref:`Advanced Components <advanced_components>`.
 
 First you should read the :ref:`Front-end Installation <frontend_installation>` section. Note that by default it uses an SQLite database that is not recommended for production. So, if this is not a small proof of concept, while following the Installation section you should use the :ref:`MySQL <mysql_setup>`.
 

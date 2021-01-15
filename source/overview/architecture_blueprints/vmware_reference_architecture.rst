@@ -120,7 +120,7 @@ Networking in OpenNebula is handled by creating or importing Virtual Network rep
 
 OpenNebula supports NSX-T and NSX-V logical switches through the NSX Manager API. Some of the key points of this integration are:
 
--  NSX Manager is automatically detected from vCenter Server. 
+-  NSX Manager is automatically detected from vCenter Server.
 -  Transport Zones are automatically discovered.
 -  Logical switches are created in the NSX Manager after a Virtual Network is created in OpenNebula.
 -  Link VM NICs to these logical switches through the OpenNebula GUI, both at deployment and run times.
@@ -162,7 +162,7 @@ Advanced Components
 
 Once you have an OpenNebula cloud up and running, you can install the following advanced components:
 
+.. todo:: Add more?
+
 -  :ref:`Multi-VM Applications and Auto-scaling <oneapps_overview>`: OneFlow allows users and administrators to define, execute and manage services composed of interconnected Virtual Machines with deployment dependencies between them. Each group of Virtual Machines is deployed and managed as a single entity, and is completely integrated with the advanced OpenNebula user and group management.
--  :ref:`Cloud Bursting <introh>`: Cloud bursting is a model in which the local resources of a Private Cloud are combined with resources from remote Cloud providers. Such support for cloud bursting enables highly scalable hosting environments.
--  :ref:`Public Cloud <introc>`: Cloud interfaces can be added to your Private Cloud if you want to provide partners or external users with access to your infrastructure, or to sell your overcapacity. The following interfaces provide a simple and remote management of cloud (virtual) resources at a high abstraction level: :ref:`Amazon EC2 and EBS APIs <ec2qcg>`.
 -  :ref:`Application Insight <onegate_overview>`: OneGate allows Virtual Machine guests to push monitoring information to OpenNebula. Users and administrators can use it to gather metrics, detect problems in their applications, and trigger OneFlow auto-scaling rules.

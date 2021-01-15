@@ -13,7 +13,6 @@ OpenNebula Components
 -  **Datastore**: Storage medium used as a repository for disk images or to hold images for running VMs.
 -  **Sunstone**: OpenNebula web interface. Learn more about :ref:`Sunstone <sunstone>`
 -  **Self-Service** OpenNebula web interfaced towards the end user. It is implemented by configuring a user view of the Sunstone Portal.
--  **EC2 Service**: Server that enables the management of OpenNebula with EC2 interface. Learn more about :ref:`EC2 Service <ec2qcg>`.
 -  **OCA**: OpenNebula Cloud API. It is a set of libraries that ease the communication with the XML-RPC management interface. Learn more about :ref:`ruby <ruby>` and :ref:`java <java>` APIs.
 
 OpenNebula Resources
@@ -34,5 +33,3 @@ OpenNebula Management
 -  **User**: An OpenNebula user account.
 -  **Group**: A group of Users.
 -  **Federation**: Several OpenNebula instances can be :ref:`configured as zones <introf>`.
-
-

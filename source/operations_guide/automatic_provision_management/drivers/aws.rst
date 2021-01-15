@@ -38,7 +38,7 @@ Parameter             Mandatory Description
 ``cloud_init``        NO        Generate ``cloud-init`` contextualization data if no custom ``userdata`` specified (default: ``no``). See :ref:`Cloud-init <ddc_driver_aws_cloudinit>`.
 ===================== ========= ===========
 
-and all the parameters supported by the :ref:`EC2 cloud-bursting <ec2g>` driver.
+.. todo:: Add ec2g guide parameters. (and all the parameters supported by the EC2 cloud-bursting <ec2g> driver.)
 
 .. _ddc_driver_aws_cloudinit:
 

@@ -11,7 +11,7 @@ Requirements
 
 Check the :ref:`Installation guide <ignc>` for details of what package you have to install depending on your distribution
 
-OneGate can be used with VMs running on :ref:`KVM, vCenter <context_overview>`, and :ref:`EC2 <context_ec2>`.
+OneGate can be used with VMs running on :ref:`KVM, LXC, Firecracker and vCenter <context_overview>`.
 
 Currently, OneGate is not supported for VMs instantiated in Azure, since the authentication token is not available inside these VMs. OneGate support for these drivers will be include in upcoming releases.
 

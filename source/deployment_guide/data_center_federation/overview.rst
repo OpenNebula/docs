@@ -26,7 +26,7 @@ The administrators can share appliances across Zones deploying a private :ref:`O
 Other Services
 ================================================================================
 
-Although a single Sunstone server can connect to different Zones, all the other OpenNebula services will only work with the local Zone resources. This includes the :ref:`Scheduler <schg>`, the :ref:`Public Cloud Servers <introc>`, :ref:`OneFlow <oneapps_overview>`, and :ref:`OneGate <onegate_overview>`.
+Although a single Sunstone server can connect to different Zones, all the other OpenNebula services will only work with the local Zone resources. This includes the :ref:`Scheduler <schg>`, :ref:`OneFlow <oneapps_overview>`, and :ref:`OneGate <onegate_overview>`.
 
 How Should I Read This Chapter
 ================================================================================
@@ -41,4 +41,3 @@ Hypervisor Compatibility
 ================================================================================
 
 This chapter applies both to KVM and vCenter.
-

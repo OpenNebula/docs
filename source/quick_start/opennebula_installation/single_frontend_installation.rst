@@ -74,9 +74,9 @@ Available packages for the OpenNebula frontend and virtualization hosts:
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **opennebula-ee-tools**               | Additional features for Enterprise Edition                                                                    |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **opennebula-sunstone**               | GUI :ref:`Sunstone <sunstone>` and the :ref:`EC2 API <introc>`                                                |
+| **opennebula-sunstone**               | GUI :ref:`Sunstone <sunstone>`                                                                                |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **opennebula-fireedge**               | next-generation GUI FireEdge                                                                                  |
+| **opennebula-fireedge**               | next-generation GUI :ref:`Fireedge <fireedge_setup>`                                                          |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **opennebula-gate**                   | :ref:`OneGate <onegate_overview>` server which allows communication between VMs and OpenNebula                |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
@@ -115,8 +115,10 @@ Available packages for the OpenNebula frontend and virtualization hosts:
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **python-pyone**                      | :ref:`Python 2 OCA <python>` Bindings (*not on Fedora, Ubuntu 20.04 and later*)                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **docker-machine-opennebula**         | OpenNebula driver for :ref:`Docker Machine <docker_machine_overview>`                                         |
+| **docker-machine-opennebula**         | OpenNebula driver for Docker Machine                                                                          |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+
+.. todo:: Correct link to docker-machine-opennebula (OpenNebula driver for Docker Machine <docker_machine_overview>`)
 
 .. note::
 

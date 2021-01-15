@@ -110,7 +110,7 @@ Before reading this chapter make sure you have read the :ref:`Deployment Guide <
 
 Read the :ref:`OpenNebula Systems MarketPlace <market_one>` as it's global for all OpenNebula installations. Then read the specific guide for the MarketPlace flavor you are interested in. Finally, read the :ref:`Managing MarketPlaceApps <marketapp>` to understand what operations you can perform on MarketPlaceApps.
 
-After reading this chapter you can continue configuring more :ref:`Advanced Components <advanced_components>`.
+After reading this chapter you can continue configuring more :Advanced Components <advanced_components>`.
 
 Hypervisor Compatibility
 ================================================================================

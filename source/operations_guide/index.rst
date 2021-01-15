@@ -1,4 +1,5 @@
 .. _operations_guide:
+.. _operation_guide:
 
 ================================================================================
 Operations Guide
@@ -12,6 +13,5 @@ Operations Guide
    Virtual Network Management <network_management/index>
    Virtual Machine Management <vm_management/index>
    Virtual Machine Setup <vm_setup/index>
-   Cloud End-User <cloud_end_user/index>
    Automatic Provision Management <automatic_provision_management/index>
    References <references/index>

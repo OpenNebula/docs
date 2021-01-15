@@ -14,7 +14,7 @@ Here comes description ...
    Operations Guide <operations_guide/index>
    Configuration Guide <configuration_guide/index>
    Deployment Guide <deployment_guide/index>
-   Developers Guide <developers_guide/index>
+   Development Guide <development_guide/index>
    Release Notes <intro_release_notes/index>
 
 .. raw:: html
