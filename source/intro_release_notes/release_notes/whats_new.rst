@@ -44,6 +44,7 @@ Sunstone
 - Service registration time has been added to :ref:`service templates <appflow_elasticity>`. Available in Sunstone, enabled by default in :ref:`services instances views <suns_views>`.
 - Added remove template and images when delete a service. Check :ref:`this <appflow_use_cli_delete_service_template>`.
 - Add option to automatic deletion to services when all associated VMs terminated. Check more information :ref:`here <_appflow_use_cli_automatic_delete>`.
+- Added VM name to :ref:`VNC Guacamole connections <requirements_guacamole_vnc_sunstone>`.
 
 Scheduler
 ================================================================================

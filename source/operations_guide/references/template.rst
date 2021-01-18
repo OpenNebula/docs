@@ -710,6 +710,10 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 +-----------------------------------+-----------------------------------------------------------------------------------+------------------------------+---------+---------+
 | **GROW_ROOTFS**                   | If set to ``NO``, the automatic root filesystem growing will be disabled.         | Linux                        | Linux   | Linux   |
 +-----------------------------------+-----------------------------------------------------------------------------------+------------------------------+---------+---------+
+| **RECREATE_RUN**                  | If set to ``YES``, missing directories and files persisted in the image in        | Linux                        | Linux   | Linux   |
+|                                   | ``/run`` (or ``/var/run``) are restored and copied to the ephemeral ``/run``      |                              |         |         |
+|                                   | (or ``/var/run``) of the VM instance.                                             |                              |         |         |
++-----------------------------------+-----------------------------------------------------------------------------------+------------------------------+---------+---------+
 | **EJECT\_CDROM**                  | Value ``YES`` will signal to eject the CD with the ``context.sh`` file when       | Windows                      | \-      | \-      |
 |                                   | (re)contextualization is finished                                                 |                              |         |         |
 +-----------------------------------+-----------------------------------------------------------------------------------+------------------------------+---------+---------+
