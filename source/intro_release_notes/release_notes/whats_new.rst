@@ -43,6 +43,7 @@ Sunstone
 - Add option to disable network configuration for service template instantiation. Check more information :ref:`here <suns_views_custom>`.
 - Service registration time has been added to :ref:`service templates <appflow_elasticity>`. Available in Sunstone, enabled by default in :ref:`services instances views <suns_views>`.
 - Added remove template and images when delete a service. Check :ref:`this <appflow_use_cli_delete_service_template>`.
+- Added VM name to :ref:`VNC Guacamole connections <requirements_guacamole_vnc_sunstone>`.
 
 Scheduler
 ================================================================================
