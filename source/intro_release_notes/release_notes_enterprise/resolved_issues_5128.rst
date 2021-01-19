@@ -11,4 +11,4 @@ The following new features has been backported to 5.12.8:
 
 The following issues has been solved in 5.12.8:
 
-- `Provide nice and clear! description <https://github.com/OpenNebula/one/issues/XXX>`__.
+- `Fix RAFT Race condition when node fail to become leader <https://github.com/OpenNebula/one/issues/5232>`__.
