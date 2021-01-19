@@ -327,7 +327,9 @@ CentOS
 Step 12. Enable Hosts
 ================================================================================
 
-Enable all hosts, disabled in step 2
+Enable all hosts, disabled in step 2.
+
+.. important:: Due to new monitoring system, the firewall of the frontend (if enabled) must allow TCP and UDP packages incoming from the hosts on port 4124.
 
 After following all the steps, please review corresponding guide:
 
