@@ -1,8 +1,8 @@
 .. _understand:
 
-================================================================================
-OpenNebula Provisioning Model
-================================================================================
+================================
+OpenNebula Provisioning Overview
+================================
 
 In a small installation with a few hosts, you can use OpenNebula without giving much thought to infrastructure partitioning and provisioning. But for medium and large deployments you will probably want to provide some level of isolation and structure.
 
@@ -11,7 +11,7 @@ This Section is meant for cloud architects, builders and administrators, to help
 The Infrastructure Perspective
 ================================================================================
 
-Common large IT shops have multiple Data Centers (DCs), each one running its own OpenNebula instance and consisting of several physical Clusters of infrastructure resources (Hosts, Networks and Datastores). These Clusters could present different architectures and software/hardware execution environments to fulfill the needs of different workload profiles. Moreover, many organizations have access to external public clouds to build hybrid cloud scenarios where the private capacity of the Data Centers is supplemented with resources from external clouds, like Amazon AWS, to address peaks of demand. 
+Common large IT shops have multiple Data Centers (DCs), each one running its own OpenNebula instance and consisting of several physical Clusters of infrastructure resources (Hosts, Networks and Datastores). These Clusters could present different architectures and software/hardware execution environments to fulfill the needs of different workload profiles. Moreover, many organizations have access to external public clouds to build hybrid cloud scenarios where the private capacity of the Data Centers is supplemented with resources from external clouds, like Amazon AWS, to address peaks of demand.
 
 For example, you could have two Data Centers in different geographic locations, Europe and USA West Coast, and an agreement for cloudbursting with a public cloud provider, such as Amazon, and/or Azure. Each Data Center runs its own zone or full OpenNebula deployment. Multiple OpenNebula Zones can be configured as a federation, and in this case they will share the same user accounts, groups, and permissions across Data Centers.
 
@@ -20,8 +20,8 @@ For example, you could have two Data Centers in different geographic locations, 
 The Organizational Perspective
 ================================================================================
 
-Users are organized into Groups (similar to what other environments call Projects, Domains, Tenants...). A Group is an authorization boundary that can be seen as a business unit if you are considering it as a private cloud or as a complete new company if it is a public cloud. While Clusters are used to group Physical Resources according to common characteristics such as networking topology or physical location, Virtual Data Centers (VDCs) allow creating "logical" pools of Physical Resources (which could belong to different Clusters and Zones) and allocate them to user Groups. 
- 
+Users are organized into Groups (similar to what other environments call Projects, Domains, Tenants...). A Group is an authorization boundary that can be seen as a business unit if you are considering it as a private cloud or as a complete new company if it is a public cloud. While Clusters are used to group Physical Resources according to common characteristics such as networking topology or physical location, Virtual Data Centers (VDCs) allow creating "logical" pools of Physical Resources (which could belong to different Clusters and Zones) and allocate them to user Groups.
+
 A VDC is a fully-isolated virtual infrastructure environment where a Group of users (or optionally several Groups of users), under the control of a Group admin, can create and manage compute and storage capacity. The users in the Group, including the Group admin, would only see the virtual resources and not the underlying physical infrastructure. The Physical Resources allocated to the Group are managed by the cloud administrator through a VDC. These resources grouped in the VDC can be dedicated exclusively to the Group, providing isolation at the physical level too.
 
 The privileges of the Group users and the admin regarding the operations over the virtual resources created by other users can be configured. For example, in the Advanced Cloud Provisioning Case described below, the users can instantiate virtual machine templates to create their machines, while the admins of the Group have full control over other users' resources and can also create new users in the Group.
@@ -106,7 +106,7 @@ These "Advanced Users" typically access the cloud by using the CLI or the User V
 |                   | * Upload SSH keys to access the VMs                         |
 +-------------------+-------------------------------------------------------------+
 
-Simple Cloud Provisioning 
+Simple Cloud Provisioning
 -----------------------------------------------------------------------------
 
 In the simple infrastructure provisioning model, the Cloud offers infrastructure as a service to individual Users. Users are considered as "Cloud Users" or "Cloud Consumers", being much more limited in their operations. These Users access a very intuitive simplified web interface that allows them to launch Virtual Machines from predefined Templates. They can access their VMs, and perform basic operations like shutdown. The changes made to a VM disk can be saved back, but new Images cannot be created from scratch.
@@ -134,7 +134,7 @@ These "Cloud Users" typically access the cloud by using the Cloud View of Sunsto
 +----------------+--------------------------------------------------------------------------------------------------------------------------------+
 
 
-Advanced Cloud Provisioning 
+Advanced Cloud Provisioning
 --------------------------------------------------------------------------------
 
 The advanced provisioning model is an extension of the previous one where the cloud provider offers VDCs on demand to Groups of Users (projects, companies, departments or business units). Each Group can define one or more users as Group Admins. These admins can create new users inside the Group, and also manage the resources of the rest of the users. A Group Admin may, for example, shutdown a VM from other user to free group quota usage.

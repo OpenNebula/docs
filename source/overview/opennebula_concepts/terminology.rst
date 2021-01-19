@@ -1,8 +1,8 @@
 .. _glossary:
 
-=========
-Glossary
-=========
+===========
+Terminology
+===========
 
 OpenNebula Components
 =====================

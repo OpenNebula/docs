@@ -1,9 +1,9 @@
 .. _key_features:
 .. _features:
 
-================================================================================
-OpenNebula Key Features
-================================================================================
+============
+Key Features
+============
 
 OpenNebula offers a **simple but feature-rich and flexible solution** to build and manage data center virtualization and enterprise clouds. This guide summarizes its key features(\*). You can also refer to the :ref:`Platform Notes <uspng>` included in the documentation of each version to know about the infrastructure platforms and services supported by OpenNebula.
 
