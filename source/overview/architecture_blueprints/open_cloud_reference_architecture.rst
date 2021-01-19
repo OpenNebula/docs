@@ -2,7 +2,7 @@
 .. _plan:
 
 ================================================================================
-Open Cloud Architecture
+Open Cloud Reference Architecture
 ================================================================================
 
 Enterprise cloud computing is the next step in the evolution of data center (DC) virtualization. OpenNebula is a simple but feature-rich and flexible solution to build and manage enterprise clouds and virtualized DCs, that combines existing virtualization technologies with advanced features for multi-tenancy, automatic provision and elasticity. OpenNebula follows a bottom-up approach driven by sysadmins, devops and users real needs.
