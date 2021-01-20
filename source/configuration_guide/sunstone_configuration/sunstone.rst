@@ -186,7 +186,7 @@ You can find the Sunstone server log file in ``/var/log/one/sunstone.log``. Erro
 
 .. _remote_access_sunstone:
 
-Accesing your VMs Console and Desktop
+Accessing your VMs Console and Desktop
 ================================================================================
 Sunstone provides several different methods to access your VM console and desktop: VNC, SPICE,
 RDP, VMRC, ssh, and virt-viewer. If configured in the VM, these metods can be used to access the VM console through Sunstone.
@@ -196,8 +196,6 @@ what are each requirement.
 
 When the Fireedge server is installed, it automatically install dependencies for  Guacamole
 connections and the VMRC proxy, which are necessary for use VNC, RDP, SSH, and VMRC.
-
-.. note:: For VMRC connections Sunstone and Fireedge must be installed on the same server.
 
 +----------------+-------------------+---------------------+
 |   Connection   |   With Fireedge   |  Without Fireedge   |
@@ -267,7 +265,7 @@ same server you, don't have to change anything on configuration files.
 Also, if Fireedge is on another server, you must manually copy the file fireedge_key on
 ``/var/lib/one/.one`` since this file contains the cipher key for guacamole connections.
 
-.. note:: For self-contained installation you must copy the file  ``fireedge_key`` on ``<self-contained folder>/var/.one/``
+.. note:: For self-contained installation you must copy the file ``fireedge_key`` on ``<self-contained folder>/var/.one/``
 
 .. _requirements_guacamole_sunstone:
 
@@ -453,9 +451,8 @@ Configuring your VM for VMRC
 
 VMware Remote Console provides console access and client device connection to VMs on a remote host.
 
-This type of connections requieres to generate a ``TOKEN`` to connect with the Virtual Machine
-allocated on vCenter every time you click on the VMRC button. Also your connection is made by a proxy
-and you can change the target on the file fireedege-server.conf.
+These type of connections requests a ``TOKEN`` from vCenter to connect with the Virtual Machine
+allocated on vCenter every time you click on the VMRC button.
 
 To use this option, you will only have to enable VNC / VMRC connections to your VMs and start the
 Fireedge Server.
