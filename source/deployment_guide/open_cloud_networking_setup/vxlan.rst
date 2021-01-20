@@ -116,6 +116,15 @@ To create a VXLAN network include the following information:
 +-----------------------+--------------------------------------------------------------------------------+-----------+
 | **MTU**               | The MTU for the tagged interface and bridge                                    | NO        |
 +-----------------------+--------------------------------------------------------------------------------+-----------+
+| **VXLAN_MODE**        | Multicast protocol for multi destination BUM traffic:``evpn`` or ``multicast`` | NO        |
++-----------------------+--------------------------------------------------------------------------------+-----------+
+| **VXLAN_TEP**         | Tunnel endpoint communication type (only ``evpn``): ``dev`` or ``local_ip``    | NO        |
++-----------------------+--------------------------------------------------------------------------------+-----------+
+| **VXLAN_MC**          | Base multicast address for each VLAN. The mc address is :vxlan_mc + :vlan_id   | NO        |
++-----------------------+--------------------------------------------------------------------------------+-----------+
+
+.. note:: ``VXLAN_MODE``, ``VXLAN_TEP`` and ``VXLAN_MC`` can be defined system-wide in OpenNebulaNetwork.conf (see below). Also when using per network configuration you may need to add ``IP_LINK_CONF`` options. For example to add nolearning for EVPN add ``IP_LINK_CONF="nolearning="`` to your network template(syntax is ``IP_LINK_CONF="option1=value1,option2=,option3=value3,..."``).
+
 
 The following example defines a VXLAN network
 

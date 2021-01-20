@@ -32,6 +32,7 @@ Storage
 
 Networking
 ================================================================================
+- :ref:`VXLAN attributes<vxlan>` can be defined per network as well as system-wide in OpenNebulaNetwork.conf file.
 
 Authentication
 ================================================================================
