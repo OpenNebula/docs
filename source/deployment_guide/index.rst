@@ -11,7 +11,6 @@ Deployment Guide
 
    High Availability <ha/index>
    Data Center Federation <data_center_federation/index>
-   True Hybrid Clusters Deployment <true_hybrid_clusters_deployment/index>
    Customized Clusters Installation <node_installation/index>
    VMware Infrastructure Setup <vmware_infrastructure_setup/index>
    Open Cloud Host Setup <open_cloud_host_setup/index>

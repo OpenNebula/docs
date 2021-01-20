@@ -12,4 +12,3 @@ System Interfaces
    Java OpenNebula Cloud API <java>
    OneFlow Server API <appflow_api>
    Go OpenNebula Cloud API <go>
-   Terraform <terraform>

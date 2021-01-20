@@ -1,7 +1,7 @@
 .. _ddc:
 
 ==================================
-Automatic Provision Management
+Automatic Provisioning Management
 ==================================
 
 .. toctree::
