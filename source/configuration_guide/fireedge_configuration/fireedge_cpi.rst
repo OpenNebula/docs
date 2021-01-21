@@ -11,21 +11,14 @@ What Is?
 typical management operations in :ref:`hybrid <true_hybrid_cloud_reference_architecture>`
 cloud infrastructures.
 
-Fireedge OneProvision is build using `oneprovision` tool which allows deploy clusters
-with all resources needed to run VMs, hosts, datastores or virtual networks. You can
-review :ref:`oneprovision documentation <ddc_usage>`.
+Fireedge OneProvision is build using `oneprovision` tool which allows the deployment of OpenNebia clusters
+with all resources needed to run VMs, hosts, datastores or virtual networks. More information in the :ref:`oneprovision documentation <ddc_usage>`.
 
 Configuration
 ==============
 
-When the :ref:`Fireedge server is installed <fireedge_install>`, sets up everything
-automatically for you.
-
-Let’s check to see if it’s working. Open the endpoint from your browser.
-
-After the installation is complete, you can check the :ref:`configuration Fireedge
-file <fireedge_install_configuration>` which has the following specifics options to
-OneProvision GUI:
+When the :ref:`Fireedge server is installed <fireedge_install>`, you can check the :ref:`configuration Fireedge
+file <fireedge_install_configuration>` which has the following specifics options to OneProvision GUI:
 
 +----------------------------------------+----------------------------+-----------------------------------------------------+
 |          Option                        | Default Value              | Description                                         |
@@ -40,10 +33,11 @@ Usage
 
 The OneProvision tool allows the deployment an operational OpenNebula cluster in a remote
 provider (public cloud).
-Each new provision is described by the :ref:`provision template <default_ddc_templates>`,
-a YAML document specifying the OpenNebula resources to add.
 
-These templates are found in ``/usr/share/one/oneprovision/provisions``.
+Each new provision is described by the :ref:`provision template <default_ddc_templates>`,
+a set of YAML documents specifying the OpenNebula resources to add.
+
+These templates can be found in ``/usr/share/one/oneprovision/provisions``.
 
 Fireedge OneProvision uses these templates to define a **dynamic form** which references
 the inputs described. E.g.
