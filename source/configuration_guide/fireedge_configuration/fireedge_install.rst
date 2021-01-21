@@ -7,19 +7,72 @@ Fireedge Server Installation and Configuration
 What Is?
 ========
 
-.. todo:: Description of the server, and the two roles we have at the moment (for Sunstone and OneProvision)
+The OpenNebula Fireedge server aims to:
+
+- Sunstone can use **VMRC and Guacamole proxies** for remote access to your VMs, including
+  VNC, RDP and ssh connections.
+
+- **Start OneProvision GUI**. Its allows easily you to deploy a fully operational OpenNebula
+  cluster in a remote provider.
 
 Requirements
 ============
 
-.. todo:: Describe the requirements (check sunstone install guide _sunstone_set)
+- `Node.js 10.21 <https://nodejs.org/en/>`_ or later
+
+.. note:: If you install OpenNebula **from the binary packages**. For Guacamole to works in Sunstone,
+  `Guacamole proxy daemon (guacd) <https://guacamole.apache.org/doc/gug/installing-guacamole.html>`_
+  should be installed. Otherwise the OpenNebula binary packages install Guacamole server.
+
+.. _fireedge_install_configuration:
 
 Configuration
 ==============
 
-.. todo:: List configuration options that are general to the server, not the specific for sunstone or oneprovision
+The Fireedge configuration file can be found at ``/etc/one/fireedge-server.conf``. It uses YAML
+syntax to define some options:
+
++---------------------------+--------------------------------+---------------------------------------------------------------+
+|          Option           | Default Value                  | Description                                                   |
++===========================+================================+===============================================================+
+| :port                     | `2616`                         | Port on which the Firedge server will listen                  |
++---------------------------+--------------------------------+---------------------------------------------------------------+
+| :log                      | `prod`                         | Log debug: ``prod`` or ``dev``                                |
++---------------------------+--------------------------------+---------------------------------------------------------------+
+| :cors                     | `true`                         | Enable cors (cross-origin resource sharing)                   |
++---------------------------+--------------------------------+---------------------------------------------------------------+
+| :one_xmlrpc               | `http://localhost:2633/RPC2`   | XMLRPC endpoint                                               |
++---------------------------+--------------------------------+---------------------------------------------------------------+
+| :oneflow_server           | `http://localhost:2472`        | OneFlow endpoint                                              |
++---------------------------+--------------------------------+---------------------------------------------------------------+
+| :limit_token/min          | `14`                           | JWT minimum expiration time (days)                            |
++---------------------------+--------------------------------+---------------------------------------------------------------+
+| :limit_token/max          | `30`                           | JWT maximum expiration time (days)                            |
++---------------------------+--------------------------------+---------------------------------------------------------------+
+
+.. note::
+  Check extra configuration for :ref:`Guacamole guacd conf <fireedge_sunstone_configuration>`
+
+.. todo:: provision conf => :ref:`fireedge cpi <fireedge_cpi>`
+
+  - :oneprovision_prepend_command ''
+  - :oneprovision_optional_create_command ''
 
 Starting Fireedge
 =================
 
-.. todo:: Check sunstone install guide (_sunstone_sunstone_server_conf)
+To start Fireedge, just issue the following command as oneadmin
+
+..code-block:: bash
+
+  # service opennebula-fireedge start
+
+You can find the Fireedge server log file in ``/var/log/one/fireedge.log``. Errors are logged in
+``/var/log/one/fireedge.error``.
+
+
+.. todo:: Troubleshooting
+
+  - node version
+  - ...
+
