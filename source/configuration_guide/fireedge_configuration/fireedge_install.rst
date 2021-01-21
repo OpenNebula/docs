@@ -7,22 +7,21 @@ Fireedge Server Installation and Configuration
 What Is?
 ========
 
-The OpenNebula Fireedge server aims to:
+The OpenNebula Fireedge purpose is twofold:
 
-- Sunstone can use **VMRC and Guacamole proxies** for remote access to your VMs, including
+- Sunstone can use **VMRC and Guacamole proxies** for remote access to VMs, including
   VNC, RDP and ssh connections.
 
-- **Start OneProvision GUI**. Its allows easily you to deploy a fully operational OpenNebula
-  cluster in a remote provider.
+- **Start OneProvision GUI**, to ease the the deployment of fully operational OpenNebula
+  clusters in a remote provider.
 
 Requirements
 ============
 
 - `Node.js 10.21 <https://nodejs.org/en/>`_ or later
 
-.. note:: If you install OpenNebula **from the binary packages**. For Guacamole to works in Sunstone,
-  `Guacamole proxy daemon (guacd) <https://guacamole.apache.org/doc/gug/installing-guacamole.html>`_
-  should be installed. Otherwise the OpenNebula binary packages install Guacamole server.
+.. note:: If you install OpenNebula **from the binary packages** `Guacamole proxy daemon (guacd) <https://guacamole.apache.org/doc/gug/installing-guacamole.html>`_
+  should be installed. Otherwise the OpenNebula binary packages will install the Guacamole server.
 
 .. _fireedge_install_configuration:
 
@@ -53,8 +52,10 @@ syntax to define some options:
 .. note::
   Check extra configuration for :ref:`Guacamole guacd conf <fireedge_sunstone_configuration>`
 
-.. note::
-  Check extra configuration for :ref:`Fireedge OneProvision GUI <fireedge_cpi>`
+.. todo:: provision conf => fireedge cpi <fireedge_cpi>
+
+  - :oneprovision_prepend_command ''
+  - :oneprovision_optional_create_command ''
 
 Starting Fireedge
 =================
