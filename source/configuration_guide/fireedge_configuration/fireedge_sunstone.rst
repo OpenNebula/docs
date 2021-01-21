@@ -9,10 +9,10 @@ What Is?
 
 OpenNebula Fireedge provides some benefits to Sunstone:
 
-- **Remote access your VM** using Guacamole including VMRC, `VMware Remote Console`.
+- **Remote access your VM** using Guacamole and/or VMRC, `VMware Remote Console`.
 
-- **Constant communication** with the ZeroMQ server of OpenNebula, in other words, you will have
-  an autorefresh at the instances view.
+- **Constant communication** with OpenNebula's ZeroMQ server, to enable autorefresh in 
+Sunstone for resources states.
 
 Fireedge uses `Apache Guacamole <guacamole.apache.org>`_, a free and open source web
 application which lets you access your dashboard from anywhere using a modern web browser.
@@ -43,7 +43,7 @@ Configuration
 Configuring Sunstone for Guacamole
 -------------------------------------------------------------------------------
 
-To configure the Fireedge server on Sunstone where they are **on different servers**, you will need
+To configure the Fireedge server on Sunstone when they are **on different servers**, you will need
 to set ``fireedge_endpoint`` on :ref:`sunstone-server.conf <sunstone_sunstone_server_conf>` with
 the Fireedge server endpoint.
 
@@ -53,7 +53,7 @@ Also, if Fireedge is on another server, you must manually copy the file ``fireed
 ``/var/lib/one/.one`` since this file contains the cipher key for guacamole connections.
 
 .. note::
-  For self-contained installation you must copy the file  ``fireedge_key`` on ``<self-contained folder>/var/.one/``
+  If you are building from source and using a self-contained installation you must copy the file ``fireedge_key`` on ``<self-contained folder>/var/.one/``
 
 -------------------------------------------------------------------------------
 Configuring Fireedge for Guacamole
