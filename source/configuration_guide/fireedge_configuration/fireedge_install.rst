@@ -12,7 +12,7 @@ The OpenNebula Fireedge purpose is twofold:
 - Sunstone can use **VMRC and Guacamole proxies** for remote access to VMs, including
   VNC, RDP and ssh connections.
 
-- **Start OneProvision GUI**, to ease the the deployment of fully operational OpenNebula
+- **Start OneProvision GUI**, to ease the deployment of fully operational OpenNebula
   clusters in a remote provider.
 
 Requirements
