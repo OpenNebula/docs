@@ -44,8 +44,7 @@ Configuring Sunstone for Guacamole
 -------------------------------------------------------------------------------
 
 To configure the Fireedge server on Sunstone when they are **on different servers**, you will need
-to set ``fireedge_endpoint`` on :ref:`sunstone-server.conf <sunstone_sunstone_server_conf>` with
-the Fireedge server endpoint.
+to set public and private Fireedge server **endpoints** on :ref:`sunstone-server.conf <sunstone_sunstone_server_conf>`:
 
 If they are on the **same server**, you can **skip this step**.
 
