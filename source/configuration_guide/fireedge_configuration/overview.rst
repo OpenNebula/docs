@@ -7,7 +7,7 @@ Overview
 OpenNebula Fireedge is a web server built using Node.js. Its purposes is twofold:
 
  - extra functionality for :ref:`sunstone <sunstone>` 
- - ref:`oneprovision <ddc_usage>` web interface.
+ - :ref:`oneprovision <ddc_usage>` web interface.
 
 Fireedge uses as a Node.js :ref:`OpenNebula Cloud API <introapis>` wrapper, to
 communicate with oned's XMLRPC API.
