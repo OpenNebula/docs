@@ -52,10 +52,9 @@ syntax to define some options:
 .. note::
   Check extra configuration for :ref:`Guacamole guacd conf <fireedge_sunstone_configuration>`
 
-.. todo:: provision conf => fireedge cpi <fireedge_cpi>
-
-  - :oneprovision_prepend_command ''
-  - :oneprovision_optional_create_command ''
+.. note::
+  Check extra configuration for :ref:`Fireedge OneProvision GUI <fireedge_cpi>`
+  
 
 Starting Fireedge
 =================
