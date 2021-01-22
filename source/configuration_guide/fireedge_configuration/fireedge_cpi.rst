@@ -23,9 +23,9 @@ file <fireedge_install_configuration>` which has the following specifics options
 +----------------------------------------+----------------------------+-----------------------------------------------------+
 |          Option                        | Default Value              | Description                                         |
 +========================================+============================+=====================================================+
-| :oneprovision_prepend_command          | ``                         | Prepend for oneprovision command                    |
+| :oneprovision_prepend_command          | ""                         | Prepend for oneprovision command                    |
 +----------------------------------------+----------------------------+-----------------------------------------------------+
-| :oneprovision_optional_create_command  | ``                         | Optional param for oneprovision command create      |
+| :oneprovision_optional_create_command  | ""                         | Optional param for oneprovision command create      |
 +----------------------------------------+----------------------------+-----------------------------------------------------+
 
 Usage

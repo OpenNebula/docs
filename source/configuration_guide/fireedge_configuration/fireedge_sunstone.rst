@@ -11,8 +11,7 @@ OpenNebula Fireedge provides some benefits to Sunstone:
 
 - **Remote access your VM** using Guacamole and/or VMRC, `VMware Remote Console`.
 
-- **Constant communication** with OpenNebula's ZeroMQ server, to enable autorefresh in 
-Sunstone for resources states.
+- **Constant communication** with OpenNebula's ZeroMQ server, to enable autorefresh in Sunstone for resources states.
 
 Fireedge uses `Apache Guacamole <guacamole.apache.org>`_, a free and open source web
 application which lets you access your dashboard from anywhere using a modern web browser.
