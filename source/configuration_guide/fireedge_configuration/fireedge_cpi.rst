@@ -11,7 +11,7 @@ What Is?
 typical management operations in :ref:`hybrid <true_hybrid_cloud_reference_architecture>`
 cloud infrastructures.
 
-Fireedge OneProvision is build using `oneprovision` tool which allows the deployment of OpenNebia clusters
+Fireedge OneProvision is build using `oneprovision` tool which allows the deployment of OpenNebula clusters
 with all resources needed to run VMs, hosts, datastores or virtual networks. More information in the :ref:`oneprovision documentation <ddc_usage>`.
 
 Configuration
