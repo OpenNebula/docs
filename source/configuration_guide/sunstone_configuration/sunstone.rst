@@ -189,13 +189,14 @@ You can find the Sunstone server log file in ``/var/log/one/sunstone.log``. Erro
 Accessing your VMs Console and Desktop
 ================================================================================
 Sunstone provides several different methods to access your VM console and desktop: VNC, SPICE,
-RDP, VMRC, ssh, and virt-viewer. If configured in the VM, these metods can be used to access the VM console through Sunstone.
+RDP, VMRC, ssh, and virt-viewer. If configured in the VM, these metods can be used to access the
+VM console through Sunstone.
 For some of those connections, we will need to start our brand new Fireedge server to establish
 the remote connection. This section shows how these different technologies can be configured and
 what are each requirement.
 
-When the Fireedge server is installed, it automatically install dependencies for  Guacamole
-connections and the VMRC proxy, which are necessary for use VNC, RDP, SSH, and VMRC.
+When the :ref:`Fireedge server is installed <fireedge_install>`, it automatically install dependencies
+for  Guacamole connections and the VMRC proxy, which are necessary for use VNC, RDP, ssh, and VMRC.
 
 +----------------+-------------------+---------------------+
 |   Connection   |   With Fireedge   |  Without Fireedge   |
@@ -212,6 +213,11 @@ connections and the VMRC proxy, which are necessary for use VNC, RDP, SSH, and V
 +----------------+-------------------+---------------------+
 | VMRC           | VMRC proxy        | N/A                 |
 +----------------+-------------------+---------------------+
+
+.. note:: For **VMRC** connections Sunstone and Fireedge must be installed on the **same server**.
+
+.. important:: For Guacamole to work in Sunstone, **Fireedge server must be running**.
+    See :ref:`Fireedge setup<fireedge_setup>` for more information.
 
 .. _requirements_remote_access_sunstone:
 
@@ -252,38 +258,6 @@ it to the browser trust list by visiting ``https://sunstone.server.address:vnc_p
 The browser will warn that the certificate is not secure and prompt you to manually trust it.
 
 .. note:: Installing the ``python-numpy`` package is recommended for better VNC performance.
-
-.. _guacamole_sunstone:
-
-Requirements for connections via Fireedge
--------------------------------------------------------------------------------
-
-To configure the Fireedge server on Sunstone where they are on different servers, you will need to set
-``fireedge_endpoint`` on ``sunstone-server.conf`` with the Fireedge server endpoint. If they are on the
-same server you, don't have to change anything on configuration files.
-
-Also, if Fireedge is on another server, you must manually copy the file fireedge_key on
-``/var/lib/one/.one`` since this file contains the cipher key for guacamole connections.
-
-.. note:: For self-contained installation you must copy the file ``fireedge_key`` on ``<self-contained folder>/var/.one/``
-
-.. _requirements_guacamole_sunstone:
-
-Fireedge uses Guacamole, a free and open source web application which lets you access your
-dashboard from anywhere using a modern web browser. It is a clientless remote desktop
-gateway which only requires Guacamole installed on a server and a web browser supporting HTML5.
-The OpenNebula packages will configure Guacamole server and client automatically, therefore
-you don’t need to take any extra steps.
-
-Guacamole supports multiple connection methods such as **VNC, RDP and ssh**.
-
-Guacamole system is made up of two separate parts: Guacamole server and Guacamole client.
-
-Guacamole server consists of the native server-side libraries required to connect to the
-server and the "guacd" tool. **guacd is the Guacamole proxy daemon** which accepts the user’s
-connections and connects to the remote desktop on their behalf.
-
-.. important:: For Guacamole to work in Sunstone, **Fireedge server must be running**. See :ref:`Fireedge setup<fireedge_setup>` for more information.
 
 .. _vnc_sunstone:
 
