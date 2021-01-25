@@ -99,6 +99,7 @@ VMware Virtualization driver
 ============================
 
 - Import secondary IPs as a NIC_ALIAS in OpenNebula, see :ref:`here <vcenter_wild_vm_nic_disc_import>`.
+- Use a specific VM Templates in vCenter when import marketplace apps, see :ref:`here <marketapp_download>`.
 
 Containers
 ==========
