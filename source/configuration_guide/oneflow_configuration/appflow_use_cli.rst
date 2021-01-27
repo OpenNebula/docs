@@ -210,6 +210,22 @@ You can also use them through the CLI. When you instantiate the template using `
 
     {"custom_attrs_values":{"A":"A_VALUE", "B":"B_VALUE"}
 
+.. note::
+  Custom attributes will be applied to all roles inside ``vm_template_contents`` section.
+  When custom attributes coexist with user inputs of VM template, **custom attributes are preferred** to contextualization.
+
+  .. code::
+
+    {
+      "custom_attrs_values":{ "A": "A_VALUE" },
+      "user_inputs_values": { "A": "A_VALUE_OTHER"},
+      "role": {
+        "vm_template_contents": "A = \"A_VALUE\"\n"
+      }
+    }
+
+  If VM template had ``CONTEXT = [ A_CONTEXT = "$A" ]``, after service instantiation, the result are going to be ``CONTEXT = [ A_CONTEXT = "A_VALUE" ]``
+
 .. note:: In order to pass the service custom attributes to the VM  when using the CLI they need to be duplicated inside ``vm_template_contents`` section.
 
 .. _service_clone:
