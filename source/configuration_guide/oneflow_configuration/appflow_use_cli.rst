@@ -326,6 +326,8 @@ The Service will eventually change to ``DEPLOYING``. You can see information for
 
 .. warning:: Once the service has been instantiated, all the operations with the virtual machines **must** be performed using OneFlow commands or API.
 
+.. _appflow_use_cli_life_cycle:
+
 Life-cycle
 ----------
 
