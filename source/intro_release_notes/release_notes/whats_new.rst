@@ -126,5 +126,6 @@ Other Issues Solved
 - Allow live migration over SSH for KVM `<http://github.com/OpenNebula/one/issues/1644>`__.
 - Make automatic LDAP group admin mapping configurable `<http://github.com/OpenNebula/one/issues/5210>`__.
 - Fix virtual machine tabs not working on Sunstone`<http://github.com/OpenNebula/one/issues/5223>`__.
+- Fix minimum VMs to scale action on Sunstone`<http://github.com/OpenNebula/one/issues/1019>`__.
 - Fix OneGate context attributes when update VM template on Sunstone`<http://github.com/OpenNebula/one/issues/5237>`__.
 - Fix service scale action in the Cloud View on Sunstone`<http://github.com/OpenNebula/one/issues/5231>`__.
