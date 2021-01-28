@@ -46,6 +46,8 @@ Sunstone
 - Added remove template and images when delete a service. Check :ref:`this <appflow_use_cli_delete_service_template>`.
 - Add option to automatic deletion to services when all associated VMs terminated. Check more information :ref:`here <appflow_use_cli_automatic_delete>`.
 - Added VM name to :ref:`VNC Guacamole connections <requirements_guacamole_vnc_sunstone>`.
+- Add EXTERNAL NIC attribute to VM IPs on Sunstone. Check more information :ref:`here <template_network_section>`.
+- Add error message for asynchronous actions on Sunstone. Check more information :ref:`here <vm_life_cycle_and_states>`.
 
 Scheduler
 ================================================================================
@@ -99,6 +101,8 @@ VMware Virtualization driver
 ============================
 
 - Import secondary IPs as a NIC_ALIAS in OpenNebula, see :ref:`here <vcenter_wild_vm_nic_disc_import>`.
+- Use a specific VM Templates in vCenter when import marketplace apps, see :ref:`here <marketapp_download>`.
+- Assign VCENTER_VM_FOLDER automatically per user or group see :ref:`here <vm_template_definition_vcenter>`.
 
 Containers
 ==========
@@ -121,3 +125,4 @@ Other Issues Solved
 - Make automatic LDAP group admin mapping configurable `<http://github.com/OpenNebula/one/issues/5210>`__.
 - Fix virtual machine tabs not working on Sunstone`<http://github.com/OpenNebula/one/issues/5223>`__.
 - Fix OneGate context attributes when update VM template on Sunstone`<http://github.com/OpenNebula/one/issues/5237>`__.
+- Fix service scale action in the Cloud View on Sunstone`<http://github.com/OpenNebula/one/issues/5231>`__.
