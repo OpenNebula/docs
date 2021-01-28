@@ -6,9 +6,9 @@ Cloud Architecture Design
 
 In order to get the most out of an OpenNebula Cloud, we recommend that you create a plan with the features, performance, scalability, and high availability characteristics you want in your deployment. 
 
-To get familiar with OpenNebula, and if you are only interested in True Hybrid and Edge ployment, we strongly recommend you start with the Quick Start guide ..todo:: Add Link where you will  
+To get familiar with OpenNebula, and if you are only interested in True Hybrid and Edge ployment, we strongly recommend you start with the Quick Start guide  where you will  
 
-
+.. todo: Add Link
 
 We have prepared **Cloud Architecture Design guides** for :ref:`KVM and LXD <open_cloud_architecture>` and :ref:`vCenter <vmware_cloud_architecture>` to help you plan an OpenNebula installation, so you can easily architect your deployment and understand the technologies involved in the management of virtualized resources and their relationship. These guides have been created from the collective information and experiences from hundreds of users and cloud client engagements. Besides the main logical components and interrelationships, these guides document software products, configurations, and requirements of infrastructure platforms recommended for a smooth OpenNebula installation.
 
