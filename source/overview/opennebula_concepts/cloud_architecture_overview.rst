@@ -6,7 +6,7 @@ Cloud Architecture Design
 
 In order to get the most out of an OpenNebula Cloud, we recommend that you create a plan with the features, performance, scalability, and high availability characteristics you want in your deployment. 
 
-To get familiar with OpenNebula, and if you are only interested in True Hybrid and Edge ployment, we strongly recommend you start with the Quick Start guide .. todo:: Add Link where you will  
+To get familiar with OpenNebula, and if you are only interested in True Hybrid and Edge ployment, we strongly recommend you start with the Quick Start guide ..todo:: Add Link where you will  
 
 
 
