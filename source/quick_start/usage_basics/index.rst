@@ -9,6 +9,6 @@ Usage Basics
 
    Overview <overview>
    User Interfaces <user_interfaces>
-   Running Applcations <running_applications>
+   Running Applications <running_applications>
    Elastic Application Workflows <elastic_application_workflows>
    Kubernetes Clusters <kubernetes_clusters>
