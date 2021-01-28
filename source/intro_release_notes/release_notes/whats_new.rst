@@ -40,13 +40,16 @@ Authentication
 
 Sunstone
 ================================================================================
-- VM info autorefresh with ZeroMQ. Check :ref:`this <autorefresh>` for more information.
+- VM info autorefresh with ZeroMQ. Check for more information :ref:`here <autorefresh>`.
 - Add option to disable network configuration for service template instantiation. Check more information :ref:`here <suns_views_custom>`.
 - Service registration time has been added to :ref:`service templates <appflow_elasticity>`. Available in Sunstone, enabled by default in :ref:`services instances views <suns_views>`.
-- Added remove template and images when delete a service. Check :ref:`this <appflow_use_cli_delete_service_template>`.
+- Added remove template and images when delete a service. Check form more information :ref:`here <appflow_use_cli_delete_service_template>`.
 - Add option to automatic deletion to services when all associated VMs terminated. Check more information :ref:`here <appflow_use_cli_automatic_delete>`.
 - Added VM name to :ref:`VNC Guacamole connections <requirements_guacamole_vnc_sunstone>`.
 - Allow to attach external NIC alias. Check more information :ref:`here <template_network_section>`.
+- Added states to role actions buttons. Check for more information :ref:`here <appflow_use_cli_life_cycle>`.
+- Add EXTERNAL NIC attribute to VM IPs on Sunstone. Check more information :ref:`here <template_network_section>`.
+- Add error message for asynchronous actions on Sunstone. Check more information :ref:`here <vm_life_cycle_and_states>`.
 
 Scheduler
 ================================================================================
@@ -123,3 +126,5 @@ Other Issues Solved
 - Allow live migration over SSH for KVM `<http://github.com/OpenNebula/one/issues/1644>`__.
 - Make automatic LDAP group admin mapping configurable `<http://github.com/OpenNebula/one/issues/5210>`__.
 - Fix virtual machine tabs not working on Sunstone`<http://github.com/OpenNebula/one/issues/5223>`__.
+- Fix OneGate context attributes when update VM template on Sunstone`<http://github.com/OpenNebula/one/issues/5237>`__.
+- Fix service scale action in the Cloud View on Sunstone`<http://github.com/OpenNebula/one/issues/5231>`__.
