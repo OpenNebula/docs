@@ -32,6 +32,10 @@ Any user can provide his own ssh public key to be included in the VMs created th
 
 |cloud_add_ssh_key|
 
+.. note::
+  Can include **more that one** public key adding a ``\n`` among them.
+  The only problem is that you won't be able to select an specific ssh key for each VM.
+
 Manage VMs
 --------------------------------------------------------------------------------
 
