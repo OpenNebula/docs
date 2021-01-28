@@ -24,6 +24,7 @@ OpenNebula Core
 - `INHERIT_VNET_ATTR, INHERIT_DATASTORE_ATTR and INHERIT_IMAGE_ATTR allows inherit of complex type <https://github.com/OpenNebula/one/issues/4090>`__.
 - `Allow 'onevm disk-saveas' in undeployed and stopped state <https://github.com/OpenNebula/one/issues/1112>`__.
 - `Terminate oned in HA in case of lost DB connection <https://github.com/OpenNebula/one/issues/5186>`__.
+- `Unique VM identification, allow to force uuid to VM <https://github.com/OpenNebula/one/issues/1048>`__.
 
 Storage
 ================================================================================
