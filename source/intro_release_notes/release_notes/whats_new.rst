@@ -46,6 +46,7 @@ Sunstone
 - Added remove template and images when delete a service. Check :ref:`this <appflow_use_cli_delete_service_template>`.
 - Add option to automatic deletion to services when all associated VMs terminated. Check more information :ref:`here <appflow_use_cli_automatic_delete>`.
 - Added VM name to :ref:`VNC Guacamole connections <requirements_guacamole_vnc_sunstone>`.
+- Add EXTERNAL NIC attribute to VM IPs on Sunstone. Check more information :ref:`here <template_network_section>`.
 - Add error message for asynchronous actions on Sunstone. Check more information :ref:`here <vm_life_cycle_and_states>`.
 
 Scheduler
