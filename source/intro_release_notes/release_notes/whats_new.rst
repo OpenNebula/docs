@@ -50,6 +50,7 @@ Sunstone
 - Added states to role actions buttons. Check for more information :ref:`here <appflow_use_cli_life_cycle>`.
 - Add EXTERNAL NIC attribute to VM IPs on Sunstone. Check more information :ref:`here <template_network_section>`.
 - Add error message for asynchronous actions on Sunstone. Check more information :ref:`here <vm_life_cycle_and_states>`.
+- Added option to enable/disable users on Sunstone. Check more information :ref:`here <manage_users>`.
 
 Scheduler
 ================================================================================
