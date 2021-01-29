@@ -89,7 +89,7 @@ For example, with the command below we will create a new image called ``nginx-dh
 Creating an image based on a Dockerfile
 ================================================================================
 
-This feature allows you to create custom images based on your own dockerfiles. The URL has the following format:
+OpenNebula allows you to create custom images based on your own dockerfiles. The URL has the following format:
 
 .. code::
 
@@ -111,7 +111,9 @@ The different arguments of the URL are explained below:
 
 .. note:: The arguments in the previous section, are also supported.
 
-In order to create and image using your own Dockerfile, you can use the command ``oneimage create``:
+.. important:: Multistage Dockerfiles are not supported, only one FROM directive can be included.
+
+In order to create an image using your own Dockerfile, you can use the command ``oneimage create``:
 
 .. code::
 
