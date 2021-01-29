@@ -1,7 +1,7 @@
 .. _understand:
 
 ================================
-OpenNebula Provisioning Overview
+Cloud Access Model and Roles
 ================================
 
 In a small installation with a few hosts, you can use OpenNebula without giving much thought to infrastructure partitioning and provisioning. But for medium and large deployments you will probably want to provide some level of isolation and structure.
@@ -11,9 +11,11 @@ This Section is meant for cloud architects, builders and administrators, to help
 The Infrastructure Perspective
 ================================================================================
 
-Common large IT shops have multiple Data Centers (DCs), each one running its own OpenNebula instance and consisting of several physical Clusters of infrastructure resources (Hosts, Networks and Datastores). These Clusters could present different architectures and software/hardware execution environments to fulfill the needs of different workload profiles. Moreover, many organizations have access to external public clouds to build hybrid cloud scenarios where the private capacity of the Data Centers is supplemented with resources from external clouds, like Amazon AWS, to address peaks of demand.
+Common large IT shops have multiple Data Centers (DCs), each one running its own OpenNebula instance and consisting of several physical Clusters of infrastructure resources (Hosts, Networks and Datastores). These Clusters could present different architectures and software/hardware execution environments to fulfill the needs of different workload profiles. Moreover, many organizations have access to external public clouds to build true hybrid cloud scenarios where the private capacity of the Data Centers is supplemented with resources from external clouds, like Amazon AWS, to address peaks of demand.
 
-For example, you could have two Data Centers in different geographic locations, Europe and USA West Coast, and an agreement for cloudbursting with a public cloud provider, such as Amazon, and/or Azure. Each Data Center runs its own zone or full OpenNebula deployment. Multiple OpenNebula Zones can be configured as a federation, and in this case they will share the same user accounts, groups, and permissions across Data Centers.
+For example, you could have two Data Centers in different geographic locations, Europe and USA West Coast, and an agreement with a public cloud provider, such as Amazon, and/or Equinix. Each Data Center runs its own zone or full OpenNebula deployment. Multiple OpenNebula Zones can be configured as a federation, and in this case they will share the same user accounts, groups, and permissions across Data Centers. Alternatively, you could have a single OpenNebula zone for both Data Centers and configure each Data Center as a cluster.
+
+.. todo:: Explain latency and bandwith requirements for across DCs zones
 
 |VDC Resources|
 
@@ -57,61 +59,37 @@ For example, you can think Web Development, Human Resources, and Big Data Analys
 
 |VDC Organization|
 
-Cloud Provisioning Scenarios
+Cloud Access Roles
 ================================================================================
 
-OpenNebula has three predefined User roles to implement three typical enterprise cloud scenarios:
+.. todo:: This section needs deep review
 
-* Data center infrastructure management
-* Simple cloud provisioning model
-* Advanced cloud provisioning model
 
-In these three scenarios, Cloud Administrators manage the physical infrastructure, create Users and VDCs, prepare base templates and images for Users, etc.
-
-Cloud Administrators typically access the cloud using the CLI or the Admin View of Sunstone.
-
-+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-|       Role       |                                                                       Capabilities                                                                       |
-+==================+==========================================================================================================================================================+
-| **Cloud Admin.** | * Operates the Cloud infrastructure (i.e. computing nodes, networking fabric, storage servers)                                                           |
-|                  | * Creates and manages OpenNebula infrastructure resources: Hosts, Virtual Networks, Datastores                                                           |
-|                  | * Creates and manages Multi-VM Applications (Services)                                                                                                   |
-|                  | * Creates new Groups and VDCs                                                                                                                            |
-|                  | * Assigns Groups and physical resources to a VDC and sets quota limits                                                                                   |
-|                  | * Defines base instance types to be used by the users. These types define the capacity of the VMs (memory, CPU and additional storage) and connectivity. |
-|                  | * Prepare VM images to be used by the users                                                                                                              |
-|                  | * Monitor the status and health of the cloud                                                                                                             |
-|                  | * Generate activity reports                                                                                                                              |
-+------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-Data Center Infrastructure Management
+Cloud Users
 -----------------------------------------------------------------------------
 
-This model is used to manage data center virtualization and to integrate and federate existing IT assets that can be in different data centers. In this usage model, Users are familiar with virtualization concepts. Except for the infrastructure resources, the web interface offers the same operations available to the Cloud Admin. These are "Advanced Users" that could be considered also as "Limited Cloud Administrators".
-
-Users can use the templates and images pre-defined by the cloud administrator, but usually are also allowed to create their own templates and images. They are also able to manage the life-cycle of their resources, including advanced features that may harm the VM guests, like hot-plugging of new disks, resize of Virtual Machines, modify boot parameters, etc.
-
-Groups are used by the Cloud Administrator to isolate users, which are combined with VDCs to have allocated resources, but are not offered on-demand.
-
-These "Advanced Users" typically access the cloud by using the CLI or the User View of Sunstone. This is not the default model configured for the group Users.
+Cloud Users use the CLI or the **User View** of Sunstone to perform the following actions:
 
 +-------------------+-------------------------------------------------------------+
 |        Role       |                         Capabilities                        |
 +===================+=============================================================+
-| **Advanced User** | * Instantiates VMs using their own templates                |
-|                   | * Creates new templates and images                          |
-|                   | * Manages their VMs, including advanced life-cycle features |
-|                   | * Creates and manages Multi-VM Application (Services)       |
-|                   | * Check their usage and quotas                              |
-|                   | * Upload SSH keys to access the VMs                         |
+| **Cloud User**    | * ...                                                       |
 +-------------------+-------------------------------------------------------------+
 
-Simple Cloud Provisioning
------------------------------------------------------------------------------
+An OpenNebula cloud can offer VDCs on demand to Groups of Users (projects, companies, departments or business units). In these cases, each Group can define one or more users as Group Admins. These admins can create new users inside the Group, and also manage the resources of the rest of the users. A Group Admin may, for example, shutdown a VM from other user to free group quota usage.
 
-In the simple infrastructure provisioning model, the Cloud offers infrastructure as a service to individual Users. Users are considered as "Cloud Users" or "Cloud Consumers", being much more limited in their operations. These Users access a very intuitive simplified web interface that allows them to launch Virtual Machines from predefined Templates. They can access their VMs, and perform basic operations like shutdown. The changes made to a VM disk can be saved back, but new Images cannot be created from scratch.
+These Group Admins typically access the cloud by using the CLI or **Group Admin View** of Sunstone.
 
-Groups are used by the Cloud Administrator to isolate users, which are combined with VDCs to have allocated resources, but are not offered on-demand.
++------------------+------------------------------------------------------------+
+|       Role       |                        Capabilities                        |
++==================+============================================================+
+| **Group Admin.** | * Creates new users in the Group                           |
+|                  | * Operates on the Group's virtual machines and disk images |
+|                  | * Share Saved Templates with the members of the Group      |
+|                  | * Checks Group usage and quotas                            |
++------------------+------------------------------------------------------------+
+
+OpenNebula also offers a **Cloud View** interface for users with much more limited operations. This is a very intuitive simplified web interface that allows users to launch Virtual Machines from predefined Templates. They can access their VMs, and perform basic operations like shutdown. The changes made to a VM disk can be saved back, but new Images cannot be created from scratch.
 
 These "Cloud Users" typically access the cloud by using the Cloud View of Sunstone. This is the default model configured for the group Users.
 
@@ -134,23 +112,41 @@ These "Cloud Users" typically access the cloud by using the Cloud View of Sunsto
 +----------------+--------------------------------------------------------------------------------------------------------------------------------+
 
 
-Advanced Cloud Provisioning
---------------------------------------------------------------------------------
+Cloud Service Administrators (Operators)
+-----------------------------------------------------------------------------
 
-The advanced provisioning model is an extension of the previous one where the cloud provider offers VDCs on demand to Groups of Users (projects, companies, departments or business units). Each Group can define one or more users as Group Admins. These admins can create new users inside the Group, and also manage the resources of the rest of the users. A Group Admin may, for example, shutdown a VM from other user to free group quota usage.
+Cloud Administrators typically access the cloud using the CLI or the **Admin View** of Sunstone.
 
-These Group Admins typically access the cloud by using the Group Admin View of Sunstone.
++------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+|       Role       |                                                                       Capabilities                                                                       |
++==================+==========================================================================================================================================================+
+| **Cloud Oper.**  | * ...                                                                                                                                                    |
++------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-The Group Users have the capabilities described in the previous scenario and typically access the cloud by using the Cloud View of Sunstone.
+Cloud Operators also provide support to Cloud Users in any aspect related to the Cloud Service.
 
-+------------------+------------------------------------------------------------+
-|       Role       |                        Capabilities                        |
-+==================+============================================================+
-| **Group Admin.** | * Creates new users in the Group                           |
-|                  | * Operates on the Group's virtual machines and disk images |
-|                  | * Share Saved Templates with the members of the Group      |
-|                  | * Checks Group usage and quotas                            |
-+------------------+------------------------------------------------------------+
+Cloud Infrastructure Administrators
+-----------------------------------------------------------------------------
+
+Cloud Infrastructure Administrators typically perform the following actions.
+
++------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+|       Role       |                                                                       Capabilities                                                                       |
++==================+==========================================================================================================================================================+
+| **Cloud Admin.** | * ...                                                         |
++------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+ 
+
+
+Cloud Admins also provide support to Cloud Operators and perform any corrective and periodic preventive maintenance tasks related to the infrastructure:
+*  Capacity planning to match demand to available resources
+*  Tuning and maintenance of OpenNebula and other software components
+*  Updates and security patches of OpenNebula and other software components
+
+Cloud Managed Services
+================================================================================
+
+.. todo:: Here explain OpenNebula cloud managed services
+
 
 .. _understand_compatibility:
 

@@ -51,6 +51,7 @@ Sunstone
 - Add EXTERNAL NIC attribute to VM IPs on Sunstone. Check more information :ref:`here <template_network_section>`.
 - Add error message for asynchronous actions on Sunstone. Check more information :ref:`here <vm_life_cycle_and_states>`.
 - Update Sunstone Host and VMs datatable columns. Check more information :ref:`here <suns_views>`.
+- Added option to enable/disable users on Sunstone. Check more information :ref:`here <manage_users>`.
 
 Scheduler
 ================================================================================
