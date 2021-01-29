@@ -1,7 +1,7 @@
 .. _vmware_cloud_architecture:
 
 ================================================================================
-VMware Cloud Architecture
+VMware Reference Architecture
 ================================================================================
 
 OpenNebula is intended for companies willing to create a self-service cloud environment on top of their VMware infrastructure without having to abandon their investment in VMware and retool the entire stack. In these environments, OpenNebula seamlessly integrates with existing vCenter infrastructures to leverage advanced features — such as vMotion, HA, DRS scheduling or NSX-T / NSX-V — provided by the VMware vSphere product family. OpenNebula exposes a multi-tenant, cloud-like provisioning layer on top of vCenter, including features like virtual data centers, data center federation or hybrid cloud computing to connect in-house vCenter infrastructures with public clouds.

@@ -12,4 +12,3 @@ OpenNebula Installation
    Database Setup <database_setup>
    Single Front-end Installation <single_frontend_installation>
    Public Marketplaces <public_marketplaces>
-   Containerized Deployment <containers>

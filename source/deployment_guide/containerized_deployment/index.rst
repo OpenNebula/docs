@@ -1,11 +1,11 @@
+.. _containerzed_deployment_index:
+
 ================================================================================
-Automation Tools Integration
+Containerized Deployment
 ================================================================================
 
 .. toctree::
    :maxdepth: 2
 
    Overview <overview>
-   Terraform <terraform>
-   Ansible <ansible>
-   Rancher <rancher>
+   Containerized Deployment <containerized_deployment>

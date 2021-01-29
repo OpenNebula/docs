@@ -10,4 +10,4 @@ Solutions and Best Practices
    Mastering Application Containers <mastering_application_containers>
    Edge Cloud Computing <edge_cloud_computing>
    Knowledge Base <knowledge_base>
-   Use Case Screencasts <use_case_screencasts>
+   Use Cases <use_cases>

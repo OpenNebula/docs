@@ -11,3 +11,5 @@ Users and Groups
    VDCs <manage_vdcs>
    Permissions and ACLs <chmod>
    Quotas <quota_auth>
+   Accounting <accounting>
+   Showback <showback>
