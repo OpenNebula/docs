@@ -80,9 +80,52 @@ For example, with the command below we will create a new image called ``nginx-dh
       ID: 0
     $ oneimage list
       ID USER     GROUP    NAME      DATASTORE SIZE TYPE PER STAT RVMS
-      0 oneadmin oneadmin nginx-dh  default     3G OS    No rdy     0
+       0 oneadmin oneadmin nginx-dh  default     3G OS    No rdy     0
 
 .. note:: This format can also be used at Sunstone image creation dialog.
+
+.. _dockerfile:
+
+Creating an image based on a Dockerfile
+================================================================================
+
+OpenNebula allows you to create custom images based on your own dockerfiles. The URL has the following format:
+
+.. code::
+
+    dockerfile://<path_to_file>?fileb64=<file_in_base64>&context<yes|no>
+
+The different arguments of the URL are explained below:
+
++-----------------------+------------------------------------------------------------+
+| Argument              | Description                                                |
++=======================+============================================================+
+| ``<path_to_file>``    | Path in OpenNebula server where the Dockerfile is located. |
++-----------------------+------------------------------------------------------------+
+| ``<file_in_base64>``  | Dockerfile in Base64 form. If this is specified, the path  |
+|                       | is ignored.                                                |
++-----------------------+------------------------------------------------------------+
+| ``<context>``         | If it set to yes, OpenNebula context packages are added.   |
+|                       | If it is not set or set to no, they are omitted.           |
++-----------------------+------------------------------------------------------------+
+
+.. note:: The arguments in the previous section, are also supported.
+
+.. important:: Multistage Dockerfiles are not supported, only one FROM directive can be included.
+
+In order to create an image using your own Dockerfile, you can use the command ``oneimage create``:
+
+.. code::
+
+    $ oneimage create --name testing-df --path 'dockerfile:///tmp/my_dockerfile?size=256' --datastore 1 --prefix vd
+      ID: 0
+    $ oneimage list
+      ID USER     GROUP    NAME       DATASTORE SIZE TYPE PER STAT RVMS
+      0  oneadmin oneadmin testing-df default   256M OS    No rdy     0
+
+There is also a dedicated command ``oneimage dockerfile`` that will open an editor so you can edit your Dockerfile there.
+
+.. note:: In order to avoid context generation, you can use the flag ``--no-context`` in both commands.
 
 Tuning & Extending
 ==================
