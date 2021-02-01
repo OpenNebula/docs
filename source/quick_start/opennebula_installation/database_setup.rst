@@ -40,7 +40,7 @@ Assuming you are going to use the default values, log in to your MySQL server an
     mysql> GRANT ALL PRIVILEGES ON opennebula.* TO 'oneadmin';
     Query OK, 0 rows affected (0.00 sec)
 
-Visit the `MySQL documentation <http://dev.mysql.com/doc/refman/5.7/en/user-account-management.html>`__ to learn how to manage accounts.
+Visit the `MySQL documentation <https://dev.mysql.com/doc/refman/8.0/en/access-control.html>`__ to learn how to manage accounts.
 
 Now configure the transaction isolation level:
 
