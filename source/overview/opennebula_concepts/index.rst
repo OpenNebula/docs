@@ -9,6 +9,6 @@ OpenNebula Concepts
 
    OpenNebula Components <opennebula_components>
    Cloud Architecture Overview <cloud_architecture_overview>
-   Cloud System Roles <cloud_system_roles>
+   Cloud Access Models and Roles <cloud_access_models_and_roles>
    Key Features <key_features>
    Terminology <terminology>
