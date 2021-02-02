@@ -1,5 +1,5 @@
 ==============
-Sunstone Setup
+Web Interfaces Configuration
 ==============
 
 .. toctree::
