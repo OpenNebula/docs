@@ -1,5 +1,5 @@
 .. _opennebula_components:
 
 =====================
-OpenNebula Components
+OpenNebula Overview
 =====================
