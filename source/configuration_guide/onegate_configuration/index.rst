@@ -1,5 +1,5 @@
 ===================
-Application Insight
+OneGate Configuration
 ===================
 
 .. toctree::
