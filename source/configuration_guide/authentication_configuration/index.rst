@@ -1,7 +1,7 @@
 .. _authentication:
 
 ====================
-Authentication Setup
+Authentication Configuration
 ====================
 
 .. toctree::
