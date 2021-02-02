@@ -103,7 +103,7 @@ When a VM is terminated, OpenNebula changes its state to DONE but it keeps the V
 .. _postgresql:
 .. _postgresql_setup:
 
-PostgreSQL Setup
+PostgreSQL Setup (TP)
 ================
 
 .. important:: This feature is a **Technology Preview**. It's not recommended for production environments!
