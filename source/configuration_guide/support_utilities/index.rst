@@ -1,7 +1,7 @@
 .. _mod_support:
 
 ==============================
-Support Utilities (Enterprise)
+Support Utilities (EE)
 ==============================
 
 .. toctree::
