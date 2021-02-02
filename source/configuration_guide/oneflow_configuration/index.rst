@@ -1,5 +1,5 @@
 ======================================
-Multi-VM Applications and Auto-scaling
+OneFlow Configuration
 ======================================
 
 .. toctree::
