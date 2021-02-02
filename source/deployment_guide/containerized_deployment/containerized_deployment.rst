@@ -2,7 +2,7 @@
 .. _containerized_deployment:
 
 ================================================================================
-Containerized Deployment
+Containerized Deployment (TP)
 ================================================================================
 
 .. important:: This feature is a **Technology Preview**. It's not recommended for production environments!
