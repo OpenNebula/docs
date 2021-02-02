@@ -1,7 +1,7 @@
 .. _cfg_index:
 
 =====================================
-Configuration Management (Enterprise)
+Configuration Management (EE)
 =====================================
 
 .. toctree::
