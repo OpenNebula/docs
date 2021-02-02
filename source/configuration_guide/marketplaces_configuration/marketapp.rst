@@ -178,6 +178,8 @@ Using Sunstone:
 
 .. _marketapp_download:
 
+.. _marketapp_import:
+
 Importing into Marketplace
 --------------------------------------------------------------------------------
 Marketplaceis support three different types of apps. You can create an app of any type with the **import** operation. This operation is available in Sunstone and CLI.
