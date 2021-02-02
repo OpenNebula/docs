@@ -121,6 +121,11 @@ DockerHub
 - Export of Docker Hub images into OpenNebula preferably uses FUSE based ext2/3/4 mounts on front-end, instead of kernel native mounts.
 - Add support to create images from Dockerfile specification. Check :ref:`this <dockerfile>` for more information.
 
+MarketPlace
+===========
+
+- Add support for service templates, check :ref:`this <marketapp_import>` for more information.
+
 Hooks
 =====
 - Change the way arguments are passed to ``host_error.rb`` from command line to standard input to avoid potential argument overflow `issue <https://github.com/OpenNebula/one/issues/5101>`__. When upgrading from previous OpenNebula versions, if :ref:`Host Failures <ftguide>` configured, it is needed to update the hook (``onehook update``) with ``ARGUMENTS_STDIN = "yes"``.
