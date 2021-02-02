@@ -1,7 +1,7 @@
 .. _marketplace:
 
 ===========
-MarketPlace
+MarketPlaces Configuration
 ===========
 
 .. toctree::
