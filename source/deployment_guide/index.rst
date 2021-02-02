@@ -11,7 +11,7 @@ Deployment Guide (TP)
 
    High Availability <ha/index>
    Data Center Federation <data_center_federation/index>
-   Containerized Deployment <containerized_deployment/index>
+   Containerized Deployment (TP) <containerized_deployment/index>
    Customized Clusters Installation <customized_clusters_installation/index>
    VMware Infrastructure Setup <vmware_infrastructure_setup/index>
    Open Cloud Host Setup <open_cloud_host_setup/index>
