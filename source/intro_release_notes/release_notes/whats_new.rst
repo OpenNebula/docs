@@ -109,6 +109,7 @@ VMware Virtualization driver
 - Import secondary IPs as a NIC_ALIAS in OpenNebula, see :ref:`here <vcenter_wild_vm_nic_disc_import>`.
 - Use a specific VM Templates in vCenter when import marketplace apps, see :ref:`here <marketapp_download>`.
 - Assign VCENTER_VM_FOLDER automatically per user or group see :ref:`here <vm_template_definition_vcenter>`.
+- Fix import networks in vCenter with special characters :ref:`Importing vCenter Networks<vcenter_import_networks>`.
 
 Containers
 ==========
