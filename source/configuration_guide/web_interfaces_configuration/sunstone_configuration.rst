@@ -1,7 +1,7 @@
 .. _sunstone_setup:
 
 =================================================
-Sunstone Installation & Configuration
+Sunstone Configuration
 =================================================
 
 Requirements
@@ -184,6 +184,54 @@ To start Sunstone, just issue the following command as oneadmin
 You can find the Sunstone server log file in ``/var/log/one/sunstone.log``. Errors are logged in
 ``/var/log/one/sunstone.error``.
 
+.. _fireedge_sunstone:
+
+Fireedge and Sunstone
+================================================================================
+
+:ref:`Fireedge <fireedge_configuration>` provides the following extra functionality to Sunstone:
+
+- :ref:`**Remote access your VM** <remote_access_sunstone>` using Guacamole and/or VMRC (`VMware Remote Console`).
+
+- :ref:`**Resource state autorefresh** <autorefresh>`, with constant communication with OpenNebula's ZeroMQ server
+
+Fireedge uses `Apache Guacamole <guacamole.apache.org>`_, a free and open source web
+application which lets you access your dashboard from anywhere using a modern web browser.
+It is a **clientless remote desktop gateway** which only requires Guacamole installed on a
+server and a web browser supporting HTML5.
+
+Guacamole supports multiple connection methods such as **VNC, RDP and ssh**.
+
+Guacamole system is made up of two separate parts: **server and client**.
+
+Guacamole server consists of the native server-side libraries required to connect to the
+server and the **guacd** tool. Its **the Guacamole proxy daemon** which accepts the user’s
+connections and connects to the remote desktop on their behalf.
+
+.. note::
+  The OpenNebula **binary packages** will configure Guacamole  server and client
+  automatically, therefore you don’t need to take any extra steps.
+
+Fireedge server acts like a **VMRC proxy** between Sunstone and ESX nodes through web socket.
+You can read :ref:`more information <vmrc_sunstone>` about it configuration.
+
+.. _fireedge_sunstone_configuration:
+
+Configuring Sunstone for Guacamole
+-------------------------------------------------------------------------------
+
+To configure the Fireedge server on Sunstone when they are **on different servers**, you will need
+to set public and private Fireedge server **endpoints** on :ref:`sunstone-server.conf <fireedge_install_configuration>`:
+
+If they are on the **same server**, you can **skip this step**.
+
+Also, if Fireedge is on another server, you must manually copy the file ``fireedge_key`` on
+``/var/lib/one/.one`` since this file contains the cipher key for guacamole connections.
+
+.. note::
+  If you are building from source and using a self-contained installation you must copy the file ``fireedge_key`` on ``<self-contained folder>/var/.one/``
+
+
 .. _remote_access_sunstone:
 
 Accessing your VMs Console and Desktop
@@ -195,7 +243,7 @@ For some of those connections, we will need to start our brand new Fireedge serv
 the remote connection. This section shows how these different technologies can be configured and
 what are each requirement.
 
-When the :ref:`Fireedge server is installed <fireedge_install>`, it automatically install dependencies
+:ref:`Fireedge <fireedge_configuration>` automatically install dependencies
 for  Guacamole connections and the VMRC proxy, which are necessary for use VNC, RDP, ssh, and VMRC.
 
 +----------------+-------------------+---------------------+

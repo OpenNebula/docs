@@ -1,8 +1,8 @@
 .. _onegate_configure:
 
-=============================
-OneGate Server Configuration
-=============================
+=====================
+OneGate Configuration
+=====================
 
 The OneGate service allows Virtual Machine guests to pull and push VM information from OpenNebula. Although it is installed by default, its use is completely optional.
 
@@ -12,8 +12,6 @@ Requirements
 Check the :ref:`Installation guide <ignc>` for details of what package you have to install depending on your distribution
 
 OneGate can be used with VMs running on :ref:`KVM, LXC, Firecracker and vCenter <context_overview>`.
-
-Currently, OneGate is not supported for VMs instantiated in Azure, since the authentication token is not available inside these VMs. OneGate support for these drivers will be include in upcoming releases.
 
 Configuration
 =============

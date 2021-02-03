@@ -17,7 +17,7 @@ with all resources needed to run VMs, hosts, datastores or virtual networks. Mor
 Configuration
 ==============
 
-When the :ref:`Fireedge server is installed <fireedge_install>`, you can check the :ref:`configuration Fireedge
+When the :ref:`Fireedge server is installed <fireedge_configuration>`, you can check the :ref:`configuration Fireedge
 file <fireedge_install_configuration>` which has the following specifics options to OneProvision GUI:
 
 +----------------------------------------+----------------------------+-----------------------------------------------------+

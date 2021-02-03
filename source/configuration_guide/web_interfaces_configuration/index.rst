@@ -6,11 +6,10 @@ Web Interfaces Configuration
    :maxdepth: 2
 
    Overview <overview>
-   Sunstone Installation & Configuration <sunstone>
+   Sunstone Configuration <sunstone_configuration>
    Sunstone Views <suns_views>
-   User Security and Authentication <suns_auth>
+   Sunstone Authentication <suns_auth>
    Cloud Servers Authentication <cloud_auth>
    Sunstone for Large Deployments <suns_advance>
-   Fireedge Server Installation and Configuration <fireedge_install>
-   Fireedge for Sunstone <fireedge_sunstone>
+   Fireedge Configuration <fireedge_configuration>
    Cloud Provisioning Interface <fireedge_cpi>

@@ -1,17 +1,15 @@
 .. _appflow_configure:
 
-=============================
-OneFlow Server Configuration
-=============================
+=====================
+OneFlow Configuration
+=====================
 
 The OneFlow commands do not interact directly with the OpenNebula daemon, there is a server that takes the requests and manages the Service (multi-tiered application) life-cycle. This guide shows how to start OneFlow, and the different options that can be configured.
 
-Installation
+Requirements
 ============
 
 OneFlow server is shipped with the main distribution. The oneflow server is contained in the 'opennebula-flow' package, and the commands in the specific CLI package. Check the :ref:`Installation guide <ignc>` for details of what packages you have to install depending on your distribution.
-
-.. note:: Make sure you executed ``ìnstall_gems`` during the installation to install the required gems, in particular: ``treetop``, ``parse-cron``.
 
 Configuration
 =============

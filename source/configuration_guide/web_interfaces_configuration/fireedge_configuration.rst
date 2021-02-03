@@ -1,13 +1,13 @@
-.. _fireedge_install:
+.. _fireedge_configuration:
 
 ================================================================================
-Fireedge Server Installation and Configuration
+Fireedge Configuration
 ================================================================================
 
 What Is?
 ========
 
-The OpenNebula Fireedge purpose is twofold:
+Fireedge is a web server which purpose is twofold:
 
 - Sunstone can use **VMRC and Guacamole proxies** for remote access to VMs, including
   VNC, RDP and ssh connections.
@@ -48,13 +48,15 @@ syntax to define some options:
 +---------------------------+--------------------------------+---------------------------------------------------------------+
 | :limit_token/max          | `30`                           | JWT maximum expiration time (days)                            |
 +---------------------------+--------------------------------+---------------------------------------------------------------+
+| :guacd/port               | `4822`                         | Port on which the guacd server will listen                    |
++---------------------------+--------------------------------+---------------------------------------------------------------+
+| :guacd/host               | `127.0.0.1`                    | Hostname on which the guacd server will listen                |
++---------------------------+--------------------------------+---------------------------------------------------------------+
 
-.. note::
-  Check extra configuration for :ref:`Guacamole guacd conf <fireedge_sunstone_configuration>`
 
 .. note::
   Check extra configuration for :ref:`Fireedge OneProvision GUI <fireedge_cpi>`
-  
+
 
 Starting Fireedge
 =================
@@ -73,4 +75,3 @@ You can find the Fireedge server log file in ``/var/log/one/fireedge.log``. Erro
 
   - node version
   - ...
-
