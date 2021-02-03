@@ -53,6 +53,7 @@ Sunstone
 - Update Sunstone Host and VMs datatable columns. Check more information :ref:`here <suns_views>`.
 - Added option to enable/disable users on Sunstone. Check more information :ref:`here <manage_users>`.
 - Add support to avoid importing VM Template from the marketplace. Check more information :ref:`here <marketapp_download>`.
+- Numa aware placement for vCenter. Check more information :ref:`here <numa>`.
 
 Scheduler
 ================================================================================
