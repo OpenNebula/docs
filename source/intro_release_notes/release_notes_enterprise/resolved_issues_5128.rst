@@ -15,3 +15,4 @@ The following issues has been solved in 5.12.8:
 - `Fix update service cardinality when terminating a VM <https://github.com/OpenNebula/one/issues/5235>`__.
 - `Fix set VCPU range on Sunstone <https://github.com/OpenNebula/one/issues/5220>`__.
 - `Fix OneGate context attributes when update VM template on Sunstone <http://github.com/OpenNebula/one/issues/5237>`__.
+- `Fix Issue where the host Zombie VM Template didn't update <https://github.com/OpenNebula/one/issues/5245>`__.
