@@ -139,10 +139,10 @@ Available options are:
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :threshold_high           | Minimum percentage value for red color on thresholds                                          |
 +---------------------------+-----------------------------------------------------------------------------------------------+
-| :public_fireedge_endpoint | URL or IP address where the FireEdge server is running.                                       |
+| :public_fireedge_endpoint | URL or IP address where the Fireedge server is running.                                       |
 |                           | This endpoint must be accessible for Sunstone clients.                                        |
 +---------------------------+-----------------------------------------------------------------------------------------------+
-| :private_fireedge_endpoint| URL or IP address where the FireEdge server is running.                                       |
+| :private_fireedge_endpoint| URL or IP address where the Fireedge server is running.                                       |
 |                           | This endpoint must be accessible for Sunstone server.                                         |
 +---------------------------+-----------------------------------------------------------------------------------------------+
 
