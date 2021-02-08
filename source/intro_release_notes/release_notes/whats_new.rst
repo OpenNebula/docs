@@ -115,6 +115,8 @@ VMware Virtualization driver
 Containers
 ==========
 
+- `Added suspend and restore actions for LXD <https://github.com/OpenNebula/one/issues/5246>`__.
+
 MicroVMs
 ========
 
