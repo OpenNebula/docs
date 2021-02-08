@@ -93,7 +93,7 @@ OpenNebula allows you to create custom images based on your own dockerfiles. The
 
 .. code::
 
-    dockerfile://<path_to_file>?fileb64=<file_in_base64>&context<yes|no>
+    dockerfile://<path_to_file>?fileb64=<file_in_base64>&context=<yes|no>
 
 The different arguments of the URL are explained below:
 
