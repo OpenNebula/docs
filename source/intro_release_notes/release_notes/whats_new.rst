@@ -140,3 +140,4 @@ Other Issues Solved
 - Fix virtual machine tabs not working on Sunstone`<http://github.com/OpenNebula/one/issues/5223>`__.
 - Fix minimum VMs to scale action on Sunstone`<http://github.com/OpenNebula/one/issues/1019>`__.
 - Fix service scale action in the Cloud View on Sunstone`<http://github.com/OpenNebula/one/issues/5231>`__.
+- Fix service role with alias IPs on Sunstone`<http://github.com/OpenNebula/one/issues/5233>`__.
