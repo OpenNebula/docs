@@ -1233,9 +1233,7 @@ Please :ref:`check the NUMA guide <numa>` for more information.
 
 Sunstone Section
 ================================================================================
-The following attributes are used to display elements in the sunstone
-
-|sunstone_network_options|
+The following attributes are used to display elements in the sunstone:
 
 +---------------------+---------------------------------------------------------------------+
 + Sunstone attribute  | Meaning                                                             |
@@ -1246,6 +1244,8 @@ The following attributes are used to display elements in the sunstone
 +---------------------+---------------------------------------------------------------------+
 | NETWORK_RDP         | Disable interface network RDP Conection (active)                    |
 +---------------------+---------------------------------------------------------------------+
+| NETWORK_SSH         | Disable interface network SSH Conection (active)                    |
++---------------------+---------------------------------------------------------------------+
 
 For example:
 
@@ -1254,7 +1254,10 @@ For example:
   SUNSTONE = [
     NETWORK_ALIAS = "yes",
     NETWORK_AUTO = "no",
-    NETWORK_RDP = "yes"
+    NETWORK_RDP = "yes",
+    NETWORK_SSH = "yes"
   ]
+
+|sunstone_network_options|
 
 .. |sunstone_network_options| image:: /images/sunstone_network_options.png
