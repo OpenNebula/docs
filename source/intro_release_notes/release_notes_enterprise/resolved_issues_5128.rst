@@ -18,3 +18,4 @@ The following issues has been solved in 5.12.8:
 - `Fix update of the host zombie VM list <https://github.com/OpenNebula/one/issues/5245>`__.
 - `Fix alias IPs in service role VM on Sunstone <https://github.com/OpenNebula/one/issues/5233>`__.
 - `Fix option to edit VCENTER_PASSWORD from Sunstone <https://github.com/OpenNebula/one/issues/5247>`__.
+- `Fix VM disk monitor for shared storage datastores <https://github.com/OpenNebula/one/issues/5250>`__.
