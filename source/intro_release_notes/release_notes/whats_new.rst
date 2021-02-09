@@ -142,3 +142,4 @@ Other Issues Solved
 - Fix virtual machine tabs not working on Sunstone`<http://github.com/OpenNebula/one/issues/5223>`__.
 - Fix minimum VMs to scale action on Sunstone`<http://github.com/OpenNebula/one/issues/1019>`__.
 - Fix service scale action in the Cloud View on Sunstone`<http://github.com/OpenNebula/one/issues/5231>`__.
+- Fix schedule actions via Sunstone unexpected behavior on VMs `<https://github.com/OpenNebula/one/issues/5209>`__.
