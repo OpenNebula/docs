@@ -714,6 +714,18 @@ If the ``NIC_ALIAS`` on *Pulic* network is detached from the virtual machine, th
 .. warning:: It takes up to one minute, half a minute on average, to configure the rules on *iptables*.
 
 
+
+.. _service_charters:
+
+**Service Charters**
+
+
+This functionality automatically adds scheduling actions in VM when the service is instantiated, for more information of this, please check the :ref:`VM Charter <vm_charter>`
+
+|image1|
+
+
+
 Service Template Reference
 ==========================
 
@@ -722,6 +734,7 @@ For more information on the resource representation, please check the :ref:`API 
 Read the :ref:`elasticity policies documentation <appflow_elasticity>` for more information.
 
 .. |image0| image:: /images/service_sample.png
+.. |image1| image:: /images/charterts_on_services.png
 .. |image3| image:: /images/oneflow-service.png
 .. |image4| image:: /images/flow_lcm.png
 .. |oneflow-ready-status-checkbox| image:: /images/oneflow-ready-status-checkbox.png
