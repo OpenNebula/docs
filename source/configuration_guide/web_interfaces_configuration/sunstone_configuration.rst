@@ -193,7 +193,7 @@ Fireedge and Sunstone
 
 - :ref:`**Remote access your VM** <remote_access_sunstone>` using Guacamole and/or VMRC (`VMware Remote Console`).
 
-- :ref:`**Resource state autorefresh** <autorefresh>`, with constant communication with OpenNebula's ZeroMQ server
+- :ref:`**Resource state autorefresh** <autorefresh>`, VMs and host states are refreshed automatically.
 
 Fireedge uses `Apache Guacamole <guacamole.apache.org>`_, a free and open source web
 application which lets you access your dashboard from anywhere using a modern web browser.
