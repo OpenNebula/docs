@@ -145,3 +145,4 @@ Other Issues Solved
 - Fix minimum VMs to scale action on Sunstone`<http://github.com/OpenNebula/one/issues/1019>`__.
 - Fix service scale action in the Cloud View on Sunstone`<http://github.com/OpenNebula/one/issues/5231>`__.
 - Fix schedule actions via Sunstone unexpected behavior on VMs `<https://github.com/OpenNebula/one/issues/5209>`__.
+- Fix error when create app if OneFlow Server not runnnig `<https://github.com/OpenNebula/one/issues/5227>`__.
