@@ -58,6 +58,7 @@ Sunstone
 - Added Dockerfile support for image create :ref:`here <dockerfile>`.
 - Allow charters configuration within service Template :ref:`here <service_charters>`.
 - Added show information of Charters in service list :ref:`here <service_charters>`.
+- Added option to hide schedule actions on VM instantiate. Check more information :ref:`here <suns_views_custom>`.
 
 Scheduler
 ================================================================================
