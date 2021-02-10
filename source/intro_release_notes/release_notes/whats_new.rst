@@ -15,7 +15,6 @@ What's New in X.Y
 
 OpenNebula Core
 ================================================================================
-- `Add option to disable raw section validation <http://github.com/OpenNebula/one/issues/5015>`__.
 - `Add option set cold migration type for rescheduling <http://github.com/OpenNebula/one/issues/2983>`__.
 - `Add option to create formatted datablocks <https://github.com/OpenNebula/one/issues/4989>`__.
 - Add support for document encrypted attributes, check :ref:`this <encrypted_attrs>` for more information.
