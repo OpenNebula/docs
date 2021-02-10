@@ -57,7 +57,8 @@ Sunstone
 - Add support to avoid importing VM Template from the marketplace. Check more information :ref:`here <marketapp_download>`.
 - Numa aware placement for vCenter. Check more information :ref:`here <numa>`.
 - Added Dockerfile support for image create :ref:`here <dockerfile>`.
-- Allow charters configuration within service/vm Template :ref:`here <service_charters>`.
+- Allow charters configuration within service Template :ref:`here <service_charters>`.
+- Added show information of Charters in service list :ref:`here <service_charters>`.
 
 Scheduler
 ================================================================================
