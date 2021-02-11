@@ -1,13 +1,13 @@
 .. _fireedge_configuration:
 
 ================================================================================
-Fireedge Configuration
+FireEdge Configuration
 ================================================================================
 
 What Is?
 ========
 
-Fireedge is a web server which purpose is twofold:
+FireEdge is a web server which purpose is twofold:
 
 - Sunstone can use **VMRC and Guacamole proxies** for remote access to VMs, including
   VNC, RDP and ssh connections.
@@ -22,6 +22,8 @@ Requirements
 
 .. note:: If you install OpenNebula **from the binary packages** `Guacamole proxy daemon (guacd) <https://guacamole.apache.org/doc/gug/installing-guacamole.html>`_
   should be installed. Otherwise the OpenNebula binary packages will install the Guacamole server.
+
+.. warning:: Please note that FireEdge does currently not support federated environments. It can interact with a local OpenNebula instance (even if it is federated) but cannot interact with remote, federated OpenNebula instances.
 
 .. _fireedge_install_configuration:
 
