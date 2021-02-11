@@ -295,7 +295,7 @@ Persistent and Clone Disks
 +---------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+-------------------------------------+------------------------------------+------------------------------------+
 | **IO**                          | Set IO policy. Values are ``threads``, ``native``                                                                                         | O (Needs qemu 1.1)                | \-                                  | \-                                 | \-                                 |
 +---------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+-------------------------------------+------------------------------------+------------------------------------+
-| **IOTHREAD**                    | Iothread id used by this disk. Default is round robin. Can be used only if ``IOTHREADS`` > 0.                                             | O (Needs qemu 1.2.8)              | \-                                  | \-                                 | \-                                 |
+| **IOTHREAD**                    | Iothread id used by this disk. Default is round robin. Can be used only if ``IOTHREADS`` > 0.                                             | O (Needs qemu 2.1)                | \-                                  | \-                                 | \-                                 |
 +---------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+-------------------------------------+------------------------------------+------------------------------------+
 | **TOTAL_BYTES_SEC**,            | IO throttling attributes for the disk. They are specified in bytes or IOPS                                                                | O (Needs qemu 1.1)                | \-                                  | O                                  | \-                                 |
 | **READ_BYTES_SEC**,             | (IO Operations) and can be specified for the total (read+write) or specific                                                               |                                   |                                     |                                    |                                    |
@@ -1084,7 +1084,6 @@ All the **default** restricted attributes to users in the oneadmin group are sum
 - ``DISK/READ_IOPS_SEC``
 - ``DISK/WRITE_IOPS_SEC``
 - ``DISK/SIZE_IOPS_SEC``
-- ``DISK/IOTHREAD``
 - ``DISK/OPENNEBULA_MANAGED``
 - ``CPU_COST``
 - ``MEMORY_COST``
