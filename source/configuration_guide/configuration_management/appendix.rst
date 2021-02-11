@@ -25,6 +25,7 @@ Name                                                               Type
 ``/etc/one/ec2_driver.default``                                    Plain file (or XML)
 ``/etc/one/ec2query_templates/*.erb``                              Plain file (or XML)
 ``/etc/one/econe.conf``                                            YAML
+``/etc/one/fireedge-server.conf``                                  YAML
 ``/etc/one/hm/hmrc``                                               Shell
 ``/etc/one/monitord.conf``                                         oned.conf-like
 ``/etc/one/oned.conf``                                             oned.conf-like
@@ -45,6 +46,7 @@ Name                                                               Type
 ``/etc/one/vmm_exec/vmm_execrc``                                   Shell
 ``/var/lib/one/remotes/datastore/ceph/ceph.conf``                  Shell
 ``/var/lib/one/remotes/etc/datastore/ceph/ceph.conf``              Shell
+``/var/lib/one/remotes/etc/datastore/datastore.conf``              Shell
 ``/var/lib/one/remotes/etc/datastore/fs/fs.conf``                  Shell
 ``/var/lib/one/remotes/etc/im/firecracker-probes.d/probe_db.conf`` YAML
 ``/var/lib/one/remotes/etc/im/kvm-probes.d/pci.conf``              YAML
@@ -53,6 +55,7 @@ Name                                                               Type
 ``/var/lib/one/remotes/etc/im/lxd-probes.d/probe_db.conf``         YAML
 ``/var/lib/one/remotes/etc/market/http/http.conf``                 Shell
 ``/var/lib/one/remotes/etc/tm/fs_lvm/fs_lvm.conf``                 Shell
+``/var/lib/one/remotes/etc/tm/ssh/sshrc``                          Shell
 ``/var/lib/one/remotes/etc/vmm/firecracker/firecrackerrc``         YAML
 ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc``                         Shell
 ``/var/lib/one/remotes/etc/vmm/lxd/lxdrc``                         YAML
