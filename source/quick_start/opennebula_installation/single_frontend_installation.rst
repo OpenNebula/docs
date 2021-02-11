@@ -57,14 +57,12 @@ OpenNebula depends on packages which are not in the base distribution repositori
 
     # yum -y install epel-release
     # yum -y install centos-release-scl-rh
-    # TODO: HashiCorp/TF
 
 **CentOS 8**
 
 .. prompt:: bash # auto
 
     # yum -y install epel-release
-    # TODO: HashiCorp/TF
 
 **RHEL 7**
 
@@ -72,29 +70,23 @@ OpenNebula depends on packages which are not in the base distribution repositori
 
     # subscription-manager repos --enable rhel-7-server-optional-rpms
     # subscription-manager repos --enable rhel-7-server-extras-rpms
+    # subscription-manager repos --enable rhel-server-rhscl-7-rpms
     # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-    # TODO: scl Node
-    # TODO: HashiCorp/TF
 
 **RHEL 8**
 
 .. prompt:: bash # auto
 
     # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-    # TODO: HashiCorp/TF
 
 **Debian 9, Ubuntu 16.04 and 18.04**
 
 .. prompt:: bash # auto
 
-   # TODO: node from NodeSource
-   # TODO: HashiCorp/TF
-
-**Debian 10, Ubuntu 20.04 and 20.10**
-
-.. prompt:: bash # auto
-
-   # TODO: HashiCorp/TF
+   # wget -q -O- https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
+   # source /etc/os-release
+   # echo "deb https://deb.nodesource.com/node_12.x ${VERSION_CODENAME} main" >/etc/apt/sources.list.d/nodesource.list
+   # apt-get update
 
 .. _packages:
 
@@ -173,14 +165,28 @@ Install all OpenNebula Front-end components by executing following commands unde
 
     # yum -y install opennebula opennebula-sunstone opennebula-fireedge opennebula-gate opennebula-flow opennebula-provision
 
-Install dependencies for OpenNebula provisioning features (optional):
+**Optional**
+
+1. Install dependencies for :ref:`Docker Hub Marketplace <market_dh>`:
+
+- install Docker following the official documention for `CentOS <https://docs.docker.com/engine/install/centos/>`_ or `Fedora <https://docs.docker.com/engine/install/fedora/>`_
+- add user ``oneadmin`` into group ``docker``:
+
+.. prompt:: bash # auto
+
+    # usermod -a -G docker oneadmin
+
+2. Install dependencies for OpenNebula provisioning features:
+
+.. todo: Adapt to python3 commands
 
 .. prompt:: bash # auto
 
     # yum -y install python-pip
     # pip install 'ansible>=2.8.0,<2.10.0'
-    # TODO: pip install 'Jinja2>=2.10.0'
-    # TODO: get terraform
+    # pip install 'Jinja2>=2.10.0'
+    # curl 'https://releases.hashicorp.com/terraform/0.13.6/terraform_0.13.6_linux_amd64.zip' | zcat >/usr/bin/terraform
+    # chmod 0755 /usr/bin/terraform
 
 Debian / Ubuntu
 ---------------
@@ -192,13 +198,28 @@ Install all OpenNebula Front-end components by executing following commands unde
     # apt-get update
     # apt-get -y install opennebula opennebula-sunstone opennebula-fireedge opennebula-gate opennebula-flow opennebula-provision
 
-Install dependencies for OpenNebula provisioning features (optional):
+**Optional**
+
+1. Install dependencies for :ref:`Docker Hub Marketplace <market_dh>`:
+
+- install Docker following the official documention for `Debian <https://docs.docker.com/engine/install/debian/>`_ or `Ubuntu <https://docs.docker.com/engine/install/ubuntu/>`_
+- add user ``oneadmin`` into group ``docker``:
+
+.. prompt:: bash # auto
+
+    # usermod -a -G docker oneadmin
+
+2. Install dependencies for OpenNebula provisioning features:
+
+.. todo: Adapt to python3 commands
 
 .. prompt:: bash # auto
 
     # apt-get -y install python-pip
     # pip install 'ansible>=2.8.0,<2.10.0'
-    # TODO: get terraform
+    # pip install 'Jinja2>=2.10.0'
+    # curl 'https://releases.hashicorp.com/terraform/0.13.6/terraform_0.13.6_linux_amd64.zip' | zcat >/usr/bin/terraform
+    # chmod 0755 /usr/bin/terraform
 
 .. _ruby_runtime:
 
@@ -516,23 +537,39 @@ To stop, start or restart any of the listed individual :ref:`services <frontend_
 
 .. prompt:: bash # auto
 
-    # systemctl stop    opennebula
-    # systemctl start   opennebula
-    # systemctl restart opennebula
+    # systemctl stop        opennebula
+    # systemctl start       opennebula
+    # systemctl restart     opennebula
+    # systemctl try-restart opennebula
+
+Use following command to **stop all** OpenNebula services:
+
+.. prompt:: bash # auto
+
+    # systemctl stop opennebula opennebula-scheduler opennebula-hem \
+        opennebula-sunstone opennebula-fireedge opennebula-gate opennebula-flow \
+        opennebula-guacd opennebula-novnc opennebula-showback.timer \
+        opennebula-ssh-agent opennebula-ssh-socks-cleaner.timer
+
+Use following command to **restart all** already running OpenNebula services:
+
+.. prompt:: bash # auto
+
+    # systemctl try-restart opennebula opennebula-scheduler opennebula-hem \
+        opennebula-sunstone opennebula-fireedge opennebula-gate opennebula-flow \
+        opennebula-guacd opennebula-novnc opennebula-ssh-agent
 
 Learn more about `Managing Services with Systemd <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/managing-services-with-systemd_configuring-basic-system-settings#managing-system-services_managing-services-with-systemd>`__.
 
-On controlled OpenNebula Front-end shutdown, the order of stopped services should be following:
+On production environments the services should be stopped in specific order and with extra manual safety checks:
 
 1. stop **opennebula-scheduler**
 2. stop **opennebula-sunstone** and **opennebula-fireedge**
 3. stop **openenbula-flow**
-4. check and wait until
-
-- TODO: VMs are not in transient state
-- TODO: images are not in transient state
-
+4. check and wait until there are no active operations with VMs and images
 5. stop **opennebula**
+
+.. todo:: Provide some commands for point 4?
 
 Step 10. Next steps
 ================================================================================
