@@ -506,7 +506,8 @@ Some of the VM configuration attributes defined in the VM Template can be update
 | ``OS``       | ``ARCH``, ``MACHINE``, ``KERNEL``, ``INITRD``, ``BOOTLOADER``, ``BOOT``,|
 |              | ``SD_DISK_BUS``, ``UUID``                                               |
 +--------------+-------------------------------------------------------------------------+
-| ``FEATURES`` | ``ACPI``, ``PAE``, ``APIC``, ``LOCALTIME``, ``HYPERV``, ``GUEST_AGENT`` |
+| ``FEATURES`` | ``ACPI``, ``PAE``, ``APIC``, ``LOCALTIME``, ``HYPERV``, ``GUEST_AGENT``,|
+|              | ``IOTHREADS``                                                           |
 +--------------+-------------------------------------------------------------------------+
 | ``INPUT``    | ``TYPE``, ``BUS``                                                       |
 +--------------+-------------------------------------------------------------------------+
