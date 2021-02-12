@@ -114,6 +114,11 @@ The list of labels defined for each pool will be shown in the left navigation me
 
 To create a label hierarchy, use the '/' character. For example, you could have the labels 'Linux/Ubuntu' and 'Linux/CentOS'. Please note that a resource with the label 'Linux/Ubuntu' is not automatically added to the parent 'Linux' label, but you can do it explicitly.
 
+.. _suns_views_labels_behavior:
+
+.. note:: Labels created from Sunstone will ignore the labels case, and show them in lowercase with the first letter in upper case.
+    Eg: ``label with-spaces/andSubtree`` will tranform to ``Label With-spaces/Andsubtree``
+
 Persistent Labels
 ================================================================================
 You can also create persistent labels. These types of labels will not be deleted even when they have no associated resources. To define persistent tags we have 2 options, defining them as system tags, and including them in the file ``/etc/one/sunstone-views.yaml`` or adding them to the user's template. This second form can be done through the CLI or through the sunstone interface, doing Click on the padlock of already-created tags.

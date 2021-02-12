@@ -59,6 +59,7 @@ Sunstone
 - Allow charters configuration within service Template :ref:`here <service_charters>`.
 - Added show information of Charters in service list :ref:`here <service_charters>`.
 - Added option to hide schedule actions on VM instantiate. Check more information :ref:`here <suns_views_custom>`.
+- Add new Sunstone labels normalization. Check more information :ref:`here <suns_views_labels_behavior>`.
 
 Scheduler
 ================================================================================
