@@ -4,23 +4,7 @@
 Sunstone Configuration
 =================================================
 
-Requirements
-===============================================================================
-
-You must have an OpenNebula site properly configured and running to use OpenNebula Sunstone.
-Be sure to check the :ref:`OpenNebula Installation and Configuration Guides
-<design_and_installation_guide>` to set up your private cloud first. This section also assumes
-that you are familiar with the configuration and use of OpenNebula.
-
-OpenNebula Sunstone was installed during the OpenNebula installation. If you followed the
-:ref:`installation guide <ignc>` then you already have all ruby gem requirements. Otherwise,
-run the ``install_gem`` script as root:
-
-.. code-block:: bash
-
-    # /usr/share/one/install_gems sunstone
-
-If you want to use VNC, SPICE, RDP, VMRC, ssh or virt-viewer please follow the requirements laid out
+OpenNebula Sunstone provides a web-based management interface. It's installed by default, but the use is completely optional and/or can be deployed separately on a different machine. Please check the :ref:`Single Front-end Installation <ignc>`. If you want to use remote display options via VNC, SPICE, RDP, VMRC, SSH or virt-viewer, please follow the requirements laid out
 :ref:`here <remote_access_sunstone>`.
 
 Configuration
@@ -172,15 +156,6 @@ value, for instance SUNSTONE=[TABLE_ORDER="asc"]):
 | DEFAULT_ZONE_ENDPOINT     | Default zone at Sunstone login. Defaults to the local zone        |
 +---------------------------+-------------------------------------------------------------------+
 
-Starting Sunstone
---------------------------------------------------------------------------------
-
-To start Sunstone, just issue the following command as oneadmin
-
-.. code-block:: bash
-
-    # service opennebula-sunstone start
-
 You can find the Sunstone server log file in ``/var/log/one/sunstone.log``. Errors are logged in
 ``/var/log/one/sunstone.error``.
 
@@ -191,9 +166,9 @@ Fireedge and Sunstone
 
 :ref:`Fireedge <fireedge_configuration>` provides the following extra functionality to Sunstone:
 
-- :ref:`**Remote access your VM** <remote_access_sunstone>` using Guacamole and/or VMRC (`VMware Remote Console`).
+- :ref:`Remote access your VM <remote_access_sunstone>` using Guacamole and/or VMRC (`VMware Remote Console`).
 
-- :ref:`**Resource state autorefresh** <autorefresh>`, VMs and host states are refreshed automatically.
+- :ref:`Resource state autorefresh <autorefresh>`, VMs and host states are refreshed automatically.
 
 Fireedge uses `Apache Guacamole <guacamole.apache.org>`_, a free and open source web
 application which lets you access your dashboard from anywhere using a modern web browser.

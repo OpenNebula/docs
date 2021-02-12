@@ -4,14 +4,7 @@
 OneGate Configuration
 =====================
 
-The OneGate service allows Virtual Machine guests to pull and push VM information from OpenNebula. Although it is installed by default, its use is completely optional.
-
-Requirements
-============
-
-Check the :ref:`Installation guide <ignc>` for details of what package you have to install depending on your distribution
-
-OneGate can be used with VMs running on :ref:`KVM, LXC, Firecracker and vCenter <context_overview>`.
+The OneGate service allows Virtual Machine guests to pull and push VM information from OpenNebula, it can be used with VMs running on :ref:`KVM, LXC, Firecracker and vCenter <context_overview>`. It's installed by default, but the use is completely optional and/or can be deployed separately on a different machine. Please check the :ref:`Single Front-end Installation <ignc>`.
 
 Configuration
 =============
@@ -46,24 +39,9 @@ The OneGate configuration file can be found at ``/etc/one/onegate-server.conf``.
 * ``restricted_actions`` Actions that cannot be performed on a VM
 * ``vnet_template_attributes`` Attributes of the Virtual Network template that will be retrieved for vnets
 
-Start OneGate
-=============
-
-To start and stop the server, use the ``opennebula-gate`` service:
-
-.. prompt:: bash # auto
-
-    # systemctl start opennebula-gate
-
-Or use service in older Linux systems:
-
-.. prompt:: bash # auto
-
-    # service opennebula-gate start
-
 .. warning:: By default, the server will only listen to requests coming from localhost. Change the ``:host`` attribute in ``/etc/one/onegate-server.conf`` to your server public IP, or 0.0.0.0 so onegate will listen on any interface.
 
-Inside ``/var/log/one/`` you will find new log files for the server:
+Inside ``/var/log/one/`` you can find log files for the server:
 
 .. code::
 
@@ -154,8 +132,8 @@ Update ``/etc/one/onegate-server.conf`` with the new OneGate endpoint and uncomm
 
 Then restart oned, onegate-server and Nginx:
 
-.. prompt:: bash $ auto
+.. prompt:: bash # auto
 
-    $ sudo service nginx restart
-    $ sudo service opennebula restart
-    $ sudo service opennebula-gate restart
+    # systemctl restart nginx
+    # systemctl restart opennebula
+    # systemctl restart opennebula-gate

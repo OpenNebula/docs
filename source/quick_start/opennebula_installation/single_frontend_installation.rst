@@ -178,7 +178,7 @@ Install all OpenNebula Front-end components by executing following commands unde
 
 2. Install dependencies for OpenNebula provisioning features:
 
-.. todo: Adapt to python3 commands
+.. todo:: Adapt to python3 commands
 
 .. prompt:: bash # auto
 
@@ -211,7 +211,7 @@ Install all OpenNebula Front-end components by executing following commands unde
 
 2. Install dependencies for OpenNebula provisioning features:
 
-.. todo: Adapt to python3 commands
+.. todo:: Adapt to python3 commands
 
 .. prompt:: bash # auto
 
@@ -230,7 +230,7 @@ Step 4. Install Ruby Dependencies System-wide (Optional)
 
 .. important::
 
-   Optional step, only for **advanced users** or **special cases**.
+   Optional step for **new installations**. When **upgrading** existing deployment, you have to proceeed with installing via ``install_gems`` below if not using the shipped Ruby gems (i.e., when symbolic link ``/usr/share/one/gems`` doesn't exist).
 
 .. warning::
 
@@ -292,6 +292,12 @@ Initial OpenNebula deployment on a very first start creates a user ``oneadmin`` 
 
 .. warning:: This will set the oneadmin's password only on the first start of the OpenNebula. From that point, you must use the ``oneuser passwd`` command to change oneadmin's password. More information on how to change the oneadmin password is :ref:`here <change_credentials>`.
 
+.. note::
+
+    For advanced configuration, follow to the OpenNebula Daemon :ref:`configuration <oned_conf>` reference.
+
+.. todo:: Add link to scheduler configuration?
+
 OneGate (Optional)
 ------------------
 
@@ -311,7 +317,9 @@ The OneGate server allows the communication between VMs and OpenNebula. It's opt
 
 If you are reconfiguring any time later already running services, don't forget to restart them to apply the changes.
 
-For advanced configuration, follow to the OneGate :ref:`configuration <onegate_configure>` reference.
+.. note::
+
+    For advanced configuration, follow to the OneGate :ref:`configuration <onegate_configure>` reference.
 
 FireEdge (Optional)
 -------------------
@@ -326,7 +334,9 @@ To configure public FireEdge endpoint in the Sunstone, edit ``/etc/one/sunstone-
 
 If you are reconfiguring any time later already running services, don't forget to restart them to apply the changes.
 
-For advanced configuration, follow to the FireEdge :ref:`configuration <fireedge_configuration>` reference.
+.. note::
+
+    For advanced configuration, follow to the FireEdge :ref:`configuration <fireedge_configuration>` reference.
 
 OneFlow (Optional)
 ------------------
@@ -339,7 +349,9 @@ The OneFlow server orchestrates the services, multi-VM deployments. While for mo
 
 If you are reconfiguring any time later already running services, don't forget to restart them to apply the changes.
 
-For advanced configuration, follow to the OneFlow :ref:`configuration <appflow_configure>` reference.
+.. note::
+
+    For advanced configuration, follow to the OneFlow :ref:`configuration <appflow_configure>` reference.
 
 .. _frontend_services:
 

@@ -4,12 +4,7 @@
 OneFlow Configuration
 =====================
 
-The OneFlow commands do not interact directly with the OpenNebula daemon, there is a server that takes the requests and manages the Service (multi-tiered application) life-cycle. This guide shows how to start OneFlow, and the different options that can be configured.
-
-Requirements
-============
-
-OneFlow server is shipped with the main distribution. The oneflow server is contained in the 'opennebula-flow' package, and the commands in the specific CLI package. Check the :ref:`Installation guide <ignc>` for details of what packages you have to install depending on your distribution.
+The OneFlow server orchestrates the multi-VM services, it's a dedicated daemon which takes the requests and interacts with the OpenNebula Daemon. It's installed by default, but the use is completely optional and/or can be deployed separately on a different machine. Please check the :ref:`Single Front-end Installation <ignc>`.
 
 Configuration
 =============
@@ -139,18 +134,9 @@ This is the default file
     #
     :debug_level: 2
 
-Start OneFlow
-=============
-
-To start and stop the server, use the ``opennebula-flow`` service:
-
-.. prompt:: bash # auto
-
-    # service opennebula-flow start
-
 .. note:: By default, the server will only listen to requests coming from localhost. Change the ``:host`` attribute in ``/etc/one/oneflow-server.conf`` to your server public IP, or 0.0.0.0 so oneflow will listen on any interface.
 
-Inside ``/var/log/one/`` you will find new log files for the server, and individual ones for each Service in ``/var/log/one/oneflow/<id>.log``
+Inside ``/var/log/one/`` you can find log files for the server, and individual ones for each Service in ``/var/log/one/oneflow/<id>.log``
 
 .. code::
 
