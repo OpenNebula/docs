@@ -60,6 +60,7 @@ Sunstone
 - Added show information of Charters in service list :ref:`here <service_charters>`.
 - Added option to hide schedule actions on VM instantiate. Check more information :ref:`here <suns_views_custom>`.
 - Add new Sunstone labels normalization. Check more information :ref:`here <suns_views_labels_behavior>`.
+- Add option to change boot device when instantiate a VM Template. Check more information :ref:`here <template_os_and_boot_options_section>`.
 
 Scheduler
 ================================================================================

@@ -257,6 +257,7 @@ Inside ``features`` there are settings:
 * ``deploy_enforce``: If set to True, the host capacity will be checked. This will only affect oneadmin requests; limits on regular users' resize requests will always be enforced.
 * ``migrate_enforce``: If set to True, the host capacity will be checked. This will only affect oneadmin requests; limits on regular users' resize requests will always be enforced.
 * ``show_sched_actions_instantiate``: If set to False, the section "Schedule actions for VM" will disapear from this view.
+* ``show_boot_order``: If set to False, the section "OS Booting" will disapear from this view.
 
 .. code-block:: yaml
 
@@ -369,6 +370,7 @@ Features
 * ``show_attach_nic_advanced``: True to show advanced options in the attach NIC dialog.
 * ``show_vnet_instantiate_flow``: True to show the network configuration to instantiate service template.
 * ``show_sched_actions_instantiate``: If set to False, the section "Schedule actions for VM" will disapear from this view.
+* ``show_boot_order``: If set to False, the section "OS Booting" will disapear from this view.
 
 .. code-block:: yaml
 
