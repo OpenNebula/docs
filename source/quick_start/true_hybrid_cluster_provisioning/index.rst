@@ -8,5 +8,6 @@ True Hybrid Clusters Deployment
    :maxdepth: 2
 
    Overview <overview>
+   On-Prem Hybrid+ Cluster <onprem_hybrid_cluster>
    Equinix Hybrid+ Cluster <equinix_hybrid_cluster>
    AWS Hybrid+ Cluster <aws_hybrid_cluster>

@@ -2,7 +2,7 @@
 
 
 =================================
-User Security and Authentication
+Sunstone Authentication
 =================================
 
 By default Sunstone works with the core authentication method (user and password) although you can configure any authentication mechanism supported by OpenNebula. In this section you will learn how to enable other authentication methods and how to secure the Sunstone connections through SSL.

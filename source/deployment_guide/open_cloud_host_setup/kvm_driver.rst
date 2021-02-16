@@ -74,13 +74,13 @@ There are some attributes required for KVM to boot a VM. You can set a suitable 
 * ``EMULATOR``: path to the kvm executable.
 * ``OS``: attributes ``KERNEL``, ``INITRD``, ``BOOT``, ``ROOT``, ``KERNEL_CMD``, ``MACHINE``,  ``ARCH`` and ``SD_DISK_BUS``.
 * ``VCPU``
-* ``FEATURES``: attributes ``ACPI``, ``PAE``.
+* ``FEATURES``: attributes ``ACPI``, ``PAE``, ``APIC``, ``HEPRV``, ``GUEST_AGENT``, ``VIRTIO_SCSI_QUEUES``, ``IOTHREADS``.
 * ``CPU_MODEL``: attribute ``MODEL``.
-* ``DISK``: attributes ``DRIVER`` and ``CACHE``. All disks will use that driver and caching algorithm.
-* ``NIC``: attribute ``FILTER``.
+* ``DISK``: attributes ``DRIVER``, ``CACHE``, ``IO``, ``DISCARD``, ``TOTAL_BYTES_SEC``, ``TOTAL_IOPS_SEC``, ``READ_BYTES_SEC``, ``WRITE_BYTES_SEC``, ``READ_IOPS_SEC``, ``WRITE_IOPS_SEC``, ``SIZE_IOPS_SEC``.
+* ``NIC``: attribute ``FILTER``, ``MODEL``.
 * ``RAW``: to add libvirt attributes to the domain XML file.
-* ``HYPERV``: to enable hyperv extensions.
-* ``SPICE``: to add default devices for SPICE.
+* ``HYPERV_OPTIONS``: to enable hyperv extensions.
+* ``SPICE_OPTIONS``: to add default devices for SPICE.
 
 .. warning:: These values are only used during VM creation, for other actions like nic or disk attach/detach the default values must be set in ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc``. For more info check :ref:`Files and Parameters <kvmg_files_and_parameters>` section.
 
@@ -209,6 +209,7 @@ DISK
 * ``DRIVER``: specifies the format of the disk image; possible values are ``raw``, ``qcow2``... This attribute corresponds to the ``format`` option of the ``-driver`` argument of the ``kvm`` command.
 * ``CACHE``: specifies the optional cache mechanism, possible values are ``default``, ``none``, ``writethrough`` and ``writeback``.
 * ``IO``: set IO policy possible values are ``threads`` and ``native``.
+* ``IOTHREAD``: thread id used by this disk. It can only be used for virtio disk conrtollers and if ``IOTHREADS`` > 0.
 * ``DISCARD``: controls what to do with trim commands, the options are ``ignore`` or ``unmap``. It can only be used with virtio-scsi.
 * ``IO Throttling support``: You can limit TOTAL/READ/WRITE throughput or IOPS. Also burst control for this IO operations can be set for each disk. :ref:`See the reference guide for the attribute names and purpose <reference_vm_template_disk_section>`.
 
@@ -500,7 +501,9 @@ The parameters that can be changed here are as follows:
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``DEFAULT_ATTACH_WRITE_IOPS_SEC_MAX``         | Default Maximum write IOPS throttling for newly attached disks, if the attribute is missing in the template.                                                                                                    |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_WRITE_IOPS_SEC_MX_LENGTH``   | Default Maximum length write IOPS throttling for newly attached disks, if the attribute is missing in the template.                                                                                             |
+| ``DEFAULT_ATTACH_WRITE_IOPS_SEC_MAX_LENGTH``  | Default Maximum length write IOPS throttling for newly attached disks, if the attribute is missing in the template.                                                                                             |
++-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_SIZE_IOPS_SEC``              | Default size of IOPS throttling for newly attached disks, if the attribute is missing in the template.                                                                                                          |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``DEFAULT_ATTACH_NIC_MODEL``                  | Default NIC model for newly attached NICs, if the attribute is missing in the template.                                                                                                                         |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

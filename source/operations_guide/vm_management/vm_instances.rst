@@ -504,9 +504,10 @@ Some of the VM configuration attributes defined in the VM Template can be update
 |  Attribute   |                              Sub-attributes                             |
 +==============+=========================================================================+
 | ``OS``       | ``ARCH``, ``MACHINE``, ``KERNEL``, ``INITRD``, ``BOOTLOADER``, ``BOOT``,|
-|              | ``SD_DISK_BUS``                                                         |
+|              | ``SD_DISK_BUS``, ``UUID``                                               |
 +--------------+-------------------------------------------------------------------------+
-| ``FEATURES`` | ``ACPI``, ``PAE``, ``APIC``, ``LOCALTIME``, ``HYPERV``, ``GUEST_AGENT`` |
+| ``FEATURES`` | ``ACPI``, ``PAE``, ``APIC``, ``LOCALTIME``, ``HYPERV``, ``GUEST_AGENT``,|
+|              | ``IOTHREADS``                                                           |
 +--------------+-------------------------------------------------------------------------+
 | ``INPUT``    | ``TYPE``, ``BUS``                                                       |
 +--------------+-------------------------------------------------------------------------+
@@ -521,7 +522,7 @@ Some of the VM configuration attributes defined in the VM Template can be update
 
 .. warning:: If the VM is running, the action may fail and the context will not be changed. You can try to manualy trigger the action again.
 
-.. note:: Changes on `GRAPHIC` will still require the VM to be restarted despite being updatable.
+.. note:: In running state only changes in CONTEXT take effect immediately, other values may need a VM restart
 
 
 In Sunstone this action is inside the 'Conf' VM panel:

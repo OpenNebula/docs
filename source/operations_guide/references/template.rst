@@ -158,6 +158,9 @@ The OS system is defined with the ``OS`` vector attribute. The following sub-att
 | **SD_DISK_BUS**  | bus for disks with **sd** prefix, either ``scsi`` or ``sata``,     | O                | \-      | \-      | \-          |
 |                  | if attribute is missing, libvirt chooses itself                    |                  |         |         |             |
 +------------------+--------------------------------------------------------------------+------------------+---------+---------+-------------+
+| **UUID**         | unique ID of the VM. It's referenced as machine ID inside the VM.  | O                | \-      | \-      | \-          |
+|                  | Could be used to force ID for licensing purposes                   |                  |         |         |             |
++------------------+--------------------------------------------------------------------+------------------+---------+---------+-------------+
 
 (!!) Use one of KERNEL\_DS or KERNEL (and INITRD or INITRD\_DS).
 
@@ -230,6 +233,10 @@ This section configures the features enabled for the VM.
 +-------------------------+----------------------------------------------------------+-----+---------+---------+
 | **VIRTIO_SCSI_QUEUES**  | Numer of vCPU queues for the virtio-scsi controller.     | O   | \-      | \-      |
 +-------------------------+----------------------------------------------------------+-----+---------+---------+
+| **IOTHREADS**           | Number of iothreads for virtio disks. By default threads | O   | \-      | \-      |
+|                         | will be assign to disk by round robin algorithm. Disk    |     |         |         |
+|                         | thread id can be forced by disk ``IOTHREAD`` attribute   |     |         |         |
++-------------------------+----------------------------------------------------------+-----+---------+---------+
 
 .. code::
 
@@ -288,6 +295,8 @@ Persistent and Clone Disks
 +---------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+-------------------------------------+------------------------------------+------------------------------------+
 | **IO**                          | Set IO policy. Values are ``threads``, ``native``                                                                                         | O (Needs qemu 1.1)                | \-                                  | \-                                 | \-                                 |
 +---------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+-------------------------------------+------------------------------------+------------------------------------+
+| **IOTHREAD**                    | Iothread id used by this disk. Default is round robin. Can be used only if ``IOTHREADS`` > 0.                                             | O (Needs qemu 2.1)                | \-                                  | \-                                 | \-                                 |
++---------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+-------------------------------------+------------------------------------+------------------------------------+
 | **TOTAL_BYTES_SEC**,            | IO throttling attributes for the disk. They are specified in bytes or IOPS                                                                | O (Needs qemu 1.1)                | \-                                  | O                                  | \-                                 |
 | **READ_BYTES_SEC**,             | (IO Operations) and can be specified for the total (read+write) or specific                                                               |                                   |                                     |                                    |                                    |
 | **WRITE_BYTES_SEC**             | for read or write. Total and read or write can not be used at the same time.                                                              |                                   |                                     |                                    |                                    |
@@ -308,6 +317,9 @@ Persistent and Clone Disks
 | **TOTAL_IOPS_SEC_MAX_LENGTH**,  | be used at the same time.                                                                                                                 |                                   |                                     |                                    |                                    |
 | **READ_IOPS_SEC_MAX_LENGTH**,   | By default these parameters are only allowed to be used by oneadmin.                                                                      |                                   |                                     |                                    |                                    |
 | **WRITE_IOPS_SEC_MAX_LENGTH**   |                                                                                                                                           |                                   |                                     |                                    |                                    |
++---------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+-------------------------------------+------------------------------------+------------------------------------+
+| **SIZE_IOPS_SEC**               | Size of IOPS throttling for the disk. This attribute is effective only if one of the TOTAL_IOPS_SEC, READ_IOPS_SEC,                       | O (Needs qemu 1.7)                | \-                                  | \-                                 | \-                                 |
+|                                 | WRITE_IOPS_SEC is defined. By default this parameter is only allowed to be used by oneadmin.                                              |                                   |                                     |                                    |                                    |
 +---------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+-------------------------------------+------------------------------------+------------------------------------+
 | **VCENTER_ADAPTER_TYPE**        | Possible values (careful with the case): lsiLogic, ide, busLogic. More                                                                    | \-                                | O (can be inherited from Datastore) | \-                                 | \-                                 |
 |                                 | information `in the VMware documentation <http://pubs.vmware.com/vsphere-60/                                                              |                                   |                                     |                                    |                                    |
@@ -379,7 +391,8 @@ Volatile DISKS
 | **WRITE_BYTES_SEC**,     | read or write. Total and read or write can not be used at the same time.                                                                                                                                                                        |                               |           |                               |
 | **TOTAL_IOPS_SEC**,      | By default these parameters are only allowed to be used by oneadmin.                                                                                                                                                                            |                               |           |                               |
 | **READ_IOPS_SEC**,       |                                                                                                                                                                                                                                                 |                               |           |                               |
-| **WRITE_BYTES_SEC**      |                                                                                                                                                                                                                                                 |                               |           |                               |
+| **WRITE_IOPS_SEC**       |                                                                                                                                                                                                                                                 |                               |           |                               |
+| **SIZE_IOPS_SEC**        |                                                                                                                                                                                                                                                 |                               |           |                               |
 +--------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------+-----------+-------------------------------+
 | **VCENTER_ADAPTER_TYPE** | Possible values (careful with the case): lsiLogic, ide, busLogic. More information `in the VMware documentation <http://pubs.vmware.com/vsphere-60/index.jsp#com.vmware.wssdk.apiref.doc/vim.VirtualDiskManager.VirtualDiskAdapterType.html>`__ | \-                            | O         | \-                            |
 +--------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------+-----------+-------------------------------+
@@ -1070,6 +1083,7 @@ All the **default** restricted attributes to users in the oneadmin group are sum
 - ``DISK/TOTAL_IOPS_SEC``
 - ``DISK/READ_IOPS_SEC``
 - ``DISK/WRITE_IOPS_SEC``
+- ``DISK/SIZE_IOPS_SEC``
 - ``DISK/OPENNEBULA_MANAGED``
 - ``CPU_COST``
 - ``MEMORY_COST``
@@ -1230,9 +1244,7 @@ Please :ref:`check the NUMA guide <numa>` for more information.
 
 Sunstone Section
 ================================================================================
-The following attributes are used to display elements in the sunstone
-
-|sunstone_network_options|
+The following attributes are used to display elements in the sunstone:
 
 +---------------------+---------------------------------------------------------------------+
 + Sunstone attribute  | Meaning                                                             |
@@ -1243,6 +1255,8 @@ The following attributes are used to display elements in the sunstone
 +---------------------+---------------------------------------------------------------------+
 | NETWORK_RDP         | Disable interface network RDP Conection (active)                    |
 +---------------------+---------------------------------------------------------------------+
+| NETWORK_SSH         | Disable interface network SSH Conection (active)                    |
++---------------------+---------------------------------------------------------------------+
 
 For example:
 
@@ -1251,7 +1265,10 @@ For example:
   SUNSTONE = [
     NETWORK_ALIAS = "yes",
     NETWORK_AUTO = "no",
-    NETWORK_RDP = "yes"
+    NETWORK_RDP = "yes",
+    NETWORK_SSH = "yes"
   ]
+
+|sunstone_network_options|
 
 .. |sunstone_network_options| image:: /images/sunstone_network_options.png

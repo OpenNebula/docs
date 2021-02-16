@@ -15,7 +15,6 @@ What's New in X.Y
 
 OpenNebula Core
 ================================================================================
-- `Add option to disable raw section validation <http://github.com/OpenNebula/one/issues/5015>`__.
 - `Add option set cold migration type for rescheduling <http://github.com/OpenNebula/one/issues/2983>`__.
 - `Add option to create formatted datablocks <https://github.com/OpenNebula/one/issues/4989>`__.
 - Add support for document encrypted attributes, check :ref:`this <encrypted_attrs>` for more information.
@@ -24,11 +23,13 @@ OpenNebula Core
 - `INHERIT_VNET_ATTR, INHERIT_DATASTORE_ATTR and INHERIT_IMAGE_ATTR allows inherit of complex type <https://github.com/OpenNebula/one/issues/4090>`__.
 - `Allow 'onevm disk-saveas' in undeployed and stopped state <https://github.com/OpenNebula/one/issues/1112>`__.
 - `Terminate oned in HA in case of lost DB connection <https://github.com/OpenNebula/one/issues/5186>`__.
+- `Unique VM identification, allow to force uuid to VM <https://github.com/OpenNebula/one/issues/1048>`__.
 
 Storage
 ================================================================================
 - New SSH transfer manager extension called :ref:`replica<replica_tm>`
 - Usage of ``scp`` is deprecated in favour of `ssh+tar <https://github.com/OpenNebula/one/issues/5058>`__ and ssh+rsync. File based images are (re)sparsified.
+- New :ref:`Image state events and hooks<hooks>`
 
 Networking
 ================================================================================
@@ -54,6 +55,12 @@ Sunstone
 - Added option to enable/disable users on Sunstone. Check more information :ref:`here <manage_users>`.
 - Add support to avoid importing VM Template from the marketplace. Check more information :ref:`here <marketapp_download>`.
 - Numa aware placement for vCenter. Check more information :ref:`here <numa>`.
+- Added Dockerfile support for image create :ref:`here <dockerfile>`.
+- Allow charters configuration within service Template :ref:`here <service_charters>`.
+- Added show information of Charters in service list :ref:`here <service_charters>`.
+- Added option to hide schedule actions on VM instantiate. Check more information :ref:`here <suns_views_custom>`.
+- Add new Sunstone labels normalization. Check more information :ref:`here <suns_views_labels_behavior>`.
+- Add option to change boot device when instantiate a VM Template. Check more information :ref:`here <template_os_and_boot_options_section>`.
 
 Scheduler
 ================================================================================
@@ -102,6 +109,8 @@ KVM
 
 - KVM defaults changed to leverage paravirtualized interfaces, see :ref:`here <compatibility_kvm>`.
 - Default path to EMULATOR on points to unified symbolic link ``/usr/bin/qemu-kvm-one``, see :ref:`here <compatibility_kvm>`.
+- `Support for iotune parameter size_iops_sec for kvm <https://github.com/OpenNebula/one/issues/5225>`__.
+- `Support for iothreads <https://github.com/OpenNebula/one/issues/1226>`__.
 
 VMware Virtualization driver
 ============================
@@ -110,6 +119,7 @@ VMware Virtualization driver
 - Use a specific VM Templates in vCenter when import marketplace apps, see :ref:`here <marketapp_download>`.
 - Assign VCENTER_VM_FOLDER automatically per user or group see :ref:`here <vm_template_definition_vcenter>`.
 - Option to avoid deleting disk not managed in OpenNebula, see :ref:`here <driver_tuning>`.
+- Fix import networks in vCenter with special characters :ref:`Importing vCenter Networks<vcenter_import_networks>`.
 
 Containers
 ==========
@@ -139,3 +149,7 @@ Other Issues Solved
 - Fix virtual machine tabs not working on Sunstone`<http://github.com/OpenNebula/one/issues/5223>`__.
 - Fix minimum VMs to scale action on Sunstone`<http://github.com/OpenNebula/one/issues/1019>`__.
 - Fix service scale action in the Cloud View on Sunstone`<http://github.com/OpenNebula/one/issues/5231>`__.
+- Fix schedule actions via Sunstone unexpected behavior on VMs `<https://github.com/OpenNebula/one/issues/5209>`__.
+- Fix error when create app if OneFlow Server not runnnig `<https://github.com/OpenNebula/one/issues/5227>`__.
+- Fix Sunstone overrides disks when VM Template instantiate XMLRPC API Call `<https://github.com/OpenNebula/one/issues/5238>`__.
+- Fix Sunstone doesn't lock and unlock VMs `<https://github.com/OpenNebula/one/issues/5200>`__.

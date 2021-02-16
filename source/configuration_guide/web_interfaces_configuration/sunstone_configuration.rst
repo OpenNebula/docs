@@ -1,26 +1,10 @@
 .. _sunstone_setup:
 
 =================================================
-Sunstone Installation & Configuration
+Sunstone Configuration
 =================================================
 
-Requirements
-===============================================================================
-
-You must have an OpenNebula site properly configured and running to use OpenNebula Sunstone.
-Be sure to check the :ref:`OpenNebula Installation and Configuration Guides
-<design_and_installation_guide>` to set up your private cloud first. This section also assumes
-that you are familiar with the configuration and use of OpenNebula.
-
-OpenNebula Sunstone was installed during the OpenNebula installation. If you followed the
-:ref:`installation guide <ignc>` then you already have all ruby gem requirements. Otherwise,
-run the ``install_gem`` script as root:
-
-.. code-block:: bash
-
-    # /usr/share/one/install_gems sunstone
-
-If you want to use VNC, SPICE, RDP, VMRC, ssh or virt-viewer please follow the requirements laid out
+OpenNebula Sunstone provides a web-based management interface. It's installed by default, but the use is completely optional and/or can be deployed separately on a different machine. Please check the :ref:`Single Front-end Installation <ignc>`. If you want to use remote display options via VNC, SPICE, RDP, VMRC, SSH or virt-viewer, please follow the requirements laid out
 :ref:`here <remote_access_sunstone>`.
 
 Configuration
@@ -36,115 +20,117 @@ syntax to define some options:
 
 Available options are:
 
-+---------------------------+-----------------------------------------------------------------------------------------------+
-|           Option          |                                          Description                                          |
-+===========================+===============================================================================================+
-| :tmpdir                   | Uploaded images will be temporally stored in this folder before being copied to OpenNebula    |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :one\_xmlrpc              | OpenNebula daemon host and port                                                               |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :one\_xmlrpc\_timeout     | Configure the timeout (seconds) for XMLRPC calls from sunstone.                               |
-|                           | See :ref:`Shell Environment variables <manage_users>`                                         |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :host                     | IP address on which the server will listen. ``0.0.0.0`` by default.                           |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :port                     | Port on which the server will listen. ``9869`` by default.                                    |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :sessions                 | Method of keeping user sessions. It can be ``memory`` or ``memcache``. For servers that spawn |
-|                           | more than one process (like Passenger or Unicorn) ``memcache`` should be used                 |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :memcache\_host           | Host where ``memcached`` server resides                                                       |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :memcache\_port           | Port of ``memcached`` server                                                                  |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :memcache\_namespace      | memcache namespace where to store sessions. Useful when ``memcached`` server is used by       |
-|                           | more services                                                                                 |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :debug\_level             | Log debug level: 0 = ERROR, 1 = WARNING, 2 = INFO, 3 = DEBUG                                  |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :env                      | Execution environment for Sunstone. ``dev``, Instead of pulling the minified js all the       |
-|                           | files will be pulled (app/main.js). Check the :ref:`Building from Source <compile>` guide     |
-|                           | in the docs, for details on how to run Sunstone in development. ``prod``, the minified js     |
-|                           | will be used (dist/main.js)                                                                   |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :max_upload_file_size     | Maximum allowed size of uploaded images (in bytes). Leave commented for unlimited size        |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :auth                     | Authentication driver for incoming requests. Possible values are ``sunstone``,                |
-|                           | ``opennebula``, ``remote`` and ``x509``. Check :ref:`authentication methods <authentication>` |
-|                           | for more info                                                                                 |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :core\_auth               | Authentication driver to communicate with OpenNebula core. Possible values are ``x509``       |
-|                           | or ``cipher``. Check :ref:`cloud\_auth <cloud_auth>` for more information                     |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :encode_user_password     | For external authentication drivers, such as LDAP. Performs a URL encoding on the             |
-|                           | credentials sent to OpenNebula, e.g. secret%20password. This only works with                  |
-|                           | "opennebula" auth.                                                                            |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :lang                     | Default language for the Sunstone interface. This is the default language that will           |
-|                           | be used if user has not defined a variable LANG with a different valid value in               |
-|                           | user template                                                                                 |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :vnc\_proxy\_port         | Base port for the VNC proxy. The proxy will run on this port as long as Sunstone server       |
-|                           | does. ``29876`` by default. Could be prefixed with an address on which the sever will be      |
-|                           | listening (ex: 127.0.0.1:29876).                                                              |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :vnc\_proxy\_support\_wss | ``yes``, ``no``, ``only``. If enabled, the proxy will be set up with a certificate and        |
-|                           | a key to use secure websockets. If set to ``only`` the proxy will only accept encrypted       |
-|                           | connections, otherwise it will accept both encrypted or unencrypted ones.                     |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :vnc\_proxy\_cert         | Full path to certificate file for wss connections.                                            |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :vnc\_proxy\_key          | Full path to key file. Not necessary if key is included in certificate.                       |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :vnc\_proxy\_ipv6         | Enable IPv6 for novnc. (true or false)                                                        |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :vnc\_client\_port        | Port where the VNC JS client will connect.                                                    |
-|                           | If not set, will use the port section of :vnc_proxy_port                                      |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :vnc\_request\_password   | Request VNC password for external windows. By default it will not be requested                |
-|                           | (true or false)                                                                               |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :table\_order             | Default table order. Resources get ordered by ID in ``asc`` or ``desc`` order.                |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :marketplace\_username    | Username credential to connect to the Marketplace.                                            |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :marketplace\_password    | Password to connect to the Marketplace.                                                       |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :marketplace\_url         | Endpoint to connect to the Marketplace. If commented, a 503 ``service unavailable``           |
-|                           | error will be returned to clients.                                                            |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :oneflow\_server          | Endpoint to connect to the OneFlow server.                                                    |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :routes                   | List of files containing custom routes to be loaded.                                          |
-|                           | Check :ref:`server plugins <sunstone_dev>` for more info.                                     |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :mode                     | Default views directory.                                                                      |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :keep\_me\_logged         | True to display 'Keep me logged in' option in Sunstone login.                                 |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :get\_extended\_vm\_info  | True to display IP in table by requesting the extended vm pool to oned                        |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :allow\_vnc\_federation   | True to display VNC icons in federation                                                       |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :proxy                    | Proxy server for HTTP Traffic.                                                                |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :no\_proxy                | Patterns for IP addresses or domain names that shouldn’t use the proxy                        |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :paginate                 | Array for paginate, the first position is for internal use. the second is used to put         |
-|                           | names to each value                                                                           |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :threshold_min            | Minimum percentage value for green color on thresholds                                        |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :threshold_low            | Minimum percentage value for orange color on thresholds                                       |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :threshold_high           | Minimum percentage value for red color on thresholds                                          |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :public_fireedge_endpoint | URL or IP address where the FireEdge server is running.                                       |
-|                           | This endpoint must be accessible for Sunstone clients.                                        |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| :private_fireedge_endpoint| URL or IP address where the FireEdge server is running.                                       |
-|                           | This endpoint must be accessible for Sunstone server.                                         |
-+---------------------------+-----------------------------------------------------------------------------------------------+
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+|           Option                |                                          Description                                                |
++=================================+=====================================================================================================+
+| :tmpdir                         | Uploaded images will be temporally stored in this folder before being copied to OpenNebula          |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :one\_xmlrpc                    | OpenNebula daemon host and port                                                                     |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :one\_xmlrpc\_timeout           | Configure the timeout (seconds) for XMLRPC calls from sunstone.                                     |
+|                                 | See :ref:`Shell Environment variables <manage_users>`                                               |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :host                           | IP address on which the server will listen. ``0.0.0.0`` by default.                                 |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :port                           | Port on which the server will listen. ``9869`` by default.                                          |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :sessions                       | Method of keeping user sessions. It can be ``memory`` or ``memcache``. For servers that spawn       |
+|                                 | more than one process (like Passenger or Unicorn) ``memcache`` should be used                       |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :memcache\_host                 | Host where ``memcached`` server resides                                                             |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :memcache\_port                 | Port of ``memcached`` server                                                                        |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :memcache\_namespace            | memcache namespace where to store sessions. Useful when ``memcached`` server is used by             |
+|                                 | more services                                                                                       |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :debug\_level                   | Log debug level: 0 = ERROR, 1 = WARNING, 2 = INFO, 3 = DEBUG                                        |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :env                            | Execution environment for Sunstone. ``dev``, Instead of pulling the minified js all the             |
+|                                 | files will be pulled (app/main.js). Check the :ref:`Building from Source <compile>` guide           |
+|                                 | in the docs, for details on how to run Sunstone in development. ``prod``, the minified js           |
+|                                 | will be used (dist/main.js)                                                                         |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :max_upload_file_size           | Maximum allowed size of uploaded images (in bytes). Leave commented for unlimited size              |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :auth                           | Authentication driver for incoming requests. Possible values are ``sunstone``,                      |
+|                                 | ``opennebula``, ``remote`` and ``x509``. Check :ref:`authentication methods <authentication>`       |
+|                                 | for more info                                                                                       |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :core\_auth                     | Authentication driver to communicate with OpenNebula core. Possible values are ``x509``             |
+|                                 | or ``cipher``. Check :ref:`cloud\_auth <cloud_auth>` for more information                           |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :encode_user_password           | For external authentication drivers, such as LDAP. Performs a URL encoding on the                   |
+|                                 | credentials sent to OpenNebula, e.g. secret%20password. This only works with                        |
+|                                 | "opennebula" auth.                                                                                  |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :lang                           | Default language for the Sunstone interface. This is the default language that will                 |
+|                                 | be used if user has not defined a variable LANG with a different valid value in                     |
+|                                 | user template                                                                                       |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :vnc\_proxy\_port               | Base port for the VNC proxy. The proxy will run on this port as long as Sunstone server             |
+|                                 | does. ``29876`` by default. Could be prefixed with an address on which the sever will be            |
+|                                 | listening (ex: 127.0.0.1:29876).                                                                    |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :vnc\_proxy\_support\_wss       | ``yes``, ``no``, ``only``. If enabled, the proxy will be set up with a certificate and              |
+|                                 | a key to use secure websockets. If set to ``only`` the proxy will only accept encrypted             |
+|                                 | connections, otherwise it will accept both encrypted or unencrypted ones.                           |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :vnc\_proxy\_cert               | Full path to certificate file for wss connections.                                                  |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :vnc\_proxy\_key                | Full path to key file. Not necessary if key is included in certificate.                             |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :vnc\_proxy\_ipv6               | Enable IPv6 for novnc. (true or false)                                                              |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :vnc\_client\_port              | Port where the VNC JS client will connect.                                                          |
+|                                 | If not set, will use the port section of :vnc_proxy_port                                            |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :vnc\_request\_password         | Request VNC password for external windows. By default it will not be requested                      |
+|                                 | (true or false)                                                                                     |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :table\_order                   | Default table order. Resources get ordered by ID in ``asc`` or ``desc`` order.                      |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :marketplace\_username          | Username credential to connect to the Marketplace.                                                  |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :marketplace\_password          | Password to connect to the Marketplace.                                                             |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :marketplace\_url               | Endpoint to connect to the Marketplace. If commented, a 503 ``service unavailable``                 |
+|                                 | error will be returned to clients.                                                                  |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :oneflow\_server                | Endpoint to connect to the OneFlow server.                                                          |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :routes                         | List of files containing custom routes to be loaded.                                                |
+|                                 | Check :ref:`server plugins <sunstone_dev>` for more info.                                           |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :mode                           | Default views directory.                                                                            |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :keep\_me\_logged               | True to display 'Keep me logged in' option in Sunstone login.                                       |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :get\_extended\_vm\_info        | True to display IP in table by requesting the extended vm pool to oned                              |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :get\_extended\_vm\_monitoring  | True to display external IPs in table by requesting the monitoring vm pool to oned                  |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :allow\_vnc\_federation         | True to display VNC icons in federation                                                             |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :proxy                          | Proxy server for HTTP Traffic.                                                                      |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :no\_proxy                      | Patterns for IP addresses or domain names that shouldn’t use the proxy                              |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :paginate                       | Array for paginate, the first position is for internal use. the second is used to put               |
+|                                 | names to each value                                                                                 |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :threshold_min                  | Minimum percentage value for green color on thresholds                                              |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :threshold_low                  | Minimum percentage value for orange color on thresholds                                             |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :threshold_high                 | Minimum percentage value for red color on thresholds                                                |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :public_fireedge_endpoint       | URL or IP address where the Fireedge server is running.                                             |
+|                                 | This endpoint must be accessible for Sunstone clients.                                              |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| :private_fireedge_endpoint      | URL or IP address where the Fireedge server is running.                                             |
+|                                 | This endpoint must be accessible for Sunstone server.                                               |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
 
 .. note:: To use Sunstone with IPv6 only systems and thin HTTP sever, use the full IPv6 address in the
     field `:host`. If you need to set the localhost address (::1) or the unspecified address (::) please
@@ -172,17 +158,56 @@ value, for instance SUNSTONE=[TABLE_ORDER="asc"]):
 | DEFAULT_ZONE_ENDPOINT     | Default zone at Sunstone login. Defaults to the local zone        |
 +---------------------------+-------------------------------------------------------------------+
 
-Starting Sunstone
---------------------------------------------------------------------------------
-
-To start Sunstone, just issue the following command as oneadmin
-
-.. code-block:: bash
-
-    # service opennebula-sunstone start
-
 You can find the Sunstone server log file in ``/var/log/one/sunstone.log``. Errors are logged in
 ``/var/log/one/sunstone.error``.
+
+.. _fireedge_sunstone:
+
+Fireedge and Sunstone
+================================================================================
+
+:ref:`Fireedge <fireedge_configuration>` provides the following extra functionality to Sunstone:
+
+- :ref:`Remote access your VM <remote_access_sunstone>` using Guacamole and/or VMRC (`VMware Remote Console`).
+
+- :ref:`Resource state autorefresh <autorefresh>`, VMs and host states are refreshed automatically.
+
+Fireedge uses `Apache Guacamole <guacamole.apache.org>`_, a free and open source web
+application which lets you access your dashboard from anywhere using a modern web browser.
+It is a **clientless remote desktop gateway** which only requires Guacamole installed on a
+server and a web browser supporting HTML5.
+
+Guacamole supports multiple connection methods such as **VNC, RDP and ssh**.
+
+Guacamole system is made up of two separate parts: **server and client**.
+
+Guacamole server consists of the native server-side libraries required to connect to the
+server and the **guacd** tool. Its **the Guacamole proxy daemon** which accepts the user’s
+connections and connects to the remote desktop on their behalf.
+
+.. note::
+  The OpenNebula **binary packages** will configure Guacamole  server and client
+  automatically, therefore you don’t need to take any extra steps.
+
+Fireedge server acts like a **VMRC proxy** between Sunstone and ESX nodes through web socket.
+You can read :ref:`more information <vmrc_sunstone>` about it configuration.
+
+.. _fireedge_sunstone_configuration:
+
+Configuring Sunstone for Guacamole
+-------------------------------------------------------------------------------
+
+To configure the Fireedge server on Sunstone when they are **on different servers**, you will need
+to set public and private Fireedge server **endpoints** on :ref:`sunstone-server.conf <fireedge_install_configuration>`:
+
+If they are on the **same server**, you can **skip this step**.
+
+Also, if Fireedge is on another server, you must manually copy the file ``fireedge_key`` on
+``/var/lib/one/.one`` since this file contains the cipher key for guacamole connections.
+
+.. note::
+  If you are building from source and using a self-contained installation you must copy the file ``fireedge_key`` on ``<self-contained folder>/var/.one/``
+
 
 .. _remote_access_sunstone:
 
@@ -195,7 +220,7 @@ For some of those connections, we will need to start our brand new Fireedge serv
 the remote connection. This section shows how these different technologies can be configured and
 what are each requirement.
 
-When the :ref:`Fireedge server is installed <fireedge_install>`, it automatically install dependencies
+:ref:`Fireedge <fireedge_configuration>` automatically install dependencies
 for  Guacamole connections and the VMRC proxy, which are necessary for use VNC, RDP, ssh, and VMRC.
 
 +----------------+-------------------+---------------------+
