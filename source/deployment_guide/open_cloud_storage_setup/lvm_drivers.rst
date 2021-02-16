@@ -165,3 +165,5 @@ The following attribute can be set for every datastore type:
 
 * ``SUPPORTED_FS``: Comma separated list with every file system supported for creating formatted datablocks. Can be set in ``/var/lib/one/remotes/etc/datastore/datastore.conf``.
 * ``FS_OPTS_<FS>``: Options for creating the filesystem for formatted datablocks. Can be set in ``/var/lib/one/remotes/etc/datastore/datastore.conf`` for each filesystem type.
+
+.. warning:: Before adding a new filesystem no the ``SUPPORTED_FS`` list, make sure that the corresponding ``mkfs.<fs_name>`` command is available in all nodes including frontend and hypervisor nodes. If an unsupported FS is used by the user the default one will be used.
