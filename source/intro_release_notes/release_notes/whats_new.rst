@@ -119,7 +119,7 @@ VMware Virtualization driver
 - Use a specific VM Templates in vCenter when import marketplace apps, see :ref:`here <marketapp_download>`.
 - Assign VCENTER_VM_FOLDER automatically per user or group see :ref:`here <vm_template_definition_vcenter>`.
 - Option to avoid deleting disk not managed in OpenNebula, see :ref:`here <driver_tuning>`.
-- Fix import networks in vCenter with special characters :ref:`Importing vCenter Networks<vcenter_import_networks>`.
+- Fix :ref:`import networks <vcenter_import_networks>` in vCenter with special characters.
 
 Containers
 ==========
