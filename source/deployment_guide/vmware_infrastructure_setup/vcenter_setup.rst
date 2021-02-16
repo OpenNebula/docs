@@ -1008,6 +1008,8 @@ A hook can be deleted if its ID is known. The ID can be retrieved using onehook 
 
     $ onehook delete <hook_id>
 
+.. _driver_tuning:
+
 Driver tuning
 -------------
 
@@ -1026,3 +1028,5 @@ Some aspects of the driver behavior can be configured on */var/lib/one/remotes/e
 * **retry_interval**: Amount of time to wait between retry attempts (seconds). Default: **1**.
 
 * **memory_dumps**: Create snapshots with memory dumps. Default: **true**.
+
+* **keep_non_persistent_disks**: Detach non persistent disks from VMs on VM terminate but avoid deleting them afterwards. Default: **false**.
