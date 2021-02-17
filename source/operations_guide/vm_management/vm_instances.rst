@@ -838,7 +838,7 @@ In the previous example you can see how scheduled actions are added and you can 
 
 +---------+-------------------------------------------------------------------------------------------------------+
 | time    | Time for tha action in secs example: +1209600 is to weeks.                                            |
-|         | .. note:: The order is very important since time adds to the previous scheduled action.               |
+|         | The order is very important since time adds to the previous scheduled action.                         |
 +---------+-------------------------------------------------------------------------------------------------------+
 | color   | Is the color in hexadecimal since the icon will appear in the Vms table                               |
 +---------+-------------------------------------------------------------------------------------------------------+
