@@ -144,12 +144,12 @@ Hooks
 
 Other Issues Solved
 ================================================================================
-- Allow live migration over SSH for KVM `<http://github.com/OpenNebula/one/issues/1644>`__.
-- Make automatic LDAP group admin mapping configurable `<http://github.com/OpenNebula/one/issues/5210>`__.
-- Fix virtual machine tabs not working on Sunstone`<http://github.com/OpenNebula/one/issues/5223>`__.
-- Fix minimum VMs to scale action on Sunstone`<http://github.com/OpenNebula/one/issues/1019>`__.
-- Fix service scale action in the Cloud View on Sunstone`<http://github.com/OpenNebula/one/issues/5231>`__.
-- Fix schedule actions via Sunstone unexpected behavior on VMs `<https://github.com/OpenNebula/one/issues/5209>`__.
-- Fix error when create app if OneFlow Server not runnnig `<https://github.com/OpenNebula/one/issues/5227>`__.
-- Fix Sunstone overrides disks when VM Template instantiate XMLRPC API Call `<https://github.com/OpenNebula/one/issues/5238>`__.
-- Fix Sunstone doesn't lock and unlock VMs `<https://github.com/OpenNebula/one/issues/5200>`__.
+- `Allow live migration over SSH for KVM <http://github.com/OpenNebula/one/issues/1644>`__.
+- `Make automatic LDAP group admin mapping configurable <http://github.com/OpenNebula/one/issues/5210>`__.
+- `Fix virtual machine tabs not working on Sunstone <http://github.com/OpenNebula/one/issues/5223>`__.
+- `Fix minimum VMs to scale action on Sunstone <http://github.com/OpenNebula/one/issues/1019>`__.
+- `Fix service scale action in the Cloud View on Sunstone <http://github.com/OpenNebula/one/issues/5231>`__.
+- `Fix schedule actions via Sunstone unexpected behavior on VMs <https://github.com/OpenNebula/one/issues/5209>`__.
+- `Fix error when create app if OneFlow Server not runnnig <https://github.com/OpenNebula/one/issues/5227>`__.
+- `Fix Sunstone overrides disks when VM Template instantiate XMLRPC API call <https://github.com/OpenNebula/one/issues/5238>`__.
+- `Fix Sunstone doesn't lock and unlock VMs <https://github.com/OpenNebula/one/issues/5200>`__.
