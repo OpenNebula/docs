@@ -155,6 +155,50 @@ To create the previous example Image you can do it like this:
 
 .. _sunstone_upload_images:
 
+
+Creating LUKS encrypted images (KVM)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For KVM hypervisor you can use LUKS-encrypted raw images, e.g. start by creating an encrypted
+volume using:
+
+.. prompt:: text $ auto
+
+    $ qemu-img create --object secret,id=sec0,data=secret-passphrase -o key-secret=sec0 -f luks /tmp/luks.vol 10G
+
+Then you import the image to the OpenNebula datastore
+
+.. prompt:: text $ auto
+
+    $ oneimage create --name luks-image --path /tmp/luks.vol -d default
+
+Next thing you need to do is to define the secret in the libvirt, prepare a secret.xml file
+
+.. prompt:: text $ auto
+
+    $ uuidgen
+    a94c5c16-d936-4346-89ad-7067517f411a
+
+.. prompt:: text $ auto
+
+    $ cat secret.xml
+    <secret ephemeral='no' private='yes'>
+          <uuid>a94c5c16-d936-4346-89ad-7067517f411a</uuid>
+          <description>luks key</description>
+    </secret>
+
+
+Then define the secret and set its value, beware it's base64 encoded.
+
+.. prompt:: text $ auto
+
+    $ virsh -c qemu:///system secret-define secret.xml
+
+    $ virsh -c qemu:///system secret-set-value a94c5c16-d936-4346-89ad-7067517f411a "$(echo secret-passphrase | base64)"
+
+Now the image could be attached to a VM or added to a VM template.
+
+
 Limitations when Uploading Images from Sunstone
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
