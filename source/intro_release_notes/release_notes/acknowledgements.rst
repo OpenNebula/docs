@@ -8,8 +8,7 @@ The OpenNebula project would like to thank the `community members <https://githu
 
 We’d like to acknowledge the following significant contributions:
 
-  - Dennis Felsch for the Sunstone 2FA using WebAuthn contribution.
-  - Igor Sivy for the PostgreSQL backend support.
-  - The new fencing functionality integrated with OneFlow, the new OneFlow batch operations, the RDP integration and the VM Charters fucntionality were funded by `Haufe Lexware <https://www.haufegroup.com/>`__  in the context of the Fund a Feature Program.
+  - Laurence Gill for the LUKS support for images
+  - New UX perks for both Sunstone OneFlow Services (service start time in datatables, feedback for asynchronous actions, service template registration time, disable network configuration on instantiation, delete associated VM Templates, delete service when roles are empty, service charters) and Sunstone VMs (additional information in VNC window) were funded by `Haufe Lexware <https://www.haufegroup.com/>`__  in the context of the Fund a Feature Program.
 
-Part of the new functionality in OpenNebula 5.12 was funded from the SME Instrument program of the European Union’s Horizon 2020 research and innovation, under grant agreement  `ONEedge <http://oneedge.io>`__ – A Software-defined Edge Computing Solution – 880412.
+Part of the new functionality in OpenNebula 6.0 was funded from the SME Instrument program of the European Union’s Horizon 2020 research and innovation, under grant agreement  `ONEedge <http://oneedge.io>`__ – A Software-defined Edge Computing Solution – 880412.
