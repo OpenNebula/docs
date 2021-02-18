@@ -220,13 +220,13 @@ Once the bootstrap script is finished with all the configuration and preparation
 The bootstrap script is generally executing the following steps:
 
 #. Setup trap and cleanup functions
-#. Apply custom onecfg patch (``OPENNEBULA_FRONTEND_ONECFG_PATCH``) if provided (**optional**)
-#. Execute pre-bootstrap script (``OPENNEBULA_FRONTEND_PREHOOK``) if provided (**optional**)
+#. Apply custom onecfg patch (``OPENNEBULA_ONECFG_PATCH``) if provided (**optional**)
+#. Execute pre-bootstrap script (``OPENNEBULA_PREBOOTSTRAP_HOOK``) if provided (**optional**)
 #. Prepare the rootfs (create and cleanup operational directories)
 #. Fix file permissions for the :ref:`significant paths (potential volumes) <reference_volumes>`
 #. Configure the :ref:`Supervisor daemon <reference_supervisord>`
-#. Configure and enable all services based on the value of ``OPENNEBULA_FRONTEND_SERVICE``
-#. Execute post-bootstrap script (``OPENNEBULA_FRONTEND_POSTHOOK``) if provided (**optional**)
+#. Configure and enable all services based on the value of ``OPENNEBULA_SERVICE``
+#. Execute post-bootstrap script (``OPENNEBULA_POSTBOOTSTRAP_HOOK``) if provided (**optional**)
 #. If the maintenance mode is required (``MAINTENANCE_MODE``) then turn off the autostart of supervised services (**optional**)
 #. Exit and pass the execution to the **supervisord process** (which will govern the lifetime of the services from now on)
 
@@ -267,7 +267,7 @@ Internal ports which are designed to be exposed to the host or overlay network.
 | ``29876`` | TCP      | ``sunstone``           | VNC proxy port, used for translating and redirecting VNC connections to the hypervisors.                              |
 +-----------+----------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
 
-.. [*] Service as in the value of ``OPENNEBULA_FRONTEND_SERVICE``
+.. [*] Service as in the value of ``OPENNEBULA_SERVICE``
 
 .. important::
 
@@ -317,7 +317,7 @@ Environmental variables relayed to the container which modify the bootstrap proc
 +--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
 |                  Name                | Required |_| [*]_ |_|  | Default                  |                     Description                                                                                          |
 +======================================+========================+==========================+==========================================================================================================================+
-| ``OPENNEBULA_FRONTEND_SERVICE``      | YES (all) |_| [*]_     | ``all``                  | Front-end service to run inside the container - proper values are listed here:                                           |
+| ``OPENNEBULA_SERVICE``               | YES (all) |_| [*]_     | ``all``                  | Front-end service to run inside the container - proper values are listed here:                                           |
 |                                      |                        |                          |                                                                                                                          |
 |                                      |                        |                          | - ``all`` - run all services (all-in-one deployment) - this is the default value                                         |
 |                                      |                        |                          | - ``docker`` - Docker in Docker - needed for Docker Hub marketplace (requires ``--privileged`` option)                   |
@@ -334,19 +334,28 @@ Environmental variables relayed to the container which modify the bootstrap proc
 |                                      |                        |                          | - ``sshd`` - SSH daemon to which nodes will connect to                                                                   |
 |                                      |                        |                          | - ``sunstone`` - Sunstone web server                                                                                     |
 +--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``OPENNEBULA_FRONTEND_HOST``         | YES: |br|              |                          | Host (DNS domain, IP address) which will be advertised as the Front-end endpoint (oned).                                 |
-|                                      | ``oned`` |br|          |                          |                                                                                                                          |
+| ``OPENNEBULA_HOST``                  | YES: |br|              |                          | Host (DNS domain, IP address) which will be advertised as the Front-end endpoint for OneGate and FireEdge - both of these|
+|                                      | ``oned`` |br|          |                          | can be overriden with ``OPENNEBULA_ONEGATE_HOST`` and ``OPENNEBULA_FIREEDGE_HOST`` respectively.                         |
 |                                      | ``sunstone``           |                          |                                                                                                                          |
 +--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``OPENNEBULA_FRONTEND_SSH_HOST``     | YES: ``oned``          |                          | Host (DNS domain, IP address) which will be advertised as the SSH endpoint (sshd) to which nodes will connect to.        |
+| ``OPENNEBULA_ONEGATE_HOST``          | NO: ``oned``           |                          | Host (DNS domain, IP address) which will be advertised as the Front-end endpoint for OneGate (defaults to                |
+|                                      |                        |                          | ``OPENNEBULA_HOST``).                                                                                                    |
 +--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``OPENNEBULA_FRONTEND_ONECFG_PATCH`` | NO (all)               |                          | Path within the container to the custom patch file which will be passed to the onecfg command (**before pre-hook**).     |
+| ``OPENNEBULA_FIREEDGE_HOST``         | NO: ``sunstone``       |                          | Host (DNS domain, IP address) which will be advertised as the Front-end endpoint for OneGate (defaults to                |
+|                                      |                        |                          | ``OPENNEBULA_HOST``).                                                                                                    |
 +--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``OPENNEBULA_FRONTEND_PREHOOK``      | NO (all)               |                          | Path within the container to the custom file which will be executed **before** the bootstrap is started.                 |
+| ``OPENNEBULA_SSH_HOST``              | YES: ``oned``          |                          | Host (DNS domain, IP address) which will be advertised as the SSH endpoint (sshd) to which nodes will connect to.        |
+|                                      |                        |                          | (defaults to ``OPENNEBULA_HOST``).                                                                                       |
 +--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``OPENNEBULA_FRONTEND_POSTHOOK``     | NO (all)               |                          | Path within the container to the custom file which will be executed **after** the bootstrap is ended.                    |
+| ``OPENNEBULA_CUSTOMER_TOKEN``        | NO: ``sunstone``       |                          | Customer specific support token.                                                                                         |
 +--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``OPENNEBULA_FRONTEND_BATCH_FILE``   | NO (all)               |                          | Path within the container to the custom file which will be executed **after** the bootstrap and once ``oned`` is started.|
+| ``OPENNEBULA_ONECFG_PATCH``          | NO (all)               |                          | Path within the container to the custom patch file which will be passed to the onecfg command (**before pre-hook**).     |
++--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``OPENNEBULA_PREBOOTSTRAP_HOOK``     | NO (all)               |                          | Path within the container to the custom file which will be executed **before** the bootstrap is started.                 |
++--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``OPENNEBULA_POSTBOOTSTRAP_HOOK``    | NO (all)               |                          | Path within the container to the custom file which will be executed **after** the bootstrap is ended.                    |
++--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``OPENNEBULA_BATCH_FILE``            | NO (all)               |                          | Path within the container to the custom file which will be executed **after** the bootstrap and once ``oned`` is started.|
 +--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
 | ``DIND_ENABLED``                     | NO: ``docker``         | ``no``                   | Enable Docker service (*Docker-in-Docker*) - requires ``--privileged`` option (or adequate list of capabilities).        |
 +--------------------------------------+                        +--------------------------+--------------------------------------------------------------------------------------------------------------------------+
@@ -382,7 +391,7 @@ Environmental variables relayed to the container which modify the bootstrap proc
 +--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
 | ``ONED_DB_BACKUP_ENABLED``           | NO: ``oned``           | ``yes``                  | Enable database backup before the upgrade (it will run sqldump and store the backup in ``/var/lib/one/backups``).        |
 +--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``ONEGATE_PORT``                     | NO: ``oned``           | ``5030``                 | Advertised port where OneGate service is published (the host portion is defined by ``OPENNEBULA_FRONTEND_HOST``)         |
+| ``ONEGATE_PORT``                     | NO: ``oned``           | ``5030``                 | Advertised port where OneGate service is published (the host portion is defined by ``OPENNEBULA_HOST``)                  |
 +--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
 | ``SUNSTONE_HTTPS_ENABLED``           | NO: ``sunstone``       | ``yes``                  | Enable HTTPS access to the Sunstone server (it will generate self-signed certificate if none is provided).               |
 +--------------------------------------+                        +--------------------------+--------------------------------------------------------------------------------------------------------------------------+
@@ -410,8 +419,8 @@ Environmental variables relayed to the container which modify the bootstrap proc
 | ``TLS_CERT``                         |                        |                          | Path within the container to the custom ceritificate (public portion).                                                   |
 +--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
 
-.. [*] In this column the value **YES** signals that parameter is mandatory for one or more services which are determined by listing the values of ``OPENNEBULA_FRONTEND_SERVICE``. Regardless of YES/NO - only the listed services are actually affected by the parameter (otherwise all are affected).
-.. [*] ``OPENNEBULA_FRONTEND_SERVICE`` must be defined every time **only** if it is intended as multi-container setup otherwise it defaults to ``all`` and therefore will start *all-in-one* deployment in each container...
+.. [*] In this column the value **YES** signals that parameter is mandatory for one or more services which are determined by listing the values of ``OPENNEBULA_SERVICE``. Regardless of YES/NO - only the listed services are actually affected by the parameter (otherwise all are affected).
+.. [*] ``OPENNEBULA_SERVICE`` must be defined every time **only** if it is intended as multi-container setup otherwise it defaults to ``all`` and therefore will start *all-in-one* deployment in each container...
 .. [*] This variable can be still useful even when ``DIND_ENABLED`` is false because the host's Docker socket can be bind-mounted inside the container.
 .. [*] ``MONITORD_PORT`` must also match the internal port - it is an implementation detail which will require to change both the external (published) and internal port.
 .. [*] ``MYSQL_PASSWORD`` is not required when deployed in single container (*all-in-one*).
@@ -459,7 +468,7 @@ Environmental variables relayed to the container which modify the bootstrap proc
 | ``ONEPROVISION_HOST``                | YES: ``fireedge``      | ``localhost``            | Container host for OneProvision with SSH keys.                                                                           |
 +--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
 
-.. [*] In this column the value **YES** signals that parameter is mandatory for one or more services which are determined by listing the values of ``OPENNEBULA_FRONTEND_SERVICE``. Regardless of YES/NO - only the listed services are actually affected by the parameter (otherwise all are affected).
+.. [*] In this column the value **YES** signals that parameter is mandatory for one or more services which are determined by listing the values of ``OPENNEBULA_SERVICE``. Regardless of YES/NO - only the listed services are actually affected by the parameter (otherwise all are affected).
 .. [*] Avoid the usage of an IP address, they are dynamically assigned in most cases.
 
 .. _reference_volumes:
@@ -536,7 +545,8 @@ OpenNebula image has defined implicit (anonymous) volumes and so every time a co
 +-------------------------------------------------+-----------------------------------------+-------------------------+------------------------------------+-----------------------------------------------------------------------------------------------------+
 |                                                 | ``/srv/one``                            | YES                     |                                    |  Parent directory for various persistent data.                                                      |
 +-------------------------------------------------+-----------------------------------------+-------------------------+------------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``opennebula_secret_db``                        | ``/srv/one/secret-db``                  | NO                      | ``mysqld``                         |  Stores MySQL passwords.                                                                            |
+| ``opennebula_secret_db``                        | ``/srv/one/secret-db``                  | NO                      | ``oned`` |br|                      |  Stores MySQL passwords (it is shared between ``mysqld`` and ``oned`` to support autogenerated      |
+|                                                 |                                         |                         | ``mysqld``                         |  passwords).                                                                                        |
 +-------------------------------------------------+-----------------------------------------+-------------------------+------------------------------------+-----------------------------------------------------------------------------------------------------+
 | ``opennebula_secret_sshd``                      | ``/srv/one/secret-sshd``                | NO                      | ``oneprovision`` |br|              |  SSH host keys for the sshd service (also oneprivision).                                            |
 |                                                 |                                         |                         | ``sshd``                           |                                                                                                     |
@@ -594,6 +604,8 @@ Deploy parameters for docker-compose
 | ``DEPLOY_ONEFLOW_INTERNAL_PORT``      | ``2475``                                 | ``opennebula-flow``       | Internal port for the OneFlow service (TLS).                                                                             |
 +---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
 | ``DEPLOY_ONEFLOW_EXTERNAL_PORT``      | ``2474``                                 | ``opennebula-flow``       | External/published port for the OneFlow service.                                                                         |
++---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``DEPLOY_RESTART_POLICY``             | ``unless-stopped``                       |  all                      | `Container restart policy <https://docs.docker.com/config/containers/start-containers-automatically/>`_.                 |
 +---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
 | ``DEPLOY_SSH_EXTERNAL_PORT``          | ``22``                                   | ``opennebula-sshd``       | External/published SSH port.                                                                                             |
 +---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
@@ -794,31 +806,31 @@ Next step is to setup the shell environmental variables so the CLI tools will st
 
 .. note::
 
-    In the following examples replace the ``${OPENNEBULA_FRONTEND_HOST}`` with the actual domain name or IP address.
+    In the following examples replace the ``${OPENNEBULA_HOST}`` with the actual domain name or IP address.
 
 Setting up the OpenNebula API endpoint exposed over HTTPS (``TLS_PROXY_ENABLED=yes``) and on the typical port ``2633``:
 
 .. prompt:: bash $ auto
 
-    $ export ONE_XMLRPC="https://${OPENNEBULA_FRONTEND_HOST}:2633"
+    $ export ONE_XMLRPC="https://${OPENNEBULA_HOST}:2633"
 
 Alternatively we could access the non-TLS endpoint (``TLS_PROXY_ENABLED=no``) over plain HTTP:
 
 .. prompt:: bash $ auto
 
-    $ export ONE_XMLRPC="http://${OPENNEBULA_FRONTEND_HOST}:2633"
+    $ export ONE_XMLRPC="http://${OPENNEBULA_HOST}:2633"
 
 And the same goes for the OneFlow API (``TLS_PROXY_ENABLED=yes``):
 
 .. prompt:: bash $ auto
 
-    $ export ONEFLOW_URL="https://${OPENNEBULA_FRONTEND_HOST}:2474"
+    $ export ONEFLOW_URL="https://${OPENNEBULA_HOST}:2474"
 
 Or over plain HTTP (``TLS_PROXY_ENABLED=no``):
 
 .. prompt:: bash $ auto
 
-    $ export ONEFLOW_URL="http://${OPENNEBULA_FRONTEND_HOST}:2474"
+    $ export ONEFLOW_URL="http://${OPENNEBULA_HOST}:2474"
 
 CLI examples
 ^^^^^^^^^^^^
@@ -899,11 +911,11 @@ The deployment itself:
     -v opennebula_oneadmin_ssh:/var/lib/one/.ssh \
     -v opennebula_oneprovision_ssh:/var/lib/one/.ssh-oneprovision \
     -v opennebula_logs:/var/log \
-    -e OPENNEBULA_FRONTEND_HOST=${HOSTNAME} \
-    -e OPENNEBULA_FRONTEND_SSH_HOST=${HOSTNAME} \
-    -e OPENNEBULA_FRONTEND_ONECFG_PATCH="/config/onecfg_patch" \
-    -e OPENNEBULA_FRONTEND_PREHOOK="/config/prepare.sh" \
-    -e OPENNEBULA_FRONTEND_POSTHOOK="/config/setup.sh" \
+    -e OPENNEBULA_HOST=${HOSTNAME} \
+    -e OPENNEBULA_SSH_HOST=${HOSTNAME} \
+    -e OPENNEBULA_ONECFG_PATCH="/config/onecfg_patch" \
+    -e OPENNEBULA_PREBOOTSTRAP_HOOK="/config/prepare.sh" \
+    -e OPENNEBULA_POSTBOOTSTRAP_HOOK="/config/setup.sh" \
     -e ONEADMIN_PASSWORD=changeme123 \
     -e DIND_ENABLED=yes \
     -e ONEADMIN_SSH_PRIVKEY="/ssh/id_rsa" \
@@ -943,8 +955,8 @@ Limited **test** deployment without Docker-in-Docker, TLS, HTTPS or volumes:
     -p 2474:2474 \
     -p 4124:4124 \
     -p 4124:4124/udp \
-    -e OPENNEBULA_FRONTEND_HOST=${HOSTNAME} \
-    -e OPENNEBULA_FRONTEND_SSH_HOST=${HOSTNAME} \
+    -e OPENNEBULA_HOST=${HOSTNAME} \
+    -e OPENNEBULA_SSH_HOST=${HOSTNAME} \
     -e ONEADMIN_PASSWORD=changeme123 \
     -e TLS_PROXY_ENABLED=no \
     -e SUNSTONE_HTTPS_ENABLED=no \
