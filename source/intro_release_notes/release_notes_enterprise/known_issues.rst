@@ -13,6 +13,8 @@ Accounting and Showback
 
 A bug that might lead to inaccurate hours in accounting and showback has been fixed. You can check all the information `here <https://github.com/OpenNebula/one/issues/1662>`_. But, old VMs won't be updated, so the bug might still be on those VMs.
 
+The showback calculation was `optimized <https://github.com/OpenNebula/one/issues/5020>`_. This optimization can cause different results in some edge cases for VMs which changed owner. You can manualy fix this by changing the VM owner again by running ``onevm chown vm_id user_id``. This inconsistency will be solved in 6.0, by ``onedb upgrade``.
+
 Sunstone Browser
 ================
 
