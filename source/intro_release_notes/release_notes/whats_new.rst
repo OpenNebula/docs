@@ -61,6 +61,7 @@ Sunstone
 - Added option to hide schedule actions on VM instantiate. Check more information :ref:`here <suns_views_custom>`.
 - Add new Sunstone labels normalization. Check more information :ref:`here <suns_views_labels_behavior>`.
 - Add option to change boot device when instantiate a VM Template. Check more information :ref:`here <template_os_and_boot_options_section>`.
+- Add option to set VM Backups. Check more information :ref:`here <template_os_and_boot_options_section>`.
 
 Scheduler
 ================================================================================
@@ -153,3 +154,4 @@ Other Issues Solved
 - `Fix error when create app if OneFlow Server not runnnig <https://github.com/OpenNebula/one/issues/5227>`__.
 - `Fix Sunstone overrides disks when VM Template instantiate XMLRPC API call <https://github.com/OpenNebula/one/issues/5238>`__.
 - `Fix Sunstone doesn't lock and unlock VMs <https://github.com/OpenNebula/one/issues/5200>`__.
+- `Fix Sunstone doesn't delete roles on Service update <https://github.com/OpenNebula/one/issues/5254>`__.
