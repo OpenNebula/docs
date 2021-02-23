@@ -43,7 +43,7 @@ Sunstone Browser
 
 Current implementation of Sunstone is not working on Internet Explorer due to new Javascript version.
 
-As a workaround you can use the other browsers:
+As a workaround you can use the other supported browsers:
 
 - Chrome (61.0 - 67.0)
 - Firefox (59.0 - 61.0)
@@ -62,3 +62,12 @@ vCenter Monitoring Memory Leak
 ==============================
 
 Process vcenter_monitor.rb has a memory leak problem. Fix will be available in the next stable OpenNebula release. The workaround is to periodically restart the process. This can be done by performing a kill operation on the process, no need to restart the OpenNebula service.
+
+LDAP Authentication
+===================
+
+In multi LDAOP server configuration, authentication may fail. In that case, please change line 69 of `/var/lib/one/remotes/auth/ldap/authenticate` with the following:
+
+.. code-block:: ruby
+
+    STDERR.puts "Using group of servers: #{order.join(' ')}" if order.length>1
