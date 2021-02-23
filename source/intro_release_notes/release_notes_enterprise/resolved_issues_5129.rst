@@ -12,3 +12,4 @@ The following new features has been backported to 5.12.9:
 The following issues has been solved in 5.12.9:
 
 - `Fix onedb fsck typo in image <https://github.com/OpenNebula/one/issues/5262>`__.
+- `Fix onegate client VM actions <https://github.com/OpenNebula/one/issues/5258>`__.
