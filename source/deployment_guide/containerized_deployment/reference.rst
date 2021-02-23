@@ -1,12 +1,12 @@
-.. _containerized_deployment_reference:
+.. _container_reference:
 
 ================================================================================
 Troubleshooting and Reference
 ================================================================================
 
-This page contains complementary information to :ref:`the official OpenNebula container image and its deployment <containerized_deployment>`.
+This page contains complementary information to :ref:`the official OpenNebula container image and its deployment <container_deployment>`.
 
-:ref:`The reference section <reference>` below is the definitive guide to the container image internals, parameters and usage.
+:ref:`The reference section <container_reference>` below is the definitive guide to the container image internals, parameters and usage.
 
 .. _troubleshooting:
 
@@ -282,7 +282,7 @@ Internal ports which are designed to be exposed to the host or overlay network.
 +------------------------+------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 | Port mapping examples  | Affected Parameter |_| / |_| Service           |                     Note                                                                                                                  |
 +========================+================================================+===========================================================================================================================================+
-| ``-p 2222:22``         |                                                | Change to the SSH port has consequences which are described in :ref:`the SSH service prerequisite <setup_ssh>`.                           |
+| ``-p 2222:22``         |                                                | Change to the SSH port has consequences which are described in :ref:`the SSH service prerequisite <container_ssh>`.                       |
 +------------------------+------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 | ``-p 8080:80``         | ``SUNSTONE_PORT / sunstone``                   | Sunstone port (HTTP) - ``SUNSTONE_PORT=8080``                                                                                             |
 +------------------------+------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
@@ -563,7 +563,7 @@ OpenNebula image has defined implicit (anonymous) volumes and so every time a co
 |                                                 |                                         |                         | ``sunstone``                       |                                                                                                     |
 +-------------------------------------------------+-----------------------------------------+-------------------------+------------------------------------+-----------------------------------------------------------------------------------------------------+
 
-.. [*] These volume names and mountpoints are recommended to use - the very same are utilized in the referential :ref:`docker-compose deployment <deploy_multiple_containers>`.
+.. [*] These volume names and mountpoints are recommended to use - the very same are utilized in the referential :ref:`docker-compose deployment <container_deploy_multi>`.
 .. [*] Please note that ``opennebula_oneadmin_ssh_copyback`` volume is mounted to ``/var/lib/one/.ssh`` in ``sshd`` service!
 
 .. note::
@@ -750,7 +750,7 @@ Adding the service - the *ini* file must be already created:
 
     Using the facility of the maintenance mode (parameter ``MAINTENANCE_MODE``) will prevent all services from starting (they will have ``autostart`` option set to ``false``).
 
-.. _appendix:
+.. _container_appendix:
 
 Appendix
 ================================================================================
