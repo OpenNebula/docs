@@ -1,0 +1,166 @@
+The command is easily deconstructed into the following semantic parts:
+
+1. Docker run
+^^^^^^^^^^^^^
+
+.. code::
+
+    $ docker run -d --privileged --restart=unless-stopped --name opennebula ...
+
+The ``run`` argument of the Docker command (or Podman) will create a new container from the selected image (the very last part) and will start the execution of its `entrypoint <https://docs.docker.com/engine/reference/builder/#entrypoint>`_.
+
+The options are shortly described as follows:
+
+* ``-d`` - Detach the container from the terminal (basically it will execute in the background).
+* ``--privileged`` - Potentially dangerous option because it will give the container more rights and permissions than normally a container would need. In our case it is needed for Docker Hub marketplace to work - if this function is not needed then this unsafe option can be dropped.
+* ``--restart=unless-stopped`` - `Restart policy <https://docs.docker.com/config/containers/start-containers-automatically/>`_ which will ensure that container is always restarted when crashed and automatically started on reboot |_| [*]_.
+* ``--name`` - Simply assign an explicit name to the container which can be referenced by.
+
+.. [*] Start on boot is working only in Docker - how to simulate this behavior with Podman is described in :ref:`the Podman appendix <appendix_podman>`.
+
+2. Published ports
+^^^^^^^^^^^^^^^^^^
+
+.. code::
+
+    -p 80:80
+    -p 443:443
+    -p 22:22
+    -p 29876:29876
+    -p 2633:2634
+    -p 5030:5031
+    -p 2474:2475
+    -p 4124:4124
+    -p 4124:4124/udp
+
+These arguments will expose the internal network port (number on the right ) where the service is actually listening inside the container. It will be accessible via its external port (number on the left) on the host.
+
+There may be a need to change one or more of these ports to not either conflict with already running service on the host or using higher number (greater than 1024) for unprivileged users.
+
+.. important::
+
+    The published ports can conflict with other services on the host - in that case change the left portion of the ``-p`` argument - although in some cases you must also change the port number on the right and on top of that add a few more parameters. This is discussed in the more detail under :ref:`the ports reference <reference_ports>`.
+
+    The biggest hurdle could be SSH (22) because the majority of the hosts will have their own SSH daemon listening on that port. Unfortunately OpenNebula (as of yet) does not support natively frontend's SSH access on different than standard port. The workarounds for this are described in :ref:`the OpenNebula SSH service prerequisite <setup_ssh>`.
+
+.. important::
+
+    The ``docker run`` above will enable TLS and HTTPS (it's a default). OpenNebula's APIs (oned, OneFlow, OneGate) are also published over HTTPS. Internally (in the container) these APIs are reachable over both ports (HTTP and HTTPS) when ``TLS_PROXY_ENABLED`` is set to true (that is the default) - what actual port is published is for the user to decide.
+
+    We chose to publish only the HTTPS variant but we could choose HTTP - to change that you must decrement the port number on the right by one to look like this:
+
+    * ``-p 2633:2633``
+    * ``-p 5030:5030``
+    * ``-p 2474:2474``
+
+    or publish over different ports entirely to have access to both HTTP and HTTPS:
+
+    * ``-p 2633:2634`` - oned/HTTPS
+    * ``-p 5030:5031`` - gate/HTTPS
+    * ``-p 2474:2475`` - flow/HTTPS
+    * ``-p 12633:2633`` - oned/HTTP
+    * ``-p 15030:5030`` - gate/HTTP
+    * ``-p 12474:2474`` - flow/HTTP
+
+.. important::
+
+    We **strongly** recommend to leave the port numbers intact and instead publish them on a designated IP (e.g. ``192.168.1.1``) like so:
+
+    .. code::
+
+        -p 192.168.1.1:80:80
+        -p 192.168.1.1:443:443
+        -p 192.168.1.1:22:22
+        -p 192.168.1.1:29876:29876
+        -p 192.168.1.1:2633:2634
+        -p 192.168.1.1:5030:5031
+        -p 192.168.1.1:2474:2475
+        -p 192.168.1.1:4124:4124
+        -p 192.168.1.1:4124:4124/udp
+
+    This way all the headaches with the conflicting ports and SSH is effectively eliminated.
+
+More info can be found in :ref:`the table describing exposed ports <reference_ports>`.
+
+3. Environment variables (image parameters)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code::
+
+    -e OPENNEBULA_FRONTEND_HOST=${HOSTNAME}
+    -e OPENNEBULA_FRONTEND_SSH_HOST=${HOSTNAME}
+    -e ONEADMIN_PASSWORD=changeme123
+    -e DIND_ENABLED=yes
+
+* ``OPENNEBULA_FRONTEND_HOST`` must be an address on the host which is resolvable from the nodes.
+* ``OPENNEBULA_FRONTEND_SSH_HOST`` must be an address (they can be identical) on the host which is resolvable not only from the nodes but **from within the containers too**.
+* ``ONEADMIN_PASSWORD`` is one-time setup of oneadmin's password (the same is used for web login via Sunstone).
+* ``DIND_ENABLED`` will enable Docker-in-Docker - the prerequisite is the ``--privileged`` argument.
+
+.. important::
+
+    ``${HOSTNAME}`` is just a placeholder which you should replace with a valid fully qualified domain name or a designated IP.
+
+There are more parameters which can be used with the single container deployment.
+
+All are described in :ref:`the image parameters table <reference_params>`.
+
+4. Volumes (persistent storage)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code::
+
+    -v opennebula_db:/var/lib/mysql
+    -v opennebula_datastores:/var/lib/one/datastores
+    -v opennebula_srv:/srv/one
+    -v opennebula_oneadmin_auth:/var/lib/one/.one
+    -v opennebula_oneadmin_ssh:/var/lib/one/.ssh
+    -v opennebula_oneprovision_ssh:/var/lib/one/.ssh-oneprovision \
+    -v opennebula_logs:/var/log
+
+There could be used more fine grained volumes as is implemented in the official ``docker-compose.yml`` but this volume list covers all important data which must survive container's restart.
+
+In this volume section we could utilize our custom SSH key and TLS certificate which will also require setup of certain :ref:`image parameters <reference_params>`.
+
+Let us setup two directories on the host:
+
+* ``/custom/hostpath/ssh`` with the (passphrase-less) SSH private key ``id_rsa`` and public key ``id_rsa.pub``.
+* ``/custom/hostpath/certs`` with the TLS certificate ``cert.pem`` and private key ``cert.key``.
+
+Then we could instruct the OpenNebula image with the extra arguments:
+
+* ``-v /custom/hostpath/ssh:/ssh:z,ro`` bindmounts (read-only) the content of the directory on the left to the container under ``/ssh``.
+* ``-v /custom/hostpath/certs:/certs:z,ro`` similarly bindmounts the TLS certificate directory inside the container under ``/certs``.
+* ``-e ONEADMIN_SSH_PRIVKEY=/ssh/id_rsa`` tells the container that it should use the exposed SSH private key inside the bindmounted directory.
+* ``-e ONEADMIN_SSH_PUBKEY=/ssh/id_rsa.pub`` tells the same for the public SSH key.
+* ``-e TLS_CERT=/certs/cert.pem`` instructs the container where to find the TLS certificate.
+* ``-e TLS_KEY=/certs/cert.key`` works the same for the TLS certificate key.
+
+.. note::
+
+    Instead of bindmounting directories for the SSH key or the TLS certificate - we could just use image parameters with base64 encoded values:
+
+    .. code::
+
+        ONEADMIN_SSH_PRIVKEY_BASE64
+        ONEADMIN_SSH_PUBKEY_BASE64
+        TLS_KEY_BASE64
+        TLS_CERT_BASE64
+
+All significant directories and potential volume candidates are described in :ref:`the volume table <reference_volumes>`.
+
+.. note::
+
+    Not all canonical volumes from the reference table are meaningful for the single container deployment - mainly those **shared** could be ignored because there is no other container to share data with.
+
+5. OpenNebula image
+^^^^^^^^^^^^^^^^^^^
+
+The last part is just the name of the image which can be qualified with registry URL or a custom name or a tag.
+
+* ``opennebula:5.13``
+
+More examples
+^^^^^^^^^^^^^
+
+More single container deployments can be seen in the :ref:`Single container examples appendix <appendix_single_container_examples>`.

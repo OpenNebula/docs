@@ -1,4 +1,4 @@
-.. _containerized_deployment_index:
+.. _container_index:
 
 ================================================================================
 Containerized Deployment (TP)
@@ -8,5 +8,5 @@ Containerized Deployment (TP)
    :maxdepth: 2
 
    Overview <overview>
-   Architecture and Deployment <containerized_deployment>
-   Troubleshooting and Reference <containerized_deployment_reference>
+   Architecture and Simple Deployment <architecture_deployment>
+   Troubleshooting and Reference <reference>
