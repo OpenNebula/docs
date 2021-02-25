@@ -81,14 +81,14 @@ You have to download them to a directory that we will later refer. In this examp
 
     $ mkdir packages
     $ cd packages
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0/one-context-5.12.0-1.el6.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0/one-context-5.12.0-1.el7.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0/one-context-5.12.0-1.el8.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0/one-context-5.12.0-1.suse.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0/one-context-5.12.0-alt1.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0/one-context_5.12.0-1.deb
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0/one-context-5.12.0-r1.apk
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0/one-context-5.12.0_1.txz
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2-1.el6.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2-1.el7.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2-1.el8.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2-1.suse.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2-alt1.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context_5.12.0.2-1.deb
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2-r1.apk
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2_1.txz
     $ cd ..
 
 

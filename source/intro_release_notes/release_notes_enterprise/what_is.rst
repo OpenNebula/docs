@@ -10,10 +10,10 @@ While we have made all of our products open source under the Apache 2 license, t
 
 If you are an OpenNebula Systems customer with an active support subscription, you have immediate access to the Enterprise Edition. Please check your private repository at OpenNebula.pro
 
-OpenNebula 5.12 Enterprise Edition
+OpenNebula 5.13 Enterprise Edition
 ==================================
 
-OpenNebula 5.12 Enterprise Edition comes with everything available in the 5.12 Community Edition plus:
+OpenNebula 5.13 Enterprise Edition comes with everything available in the 5.13 Community Edition plus:
 
 * :ref:`Migration Packages <upgrade>` to easily upgrade your production cloud to the latest version.
 * `OneScape <http://docs.opennebula.io/onescape>`__ enterprise tool to simplify maintenance, management and upgrade of the OpenNebula deployments. Although current features are limited to managing configuration files and generating diagnostics, it is evolving into the central control, maintenance and monitoring point of the installation.
