@@ -16,3 +16,4 @@ The following issues has been solved in 5.12.9:
 - `Round marketplace apps size <https://github.com/OpenNebula/one/issues/5236>`__.
 - `Handle BLOCK_CDROM types <https://github.com/OpenNebula/one/issues/5255>`__.
 - `Fix PCI Device references after VM migration fails <https://github.com/OpenNebula/one/issues/5261>`__.
+- `Fix LXD VM status monitoring not being in sync with container status transition <https://github.com/OpenNebula/one/issues/5103>`__.
