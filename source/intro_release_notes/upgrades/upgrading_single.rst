@@ -221,7 +221,7 @@ After checking the state of configuration, in most cases running the following c
 
      # onecfg upgrade
      ANY   : Backup stored in '/tmp/onescape/backups/2020-6...
-     ANY   : Configuration updated to 5.12.0
+     ANY   : Configuration updated to 6.0.0
 
 If you get conflicts when running onecfg upgrade refer to the :ref:`onecfg upgrade basic usage documentation <cfg_usage>` on how to upgrade and troubleshoot the configurations, in particular the :ref:`onecfg upgrade doc <cfg_upgrade>` and the :ref:`troubleshooting section <cfg_conflicts>`.
 

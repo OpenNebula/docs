@@ -53,7 +53,7 @@ These hooks are now triggered by an API hook on the corresponding create/delete 
        command   = "email2user.rb",
        arguments = "$ID $TEMPLATE"]
 
-Now, in OpenNebula 5.12, you need to create the following hook template:
+Now, since OpenNebula 5.12, you need to create the following hook template:
 
 
 .. code::
