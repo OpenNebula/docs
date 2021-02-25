@@ -156,3 +156,4 @@ Other Issues Solved
 - `Fix Sunstone doesn't lock and unlock VMs <https://github.com/OpenNebula/one/issues/5200>`__.
 - `Fix Sunstone doesn't delete roles on Service update <https://github.com/OpenNebula/one/issues/5254>`__.
 - `Hide remote actions buttons until vCenter VM is monitored <https://github.com/OpenNebula/one/issues/5002>`__.
+- `Fix Sunstone VM warning box blocks other VM tabs <https://github.com/OpenNebula/one/issues/5266>`__.
