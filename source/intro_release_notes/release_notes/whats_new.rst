@@ -1,8 +1,31 @@
 .. _whats_new:
 
 ================================================================================
-What's New in X.Y
+What's New in 6.0
 ================================================================================
+
+
+OpenNebula 6.0 (Mutara) is the first stable release of the OpenNebula 6 series. This release comes with a significant number of new functionality, among which we can highlight the maturity of the automatic provision component, that enables any OpenNebula cloud to automatically add new OpenNebula clusters using the offering of different cloud and edge providers. This new functionality includes:
+
+  * A fully featured command line interface to manage providers (public cloud and edge offerings) and provisions (OpenNebula clusters with a certified Edge architecture)
+  * A modern, slick web interface delivered by a new web server, FireEdge, which implements a wrapper for the OpenNebula XMLRPC and OneFlow REST APIs. Create remote OpenNebula clusters with a point and click interface!
+  * A special hyperconverged architecture to maximize workload performance. It uses a novel 3-tier storage architecture that allows to deploy any marketplace application using a new replica transfer manager driver.
+  * A set of templates to instantiate providers (initially for Amazon AWS and Equinix/Packet) and provisions (the remote OpenNebula clusters, based on KVM, Firecracker or qemu).
+
+Additionally, Mutara comes with the following goodies:
+
+* The new Firedge server enables new functionality in Sunstone: autorefresh for VM and host states, VMRC console access for VMware VMs, Guacamole VNC/SSH and RDP, and more.
+* Additionally there has been multitude of improvements in Sunstone: revamped VNC dialogs, asynchronous operation warnings, extra information for OneFlow services, NUMA placement for VMware VMs, etc.
+* Support for VM Backups, periodically save the data of your VMs in a remote storage location set up as a private marketplace.
+* Several OneFlow improvements, mostly related to the life cycle management of OneFlow Services, both in the engine and the GUI.
+* Add support for Dockerfiles! Define your Docker apps directly in Sunstone, and have OpenNebula create and deploy the Docker app for you.
+* Revamped marketplace subsystem, now it allows to store not only images but also multi disk VM Templates and even OneFlow services.
+
+OpenNebula 6.0 codename refers to a nebula, in this case the Mutara Nebula, an interstellar dust cloud located in the Mutara sector of the Beta Quadrant. The nebula contained high levels of static discharge and was comprised largely of ionized gases. The combined effect of this made a starship's sensors highly unreliable and shields inoperable when inside. In March of 2285, the nebula ceased to exist when the Genesis Device detonated. As seen on Star Trek :)
+
+The OpenNebula team is now transitioning to "bug-fixing mode". Note that this is a first beta release aimed at testers and developers to try the new features, and we welcome you to send feedback for the final release. Please check the :ref:`known issues <known_issues>` before submitting an `issue through GitHub <https://github.com/OpenNebula/one/issues/new?template=bug_report.md>`__. Also note that being a beta, there is no migration path from the previous stable version (5.12.x) nor migration path to the final stable version (6.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/32>`__.
+
+In the following list you can check the highlights of OpenNebula 6.0 (a detailed list of changes can be found `here <https://github.com/OpenNebula/one/milestone/32?closed=1>`__):
 
 ..
    Conform to the following format for new features.
