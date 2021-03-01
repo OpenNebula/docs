@@ -4,28 +4,29 @@
 What's New in 6.0
 ================================================================================
 
+OpenNebula 6.0 ‘Mutara’ is the first stable release of the new OpenNebula 6 series. This release comes with a significant number of new functionalities, among which we can highlight the maturity of the new innovative edge features developed in the context of the `ONEedge <http://oneegde.io>`__ innovation project to deploy on-demand distributed edge cloud environments based on OpenNebula. These new edge computing features enable IT organizations to deploy true hybrid and multi-cloud environments that avoid vendor lock-in, reducing operational costs, expanding service availability, and enabling new ultra-low-latency applications. Organizations maintain a single control panel with centralized operations and management that abstracts cloud functionality and ensures portability across clouds. IT organizations can now automatically deploy and manage multiple Kubernetes clusters across edge locations to enable truly multi-tenant and large-scale container orchestration.
 
-OpenNebula 6.0 (Mutara) is the first stable release of the OpenNebula 6 series. This release comes with a significant number of new functionality, among which we can highlight the maturity of the automatic provision component, that enables any OpenNebula cloud to automatically add new OpenNebula clusters using the offering of different cloud and edge providers. This new functionality includes:
+These new edge features in OpenNebula 6.0 include:
 
-  * A fully featured command line interface to manage providers (public cloud and edge offerings) and provisions (OpenNebula clusters with a certified Edge architecture)
-  * A modern, slick web interface delivered by a new web server, FireEdge, which implements a wrapper for the OpenNebula XMLRPC and OneFlow REST APIs. Create remote OpenNebula clusters with a point and click interface!
-  * A special hyperconverged architecture to maximize workload performance. It uses a novel 3-tier storage architecture that allows to deploy any marketplace application using a new replica transfer manager driver.
-  * A set of templates to instantiate providers (initially for Amazon AWS and Equinix/Packet) and provisions (the remote OpenNebula clusters, based on KVM, Firecracker or qemu).
+- A powerful distributed cloud architecture for OpenNebula that is composed of edge clusters that can run any workload—both virtual machines and application containers—on any resource— or virtualized—anywhere—on-premises and on a cloud provider. This hyperconverged edge cloud solution maximizes workload performance and availability, and comes with a native 3-tier storage architecture that simplifies and speeds up the deployment of containers and services across edge locations.
+- A fully featured command line interface and a modern, slick web interface—FireEdge—to easily manage public cloud and edge providers  and the seamless provisioning of OpenNebula’s edge clusters. You can quickly expand on-demand your OpenNebula cloud with third-party resources thanks to this point and click interface and create an “Edge as a Service” environment in just a few minutes!
+- A first set of templates and drivers to expand your OpenNebula cloud using  AWS and Equinix Metal resources, creating edge clusters based on QEMU, KVM and Firecracker.
+- The new support for Dockerfiles and a revamped Marketplace for VM templates, which now is able to store service templates, which considerably improves user experience in the  execution of complex container workflows, multi-tier services and management of CNCF-certified Kubernetes clusters on the edge.
 
-Additionally, Mutara comes with the following goodies:
+Additionally, OpenNebula 6.0 ‘Mutara’ comes with the following goodies:
 
-* The new Firedge server enables new functionality in Sunstone: autorefresh for VM and host states, VMRC console access for VMware VMs, Guacamole VNC/SSH and RDP, and more.
-* Additionally there has been multitude of improvements in Sunstone: revamped VNC dialogs, asynchronous operation warnings, extra information for OneFlow services, NUMA placement for VMware VMs, etc.
-* Support for VM Backups, periodically save the data of your VMs in a remote storage location set up as a private marketplace.
-* Several OneFlow improvements, mostly related to the life cycle management of OneFlow Services, both in the engine and the GUI.
-* Add support for Dockerfiles! Define your Docker apps directly in Sunstone, and have OpenNebula create and deploy the Docker app for you.
-* Revamped marketplace subsystem, now it allows to store not only images but also multi disk VM Templates and even OneFlow services.
+- There have been multitude of improvements in Sunstone: revamped VNC dialogs, asynchronous operation warnings, extra information for OneFlow services, NUMA placement for VMware VMs, etc. Additionally, a new FireEdge server is now shipped with OpenNebula, enabling new functionality in Sunstone—OpenNebula’s WebUI: auto refresh for VM and host states, VMRC console access for VMware VMs, Guacamole VNC/SSH and RDP, and more.
+- Support for VM Backups, periodically save the data of your VMs in a remote storage location set up as a private marketplace.
+- Several OneFlow improvements, mostly related to the life cycle management of OneFlow Services, both in the engine and the GUI.
+- Hypervisor driver improvements like vSphere 7 support and additional VM tuning parameters for KVM. OpenNebula 6.0 also features a new driver for LXC containers, easing the use of containerized apps across platforms.
 
-OpenNebula 6.0 codename refers to a nebula, in this case the Mutara Nebula, an interstellar dust cloud located in the Mutara sector of the Beta Quadrant. The nebula contained high levels of static discharge and was comprised largely of ionized gases. The combined effect of this made a starship's sensors highly unreliable and shields inoperable when inside. In March of 2285, the nebula ceased to exist when the Genesis Device detonated. As seen on Star Trek :)
+As usual, OpenNebula 6.0 codename refers to a nebula, in this case to the Mutara Nebula, an interstellar dust cloud located in the Mutara sector of the Beta Quadrant. In 2285, it was the site of the epic battle between the USS Reliant (commanded by the infamous Khan Noonien Singh) and the USS Enterprise (commanded by Captain James T. Kirk), which ended [Spoiler Alert] with the detonation of the Genesis Device and the USS Enterprise making a last-minute escape thanks to the dramatic self-sacrifice of Mr Spock—as seen in Star Trek II: The Wrath of Khan :)
 
-The OpenNebula team is now transitioning to "bug-fixing mode". Note that this is a first beta release aimed at testers and developers to try the new features, and we welcome you to send feedback for the final release. Please check the :ref:`known issues <known_issues>` before submitting an `issue through GitHub <https://github.com/OpenNebula/one/issues/new?template=bug_report.md>`__. Also note that being a beta, there is no migration path from the previous stable version (5.12.x) nor migration path to the final stable version (6.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/32>`__.
+The OpenNebula team is now transitioning to “bug-fixing mode”. Note that this is a first beta release aimed at testers and developers to try the new features, and we welcome you to send feedback for the final release. Please check the :ref:`known issues <known_issues>` before submitting an `issue through GitHub <https://github.com/OpenNebula/one/issues/new?template=bug_report.md>`__. Also note that being a beta, there is no migration path from the previous stable version (5.12.x) nor migration path to the final stable version (6.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/32>`__.
+
 
 In the following list you can check the highlights of OpenNebula 6.0 (a detailed list of changes can be found `here <https://github.com/OpenNebula/one/milestone/32?closed=1>`__):
+
 
 ..
    Conform to the following format for new features.
