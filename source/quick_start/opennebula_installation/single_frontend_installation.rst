@@ -108,7 +108,7 @@ Available packages for the OpenNebula frontend and virtualization hosts:
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **opennebula-sunstone**               | GUI :ref:`Sunstone <sunstone>`                                                                                |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **opennebula-fireedge**               | next-generation GUI :ref:`Fireedge <fireedge_setup>`                                                          |
+| **opennebula-fireedge**               | next-generation GUI :ref:`FireEdge <fireedge_setup>`                                                          |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **opennebula-gate**                   | :ref:`OneGate <onegate_overview>` server which allows communication between VMs and OpenNebula                |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
@@ -371,7 +371,7 @@ The complete list of operating system services OpenNebula comes with:
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
 | **opennebula-sunstone**               | GUI :ref:`Sunstone <sunstone>`                                         |                           |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
-| **opennebula-fireedge**               | next-generation GUI :ref:`Fireedge <fireedge_setup>`                   |                           |
+| **opennebula-fireedge**               | next-generation GUI :ref:`FireEdge <fireedge_setup>`                   |                           |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
 | **opennebula-gate**                   | OneGate Server for communication between VMs and OpenNebula            |                           |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+

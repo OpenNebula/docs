@@ -125,10 +125,10 @@ Available options are:
 +---------------------------------+-----------------------------------------------------------------------------------------------------+
 | :threshold_high                 | Minimum percentage value for red color on thresholds                                                |
 +---------------------------------+-----------------------------------------------------------------------------------------------------+
-| :public_fireedge_endpoint       | URL or IP address where the Fireedge server is running.                                             |
+| :public_fireedge_endpoint       | URL or IP address where the FireEdge server is running.                                             |
 |                                 | This endpoint must be accessible for Sunstone clients.                                              |
 +---------------------------------+-----------------------------------------------------------------------------------------------------+
-| :private_fireedge_endpoint      | URL or IP address where the Fireedge server is running.                                             |
+| :private_fireedge_endpoint      | URL or IP address where the FireEdge server is running.                                             |
 |                                 | This endpoint must be accessible for Sunstone server.                                               |
 +---------------------------------+-----------------------------------------------------------------------------------------------------+
 
@@ -163,16 +163,16 @@ You can find the Sunstone server log file in ``/var/log/one/sunstone.log``. Erro
 
 .. _fireedge_sunstone:
 
-Fireedge and Sunstone
+FireEdge and Sunstone
 ================================================================================
 
-:ref:`Fireedge <fireedge_configuration>` provides the following extra functionality to Sunstone:
+:ref:`FireEdge <fireedge_configuration>` provides the following extra functionality to Sunstone:
 
 - :ref:`Remote access your VM <remote_access_sunstone>` using Guacamole and/or VMRC (`VMware Remote Console`).
 
 - :ref:`Resource state autorefresh <autorefresh>`, VMs and host states are refreshed automatically.
 
-Fireedge uses `Apache Guacamole <guacamole.apache.org>`_, a free and open source web
+FireEdge uses `Apache Guacamole <guacamole.apache.org>`_, a free and open source web
 application which lets you access your dashboard from anywhere using a modern web browser.
 It is a **clientless remote desktop gateway** which only requires Guacamole installed on a
 server and a web browser supporting HTML5.
@@ -189,7 +189,7 @@ connections and connects to the remote desktop on their behalf.
   The OpenNebula **binary packages** will configure Guacamole  server and client
   automatically, therefore you don’t need to take any extra steps.
 
-Fireedge server acts like a **VMRC proxy** between Sunstone and ESX nodes through web socket.
+FireEdge server acts like a **VMRC proxy** between Sunstone and ESX nodes through web socket.
 You can read :ref:`more information <vmrc_sunstone>` about it configuration.
 
 .. _fireedge_sunstone_configuration:
@@ -197,12 +197,12 @@ You can read :ref:`more information <vmrc_sunstone>` about it configuration.
 Configuring Sunstone for Guacamole
 -------------------------------------------------------------------------------
 
-To configure the Fireedge server on Sunstone when they are **on different servers**, you will need
-to set public and private Fireedge server **endpoints** on :ref:`sunstone-server.conf <fireedge_install_configuration>`:
+To configure the FireEdge server on Sunstone when they are **on different servers**, you will need
+to set public and private FireEdge server **endpoints** on :ref:`sunstone-server.conf <fireedge_install_configuration>`:
 
 If they are on the **same server**, you can **skip this step**.
 
-Also, if Fireedge is on another server, you must manually copy the file ``fireedge_key`` on
+Also, if FireEdge is on another server, you must manually copy the file ``fireedge_key`` on
 ``/var/lib/one/.one`` since this file contains the cipher key for guacamole connections.
 
 .. note::
@@ -216,15 +216,15 @@ Accessing your VMs Console and Desktop
 Sunstone provides several different methods to access your VM console and desktop: VNC, SPICE,
 RDP, VMRC, ssh, and virt-viewer. If configured in the VM, these metods can be used to access the
 VM console through Sunstone.
-For some of those connections, we will need to start our brand new Fireedge server to establish
+For some of those connections, we will need to start our brand new FireEdge server to establish
 the remote connection. This section shows how these different technologies can be configured and
 what are each requirement.
 
-:ref:`Fireedge <fireedge_configuration>` automatically install dependencies
+:ref:`FireEdge <fireedge_configuration>` automatically install dependencies
 for  Guacamole connections and the VMRC proxy, which are necessary for use VNC, RDP, ssh, and VMRC.
 
 +----------------+-------------------+---------------------+
-|   Connection   |   With Fireedge   |  Without Fireedge   |
+|   Connection   |   With FireEdge   |  Without FireEdge   |
 +================+===================+=====================+
 | VNC            | Guacamole         | noVNC               |
 +----------------+-------------------+---------------------+
@@ -239,10 +239,10 @@ for  Guacamole connections and the VMRC proxy, which are necessary for use VNC, 
 | VMRC           | VMRC proxy        | N/A                 |
 +----------------+-------------------+---------------------+
 
-.. note:: For **VMRC** connections Sunstone and Fireedge must be installed on the **same server**.
+.. note:: For **VMRC** connections Sunstone and FireEdge must be installed on the **same server**.
 
-.. important:: For Guacamole to work in Sunstone, **Fireedge server must be running**.
-    See :ref:`Fireedge setup<fireedge_setup>` for more information.
+.. important:: For Guacamole to work in Sunstone, **FireEdge server must be running**.
+    See :ref:`FireEdge setup<fireedge_setup>` for more information.
 
 .. _requirements_remote_access_sunstone:
 
@@ -291,7 +291,7 @@ Configuring your VM for VNC
 
 VNC is a graphical console with wide support among many hypervisors and clients.
 
-VNC without Fireedge
+VNC without FireEdge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When clicking the VNC icon, a request is made, and if a VNC session is possible, the Sunstone server will add the VM
@@ -307,7 +307,7 @@ client tool, such as ``vncviewer``.
 
 .. _requirements_guacamole_vnc_sunstone:
 
-VNC with Fireedge
+VNC with FireEdge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To enable VNC console service, you must have a ``GRAPHICS`` section in the VM template,
@@ -340,7 +340,7 @@ Short for **Remote Desktop Protocol**, allows one computer to connect to another
 over a network in order to use it remotely. Is a graphical console primarily used with
 Hyper-V.
 
-RDP without Fireedge
+RDP without FireEdge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 RDP connections are available on sunstone using noVNC. You will only have to download the
@@ -348,7 +348,7 @@ RDP file and open it with an RDP client to establish a connection with your Virt
 
 .. _requirements_guacamole_rdp_sunstone:
 
-RDP with Fireedge
+RDP with FireEdge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To add one RDP connection link for a network in a VM, you must have one ``NIC``
@@ -454,7 +454,7 @@ These type of connections requests a ``TOKEN`` from vCenter to connect with the 
 allocated on vCenter every time you click on the VMRC button.
 
 To use this option, you will only have to enable VNC / VMRC connections to your VMs and start the
-Fireedge Server.
+FireEdge Server.
 
 |sunstone_vmrc|
 

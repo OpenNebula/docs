@@ -11,5 +11,5 @@ Web Interfaces Configuration
    Sunstone Authentication <suns_auth>
    Cloud Servers Authentication <cloud_auth>
    Sunstone for Large Deployments <suns_advance>
-   Fireedge Configuration <fireedge_configuration>
+   FireEdge Configuration <fireedge_configuration>
    Cloud Provisioning Interface <fireedge_cpi>

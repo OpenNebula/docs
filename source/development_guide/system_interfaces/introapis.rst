@@ -6,7 +6,7 @@ Overview
 
 OpenNebula has been designed to be easily adapted to any infrastructure and easily extended with new components. The result is a modular system that can implement a variety of Cloud architectures and can interface with multiple datacenter services. In this Guide we review the main interfaces of OpenNebula, their use and give pointers to additional documentation for each one.
 
-.. todo:: Add Fireedge to image
+.. todo:: Add FireEdge to image
 
 |image0|
 

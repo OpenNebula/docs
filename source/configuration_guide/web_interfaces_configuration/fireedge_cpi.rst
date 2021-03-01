@@ -1,23 +1,23 @@
 .. _fireedge_cpi:
 
 ================================================================================
-Fireedge OneProvision
+FireEdge OneProvision
 ================================================================================
 
 What Is?
 ========
 
-**Fireedge OneProvision** is a Graphical User Interface (GUI) that simplifies the
+**FireEdge OneProvision** is a Graphical User Interface (GUI) that simplifies the
 typical management operations in :ref:`hybrid <true_hybrid_cloud_reference_architecture>`
 cloud infrastructures.
 
-Fireedge OneProvision is build using `oneprovision` tool which allows the deployment of OpenNebula clusters
+FireEdge OneProvision is build using `oneprovision` tool which allows the deployment of OpenNebula clusters
 with all resources needed to run VMs, hosts, datastores or virtual networks. More information in the :ref:`oneprovision documentation <ddc_usage>`.
 
 Configuration
 ==============
 
-When the :ref:`Fireedge server is installed <fireedge_configuration>`, you can check the :ref:`configuration Fireedge
+When the :ref:`FireEdge server is installed <fireedge_configuration>`, you can check the :ref:`configuration FireEdge
 file <fireedge_install_configuration>` which has the following specifics options to OneProvision GUI:
 
 +----------------------------------------+----------------------------+-----------------------------------------------------+
@@ -39,7 +39,7 @@ a set of YAML documents specifying the OpenNebula resources to add.
 
 These templates can be found in ``/usr/share/one/oneprovision/provisions``.
 
-Fireedge OneProvision uses these templates to define a **dynamic form** which references
+FireEdge OneProvision uses these templates to define a **dynamic form** which references
 the inputs described. E.g.
 
 .. code:: yaml

@@ -34,7 +34,7 @@ c) Servers Authentication
 This method is designed to delegate the authentication process to high level tools interacting with OpenNebula. You'll be interested in this method if you are developing your own servers.
 
 
-By default, OpenNebula ships with two servers: :ref:`Sunstone <sunstone>` and :ref:`Fireedge <fireedge_setup>`. When a user interacts with one of them, the server authenticates the request and then forwards the requested operation to the OpenNebula daemon.
+By default, OpenNebula ships with two servers: :ref:`Sunstone <sunstone>` and :ref:`FireEdge <fireedge_setup>`. When a user interacts with one of them, the server authenticates the request and then forwards the requested operation to the OpenNebula daemon.
 
 The forwarded requests are encrypted by default using a Symmetric Key mechanism. The following guide shows how to strengthen the security of these requests using x509 certificates. This is specially relevant if you are running your server in a machine other than the front-end.
 

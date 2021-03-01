@@ -19,7 +19,7 @@ FireEdge is a web server which purpose is twofold:
 Configuration
 ==============
 
-The Fireedge configuration file can be found at ``/etc/one/fireedge-server.conf``. It uses YAML
+The FireEdge configuration file can be found at ``/etc/one/fireedge-server.conf``. It uses YAML
 syntax to define some options:
 
 +---------------------------+--------------------------------+---------------------------------------------------------------+
@@ -45,9 +45,9 @@ syntax to define some options:
 +---------------------------+--------------------------------+---------------------------------------------------------------+
 
 .. note::
-  Check extra configuration for :ref:`Fireedge OneProvision GUI <fireedge_cpi>`
+  Check extra configuration for :ref:`FireEdge OneProvision GUI <fireedge_cpi>`
 
-You can find the Fireedge server log file in ``/var/log/one/fireedge.log``. Errors are logged in ``/var/log/one/fireedge.error``.
+You can find the FireEdge server log file in ``/var/log/one/fireedge.log``. Errors are logged in ``/var/log/one/fireedge.error``.
 
 .. todo:: Troubleshooting
 

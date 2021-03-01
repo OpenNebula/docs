@@ -10,12 +10,12 @@ OpenNebula Sunstone is a Graphical User Interface (GUI) intended for both end us
 
 |admin_view|
 
-OpenNebula Fireedge is a web server built using Node.js. Its purposes is twofold:
+OpenNebula FireEdge is a web server built using Node.js. Its purposes is twofold:
 
  - extra functionality for :ref:`sunstone <sunstone>`
  - :ref:`oneprovision <ddc_usage>` web interface.
 
-Fireedge uses as a Node.js :ref:`OpenNebula Cloud API <introapis>` wrapper, to
+FireEdge uses as a Node.js :ref:`OpenNebula Cloud API <introapis>` wrapper, to
 communicate with oned's XMLRPC API.
 
 
@@ -32,7 +32,7 @@ For more information on how to customize and extend your Sunstone deployment use
 * :ref:`Cloud Servers Authentication <cloud_auth>`: advanced reference about the security between Sunstone and OpenNebula
 * :ref:`Advanced Deployments <suns_advance>`: improving scalability and isolating the server
 
-This chapter provides details on :ref:`Fireedge
+This chapter provides details on :ref:`FireEdge
 configuration <fireedge_configuration>`, the :ref:`new features that it brings to Sunstone
 <fireedge_sunstone>` and its :ref:`new OneProvision GUI <fireedge_cpi>` that automates
 creation of remote OpenNebula clusters.
