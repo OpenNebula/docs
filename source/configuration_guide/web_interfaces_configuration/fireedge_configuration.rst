@@ -19,6 +19,19 @@ FireEdge is a web server which purpose is twofold:
 Configuration
 ==============
 
+You need to configure Sunstone with the public endpoint of the FireEdge, so that one service can redirect user to the other. To configure the public FireEdge endpoint in Sunstone, edit /etc/one/sunstone-server.conf and update the :public_fireedge_endpoint with the base URL (domain or IP-based) over which end-users can access the service. For example:
+
+.. code::
+
+    :public_fireedge_endpoint: http://one.example.com:2616
+
+If you are reconfiguring any time later already running services, don't forget to restart them to apply the changes.
+
+Alternatively, if you are not planning to use FireEdge, please disable it in Sunstone by commenting out the following attributes in /etc/one/sunstone-server.conf:
+
+- :public_fireedge_endpoint
+- :private_fireedge_endpoint
+
 The FireEdge configuration file can be found at ``/etc/one/fireedge-server.conf``. It uses YAML
 syntax to define some options:
 

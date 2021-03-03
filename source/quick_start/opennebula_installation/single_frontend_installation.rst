@@ -294,9 +294,26 @@ Initial OpenNebula deployment on a very first start creates a user ``oneadmin`` 
 
 .. note::
 
-    For advanced configuration, follow to the OpenNebula Daemon :ref:`configuration <oned_conf>` reference.
+    For advanced configuration, follow to the OpenNebula Daemon :ref:`configuratio:n <oned_conf>` reference.
 
 .. todo:: Add link to scheduler configuration?
+
+FireEdge
+--------
+
+OpenNebula FireEdge is a next-gen web server that delivers a GUI for remote OpenNebula clusters provisioning (OneProvision GUI) as well as added benefits to Susntone (autorefresh, Guacamole and VMware VMRC). It is installed and configured by default, but it can be opt out.
+
+You need to configure Sunstone with the public endpoint of the FireEdge, so that one service can redirect user to the other. To configure the public FireEdge endpoint in Sunstone, edit /etc/one/sunstone-server.conf and update the :public_fireedge_endpoint with the base URL (domain or IP-based) over which end-users can access the service. For example:
+
+.. code::
+
+    :public_fireedge_endpoint: http://one.example.com:2616
+
+If you are reconfiguring any time later already running services, don't forget to restart them to apply the changes.
+
+.. note::
+
+    For advanced configuration, follow to the FireEdge :ref:`configuration <fireedge_configuration>` reference.
 
 OneGate (Optional)
 ------------------
@@ -320,23 +337,6 @@ If you are reconfiguring any time later already running services, don't forget t
 .. note::
 
     For advanced configuration, follow to the OneGate :ref:`configuration <onegate_configure>` reference.
-
-FireEdge (Optional)
--------------------
-
-The OpenNebula FireEdge is the evolving next-generation GUI, with features (currently only) the clusters provisioning and Guacamole VNC. It's optional and not required for basic functionality, but essential for clusters provisioning. You need to configure Sunstone with the public endpoint of the FireEdge, so that one service can redirect user to the other.
-
-To configure public FireEdge endpoint in the Sunstone, edit ``/etc/one/sunstone-server.conf`` and update the ``:public_fireedge_endpoint`` with the base URL (domain or IP-based) over which **end-users** can access the service. For example:
-
-.. code::
-
-    :public_fireedge_endpoint: http://one.example.com:2616
-
-If you are reconfiguring any time later already running services, don't forget to restart them to apply the changes.
-
-.. note::
-
-    For advanced configuration, follow to the FireEdge :ref:`configuration <fireedge_configuration>` reference.
 
 OneFlow (Optional)
 ------------------
