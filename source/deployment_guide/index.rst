@@ -17,3 +17,4 @@ Deployment Guide
    Open Cloud Host Setup <open_cloud_host_setup/index>
    Open Cloud Storage Setup <open_cloud_storage_setup/index>
    Open Cloud Networking Setup <open_cloud_networking_setup/index>
+   Private Marketplaces <private_marketplaces/index>

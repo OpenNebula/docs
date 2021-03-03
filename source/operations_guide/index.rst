@@ -12,7 +12,8 @@ Operations Guide
    Users and Groups Management <users_groups_management/index>
    Virtual Network Management <network_management/index>
    Virtual Machine Management <vm_management/index>
-   Virtual Machine Setup <vm_setup/index>
+   Guest OS Setup <guest_os_setup/index>
+   Public Marketplaces <public_marketplaces/index>
    Multi-VM Service Management <multivm_service_management/index>
    Automatic Provisioning Management <automatic_provisioning_management/index>
    Automation Tools Integration <automation_tools_integration/index>

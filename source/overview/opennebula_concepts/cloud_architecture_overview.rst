@@ -17,7 +17,7 @@ Optionally you can setup a :ref:`high available cluster for OpenNebula <frontend
 
 .. todo:: Include Postgress above
 
-- :ref:`Marketplaces <marketplace_overview>` for sharing, provisioning and consuming cloud images. They can be seen as external datastores, where images can be easily imported, exported and shared by a federation of OpenNebula instances.
+- :ref:`Marketplaces <public_marketplace_overview>` for sharing, provisioning and consuming cloud images. They can be seen as external datastores, where images can be easily imported, exported and shared by a federation of OpenNebula instances.
 
 .. todo:: Explain public marketplaces above and link to guide
 

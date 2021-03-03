@@ -21,7 +21,7 @@ The slave Zones have read-only access to the local copy of the federated informa
 
 The federated information replication is implemented with a log that includes a sequence of SQL statements applied to the shared tables. This log is replicated and applied in each Zone database. This replication model tolerates faulty connections, and even zone crashes without impacting the federation.
 
-The administrators can share appliances across Zones deploying a private :ref:`OpenNebula Marketplace <marketplace>`.
+The administrators can share appliances across Zones deploying a private :ref:`OpenNebula Marketplace <private_marketplaces>`.
 
 Other Services
 ================================================================================

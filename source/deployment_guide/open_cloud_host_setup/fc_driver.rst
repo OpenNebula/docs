@@ -145,7 +145,7 @@ Images
 
 The root file system can be uploaded as a raw image (``OS`` type) to any OpenNebula image datastore. Once the image is available it can be added as a new disk to the microVM template.
 
-Root file system images can be downloaded directly to OpenNebula from `Docker Hub <https://hub.docker.com/>`__, `Linux Containers - Image server <https://uk.images.linuxcontainers.org/>`__ and `Turnkey Linux <https://www.turnkeylinux.org/>`__ as they are fully integrated with OpenNebula. Check :ref:`Marketplace section <marketplace>` for more information.
+Root file system images can be downloaded directly to OpenNebula from `Docker Hub <https://hub.docker.com/>`__, `Linux Containers - Image server <https://uk.images.linuxcontainers.org/>`__ and `Turnkey Linux <https://www.turnkeylinux.org/>`__ as they are fully integrated with OpenNebula. Check :ref:`Public Marketplace section <public_marketplaces>` for more information.
 
 Custom images can also be created by using common linux tools like `mkfs` command for creating the file system and `dd` for copying and existing file system inside the new one.
 

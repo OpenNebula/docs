@@ -583,11 +583,6 @@ On production environments the services should be stopped in specific order and 
 
 .. todo:: Provide some commands for point 4?
 
-Step 10. Next steps
-================================================================================
-
-Now that you have successfully started your OpenNebula service, head over to the :ref:`Node Installation <node_installation>` chapter in order to add hypervisors to your cloud.
-
 .. note:: To change oneadmin password, follow the next steps:
 
     .. prompt:: bash # auto
@@ -596,6 +591,38 @@ Now that you have successfully started your OpenNebula service, head over to the
         #echo 'oneadmin:PASSWORD' > /var/lib/one/.one/one_auth
 
     Test that everything works using `oneuser show`.
+
+Step 10. Adding content to your cloud
+======================================
+
+Now your OpenNebula cloud is set up and ready to roll! But first you need to add contents
+to it for your users.
+
+This can be straightforwardly achieved using the the Appliances hosted in the Public Marketplaces, which are configured and installed by default in your brand new OpenNebula:
+
+
+This basically means completing two tasks:
+
+-  Add base disk images with OS installations of your choice. Including any software package of interest.
+-  Define virtual servers in the form of VM Templates. We recommend that VM definitions are made by the admins as it may require fine or advanced tuning. For example you may want to define a LAMP server with the capacity to be instantiated in a remote AWS cloud.
+
+When you have basic virtual server definitions the users of your cloud can use them to easily provision VMs, adjusting basic parameters, like capacity or network connectivity.
+
+There are three basic methods to bootstrap the contents of your cloud, namely:
+
+* **External Images**. If you already have disk images in any supported format (raw, qcow2, vmdk...) you can just add them to a datastore. Alternatively you can use any virtualization tool (e.g. virt-manager) to install an image and then add it to a OpenNebula datastore.
+* **Install within OpenNebula**. You can also use OpenNebula to prepare the images for your cloud.
+* **Use the OpenNebula Marketplace**. Go to the marketplace tab in Sunstone, and simply pick a disk image with the OS and Hypervisor of your choice.
+
+Once the images are ready, just create VM templates with the relevant configuration attributes, including default capacity, networking or any other preset needed by your infrastructure.
+
+You are done, make sure that your cloud users can access the images and templates you have just created.
+
+
+Step 10. Next steps
+================================================================================
+
+Now that you have successfully started your OpenNebula service, head over to the :ref:`Node Installation <node_installation>` chapter in order to add hypervisors to your cloud.
 
 .. |image0| image:: /images/debian-opennebula.png
 

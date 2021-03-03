@@ -11,4 +11,3 @@ OpenNebula Installation
    OpenNebula Repository Configuration <opennebula_repository_configuration>
    Database Setup <database_setup>
    Single Front-end Installation <single_frontend_installation>
-   Public Marketplaces <public_marketplaces>
