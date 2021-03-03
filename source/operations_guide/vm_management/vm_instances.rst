@@ -436,7 +436,7 @@ Resizing VM Capacity
 ----------------------
 
 You may resize the capacity assigned to a Virtual Machine in terms of the virtual CPUs, memory and CPU allocated. VM resizing can be done in any of the following states:
-POWEROFF, UNDEPLOYED.
+POWEROFF, UNDEPLOYED and with some limitations also in RUNNING state.
 
 If you have created a Virtual Machine and you need more resources, the following procedure is recommended:
 
@@ -462,6 +462,26 @@ From Sunstone:
 .. warning:: If the Virtual Machine is from vCenter, other considerations are needed, check :ref:`here <vcenter_live_resize>` for more information.
 
 .. _vm_guide2_resize_disk:
+
+Hotplug Resize VM Capacity
+--------------------------
+
+If you need to resize the capacity in the RUNNING state you have to setup some extra attributes to VM template, this attributes must be set befere the VM is started.
+
++-----------------+------------------------------------------------------------------------------------------------+
+|  Attribute      |                              Description                                                       |
++=================+================================================================================================+
+| ``VCPU_MAX``    | Maximum number of VCPUs which could be hotplugged                                              |
++-----------------+------------------------------------------------------------------------------------------------+
+| ``MEMORY_MAX``  | Maximum memory which could be hotplugged                                                       |
++-----------------+------------------------------------------------------------------------------------------------+
+| ``MEMORY_SLOTS``| Optional, slots for hotplugging memory. Limits the number of hotplug operations. Defaults to 8 |
++-----------------+------------------------------------------------------------------------------------------------+
+
+.. Note::
+
+  Hotplug implemented only for KVM and vCenter
+
 
 Resizing VM Disks
 -------------------
