@@ -18,6 +18,8 @@ The OneFlow configuration file can be found at ``/etc/one/oneflow-server.conf``.
 +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :one\_xmlrpc          | OpenNebula daemon host and port                                                                                                                                         |
 +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :subscriber\_endpoint | Endpoint to subscribe to ZMQ                                                                                                                                            |
++-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :autoscaler\_interval | Time in seconds between each time elasticity rules are evaluated                                                                                                        |
 +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :host                 | Host where OneFlow will listen                                                                                                                                          |
@@ -71,6 +73,10 @@ This is the default file
     # OpenNebula daemon contact information
     #
     :one_xmlrpc: http://localhost:2633/RPC2
+
+    # :subscriber_endpoint to subscribe for OpenNebula events must match those in
+    # oned.conf
+    :subscriber_endpoint: 'tcp://localhost:2101'
 
     # Time in seconds between each time scale rules are evaluated
     #

@@ -49,6 +49,10 @@ URL where the OpenNebula daemon is listening. If it is not set, CLI tools will u
 
 Number of seconds to wait before a xmlrpc request timeouts.
 
+**ONE_ZMQ**
+
+URL to subscribe to receive ZMQ messages. If it is not set, CLI tools will use the default: ``tcp://localhost:2101``.
+
 **ONE_AUTH**
 
 Needs to point to **a file containing a valid authentication key**, it can be:
