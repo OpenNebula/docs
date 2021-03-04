@@ -1,7 +1,7 @@
 .. _true_hybrid_clusters_deployment:
 
 ================================================================================
-True Hybrid Clusters Deployment
+Edge Cluster Management
 ================================================================================
 
 .. toctree::
@@ -11,3 +11,4 @@ True Hybrid Clusters Deployment
    On-Prem Edge Cluster <onprem_cluster>
    Equinix Edge Cluster <equinix_cluster>
    AWS Edge Cluster <aws_cluster>
+   Edge Cluster Operations <cluster_operations>
