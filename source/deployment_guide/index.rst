@@ -9,7 +9,7 @@ Deployment Guide
 .. toctree::
    :maxdepth: 2
 
-   High Availability <ha/index>
+   Front-end Installation <frontend_installation/index>
    Data Center Federation <data_center_federation/index>
    Containerized Deployment (TP) <containerized_deployment/index>
    Customized Clusters Installation <customized_clusters_installation/index>
