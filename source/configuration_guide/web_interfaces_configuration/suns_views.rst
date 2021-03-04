@@ -302,7 +302,6 @@ This file also defines the tabs available in the view. (Note: the tabs is one of
         - vdcs-tab
         - acls-tab
         - settings-tab
-        - support-tab
 
 .. _suns_views_actions:
 
