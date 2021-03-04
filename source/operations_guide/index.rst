@@ -8,6 +8,7 @@ Operations Guide
 .. toctree::
    :maxdepth: 2
 
+   Edge Cluster Management <edge_cluster_management/index>
    Host and Clusters Management <host_cluster_management/index>
    Users and Groups Management <users_groups_management/index>
    Virtual Network Management <network_management/index>
