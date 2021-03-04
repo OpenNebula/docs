@@ -13,6 +13,10 @@ If there are no packages for your distribution, head to the :ref:`Building from 
 
 .. note:: Installing the frontend inside a LXD container is possible, however you will have limited functionality. The LXD marketplace shouldn't be usable in this situation. The frontend requires to mount a block device and this is not doable for a LXD container.
 
+.. note::
+
+    Except for using installable packages for the supported operating systems, an alternative way to deploy the complete OpenNebula Front-end is using container runtimes Docker/Podman. Check the :ref:`Containerized Deployment <container_index>` guide to learn more. Please note, the containerized deployment is a **Technology Preview** and not recommended for production environments!
+
 Step 1. SELinux on CentOS/RHEL (Optional)
 ================================================================================
 
