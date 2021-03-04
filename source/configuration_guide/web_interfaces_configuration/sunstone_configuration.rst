@@ -471,15 +471,6 @@ avoiding disruption of work and enhancing productivity.
 
 |support_home|
 
-This tab and can be disabled in each one of the :ref:`view yaml files <suns_views>`.
-
-.. code-block:: yaml
-
-    enabled_tabs:
-        [...]
-        #- support-tab
-
-
 .. _link_attribute_sunstone:
 
 Link attribute
