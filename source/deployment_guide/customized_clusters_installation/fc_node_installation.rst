@@ -17,7 +17,7 @@ Step 2. Installing the Software
 Installing on CentOS/RHEL
 -------------------------
 
-.. include:: ../../quick_start/opennebula_installation/epel.txt
+.. include:: ../../deployment_guide/frontend_installation/epel.txt
 
 Install Node Package
 ^^^^^^^^^^^^^^^^^^^^
