@@ -8,6 +8,7 @@ Solutions and Best Practices
    :maxdepth: 2
 
    Mastering Application Containers <mastering_application_containers>
-   Edge Cloud Computing <edge_cloud_computing>
+   Cloud Access Model and Roles <cloud_access_model_and_roles>
+   White Papers <white_papers>
    Knowledge Base <knowledge_base>
    Use Cases <use_cases>
