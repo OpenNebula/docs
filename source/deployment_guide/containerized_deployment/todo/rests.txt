@@ -79,3 +79,17 @@ TODO
     Using the IP address should be the most problem-free approach but if a dns name is used and there is a misconfigured DNS in your network then you could workaround this by fixing the ``/etc/hosts`` file on each hypervisor node.
 
     If the OneGate/OneFlow functionality is desired then the node must also be able to connect to the ``OPENNEBULA_FRONTEND_HOST`` on the ``ONEGATE_PORT``.
+
+
+
+
+
+
+
+
+.. note::
+
+    ``SUNSTONE_PORT`` and ``SUNSTONE_TLS_PORT`` must be aligned with the Sunstone's published ports (8080, 4443). This applies to ``ONEGATE_PORT`` (15030) too.
+
+    Similar situation is also with the ``SUNSTONE_VNC_PORT`` (30001) and ``MONITORD_PORT`` (14124) - but pay attention to the both sides of publish port argument (both sides must be set).
+

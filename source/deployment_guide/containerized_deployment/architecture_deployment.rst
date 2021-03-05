@@ -8,7 +8,7 @@ Architecture and Simple Deployment
 
 This page describes how to deploy containerized OpenNebula Front-end.
 
-.. _container_requiements:
+.. _container_requirements:
 
 Requirements
 ================================================================================
@@ -34,7 +34,9 @@ You need a physical or virtual host with a recommended operating system, one of 
 
    Unsupported features:
 
-   - shared datastores (NFS, qcow2, Ceph, ...), only SSH-based available
+   - federated and HA deployments,
+   - shared datastores (NFS, qcow2, Ceph, LVM, ...), only SSH-based available
+   - migration of existing Front-end deployment installed from packages into containers,
    - in **unprivileged mode** - Exports from following Marketplaces - :ref:`Docker Hub <market_dh>`, :ref:`Linux Containers <market_linux_container>`, :ref:`TurnKey Linux <market_turnkey_linux>`
    - in **unprivileged mode** - :ref:`Creating an image based on a Dockerfile <dockerfile>`
    - in **rootless Podman** - Deployment on privileged ports (22, 80, 443)
@@ -44,7 +46,7 @@ You need a physical or virtual host with a recommended operating system, one of 
 Architecture
 ================================================================================
 
-Complete OpenNebula Front-end with all services and their dependencies is running within the supported container runtimes from the official container image (``opennebula``), the services and other required processes are confined inside the container(s). The inner container startup and lifecycle is controlled by the :ref:`bootstrap process <reference_bootstrap>`, which can be customized and adjusted to user needs via the :ref:`environment parameters <reference_params>`. Container(s) communicate with each other over the private container network and the end-users interact with services running inside only via a set of :ref:`IP ports exposing <reference_ports>` the services running inside to the public.
+Complete OpenNebula Front-end with all services and their dependencies is running within the supported container runtimes from the official container image (``opennebula``), the services and other required processes are confined inside the container(s). The inner container startup and lifecycle is controlled by the :ref:`bootstrap process <container_bootstrap>`, which can be customized and adjusted to user needs via the :ref:`environment parameters <reference_params>`. Container(s) communicate with each other over the private container network and the end-users interact with services running inside only via a set of :ref:`IP ports exposing <reference_ports>` the services running inside to the public.
 
 Following OpenNebula Front-end containerized deployment types are supported no matter the container runtime:
 
@@ -442,7 +444,7 @@ Inside the deployment (compose project) directory ``opennebula/``, start the con
 
 .. hint::
 
-    To monitor the deployment :ref:`bootstrap process <reference_bootstrap>` use following command to watch the logs (not supported with Podman Compose):
+    To monitor the deployment :ref:`bootstrap process <container_bootstrap>` use following command to watch the logs (not supported with Podman Compose):
 
     .. prompt:: bash # auto
 
@@ -490,7 +492,7 @@ In one of the examples below:
 +===============================================================================+===============================================================================+
 | .. prompt:: bash # auto                                                       | .. prompt:: bash # auto                                                       |
 |                                                                               |                                                                               |
-|    # docker run -d --privileged --restart=unless-stopped                      |    # docker run -d --privileged --restart=unless-stopped                      |
+|    # docker run -d --privileged --restart=unless-stopped \                    |    # docker run -d --privileged --restart=unless-stopped \                    |
 |      --name opennebula \                                                      |      --name opennebula \                                                      |
 |      -p 192.168.10.2:22:22 \                                                  |      -p 192.168.10.2:22:22 \                                                  |
 |      -p 192.168.10.3:80:80 \                                                  |      -p 192.168.10.3:80:80 \                                                  |
@@ -532,7 +534,7 @@ In one of the examples below:
 +===============================================================================+===============================================================================+
 | .. prompt:: bash # auto                                                       | .. prompt:: bash # auto                                                       |
 |                                                                               |                                                                               |
-|    # docker run -d --privileged --restart=unless-stopped                      |    # docker run -d --privileged --restart=unless-stopped                      |
+|    # docker run -d --privileged --restart=unless-stopped \                    |    # docker run -d --privileged --restart=unless-stopped \                    |
 |      --name opennebula \                                                      |      --name opennebula \                                                      |
 |      -p 22:22 \                                                               |      -p 22:22 \                                                               |
 |      -p 80:80 \                                                               |      -p 80:80 \                                                               |
@@ -572,7 +574,7 @@ In one of the examples below:
 +===============================================================================+===============================================================================+
 | .. prompt:: bash # auto                                                       | .. prompt:: bash # auto                                                       |
 |                                                                               |                                                                               |
-|    # docker run -d --privileged --restart=unless-stopped                      |    # docker run -d --privileged --restart=unless-stopped                      |
+|    # docker run -d --privileged --restart=unless-stopped \                    |    # docker run -d --privileged --restart=unless-stopped \                    |
 |      --name opennebula \                                                      |      --name opennebula \                                                      |
 |      -p 2222:22 \                                                             |      -p 2222:22 \                                                             |
 |      -p 80:80 \                                                               |      -p 80:80 \                                                               |

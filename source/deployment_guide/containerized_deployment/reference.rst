@@ -70,58 +70,6 @@ One could do the following to not miss anything important while debugging an iss
 
     $ tail -f /var/log/one/* /var/log/supervisor/services/*
 
-Maintenance mode
-----------------
-
-Sometimes the problem solving will require more of a hands-on approach and for this situation OpenNebula container supports the maintenance mode.
-
-Maintenance mode is enabled when ``MAINTENANCE_MODE`` parameter is set to true (e.g.: ``yes``) and it will affect :ref:`the bootstrap process <reference_bootstrap>` slightly.
-
-Startup of the container proceed as normal with one exception - at the end of the bootstrap right before the execution is passed to ``supervisord`` - **all** internal services are disabled on start.
-
-This means that configuration files are modified, changes done by hook scripts are implemented and every supervised services is prepared but not started.
-
-.. note::
-
-    Maintenance mode is not intended for long-term run so ``-d|--detach`` is optional and ``-it`` could be used instead to drop directly into the container.
-
-.. important::
-
-    Maintenance mode has little of use if no volume is used - **use the same named volumes as in the normal run**.
-
-Run the container as usual but add the ``MAINTENANCE_MODE`` parameter:
-
-.. prompt:: bash $ auto
-
-    $ docker run -d ... -e MAINTENANCE_MODE=yes ... --name opennebula opennebula:5.13
-
-Enter the container:
-
-.. prompt:: bash $ auto
-
-    $ docker exec -it opennebula /bin/bash
-
-And check the status of Supervisor:
-
-.. prompt:: bash $ auto
-
-    $ supervisorctl status
-
-.. note::
-
-    There should be only one running service: ``infinite-loop``
-
-You could for example start the MySQL service and fix some database records before stopping the service and container.
-
-After your work is done and problem solved you can stop and delete the container:
-
-.. prompt:: bash $ auto
-
-    $ docker stop opennebula
-    $ docker rm opennebula
-
-Now you can start the container the usual way without the ``MAINTENANCE_MODE`` parameter.
-
 Miscellaneous
 -------------
 
@@ -200,37 +148,6 @@ You could also trigger the automatic deletion on the container termination with 
 Reference
 ================================================================================
 
-.. _reference_bootstrap:
-
-Bootstrap process
------------------
-
-There must be an executable which is started when container is instantiated. The actual binary or script is defined as so called `entrypoint <https://docs.docker.com/engine/reference/builder/#entrypoint>`_. The entrypoint is then fully responsible for the whole application logic. It *usually* becomes the first process inside the container and therefore has PID 1. In our case the entrypoint is actually started by the init wrapper which will properly handle signals and will reap zombie processes.
-
-The entrypoint for the OpenNebula Front-end image is a shell script called ``frontend-bootstrap.sh`` located directly under the root directory (``/`` not the root user's home directory).
-
-.. code::
-
-    ENTRYPOINT [ "/frontend-bootstrap.sh" ]
-
-Once the bootstrap script is finished with all the configuration and preparation of the container it will replace itself with the `Supervisor <http://supervisord.org/>`_ service manager and relay the execution to its process ``supervisord``. The exception being an error encountered anywhere during the bootstrap which will force the entrypoint to abort and container to fail.
-
-|onedocker_schema_bootstrap|
-
-The bootstrap script is generally executing the following steps:
-
-#. Setup trap and cleanup functions
-#. Apply custom onecfg patch (``OPENNEBULA_ONECFG_PATCH``) if provided (**optional**)
-#. Execute pre-bootstrap script (``OPENNEBULA_PREBOOTSTRAP_HOOK``) if provided (**optional**)
-#. Prepare the rootfs (create and cleanup operational directories)
-#. Fix file permissions for the :ref:`significant paths (potential volumes) <reference_volumes>`
-#. Configure the :ref:`Supervisor daemon <reference_supervisord>`
-#. Configure and enable all services based on the value of ``OPENNEBULA_SERVICE``
-#. Execute post-bootstrap script (``OPENNEBULA_POSTBOOTSTRAP_HOOK``) if provided (**optional**)
-#. If the maintenance mode is required (``MAINTENANCE_MODE``) then turn off the autostart of supervised services (**optional**)
-#. Exit and pass the execution to the **supervisord process** (which will govern the lifetime of the services from now on)
-
-The :ref:`image parameters <reference_params>` affect the bootstrap process and determines what service and how they are deployed inside the container(s).
 
 .. _reference_ports:
 
@@ -624,7 +541,7 @@ Deploy parameters for docker-compose
 Supervisor
 ----------
 
-`Supervisor <http://supervisord.org/>`_ is a process manager used inside the OpenNebula Front-end container as a manager of services. Once :ref:`the bootstrap script <reference_bootstrap>` is done with the setup of the container - supervisord process will take over. It has a responsibility for the lifetime of (almost) all the processes inside the running container.
+`Supervisor <http://supervisord.org/>`_ is a process manager used inside the OpenNebula Front-end container as a manager of services. Once :ref:`the bootstrap script <container_bootstrap>` is done with the setup of the container - supervisord process will take over. It has a responsibility for the lifetime of (almost) all the processes inside the running container.
 
 This section is dedicated to get familiarized with this program and how to use it when inside the container.
 
@@ -783,7 +700,7 @@ Container image is designated with an optional URL of the registry, repository, 
 OpenNebula CLI configuration
 ----------------------------
 
-You can access the OpenNebula Front-end's container(s) APIs from a remote system granted `the OpenNebula CLI tools <https://docs.opennebula.io/5.12/operation/references/cli.html>`_ are installed there.
+You can access the OpenNebula Front-end's container(s) APIs from a remote system granted `the OpenNebula CLI tools <https://docs.opennebula.io/5.13/operation/references/cli.html>`_ are installed there.
 
 Oneadmin's one_auth
 ^^^^^^^^^^^^^^^^^^^
@@ -855,89 +772,6 @@ Further details can be found in the documentation regarding `the management of t
 Single container examples
 -------------------------
 
-Custom files
-^^^^^^^^^^^^
-
-More complicated deployment using custom SSH key, TLS certificate, hooks, onecfg patch, designated bind address and some non-standard ports.
-
-We will need a few prerequisites.
-
-``ssh`` directory with passphrase-less SSH key:
-
-.. prompt:: bash $ auto
-
-    $ ls ./ssh
-    id_rsa  id_rsa.pub
-
-``certs`` directory with your TLS certificate:
-
-.. prompt:: bash $ auto
-
-    $ ls ./certs
-    cert.key  cert.pem
-
-and ``config`` directory with the onecfg patch, pre-hook and post-hook executable:
-
-.. prompt:: bash $ auto
-
-    $ ls ./config
-    onecfg_patch  prepare.sh  setup.sh
-
-.. note::
-
-    The bind address must also be adjusted to your situation.
-
-The deployment itself:
-
-.. prompt:: bash $ auto
-
-    $ docker run -d --privileged --name opennebula-custom \
-    -p 192.168.1.1:8080:80 \
-    -p 192.168.1.1:4443:443 \
-    -p 192.168.1.1:22:22 \
-    -p 192.168.1.1:30001:30001 \
-    -p 192.168.1.1:12633:2633 \
-    -p 192.168.1.1:15030:5030 \
-    -p 192.168.1.1:12474:2474 \
-    -p 192.168.1.1:14124:14124 \
-    -p 192.168.1.1:14124:14124/udp \
-    -v "$(realpath ./config)":/config:z,ro \
-    -v "$(realpath ./ssh):/ssh:z,ro" \
-    -v "$(realpath ./certs):/certs:z,ro" \
-    -v opennebula_db:/var/lib/mysql \
-    -v opennebula_datastores:/var/lib/one/datastores \
-    -v opennebula_srv:/srv/one \
-    -v opennebula_oneadmin_auth:/var/lib/one/.one \
-    -v opennebula_oneadmin_ssh:/var/lib/one/.ssh \
-    -v opennebula_oneprovision_ssh:/var/lib/one/.ssh-oneprovision \
-    -v opennebula_logs:/var/log \
-    -e OPENNEBULA_HOST=${HOSTNAME} \
-    -e OPENNEBULA_SSH_HOST=${HOSTNAME} \
-    -e OPENNEBULA_ONECFG_PATCH="/config/onecfg_patch" \
-    -e OPENNEBULA_PREBOOTSTRAP_HOOK="/config/prepare.sh" \
-    -e OPENNEBULA_POSTBOOTSTRAP_HOOK="/config/setup.sh" \
-    -e ONEADMIN_PASSWORD=changeme123 \
-    -e DIND_ENABLED=yes \
-    -e ONEADMIN_SSH_PRIVKEY="/ssh/id_rsa" \
-    -e ONEADMIN_SSH_PUBKEY="/ssh/id_rsa.pub" \
-    -e TLS_CERT="/certs/cert.pem" \
-    -e TLS_KEY="/certs/cert.key" \
-    -e SUNSTONE_PORT=8080 \
-    -e SUNSTONE_TLS_PORT=4443 \
-    -e SUNSTONE_VNC_PORT=30001 \
-    -e ONEGATE_PORT=15030 \
-    -e MONITORD_PORT=14124 \
-    opennebula:5.13
-
-.. note::
-
-    All OpenNebula APIs are published on atypical ports - look at :ref:`the ports reference table <reference_ports>` to get the idea how to make CLI commands working.
-
-.. note::
-
-    ``SUNSTONE_PORT`` and ``SUNSTONE_TLS_PORT`` must be aligned with the Sunstone's published ports (8080, 4443). This applies to ``ONEGATE_PORT`` (15030) too.
-
-    Similar situation is also with the ``SUNSTONE_VNC_PORT`` (30001) and ``MONITORD_PORT`` (14124) - but pay attention to the both sides of publish port argument (both sides must be set).
 
 Simple test
 ^^^^^^^^^^^
