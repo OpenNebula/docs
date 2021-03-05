@@ -189,7 +189,7 @@ Install all OpenNebula Front-end components by executing following commands unde
     # yum -y install python-pip
     # pip install 'ansible>=2.8.0,<2.10.0'
     # pip install 'Jinja2>=2.10.0'
-    # curl 'https://releases.hashicorp.com/terraform/0.13.6/terraform_0.13.6_linux_amd64.zip' | zcat >/usr/bin/terraform
+    # curl 'https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux_amd64.zip' | zcat >/usr/bin/terraform
     # chmod 0755 /usr/bin/terraform
 
 Debian / Ubuntu
@@ -222,7 +222,7 @@ Install all OpenNebula Front-end components by executing following commands unde
     # apt-get -y install python-pip
     # pip install 'ansible>=2.8.0,<2.10.0'
     # pip install 'Jinja2>=2.10.0'
-    # curl 'https://releases.hashicorp.com/terraform/0.13.6/terraform_0.13.6_linux_amd64.zip' | zcat >/usr/bin/terraform
+    # curl 'https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux_amd64.zip' | zcat >/usr/bin/terraform
     # chmod 0755 /usr/bin/terraform
 
 .. _ruby_runtime:
