@@ -10,10 +10,12 @@ OpenNebula Sunstone is a Graphical User Interface (GUI) intended for both end us
 
 |admin_view|
 
+.. TODO REF
+
 OpenNebula FireEdge is a web server built using Node.js. Its purposes is twofold:
 
  - extra functionality for :ref:`sunstone <sunstone>`
- - :ref:`oneprovision <ddc_usage>` web interface.
+ - :ref:oneprovision <ddc_usage> web interface.
 
 FireEdge uses as a Node.js :ref:`OpenNebula Cloud API <introapis>` wrapper, to
 communicate with oned's XMLRPC API.

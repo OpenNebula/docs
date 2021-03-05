@@ -10,13 +10,13 @@ In this chapter, we'll cover the basics of writing the provision templates.
 
 The provision template describes the resources to create in the OpenNebula (cluster, hosts, datastores, virtual networks), parameters for allocation of the new hosts on the remote bare-metal cloud provider, how to connect and configure them from the perspective of operating system and software. It's a YAML document, which needs to be prepared by the Cloud Administrator.
 
-We'll explain the templating basics with a few simple examples. Continue to the :ref:`provision template reference <ddc_provision_template>` for comprehensive documentation.
+We'll explain the templating basics with a few simple examples. Continue to the :ref:provision template reference <ddc_provision_template> for comprehensive documentation.
 
 .. _ddc_usage_example1:
 
 .. important::
 
-    Before following any of below examples, you need to create the provider you want to use. Please refer to :ref:`this guide <ddc_provider>` for more information.
+    Before following any of below examples, you need to create the provider you want to use. Please refer to :ref:this guide <ddc_provider> for more information.
 
 Example 1: Empty cluster with datastores
 ----------------------------------------
@@ -85,9 +85,9 @@ The following template describes provisioning a cluster with a single host deplo
           securitygroupsids: sg-*****************
           subnetid: subnet-*****************
 
-As with the datastores in :ref:`Example 1 <ddc_usage_example1>` above, the hosts are specified as a list. Each host is described by a hash with template attributes required by OpenNebula. Parameters for provisioning on remote cloud providers must be set in a section ``provision`` for each host. The provision parameters are driver-specific; you have to be aware of the available drivers and their parameters.
+As with the datastores in :ref:Example 1 <ddc_usage_example1> above, the hosts are specified as a list. Each host is described by a hash with template attributes required by OpenNebula. Parameters for provisioning on remote cloud providers must be set in a section ``provision`` for each host. The provision parameters are driver-specific; you have to be aware of the available drivers and their parameters.
 
-Check the :ref:`Provision Drivers <ddc_provision_driver>` reference for the available drivers and parameters.
+Check the :ref:Provision Drivers <ddc_provision_driver> reference for the available drivers and parameters.
 
 .. _ddc_usage_example3:
 
@@ -128,8 +128,8 @@ As part of provision creation, the new hosts are connected to over SSH and the r
 
 Check the following subsections:
 
-- :ref:`Playbooks <ddc_config_playbooks>` reference for available Ansible playbooks,
-- :ref:`Roles <ddc_config_roles>` reference with a detailed description of individual roles and their configuration tunables.
+- :ref:Playbooks <ddc_config_playbooks> reference for available Ansible playbooks,
+- :ref:Roles <ddc_config_roles> reference with a detailed description of individual roles and their configuration tunables.
 
 .. _ddc_usage_example4:
 
@@ -376,7 +376,7 @@ The main template extends the datastores and network with one AWS host:
         provision:
           hostname: "ex6-host1"
 
-Check the :ref:`Templates <ddc_provision_templates>` reference for available base templates.
+Check the :ref:Templates <ddc_provision_templates> reference for available base templates.
 
 .. _ddc_usage_example7:
 

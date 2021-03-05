@@ -29,7 +29,9 @@ Step 2. Deploy True Hybrid Clusters
 
 .. todo:: Explain True Hybrid Deployments
 
--  :ref:`Disaggregated Data Centers <ddc_overview>` provides tools to build and grow the physical infrastructure with resources from public bare-metal cloud providers, e.g. :ref:`Amazon EC2 <ddc_driver_aws>` and :ref:`Packet <ddc_driver_packet>`. New physical machines are allocated from the provider, configured to run the hypervisor and added into OpenNebula as new clusters with hosts, datastores and virtual networks.
+.. TODO REF NON EXISTENT COMPONENTS REFERENCES
+
+-  :ref:Disaggregated Data Centers <ddc_overview> provides tools to build and grow the physical infrastructure with resources from public bare-metal cloud providers, e.g. :ref:Amazon EC2 <ddc_driver_aws> and :ref:Packet <ddc_driver_packet>. New physical machines are allocated from the provider, configured to run the hypervisor and added into OpenNebula as new clusters with hosts, datastores and virtual networks.
 
 .. todo:: Change previous parragraph to expian oneprovision
 

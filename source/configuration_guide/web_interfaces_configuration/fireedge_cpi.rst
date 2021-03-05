@@ -11,8 +11,10 @@ What Is?
 typical management operations in :ref:`hybrid <true_hybrid_cloud_reference_architecture>`
 cloud infrastructures.
 
+.. TODO REF
+
 FireEdge OneProvision is build using `oneprovision` tool which allows the deployment of OpenNebula clusters
-with all resources needed to run VMs, hosts, datastores or virtual networks. More information in the :ref:`oneprovision documentation <ddc_usage>`.
+with all resources needed to run VMs, hosts, datastores or virtual networks. More information in the :ref:oneprovision documentation <ddc_usage>.
 
 Configuration
 ==============
@@ -34,8 +36,9 @@ Usage
 The OneProvision tool allows the deployment an operational OpenNebula cluster in a remote
 provider (public cloud).
 
-Each new provision is described by the :ref:`provision template <default_ddc_templates>`,
-a set of YAML documents specifying the OpenNebula resources to add.
+.. TODO REF
+
+Each new provision is described by the :ref:provision template <default_ddc_templates>, a set of YAML documents specifying the OpenNebula resources to add.
 
 These templates can be found in ``/usr/share/one/oneprovision/provisions``.
 

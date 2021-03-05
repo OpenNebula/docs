@@ -305,7 +305,7 @@ Some objects take a bit to be ready, concretely images depending on the size. To
 - **false**: just create the objects and continue.
 - **true**: create objects and wait until they are successfully imported.
 
-Theses wait modes are also combined with :ref:`run modes <ddc_usage>`. So if the object fails when waiting to it, the tool is going to check waht run mode needs to apply.
+Theses wait modes are also combined with :ref:run modes <ddc_usage>. So if the object fails when waiting to it, the tool is going to check waht run mode needs to apply.
 
 For example:
 

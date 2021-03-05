@@ -13,3 +13,5 @@ References
    Host States Reference <host_states>
    Virtual Network Definition Template <vnet_template>
    Command Line Interface <cli>
+   Edge Cluster Provision Template <template/index>
+   Edge Cluster Automated Configuration <config/index>

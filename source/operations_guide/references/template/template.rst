@@ -4,7 +4,7 @@
 Template Reference
 ==================
 
-The provision is a process of allocating new physical resources from the remote providers. :ref:`Provision drivers <ddc_provision_driver>` are used for communication with the remote providers. Credentials for the communication and parameters of the required provision (hardware, operating system, IPs, etc.) need to be specified. All these items are stored in the :ref:`provision template <ddc_provision_template>` file and passed to the ``oneprovision create`` command.
+The provision is a process of allocating new physical resources from the remote providers. :ref:Provision drivers <ddc_provision_driver> are used for communication with the remote providers. Credentials for the communication and parameters of the required provision (hardware, operating system, IPs, etc.) need to be specified. All these items are stored in the :ref:provision template <ddc_provision_template> file and passed to the ``oneprovision create`` command.
 
 In this chapter, we'll describe the format and content of the provision template.
 
@@ -21,7 +21,7 @@ A **provision template** is a YAML-formatted file with parameters specifying the
 
 * list of OpenNebula infrastructure objects (cluster, hosts, datastores, virtual networks) to deploy with overrides to the global defaults above.
 
-* list of OpenNebula virtual objects (images, templates, vnet templates, marketplace apps, service templates). Refer to :ref:`this<ddc_virtual>` for more information.
+* list of OpenNebula virtual objects (images, templates, vnet templates, marketplace apps, service templates). Refer to :ref:this<ddc_virtual> for more information.
 
 Example:
 
@@ -118,15 +118,15 @@ Header
 |                 |                    | Provide the custom **absolute filename**, or one                                                                |
 |                 |                    | of predefined:                                                                                                  |
 |                 |                    |                                                                                                                 |
-|                 |                    | - :ref:`default <ddc_config_playbooks_default>`                                                                 |
-|                 |                    | - :ref:`default_lxd <ddc_config_playbooks_default_lxd>`                                                         |
-|                 |                    | - :ref:`static_vxlan <ddc_config_playbooks_static_vxlan>`                                                       |
+|                 |                    | - :ref:default <ddc_config_playbooks_default>                                                                   |
+|                 |                    | - :ref:default_lxd <ddc_config_playbooks_default_lxd>                                                           |
+|                 |                    | - :ref:static_vxlan <ddc_config_playbooks_static_vxlan>                                                         |
 +-----------------+--------------------+-----------------------------------------------------------------------------------------------------------------+
 | ``extends``     | none               | Parent template to include and extend. Provide the custom                                                       |
 |                 |                    | **absolute filename**, or one of predefined:                                                                    |
 |                 |                    |                                                                                                                 |
-|                 |                    | - :ref:`/usr/share/one/oneprovision/templates/default.yaml <ddc_provision_templates_default>`                   |
-|                 |                    | - :ref:`/usr/share/one/oneprovision/templates/static_vxlan.yaml <ddc_provision_templates_static_vxlan>`         |
+|                 |                    | - :ref:/usr/share/one/oneprovision/templates/default.yaml <ddc_provision_templates_default>                     |
+|                 |                    | - :ref:/usr/share/one/oneprovision/templates/static_vxlan.yaml <ddc_provision_templates_static_vxlan>           |
 +-----------------+--------------------+-----------------------------------------------------------------------------------------------------------------+
 
 Shared sections
@@ -165,8 +165,8 @@ This section contains parameters for the provisioning provider. Most parameters 
 +=================+======================================+===============================================+
 | ``provider``    | none, needs to be specified          | Host provision driver. Options:               |
 |                 |                                      |                                               |
-|                 |                                      | - :ref:`packet <ddc_driver_packet>`           |
-|                 |                                      | - :ref:`aws <ddc_driver_aws>`                 |
+|                 |                                      | - :ref:packet <ddc_driver_packet>             |
+|                 |                                      | - :ref:aws <ddc_driver_aws>                   |
 +-----------------+--------------------------------------+-----------------------------------------------+
 
 .. _ddc_provision_template_configuration:
@@ -266,7 +266,7 @@ Template 'default'
     Installed into
     ``/usr/share/one/oneprovision/templates/default.yaml``.
 
-Template with private OpenNebula virtual network configured by :ref:`default <ddc_config_playbooks_default>` on physical hosts.
+Template with private OpenNebula virtual network configured by :ref:default <ddc_config_playbooks_default> on physical hosts.
 
 The following virtual network(s) are configured:
 
@@ -317,7 +317,7 @@ Template with the following resources:
 - image and system datastores (driver SSH)
 - networks:
 
- - ``public`` (IPs allocated via :ref:`IPAM <ddc_ipam_packet>` from Packet; should be attached as NIC alias to NIC from ``private-host-only``)
+ - ``public`` (IPs allocated via :ref:IPAM <ddc_ipam_packet> from Packet; should be attached as NIC alias to NIC from ``private-host-only``)
  - ``private-host-only`` (to be used with ``public`` network)
  - ``private``
 

@@ -58,7 +58,7 @@ To create a provision template use the command ``oneprovision-template create``,
     $ oneprovision-template create template.yaml
     ID: 1
 
-.. note:: You need to first create the provider you can to use. Check :ref:`this <ddc_provider>` for more information.
+.. note:: You need to first create the provider you can to use. Check :ref:this <ddc_provider> for more information.
 
 Check Information
 ^^^^^^^^^^^^^^^^^

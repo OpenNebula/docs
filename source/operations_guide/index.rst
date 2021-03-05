@@ -16,6 +16,5 @@ Operations Guide
    Guest OS Setup <guest_os_setup/index>
    Public Marketplaces <public_marketplaces/index>
    Multi-VM Service Management <multivm_service_management/index>
-   Automatic Provisioning Management <automatic_provisioning_management/index>
    Automation Tools Integration <automation_tools_integration/index>
    References <references/index>
