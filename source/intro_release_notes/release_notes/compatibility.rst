@@ -103,3 +103,10 @@ On Debian/Ubuntu renamed package
 * **ruby-opennebula** to **opennebula-libs**
 
 See the curent :ref:`list of shipped packages <packages>`.
+
+.. _compatibility_sunstone:
+
+Sunstone SELinux Requirement
+=============================
+
+Now OCA and therefore Sunstone need [zmq gem](https://rubygems.org/gems/zmq), and for that, it is needed to enable the ``httpd_execmem`` SELinux boolean.
