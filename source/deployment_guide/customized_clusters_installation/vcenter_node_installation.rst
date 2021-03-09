@@ -300,6 +300,8 @@ Once you have created the proper role, one way to manage these privileges is cre
 .. note::
     Do not forget to add the proper permissions to the datastores and any resource accessed by your OpenNebula user.
 
+.. _vnc_one_esx_hosts:
+
 VNC on ESX hosts
 ================================================================================
 

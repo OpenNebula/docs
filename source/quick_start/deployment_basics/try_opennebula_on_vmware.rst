@@ -4,16 +4,15 @@
 Try OpenNebula on VMware
 ========================
 
-.. _what_is:
-
-========
-What Is?
-========
+Introducing vOneCloud
+=====================
 
 .. image:: /images/vonecloud_logo.png
     :align: center
 
-vOneCloud |release| ships with the following components under the hood:
+vOneCloud is a virtual appliance for vSphere that builds on top of your vCenter an OpenNebula cloud for development, testing or product evaluation in 5 minutes. In a nutshell, it is an OVA file with a configured CentOS and OpenNebula installation ready to import resources from vCenter environments. vOneCloud is free to download and use. The virtual appliance does not interfere with existing vSphere configurations, procedures and workflows. This means that you can try it and if you decide not to adopt it, you can just delete it. vOneCloud can be also used for small-size production deployments.
+
+vOneCloud ships with the following components under the hood:
 
 +-----------------------+--------------------------------------------------------------------------------------------------+
 |       **CentOS**      |                                                8                                                 |
@@ -25,44 +24,42 @@ vOneCloud |release| ships with the following components under the hood:
 | **Phusion Passenger** | Default version shipped in EPEL 8 (used to run Sunstone)                                         |
 +-----------------------+--------------------------------------------------------------------------------------------------+
 
-OpenNebula
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-OpenNebula is a simple, yet powerful and flexible turnkey open source solution to build Private Clouds and manage Data Center virtualization based on VMware, KVM, LXD and Firecracker. Its integration with AWS and Microsoft Azure offers flexibility in creating hybrid cloud infrastructures, as well as with bare-metal providers like Packet and AWS for trouble-free deployment of Edge Computing resources. Its compatibility with other open source platforms and third-party technologies like Kubernetes, Ansible, Docker and Terraform make it a versatile enterprise solution. OpenNebula’s maturity builds upon over a decade of software releases and thousands of enterprise deployments, being widely used by industry and research leaders.
-
-OpenNebula on VMware
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-OpenNebula is intended for companies willing to create a self-service cloud environment on top of their VMware infrastructure without having to abandon their investment in VMware and retool the entire stack. In these environments, OpenNebula seamlessly integrates with existing vCenter infrastructures to leverage advanced features—such as vMotion, HA or DRS scheduling—provided by the VMware vSphere product family. OpenNebula exposes a multi-tenant, cloud-like provisioning layer on top of vCenter, including features like Virtual Data Centers (VDCs), data center federation, or hybrid cloud computing connecting in-house vCenter infrastructure with public clouds. Resources like VM, VM Templates, datastores and networks can be easily imported from vCenter infrastructures to OpenNebula. OpenNebula also makes it possible to take steps towards liberating your stack from vendor lock-in. Once you have built your cloud with OpenNebula on VMware, you can then add new resources based on open source hypervisors⁠—like KVM—and hence use OpenNebula as a migration framework to the open cloud.
-
-vOneCloud
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-vOneCloud is a virtual appliance for vSphere that builds on top of your vCenter an OpenNebula cloud for development, testing or product evaluation in 5 minutes. In a nutshell, it is an OVA file with a configured CentOS and OpenNebula installation ready to import resources from vCenter environments. vOneCloud is free to download and use. The virtual appliance does not interfere with existing vSphere configurations, procedures and workflows. This means that you can try it and if you decide not to adopt it, you can just delete it. vOneCloud can be also used for small-size production deployments.
-
 .. image:: /images/vonecloud_ontop.png
     :align: center
 
+.. _control_console:
 
-.. _requirements:
+
+vOneCloud comes with a Control Console, a text based wizard accessible through the vCenter console to the vOneCloud appliance. It is available by opening the vOneCloud appliance console in vCenter. It requires no authentication since only the vCenter administrator will be able to open the vOneCloud console.
+
+- It can be used to to configure the network, root password and change the password of the OpenNebula oneadmin user.%
+
+Benefits
+========
+
+OpenNebula over VMware is intended for companies willing to create a self-service cloud environment on top of their VMware infrastructure without having to abandon their investment in VMware and retool the entire stack. In these environments, OpenNebula seamlessly integrates with existing vCenter infrastructures to leverage advanced features—such as vMotion, HA or DRS scheduling—provided by the VMware vSphere product family.
+
+OpenNebula exposes a multi-tenant, cloud-like provisioning layer on top of vCenter, including features like Virtual Data Centers (VDCs), data center federation, or hybrid cloud computing connecting in-house vCenter infrastructure with public clouds. Resources like VM, VM Templates, datastores and networks can be easily imported from vCenter infrastructures to OpenNebula. OpenNebula also makes it possible to take steps towards liberating your stack from vendor lock-in. Once you have built your cloud with OpenNebula on VMware, you can then add new resources based on open source hypervisors⁠—like KVM—and hence use OpenNebula as a migration framework to the open cloud.
+
+.. _vonecloud_requirements:
 
 Requirements
 ============
 
-.. warning:: It is advised to manage one vCenter by only one OpenNebula (ie, do not manage the same vCenter from two different OpenNebulas). Otherwise VMs from both server will clash and produce errors.
+It is advised to manage one vCenter by only one OpenNebula (ie, do not manage the same vCenter from two different OpenNebulas). Otherwise VMs from both server will clash and produce errors.
 
 The following components are needed to be present in the infrastructure to implement a cloud infrastructure run by OpenNebula:
 
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |             **Component**             |                                                                                                                                                      **Observations**                                                                                                                                                     |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| vCenter 6.0/6.5/6.7                   | - ESX hosts, VM Templates and Running VMs expected to be managed by OpenNebula need to be grouped into clusters.                                                                                                                                                                                                          |
+| vCenter 6.5/6.7/7.0                   | - ESX hosts, VM Templates and Running VMs expected to be managed by OpenNebula need to be grouped into clusters.                                                                                                                                                                                                          |
 |                                       | - The IP or DNS needs to be known, as well as the credentials (username and password) of an admin user.                                                                                                                                                                                                                   |
 |                                       | - DRS is not required but it is recommended. OpenNebula does not schedule to the granularity of ESX hosts, and you would need DRS to select the actual ESX host within the cluster. Otherwise the VM will be started in the ESX host associated to the VM Template.                                                       |
 |                                       | - Ideally, all ESX belonging to the same vCenter cluster to be exposed to OpenNebula need to share at least one datastore among them, although this is not a hard requirement.                                                                                                                                            |
 |                                       | - VMs that will be instantiated through OpenNebula need to be saved as VMs Templates in vCenter. OpenNebula only creates new VMs by instantiating VM Templates.                                                                                                                                                           |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ESX 6.0/6.5/6.7                       | - With at least 2 GB of free RAM and 1 free CPU.                                                                                                                                                                                                                                                                          |
+| ESX 6.5/6.7/7.0                       | - With at least 2 GB of free RAM and 1 free CPU.                                                                                                                                                                                                                                                                          |
 |                                       | - To enable VNC functionality from OpenNebula there are two requirements: 1) the ESX hosts need to be reachable from OpenNebula and 2) the ESX firewall should allow for VNC connections (see the note below).                                                                                                            |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Guest OS                              | VMware tools are needed in the guestOS to enable several features (contextualization and networking feedback). Please install `VMware Tools (for Windows) <https://docs.vmware.com/en/VMware-Tools/index.html>`__ or `Open Virtual Machine Tools <https://github.com/vmware/open-vm-tools>`__ (for \*nix) in the guestOS. |
@@ -70,8 +67,7 @@ The following components are needed to be present in the infrastructure to imple
 | IE (>= 9), Firefox (> 3.5) and Chrome | Other browsers, including Safari, are **not** supported and may not work well. Note that IE11 is NOT supported with compatibility mode enabled.                                                                                                                                                                           |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-
-.. todo:: To enable VNC functionality, please follow the instructions in the main OpenNebula documentation.
+To enable VNC functionality, please follow these :ref:`instructions <vnc_one_esx_hosts>`.
 
 vOneCloud ships with a default of 1 vCPUs and 2 GB of RAM, and as such it has been certified for infrastructures of the following dimensions:
 
@@ -80,16 +76,9 @@ vOneCloud ships with a default of 1 vCPUs and 2 GB of RAM, and as such it has be
 - Up to 1.000 VMs in total, each vCenter managing up to 250 VMs
 - Up to 100 users, being the concurrent limit 10 users accessing the system simultaneously
 
-.. note:: For infrastructures exceeding the aforementioned limits, we recommend an installation of OpenNebula from scratch on a bare metal server, using the vCenter drivers.
+.. todo:: Review following paragraph
 
-.. _control_console:
-
-Control Console
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-- The Control Console is a text based wizard accessible through the vCenter console to the vOneCloud appliance. It is available by opening the vOneCloud appliance console in vCenter. It requires no authentication since only the vCenter administrator will be able to open the vOneCloud console.
-
-- It can be used to to configure the network, root password and change the password of the OpenNebula oneadmin user.%
+Take into account that vOneCloud is shipped for evaluation purposes, for infrastructures exceeding the aforementioned limits we recommend an installation of OpenNebula from scratch on a bare metal server, using the vCenter drivers.
 
 .. _accounts:
 
@@ -108,21 +97,6 @@ vOneCloud ships with several pre-created user accounts which will be described i
 | oneadmin | OpenNebula Sunstone | Cloud Administrator     | Cloud Administrator. Run any task in OpenNebula, including creating other users. |
 +----------+---------------------+-------------------------+----------------------------------------------------------------------------------+
 
-`root` linux account
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-vOneCloud runs on top of Linux (in particular `CentOS 8 <http://www.centos.org/>`__), therefore the administrators of the vOneCloud appliance should be able to have console access to the appliance. The appliance comes with a `root` account with an undefined password. This password **must** be set during the first boot of the appliance. The :ref:`vOneCloud Control Console <control_console>` will prompt the administrator for a new root password.
-
-`oneadmin` linux account
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The main use of this account is to run all OpenNebula services.
-
-`oneadmin` OpenNebula (Sunstone) account
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This account is used to log into Sunstone. It is a Cloud Administrator account, capable of running any task within OpenNebula. This account should be used to create other accounts within Sunstone, either with the same level of privileges (by placing a new account in the `oneadmin` group) or final user without admin privileges. This password **must** be set during the first boot of the appliance. The :ref:`vOneCloud Control Console <control_console>` will prompt the administrator for a new oneadmin password.
-
 .. _download_and_deploy:
 
 Download and Deploy
@@ -130,9 +104,9 @@ Download and Deploy
 
 vOneCloud can be downloaded by completing the form `here <https://opennebula.io/get-vonecloud>`__.
 
-The OVA can be imported in an existing vCenter infrastructure. It is based on `CentOS 8 <http://www.centos.org/>`__ and has VMware tools enabled.
+The OVA file can be imported in an existing vCenter infrastructure. It is based on `CentOS 8 <http://www.centos.org/>`__ and has VMware tools enabled.
 
-The appliance requirements are kept to a strict minimum so it can be executed in any vCenter installation. However, before deploying it, please read the :ref:`system requirements <requirements>`.
+The appliance requirements are kept to a strict minimum so it can be executed in any vCenter installation. However, before deploying it, please read the :ref:`system requirements <vonecloud_requirements>`.
 
 Follow the next steps to deploy a fully functional OpenNebula cloud.
 
