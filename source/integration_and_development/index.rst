@@ -1,8 +1,8 @@
 .. _integration_guide:
 
-=================
-Integration Guide
-=================
+===========================
+Integration and Development
+===========================
 
 .. toctree::
    :maxdepth: 2

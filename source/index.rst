@@ -11,10 +11,10 @@ Here comes description ...
 
    Overview <overview/index>
    Quick Start <quick_start/index>
-   Operations Guide <operations_guide/index>
+   Management and Operations <management_and_operations/index>
    Configuration Guide <configuration_guide/index>
-   Deployment Guide <deployment_guide/index>
-   Development Guide <development_guide/index>
+   Installation and Configuration <installation_and_configuration/index>
+   Integration and Development <integration_and_development/index>
    Release Notes <intro_release_notes/index>
 
 .. raw:: html

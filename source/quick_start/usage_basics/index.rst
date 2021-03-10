@@ -8,7 +8,6 @@ Usage Basics
    :maxdepth: 2
 
    Overview <overview>
-   User Interfaces <user_interfaces>
    Running Applications <running_applications>
    Elastic Application Workflows <elastic_application_workflows>
    Kubernetes Clusters <kubernetes_clusters>
