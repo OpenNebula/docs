@@ -33,7 +33,11 @@ Go OpenNebula Cloud API cover the resources lists below:
 +------------------+----------------------------------------------------------------------------------------------------------------+
 | Template         | `template.go <https://github.com/OpenNebula/one/blob/master/src/oca/go/src/goca/template.go>`__                |
 +------------------+----------------------------------------------------------------------------------------------------------------+
-| Security Group   | `securitygroup.go <https://github.com/OpenNebula/one/blob/master/src/oca/go/src/goca/security_group.go>`__     |
+| Security Group   | `service_template.go <https://github.com/OpenNebula/one/blob/master/src/oca/go/src/goca/securitygroup.go>`__   |
++------------------+----------------------------------------------------------------------------------------------------------------+
+| Service          | `service.go <https://github.com/OpenNebula/one/blob/master/src/oca/go/src/goca/service.go>`__                  |
++------------------+----------------------------------------------------------------------------------------------------------------+
+| Service Template | `service_template.go <https://github.com/OpenNebula/one/blob/master/src/oca/go/src/goca/service_template.go>`__|
 +------------------+----------------------------------------------------------------------------------------------------------------+
 | User             | `user.go <https://github.com/OpenNebula/one/blob/master/src/oca/go/src/goca/user.go>`__                        |
 +------------------+----------------------------------------------------------------------------------------------------------------+
