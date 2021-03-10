@@ -263,7 +263,9 @@ You can use the parameter ``--market`` together with ``--yes`` or ``--no`` to ru
     ID: 448
     ID: 449
 
-.. note:: If the Virtual Machine Template has some kernel or context files, these will be uploaded to the marketplace too. NICs are marked as auto, so they can work when downloading it.
+.. important:: If the VM has not TEMPLATE_ID attribute, it can not be imported into the marketplace.
+
+.. note:: NICs are marked as auto, so they can work when downloading it.
 
 .. warning:: If you have NIC_ALIAS in the template, NICs are **not** marked as auto, you need to select the network when you instantiate it.
 
