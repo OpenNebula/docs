@@ -194,6 +194,20 @@ VCPUs are not pinned so most probably the virtual machine's process will be chan
 
 In case you are not overcommitting (CPU=VCPU) all the virtual CPUs will have one physical CPU (even if it's not pinned) so they could consume the number of VCPU assigned minus the virtualization overhead and any process running in the host OS.
 
+Compact Memory (Optional)
+-------------------------
+
+Memory fragmentation may cause that the VM doesn't deploy, even if there is enough memory on host. To prevent the memory fragmentation it's possible to enable compact memory on VM start or VM stop. By default compact memory on VM stop is enabled. The compact memory is triggered on following actions: ``deploy``, ``migrate``, ``poweroff``, ``recover``, ``release``, ``resize``, ``save``, ``resume``, ``save``, ``suspend`` and ``shutdown``. This feature is enabled in ``/var/lib/one/etc/remotes/vmm/kvm/kvmrc``:
+
+.. code-block:: bash
+
+    # Compact memory before running the VM
+    #CLEANUP_MEMORY_ON_START=yes
+
+    # Compact memory after VM stops
+    CLEANUP_MEMORY_ON_STOP=yes
+
+
 Usage
 ================================================================================
 
@@ -460,6 +474,10 @@ The parameters that can be changed here are as follows:
 | ``CANCEL_NO_ACPI``                            | Force VM's without ACPI enabled to be destroyed on shutdown                                                                                                                                                     |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``MIGRATE_OPTIONS``                           | Set options for the virsh migrate command                                                                                                                                                                       |
++-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``CLEANUP_MEMORY_ON_START``                   | Compact memory before running the VM. Values ``yes`` or ``no`` (default)                                                                                                                                        |
++-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``CLEANUP_MEMORY_ON_STOP``                    | Compact memory after VM stops. Values ``yes`` (default) or ``no``                                                                                                                                               |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``DEFAULT_ATTACH_CACHE``                      | This parameter will set the default cache type for new attached disks. It will be used in case the attached disk does not have an specific cache method set (can be set using templates when attaching a disk). |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
