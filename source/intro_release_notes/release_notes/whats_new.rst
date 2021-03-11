@@ -142,6 +142,7 @@ KVM
 - `Support for iotune parameter size_iops_sec for kvm <https://github.com/OpenNebula/one/issues/5225>`__.
 - `Support for iothreads <https://github.com/OpenNebula/one/issues/1226>`__.
 - `Support for shareable disk <https://github.com/OpenNebula/one/issues/727>`__
+- `Option to compact memory on VM start/stop <https://github.com/OpenNebula/one/issues/3124>`__
 
 VMware Virtualization driver
 ============================
