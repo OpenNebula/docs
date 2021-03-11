@@ -191,3 +191,4 @@ Other Issues Solved
 - `Fix show the CPU cost calculation in VM template wizard <https://github.com/OpenNebula/one/issues/5288>`__.
 - `CLI interprete backslash escapes <https://github.com/OpenNebula/one/issues/4981>`__.
 - `Add instantiate VMs persistent by default <https://github.com/OpenNebula/one/issues/1501>`__.
+- `Remove CLI extra columns <https://github.com/OpenNebula/one/issues/4974>`__.
