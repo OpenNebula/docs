@@ -21,7 +21,7 @@ Step 2. Installing the Software
 Installing on CentOS/RHEL
 -------------------------
 
-.. include:: ../../deployment_guide/frontend_installation/epel.txt
+.. include:: ../../installation_and_configuration/frontend_installation/epel.txt
 
 Install Node Package
 ^^^^^^^^^^^^^^^^^^^^

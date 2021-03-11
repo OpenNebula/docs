@@ -13,4 +13,3 @@ References
    OneGate Configuration <onegate_configuration>
    Logging and Debugging <log_debug>
    onedb Tool <onedb>
-   Scalability Testing and Tuning <one_scalability>

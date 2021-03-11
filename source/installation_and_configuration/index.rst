@@ -10,6 +10,7 @@ Installation and Configuration
    :maxdepth: 2
 
    Front-end Installation <frontend_installation/index>
+   Large-scale Deployment <large-scale_deployment/index>
    High Availability <ha/index>
    Data Center Federation <data_center_federation/index>
    Containerized Deployment (TP) <containerized_deployment/index>
