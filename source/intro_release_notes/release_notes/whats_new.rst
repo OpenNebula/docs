@@ -190,3 +190,4 @@ Other Issues Solved
 - `Fix Sunstone VM warning box blocks other VM tabs <https://github.com/OpenNebula/one/issues/5266>`__.
 - `Fix show the CPU cost calculation in VM template wizard <https://github.com/OpenNebula/one/issues/5288>`__.
 - `CLI interprete backslash escapes <https://github.com/OpenNebula/one/issues/4981>`__.
+- `Add instantiate VMs persistent by default <https://github.com/OpenNebula/one/issues/1501>`__.
