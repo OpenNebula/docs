@@ -1,10 +1,12 @@
-.. _configuration_guide:
+.. _vmware_node_deployment:
 
 ================================================================================
-Configuration Guide
+VMware Node Deployment
 ================================================================================
 
 .. toctree::
    :maxdepth: 2
 
-   Web Interfaces Configuration <web_interfaces_configuration/index>
+   Overview <overview>
+   vCenter Node Installation <vcenter_node_installation>
+   vCenter Driver <vcenter_driver>

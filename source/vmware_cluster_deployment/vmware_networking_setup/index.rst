@@ -1,10 +1,12 @@
-.. _configuration_guide:
+.. _vmware_networking_setup:
 
 ================================================================================
-Configuration Guide
+VMware Networking Setup
 ================================================================================
 
 .. toctree::
    :maxdepth: 2
 
-   Web Interfaces Configuration <web_interfaces_configuration/index>
+   Overview <overview>
+   vCenter Networking <vcenter_networking>
+   NSX Setup <nsx_setup>

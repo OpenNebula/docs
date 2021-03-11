@@ -1,4 +1,6 @@
-.. _vmmg:
+.. _firecracker_node_deployment_overview:
+
+.. todo:: Review and adapt
 
 ================================================================================
 Overview

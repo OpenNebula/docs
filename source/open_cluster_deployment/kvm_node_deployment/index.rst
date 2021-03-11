@@ -1,10 +1,13 @@
-.. _configuration_guide:
+.. _kvm_node_deployment:
 
 ================================================================================
-Configuration Guide
+KVM Node Deployment
 ================================================================================
 
 .. toctree::
    :maxdepth: 2
 
-   Web Interfaces Configuration <web_interfaces_configuration/index>
+   Overview <overview>
+   KVM Node Installation <kvm_node_installation>
+   KVM Driver <kvm_driver>
+   PCI Passthrough <pci_passthrough>

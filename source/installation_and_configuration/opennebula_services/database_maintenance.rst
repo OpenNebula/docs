@@ -1,8 +1,35 @@
-.. _onedb:
+.. _database_maintenance:
 
-===========
-Onedb Tool
-===========
+.. todo:: Review and adapt. This is the old onedb guide + database maintenance
+
+====================
+Database Maintenance
+====================
+
+.. _mysql_maintenance:
+
+MySQL database maintenance
+===========================
+
+For an optimal database performance improvement there are some tasks that should be done periodically, depending on the load of the environment. They are listed below.
+
+Search index
+----------------------
+
+In order to be able to search for VMs by different attributes, OpenNebula's database has an `FTS index <https://dev.mysql.com/doc/refman/5.6/en/innodb-fulltext-index.html>`__. The size of this index can increase fast, depending on the cloud load. To free some space, perform the following maintenance task periodically:
+
+.. code::
+
+   alter table vm_pool drop index ftidx;
+   alter table vm_pool add fulltext index ftidx (search_token);
+
+VMs in DONE state
+----------------------
+
+When a VM is terminated, OpenNebula changes its state to DONE but it keeps the VM in the database in case the VM information is required in the future (e.g. to generate accounting reports). In order to reduce the size of the VM table, it is recommended to periodically delete the VMs in the DONE state when not needed. For this task the :ref:`onedb purge-done <cli>` tool is available.
+
+
+.. _onedb:
 
 This section describes the ``onedb`` CLI tool. It can be used to get information from an OpenNebula database, upgrade it, or fix inconsistency problems.
 

@@ -14,6 +14,8 @@ Here comes description ...
    Management and Operations <management_and_operations/index>
    Configuration Guide <configuration_guide/index>
    Installation and Configuration <installation_and_configuration/index>
+   Open Cluster Deployment <open_cluster_deployment/index>
+   VMware Cluster Deployment <vmware_cluster_deployment/index>
    Integration and Development <integration_and_development/index>
    Release Notes <intro_release_notes/index>
 

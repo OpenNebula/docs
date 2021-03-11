@@ -17,5 +17,4 @@ Management and Operations
    End-User Web Interfaces <end-user_web_interfaces/index>
    Public Marketplaces <public_marketplaces/index>
    Multi-VM Service Management <multivm_service_management/index>
-   Automation Tools Integration <automation_tools_integration/index>
    References <references/index>

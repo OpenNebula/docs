@@ -1,7 +1,7 @@
 .. _schg:
 
 ================================================================================
-Scheduler
+Scheduler Configuration
 ================================================================================
 
 The Scheduler is in charge of the assignment between pending Virtual Machines and known Hosts. OpenNebula's architecture defines this module as a separate process that can be started independently of ``oned`` (it is however started automatically when you start the ``opennebula`` service).

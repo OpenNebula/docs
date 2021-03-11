@@ -6,7 +6,6 @@ Infrastructure Integration
    :maxdepth: 2
 
    Overview <overview>
-   Hook Driver <hooks>
    Virtualization Driver <devel-vmm>
    Storage Driver <sd>
    Monitoring Driver <devel-im>

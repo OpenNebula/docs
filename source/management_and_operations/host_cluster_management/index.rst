@@ -8,6 +8,5 @@ Hosts and Clusters Management
    Overview <overview>
    Hosts <host_guide>
    Clusters <cluster_guide>
-   Scheduler <scheduler>
    Datastores <datastore_guide>
    NUMA and CPU Pinning <numa>

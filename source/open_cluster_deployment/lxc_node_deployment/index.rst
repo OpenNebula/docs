@@ -1,12 +1,12 @@
+.. _lxc_node_deployment:
+
 ================================================================================
-VMware Infrastructure Setup
+LXC Node Deployment
 ================================================================================
 
 .. toctree::
    :maxdepth: 2
 
    Overview <overview>
-   vCenter Driver <vcenter_setup>
-   vCenter Datastore <datastore_setup>
-   vCenter Networking <networking_setup>
-   NSX Setup <nsx_setup>
+   LXC Node Installation <lxc_node_installation>
+   LXC Driver <lxc_driver>

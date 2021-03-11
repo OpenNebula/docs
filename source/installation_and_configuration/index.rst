@@ -13,10 +13,10 @@ Installation and Configuration
    Large-scale Deployment <large-scale_deployment/index>
    High Availability <ha/index>
    Data Center Federation <data_center_federation/index>
+   OpenNebula Services <opennebula_services/index>
    Containerized Deployment (TP) <containerized_deployment/index>
-   Customized Clusters Installation <customized_clusters_installation/index>
-   VMware Infrastructure Setup <vmware_infrastructure_setup/index>
-   Open Cloud Host Setup <open_cloud_host_setup/index>
-   Open Cloud Storage Setup <open_cloud_storage_setup/index>
-   Open Cloud Networking Setup <open_cloud_networking_setup/index>
+   Authentication Configuration <authentication_configuration/index>
    Private Marketplaces <private_marketplaces/index>
+   Configuration Management (EE) <configuration_management/index>
+   Support Utilities (EE) <support_utilities/index>
+   Customized Clusters Installation <customized_clusters_installation/index>

@@ -1,10 +1,12 @@
-.. _configuration_guide:
+.. _firecracker_node_deployment:
 
 ================================================================================
-Configuration Guide
+Firecracker Node Deployment
 ================================================================================
 
 .. toctree::
    :maxdepth: 2
 
-   Web Interfaces Configuration <web_interfaces_configuration/index>
+   Overview <overview>
+   Firecracker Node Installation <firecracker_node_installation>
+   Firecracker Driver <firecracker_driver>

@@ -23,27 +23,6 @@ After installing the nodes and :ref:`verifying your installation <verify_install
 Hypervisor Compatibility
 ================================================================================
 
-+-------------------------------------------------------+-----------------------------------------------+
-|                        Section                        |                 Compatibility                 |
-+=======================================================+===============================================+
-| :ref:`KVM Node Installation <kvm_node>`               | This Section applies to KVM.                  |
-+-------------------------------------------------------+-----------------------------------------------+
-| :ref:`LXD Node Installation <lxd_node>`               | This Section applies to LXD.                  |
-+-------------------------------------------------------+-----------------------------------------------+
-| :ref:`Firecracker Node Installation <fc_node>`        | This Section applies to Firecracker.          |
-+-------------------------------------------------------+-----------------------------------------------+
-| :ref:`vCenter Node Installation <vcenter_node>`       | This Section  applies to vCenter.             |
-+-------------------------------------------------------+-----------------------------------------------+
-| :ref:`Verify your Installation <verify_installation>` | This Section applies to vCenter, KVM and LXD. |
-+-------------------------------------------------------+-----------------------------------------------+
-
-If your cloud is KVM, LXD or Firecracker based you should also follow:
-
-* :ref:`Open Cloud Host Setup <vmmg>`.
-* :ref:`Open Cloud Storage Setup <storage>`.
-* :ref:`Open Cloud Networking Setup <nm>`.
-
 Otherwise, if it's VMware based:
 
 * Head over to the :ref:`VMware Infrastructure Setup <vmware_infrastructure_setup_overview>` chapter.
-

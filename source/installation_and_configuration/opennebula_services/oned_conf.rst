@@ -1,7 +1,7 @@
 .. _oned_conf:
 
 ===================
-ONED Configuration
+oned Configuration
 ===================
 
 The OpenNebula daemon ``oned`` manages the cluster nodes, virtual networks, virtual machines, users, groups and storage datastores. The configuration file for the daemon is called ``oned.conf`` and it is placed inside the ``/etc/one`` directory. In this reference document we describe all the format and options that can be specified in ``oned.conf``.
@@ -879,4 +879,3 @@ Example:
     #@<gid> DATASTORE+NET/%<cid> USE #<zid>
     #when a cluster is added to the VDC.
     onevdc addcluster <vdc> <zid> <cid>
-

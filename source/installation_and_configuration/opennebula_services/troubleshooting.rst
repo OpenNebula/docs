@@ -1,7 +1,7 @@
 .. _log_debug:
 
 ====================
-Logging & Debugging
+Troubleshooting
 ====================
 
 OpenNebula provides logs for many resources. It supports three logging systems: file based logging systems, syslog logging and logging to the standard error stream.
@@ -48,7 +48,7 @@ In the case of syslog it follows the standard:
 
 .. code-block:: none
 
-    date hostname process[pid]: [Z<zone_id>][module][log_level]: message 
+    date hostname process[pid]: [Z<zone_id>][module][log_level]: message
 
 where the zone_id is the ID of the zone in the federation, 0 for single zone set ups, the module is any of the internal OpenNebula components: ``VMM``, ``ReM``, ``TM``, etc., and the log\_level is a single character indicating the log level: I for info, D for debug, etc.
 
@@ -58,7 +58,7 @@ For syslog, OpenNebula will also log the Virtual Machine events like this:
 
     date hostname process[pid]: [VM id][Z<zone_id>][module][log_level]: message
 
-and similarly for stderr logging. 
+and similarly for stderr logging.
 
 For ``oned`` and VM events the formats are:
 
