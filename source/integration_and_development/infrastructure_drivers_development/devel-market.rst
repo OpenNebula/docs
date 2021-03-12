@@ -22,7 +22,7 @@ The job of the export is to:
 
 * Calculate the ``MD5``, ``FORMAT``, ``SIZE``
 * Generate an ``IMPORT_SOURCE`` so the ``<market_mad>/import`` can do the image => market dump
-* Specify ``DISPOSE="YES"``  if the ``IMPORT_SOURCE`` is a temporary file that must be removed after the dump performed by ``<market_mad>/import``. ``DISPOSE="NO"`` if otherwise.
+* Specify ``DISPOSE="YES"`` and ``DISPOSE_CMD``  if the ``IMPORT_SOURCE`` is a temporary file that must be removed after the dump performed by ``<market_mad>/import``. ``DISPOSE="NO"`` if otherwise.
 
 **ARGUMENTS**: ``driver_dump_xml image_id``. The ``driver_dump_xml`` is an XML dump of the driver action encoded in Base 64, which contains all the required information: ``image_data`` and ``ds_data``.
 

@@ -110,3 +110,8 @@ Sunstone SELinux Requirement
 =============================
 
 Now OCA and therefore Sunstone need [zmq gem](https://rubygems.org/gems/zmq), and for that, it is needed to enable the ``httpd_execmem`` SELinux boolean.
+
+
+Custom Datastore drivers
+========================
+Custom :ref:`Datastore Driver <sd>` which use ``DISPOSE="YES"`` in the export now needs to add also ``<DISPOSE_CMD></DISPOSE_CMD>`` with the command to remove the temporary file by the :ref:`Market Driver <devel-market>`.

@@ -151,7 +151,7 @@ Action scripts for generic image datastores:
 
 .. note:: You only need to implement one ``mv`` script, but consider the arguments received when the TM is used for the system datastore, a regular image datastore or both.
 
--  **premigrate**: It is executed before a livemigration operation is issued to the hypervisor. Note that **only the premigrate script from the system datastore will be used**. Any customization must be done for the premigrate script of the system datastore, although you will probably add operations for other backends than that used by the system datastore. 
+-  **premigrate**: It is executed before a livemigration operation is issued to the hypervisor. Note that **only the premigrate script from the system datastore will be used**. Any customization must be done for the premigrate script of the system datastore, although you will probably add operations for other backends than that used by the system datastore.
 
 
    - Base64 encoded VM XML is sent via stdin.
@@ -309,7 +309,7 @@ The following combinations are supported by default:
 - **CEPH** + **SSH** described in :ref:`Ceph SSH mode <ceph-ssh-mode>`
 - **Qcow2/shared** + **SSH** described in :ref:`Qcow2/shared SSH mode <shared-ssh-mode>`
 
-The support in oned is generic, in a *mixed mode* every TM action (such as ``clone`` or ``delete``) is suffixed with the driver name of the system DS in use. For example, an action like ``clone.ssh`` is actually invoked in CEPH + SSH mode. The driver first tries to find the complete action script, including the system DS suffix (e.g. ``ceph/clone.ssh``) and only if that does not exist fallbacks to the default (``ceph/clone``). 
+The support in oned is generic, in a *mixed mode* every TM action (such as ``clone`` or ``delete``) is suffixed with the driver name of the system DS in use. For example, an action like ``clone.ssh`` is actually invoked in CEPH + SSH mode. The driver first tries to find the complete action script, including the system DS suffix (e.g. ``ceph/clone.ssh``) and only if that does not exist fallbacks to the default (``ceph/clone``).
 
 In this way other combinations can be easily added.
 
@@ -570,4 +570,5 @@ Export XML
       <SIZE><![CDATA[<size>]]></SIZE>
       <FORMAT><![CDATA[<format>]></FORMAT>
       <DISPOSE><dispose></DISPOSE>
+      <DISPOSE_CMD><<![CDATA[<dispose command>]]>/DISPOSE_CMD>
    </IMPORT_INFO>
