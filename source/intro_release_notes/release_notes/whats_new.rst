@@ -192,3 +192,4 @@ Other Issues Solved
 - `CLI interprete backslash escapes <https://github.com/OpenNebula/one/issues/4981>`__.
 - `Add instantiate VMs persistent by default <https://github.com/OpenNebula/one/issues/1501>`__.
 - `Remove CLI extra columns <https://github.com/OpenNebula/one/issues/4974>`__.
+- `Improve interoperability between Datastore and Market drivers <https://github.com/OpenNebula/one/issues/1159>`__.
