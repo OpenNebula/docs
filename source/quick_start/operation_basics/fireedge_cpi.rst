@@ -16,20 +16,6 @@ cloud infrastructures.
 FireEdge OneProvision is build using `oneprovision` tool which allows the deployment of OpenNebula clusters
 with all resources needed to run VMs, hosts, datastores or virtual networks. More information in the :ref:oneprovision documentation <ddc_usage>.
 
-Configuration
-==============
-
-When the :ref:`FireEdge server is installed <fireedge_configuration>`, you can check the :ref:`configuration FireEdge
-file <fireedge_install_configuration>` which has the following specifics options to OneProvision GUI:
-
-+----------------------------------------+----------------------------+-----------------------------------------------------+
-|          Option                        | Default Value              | Description                                         |
-+========================================+============================+=====================================================+
-| :oneprovision_prepend_command          | ""                         | Prepend for oneprovision command                    |
-+----------------------------------------+----------------------------+-----------------------------------------------------+
-| :oneprovision_optional_create_command  | ""                         | Optional param for oneprovision command create      |
-+----------------------------------------+----------------------------+-----------------------------------------------------+
-
 Usage
 =====
 

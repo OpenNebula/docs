@@ -607,7 +607,7 @@ In the :ref:`Cloud View <cloud_view>`:
 
 |sunstone_persistent_3|
 
-From the :ref:`Admin View <sunstone_overview>`:
+From the :ref:`Admin View <suns_views>`:
 
 |image10|
 

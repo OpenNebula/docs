@@ -71,7 +71,7 @@ Managing Images
 
 Users can manage their Images using the command line interface command ``oneimage``. The complete reference is :ref:`here <cli>`.
 
-You can also manage your Images using :ref:`Sunstone <sunstone_overview>`, selecting the Images tab. By default this tab is available in the ``admin`` view, but not in the ``cloud`` or ``groupadmin`` views.
+You can also manage your Images using Sunstone, selecting the Images tab. By default this tab is available in the ``admin`` view, but not in the ``cloud`` or ``groupadmin`` views.
 
 Create Images
 -------------

@@ -12,7 +12,6 @@ Here comes description ...
    Overview <overview/index>
    Quick Start <quick_start/index>
    Management and Operations <management_and_operations/index>
-   Configuration Guide <configuration_guide/index>
    Installation and Configuration <installation_and_configuration/index>
    Open Cluster Deployment <open_cluster_deployment/index>
    VMware Cluster Deployment <vmware_cluster_deployment/index>
