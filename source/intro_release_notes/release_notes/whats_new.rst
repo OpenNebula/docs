@@ -194,3 +194,4 @@ Other Issues Solved
 - `Remove CLI extra columns <https://github.com/OpenNebula/one/issues/4974>`__.
 - `Improve interoperability between Datastore and Market drivers <https://github.com/OpenNebula/one/issues/1159>`__.
 - `Allow = symbols in OneGate update <https://github.com/OpenNebula/one/issues/5240>`__.
+- `Prevent xtables (iptables/iptables6) collisions with non-OpenNebula related processes <https://github.com/OpenNebula/one/issues/3624>`__.
