@@ -258,7 +258,7 @@ And, start again the deployment with following **additional** arguments:
 Container Bootstrap and Hooks
 =============================
 
-When the container is started, the dedicated script inside (called `entrypoint <https://docs.docker.com/engine/reference/builder/#entrypoint>`__) is executed to prepare the environment, configure OpenNebula (and other required) services, and pass control to the service manager `Supervisor <http://supervisord.org/>`__, which starts all the services and monitors them. We refer to this process as **container bootstrapping**, which is done by a bootstrap script ``/frontend-bootstrap.sh``. Any failure (e.g., due to wrong custom configuration) in the bootstrap process leads to abort and container start failure.
+When the container is started, the dedicated script inside (called `entrypoint <https://docs.docker.com/engine/reference/builder/#entrypoint>`__) is executed to prepare the environment. In our case the ``/frontend-entrypoint.sh`` will configure and enable the **bootstrap service** and pass control to the service manager `Supervisor <http://supervisord.org/>`__. Once Supervisor is running it will start the aforementioned bootstrap service. This service is executing the bootstrap script ``/frontend-bootstrap.sh`` where all the required services are configured and enabled including OpenNebula itself. We refer to this process as **container bootstrapping**. Any failure (e.g., due to a wrong custom configuration) will abort the bootstrap process and will lead to container's failed start.
 
 The high-level over of startup is described on the following sequence diagram:
 
@@ -266,15 +266,19 @@ The high-level over of startup is described on the following sequence diagram:
 
 The bootstrap process consists of the following significant steps:
 
-#. *(optional)* Apply :ref:`custom OpenNebula Configuration <container_custom_conf>` (configured in ``OPENNEBULA_ONECFG_PATCH``)
-#. *(optional)* Execute pre-bootstrap hook (configured in ``OPENNEBULA_PREBOOTSTRAP_HOOK``)
+#. Enter the entrypoint script ``/frontend-entrypoint.sh``
 #. Prepare the root filesystem (create and cleanup directories)
 #. Fix file permissions for the :ref:`significant paths (potential volumes) <reference_volumes>`
 #. Configure service manager :ref:`Supervisor <reference_supervisord>`
+#. Configure and enable the bootstrap service
+#. Exit entrypoint script and pass the execution to the service manager
+#. Enter the bootstrap service started by the Supervisor and immediately execute the ``/frontend-bootstrap.sh``
+#. *(optional)* Apply :ref:`custom OpenNebula Configuration <container_custom_conf>` (configured in ``OPENNEBULA_ONECFG_PATCH``)
+#. *(optional)* Execute pre-bootstrap hook (configured in ``OPENNEBULA_PREBOOTSTRAP_HOOK``)
 #. Configure and enable OpenNebula and related services (configured via ``OPENNEBULA_SERVICE``)
 #. *(optional)* Execute post-bootstrap script (configured in ``OPENNEBULA_POSTBOOTSTRAP_HOOK``)
 #. *(optional)* In maintenance mode, turn off autostart for services managed by Supervisor (configured in ``MAINTENANCE_MODE``)
-#. Exit and pass the execution to the service manager, which manages the lifetime of the services from now on
+#. Update the Supervisor and let it manage the lifetime of the services from now on
 
 The :ref:`image parameters <reference_params>` affect the bootstrap process and control which services and how are deployed inside the container.
 
