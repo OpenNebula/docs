@@ -513,7 +513,7 @@ In one of the examples below:
 |      -v opennebula_srv:/srv/one \                                             |      -v opennebula_srv:/srv/one \                                             |
 |      -v opennebula_oneadmin_auth:/var/lib/one/.one \                          |      -v opennebula_oneadmin_auth:/var/lib/one/.one \                          |
 |      -v opennebula_oneadmin_ssh:/var/lib/one/.ssh \                           |      -v opennebula_oneadmin_ssh:/var/lib/one/.ssh \                           |
-|      -v opennebula_oneprovision_ssh:/var/lib/one/.ssh-oneprovision \          |      -v opennebula_oneprovision_ssh:/var/lib/one/.ssh-oneprovision \          |
+|      -v opennebula_etcd:/srv/one/etcd \                                       |      -v opennebula_etcd:/srv/one/etcd \                                       |
 |      -v opennebula_logs:/var/log \                                            |      -v opennebula_logs:/var/log \                                            |
 |      opennebula:5.13.80                                                       |      opennebula:5.13.80                                                       |
 +-------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
@@ -555,7 +555,7 @@ In one of the examples below:
 |      -v opennebula_srv:/srv/one \                                             |      -v opennebula_srv:/srv/one \                                             |
 |      -v opennebula_oneadmin_auth:/var/lib/one/.one \                          |      -v opennebula_oneadmin_auth:/var/lib/one/.one \                          |
 |      -v opennebula_oneadmin_ssh:/var/lib/one/.ssh \                           |      -v opennebula_oneadmin_ssh:/var/lib/one/.ssh \                           |
-|      -v opennebula_oneprovision_ssh:/var/lib/one/.ssh-oneprovision \          |      -v opennebula_oneprovision_ssh:/var/lib/one/.ssh-oneprovision \          |
+|      -v opennebula_etcd:/srv/one/etcd \                                       |      -v opennebula_etcd:/srv/one/etcd \                                       |
 |      -v opennebula_logs:/var/log \                                            |      -v opennebula_logs:/var/log \                                            |
 |      opennebula:5.13.80                                                       |      opennebula:5.13.80                                                       |
 +-------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
@@ -595,7 +595,7 @@ In one of the examples below:
 |      -v opennebula_srv:/srv/one \                                             |      -v opennebula_srv:/srv/one \                                             |
 |      -v opennebula_oneadmin_auth:/var/lib/one/.one \                          |      -v opennebula_oneadmin_auth:/var/lib/one/.one \                          |
 |      -v opennebula_oneadmin_ssh:/var/lib/one/.ssh \                           |      -v opennebula_oneadmin_ssh:/var/lib/one/.ssh \                           |
-|      -v opennebula_oneprovision_ssh:/var/lib/one/.ssh-oneprovision \          |      -v opennebula_oneprovision_ssh:/var/lib/one/.ssh-oneprovision \          |
+|      -v opennebula_etcd:/srv/one/etcd \                                       |      -v opennebula_etcd:/srv/one/etcd \                                       |
 |      -v opennebula_logs:/var/log \                                            |      -v opennebula_logs:/var/log \                                            |
 |      opennebula:5.13.80                                                       |      opennebula:5.13.80                                                       |
 +-------------------------------------------------------------------------------+-------------------------------------------------------------------------------+

@@ -112,10 +112,10 @@ All are described in :ref:`the image parameters table <reference_params>`.
 
     -v opennebula_db:/var/lib/mysql
     -v opennebula_datastores:/var/lib/one/datastores
+    -v opennebula_etcd:/srv/one/etcd
     -v opennebula_srv:/srv/one
     -v opennebula_oneadmin_auth:/var/lib/one/.one
     -v opennebula_oneadmin_ssh:/var/lib/one/.ssh
-    -v opennebula_oneprovision_ssh:/var/lib/one/.ssh-oneprovision \
     -v opennebula_logs:/var/log
 
 There could be used more fine grained volumes as is implemented in the official ``docker-compose.yml`` but this volume list covers all important data which must survive container's restart.
