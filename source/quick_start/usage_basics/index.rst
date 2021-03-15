@@ -10,4 +10,3 @@ Usage Basics
    Overview <overview>
    Running Applications <running_applications>
    Elastic Application Workflows <elastic_application_workflows>
-   Kubernetes Clusters <kubernetes_clusters>

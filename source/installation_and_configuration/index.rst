@@ -14,9 +14,9 @@ Installation and Configuration
    High Availability <ha/index>
    Data Center Federation <data_center_federation/index>
    OpenNebula Services <opennebula_services/index>
-   Containerized Deployment (TP) <containerized_deployment/index>
    Authentication Configuration <authentication_configuration/index>
    Private Marketplaces <private_marketplaces/index>
    Configuration Management (EE) <configuration_management/index>
    Support Utilities (EE) <support_utilities/index>
-   Customized Clusters Installation <customized_clusters_installation/index>
+   Customized Clusters Installation (To Be Removed) <customized_clusters_installation/index>
+   Containerized Deployment (TP) <containerized_deployment/index>
