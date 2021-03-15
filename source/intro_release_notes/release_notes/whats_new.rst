@@ -195,3 +195,4 @@ Other Issues Solved
 - `Improve interoperability between Datastore and Market drivers <https://github.com/OpenNebula/one/issues/1159>`__.
 - `Allow = symbols in OneGate update <https://github.com/OpenNebula/one/issues/5240>`__.
 - `Prevent xtables (iptables/iptables6) collisions with non-OpenNebula related processes <https://github.com/OpenNebula/one/issues/3624>`__.
+- `Fix bug when updating VM configuration with non admin users <https://github.com/OpenNebula/one/issues/5096>`__.
