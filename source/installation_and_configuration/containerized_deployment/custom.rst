@@ -41,7 +41,7 @@ In the deployment (compose project) directory, place the certificate files into 
 2. Configure Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Configure deployment with parameters containing absolute file names **inside the container** to the TLS key and certificate. The ``certs`` directory on your host is automatically passed into the container and mounted on ``/certs``. For (example) files above, you need to adjust your configuration in ``custom.env`` and to contain the paths to certificate and key
+Configure deployment with parameters containing absolute file names **inside the container** to the TLS key and certificate. The ``certs`` directory on your host is automatically passed into the container and mounted on ``/certs``. For (example) files above, you need to adjust your configuration in ``.env`` and to contain the paths to certificate and key
 
 .. code::
 
@@ -117,7 +117,7 @@ In the deployment (compose project) directory, put the SSH keys into a precreate
 
 .. note::
 
-   If using different names, their absolute file names inside the container must be now also in ``ONEADMIN_SSH_PRIVKEY`` and ``ONEADMIN_SSH_PUBKEY`` in ``custom.env`` before restarting the deployment. The ``ssh`` directory on your host is automatically passed into the container and mounted on ``/ssh``.
+   If using different names, their absolute file names inside the container must be now also in ``ONEADMIN_SSH_PRIVKEY`` and ``ONEADMIN_SSH_PUBKEY`` in ``.env`` before restarting the deployment. The ``ssh`` directory on your host is automatically passed into the container and mounted on ``/ssh``.
 
 2. Restart Deployment
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -210,7 +210,7 @@ Multi-container
 2. Configure Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Configure deployment with parameters containing absolute file name **inside the container** to the diff file. The ``config/`` directory on your host is automatically passed into the container and mounted on ``/config``. For (example) files above, you need to adjust your configuration in ``custom.env`` and to contain the paths to certificate and key
+Configure deployment with parameters containing absolute file name **inside the container** to the diff file. The ``config/`` directory on your host is automatically passed into the container and mounted on ``/config``. For (example) files above, you need to adjust your configuration in ``.env`` and to contain the paths to certificate and key
 
 .. code::
 
@@ -311,7 +311,7 @@ Multi-container
 2. Configure Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Configure deployment with parameters containing absolute file name **inside the container** to the bootstrap hooks. The ``config/`` directory on your host is automatically passed into the container and mounted on ``/config``. For (example) files above, you need to adjust your configuration in ``custom.env`` and to contain the paths to certificate and key
+Configure deployment with parameters containing absolute file name **inside the container** to the bootstrap hooks. The ``config/`` directory on your host is automatically passed into the container and mounted on ``/config``. For (example) files above, you need to adjust your configuration in ``.env`` and to contain the paths to certificate and key
 
 .. code::
 
@@ -381,7 +381,7 @@ First, stop your current deployment if it's running:
 2. Reconfigure For Maintenance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Maintenance mode needs to be enabled in the deployment configuration. Put following configuration snippet into your ``custom.env``:
+Maintenance mode needs to be enabled in the deployment configuration. Put following configuration snippet into your ``.env``:
 
 .. code::
 
