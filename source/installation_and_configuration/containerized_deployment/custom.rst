@@ -93,7 +93,7 @@ And, start again the deployment with following **additional** arguments:
      -e TLS_CERT='/certs/cert.pem' \
      -e TLS_KEY='/certs/cert.key' \
    ...
-     opennebula:5.13.80
+     opennebula:5.13.85
 
 .. _container_custom_ssh:
 
@@ -166,7 +166,7 @@ And, start again the deployment with following **additional** arguments:
      -e ONEADMIN_SSH_PRIVKEY='/ssh/id_rsa' \
      -e ONEADMIN_SSH_PUBKEY='/ssh/id_rsa.pub' \
    ...
-     opennebula:5.13.80
+     opennebula:5.13.85
 
 .. _container_custom_conf:
 
@@ -250,7 +250,7 @@ And, start again the deployment with following **additional** arguments:
      -v "$(realpath ./config)":/config:z,ro \
      -e OPENNEBULA_ONECFG_PATCH="/config/onecfg_patch" \
    ...
-     opennebula:5.13.80
+     opennebula:5.13.85
 
 .. _container_custom_hooks:
 .. _container_bootstrap:
@@ -353,7 +353,7 @@ And, start again the deployment with following **additional** arguments:
      -e OPENNEBULA_PREBOOTSTRAP_HOOK="/config/pre-bootstrap-hook.sh" \
      -e OPENNEBULA_POSTBOOTSTRAP_HOOK="/config/post-bootstrap-hook.sh" \
    ...
-     opennebula:5.13.80
+     opennebula:5.13.85
 
 .. _container_maintenance:
 
@@ -508,7 +508,7 @@ And, start again the deployment with following **additional** argument:
    ...
      -e MAINTENANCE_MODE='yes' \
    ...
-     opennebula:5.13.80
+     opennebula:5.13.85
 
 2. Perform Maintenance
 ^^^^^^^^^^^^^^^^^^^^^^

@@ -288,7 +288,7 @@ Download the image to your container runtime in 2 simple steps:
 
 .. prompt:: bash # auto
 
-    # docker pull enterprise.opennebula.io/opennebula:5.13.80
+    # docker pull enterprise.opennebula.io/opennebula:5.13.85
     5.13: Pulling from opennebula
     14d5f30b982f: Pull complete
     56fd5a76ed9f: Pull complete
@@ -303,7 +303,7 @@ OpenNebula Community Edition is a free and public version, which offers the full
 
 .. prompt:: bash # auto
 
-    # docker pull opennebula/opennebula:5.13.80
+    # docker pull opennebula/opennebula:5.13.85
 
 .. _container_deploy:
 
@@ -342,7 +342,7 @@ Update *username* and interactively pass *password* from your customer ``token``
 
 .. prompt:: bash # auto
 
-    # wget --user=XXXX --ask-password https://enterprise.opennebula.io/packages/opennebula-5.13.80/container/docker-compose-opennebula.tar.gz
+    # wget --user=XXXX --ask-password https://enterprise.opennebula.io/packages/opennebula-5.13.85/container/docker-compose-opennebula.tar.gz
     # tar -xvf docker-compose-opennebula.tar.gz
     # cd opennebula/
 
@@ -350,7 +350,7 @@ Update *username* and interactively pass *password* from your customer ``token``
 
 .. prompt:: bash # auto
 
-    # wget https://downloads.opennebula.io/packages/opennebula-5.13.80/container/docker-compose-opennebula.tar.gz
+    # wget https://downloads.opennebula.io/packages/opennebula-5.13.85/container/docker-compose-opennebula.tar.gz
     # tar -xvf docker-compose-opennebula.tar.gz
     # cd opennebula/
 
@@ -515,7 +515,7 @@ In one of the examples below:
 |      -v opennebula_oneadmin_ssh:/var/lib/one/.ssh \                           |      -v opennebula_oneadmin_ssh:/var/lib/one/.ssh \                           |
 |      -v opennebula_etcd:/srv/one/etcd \                                       |      -v opennebula_etcd:/srv/one/etcd \                                       |
 |      -v opennebula_logs:/var/log \                                            |      -v opennebula_logs:/var/log \                                            |
-|      opennebula:5.13.80                                                       |      opennebula:5.13.80                                                       |
+|      opennebula:5.13.85                                                       |      opennebula:5.13.85                                                       |
 +-------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
 
 carefully replace following occurrences with
@@ -557,7 +557,7 @@ In one of the examples below:
 |      -v opennebula_oneadmin_ssh:/var/lib/one/.ssh \                           |      -v opennebula_oneadmin_ssh:/var/lib/one/.ssh \                           |
 |      -v opennebula_etcd:/srv/one/etcd \                                       |      -v opennebula_etcd:/srv/one/etcd \                                       |
 |      -v opennebula_logs:/var/log \                                            |      -v opennebula_logs:/var/log \                                            |
-|      opennebula:5.13.80                                                       |      opennebula:5.13.80                                                       |
+|      opennebula:5.13.85                                                       |      opennebula:5.13.85                                                       |
 +-------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
 
 carefully replace following occurrences with
@@ -597,7 +597,7 @@ In one of the examples below:
 |      -v opennebula_oneadmin_ssh:/var/lib/one/.ssh \                           |      -v opennebula_oneadmin_ssh:/var/lib/one/.ssh \                           |
 |      -v opennebula_etcd:/srv/one/etcd \                                       |      -v opennebula_etcd:/srv/one/etcd \                                       |
 |      -v opennebula_logs:/var/log \                                            |      -v opennebula_logs:/var/log \                                            |
-|      opennebula:5.13.80                                                       |      opennebula:5.13.80                                                       |
+|      opennebula:5.13.85                                                       |      opennebula:5.13.85                                                       |
 +-------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
 
 carefully replace following occurrences with
