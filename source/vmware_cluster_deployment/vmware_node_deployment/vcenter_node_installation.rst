@@ -305,6 +305,8 @@ Once you have created the proper role, one way to manage these privileges is cre
 VNC on ESX hosts
 ================================================================================
 
+.. todo:: Explain this is optional if planning to use FireEdge and guacamole, this is just for noVNC
+
 To enable VNC functionality, you need to allow access to the VNC ports on ESX hosts. By default, access to these ports is filtered by the firewall. We provide an installation package, which adds the **VNC** ruleset (port range 5900-11999 excluding known reserved ports) and permits access to these ports. Also OpenNebula needs to be reconfigured to respect this specific VNC ports range. This package must be installed on each ESX host; it can be done via CLI or web UI. We'll cover the necessary steps for both ways here.
 
 Locations of the VIB installation package or ZIP bundle:
