@@ -357,27 +357,27 @@ Update *username* and interactively pass *password* from your customer ``token``
 B. Configure Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-It's **highly recommended NOT to modify** any of the provided files in the deployment (compose project) directory, which comes from the deployment archive. As new OpenNebula releases require to use of new deployment archives, such an approach would make your upgrades difficult. Following files can be created for user customizations:
+It's **highly recommended NOT to modify** any of the provided files in the deployment (compose project) directory, which comes from the deployment archive. As new OpenNebula releases require to use of new deployment archives, such an approach would make your upgrades difficult. Create a new dedicated configuration file ``.env``, which is loaded on deployment start, and put inside any own customizations of
 
-- ``custom.env`` to set :ref:`image parameters <reference_params>` and override the ``default.env``
-- ``.env`` to set :ref:`deployment parameters <reference_deploy_params>` and override defaults in the ``docker-compose.yml``
+- :ref:`image parameters <reference_params>` (to override ones from ``default.env``),
+- :ref:`deployment parameters <reference_deploy_params>` (to override ones from ``docker-compose.yml``).
 
 Every deployment needs some minimal configuration, set the passwords and IP addresses.
 
-In the deployment directory ``opennebula/``, create the following configuration files with the bare minimum to run OpenNebula Front-end:
+In the deployment directory ``opennebula/``, create the following configuration file ``.env`` with the bare minimum to run OpenNebula Front-end:
 
-Create ``custom.env``
-#####################
+Set Image Parameters
+####################
 
 .. note::
 
-    For insecure deployment (without TLS), append also following snippet into your ``custom.env``.
+    For insecure deployment (without TLS), append also following snippet into your ``.env``.
 
     .. code::
 
         SUNSTONE_HTTPS_ENABLED=no
 
-Create file ``custom.env`` with the following example content and adapt to your environment:
+Create file ``.env`` with the following example content and adapt to your environment:
 
 .. code::
 
@@ -391,13 +391,12 @@ where is
 - ``OPENNEBULA_SSH_HOST`` - hostname/IP to connect to the integrated SSH server, used by hypervisor Nodes (defaults to ``OPENNEBULA_HOST``)
 - ``ONEADMIN_PASSWORD`` - **initial (only)** password for OpenNebula user ``oneadmin``
 
-
 See more image configuration options in :ref:`reference <reference_params>`.
 
-Create ``.env``
-###############
+Set Deployment Parameters
+#########################
 
-Based on selected approach in :ref:`Step 2. Reconfigure Host SSH <container_ssh>` create the corresponding configuration:
+Put into the same configuration file ``.env`` created above following additional deployment parameters based on selected approach in :ref:`Step 2. Reconfigure Host SSH <container_ssh>`.
 
 .. note::
 
@@ -409,7 +408,7 @@ Based on selected approach in :ref:`Step 2. Reconfigure Host SSH <container_ssh>
         DEPLOY_ONEGATE_INTERNAL_PORT=5030
         DEPLOY_ONEFLOW_INTERNAL_PORT=2474
 
-- :ref:`A. Dedicated IP address for OpenNebula <container_ssh_ip>` - create file ``.env`` and set the dedicated IP address of your OpenNebula Front-end. It's possible (but not required) to configure integrated SSH and the rest of Front-end services independently. For example:
+- :ref:`A. Dedicated IP address for OpenNebula <container_ssh_ip>` - append into ``.env`` the dedicated IP address of your OpenNebula Front-end. It's possible (but not required) to configure integrated SSH and the rest of Front-end services independently. For example:
 
 .. code::
 
@@ -423,7 +422,7 @@ where is
 
 - :ref:`B. Relocate host SSH to different port <container_ssh_relocate>` - no additional deployment configuration required.
 
-- :ref:`C. Reconfigure nodes to connect to different port <container_ssh_nodes>` - create file ``.env`` and set the port of the OpenNebula integrated SSH server, on which will available for hypervisor Nodes to connect back to the Front-end. For example:
+- :ref:`C. Reconfigure nodes to connect to different port <container_ssh_nodes>` - append into ``.env`` the port of the OpenNebula integrated SSH server, on which will available for hypervisor Nodes to connect back to the Front-end. For example:
 
 .. code::
 
