@@ -51,6 +51,11 @@ For example, in the previous example if the VM 14 is set to be deployed in a SSH
 
 .. note:: In this case disk.0 is generated with a command similar to ``rbd export one/one-0@snap disk.0``
 
+.. warning:: In this mode there are some inherent limitations
+
+   * disk snapshots are not supported
+   * VM disk can not be saved when located on frontend (undeployed or stopped VM)
+
 
 Ceph Cluster Setup
 ================================================================================
