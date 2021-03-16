@@ -11,6 +11,5 @@ Users and Groups
    VDCs <manage_vdcs>
    Sunstone Views <sunstone_views>
    Permissions and ACLs <chmod>
-   Quotas <quota_auth>
    Accounting <accounting>
    Showback <showback>
