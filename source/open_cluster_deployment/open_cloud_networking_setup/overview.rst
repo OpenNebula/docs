@@ -4,27 +4,27 @@
 Overview
 ====================
 
-When a new Virtual Machine is launched, OpenNebula will connect its network interfaces (defined by NIC attribute) to hypervisor physical devices as defined in the :ref:`Virtual Network <vgg>`. This will allow the VM to have access to different networks, public or private.
+When a new Virtual Machine is launched, OpenNebula will connect its virtual network interfaces (defined by ``NIC`` attributes) to hypervisor link devices as defined in the corresponding :ref:`Virtual Network <vgg>`. This will allow the VM to have access to public and private networks.
 
 OpenNebula supports four different networking modes:
 
-* :ref:`Bridged <bridged>`. The Virtual Machine is directly attached to an existing bridge in the hypervisor. This mode can be configured to use security groups and network isolation.
+* :ref:`Bridged <bridged>`. The VM NIC is added to a Linux bridge on the hypervisor. This mode can be configured to use security groups and network isolation.
 
-* :ref:`VLAN <hm-vlan>`. Virtual Networks are implemented through 802.1Q VLAN tagging.
+* :ref:`VLAN <hm-vlan>`. The VM NIC is added to a Linux bridge on the hypervisor and the Virtual Network is configured to handle 802.1Q VLAN tagging traffic.
 
-* :ref:`VXLAN <vxlan>`. Virtual Networks implements VLANs using the VXLAN protocol that relies on a UDP encapsulation and IP multicast.
+* :ref:`VXLAN <vxlan>`. The VM NIC is added to a Linux bridge on the hypervisor and the Virtual Network implements VLANs using the VXLAN protocol that relies on a UDP encapsulation and IP multicast.
 
-* :ref:`Open vSwitch <openvswitch>`. Similar to the VLAN mode but using an openvswitch instead of a Linux bridge.
+* :ref:`Open vSwitch <openvswitch>`. The VM NIC is added to a Open vSwitch bridge on the hypervisor and the Virtual Network is configured to handle 802.1Q VLAN tagging traffic.
 
-* :ref:`Open vSwitch on VXLAN <openvswitch_vxlan>`. Similar to the VXLAN mode but using an openvswitch instead of a Linux bridge.
+* :ref:`Open vSwitch on VXLAN <openvswitch_vxlan>`. The VM NIC is added to a Open vSwitch bridge on the hypervisor and the Virtual Network is configured to handle VXLAN traffic.
 
-When you create a new network you will need to add the attribute ``VN_MAD`` to the template, specifying which of the above networking modes you want to use.
+The attribute ``VN_MAD`` attribute of a Virtual Network determines which of the above networking modes is used.
 
 .. note::
 
     Security Groups are not supported by the Open vSwitch mode.
 
-Each network driver has 3 different configuration actions executed before (`pre`) and after(`post`) the VM is booted, and when the VM leaves (`clean`) the host. Each one of those driver actions :ref:`can be extended with custom programs <devel-nm>` by placing executable files inside the corresponding action folders (`pre.d`, `post.d` and `clean.d`) within the network driver directory.
+Network drivers run three different action scripts: ``pre`` before the VM boot, ``post`` after the VM is booted, and ``clean`` when the VM is removed from the host. Each one of those driver actions :ref:`can be extended with custom programs <devel-nm>` by placing executable files inside the corresponding action folders (``pre.d``, ``post.d`` and ``clean.d``) within the network driver directory.
 
 Finally, the networking stack of OpenNebula can be integrated with an external IP
 address manager (IPAM). To do so, you need to develop the needed glue, :ref:`for more details refer to the IPAM driver guide. <devel-ipam>`
@@ -41,4 +41,4 @@ After reading this chapter you can complete your OpenNebula installation by opti
 Hypervisor Compatibility
 ================================================================================
 
-This chapter applies to KVM, LXD and Firecracker.
+This chapter applies to KVM, LXC and Firecracker.
