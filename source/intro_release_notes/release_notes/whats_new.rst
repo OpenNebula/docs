@@ -60,10 +60,6 @@ Networking
 ================================================================================
 - :ref:`VXLAN attributes<vxlan>` can be defined per network as well as system-wide in OpenNebulaNetwork.conf file.
 
-Authentication
-================================================================================
-
-
 Sunstone
 ================================================================================
 - VM info autorefresh with ZeroMQ. Check for more information :ref:`here <autorefresh>`.
@@ -92,7 +88,7 @@ Sunstone
 
 Scheduler
 ================================================================================
-- `Read http_proxy from config file <http://github.com/OpenNebula/one/issues/678>`__, override environment variable http_proxy .
+- `Read http_proxy from config file <http://github.com/OpenNebula/one/issues/678>`__, override environment variable http_proxy.
 
 OneFlow & OneGate
 ===============================================================================
@@ -117,8 +113,6 @@ onedb
 
 Distributed Edge Provisioning
 ================================================================================
-
-.. TODO REF
 
 - Provision information is stored using a JSON document. New commands has been also added in the CLI, you can check all the information :ref:here <ddc>.
 - Provider concept has been included in OpenNebula, you can check all the information :ref:here <ddc_provider>.
@@ -152,13 +146,7 @@ VMware Virtualization driver
 - Assign VCENTER_VM_FOLDER automatically per user or group see :ref:`here <vm_template_definition_vcenter>`.
 - Option to avoid deleting disk not managed in OpenNebula, see :ref:`here <driver_tuning>`.
 - Fix :ref:`import networks <vcenter_import_networks>` in vCenter with special characters.
-- Support to vCenter7, see :ref:`here <vmware_node_deployment>`.
-
-Containers
-==========
-
-MicroVMs
-========
+- Support for vSphere 7.0, see :ref:`here <vmware_node_deployment>`.
 
 DockerHub
 ==========
