@@ -69,13 +69,6 @@ To add OpenNebula enterprise repository on Debian/Ubuntu execute as root:
     # echo "deb https://<token>@enterprise.opennebula.io/repo/5.13/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
-**Ubuntu 16.04**
-
-.. prompt:: bash # auto
-
-    # echo "deb https://<token>@enterprise.opennebula.io/repo/5.13/Ubuntu/16.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
-    # apt-get update
-
 **Ubuntu 18.04**
 
 .. prompt:: bash # auto
@@ -209,13 +202,6 @@ To add OpenNebula repository on Debian/Ubuntu execute as root:
 .. prompt:: bash # auto
 
     # echo "deb https://downloads.opennebula.io/repo/5.13/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
-    # apt-get update
-
-**Ubuntu 16.04**
-
-.. prompt:: bash # auto
-
-    # echo "deb https://downloads.opennebula.io/repo/5.13/Ubuntu/16.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Ubuntu 18.04**
