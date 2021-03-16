@@ -14,7 +14,6 @@ Daemon Configuration Attributes
 -  ``MONITORING_INTERVAL_MARKET``: Time in seconds between each MARKETPLACE monitoring cycle.
 -  ``MONITORING_INTERVAL_DB_UPDATE``: Time in seconds between DB writes of VM monitoring information. -1 to disable DB updating and 0 to write every update.
 -  ``DS_MONITOR_VM_DISK``: Number of MONITORING_INTERVAL_DATASTORE intervals to monitor VM disks. 0 to disable. Only applies to fs and fs_lvm datastores.
--  ``MONITORING_THREADS``: Maximum number of threads used to process monitor messages.
 -  ``SCRIPTS_REMOTE_DIR``: Remote path to store the monitoring and VM management script.
 -  ``PORT``: Port where ``oned`` will listen for XML-RPC calls.
 -  ``LISTEN_ADDRESS``: Host IP to listen on for XML-RPC calls (default: all IPs).
@@ -74,7 +73,6 @@ Example of this section:
     MONITORING_INTERVAL_DATASTORE = 300
     MONITORING_INTERVAL_MARKET    = 600
 
-    MONITORING_THREADS  = 50
     #DS_MONITOR_VM_DISK = 10
 
     SCRIPTS_REMOTE_DIR=/var/tmp/one
@@ -356,6 +354,8 @@ Sample configuration:
           ARGUMENTS     = "-r 3 -t 15 kvm" ]
     #-------------------------------------------------------------------------------
 
+.. _oned_conf_virtualization_drivers:
+
 Virtualization Drivers
 ======================
 
@@ -368,6 +368,8 @@ The virtualization drivers are used to create, control and monitor VMs on the ho
 -  **TYPE**: driver type; supported drivers: xen, kvm or xml
 -  **DEFAULT**: file containing default values and configuration parameters for the driver as an absolute path or relative to ``/etc/one/``
 -  **KEEP_SNAPSHOTS**: do not remove snapshots on power on/off cycles and live migrations if the hypervisor supports that
+-  **LIVE_RESIZE**: Hypervisor supports hotplug VCPU and memory. Values: YES or NO
+-  **SUPPORT_SHAREABLE**: Hypervisor supports shareable disks. Values: YES or NO
 -  **IMPORTED_VMS_ACTIONS**: comma-separated list of actions supported for imported VMs. The available actions are:
 
    - migrate
@@ -422,6 +424,8 @@ Sample configuration:
         DEFAULT        = "vmm_exec/vmm_exec_kvm.conf",
         TYPE           = "kvm",
         KEEP_SNAPSHOTS = "no",
+        LIVE_RESIZE    = "yes",
+        SUPPORT_SHAREABLE    = "yes",
         IMPORTED_VMS_ACTIONS = "terminate, terminate-hard, hold, release, suspend,
             resume, delete, reboot, reboot-hard, resched, unresched, disk-attach,
             disk-detach, nic-attach, nic-detach, snap-create, snap-delete"
