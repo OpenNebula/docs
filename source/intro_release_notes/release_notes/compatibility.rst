@@ -120,3 +120,7 @@ Now OCA and therefore Sunstone need [zmq gem](https://rubygems.org/gems/zmq), an
 Custom Datastore drivers
 ========================
 Custom :ref:`Datastore Driver <sd>` which use ``DISPOSE="YES"`` in the export now needs to add also ``<DISPOSE_CMD></DISPOSE_CMD>`` with the command to remove the temporary file by the :ref:`Market Driver <devel-market>`.
+
+NIC Names
+=========
+NIC names in the format ``NIC<number>`` are reserved for internal use. User NIC names in this format will be prefixed with ``_``
