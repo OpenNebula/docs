@@ -152,6 +152,7 @@ VMware Virtualization driver
 - Assign VCENTER_VM_FOLDER automatically per user or group see :ref:`here <vm_template_definition_vcenter>`.
 - Option to avoid deleting disk not managed in OpenNebula, see :ref:`here <driver_tuning>`.
 - Fix :ref:`import networks <vcenter_import_networks>` in vCenter with special characters.
+- Support to vCenter7, see :ref:`here <vmware_node_deployment>`.
 
 Containers
 ==========
