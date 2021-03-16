@@ -1,0 +1,144 @@
+
+Step 2. Download Contextualization Packages to the VM
+-----------------------------------------------------
+
+CentOS/RHEL 6.x
+~~~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2-1.el6.noarch.rpm
+
+CentOS/RHEL 7.x
+~~~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2-1.el7.noarch.rpm
+
+CentOS/RHEL 8.x and Fedora 29+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2-1.el8.noarch.rpm
+
+OpenSUSE 42,15 / SLES 12
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2-1.suse.noarch.rpm
+
+ALT Linux p9, Sisyphus
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2-alt1.noarch.rpm
+
+Debian/Ubuntu/Devuan
+~~~~~~~~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context_5.12.0.2-1.deb
+
+Alpine Linux
+~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2-r1.apk
+
+FreeBSD 11,12
+~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2_1.txz
+
+Windows
+~~~~~~~
+
+Download the MSI package into ``C:\``:
+
+* https://github.com/OpenNebula/addon-context-windows/releases/download/v5.12.0/one-context-5.12.0.msi
+
+Or execute this command in powershell:
+
+.. prompt:: powershell # auto
+
+    (New-Object Net.WebClient).DownloadFile("https://github.com/OpenNebula/addon-context-windows/releases/download/v5.12.0/one-context-5.12.0.msi", "C:\one-context-5.12.0.msi")
+
+Step 3. Install Contextualization Packages and Dependencies
+-----------------------------------------------------------
+
+CentOS/RHEL 6
+~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # yum install -y epel-release
+    # yum install -y one-context-[0-9]*el6*rpm
+
+CentOS/RHEL 7
+~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # yum install -y epel-release
+    # yum install -y one-context-[0-9]*el7*rpm
+
+CentOS/RHEL 8 and Fedora 29+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # yum install -y epel-release
+    # yum install -y one-context-[0-9]*el8*rpm
+
+OpenSUSE
+~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # zypper --no-gpg-check install -y one-context-[0-9]*suse*rpm
+
+ALT Linux
+~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # apt-get install -fy one-context-[0-9]*alt*rpm
+
+Debian/Ubuntu/Devuan
+~~~~~~~~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # apt-get purge -y cloud-init
+    # dpkg -i one-context_*deb || apt-get install -fy
+
+Alpine Linux
+~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # apk add --allow-untrusted one-context-[0-9]*apk
+
+FreeBSD
+~~~~~~~
+
+.. prompt:: bash # auto
+
+    # pkg install -y curl bash sudo base64 ruby open-vm-tools-nox11
+    # pkg install -y one-context-[0-9]*.txz
+
+Windows
+~~~~~~~
+
+Double-click on the downloaded MSI package icon in the same way you open other documents to install it.
+
+
+
