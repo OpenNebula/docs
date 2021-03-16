@@ -409,6 +409,23 @@ not using the standard port.
 	section, this will be reflected in the SSH connection. You can read about them in the
 	:ref:`Virtual Machine Definition File reference section <template_context>`.
 
+For example, to allow connection by username and password to a guest VM. First make sure you
+have ssh root access to the VM, check more info :ref:`here <cloudview_ssh_keys>`.
+
+After that you can access the VM and configure the ssh service:
+
+.. code-block:: bash
+
+    oneadmin@frontend:~$ ssh root@<guest-vm>
+    
+    # Allow authentication with password: PasswordAuthentication yes
+    root@<guest-VM>:~$ vi /etc/ssh/sshd_config
+
+    # Restart SSH service
+    root@<guest-VM>:~$ restart sshd service
+    
+    # Add user: username/password
+    root@<guest-VM>:~$ adduser <username>
 
 .. _spice_sunstone:
 
