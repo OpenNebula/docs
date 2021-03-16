@@ -18,7 +18,7 @@ OpenNebula supports four different networking modes:
 
 * :ref:`Open vSwitch on VXLAN <openvswitch_vxlan>`. The VM NIC is added to a Open vSwitch bridge on the hypervisor and the Virtual Network is configured to handle VXLAN traffic.
 
-The attribute ``VN_MAD`` attribute of a Virtual Network determines which of the above networking modes is used.
+The attribute ``VN_MAD`` of a Virtual Network determines which of the above networking modes is used.
 
 .. note::
 
