@@ -11,40 +11,20 @@ Bridged Networking Mode
 
 Requirements
 --------------------------------------------------------------------------------
-* The OpenNebula node packages has been installed, see :ref:`the KVM node installation section <kvm_node>` for more details.
+* The OpenNebula node packages are installed, see the :ref:`KVM node <kvm_node>`, the :ref:`LXC node <lxc_node>` and the :ref:`Firecracker node <fc_node>` installation sections for more details.
 
-* By default, network isolation is provided through ``ebtables``, this package needs to be installed in the nodes.
+* By default, network isolation is provided through ``ebtables``, this package needs to be installed on nodes.
 
 Configuration
 --------------------------------------------------------------------------------
-* Create a linux bridge for each network that would be expose to Virtual Machines. Use the same name in all the nodes.
-
-* Add the physical network interface to the bridge.
-
-For example, a node with two networks one for public IP addresses (attached to eth0) and another one for private traffic (NIC eth1) should have two bridges:
-
-.. prompt:: bash $ auto
-
-    $ ip link show type bridge
-    4: br0: ...
-    5: br1: ...
-
-    $ ip link show master br0
-    2: eth0: ...
-
-    $ ip link show master br1
-    3: eth1: ...
-
-
-.. note:: It is recommended that this configuration is made persistent. Please refer to the network configuration guide of your system to do so.
-
+* No additional configuration is needed. If ``BRIDGE`` configured in the Virtual Network does not exist, a new Linux bridge will be created at VM instantiation time.
 
 VLAN Networking Mode
 ================================================================================
 
 Requirements
 --------------------------------------------------------------------------------
-* The OpenNebula node packages has been installed, see :ref:`the KVM node installation section <kvm_node>` for more details.
+* The OpenNebula node packages are installed, see the :ref:`KVM node <kvm_node>`, the :ref:`LXC node <lxc_node>` and the :ref:`Firecracker node <fc_node>` installation sections for more details.
 
 * The ``8021q`` module must be loaded in the kernel.
 
@@ -62,9 +42,9 @@ VXLAN Networking Mode
 
 Requirements
 --------------------------------------------------------------------------------
-* The OpenNebula node packages has been installed, see :ref:`the KVM node installation section <kvm_node>` for more details.
+* The OpenNebula node packages are installed, see the :ref:`KVM node <kvm_node>`, the :ref:`LXC node <lxc_node>` and the :ref:`Firecracker node <fc_node>` installation sections for more details.
 
-* The node  must run a Linux kernel (>3.7.0) that natively supports the VXLAN protocol and the associated iproute2 package.
+* The node must run a Linux kernel (>3.7.0) that natively supports the VXLAN protocol and the associated iproute2 package.
 
 * When all the nodes are connected to the same broadcasting domain be sure that the multicast traffic is not filtered by any iptable rule in the nodes. Note that if the multicast traffic needs to traverse routers a multicast protocol like IGMP needs to be configured in your network.
 
@@ -78,28 +58,25 @@ Open vSwitch Networking Mode
 
 Requirements
 --------------------------------------------------------------------------------
-* The OpenNebula node packages has been installed, see :ref:`the KVM node installation section <kvm_node>` for more details.
+* The OpenNebula node packages are installed, see the :ref:`KVM node <kvm_node>`, the :ref:`LXC node <lxc_node>` and the :ref:`Firecracker node <fc_node>` installation sections for more details.
 
 * You need to install Open vSwitch on each node. Please refer to the Open vSwitch documentation to do so.
 
-For example, a node that forwards Virtual Networks traffic through the ``enp0s8`` network interface should create an openvswitch like:
+Configuration
+--------------------------------------------------------------------------------
+* No additional configuration is needed. If ``BRIDGE`` configured in the Virtual Network does not exist, a Linux bridge and a Open vSwitch bridge will be created at VM instantiation time. For example:
 
 .. prompt:: text # auto
-
+  
     # ovs-vsctl show
-    c61ba96f-fc11-4db9-9636-408e763f529e
+    61a35859-c8a3-4fd0-a30e-185aa568956f
         Bridge "ovsbr0"
+            Port "enp0s8"
+                Interface "enp0s8"
+            Port "one-19-0"
+                tag: 4
+                Interface "one-19-0"
             Port "ovsbr0"
                 Interface "ovsbr0"
                     type: internal
-            Port "enp0s8"
-                Interface "enp0s8"
-
-Configuration
---------------------------------------------------------------------------------
-* Create a openvswitch for each network that would be expose to Virtual Machines. Use the same name in all the nodes.
-
-* Add the physical network interface to the openvswitch.
-
-.. note:: It is recommended that this configuration is made persistent. Please refer to the network configuration guide of your system to do so.
 
