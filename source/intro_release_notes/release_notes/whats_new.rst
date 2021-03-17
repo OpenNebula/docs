@@ -186,3 +186,4 @@ Other Issues Solved
 - `Allow = symbols in OneGate update <https://github.com/OpenNebula/one/issues/5240>`__.
 - `Prevent xtables (iptables/iptables6) collisions with non-OpenNebula related processes <https://github.com/OpenNebula/one/issues/3624>`__.
 - `Fix bug when updating VM configuration with non admin users <https://github.com/OpenNebula/one/issues/5096>`__.
+- `Fix bug when updating VCPU that blocked NUMA sockets <https://github.com/OpenNebula/one/issues/5291>`__.
