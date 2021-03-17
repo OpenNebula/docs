@@ -13,7 +13,7 @@ Authentication Methods
 Authentication is two-fold:
 
 * **Web client and Sunstone server**. Authentication is based on the credentials stored in the OpenNebula database for the user. Depending on the type of these credentials the authentication method can be: sunstone, x509 and opennebula (supporting LDAP or other custom methods).
-* **Sunstone server and OpenNebula core**. The requests of a user are forwarded to the core daemon, including the original user name. Each request is signed with the credentials of a special ``server`` user. This authentication mechanism is based either on symmetric key cryptography (default) or x509 certificates. Details on how to configure these methods can be found in the :ref:`Cloud Authentication section <cloud_auth>`.
+* **Sunstone server and OpenNebula core**. The requests of a user are forwarded to the core daemon, including the original user name. Each request is signed with the credentials of a special ``server`` user. This authentication mechanism is based either on symmetric key cryptography (default) or X.509 certificates. Details on how to configure these methods can be found in the :ref:`Cloud Authentication section <cloud_auth>`.
 
 The following sections detail the client-to-Sunstone server authentication methods.
 
@@ -40,7 +40,7 @@ Using this method the credentials included in the header will be sent to the Ope
 x509 Auth
 ---------
 
-This method performs the login to OpenNebula based on a x509 certificate DN (Distinguished Name). The DN is extracted from the certificate and matched to the password value in the user database.
+This method performs the login to OpenNebula based on a X.509 certificate DN (Distinguished Name). The DN is extracted from the certificate and matched to the password value in the user database.
 
 The user password has to be changed by running one of the following commands:
 
