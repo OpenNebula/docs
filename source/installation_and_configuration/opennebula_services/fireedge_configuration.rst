@@ -20,7 +20,7 @@ FireEdge is a web server which purpose is twofold:
 Configuration
 ==============
 
-You need to configure Sunstone with the public endpoint of the FireEdge, so that one service can redirect user to the other. To configure the public FireEdge endpoint in Sunstone, edit /etc/one/sunstone-server.conf and update the :public_fireedge_endpoint with the base URL (domain or IP-based) over which end-users can access the service. For example:
+You need to configure Sunstone with the public endpoint of the FireEdge, so that one service can redirect user to the other. To configure the public FireEdge endpoint in Sunstone, edit ``/etc/one/sunstone-server.conf`` and update the ``:public_fireedge_endpoint`` with the base URL (domain or IP-based) over which end-users can access the service. For example:
 
 .. code::
 
@@ -39,13 +39,15 @@ syntax to define some options:
 +---------------------------------------+------------------------------+------------------------------------------------+
 |                 Option                |        Default Value         |                  Description                   |
 +=======================================+==============================+================================================+
+| :host                                 | `0.0.0.0`                    | Host on which the Firedge server will listen   |
++---------------------------------------+------------------------------+------------------------------------------------+
 | :port                                 | `2616`                       | Port on which the Firedge server will listen   |
 +---------------------------------------+------------------------------+------------------------------------------------+
 | :log                                  | `prod`                       | Log debug: ``prod`` or ``dev``                 |
 +---------------------------------------+------------------------------+------------------------------------------------+
 | :cors                                 | `true`                       | Enable cors (cross-origin resource sharing)    |
 +---------------------------------------+------------------------------+------------------------------------------------+
-| :one_xmlrpc                           | `http://localhost:2633/RPC2` | XMLRPC endpoint                                |
+| :one_xmlrpc                           | `http://localhost:2633/RPC2` | ONE XMLRPC endpoint                            |
 +---------------------------------------+------------------------------+------------------------------------------------+
 | :oneflow_server                       | `http://localhost:2472`      | OneFlow endpoint                               |
 +---------------------------------------+------------------------------+------------------------------------------------+
@@ -65,9 +67,24 @@ syntax to define some options:
 .. note::
   Check extra configuration for :ref:`FireEdge OneProvision GUI <fireedge_cpi>`
 
-You can find the FireEdge server log file in ``/var/log/one/fireedge.log``. Errors are logged in ``/var/log/one/fireedge.error``.
+Troubleshooting
+===============
 
-.. todo:: Troubleshooting
+Any issue related with FireEdge will be logged in one of the following files:
 
-  - node version
-  - ...
+- ``/var/log/one/fireedge.log``, contains logs of operations.
+- ``/var/log/one/fireedge.error``, contains exceptions in the server.
+
+A common issue when launching FireEdge is an occupied port:
+
+.. code-block:: bash
+
+    Error: listen EADDRINUSE: address already in use 0.0.0.0:2616
+
+To solve this issue, please check first that no FireEdge servers are currently in use (for instance using "pgrep fireedge"). If there are already a running FireEdge, take it down using systemctl, and try launching it again.
+
+If another service is using that port, you can change FireEdge configuration to use another host/port in ``/etc/one/fireedge-server.conf``. Remember to also adjust the FireEdge endpoints in ``/etc/one/sunstone-server.conf``.
+
+.. note::
+  When making the change, you must restart the FireEdge service to apply the changes
+
