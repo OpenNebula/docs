@@ -10,5 +10,5 @@ Public Marketplaces
    Overview <overview>
    Datastores <datastores>
    Images <images>
-   OpenNebula Marketplaces <market_one>
+   Public Marketplaces <public_markets>
    Marketplace Applications <marketapp>

@@ -163,6 +163,12 @@ You can you to create Images using your own dockerfiles. The ``PATH`` in this ca
 | ``<context>``         | If it set to yes, OpenNebula context packages are added.   |
 |                       | If it is not set or set to no, they are omitted.           |
 +-----------------------+------------------------------------------------------------+
+| ``<fs_type>``         | Filesystem type (ext4, ext3, ext2 or xfs)                  |
++-----------------------+------------------------------------------------------------+
+| ``<tag>``             | Image tag name (default ``latest``).                       |
++-----------------------+------------------------------------------------------------+
+| ``<distro>``          | (Optional) base OS distribution.                           |
++-----------------------+------------------------------------------------------------+
 
 .. important:: Multistage Dockerfiles are not supported, only one FROM directive can be included.
 

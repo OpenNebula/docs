@@ -11,6 +11,47 @@ MarketPlace Drivers Structure
 
 The main drivers are located under ``/var/lib/one/remotes/market/<market_mad>``.
 
+================================================================================
+
+Marketplaces support the following operations:
+
++-------------+---------------------------------------------------------------------+
+| Action      | Description                                                         |
++=============+=====================================================================+
+| ``create``  | Create a new Marketplace.                                           |
++-------------+---------------------------------------------------------------------+
+| ``monitor`` | This automatic action discovers the available MarketPlaceApps and   |
+|             | monitors the available space of the MarketPlace.                    |
++-------------+---------------------------------------------------------------------+
+| ``delete``  | Removes a MarketPlace from OpenNebula. For a Public MarketPlace,    |
+|             | it will also remove the MarketPlaceApps, but for any other type of  |
+|             | MarketPlace this will not remove the MarketPlaceApps, and will only |
+|             | work if the MarketPlace is empty.                                   |
++-------------+---------------------------------------------------------------------+
+| *other*     | Generic actions common to OpenNebula resources are also available:  |
+|             | update, chgrp, chown, chmod and rename.                             |
++-------------+---------------------------------------------------------------------+
+
+As for the MarketPlaceApps, they support these actions:
+
++--------------+--------------------------------------------------------------------+
+| Action       | Description                                                        |
++==============+====================================================================+
+| ``create``   | Upload a local image to the MarketPlace. **NOTE:** This            |
+|              | action can only be done with marketplaces associated with the      |
+|              | current zone.                                                      |
++--------------+--------------------------------------------------------------------+
+| ``export``   | Export the MarketPlaceApp and download it into a local Datastore.  |
++--------------+--------------------------------------------------------------------+
+| ``delete``   | Removes a MarketPlaceApp.                                          |
++--------------+--------------------------------------------------------------------+
+| ``download`` | Downloads a MarketPlaceApp to a file.                              |
++--------------+--------------------------------------------------------------------+
+| *other*      | Generic actions common to OpenNebula resources are also available: |
+|              | update, chgrp, chown, chmod, rename, enable and disable.           |
++--------------+--------------------------------------------------------------------+
+
+
 ``import``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
