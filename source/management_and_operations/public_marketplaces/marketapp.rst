@@ -176,8 +176,6 @@ Using Sunstone:
     :width: 90%
     :align: center
 
-.. _marketapp_download:
-
 .. _marketapp_import:
 
 Importing into Marketplace
@@ -271,16 +269,18 @@ You can use the parameter ``--market`` together with ``--yes`` or ``--no`` to ru
 
 .. warning:: To avoid clashing names, if no name is specified, a hash is added at the end of the main object name. Sub objects like disks or VM templates in case of Service Template, have always the hash.
 
-Downloading a MarketPlaceApp
+.. _marketapp_download:
+
+Downloading Marketplace App.
 --------------------------------------------------------------------------------
 
-To download a MarketPlaceApp to a file:
+To download a Marketplace Appliance to a file:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onemarketapp download 40 /path/to/app
-
-.. warning:: This command requires that the `ONE_SUNSTONE` environment variable is set. Read :ref:`here <manage_users_shell>` for more information.
+et
+.. warning:: This command requires that the ``ONE_SUNSTONE`` environment variable is set. Read :ref:`here <manage_users_shell>` for more information.
 
 .. warning:: Make sure Sunstone is properly deployed to handle this feature. Read :ref:`here <suns_advance_marketplace>` for more information.
 

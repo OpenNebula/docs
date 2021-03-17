@@ -7,7 +7,7 @@ S3 Marketplace
 Overview
 ================================================================================
 
-This Marketplace uses an S3 API-capable service as the backend. This means Marketplace App images will be stored in the official `AWS S3 service <https://aws.amazon.com/s3/>`__ , or in services that implement that API, like `Ceph Object Gateway S3 <https://docs.ceph.com/en/latest/radosgw/s3/>`__.
+This Marketplace uses an S3 API-capable service as the backend. This means Marketplace Appliances will be stored in the official `AWS S3 service <https://aws.amazon.com/s3/>`__ , or in services that implement that API, like `Ceph Object Gateway S3 <https://docs.ceph.com/en/latest/radosgw/s3/>`__.
 
 Limitations
 ================================================================================
@@ -22,7 +22,7 @@ To use this driver you require access to an S3 API-capable service:
 * If you want to use AWS Amazon S3, you can start with the `Getting Started <http://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html>`__ guide.
 * For Ceph S3 you must follow the `Configuring Ceph Object Gateway <https://docs.ceph.com/en/latest/radosgw/config-ref/>`__ guide.
 
-Make sure you obtain both an ``access_key`` and a ``secret_key`` of a user that has access to a bucket with the exclusive purpose of storing Marketplace App images.
+Make sure you obtain both an ``access_key`` and a ``secret_key`` of a user that has access to a bucket with the exclusive purpose of storing Marketplace Apps.
 
 Configuration
 ================================================================================
@@ -50,12 +50,12 @@ These are the configuration attributes of a Marketplace template of the S3 kind:
 +-----------------------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``FORCE_PATH_STYLE``  | **NO**   | Leave blank for Amazon AWS S3 service. If connecting to Ceph S3 it **must** be ``YES``.                                                                                                 |
 +-----------------------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``TOTAL_MB``          | **NO**   | This parameter defines the total size of the Marketplace in MB. It defaults to ``1024 GB``.                                                                                             |
+| ``TOTAL_MB``          | **NO**   | This parameter defines the total size of the Marketplace in MB. It defaults to ``1048576`` (MB).                                                                                        |
 +-----------------------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``READ_LENGTH``       | **NO**   | Split the file into chunks of this size (in MB). You should **never** user a quantity larger than ``100``. Defaults to ``32 MB``.                                                       |
+| ``READ_LENGTH``       | **NO**   | Split the file into chunks of this size in MB, **never** user a value larger than 100. Defaults to ``32`` (MB).                                                                         |
 +-----------------------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-For example, the following examples illustrate the creation of a Marketplace:
+For example, the following template illustrates the definition of a Marketplace:
 
 .. prompt:: bash $ auto
 
@@ -70,17 +70,21 @@ For example, the following examples illustrate the creation of a Marketplace:
     REGION            = "default"
     SIGNATURE_VERSION = s3
 
+which is created by passing to the following command:
+
 .. prompt:: bash $ auto
 
     $ onemarket create market.conf
     ID: 100
 
-.. warning:: In order to use the ``download`` functionality make sure you read the :ref:`Sunstone Advanced Guide <suns_advance_marketplace>`.
+.. note:: In order to use the :ref:`download <marketapp_download>` functionality make sure you read the :ref:`Sunstone Advanced Guide <suns_advance_marketplace>`.
 
 Tuning & Extending
 ================================================================================
 
-In order to change the available size of the Marketplace from 1TB to your desired value, you can modify ``/var/lib/one/remotes/market/s3/monitor`` and change:
+.. important:: Any modification of code should be handled carefully. Although we might provide hints on how to fine-tune various parts by customizing the OpenNebula internals, in general, **it's NOT recommended to do changes in the existing code**. Please note the changes will be lost during the OpenNebula upgrade and have to be introduced back again manually!
+
+In order to change the available size of the Marketplace from 1 TB to your desired value, you can modify ``/var/lib/one/remotes/market/s3/monitor`` and change:
 
 .. code::
 
