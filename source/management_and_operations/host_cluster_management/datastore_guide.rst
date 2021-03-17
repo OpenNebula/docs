@@ -20,6 +20,8 @@ Datastores are managed with the :ref:`''onedatastore'' command <cli>`. In order 
 Datastore Definition
 --------------------------------------------------------------------------------
 
+.. _ds_definition:
+
 A datastore definition includes specific attributes to configure its interaction with the storage system; and common attributes that define its generic behavior.
 
 The specific attributes for System and Images Datastores depends on the storage:
