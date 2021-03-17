@@ -55,6 +55,8 @@ For example, the following examples illustrate the creation of a MarketPlace:
     $ onemarket create market.conf
     ID: 100
 
+.. warning:: In order to use the ``download`` functionality make sure you read the :ref:`Sunstone Advanced Guide <suns_advance_marketplace>`.
+
 Tuning & Extending
 ==================
 
