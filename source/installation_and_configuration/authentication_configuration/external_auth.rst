@@ -20,7 +20,7 @@ You can choose from the following authentication drivers to access OpenNebula fr
 
 -  :ref:`Built-in User/Password and token authentication<manage_users_managing_users>`
 -  :ref:`SSH Authentication <ssh_auth>`
--  :ref:`X509 Authentication <x509_auth>`
+-  :ref:`X.509 Authentication <x509_auth>`
 -  :ref:`LDAP Authentication <ldap>`
 
 b) Sunstone Authentication
@@ -36,7 +36,7 @@ This method is designed to delegate the authentication process to high level too
 
 By default, OpenNebula ships with two servers: :ref:`Sunstone <sunstone>` and :ref:`FireEdge <fireedge_setup>`. When a user interacts with one of them, the server authenticates the request and then forwards the requested operation to the OpenNebula daemon.
 
-The forwarded requests are encrypted by default using a Symmetric Key mechanism. The following guide shows how to strengthen the security of these requests using x509 certificates. This is specially relevant if you are running your server in a machine other than the front-end.
+The forwarded requests are encrypted by default using a Symmetric Key mechanism. The following guide shows how to strengthen the security of these requests using X.509 certificates. This is specially relevant if you are running your server in a machine other than the front-end.
 
 -  :ref:`Cloud Servers Authentication <cloud_auth>`
 
@@ -47,35 +47,17 @@ When designing the architecture of your cloud you will have to choose where to s
 
 Can be used with API, CLI and Sunstone:
 
-* Built-in User/Password
-* LDAP
+* :ref:`Built-in User/Password and token authentication<manage_users_managing_users>`
+* :ref:`LDAP Authentication <ldap>`
 
 Can be used only with API and CLI:
 
-* SSH
+* :ref:`SSH Authentication <ssh_auth>`
 
 Can be used only with Sunstone:
 
-* X509
+* :ref:`X.509 Authentication <x509_auth>`
 
-The following sections are self-contained so you can directly go to the guide that describes the configuration for the chosen auth method.
-
-Hypervisor Compatibility
-================================================================================
-
-+-------------------------------------------------------------------------------------+-----------------------------------------------+
-|                                       Section                                       |                 Compatibility                 |
-+=====================================================================================+===============================================+
-| :ref:`Built-in User/Password and token authentication<manage_users_managing_users>` | This Section applies to both KVM and vCenter. |
-+-------------------------------------------------------------------------------------+-----------------------------------------------+
-| :ref:`SSH Authentication <ssh_auth>`                                                | This Section applies to both KVM and vCenter. |
-+-------------------------------------------------------------------------------------+-----------------------------------------------+
-| :ref:`X509 Authentication <x509_auth>`                                              | This Section applies to both KVM and vCenter. |
-+-------------------------------------------------------------------------------------+-----------------------------------------------+
-| :ref:`LDAP Authentication <ldap>`                                                   | This Section applies to both KVM and vCenter. |
-+-------------------------------------------------------------------------------------+-----------------------------------------------+
-| :ref:`Sunstone documentation <suns_auth>`                                           | This Section applies to both KVM and vCenter. |
-+-------------------------------------------------------------------------------------+-----------------------------------------------+
-
+For more details about the Sunstone authentication go to the :ref:`Sunstone documentation <suns_auth>`
 
 .. |image0| image:: /images/auth_options_350.png
