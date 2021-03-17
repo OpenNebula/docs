@@ -85,6 +85,7 @@ Sunstone
 - Add option to set VM Backups. Check more information :ref:`here <template_os_and_boot_options_section>`.
 - Add option to format Datablocks. Check more information :ref:`here <img_template>`.
 - Add option to purge services in DONE state. Check more information :ref:`here <flow_purge_done>`.
+- Add option to set IOTHREAD id on disks in Sunstone. Check more information :ref:`here <reference_vm_template_disk_section>`.
 
 Scheduler
 ================================================================================
