@@ -1,8 +1,8 @@
-.. _public_marketplaces:
+.. _storage:
 
-===================
-Public Marketplaces
-===================
+================================================================================
+Storage Management
+================================================================================
 
 .. toctree::
    :maxdepth: 2
@@ -10,5 +10,5 @@ Public Marketplaces
    Overview <overview>
    Datastores <datastores>
    Images <images>
-   Public Marketplaces <public_markets>
-   Marketplace Applications <marketapp>
+   Marketplaces <marketplaces>
+   Marketplace Applications <marketapps>

@@ -1,7 +1,7 @@
-.. _public_markets:
+.. _marketplaces:
 
 ================================================================================
-Public Marketplaces
+Marketplaces
 ================================================================================
 
 OpenNebula provides a simple way to create and integrate with a cloud application/image provider, called Marketplaces. Think of them as external datastores.
@@ -9,9 +9,11 @@ OpenNebula provides a simple way to create and integrate with a cloud applicatio
 A MarketPlace can be:
 
 * **Public**: accessible universally by all OpenNebulas.
-* **Private**: local within an organization and specific for a single OpenNebula (a single zone) or shared by a federation (a collection of zones).
+* **Private**: local within an organization and specific for a single OpenNebula (a single zone) or shared by a federation (a collection of zones). If you are interested in setting up your own :ref:`private Marketplace, please follow this guide <private_markeplaces>`. 
 
 A Marketplace is a repository to store Marketplace Appliances. A MarketPlace Appliance includes one or more Images and, possibly, some associated metadata like VM Templates or OpenNebula Flow definitions.
+
+
 
 Public Marketplaces
 ================================================================================
