@@ -13,6 +13,9 @@ To be able to store the VMs backups you need to run your own MarketPlace, config
 * :ref:`HTTP MarketPlace<market_s3>`.
 * :ref:`S3 MarketPlace<market_http>`.
 
+.. warning::
+   Currently, VM backups are not supported for vCenter hypervisor
+
 
 VM Template
 =============
