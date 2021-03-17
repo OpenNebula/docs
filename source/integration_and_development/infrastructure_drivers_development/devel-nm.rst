@@ -63,9 +63,9 @@ After that you need to define the bridging technology used by the driver at ``/e
 Driver Customization
 ================================================================================
 
-Default driver actions support the execution of hooks after the main action is succesfully executed. In order to create an action hook you need to place your custom configuration scripts in the corresponding **action.d** directory, inside the target networking driver directory. Files found in that directory will be run in an alphabetical order, excluding the ones oneadmin cannot run due to lack of permissions. If the main action fails the hooks won't be run. If a hook fails the corresponding network actions will be consider as a **FAILURE** and the VM will change its state accordingly. Note that the scripts will receive the same information as the main action through stdin.
+Default driver actions support the execution of hooks after the main action is succesfully executed. In order to create an action hook you need to place your custom configuration scripts in the corresponding **action.d** directory (``pre.d``, ``post.d``, ``clean.d``), inside the target networking driver directory. Files found in that directory will be run in an alphabetical order, excluding the ones oneadmin cannot run due to lack of permissions. If the main action fails the hooks won't be run. If a hook fails the corresponding network actions will be consider as a **FAILURE** and the VM will change its state accordingly. Note that the scripts will receive the same information as the main action through stdin.
 
-For example, this is the directory tree of the bridge driver synced to a virtualization node with some custom scripts 
+For example, this is the directory tree of the bridge driver synced to a virtualization node with some custom scripts
 
 .. code-block:: text
 

@@ -19,7 +19,7 @@ Configuration
 --------------------------------------------------------------------------------
 * No additional configuration is needed. If ``BRIDGE`` configured in the Virtual Network does not exist, a new Linux bridge will be created at VM instantiation time.
 
-VLAN Networking Mode
+802.1Q VLAN Networking Mode
 ================================================================================
 
 Requirements
@@ -67,7 +67,7 @@ Configuration
 * No additional configuration is needed. If ``BRIDGE`` configured in the Virtual Network does not exist, a Linux bridge and a Open vSwitch bridge will be created at VM instantiation time. For example:
 
 .. prompt:: text # auto
-  
+
     # ovs-vsctl show
     61a35859-c8a3-4fd0-a30e-185aa568956f
         Bridge "ovsbr0"
