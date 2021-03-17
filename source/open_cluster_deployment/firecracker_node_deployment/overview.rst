@@ -1,31 +1,18 @@
 .. _firecracker_node_deployment_overview:
 
-.. todo:: Review and adapt
-
 ================================================================================
 Overview
 ================================================================================
 
-The Hosts are servers with a hypervisor installed (KVM, LXD or Firecracker) which execute the running Virtual Machines. These Hosts are managed by the KVM, LXD or Firecracker Driver, which will perform the actions needed to manage the VM and its life-cycle. This chapter analyses the KVM, LXD or Firecracker driver in detail, and will give you, amongst other things, the tools to configure and add KVM, LXD or Firecracker hosts into the OpenNebula Cloud.
+`Firecracker <https://firecracker-microvm.github.io/>`__ is an open source virtual machine monitor (VMM) developed by AWS — It's widely used as part of its Fargate and Lambda services⁠. Firecracker is especially designed for creating and managing secure, multi-tenant container and function-based services. It enables to deploy workloads in lightweight VMs (called **microVMs**) which provide enhanced security and workload isolation over traditional VMs, while enabling the speed and resource efficiency of containers.
+
+Firecracker uses the Linux Kernel-based Virtual Machine (KVM) to create and manage microVMs. It has a minimalist design, excluding unnecessary devices and guest functionality to reduce the memory footprint and attack surface area of each microVM.
+
 
 How Should I Read This Chapter
 ================================================================================
 
-Before reading this chapter, you should have already installed your :ref:`Frontend <frontend_installation>`, the :ref:`KVM Hosts <kvm_node>` and/or :ref:`LXD Hosts <lxd_node>` and have an OpenNebula cloud up and running with at least one virtualization node.
+This chapter will focus on the configuration options for a Firecracker based Hosts.
 
-This chapter will focus on the configuration options for the Hosts.
-
-* Read the :ref:`KVM driver <kvmg>` section in order to understand the procedure of configuring and managing KVM Hosts.
-* Read the :ref:`LXD driver <lxdmg>` section in order to understand the procedure of configuring and managing LXD Hosts.
-* Read the :ref:`Firecracker driver <fcmg>` section in order to understand the procedure of configuring and managing Firecracker Hosts.
-* In the :ref:`Monitoring <mon>` section, you can find information about how OpenNebula is monitoring its Hosts and Virtual Machines, and changes you can make in the configuration of that subsystem.
-* You can read this section if you are interested in performing :ref:`PCI Passthrough <kvm_pci_passthrough>`.
-
-After reading this chapter, you should read the :ref:`Open Cloud Storage <storage>` chapter.
-
-Hypervisor Compatibility
-================================================================================
-
-This chapter applies to KVM, LXD and Firecracker.
-
-Follow the :ref:`vCenter Node <vcenter_node>` section for a similar guide for vCenter.
+* Read the :ref:`Firecracker driver <fcmg>` section in order to understand the specific requirements, functionalities, and limitations of the Firecracker driver.
+* Read the :ref:`Firecracker node installation <fc_node>` section in order to add a Firecracker host to your OpenNebula cloud to start deploying microVMs.

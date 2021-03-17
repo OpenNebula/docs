@@ -4,14 +4,12 @@
 Firecracker Driver
 ================================================================================
 
-`Firecracker <https://firecracker-microvm.github.io/>`__ is a virtual machine monitor (VMM) that uses the Linux Kernel-based Virtual Machine (KVM) to create and manage microVMs. Firecracker has a minimalist design. It excludes unnecessary devices and guest functionality to reduce the memory footprint and attack surface area of each microVM. This improves security, decreases the startup time, and increases hardware utilization.
-
 Requirements
 ============
 
-Firecracker requires a Linux kernel >= 4.14 and KVM module.
+Firecracker requires a Linux kernel version >= 4.14 and the KVM kernel module.
 
-.. _fcmg_limitations:
+The specific information containing the supported platforms for Firecracker can be found in the `code repository <https://github.com/firecracker-microvm/firecracker#supported-platforms>`__.
 
 Considerations & Limitations
 ================================================================================
@@ -19,7 +17,7 @@ Considerations & Limitations
 microVM CPU usage
 --------------------------------------------------------------------------------
 
-There are three main limitation regarding CPU usage for microVM:
+There are two main limitation regarding CPU usage for microVM:
 
 - OpenNebula deploys microVMs by using `Firecracker's Jailer <https://github.com/firecracker-microvm/firecracker/blob/master/docs/jailer.md>`__. The `jailer` takes care of increasing the security and isolation of the microVM and is the Firecracker recommended way for deploying microVMs in production environments. The jailer force the microVM to be isolated in a NUMA node, OpenNebula takes care of evenly distribute microVMs among the available NUMA nodes. One of the following policies can be selected in ``/var/lib/one/remotes/etc/vmm/firecracker/firecrackerrc``:
 
@@ -38,7 +36,19 @@ There are three main limitation regarding CPU usage for microVM:
         SOCKETS = "1",
         THREADS = "2" ]
 
+Storage limitations
+--------------------------------------------------------------------------------
+
+- Firecracker only support ``raw`` format images.
+
+- Firecracker driver is only compatible with :ref:`Filesystem Datastores <fs_ds>`. It supports every ``TM_MAD`` supported by Filesystem Datastores but ``qcow2`` as it doesn't support ``qcow2`` images.
+
 - As Firecracker Jailer performs a ``chroot`` operation under the microVM location, persistent images are not supported when using ``TM_MAD=shared``. In order to use persistent images when using ``TM_MAD=shared`` the system ``TM_MAD`` must be overwritten to use ``TM_MAD=ssh`` this can be easily achieved by adding ``TM_MAD_SYSTEM=ssh`` at the microVM template. More info on how to combine different ``TM_MADs`` can be found :ref:`here <shared-ssh-mode>`.
+
+Networking limitations
+--------------------------------------------------------------------------------
+
+Firecracker only supports linux bridges based networking.
 
 MicroVM actions
 --------------------------------------------------------------------------------
@@ -56,7 +66,11 @@ Some of the actions supported by OpenNebula for VMs and containers are not suppo
 
 Configuration
 ================================================================================
-There are some interaction options between Firecracker and OpenNebula configured in ``/var/lib/one/remotes/etc/vmm/firecracker/firecrackerrc``
+
+Driver Specifics Configuration
+--------------------------------------------------------------------------------
+
+Firecracker specifics configurations are available at ``/var/lib/one/remotes/etc/vmm/firecracker/firecrackerrc`` file in the OpenNebula frontend node. The following list contains the supported configuration attributes and a brief description:
 
 +-----------------------+-------------------------------------------------------+
 | NAME                  | Description                                           |
@@ -91,33 +105,12 @@ There are some interaction options between Firecracker and OpenNebula configured
 |                       | shutdown/cancel a microVM                             |
 +-----------------------+-------------------------------------------------------+
 
-Drivers
+.. note:: Firecracker only supports cgroup v1.
+
+Drivers Generic Configuration
 --------------------------------------------------------------------------------
 
-The Firecracker driver is enabled by default in OpenNebula:
-
-.. code-block::  bash
-
-    #-------------------------------------------------------------------------------
-    #  Firecracker Virtualization Driver Manager Configuration
-    #    -r number of retries when monitoring a host
-    #    -t number of threads, i.e. number of hosts monitored at the same time
-    #    -l <actions[=command_name]> actions executed locally, command can be
-    #        overridden for each action.
-    #        Valid actions: deploy, shutdown, cancel, save, restore, migrate, poll
-    #        An example: "-l migrate=migrate_local,save"
-    #    -p more than one action per host in parallel, needs support from hypervisor
-    #    -s <shell> to execute remote commands, bash by default
-    #    -w Timeout in seconds to execute external commands (default unlimited)
-    #-------------------------------------------------------------------------------
-    VM_MAD = [
-        NAME           = "firecracker",
-        SUNSTONE_NAME  = "Firecracker",
-        EXECUTABLE     = "one_vmm_exec",
-        ARGUMENTS      = "-t 15 -r 0 firecracker",
-        TYPE           = "xml",
-        KEEP_SNAPSHOTS = "no",
-    ]
+The Firecracker driver is enabled by default in OpenNebula `configuration file <https://github.com/OpenNebula/one/blob/051b36e0d91746d8e7ffc77cfb365d36e337ec9e/share/etc/oned.conf#L544>`__.
 
 The configuration parameters: ``-r``, ``-t``, ``-l``, ``-p`` and ``-s`` are already preconfigured with sane defaults. If you change them you will need to restart OpenNebula.
 
@@ -126,49 +119,32 @@ Read the :ref:`Virtual Machine Drivers Reference <devel-vmm>` for more informati
 Storage
 ================================================================================
 
-Datastores
+Unlike common VMs, Firecracker microVMs does not use full disk images (including partition tables, MBR...). Instead Firecracker microVMs uses a root filesystem image along an uncompressed linux Kernel binary file.
+
+Root Filesystem Images
 --------------------------------------------------------------------------------
-
-Firecracker driver is compatible with **Filesystem Datastores**. Regarding of Transfer Managers (``TM_MAD``) Firecracker support every ``TM_MAD`` supported by Filesystem Datastores but ``qcow2`` as Firecracker does not support ``qcow2`` images.
-
-.. note:: Note that ``shared`` datastores have some limitations, check :ref:`Considerations & Limitations section <fcmg_limitations>`.
-
-More information about Filesystem Datastores can be found :ref:`here <fs_ds>`.
-
-Images & Kernels Disks
---------------------------------------------------------------------------------
-
-Unlike VMs and containers, Firecracker microVMs does not use full disk images (including partition tables, MBR...). Instead Firecracker microVMs uses a root filesystem image and needs a linux Kernel binary.
-
-Images
-^^^^^^^^^^^^^^^^^^^^^
 
 The root file system can be uploaded as a raw image (``OS`` type) to any OpenNebula image datastore. Once the image is available it can be added as a new disk to the microVM template.
 
-Root file system images can be downloaded directly to OpenNebula from `Docker Hub <https://hub.docker.com/>`__, `Linux Containers - Image server <https://uk.images.linuxcontainers.org/>`__ and `Turnkey Linux <https://www.turnkeylinux.org/>`__ as they are fully integrated with OpenNebula. Check :ref:`Public Marketplace section <public_marketplaces>` for more information.
+Also, root file system images can be downloaded directly to OpenNebula from `Docker Hub <https://hub.docker.com/>`__, `Linux Containers <https://uk.images.linuxcontainers.org/>`__ and `Turnkey Linux <https://www.turnkeylinux.org/>`__ Marketplaces. Check :ref:`Public Marketplace section <public_marketplaces>` for more information.
 
-Custom images can also be created by using common linux tools like `mkfs` command for creating the file system and `dd` for copying and existing file system inside the new one.
+.. note:: Custom images can also be created by using common linux tools like ``mkfs`` command for creating the file system and ``dd`` for copying and existing file system inside the new one.
 
 Kernels
-^^^^^^^^^^^^^^^^^^^^^
+--------------------------------------------------------------------------------
 
-The kernel image must be uploaded to a :ref:`Kernels & Files Datastore <file_ds>` with type kernel. Once the kernel is available it can be reference by using the attribute ``KERNEL_DS`` inside ``OS`` section at microVM template.
+The kernel images must be uploaded to a :ref:`Kernels & Files Datastore <file_ds>` with type kernel. Once the kernel is available it can be reference by using the attribute ``KERNEL_DS`` inside ``OS`` section at microVM template.
 
-Kernel images can built the desired kernel version, with the configuration attribute required for the use case, in order to improve performance kernel should be build with the minimal options needed. Firecracker project provide their suggested configuration files in their `official repository <https://github.com/firecracker-microvm/firecracker/tree/master/resources>`__
+Kernel images can built the desired kernel version, with the configuration attribute required for the use case. In order to improve the performance, the kernel image can be compiled with the minimal options required. Firecracker project provides a suggested configuration files in the `official repository <https://github.com/firecracker-microvm/firecracker/tree/master/resources>`__
 
 .. _fc_network:
 
-Network
+Networking
 ================================================================================
 
-Firecracker is fully integrated with every networking driver based on linux bridge, including:
+Firecracker is fully integrated with every networking driver based on linux bridge.
 
-- Bridged
-- VLAN
-- VXLAN
-- Security Groups
-
-Unlike qemu-KVM which do manage automatically the tap devices requires for VM networking Firecracker needs for this devices to be managed by an external agent. OpenNebula takes care of managing this tap devices and plug then inside the pertinent bridge. In order to enable this functionality the following actions have to be carried out manually when networking is desired for MicroVMs.
+As Firecracker do not manage the tap devices uses for microVM networking, OpenNebula takes care of managing this devices and plug then inside the pertinent bridge. In order to enable this functionality the following actions have to be carried out manually when networking is desired for MicroVMs.
 
 .. code::
 
@@ -178,7 +154,7 @@ Unlike qemu-KVM which do manage automatically the tap devices requires for VM ne
     $ onehost sync -f
 
 
-.. note:: Execute the ``cp`` commands for every networking driver which is going to be used with MicroVMs.
+.. note:: Execute the ``cp`` commands for every networking driver which is going to be used with MicroVMs. And make sure ``oneadmin`` user have enough permissions for running the scripts.
 
 Usage
 ================================================================================
@@ -211,7 +187,7 @@ Below there is a minimum microVM Template:
       KERNEL_CMD="console=ttyS0 reboot=k panic=1 pci=off i8042.noaux i8042.nomux i8042.nopnp i8042.dumbkbd",
       KERNEL_DS="$FILE[IMAGE_ID=2]"]
 
-Unlike VMs for microVMs the ``OS`` sections need to contains a ``KERNEL_DS`` attribute referencing a linux kernel from a File & Kernel datastore:
+MicroVMs ``OS`` sections need to contain a ``KERNEL_DS`` attribute referencing a linux kernel from a File & Kernel datastore:
 
 .. code::
 
@@ -220,10 +196,10 @@ Unlike VMs for microVMs the ``OS`` sections need to contains a ``KERNEL_DS`` att
     KERNEL_CMD="console=ttyS0 reboot=k panic=1 pci=off i8042.noaux i8042.nomux i8042.nopnp i8042.dumbkbd",
     KERNEL_DS="$FILE[IMAGE_ID=2]"]
 
-VNC
+Remote Access
 -----------------------
 
-As VMs and containers, MicroVMs supports VNC access which allows easy access to microVMs. It is configured the same way it's done for VMs and containers. The following section must be added to the microVM template:
+MicroVMs supports remote access via VNC protocol which allows easy access to microVMs. The following section must be added to the microVM template to configure the VNC access:
 
 .. code::
 
