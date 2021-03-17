@@ -79,10 +79,10 @@ You can access the information about each datastore using the ``onedatastore sho
 
 There are four important sections:
 
-  * *General Information*, it includes basic information like the name, the file path of the datastore or its type (``IMAGE``). It includes also the set of drivers (``DS_MAD`` and ``TM_MAD``) used to store and transfer images. In this case it is file based (``fs``) using the SSH protocol for transfers (``ssh``).
-  * *Capacity*, the basic usage metrics total/used/free space.
-  * *Attributes*, under ``DATASTORE TEMPLATE`` you can find configuration attributes and custom tags (see below).
-  * *Images*, the list of images stored in this datastore.
+  * **General Information**, it includes basic information like the name, the file path of the datastore or its type (``IMAGE``). It includes also the set of drivers (``DS_MAD`` and ``TM_MAD``) used to store and transfer images. In this case it is file based (``fs``) using the SSH protocol for transfers (``ssh``).
+  * **Capacity**, the basic usage metrics total/used/free space.
+  * **Attributes**, under ``DATASTORE TEMPLATE`` you can find configuration attributes and custom tags (see below).
+  * **Images**, the list of images stored in this datastore.
 
 System Datastore
 --------------------------------------------------------------------------------

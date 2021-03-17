@@ -8,173 +8,200 @@ OpenNebula Images represents a VM disk. Depending on the Datastore, Images can h
 
 In this guide you'll learn about different Image types, and how to mange and use your Images.
 
+Types and Persistency
+================================================================================
 
+OpenNebula manages three different Image types to represent VM disks. A VM can use multiple Image types simultaneously:
 
-Image Types
-===========
+* **Operating System** (``OS``): Main disk, the VM will start from this Image. Every VM must include an OS Image.
+* **CD-ROM ISO** (``CDROM``): These Images are read-only data. Only one Image of this type can be used in a VM.
+* **Data Disk** (``DATABLOCK``): A generic disk to store data. These Images can be contain existing data, e.g. a database, or be formatted as an empty drive.
 
-There are six different types of Images. Using the command ``oneimage chtype``, you can change the type of an existing Image.
+Additionally *file* Images represents plain files that can be used as:
 
-For Virtual Machine disks:
+* **OS kernel** (``KERNEL``): used as kernel for the Guest OS to start the VM.
+* **RAM disk** (``RAMDISK``): loaded by initrd at boot time.
+* **Generic file** (``CONTEXT``): a plain file to be included in the context CD-ROM. Once started, the VM will have access to this file.
 
-* ``OS``: An bootable disk Image. Every :ref:`VM template <template>` must define one DISK referring to an Image of this type.
-* ``CDROM``: These Images are read-only data. Only one Image of this type can be used in each :ref:`VM template <template>`.
-* ``DATABLOCK``: A datablock Image is a storage for data. These Images can be created from previous existing data, or as an empty drive.
+.. note:: KERNEL, RAMDISK and CONTEXT file Images can be registered only in File Datastores. Some of the operations described in this guide do not apply to them, in particular: clone and persistent.
 
-"File" types. Images of these types cannot be used as VM disks, and are listed in Sunstone under the Files tab:
+Images of the previous types can also operate in two modes:
 
-* ``KERNEL``: A plain file to be used as kernel (VM attribute OS/KERNEL\_DS).
-* ``RAMDISK``: A plain file to be used as ramdisk (VM attribute OS/INITRD\_DS).
-* ``CONTEXT``: A plain file to be included in the context CD-ROM (VM attribute CONTEXT/FILES\_DS).
+* **Peristent**, represent stateful data. The modifications you made to the image will be preserved. There can be **only** one VM using a persistent Image at a time. Use persistent Images for user/application data.
+* **Non-Persistent**, represent stateless data any modification will not be preserved. Non-persistent images can be used by multiple VMs at the same time as each one will work on its own copy. Use non-peristent images for OS/Application installations.
 
-.. note:: KERNEL, RAMDISK and CONTEXT file Images can be registered only in File Datastores.
+States and Life-cycle
+================================================================================
 
-.. note:: Some of the operations described below do not apply to KERNEL, RAMDISK and CONTEXT Images, in particular: clone and persistent.
+The images in your cloud will be moving through different states to represent the actions you perform and their status. The following table summarizes the Image states and their meaning:
 
-.. _img_life_cycle_and_states:
++------------+-------------+------------------------+------------------------------------------------------------------------------------------------------------+
+| State      | Short state | OpenNebula State Names |                                                  Meaning                                                   |
++============+=============+========================+============================================================================================================+
+| Locked     | ``lock``    | ``LOCKED``             | Image is being copied or created. VMs that use the image will wait for the operation to finish             |
+|            |             +------------------------+                                                                                                            +
+|            |             | ``LOCKED_USED``        |                                                                                                            |
+|            |             +------------------------+                                                                                                            +
+|            |             | ``LOCKED_USED_PERS``   |                                                                                                            |
++------------+-------------+------------------------+------------------------------------------------------------------------------------------------------------+
+| Ready      | ``rdy``     | ``READY``              | Image ready to be used.                                                                                    |
++------------+-------------+------------------------+------------------------------------------------------------------------------------------------------------+
+| Used       | ``used``    | ``USED``               | Image used by at least one VM.                                                                             |
+|            |             +------------------------+                                                                                                            +
+|            |             | ``USED_PERS``          |                                                                                                            |
++------------+-------------+------------------------+------------------------------------------------------------------------------------------------------------+
+| Disabled   | ``disa``    | ``DISABLED``           | Image disabled by the owner, it cannot be used by new VMs.                                                 |
++------------+-------------+------------------------+------------------------------------------------------------------------------------------------------------+
+| Error      | ``err``     | ``ERROR``              | Error state, an operation failed. See the Image information with ``oneimage show`` for an error message.   |
++------------+-------------+------------------------+------------------------------------------------------------------------------------------------------------+
+| Deleting   | ``dele``    | ``DELETE``             | Image is being deleted from the Datastore.                                                                 |
++------------+-------------+------------------------+------------------------------------------------------------------------------------------------------------+
+| Cloning    | ``clon``    | ``CLONE``              | Image is being cloned.                                                                                     |
++------------+-------------+------------------------+------------------------------------------------------------------------------------------------------------+
 
-Image Life-cycle
-================
+Creating Images
+================================================================================
 
-+-------------+----------------------+------------------------------------------------------------------------------------------------------------+
-| Short state |        State         |                                                  Meaning                                                   |
-+=============+======================+============================================================================================================+
-| ``lock``    | ``LOCKED``           | The Image file is being copied or created in the Datastore.                                                |
-+-------------+----------------------+------------------------------------------------------------------------------------------------------------+
-| ``lock``    | ``LOCKED_USED``      | Image file is being copied or created in the Datastore, with VMs waiting for the operation to finish.      |
-+-------------+----------------------+------------------------------------------------------------------------------------------------------------+
-| ``lock``    | ``LOCKED_USED_PERS`` | Same as ``LOCKED_USED``, for Persistent Images                                                             |
-+-------------+----------------------+------------------------------------------------------------------------------------------------------------+
-| ``rdy``     | ``READY``            | Image ready to be used.                                                                                    |
-+-------------+----------------------+------------------------------------------------------------------------------------------------------------+
-| ``used``    | ``USED``             | Non-persistent Image used by at least one VM. It can still be used by other VMs.                           |
-+-------------+----------------------+------------------------------------------------------------------------------------------------------------+
-| ``used``    | ``USED_PERS``        | Persistent Image is use by a VM. It cannot be used by new VMs.                                             |
-+-------------+----------------------+------------------------------------------------------------------------------------------------------------+
-| ``disa``    | ``DISABLED``         | Image disabled by the owner, it cannot be used by new VMs.                                                 |
-+-------------+----------------------+------------------------------------------------------------------------------------------------------------+
-| ``err``     | ``ERROR``            | Error state, a FS operation failed. See the Image information with ``oneimage show`` for an error message. |
-+-------------+----------------------+------------------------------------------------------------------------------------------------------------+
-| ``dele``    | ``DELETE``           | The Image is being deleted from the Datastore.                                                             |
-+-------------+----------------------+------------------------------------------------------------------------------------------------------------+
-| ``clon``    | ``CLONE``            | The Image is being cloned.                                                                                 |
-+-------------+----------------------+------------------------------------------------------------------------------------------------------------+
+You have multiple options when creating a new Image in OpenNebula, from using your existing disk images to download them from public marketplaces. In this section you will learn how to use the ``oneimage`` command to create an Image.
 
-This is the state diagram for **persistent** Images:
-
-|Persistent Image States|
-
-And the following one is the state diagram for **non-persistent** Images:
-
-|Non-Persistent Image States|
-
-Managing Images
-===============
-
-Users can manage their Images using the command line interface command ``oneimage``. The complete reference is :ref:`here <cli>`.
-
-You can also manage your Images using Sunstone, selecting the Images tab. By default this tab is available in the ``admin`` view, but not in the ``cloud`` or ``groupadmin`` views.
-
-Create Images
--------------
-
-The three types of Images can be created from an existing file, but for **datablock** Images you can specify a size and let OpenNebula create an empty Image in the Datastore.
-
-If you want to create an **OS Image**, you need to prepare a contextualized virtual machine, and extract its disk.
-
-Please read first the documentation about :ref:`VM contextualization here <context_overview>`.
-
-Once you have a disk you want to register, you can upload it directly using Sunstone:
-
-|image3|
-
-To register it from the command line you need to create a new :ref:`image template <img_template>`, and submit it using the ``oneimage create`` command.
-
-The complete reference for the image template is :ref:`here <img_template>`. This is how a sample template looks like:
-
-.. prompt:: text $ auto
-
-    $ cat ubuntu_img.one
-    NAME          = "Ubuntu"
-    PATH          = "/home/cloud/images/ubuntu-desktop/disk.0"
-    TYPE          = "OS"
-    DESCRIPTION   = "Ubuntu desktop for students."
-
-You need to choose the Datastore where to register the new Image. To know the available datastores, use the ``onedatastore list`` command. In a clean installation you will only have one datastores with type ``img``, default.
-
-.. prompt:: text $ auto
-
-    $ onedatastore list
-      ID NAME                SIZE AVAIL CLUSTERS     IMAGES TYPE DS      TM      STAT
-       0 system            145.2G 56%   0                 0 sys  -       shared  on
-       1 default           145.2G 56%   0                 3 img  fs      shared  on
-       2 files             145.2G 56%   0                 0 fil  fs      ssh     on
-
-
-To submit the template, you just have to issue the command
-
-.. prompt:: text $ auto
-
-    $ oneimage create ubuntu_img.one --datastore default
-    ID: 0
-
-You can also create Images using just parameters in the ``oneimage create`` call. The parameters to generate the Image are as follows:
+No matter the method you use to create your images, there is a set of common options that will be useful in any case. The following table summarizes the main options that we will use:
 
 +-------------------------------+-----------------------------------------------------------------------+
 |           Parameter           |                              Description                              |
 +===============================+=======================================================================+
 | ``--name name``               | Name of the new Image                                                 |
 +-------------------------------+-----------------------------------------------------------------------+
-| ``--description description`` | Description for the new Image                                         |
+| ``--datastore name | ID``     | Name/ID the new Image                                                 |
++-------------------------------+-----------------------------------------------------------------------+
+| ``--description description`` | Description for the new Image (Optional)                              |
 +-------------------------------+-----------------------------------------------------------------------+
 | ``--type type``               | Type of the new Image: OS, CDROM, DATABLOCK, KERNEL, RAMDISK, CONTEXT |
 +-------------------------------+-----------------------------------------------------------------------+
 | ``--persistent``              | Tells if the Image will be persistent                                 |
 +-------------------------------+-----------------------------------------------------------------------+
-| ``--prefix prefix``           | Device prefix for the disk (eg. hd, sd, xvd or vd)                    |
+| ``--prefix prefix``           | Device/bus to expose the disk to guest OS (e.g. hd, sd or vd)         |
 +-------------------------------+-----------------------------------------------------------------------+
 | ``--target target``           | Device the disk will be attached to                                   |
 +-------------------------------+-----------------------------------------------------------------------+
-| ``--path path``               | Path of the Image file                                                |
-+-------------------------------+-----------------------------------------------------------------------+
-| ``--driver driver``           | Driver to use (raw, qcow2, tap:aio:...)                               |
-+-------------------------------+-----------------------------------------------------------------------+
-| ``--disk_type disk_type``     | Type of the Image (BLOCK, CDROM or FILE)                              |
+| ``--path path``               | Path/URL of the Image                                                 |
 +-------------------------------+-----------------------------------------------------------------------+
 | ``--source source``           | Source to be used. Useful for not file-based Images                   |
 +-------------------------------+-----------------------------------------------------------------------+
-| ``--size size``               | Size in MB. Used for DATABLOCK type                                   |
+| ``--size size``               | Size in MB. Used for DATABLOCK type or to resize the Image on boot    |
 +-------------------------------+-----------------------------------------------------------------------+
 
-To create the previous example Image you can do it like this:
+Using your disk files
+--------------------------------------------------------------------------------
 
-.. prompt:: text $ auto
+You can use your existing virtual disks in OpenNebula. Simply, pick a name for your Image, grab the path where the disk is stored in the front-end, and choose the Datastore where you want to create the Image. The command will be similar to (by default ``OS`` Images are created):
 
-    $ oneimage create --datastore default --name Ubuntu --path /home/cloud/images/ubuntu-desktop/disk.0 \
-      --description "Ubuntu desktop for students."
+.. prompt:: bash $ auto
+
+    $ oneimage create --datastore default --name Ubuntu --path /home/cloud/images/ubuntu-desktop/disk.0.qcow2 \
+      --description "Ubuntu desktop for developers."
+
+For OS Images, you need to install the :ref:`OpenNebula context packages for your target guest OS <context_overview>` before using them. There are no additional steps if you are creating a data disk.
 
 .. note:: You can use **gz** compressed image files when registering them in OpenNebula.
 
-.. _sunstone_upload_images:
+.. important:: Susntone will allow you to upload disk images from your desktop.
 
+When you need to set a complex number of options when creating the Image, you can also pass all of them in a file. We call these files templates. This is how the template for previous example looks like:
 
-Creating LUKS encrypted images (KVM)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. prompt:: text $ auto
 
-For KVM hypervisor you can use LUKS-encrypted raw images. First you need to create an encrypted
+    $ cat ubuntu_img.one
+    NAME          = "Ubuntu"
+    PATH          = "/home/cloud/images/ubuntu-desktop/disk.0.qcow2"
+    DESCRIPTION   = "Ubuntu desktop for developers."
+
+Then simply pass the template file to the ``oneimage create`` command:
+
+.. prompt:: text $ auto
+
+    $ oneimage create ubuntu_img.one --datastore default
+    ID: 0
+
+The complete :ref:`reference of attributes for the Image template is here <img_template>`.
+
+Formatted data volumes
+--------------------------------------------------------------------------------
+
+You can also create plain data disks to define user storage or scratch areas in your VMs. In this case you need to define the size and the format for the disk (either ``raw`` or ``qcow2``). You may also instruct OpenNebula to create a file system in the Image. For example to create a 10G ``qcow2`` disk use:
+
+.. prompt:: text $ auto
+
+    $ oneimage create --size 10240 --name db-disk --format qcow2 --datastore default
+    ID: 2
+
+Using Marketplaces
+--------------------------------------------------------------------------------
+
+OpenNebula leverages the applications created by several popular marketplaces, like DockerHub or Linucontainers.org. These are great places to grab a working installation of an OS/application ready to use in your Cloud. The OpenNebula project also prepares *contextualized* OS installations of popular distributions and applications, you can `check the list in the OpenNebula Marketplace <https://marketplace.opennebula.io/appliance>`_.
+
+You can find :ref`more information on using these Martkeplaces here<market_one>`.
+
+ .. _dockerfile:
+
+Using a Dockerfile
+--------------------------------------------------------------------------------
+
+You can you to create Images using your own dockerfiles. The ``PATH`` in this case has the following format:
+
+.. code::
+
+    dockerfile://<path_to_file>?fileb64=<file_in_base64>&context=<yes|no>
+
++-----------------------+------------------------------------------------------------+
+| Argument              | Description                                                |
++=======================+============================================================+
+| ``<path_to_file>``    | Path in OpenNebula server where the Dockerfile is located. |
++-----------------------+------------------------------------------------------------+
+| ``<file_in_base64>``  | Dockerfile in Base64 form. If this is specified, the path  |
+|                       | is ignored.                                                |
++-----------------------+------------------------------------------------------------+
+| ``<context>``         | If it set to yes, OpenNebula context packages are added.   |
+|                       | If it is not set or set to no, they are omitted.           |
++-----------------------+------------------------------------------------------------+
+
+.. important:: Multistage Dockerfiles are not supported, only one FROM directive can be included.
+
+In order to create an image using your own Dockerfile, you can use the command ``oneimage create``:
+
+.. code::
+
+    $ oneimage create --name testing-df --path 'dockerfile:///tmp/my_dockerfile?size=256' --datastore 1 --prefix vd
+      ID: 0
+    $ oneimage list
+      ID USER     GROUP    NAME       DATASTORE SIZE TYPE PER STAT RVMS
+      0  oneadmin oneadmin testing-df default   256M OS    No rdy     0
+
+There is also a dedicated command ``oneimage dockerfile`` that will open an editor so you can edit your Dockerfile there.
+
+.. note:: In order to avoid the automatic installation of OpenNebula context packages, you can use the flag ``--no-context`` in both commands.
+
+Installing the Guest OS
+--------------------------------------------------------------------------------
+
+Finally, you can create boot a VM from an ISO installation image. Please refer to the :ref:`Guest OS installation guide for more information <guest_os>`.
+
+Creating LUKS encrypted Images
+--------------------------------------------------------------------------------
+
+LUKS-encrypted raw Images can be used **only on KVM** based hypervisors. First you need to create an encrypted
 volume using:
 
 .. prompt:: text $ auto
 
     $ qemu-img create --object secret,id=sec0,data=secret-passphrase -o key-secret=sec0 -f luks /tmp/luks.vol 10G
 
-Then import the image to the OpenNebula datastore as usual:
+Then create the image into the OpenNebula Datastore as usual:
 
 .. prompt:: text $ auto
 
     $ oneimage create --name luks-image --path /tmp/luks.vol -d default
 
-Finally you need to do is to define the secret in the libvirt, prepare a secret.xml file
+Finally you need to define the secret in the libvirt, prepare a secret.xml file
 
 .. prompt:: text $ auto
 
@@ -189,7 +216,7 @@ Finally you need to do is to define the secret in the libvirt, prepare a secret.
           <description>luks key</description>
     </secret>
 
-and define the secret and set its value, beware it's base64 encoded. **This has to be done on every hypervisor**
+Then define the secret and set its value, beware it's base64 encoded. **This has to be done on every hypervisor**
 
 .. prompt:: text $ auto
 
@@ -197,45 +224,13 @@ and define the secret and set its value, beware it's base64 encoded. **This has 
 
     $ virsh -c qemu:///system secret-set-value a94c5c16-d936-4346-89ad-7067517f411a "$(echo secret-passphrase | base64)"
 
-Now you can use the image as usual.
+Managing Images
+================================================================================
 
-Limitations when Uploading Images from Sunstone
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Listing Images
+--------------------------------------------------------------------------------
 
-Image file upload to the server via the client browser is possible. The process is as follow:
-
--  Step 1: The client uploads the whole image file to the server in a temporal file in the ``tmpdir`` folder specified in the configuration.
--  Step 2: OpenNebula registers an Image setting the PATH to that temporal file.
--  Step 3: OpenNebula copies the image file to the datastore.
--  Step 4: The temporal file is deleted and the request returns successfully to the user (a message pops up indicating that Image was uploaded correctly).
-
-Note that when file sizes become big (normally over 1GB), and depending on your hardware, it may take long to complete the copying in step 3. Since the upload request needs to stay pending until copying is successful (so it can delete the temp file safely), there might be Ajax timeouts and/or lack of response from the server. This may cause errors, or trigger re-uploads (which re-initiate the loading progress bar).
-
-Clone Images
-------------
-
-Existing Images can be cloned to a new one. This is useful to make a backup of an Image before you modify it, or to get a private persistent copy of an Image shared by other user. Note that persistent Images with snapshots cannot be cloned. In order to do so, the user would need to flatten it first, see the :ref:`snapshots <img_guide_snapshots>` section for more information.
-
-To clone an Image, execute
-
-.. prompt:: text $ auto
-
-    $ oneimage clone Ubuntu new_image
-
-You can optionally clone the Image to a different Datastore. The new Datastore must be compatible with the current one, i.e. have the same :ref:`DS_MAD drivers <sm>`.
-
-.. prompt:: text $ auto
-
-    $ oneimage clone Ubuntu new_image --datastore new_img_ds
-
-The Sunstone Images tab also contains a dialog for the clone operation:
-
-|sunstone_image_clone|
-
-Listing Available Images
-------------------------
-
-You can use the ``oneimage list`` command to check the available images in the repository.
+You can use the ``oneimage list`` command to check the available images in the Datastores.
 
 .. prompt:: text $ auto
 
@@ -247,14 +242,29 @@ You can use the ``oneimage list`` command to check the available images in the r
 
 To get complete information about an Image, use ``oneimage show``, or list Images continuously with ``oneimage top``.
 
-.. note:: Orphan images (i.e images not referenced by any template) can be shown with ``oneimage orphans`` command.
+.. note:: Orphan images (i.e images not referenced by any VM template) can be shown with ``oneimage orphans`` command.
 
-Sharing Images
------------------
+Cloning Images
+--------------------------------------------------------------------------------
+
+Existing Images can be cloned to a new one. This is useful to make a backup of an Image before you modify it, or to get a private persistent copy of an Image shared by other user. To clone an Image, execute
+
+.. prompt:: text $ auto
+
+    $ oneimage clone Ubuntu new_image
+
+You can optionally clone the Image to a different Datastore. The new Datastore must be compatible with the current one, i.e. have the same :ref:`DS_MAD drivers <sm>`.
+
+.. prompt:: text $ auto
+
+    $ oneimage clone Ubuntu new_image --datastore new_img_ds
+
+Sharing Images with other Users
+--------------------------------------------------------------------------------
 
 The users can share their Images with other users in their group, or with all the users in OpenNebula. See the :ref:`Managing Permissions documentation <chmod>` for more information.
 
-Let's see a quick example. To share the Image 0 with users in the group, the **USE** right bit for **GROUP** must be set with the **chmod** command:
+Let's see a quick example. To share the Image 0 with users your group, the **USE** right bit for **GROUP** must be set with the **chmod** command:
 
 .. prompt:: text $ auto
 
@@ -274,98 +284,60 @@ Let's see a quick example. To share the Image 0 with users in the group, the **U
     GROUP          : u--
     OTHER          : ---
 
-The following command allows users in the same group **USE** and **MANAGE** the Image, and the rest of the users **USE** it:
+Changing the Persistent Mode
+--------------------------------------------------------------------------------
+
+Use the ``oneimage persistent`` and ``oneimage nonpersistent`` commands to make your Images persistent or not. For example:
 
 .. prompt:: text $ auto
 
-    $ oneimage chmod 0 664
-
-    $ oneimage show 0
-    ...
-    PERMISSIONS
-    OWNER          : um-
-    GROUP          : um-
-    OTHER          : u--
-
-.. _img_guide_persistent:
-
-Making Images Persistent
-------------------------
-
-Use the ``oneimage persistent`` and ``oneimage nonpersistent`` commands to make your Images persistent or not.
-
-A persistent Image saves back to the datastore the changes made inside the VM after it is shut down.
-
-.. prompt:: text $ auto
-
-    $ oneimage list
-      ID USER     GROUP    NAME         DATASTORE     SIZE TYPE PER STAT  RVMS
-       0 oneadmin oneadmin Ubuntu       default        10G   OS  No  rdy     0
     $ oneimage persistent Ubuntu
+
     $ oneimage list
       ID USER     GROUP    NAME         DATASTORE     SIZE TYPE PER STAT  RVMS
        0 oneadmin oneadmin Ubuntu       default        10G   OS Yes  rdy     0
+
     $ oneimage nonpersistent 0
+
     $ oneimage list
       ID USER     GROUP    NAME         DATASTORE     SIZE TYPE PER STAT  RVMS
        0 oneadmin oneadmin Ubuntu       default        10G   OS  No  rdy     0
 
-Note that persistent Images with snapshots cannot be made non-persistent. In order to do so, the user would need to flatten it first, see the :ref:`snapshots <img_guide_snapshots>` section for more information.
+Managing Image Snapshots
+--------------------------------------------------------------------------------
 
-.. _img_guide_snapshots:
-
-Managing Snapshots in Persistent Images
----------------------------------------
-
-Persistent Images can have associated snapshots if the user :ref:`created them <vm_guide_2_disk_snapshots_managing>` during the life-cycle of VM that used the persistent Image. The following are operations that allow the user to manage these snapshots directly:
+A persistent Images can have snapshots if they are :ref:`created <vm_guide_2_disk_snapshots_managing>` during the life-cycle of VM that uses it. The following operations allow the user to manage these snapshots directly:
 
 
 * ``oneimage snapshot-revert <image_id> <snapshot_id>``: The active state of the Image is overwritten by the specified snapshot. Note that this operation discards any unsaved data of the disk state.
 * ``oneimage snapshot-delete <image_id> <snapshot_id>``: Deletes a snapshot. This operation is only allowed if the snapshot is not the active snapshot and if it has no children.
 * ``oneimage snapshot-flatten <image_id> <snapshot_id>``: This operation effectively converts the Image to an Image without snapshots. The saved disk state of the Image is the state of the specified snapshot. It's an operation similar to running ``snapshot-revert`` and then deleting all the snapshots.
 
-Images with snapshots **cannot** be cloned or made non-persistent. To run either of these operations the user would need to flatten the Image first.
+.. important:: Images with snapshots **cannot** be cloned or made non-persistent. To run either of these operations the user would need to flatten the Image first.
 
 How to Use Images in Virtual Machines
-=====================================
+================================================================================
 
-This is a simple example on how to specify Images as virtual machine disks. Please visit the :ref:`virtual machine user guide <vm_guide>` and the :ref:`virtual machine template <template>` documentation for a more thorough explanation.
+This is a simple example on how to use Images as virtual machine disks. Please visit the :ref:`virtual machine user guide <vm_guide>` and the :ref:`virtual machine template <template>` documentation for a more thorough explanation.
 
-Assuming you have an OS Image called *Ubuntu desktop* with ID 1, you can use it in your :ref:`virtual machine template <template>` as a DISK. When this machine is deployed, the first disk will be taken from the Datastore.
+A VM uses Images including them in the VM template as a ``DISK``. A Disk can refer Images either by name (``IMAGE``) or ID (``IMAGE_ID``). If you are using Image names it is a good idea to scope the name to its owner (``IMAGE_UNAME`` or ``IMAGE_UID``) to prevent collisions.
 
-Images can be referred in a DISK in two different ways:
-
-* ``IMAGE_ID``, using its ID as returned by the create operation
-* ``IMAGE``, using its name. In this case the name refers to one of the Images owned by the user (names can not be repeated for the same user). If you want to refer to an IMAGE of other user you can specify that with ``IMAGE_UID`` (by the uid of the user) or ``IMAGE_UNAME`` (by the name of the user).
+For example the following template define a VM with two disks, the first one is based on Image with ID 7, the second will use the Image ``Ubuntu`` from ``oneadmin`` user.
 
 .. code-block:: none
 
     CPU    = 1
-    MEMORY = 3.08
+    MEMORY = 1024
 
     DISK = [ IMAGE_ID   = 7 ]
 
     DISK = [ IMAGE       = "Ubuntu",
              IMAGE_UNAME = "oneadmin" ]
 
-    DISK = [ type   = swap,
-             size   = 1024  ]
-
     NIC    = [ NETWORK_ID = 1 ]
-    NIC    = [ NETWORK_ID = 0 ]
 
-    # FEATURES=[ acpi="no" ]
-
-    GRAPHICS = [
-      type    = "vnc",
-      listen  = "1.2.3.4",
-      port    = "5902"  ]
-
-
-.. _img_guide_save_changes:
-
-Save Changes
-------------
+Save Disk Changes to an Image
+--------------------------------------------------------------------------------
 
 Once the VM is deployed and changes are made to its disk, you can save those changes in two different ways:
 
@@ -374,39 +346,50 @@ Once the VM is deployed and changes are made to its disk, you can save those cha
 
 A detailed description of this process is :ref:`described in section Virtual Machine Instances <vm_guide_2_disk_snapshots>`
 
-.. _img_guide_files:
-
 How to Use File Images in Virtual Machines
 ==========================================
 
 .. _img_guide_kernel_and_ramdisk:
 
-KERNEL and RAMDISK
-------------------
+Kernels and RAM disks
+--------------------------------------------------------------------------------
 
-KERNEL and RAMDISK type Images can be used in the OS/KERNEL_DS and OS/INITRD_DS attributes of the VM template. See the :ref:`complete reference <template_os_and_boot_options_section>` for more information.
+``KERNEL`` and ``RAMDISK`` type Images can be used in the ``KERNEL_DS`` and ``INITRD_DS`` attributes of ``OS`` definition in the VM template. See the :ref:`complete reference <template_os_and_boot_options_section>` for more information.
 
-Example:
+Example of a VM section that uses the Image with name ``kernel5.10`` as kernel and Image ID 23 as RAM disk:
 
 .. code-block:: none
 
-    OS = [ KERNEL_DS  = "$FILE[IMAGE=kernel3.6]",
+    OS = [ KERNEL_DS  = "$FILE[IMAGE=kernel5.10]",
            INITRD_DS  = "$FILE[IMAGE_ID=23]",
            ROOT       = "sda1",
            KERNEL_CMD = "ro console=tty1" ]
 
-CONTEXT
--------
+Generic files
+--------------------------------------------------------------------------------
 
-The :ref:`contextualization cdrom <context_overview>` can include CONTEXT type Images. Visit the :ref:`complete reference <template_context>` for more information.
+The :ref:`contextualization cdrom <context_overview>` can include ``CONTEXT`` type Images, so the VM can access them at boot time. Visit the :ref:`complete VM template reference <template_context>` for more information.
+
+Example of a VM section that includes the Image (file) with name ``webpageDB`` and Image ID 34:
 
 .. code-block:: none
 
     CONTEXT = [
-      FILES_DS   = "$FILE[IMAGE_ID=34] $FILE[IMAGE=kernel]",
+      FILES_DS   = "$FILE[IMAGE_ID=34] $FILE[IMAGE=webpageDB]",
     ]
 
-.. |Persistent Image States| image:: /images/image-persistent.png
-.. |Non-Persistent Image States| image:: /images/image-nonpersistent.png
+
+Using Sunstone to Manage Images
+================================================================================
+
+You can also manage your Images using :ref:`Sunstone <sunstone>`. Select the Images tab, and there, you will be able to manage and check the information about your images in a user friendly way. By default this tab is available in the ``admin`` view, but not in the ``cloud`` or ``groupadmin`` views.
+
+Uploading Images from Sunstone
+--------------------------------------------------------------------------------
+
+When creating Images you can upload them to the Datastore via the client browser. The process copies the image from the client desktop to a temporal location and creates the Image from it (as described above).
+
+Note that when file sizes become big (normally over 1GB), and depending on your hardware, it may take long to complete the copying. Since the upload request needs to stay pending until copying is successful (so it can delete the temp file safely), there might be Ajax timeouts and/or lack of response from the server. This may cause errors, or trigger re-uploads (which re-initiate the loading progress bar).
+
 .. |image3| image:: /images/sunstone_image_create.png
 .. |sunstone_image_clone| image:: /images/sunstone_image_clone.png
