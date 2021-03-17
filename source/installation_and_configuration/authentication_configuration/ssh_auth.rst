@@ -61,7 +61,7 @@ The users requesting a new account have to generate a public key and send it to 
 
 The string written to the console must be sent to the administrator so they can create the new user in a similar way to the default user/password authentication users.
 
-The following command will create a new user with username ``newuser``, assuming that the previous public key is saved in the text file ``/tmp/pub\_key``:
+The following command will create a new user with username ``newuser``, assuming that the previous public key is saved in the text file ``/tmp/pub_key``:
 
 .. prompt:: bash $ auto
 
