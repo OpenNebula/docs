@@ -1,19 +1,19 @@
 .. _x509_auth:
 
 ====================
-x509 Authentication
+X.509 Authentication
 ====================
 
-This guide will show you how to enable and use x509 certificates authentication with OpenNebula. The x509 certificates can be used in two different ways in OpenNebula.
+This guide will show you how to enable and use X.509 certificates authentication with OpenNebula. The X.509 certificates can be used in two different ways in OpenNebula.
 
 The first option that is explained in this guide enables us to use certificates with the CLI. In this case the user will generate a login token with their private key. OpenNebula will validate the certificate and decrypt the token to authenticate the user.
 
-The second option enables us to use certificates with Sunstone and the Public Cloud servers included in OpenNebula. In this case the authentication is delegated to Apache or any other TLS-capable HTTP proxy configured by the administrator. If this certificate is validated, the server will encrypt those credentials using a server certificate and will send the token to OpenNebula.
+The second option enables us to use certificates with Sunstone. In this case the authentication is delegated to Apache or any other TLS-capable HTTP proxy configured by the administrator. If this certificate is validated, the server will encrypt those credentials using a server certificate and will send the token to OpenNebula.
 
 Requirements
 ============
 
-If you want to use x509 certificates with Sunstone or one of the Public Clouds, you must deploy a TLS-capable HTTP proxy on top of them in order to handle the certificate validation.
+If you want to use X.509 certificates with Sunstone, you must deploy a TLS-capable HTTP proxy on top of them in order to handle the certificate validation.
 
 Considerations & Limitations
 ============================
