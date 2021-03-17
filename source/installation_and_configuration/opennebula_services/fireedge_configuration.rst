@@ -20,7 +20,7 @@ FireEdge is a web server which purpose is twofold:
 Configuration
 ==============
 
-You need to configure Sunstone with the public endpoint of the FireEdge, so that one service can redirect user to the other. To configure the public FireEdge endpoint in Sunstone, edit /etc/one/sunstone-server.conf and update the :public_fireedge_endpoint with the base URL (domain or IP-based) over which end-users can access the service. For example:
+You need to configure Sunstone with the public endpoint of the FireEdge, so that one service can redirect user to the other. To configure the public FireEdge endpoint in Sunstone, edit ``/etc/one/sunstone-server.conf`` and update the ``:public_fireedge_endpoint`` with the base URL (domain or IP-based) over which end-users can access the service. For example:
 
 .. code::
 
@@ -39,13 +39,15 @@ syntax to define some options:
 +---------------------------------------+------------------------------+------------------------------------------------+
 |                 Option                |        Default Value         |                  Description                   |
 +=======================================+==============================+================================================+
+| :host                                 | `0.0.0.0`                    | Host on which the Firedge server will listen   |
++---------------------------------------+------------------------------+------------------------------------------------+
 | :port                                 | `2616`                       | Port on which the Firedge server will listen   |
 +---------------------------------------+------------------------------+------------------------------------------------+
 | :log                                  | `prod`                       | Log debug: ``prod`` or ``dev``                 |
 +---------------------------------------+------------------------------+------------------------------------------------+
 | :cors                                 | `true`                       | Enable cors (cross-origin resource sharing)    |
 +---------------------------------------+------------------------------+------------------------------------------------+
-| :one_xmlrpc                           | `http://localhost:2633/RPC2` | XMLRPC endpoint                                |
+| :one_xmlrpc                           | `http://localhost:2633/RPC2` | ONE XMLRPC endpoint                            |
 +---------------------------------------+------------------------------+------------------------------------------------+
 | :oneflow_server                       | `http://localhost:2472`      | OneFlow endpoint                               |
 +---------------------------------------+------------------------------+------------------------------------------------+
@@ -67,7 +69,17 @@ syntax to define some options:
 
 You can find the FireEdge server log file in ``/var/log/one/fireedge.log``. Errors are logged in ``/var/log/one/fireedge.error``.
 
-.. todo:: Troubleshooting
+Troubleshooting
+===============
 
-  - node version
-  - ...
+If when starting the server fireedge fails. In  the log you find this error:
+
+.. code-block:: bash
+
+    Error: listen EADDRINUSE: address already in use 0.0.0.0:2616
+
+Change the configuration to work with another host/port in ``/etc/one/fireedge-server.conf``
+
+.. note::
+  When making the change, you must restart the FireEdge service to apply the changes
+
