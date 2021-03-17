@@ -4,6 +4,15 @@
 OpenNebula Repositories
 =======================
 
+Before we can proceed with installation, we have to configure packaging tools on your Front-end host to include OpenNebula repositories. OpenNebula software is provided via two distinct distribution channels depending on the build type you are intended to install:
+
+- :ref:`Enterprise Edition <repositories_ee>` - enterprise users facing hardened builds,
+- :ref:`Community Edition <repositories_ce>` - free public builds.
+
+Follow the steps below based on your OpenNebula edition and Front-end operating system.
+
+.. _repositories_ee:
+
 Enterprise Edition
 ==================
 
@@ -106,6 +115,8 @@ Since Debian 10 and Ubuntu 16.04, it's possible (and recommended) to store custo
     machine enterprise.opennebula.io
     login <user>
     password <password>
+
+.. _repositories_ce:
 
 Community Edition
 =================
