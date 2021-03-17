@@ -8,11 +8,14 @@ Overview
 
 Firecracker uses the Linux Kernel-based Virtual Machine (KVM) to create and manage microVMs. It has a minimalist design, excluding unnecessary devices and guest functionality to reduce the memory footprint and attack surface area of each microVM.
 
-
 How Should I Read This Chapter
 ================================================================================
 
-This chapter will focus on the configuration options for a Firecracker based Hosts.
+This chapter focuses on the configuration options for a Firecracker based Hosts. Read the :ref:`installation <fc_node>` section to add a Firecracker host to your OpenNebula cloud to start deploying microVMs. Continue with :ref:`driver <fcmg>` section in order to understand the specific requirements, functionalities, and limitations of the Firecracker driver.
 
-* Read the :ref:`Firecracker driver <fcmg>` section in order to understand the specific requirements, functionalities, and limitations of the Firecracker driver.
-* Read the :ref:`Firecracker node installation <fc_node>` section in order to add a Firecracker host to your OpenNebula cloud to start deploying microVMs.
+You can then continue with Open Cloud :ref:`Storage <storage>` and :ref:`Networking <nm>` chapters to be able to deploy your Virtual Machines on your Firecracker hosts and access them remotely over the network.
+
+Hypervisor Compatibility
+================================================================================
+
+This chapter applies only to Firecracker.
