@@ -1,4 +1,4 @@
-.. _lxd_node:
+.. _lxc_node:
 
 =====================
 LXD Node Installation
