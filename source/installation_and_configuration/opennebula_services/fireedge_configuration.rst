@@ -67,18 +67,23 @@ syntax to define some options:
 .. note::
   Check extra configuration for :ref:`FireEdge OneProvision GUI <fireedge_cpi>`
 
-You can find the FireEdge server log file in ``/var/log/one/fireedge.log``. Errors are logged in ``/var/log/one/fireedge.error``.
-
 Troubleshooting
 ===============
 
-If when starting the server fireedge fails. In  the log you find this error:
+Any issue related with FireEdge will be logged in one of the following files:
+
+- ``/var/log/one/fireedge.log``, contains logs of operations.
+- ``/var/log/one/fireedge.error``, contains exceptions in the server.
+
+A common issue when launching FireEdge is an occupied port:
 
 .. code-block:: bash
 
     Error: listen EADDRINUSE: address already in use 0.0.0.0:2616
 
-Change the configuration to work with another host/port in ``/etc/one/fireedge-server.conf``
+To solve this issue, please check first that no FireEdge servers are currently in use (for instance using "pgrep fireedge"). If there are already a running FireEdge, take it down using systemctl, and try launching it again.
+
+If another service is using that port, you can change FireEdge configuration to use another host/port in ``/etc/one/fireedge-server.conf``. Remember to also adjust the FireEdge endpoints in ``/etc/one/sunstone-server.conf``.
 
 .. note::
   When making the change, you must restart the FireEdge service to apply the changes
