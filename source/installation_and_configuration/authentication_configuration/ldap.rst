@@ -4,14 +4,12 @@
 LDAP Authentication
 ====================
 
-The LDAP Authentication add-on permits users to have the same credentials as in LDAP, so effectively centralizing authentication. Enabling it will let any correctly authenticated LDAP user use OpenNebula.
+The LDAP Authentication allows users to have the same credentials as in LDAP, so effectively centralizing authentication. Enabling it will let any correctly authenticated LDAP user use OpenNebula.
 
 Prerequisites
 =============
 
-.. warning:: This Add-on requires the **'net/ldap'** ruby library provided by the '**net-ldap**' gem.
-
-This Add-on will not install any LDAP server or configure it in any way. It will not create, delete or modify any entry in the LDAP server it connects to. The only requirement is the ability to connect to an already running LDAP server, perform a successful **ldapbind** operation, and have a user able to perform searches of users. Therefore no special attributes or values are required in the LDIF entry of the user authenticating.
+LDAP Authentication does not contain any LDAP server or configure it in any way. It will not create, delete or modify any entry in the LDAP server it connects to. The only requirement is the ability to connect to an already running LDAP server, perform a successful **ldapbind** operation, and have a user able to perform searches of users. Therefore no special attributes or values are required in the LDIF entry of the user authenticating.
 
 Configuration
 =============
@@ -26,10 +24,10 @@ The configuration file for the auth module is located at ``/etc/one/auth/ldap_au
         # Administrator@my.domain.com
         #:user: 'admin'
         #:password: 'password'
-     
+
         # Ldap authentication method
         :auth_method: :simple
-     
+
         # Ldap server
         :host: localhost
         :port: 389
@@ -37,28 +35,25 @@ The configuration file for the auth module is located at ``/etc/one/auth/ldap_au
         # Connection and authentication timeout
         #:timeout: 15
 
-        # Uncomment this line for tls connections
+        # Uncomment this line for tls connections, use :simple_tls or :start_tls
         #:encryption: :simple_tls
-     
+
         # base hierarchy where to search for users and groups
         :base: 'dc=domain'
-     
-        # alternative base hierarchy where to search for groups instead of :base:
-        #:group_base: 'ou=groups,dc=domain'
 
         # group the users need to belong to. If not set any user will do
         #:group: 'cn=cloud,ou=groups,dc=domain'
-     
+
         # field that holds the user name, if not set 'cn' will be used
         :user_field: 'cn'
-     
+
         # for Active Directory use this user_field instead
         #:user_field: 'sAMAccountName'
 
         # field name for group membership, by default it is 'member'
         #:group_field: 'member'
 
-        # user field that that is in in the group group_field, if not set 'dn' will be used
+        # user field that is in the group group_field, if not set 'dn' will be used
         #:user_group_field: 'dn'
 
         # Generate mapping file from group template info
@@ -82,10 +77,9 @@ The configuration file for the auth module is located at ``/etc/one/auth/ldap_au
         :rfc2307bis: true
 
         # DN of a group, if user is member of that group in LDAP, this user
-        # will be a group admin of all mapped LDAP groups in ONE.
-        #:group_admin_group_dn: 'cn=admins,ou=groups,dc=domain
+        # will be group admin of all mapped LDAP groups in OpenNebula.
+        #:group_admin_group_dn: 'cn=admins,ou=groups,dc=domain'
 
-     
     # this example server wont be called as it is not in the :order list
     server 2:
         :auth_method: :simple
@@ -94,34 +88,7 @@ The configuration file for the auth module is located at ``/etc/one/auth/ldap_au
         :base: 'dc=domain'
         #:group: 'cn=cloud,ou=groups,dc=domain'
         :user_field: 'cn'
-     
-     
-    # List the order the servers are queried
-    #
-    # :order is defined as a list of server names and/or nested lists
-    # of server names (representing the availability group). The servers
-    # in the main list are consulted in the order they are written until
-    # the authentication succeeds. In the nested server lists (avail.
-    # groups), user is authenticated only against the first online server.
-    # If user is passed/refused by the server in the availability group,
-    # no other server is consulted from the same group, but
-    # the authentication process continues with the next server/group in
-    # the main list.
-    #
-    # Examples:
-    #
-    # 1) simple list
-    # :order:
-    #     - server1
-    #     - server2
-    #     - server3
-    #
-    # 2) list with availability group
-    # :order:
-    #     - server1
-    #     - ['server2', 'server3', 'server4']    # availability group
-    #     - server5
-    #
+
     :order:
         - server 1
         #- server 2
@@ -182,7 +149,8 @@ The structure is a hash where any key different to ``:order`` will contain the c
 |                            | when using LDAP. Make sure you configure        |
 |                            | ``user_group_field`` and ``group_field``        |
 +----------------------------+-------------------------------------------------+
-| ``:group_admin_group_dn:`` | DN of a group, if user is member of that group  |
+| ``:group_admin_group_dn:`` | Extenstion for group mapping.                   |
+|                            | DN of a group, if user is member of that group  |
 |                            | in LDAP, this user will be a group admin of all |
 |                            | mapped LDAP groups in ONE.                      |
 |                            |                                                 |
@@ -293,6 +261,12 @@ and in the OpenNebula group template you can define two mappings, one for each s
 
 .. note:: If the map is updated (e.g. you change the LDAP DB) the user groups will be updated next time the user is authenticated. Also note that a user may be using a login token that needs to expire for this change to take effect. The maximum lifetime of a token can be set in ``oned.conf`` for each driver. If you want the OpenNebula core not to update user groups (and control group assignment from OpenNebula) update ``DRIVER_MANAGED_GROUPS`` in the ``ldap`` ``AUTH_MAD_CONF`` configuration attribute.
 
+
+Group admin mapping
+-------------------
+Each group in OpenNebual can have its :ref:`admins <manage_groups_permissions>` which have administrative privileges for the group. Also this attribute could be controlled by the LDAP driver. For this purpose there is an option: ``:group_admin_group_dn:``. This needs be set to a LDAP DN of a group. If user is member of that group in LDAP, this user will be a group admin of all mapped LDAP groups in ONE.
+
+
 Enabling LDAP auth in Sunstone
 ==============================
 
@@ -310,3 +284,25 @@ To automatically encode credentials as explained in the :ref:`DN's with special 
 
         :encode_user_password: true
 
+
+Multiple LDAP servers: Order vs. Regex Match
+============================================
+
+Before we explained how user could be searched within the multiple LDAP serves that are given in ``:order`` section in the config file.
+
+There is an another, mutually exclusive, option for searching users in multiple LDAP servers. This option is trying to match the login with the regular expression which corresponds to the LDAP server.
+
+Example
+-------
+Let's say that there are two sub-organization `A` and `B` within your company `Example`, each using it's own LDAP server:
+
+* Organization A, using LDAP server: ``ldap-a.example.com`` and logins look like ``joe@a.example.com``
+* Organization B, using LDAP server: ``ldap-b.example.com`` and logins look like ``carl@b.example.com``
+
+And you want users which login ends with ``a.example.com`` to be searched in ``ldap-a.example.com`` and the same for users from sub-org ``B``. What you need to do, is to replace the ``:order`` section in the ldap confing whith following setup:
+
+.. code-block:: yaml
+
+    :match_user_regex:
+      "^(.*)@a.example.com$": ldap-a.example.com
+      "^(.*)@b.example.com$": ldap-b.example.com
