@@ -38,11 +38,9 @@ The following configuration attributes can be adjusted in ``/var/lib/one/remotes
 +------------------+-------------------------------------------------------------------------------------+
 | keep_empty_bridge| Set to true to preserve bridges with no virtual interfaces left.                    |
 +------------------+-------------------------------------------------------------------------------------+
-| bridge_conf      | *Hash* Options for ``brctl`` (deprecated, will be translated to ip-route2 options)  |
+| ip_bridge_conf   | *Hash* Options for ip-route2 (``ip link add <bridge> type bridge ...``)             |
 +------------------+-------------------------------------------------------------------------------------+
-| ip_bridge_conf   | *Hash* Options for ip-route2 ``ip link add <bridge> type bridge ...``               |
-+------------------+-------------------------------------------------------------------------------------+
-| ip_link_conf     | *Hash* Arguments passed to ``ip link add``                                          |
+| ip_link_conf     | *Hash* Arguments passed to (``ip link add``)                                        |
 +------------------+-------------------------------------------------------------------------------------+
 
 Example:
@@ -57,14 +55,14 @@ Example:
     #     :stp_state: on
 
 
-	# These options will be added to the ip link add command. For example:
-	#
-	#     sudo ip link add lxcbr0.260  type vxlan id 260 group 239.0.101.4 \
-	#       ttl 16 dev lxcbr0 udp6zerocsumrx  tos 3
-	#
-	:ip_link_conf:
-	    :udp6zerocsumrx:
-	    :tos: 3
+    # These options will be added to the ip link add command. For example:
+    #
+    #     sudo ip link add lxcbr0.260  type vxlan id 260 group 239.0.101.4 \
+    #       ttl 16 dev lxcbr0 udp6zerocsumrx  tos 3
+    #
+    :ip_link_conf:
+        :udp6zerocsumrx:
+        :tos: 3
 
 .. _hm-vlan_net:
 
