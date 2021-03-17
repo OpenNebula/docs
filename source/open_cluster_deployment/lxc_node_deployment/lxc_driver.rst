@@ -1,285 +1,148 @@
 .. _lxdmg:
+.. _lxcmg:
 
 ================================================================================
-LXD Driver
+LXC Driver
 ================================================================================
-
-`LXD <https://linuxcontainers.org/lxd/>`__ is a daemon which provides a REST API to drive **LXC** containers. Containers are lightweight OS-level Virtualization instances, they behave like Virtual Machines but don't suffer from hardware emulation processing penalties by sharing the kernel with the host.
 
 Requirements
 ============
-The LXD driver support using LXD through snap packages, if there is a snap installed, it will detect it and use that installation path. 
 
-The host needs to be an Ubuntu system > 1604 or Debian > 10.
+LXC driver requires the LXC version of the target distribution to be >= 3.0.3.
 
 Considerations & Limitations
 ================================================================================
-The guest OS will share the Linux kernel with the virtualization node, so you won't be able to launch any non-Linux OS. 
+
+Security
+--------------------------------------------------------------------------------
+
+In order to ensure the security in a multitenant environment only unprivileged containers are supported by LXC drivers.
+
+The unprivileged containers will be deployed as ``root``. It will use ``600100001-600165537`` sub UID/GID range for mapping users/groups in order to increase security in case a malicious agent is able to scape the container.
+
+Storage Limitations
+--------------------------------------------------------------------------------
+
+- Datablocks require to be formatted with a file system in order to being able to attach it to a container.
+
+- Only file system images are supported.
+
+Container Actions
+--------------------------------------------------------------------------------
 
 There are a number of regular features that are not implemented yet:
+Some of the actions supported by OpenNebula for VMs are not implemented yet for LXC. The following actions are not currently supported:
 
-- snapshots
-- live migration
-- save/restore
-- live disk resize
-- LVM datastore
-- PCI Passthrough
-- swap disk type, inderectly supported through volatile disks
-- offline disk resize
-- **datablocks**: Datablocks created on OpenNebula will need to be formatted before being attached to a container
-- **multiple partition images**: One of the partitions must have a valid `/etc/fstab` to mount the partitions 
-- ``lxc exec $container -- login`` in a centos container doesn't output the login shell 
+- ``migration``
+- ``live migration``
+- ``live disk resize``
+- ``save/restore``
+- ``snapshots``
+- ``disk-saveas``
+- ``disk hot-plugging``
+- ``nic hot-plugging``
 
-.. note:: **Offline Disk Resize**
+PCI Passthrough
+--------------------------------------------------------------------------------
 
-    Images with a partition table, like the KVM-ready ones found in the `OpenNebula Marketplace <https://marketplace.opennebula.io/appliance>`_ are not supported. When the container is up and running, you can identify such images if they have the following layout.
+PCI Passthrough is not currently supported for LXC containers.
 
-    .. code-block:: none
+Wild Containers
+--------------------------------------------------------------------------------
 
-        nbd0      43:0    0  256M  0 disk 
-        └─nbd0p1  43:1    0  255M  0 part /var/snap/lxd/common/lxd/storage-pools/default/containers/one-9/rootfs
-
-    **nbd0** is the virtual disk and  **nbd0p1** is the partition holding the filesystem.
-
-    resize-supported images have the following layout. You can find images like these in :ref:`the LXD marketplace <market_linux_container>`. 
-
-    .. code-block:: none
-
-        nbd1      43:32   0    1G  0 disk /var/snap/lxd/common/lxd/storage-pools/default/containers/one-10/rootfs
-
-    where the disk itslef is the filesystem. The supported filesystems for this operations are **xfs** and **ext4**.
+Importing wilds containers that weren't deployed by OpenNebula is not currently supported.
 
 
 Configuration
 ================================================================================
-There are some interaction options between LXD and OpenNebula configured in ``/var/lib/one/remotes/etc/vmm/lxd/lxdrc``
 
-.. code-block:: yaml
-
-    ################################################################################
-    # VNC Options
-    ################################################################################
-    #
-    # Options to customize the VNC access to the container:
-    #   - :command: to be executed in the VNC terminal.
-    #   - :width: of the terminal
-    #   - :height: of the terminal
-    #   - :timeout: seconds to close the terminal if no input has been received
-    :vnc:
-      :command: /bin/login
-      :width: 800
-      :height: 600
-      :timeout: 300
-
-    ################################################################################
-    # OpenNebula Configuration Options
-    ################################################################################
-    #
-    # Default path for the datastores. This only need to be change if the 
-    # corresponding value in oned.conf has been modified.
-    :datastore_location: /var/lib/one/datastores
-
-
-In case of a more complex cgroup configuration the containers cgroup could be placed in separate slice instead of default root cgroup. You can configure it via an environmental variable
-
-.. code-block:: bash
-
-    export LXC_CGROUP_PREFIX=system.slice
-
-LXD daemon
+Driver Specifics Configuration
 --------------------------------------------------------------------------------
 
-Every existing container should have defined the following limits: ``limits.cpu.allowance``, ``limits.cpu`` and ``limits.memory``. The opennebula-node-lxd package sets the default profile with these limits to ``100%``, ``1`` and ``512MB``.
+LXC specifics configurations are available at ``/var/lib/one/remotes/etc/vmm/lxc/lxcrc`` file in the OpenNebula frontend node. The following list contains the supported configuration attributes and a brief description:
 
++----------------------------+-------------------------------------------------------+
+| NAME                       | Description                                           |
++============================+=======================================================+
+| ``:vnc``                   | Options to customize the VNC access to the            |
+|                            | microVM. ``:width``, ``:height``, ``:timeout``, and   |
+|                            | ``:command`` can be set                               |
++----------------------------+-------------------------------------------------------+
+| ``:datastore_location``    | Default path for the datastores. This only need to be |
+|                            | change if the corresponding value in oned.conf has    |
+|                            | been modified                                         |
++----------------------------+-------------------------------------------------------+
+| ``:default_lxc_config``    | Path to the LXC default configuration file. This file |
+|                            | will be included in the configuration of every LXC    |
+|                            | container                                             |
++----------------------------+-------------------------------------------------------+
 
-Drivers
+Drivers Generic Configuration
 --------------------------------------------------------------------------------
 
-The LXD driver is enabled by default in OpenNebula:
+The LXC driver is enabled by default in OpenNebula ``/etc/one/oned.conf`` on your Front-end host. The configuration parameters: ``-r``, ``-t``, ``-l``, ``-p`` and ``-s`` are already preconfigured with reasonable defaults. If you change them, you will need to restart OpenNebula.
 
-.. code-block::  bash
+Read the :ref:`oned Configuration <oned_conf_virtualization_drivers>` to understand these configuration parameters and :ref:`Virtual Machine Drivers Reference <devel-vmm>` to know how to customize and extend the drivers.
 
-    #-------------------------------------------------------------------------------
-    #  LXD Virtualization Driver Manager Configuration
-    #    -r number of retries when monitoring a host
-    #    -t number of threads, i.e. number of hosts monitored at the same time
-    #    -l <actions[=command_name]> actions executed locally, command can be
-    #        overridden for each action.
-    #        Valid actions: deploy, shutdown, cancel, save, restore, migrate, poll
-    #        An example: "-l migrate=migrate_local,save"
-    #    -p more than one action per host in parallel, needs support from hypervisor
-    #    -s <shell> to execute remote commands, bash by default
-    #    -w Timeout in seconds to execute external commands (default unlimited)
-    #
-    #-------------------------------------------------------------------------------
-    VM_MAD = [
-        NAME           = "lxd",
-        SUNSTONE_NAME  = "LXD",
-        EXECUTABLE     = "one_vmm_exec",
-        ARGUMENTS      = "-t 15 -r 0 lxd",
-        # DEFAULT        = "vmm_exec/vmm_exec_lxd.conf",
-        TYPE           = "xml",
-        KEEP_SNAPSHOTS = "no",
-        IMPORTED_VMS_ACTIONS = "terminate, terminate-hard, reboot, reboot-hard, poweroff, poweroff-hard, suspend, resume, stop, delete,  nic-attach,    nic-detach"
-    ]
+Storage
+================================================================================
 
-The configuration parameters: ``-r``, ``-t``, ``-l``, ``-p`` and ``-s`` are already preconfigured with sane defaults. If you change them you will need to restart OpenNebula.
+LXC containers need a root file system image in order to boot. This images can be downloaded directly to OpenNebula from `Docker Hub <https://hub.docker.com/>`__, `Linux Containers <https://uk.images.linuxcontainers.org/>`__ and `Turnkey Linux <https://www.turnkeylinux.org/>`__ Marketplaces. Check :ref:`Public Marketplaces <public_marketplaces>` chapter for more information.
 
-Read the :ref:`Virtual Machine Drivers Reference <devel-vmm>` for more information about these parameters, and how to customize and extend the drivers.
+.. note:: Custom images can also be created by using common linux tools like ``mkfs`` command for creating the file system and ``dd`` for copying and existing file system inside the new one.
 
+Networking
+================================================================================
+
+LXC containers are fully integrated with every OpenNebula networking driver.
 
 Usage
 ================================================================================
 
-LXD Specific Attributes
+Container Template
 -----------------------
 
-The following are template attributes specific to LXD, please refer to the :ref:`template reference documentation <template>` for a complete list of the attributes supported to define a VM.
-
-VNC
-~~~
-
-The VNC connection seen on Sunstone is the output of the execution of a command run via ``lxc exec``, by default this command is ``login`` and it's configured on a per-node basis by the **lxdrc** file. In order to change it you can set it under ``GRAPHICS`` with the ``COMMAND`` key.
-
-|image1|
-
-Security
-~~~~~~~~
-Containers can be either `privileged or unprivileged <https://linuxcontainers.org/lxc/security/>`_ and can also allow nested containers. In order to define this setting in the OpenNebula template you should add:
+Container Templates can be defined by using the same attributes described in :ref:`Virtual Machine Template section <vm_templates>`.
 
 .. code::
 
-    LXD_SECURITY_PRIVILEGED=true
-    LXD_SECURITY_NESTING=true
+    CPU="1"
+    MEMORY="146"
+    CONTEXT=[
+      NETWORK="YES",
+      SSH_PUBLIC_KEY="$USER[SSH_PUBLIC_KEY]" ]
+    DISK=[
+      IMAGE="Alpine Linux 3.11",
+      IMAGE_UNAME="oneadmin" ]
+    GRAPHICS=[
+      LISTEN="0.0.0.0",
+      TYPE="VNC" ]
+    NIC=[
+      NETWORK="vnet",
+      NETWORK_UNAME="oneadmin",
+      SECURITY_GROUPS="0" ]
 
-By default OpenNebula will create unprivileged images
+Remote Access
+-----------------------
 
-Profiles
-~~~~~~~~
-The LXD daemon may hold several defined profiles. Every container inherits properties by default from the default profile. However you can set a custom profile to inherit from, in the VM template.
+Containers supports remote access via VNC protocol which allows easy access to them. The following section must be added to the container template to configure the VNC access:
 
 .. code::
 
-    LXD_PROFILE=<profile_name>
-
-Bear in mind that the template will override any matching key with the profile. If the profile is not found on the node, the default profile will be applied and an error will appear on the VM log.
-
-A probe will run in each node reporting to the frontend which profiles exist on the node in order for them to be easilty applied without having to manually look for them.
-
-Disks
-~~~~~
-Attached disks are handled by ``type: disk`` devices in the container, this works different from KVM in such a way that `the disk is mounted on the LXD host and then the mountpoint is passed-through the container in an user defined mountpoint <https://help.ubuntu.com/lts/serverguide/lxd.html.en#lxd-container-config>`_ .
-
-The disk_attaching process, on a high level descriptions follows:
-    - There is an image file whose contents should be visible inside a container directory
-    - In order to tell LXD to handle a disk, this file should be mounted on a host directory, ``$DATASTORE_LOCATION/$system_datastore_id/$vm_id/mapper/disk.$disk_id``
-    - The disk can be of different types, currently, the supported ones are **raw** and **qcow2** image files, and ceph **rbd**.
-    - In order to be mounted, first, each image needs to be mapped to a host device
-    -  Depending on the image type, a different utility will be used, ``losetup`` for **raw** images, ``qemu-nbd`` for **qcow2** images and ``rbd-nbd`` for ceph rbd.
-    - If the image has multiple partitions, each partition will be mounted until an ``/etc/fstab`` file is found and each partition with a valid filesystem will be mounted accordingly.
+    GRAPHICS=[
+      LISTEN="0.0.0.0",
+      TYPE="VNC" ]
 
 Additional Attributes
-~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
-The **raw** attribute offers the end user the possibility of passing by attributes not known by OpenNebula to LXD. Basically, everything placed here will be written literally into the LXD deployment file.
+The ``RAW`` attribute allows to add raw lxc configuration attributes to the final container deployment file. This allows to set configuration attributes that are not directly supported by OpenNebula.
 
 .. code::
 
-      RAW = [ 
-          type = "lxd",
-          data = "boot.autostart": "true", "limits.processes": "10000"
+      RAW = [
+            type = "lxc",
+            data = "lxc.signal.reboot = 9"
         ]
 
-Importing VMs
--------------
-
-LXD can deploy containers without any resource limitation, however, OpenNebula cannot create a VM without a stated capacity, thus the wild containers should have these keys defined. Once imported, the containers will benefit from:
-
-- start
-- stop `hard also`
-- restart `hard also`
-- attach/detach_nic
-- vnc connection
-
-Containers won't get any benefit from storage related actions since they don't have a valid image in the datastore. If you delete the imported container it will become wild again.
-
-Tuning & Extending
-==================
-
-Multi-hypervisor
-----------------
-Since LXD doesn't require virtualization extensions, it can peacefully coexist alongside KVM or other HVM hypervisor in the same virtualization node.
-
-Images
--------
-The LXD drivers can create containers from images in the same format as KVM, ex. a qcow2 image.
-
-Create your own image
-~~~~~~~~~~~~~~~~~~~~~
-Basically you create a file, map it into a block device, format the device and create a partition, dump data into it and voilá, you have an image.
-
-We will create a container using the LXD CLI and dump it into a block device in order to use it later in OpenNebula datastores. It could be a good time to 
-`contextualize <kvm_contextualization>`  the container, the procedure is the same as KVM. 
-
-.. prompt:: bash # auto
-
-    # truncate -s 2G container.img
-    # block=$(losetup --find --show container.img)
-    # mkfs.ext4 $block
-    # mount $block /mnt
-    # lxc init my-container ubuntu:18.04
-    # cp -rpa /var/lib/lxd/containers/my-container/rootfs/* /mnt
-    # umount $block
-    # losetup -d $block
-
-Now the image is ready to be used, you can also use ``qemu-img`` to convert the image format. Note that you can use any linux standard filesystem / partition layout as a base image for the contianer. This enables you to easily import images from raw lxc, root partitions from KVM images or proxmox templates. 
-
-Use a linuxcontainers.org Marketplace
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Every regular LXD setup comes by default with a public image server read access in order to pull container images from. 
-
-.. prompt:: bash # auto
-
-    # lxc remote list
-    +-----------------+------------------------------------------+---------------+-----------+--------+--------+
-    |      NAME       |                   URL                    |   PROTOCOL    | AUTH TYPE | PUBLIC | STATIC |
-    +-----------------+------------------------------------------+---------------+-----------+--------+--------+
-    | images          | https://images.linuxcontainers.org       | simplestreams |           | YES    | NO     |
-    +-----------------+------------------------------------------+---------------+-----------+--------+--------+
-    | local (default) | unix://                                  | lxd           | tls       | NO     | YES    |
-    +-----------------+------------------------------------------+---------------+-----------+--------+--------+
-    | ubuntu          | https://cloud-images.ubuntu.com/releases | simplestreams |           | YES    | YES    |
-    +-----------------+------------------------------------------+---------------+-----------+--------+--------+
-    | ubuntu-daily    | https://cloud-images.ubuntu.com/daily    | simplestreams |           | YES    | YES    |
-    +-----------------+------------------------------------------+---------------+-----------+--------+--------+
-
-OpenNebula can leverage the existing **images** server by using it as a backend for a :ref:`Marketplace <market_linux_container>`.. 
-
-Use a KVM disk image
-~~~~~~~~~~~~~~~~~~~~
-The LXD driver can create a container from an image with a partition table, as long as this image has valid fstab file. LXD containers security is based on this uuid mapping, when you start a container its uuids are mapped according to the LXD config. However, sometimes the container rootfs cannot be mapped, this issue happens with the marketplace images, and in order to use the you need to set the ``LXD_SECURITY_PRIVILEGED`` to true in the container VM template.
-
-You can get this type of images directly from the OpenNebula Marketplace.
-
-Custom storage backends
-~~~~~~~~~~~~~~~~~~~~~~~
-If you want to customize the supported images ex. `vmdk` files, the LXD driver has some modules called mappers which allow the driver to interact with several image formats like ``raw``, ``qcow2`` and ``rbd`` devices.
-
-The mapper basically is a ruby class with two methods defined, a ``do_map`` method, which loads a disk file into a system block device, and an ``do_unmap`` mehtod, which reverts this ex.
-
-.. code::
-
-    disk.qcow2     -> map -> /dev/nbd0
-    disk.raw       -> map -> /dev/loop0
-    one/one-7-54-0 -> map -> /dev/nbd0
-
-However things can get tricky when dealing with images with a partition table, you can check the code of the mapper devices `here <https://github.com/OpenNebula/one/blob/master/src/vmm_mad/remotes/lib/lxd/mapper/>`_.
-
-Troubleshooting
-==================
-- The oneadmin user has his ``$HOME`` in a non ``/home/$USER`` location. This prevents the oneadmin account from properly using the LXD CLI due to a snap limitation. You can use sudo to use other account to run lxd commands.
-- The command parameter in the VNC configuration dictates which command will appear in noVNC when entering a container. Having ``/bin/bash`` will skip the user login and gain root access on the container.
-- If you experience `reboot issues <https://github.com/OpenNebula/one/issues/3189>`_ you can apply a network hook patch by copying the file ``/usr/share/one/examples/network_hooks/99-lxd_clean.rb`` to ``/var/lib/one/remotes/vnm/<network_driver>/clean.d`` and issuing ``onehost sync --force``. This have to be done for all network drivers used in your cloud.
-
-.. |image1| image:: /images/vncterm_command.png
+.. note:: Each line of the ``data`` attribute must contain only an lxc configuration attribute and its corresponding value. If a provided attribute is already set by OpenNebula, it will be discarded and the original value will prevail.

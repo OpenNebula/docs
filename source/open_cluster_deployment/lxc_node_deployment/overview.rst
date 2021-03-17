@@ -1,31 +1,21 @@
 .. _lxc_node_deployment_overview:
 
-.. todo:: Review and adapt
-
 ================================================================================
 Overview
 ================================================================================
 
-The Hosts are servers with a hypervisor installed (KVM, LXD or Firecracker) which execute the running Virtual Machines. These Hosts are managed by the KVM, LXD or Firecracker Driver, which will perform the actions needed to manage the VM and its life-cycle. This chapter analyses the KVM, LXD or Firecracker driver in detail, and will give you, amongst other things, the tools to configure and add KVM, LXD or Firecracker hosts into the OpenNebula Cloud.
+`LXC <https://linuxcontainers.org/lxc/introduction/>`__ allows Linux users to create and manage system and application containers. LXC uses Linux kernel features as kernel namespaces, CGroups or Seccomp policies among others to contain processes.
+
+The goal of LXC is to create environments similar to an standard Linux installation without the need for a separate kernel.
 
 How Should I Read This Chapter
 ================================================================================
 
-Before reading this chapter, you should have already installed your :ref:`Frontend <frontend_installation>`, the :ref:`KVM Hosts <kvm_node>` and/or :ref:`LXD Hosts <lxd_node>` and have an OpenNebula cloud up and running with at least one virtualization node.
+This chapter focuses on the configuration options for an LXC based Hosts. Read the :ref:`installation <lxc_node>` section to add an LXC host to your OpenNebula cloud to start deploying containers. Continue with :ref:`driver <lxcmg>` section in order to understand the specific requirements, functionalities, and limitations of the LXC driver.
 
-This chapter will focus on the configuration options for the Hosts.
-
-* Read the :ref:`KVM driver <kvmg>` section in order to understand the procedure of configuring and managing KVM Hosts.
-* Read the :ref:`LXD driver <lxdmg>` section in order to understand the procedure of configuring and managing LXD Hosts.
-* Read the :ref:`Firecracker driver <fcmg>` section in order to understand the procedure of configuring and managing Firecracker Hosts.
-* In the :ref:`Monitoring <mon>` section, you can find information about how OpenNebula is monitoring its Hosts and Virtual Machines, and changes you can make in the configuration of that subsystem.
-* You can read this section if you are interested in performing :ref:`PCI Passthrough <kvm_pci_passthrough>`.
-
-After reading this chapter, you should read the :ref:`Open Cloud Storage <storage>` chapter.
+You can then continue with Open Cloud :ref:`Storage <storage>` and :ref:`Networking <nm>` chapters to be able to deploy your containers on your LXC hosts and access them remotely over the network.
 
 Hypervisor Compatibility
 ================================================================================
 
-This chapter applies to KVM, LXD and Firecracker.
-
-Follow the :ref:`vCenter Node <vcenter_node>` section for a similar guide for vCenter.
+This chapter applies only to LXC.

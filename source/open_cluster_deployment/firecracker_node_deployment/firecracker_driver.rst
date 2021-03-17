@@ -50,7 +50,7 @@ Networking Limitations
 
 Firecracker only supports networking based on Linux bridges.
 
-MicroVM actions
+MicroVM Actions
 --------------------------------------------------------------------------------
 
 Some of the actions supported by OpenNebula for VMs and containers are not supported for microVM due to Firecracker limitations. The following actions are not currently supported:
