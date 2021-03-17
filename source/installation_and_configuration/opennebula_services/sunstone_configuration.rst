@@ -422,7 +422,7 @@ After that you can access the VM and configure the ssh service:
     root@<guest-VM>:~$ vi /etc/ssh/sshd_config
 
     # Restart SSH service
-    root@<guest-VM>:~$ restart sshd service
+    root@<guest-VM>:~$ /etc/init.d/sshd restart
     
     # Add user: username/password
     root@<guest-VM>:~$ adduser <username>
