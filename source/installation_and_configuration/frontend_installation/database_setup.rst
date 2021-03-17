@@ -1,35 +1,65 @@
 .. _database_setup:
-.. _mysql:
-.. _mysql_setup:
 
 ==============
 Database Setup
 ==============
 
+OpenNebula Front-end uses the database to persist the complete state of the cloud. It supports several database solutions, each is recommended for different usage. It's necessary to decide carefully, as the migration of existing installation to different database type is complex or impossible (depends on the back-end). Following options are available:
+
+- default embedded :ref:`SQLite <sqlite_setup>` for small workloads,
+- recommended :ref:`MySQL/MariaDB <mysql_setup>` for production,
+- experimental :ref:`PostgreSQL <postgresql_setup>` for evaluation only (support still a **Technology Preview**),
+
+It's recommended to decide and install the database back-end now. Later, when doing the :ref:`Front-end Installation <frontend_installation>`, return back here and only update the OpenNebula configuration for specific back-end based (ideally) *prior* starting OpenNebula for the first time.
+
+.. _sqlite_setup:
+
+SQLite Setup
+============
+
+.. note::
+
+    The information about SQLite is only for completeness, default installation is preconfigured for SQLite and no actions are required!
+
+The **SQLite** back-end is the default database back-end. It's not recommended for production use, it doesn't perform well under load and on bigger infrastructures. For most cases, it's recommended to use :ref:`MySQL/MariaDB <mysql_setup>`.
+
+Install
+-------
+
+No installation is required.
+
+Configure OpenNebula
+--------------------
+
+No changes required. Default OpenNebula configuration already uses SQLite. Following is the relevant part in :ref:`/etc/one/oned.conf <oned_conf>` configuration file:
+
+.. code::
+
+    DB = [ BACKEND = "sqlite",
+           TIMEOUT = 2500 ]
+
+.. _database_mysql:
+.. _mysql:
+.. _mysql_setup:
+
 MySQL Setup
 ===========
 
-The MySQL/MariaDB back-end is an alternative to the default SQLite back-end. In this guide and in the rest of OpenNebula's documentation and configuration files we will refer to this database as MySQL. However, OpenNebula can use either MySQL or MariaDB.
-
-The two back-ends cannot coexist (SQLite and MySQL), and you will have to decide which one is going to be used while planning your OpenNebula installation.
-
-.. note:: If you are planning to install OpenNebula with MySQL back-end, please follow this guide *prior* to starting OpenNebula the first time to avoid problems with oneadmin and serveradmin credentials.
+The **MySQL/MariaDB** back-end is an alternative to the default SQLite back-end. It's recommended for serious or production workloads, fully-featured with the best performance. In this guide and in the rest of documentation and configuration files we refer to this database as MySQL. However, OpenNebula can use either MySQL or MariaDB.
 
 .. _mysql_installation:
 
-Installation
-============
+Install
+-------
 
-First of all, you need a working MySQL server. You can either deploy one for the OpenNebula installation or reuse any existing MySQL already deployed and accessible by the Frontend.
+First of all, you need a working MySQL or MariaDB server. You can either deploy one for the OpenNebula installation following the guides for your operating system or reuse existing one accessible by the Front-end. We assume you have MySQL/MariaDB server installed and running.
 
-Configuring MySQL
------------------
+Configure
+---------
 
-You need to add a new user and grant it privileges on the ``opennebula`` database. This new database doesn't need to exist as OpenNebula will create it the first time it runs.
+You need to add a new database user and grant him privileges on the ``opennebula`` database. This new database doesn't need to exist as OpenNebula will create it the first time it runs. Assuming you are going to use the default values, log in to your MySQL server and issue the following commands while replacing ``<thepassword>`` by own secure password:
 
-Assuming you are going to use the default values, log in to your MySQL server and issue the following commands:
-
-.. code::
+.. prompt:: bash $ auto
 
     $ mysql -u root -p
     Enter password:
@@ -42,35 +72,38 @@ Assuming you are going to use the default values, log in to your MySQL server an
 
 Visit the `MySQL documentation <https://dev.mysql.com/doc/refman/8.0/en/access-control.html>`__ to learn how to manage accounts.
 
-Now configure the transaction isolation level:
+Now, configure the transaction isolation level:
 
 .. code::
 
     mysql> SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED;
 
+Configure OpenNebula
+--------------------
 
-Configuring OpenNebula
-----------------------
-
-Before you run OpenNebula for the first time, you need to set in the :ref:`oned.configuration <oned_conf>` the connection details, and the database you have granted privileges on.
+Before you run OpenNebula for the first time in next section :ref:`Front-end Installation <frontend_installation>`, you'll need to set the database back-end and connection details in configuration file :ref:`/etc/one/oned.conf <oned_conf>` as follows:
 
 .. code::
 
-    # Sample configuration for MySQL
-    DB = [ backend = "mysql",
-           server  = "localhost",
-           port    = 0,
-           user    = "oneadmin",
-           passwd  = "<thepassword>",
-           db_name = "opennebula" ]
+    # Sample configuration for PostgreSQL
+    DB = [ BACKEND = "mysql",
+           SERVER  = "localhost",
+           PORT    = 0,
+           USER    = "oneadmin",
+           PASSWD  = "<thepassword>",
+           DB_NAME = "opennebula",
+           CONNECTIONS = 25,
+           COMPARE_BINARY = "no" ]
 
 Fields:
 
-* **server**: URL of the machine running the MySQL server.
-* **port**: port for the connection to the server. If set to 0, the default port is used.
-* **user**: MySQL user-name.
-* **passwd**: MySQL password.
-* **db_name**: Name of the MySQL database OpenNebula will use.
+- ``SERVER`` - IP/hostname of the machine running the MySQL server,
+- ``PORT`` - port for the connection to the server (default port is used when ``0``),
+- ``USER`` - MySQL user-name,
+- ``PASSWD`` - MySQL password,
+- ``DB_NAME`` - name of the MySQL database OpenNebula will use,
+- ``CONNECTIONS`` - max. number of connections,
+- ``COMPARE_BINARY`` - compare strings using BINARY clause to make name searches case sensitive.
 
 .. _postgresql:
 .. _postgresql_setup:
@@ -80,7 +113,7 @@ PostgreSQL Setup (TP)
 
 .. important:: This feature is a **Technology Preview**. It's not recommended for production environments!
 
-The PostgreSQL back-end is an alternative to SQLite and MySQL/MariaDB back-ends. All back-ends cannot coexist, and you will have to decide which one is going to be used while planning your OpenNebula installation. It's not possible to automatically migrate the existing OpenNebula database from SQLite or MySQL/MariaDB to PostgreSQL.
+The **PostgreSQL** back-end is an alternative to SQLite and MySQL/MariaDB back-ends. It's not possible to automatically migrate the existing OpenNebula database from SQLite or MySQL/MariaDB to PostgreSQL!
 
 Features:
 
@@ -88,21 +121,19 @@ Features:
 * No migrator for existing deployments from SQLite or MySQL/MariaDB
 * No full-text search support
 
-.. note:: If you are planning to install OpenNebula with PostgreSQL back-end, please follow this guide **prior** to starting OpenNebula for the first time to avoid problems with oneadmin and serveradmin credentials.
-
 .. _postgresql_installation:
 
 Installation
 ============
 
-First of all, you need a working PostgreSQL server **version 9.5 or newer**. You can either deploy one for the OpenNebula installation or reuse any existing PostgreSQL already deployed and accessible by the Frontend. We assume you have PostgreSQL server installed and running.
+First of all, you need a working PostgreSQL server **version 9.5 or newer**. You can either deploy one for the OpenNebula installation following the guides for your operating system or reuse existing one accessible by the Front-end. We assume you have PostgreSQL server installed and running.
 
 Configuring PostgreSQL
 ----------------------
 
 Create new database user ``oneadmin`` and provide own password for database user:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ sudo -i -u postgres -- createuser -E -P oneadmin
     Enter password for new role: **********
@@ -110,7 +141,7 @@ Create new database user ``oneadmin`` and provide own password for database user
 
 Create database ``opennebula`` with owner ``oneadmin``:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ sudo -i -u postgres -- createdb -O oneadmin opennebula
 
@@ -142,33 +173,31 @@ If connection above fails, you might need to configure client authentication mec
 
 Reload the PostgreSQL server after the change:
 
-.. code::
+.. prompt:: bash # auto
 
-    $ sudo systemctl reload postgresql
+    # systemctl reload postgresql
 
 Validate a working connection again.
 
-Visit the `PostgreSQL documentation <https://www.postgresql.org/docs/12/auth-pg-hba-conf.html>`__ to learn how to manage client authentication configuration.
-
-Configuring OpenNebula
+Configure OpenNebula
 ----------------------
 
-Before you run OpenNebula for the first time, you need to set database connection details in :ref:`oned.conf <oned_conf>`.
+Before you run OpenNebula for the first time in next section :ref:`Front-end Installation <frontend_installation>`, you'll need to set the database back-end and connection details in configuration file :ref:`/etc/one/oned.conf <oned_conf>` as follows:
 
 .. code::
 
     # Sample configuration for PostgreSQL
-    DB = [ backend = "postgresql",
-           server  = "localhost",
-           port    = 0,
-           user    = "oneadmin",
-           passwd  = "**********",
-           db_name = "opennebula" ]
+    DB = [ BACKEND = "postgresql",
+           SERVER  = "localhost",
+           PORT    = 0,
+           USER    = "oneadmin",
+           PASSWD  = "<thepassword>",
+           DB_NAME = "opennebula" ]
 
 Fields:
 
-* **server**: of the machine running the PostgreSQL server.
-* **port**: port for the connection to the server. If set to 0, the default port is used.
-* **user**: PostgreSQL user-name.
-* **passwd**: PostgreSQL password.
-* **db_name**: Name of the PostgreSQL database OpenNebula will use.
+- ``SERVER`` - IP/hostname of the machine running the PostgreSQL server,
+- ``PORT`` - port for the connection to the server (default port is used when ``0``),
+- ``USER`` - PostgreSQL user-name,
+- ``PASSWD`` - PostgreSQL password,
+- ``DB_NAME`` - name of the PostgreSQL database OpenNebula will use.
