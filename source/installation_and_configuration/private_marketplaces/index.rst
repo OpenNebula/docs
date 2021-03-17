@@ -8,5 +8,5 @@ Private Marketplaces
    :maxdepth: 2
 
    Overview <overview>
-   HTTP MarketPlaces <market_http>
-   S3 MarketPlaces <market_s3>
+   HTTP Marketplaces <market_http>
+   S3 Marketplaces <market_s3>
