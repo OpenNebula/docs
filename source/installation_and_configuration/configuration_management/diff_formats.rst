@@ -4,7 +4,7 @@
 Diff Formats
 ============
 
-Configuration management tool ``onecfg`` allows comparing of the configuration files to identify user changes in the OpenNebula distributed files. The result of a comparison, the differential output, describes all the individual changes which were done and which can be even applied back again later or on a different machine.
+Configuration management tool ``onecfg`` allows comparing of the configuration files to identify user changes against the OpenNebula distributed files. The result of a comparison, the differential output, describes all the individual changes which were done and which can be even applied back again later or on a different machine.
 
 The following table shows supported formats by each subcommand:
 
@@ -120,15 +120,15 @@ Examples:
 - ``null`` - uninitialized value
 - ``11`` - Integer value ``11``
 - ``"11"`` - String value ``11``
-- ``'11'`` - **invalid valid JSON value!**
+- ``'11'`` - **invalid JSON value!**
 - ``"'11'"`` - String value ``'11'``
 - ``"\"11\"`` - String value ``"11"`` (strings with inner quotes must be escaped)
 - ``true`` - Boolean value ``true``
 - ``"true"`` - String value ``true``
 - ``["apple", "orange"]`` - Array with 2 String values ``apple`` and ``orange``
-- ``['apple', 'orange"]`` - **invalid JSON value**
+- ``['apple', 'orange"]`` - **invalid JSON value!**
 - ``{"fruit": "apple"}`` - Hash with key ``fruit`` with value ``apple``
-- ``{'fruit': 'apple'}`` - **invalid JSON value**
+- ``{'fruit': 'apple'}`` - **invalid JSON value!**
 
 .. important::
 
@@ -152,8 +152,8 @@ Examples
 
 How to read the output? Let's go through few examples from above:
 
-- ``/etc/one/cli/oneimage.yaml ins :ID/:adjust false`` - add new key ``:adjust`` with Boolean value ``true`` into top Hash structure ``:ID``
-- ``/etc/one/cli/oneimage.yaml set :USER/:size 15`` - value for existing key ``:size`` inside top Hash structure ``:NAME`` changes to ``15``
+- ``/etc/one/cli/oneimage.yaml ins :ID/:adjust false`` - add new key ``:adjust`` with Boolean value ``false`` into top Hash structure ``:ID``
+- ``/etc/one/cli/oneimage.yaml set :USER/:size 15`` - value for existing key ``:size`` inside top Hash structure ``:USER`` changes to ``15``
 - ``/etc/one/oned.conf rm VM_MAD/"vcenter"/DEFAULT`` - remove key ``DEFAULT`` from ``VM_MAD`` section for ``vcenter``
 
 Text Format
