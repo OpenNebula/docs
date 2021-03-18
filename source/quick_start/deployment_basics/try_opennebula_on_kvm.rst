@@ -4,7 +4,7 @@
 Try OpenNebula on KVM
 =====================
 
-In this guide, we'll go through an all-in-one OpenNebula environment deployment, where all the necessary OpenNebula services to use, manage and run the cloud will be colocated on the single dedicated bare-metal host.
+In this guide, we'll go through a front-end OpenNebula environment deployment, where all the necessary OpenNebula services to use, manage and run the cloud will be colocated on the single dedicated bare-metal host. Afterwards you can continue to the Operations Basics section to add a remote edge cluster to your shiny new OpenNebula cloud!
 
 While all the :ref:`installation and configuration <opennebula_installation>` steps could be done manually and would give you a better insight and control over what and how it is configured, we'll focus on the most straightforward approach leveraging the miniONE tool.
 
@@ -31,8 +31,6 @@ You'll need a server to try out OpenNebula. The provided host should have a fres
 - privileged user access (`root`)
 - openssh-server package installed
 - operating system: CentOS 7 or 8, Debian 9 or 10, Ubuntu 18.04 or 20.04
-
-.. image:: /images/minione-kvm.png
 
 Download
 ========
