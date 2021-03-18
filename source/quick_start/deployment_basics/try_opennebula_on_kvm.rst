@@ -16,7 +16,7 @@ If you're feeling adventurous, go ahead and try out the following.
 .. prompt:: bash # auto
 
     # wget 'https://github.com/OpenNebula/minione/releases/latest/download/minione'
-    # sudo bash minione
+    # sudo bash minione --frontend
 
 Otherwise, read on!
 
