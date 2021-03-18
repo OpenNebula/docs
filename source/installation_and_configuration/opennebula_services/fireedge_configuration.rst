@@ -50,6 +50,10 @@ The FireEdge configuration file can be found at ``/etc/one/fireedge-server.conf`
 
 .. note:: Check extra configuration for :ref:`FireEdge OneProvision GUI <fireedge_cpi>`.
 
+Once the server is initialized, it creates the file ``/var/lib/one/.one/fireedge_key``.
+
+.. note:: In HA environments, the file ``/var/lib/one/.one/fireedge_key`` and the directory ``/var/lib/one/fireedge`` between nodes
+
 .. _fireedge_configuration_for_sunstone:
 
 Configuration for Sunstone
