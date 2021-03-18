@@ -9,7 +9,7 @@ Following table describes all configuration files and their type from directorie
 - ``/etc/one/``
 - ``/var/lib/one/remotes/``
 
-managed by the **onecfg** tool:
+managed by the ``onecfg`` tool:
 
 ================================================================== ======================
 Name                                                               Type
@@ -51,13 +51,17 @@ Name                                                               Type
 ``/var/lib/one/remotes/etc/im/firecracker-probes.d/probe_db.conf`` YAML
 ``/var/lib/one/remotes/etc/im/kvm-probes.d/pci.conf``              YAML
 ``/var/lib/one/remotes/etc/im/kvm-probes.d/probe_db.conf``         YAML
+``/var/lib/one/remotes/etc/im/lxc-probes.d/probe_db.conf``         YAML
 ``/var/lib/one/remotes/etc/im/lxd-probes.d/pci.conf``              YAML
 ``/var/lib/one/remotes/etc/im/lxd-probes.d/probe_db.conf``         YAML
+``/var/lib/one/remotes/etc/im/qemu-probes.d/pci.conf``             YAML
+``/var/lib/one/remotes/etc/im/qemu-probes.d/probe_db.conf``        YAML
 ``/var/lib/one/remotes/etc/market/http/http.conf``                 Shell
 ``/var/lib/one/remotes/etc/tm/fs_lvm/fs_lvm.conf``                 Shell
 ``/var/lib/one/remotes/etc/tm/ssh/sshrc``                          Shell
 ``/var/lib/one/remotes/etc/vmm/firecracker/firecrackerrc``         YAML
 ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc``                         Shell
+``/var/lib/one/remotes/etc/vmm/lxc/lxcrc``                         YAML
 ``/var/lib/one/remotes/etc/vmm/lxd/lxdrc``                         YAML
 ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterrc``                 YAML
 ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``            YAML
