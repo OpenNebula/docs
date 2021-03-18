@@ -1,18 +1,18 @@
-.. _host_guide:
+.. _hosts:
 
 ================================================================================
 Hosts
 ================================================================================
 
-In order to use your existing physical nodes, you have to add them to the system as OpenNebula Hosts. To add a host only its hostname and type is needed. Hosts are usually organized in Clusters, you can read more about it in the :ref:`Managing Clusters <cluster_guide>` guide.
+In order to use your existing physical nodes, you have to add them to the system as OpenNebula Hosts. To add a host only its hostname and type is needed.
 
 .. warning:: Before adding a Linux host check that you can ssh to it without being prompt for a password.
 
 
-Create and Delete Hosts
+Creating and Deleting Hosts
 ================================================================================
 
-Hosts are the servers managed by OpenNebula responsible for Virtual Machine execution. To use these hosts in OpenNebula you need to register them so they are monitored and made available to the scheduler.
+Hosts are the servers managed by OpenNebula responsible for running VMs. To use these hosts in OpenNebula you need to register them so they are monitored and made available to the scheduler.
 
 Creating a host:
 
@@ -26,7 +26,7 @@ The parameters are:
 * ``--im/-i``: Information Manager driver.
 * ``--vm/-v``: Virtual Machine Manager driver.
 
-To remove a host, just like with other OpenNebula commands, you can either specify it by ID or by name. The following commands are equivalent:
+To remove a host you can either specify it by ID or by name. The following commands are equivalent:
 
 .. prompt:: bash $ auto
 
@@ -43,39 +43,60 @@ To display information about a single host the ``show`` command is used:
     HOST 0 INFORMATION
     ID                    : 0
     NAME                  : server
-    CLUSTER               : server
+    CLUSTER               : default
     STATE                 : MONITORED
     IM_MAD                : kvm
     VM_MAD                : kvm
-    LAST MONITORING TIME  : 05/28 00:30:51
+    LAST MONITORING TIME  : -
 
     HOST SHARES
-    TOTAL MEM             : 7.3G
-    USED MEM (REAL)       : 4.4G
-    USED MEM (ALLOCATED)  : 1024M
-    TOTAL CPU             : 400
-    USED CPU (REAL)       : 28
-    USED CPU (ALLOCATED)  : 100
-    TOTAL VMS           : 1
+    RUNNING VMS           : 0
+    MEMORY
+      TOTAL               : 31.1G
+      TOTAL +/- RESERVED  : 31.1G
+      USED (REAL)         : 0K
+      USED (ALLOCATED)    : 0K
+    CPU
+      TOTAL               : 800
+      TOTAL +/- RESERVED  : 800
+      USED (REAL)         :
+      USED (ALLOCATED)    : 0
 
     LOCAL SYSTEM DATASTORE #0 CAPACITY
-    TOTAL:                : 468.4G
-    USED:                 : 150.7G
-    FREE:                 : 314.7G
+    TOTAL:                : 467.7G
+    USED:                 : 113.5G
+    FREE:                 : 354.2G
 
     MONITORING INFORMATION
     ARCH="x86_64"
-    CPUSPEED="1599"
-    HOSTNAME="server"
+    CPUSPEED="3350"
+    HOSTNAME="pc-ruben"
     HYPERVISOR="kvm"
     IM_MAD="kvm"
-    MODELNAME="Intel(R) Core(TM) i7-4650U CPU @ 1.70GHz"
-    NETRX="0"
-    NETTX="0"
+    KVM_CPU_MODEL="Skylake-Client-noTSX-IBRS"
+    KVM_CPU_MODELS="486 pentium pentium2 pentium3 pentiumpro coreduo n270 core2duo qemu32 kvm32 cpu64-rhel5 cpu64-rhel6 qemu64 kvm64 Conroe Penryn Nehalem Nehalem-IBRS Westmere Westmere-IBRS SandyBridge SandyBridge-IBRS IvyBridge IvyBridge-IBRS Haswell-noTSX Haswell-noTSX-IBRS Haswell Haswell-IBRS Broadwell-noTSX Broadwell-noTSX-IBRS Broadwell Broadwell-IBRS Skylake-Client Skylake-Client-IBRS Skylake-Client-noTSX-IBRS Skylake-Server Skylake-Server-IBRS Skylake-Server-noTSX-IBRS Cascadelake-Server Cascadelake-Server-noTSX Icelake-Client Icelake-Client-noTSX Icelake-Server Icelake-Server-noTSX Cooperlake Snowridge athlon phenom Opteron_G1 Opteron_G2 Opteron_G3 Opteron_G4 Opteron_G5 EPYC EPYC-IBPB EPYC-Rome Dhyana"
+    KVM_MACHINES="pc-i440fx-5.2 pc pc-q35-5.2 q35 pc-i440fx-2.12 pc-i440fx-2.0 pc-q35-4.2 pc-i440fx-2.5 pc-i440fx-4.2 pc-i440fx-1.5 pc-q35-2.7 pc-i440fx-2.2 pc-1.1 pc-i440fx-2.7 pc-q35-2.4 pc-q35-2.10 pc-i440fx-1.7 pc-q35-5.1 pc-q35-2.9 pc-i440fx-2.11 pc-q35-3.1 pc-q35-4.1 pc-i440fx-2.4 pc-1.3 pc-i440fx-4.1 pc-i440fx-5.1 pc-i440fx-2.9 isapc pc-i440fx-1.4 pc-q35-2.6 pc-i440fx-3.1 pc-q35-2.12 pc-i440fx-2.1 pc-1.0 pc-i440fx-2.6 pc-q35-4.0.1 pc-i440fx-1.6 pc-q35-5.0 pc-q35-2.8 pc-i440fx-2.10 pc-q35-3.0 pc-q35-4.0 microvm pc-i440fx-2.3 pc-1.2 pc-i440fx-4.0 pc-i440fx-5.0 pc-i440fx-2.8 pc-q35-2.5 pc-i440fx-3.0 pc-q35-2.11"
+    MODELNAME="Intel(R) Core(TM) i7-10510U CPU @ 1.80GHz"
     RESERVED_CPU=""
     RESERVED_MEM=""
-    VERSION="5.00.0"
+    VERSION="6.0.0"
     VM_MAD="kvm"
+
+    NUMA NODES
+
+      ID CORES        USED FREE
+       0 -- -- -- --  0    8
+
+    NUMA MEMORY
+
+     NODE_ID TOTAL    USED_REAL            USED_ALLOCATED       FREE
+           0 31.1G    0K                   0K                   0K
+
+    NUMA HUGEPAGES
+
+     NODE_ID SIZE     TOTAL    FREE     USED
+           0 2M       0        0        0
+           0 1024M    0        0        0
 
     WILD VIRTUAL MACHINES
 
@@ -83,33 +104,32 @@ To display information about a single host the ``show`` command is used:
 
     VIRTUAL MACHINES
 
-        ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
-        13 oneadmin oneadmin kvm1-13         runn  0.0   1024M server       8d 06h14
+    ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
+    13 oneadmin oneadmin kvm1-13         runn  0.0   1024M server       8d 06h14
 
 The information of a host contains:
 
-* General information of the hosts including its name and the drivers used to interact with it.
-* Capacity information (*Host Shares*) for CPU and memory.
-* Local datastore information (*Local System Datastore*) if the Host is configured to use a local datastore (e.g. Filesystem in ssh transfer mode).
-* Monitoring Information, including PCI devices
-* Virtual Machines actives on the hosts. *Wild* are virtual machines actives on the host but not started by OpenNebula, they can be imported into OpenNebula.
+* **General information** of the hosts including its name and the drivers used to interact with it.
+* **Capacity** (*Host Shares*) for CPU and memory.
+* **Local datastore information** (*Local System Datastore*) if the Host is configured to use a local datastore (e.g. in ssh transfer mode).
+* **Monitoring Information**, including PCI devices and NUMA information of the node.
+* **Virtual Machines** allocated to the host. *Wild* are virtual machines running on the host but not started by OpenNebula, and can be imported.
 
 To see a list of all the hosts:
 
 .. prompt:: bash $ auto
 
     $ onehost list
-	  ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
-	   0 server          server      1    100 / 400 (25%) 1024M / 7.3G (13%) on
-	   1 kvm1            kvm         0                  -                  - off
-	   2 kvm2            kvm         0                  -                  - off
+      ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
+       0 server          server      1    100 / 400 (25%) 1024M / 7.3G (13%) on
+       1 kvm1            kvm         0                  -                  - off
+       2 kvm2            kvm         0                  -                  - off
 
-The above information can be also displayed in XML format using ``-x``.
-
+The above information can be also displayed in XML or JSON format using ``-x`` or ``-j``, respectively.
 
 .. _host_lifecycle:
 
-Host Life-cycle: Enable, Disable, Offline and Flush
+Host States: Enable, Disable, Offline and Flush
 ================================================================================
 
 In order to manage the life cycle of a host it can be set to different operation modes: enabled (on), disabled (dsbl) and offline (off). The different operation status for each mode is described by the following table:
@@ -150,6 +170,12 @@ Similarly to put the host offline:
 
     $ onehost offline 0
 
+Finally you may need to reset the monitoring process on the host:
+
+.. prompt:: bash $ auto
+
+    $ onehost forceupdate 0
+
 The ``flush`` command will migrate all the active VMs in the specified host to another server with enough capacity. At the same time, the specified host will be disabled, so no more Virtual Machines are deployed in it. This command is useful to clean a host of active VMs. The migration process can be done by a resched action or by a recover delete-recreate action, it can be configured at the ``/etc/one/cli/onehost.yaml`` by setting the field ``default_actions\flush`` to ``delete-recreate`` or to ``resched``. Here is an example:
 
 .. prompt:: bash $ auto
@@ -157,75 +183,18 @@ The ``flush`` command will migrate all the active VMs in the specified host to a
     :default_actions:
       - :flush: delete-recreate
 
-
-
-Custom Host Tags & Scheduling Policies
-================================================================================
-
-The Host attributes are inserted by the monitoring probes that run from time to time on the nodes to get information. The administrator can add custom attributes either :ref:`creating a probe in the host <devel-im>`, or updating the host information with: ``onehost update``.
-
-For example to label a host as *production* we can add a custom tag *TYPE*:
-
-.. prompt:: bash $ auto
-
-	$ onehost update
-	...
-    TYPE="production"
-
-This tag can be used at a later time for scheduling purposes by adding the following section in a VM template:
-
-.. code-block:: bash
-
-    SCHED_REQUIREMENTS="TYPE=\"production\""
-
-That will restrict the Virtual Machine to be deployed in ``TYPE=production`` hosts. The scheduling requirements can be defined using any attribute reported by ``onehost show``, see the :ref:`Scheduler Guide <schg>` for more information.
-
-This feature is useful when we want to separate a series of hosts or marking some special features of different hosts. These values can then be used for scheduling the same as the ones added by the monitoring probes, as a :ref:`placement requirement <template_placement_section>`.
-
-.. _host_guide_sync:
-
-Update Host Drivers
-================================================================================
-
-When OpenNebula monitors a host, it copies driver files to ``/var/tmp/one``. When these files are updated, they need to be copied again to the hosts with the ``sync`` command. To keep track of the probes version there's a file in ``/var/lib/one/remotes/VERSION``. By default this holds the OpenNebula version (e.g. '5.0.0'). This version can be seen in he hosts with a ``onehost show <host>``:
-
-.. prompt:: bash $ auto
-
-    $ onehost show 0
-    HOST 0 INFORMATION
-    ID                    : 0
-    [...]
-    MONITORING INFORMATION
-    VERSION="5.0.0"
-    [...]
-
-The command ``onehost sync`` only updates the hosts with ``VERSION`` lower than the one in the file ``/var/lib/one/remotes/VERSION``. In case you modify the probes this ``VERSION`` file should be modified with a greater value, for example ``5.0.0.01``.
-
-In case you want to force upgrade, that is, no ``VERSION`` checking you can do that adding ``--force`` option:
-
-.. prompt:: bash $ auto
-
-    $ onehost sync --force
-
-You can also select which hosts you want to upgrade naming them or selecting a cluster:
-
-.. prompt:: bash $ auto
-
-    $ onehost sync host01,host02,host03
-    $ onehost sync -c myCluster
-
-``onehost sync`` command can alternatively use ``rsync`` as the method of upgrade. To do this you need to have installed ``rsync`` command in the frontend and the nodes. This method is faster that the standard one and also has the benefit of deleting remote files no longer existing in the frontend. To use it add the parameter ``--rsync``:
-
-.. prompt:: bash $ auto
-
-    $ onehost sync --rsync
-
 .. _host_guide_information:
 
-Host Information
+Host Monitoring
 ================================================================================
 
-Hosts include the following monitoring information. You can use this variables to create custom ``RANK`` and ``REQUIREMENTS`` expressions for scheduling. Note also that you can manually add any tag and use it also for ``RANK`` and ``REQUIREMENTS``
+The Host information attributes are inserted by the monitoring probes that run from time to time on the nodes to get information. This information is mainly used for:
+
+  * Monitor the status of the host to detect any error condition
+  * Gather the configuration of the host (e.g. capacity, PCI devices or NUMA nodes) to control VM resource assigments
+  * Create placement constraints for VMs allocation, :ref:`see more details here <scheduling>`.
+
+Hosts include the following monitoring information, note that each hypervisor may include additional attributes:
 
 +------------+----------------------------------------------------------------------------------------------------+
 |    Key     |                                            Description                                             |
@@ -291,14 +260,66 @@ Hosts include the following monitoring information. You can use this variables t
 |            | OpenNebula but are not currently controlled by it.                                                 |
 +------------+----------------------------------------------------------------------------------------------------+
 
+Custom Host Atrributes
+--------------------------------------------------------------------------------
+
+You can add custom attributes either :ref:`creating a probe in the host <devel-im>`, or updating the host information with: ``onehost update``.
+
+For example to label a host as *production* we can add a custom tag *TYPE*:
+
+.. prompt:: bash $ auto
+
+    $ onehost update
+    ...
+    TYPE="production"
+
+This tag can be used at a later time for scheduling purposes, :ref:`see more details here <scheduling>`.
+
+
+.. _host_guide_sync:
+
+Updating Host Files
+--------------------------------------------------------------------------------
+
+When OpenNebula monitors a host, it copies driver files to ``/var/tmp/one``. When these files are updated, they need to be copied again to the hosts with the ``sync`` command. To keep track of the probes version there's a file in ``/var/lib/one/remotes/VERSION``. By default this holds the OpenNebula version (e.g. '6.0.0'). This version can be seen in he hosts with a ``onehost show <host>``:
+
+.. prompt:: bash $ auto
+
+    $ onehost show 0
+    HOST 0 INFORMATION
+    ID                    : 0
+    [...]
+    MONITORING INFORMATION
+    VERSION="6.0.0"
+    [...]
+
+The command ``onehost sync`` only updates the hosts with ``VERSION`` lower than the one in the file ``/var/lib/one/remotes/VERSION``. In case you modify the probes this ``VERSION`` file should be modified with a greater value, for example ``6.0.0.01``.
+
+In case you want to force upgrade, that is, no ``VERSION`` checking you can do that adding ``--force`` option:
+
+.. prompt:: bash $ auto
+
+    $ onehost sync --force
+
+You can also select which hosts you want to upgrade naming them or selecting a cluster:
+
+.. prompt:: bash $ auto
+
+    $ onehost sync host01,host02,host03
+    $ onehost sync -c myCluster
+
+``onehost sync`` command can alternatively use ``rsync`` as the method of upgrade. To do this you need to have installed ``rsync`` command in the frontend and the nodes. This method is faster that the standard one and also has the benefit of deleting remote files no longer existing in the frontend. To use it add the parameter ``--rsync``:
+
+.. prompt:: bash $ auto
+
+    $ onehost sync --rsync
+
 .. _import_wild_vms:
 
 Importing Wild VMs
 ================================================================================
 
-The monitoring mechanism in OpenNebula reports all VMs found in a hypervisor, even those not launched through OpenNebula. These VMs are referred to as Wild VMs, and can be imported to be managed through OpenNebula. This includes all supported hypervisors, even the hybrid ones.
-
-The Wild VMs can be spotted through the ``onehost show`` command:
+The monitoring mechanism in OpenNebula reports all VMs found in a hypervisor, even those not launched through OpenNebula. These VMs are referred to as Wild VMs, and can be imported to be managed through OpenNebula. The Wild VMs can be spotted through the ``onehost show`` command:
 
 .. prompt:: bash $ auto
 
@@ -324,8 +345,6 @@ And imported through the ``onehost importvm`` command:
        3 oneadmin oneadmin CentOS7         runn    0    590M MyvCenterHost  0d 01h02
 
 After a Virtual Machine is imported, their life-cycle (including creation of snapshots) can be controlled through OpenNebula. However, some  operations *cannot* be performed on an imported VM, including: poweroff, undeploy, migrate or delete-recreate.
-
-The same import mechanism is available graphically through Sunstone. Running and Powered Off VMs can be imported through the WILDS tab in the Host info tab.
 
 Using Sunstone to Manage Hosts
 ================================================================================

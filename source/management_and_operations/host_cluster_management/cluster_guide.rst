@@ -4,7 +4,12 @@
 Clusters
 ================================================================================
 
-A Cluster is a group of :ref:`Hosts <host_guide>`. Clusters can have associated :ref:`Datastores <sm>` and :ref:`Virtual Networks <vgg>`, this is how the administrator sets which Hosts have the underlying requirements for each Datastore and Virtual Network configured.
+Clusters group together Hosts, Datastores and Virtual Networks that are configured to work together. A Cluster is used to:
+
+  * Ensure that VMs uses resources that are compatible.
+  * Assign resources to user groups by creating Virtual Private Clouds.
+
+Clusters should contain homogeneous resources, note also that some operations like live-migrations are restricted to Hosts in the same cluster.
 
 Cluster Management
 ================================================================================
@@ -111,87 +116,13 @@ You can add the default System DS (ID: 0), or create a new one to improve its pe
 
 To use a specific System DS with your cluster, instead of the default one, just create it (with TYPE=SYSTEM\_DS in its template), and associate it just like any other datastore (onecluster adddatastore).
 
-Cluster Properties
-------------------
-
-Each cluster includes a generic template where cluster configuration properties or attributes can be defined. The following list of attributes are recognized by OpenNebula:
-
-+------------------------+--------------------------------------------------------------------------+
-|       Attribute        |                               Description                                |
-+========================+==========================================================================+
-| ``RESERVED_CPU``       | In percentage. Applies to all the Hosts in this cluster. It will be      |
-|                        | subtracted from the TOTAL CPU. See :ref:`scheduler <schg_limit>`.        |
-+------------------------+--------------------------------------------------------------------------+
-| ``RESERVED_MEM``       | In KB. Applies to all the Hosts in this cluster. It will be subtracted   |
-|                        | from the TOTAL MEM. See :ref:`scheduler <schg_limit>`.                   |
-+------------------------+--------------------------------------------------------------------------+
-
-You can easily update these values with the ``onecluster update`` command. Also, you can add as many variables as you want, following the standard template syntax. These variables will be used for now only for informational purposes.
-
-Scheduling and Clusters
-=======================
-
-Automatic Requirements
-----------------------
-
-When a Virtual Machine uses resources (Images or Virtual Networks) from a Cluster, OpenNebula adds the following :ref:`requirement <template_placement_section>` to the template:
-
-.. prompt:: bash $ auto
-
-    $ onevm show 0
-    [...]
-    AUTOMATIC_REQUIREMENTS="CLUSTER_ID = 100"
-
-Because of this, if you try to use resources that do not belong to the same Cluster, the Virtual Machine creation will fail with a message similar to this one:
-
-.. prompt:: bash $ auto
-
-    $ onetemplate instantiate 0
-    [TemplateInstantiate] Error allocating a new virtual machine. Incompatible cluster IDs.
-    DISK [0]: IMAGE [0] from DATASTORE [1] requires CLUSTER [101]
-    NIC [0]: NETWORK [1] requires CLUSTER [100]
-
-Manual Requirements and Rank
-----------------------------
-
-The placement attributes :ref:`SCHED\_REQUIREMENTS and SCHED\_RANK <template_placement_section>` can use attributes from the Cluster template. Let’s say you have the following scenario:
-
-.. prompt:: bash $ auto
-
-    $ onehost list
-      ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
-       1 host01          cluster_a   0       0 / 200 (0%)     0K / 3.6G (0%) on
-       2 host02          cluster_a   0       0 / 200 (0%)     0K / 3.6G (0%) on
-       3 host03          cluster_b   0       0 / 200 (0%)     0K / 3.6G (0%) on
-
-    $ onecluster show cluster_a
-    CLUSTER TEMPLATE
-    QOS="GOLD"
-
-    $ onecluster show cluster_b
-    CLUSTER TEMPLATE
-    QOS="SILVER"
-
-You can use these expressions:
-
-.. code-block:: bash
-
-    SCHED_REQUIREMENTS = "QOS = GOLD"
-     
-    SCHED_REQUIREMENTS = "QOS != GOLD & HYPERVISOR = kvm"
-
 Managing Clusters in Sunstone
 =============================
 
 The :ref:`Sunstone UI interface <sunstone>` offers an easy way to manage clusters and the resources within them. You will find the cluster sub-menu under the infrastructure menu. From there, you will be able to:
 
--  Create new clusters selecting the resources you want to include in this cluster:
-
-|image0|
-
+-  Create new clusters selecting the resources you want to include in this cluster.
 -  See the list of current clusters, from which you can update the template of existing ones, or delete them.
-
-|image1|
 
 .. |image0| image:: /images/sunstone_cluster_create.png
 .. |image1| image:: /images/sunstone_cluster_list2.png
