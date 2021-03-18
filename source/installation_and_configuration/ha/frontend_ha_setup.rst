@@ -415,4 +415,4 @@ Usage
     $ onezone serversync <remote_opennebula_server> [--db]
 
 **remote_opennebula_server** is the server (name or IP) that will be used to fetch configuration files from.
-If ``--db`` option is used, local database will be synced with the one located on remote_opennebula_server.
+If ``--db`` option is used, local database will be synced with the one located on remote_opennebula_server. The command has to be run under privileged user ``root`` and you need passwordless ssh access to the remote_opennebula_server.
