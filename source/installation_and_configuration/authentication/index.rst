@@ -7,8 +7,8 @@ Authentication Configuration
 .. toctree::
    :maxdepth: 2
 
-   Overview <external_auth>
-   SSH Authentication <ssh_auth>
-   X509 Authentication <x509_auth>
+   Overview <overview>
+   SSH Authentication <ssh>
+   X.509 Authentication <x509>
    LDAP Authentication <ldap>
-   Sunstone Authentication <sunstone_authentication>
+   Sunstone Authentication <sunstone>

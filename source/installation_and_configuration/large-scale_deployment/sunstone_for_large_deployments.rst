@@ -266,3 +266,167 @@ If you are using `Phusion Passenger <https://www.phusionpassenger.com/>`__, take
 * If `Passenger Enterprise <https://www.phusionpassenger.com/enterprise>`__ is available, set `PassengerConcurrencyModel <https://www.phusionpassenger.com/library/config/apache/reference/#passengerconcurrencymodel>`__ to `thread`.
 
 If you are using another backend than Passenger, please port these recommendations to your backend.
+
+
+.. important::
+
+    ----- MOVED FROM "Sunstone Authentication" -----
+
+    Review, adapt, drop below.
+
+    vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+.. _ss_proxy:
+
+Configuring an SSL Proxy
+========================
+
+OpenNebula Sunstone runs natively just on normal HTTP connections. If the extra security provided by SSL is needed, a proxy can be set up to handle the SSL connection that forwards the request to the Sunstone server and returns the answer to the client.
+
+This set up needs:
+
+-  A server certificate for the SSL connections
+-  An HTTP proxy that understands SSL
+-  OpenNebula Sunstone configuration to accept requests from the proxy
+
+If you want to try out the SSL setup easily, the following lines provide an example to set a self-signed certificate to be used by a web server configured to act as an HTTP proxy to a correctly configured OpenNebula Sunstone.
+
+Let's assume the server where the proxy is going to be started is called ``cloudserver.org``. Therefore, the steps are:
+
+Step 1: Server Certificate (Snakeoil)
+-------------------------------------
+
+We are going to generate a snakeoil certificate. If using an Ubuntu system follow the next steps (otherwise your mileage may vary, but not a lot):
+
+-  Install the ``ssl-cert`` package
+
+.. prompt:: bash # auto
+
+    # apt-get install ssl-cert
+
+-  Generate the certificate
+
+.. prompt:: bash # auto
+
+    # /usr/sbin/make-ssl-cert generate-default-snakeoil
+
+-  As we are using lighttpd, we need to append the private key to the certificate to obtain a server certificate valid to lighttpd
+
+.. prompt:: bash # auto
+
+    # cat /etc/ssl/private/ssl-cert-snakeoil.key /etc/ssl/certs/ssl-cert-snakeoil.pem > /etc/lighttpd/server.pem
+
+Step 2: SSL HTTP Proxy
+----------------------
+
+lighttpd
+^^^^^^^^
+
+You will need to edit the ``/etc/lighttpd/lighttpd.conf`` configuration file and
+
+-  Add the following modules (if not present already)
+
+   -  mod\_access
+   -  mod\_alias
+   -  mod\_proxy
+   -  mod\_accesslog
+   -  mod\_compress
+
+-  Change the server port to 443 if you are going to run lighttpd as root, or any number above 1024 otherwise:
+
+.. code-block:: none
+
+    server.port               = 8443
+
+-  Add the proxy module section:
+
+.. code-block:: none
+
+    #### proxy module
+    ## read proxy.txt for more info
+    proxy.server               = ( "" =>
+                                    ("" =>
+                                     (
+                                       "host" => "127.0.0.1",
+                                       "port" => 9869
+                                     )
+                                     )
+                                 )
+
+
+    #### SSL engine
+    ssl.engine                 = "enable"
+    ssl.pemfile                = "/etc/lighttpd/server.pem"
+
+The host must be the server hostname of the computer running the Sunstone server, and the port the one that the Sunstone Server is running on.
+
+nginx
+^^^^^
+
+You will need to configure a new virtual host in nginx. Depending on the operating system and the method of installation, nginx loads virtual host configurations from either ``/etc/nginx/conf.d`` or ``/etc/nginx/sites-enabled``.
+
+-  A sample ``cloudserver.org`` virtual host is presented next:
+
+.. code-block:: none
+
+    #### OpenNebula Sunstone upstream
+    upstream sunstone  {
+            server 127.0.0.1:9869;
+    }
+
+    #### cloudserver.org HTTP virtual host
+    server {
+            listen 80;
+            server_name cloudserver.org;
+
+            ### Permanent redirect to HTTPS (optional)
+            return 301 https://$server_name:8443;
+    }
+
+    #### cloudserver.org HTTPS virtual host
+    server {
+            listen 8443;
+            server_name cloudserver.org;
+
+            ### SSL Parameters
+            ssl on;
+            ssl_certificate /etc/ssl/certs/ssl-cert-snakeoil.pem;
+            ssl_certificate_key /etc/ssl/private/ssl-cert-snakeoil.key;
+
+            ### Proxy requests to upstream
+            location / {
+                    proxy_pass              http://sunstone;
+                    proxy_set_header        X-Real-IP $remote_addr;
+                    proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+                    proxy_set_header        X-Forwarded-Proto $scheme;
+            }
+    }
+
+The IP address and port number used in ``upstream`` must be the ones the server Sunstone is running on. On typical installations the nginx master process is run as user root so you don't need to modify the HTTPS port.
+
+Step 3: Sunstone Configuration
+------------------------------
+
+Edit ``/etc/one/sunstone-server.conf`` to listen at localhost:9869.
+
+.. code-block:: yaml
+
+    :host: 127.0.0.1
+    :port: 9869
+
+Once the proxy server is started, OpenNebula Sunstone requests using HTTPS URIs can be directed to ``https://cloudserver.org:8443``, that will then be unencrypted, passed to localhost, port 9869, satisfied (hopefully), encrypted again and then passed back to the client.
+
+.. TODO - this doesn't make sense here:
+.. _serveradmin_credentials:
+.. note:: To change the serveradmin password, follow the next steps:
+
+    .. prompt:: bash # auto
+
+        #oneuser passwd 1 --sha256 <PASSWORD>
+        #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/oneflow_auth
+        #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/ec2_auth
+        #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/onegate_auth
+        #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/occi_auth
+        #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/sunstone_auth
+
+    Restart Sunstone after changing the password.

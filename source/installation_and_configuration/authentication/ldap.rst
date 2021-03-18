@@ -6,15 +6,24 @@ LDAP Authentication
 
 The LDAP Authentication allows users to have the same credentials as in LDAP, so effectively centralizing authentication. Enabling it will let any correctly authenticated LDAP user use OpenNebula.
 
-Prerequisites
-=============
+Requirements
+============
 
-LDAP Authentication does not contain any LDAP server or configure it in any way. It will not create, delete or modify any entry in the LDAP server it connects to. The only requirement is the ability to connect to an already running LDAP server, perform a successful **ldapbind** operation, and have a user able to perform searches of users. Therefore no special attributes or values are required in the LDIF entry of the user authenticating.
+You need to have your own LDAP server in the infrastucture. OpenNebula doesn't contain or configure any LDAP server, it only connects to existing one. Also, it doesn't create, delete or modify any entry in the LDAP server it connects to. The only requirement is the ability to connect to an already running LDAP server, perform a successful **ldapbind** operation, and have a user able to perform searches of users. Therefore no special attributes or values are required in the LDIF entry of the authenticating user.
 
 Configuration
 =============
 
-The configuration file for the auth module is located at ``/etc/one/auth/ldap_auth.conf``. This is the default configuration:
+This authentication mechanism is enabled by default. If it still doesn't work, make sure you have the authentication method ``ldap`` enabled in the ``AUTH_MAD`` section of your :ref:`/etc/one/oned.conf <oned_conf>`. For example:
+
+.. code-block:: bash
+
+    AUTH_MAD = [
+        EXECUTABLE = "one_auth_mad",
+        AUTHN = "ssh,x509,ldap,server_cipher,server_x509"
+    ]
+
+Authentication driver ``ldap`` can be customized in ``/etc/one/auth/ldap_auth.conf``. This is the default configuration:
 
 .. code-block:: yaml
 
@@ -98,7 +107,7 @@ The structure is a hash where any key different to ``:order`` will contain the c
 .. note:: Items of the ``:order`` are the server names, or nested arrays of server names, representing the **availability group**. The items in the ``:order`` are processed one by one until the user is successfully authenticated, or the end of the list is reached. Inside the availability group, only the very first server which can be successfully connected to is queried. Any server not listed in ``:order`` won't be queried.
 
 +----------------------------+-------------------------------------------------+
-|        VARIABLE            |                   DESCRIPTION                   |
+|        Attribute           |                   Description                   |
 +============================+=================================================+
 | ``:user``                  | Name of the user that can query LDAP. Do not    |
 |                            | set it if you can perform queries anonymously   |
@@ -162,7 +171,7 @@ The structure is a hash where any key different to ``:order`` will contain the c
 |                            | admins manually.                                |
 +----------------------------+-------------------------------------------------+
 
-To enable ``ldap`` authentication the described parameters should be configured. OpenNebula must be also configured to enable external authentication. Add this line in ``/etc/one/oned.conf``
+To enable ``ldap`` authentication the described parameters should be configured. OpenNebula can be also configured to enable external LDAP authentication for all new users by adding this line in :ref:`/etc/one/oned.conf <oned_conf>`:
 
 .. code-block:: bash
 
@@ -173,7 +182,7 @@ User Management
 
 Using the LDAP authentication module, the administrator doesn't need to create users with ``oneuser`` command, as this will be automatically done.
 
-Users can store their credentials into the ``$ONE_AUTH`` file (usually ``$HOME/.one/one_auth``) in this fashion:
+Users can store their credentials into file referenced by env. variable ``$ONE_AUTH`` (usually ``$HOME/.one/one_auth``) in this fashion:
 
 .. code-block:: bash
 
@@ -185,6 +194,15 @@ where
 -  ``ldap_password`` is the password of the user in the LDAP service
 
 Alternatively a user can generate an authentication token using the ``oneuser login`` command, so there is no need to keep the LDAP password in a plain file. Simply input the LDAP password when requested. More information on the management of login tokens and the ``$ONE_AUTH`` file can be found in :ref:`Managing Users Guide<manage_users_managing_users>`.
+
+Update Existing Users to LDAP
+-----------------------------
+
+Change the authentication method of an existing user to LDAP with the following command:
+
+.. prompt:: bash $ auto
+
+    $ oneuser chauth <id|name> ldap
 
 .. _ldap_dn_with_special_characters:
 
@@ -261,9 +279,9 @@ and in the OpenNebula group template you can define two mappings, one for each s
 
 .. note:: If the map is updated (e.g. you change the LDAP DB) the user groups will be updated next time the user is authenticated. Also note that a user may be using a login token that needs to expire for this change to take effect. The maximum lifetime of a token can be set in ``oned.conf`` for each driver. If you want the OpenNebula core not to update user groups (and control group assignment from OpenNebula) update ``DRIVER_MANAGED_GROUPS`` in the ``ldap`` ``AUTH_MAD_CONF`` configuration attribute.
 
+Group Admin. Mapping
+--------------------
 
-Group admin mapping
--------------------
 Each group in OpenNebual can have its :ref:`admins <manage_groups_permissions>` which have administrative privileges for the group. Also this attribute could be controlled by the LDAP driver. For this purpose there is an option: ``:group_admin_group_dn:``. This needs be set to a LDAP DN of a group. If user is member of that group in LDAP, this user will be a group admin of all mapped LDAP groups in ONE.
 
 
@@ -283,7 +301,6 @@ To automatically encode credentials as explained in the :ref:`DN's with special 
 .. code-block:: yaml
 
         :encode_user_password: true
-
 
 Multiple LDAP servers: Order vs. Regex Match
 ============================================

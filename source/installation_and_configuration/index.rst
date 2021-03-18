@@ -14,7 +14,7 @@ Installation and Configuration
    High Availability <ha/index>
    Data Center Federation <data_center_federation/index>
    OpenNebula Services <opennebula_services/index>
-   Authentication Configuration <authentication_configuration/index>
+   Authentication Configuration <authentication/index>
    Private Marketplaces <private_marketplaces/index>
    Configuration Management (EE) <configuration_management/index>
    Support Utilities (EE) <support_utilities/index>
