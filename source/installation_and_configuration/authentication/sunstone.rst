@@ -145,7 +145,7 @@ Security Keys
 In order to properly use U2F/FIDO2 authentication the following parameters need to be adjusted in ``/etc/one/sunstone-server.conf``.
 
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
-|       Attribute           |                          Description                                                                                                      |
+|       Parameter           |                          Description                                                                                                      |
 +===========================+===========================================================================================================================================+
 | ``:webauthn_origin``      | This value needs to match ``window.location.origin`` evaluated by the User Agent  during registration and authentication ceremonies.      |
 |                           | Remember that WebAuthn requires TLS on anything else than localhost.                                                                      |

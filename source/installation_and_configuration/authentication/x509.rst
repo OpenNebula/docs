@@ -35,7 +35,7 @@ This authentication mechanism is enabled by default. If it still doesn't work, m
 Authentication driver ``x509`` can be customized in ``/etc/one/auth/x509_auth.conf`` with following options:
 
 +-----------------+----------------------------------------------------------+
-|     Attribute   |                      Description                         |
+|     Parameter   |                      Description                         |
 +=================+==========================================================+
 | ``:ca_dir``     | Path to the trusted CA directory. It should contain the  |
 |                 | trusted CAs for the server. Each CA certificate should   |

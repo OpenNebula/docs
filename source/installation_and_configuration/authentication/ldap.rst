@@ -107,7 +107,7 @@ The structure is a hash where any key different to ``:order`` will contain the c
 .. note:: Items of the ``:order`` are the server names, or nested arrays of server names, representing the **availability group**. The items in the ``:order`` are processed one by one until the user is successfully authenticated, or the end of the list is reached. Inside the availability group, only the very first server which can be successfully connected to is queried. Any server not listed in ``:order`` won't be queried.
 
 +----------------------------+-------------------------------------------------+
-|        Attribute           |                   Description                   |
+|        Parameter           |                   Description                   |
 +============================+=================================================+
 | ``:user``                  | Name of the user that can query LDAP. Do not    |
 |                            | set it if you can perform queries anonymously   |

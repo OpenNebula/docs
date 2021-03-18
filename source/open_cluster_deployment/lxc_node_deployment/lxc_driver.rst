@@ -8,7 +8,7 @@ LXC Driver
 Requirements
 ============
 
-LXC driver requires the LXC version of the target distribution to be >= 3.0.3.
+OpenNebula LXC Driver requires the LXC version >= 3.0.3 to be installed on the host.
 
 Considerations & Limitations
 ================================================================================
@@ -56,33 +56,31 @@ Importing wilds containers that weren't deployed by OpenNebula is not currently 
 Configuration
 ================================================================================
 
-Driver Specifics Configuration
+OpenNebula
 --------------------------------------------------------------------------------
 
-LXC specifics configurations are available at ``/var/lib/one/remotes/etc/vmm/lxc/lxcrc`` file in the OpenNebula frontend node. The following list contains the supported configuration attributes and a brief description:
+The LXC driver is enabled by default in OpenNebula ``/etc/one/oned.conf`` on your Front-end host with reasonable defaults. Read the :ref:`oned Configuration <oned_conf_virtualization_drivers>` to understand these configuration parameters and :ref:`Virtual Machine Drivers Reference <devel-vmm>` to know how to customize and extend the drivers.
 
-+----------------------------+-------------------------------------------------------+
-| NAME                       | Description                                           |
-+============================+=======================================================+
-| ``:vnc``                   | Options to customize the VNC access to the            |
-|                            | microVM. ``:width``, ``:height``, ``:timeout``, and   |
-|                            | ``:command`` can be set                               |
-+----------------------------+-------------------------------------------------------+
-| ``:datastore_location``    | Default path for the datastores. This only need to be |
-|                            | change if the corresponding value in oned.conf has    |
-|                            | been modified                                         |
-+----------------------------+-------------------------------------------------------+
-| ``:default_lxc_config``    | Path to the LXC default configuration file. This file |
-|                            | will be included in the configuration of every LXC    |
-|                            | container                                             |
-+----------------------------+-------------------------------------------------------+
-
-Drivers Generic Configuration
+Driver
 --------------------------------------------------------------------------------
 
-The LXC driver is enabled by default in OpenNebula ``/etc/one/oned.conf`` on your Front-end host. The configuration parameters: ``-r``, ``-t``, ``-l``, ``-p`` and ``-s`` are already preconfigured with reasonable defaults. If you change them, you will need to restart OpenNebula.
+LXC driver-specific configuration is available in ``/var/lib/one/remotes/etc/vmm/lxc/lxcrc`` on the OpenNebula Front-end node. The following list contains the supported configuration attributes and a brief description:
 
-Read the :ref:`oned Configuration <oned_conf_virtualization_drivers>` to understand these configuration parameters and :ref:`Virtual Machine Drivers Reference <devel-vmm>` to know how to customize and extend the drivers.
++----------------------------+--------------------------------------------------------------------+
+| Parameter                  | Description                                                        |
++============================+====================================================================+
+| ``:vnc``                   | Options to customize the VNC access to the                         |
+|                            | microVM. ``:width``, ``:height``, ``:timeout``, and                |
+|                            | ``:command`` can be set                                            |
++----------------------------+--------------------------------------------------------------------+
+| ``:datastore_location``    | Default path for the datastores. This only need to be              |
+|                            | change if the corresponding value in oned.conf has                 |
+|                            | been modified                                                      |
++----------------------------+--------------------------------------------------------------------+
+| ``:default_lxc_config``    | Path to the LXC default configuration file. This file              |
+|                            | will be included in the configuration of every LXC                 |
+|                            | container                                                          |
++----------------------------+--------------------------------------------------------------------+
 
 Storage
 ================================================================================
@@ -136,13 +134,12 @@ Containers supports remote access via VNC protocol which allows easy access to t
 Additional Attributes
 -----------------------
 
-The ``RAW`` attribute allows to add raw lxc configuration attributes to the final container deployment file. This allows to set configuration attributes that are not directly supported by OpenNebula.
+The ``RAW`` attribute allows to add raw LXC configuration attributes to the final container deployment file. This allows to set configuration attributes that are not directly supported by OpenNebula.
 
 .. code::
 
-      RAW = [
-            type = "lxc",
-            data = "lxc.signal.reboot = 9"
-        ]
+    RAW = [
+      TYPE = "lxc",
+      DATA = "lxc.signal.reboot = 9" ]
 
-.. note:: Each line of the ``data`` attribute must contain only an lxc configuration attribute and its corresponding value. If a provided attribute is already set by OpenNebula, it will be discarded and the original value will prevail.
+.. note:: Each line of the ``DATA`` attribute must contain only an LXC configuration attribute and its corresponding value. If a provided attribute is already set by OpenNebula, it will be discarded and the original value will take precedence.

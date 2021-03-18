@@ -4,9 +4,9 @@
 Overview
 ================================================================================
 
-`LXC <https://linuxcontainers.org/lxc/introduction/>`__ allows Linux users to create and manage system and application containers. LXC uses Linux kernel features as kernel namespaces, CGroups or Seccomp policies among others to contain processes.
+`LXC <https://linuxcontainers.org/lxc/introduction/>`__ is a Linux technology, which allows to create and manage system and application containers. The containers are computing environments running on a particular hypervisor host alongside other containers or host services, but secured and isolated into their own namespaces (user, process, network).
 
-The goal of LXC is to create environments similar to an standard Linux installation without the need for a separate kernel.
+From the perspective of a hypervisor host, such a container environment is just an additional process tree among other hypervisor processes. Inside of the environment, it looks like a standard Linux installation that sees only its own resources but shares the host kernel.
 
 How Should I Read This Chapter
 ================================================================================
