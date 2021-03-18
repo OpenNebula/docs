@@ -76,7 +76,7 @@ Step 2. Adding a New Federation Slave Zone
     Sqlite database backup of federated tables stored in /var/lib/one/one.db_federated_2017-6-15_8:52:51.bck
     Use 'onedb restore' to restore the DB.
 
-.. note:: This example shows how to make a database snapshot with SQLite. For MySQL just change the -s option with the corresponding MySQL options: -u <username> -p <password> -d <database_name>. For SQLite, you need to stop OpenNebula before taking the DB snapshot. This is not required for MySQL.
+.. note:: This example shows how to make a database snapshot with SQLite. For MySQL just change the ``-s`` option with the corresponding MySQL options: ``-u <username> -p <password> -d <database_name>``. For SQLite, you need to stop OpenNebula before taking the DB snapshot. This is not required for MySQL.
 
 - **Master**: Copy the database snapshot to the slave.
 
