@@ -40,4 +40,4 @@ After reading this chapter, you can continue configuring more :ref:`Advanced Com
 Hypervisor Compatibility
 ================================================================================
 
-This chapter applies both to KVM and vCenter.
+This chapter applies to all hypervisors.
