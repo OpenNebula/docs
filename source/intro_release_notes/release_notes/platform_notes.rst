@@ -249,10 +249,10 @@ There is an automatic job that removes all data from ``/var/tmp/``. In order to 
 
 There is a bug in libvirt that the prevents the use of the save/restore mechanism if ``cpu_model`` is set to ``'host-passthrough'`` via ``RAW``. The `work around if needed is described in this issue <http://dev.opennebula.org/issues/4204>`__.
 
-Debian 8
+Debian 9
 --------------------------------------------------------------------------------
 
-Make sure that the packages ``ruby-treetop`` and ``treetop`` are not installed before running ``ìnstall_gems``, as the version of ``treetop`` that comes packaged in Debian 8 is incompatible with OpenNebula. **OneFlow** requires a version >= 1.6.3 for treetop, packages distributed with Debian 8 includes an older version (1.4.5).
+Guacamole does not come with RDP support due to the lack of availabilituy of libfreerdp2 in Debian 9. Hence this functionality won't be present if the front-end runs in this platform.
 
 
 Nodes Platform Notes
