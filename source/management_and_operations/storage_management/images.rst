@@ -4,20 +4,18 @@
 Images
 ================================================================================
 
-OpenNebula Images represents a VM disk. Depending on the Datastore, Images can have multiple formats (e.g. filesystem or block device) and can store OS installations, data filesystems, images or kernels.
-
-In this guide you'll learn about different Image types, and how to mange and use your Images.
+An OpenNebula Image represents a VM disk. Images can have multiple formats (e.g. filesystem or block device) and can store OS installations, data filesystems, images or kernels. In this guide you'll learn about different Image types, and how to mange and use them.
 
 Types and Persistency
 ================================================================================
 
-OpenNebula manages three different Image types to represent VM disks. A VM can use multiple Image types simultaneously:
+OpenNebula uses three different Image types to represent VM disks. A VM can use multiple Image types simultaneously:
 
 * **Operating System** (``OS``): Main disk, the VM will start from this Image. Every VM must include an OS Image.
 * **CD-ROM ISO** (``CDROM``): These Images are read-only data. Only one Image of this type can be used in a VM.
-* **Data Disk** (``DATABLOCK``): A generic disk to store data. These Images can be contain existing data, e.g. a database, or be formatted as an empty drive.
+* **Data Disk** (``DATABLOCK``): A generic disk to store data. These Images can contain existing data, e.g. a database, or can be formatted as an empty drive.
 
-Additionally *file* Images represents plain files that can be used as:
+Additionally, *file* Images represents plain files that can be used as:
 
 * **OS kernel** (``KERNEL``): used as kernel for the Guest OS to start the VM.
 * **RAM disk** (``RAMDISK``): loaded by initrd at boot time.
@@ -27,8 +25,10 @@ Additionally *file* Images represents plain files that can be used as:
 
 Images of the previous types can also operate in two modes:
 
-* **Peristent**, represent stateful data. The modifications you made to the image will be preserved. There can be **only** one VM using a persistent Image at a time. Use persistent Images for user/application data.
+* **Peristent**, represent stateful data. The modifications you made to the image will be preserved. There can be **only one VM** using a persistent Image at any given time. Use persistent Images for user/application data.
 * **Non-Persistent**, represent stateless data any modification will not be preserved. Non-persistent images can be used by multiple VMs at the same time as each one will work on its own copy. Use non-peristent images for OS/Application installations.
+
+.. _images_states:
 
 States and Life-cycle
 ================================================================================
@@ -71,13 +71,13 @@ No matter the method you use to create your images, there is a set of common opt
 +===============================+=======================================================================+
 | ``--name name``               | Name of the new Image                                                 |
 +-------------------------------+-----------------------------------------------------------------------+
-| ``--datastore name | ID``     | Name/ID the new Image                                                 |
+| ``--datastore name | ID``     | Name/ID of the Datastore to store the new Image                       |
 +-------------------------------+-----------------------------------------------------------------------+
 | ``--description description`` | Description for the new Image (Optional)                              |
 +-------------------------------+-----------------------------------------------------------------------+
 | ``--type type``               | Type of the new Image: OS, CDROM, DATABLOCK, KERNEL, RAMDISK, CONTEXT |
 +-------------------------------+-----------------------------------------------------------------------+
-| ``--persistent``              | Tells if the Image will be persistent                                 |
+| ``--persistent``              | Set the Image to persistent mode                                      |
 +-------------------------------+-----------------------------------------------------------------------+
 | ``--prefix prefix``           | Device/bus to expose the disk to guest OS (e.g. hd, sd or vd)         |
 +-------------------------------+-----------------------------------------------------------------------+
@@ -90,7 +90,7 @@ No matter the method you use to create your images, there is a set of common opt
 | ``--size size``               | Size in MB. Used for DATABLOCK type or to resize the Image on boot    |
 +-------------------------------+-----------------------------------------------------------------------+
 
-Using your disk files
+Using your existing disk files
 --------------------------------------------------------------------------------
 
 You can use your existing virtual disks in OpenNebula. Simply, pick a name for your Image, grab the path where the disk is stored in the front-end, and choose the Datastore where you want to create the Image. The command will be similar to (by default ``OS`` Images are created):
@@ -137,9 +137,9 @@ You can also create plain data disks to define user storage or scratch areas in 
 Using Marketplaces
 --------------------------------------------------------------------------------
 
-OpenNebula leverages the applications created by several popular marketplaces, like DockerHub or Linucontainers.org. These are great places to grab a working installation of an OS/application ready to use in your Cloud. The OpenNebula project also prepares *contextualized* OS installations of popular distributions and applications, you can `check the list in the OpenNebula Marketplace <https://marketplace.opennebula.io/appliance>`_.
+OpenNebula leverages the applications created by several popular marketplaces, like DockerHub or Linuxcontainers.org. These are great places to grab a working installation of an OS/application ready to use in your Cloud. The OpenNebula project also prepares *contextualized* OS installations of popular distributions and applications, you can `check the list in the OpenNebula Marketplace <https://marketplace.opennebula.io/appliance>`_.
 
-You can find :ref`more information on using these Martkeplaces here<marketplaces>`.
+You can find :ref:`more information on using these Martkeplaces here <marketplaces>`.
 
  .. _dockerfile:
 
@@ -151,6 +151,8 @@ You can you to create Images using your own dockerfiles. The ``PATH`` in this ca
 .. code::
 
     dockerfile://<path_to_file>?fileb64=<file_in_base64>&context=<yes|no>
+
+where:
 
 +-----------------------+------------------------------------------------------------+
 | Argument              | Description                                                |
@@ -172,7 +174,7 @@ You can you to create Images using your own dockerfiles. The ``PATH`` in this ca
 
 .. important:: Multistage Dockerfiles are not supported, only one FROM directive can be included.
 
-In order to create an image using your own Dockerfile, you can use the command ``oneimage create``:
+To create an image using your own Dockerfile use the ``oneimage create`` command with a ``dockerfile://`` path. For example:
 
 .. code::
 
@@ -182,20 +184,18 @@ In order to create an image using your own Dockerfile, you can use the command `
       ID USER     GROUP    NAME       DATASTORE SIZE TYPE PER STAT RVMS
       0  oneadmin oneadmin testing-df default   256M OS    No rdy     0
 
-There is also a dedicated command ``oneimage dockerfile`` that will open an editor so you can edit your Dockerfile there.
-
-.. note:: In order to avoid the automatic installation of OpenNebula context packages, you can use the flag ``--no-context`` in both commands.
+There is also a dedicated ``oneimage dockerfile`` command that will open an editor so you can easily edit your Dockerfile there.
 
 Installing the Guest OS
 --------------------------------------------------------------------------------
 
-Finally, you can create boot a VM from an ISO installation image. Please refer to the :ref:`Guest OS installation guide for more information <guest_os>`.
+Finally, you can boot a VM from an ISO installation image and install the OS. Please refer to the :ref:`Guest OS installation guide for more information <guest_os>`.
 
-Creating LUKS encrypted Images
+LUKS encrypted Images
 --------------------------------------------------------------------------------
 
-LUKS-encrypted raw Images can be used **only on KVM** based hypervisors. First you need to create an encrypted
-volume using:
+LUKS-encrypted Images can be used **only on KVM** based hypervisors. First you need to create an encrypted
+volume using ``raw`` format, for example:
 
 .. prompt:: text $ auto
 
@@ -259,7 +259,7 @@ Existing Images can be cloned to a new one. This is useful to make a backup of a
 
     $ oneimage clone Ubuntu new_image
 
-You can optionally clone the Image to a different Datastore. The new Datastore must be compatible with the current one, i.e. have the same :ref:`DS_MAD drivers <sm>`.
+You can optionally clone the Image to a different Datastore. The new Datastore **must use the same DS_MAD driver**.
 
 .. prompt:: text $ auto
 
@@ -268,9 +268,7 @@ You can optionally clone the Image to a different Datastore. The new Datastore m
 Sharing Images with other Users
 --------------------------------------------------------------------------------
 
-The users can share their Images with other users in their group, or with all the users in OpenNebula. See the :ref:`Managing Permissions documentation <chmod>` for more information.
-
-Let's see a quick example. To share the Image 0 with users your group, the **USE** right bit for **GROUP** must be set with the **chmod** command:
+Users can share their Images with other users in their group, or with all the users in OpenNebula. Full details are described in the :ref:`Managing Permissions guide <chmod>`. Following you can see a quick example: to share the Image 0 with users in your group grant the **USE** right bit for **GROUP**:
 
 .. prompt:: text $ auto
 
@@ -312,7 +310,7 @@ Use the ``oneimage persistent`` and ``oneimage nonpersistent`` commands to make 
 Managing Image Snapshots
 --------------------------------------------------------------------------------
 
-A persistent Images can have snapshots if they are :ref:`created <vm_guide_2_disk_snapshots_managing>` during the life-cycle of VM that uses it. The following operations allow the user to manage these snapshots directly:
+Persistent Images can have snapshots if they are :ref:`created <vm_guide_2_disk_snapshots_managing>` during the life-cycle of the VM that uses them. The following operations allow the user to manage these snapshots directly:
 
 
 * ``oneimage snapshot-revert <image_id> <snapshot_id>``: The active state of the Image is overwritten by the specified snapshot. Note that this operation discards any unsaved data of the disk state.
@@ -324,9 +322,7 @@ A persistent Images can have snapshots if they are :ref:`created <vm_guide_2_dis
 How to Use Images in Virtual Machines
 ================================================================================
 
-This is a simple example on how to use Images as virtual machine disks. Please visit the :ref:`virtual machine user guide <vm_guide>` and the :ref:`virtual machine template <template>` documentation for a more thorough explanation.
-
-A VM uses Images including them in the VM template as a ``DISK``. A Disk can refer Images either by name (``IMAGE``) or ID (``IMAGE_ID``). If you are using Image names it is a good idea to scope the name to its owner (``IMAGE_UNAME`` or ``IMAGE_UID``) to prevent collisions.
+A VM uses an Image including it in its template as a ``DISK``. A Disk can refer Images either by name (``IMAGE``) or ID (``IMAGE_ID``). If you are using Image names it is a good idea to scope the name to its owner (``IMAGE_UNAME`` or ``IMAGE_UID``) to prevent collisions.
 
 For example the following template define a VM with two disks, the first one is based on Image with ID 7, the second will use the Image ``Ubuntu`` from ``oneadmin`` user.
 
@@ -342,13 +338,15 @@ For example the following template define a VM with two disks, the first one is 
 
     NIC    = [ NETWORK_ID = 1 ]
 
+Check the :ref:`virtual machine user guide <vm_guide>` and the :ref:`virtual machine template <template>` documentation for a more complete explanation.
+
 Save Disk Changes to an Image
 --------------------------------------------------------------------------------
 
-Once the VM is deployed and changes are made to its disk, you can save those changes in two different ways:
+Once the VM is deployed and changes are made to its disks, you can save those changes in two different ways:
 
 * **Disk snapshots**, a snapshot of the disk state is saved, you can later revert to this saved state.
-* **Disk save\_as**, the disk is copied to a new Image in the datastore. A new virtual machine can be started from it. The disk must be in a consistent state during the save\_as operation (e.g. by unmounting the disk from the VM).
+* **Disk save as**, the disk is copied to a new Image in the datastore. The disk must be in a consistent state during the ``save_as`` operation (e.g. by unmounting the disk from the VM).
 
 A detailed description of this process is :ref:`described in section Virtual Machine Instances <vm_guide_2_disk_snapshots>`
 
@@ -360,9 +358,7 @@ How to Use File Images in Virtual Machines
 Kernels and RAM disks
 --------------------------------------------------------------------------------
 
-``KERNEL`` and ``RAMDISK`` type Images can be used in the ``KERNEL_DS`` and ``INITRD_DS`` attributes of ``OS`` definition in the VM template. See the :ref:`complete reference <template_os_and_boot_options_section>` for more information.
-
-Example of a VM section that uses the Image with name ``kernel5.10`` as kernel and Image ID 23 as RAM disk:
+``KERNEL`` and ``RAMDISK`` type Images can be used in the ``KERNEL_DS`` and ``INITRD_DS`` attributes of ``OS`` definition in the VM template. Example of a VM section that uses the Image with name ``kernel5.10`` as kernel and Image ID 23 as RAM disk:
 
 .. code-block:: none
 
@@ -371,19 +367,18 @@ Example of a VM section that uses the Image with name ``kernel5.10`` as kernel a
            ROOT       = "sda1",
            KERNEL_CMD = "ro console=tty1" ]
 
+For a complete description :ref:`check the VM Template reference guide <template_os_and_boot_options_section>`.
+
 Generic files
 --------------------------------------------------------------------------------
 
-The :ref:`contextualization cdrom <context_overview>` can include ``CONTEXT`` type Images, so the VM can access them at boot time. Visit the :ref:`complete VM template reference <template_context>` for more information.
-
-Example of a VM section that includes the Image (file) with name ``webpageDB`` and Image ID 34:
+The :ref:`contextualization cdrom <context_overview>` can include ``CONTEXT`` type Images, so the VM can access them at boot time. For Example, a VM section that includes the Image (file) with name ``webpageDB`` and Image ID 34 would be:
 
 .. code-block:: none
 
     CONTEXT = [
       FILES_DS   = "$FILE[IMAGE_ID=34] $FILE[IMAGE=webpageDB]",
     ]
-
 
 Using Sunstone to Manage Images
 ================================================================================

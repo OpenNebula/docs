@@ -174,7 +174,7 @@ The following examples define two state hooks for VMs, hosts and images:
     STATE = READY
     RESOURCE = IMAGE
 
-.. note:: Check each resource guide for info about :ref:`Image states <img_life_cycle_and_states>`, :ref:`VM states <vm_states>` and :ref:`Host states <host_states>`
+.. note:: Check each resource guide for info about :ref:`Image states <images_states>`, :ref:`VM states <vm_states>` and :ref:`Host states <host_states>`
 
 Managing Hooks
 ================================================================================

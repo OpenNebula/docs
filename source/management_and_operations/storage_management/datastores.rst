@@ -15,9 +15,7 @@ OpenNebula features three different datastore types:
 
 * The **Files & Kernels Datastore** to store plain files used in contextualization, or VM kernels used by some hypervisors.
 
-By default, OpenNebula will create an image (``default``), system (``system``), and files datastore (``files``) configured to use the SSH protocol. These datastores are configured to use the SSH protocol to transfer images.
-
-You can list the datastores in your cloud with the ``onedatastore list`` command:
+By default, OpenNebula will create an image (``default``), system (``system``), and files datastore (``files``). These datastores are configured to use the SSH protocol to transfer images.  You can list the datastores in your cloud with the ``onedatastore list`` command:
 
 .. prompt:: bash $ auto
 
@@ -27,7 +25,7 @@ You can list the datastores in your cloud with the ``onedatastore list`` command
        1 default              50G 86% 0             2 img  fs      ssh     on
        0 system                 - -   0             0 sys  -       ssh     on
 
-Properties
+Attributes
 ================================================================================
 
 Image Datastore
@@ -79,10 +77,10 @@ You can access the information about each datastore using the ``onedatastore sho
 
 There are four important sections:
 
-  * **General Information**, it includes basic information like the name, the file path of the datastore or its type (``IMAGE``). It includes also the set of drivers (``DS_MAD`` and ``TM_MAD``) used to store and transfer images. In this case it is file based (``fs``) using the SSH protocol for transfers (``ssh``).
-  * **Capacity**, the basic usage metrics total/used/free space.
-  * **Attributes**, under ``DATASTORE TEMPLATE`` you can find configuration attributes and custom tags (see below).
-  * **Images**, the list of images stored in this datastore.
+  * **General Information**, it includes basic information like the name, the file path of the datastore or its type (``IMAGE``). It includes also the set of drivers (``DS_MAD`` and ``TM_MAD``) used to store and transfer images. In this example, the datastores uses a file based driver (``DS_MAD="fs"``) and the SSH protocol for transfers (``TM_MAD=ssh``).
+  * **Capacity**, including basic usage metrics like total, used, and free space.
+  * **Generic Attributes**, under ``DATASTORE TEMPLATE`` you can find configuration attributes and custom tags (see below).
+  * **Images**, the list of images currently stored in this datastore.
 
 System Datastore
 --------------------------------------------------------------------------------
@@ -130,7 +128,7 @@ In the case of System Datastore the information is similar:
 
 Note the differences in this case:
   * Only the transfer driver (``TM_MAD``) is defined.
-  * In this case there is no overall usage figures. The ``ssh`` driver use the local storage are of each Host. To check the available space in a specific host you need to check the host details with ``onehost show`` command. Note that this behavior is different for other drivers.
+  * For the datastore of this example, there are no overall usage figures. The ``ssh`` driver use the local storage area of each Host. To check the available space in a specific host you need to check the host details with ``onehost show`` command. Note that this behavior may be different for other drivers.
   * Images cannot be registered in System Datastores.
 
 Basic Configuration
@@ -138,14 +136,14 @@ Basic Configuration
 
 Configuring a Datastore usually requires adding some specific attributes that depends on the storage driver and your infrastructure, check the :ref:`Open Cloud Storage Guide <storage>` and :ref:`vCenter Storage Guide <vcenter_ds>` for specific details.
 
-Also, there are a set of common attributes that can be used in any Datastore to tune its behavior. The following table describes each attribute.
+Also, there are a set of common attributes that can be used in any Datastore to tune its behavior. The following table describes each attribute:
 
 +------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
 |          Attribute           |                                                           Description                                                            |
 +------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``RESTRICTED_DIRS``          | Paths that can not be used to register images. A space separated list of paths.                                                  |
+| ``RESTRICTED_DIRS``          | Paths that **cannot** be used to register images. A space separated list of paths.                                               |
 +------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``SAFE_DIRS``                | If you need to un-block a directory under one of the RESTRICTED\_DIRS. A space separated list of paths.                          |
+| ``SAFE_DIRS``                | If you need to allow a directory listed under RESTRICTED\_DIRS. A space separated list of paths.                                 |
 +------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
 | ``NO_DECOMPRESS``            | Do not try to untar or decompress the file to be registered. Useful for specialized Transfer Managers                            |
 +------------------------------+----------------------------------------------------------------------------------------------------------------------------------+

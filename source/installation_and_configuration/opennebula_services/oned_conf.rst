@@ -286,7 +286,7 @@ Here you can configure the default values for the Datastores and Image templates
 
 - ``DEFAULT_IMAGE_PERSISTENT_NEW``: Control the default value for the PERSISTENT attribute on image creation (``oneimage create``). By default images are not persistent if this is not set.
 
-More information on the image repository can be found in the :ref:`Managing Virtual Machine Images guide <img_guide>`.
+More information on the image repository can be found in the :ref:`Managing Virtual Machine Images guide <images>`.
 
 Sample configuration:
 

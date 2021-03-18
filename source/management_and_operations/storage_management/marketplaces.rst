@@ -4,16 +4,14 @@
 Marketplaces
 ================================================================================
 
-OpenNebula provides a simple way to create and integrate with a cloud application/image provider, called Marketplaces. Think of them as external datastores.
+OpenNebula Marketplaces provide a simple way to integrate your cloud with popular application/image providers. Think of them as external datastores.
 
-A MarketPlace can be:
+A Marketplace can be:
 
-* **Public**: accessible universally by all OpenNebulas.
-* **Private**: local within an organization and specific for a single OpenNebula (a single zone) or shared by a federation (a collection of zones). If you are interested in setting up your own :ref:`private Marketplace, please follow this guide <private_markeplaces>`. 
+* **Public**: accessible universally by all OpenNebula installations.
+* **Private**: local within an organization and specific for a single OpenNebula (a single zone) or shared by a federation (a collection of zones). If you are interested in setting up your own :ref:`private Marketplace, please follow this guide <private_marketplaces>`. 
 
-A Marketplace is a repository to store Marketplace Appliances. A MarketPlace Appliance includes one or more Images and, possibly, some associated metadata like VM Templates or OpenNebula Flow definitions.
-
-
+A Marketplace stores Marketplace Appliances. A MarketPlace Appliance includes one or more Images and, possibly, some associated metadata like VM Templates or OpenNebula Multi-VM service definitions.
 
 Public Marketplaces
 ================================================================================
@@ -21,20 +19,20 @@ Public Marketplaces
 OpenNebula will configure by default the following Marketplaces in your installation:
 
 +-------------------------+-----------------------------------------------------------------------------------------------+
-| Marketplace             | Description                                                                                   |
+| Marketplace Name        | Description                                                                                   |
 +=========================+===============================================================================================+
-| OpenNebula Systems      | The official public `OpenNebula Systems Marketplace <http://marketplace.opennebula.systems>`__|
+| OpenNebula Public       | The official public `OpenNebula Systems Marketplace <http://marketplace.opennebula.systems>`__|
 +-------------------------+-----------------------------------------------------------------------------------------------+
-| LXC/LXD Linuxcontainers | The public LXD/LXC `image repository <https://images.linuxcontainers.org>`__                  |
+| Linux Containers        | The public LXD/LXC `image repository <https://images.linuxcontainers.org>`__                  |
 +-------------------------+-----------------------------------------------------------------------------------------------+
-| Turnkey Linux           | The Turnkey Linux `image repository <https://www.turnkeylinux.org>`__                         |
+| Turnkey Linux Containers| The Turnkey Linux `image repository <https://www.turnkeylinux.org>`__                         |
 +-------------------------+-----------------------------------------------------------------------------------------------+
-| Docker Hub              | The Docker Hub `image repository <https://hub.docker.com>`__                                  |
+| DockerHub               | The Docker Hub `image repository <https://hub.docker.com>`__                                  |
 +-------------------------+-----------------------------------------------------------------------------------------------+
 
 .. important:: The OpenNebula front-end needs access to the Internet to use the public Marketplaces.
 
-You can list the marketplaces configured in OpenNebula with ``onemarket list``. The default installation of OpenNebula will look similar to:
+You can list the marketplaces configured in OpenNebula with ``onemarket list``. The output for the default installation of OpenNebula will look similar to:
 
 .. code::
 
@@ -75,7 +73,7 @@ Configuration Attributes
 DockerHub Marketplace
 ================================================================================
 
-The DockerHub Marketplace provide access to `DockerHub **Official** Images <https://hub.docker.com/search?image_filter=official&type=image>`__. The OpenNebula context packages are installed during the import process so once an image is imported it's fully prepared to be used.
+The DockerHub Marketplace provide access to `DockerHub Official Images <https://hub.docker.com/search?image_filter=official&type=image>`__. The OpenNebula context packages are installed during the import process so once an image is imported it's fully prepared to be used.
 
 .. note:: More information on how to use DockerHub images with the different hypervisors can be found :ref:`here <container_image_usage>`.
 
