@@ -48,8 +48,6 @@ The FireEdge configuration file can be found at ``/etc/one/fireedge-server.conf`
 | ``:oneprovision_optional_create_command`` |                              | Optional param for ``oneprovision create`` command |
 +-------------------------------------------+------------------------------+----------------------------------------------------+
 
-.. note:: Check extra configuration for :ref:`FireEdge OneProvision GUI <fireedge_cpi>`.
-
 Once the server is initialized, it creates the file ``/var/lib/one/.one/fireedge_key``.
 
 .. note:: In HA environments, directories ``/var/lib/one/.one`` and ``/var/lib/one/fireedge`` need to be shared between nodes.
