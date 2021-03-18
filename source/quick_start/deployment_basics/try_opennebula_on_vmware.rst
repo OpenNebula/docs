@@ -133,7 +133,7 @@ If you are presented instead with the following:
 
 You are being presented with the wrong tty. You will need to press Ctrl+Alt+F1 to access the Control Console.
 
-In this wizard you need to **configure the network**. If you are using DHCP you can simply skip to the next item.
+In this wizard you first need to **configure the network**. If you are using DHCP you can simply skip to the next item.
 
 If you are using a static network configuration, answer yes and you will need to use a ncurses interface to:
 
@@ -149,15 +149,19 @@ An example of static network configuration on the available network interface on
 .. image:: /images/network-conf-example.png
     :align: center
 
-The second action is the **oneadmin account password**. You will need this to login to OpenNebula. Check the :ref:`Accounts section <accounts>` to learn more about vOneCloud roles and users.
+The second action needed is to set the **oneadmin account password**. You will need this to login to OpenNebula. Check the :ref:`Accounts section <accounts>` to learn more about vOneCloud roles and users.
 
 .. image:: /images/set_oneadmin_password.png
     :align: center
+
+.. _advanced_login:
 
 And the in the third action, you need to define a **root password.** You won't be using this very often, so write it down somewhere safe. It's your master password to the appliance.
 
 .. image:: /images/set_root_password.png
     :align: center
+
+This password can be used to access the OpenNebula command line interface, for that you need to ssh to vOneCloud using the `root` account and password. In OS X and Linux environments, simply use `ssh` to log into the root account of vOneCloud's IP. For Windows environments you can use software like `PuTTY <http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>`__ or even SFTP clients like `WinSCP <https://winscp.net/>`__. Alternatively, open the console of the vOneCloud VM in vCenter and change the tty (Ctrl + Alt + F2).
 
 Step 3. Enjoy the Out-of-the-Box Features
 --------------------------------------------------------------------------------
@@ -170,17 +174,6 @@ After opening the Sunstone interface (``http://<appliance_ip>`` with oneadmin cr
 .. image:: /images/sunstone-main.png
     :align: center
 
-Move on to the :ref:`next section <import_vcenter>` to start using your cloud by importing your existing vCenter infrastructure resources.
-
-.. _advanced_login:
-
-Login to the Appliance
---------------------------------------------------------------------------------
-
-To access the OpenNebula command line interface, ssh to vOneCloud using the `root` account and password. In OS X and Linux environments, simply use `ssh` to log into the root account of vOneCloud's IP. For Windows environments you can use software like `PuTTY <http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>`__ or even SFTP clients like `WinSCP <https://winscp.net/>`__.
-
-Alternatively,  open the vCenter console of the vOneCloud Virtual Machine appliance and change the tty (Ctrl + Alt + F2). Afterwards, log in with the `root` account and the password you used in the :ref:`initial configuration <download_and_deploy_control_console>`, and switch to the `oneadmin` user.
-
 .. _import_vcenter:
 
 Import Existing vCenter Resources
@@ -188,9 +181,7 @@ Import Existing vCenter Resources
 
 Importing a vCenter infrastructure into OpenNebula can be carried out easily through the Sunstone Web UI. Follow the next steps to import an existing vCenter cluster as well as any already defined VM Template and Networks.
 
-You will need the IP or hostname of the vCenter server, as well as a user declared as Administrator in vCenter.
-
-.. todo:: More information in the main OpenNebula documentation deployment/node_installation/vcenter_node_installation.html#permissions-requirement
+You will need the IP or hostname of the vCenter server, as well as a user declared as Administrator in vCenter. More info on needed permissions in the :ref:`vCenter node installation guide <vcenter_permissions_requirement>`.
 
 .. note:: For security reasons, you may define different users to access different ESX Clusters. A different user can be defined in OpenNebula per ESX cluster, which is encapsulated in OpenNebula as an OpenNebula host.
 
@@ -203,8 +194,8 @@ The *oneadmin* account has full control of all the physical and virtual resource
 
 .. _acquire_resources:
 
-Step 2. Acquire vCenter Resources
----------------------------------
+Step 2. Import vCenter Cluster
+------------------------------
 
 To import new vCenter clusters to be managed in OpenNebula, proceed in Sunstone to the ``Infrastructure --> Hosts`` tab and click on the "+" green icon.
 
@@ -245,15 +236,12 @@ Now it's time to check that the vCenter import has been successful. In ``Infrast
 .. image:: /images/import_host_hosts.png
     :align: center
 
-Step 3. Import / Reacquire vCenter Resources
+Step 3. Import Datastores
 ---------------------------------------------------------------------------------
 
 .. _import_images_and_ds:
 
-Datastores and Images
-^^^^^^^^^^^^^^^^^^^^^
-
-Datastores and VMDK images can be imported / reacquired from the ``Storage --> Datastores`` and ``Storage --> Images`` respectively. Since datastores are going to be used to hold the images from VM Templates, all datastore **must** be imported before VM Template import.
+Datastores can be imported from the ``Storage --> Datastores`` Since datastores are going to be used to hold the images from VM Templates, all datastore **must** be imported before VM Template import.
 
 vCenter datastores hosts VMDK files and other file types so VMs and templates can use them, and these datastores can be represented in OpenNebula as both an Images datastore and a System datastore:
 
@@ -261,8 +249,6 @@ vCenter datastores hosts VMDK files and other file types so VMs and templates ca
 - System Datastore. Holds disk for running virtual machines, copied or cloned from the Images Datastore.
 
 For example, if we have a vcenter datastore called ''nfs'', when we import the vCenter datastore into OpenNebula, two OpenNebula datastores will be created as an Images datastore and as a System datastore pointing to the same vCenter datastore.
-
-Here are the steps to import a datastore:
 
 First go to ``Storage --> Datastores`` , click on the "+" green icon and click on "Import".
 
@@ -286,32 +272,12 @@ After importing you should see a message indicating that the datastore was succe
 
 .. note:: If the vCenter instance features a read only datastore, please be aware that you should disable the SYSTEM representation of the datastore after importing it to avoid OpenNebula trying to deploy VMs in it.
 
-When an image or a datastore is imported, OpenNebula will generate a name automatically that prevents conflicts if you try to import several files with the same name but that are located in different folders inside the datastore, or try to import datastores with the same name in different vCenter instances. These names can be changed once the image or datastore has been imported.
+. _import_networks:
 
-When the vCenter hypervisor is used we have three OpenNebula image types:
+Step 4. Import Networks
+---------------------------------------------------------------------------------
 
-- OS: A bootable disk Image. Every VM template must define one DISK referring to an Image of this type. These images can be imported or uploaded.
-- CDROM: These Images are read-only data. These images can also be imported or uploaded.
-- DATABLOCK: A datablock Image is a storage for data. These Images can be created from previous existing data (e.g uploading a VMDK file), or as an empty drive.
-
-OpenNebula images can be also classified in persistent and non-persistent images:
-
-- Non-persistent images. These images are used by at least one VM. It can still be used by other VMs. When a new VM using a non-persistent image is deployed a copy of the VMDK file is created.
-- Persistent images. A persistent image can be use only by a VM. It cannot be used by new VMs. The original file is used, no copies are created.
-
-Disks attached to a VM will be backed by a non-persistent or persistent image although volatile disks are also supported. Volatile disks are created on-the-fly on the target hosts and they are disposed when the VM is shutdown.
-
-Datastore will be monitored for free space and availability. Images can be used for:
-
-- disk attach/detach on VMs
-- enrich VM Templates to add additional disks or CDROMs
-
-.. _import_networks:
-
-Networks
-^^^^^^^^
-
-Similarly, Port Groups, Distributed Port Groups and NSX-T / NSX-V logical switches, can also be imported / reacquired using a similar ``Import`` button in ``Network --> Virtual Networks``.
+Similarly, Port Groups, Distributed Port Groups and NSX-T / NSX-V logical switches, can also be imported using a similar ``Import`` button in ``Network --> Virtual Networks``.
 
 .. image:: /images/import_vnet.png
     :align: center
@@ -344,8 +310,8 @@ It is possible to limit the bandwidth of any VM NIC associated to a particular v
 
 .. _import_vm_templates:
 
-VM Templates
-^^^^^^^^^^^^
+Step 5. Import VM Templates
+---------------------------------------------------------------------------------
 
 .. warning:: Since datastores are going to be used to hold the images from VM Templates, all datastore **must** be imported before VM Template import.
 
@@ -376,52 +342,22 @@ After importing you should see a message indicating that the template was succes
 
 When a VMware VM Template is imported, OpenNebula will detect any virtual disk and network interface within the template. For each virtual disk, OpenNebula will create an image representing each disk discovered in the template. In the same way, OpenNebula will create a network representation for each standard or distributed port group associated to virtual network interfaces found in the template. The imported OpenNebula VM templates can be modified selecting the VM Template in ``Virtual Resources --> Templates`` and clicking on the Update button.
 
-Among other options available through the Sunstone web interface:
-
-- Information can be passed into the instantiated VM, through either Contextualization or Customization.
-- Network interface cards can be added or removed to give VMs access to different networks
-- Disks can be added or removed
-- Capacity (MEMORY and CPU) can be modified
-- VNC capabilities can be disabled
-
-Existing VMs (Wild VMs)
-^^^^^^^^^^^^^^^^^^^^^^^
-
 If the vCenter infrastructure has running or powered off **Virtual Machines**, OpenNebula can import and subsequently manage them. To import vCenter VMs, proceed to the **Wilds** tab in the Host info tab representing the vCenter cluster where the VMs are running in, select the VMs to be imported and click on the import button.
-
-.. image:: /images/import_wild.png
-    :align: center
-
-.. image:: /images/import_wild_import.png
-    :align: center
-
-After importing you should see a message indicating that the VM was successfully imported.
-
-.. image:: /images/import_wild_import_success.png
-    :align: center
 
 .. _operations_on_running_vms:
 
 After the VMs are in the Running state, you can operate on their life-cycle, assign them to particular users, attach or detach network interfaces, create snapshots, do capacity resizing (change CPU and MEMORY after powering the VMs off), etc.
 
-All the functionality that OpenNebula supports for regular VMs is present for imported VMs with some exceptions. The following operations *cannot* be performed on an imported VM:
-
-- Recover --recreate
-- Undeploy (and Undeploy --hard)
-- Stop
-
-Once a Wild VM is imported, OpenNebula will reconfigure the vCenter VM so VNC connections can be established once the VM is monitored.
-
-.. _name_prefix_note:
-
-.. note:: VMs instantiated through OpenNebula will be named in vCenter as 'one-<vid>-<VM Name>', where <vid> is the id of the VM and VM Name is the name given to the VM in OpenNebula. This value can be changed using a special attribute set in the vCenter cluster representation, the OpenNebula host. This attribute is called "VM_PREFIX", and will evaluate one variable, $i, to the id of the VM. This attribute can be set in the "Attributes" section of the OpenNebula host.
-
-.. note:: OpenNebula does not support spaces in VMDKs paths nor names.
-
 .. _cluster_prefix:
 
 .. note:: Resources imported from vCenter will have their names appended with a the name of the cluster where this resources belong in vCenter, to ease their identification within OpenNebula.
 
-.. note:: vCenter VM Templates, Networks, Distributed vSwitches, Datastores, VMDKs and Virtual Machines can be imported regardless of their position inside VM Folders.
+Step 6. Verification - Launch a VM
+---------------------------------------------------------------
 
-.. todo:: do we need validation?
+Let's validate this OpenNebula installation doing what it does best, launching Virtual Machines. Go to your ``Instances -> VMs`` tab in Sunstone and click on the "+" green icon. Select the VM Template imported in the previous step (feel free to change any configuration aspect) and click on Instantiate.
+
+.. image:: /images/instantiate_vcenter_vm_template.png
+    :align: center
+
+Alright! Your VM should be up and running switfly. Check the console icon to access your VM through VMRC within Sunstone.

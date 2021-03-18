@@ -156,6 +156,7 @@ Step 4: Next Steps
 
 Jump to the :ref:`Verify your Installation <vcenter_based_cloud_verification>` section in order to launch a VM or learn how to setup the :ref:`VMWare infrastructure <vmware_infrastructure_setup_overview>`.
 
+.. _vcenter_permissions_requirement:
 
 Permissions requirement
 ================================================================================
