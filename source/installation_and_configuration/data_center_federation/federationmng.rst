@@ -32,7 +32,7 @@ Users can switch Zones through the command line using the `onezone </doc/5.13/cl
     *     0 OpenNebula                http://localhost:2633/RPC2
         104 ZoneB                     http://ultron.c12g.com:2634/RPC2
 
-We can see in the above command output that the user has access to both "OpenNebula" and "ZoneB", and it is currently in the "OpenNebula" Zone. The active Zone can be changed using the 'set' command of `onezone </doc/5.13/cli/onezone.1.html>`__:
+We can see in the above command output that the user has access to both "OpenNebula" and "ZoneB", and it is currently in the "OpenNebula" Zone. The active Zone can be changed using the `set` command of `onezone </doc/5.13/cli/onezone.1.html>`__:
 
 .. code-block:: none
 
