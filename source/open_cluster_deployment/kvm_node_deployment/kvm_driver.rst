@@ -4,8 +4,6 @@
 KVM Driver
 ================================================================================
 
-`KVM (Kernel-based Virtual Machine) <http://www.linux-kvm.org/>`__ is the hypervisor for OpenNebula's :ref:`Open Cloud Architecture <open_cloud_architecture>`. KVM is a complete virtualization system for Linux. It offers full virtualization, where each Virtual Machine interacts with its own virtualized hardware. This guide describes the use of the KVM with OpenNebula.
-
 Requirements
 ================================================================================
 
@@ -26,45 +24,10 @@ KVM Configuration
 
 The OpenNebula packages will configure KVM automatically, therefore you don't need to take any extra steps.
 
-Drivers
+OpenNebula
 --------------------------------------------------------------------------------
 
-The KVM driver is enabled by default in OpenNebula:
-
-.. code-block:: bash
-
-    #-------------------------------------------------------------------------------
-    #  KVM Virtualization Driver Manager Configuration
-    #    -r number of retries when monitoring a host
-    #    -t number of threads, i.e. number of hosts monitored at the same time
-    #    -l <actions[=command_name]> actions executed locally, command can be
-    #        overridden for each action.
-    #        Valid actions: deploy, shutdown, cancel, save, restore, migrate, poll
-    #        An example: "-l migrate=migrate_local,save"
-    #    -p more than one action per host in parallel, needs support from hypervisor
-    #    -s <shell> to execute remote commands, bash by default
-    #
-    #  Note: You can use type = "qemu" to use qemu emulated guests, e.g. if your
-    #  CPU does not have virtualization extensions or use nested Qemu-KVM hosts
-    #-------------------------------------------------------------------------------
-    VM_MAD = [
-        NAME          = "kvm",
-        SUNSTONE_NAME = "KVM",
-        EXECUTABLE    = "one_vmm_exec",
-        ARGUMENTS     = "-t 15 -r 0 kvm",
-        DEFAULT       = "vmm_exec/vmm_exec_kvm.conf",
-        TYPE          = "kvm",
-        KEEP_SNAPSHOTS= "no",
-        LIVE_RESIZE   = "yes",
-        SUPPORT_SHAREABLE    = "yes",
-        IMPORTED_VMS_ACTIONS = "terminate, terminate-hard, hold, release, suspend,
-            resume, delete, reboot, reboot-hard, resched, unresched, disk-attach,
-            disk-detach, nic-attach, nic-detach, snap-create, snap-delete"
-    ]
-
-The configuration parameters: ``-r``, ``-t``, ``-l``, ``-p`` and ``-s`` are already preconfigured with sane defaults. If you change them you will need to restart OpenNebula.
-
-Read the :ref:`Virtual Machine Drivers Reference <devel-vmm>` for more information about these parameters, and how to customize and extend the drivers.
+The KVM driver is enabled by default in OpenNebula ``/etc/one/oned.conf`` on your Front-end host with reasonable defaults. Read the :ref:`oned Configuration <oned_conf_virtualization_drivers>` to understand these configuration parameters and :ref:`Virtual Machine Drivers Reference <devel-vmm>` to know how to customize and extend the drivers.
 
 .. _kvmg_default_attributes:
 
@@ -86,7 +49,7 @@ There are some attributes required for KVM to boot a VM. You can set a suitable 
 
 .. warning:: These values are only used during VM creation, for other actions like nic or disk attach/detach the default values must be set in ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc``. For more info check :ref:`Files and Parameters <kvmg_files_and_parameters>` section.
 
-For example:
+For example (check the actual state in the configuration file on your Front-end):
 
 .. code::
 
@@ -110,7 +73,7 @@ For example:
 
   These values can be overriden in the Cluster, Host and VM Template
 
-**Since OpenNebula 6.0** you should no longer need to modify the ``EMULATOR`` variable to point to the kvm exectuable, instead ``EMULATOR`` now points to the symlink ``/usr/bin/qemu-kvm-one`` which should link the correct kvm binary for given OS on a host.
+**Since OpenNebula 6.0** you should no longer need to modify the ``EMULATOR`` variable to point to the kvm exectuable, instead ``EMULATOR`` now points to the symlink ``/usr/bin/qemu-kvm-one`` which should link the correct KVM binary for given OS on a host.
 
 Live-Migration for Other Cache settings
 --------------------------------------------------------------------------------
@@ -141,10 +104,10 @@ Working with cgroups (Optional)
 
 Optionally, you can setup cgroups to control resources on your hosts. The `libvirt cgroups documentation <https://libvirt.org/cgroups.html>`__ describes all the cases and a way the cgroups are managed by libvirt/KVM.
 
-Compact Memory (Optional)
+Memory Cleanup (Optional)
 -------------------------
 
-Memory fragmentation may cause that the VM doesn't deploy, even if there is enough memory on host. To prevent the memory fragmentation it's possible to enable compact memory on VM start or VM stop. By default compact memory on VM stop is enabled. The compact memory is triggered on following actions: ``deploy``, ``migrate``, ``poweroff``, ``recover``, ``release``, ``resize``, ``save``, ``resume``, ``save``, ``suspend`` and ``shutdown``. This feature is enabled in ``/var/lib/one/etc/remotes/vmm/kvm/kvmrc``:
+Memory allocated by caches or memory fragmentation may cause that the VM fails to deploy, even if there is enough memory on host at first sight. To avoid such failures and provide best memory placement for the VMs, it's possible to trigger memory cleanup and compactation before VM starts and/or after VM stops (by default enabled only on stop). The feature is configured in ``/var/lib/one/etc/remotes/vmm/kvm/kvmrc`` on the Front-end:
 
 .. code-block:: bash
 
@@ -154,6 +117,7 @@ Memory fragmentation may cause that the VM doesn't deploy, even if there is enou
     # Compact memory after VM stops
     CLEANUP_MEMORY_ON_STOP=yes
 
+Covered VM actions - ``deploy``, ``migrate``, ``poweroff``, ``recover``, ``release``, ``resize``, ``save``, ``resume``, ``save``, ``suspend`` and ``shutdown``.
 
 Usage
 ================================================================================
@@ -172,14 +136,14 @@ DISK
 * ``IO``: set IO policy possible values are ``threads`` and ``native``.
 * ``IOTHREAD``: thread id used by this disk. It can only be used for virtio disk conrtollers and if ``IOTHREADS`` > 0.
 * ``DISCARD``: controls what to do with trim commands, the options are ``ignore`` or ``unmap``. It can only be used with virtio-scsi.
-* ``IO Throttling support``: You can limit TOTAL/READ/WRITE throughput or IOPS. Also burst control for this IO operations can be set for each disk. :ref:`See the reference guide for the attribute names and purpose <reference_vm_template_disk_section>`.
+* IO Throttling support - You can limit TOTAL/READ/WRITE throughput or IOPS. Also burst control for this IO operations can be set for each disk. :ref:`See the reference guide for the attribute names and purpose <reference_vm_template_disk_section>`.
 
 NIC
 ~~~
 
 * ``TARGET``: name for the tun device created for the VM. It corresponds to the ``ifname`` option of the '-net' argument of the ``kvm`` command.
 * ``SCRIPT``: name of a shell script to be executed after creating the tun device for the VM. It corresponds to the ``script`` option of the '-net' argument of the ``kvm`` command.
-* ``QoS`` to control the network traffic. We can define different kind of controls over network traffic:
+* QoS to control the network traffic. We can define different kind of controls over network traffic:
 
     * ``INBOUND_AVG_BW``
     * ``INBOUND_PEAK_BW``
@@ -200,7 +164,7 @@ NIC
 
     $ virsh -c qemu:///system nwfilter-list
 
-* ``VIRTIO_QUEUES`` to define how many queues will be used for the communication between CPUs and Network drivers. This attribute only is available with MODEL = 'virtio'.
+* ``VIRTIO_QUEUES`` to define how many queues will be used for the communication between CPUs and Network drivers. This attribute only is available with ``MODEL="virtio"``.
 
 Graphics
 ~~~~~~~~
@@ -216,7 +180,7 @@ Enabling spice will also make the driver inject specific configuration for these
 Virtio
 ~~~~~~
 
-Virtio is the framework for IO virtualization in KVM. You will need a linux kernel with the virtio drivers for the guest, check `the KVM documentation for more info <http://www.linux-kvm.org/page/Virtio>`__.
+Virtio is the framework for IO virtualization in KVM. You will need a Linux kernel with the virtio drivers for the guest, check `the KVM documentation for more info <http://www.linux-kvm.org/page/Virtio>`__.
 
 If you want to use the virtio drivers add the following attributes to your devices:
 
@@ -235,46 +199,47 @@ For disks you can also use SCSI bus (``sd``) and it will use virtio-scsi control
 Additional Attributes
 ~~~~~~~~~~~~~~~~~~~~~
 
-The **raw** attribute offers the end user the possibility of passing by attributes not known by OpenNebula to KVM. Basically, everything placed here will be written literally into the KVM deployment file (**use libvirt xml format and semantics**). You can selectively disable validation of the RAW data by adding `VALIDATE = "no"` to the `RAW` section. By default the data will be checked against the libvirt schema.
+The **raw** attribute offers the end user the possibility of passing by attributes not known by OpenNebula to KVM. Basically, everything placed here will be written literally into the KVM deployment file (**use libvirt xml format and semantics**). You can selectively disable validation of the RAW data by adding `VALIDATE="no"` to the `RAW` section. By default, the data will be checked against the libvirt schema.
 
 .. code::
 
-      RAW = [ type = "kvm",
-              validate = "yes",
-              data = "<devices><serial type=\"pty\"><source path=\"/dev/pts/5\"/><target port=\"0\"/></serial><console type=\"pty\" tty=\"/dev/pts/5\"><source path=\"/dev/pts/5\"/><target port=\"0\"/></console></devices>" ]
+    RAW = [
+      TYPE = "kvm",
+      VALIDATE = "yes",
+      DATA = "<devices><serial type=\"pty\"><source path=\"/dev/pts/5\"/><target port=\"0\"/></serial><console type=\"pty\" tty=\"/dev/pts/5\"><source path=\"/dev/pts/5\"/><target port=\"0\"/></console></devices>" ]
 
 
 .. _libvirt_metadata:
 
-Libvirt metadata
+Libvirt Metadata
 ~~~~~~~~~~~~~~~~~~~~~
 
 The following OpenNebula information is added to the metadata section of the Libvirt domain, the specific attributes are listed below:
 
-   - system_datastore
-   - name
-   - uname
-   - uid
-   - gname
-   - gid
-   - opennebula_version
-   - stime
-   - deployment_time
+- ``system_datastore``
+- ``name``
+- ``uname``
+- ``uid``
+- ``gname``
+- ``gid``
+- ``opennebula_version``
+- ``stime``
+- ``deployment_time``
 
 They correspond to their values OpenNebula equivalents for the XML representation of the VM. ``opennebula_version`` and ``deployment_time`` are the OpenNebula version used during the deployment and deployment time at epoch format, respectively.
 
-Also the VM name is included at Libvirt XML ``title`` field, so if the ``--title`` option is used for listing the Libvirt domains the VM name will be shown with the domain name.
+Also the VM name is included at libvirt XML ``title`` field, so if the ``--title`` option is used for listing the libvirt domains the VM name will be shown with the domain name.
 
-Disk/Nic Hotplugging
+Disk/NIC Hotplugging
 --------------------
 
 KVM supports hotplugging to the ``virtio`` and the ``SCSI`` buses. For disks, the bus the disk will be attached to is inferred from the ``DEV_PREFIX`` attribute of the disk template.
 
-* ``vd``: ``virtio`` (recommended).
-* ``sd``: ``SCSI`` (default).
+* ``vd``: ``virtio``
+* ``sd``: ``SCSI`` (default)
 * ``hd``: ``IDE``
 
-.. note:: Hotplugging is not supported for CDROM and floppy.
+.. note:: Hotplugging is not supported for CD-ROM and floppy.
 
 If ``TARGET`` is passed instead of ``DEV_PREFIX`` the same rules apply (what happens behind the scenes is that OpenNebula generates a ``TARGET`` based on the ``DEV_PREFIX`` if no ``TARGET`` is provided).
 
@@ -320,7 +285,7 @@ By default the drivers use a unix socket to communicate with the libvirt daemon.
 
 This limitation can be solved configuring libvirt to accept TCP connections  and OpenNebula to use this communication method.
 
-Libvirt configuration
+Libvirt Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is described how to configure libvirtd to accept unencrypted and unauthenticated TCP connections in a CentOS 7 machine. For other setup check your distribution and libvirt documentation.
@@ -346,7 +311,7 @@ After modifying these files the libvirt daemon must be restarted:
 
     $ sudo systemctl restart libvirtd
 
-OpenNebula configuration
+OpenNebula Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The VMM driver must be configured so it allows more than one action to be executed per host. This can be done adding the parameter ``-p`` to the driver executable. This is done in ``/etc/one/oned.conf`` in the VM_MAD configuration section:
@@ -354,11 +319,11 @@ The VMM driver must be configured so it allows more than one action to be execut
 .. code::
 
     VM_MAD = [
-        name       = "kvm",
-        executable = "one_vmm_exec",
-        arguments  = "-t 15 -r 0 kvm -p",
-        default    = "vmm_exec/vmm_exec_kvm.conf",
-        type       = "kvm" ]
+        NAME       = "kvm",
+        EXECUTABLE = "one_vmm_exec",
+        ARGUMENTS  = "-t 15 -r 0 kvm -p",
+        DEFAULT    = "vmm_exec/vmm_exec_kvm.conf",
+        TYPE       = "kvm" ]
 
 Change the file ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc`` so set a TCP endpoint for libvirt communication:
 
@@ -480,12 +445,14 @@ See the :ref:`Virtual Machine drivers reference <devel-vmm>` for more informatio
 Troubleshooting
 ===============
 
-image magic is incorrect
+Image Magic Is Incorrect
 ------------------------
 
 When trying to restore the VM from a suspended state this error is returned:
 
-``libvirtd1021: operation failed: image magic is incorrect``
+.. code::
+
+    libvirtd1021: operation failed: image magic is incorrect
 
 It can be fixed by applying:
 
