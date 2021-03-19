@@ -26,7 +26,7 @@ The following needs to be considered regarding traffic isolation:
 OpenNebula Configuration
 ================================================================================
 
-The following configuration attributes can be adjusted in ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``:
+The following configuration parameters can be adjusted in ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``:
 
 +------------------------+---------------------------------------------------------------------------------------------------------------+
 | Parameter              | Description                                                                                                   |
@@ -45,23 +45,23 @@ Defining Bridged Network
 
 To create a Virtual Network, include the following information in the template:
 
-+-------------+-------------------------------------------------------------------------+-----------+
-| Attribute   | Value                                                                   | Mandatory |
-+=============+=========================================================================+===========+
-|             | Driver:                                                                 |           |
-|             |                                                                         |           |
-| ``VN_MAD``  | * ``dummy`` for the Dummy Bridged mode (requires set ``BRIDGE``)        |  **YES**  |
-|             | * ``bridge`` for the Bridged mode                                       |           |
-|             | * ``fw`` for Bridged with Security Groups                               |           |
-|             | * ``ebtables`` for Bridged with ebtables isolation                      |           |
-+-------------+-------------------------------------------------------------------------+-----------+
-| ``BRIDGE``  | Name of the Linux bridge on the Nodes                                   |    NO     |
-+-------------+-------------------------------------------------------------------------+-----------+
-| ``PHYDEV``  | Name of the physical network device that will be attached to the bridge |    NO     |
-|             | (does not apply for ``dummy`` driver)                                   |           |
-+-------------+-------------------------------------------------------------------------+-----------+
++-------------+-------------------------------------------------------------------------+-----------------------+
+| Attribute   | Value                                                                   | Mandatory             |
++=============+=========================================================================+=======================+
+|             | Driver:                                                                 |                       |
+|             |                                                                         |                       |
+| ``VN_MAD``  | * ``dummy`` for the Dummy Bridged mode                                  |  **YES**              |
+|             | * ``bridge`` for the Bridged mode                                       |                       |
+|             | * ``fw`` for Bridged with Security Groups                               |                       |
+|             | * ``ebtables`` for Bridged with ebtables isolation                      |                       |
++-------------+-------------------------------------------------------------------------+-----------------------+
+| ``BRIDGE``  | Name of the Linux bridge on the Nodes                                   | NO (unless ``dummy``) |
++-------------+-------------------------------------------------------------------------+-----------------------+
+| ``PHYDEV``  | Name of the physical network device that will be attached to the bridge | NO                    |
+|             | (does not apply for ``dummy`` driver)                                   |                       |
++-------------+-------------------------------------------------------------------------+-----------------------+
 
-For example, you can define a *Bridged with Security Groups* one with following template:
+For example, you can define a *Bridged with Security Groups* type network with following template:
 
 .. code::
 

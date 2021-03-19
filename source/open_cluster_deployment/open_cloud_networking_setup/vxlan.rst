@@ -6,9 +6,9 @@ VXLAN Networks
 
 This guide describes how to enable Network isolation provided through the VXLAN encapsulation protocol. This driver will create a bridge for each OpenNebula Virtual Network and attach a VXLAN tagged network interface to the bridge.
 
-The VLAN id will be the same for every interface in a given network, calculated automatically by OpenNebula. It may also be forced by setting the ``VLAN_ID`` attribute in the :ref:`Virtual Network template <vnet_template>`.
+The VXLAN ID will be the same for every interface in a given network, calculated automatically by OpenNebula. It may also be forced by setting the ``VLAN_ID`` attribute in the :ref:`Virtual Network template <vnet_template>`.
 
-Additionally each VLAN has associated a multicast address to encapsulate L2 broadcast and multicast traffic. By default, the address assigned will belong to the ``239.0.0.0/8`` range as defined by RFC 2365 (Administratively Scoped IP Multicast). In particular, the multicast address is obtained by adding the value of the attribute ``VLAN_ID`` to ``239.0.0.0/8`` base address.
+Additionally each VXLAN has associated a multicast address to encapsulate L2 broadcast and multicast traffic. By default, the address assigned will belong to the ``239.0.0.0/8`` range as defined by RFC 2365 (Administratively Scoped IP Multicast). In particular, the multicast address is obtained by adding the value of the attribute ``VLAN_ID`` to ``239.0.0.0/8`` base address.
 
 
 Considerations & Limitations
@@ -18,9 +18,11 @@ This driver works with the default UDP server port 8472.
 
 VXLAN traffic is forwarded to a physical device, this device can be set (optionally) to be a VLAN tagged interface, but in that case you must make sure that the tagged interface is manually created first in all the hosts.
 
-The physical device that will act as the physical device **must** have an IP.
+.. important::
 
-Concurrent VXLANs host limit
+    The network interface that will act as the physical device **must** have an IP.
+
+Limited Count of VXLANs on Host
 --------------------------------------------------------------------------------
 
 Each VXLAN is associated with one multicast group. There is a limit on how many multicast groups can be a physical host member of at the same time. That also means, how many **different** VXLANs can be used on a physical host concurrently. The default value is 20 and can be changed via ``sysctl`` through kernel runtime parameter ``net.ipv4.igmp_max_memberships``.
@@ -33,14 +35,14 @@ For permanent change to e.g. 150, place following settings inside the ``/etc/sys
 
 and reload the configuration
 
-.. prompt:: bash $ auto
+.. prompt:: bash # auto
 
-    $ sudo sysctl -p
+    # sysctl -p
 
 OpenNebula Configuration
 ================================================================================
 
-It is possible specify the start VLAN ID by configuring ``/etc/one/oned.conf``:
+It is possible specify the start VXLAN ID by configuring :ref:`/etc/one/oned.conf <oned_conf>`:
 
 .. code:: bash
 
@@ -52,23 +54,23 @@ It is possible specify the start VLAN ID by configuring ``/etc/one/oned.conf``:
         START = "2"
     ]
 
-The following configuration attributes can be adjusted in ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``:
+The following configuration parameters can be adjusted in ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``:
 
-+------------------+-------------------------------------------------------------------------------------+
-| Parameter        | Description                                                                         |
-+==================+=====================================================================================+
-| vxlan_mc         | Base multicast address for each VLAN. The multicas sddress is vxlan_mc + vlan_id    |
-+------------------+-------------------------------------------------------------------------------------+
-| vxlan_ttl        | Time To Live (TTL) should be > 1 in routed multicast networks (IGMP)                |
-+------------------+-------------------------------------------------------------------------------------+
-| validate_vlan_id | Set to true to check that no other vlans are connected to the bridge                |
-+------------------+-------------------------------------------------------------------------------------+
-| keep_empty_bridge| Set to true to preserve bridges with no virtual interfaces left.                    |
-+------------------+-------------------------------------------------------------------------------------+
-| ip_bridge_conf   | *Hash* Options for ip-route2 (``ip link add <bridge> type bridge ...``)             |
-+------------------+-------------------------------------------------------------------------------------+
-| ip_link_conf     | *Hash* Arguments passed to (``ip link add``)                                        |
-+------------------+-------------------------------------------------------------------------------------+
++------------------------+-------------------------------------------------------------------------------------------------------+
+| Parameter              | Description                                                                                           |
++========================+=======================================================================================================+
+| ``:vxlan_mc``          | Base multicast address for each VLAN. The multicas sddress is vxlan_mc + vlan_id                      |
++------------------------+-------------------------------------------------------------------------------------------------------+
+| ``:vxlan_ttl``         | Time To Live (TTL) should be > 1 in routed multicast networks (IGMP)                                  |
++------------------------+-------------------------------------------------------------------------------------------------------+
+| ``:validate_vlan_id``  | Set to true to check that no other vlans are connected to the bridge                                  |
++------------------------+-------------------------------------------------------------------------------------------------------+
+| ``:keep_empty_bridge`` | Set to true to preserve bridges with no virtual interfaces left.                                      |
++------------------------+-------------------------------------------------------------------------------------------------------+
+| ``:ip_bridge_conf``    | *(Hash)* Options passed to ``ip`` cmd. on bridge create (``ip link add <bridge> type bridge ...``)    |
++------------------------+-------------------------------------------------------------------------------------------------------+
+| ``:ip_link_conf``      | *(Hash)* Options passed to ``ip`` cmd. on VLAN interface create (``ip link add``)                     |
++------------------------+-------------------------------------------------------------------------------------------------------+
 
 Example:
 
@@ -97,59 +99,57 @@ Example:
 Defining a VXLAN Network
 =========================
 
-To create a VXLAN network include the following information:
+To create a VXLAN network, include the following information in the template:
 
-+-----------------------+--------------------------------------------------------------------------------------+-----------+
-|       Attribute       |                                     Value                                            | Mandatory |
-+=======================+======================================================================================+===========+
-| **VN_MAD**            | vxlan                                                                                | **YES**   |
-+-----------------------+--------------------------------------------------------------------------------------+-----------+
-| **PHYDEV**            | Name of the physical network device that will be attached to the bridge.             | **YES**   |
-+-----------------------+--------------------------------------------------------------------------------------+-----------+
-| **BRIDGE**            | Name of the linux bridge, defaults to onebr<net_id> or onebr.<vlan_id>               | NO        |
-+-----------------------+--------------------------------------------------------------------------------------+-----------+
-| **VLAN_ID**           | The VLAN ID, will be generated if not defined                                        | NO        |
-+-----------------------+--------------------------------------------------------------------------------------+-----------+
-| **AUTOMATIC_VLAN_ID** | Mandatory if VLAN_ID is not defined, in order to get OpenNebula to asign an ID       | NO        |
-+-----------------------+--------------------------------------------------------------------------------------+-----------+
-| **MTU**               | The MTU for the tagged interface and bridge                                          | NO        |
-+-----------------------+--------------------------------------------------------------------------------------+-----------+
-| **VXLAN_MODE**        | Multicast protocol for multi destination BUM traffic:``evpn`` or ``multicast``       | NO        |
-+-----------------------+--------------------------------------------------------------------------------------+-----------+
-| **VXLAN_TEP**         | Tunnel endpoint communication type (only ``evpn``): ``dev`` or ``local_ip``          | NO        |
-+-----------------------+--------------------------------------------------------------------------------------+-----------+
-| **VXLAN_MC**          | Base multicast address for each VLAN. The mc address is ``:vxlan_mc`` + ``:vlan_id`` | NO        |
-+-----------------------+--------------------------------------------------------------------------------------+-----------+
-| **IP_LINK_CONF**      | Virtual Newtork specfic options to be used by to the ip-route2 link.                 | NO        |
-|                       | Syntax: ``IP_LINK_CONF="option1=value1,option2=,option3=value3,..."``                |           |
-+-----------------------+--------------------------------------------------------------------------------------+-----------+
++-----------------------+--------------------------------------------------------------------------------------+----------------------------------------+
+|       Attribute       |                                     Value                                            | Mandatory                              |
++=======================+======================================================================================+========================================+
+| ``VN_MAD``            | Set ``vxlan``                                                                        | **YES**                                |
++-----------------------+--------------------------------------------------------------------------------------+----------------------------------------+
+| ``PHYDEV``            | Name of the physical network device that will be attached to the bridge.             | **YES**                                |
++-----------------------+--------------------------------------------------------------------------------------+----------------------------------------+
+| ``BRIDGE``            | Name of the linux bridge, defaults to onebr<net_id> or onebr.<vlan_id>               | NO                                     |
++-----------------------+--------------------------------------------------------------------------------------+----------------------------------------+
+| ``VLAN_ID``           | The VXLAN ID, will be generated if not defined and ``AUTOMATIC_VLAN_ID=YES``         | **YES** (unless ``AUTOMATIC_VLAN_ID``) |
++-----------------------+--------------------------------------------------------------------------------------+----------------------------------------+
+| ``AUTOMATIC_VLAN_ID`` | Mandatory and must be set to ``YES`` if ``VLAN_ID`` hasn't been defined              | **YES** (unless ``VLAN_ID``)           |
++-----------------------+--------------------------------------------------------------------------------------+----------------------------------------+
+| ``MTU``               | The MTU for the tagged interface and bridge                                          | NO                                     |
++-----------------------+--------------------------------------------------------------------------------------+----------------------------------------+
+| ``VXLAN_MODE``        | Multicast protocol for multi destination BUM traffic:``evpn`` or ``multicast``       | NO                                     |
++-----------------------+--------------------------------------------------------------------------------------+----------------------------------------+
+| ``VXLAN_TEP``         | Tunnel endpoint communication type (only for ``evpn``): ``dev`` or ``local_ip``      | NO                                     |
++-----------------------+--------------------------------------------------------------------------------------+----------------------------------------+
+| ``VXLAN_MC``          | Base multicast address for each VLAN. The MC address is ``:vxlan_mc`` + ``:vlan_id`` | NO                                     |
++-----------------------+--------------------------------------------------------------------------------------+----------------------------------------+
+| ``IP_LINK_CONF``      | Options passed to ``ip`` cmd. on operations specific to this Virtual Network.        | NO                                     |
+|                       | Syntax: ``IP_LINK_CONF="option1=value1,option2=,option3=value3,..."``                |                                        |
++-----------------------+--------------------------------------------------------------------------------------+----------------------------------------+
 
 .. note:: ``VXLAN_MODE``, ``VXLAN_TEP`` and ``VXLAN_MC`` can be defined system-wide in ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``. To use per network configuration you may need the ``IP_LINK_CONF`` attribute.
 
-
-The following example defines a VXLAN network
+For example, you can define a *VXLAN Network* with following template:
 
 .. code::
 
-    NAME    = "vxlan_net"
+    NAME    = "private3"
     VN_MAD  = "vxlan"
     PHYDEV  = "eth0"
-    VLAN_ID = 50        # optional
-    BRIDGE  = "vxlan50" # optional
-    ...
+    VLAN_ID = 50            # Optional
+    BRIDGE  = "vxlan50"     # Optional
 
-In this scenario, the driver will check for the existence of the ``vxlan50`` bridge. If it doesn't exist it will be created. ``eth0`` will be tagged (``eth0.50``) and attached to ``vxlan50`` (unless it's already attached). Note that ``eth0`` can be a 802.1Q tagged interface if you want to isolate the OpenNebula VXLAN traffic.
-
+In this example, the driver will check for the existence of the ``vxlan50`` bridge. If it doesn't exist it will be created. ``eth0`` will be tagged (``eth0.50``) and attached to ``vxlan50`` (unless it's already attached). Note that ``eth0`` can be a 802.1Q tagged interface, if you want to isolate the VXLAN traffic by 802.1Q VLANs.
 
 Using VXLAN with BGP EVPN
 ================================================================================
+
 By default VXLAN relies on multicast to discover tunnel endpoints, alternatively you can use MP-BGP EVPN for the control plane and hence increase the scalability of your network. This section describes the main configuration steps to deploy such setup.
 
 Configuring the Hypervisors
 --------------------------------------------------------------------------------
 The hypervisor needs to run a BGP EVPN capable routing software like `FFRouting (FRR) <https://frrouting.org/>`_. Its main purpose is to send BGP updates with the MAC address and IP (optional) for each VXLAN tunnel endpoint (i.e. the VM interfaces in the VXLAN network) running in the host. The updates needs to be distributed to all other hypervisors in the cloud to achieve full route reachability. This second step is usually performed by one or more BGP route reflectors.
 
-As an example, consider two hypervisors 10.4.4.11 and 10.4.4.12, and a route reflector at 10.4.4.13. The FRR configuration file for the hypervisors could be (to announce all VXLAN networks):
+As an example, consider two hypervisors ``10.4.4.11`` and ``10.4.4.12``, and a route reflector at ``10.4.4.13``. The FRR configuration file for the hypervisors could be (to announce all VXLAN networks):
 
 .. code::
 
@@ -164,7 +164,7 @@ As an example, consider two hypervisors 10.4.4.11 and 10.4.4.12, and a route ref
     exit-address-family
    exit
 
-And the reflector for our AS 7675, and hypervisors in 10.4.4.0/24:
+And the reflector for our AS 7675, and hypervisors in ``10.4.4.0/24``:
 
 .. code::
 
@@ -205,7 +205,7 @@ Configuring OpenNebula
 
 You need to update ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf`` file to:
 
-1. Set BGP EVPN as the control plane for your BUM traffic, ``vxlan_mode``.
+1. Set BGP EVPN as the control plane for your BUM traffic, ``:vxlan_mode``.
 2. Select the hypervisor is going to send the traffic to the VTEP. This can be either ``dev``, to forward the traffic through the ``PHY_DEV`` interface defined in the Virtual Network template, or ``local_ip`` to route the traffic using the first IP configured in ``PHY_DEV``.
 3. Finally you may want to add the nolearning option to the VXLAN link.
 
@@ -226,9 +226,8 @@ You need to update ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf`` file 
    :ip_link_conf:
        :nolearning:
 
-After updating the configuration file do not forget to run `onehost sync -f` to distribute the changes.
+After updating the configuration file on Front-end, don't forget to execute ``onehost sync -f`` to distribute the changes on the hypervisor Nodes.
 
-.. note:: It is not recommended to set ``:nolearing:`` in ``:ip_link_conf:`` system-wide attribute of ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``
-	  because that prevents VLAN and VXLAN with BGP EVPN coexistence.
-	  For VXLAN with BGP EVPN set ``IP_LINK_CONF="nolearning="`` attribute in the Virtual Network definition instead.
+.. note::
 
+    It is not recommended to set ``:nolearing:`` in ``:ip_link_conf:`` system-wide attribute in ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf`` because that doesn't allow the coexistence of VLAN and VXLAN with BGP EVPN Virtual Networks on hosts. For VXLAN with BGP EVPN, set ``IP_LINK_CONF="nolearning="`` attribute in the Virtual Network definition instead.

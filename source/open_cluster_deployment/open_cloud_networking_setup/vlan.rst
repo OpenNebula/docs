@@ -29,7 +29,7 @@ The VLAN ID is calculated according to this configuration option of :ref:`/etc/o
 
 By modifying this section, you can reserve some VLANs so they aren't assigned to a Virtual Network. You can also define the first VLAN ID. When a new isolated network is created, OpenNebula will find a free VLAN ID from the VLAN pool. This pool is global, and it's also shared with the :ref:`Open vSwitch <openvswitch>` network mode.
 
-The following configuration attributes can be adjusted in ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``:
+The following configuration parameters can be adjusted in ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``:
 
 +------------------------+-------------------------------------------------------------------------------------------------------+
 | Parameter              | Description                                                                                           |
@@ -80,7 +80,7 @@ To create an 802.1Q network, include the following information in the template:
 +-----------------------+--------------------------------------------------------------------------------------------+----------------------------------------+
 | ``BRIDGE``            | Name of the Linux bridge, defaults to ``onebr<net_id>`` or ``onebr.<vlan_id>``             | NO                                     |
 +-----------------------+--------------------------------------------------------------------------------------------+----------------------------------------+
-| ``VLAN_ID``           | The VLAN ID, will be generated if not defined and ``AUTOMATIC_VLAN_ID`` is set to ``YES``  | **YES** (unless ``AUTOMATIC_VLAN_ID``) |
+| ``VLAN_ID``           | The VLAN ID, will be generated if not defined and ``AUTOMATIC_VLAN_ID=YES``                | **YES** (unless ``AUTOMATIC_VLAN_ID``) |
 +-----------------------+--------------------------------------------------------------------------------------------+----------------------------------------+
 | ``AUTOMATIC_VLAN_ID`` | Mandatory and must be set to ``YES`` if ``VLAN_ID`` hasn't been defined                    | **YES** (unless ``VLAN_ID``)           |
 +-----------------------+--------------------------------------------------------------------------------------------+----------------------------------------+
@@ -97,4 +97,4 @@ For example, you can define a *802.1Q Network* with following template:
     BRIDGE  = "br0"         # Optional
     VLAN_ID = 50            # Optional. If not setting VLAN_ID set AUTOMATIC_VLAN_ID = "YES"
 
-In this scenario, the driver will check for the existence of the ``br0`` bridge. If it doesn't exist it will be created. ``eth0`` will be tagged (``eth0.50``) and attached to ``br0`` (unless it's already attached).
+In this example, the driver will check for the existence of the ``br0`` bridge. If it doesn't exist it will be created. ``eth0`` will be tagged (``eth0.50``) and attached to ``br0`` (unless it's already attached).
