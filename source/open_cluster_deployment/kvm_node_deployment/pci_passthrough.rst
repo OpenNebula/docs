@@ -5,7 +5,7 @@ PCI Passthrough
 
 It is possible to discover PCI devices in the Hosts and assign them to Virtual Machines for the KVM hypervisor.
 
-The setup and environment information is taken from `here <http://www.firewing1.com/howtos/fedora-20/create-gaming-virtual-machine-using-vfio-pci-passthrough-kvm>`__. You can safely ignore all the VGA related sections, for PCI devices that are not graphic cards, or if you don't want to output video signal from them.
+The setup and environment information is taken from `here <https://stewartadam.io/howtos/fedora-20/create-gaming-virtual-machine-using-vfio-pci-passthrough-kvm>`__. You can safely ignore all the VGA related sections, for PCI devices that are not graphic cards, or if you don't want to output video signal from them.
 
 .. warning:: The overall setup state was extracted from a preconfigured Fedora 22 machine. **Configuration for your distro may be different.**
 
