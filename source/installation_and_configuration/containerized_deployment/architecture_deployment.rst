@@ -46,7 +46,7 @@ You need a physical or virtual host with a recommended operating system, one of 
 Architecture
 ================================================================================
 
-Complete OpenNebula Front-end with all services and their dependencies is running within the supported container runtimes from the official container image (``opennebula``), the services and other required processes are confined inside the container(s). The inner container startup and lifecycle is controlled by the :ref:`bootstrap process <container_bootstrap>`, which can be customized and adjusted to user needs via the :ref:`environment parameters <reference_params>`. Container(s) communicate with each other over the private container network and the end-users interact with services running inside only via a set of :ref:`IP ports exposing <reference_ports>` the services running inside to the public.
+Complete OpenNebula Front-end with all services and their dependencies is running within the supported container runtimes from the official container image (``opennebula``), the services and other required processes are confined inside the container(s). The inner container startup and lifecycle is controlled by the :ref:`bootstrap process <container_bootstrap>`, which can be customized and adjusted to user needs via the :ref:`image parameters <reference_params>`. Container(s) communicate with each other over the private container network and the end-users interact with services running inside only via a set of :ref:`IP ports exposing <reference_ports>` the services running inside to the public.
 
 Following OpenNebula Front-end containerized deployment types are supported no matter the container runtime:
 
@@ -435,6 +435,10 @@ where is
 C. Start Deployment
 ^^^^^^^^^^^^^^^^^^^
 
+.. important::
+
+    If you start to use Sunstone over HTTPS (``SUNSTONE_HTTPS_ENABLED=yes``) and decide to switch to HTTP (``SUNSTONE_HTTPS_ENABLED=no``) then you will most likely encounter an issue with Sunstone which will prevent you from login. The remedy is easy: just delete the browser cookie for you Sunstone URL address, refresh the webpage and try to login again.
+
 Inside the deployment (compose project) directory ``opennebula/``, start the containerized OpenNebula Front-end by following command:
 
 .. prompt:: bash # auto
@@ -476,11 +480,11 @@ Single-container (*all-in-one*) deployment is the most straightforward and simpl
 A. Start Deployment
 ^^^^^^^^^^^^^^^^^^^
 
+.. important::
+
+    If you start to use Sunstone over HTTPS (``SUNSTONE_HTTPS_ENABLED=yes``) and decide to switch to HTTP (``SUNSTONE_HTTPS_ENABLED=no``) then you will most likely encounter an issue with Sunstone which will prevent you from login. The remedy is easy: just delete the browser cookie for you Sunstone URL address, refresh the webpage and try to login again.
+
 Based on selected approach in :ref:`Step 2. Reconfigure Host SSH <container_ssh>` update one of the following command examples with required extra parameters to start the fully-featured single-container deployment.
-
-.. note::
-
-   Detailed explanation of the command and particular parameters is in the Appendix. (TODO-link)
 
 - :ref:`A. Dedicated IP address for OpenNebula <container_ssh_ip>`
 
@@ -513,8 +517,9 @@ In one of the examples below:
 |      -v opennebula_oneadmin_auth:/var/lib/one/.one \                          |      -v opennebula_oneadmin_auth:/var/lib/one/.one \                          |
 |      -v opennebula_oneadmin_ssh:/var/lib/one/.ssh \                           |      -v opennebula_oneadmin_ssh:/var/lib/one/.ssh \                           |
 |      -v opennebula_etcd:/srv/one/etcd \                                       |      -v opennebula_etcd:/srv/one/etcd \                                       |
+|      -v opennebula_etcd_secrets:/srv/one/etcd-secrets \                       |      -v opennebula_etcd_secrets:/srv/one/etcd-secrets \                       |
 |      -v opennebula_logs:/var/log \                                            |      -v opennebula_logs:/var/log \                                            |
-|      opennebula:5.13.85                                                       |      opennebula:5.13.85                                                       |
+|      opennebula/opennebula:5.13.85                                            |      opennebula/opennebula:5.13.85                                            |
 +-------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
 
 carefully replace following occurrences with
@@ -555,8 +560,9 @@ In one of the examples below:
 |      -v opennebula_oneadmin_auth:/var/lib/one/.one \                          |      -v opennebula_oneadmin_auth:/var/lib/one/.one \                          |
 |      -v opennebula_oneadmin_ssh:/var/lib/one/.ssh \                           |      -v opennebula_oneadmin_ssh:/var/lib/one/.ssh \                           |
 |      -v opennebula_etcd:/srv/one/etcd \                                       |      -v opennebula_etcd:/srv/one/etcd \                                       |
+|      -v opennebula_etcd_secrets:/srv/one/etcd-secrets \                       |      -v opennebula_etcd_secrets:/srv/one/etcd-secrets \                       |
 |      -v opennebula_logs:/var/log \                                            |      -v opennebula_logs:/var/log \                                            |
-|      opennebula:5.13.85                                                       |      opennebula:5.13.85                                                       |
+|      opennebula/opennebula:5.13.85                                            |      opennebula/opennebula:5.13.85                                            |
 +-------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
 
 carefully replace following occurrences with
@@ -595,8 +601,9 @@ In one of the examples below:
 |      -v opennebula_oneadmin_auth:/var/lib/one/.one \                          |      -v opennebula_oneadmin_auth:/var/lib/one/.one \                          |
 |      -v opennebula_oneadmin_ssh:/var/lib/one/.ssh \                           |      -v opennebula_oneadmin_ssh:/var/lib/one/.ssh \                           |
 |      -v opennebula_etcd:/srv/one/etcd \                                       |      -v opennebula_etcd:/srv/one/etcd \                                       |
+|      -v opennebula_etcd_secrets:/srv/one/etcd-secrets \                       |      -v opennebula_etcd_secrets:/srv/one/etcd-secrets \                       |
 |      -v opennebula_logs:/var/log \                                            |      -v opennebula_logs:/var/log \                                            |
-|      opennebula:5.13.85                                                       |      opennebula:5.13.85                                                       |
+|      opennebula/opennebula:5.13.85                                            |      opennebula/opennebula:5.13.85                                            |
 +-------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
 
 carefully replace following occurrences with
