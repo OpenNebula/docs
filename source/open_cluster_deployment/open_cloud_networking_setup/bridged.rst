@@ -35,12 +35,12 @@ The following configuration attributes can be adjusted in ``/var/lib/one/remotes
 +------------------------+---------------------------------------------------------------------------------------------------------------+
 | ``:keep_empty_bridge`` | Set to ``true`` to preserve bridges with no virtual interfaces left.                                          |
 +------------------------+---------------------------------------------------------------------------------------------------------------+
-| ``:ip_bridge_conf``    | *(Hash)* Optional new bridge parameters as passed to IP command (``ip link add <bridge> type bridge ...``)    |
+| ``:ip_bridge_conf``    | *(Hash)* Options passed to ``ip`` cmd. on bridge create (``ip link add <bridge> type bridge ...``)            |
 +------------------------+---------------------------------------------------------------------------------------------------------------+
 
 .. _bridged_net:
 
-Defining a Bridged Network
+Defining Bridged Network
 ================================================================================
 
 To create a Virtual Network, include the following information in the template:
@@ -65,7 +65,7 @@ For example, you can define a *Bridged with Security Groups* one with following 
 
 .. code::
 
-    NAME    = "myvnet"
+    NAME    = "private1"
     VN_MAD  = "fw"
 
 Bridged and ebtables VLAN

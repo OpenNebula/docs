@@ -8,6 +8,6 @@ Open Cloud Networking Setup
    Overview <overview>
    Node Setup <node>
    Bridged Networking <bridged>
-   802.1Q VLAN Networks <hm-vlan>
+   802.1Q VLAN Networks <vlan>
    VXLAN Networks <vxlan>
    Open vSwitch Networks <openvswitch>
