@@ -110,6 +110,8 @@ For example:
 
   These values can be overriden in the Cluster, Host and VM Template
 
+**Since OpenNebula 6.0** you should no longer need to modify the ``EMULATOR`` variable to point to the kvm exectuable, instead ``EMULATOR`` now points to the symlink ``/usr/bin/qemu-kvm-one`` which should link the correct kvm binary for given OS on a host.
+
 Live-Migration for Other Cache settings
 --------------------------------------------------------------------------------
 
@@ -122,7 +124,7 @@ In case you are using disks with a cache setting different to ``none`` you may h
 Configure the Timeouts (Optional)
 --------------------------------------------------------------------------------
 
-Optionally, you can set a timeout for the VM Shutdown operation can be set up. This feature is useful when a VM gets stuck in Shutdown (or simply does not notice the shutdown command). By default, after the timeout time the VM will return to Running state but is can also be configured so the VM is destroyed after the grace time. This is configured in ``/var/lib/one/etc/remotes/vmm/kvm/kvmrc``:
+Optionally, you can set a timeout for the VM Shutdown operation. This feature is useful when a VM gets stuck in Shutdown (or simply does not notice the shutdown command). By default, after the timeout time the VM will return to Running state but is can also be configured so the VM is destroyed after the grace time. This is configured in ``/var/lib/one/etc/remotes/vmm/kvm/kvmrc``:
 
 .. code-block:: bash
 
@@ -137,64 +139,7 @@ Optionally, you can set a timeout for the VM Shutdown operation can be set up. T
 Working with cgroups (Optional)
 --------------------------------------------------------------------------------
 
-Cgroups is a kernel feature that allows to control the number of resources allocated to a given process (among other things). It can be used to enforce the amount of CPU assigned to a VM, as defined in its OpenNebula template (i.e., a VM with CPU=0.5 will get half of the physical CPU cycles than a VM with CPU=1.0). The cgroups are configured **on each hypervisor host (where required), not on the front-end**.
-
-.. note:: In current operating systems running the systemd, the cgroups are enabled and used by libvirt/KVM automatically. No configuration is necessary. The tool ``lscgroup`` (included in distribution package ``libcgroup-tools`` on RHEL/CentOS or ``cgroup-tools`` on Debian/Ubuntu) can be used to check the cgroups state on your system. The cgroups aren't available if you get an error output of the tool, e.g.:
-
-    .. prompt:: bash $ auto
-
-        $ lscgroup
-        cgroups can't be listed: Cgroup is not mounted
-
-    Follow the documentation of your operating system to enable and configure the cgroups.
-
-Cgroups can be used to limit the overall amount of physical RAM that the VMs can use, so you can leave always a fraction to the host OS. In this case, you may want to set also the ``RESERVED_MEM`` parameter in host or cluster templates.
-
-OpenNebula automatically generates a number of CPU shares proportional to the CPU attribute in the VM template. For example, the host running 2 VMs (ID 73 and 74, with CPU=0.5 and CPU=1) should be configured following way:
-
-.. code::
-
-    /sys/fs/cgroup/cpu,cpuacct/machine.slice/
-    |-- cgroup.clone_children
-    |-- cgroup.event_control
-    ...
-    |-- cpu.shares
-    |-- cpu.stat
-    |-- machine-qemu-1-one-73.scope
-    |   |-- cgroup.clone_children
-    |   |-- cgroup.event_control
-    |   |-- cgroup.procs
-    |   |-- cpu.shares
-    |   ...
-    |   `-- vcpu0
-    |       |-- cgroup.clone_children
-    |       ...
-    |-- machine-qemu-2-one-74.scope
-    |   |-- cgroup.clone_children
-    |   |-- cgroup.event_control
-    |   |-- cgroup.procs
-    |   |-- cpu.shares
-    |   ...
-    |   `-- vcpu0
-    |       |-- cgroup.clone_children
-    |       ...
-    |-- notify_on_release
-    `-- tasks
-
-with the CPU shares for each VM:
-
-.. prompt:: bash $ auto
-
-    $ cat '/sys/fs/cgroup/cpu,cpuacct/machine.slice/machine-qemu-1-one-73.scope/cpu.shares'
-    512
-    $ cat '/sys/fs/cgroup/cpu,cpuacct/machine.slice/machine-qemu-2-one-74.scope/cpu.shares'
-    1024
-
-.. note:: The cgroups (directory) layout can be different based on your operating system and configuration. The `libvirt documentation <https://libvirt.org/cgroups.html>`__ describes all the cases and a way the cgroups are managed by libvirt/KVM.
-
-VCPUs are not pinned so most probably the virtual machine's process will be changing the physical cores it is using. In an ideal case where the VM is alone in the physical host the total amount of CPU consumed will be equal to VCPU plus any overhead of virtualization (for example networking). In case there are more VMs in that physical node and is heavily used then the VMs will compete for physical CPU time. In this case, the cgroups will provide a fair share of CPU time between VMs (a VM with CPU=2 will get double the time as a VM with CPU=1).
-
-In case you are not overcommitting (CPU=VCPU) all the virtual CPUs will have one physical CPU (even if it's not pinned) so they could consume the number of VCPU assigned minus the virtualization overhead and any process running in the host OS.
+Optionally, you can setup cgroups to control resources on your hosts. The `libvirt cgroups documentation <https://libvirt.org/cgroups.html>`__ describes all the cases and a way the cgroups are managed by libvirt/KVM.
 
 Compact Memory (Optional)
 -------------------------
@@ -352,7 +297,7 @@ The agent package needed in the Guest OS is available in most distributions. Is 
 
 * https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Virtualization_Deployment_and_Administration_Guide/chap-QEMU_Guest_Agent.html
 * http://wiki.libvirt.org/page/Qemu_guest_agent
-* http://wiki.qemu.org/Features/QAPI/GuestAgent
+* https://wiki.qemu.org/Features/GuestAgent
 
 The communication channel with guest agent is enabled in the domain XML when the ``GUEST_AGENT`` feature is selected in the VM Template.
 
