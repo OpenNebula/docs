@@ -9,5 +9,5 @@ Containerized Deployment (TP)
 
    Overview <overview>
    Architecture and Simple Deployment <architecture_deployment>
-   Advanced Customizations <custom>
+   Advanced Deployment and Customizations <custom>
    Troubleshooting and Reference <reference>
