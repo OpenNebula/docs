@@ -9,7 +9,7 @@ Clusters group together Hosts, Datastores and Virtual Networks that are configur
   * Ensure that VMs uses resources that are compatible.
   * Assign resources to user groups by creating Virtual Private Clouds.
 
-Clusters should contain homogeneous resources, note also that some operations like live-migrations are restricted to Hosts in the same cluster.
+Clusters should contain homogeneous resources, note that some operations like live-migrations are restricted to Hosts in the same Cluster.
 
 Cluster Management
 ================================================================================
@@ -39,10 +39,10 @@ Clusters are managed with the :ref:`''onecluster'' command <cli>`. To create new
 
     DATASTORES
 
-Add Hosts to Clusters
----------------------
+Add Hosts to a Cluster
+--------------------------------------------------------------------------------
 
-Hosts can be created directly in a Cluster, using the ``--cluster`` option of ``onehost create``, or be added at any moment using the command ``onecluster addhost``. Hosts can be in only one Cluster at a time.
+Hosts can be created directly in a Cluster, using the ``--cluster`` option of ``onehost create``, or be added at any moment using the command ``onecluster addhost``. Hosts can be in **only one Cluster** at a time.
 
 To delete a Host from a Cluster, the command ``onecluster delhost`` must be used. A Host needs to belong to a Cluster, so it will be moved to the ``default`` cluster.
 
@@ -73,13 +73,13 @@ In the following example, we will add Host 0 to the Cluster we created before. Y
     DATASTORES
 
 Add Resources to Clusters
--------------------------
+--------------------------------------------------------------------------------
 
-Datastores and Virtual Networks can be added to multiple Clusters. This means that any Host in those Clusters is properly configured to run VMs using Images from the Datastores, or is using leases from the Virtual Networks.
+Datastores and Virtual Networks can be added to multiple Clusters. This means that any Host in those Clusters is properly configured to run VMs using Images from those Datastores, or is using leases from those Virtual Networks.
 
 For instance, if you have several Hosts configured to use a given Open vSwitch network, you would group them in the same Cluster. The :ref:`Scheduler <schg>` will know that VMs using these resources can be deployed in any of the Hosts of the Cluster.
 
-These operations can be done with the ``onecluster`` ``addvnet/delvnet`` and ``adddatastore/deldatastore``:
+These operations can be done with the ``onecluster`` ``addvnet/delvnet`` and ``adddatastore/deldatastore``, respectively:
 
 .. prompt:: bash $ auto
 
@@ -108,13 +108,13 @@ These operations can be done with the ``onecluster`` ``addvnet/delvnet`` and ``a
     100
 
 The System Datastore for a Cluster
-----------------------------------
+--------------------------------------------------------------------------------
 
-In order to create a complete environment where the scheduler can deploy VMs, your Clusters need to have at least one System DS.
+In order to create a complete environment where the scheduler can deploy VMs, your Clusters need to have at least one System Datastore.
 
-You can add the default System DS (ID: 0), or create a new one to improve its performance (e.g. balance VM I/O between different servers) or to use different system DS types (e.g. shared and ssh).
+You can add the default System Datastore (ID: 0), or create a new one to improve its performance (e.g. balance VM I/O between different servers) or to use different system Datastore types (e.g. ``shared`` and ``ssh``).
 
-To use a specific System DS with your cluster, instead of the default one, just create it (with TYPE=SYSTEM\_DS in its template), and associate it just like any other datastore (onecluster adddatastore).
+To use a specific System Datastores with your cluster, instead of the default one, just create it and associate it just like any other Datastore (``onecluster adddatastore``).
 
 Managing Clusters in Sunstone
 =============================

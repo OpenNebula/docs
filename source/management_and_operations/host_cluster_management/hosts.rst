@@ -4,7 +4,7 @@
 Hosts
 ================================================================================
 
-In order to use your existing physical nodes, you have to add them to the system as OpenNebula Hosts. To add a host only its hostname and type is needed.
+In order to use your existing physical nodes, you have to add them to OpenNebula as Hosts. To add a Host only its hostname and type is needed.
 
 .. warning:: Before adding a Linux host check that you can ssh to it without being prompt for a password.
 
@@ -36,9 +36,11 @@ To remove a host you can either specify it by ID or by name. The following comma
 Showing and Listing Hosts
 ================================================================================
 
-To display information about a single host the ``show`` command is used:
+To display information about a single Host use the ``show`` command:
 
 .. prompt:: bash $ auto
+
+    $ onehost show server
 
     HOST 0 INFORMATION
     ID                    : 0
@@ -107,12 +109,12 @@ To display information about a single host the ``show`` command is used:
     ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
     13 oneadmin oneadmin kvm1-13         runn  0.0   1024M server       8d 06h14
 
-The information of a host contains:
+The information of a Host contains:
 
-* **General information** of the hosts including its name and the drivers used to interact with it.
+* **General information** of the host including its name and the drivers used to interact with it.
 * **Capacity** (*Host Shares*) for CPU and memory.
 * **Local datastore information** (*Local System Datastore*) if the Host is configured to use a local datastore (e.g. in ssh transfer mode).
-* **Monitoring Information**, including PCI devices and NUMA information of the node.
+* **Monitoring Information**, including PCI devices and NUMA information of the node. You can find here also hypervisor specific information.
 * **Virtual Machines** allocated to the host. *Wild* are virtual machines running on the host but not started by OpenNebula, and can be imported.
 
 To see a list of all the hosts:
@@ -132,7 +134,7 @@ The above information can be also displayed in XML or JSON format using ``-x`` o
 Host States: Enable, Disable, Offline and Flush
 ================================================================================
 
-In order to manage the life cycle of a host it can be set to different operation modes: enabled (on), disabled (dsbl) and offline (off). The different operation status for each mode is described by the following table:
+In order to manage the life cycle of a host it can be set to different operation modes: enabled (``on``), disabled (``dsbl``) and offline (``off``). The different operation status for each mode is described by the following table:
 
 +----------------+------------+----------------+------------------------------------------------------------------------------------+
 |                |            |  VM DEPLOYMENT |                                                                                    |
@@ -188,13 +190,13 @@ The ``flush`` command will migrate all the active VMs in the specified host to a
 Host Monitoring
 ================================================================================
 
-The Host information attributes are inserted by the monitoring probes that run from time to time on the nodes to get information. This information is mainly used for:
+The monitoring probes gathers information attributes and insert them in the Host template. This information is mainly used for:
 
-  * Monitor the status of the host to detect any error condition
-  * Gather the configuration of the host (e.g. capacity, PCI devices or NUMA nodes) to control VM resource assigments
+  * Monitor the status of the host to detect any error condition.
+  * Gather the configuration of the host (e.g. capacity, PCI devices or NUMA nodes). This information is used to control VM resource assigments.
   * Create placement constraints for VMs allocation, :ref:`see more details here <scheduling>`.
 
-Hosts include the following monitoring information, note that each hypervisor may include additional attributes:
+In general, you can find the following monitoring information in a Host, note that each hypervisor may include additional attributes:
 
 +------------+----------------------------------------------------------------------------------------------------+
 |    Key     |                                            Description                                             |
@@ -275,7 +277,6 @@ For example to label a host as *production* we can add a custom tag *TYPE*:
 
 This tag can be used at a later time for scheduling purposes, :ref:`see more details here <scheduling>`.
 
-
 .. _host_guide_sync:
 
 Updating Host Files
@@ -307,12 +308,6 @@ You can also select which hosts you want to upgrade naming them or selecting a c
 
     $ onehost sync host01,host02,host03
     $ onehost sync -c myCluster
-
-``onehost sync`` command can alternatively use ``rsync`` as the method of upgrade. To do this you need to have installed ``rsync`` command in the frontend and the nodes. This method is faster that the standard one and also has the benefit of deleting remote files no longer existing in the frontend. To use it add the parameter ``--rsync``:
-
-.. prompt:: bash $ auto
-
-    $ onehost sync --rsync
 
 .. _import_wild_vms:
 
