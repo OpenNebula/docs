@@ -2,22 +2,22 @@
 .. _frontend_installation:
 
 ================================================================================
-Front-end Installation
+Single Front-end Installation
 ================================================================================
 
-This page shows you how to install OpenNebula from the binary packages.
+This page describes how to install a complete OpenNebula Front-end from binary packages which are available in the :ref:`software repositories <repositories>` configured in the previous section. We recommend using a host with the supported operating system as installation from packages provides the best experience and is referenced from other places of this documentation. If there are no packages for your distribution, you might consider reading the :ref:`Building from Source Code <compile>` guide to build OpenNebula on your own.
 
-Using the packages provided on our site is the recommended method, to ensure the installation of the latest version, and to avoid possible package divergences with different distributions. There are two alternatives here: you can add **our package repositories** to your system, or visit the `software menu <http://opennebula.io/use>`__ to **download the latest package** for your Linux distribution.
+.. warning::
 
-If there are no packages for your distribution, head to the :ref:`Building from Source Code guide <compile>`.
-
-.. note:: Installing the frontend inside a LXD container is possible, however you will have limited functionality. The LXD marketplace shouldn't be usable in this situation. The frontend requires to mount a block device and this is not doable for a LXD container.
+    Running Front-end inside an LXD container is limited! Integrations with selected public marketplaces (Docker Hub, LXC, TurnKey Linux) and building images from custom Dockerfiles won't be available, as they require mounting of block devices. This feature is usually not available in the LXD containers.
 
 .. note::
 
-    Except for using installable packages for the supported operating systems, an alternative way to deploy the complete OpenNebula Front-end is using container runtimes Docker/Podman. Check the :ref:`Containerized Deployment <container_index>` guide to learn more. Please note, the containerized deployment is a **Technology Preview** and not recommended for production environments!
+    Except for using installable packages for the supported operating systems, an alternative way to deploy the complete OpenNebula Front-end is using container runtimes Docker/Podman. Check the :ref:`Containerized Deployment <container_index>` guide to learn more. Please note, the containerized deployment is a **Technology Preview** and not recommended for production environments yet!
 
-Step 1. SELinux on CentOS/RHEL (Optional)
+Proceed the following steps to get the fully-featured OpenNebula Front-end up.
+
+Step 1. Disable SELinux on CentOS/RHEL (Optional)
 ================================================================================
 
 Depending on the type of OpenNebula deployment, the SELinux can block some operations initiated by the OpenNebula Front-end, which results in a failure of the particular operation.  It's **not recommended to disable** the SELinux on production environments, as it degrades the security of your server, but to investigate and workaround each individual problem based on the `SELinux User's and Administrator's Guide <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/>`__. The administrator might disable the SELinux to temporarily workaround the problem or on non-production deployments by changing following line in ``/etc/selinux/config``:
@@ -28,32 +28,15 @@ Depending on the type of OpenNebula deployment, the SELinux can block some opera
 
 After the change, you have to reboot the machine.
 
-
-.. note::
-
-    Change the following line in ``/etc/selinux/config`` to **enable** SELinux back into the ``enforcing`` mode:
-
-    .. code-block:: bash
-
-        SELINUX=enforcing
-
-    When changing from the ``disabled`` state, it's necessary to trigger filesystem relabel on the next boot by creating a file ``/.autorelabel``, e.g.:
-
-    .. prompt:: bash $ auto
-
-        $ touch /.autorelabel
-
-    After the changes, you have to reboot the machine.
-
 Step 2. Add OpenNebula Repositories
 ================================================================================
 
-Refer to this :ref:`guide <repositories>` to add the community or enterprise edition repositories.
+Follow the :ref:`OpenNebula Repositories <repositories>` guide and add software repositories for OpenNebula edition you are going to deploy.
 
 Step 3. Add 3rd Party Repositories
 ================================================================================
 
-OpenNebula depends on packages which are not in the base distribution repositories. Enable 3rd party repositories required for you Front-end platform by running following commands under privileged user (``root``):
+Not all OpenNebula dependencies are in base distribution repositories. On selected platforms below you need to enable 3rd party repositories by running the following commands under privileged user (``root``):
 
 **CentOS 7**
 
@@ -83,7 +66,7 @@ OpenNebula depends on packages which are not in the base distribution repositori
 
     # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 
-**Debian 9, Ubuntu 16.04 and 18.04**
+**Debian 9, Ubuntu 18.04**
 
 .. prompt:: bash # auto
 
@@ -101,9 +84,7 @@ Step 3. Installing the Software
 
    Few main packages were renamed in OpenNebula 6.0, see :ref:`Compatibility Guide <compatibility_pkg>`.
 
-Available packages for the OpenNebula frontend and virtualization hosts:
-
-.. TODO PROVISION REF
+Available packages for the OpenNebula clients, Front-end and hypervisor Nodes:
 
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
 |              Package                  |                                     Description                                                               |
@@ -120,17 +101,19 @@ Available packages for the OpenNebula frontend and virtualization hosts:
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **opennebula-flow**                   | :ref:`OneFlow <oneflow_overview>` manages services and elasticity                                             |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **opennebula-provision**              | :ref:OneProvision <ddc_overview> deploys new clusters on remote bare-metal cloud providers                    |
+| **opennebula-provision**              | Tools to provision :ref:`Edge Clusters <try_hybrid_overview>`                                                 |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **opennebula-provision-data**         | Data for :ref:OneProvision <ddc_overview> tool                                                                |
+| **opennebula-provision-data**         | Data for :ref:`Edge Clusters <try_hybrid_overview>` provisioning tools                                        |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **opennebula-node-kvm**               | Dependencies and conf. for KVM hypervisor node                                                                |
+| **opennebula-node-kvm**               | Base setup for KVM hyp. Node                                                                                  |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **opennebula-node-firecracker**       | Dependencies and conf. for Firecracker hypervisor node                                                        |
+| **opennebula-node-firecracker**       | Base setup for Firecracker hypervisor Node                                                                    |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **opennebula-node-lxd**               | Dependencies and conf. for LXD hypervisor node (*only on Ubuntu and Debian 10*)                               |
+| **opennebula-node-lxc**               | Base setup for LXC hypervisor Node (*not on CentOS/RHEL 7 and Debian 9*)                                      |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **opennebula-lxd-snap**               | Meta-package to install LXD snap (*only on Ubuntu 16.04 and 18.04*)                                           |
+| **opennebula-node-lxd**               | Base setup for LXD hypervisor Node (*only on Ubuntu and Debian 10*)                                           |
++---------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **opennebula-lxd-snap**               | Meta-package to install LXD snap (*only on Ubuntu 18.04*)                                                     |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **opennebula-guacd**                  | Proxy daemon for Guacamole                                                                                    |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
@@ -140,10 +123,7 @@ Available packages for the OpenNebula frontend and virtualization hosts:
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **opennebula-common**                 | Shared content for OpenNebula packages                                                                        |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **opennebula-common-onecfg**          | Helpers for onecfg tool                                                                                       |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| rpm: **opennebula-debuginfo** |br|    | Package with debug information                                                                                |
-| deb: **opennebula-dbgsym**            |                                                                                                               |
+| **opennebula-common-onecfg**          | Helpers for :ref:`Configuration Management <cfg>` tool                                                        |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | rpm: **opennebula-java** |br|         | :ref:`Java OCA <java>` Bindings                                                                               |
 | deb: **libopennebula-java** |br|      |                                                                                                               |
@@ -156,11 +136,11 @@ Available packages for the OpenNebula frontend and virtualization hosts:
 | **docker-machine-opennebula**         | OpenNebula driver for Docker Machine                                                                          |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
 
-.. todo:: Correct link to docker-machine-opennebula (OpenNebula driver for Docker Machine <docker_machine_overview>`)
+There are also packages with debugging symbols for some platforms, e.g. ``openenbula-debuginfo`` on CentOS/RHEL and ``opennebula-dbgsym`` on Debian/Ubuntu. Other architecture-specific components might come with similarly named packages, please query your packaging database when necessary.
 
 .. note::
 
-   There are a few differencies in package names among distributions. Those with varying package names contain mostly integration libraries and since they are for general use on installation hosts, their names are left to follow the distribution conventions. Find above the CentOS/RHEL/Fedora specific packages prefixed with "*rpm:*" and Debian/Ubuntu specific packages prefixed with "*deb:*".
+   There are a few differences in package names among distributions. Those with varying package names contain mostly integration libraries and since they are for general use on installation hosts, their names are left to follow the distribution conventions. Find above the CentOS/RHEL/Fedora specific packages prefixed with "*rpm:*" and Debian/Ubuntu specific packages prefixed with "*deb:*".
 
 CentOS / RHEL / Fedora
 ----------------------
@@ -175,22 +155,25 @@ Install all OpenNebula Front-end components by executing following commands unde
 
 1. Install dependencies for :ref:`Docker Hub Marketplace <market_dh>`:
 
-- install Docker following the official documention for `CentOS <https://docs.docker.com/engine/install/centos/>`_ or `Fedora <https://docs.docker.com/engine/install/fedora/>`_
+- install Docker following the official documentation for `CentOS <https://docs.docker.com/engine/install/centos/>`_ or `Fedora <https://docs.docker.com/engine/install/fedora/>`_
 - add user ``oneadmin`` into group ``docker``:
 
 .. prompt:: bash # auto
 
     # usermod -a -G docker oneadmin
 
-2. Install dependencies for OpenNebula provisioning features:
+2. Install dependencies for OpenNebula Edge Clusters provisioning:
 
-.. todo:: Adapt to python3 commands
+.. note::
+
+   Ansible and Terraform can be also installed from packages if their versions are **Ansible 2.9.x** and **Terraform 0.14.x**.
 
 .. prompt:: bash # auto
 
-    # yum -y install python-pip
-    # pip install 'ansible>=2.8.0,<2.10.0'
-    # pip install 'Jinja2>=2.10.0'
+    # yum -y install python3-pip
+    # pip3 install 'cryptography<3.4'
+    # pip3 install 'ansible>=2.8.0,<2.10.0'
+    # pip3 install 'Jinja2>=2.10.0'
     # curl 'https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux_amd64.zip' | zcat >/usr/bin/terraform
     # chmod 0755 /usr/bin/terraform
 
@@ -208,22 +191,25 @@ Install all OpenNebula Front-end components by executing following commands unde
 
 1. Install dependencies for :ref:`Docker Hub Marketplace <market_dh>`:
 
-- install Docker following the official documention for `Debian <https://docs.docker.com/engine/install/debian/>`_ or `Ubuntu <https://docs.docker.com/engine/install/ubuntu/>`_
+- install Docker following the official documentation for `Debian <https://docs.docker.com/engine/install/debian/>`_ or `Ubuntu <https://docs.docker.com/engine/install/ubuntu/>`_
 - add user ``oneadmin`` into group ``docker``:
 
 .. prompt:: bash # auto
 
     # usermod -a -G docker oneadmin
 
-2. Install dependencies for OpenNebula provisioning features:
+2. Install dependencies for OpenNebula Edge Clusters provisioning:
 
-.. todo:: Adapt to python3 commands
+.. note::
+
+   Ansible and Terraform can be also installed from packages if their versions are **Ansible 2.9.x** and **Terraform 0.14.x**.
 
 .. prompt:: bash # auto
 
-    # apt-get -y install python-pip
-    # pip install 'ansible>=2.8.0,<2.10.0'
-    # pip install 'Jinja2>=2.10.0'
+    # apt-get -y install python3-pip
+    # pip3 install 'cryptography<3.4'
+    # pip3 install 'ansible>=2.8.0,<2.10.0'
+    # pip3 install 'Jinja2>=2.10.0'
     # curl 'https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux_amd64.zip' | zcat >/usr/bin/terraform
     # chmod 0755 /usr/bin/terraform
 
@@ -232,11 +218,11 @@ Install all OpenNebula Front-end components by executing following commands unde
 Step 4. Install Ruby Dependencies System-wide (Optional)
 ================================================================================
 
-.. todo:: Probably this should be better moved on different page not to confuse users.
-
 .. important::
 
-   Optional step for **new installations**. When **upgrading** existing deployment, you have to proceeed with installing via ``install_gems`` below if not using the shipped Ruby gems (i.e., when symbolic link ``/usr/share/one/gems`` doesn't exist).
+    For **new deployments**, this step is recommended to skip.
+
+When **upgrading** existing deployment which could be running OpenNebula older than 5.10.0 anytime in the past, you might need to install Ruby dependencies via ``install_gems`` if you are not yet using the shipped Ruby gems (i.e., when symbolic link ``/usr/share/one/gems`` doesn't exist on your Front-end)!
 
 .. warning::
 
@@ -268,9 +254,9 @@ Several OpenNebula components depend on Ruby and specific Ruby libraries (gems).
 Step 5. Enabling MySQL/MariaDB/PostgreSQL (Optional)
 ================================================================================
 
-You can skip this step if you just want to deploy OpenNebula as quickly as possible. However if you are deploying this for production, or in a more serious environment, make sure you read the :ref:`MySQL Setup <mysql_setup>` or :ref:`PostgreSQL Setup <postgresql_setup>` sections.
+You can skip this step if you want to deploy OpenNebula as quickly as possible for evaluation.
 
-Note that it **is** possible to switch from SQLite to MySQL, but since it's more cumbersome to migrate databases, we suggest that, if in doubt, use MySQL from the start. It is not possible to automatically migrate existing databases to PostgreSQL.
+If you are deploying Front-end for the production/serious use, make sure you read the :ref:`Database Setup <database_setup>` guide and select the suitable database backend. Although it **is** possible to switch from (default) SQLite to MySQL/MariaDB backend later, but since it's not easy and straightforward, **we suggest to deploy and use MySQL/MariaDB backend since the very beginning**. Also please note it's not possbile to migrate existing databases to PostgreSQL at all.
 
 Step 6. Configuring OpenNebula
 ================================================================================
@@ -606,7 +592,6 @@ to it for your users.
 
 This can be straightforwardly achieved using the the Appliances hosted in the Public Marketplaces, which are configured and installed by default in your brand new OpenNebula:
 
-
 This basically means completing two tasks:
 
 -  Add base disk images with OS installations of your choice. Including any software package of interest.
@@ -624,92 +609,10 @@ Once the images are ready, just create VM templates with the relevant configurat
 
 You are done, make sure that your cloud users can access the images and templates you have just created.
 
-
-Step 10. Next steps
+Step 11. Next steps
 ================================================================================
 
 Now that you have successfully started your OpenNebula service, head over to the :ref:`Node Installation <node_installation>` chapter in order to add hypervisors to your cloud.
-
-
-
-
-STEP ANSIBLE + TERRAFORM FOR PROVISION. INCLUDES UNNEEDED STEPS FOR 6.0. REVIEW!
-================================================================================
-All functionality is distributed as an optional operating system package ``opennebula-provision``, which must be installed on your **frontend alongside with the server packages**.
-
-.. important::
-
-    The tool requires `Ansible <https://www.ansible.com/>`__ to be installed on the same host(s) as well. There is **no automatic dependency** which would install Ansible automatically; you have to manage the installation of the required Ansible version on your own.
-
-    Supported versions: Ansible 2.8.x and 2.9.x.
-
-.. important::
-
-    The tool rquires `Terraform <https://www.terraform.io/>`__ to be installed on the same host(s) as well. There is **no automatic dependecy** which would install Terraform automatically; you have to manage the installation of the required Terraform version on your own.
-
-    Supported versions: Terraform 0.13.4.
-
-Tools
------
-
-Installation of the tools is as easy as the installation of any operating system package. Choose from the sections below based on your operating system. You also need to have installed the OpenNebula :ref:`front-end packages <frontend_installation>`.
-
-CentOS/RHEL 7
--------------
-
-.. prompt:: bash $ auto
-
-   $ sudo yum install opennebula-provision
-
-Debian/Ubuntu
--------------
-
-.. prompt:: bash $ auto
-
-   $ sudo apt-get install opennebula-provision
-
-Ansible
--------
-
-It's necessary to have Ansible installed. You can use a distribution package if there is a suitable version. Otherwise, you can install the required version via ``pip`` the following way:
-
-CentOS/RHEL 7
--------------
-
-.. prompt:: bash $ auto
-
-   $ sudo yum install python-pip
-
-Debian/Ubuntu
--------------
-
-.. prompt:: bash $ auto
-
-   $ sudo apt-get install python-pip
-
-and, then install Ansible:
-
-.. prompt:: bash $ auto
-
-   $ sudo pip install 'ansible>=2.8.0,<2.10.0'
-
-Check that Ansible is installed properly:
-
-.. prompt:: bash $ auto
-
-    ansible 2.9.9
-      config file = None
-      configured module search path = [u'/var/lib/one/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
-      ansible python module location = /usr/lib/python2.7/site-packages/ansible
-      executable location = /bin/ansible
-      python version = 2.7.5 (default, Apr  2 2020, 13:16:51) [GCC 4.8.5 20150623 (Red Hat 4.8.5-39)]
-
-.. note:: You need to have Jinja2 version 2.10.0 (or higher). If your operating system is shipped with older, do upgrade with the following command:
-
-    .. prompt:: bash $ auto
-
-        $ sudo pip install 'Jinja2>=2.10.0'
-
 
 .. |image0| image:: /images/debian-opennebula.png
 

@@ -60,6 +60,15 @@ To add OpenNebula enterprise repository execute the following as user ``root``:
 Debian/Ubuntu
 -------------
 
+.. note::
+
+    If the commands below fail, ensure you have ``gnupg``, ``wget`` and ``apt-transport-https`` packages installed and retry. E.g.,
+
+    .. prompt:: bash # auto
+
+        # apt-get update
+        # apt-get -y install gnupg wget apt-transport-https
+
 First, add the repository signing GPG key on the Front-end by executing as user ``root``:
 
 .. prompt:: bash # auto
@@ -198,6 +207,15 @@ To add OpenNebula repository execute the following as user ``root``:
 
 Debian/Ubuntu
 -------------
+
+.. note::
+
+    If the commands below fail, ensure you have ``gnupg``, ``wget`` and ``apt-transport-https`` packages installed and retry. E.g.,
+
+    .. prompt:: bash # auto
+
+        # apt-get update
+        # apt-get -y install gnupg wget apt-transport-https
 
 First, add the repository signing GPG key on the Front-end by executing as user ``root``:
 

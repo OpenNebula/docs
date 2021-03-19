@@ -8,6 +8,6 @@ OpenNebula Installation
    :maxdepth: 2
 
    Overview <overview>
-   Database Setup <database_setup>
+   Database Setup <database>
    OpenNebula Repositories <opennebula_repository_configuration>
-   Single Front-end Installation <single_frontend_installation>
+   Single Front-end Installation <install>
