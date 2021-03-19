@@ -43,7 +43,7 @@ In a single zone, OpenNebula (oned) can work with the following limits:
 
 In production environments, we do not recommend exceeding in the same installation this number of servers (1,250) and VMs (20,000), as well as a load of 30 API requests/s to avoid excessive slowness of the system. Better performance can be achieved with specific tuning of other components, like the database, or better hardware.
 
-The four most common API calls were used to stress the core at the same time in approximately the same ratio experienced on real deployments. The total numbers of API calls per second used were: 10, 20 and 30. In these conditions, with a host monitoring interval of 30 hosts/second, in a pool with 1,250 hosts and a monitoring period on each host of 180 seconds, the response times in seconds of the oned process for the most common XMLRPC calls are shown below:
+The four most common API calls were used to stress the core at the same time in approximately the same ratio experienced on real deployments. The total numbers of API calls per second used were: 10, 20 and 30. In these conditions, with a host monitoring interval of 30 hosts/second, in a pool with 1,250 hosts and a monitoring period on each host of 180 seconds, the response times in seconds of the oned process for the most common XML-RPC calls are shown below:
 
 
 +---------------------------------------------------------------------------------------+
@@ -105,7 +105,7 @@ Note: VMs have been deployed in 100 chunks in all the cases.
 | Firecracker | 43s (1500 micro-VMs)  | 0.03s                    |
 +-------------+-----------------------+--------------------------+
 
-Note: These values can be used as a baseline to adjust the probe frequency in ``monitord.conf``.
+Note: These values can be used as a baseline to adjust the probe frequency in :ref:`/etc/one/monitord.conf <mon_conf>`.
 
 Tuning for Large Scale
 ==================================
@@ -113,7 +113,7 @@ Tuning for Large Scale
 Monitoring Tuning
 -----------------------------------
 
-Since OpenNebula 5.12 the monitoring system uses tcp/udp to send monitoring information to Monitor Daemon. This model is highly scalable, and its limit (in terms of number of VMs monitored per second) is bound by the performance of the server running oned and the database server. Read more in the :ref:`Monitoring guide <mon>`.
+Since OpenNebula 5.12 the monitoring system uses TCP/UDP to send monitoring information to Monitor Daemon. This model is highly scalable, and its limit (in terms of number of VMs monitored per second) is bound by the performance of the server running oned and the database server. Read more in the :ref:`Monitoring guide <mon>`.
 
 For vCenter environments, OpenNebula uses the VI API offered by vCenter to monitor the state of the hypervisor and all the Virtual Machines running in all the imported vCenter clusters. The driver is optimized to cache common VM information.
 
@@ -122,7 +122,7 @@ In both environments, our scalability testing achieves monitoring of tens of tho
 Core Tuning
 ---------------------------
 
-OpenNebula keeps the monitoring history for a defined time in a database table. These values are then used to draw the plots in Sunstone. These monitoring entries can take quite a bit of storage in your database. The amount of storage used will depend on the size of your cloud, and the following configuration attributes in :ref:`monitord.conf <mon_conf>`:
+OpenNebula keeps the monitoring history for a defined time in a database table. These values are then used to draw the plots in Sunstone. These monitoring entries can take quite a bit of storage in your database. The amount of storage used will depend on the size of your cloud, and the following configuration attributes in :ref:`/etc/one/monitord.conf <mon_conf>`:
 
 -  ``MONITORING_INTERVAL_HOST``: Time in seconds between each monitoring cycle. Default: 180. This parameter sets the timeout to pro-actively restart the monitoring probe in the standard ``udp-push`` model.
 -  ``HOST_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring information. Default: 12h.
@@ -154,7 +154,7 @@ Each monitoring entry will be around 2 KB for each Host, and 4 KB for each VM. T
 API Tuning
 -------------------------
 
-For large deployments with lots of XML-RPC calls, the default values for the XML-RPC server are too conservative. The values you can modify, and their meaning, are explained in :ref:`oned.conf <oned_conf>` and the `xmlrpc-c library documentation <http://xmlrpc-c.sourceforge.net/doc/libxmlrpc_server_abyss.html#max_conn>`__. From our experience, these values improve the server behavior with a large number of client calls:
+For large deployments with lots of XML-RPC calls, the default values for the XML-RPC server are too conservative. The values you can modify, and their meaning, are explained in :ref:`/etc/one/oned.conf <oned_conf>` and the `xmlrpc-c library documentation <http://xmlrpc-c.sourceforge.net/doc/libxmlrpc_server_abyss.html#max_conn>`__. From our experience, these values improve the server behavior with a large number of client calls:
 
  .. code-block:: none
 
@@ -163,13 +163,13 @@ For large deployments with lots of XML-RPC calls, the default values for the XML
 
 The core is able to paginate some pool answers. This makes the memory consumption decrease, and in some cases makes the parsing faster. By default the pagination value is 2,000 objects, but it can be changed using the environment variable ``ONE_POOL_PAGE_SIZE``. It should be bigger than 2. For example, to list VMs with a page size of 5,000 we can use:
 
- .. prompt:: text $ auto
+ .. prompt:: bash $ auto
 
      $ ONE_POOL_PAGE_SIZE=5000 onevm list
 
 To disable pagination we can use a non numeric value:
 
- .. prompt:: text $ auto
+ .. prompt:: bash $ auto
 
      $ ONE_POOL_PAGE_SIZE=disabled onevm list
 
@@ -212,7 +212,7 @@ When oned is started in read-only (or cache) mode, it resolves any read-only ope
     | one.datastorepool.info  | one.host.info           |  one.zone.raftstatus    |
     +-------------------------+-------------------------+-------------------------+
 
-.. note:: read-only operations enforce any ACL restriction or ownership checks.
+.. note:: Read-only operations enforce any ACL restriction or ownership checks.
 
 Any other API call is forwarded to the active oned process. In this case, the cache server is acting as a simple proxy. The architecture recommended to be used with the cache server is depicted in the following figure:
 
@@ -226,7 +226,7 @@ Configuration
 To configure an API server you need to:
 
     1. Install the OpenNebula packages in the server
-    2. Update the ``oned.conf`` file so it points to the master oned and Database:
+    2. Update the :ref:`/etc/one/oned.conf <oned_conf>` file so it points to the master oned and Database:
 
 .. code-block:: text
 
@@ -275,16 +275,18 @@ To connect to the cluster from another server you can use one of the two followi
 
 - Using the CLI: Create a ``ONE_XMLRPC`` variable with the new endpoint. E.g.
 
-``export ONE_XMLRPC=http://ENDPOINT_IP:2633/RPC2``
+.. code::
 
-- Using Sunstone: Modify ``one_xmlrpc`` in ``/etc/one/sunstone-server.conf``
+    export ONE_XMLRPC=http://ENDPOINT_IP:2633/RPC2
+
+- Using Sunstone: Modify ``one_xmlrpc`` in :ref:`/etc/one/sunstone-server.conf <sunstone_sunstone_server_conf>`
 
 The new endpoint will be the load balancer address.
 
 Driver Tuning
 ------------------------
 
-OpenNebula drivers have by default 15 threads. This is the maximum number of actions a driver can perform at the same time; following actions will be queued. You can make this value in :ref:`oned.conf <oned_conf>`. The driver parameter is ``-t``.
+OpenNebula drivers have by default 15 threads. This is the maximum number of actions a driver can perform at the same time; following actions will be queued. You can make this value in :ref:`/etc/one/oned.conf <oned_conf>`. The driver parameter is ``-t``.
 
 Database Tuning
 -------------------------
