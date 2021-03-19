@@ -35,4 +35,4 @@ The subsequent :ref:`Troubleshooting and Reference <container_reference>` will b
 Hypervisor Compatibility
 ================================================================================
 
-:ref:`Containerized Deployment <container_deployment>` describes only the deployment of the containerized OpenNebula Front-end. Such deployment supports all hypervisors as the traditionally installed OpenNebula Front-end. Hypervisors are not covered by the containerized deployment nor by this guide but you can proceed to the :ref:`Customized Clusters Installation <node_installation>` which does cover this topic.
+This chapter applies to all supported hypervisors.
