@@ -5,7 +5,7 @@
 Bridged Networking
 ================================================================================
 
-This guide describes how to deploy Bridged networks. In this mode, the virtual machine traffic is directly bridged through the Linux bridge in the nodes. Bridged networks can operate in four different modes depending on the additional traffic filtering made by the OpenNebula:
+This guide describes how to deploy Bridged networks. In this mode, the virtual machine traffic is directly bridged through the Linux bridge on the hypervisor Nodes. Bridged networks can operate in four different modes depending on the additional traffic filtering made by the OpenNebula:
 
 * **Dummy Bridged**, no filtering, no bridge setup (legacy no-op driver).
 * **Bridged**, no filtering is made, managed bridge.
@@ -28,38 +28,40 @@ OpenNebula Configuration
 
 The following configuration attributes can be adjusted in ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``:
 
-+------------------+-------------------------------------------------------------------------------------------+
-| Parameter        | Description                                                                               |
-+==================+===========================================================================================+
-| ipset_maxelem    | Maximal number of entries in the IP set (used for the security group rules)               |
-+------------------+-------------------------------------------------------------------------------------------+
-| keep_empty_bridge| Set to true to preserve bridges with no virtual interfaces left.                          |
-+------------------+-------------------------------------------------------------------------------------------+
-| ip_bridge_conf   | *Hash* Options for ip-route2 (``ip link add <bridge> type bridge ...``)                   |
-+------------------+-------------------------------------------------------------------------------------------+
++------------------------+---------------------------------------------------------------------------------------------------------------+
+| Parameter              | Description                                                                                                   |
++========================+===============================================================================================================+
+| ``:ipset_maxelem``     | Maximal number of entries in the IP set (used for the security group rules)                                   |
++------------------------+---------------------------------------------------------------------------------------------------------------+
+| ``:keep_empty_bridge`` | Set to ``true`` to preserve bridges with no virtual interfaces left.                                          |
++------------------------+---------------------------------------------------------------------------------------------------------------+
+| ``:ip_bridge_conf``    | *(Hash)* Optional new bridge parameters as passed to IP command (``ip link add <bridge> type bridge ...``)    |
++------------------------+---------------------------------------------------------------------------------------------------------------+
 
 .. _bridged_net:
 
 Defining a Bridged Network
 ================================================================================
 
-To create a virtual network include the following information:
+To create a Virtual Network, include the following information in the template:
 
 +-------------+-------------------------------------------------------------------------+-----------+
 | Attribute   | Value                                                                   | Mandatory |
 +=============+=========================================================================+===========+
-| **VN_MAD**  | * ``dummy`` for the Dummy Bridged mode                                  |  **YES**  |
+|             | Driver:                                                                 |           |
+|             |                                                                         |           |
+| ``VN_MAD``  | * ``dummy`` for the Dummy Bridged mode (requires set ``BRIDGE``)        |  **YES**  |
 |             | * ``bridge`` for the Bridged mode                                       |           |
 |             | * ``fw`` for Bridged with Security Groups                               |           |
 |             | * ``ebtables`` for Bridged with ebtables isolation                      |           |
 +-------------+-------------------------------------------------------------------------+-----------+
-| **BRIDGE**  | Name of the linux bridge in the nodes                                   |    NO     |
+| ``BRIDGE``  | Name of the Linux bridge on the Nodes                                   |    NO     |
 +-------------+-------------------------------------------------------------------------+-----------+
-| **PHYDEV**  | Name of the physical network device that will be attached to the bridge |    NO     |
+| ``PHYDEV``  | Name of the physical network device that will be attached to the bridge |    NO     |
 |             | (does not apply for ``dummy`` driver)                                   |           |
 +-------------+-------------------------------------------------------------------------+-----------+
 
-For example, you can define a Bridged network with the Security Group rules as shown below:
+For example, you can define a *Bridged with Security Groups* one with following template:
 
 .. code::
 
@@ -69,8 +71,7 @@ For example, you can define a Bridged network with the Security Group rules as s
 Bridged and ebtables VLAN
 ================================================================================
 
-The ``ebtables`` program on the node will set up tables of rules (at Linux kernel level) to inspect the Ethernet frames.
-Running the command ``ebtables -L`` on the node will display rules similiar to the ones shown here:
+The ``ebtables`` program on the Node will set up tables of rules (at Linux kernel level) to inspect the Ethernet frames. Running the command ``ebtables -L`` on the Node will display rules similiar to the ones shown here:
 
 .. code::
 
