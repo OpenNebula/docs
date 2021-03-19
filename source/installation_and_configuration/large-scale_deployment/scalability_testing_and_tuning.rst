@@ -14,7 +14,7 @@ Scalability Testing
 Front-end (oned) Scalability
 -------------------------------------------
 
-This section focuses on the scale limits of oned, the controller component, for a single OpenNebula zone. The limits recommended here are associated with a given API load; you may consider reducing or increasing the limits based on your actual API requests. Notice that the maximum number of servers (virtualization hosts) that can be managed by a single OpenNebula instance strongly depends on the performance and scalability of the underlying platform infrastructure, mainly the storage subsystem.
+This section focuses on the scale limits of oned, the controller component, for a single OpenNebula zone. The limits recommended here are associated with a given API load, you may consider reducing or increasing the limits based on your actual API requests. Notice that the maximum number of servers (virtualization hosts) that can be managed by a single OpenNebula instance strongly depends on the performance and scalability of the underlying platform infrastructure, mainly the storage subsystem.
 The following results have been obtained with synthetic workloads that stress oned running on a physical server with the following specifications:
 
 +----------------------+---------------------------------------------------------+
@@ -65,7 +65,7 @@ The four most common API calls were used to stress the core at the same time in 
 Hypervisor Scalability
 --------------------------------------
 
-The number of VMs, micro-VMs or containers that a virtualization node can run is limited by the virtualization tehcnology, hardware configuration and OpenNebula node components (drivers). In this section we have evaluated only the performance of OpenNebula part, virtualization and monitoring drivers for the KVM, Firecracker and LXD. The host specs are the following:
+The number of VMs, micro-VMs or containers that a virtualization node can run is limited by the virtualization technology, hardware configuration and OpenNebula node components (drivers). In this section we have evaluated only the performance of OpenNebula part, virtualization and monitoring drivers for the KVM, Firecracker and LXD. The host specs are the following:
 
 +---------------+---------------------------------------------------------------+
 | CPU model:    | Intel(R) Xeon(TM) E5-2650 v4 @2.2GHz, 2 sockets 24 cores (HT) |
@@ -105,7 +105,7 @@ Note: VMs have been deployed in 100 chunks in all the cases.
 | Firecracker | 43s (1500 micro-VMs)  | 0.03s                    |
 +-------------+-----------------------+--------------------------+
 
-Note: These values can be used as a baseline to adjust the probe frecuency in monitord.conf.
+Note: These values can be used as a baseline to adjust the probe frequency in ``monitord.conf``.
 
 Tuning for Large Scale
 ==================================
