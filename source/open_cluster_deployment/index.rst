@@ -8,7 +8,6 @@ Open Cluster Deployment
 .. toctree::
    :maxdepth: 2
 
-   Overview <overview/overview>
    KVM Node Deployment <kvm_node_deployment/index>
    LXC Node Deployment <lxc_node_deployment/index>
    Firecracker Node Deployment <firecracker_node_deployment/index>

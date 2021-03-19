@@ -4,14 +4,14 @@
 Overview
 ================================================================================
 
-`KVM <https://www.linux-kvm.org/>`__ is a main Linux virutalization technology. KVM (for Kernel-based Virtual Machine) is a full virtualization solution for Linux on x86 hardware containing virtualization extensions (Intel VT or AMD-V). It consists of a loadable kernel module, kvm.ko, that provides the core virtualization infrastructure and a processor specific module, kvm-intel.ko or kvm-amd.ko.
+`KVM <https://www.linux-kvm.org/>`__ (Kernel-based Virtual Machine) is the main virtualization solution for Linux on x86 hardware that contains virtualization extensions (Intel VT or AMD-V). It consists of the loadable KVM kernel modules (one that provides the core virtualization infrastructure and several processor-specific modules), but the complete KVM virtualization stack usually contains also the user-space machine hardware emulator `QEMU <https://www.qemu.org>`__ accelerated by the KVM and virtual machines management tool `libvirt <https://libvirt.org>`__.
 
-Using KVM, one can run multiple virtual machines running unmodified Linux or Windows images. Each virtual machine has private virtualized hardware: a network card, disk, graphics adapter, etc.
+By using KVM, you can run multiple Virtual Machines with unmodified Linux or Windows images. Each Virtual Machine has private virtualized hardware - network card, disk, graphics adapter, etc.
 
 How Should I Read This Chapter
 ================================================================================
 
-This chapter focuses on the configuration options for an KVM based Hosts. Read the :ref:`installation <kvm_node>` section to add a KVM host to your OpenNebula cloud to start deploying VMs. Continue with :ref:`driver <kvmg>` section in order to understand the specific requirements, functionalities, and limitations of the KVM driver.
+This chapter focuses on the configuration options for KVM-based Hosts. Read the :ref:`installation <kvm_node>` section to add a KVM host to your OpenNebula cloud to start deploying VMs. Continue with the :ref:`driver <kvmg>` section to understand the specific requirements, functionalities, and limitations of the KVM driver.
 
 Hypervisor Compatibility
 ================================================================================
