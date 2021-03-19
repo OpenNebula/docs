@@ -95,7 +95,7 @@ Optionally, you can set a timeout for the VM Shutdown operation. This feature is
     export SHUTDOWN_TIMEOUT=180
 
     # Uncomment this line to force VM cancellation after shutdown timeout
-    #export FORCE_DESTROY=yes
+    export FORCE_DESTROY=yes
 
 .. _kvmg_working_with_cgroups_optional:
 
@@ -199,7 +199,7 @@ For disks you can also use SCSI bus (``sd``) and it will use virtio-scsi control
 Additional Attributes
 ~~~~~~~~~~~~~~~~~~~~~
 
-The **raw** attribute offers the end user the possibility of passing by attributes not known by OpenNebula to KVM. Basically, everything placed here will be written literally into the KVM deployment file (**use libvirt xml format and semantics**). You can selectively disable validation of the RAW data by adding `VALIDATE="no"` to the `RAW` section. By default, the data will be checked against the libvirt schema.
+The **raw** attribute offers the end user the possibility of passing by attributes not known by OpenNebula to KVM. Basically, everything placed here will be written literally into the KVM deployment file (**use libvirt xml format and semantics**). You can selectively disable validation of the RAW data by adding ``VALIDATE="no"`` to the ``RAW`` section. By default, the data will be checked against the libvirt schema.
 
 .. code::
 
