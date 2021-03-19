@@ -6,8 +6,6 @@ KVM Node Installation
 
 This page shows you how to install OpenNebula from the binary packages.
 
-Using the packages provided on our site is the recommended method, to ensure the installation of the latest version and to avoid possible package divergences in different distributions. There are two alternatives here: you can add **our package repositories** to your system, or visit the `software menu <http://usela.io/use>`__ to **download the latest package** for your Linux distribution.
-
 .. _kvm_repo:
 
 Step 1. Add OpenNebula Repositories
@@ -23,10 +21,10 @@ Installing on CentOS/RHEL
 
 .. include:: ../../installation_and_configuration/frontend_installation/epel.txt
 
-Install Node Package
-^^^^^^^^^^^^^^^^^^^^
+Install OpenNebula KVM Node Package
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Execute the following commands to install the node package and restart libvirt to use the OpenNebula provided configuration file:
+Execute the following commands to install the OpenNebula KVM node package and restart libvirt to use the OpenNebula provided configuration file:
 
 .. prompt:: bash $ auto
 
@@ -57,7 +55,7 @@ For further configuration, check the specific guide: :ref:`KVM <kvmg>`.
 Installing on Debian/Ubuntu
 ---------------------------
 
-Execute the following commands to install the node package and restart libvirt to use the OpenNebula-provided configuration file:
+Execute the following commands to install the OpenNebula KVM node package and restart libvirt to use the OpenNebula-provided configuration file:
 
 .. prompt:: bash $ auto
 
