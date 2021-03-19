@@ -10,7 +10,7 @@ The majority of the steps needed to install the LXD node are similar to KVM beca
 Step 1. Add OpenNebula Repositories
 ========================================================
 
-:ref:`Same as KVM <kvm_repo>`
+.. include:: ../kvm_node_deployment/repositories.txt
 
 Step 2. Installing the Software
 ===============================
@@ -86,17 +86,17 @@ For further configuration check the specific guide: :ref:`LXD <lxdmg>`.
 Step 3. Configure Passwordless SSH
 =====================================================
 
-:ref:`Same as KVM <kvm_ssh>`
+.. include:: ../kvm_node_deployment/passwordless_ssh.txt
 
 Step 4.  Networking Configuration
 =======================================================
 
-:ref:`Same as KVM <kvm_net>`
+ .. include:: ../kvm_node_deployment/networking.txt
 
 Step 5.  Storage Configuration
 =======================================================
 
-:ref:`Same as KVM <kvm_storage>`
+  .. include:: ../kvm_node_deployment/storage.txt
 
 Step 6. Adding a Host to OpenNebula
 ============================================================
@@ -112,4 +112,4 @@ You can use the :ref:`import VM <import_wild_vms>` functionality if you want to 
 Step 8.  Next steps
 ======================================
 
-:ref:`Same as KVM <kvm_next>`
+.. include:: ../kvm_node_deployment/next_steps.txt
