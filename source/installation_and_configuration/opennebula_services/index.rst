@@ -17,3 +17,4 @@ References
    FireEdge Configuration <fireedge_configuration>
    Scheduler Configuration <scheduler_configuration>
    Troubleshooting <troubleshooting>
+   Support Utilities (EE) <support>
