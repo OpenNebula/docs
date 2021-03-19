@@ -1,7 +1,7 @@
 .. _container_custom:
 
 ================================================================================
-Advanced Deployment Customizations
+Advanced Deployment and Customizations
 ================================================================================
 
 .. important:: This feature is a **Technology Preview**. It's not recommended for production environments!
