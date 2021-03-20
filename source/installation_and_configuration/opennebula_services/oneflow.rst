@@ -1,168 +1,142 @@
 .. _appflow_configure:
+.. _oneflow_conf:
 
 =====================
 OneFlow Configuration
 =====================
 
-The OneFlow server orchestrates the multi-VM services, it's a dedicated daemon which takes the requests and interacts with the OpenNebula Daemon. It's installed by default, but the use is completely optional and/or can be deployed separately on a different machine. Please check the :ref:`Single Front-end Installation <ignc>`.
+The OneFlow **orchestrates multi-VM services** as a whole, interacts with the OpenNebula Daemon to manage the Virtual Machines (starts, stops), and can be controlled via the Sunstone GUI or over CLI. It's a dedicated daemon installed by default as part of the :ref:`Single Front-end Installation <frontend_installation>`, but can be even deployed independently on a different machine. The server is distributed as an operating system package ``opennebula-flow`` with system service ``opennebula-flow``.
+
+Read more in :ref:`Multi-VM Service Management <multivm_service_management>`.
 
 Configuration
 =============
 
-The OneFlow configuration file can be found at ``/etc/one/oneflow-server.conf``. It uses YAML syntax to define the following options:
+Server
+------
 
-+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|        Option         |                                                                               Description                                                                               |
-+=======================+=========================================================================================================================================================================+
-| **Server Configuration**                                                                                                                                                                        |
-+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :one\_xmlrpc          | OpenNebula daemon host and port                                                                                                                                         |
-+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :subscriber\_endpoint | Endpoint to subscribe to ZMQ                                                                                                                                            |
-+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :autoscaler\_interval | Time in seconds between each time elasticity rules are evaluated                                                                                                        |
-+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :host                 | Host where OneFlow will listen                                                                                                                                          |
-+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :port                 | Port where OneFlow will listen                                                                                                                                          |
-+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :force_deletion       | Force deletion of VMs on terminate signal                                                                                                                               |
-+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Defaults**                                                                                                                                                                                    |
-+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :default\_cooldown    | Default cooldown period after a scale operation, in seconds                                                                                                             |
-+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :wait_timeout         | Default time to wait VMs states changes, in seconds                                                                                                                     |
-+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :concurrency          | Number of threads to make actions with flows                                                                                                                            |
-+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :shutdown\_action     | Default shutdown action. Values: 'shutdown', 'shutdown-hard'                                                                                                            |
-+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :action\_number       | Default number of virtual machines (action\_number) that will receive the given call in each interval defined by action\_period, when an action is performed on a Role. |
-| :action\_period       |                                                                                                                                                                         |
-+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :vm\_name\_template   | Default name for the Virtual Machines created by oneflow. You can use any of the following placeholders:                                                                |
-|                       |                                                                                                                                                                         |
-|                       | - $SERVICE_ID                                                                                                                                                           |
-|                       | - $SERVICE_NAME                                                                                                                                                         |
-|                       | - $ROLE_NAME                                                                                                                                                            |
-|                       | - $VM_NUMBER                                                                                                                                                            |
-+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Auth**                                                                                                                                                                                        |
-+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :core\_auth           | Authentication driver to communicate with OpenNebula core                                                                                                               |
-|                       |                                                                                                                                                                         |
-|                       | * ``cipher``: for symmetric cipher encryption of tokens                                                                                                                 |
-|                       | * ``x509``: for x509 certificate encryption of tokens                                                                                                                   |
-|                       |                                                                                                                                                                         |
-|                       | For more information, visit the :ref:`OpenNebula Cloud Auth documentation <cloud_auth>`                                                                                 |
-+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Log**                                                                                                                                                                                         |
-+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :debug\_level         | Log debug level. 0 = ERROR, 1 = WARNING, 2 = INFO, 3 = DEBUG                                                                                                            |
-+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+The OneFlow configuration file can be found in ``/etc/one/oneflow-server.conf`` on your Front-end. It uses **YAML** syntax with following parameters:
 
-This is the default file
+.. note::
 
-.. code-block:: yaml
+    After a configuration change, the OneFlow server must be :ref:`restarted <oneflow_conf_service>` to take effect.
 
-    ################################################################################
-    # Server Configuration
-    ################################################################################
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|        Option             |                                                                               Description                                                                               |
++===========================+=========================================================================================================================================================================+
+| **Server Configuration**                                                                                                                                                                            |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:one_xmlrpc``           | OpenNebula Daemon XML-RPC URL                                                                                                                                           |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:subscriber_endpoint``  | Endpoint to subscribe to ZMQ                                                                                                                                            |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:autoscaler_interval``  | Time in seconds between each time elasticity rules are evaluated                                                                                                        |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:host``                 | Host/IP where OneFlow will listen                                                                                                                                       |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:port``                 | Port where OneFlow will listen                                                                                                                                          |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:force_deletion``       | Force deletion of VMs on terminate signal                                                                                                                               |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Defaults**                                                                                                                                                                                        |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:default_cooldown``     | Default cooldown period after a scale operation, in seconds                                                                                                             |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:wait_timeout``         | Default time to wait VMs states changes, in seconds                                                                                                                     |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:concurrency``          | Number of threads to make actions with flows                                                                                                                            |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:shutdown_action``      | Default shutdown action. Values: ``shutdown``, ``shutdown-hard``                                                                                                        |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:action_number``        | Default number of virtual machines (``:action_number``) that will receive the given call in each interval (``:action_period``),                                         |
+| ``:action_period``        | when an action is performed on a Role.                                                                                                                                  |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:vm_name_template``     | Default name for the Virtual Machines created by oneflow. You can use any of the following placeholders:                                                                |
+|                           | ``$SERVICE_ID``, ``$SERVICE_NAME``, ``$ROLE_NAME``, ``$VM_NUMBER``.                                                                                                     |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:page_size``            | Default page size when purging DONE services                                                                                                                            |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Authentication**                                                                                                                                                                                  |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:core_auth``            | Authentication driver to communicate with OpenNebula core                                                                                                               |
+|                           |                                                                                                                                                                         |
+|                           | * ``cipher`` for symmetric cipher encryption of tokens                                                                                                                  |
+|                           | * ``x509`` for x509 certificate encryption of tokens                                                                                                                    |
+|                           |                                                                                                                                                                         |
+|                           | For more information, visit the :ref:`Cloud Server Authentication <cloud_auth>` reference.                                                                              |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Logging**                                                                                                                                                                                         |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:debug_level``          | Log debug level. Values: ``0`` for ERROR level, ``1`` for WARNING level, ``2`` for INFO level, ``3`` for DEBUG level                                                    |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-    # OpenNebula daemon contact information
-    #
-    :one_xmlrpc: http://localhost:2633/RPC2
+In the default configuration, the OneFlow server will only listen to requests coming from ``localhost`` (which is enough to control OneFlow over Sunstone running on the same host). If you want to control OneFlow over API/CLI remotely, you need to change ``:host`` attribute in ``/etc/one/oneflow-server.conf`` to a public IP of your Front-end host or to ``0.0.0.0`` (to work on all IP addresses configured on host).
 
-    # :subscriber_endpoint to subscribe for OpenNebula events must match those in
-    # oned.conf
-    :subscriber_endpoint: 'tcp://localhost:2101'
 
-    # Time in seconds between each time scale rules are evaluated
-    #
-    :autoscaler_interval: 90
+Sunstone
+--------
 
-    # Host and port where OneFlow server will run
-    :host: 127.0.0.1
-    :port: 2474
+Sunstone GUI enables end-users to access the OneFlow from the UI, it directly connects to the OneFlow on their behalf. Sunstone has configured the OneFlow endpoint it connects to in ``/etc/one/sunstone-server.conf`` in parameter ``:oneflow_server``. When OneFlow is running on a different host than Sunstone, the endpoint in Sunstone must be configured appropriately.
 
-    # Force deletion of VMs on terminate signal
-    :force_deletion: false
+Sunstone tabs for OneFlow (*Services* and *Service Templates*) are enabled in Sunstone by default. To customize visibility for different types of users, follow to the :ref:`Sunstone Views <suns_views>` documentation.
 
-    ################################################################################
-    # Defaults
-    ################################################################################
+CLI
+---
 
-    # Default cooldown period after a scale operation, in seconds
-    :default_cooldown: 300
+OneFlow CLI (``oneflow`` and ``oneflow-template``) uses same credentials as other :ref:`command-line tools <cli>`. The login and password are taken from file referenced by environment variable ``$ONE_AUTH`` (defaults to ``$HOME/.one/one_auth``). Remote endpoint and (optionally) distinct access user/password to the above is configured in environment variable ``$ONEFLOW_URL`` (defaults to ``http://localhost:2474``), ``$ONEFLOW_USER`` and ``$ONEFLOW_PASSWORD``.
 
-    # Default timeout in seconds to wait VMs to report different states
-    # This timeout is used when option report ready is true and for normal actions
-    :wait_timeout: 30
+Example:
 
-    # Number of threads to make actions with flows
-    # Tune this depending of the load you will have
-    :concurrency: 10
+.. prompt:: bash $ auto
 
-    # Default shutdown action. Values: 'terminate', 'terminate-hard'
-    :shutdown_action: 'terminate'
+    $ ONEFLOW_URL=http://one.example.com:2474 oneflow list
 
-    # Default number of virtual machines (action_number) that will receive the
-    #   given call in each interval defined by action_period, when an action
-    #   is performed on a role.
-    :action_number: 1
-    :action_period: 60
+See more in :ref:`Managing Users documentation<manage_users_shell>`.
 
-    # Default name for the Virtual Machines and Virtual Networks created by oneflow. You can use any
-    # of the following placeholders:
-    #   $SERVICE_ID
-    #   $SERVICE_NAME
-    #   $ROLE_NAME
-    #   $VM_NUMBER (onely for VM names)
+.. _oneflow_conf_service:
 
-    :vm_name_template: '$ROLE_NAME_$VM_NUMBER_(service_$SERVICE_ID)'
-    #:vn_name_template: '$ROLE_NAME(service_$SERVICE_ID)'
-    #############################################################
-    # Auth
-    #############################################################
+Service Control
+===============
 
-    # Authentication driver to communicate with OpenNebula core
-    #   - cipher, for symmetric cipher encryption of tokens
-    #   - x509, for x509 certificate encryption of tokens
-    :core_auth: cipher
+Manage operating system service ``opennebula-flow`` to change the server running state.
 
-    ################################################################################
-    # Log
-    ################################################################################
+To start, restart, stop the server, execute one of:
 
-    # Log debug level
-    #   0 = ERROR, 1 = WARNING, 2 = INFO, 3 = DEBUG
-    #
-    :debug_level: 2
+.. prompt:: bash # auto
 
-.. note:: By default, the server will only listen to requests coming from localhost. Change the ``:host`` attribute in ``/etc/one/oneflow-server.conf`` to your server public IP, or 0.0.0.0 so oneflow will listen on any interface.
+    # systemctl start   opennebula-flow
+    # systemctl restart opennebula-flow
+    # systemctl stop    opennebula-flow
 
-Inside ``/var/log/one/`` you can find log files for the server, and individual ones for each Service in ``/var/log/one/oneflow/<id>.log``
+To enable or disable automatic start of the service on boot, execute one of:
 
-.. code::
+.. prompt:: bash # auto
 
-    /var/log/one/oneflow.error
-    /var/log/one/oneflow.log
+    # systemctl enable  opennebula-flow
+    # systemctl disable opennebula-flow
 
-Set the Environment Variables
-================================================================================
+Logs
+====
 
-By default the :ref:`command line tools <cli>` will use the ``one_auth`` file and the ``http://localhost:2474`` OneFlow URL. To change it, set the shell environment variables as explained in the :ref:`Managing Users documentation<manage_users_shell>`.
+Server logs are located in ``/var/log/one`` in following files:
 
-Enable the Sunstone Tabs
-========================
+- ``/var/log/one/oneflow.log``
+- ``/var/log/one/oneflow.error``
 
-The OneFlow tabs (Services and Service Templates) are visible in Sunstone by default. To customize its visibility for each kind of user, visit the :ref:`Sunstone views documentation <suns_views>`
+Logs of individual multi-VM Services managed by OneFlow can be found in
+
+- ``/var/log/one/oneflow/$ID.log`` where ``$ID`` identifies the service
+
+Some other logs are also passed to the Journald, use following command to show the logs:
+
+.. prompt:: bash # auto
+
+    # journalctl -u opennebula-flow.service
 
 Advanced Setup
 ==============
 
 Permission to Create Services
---------------------------------------------------------------------------------
+-----------------------------
 
-By default, :ref:`new groups <manage_groups>` are allowed to create Document resources. Documents are a special tool used by OneFlow to store Service Templates and instances. When a new Group is created, you can decide if you want to allow or deny its users to create OneFlow resources (Documents).
+*Documents* are special types of resources in OpenNebula used by OneFlow to store *Service Templates* and information about *Services*. When a new user Group is created, you can decide if you want to allow/deny its users to create *Documents*, resp. OneFlow Services. By default, :ref:`new groups <manage_groups>` are allowed to create Document resources.
