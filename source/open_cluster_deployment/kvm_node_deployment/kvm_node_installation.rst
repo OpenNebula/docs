@@ -19,17 +19,17 @@ Step 2. Installing the Software
 Installing on CentOS/RHEL
 -------------------------
 
-.. include:: ../../installation_and_configuration/frontend_installation/epel.txt
+.. include:: epel.txt
 
 Install OpenNebula KVM Node Package
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Execute the following commands to install the OpenNebula KVM node package and restart libvirt to use the OpenNebula provided configuration file:
 
-.. prompt:: bash $ auto
+.. prompt:: bash # auto
 
-    $ sudo yum install opennebula-node-kvm
-    $ sudo systemctl restart libvirtd
+    # yum -y install opennebula-node-kvm
+    # systemctl restart libvirtd
 
 Optional: Newer QEMU/KVM (only CentOS/RHEL 7)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -38,17 +38,17 @@ You may benefit from using the more recent and feature-rich enterprise QEMU/KVM 
 
 On **CentOS 7**, the enterprise packages are part of the separate repository. To replace the base packages, follow these steps:
 
-.. prompt:: bash $ auto
+.. prompt:: bash # auto
 
-    $ sudo yum install centos-release-qemu-ev
-    $ sudo yum install qemu-kvm-ev
+    # yum -y install centos-release-qemu-ev
+    # yum -y install qemu-kvm-ev
 
 On **RHEL 7**, you need a paid subscription to the Red Hat Virtualization (RHV) or Red Hat OpenStack (RHOS) products license only for the Red Hat Enterprise Linux isn't enough! You have to check the RHV `Installation Guide <https://access.redhat.com/documentation/en-us/red_hat_virtualization/>`__ for your licensed version. Usually, the following commands should enable and install the enterprise packages:
 
-.. prompt:: bash $ auto
+.. prompt:: bash # auto
 
-    $ sudo subscription-manager repos --enable rhel-7-server-rhv-4-mgmt-agent-rpms
-    $ sudo yum install qemu-kvm-rhev
+    # subscription-manager repos --enable rhel-7-server-rhv-4-mgmt-agent-rpms
+    # yum -y install qemu-kvm-rhev
 
 For further configuration, check the specific guide: :ref:`KVM <kvmg>`.
 
@@ -59,26 +59,22 @@ Execute the following commands to install the OpenNebula KVM node package and re
 
 .. prompt:: bash $ auto
 
-    $ sudo apt-get update
-    $ sudo apt-get install opennebula-node-kvm
-    $ sudo service libvirtd restart
+    # apt-get update
+    # apt-get -y install opennebula-node-kvm
+    # systemctl restart libvirtd
 
 For further configuration check the specific guide: :ref:`KVM <kvmg>`.
 
 .. _kvm_selinux:
 
-Step 3. SELinux on CentOS/RHEL
-==============================
+Step 3. Disable SELinux on CentOS/RHEL (Optional)
+=================================================
 
 .. warning::
+
     If you are performing an upgrade skip this and the next steps and go back to the upgrade document.
 
-SELinux can block some operations initiated by the OpenNebula Front-end, resulting in all the node operations failing completely (e.g., when the ``oneadmin`` user's SSH credentials are not trusted) or only individual failures for particular operations with virtual machines. If the administrator isn't experienced in SELinux configuration, **it's recommended to disable this functionality to avoid unexpected failures**. You can enable SELinux anytime later when you have the installation working.
-
-Disable SELinux (recommended)
------------------------------
-
-Change the following line in ``/etc/selinux/config`` to **disable** SELinux:
+Depending on the type of OpenNebula deployment, the SELinux can block some operations initiated by the OpenNebula Front-end, which results in a failure of the particular operation.  It's **not recommended to disable** the SELinux on production environments, as it degrades the security of your server, but to investigate and workaround each individual problem based on the `SELinux User's and Administrator's Guide <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/>`__. The administrator might disable the SELinux to temporarily workaround the problem or on non-production deployments by changing following line in ``/etc/selinux/config``:
 
 .. code-block:: bash
 
@@ -86,33 +82,14 @@ Change the following line in ``/etc/selinux/config`` to **disable** SELinux:
 
 After the change, you have to reboot the machine.
 
-Enable SELinux
---------------
-
-Change the following line in ``/etc/selinux/config`` to enable SELinux in ``enforcing`` state:
-
-.. code-block:: bash
-
-    SELINUX=enforcing
-
-When changing from the ``disabled`` state, it's necessary to trigger filesystem relabel on the next boot by creating a file ``/.autorelabel``, e.g.:
-
-.. prompt:: bash $ auto
-
-    $ touch /.autorelabel
-
-After the changes, you should reboot the machine.
-
 .. note:: Depending on your OpenNebula deployment type, the following may be required on your SELinux-enabled KVM nodes:
 
     * package ``util-linux`` newer than 2.23.2-51 installed
     * SELinux boolean ``virt_use_nfs`` enabled (with datastores on NFS):
 
-    .. prompt:: bash $ auto
+    .. prompt:: bash # auto
 
-        $ sudo setsebool -P virt_use_nfs on
-
-    Follow the `SELinux User's and Administrator's Guide <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/>`__ for more information on how to configure and troubleshoot SELinux.
+        # setsebool -P virt_use_nfs on
 
 .. _kvm_ssh:
 

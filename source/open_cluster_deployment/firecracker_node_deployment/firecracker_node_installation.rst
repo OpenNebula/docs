@@ -17,26 +17,26 @@ Step 2. Installing the Software
 Installing on CentOS/RHEL
 -------------------------
 
-.. include:: ../../installation_and_configuration/frontend_installation/epel.txt
+.. include:: ../kvm_node_deployment/epel.txt
 
 Install Node Package
 ^^^^^^^^^^^^^^^^^^^^
 
 Execute the following commands to install the Firecracker node package:
 
-.. prompt:: bash $ auto
+.. prompt:: bash # auto
 
-    $ sudo yum install opennebula-node-firecracker
+    # yum -y install opennebula-node-firecracker
 
 Installing on Debian/Ubuntu
 ---------------------------
 
 Execute the following commands to install the node package:
 
-.. prompt:: bash $ auto
+.. prompt:: bash # auto
 
-    $ sudo apt-get update
-    $ sudo apt-get install opennebula-node-firecracker
+    # apt-get update
+    # apt-get -y install opennebula-node-firecracker
 
 For further configuration check the specific guide: :ref:`Firecracker <fcmg>`.
 

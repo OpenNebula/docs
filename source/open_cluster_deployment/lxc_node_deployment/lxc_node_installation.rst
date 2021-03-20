@@ -44,41 +44,41 @@ Check the deployment options below and handle carefully the installation in the 
 
 **Ubuntu 16.04**
 
-.. prompt:: bash $ auto
+.. prompt:: bash # auto
 
-    $ sudo apt-get install opennebula-node-lxd
+    # apt-get install opennebula-node-lxc
 
 or, use LXD installed as snap (**since OpenNebula 5.8.2**):
 
-.. prompt:: bash $ auto
+.. prompt:: bash # auto
 
-    $ sudo apt-get install opennebula-lxd-snap opennebula-node-lxd
+    # apt-get -y install opennebula-node-lxc
 
 **Ubuntu 18.04**
 
-.. prompt:: bash $ auto
+.. prompt:: bash # auto
 
-    $ sudo apt-get install opennebula-node-lxd
+    # apt-get -y install opennebula-node-lxc
 
 or, use LXD installed as snap (**since OpenNebula 5.8.2**):
 
-.. prompt:: bash $ auto
+.. prompt:: bash # auto
 
-    $ sudo apt-get install opennebula-lxd-snap opennebula-node-lxd
+    # apt-get -y install opennebula-node-lxc
 
 **Ubuntu >= 19.04 and Debian >= 10**
 
-.. prompt:: bash $ auto
+.. prompt:: bash # auto
 
-    $ sudo apt-get install opennebula-node-lxd
+    # apt-get -y install opennebula-node-lxc
 
 **Optionals for all**
 
 To be able to use the Ceph storage drivers, you might need to install an additional package with command:
 
-.. prompt:: bash $ auto
+.. prompt:: bash # auto
 
-    $ sudo apt-get install rbd-nbd
+    # apt-get -y install rbd-nbd
 
 For further configuration check the specific guide: :ref:`LXD <lxdmg>`.
 

@@ -1,10 +1,6 @@
-You can now jump to the optional :ref:`Verify your Installation <verify_installation>` section in order to launch a test VM.
+Now, you can continue with
 
-Otherwise, you are ready to :ref:`start using your cloud <operation_guide>` or you could configure more components:
+- configuring :ref:`Storage <storage>` and :ref:`Networking <nm>` and
+- exploring :ref:`Management and Operations <operations_guide>` guide
 
-* :ref:`Authentication <authentication>`. (Optional) For integrating OpenNebula with LDAP/AD, or securing it further with other authentication technologies.
-* :ref:`Sunstone <sunstone>`. The OpenNebula GUI should be working and accessible at this stage, but by reading this guide you will learn about specific enhanced configurations for Sunstone.
-* :ref:`Open Cloud Host Setup <vmmg>`.
-* :ref:`Open Cloud Storage Setup <storage>`.
-* :ref:`Open Cloud Networking Setup <nm>`.
-
+to extend and control your cloud.
