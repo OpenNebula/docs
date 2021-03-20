@@ -446,7 +446,7 @@ Sunstone
 
 Now you can try to log through the Sunstone GUI. To do so, point your browser to ``http://<frontend_address>:9869``. You should get to the login page, the access user is ``oneadmin`` and initial (or customized) password is the one from file ``/var/lib/one/.one/one_auth`` on your Front-end.
 
-|image0|
+|sunstone_login|
 
 In case of problem, you can investigate the OpenNebula logs in ``/var/log/one``, check file ``/var/log/one/sunstone.log``.
 
@@ -583,7 +583,7 @@ Continue with the following guides:
 - :ref:`VMware Node Deployment <vmware_cluster_deployment>` to add VMware vCenter Nodes.
 - :ref:`Management and Operations <operations_guide>` to add Users, Groups, Images, define Virtual Machines, and a lot of more ...
 
-.. |image0| image:: /images/sunstone-login.png
+.. |sunstone_login| image:: /images/sunstone-login.png
    :width: 350
    :align: middle
 
