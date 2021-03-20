@@ -1,5 +1,5 @@
 .. _appflow_configure:
-.. _oneflow_conf:
+.. _oneflow_configure:
 
 =====================
 OneFlow Configuration
@@ -19,14 +19,14 @@ The OneFlow configuration file can be found in ``/etc/one/oneflow-server.conf`` 
 
 .. note::
 
-    After a configuration change, the OneFlow server must be :ref:`restarted <oneflow_conf_service>` to take effect.
+    After a configuration change, the OneFlow server must be :ref:`restarted <oneflow_configure_service>` to take effect.
 
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|        Option             |                                                                               Description                                                                               |
+|       Parameter           |                                                                               Description                                                                               |
 +===========================+=========================================================================================================================================================================+
 | **Server Configuration**                                                                                                                                                                            |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``:one_xmlrpc``           | OpenNebula Daemon XML-RPC URL                                                                                                                                           |
+| ``:one_xmlrpc``           | Endpoint of OpenNebula Daemon XML-RPC API                                                                                                                               |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``:subscriber_endpoint``  | Endpoint to subscribe to ZMQ                                                                                                                                            |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -61,7 +61,7 @@ The OneFlow configuration file can be found in ``/etc/one/oneflow-server.conf`` 
 | ``:core_auth``            | Authentication driver to communicate with OpenNebula core                                                                                                               |
 |                           |                                                                                                                                                                         |
 |                           | * ``cipher`` for symmetric cipher encryption of tokens                                                                                                                  |
-|                           | * ``x509`` for x509 certificate encryption of tokens                                                                                                                    |
+|                           | * ``x509`` for X.509 certificate encryption of tokens                                                                                                                   |
 |                           |                                                                                                                                                                         |
 |                           | For more information, visit the :ref:`Cloud Server Authentication <cloud_auth>` reference.                                                                              |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -70,8 +70,7 @@ The OneFlow configuration file can be found in ``/etc/one/oneflow-server.conf`` 
 | ``:debug_level``          | Log debug level. Values: ``0`` for ERROR level, ``1`` for WARNING level, ``2`` for INFO level, ``3`` for DEBUG level                                                    |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-In the default configuration, the OneFlow server will only listen to requests coming from ``localhost`` (which is enough to control OneFlow over Sunstone running on the same host). If you want to control OneFlow over API/CLI remotely, you need to change ``:host`` attribute in ``/etc/one/oneflow-server.conf`` to a public IP of your Front-end host or to ``0.0.0.0`` (to work on all IP addresses configured on host).
-
+In the default configuration, the OneFlow server will only listen to requests coming from ``localhost`` (which is enough to control OneFlow over Sunstone running on the same host). If you want to control OneFlow over API/CLI remotely, you need to change ``:host`` parameter in ``/etc/one/oneflow-server.conf`` to a public IP of your Front-end host or to ``0.0.0.0`` (to work on all IP addresses configured on host).
 
 Sunstone
 --------
@@ -93,7 +92,7 @@ Example:
 
 See more in :ref:`Managing Users documentation<manage_users_shell>`.
 
-.. _oneflow_conf_service:
+.. _oneflow_configure_service:
 
 Service Control
 ===============
@@ -108,7 +107,7 @@ To start, restart, stop the server, execute one of:
     # systemctl restart opennebula-flow
     # systemctl stop    opennebula-flow
 
-To enable or disable automatic start of the service on boot, execute one of:
+To enable or disable automatic start on host boot, execute one of:
 
 .. prompt:: bash # auto
 
@@ -127,7 +126,7 @@ Logs of individual multi-VM Services managed by OneFlow can be found in
 
 - ``/var/log/one/oneflow/$ID.log`` where ``$ID`` identifies the service
 
-Some other logs are also passed to the Journald, use following command to show the logs:
+Another logs are also passed to the Journald, use following command to show the logs:
 
 .. prompt:: bash # auto
 

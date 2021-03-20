@@ -4,81 +4,139 @@
 OneGate Configuration
 =====================
 
-The OneGate service allows Virtual Machine guests to pull and push VM information from OpenNebula, it can be used with VMs running on :ref:`KVM, LXC, Firecracker and vCenter <context_overview>`. It's installed by default, but the use is completely optional and/or can be deployed separately on a different machine. Please check the :ref:`Single Front-end Installation <ignc>`.
+The OneGate server allows **Virtual Machines to pull and push information from/to OpenNebula**. It can be used with all hypervisor Host types (KVM, LXC, FIrecracker, and vCenter) if the guest operating system has preinstalled the OpenNebula :ref:`contextualization package <guest_os>`. It's a dedicated daemon installed by default as part of the :ref:`Single Front-end Installation <frontend_installation>`, but can be even deployed independently on a different machine. The server is distributed as an operating system package ``opennebula-gate`` with system service ``opennebula-gate``.
+
+Read more in :ref:`OneGate Usage <onegate_usage>`.
 
 Configuration
 =============
 
-The OneGate configuration file can be found at ``/etc/one/onegate-server.conf``. It uses YAML syntax to define the following options:
+Server
+------
 
-**Server Configuration**
+The OneGate configuration file can be found in ``/etc/one/onegate-server.conf`` on your Front-end. It uses **YAML** syntax with following parameters:
 
-* ``one_xmlrpc``: OpenNebula daemon host and port
-* ``host``: Host where OneGate will listen
-* ``port``: Port where OneGate will listen
-* ``ssl_server``: SSL proxy URL that serves the API (set if is being used)
+.. note::
 
-**Log**
+    After a configuration change, the OneGate server must be :ref:`restarted <onegate_configure_service>` to take effect.
 
-* ``debug_level``: Log debug level. 0 = ERROR, 1 = WARNING, 2 = INFO, 3 = DEBUG
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|       Parameter               |                                                                               Description                                                                               |
++===============================+=========================================================================================================================================================================+
+| **Server Configuration**                                                                                                                                                                                |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:one_xmlrpc``               | Endpoint of OpenNebula Daemon XML-RPC API                                                                                                                               |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:host``                     | Host/IP where OneGate will listen                                                                                                                                       |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:port``                     | Port where OneGate will listen                                                                                                                                          |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:ssl_server``               | SSL proxy URL that serves the API (set if is being used)                                                                                                                |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Authentication**                                                                                                                                                                                      |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:auth``                     | Authentication driver for incomming requests.                                                                                                                           |
+|                               |                                                                                                                                                                         |
+|                               | * ``onegate`` based on tokens provided in VM context                                                                                                                    |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:core_auth``                | Authentication driver to communicate with OpenNebula core                                                                                                               |
+|                               |                                                                                                                                                                         |
+|                               | * ``cipher`` for symmetric cipher encryption of tokens                                                                                                                  |
+|                               | * ``x509`` for X.509 certificate encryption of tokens                                                                                                                   |
+|                               |                                                                                                                                                                         |
+|                               | For more information, visit the :ref:`Cloud Server Authentication <cloud_auth>` reference.                                                                              |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **OneFlow Endpoint**                                                                                                                                                                                    |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:oneflow_server``           | Endpoint where the OneFlow server is listening                                                                                                                          |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Permissions**                                                                                                                                                                                         |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:permissions``              | By default OneGate exposes all the available API calls, each of the actions can be enabled/disabled in the server configuration.                                        |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:restricted_attrs``         | Attributes that cannot be modified when updating a VM template                                                                                                          |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:restricted_actions``       | Actions that cannot be performed on a VM                                                                                                                                |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:vnet_template_attributes`` | Attributes of the Virtual Network template that will be retrieved for Virtual Networks                                                                                  |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Logging**                                                                                                                                                                                             |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:debug_level``              | Log debug level. Values: ``0`` for ERROR level, ``1`` for WARNING level, ``2`` for INFO level, ``3`` for DEBUG level                                                    |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-**Auth**
+In the default configuration, the OneGate server will only listen to requests coming from ``localhost``. Because the OneGate needs to be accessible remotely from the Virtual Machines, you need to change ``:host`` parameter in ``/etc/one/onegate-server.conf`` to a public IP of your Front-end host or to ``0.0.0.0`` (to work on all IP addresses configured on host).
 
-* ``auth``: Authentication driver for incomming requests.
+OpenNebula
+----------
 
-  * ``onegate``: based on token provided in the context
-
-* ``core_auth``: Authentication driver to communicate with OpenNebula core.
-
-  * ``cipher`` for symmetric cipher encryption of tokens
-  * ``x509`` for x509 certificate encryption of tokens. For more information, visit the :ref:`OpenNebula Cloud Auth documentation <cloud_auth>`.
-
-* ``oneflow_server`` Endpoint where the OneFlow server is listening.
-* ``permissions`` By default OneGate exposes all the available API calls, each of the actions can be enabled/disabled in the server configuration.
-* ``restricted_attrs`` Attrs that cannot be modified when updating a VM template
-* ``restricted_actions`` Actions that cannot be performed on a VM
-* ``vnet_template_attributes`` Attributes of the Virtual Network template that will be retrieved for vnets
-
-.. warning:: By default, the server will only listen to requests coming from localhost. Change the ``:host`` attribute in ``/etc/one/onegate-server.conf`` to your server public IP, or 0.0.0.0 so onegate will listen on any interface.
-
-Inside ``/var/log/one/`` you can find log files for the server:
+Before Virtual Machines can communicate with OneGate, you need to edit ``/etc/one/oned.conf`` and set the OneGate endpoint in parameter ``ONEGATE_ENDPOINT``. This endpoint (IP/hostname) must be reachable from the Virtual Machines over network!
 
 .. code::
 
-    /var/log/one/onegate.error
-    /var/log/one/onegate.log
+    ONEGATE_ENDPOINT = "http://one.example.com:5030"
 
-Use OneGate
-===========
+Restart the OpenNebula service to apply changes.
 
-Before your VMs can communicate with OneGate, you need to edit ``/etc/one/oned.conf`` and set the OneGate endpoint. This IP must be reachable from your VMs.
+.. _onegate_configure_service:
 
-.. code::
+Service Control
+===============
 
-    ONEGATE_ENDPOINT = "http://192.168.0.5:5030"
+Manage operating system service ``opennebula-gate`` to change the server running state.
 
-At this point the service is ready, you can continue to the :ref:`OneGate usage documentation <onegate_usage>`.
+To start, restart, stop the server, execute one of:
 
-Configuring a SSL Proxy
-=======================
+.. prompt:: bash # auto
 
-This is an example on how to configure Nginx as a ssl proxy for Onegate in Ubuntu.
+    # systemctl start   opennebula-gate
+    # systemctl restart opennebula-gate
+    # systemctl stop    opennebula-gate
 
-Update your package lists and install Nginx:
+To enable or disable automatic start on host boot, execute one of:
 
-.. prompt:: bash $ auto
+.. prompt:: bash # auto
 
-    $ sudo apt-get update
-    $ sudo apt-get install nginx
+    # systemctl enable  opennebula-gate
+    # systemctl disable opennebula-gate
 
-You should get an official signed certificate, but for the purpose of this example we will generate a self-signed SSL certificate:
+Logs
+====
 
-.. prompt:: bash $ auto
+Server logs are located in ``/var/log/one`` in following files:
 
-    $ cd /etc/one
-    $ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/one/cert.key -out /etc/one/cert.crt
+- ``/var/log/one/onegate.log``
+- ``/var/log/one/onegate.error``
 
-Next you will need to edit the default Nginx configuration file or generate a new one. Change the ONEGATE_ENDPOINT variable with your own domain name.
+Another logs are also passed to the Journald, use following command to show the logs:
+
+.. prompt:: bash # auto
+
+    # journalctl -u opennebula-gate.service
+
+Advanced Setup
+==============
+
+Example: Deployment Behind TLS Proxy
+------------------------------------
+
+This is an **example** of how to configure Nginx as a SSL/TLS proxy for OneGate on Ubuntu.
+
+1. Update your package lists and install Nginx:
+
+.. prompt:: bash # auto
+
+    # apt-get update
+    # apt-get -y install nginx
+
+2. Get trusted SSL/TLS certificate. For testing, we'll generate a self-signed certificate:
+
+.. prompt:: bash # auto
+
+    # cd /etc/one
+    # openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/one/cert.key -out /etc/one/cert.crt
+
+3. Use following content as an Nginx configuration. NOTE: Change the ``one.example.com`` variable with your own domain:
 
 .. code::
 
@@ -117,20 +175,19 @@ Next you will need to edit the default Nginx configuration file or generate a ne
       }
     }
 
-Update ``/etc/one/oned.conf`` with the new OneGate endpoint
+4. Configure OpenNebula (``/etc/one/oned.conf``) with OneGate endpoint, e.g.:
 
 .. code::
 
-    ONEGATE_ENDPOINT = "https://ONEGATE_ENDPOINT"
+    ONEGATE_ENDPOINT = "https://one.example.com"
 
-
-Update ``/etc/one/onegate-server.conf`` with the new OneGate endpoint and uncomment the ``ssl_server`` parameter
+5. Configure OneGate (``/etc/one/onegate-server.conf``) with new secured OneGate endpoint in ``:ssl_server``, e.g.:
 
 .. code::
 
-    :ssl_server: https://ONEGATE_ENDPOINT
+    :ssl_server: https://one.example.com
 
-Then restart oned, onegate-server and Nginx:
+6. Restart all services:
 
 .. prompt:: bash # auto
 
