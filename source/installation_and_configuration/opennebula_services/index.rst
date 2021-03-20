@@ -8,13 +8,13 @@ References
    :maxdepth: 2
 
    Overview <overview>
-   oned Configuration <oned_conf>
-   OneFlow Configuration <oneflow_configuration>
-   OneGate Configuration <onegate_configuration>
-   Monitoring Configuration <monitoring_configuration>
-   Database Maintenance <database_maintenance>
-   Sunstone Configuration <sunstone_configuration>
-   FireEdge Configuration <fireedge_configuration>
-   Scheduler Configuration <scheduler_configuration>
+   oned Configuration <oned>
+   Scheduler Configuration <scheduler>
+   Monitoring Configuration <monitoring>
+   Sunstone Configuration <sunstone>
+   FireEdge Configuration <fireedge>
+   OneFlow Configuration <oneflow>
+   OneGate Configuration <onegate>
+   Database Maintenance <database>
    Troubleshooting <troubleshooting>
    Support Utilities (EE) <support>
