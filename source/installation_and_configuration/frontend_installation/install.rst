@@ -93,9 +93,9 @@ Available packages for the OpenNebula clients, Front-end and hypervisor Nodes:
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **opennebula-tools**                  | Command Line Interface                                                                                        |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **opennebula-sunstone**               | GUI :ref:`Sunstone <sunstone>`                                                                                |
+| **opennebula-sunstone**               | GUI :ref:`Sunstone <sunstone>` and noVNC Proxy Server                                                         |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **opennebula-fireedge**               | next-generation GUI :ref:`FireEdge <fireedge_setup>`                                                          |
+| **opennebula-fireedge**               | Next-generation GUI :ref:`FireEdge <fireedge_setup>`                                                          |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **opennebula-gate**                   | :ref:`OneGate <onegate_overview>` server which allows communication between VMs and OpenNebula                |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------+
@@ -256,7 +256,7 @@ Step 5. Enabling MySQL/MariaDB/PostgreSQL (Optional)
 
 You can skip this step if you want to deploy OpenNebula as quickly as possible for evaluation.
 
-If you are deploying Front-end for the production/serious use, make sure you read the :ref:`Database Setup <database_setup>` guide and select the suitable database backend. Although it **is** possible to switch from (default) SQLite to MySQL/MariaDB backend later, but since it's not easy and straightforward, **we suggest to deploy and use MySQL/MariaDB backend since the very beginning**. Also please note it's not possbile to migrate existing databases to PostgreSQL at all.
+If you are deploying Front-end for production/serious use, make sure you read the :ref:`Database Setup <database_setup>` guide and select the suitable database backend. Although it **is** possible to switch from (default) SQLite to MySQL/MariaDB backend later, but since it's not easy and straightforward, **we suggest to deploy and use MySQL/MariaDB backend since the very beginning**. Also please note it's not possible to migrate existing databases to PostgreSQL at all.
 
 Step 6. Configuring OpenNebula
 ================================================================================
@@ -268,7 +268,7 @@ OpenNebula Daemon
 
     This is **only for initial** OpenNebula deployment, not applicable for upgrades!
 
-Initial OpenNebula deployment on a very first start creates a user ``oneadmin`` **inside the OpenNebula** (not to be confused with system user ``oneadmin`` in the Front-end operating system!) based on randomly generated password read from ``/var/lib/one/.one/one_auth``. To set the own user password since the very start, proceed with following steps before starting the services:
+Initial OpenNebula deployment on a very first start creates a user ``oneadmin`` **inside the OpenNebula** (not to be confused with system user ``oneadmin`` in the Front-end operating system!) based on randomly generated password read from ``/var/lib/one/.one/one_auth``. To set the own user password since the very beginning, proceed with the following steps before starting the services:
 
 1. Login in as the ``oneadmin`` system user with this command:
 
@@ -280,22 +280,22 @@ Initial OpenNebula deployment on a very first start creates a user ``oneadmin`` 
 
 .. prompt:: bash $ auto
 
-    $ echo 'oneadmin:mypassword' > ~/.one/one_auth
+    $ echo 'oneadmin:changeme123' > ~/.one/one_auth
 
 .. warning:: This will set the oneadmin's password only on the first start of the OpenNebula. From that point, you must use the ``oneuser passwd`` command to change oneadmin's password. More information on how to change the oneadmin password is :ref:`here <change_credentials>`.
 
+Check how to :ref:`change oneadmin password <change_credentials>` for already running services.
+
 .. note::
 
-    For advanced configuration, follow to the OpenNebula Daemon :ref:`configuratio:n <oned_conf>` reference.
-
-.. todo:: Add link to scheduler configuration?
+    For advanced setup, follow the configuration references for OpenNebula :ref:`Daemon <oned_conf>` and :ref:`Scheduler <schg>`.
 
 FireEdge
 --------
 
-OpenNebula FireEdge is a next-gen web server that delivers a GUI for remote OpenNebula clusters provisioning (OneProvision GUI) as well as added benefits to Susntone (autorefresh, Guacamole and VMware VMRC). It is installed and configured by default, but it can be opt out.
+OpenNebula FireEdge is a next-generation web server that delivers a GUI for remote OpenNebula clusters provisioning (OneProvision GUI) as well as additional functionality to Sunstone (autorefresh, Guacamole, and VMRC for VMware). It is installed and configured by default, but can be skipped if you don't need these features.
 
-You need to configure Sunstone with the public endpoint of the FireEdge, so that one service can redirect user to the other. To configure the public FireEdge endpoint in Sunstone, edit /etc/one/sunstone-server.conf and update the :public_fireedge_endpoint with the base URL (domain or IP-based) over which end-users can access the service. For example:
+You have to configure Sunstone with the public endpoint of the FireEdge so that one service can redirect users to the other. To configure the public FireEdge endpoint in Sunstone, edit ``/etc/one/sunstone-server.conf`` and update parameter ``:public_fireedge_endpoint`` with the base URL (domain or IP-based) over which end-users will access the FireEdge. For example:
 
 .. code::
 
@@ -305,20 +305,20 @@ If you are reconfiguring any time later already running services, don't forget t
 
 .. note::
 
-    For advanced configuration, follow to the FireEdge :ref:`configuration <fireedge_configuration>` reference.
+    For advanced setup, follow the FireEdge :ref:`configuration reference <fireedge_configuration>`.
 
 OneGate (Optional)
 ------------------
 
-The OneGate server allows the communication between VMs and OpenNebula. It's optional and not required for basic functionality, but essential for multi-VM services orchestrated by OneFlow server. The configuration is two-phase - configure OneGate server to listen for the connections from outside of the Front-end and configure OpenNebula Daemon with OneGate end-point passed to the virtual machines. None or both must be done.
+The OneGate server allows communication between VMs and OpenNebula. It's optional and not required for basic functionality, but essential for multi-VM services orchestrated by OneFlow server below. The configuration is two-phase - configure OneGate server to listen for the connections from outside of the Front-end and configure OpenNebula Daemon with OneGate end-point passed to the virtual machines. None or both must be done.
 
-1. To configure OneGate, edit ``/etc/one/onegate-server.conf`` and update the ``:host`` parameter with service listen address accordingly. For example, use ``0.0.0.0`` to work on all configured network interfaces on the Front-end:
+1. To configure OneGate, edit ``/etc/one/onegate-server.conf`` and update the ``:host`` parameter with service listening address accordingly. For example, use ``0.0.0.0`` to work on all configured network interfaces on the Front-end:
 
 .. code::
 
     :host: 0.0.0.0
 
-2. To configure OpenNebula Daemon, edit ``/etc/one/oned.conf`` and set the ``ONEGATE_ENDPOINT`` with the URL and port of your OneGate server (domain or IP-based). The end-point address **must be reachable directly from your future virtual machines**. You need to decide what virtual networks and addressing will be used in your cloud. For example:
+2. To configure OpenNebula Daemon, edit ``/etc/one/oned.conf`` and set the ``ONEGATE_ENDPOINT`` with the URL and port of your OneGate server (domain or IP-based). The end-point address **must be reachable directly from your future virtual machines**. You need to decide what virtual networks and addresses will be used in your cloud. For example:
 
 .. code::
 
@@ -328,12 +328,12 @@ If you are reconfiguring any time later already running services, don't forget t
 
 .. note::
 
-    For advanced configuration, follow to the OneGate :ref:`configuration <onegate_configure>` reference.
+    For advanced setup, follow the OneGate :ref:`configuration reference <onegate_configure>`.
 
 OneFlow (Optional)
 ------------------
 
-The OneFlow server orchestrates the services, multi-VM deployments. While for most cases the default configuration fits well, you might need to reconfigure the service to be able to control the OneFlow **remotely** over API. Edit the ``/etc/one/oneflow-server.conf`` and update ``:host:`` parameter with service listen address accordingly. For example, use ``0.0.0.0`` to work on all configured network interfaces on the Front-end:
+The OneFlow server orchestrates the services, multi-VM deployments. While for most cases the default configuration fits well, you might need to reconfigure the service to be able to control the OneFlow **remotely** over API. Edit the ``/etc/one/oneflow-server.conf`` and update ``:host:`` parameter with service listening address accordingly. For example, use ``0.0.0.0`` to work on all configured network interfaces on the Front-end:
 
 .. code::
 
@@ -343,27 +343,27 @@ If you are reconfiguring any time later already running services, don't forget t
 
 .. note::
 
-    For advanced configuration, follow to the OneFlow :ref:`configuration <appflow_configure>` reference.
+    For advanced setup, follow the OneFlow :ref:`configuration reference <appflow_configure>`.
 
 .. _frontend_services:
 
 Step 7. Starting and Managing OpenNebula Services
 ================================================================================
 
-The complete list of operating system services OpenNebula comes with:
+The complete list of operating system services provided by OpenNebula:
 
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
 |              Service                  |                                     Description                        | Auto-Starts With          |
 +=======================================+========================================================================+===========================+
-| **opennebula**                        | Main OpenNebula Daemon (oned)                                          |                           |
+| **opennebula**                        | Main OpenNebula Daemon (oned), XML-RPC API endpoint                    |                           |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
 | **opennebula-scheduler**              | Scheduler                                                              | opennebula                |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
 | **opennebula-hem**                    | Hook Execution Service                                                 | opennebula                |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
-| **opennebula-sunstone**               | GUI :ref:`Sunstone <sunstone>`                                         |                           |
+| **opennebula-sunstone**               | GUI server :ref:`Sunstone <sunstone>`                                  |                           |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
-| **opennebula-fireedge**               | next-generation GUI :ref:`FireEdge <fireedge_setup>`                   |                           |
+| **opennebula-fireedge**               | Next-generation GUI server :ref:`FireEdge <fireedge_setup>`            |                           |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
 | **opennebula-gate**                   | OneGate Server for communication between VMs and OpenNebula            |                           |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
@@ -371,7 +371,7 @@ The complete list of operating system services OpenNebula comes with:
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
 | **opennebula-guacd**                  | Guacamole Proxy Daemon                                                 | opennebula-fireedge       |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
-| **opennebula-novnc**                  | noVNC Server                                                           | opennebula-sunstone       |
+| **opennebula-novnc**                  | noVNC Proxy Server                                                     | opennebula-sunstone       |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
 | **opennebula-showback**               | Service for periodic recalculation of showback                         | opennebula                |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
@@ -380,9 +380,9 @@ The complete list of operating system services OpenNebula comes with:
 | **opennebula-ssh-socks-cleaner**      | Periodic cleaner of SSH persistent connections                         | opennebula                |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
 
-.. note:: Since 5.12, the OpenNebula comes with an integrated SSH agent as the ``opennebula-ssh-agent`` service which removes the need to copy oneadmin's SSH private key across your hosts. For more info you can look at the :ref:`passwordless login <kvm_ssh>` section of the manual. You can opt to disable this service and configure your environment the old way.
+.. note:: Since 5.12, the OpenNebula comes with an integrated SSH agent as the ``opennebula-ssh-agent`` service which removes the need to copy oneadmin's SSH private key across your hosts. For more information, you can look at the :ref:`passwordless login <kvm_ssh>` section of the manual. You can opt to disable this service and configure your environment the old way.
 
-You are ready to **start** the OpenNebula all services by following command:
+You are ready to **start** all OpenNebula services by following command (NOTE: you might want to remove the services from the command arguments if you skipped their configuration steps above):
 
 .. prompt:: bash # auto
 
@@ -392,7 +392,7 @@ You are ready to **start** the OpenNebula all services by following command:
 
    Make sure all required :ref:`network ports <frontend_fw>` are enabled on your firewall (on Front-end or the router).
 
-Other OpenNebula services might be started as a dependency, but you don't need to care about them unless they need to be explicitly restarted or stopped. To start these services automatically **on server boot**, it's necessary to enable them by following command:
+Other OpenNebula services might be started as a dependency, but you don't need to care about them unless they need to be explicitly restarted or stopped. To start these **services automatically on server boot**, it's necessary to enable them by the following command:
 
 .. prompt:: bash # auto
 
@@ -403,12 +403,12 @@ Other OpenNebula services might be started as a dependency, but you don't need t
 Step 8. Verifying the Installation
 ================================================================================
 
-After OpenNebula is started for the first time, you should check that the commands can connect to the OpenNebula daemon. You can do this in the Linux CLI or in the graphical user interface Sunstone.
+After OpenNebula is started for the first time, you should check that the commands can connect to the OpenNebula daemon. You can do this in the Linux CLI or the graphical user interface Sunstone.
 
 Linux CLI
---------------------------------------------------------------------------------
+---------
 
-In the Front-end, run the following command as oneadmin:
+In the Front-end, run the following command as ``oneadmin`` system user and find similar output:
 
 .. prompt:: bash $ auto
 
@@ -426,15 +426,14 @@ In the Front-end, run the following command as oneadmin:
 
     RESOURCE USAGE & QUOTAS
 
-
-If you get an error message, then the OpenNebula daemon could not be started properly:
+If you get an error message, then the OpenNebula Daemon could not be started properly:
 
 .. prompt:: bash $ auto
 
     $ oneuser show
     Failed to open TCP connection to localhost:2633 (Connection refused - connect(2) for "localhost" port 2633)
 
-The OpenNebula logs are located in ``/var/log/one``, there should be at least the files ``/var/log/one/oned.log`` (main OpenNebula daemon) and ``/var/log/one/sched.log`` (scheduler). Check ``oned.log`` for any error messages marked with ``[E]``.
+You can investigate the OpenNebula logs in ``/var/log/one``, check files ``/var/log/one/oned.log`` (main OpenNebula Daemon log) and ``/var/log/one/sched.log`` (OpenNebula Scheduler log). Check for any error messages marked with ``[E]``.
 
 .. _verify_frontend_section_sunstone:
 
@@ -443,25 +442,25 @@ Sunstone
 
 .. note::
 
-   Make sure the TCP port 9869 is allowed on your firewall.
+   Make sure the TCP port 9869 is not blocked on your firewall.
 
-Now you can try to log in to Sunstone graphical interface. To do this, point your browser to ``http://<frontend_address>:9869``.
+Now you can try to log through the Sunstone GUI. To do so, point your browser to ``http://<frontend_address>:9869``. You should get to the login page, the access user is ``oneadmin`` and initial (or customized) password is the one from file ``/var/lib/one/.one/one_auth`` on your Front-end.
 
-You should be greeted with a login page, the access user is ``oneadmin`` and initial (or customized) password is the one in the file ``/var/lib/one/.one/one_auth`` in your Front-end.
+|image0|
 
-If the page does not load, make sure to you check ``/var/log/one/sunstone.log`` and ``/var/log/one/sunstone.error``
+In case of problem, you can investigate the OpenNebula logs in ``/var/log/one``, check file ``/var/log/one/sunstone.log``.
 
 Directory Structure
 --------------------------------------------------------------------------------
 
-The following table lists some notable paths that are available in your Frontend after the installation:
+The following table lists few significant directories on your OpenNebula Front-end:
 
 +-------------------------------------+--------------------------------------------------------------------------------------+
 |                 Path                |                                     Description                                      |
 +=====================================+======================================================================================+
 | ``/etc/one/``                       | **Configuration files**                                                              |
 +-------------------------------------+--------------------------------------------------------------------------------------+
-| ``/var/log/one/``                   | Log files, notably: ``oned.log``, ``sched.log``, ``sunstone.log`` and ``<vmid>.log`` |
+| ``/var/log/one/``                   | Log files, e.g. ``oned.log``, ``sched.log``, ``sunstone.log`` and ``<vmid>.log``     |
 +-------------------------------------+--------------------------------------------------------------------------------------+
 | ``/var/lib/one/``                   | ``oneadmin`` home directory                                                          |
 +-------------------------------------+--------------------------------------------------------------------------------------+
@@ -516,14 +515,14 @@ The list below shows the ports used by OpenNebula. These ports need to be open f
 +------------+------------------------------------------------------------------------------+
 | ``9869``   | GUI server Sunstone                                                          |
 +------------+------------------------------------------------------------------------------+
-| ``29876``  | noVNC proxy                                                                  |
+| ``29876``  | noVNC Proxy Server                                                           |
 +------------+------------------------------------------------------------------------------+
 
 .. note::
 
     These are only the default ports. Each component can be configured to bind to specific ports or use a HTTP Proxy.
 
-OpenNebula connects to the hypervisors through SSH (port 22). Additionally, main OpenNebula daemon (oned) may connect to various remote Marketplace servers to get a list of available appliances, e.g.:
+OpenNebula connects to the hypervisor Nodes over SSH (port 22). Additionally, main OpenNebula daemon (oned) may connect to various remote Marketplace servers to get a list of available appliances, e.g.:
 
 - OpenNebula Marketplace (``https://marketplace.opennebula.io/``)
 - Linux Containers Makerplace (``https://images.linuxcontainers.org/``)
@@ -532,10 +531,8 @@ OpenNebula connects to the hypervisors through SSH (port 22). Additionally, main
 
 You should open the outgoing connections to these services.
 
-Step 9. Stop and Restart Services
+Step 9. Stop and Restart Services (Optional)
 ================================================================================
-
-.. todo:: IMHO It doesn't fit here anywhere.
 
 To stop, start or restart any of the listed individual :ref:`services <frontend_services>`, follow the examples below for a selected service:
 
@@ -567,54 +564,28 @@ Learn more about `Managing Services with Systemd <https://access.redhat.com/docu
 
 On production environments the services should be stopped in specific order and with extra manual safety checks:
 
-1. stop **opennebula-scheduler**
-2. stop **opennebula-sunstone** and **opennebula-fireedge**
-3. stop **openenbula-flow**
-4. check and wait until there are no active operations with VMs and images
-5. stop **opennebula**
+1. Stop **opennebula-scheduler** to stop planning deployment of VMs.
+2. Stop **opennebula-sunstone** and **opennebula-fireedge** to disable GUI access to users.
+3. Stop **openenbula-flow** to disable unattended multi-VM optations.
+4. Check and wait until there are no active operations with VMs and images.
+5. Stop **opennebula** and rest services.
 
-.. todo:: Provide some commands for point 4?
+.. TODO - extend point 3 and 4
 
-.. note:: To change oneadmin password, follow the next steps:
-
-    .. prompt:: bash # auto
-
-        #oneuser passwd 0 <PASSWORD>
-        #echo 'oneadmin:PASSWORD' > /var/lib/one/.one/one_auth
-
-    Test that everything works using `oneuser show`.
-
-Step 10. Adding content to your cloud
-======================================
-
-Now your OpenNebula cloud is set up and ready to roll! But first you need to add contents
-to it for your users.
-
-This can be straightforwardly achieved using the the Appliances hosted in the Public Marketplaces, which are configured and installed by default in your brand new OpenNebula:
-
-This basically means completing two tasks:
-
--  Add base disk images with OS installations of your choice. Including any software package of interest.
--  Define virtual servers in the form of VM Templates. We recommend that VM definitions are made by the admins as it may require fine or advanced tuning. For example you may want to define a LAMP server with the capacity to be instantiated in a remote AWS cloud.
-
-When you have basic virtual server definitions the users of your cloud can use them to easily provision VMs, adjusting basic parameters, like capacity or network connectivity.
-
-There are three basic methods to bootstrap the contents of your cloud, namely:
-
-* **External Images**. If you already have disk images in any supported format (raw, qcow2, vmdk...) you can just add them to a datastore. Alternatively you can use any virtualization tool (e.g. virt-manager) to install an image and then add it to a OpenNebula datastore.
-* **Install within OpenNebula**. You can also use OpenNebula to prepare the images for your cloud.
-* **Use the OpenNebula Marketplace**. Go to the marketplace tab in Sunstone, and simply pick a disk image with the OS and Hypervisor of your choice.
-
-Once the images are ready, just create VM templates with the relevant configuration attributes, including default capacity, networking or any other preset needed by your infrastructure.
-
-You are done, make sure that your cloud users can access the images and templates you have just created.
-
-Step 11. Next steps
+Step 10. Next steps
 ================================================================================
 
-Now that you have successfully started your OpenNebula service, head over to the :ref:`Node Installation <node_installation>` chapter in order to add hypervisors to your cloud.
+Now that you have successfully started your OpenNebula services, you can continue with adding content to your cloud. Add hypervisor Nodes, storage, and Virtual Networks. Or, provision Users with Groups and permissions, Images, define and run Virtual Machines.
 
-.. |image0| image:: /images/debian-opennebula.png
+Continue with the following guides:
+
+- :ref:`Open Cluster Deployment <open_cluster_deployment>` to provision hypervisor Nodes, storage, and Virtual Networks.
+- :ref:`VMware Node Deployment <vmware_cluster_deployment>` to add VMware vCenter Nodes.
+- :ref:`Management and Operations <operations_guide>` to add Users, Groups, Images, define Virtual Machines, and a lot of more ...
+
+.. |image0| image:: /images/sunstone-login.png
+   :width: 350
+   :align: middle
 
 .. |br| raw:: html
 
