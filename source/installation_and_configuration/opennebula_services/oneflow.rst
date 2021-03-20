@@ -5,7 +5,7 @@
 OneFlow Configuration
 =====================
 
-The OneFlow **orchestrates multi-VM services** as a whole, interacts with the OpenNebula Daemon to manage the Virtual Machines (starts, stops), and can be controlled via the Sunstone GUI or over CLI. It's a dedicated daemon installed by default as part of the :ref:`Single Front-end Installation <frontend_installation>`, but can be even deployed independently on a different machine. The server is distributed as an operating system package ``opennebula-flow`` with system service ``opennebula-flow``.
+The OneFlow **orchestrates multi-VM services** as a whole, interacts with the OpenNebula Daemon to manage the Virtual Machines (starts, stops), and can be controlled via the Sunstone GUI or over CLI. It's a dedicated daemon installed by default as part of the :ref:`Single Front-end Installation <frontend_installation>`, but can be deployed independently on a different machine. The server is distributed as an operating system package ``opennebula-flow`` with system service ``opennebula-flow``.
 
 Read more in :ref:`Multi-VM Service Management <multivm_service_management>`.
 

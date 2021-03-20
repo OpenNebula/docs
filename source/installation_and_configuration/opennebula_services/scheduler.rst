@@ -1,17 +1,19 @@
 .. _schg:
+.. _sched_configure:
+.. _schg_configuration:
 
-================================================================================
+=======================
 Scheduler Configuration
-================================================================================
+=======================
 
-The Scheduler is in charge of the assignment between pending Virtual Machines and known Hosts. OpenNebula's architecture defines this module as a separate process that can be started independently of ``oned`` (it is however started automatically when you start the ``opennebula`` service).
+The OpenNebula Scheduler is responsible for **planning of pending Virtual Machines on available hypervisor Nodes**. It's a dedicated daemon installed alongside with the OpenNebula Daemon (``oned``), but can be deployed independently on a different machine. The server is distributed as an operating system package ``opennebula`` with system service ``opennebula-scheduler``. Scheduler service is automatically started (unless masked) with the start of OpenNebula.
 
 .. _schg_the_match_making_scheduler:
 
-Match-making
-================================================================================
+Scheduling Algorithm
+====================
 
-OpenNebula comes with a **match making** scheduler (``mm_sched``) that implements the **Rank Scheduling Policy**. The goal of this policy is to prioritize those resources more suitable for the VM.
+OpenNebula comes with a **match making** scheduler (``/usr/bin/mm_sched``) that implements the **Rank Scheduling Policy**. The goal of this policy is to prioritize those resources more suitable for the VM.
 
 The match-making algorithm works as follows:
 
@@ -22,43 +24,25 @@ The match-making algorithm works as follows:
 * The :ref:`SCHED_RANK and SCHED_DS_RANK expressions <template_placement_section>` are evaluated upon the Host and Datastore list using the information gathered by the monitor drivers. Also the :ref:`NIC/SCHED_RANK expression <template_network_section>` are evaluated upon the Network list using the information in the Virtual Network template. Any variable reported by the monitor driver (or manually set in the Host, Datastore or Network template) can be included in the rank expressions.
 * Those resources with a higher rank are used first to allocate VMs.
 
-This scheduler algorithm easily allows the implementation of several placement heuristics (see below) depending on the RANK expressions used.
+This scheduler algorithm easily allows the implementation of several placement heuristics (see below) depending on the ``RANK`` expressions used.
 
-Configuring the Scheduling Policies
------------------------------------
+The policy used to place a VM can be configured on two places:
 
-The policy used to place a VM can be configured in two places:
-
+* Globally for all the VMs in the ``/etc/one/sched.conf`` file.
 * For each VM, as defined by the ``SCHED_RANK`` and ``SCHED_DS_RANK`` attributes in the VM template. And ``SCHED_RANK`` in each VM NIC.
-* Globally for all the VMs in the ``sched.conf`` file (OpenNebula restart required).
-
-.. _schg_re-scheduling_virtual_machines:
-
-Re-Scheduling Virtual Machines
-------------------------------
-
-When a VM is in the running or poweroff state it can be rescheduled. By issuing the ``onevm resched`` command the VM's recheduling flag is set. In a subsequent scheduling interval, the VM will be consider for rescheduling, if:
-
-* There is a suitable host for the VM.
-* The VM is not already running in it.
-
-This feature can be used by other components to trigger rescheduling action when certain conditions are met.
-
-Scheduling VM Actions
----------------------
-
-Users can schedule one or more VM actions to be executed at a certain date and time. The :ref:`onevm schedule <cli>` command will add a new SCHED_ACTION attribute to the Virtual Machine editable template. Visit :ref:`the VM guide <vm_guide2_scheduling_actions>` for more information.
-
-.. _schg_configuration:
 
 Configuration
 =============
 
-The behavior of the scheduler can be tuned to adapt it to your infrastructure with the following configuration parameters defined in /etc/one/sched.conf:
+The Scheduler configuration file is in ``/etc/one/sched.conf`` on the Front-end and can be adapted to your needs with folowing parameters:
+
+.. note::
+
+    After a configuration change, the OpenNebula Scheduler must be :ref:`restarted <sched_configure_service>` to take effect.
 
 * ``MESSAGE_SIZE``: Buffer size in bytes for XML-RPC responses.
-* ``ONE_XMLRPC``: URL to connect to the OpenNebula daemon (oned) (Default: http://localhost:2633/RPC2)
-* ``HTTP_PROXY``: Proxy for ONE_XMLRPC (Default empty)
+* ``ONE_XMLRPC``: URL to connect to the OpenNebula Daemon (``oned``) (Default: ``http://localhost:2633/RPC2``)
+* ``HTTP_PROXY``: Proxy for ``ONE_XMLRPC`` (Default empty)
 * ``SCHED_INTERVAL``: Seconds between two scheduling actions (Default: 15)
 * ``MAX_VM``: Maximum number of Virtual Machines scheduled in each scheduling action (Default: 5000). Use 0 to schedule all pending VMs each time.
 * ``MAX_DISPATCH``: Maximum number of Virtual Machines actually dispatched to a host in each scheduling action (Default: 30)
@@ -76,7 +60,7 @@ The default scheduling policies for hosts, datastores and virtual networks are d
    * ``POLICY``: A predefined policy, it can be set to:
 
 +--------+-------------------------------------------------------------------------------------------------------------+
-| POLICY |                                                 DESCRIPTION                                                 |
+| Policy |                                                 Description                                                 |
 +========+=============================================================================================================+
 |      0 | **Packing**: Minimize the number of hosts in use by packing the VMs in the hosts to reduce VM fragmentation |
 +--------+-------------------------------------------------------------------------------------------------------------+
@@ -95,7 +79,7 @@ The default scheduling policies for hosts, datastores and virtual networks are d
   * ``POLICY``: A predefined policy, it can be set to:
 
 +--------+----------------------------------------------------------------------------------------------------------+
-| POLICY |                                               DESCRIPTION                                                |
+| Policy |                                               Description                                                |
 +========+==========================================================================================================+
 |      0 | **Packing**:: Tries to optimize storage usage by selecting the DS with less free space                   |
 +--------+----------------------------------------------------------------------------------------------------------+
@@ -112,7 +96,7 @@ The default scheduling policies for hosts, datastores and virtual networks are d
   * ``POLICY``: A predefined policy, it can be set to:
 
 +--------+----------------------------------------------------------------------------------------------------------+
-| POLICY |                                               DESCRIPTION                                                |
+| Policy |                                               Description                                                |
 +========+==========================================================================================================+
 |      0 | **Packing**:: Tries to pack address usage by selecting the virtual networks with less free leases        |
 +--------+----------------------------------------------------------------------------------------------------------+
@@ -254,17 +238,67 @@ VM Policies
 -----------
 VMs are dispatched to hosts in a FIFO fashion. You can alter this behavior by giving each VM (or the base template) a priority. Just set the attribute ``USER_PRIORITY`` to sort the VMs based on this attribute, and so alter the dispatch order. The ``USER_PRIORITY`` can be set for example in the VM templates for a user group if you want prioritize those templates. Note that this priority is also used for rescheduling.
 
-Limiting the Resources Exposed by a Host
-========================================
+.. _sched_configure_service:
 
-Prior to assigning a VM to a Host, the available capacity is checked to ensure that the VM fits in the host. The capacity is obtained by the monitor probes. You may alter this behavior by reserving an amount of capacity (MEMORY and CPU). You can reserve this capacity:
+Service Control
+===============
 
-* Cluster-wise, by updating the cluster template (e.g. ``onecluster update``). All the host of the cluster will reserve the same amount of capacity.
-* Host-wise, by updating the host template (e.g. ``onehost update``). This value will override those defined at cluster level.
+Manage operating system service ``opennebula-scheduler`` to change the server running state.
 
-In particular the following capacity attributes can be reserved:
+To start, restart, stop the server, execute one of:
 
-* ``RESERVED_CPU`` in percentage. It will be subtracted from the ``TOTAL CPU``
-* ``RESERVED_MEM`` in KB. It will be subtracted from the ``TOTAL MEM``
+.. prompt:: bash # auto
 
-.. note:: These values can be negative, in that case you'll be actually increasing the overall capacity so overcommiting host capacity.
+    # systemctl start   opennebula-scheduler
+    # systemctl restart opennebula-scheduler
+    # systemctl stop    opennebula-scheduler
+
+Logs
+====
+
+Server logs are located in ``/var/log/one`` in following files:
+
+- ``/var/log/one/sched.log``
+
+Another logs are also passed to the Journald, use following command to show the logs:
+
+.. prompt:: bash # auto
+
+    # journalctl -u opennebula-scheduler.service
+
+Advanced Usage
+==============
+
+.. _schg_re-scheduling_virtual_machines:
+
+Reschedule VM
+-------------
+
+When a Virtual Machine is in the ``running`` or ``poweroff`` state, it can be rescheduled to a different host. By issuing the ``onevm resched`` command, the VM is labeled for rescheduling. In a next scheduling interval, the VM will be rescheduled to a different host, if:
+
+* There is a suitable host for the VM.
+* The VM is not already running in it.
+
+This feature can be used by other components to trigger rescheduling action when certain conditions are met.
+
+Scheduling VM Actions
+---------------------
+
+Users can schedule one or more VM actions to be executed at a certain date and time. The :ref:`onevm schedule <cli>` command will add a new ``SCHED_ACTION`` attribute to the Virtual Machine editable template. Visit the :ref:`VM guide <vm_guide2_scheduling_actions>` for more information.
+
+Limit Resourced Exposed By Host
+-------------------------------
+
+Prior to assigning a VM to a Host, the available capacity is checked to ensure that the VM fits in the host. The capacity is obtained by the monitor probes. You may alter this behavior by reserving an amount of capacity (``MEMORY`` and ``CPU``). You can reserve this capacity:
+
+* **Cluster-wise**, by updating the cluster template (e.g. ``onecluster update``). All the host of the cluster will reserve the same amount of capacity.
+* **Host-wise**, by updating the host template (e.g. ``onehost update``). This value will override those defined at cluster level.
+
+Following capacity attributes can be set:
+
+* ``RESERVED_CPU`` in percentage. It will be subtracted from the ``TOTAL CPU``.
+* ``RESERVED_MEM`` in KB. It will be subtracted from the ``TOTAL MEM``.
+
+.. note::
+
+    These values can be **negative to virtually increase the overall capacity** (to overcommit/overprovision CPU or memory).
