@@ -4,7 +4,7 @@
 Managing Images
 ================
 
-The :ref:`Storage system <sm>` allows OpenNebula administrators and users to set up Images, which can be operative systems or data, to be used in Virtual Machines easily. These Images can be used by several Virtual Machines simultaneously, and also shared with other users.
+The :ref:`Storage system <sm>` allows OpenNebula administrators and users to set up Images, which can be operating systems or data, to be used in Virtual Machines easily. These Images can be used by several Virtual Machines simultaneously, and also shared with other users.
 
 If you want to customize the Storage in your system, visit the :ref:`Storage subsystem documentation <sm>`.
 
