@@ -1,15 +1,18 @@
 .. _self_provision:
 
-==================================
+================================================================================
 Virtual Network Self-Provisioning
-==================================
+================================================================================
 
-End-users can create their own virtual networks in two different ways: making a **reservation** or instantiating a **Virtual Network Template**.
+End-users can create their own virtual networks in two different ways:
+
+  - making a **reservation**
+  - instantiating a **Virtual Network Template**.
 
 .. _vgg_vn_reservations:
 
 Reservations
-===============================================
+================================================================================
 
 Reservations allows users to create their own networks consisting of portions of an existing Virtual Network. Each portion is called a Reservation. To implement this you need to:
 
@@ -22,7 +25,7 @@ Reservations allows users to create their own networks consisting of portions of
 - **Use Reservations**. Reservations are Virtual Networks and offer the same interface, so simply point any Virtual Machine to them. The number of addresses and usage stats are shown also in the same way.
 
 Make and delete Reservations
-----------------------------
+--------------------------------------------------------------------------------
 
 To make a reservations just choose the source Virtual Network, the number of addresses and the name of the reservation. For example to reserve 10 addresses from Private and place it on MyVNET just:
 
@@ -54,7 +57,7 @@ A reservation can be remove just as a regular Virtual Network:
    $ onevnet delete MyVNET
 
 Using Reservations
-------------------
+--------------------------------------------------------------------------------
 
 To use a reservation you can use it as any other Virtual Network; as they expose the same interface. For example, to attach a virtual machine to the previous Reservation:
 
@@ -63,7 +66,7 @@ To use a reservation you can use it as any other Virtual Network; as they expose
    NIC = [ NETWORK = "MyVNET"]
 
 Updating Reservations
----------------------
+--------------------------------------------------------------------------------
 
 A Reservation can be also extended with new addresses. This is, you can add a new reservation to an existing one. This way a user can refer to its own network with a controlled and deterministic address space.
 
@@ -75,6 +78,6 @@ A Reservation can be also extended with new addresses. This is, you can add a ne
 
 
 Virtual Network Templates
-===============================================
+================================================================================
 
 Virtual Network Templates allow end users to create their own network without knowledge of the underlying infrastructure. Virtual Network Templates, unlike Reservations, allows end user to set the logic attributes, like address ranges, dns server or gateway of the network. See the :ref:`Virtual Network Templates guide<vn_templates>` for more information.

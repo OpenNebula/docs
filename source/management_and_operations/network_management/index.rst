@@ -7,7 +7,8 @@ Virtual Network Management
 
    Overview <overview>
    Virtual Networks <manage_vnets>
-   Virtual Routers <vrouter>
    Security Groups <security_groups>
    Virtual Network Templates <vn_templates>
    Self Provision <self_provision>
+   Virtual Routers <vrouter>
+   VMware NSX Networks <nsx_networtks>
