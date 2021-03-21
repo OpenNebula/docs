@@ -42,7 +42,7 @@ The Scheduler configuration file is in ``/etc/one/sched.conf`` on the Front-end 
 
 * ``MESSAGE_SIZE``: Buffer size in bytes for XML-RPC responses (Default: ``1073741824``).
 * ``TIMEOUT``: Seconds to timeout XML-RPC calls to oned (Default: ``60``).
-* ``ONE_XMLRPC``: URL to connect to the OpenNebula Daemon (``oned``) (Default: ``http://localhost:2633/RPC2``)
+* ``ONE_XMLRPC``: Endpoint of the OpenNebula XML-RPC API (Default: ``http://localhost:2633/RPC2``)
 * ``HTTP_PROXY``: Proxy for ``ONE_XMLRPC`` (Default empty)
 * ``SCHED_INTERVAL``: Seconds between two scheduling actions (Default: ``15``)
 * ``MAX_VM``: Maximum number of VMs scheduled in each scheduling action (Default: ``5000``). Use ``0`` to schedule all pending VMs each time.
@@ -120,7 +120,7 @@ The optimal values of the scheduler parameters depend on the hypervisor, storage
 Service Control
 ===============
 
-Manage operating system service ``opennebula-scheduler`` to change the server running state.
+Change the server running state by managing the operating system service ``opennebula-scheduler``.
 
 To start, restart, stop the server, execute one of:
 
@@ -141,7 +141,7 @@ Server logs are located in ``/var/log/one`` in following files:
 
 - ``/var/log/one/sched.log``
 
-Another logs are also passed to the Journald, use following command to show the logs:
+Other logs are also available in Journald, use the following command to show:
 
 .. prompt:: bash # auto
 

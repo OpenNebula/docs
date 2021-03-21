@@ -1,3 +1,4 @@
+.. _federation:
 .. _federation_section:
 
 ======================

@@ -12,9 +12,6 @@ Read more in :ref:`Multi-VM Service Management <multivm_service_management>`.
 Configuration
 =============
 
-Server
-------
-
 The OneFlow configuration file can be found in ``/etc/one/oneflow-server.conf`` on your Front-end. It uses **YAML** syntax with following parameters:
 
 .. note::
@@ -26,7 +23,7 @@ The OneFlow configuration file can be found in ``/etc/one/oneflow-server.conf`` 
 +===========================+=========================================================================================================================================================================+
 | **Server Configuration**                                                                                                                                                                            |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``:one_xmlrpc``           | Endpoint of OpenNebula Daemon XML-RPC API                                                                                                                               |
+| ``:one_xmlrpc``           | Endpoint of OpenNebula XML-RPC API                                                                                                                                      |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``:subscriber_endpoint``  | Endpoint to subscribe to ZMQ                                                                                                                                            |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -97,7 +94,7 @@ See more in :ref:`Managing Users documentation<manage_users_shell>`.
 Service Control
 ===============
 
-Manage operating system service ``opennebula-flow`` to change the server running state.
+Change the server running state by managing the operating system service ``opennebula-flow``.
 
 To start, restart, stop the server, execute one of:
 
@@ -126,7 +123,7 @@ Logs of individual multi-VM Services managed by OneFlow can be found in
 
 - ``/var/log/one/oneflow/$ID.log`` where ``$ID`` identifies the service
 
-Another logs are also passed to the Journald, use following command to show the logs:
+Other logs are also available in Journald, use the following command to show:
 
 .. prompt:: bash # auto
 

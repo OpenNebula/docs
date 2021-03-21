@@ -417,13 +417,13 @@ After that you can access the VM and configure the ssh service:
 .. code-block:: bash
 
     oneadmin@frontend:~$ ssh root@<guest-vm>
-    
+
     # Allow authentication with password: PasswordAuthentication yes
     root@<guest-VM>:~$ vi /etc/ssh/sshd_config
 
     # Restart SSH service
     root@<guest-VM>:~$ /etc/init.d/sshd restart
-    
+
     # Add user: username/password
     root@<guest-VM>:~$ adduser <username>
 
@@ -659,6 +659,29 @@ view for each sunstone instance:
         groups:
         default:
             - user
+
+.. _sunstone_conf_service:
+
+Service Control
+===============
+
+Manage operating system services ``opennebula-sunstone`` and ``opennebula-novnc`` to change the server(s) running state.
+
+To start, restart, stop the server, execute one of:
+
+.. prompt:: bash # auto
+
+    # systemctl start   opennebula-sunstone
+    # systemctl restart opennebula-sunstone
+    # systemctl stop    opennebula-sunstone
+
+To enable or disable automatic start on host boot, execute one of:
+
+.. prompt:: bash # auto
+
+    # systemctl enable  opennebula-sunstone
+    # systemctl disable opennebula-sunstone
+
 
 .. |support_home| image:: /images/support_home.png
 .. |sunstone_link_attribute| image:: /images/sunstone_link_attribute.png

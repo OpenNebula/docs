@@ -1,52 +1,60 @@
 .. _fireedge_setup:
 .. _fireedge_configuration:
+.. _fireedge_conf:
 
 ================================================================================
 FireEdge Configuration
 ================================================================================
 
-FireEdge is a web server which purpose is twofold:
+The OpenNebula FireEdge server provides a **next-generation web-management interface** for remote OpenNebula Clusters provisioning (OneProvision GUI) as well as additional functionality to Sunstone. It's a dedicated daemon installed by default as part of the :ref:`Single Front-end Installation <frontend_installation>`, but can be deployed independently on a different machine. The server is distributed as an operating system package ``opennebula-fireedge`` with system service ``opennebula-fireedge``.
 
-- Sunstone can use **VMRC and Guacamole proxies** for remote access to VMs, including VNC, RDP and ssh connections.
+Features:
 
-- **Start OneProvision GUI**, to ease the deployment of fully operational OpenNebula Clusters in a remote provider.
+- **OneProvision GUI**, to manage deployments of fully operational Clusters on remote Edge Cloud providers. See :ref:`Provisioning an Edge Cluster <first_edge_cluster>`.
+- **VMRC and Guacamole Proxy** for Sunstone to remotely access to VMs (incl., VNC, RDP, and SSH).
 
-.. warning:: Please note that FireEdge does currently not support federated environments. It can interact with a local OpenNebula instance (even if it's federated) but cannot interact with remote, federated OpenNebula instances.
+.. warning:: The FireEdge currently doesn't support :ref:`federated environments <federation>`. It can interact only with a local OpenNebula instance (even if it's federated), but can't interact with remote, federated OpenNebula instances.
 
 .. _fireedge_install_configuration:
 
 Configuration
 ================================================================================
 
-The FireEdge configuration file can be found at ``/etc/one/fireedge-server.conf``. It uses YAML syntax to define some options:
+The FireEdge configuration file can be found in ``/etc/one/fireedge-server.conf`` on your Front-end. It uses **YAML** syntax with following parameters:
 
-+-------------------------------------------+------------------------------+----------------------------------------------------+
-| Option                                    | Default Value                | Description                                        |
-+===========================================+==============================+====================================================+
-| ``:host``                                 | 0.0.0.0                      | Host on which the FireEdge server will listen      |
-+-------------------------------------------+------------------------------+----------------------------------------------------+
-| ``:port``                                 | 2616                         | Port on which the FireEdge server will listen      |
-+-------------------------------------------+------------------------------+----------------------------------------------------+
-| ``:log``                                  | prod                         | Log debug: ``prod`` or ``dev``                     |
-+-------------------------------------------+------------------------------+----------------------------------------------------+
-| ``:cors``                                 | true                         | Enable cors (cross-origin resource sharing)        |
-+-------------------------------------------+------------------------------+----------------------------------------------------+
-| ``:one_xmlrpc``                           | *http://localhost:2633/RPC2* | XMLRPC endpoint                                    |
-+-------------------------------------------+------------------------------+----------------------------------------------------+
-| ``:oneflow_server``                       | *http://localhost:2472*      | OneFlow endpoint                                   |
-+-------------------------------------------+------------------------------+----------------------------------------------------+
-| ``:limit_token/min``                      | 14                           | JWT minimum expiration time (days)                 |
-+-------------------------------------------+------------------------------+----------------------------------------------------+
-| ``:limit_token/max``                      | 30                           | JWT maximum expiration time (days)                 |
-+-------------------------------------------+------------------------------+----------------------------------------------------+
-| ``:guacd/port``                           | 4822                         | Port on which the guacd server will listen         |
-+-------------------------------------------+------------------------------+----------------------------------------------------+
-| ``:guacd/host``                           | 127.0.0.1                    | Hostname on which the guacd server will listen     |
-+-------------------------------------------+------------------------------+----------------------------------------------------+
-| ``:oneprovision_prepend_command``         |                              | Prepend for ``oneprovision`` command               |
-+-------------------------------------------+------------------------------+----------------------------------------------------+
-| ``:oneprovision_optional_create_command`` |                              | Optional param for ``oneprovision create`` command |
-+-------------------------------------------+------------------------------+----------------------------------------------------+
+.. note::
+
+    After a configuration change, the FireEdge server must be :ref:`restarted <fireedge_conf_service>` to take effect.
+
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| Parameter                                 | Default Value                  | Description                                        |
++===========================================+================================+====================================================+
+| ``log``                                   | ``prod``                       | Log debug: ``prod`` or ``dev``                     |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``cors``                                  | ``true``                       | Enable CORS (cross-origin resource sharing)        |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``host``                                  | ``0.0.0.0``                    | Host on which the FireEdge server will listen      |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``port``                                  | ``2616``                       | Port on which the FireEdge server will listen      |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``one_xmlrpc``                            | ``http://localhost:2633/RPC2`` | Endpoint of OpenNebula XML-RPC API                 |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``oneflow_server``                        | ``http://localhost:2472``      | Endpoint of OneFlow server                         |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``limit_token/min``                       | ``14``                         | JWT minimum expiration time (days)                 |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``limit_token/max``                       | ``30``                         | JWT maximum expiration time (days)                 |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``oneprovision_prepend_command``          |                                | Command prefix for ``oneprovision`` command        |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``oneprovision_optional_create_command``  |                                | Optional param. for ``oneprovision create`` cmd.   |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``guacd/port``                            | ``4822``                       | Connection port of guacd server                    |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``guacd/host``                            | ``127.0.0.1``                  | Connection hostname/IP of guacd server             |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``langs``                                 |                                | List of server localizations                       |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
 
 Once the server is initialized, it creates the file ``/var/lib/one/.one/fireedge_key``.
 
@@ -54,31 +62,69 @@ Once the server is initialized, it creates the file ``/var/lib/one/.one/fireedge
 
 .. _fireedge_configuration_for_sunstone:
 
-Configuration for Sunstone
-================================================================================
+Sunstone
+--------
 
-You need to configure Sunstone with the public endpoint of the FireEdge, so that one service can redirect user to the other. To configure the public FireEdge endpoint in Sunstone, edit ``/etc/one/sunstone-server.conf`` and update the ``:public_fireedge_endpoint`` with the base URL (domain or IP-based) over which end-users can access the service. For example:
+.. note::
 
-.. code::
+    After a configuration change, the Sunstone server must be :ref:`restarted <sunstone_conf_service>` to take effect.
 
-  :public_fireedge_endpoint: http://one.example.com:2616
-
-If you're reconfiguring any time later already running services, don't forget to restart them to apply the changes.
-
-Alternatively, if you aren't planning to use FireEdge, please disable it in Sunstone by commenting out the following options in ``/etc/one/sunstone-server.conf``:
+You need to configure Sunstone with the public endpoint of the FireEdge so that one service can redirect the users to the other. To configure the public FireEdge endpoint in Sunstone, edit ``/etc/one/sunstone-server.conf`` and update the ``:public_fireedge_endpoint`` with the base URL (domain or IP-based) over which end-users can access the service. For example:
 
 .. code::
 
-  #:public_fireedge_endpoint
-  #:private_fireedge_endpoint
+    :public_fireedge_endpoint: http://one.example.com:2616
+
+.. hint::
+
+    If you aren't planning to use FireEdge, you can disable it in Sunstone by commenting out the following parameters in ``/etc/one/sunstone-server.conf``, e.g.:
+
+    .. code::
+
+        #:private_fireedge_endpoint: http://localhost:2616
+        #:public_fireedge_endpoint: http://localhost:2616
+
+.. _fireedge_conf_service:
+
+Service Control
+===============
+
+Change the server running state by managing the operating system service ``opennebula-fireedge``.
+
+To start, restart, stop the server, execute one of:
+
+.. prompt:: bash # auto
+
+    # systemctl start   opennebula-fireedge
+    # systemctl restart opennebula-fireedge
+    # systemctl stop    opennebula-fireedge
+
+To enable or disable automatic start on host boot, execute one of:
+
+.. prompt:: bash # auto
+
+    # systemctl enable  opennebula-fireedge
+    # systemctl disable opennebula-fireedge
+
+Logs
+====
+
+Server logs are located in ``/var/log/one`` in following files:
+
+- ``/var/log/one/fireedge.log`` - operational log,
+- ``/var/log/one/fireedge.error`` - log of errors/exceptions.
+
+Other logs are also available in Journald, use the following command to show:
+
+.. prompt:: bash # auto
+
+    # journalctl -u opennebula-fireedge.service
 
 Troubleshooting
-================================================================================
+===============
 
-Any issue related with FireEdge will be logged in one of the following files:
-
-- ``/var/log/one/fireedge.log``, contains logs of operations.
-- ``/var/log/one/fireedge.error``, contains exceptions in the server.
+Conflicting Port
+----------------
 
 A common issue when launching FireEdge is an occupied port:
 
@@ -86,9 +132,4 @@ A common issue when launching FireEdge is an occupied port:
 
     Error: listen EADDRINUSE: address already in use 0.0.0.0:2616
 
-To solve this issue, please check first that no FireEdge servers are currently in use (for instance using ``pgrep fireedge``). If there're already a running FireEdge, take it down using ``systemctl``, and try launching it again.
-
-If another service is using that port, you can change FireEdge configuration to use another host/port in ``/etc/one/fireedge-server.conf``. Remember to also adjust the FireEdge endpoints in ``/etc/one/sunstone-server.conf``.
-
-.. note:: When making the change, you must restart the FireEdge service to apply the changes.
-
+If another service is using the port, you can change FireEdge configuration (``/etc/one/fireedge-server.conf``) to use another host/port. Remember to also adjust the FireEdge endpoints in Sunstone configuration (``/etc/one/sunstone-server.conf``) as well.

@@ -4,15 +4,12 @@
 OneGate Configuration
 =====================
 
-The OneGate server allows **Virtual Machines to pull and push information from/to OpenNebula**. It can be used with all hypervisor Host types (KVM, LXC, FIrecracker, and vCenter) if the guest operating system has preinstalled the OpenNebula :ref:`contextualization package <guest_os>`. It's a dedicated daemon installed by default as part of the :ref:`Single Front-end Installation <frontend_installation>`, but can be even deployed independently on a different machine. The server is distributed as an operating system package ``opennebula-gate`` with system service ``opennebula-gate``.
+The OneGate server allows **Virtual Machines to pull and push information from/to OpenNebula**. It can be used with all hypervisor Host types (KVM, LXC, FIrecracker, and vCenter) if the guest operating system has preinstalled the OpenNebula :ref:`contextualization package <guest_os>`. It's a dedicated daemon installed by default as part of the :ref:`Single Front-end Installation <frontend_installation>`, but can be deployed independently on a different machine. The server is distributed as an operating system package ``opennebula-gate`` with system service ``opennebula-gate``.
 
 Read more in :ref:`OneGate Usage <onegate_usage>`.
 
 Configuration
 =============
-
-Server
-------
 
 The OneGate configuration file can be found in ``/etc/one/onegate-server.conf`` on your Front-end. It uses **YAML** syntax with following parameters:
 
@@ -25,7 +22,7 @@ The OneGate configuration file can be found in ``/etc/one/onegate-server.conf`` 
 +===============================+=========================================================================================================================================================================+
 | **Server Configuration**                                                                                                                                                                                |
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``:one_xmlrpc``               | Endpoint of OpenNebula Daemon XML-RPC API                                                                                                                               |
+| ``:one_xmlrpc``               | Endpoint of OpenNebula XML-RPC API                                                                                                                                      |
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``:host``                     | Host/IP where OneGate will listen                                                                                                                                       |
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -83,7 +80,7 @@ Restart the OpenNebula service to apply changes.
 Service Control
 ===============
 
-Manage operating system service ``opennebula-gate`` to change the server running state.
+Change the server running state by managing the operating system service ``opennebula-gate``.
 
 To start, restart, stop the server, execute one of:
 
@@ -108,7 +105,7 @@ Server logs are located in ``/var/log/one`` in following files:
 - ``/var/log/one/onegate.log``
 - ``/var/log/one/onegate.error``
 
-Another logs are also passed to the Journald, use following command to show the logs:
+Other logs are also available in Journald, use the following command to show:
 
 .. prompt:: bash # auto
 
