@@ -11,7 +11,7 @@ The OpenNebula FireEdge server provides a **next-generation web-management inter
 Features:
 
 - **OneProvision GUI**, to manage deployments of fully operational Clusters on remote Edge Cloud providers. See :ref:`Provisioning an Edge Cluster <first_edge_cluster>`.
-- **VMRC and Guacamole Proxy** for Sunstone to remotely access to VMs (incl., VNC, RDP, and SSH).
+- **VMRC and Guacamole Proxy** for Sunstone to remotely access the VMs (incl., VNC, RDP, and SSH).
 
 .. warning:: The FireEdge currently doesn't support :ref:`federated environments <federation>`. It can interact only with a local OpenNebula instance (even if it's federated), but can't interact with remote, federated OpenNebula instances.
 
@@ -83,6 +83,26 @@ You need to configure Sunstone with the public endpoint of the FireEdge so that 
 
         #:private_fireedge_endpoint: http://localhost:2616
         #:public_fireedge_endpoint: http://localhost:2616
+
+.. _fireedge_conf_guacamole:
+
+Guacamole
+---------
+
+FireEdge uses `Apache Guacamole <guacamole.apache.org>`__, a free and open source web application that allows you to access a remote console or desktop of the Virtual Machine anywhere using a modern web browser. It is a clientless **remote desktop gateway**, which only requires Guacamole installed on a server and a web browser supporting HTML5.
+
+Guacamole supports multiple connection methods such as **VNC, RDP, and SSH** and is made up of two separate parts - server and client. Guacamole server consists of the native server-side libraries required to connect to the server and the Guacamole proxy daemon (``guacd``), which accepts the user's requests and connects to the remote desktop on their behalf.
+
+.. note::
+
+    The OpenNebula **binary packages** provide Guacamole proxy daemon (package ``opennebula-guacd`` and service ``opennebula-guacd``), which is installed alongside the FireEdge. In the default configuration, the Guacamole proxy daemon is automatically started with the start of FireEdge, and FireEdge is configured to connect to the locally running Guacamole.
+
+    No extra steps are required!
+
+If Guacamole is running on a different host distinct to the FireEdge, following FireEdge configuration parameters has to be customized:
+
+- ``guacd/host``
+- ``guacd/port``
 
 .. _fireedge_conf_service:
 

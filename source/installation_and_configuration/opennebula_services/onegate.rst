@@ -59,7 +59,7 @@ The OneGate configuration file can be found in ``/etc/one/onegate-server.conf`` 
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Logging**                                                                                                                                                                                             |
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``:debug_level``              | Log debug level. Values: ``0`` for ERROR level, ``1`` for WARNING level, ``2`` for INFO level, ``3`` for DEBUG level                                                    |
+| ``:debug_level``              | Logging level. Values: ``0`` for ERROR level, ``1`` for WARNING level, ``2`` for INFO level, ``3`` for DEBUG level                                                      |
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 In the default configuration, the OneGate server will only listen to requests coming from ``localhost``. Because the OneGate needs to be accessible remotely from the Virtual Machines, you need to change ``:host`` parameter in ``/etc/one/onegate-server.conf`` to a public IP of your Front-end host or to ``0.0.0.0`` (to work on all IP addresses configured on host).

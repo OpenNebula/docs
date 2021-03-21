@@ -1,5 +1,5 @@
 .. _appflow_configure:
-.. _oneflow_configure:
+.. _oneflow_conf:
 
 =====================
 OneFlow Configuration
@@ -16,7 +16,7 @@ The OneFlow configuration file can be found in ``/etc/one/oneflow-server.conf`` 
 
 .. note::
 
-    After a configuration change, the OneFlow server must be :ref:`restarted <oneflow_configure_service>` to take effect.
+    After a configuration change, the OneFlow server must be :ref:`restarted <oneflow_conf_service>` to take effect.
 
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |       Parameter           |                                                                               Description                                                                               |
@@ -25,7 +25,7 @@ The OneFlow configuration file can be found in ``/etc/one/oneflow-server.conf`` 
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``:one_xmlrpc``           | Endpoint of OpenNebula XML-RPC API                                                                                                                                      |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``:subscriber_endpoint``  | Endpoint to subscribe to ZMQ                                                                                                                                            |
+| ``:subscriber_endpoint``  | Endpoint for ZeroMQ subscriptions                                                                                                                                       |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``:autoscaler_interval``  | Time in seconds between each time elasticity rules are evaluated                                                                                                        |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -64,7 +64,7 @@ The OneFlow configuration file can be found in ``/etc/one/oneflow-server.conf`` 
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Logging**                                                                                                                                                                                         |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``:debug_level``          | Log debug level. Values: ``0`` for ERROR level, ``1`` for WARNING level, ``2`` for INFO level, ``3`` for DEBUG level                                                    |
+| ``:debug_level``          | Logging level. Values: ``0`` for ERROR level, ``1`` for WARNING level, ``2`` for INFO level, ``3`` for DEBUG level                                                      |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 In the default configuration, the OneFlow server will only listen to requests coming from ``localhost`` (which is enough to control OneFlow over Sunstone running on the same host). If you want to control OneFlow over API/CLI remotely, you need to change ``:host`` parameter in ``/etc/one/oneflow-server.conf`` to a public IP of your Front-end host or to ``0.0.0.0`` (to work on all IP addresses configured on host).
@@ -89,7 +89,7 @@ Example:
 
 See more in :ref:`Managing Users documentation<manage_users_shell>`.
 
-.. _oneflow_configure_service:
+.. _oneflow_conf_service:
 
 Service Control
 ===============
