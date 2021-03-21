@@ -33,7 +33,7 @@ We are defining a host hook, named ``host_error``, that will execute the script 
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |      Argument      |                                                                                      Description                                                                                      |
 +====================+=======================================================================================================================================================================================+
-| **Host ID**        | ID of the host containing the VMs to treat. It is compulsory and better left to **$ID**, that will be automatically filled by OpenNebula with the Host ID of the host that went down. |
+| **$TEMPLATE**      | Template of the object, which triggered the hook. In xml format, base64 encoded.                                                                                                      |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Action**         | This defines the action to be performed upon the VMs that were running in the host that went down.                                                                                    |
 |                    |                                                                                                                                                                                       |
@@ -75,25 +75,25 @@ Hypervisor Problems
 
 The following list details failures states caused by errors related to the hypervisor.
 
-* ``BOOT_FAILURE``, The VM failed to boot but all the files needed by the VM are already in the host. Check the hypervisor logs to find out the problem, and once fixed recover the VM with the retry option.
-* ``BOOT_MIGRATE_FAILURE``, same as above but during a migration. Check the target hypervisor and retry the operation.
-* ``BOOT_UNDEPLOY_FAILURE``, same as above but during a resume after an undeploy. Check the target hypervisor and retry the operation.
-* ``BOOT_STOPPED_FAILURE``, same as above but during a resume after a stop. Check the target hypervisor and retry the operation.
+* ``BOOT_FAILURE``: The VM failed to boot but all the files needed by the VM are already in the host. Check the hypervisor logs to find out the problem, and once fixed recover the VM with the retry option.
+* ``BOOT_MIGRATE_FAILURE``: same as above but during a migration. Check the target hypervisor and retry the operation.
+* ``BOOT_UNDEPLOY_FAILURE``: same as above but during a resume after an undeploy. Check the target hypervisor and retry the operation.
+* ``BOOT_STOPPED_FAILURE``: same as above but during a resume after a stop. Check the target hypervisor and retry the operation.
 
 Transfer Manager / Storage Problems
 -----------------------------------
 
-The following list details failure states caused by errors in the Transfer Manager driver. These states can be recovered by checking the vm.log and looking for the specific error (disk space, permissions, mis-configured datastore, etc). You can execute ``--retry`` to relaunch the Transfer Manager actions after fixing the problem (freeing disk space, etc). You can execute ``--retry --interactive`` to launch a Transfer Manager Interactive Debug environment that will allow you to: (1) see all the TM actions in detail (2) relaunch each action until its successful (3) skip TM actions.
+The following list details failure states caused by errors in the Transfer Manager driver. These states can be recovered by checking the ``vm.log`` and looking for the specific error (disk space, permissions, mis-configured datastore, etc). You can execute ``--retry`` to relaunch the Transfer Manager actions after fixing the problem (freeing disk space, etc). You can execute ``--retry --interactive`` to launch a Transfer Manager Interactive Debug environment that will allow you to: (1) see all the TM actions in detail (2) relaunch each action until its successful (3) skip TM actions.
 
-* ``PROLOG_FAILURE``, there was a problem setting up the disk images needed by the VM.
-* ``PROLOG_MIGRATE_FAILURE``, problem setting up the disks in the target host.
-* ``EPILOG_FAILURE``, there was a problem processing the disk images (may be discard or save) after the VM execution.
-* ``EPILOG_STOP_FAILURE``, there was a problem moving the disk images after a stop.
-* ``EPILOG_UNDEPLOY_FAILURE``, there was a problem moving the disk images after an undeploy.
-* ``PROLOG_MIGRATE_POWEROFF_FAILURE``, problem restoring the disk images after a migration in a poweroff state.
-* ``PROLOG_MIGRATE_SUSPEND_FAILURE``, problem restoring the disk images after a migration in a suspend state.
-* ``PROLOG_RESUME_FAILURE``, problem restoring the disk images after a stop.
-* ``PROLOG_UNDEPLOY_FAILURE``, problem restoring the disk images after an undeploy.
+* ``PROLOG_FAILURE``: there was a problem setting up the disk images needed by the VM.
+* ``PROLOG_MIGRATE_FAILURE``: problem setting up the disks in the target host.
+* ``EPILOG_FAILURE``: there was a problem processing the disk images (may be discard or save) after the VM execution.
+* ``EPILOG_STOP_FAILURE``: there was a problem moving the disk images after a stop.
+* ``EPILOG_UNDEPLOY_FAILURE``: there was a problem moving the disk images after an undeploy.
+* ``PROLOG_MIGRATE_POWEROFF_FAILURE``: problem restoring the disk images after a migration in a poweroff state.
+* ``PROLOG_MIGRATE_SUSPEND_FAILURE``: problem restoring the disk images after a migration in a suspend state.
+* ``PROLOG_RESUME_FAILURE``: problem restoring the disk images after a stop.
+* ``PROLOG_UNDEPLOY_FAILURE``: problem restoring the disk images after an undeploy.
 
 Example of a Transfer Manager Interactive Debug environment (``onevm recover <id> --retry --interactive``):
 
