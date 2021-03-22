@@ -5,9 +5,9 @@ Firecracker Node Installation
 ==========================================
 
 
-This page shows you how to configure OpenNebula Firecracker node from the binary packages.
+This page shows you how to configure OpenNebula Firecracker Node from the binary packages.
 
-.. note:: Before reading this chapter, you should have at least installed your :ref:`Frontend node <frontend_installation>`.
+.. note:: Before reading this chapter, you should have at least installed your :ref:`Front-end node <frontend_installation>`.
 
 Step 1. Add OpenNebula Repositories
 ===================================
@@ -25,7 +25,7 @@ Installing on CentOS/RHEL
 Install OpenNebula Firecracker Node Package
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Execute the following commands to install the OpenNebula Firecracker node package:
+Execute the following commands to install the OpenNebula Firecracker Node package:
 
 .. prompt:: bash # auto
 
@@ -36,7 +36,7 @@ For further configuration, check the specific :ref:`guide <fcmg>`.
 Installing on Debian/Ubuntu
 ---------------------------
 
-Execute the following commands to install the OpenNebula Firecracker node package:
+Execute the following commands to install the OpenNebula Firecracker Node package:
 
 .. prompt:: bash # auto
 
@@ -67,36 +67,36 @@ Step 6. Storage Configuration
 
 .. include:: ../common_node_deployment/storage.txt
 
-Step 7. Adding a Host to OpenNebula
-=============================================
+Step 7. Adding Host to OpenNebula
+=================================
 
-In this step we will register the node we have installed in the OpenNebula Front-end, so OpenNebula can launch VMs in it. This step can be done in the CLI **or** in Sunstone, the graphical user interface. Follow just one method, not both, as they accomplish the same.
+In this step, we'll register the hypervisor Node we have configured above into the OpenNebula Front-end, so that OpenNebula can launch Virtual Machines on it. Step is documented for Sunstone GUI and CLI, but both accomplish the same. Select and proceed with only one way.
 
-To learn more about the host subsystem, read :ref:`this guide <hostsubsystem>`.
+Learn more in :ref:`Hosts and Clusters Management <hostsubsystem>`.
 
-Adding a Host through Sunstone
---------------------------------------------------------------------------------
+.. note:: If the host turns to ``err`` state instead of ``on``, check OpenNebula log ``/var/log/one/oned.log``. Problem might be with connecting over SSH.
 
-Open Sunstone as documented :ref:`here <verify_frontend_section_sunstone>`. In the left side menu go to Infrastructure -> Hosts. Click on the ``+`` button.
+Add Host with Sunstone
+----------------------
+
+Open Sunstone as documented :ref:`here <verify_frontend_section_sunstone>`. In the left side menu go to **Infrastructure** → **Hosts**. Click on the ``+`` button.
 
 |sunstone_select_create_host|
 
-Then fill-in the fqdn of the node in the Hostname field.
+Then fill-in the hostname, FQDN, or IP of the Node in the ``Hostname`` field.
 
 |sunstone_create_host_dialog|
 
-Finally, return to the Hosts list, and check that the Host has switched to ON status. It should take somewhere between 20s to 1m. Try clicking on the refresh button to check the status more frequently.
+Finally, return back to the **Hosts** list, and check that the Host has switched to ``ON`` status. It can take up to 1 minute. Clicking on the refresh button to check the status more frequently.
 
 |sunstone_list_hosts|
 
-.. note:: If the host turns to ``err`` state instead of ``on``, check ``/var/log/one/oned.log``. Chances are it's a problem with SSH!
+Add Host with CLI
+-----------------
 
-Adding a Host through the CLI
---------------------------------------------------------------------------------
+To add a node to the cloud, run this command as ``oneadmin`` in the Front-end (replace ``<node01>`` with your Node hostname):
 
-To add a node to the cloud, run this command as ``oneadmin`` in the Front-end:
-
-.. prompt:: bash $ auto
+.. code::
 
     $ onehost create <node01> -i firecracker -v firecracker
 
@@ -104,13 +104,11 @@ To add a node to the cloud, run this command as ``oneadmin`` in the Front-end:
       ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
        1 localhost       default     0                  -                  - init
 
-    # After some time (20s - 1m)
+    # After some time (up to 1 minute)
 
     $ onehost list
       ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
        0 node01          default     0       0 / 400 (0%)     0K / 7.7G (0%) on
-
-.. note:: If the host turns to ``err`` state instead of ``on``, check ``/var/log/one/oned.log``. Chances are it's a problem with SSH!
 
 Next steps
 ================================================================================

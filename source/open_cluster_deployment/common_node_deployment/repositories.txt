@@ -1,1 +1,1 @@
-Refer to this :ref:`guide <repositories>` to add the community or enterprise edition repositories.
+Refer to :ref:`OpenNebula Repositories <repositories>` guide to add the **Enterprise** and **Community** Edition software repositories.
