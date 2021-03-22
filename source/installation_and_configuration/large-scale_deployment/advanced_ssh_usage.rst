@@ -10,14 +10,14 @@ This guide covers advanced SSH configuration for OpenNebula nodes, specifically:
 * :ref:`SSH client configuration <node_ssh_config>`
 * gathering of :ref:`host SSH public keys <node_ssh_known_hosts>`
 
-.. note:: This section complements the `Configure Passwordless SSH` section within the Node Installation guides with advanced usage and configuration of the SSH.
+.. note:: This section extends the `Configure Passwordless SSH` step within the Node installation guides with advanced SSH configuration and usage.
 
 .. _node_ssh_agent:
 
 Authentication Agent
 =====================
 
-Integrated OpenNebula **SSH Authentication Agent** service is automatically started on the Front-end by implicit dependencies of OpenNebula. During the start, it imports the default SSH private keys of ``oneadmin`` user from directory ``/var/lib/one/.ssh/`` on the Front-end and securely delegates them to the hypervisor Hosts for the OpenNebula driver operations which need to make connections between the Hosts or back to the Front-end. Authentication Agent must be started before or with the OpenNebula.
+Integrated OpenNebula **SSH Authentication Agent** service is automatically started on the Front-end by implicit dependencies of OpenNebula. During the start, it imports the default SSH private keys of ``oneadmin`` user from directory ``/var/lib/one/.ssh/`` on the Front-end and securely delegates them to the hypervisor Nodes for the OpenNebula driver operations which need to make connections between the Hosts or back to the Front-end. Authentication Agent must be started before or with the OpenNebula.
 
 .. important::
 
@@ -30,11 +30,11 @@ SSH Authentication Agent is managed by service ``opennebula-ssh-agent.service`` 
 
 To stop, start, or restart service use following commands:
 
-.. prompt:: bash $ auto
+.. prompt:: bash # auto
 
-    $ sudo systemctl stop opennebula-ssh-agent.service
-    $ sudo systemctl start opennebula-ssh-agent.service
-    $ sudo systemctl restart opennebula-ssh-agent.service
+    # systemctl stop    opennebula-ssh-agent.service
+    # systemctl start   opennebula-ssh-agent.service
+    # systemctl restart opennebula-ssh-agent.service
 
 .. important::
 
@@ -42,9 +42,9 @@ To stop, start, or restart service use following commands:
 
 SSH Authentication Agent service doesn't need to be enabled to start on boot of your Front-end server. It's started automatically by the OpenNebula service as an implicit dependency. To **avoid automatic starting and using** the SSH Authentication Agent service at all, you must mask service following way:
 
-.. prompt:: bash $ auto
+.. prompt:: bash # auto
 
-    $ sudo systemctl mask opennebula-ssh-agent.service
+    # systemctl mask opennebula-ssh-agent.service
 
 Add Custom Keys
 ---------------
@@ -70,7 +70,7 @@ The custom imported keys are kept only in memory. They must be **imported again*
 SSH Client Configuration
 ========================
 
-Initial **default SSH client configuration** files are provided in ``/usr/share/one/ssh/``. Depending on your platform the suitable version of configuration is copied for ``oneadmin`` into ``/var/lib/one/.ssh/config`` for all types of hosts (Front-End or hypervisor Hosts) during installation. Check the content of ``/var/lib/one/.ssh/config`` to know if you are using the initial default version shipped by the OpenNebula.
+Initial **default SSH client configuration** files are provided in ``/usr/share/one/ssh/``. Depending on your platform the suitable version of configuration is copied for ``oneadmin`` into ``/var/lib/one/.ssh/config`` for all types of hosts (Front-End or hypervisor Nodes) during installation. Check the content of ``/var/lib/one/.ssh/config`` to know if you are using the initial default version shipped by the OpenNebula.
 
 This default SSH configuration ensures that host SSH keys of new remote Hosts are accepted on the very first connection and strictly checked during subsequent connections (you don't need to populate SSH host keys into ``/var/lib/one/.ssh/known_hosts`` in advance for new Hosts). Also, it configures short-term connection sharing and persistency to speed up driver operations. Persistency is selectively enabled within OpenNebula drivers and **must not be enabled globally**.
 
@@ -96,7 +96,7 @@ OpenSSH allows us to reuse a single SSH connection by multiple sessions (command
 
 .. warning::
 
-   You can enable this configuration only on Front-end, **not on hypervisors Hosts!** This configuration can't be used on a host that serves both as Front-end and hypervisor!
+   You can enable this configuration only on Front-end, **not on hypervisors Nodes!** This configuration can't be used on a host that serves both as Front-end and hypervisor!
 
 .. important::
 
@@ -147,7 +147,7 @@ Manual Secure Add
 
 We'll demonstrate how to easily and securely add identity of the remote host into ``known_hosts`` file on Front-end. The output of the commands is provided only for demonstration.
 
-On your **new** hypervisor Host:
+On your **new** hypervisor Node:
 
 - login safely to the privileged user (directly or via management/serial console)
 - print hashes of host public SSH keys by running
