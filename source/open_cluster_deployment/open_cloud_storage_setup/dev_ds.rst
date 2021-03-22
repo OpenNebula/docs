@@ -11,12 +11,12 @@ The RDM Datastore is an Image Datastore that enables raw access to node block de
 Datastore Layout
 ================================================================================
 
-The RDM Datastore is used to register already existent block devices in the nodes. The devices should be already setup and available and, VMs using these devices must be fixed to run in the nodes ready for them. Additional virtual machine files, like deployment files or volatile disks are created as regular files.
+The RDM Datastore is used to register already existent block devices in the nodes. The devices should be already setup and available and VMs using these devices must be fixed to run in the nodes ready for them. Additional virtual machine files, like deployment files or volatile disks are created as regular files.
 
 Frontend Setup
 ================================================================================
 
-No addtional setup is required. Make sure **/etc/one/oned.conf** has the following configuration for the RDM datastore:
+No additional setup is required. Make sure **/etc/one/oned.conf** has the following configuration for the RDM datastore:
 
 .. code-block:: bash
 
@@ -105,5 +105,5 @@ If you are using the CLI shorthand parameters define the image using source:
 
    oneimage create -d 101 --name nbd --source /dev/sdc --driver raw --prefix vd --persistent --type OS --size 0MB
 
-.. note:: As this datastore does is just a container for existing devices images does not take any size from it. All devices registered will render size of 0 and the overall devices datastore will show up with 1MB of available space
+.. note:: As this datastore does is just a container for existing devices, images does not take any size from it. All devices registered will render size of 0 and the overall devices datastore will show up with 1MB of available space
 
