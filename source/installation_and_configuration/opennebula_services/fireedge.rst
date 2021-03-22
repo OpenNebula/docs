@@ -62,8 +62,8 @@ Once the server is initialized, it creates the file ``/var/lib/one/.one/fireedge
 
 .. _fireedge_configuration_for_sunstone:
 
-Sunstone
---------
+Configure Sunstone
+------------------
 
 .. note::
 
@@ -86,8 +86,8 @@ You need to configure Sunstone with the public endpoint of the FireEdge so that 
 
 .. _fireedge_conf_guacamole:
 
-Guacamole
----------
+Configure Guacamole
+-------------------
 
 FireEdge uses `Apache Guacamole <guacamole.apache.org>`__, a free and open source web application that allows you to access a remote console or desktop of the Virtual Machine anywhere using a modern web browser. It is a clientless **remote desktop gateway**, which only requires Guacamole installed on a server and a web browser supporting HTML5.
 
@@ -106,8 +106,8 @@ If Guacamole is running on a different host distinct to the FireEdge, following 
 
 .. _fireedge_conf_service:
 
-Service Control
-===============
+Service Control and Logs
+========================
 
 Change the server running state by managing the operating system service ``opennebula-fireedge``.
 
@@ -126,10 +126,7 @@ To enable or disable automatic start on host boot, execute one of:
     # systemctl enable  opennebula-fireedge
     # systemctl disable opennebula-fireedge
 
-Logs
-====
-
-Server logs are located in ``/var/log/one`` in following files:
+Server **logs** are located in ``/var/log/one`` in following files:
 
 - ``/var/log/one/fireedge.log`` - operational log,
 - ``/var/log/one/fireedge.error`` - log of errors/exceptions.

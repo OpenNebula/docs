@@ -69,15 +69,15 @@ The OneFlow configuration file can be found in ``/etc/one/oneflow-server.conf`` 
 
 In the default configuration, the OneFlow server will only listen to requests coming from ``localhost`` (which is enough to control OneFlow over Sunstone running on the same host). If you want to control OneFlow over API/CLI remotely, you need to change ``:host`` parameter in ``/etc/one/oneflow-server.conf`` to a public IP of your Front-end host or to ``0.0.0.0`` (to work on all IP addresses configured on host).
 
-Sunstone
---------
+Configure Sunstone
+------------------
 
 Sunstone GUI enables end-users to access the OneFlow from the UI, it directly connects to the OneFlow on their behalf. Sunstone has configured the OneFlow endpoint it connects to in ``/etc/one/sunstone-server.conf`` in parameter ``:oneflow_server``. When OneFlow is running on a different host than Sunstone, the endpoint in Sunstone must be configured appropriately.
 
 Sunstone tabs for OneFlow (*Services* and *Service Templates*) are enabled in Sunstone by default. To customize visibility for different types of users, follow to the :ref:`Sunstone Views <suns_views>` documentation.
 
-CLI
----
+Configure CLI
+-------------
 
 OneFlow CLI (``oneflow`` and ``oneflow-template``) uses same credentials as other :ref:`command-line tools <cli>`. The login and password are taken from file referenced by environment variable ``$ONE_AUTH`` (defaults to ``$HOME/.one/one_auth``). Remote endpoint and (optionally) distinct access user/password to the above is configured in environment variable ``$ONEFLOW_URL`` (defaults to ``http://localhost:2474``), ``$ONEFLOW_USER`` and ``$ONEFLOW_PASSWORD``.
 
@@ -91,8 +91,8 @@ See more in :ref:`Managing Users documentation<manage_users_shell>`.
 
 .. _oneflow_conf_service:
 
-Service Control
-===============
+Service Control and Logs
+========================
 
 Change the server running state by managing the operating system service ``opennebula-flow``.
 
@@ -111,10 +111,7 @@ To enable or disable automatic start on host boot, execute one of:
     # systemctl enable  opennebula-flow
     # systemctl disable opennebula-flow
 
-Logs
-====
-
-Server logs are located in ``/var/log/one`` in following files:
+Server **logs** are located in ``/var/log/one`` in following files:
 
 - ``/var/log/one/oneflow.log``
 - ``/var/log/one/oneflow.error``

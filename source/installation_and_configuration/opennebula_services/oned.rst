@@ -285,7 +285,7 @@ Here you can configure the default values for the Datastores and Image templates
 +----------+--------------------+
 | ``sd``   | SCSI               |
 +----------+--------------------+
-| ``vd``   | KVM virtio         |
+| ``vd``   | KVM virtio disk    |
 +----------+--------------------+
 
 - ``DEFAULT_CDROM_DEVICE_PREFIX``: Same as above but for CD-ROM devices.
@@ -331,9 +331,9 @@ Sample configuration:
 .. code-block:: bash
 
     IM_MAD = [
-          name       = "collectd",
-          executable = "collectd",
-          arguments  = "-p 4124 -f 5 -t 50 -i 20" ]
+          NAME       = "collectd",
+          EXECUTABLE = "collectd",
+          ARGUMENTS  = "-p 4124 -f 5 -t 50 -i 20" ]
 
 Information Drivers
 ===================
@@ -895,8 +895,8 @@ Example:
 
 .. _oned_conf_service:
 
-Service Control
-===============
+Service Control and Logs
+========================
 
 Change the server running state by managing the operating system service ``opennebula``.
 
@@ -915,10 +915,7 @@ To enable or disable automatic start on host boot, execute one of:
     # systemctl enable  opennebula
     # systemctl disable opennebula
 
-Logs
-====
-
-Server logs are located in ``/var/log/one`` in following files:
+Server **logs** are located in ``/var/log/one`` in following files:
 
 - ``/var/log/one/oned.log``
 - ``/var/log/one/one_xmlrpc.log`` (optional, if ``RPC_LOG`` enabled)

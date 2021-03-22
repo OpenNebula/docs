@@ -207,8 +207,8 @@ Sunstone settings can be also configured on user-level through the user template
 .. _fireedge_sunstone:
 .. _fireedge_sunstone_configuration:
 
-FireEdge
---------
+Configure FireEdge
+------------------
 
 Optional :ref:`FireEdge <fireedge_configuration>` server provides the additional functionality to Sunstone:
 
@@ -240,8 +240,8 @@ If FireEdge is running on a different host, cipher key ``/var/lib/one/.one/firee
 
 .. _sunstone_conf_service:
 
-Service Control
-===============
+Service Control and Logs
+========================
 
 Manage operating system services ``opennebula-sunstone`` and ``opennebula-novnc`` to change the server(s) running state.
 
@@ -264,10 +264,7 @@ To enable or disable automatic start on host boot, execute one of:
 
    noVNC Proxy Server is automatically started (unless masked) with the start of OpenNebula Sunstone.
 
-Logs
-====
-
-Servers logs are located in ``/var/log/one`` in following files:
+Servers **logs** are located in ``/var/log/one`` in following files:
 
 - ``/var/log/one/sunstone.log``
 - ``/var/log/one/sunstone.error``

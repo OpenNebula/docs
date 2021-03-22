@@ -117,8 +117,8 @@ The optimal values of the scheduler parameters depend on the hypervisor, storage
 
 .. _sched_configure_service:
 
-Service Control
-===============
+Service Control and Logs
+========================
 
 Change the server running state by managing the operating system service ``opennebula-scheduler``.
 
@@ -134,10 +134,7 @@ To start, restart, stop the server, execute one of:
 
    Service is automatically started (unless masked) with the start of OpenNebula Daemon.
 
-Logs
-====
-
-Server logs are located in ``/var/log/one`` in following files:
+Server **logs** are located in ``/var/log/one`` in following file:
 
 - ``/var/log/one/sched.log``
 

@@ -64,8 +64,8 @@ The OneGate configuration file can be found in ``/etc/one/onegate-server.conf`` 
 
 In the default configuration, the OneGate server will only listen to requests coming from ``localhost``. Because the OneGate needs to be accessible remotely from the Virtual Machines, you need to change ``:host`` parameter in ``/etc/one/onegate-server.conf`` to a public IP of your Front-end host or to ``0.0.0.0`` (to work on all IP addresses configured on host).
 
-OpenNebula
-----------
+Configure OpenNebula
+--------------------
 
 Before Virtual Machines can communicate with OneGate, you need to edit :ref:`/etc/one/oned.conf <oned_conf_onegate>` and set the OneGate endpoint in parameter ``ONEGATE_ENDPOINT``. This endpoint (IP/hostname) must be reachable from the Virtual Machines over network!
 
@@ -77,8 +77,8 @@ Restart the OpenNebula service to apply changes.
 
 .. _onegate_conf_service:
 
-Service Control
-===============
+Service Control and Logs
+========================
 
 Change the server running state by managing the operating system service ``opennebula-gate``.
 
@@ -97,10 +97,7 @@ To enable or disable automatic start on host boot, execute one of:
     # systemctl enable  opennebula-gate
     # systemctl disable opennebula-gate
 
-Logs
-====
-
-Server logs are located in ``/var/log/one`` in following files:
+Server **logs** are located in ``/var/log/one`` in following files:
 
 - ``/var/log/one/onegate.log``
 - ``/var/log/one/onegate.error``
