@@ -10,7 +10,7 @@ Depending on the type of OpenNebula deployment, the SELinux can block some opera
 
 After the change, you have to reboot the machine.
 
-.. note:: Depending on your OpenNebula deployment type, the following may be required on your SELinux-enabled Firecracker nodes:
+.. note:: Depending on your OpenNebula deployment type, the following may be required on your SELinux-enabled nodes:
 
     * package ``util-linux`` newer than 2.23.2-51 installed
     * SELinux boolean ``virt_use_nfs`` enabled (with datastores on NFS):

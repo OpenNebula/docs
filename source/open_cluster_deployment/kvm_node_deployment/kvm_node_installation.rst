@@ -153,7 +153,7 @@ You can skip this step, as importing VMs can be done at any moment. However, if 
 
 .. _kvm_next:
 
-Step 9. Next steps
+Next steps
 ================================================================================
 
 .. include:: ../common_node_deployment/next_steps.txt

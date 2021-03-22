@@ -112,7 +112,7 @@ To add a node to the cloud, run this command as ``oneadmin`` in the Front-end:
 
 .. note:: If the host turns to ``err`` state instead of ``on``, check ``/var/log/one/oned.log``. Chances are it's a problem with SSH!
 
-Step 9. Next steps
+Next steps
 ================================================================================
 
 .. include:: ../common_node_deployment/next_steps.txt
