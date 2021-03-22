@@ -210,7 +210,7 @@ Sunstone settings can be also configured on user-level through the user template
 FireEdge
 --------
 
-Optional :ref:`FireEdge <fireedge_configuration>` provides the additional functionality to Sunstone:
+Optional :ref:`FireEdge <fireedge_configuration>` server provides the additional functionality to Sunstone:
 
 - :ref:`Resource state autorefresh <autorefresh>`, VMs and host states are refreshed automatically.
 - :ref:`Remote access VMs <remote_access_sunstone>` using **Guacamole** and/or **VMRC** (VMware Remote Console). FireEdge acts as a proxy between Sunstone and hypervisor nodes or vCenter/ESX (see :ref:`more <vmrc_sunstone>`) and streaming the remote console/desktop of the Virtual Machines.

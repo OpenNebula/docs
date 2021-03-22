@@ -1,4 +1,4 @@
-.. _onegate_configure:
+.. _onegate_conf:
 
 =====================
 OneGate Configuration
@@ -15,7 +15,7 @@ The OneGate configuration file can be found in ``/etc/one/onegate-server.conf`` 
 
 .. note::
 
-    After a configuration change, the OneGate server must be :ref:`restarted <onegate_configure_service>` to take effect.
+    After a configuration change, the OneGate server must be :ref:`restarted <onegate_conf_service>` to take effect.
 
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |       Parameter               |                                                                               Description                                                                               |
@@ -67,7 +67,7 @@ In the default configuration, the OneGate server will only listen to requests co
 OpenNebula
 ----------
 
-Before Virtual Machines can communicate with OneGate, you need to edit ``/etc/one/oned.conf`` and set the OneGate endpoint in parameter ``ONEGATE_ENDPOINT``. This endpoint (IP/hostname) must be reachable from the Virtual Machines over network!
+Before Virtual Machines can communicate with OneGate, you need to edit :ref:`/etc/one/oned.conf <oned_conf_onegate>` and set the OneGate endpoint in parameter ``ONEGATE_ENDPOINT``. This endpoint (IP/hostname) must be reachable from the Virtual Machines over network!
 
 .. code::
 
@@ -75,7 +75,7 @@ Before Virtual Machines can communicate with OneGate, you need to edit ``/etc/on
 
 Restart the OpenNebula service to apply changes.
 
-.. _onegate_configure_service:
+.. _onegate_conf_service:
 
 Service Control
 ===============

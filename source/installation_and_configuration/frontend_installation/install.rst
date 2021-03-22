@@ -328,7 +328,7 @@ If you are reconfiguring any time later already running services, don't forget t
 
 .. note::
 
-    For advanced setup, follow the OneGate :ref:`configuration reference <onegate_configure>`.
+    For advanced setup, follow the OneGate :ref:`configuration reference <onegate_conf>`.
 
 OneFlow (Optional)
 ------------------

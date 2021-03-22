@@ -8,7 +8,7 @@ References
    :maxdepth: 2
 
    Overview <overview>
-   oned Configuration <oned>
+   OpenNebula Configuration <oned>
    Scheduler Configuration <scheduler>
    Monitoring Configuration <monitoring>
    Sunstone Configuration <sunstone>
