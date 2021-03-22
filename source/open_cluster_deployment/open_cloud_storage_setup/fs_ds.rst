@@ -82,7 +82,7 @@ In this case the System Datastore is distributed among the hosts. The ssh transf
 SSH Transfer with Image Replication Mode
 --------------------------------------------------------------------------------
 
-The scalability and performance of the SSH transfer mode can be greatly improved by using the replication mode. In this mode the images are cached in each cluster and so available close to the hypervisors. This effectively reduce the bandwidth pressure of the image datastore servers and reduces deployment times. This is especially import for the edge-like deployments where copying images from the frontend to the hypervisor for each VM could be slow.
+The scalability and performance of the SSH transfer mode can be greatly improved by using the replication mode. In this mode the images are cached in each cluster and so available close to the hypervisors. This effectively reduces the bandwidth pressure of the image datastore servers and reduces deployment times. This is especially important for edge-like deployments where copying images from the frontend to the hypervisor for each VM could be slow.
 
 This replication mode implements a three-level storage hierarchy: cloud (image datastore), cluster (replica cache) and hypervisor (system datastore). Note that replication occurs at cluster level and a system datastore needs to be configured for each cluster. The schema of this mode is depicted below.
 
@@ -102,7 +102,7 @@ Simply mount the **Image** Datastore directory in the front-end in ``/var/lib/on
 
 .. warning:: The frontend only needs to mount the Image Datastores and **not** the System Datastores.
 
-.. note::  **NFS volumes mount tips**. The following options are recomended to mount a NFS shares:``soft, intr, rsize=32768, wsize=32768``. With the documented configuration of libvirt/kvm the image files are accessed as ``oneadmin`` user. In case the files must be read by ``root`` the option ``no_root_squash`` must be added.
+.. note::  **NFS volumes mount tips**. The following options are recommended to mount a NFS shares:``soft, intr, rsize=32768, wsize=32768``. With the documented configuration of libvirt/kvm the image files are accessed as ``oneadmin`` user. In case the files must be read by ``root`` the option ``no_root_squash`` must be added.
 
 SSH Transfer Mode (with or without replication)
 --------------------------------------------------------------------------------
@@ -123,7 +123,7 @@ Just make sure that there is enough space under ``/var/lib/one/datastores`` to s
 
 SSH Transfer with Image Replication Mode
 --------------------------------------------------------------------------------
-Regular hosts must observe the recommendations outlined above. Additional one or more hosts per cluster needs to be designated as ``REPLICA_HOSTS``, and they will hold the disk images cache under ``/var/lib/one/datastores``. It is recommended to add extra disk space in these hosts. It is a good idea to setup more than one hosts to act as replica in case of failure.
+Regular hosts must observe the recommendations outlined above. Additional one host per cluster needs to be designated as ``REPLICA_HOST``, and it will hold the disk images cache under ``/var/lib/one/datastores``. It is recommended to add extra disk space in this host.
 
 .. _fs_ds_templates:
 
@@ -167,9 +167,9 @@ This can be done either in Sunstone or through the CLI, for example to create a 
 .. note:: When different system datastore are available the TM_MAD_SYSTEM attribute will be set after picking the datastore.
 
 Enable Replication for SSH Transfer Mode
---------------------------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In this mode you need to create a System Datastore for each cluster in your cloud. To enable replication, simple add to the template of the System Datastore the hostname of the designated replica host (``REPLICA_HOST``) in each cluster. For example consider a cloud with two clusters, the datastore configuration could be as follows:
+In this mode you need to create a System Datastore for each cluster in your cloud. To enable replication, simply add to the template of the System Datastore the hostname of the designated replica host (``REPLICA_HOST``) in each cluster. For example consider a cloud with two clusters, the datastore configuration could be as follows:
 
 .. prompt:: text $ auto
 
@@ -193,14 +193,14 @@ Note that in this case a **single** image datastore (1) is shared across cluster
     TYPE="SYSTEM_DS"
     ...
 
-.. note:: You need to balance your storage transger patterns (number of VMs created, disk image sizes...) with the number of hosts per cluster to make an effictive use of the caching mechanism.
+.. note:: You need to balance your storage transfer patterns (number of VMs created, disk image sizes...) with the number of hosts per cluster to make an effective use of the caching mechanism.
 
 When using replication the following attributes can be tuned in ``sshrc`` file in ``/var/lib/one/remotes/etc/tm/ssh``:
 
 +--------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
 |   Attribute                    |                   Description                                                                                                     |
 +================================+===================================================================================================================================+
-| ``REPLICA_COPY_LOCK_TIMEOUT``  | Timeout to expire lock operations it should be adjusted to the maximum image transfer time between Image Datastores and clusters. |
+| ``REPLICA_COPY_LOCK_TIMEOUT``  | Timeout to expire lock operations should be adjusted to the maximum image transfer time between Image Datastores and clusters.    |
 +--------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
 | ``REPLICA_RECOVERY_SNAPS_DIR`` | Default directory to store the recovery snapshots. These snapshots are used to recover VMs in case of host failure in a cluster   |
 +--------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
@@ -208,6 +208,9 @@ When using replication the following attributes can be tuned in ``sshrc`` file i
 +--------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
 | ``REPLICA_SSH_FE_OPTS``        | ssh options when copying from the frontend to the replica. Prefer stronger ciphers on public networks                             |
 +--------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+
+Recovery snapshots
+""""""""""""""""""
 
 Additionally, in replica mode you can enable recovery snapshots for particular VM disks. You can do it by adding an option ``RECOVERY_SNAPSHOT_FREQ`` to DISK in the VM template.
 
@@ -272,7 +275,7 @@ Additional Configuration
   internally converted into the ``DRIVER`` format on import.
 
 * ``QCOW2_OPTIONS``: Custom options for the ``qemu-img`` clone action.
-  The qcow2 drivers are a specialization of the shared drivers to work with the qcow2 format for disk images. Images are created and through the ``qemu-img`` command using the original image as backing file. Custom options can be sent to ``qemu-img`` clone action through the variable ``QCOW2_OPTIONS`` in ``/etc/one/tmrc``.
+  The qcow2 drivers are a specialization of the shared drivers to work with the qcow2 format for disk images. Images are created and through the ``qemu-img`` command using the original image as a backing file. Custom options can be sent to ``qemu-img`` clone action through the variable ``QCOW2_OPTIONS`` in ``/etc/one/tmrc``.
 * ``DD_BLOCK_SIZE``: Block size for `dd` operations (default: 64kB) could be set in ``/var/lib/one/remotes/etc/datastore/fs/fs.conf``.
 * ``SUPPORTED_FS``: Comma separated list with every file system supported for creating formatted datablocks. Can be set in ``/var/lib/one/remotes/etc/datastore/datastore.conf``.
 * ``FS_OPTS_<FS>``: Options for creating the filesystem for formatted datablocks. Can be set in ``/var/lib/one/remotes/etc/datastore/datastore.conf`` for each filesystem type.
@@ -292,14 +295,11 @@ When using the shared mode, you can improve VM performance by placing the disks 
 
 To configure this scenario, simply configure a shared Image and System datastores as described above (``TM_MAD=shared``). Then add a SSH system datastore (``TM_MAD=ssh``). Any image registered in the Image datastore can now be deployed using the shared or SSH system datastores.
 
-.. warning:: If you added the shared datastores to cluster, you need to add the new SSH system datastore to the very same clusters.
+.. warning:: If you added the shared datastores to the cluster, you need to add the new SSH system datastore to the very same clusters.
 
 To select the (alternate) deployment mode, add the following attribute to the Virtual Machine template:
 
 * ``TM_MAD_SYSTEM="ssh"``
-
-Recovery snapshots
---------------------------------------------------------------------------------
 
 .. |image1| image:: /images/fs_shared.png
 .. |image2| image:: /images/fs_ssh.png
