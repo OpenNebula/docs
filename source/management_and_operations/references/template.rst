@@ -70,6 +70,8 @@ A simple example:
       </DISK>
     </TEMPLATE>
 
+.. _template_capacity_section:
+
 Capacity Section
 ================================================================================
 
@@ -249,6 +251,7 @@ This section configures the features enabled for the VM.
     ]
 
 .. _reference_vm_template_disk_section:
+.. _template_disks_section:
 
 Disks Section
 ================================================================================
@@ -1139,6 +1142,8 @@ Valid ``types``:
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
 | boolean         | <VAR>="M|boolean| <desc>| | <default>"                          | Yes or not                                             |
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
+| fixed           | <VAR>="M|boolean| <desc>| | <value>"                            | A fixed value, cannot be changed.                      |
++-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
 
 There is the possibility of making the USER_INPUT mandatory or not. If it is mandatory, we will see a letter 'M' but if it is not mandatory a letter 'O' will appear.
 Example:
@@ -1149,6 +1154,8 @@ Example:
 In Sunstone, the ``USER_INPUTS`` can be ordered with the mouse.
 
 |user_inputs|
+
+.. _template_schedule_actions:
 
 Schedule actions Section
 ================================================================================
@@ -1256,6 +1263,8 @@ The following attributes are used to display elements in the sunstone:
 | NETWORK_RDP         | Disable interface network RDP Conection (active)                    |
 +---------------------+---------------------------------------------------------------------+
 | NETWORK_SSH         | Disable interface network SSH Conection (active)                    |
++---------------------+---------------------------------------------------------------------+
+| NETWORK_SELECT      | Disable Network selection for VM on instantiation                   |
 +---------------------+---------------------------------------------------------------------+
 
 For example:

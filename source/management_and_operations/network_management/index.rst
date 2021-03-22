@@ -11,4 +11,4 @@ Virtual Network Management
    Virtual Network Templates <vn_templates>
    Self Provision <self_provision>
    Virtual Routers <vrouter>
-   VMware NSX Networks <nsx_networtks>
+   VMware NSX Networks <nsx_networks>
