@@ -1,0 +1,20 @@
+.. warning::
+
+    If you are performing an upgrade skip this and the next steps and go back to the upgrade document.
+
+Depending on the type of OpenNebula deployment, the SELinux can block some operations initiated by the OpenNebula Front-end, which results in a failure of the particular operation.  It's **not recommended to disable** the SELinux on production environments, as it degrades the security of your server, but to investigate and workaround each individual problem based on the `SELinux User's and Administrator's Guide <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/>`__. The administrator might disable the SELinux to temporarily workaround the problem or on non-production deployments by changing following line in ``/etc/selinux/config``:
+
+.. code-block:: bash
+
+    SELINUX=disabled
+
+After the change, you have to reboot the machine.
+
+.. note:: Depending on your OpenNebula deployment type, the following may be required on your SELinux-enabled nodes:
+
+    * package ``util-linux`` newer than 2.23.2-51 installed
+    * SELinux boolean ``virt_use_nfs`` enabled (with datastores on NFS):
+
+    .. prompt:: bash # auto
+
+        # setsebool -P virt_use_nfs on
