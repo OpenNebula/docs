@@ -6,7 +6,7 @@ Ceph Datastore
 
 The Ceph datastore driver provides OpenNebula users with the possibility of using Ceph block devices as their Virtual Images.
 
-.. warning:: This driver requires that the OpenNebula nodes using the Ceph driver must be Ceph clients of a running Ceph cluster. More information in `Ceph documentation <http://ceph.com/docs/master/>`__.
+.. warning:: This driver requires that the OpenNebula nodes using the Ceph driver must be Ceph clients of a running Ceph cluster. More information in `Ceph documentation <https://docs.ceph.com/en/latest/>`__.
 
 
 Datastore Layout
@@ -31,7 +31,7 @@ For example, consider a system using an Image and System Datastore backed by a C
     one-0-14-0 10240M one/one-0@snap   2
     one-0-15-0 10240M one/one-0@snap   2
 
-.. note:: In this case context disk and auxiliar files (deployment description and checkpoints) are stored locally in the nodes.
+.. note:: In this case context disk and auxiliary files (deployment description and checkpoints) are stored locally in the nodes.
 
 .. _ceph-ssh-mode:
 
@@ -89,7 +89,7 @@ On the **Ceph Luminous** (v12.2.x) and later:
 
 .. warning::
 
-    Ceph Luminous release comes with simplified RBD capabilities (more information about user management and authorization capabilities is in the Ceph `documentation <http://docs.ceph.com/docs/master/rados/operations/user-management/#authorization-capabilities>`__). When **upgrading existing Ceph deployment to the Luminous and later**, please ensure the selected user has proper new capabilities. For example, for above user ``libvirt`` by running:
+    Ceph Luminous release comes with simplified RBD capabilities (more information about user management and authorization capabilities is in the Ceph `documentation <https://docs.ceph.com/en/latest/rados/operations/user-management/#authorization-capabilities>`__). When **upgrading existing Ceph deployment to the Luminous and later**, please ensure the selected user has proper new capabilities. For example, for above user ``libvirt`` by running:
 
     .. prompt:: bash $ auto
 
@@ -165,7 +165,7 @@ Nodes need extra steps to setup credentials in libvirt:
 
     $ rm client.libvirt.key
 
-* The ``oneadmin`` account needs to access the Ceph Cluster using the ``libvirt`` Ceph user defined above. This requires access to the ceph user keyring. Test that Ceph client is properly configured in the node.
+* The ``oneadmin`` account needs to access the Ceph Cluster using the ``libvirt`` Ceph user defined above. This requires access to the ceph user keyring. Test that the Ceph client is properly configured in the node.
 
 .. prompt:: bash $ auto
 
@@ -173,7 +173,7 @@ Nodes need extra steps to setup credentials in libvirt:
 
   $ rbd ls -p one --id libvirt
 
-You can read more information about this in the Ceph guide `Using libvirt with Ceph <http://docs.ceph.com/docs/master/rbd/libvirt/>`__.
+You can read more information about this in the Ceph guide `Using libvirt with Ceph <https://docs.ceph.com/en/latest/rbd/libvirt/>`__.
 
 * Ancillary virtual machine files like context disks, deployment and checkpoint files are created at the nodes under ``/var/lib/one/datastores/``, make sure that enough storage for these files is provisioned in the nodes.
 
@@ -231,7 +231,7 @@ To use your Ceph cluster with the OpenNebula, you need to define a System and Im
 
 .. note:: You may add another Image and System Datastores pointing to other pools with different allocation/replication policies in Ceph.
 
-.. note:: Ceph Luminous release allows use of erasure coding for ``RBD`` images. In general, erasure coded images take up less space, but have worse I/O performance. Erasure coding can be enabled on Image and/or System Datastores by configuring ``EC_POOL_NAME`` with the name of the erasure coded data pool. Regular replicated Ceph pool ``POOL_NAME`` is still required for image metadata. More information in `Ceph documentation <http://docs.ceph.com/docs/master/rados/operations/erasure-code/#erasure-coding-with-overwrites>`__.
+.. note:: Ceph Luminous release allows use of erasure coding for ``RBD`` images. In general, erasure coded images take up less space, but have worse I/O performance. Erasure coding can be enabled on Image and/or System Datastores by configuring ``EC_POOL_NAME`` with the name of the erasure coded data pool. Regular replicated Ceph pool ``POOL_NAME`` is still required for image metadata. More information in `Ceph documentation <https://docs.ceph.com/en/latest/rados/operations/erasure-code/#erasure-coding-with-overwrites>`__.
 
 Create a System Datastore
 --------------------------------------------------------------------------------
@@ -333,4 +333,4 @@ When creating a VM Template you can choose to deploy the disks using the default
 
 * ``TM_MAD_SYSTEM="ssh"``
 
-When using Sunstone, the deployment mode needs to be set in Storage tab.
+When using Sunstone, the deployment mode needs to be set in the Storage tab.
