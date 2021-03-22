@@ -31,7 +31,7 @@ For example, consider a system with two Virtual Machines (9 and 10) using a disk
 
 .. warning::
 
-  Images are stored in a shared storage in file form (e.g. NFS, GlusterFS...) the datastore directories and mount points needs to be configured as a regular shared image datastore, :ref:`please refer to FileSystem Datastore guide <fs_ds>`. It is a good idea to first deploy a shared FileSystem datastore and once it is working replace the associated System datastore with the LVM one maintaining the shared mount point as described below.
+  Images are stored in a shared storage in file form (e.g. NFS, GlusterFS...) the datastore directories and mount points need to be configured as a regular shared image datastore, :ref:`please refer to FileSystem Datastore guide <fs_ds>`. It is a good idea to first deploy a shared FileSystem datastore and once it is working replace the associated System datastore with the LVM one maintaining the shared mount point as described below.
 
 Frontend Setup
 ================================================================================
@@ -45,10 +45,10 @@ Nodes needs to meet the following requirements:
 * LVM2 must be available in the Hosts.
 * ``lvmetad`` must be disabled. Set this parameter in ``/etc/lvm/lvm.conf``: ``use_lvmetad = 0``, and disable the ``lvm2-lvmetad.service`` if running.
 * ``oneadmin`` needs to belong to the ``disk`` group.
-* All the nodes needs to have access to the same LUNs.
-* A LVM VG needs to be created in the shared LUNs for each datastore following name: ``vg-one-<system_ds_id>``. This just need to be done in one node.
+* All the nodes need to have access to the same LUNs.
+* A LVM VG needs to be created in the shared LUNs for each datastore following name: ``vg-one-<system_ds_id>``. This just needs to be done in one node.
 * Virtual Machine disks are symbolic links to the block devices. However, additional VM files like checkpoints or deployment files are stored under ``/var/lib/one/datastores/<id>``. Be sure that enough local space is present.
-* All the nodes needs to have access to the images and system datastores, mounting the associated directories.
+* All the nodes need to have access to the images and system datastores, mounting the associated directories.
 
 .. note:: In order to support live migration the datastore underlying storage (i.e ``/var/lib/one/datastores/<id>`` folder) needs to be shared across the hypervisors (e.g by using NFS or similar mechanisms).
 
@@ -111,7 +111,7 @@ To create an Image Datastore you just need to define the name, and set the follo
 | ``DISK_TYPE``   | ``BLOCK``                                                                                   |
 +-----------------+---------------------------------------------------------------------------------------------+
 
-For example, the following examples illustrates the creation of an LVM datastore using a configuration file. In this case we will use the host ``host01`` as one of our OpenNebula LVM-enabled hosts.
+For example, the following examples illustrate the creation of an LVM datastore using a configuration file. In this case we will use the host ``host01`` as one of our OpenNebula LVM-enabled hosts.
 
 .. code::
 
@@ -133,7 +133,7 @@ For example, the following examples illustrates the creation of an LVM datastore
 
 Driver Configuration
 --------------------------------------------------------------------------------
-By default the LVM driver will zero any LVM volume so VM data cannot leak to other instances. However, this process takes some time and my delay the deployment of a VM. The behavior of the driver can be configured in the file ``/var/lib/one/remotes/etc/fs_lvm/fs_lvm.conf``, in particular:
+By default the LVM driver will zero any LVM volume so VM data cannot leak to other instances. However, this process takes some time and may delay the deployment of a VM. The behavior of the driver can be configured in the file ``/var/lib/one/remotes/etc/fs_lvm/fs_lvm.conf``, in particular:
 
 +------------------------+---------------------------------------------------+
 |    Attribute           |                   Description                     |
