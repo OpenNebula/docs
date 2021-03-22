@@ -4,14 +4,16 @@
 KVM Node Installation
 =====================
 
-This page shows you how to install OpenNebula from the binary packages.
+This page shows you how to configure OpenNebula KVM node from the binary packages.
+
+.. note:: Before reading this chapter, you should have at least installed your :ref:`Frontend node <frontend_installation>`.
 
 .. _kvm_repo:
 
 Step 1. Add OpenNebula Repositories
 ===================================
 
-.. include:: repositories.txt
+.. include:: ../common_node_deployment/repositories.txt
 
 Step 2. Installing the Software
 ===============================
@@ -19,7 +21,7 @@ Step 2. Installing the Software
 Installing on CentOS/RHEL
 -------------------------
 
-.. include:: epel.txt
+.. include:: ../common_node_deployment/epel.txt
 
 Install OpenNebula KVM Node Package
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -50,7 +52,7 @@ On **RHEL 7**, you need a paid subscription to the Red Hat Virtualization (RHV) 
     # subscription-manager repos --enable rhel-7-server-rhv-4-mgmt-agent-rpms
     # yum -y install qemu-kvm-rhev
 
-For further configuration, check the specific guide: :ref:`KVM <kvmg>`.
+For further configuration, check the specific :ref:`guide <kvmg>`.
 
 Installing on Debian/Ubuntu
 ---------------------------
@@ -63,40 +65,21 @@ Execute the following commands to install the OpenNebula KVM node package and re
     # apt-get -y install opennebula-node-kvm
     # systemctl restart libvirtd
 
-For further configuration check the specific guide: :ref:`KVM <kvmg>`.
+For further configuration check the specific :ref:`guide <kvmg>`.
 
 .. _kvm_selinux:
 
 Step 3. Disable SELinux on CentOS/RHEL (Optional)
 =================================================
 
-.. warning::
-
-    If you are performing an upgrade skip this and the next steps and go back to the upgrade document.
-
-Depending on the type of OpenNebula deployment, the SELinux can block some operations initiated by the OpenNebula Front-end, which results in a failure of the particular operation.  It's **not recommended to disable** the SELinux on production environments, as it degrades the security of your server, but to investigate and workaround each individual problem based on the `SELinux User's and Administrator's Guide <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/>`__. The administrator might disable the SELinux to temporarily workaround the problem or on non-production deployments by changing following line in ``/etc/selinux/config``:
-
-.. code-block:: bash
-
-    SELINUX=disabled
-
-After the change, you have to reboot the machine.
-
-.. note:: Depending on your OpenNebula deployment type, the following may be required on your SELinux-enabled KVM nodes:
-
-    * package ``util-linux`` newer than 2.23.2-51 installed
-    * SELinux boolean ``virt_use_nfs`` enabled (with datastores on NFS):
-
-    .. prompt:: bash # auto
-
-        # setsebool -P virt_use_nfs on
+.. include:: ../common_node_deployment/selinux.txt
 
 .. _kvm_ssh:
 
 Step 4. Configure Passwordless SSH
 ==================================
 
-.. include:: passwordless_ssh.txt
+.. include:: ../common_node_deployment/passwordless_ssh.txt
 
 .. _kvm_node_networking:
 
@@ -105,14 +88,14 @@ Step 4. Configure Passwordless SSH
 Step 5. Networking Configuration
 ================================
 
-.. include:: networking.txt
+.. include:: ../common_node_deployment/networking.txt
 
 .. _kvm_storage:
 
 Step 6. Storage Configuration
 =============================
 
-.. include:: storage.txt
+.. include:: ../common_node_deployment/storage.txt
 
 .. _kvm_addhost:
 
@@ -138,7 +121,7 @@ Finally, return to the Hosts list, and check that the Host has switched to ON st
 
 |sunstone_list_hosts|
 
-If the host turns to ``err`` state instead of ``on``, check ``/var/log/one/oned.log``. Chances are it's a problem with SSH!
+.. note:: If the host turns to ``err`` state instead of ``on``, check ``/var/log/one/oned.log``. Chances are it's a problem with SSH!
 
 Adding a Host through the CLI
 --------------------------------------------------------------------------------
@@ -159,7 +142,7 @@ To add a node to the cloud, run this command as ``oneadmin`` in the Front-end:
       ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
        0 node01          default     0       0 / 400 (0%)     0K / 7.7G (0%) on
 
-If the host turns to ``err`` state instead of ``on``, check ``/var/log/one/oned.log``. Chances are it's a problem with SSH!
+.. note:: If the host turns to ``err`` state instead of ``on``, check ``/var/log/one/oned.log``. Chances are it's a problem with SSH!
 
 .. _kvm_wild:
 
@@ -173,7 +156,7 @@ You can skip this step, as importing VMs can be done at any moment. However, if 
 Step 9. Next steps
 ================================================================================
 
-.. include:: next_steps.txt
+.. include:: ../common_node_deployment/next_steps.txt
 
 .. |image3| image:: /images/network-02.png
 .. |sunstone_create_host_dialog| image:: /images/sunstone_create_host_dialog.png
