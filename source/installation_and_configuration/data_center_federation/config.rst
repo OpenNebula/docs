@@ -10,7 +10,7 @@ OpenNebula *master* zone server replicates database changes on *slaves* using a 
 
 .. important:: In the following, each configuration step starts with **Master** or **Slave** to indicate the server where the step must be performed.
 
-.. important:: *Master* and *slave* servers need to talk to each other through their XML-RPC API. You may need to update the ``LISTEN_ADDRESS``, and or ``PORT`` in ``/etc/one/oned.conf`` or any firewall rule blocking this communication. Note that by default this traffic is not secured, so if you are using public links you need to secure the communication.
+.. important:: *Master* and *slave* servers need to talk to each other through their XML-RPC API. You may need to update the ``LISTEN_ADDRESS``, and or ``PORT`` in :ref:`/etc/one/oned.conf <oned_conf>` or any firewall rule blocking this communication. Note that by default this traffic is not secured, so if you are using public links you need to secure the communication.
 
 .. important:: The federation can be setup with MySQL or SQLite backends, but you cannot mix them across zones. MySQL is recommended for production deployments.
 

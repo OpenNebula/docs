@@ -9,5 +9,5 @@ Data Center Federation
    :maxdepth: 2
 
    Overview <overview>
-   Federation Configuration <federationconfig>
-   Federation Usage <federationmng>
+   Federation Configuration <config>
+   Federation Usage <usage>
