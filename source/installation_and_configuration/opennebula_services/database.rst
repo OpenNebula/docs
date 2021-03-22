@@ -1,56 +1,162 @@
 .. _database_maintenance:
 
-.. todo:: Review and adapt. This is the old onedb guide + database maintenance
-
 ====================
 Database Maintenance
 ====================
 
+OpenNebula persists the state of the cloud into the selected :ref:`SQL database <database_setup>`. The database should be monitored and tuned for the best performance by cloud administrators following the best practices of the particular database product. In this guide, we provide a few tips on how to optimize database for OpenNebula and thoroughly describe OpenNebula database maintenance tool ``onedb``, which simplifies the most common database operations - backups and restores, version upgrades, or consistency checks.
+
 .. _mysql_maintenance:
 
-MySQL database maintenance
-===========================
+Optimize Database
+=================
 
-For an optimal database performance improvement there are some tasks that should be done periodically, depending on the load of the environment. They are listed below.
+Depending on the environment, following tasks should be considered to execute periodically for an optimal database performance:
 
-Search index
-----------------------
+MySQL FTS Index
+---------------
 
-In order to be able to search for VMs by different attributes, OpenNebula's database has an `FTS index <https://dev.mysql.com/doc/refman/5.6/en/innodb-fulltext-index.html>`__. The size of this index can increase fast, depending on the cloud load. To free some space, perform the following maintenance task periodically:
+To be able to search for VMs by different attributes, the OpenNebula database leverages `full-text search indexes <https://dev.mysql.com/doc/refman/5.6/en/innodb-fulltext-index.html>`__ (FTS). The size of this index can grow fast, depending on the cloud load. To free some space, periodically recreate FTS indexes by executing the following SQL commands:
 
 .. code::
 
-   alter table vm_pool drop index ftidx;
-   alter table vm_pool add fulltext index ftidx (search_token);
+   ALTER TABLE vm_pool DROP INDEX ftidx;
+   ALTER TABLE vm_pool ADD FULLTEXT INDEX ftidx (search_token);
 
-VMs in DONE state
-----------------------
+Cleanup Old Content
+-------------------
 
-When a VM is terminated, OpenNebula changes its state to DONE but it keeps the VM in the database in case the VM information is required in the future (e.g. to generate accounting reports). In order to reduce the size of the VM table, it is recommended to periodically delete the VMs in the DONE state when not needed. For this task the :ref:`onedb purge-done <cli>` tool is available.
-
+When Virtual Machines are terminated (change into state ``DONE``), the OpenNebula just changes their state in database, but keeps the information in the database in case it would be required in the future (e.g., to generate accounting reports). To reduce the size of the VM table, it is recommended to periodically delete the information about already terminated Virtual Machines if not needed with :ref:`onedb purge-done <onedb_purge_done>` tool is available below.
 
 .. _onedb:
 
-This section describes the ``onedb`` CLI tool. It can be used to get information from an OpenNebula database, upgrade it, or fix inconsistency problems.
+OpenNebula Database Maintenance Tool
+====================================
 
-Connection Parameters
-=====================
+This section describes the OpenNebula database maintenance command-line tool ``onedb``. It can be used to get information from an OpenNebula database, backup and restore, upgrade to new versions of OpenNebula database, cleanup unused content, or fix inconsistency problems.
 
-The command ``onedb`` can connect to any SQLite or MySQL database. Visit the :ref:`onedb man page <cli>` for a complete reference. These are two examples for the default databases:
+Available subcommands (visit the :ref:`manual page <cli>` for full reference):
 
-.. prompt:: text $ auto
+- :ref:`version <onedb_version>` - Shows current database schema version
+- :ref:`history <onedb_history>` - Lists history of schema upgrades
+- :ref:`fsck <onedb_fsck>` - Performs consistency check and repair on data
+- :ref:`upgrade <onedb_upgrade>` - Upgrades database for new OpenNebula version
+- :ref:`backup <onedb_backup>` - Backups database into a file
+- :ref:`restore <onedb_restore>` - Restores database from backup
+- :ref:`purge-history <onedb_purge_history>` - Cleanups history records in VM metadata
+- :ref:`purge-done <onedb_purge_done>` - Cleanups database from unused content
+- :ref:`change-body <onedb_change_body>` - Allows to update OpenNebula objects in database
+- :ref:`sqlite2mysql <onedb_sqlite2mysql>` - Migration tool from SQLite to MySQL/MariaDB
+
+The command ``onedb`` works with all supported database backends - SQLite, MySQL, or PostgreSQL. The database type and connection parameters are automatically taken from OpenNebula Daemon configuration (:ref:`/etc/one/oned.conf <oned_conf>`), but can be overriden on the command line with the following example parameters:
+
+**Automatic Connection Parameters**
+
+.. prompt:: bash $ auto
+
+    $ onedb <command> -v
+
+**SQLite**
+
+.. prompt:: bash $ auto
 
     $ onedb <command> -v --sqlite /var/lib/one/one.db
+
+**MySQL/MariaDB**
+
+.. prompt:: bash $ auto
+
     $ onedb <command> -v -S localhost -u oneadmin -p oneadmin -d opennebula
 
-onedb fsck
-==========
+**PostgreSQL**
 
-Checks the consistency of the DB (database), and fixes any problems found. For example, if the machine where OpenNebula is running crashes, or loses connectivity to the database, you may have the wrong number of VMs running in a Host, or incorrect usage quotas for some users.
+.. prompt:: bash $ auto
+
+    $ onedb <command> -v -t postgresql -S localhost -u oneadmin -p oneadmin -d opennebula
+
+.. warning::
+
+    If the MySQL user password contains special characters, such as ``@`` or ``#``, the onedb command might fail to connect to the database. The workaround is to temporarily change the oneadmin password to an alphanumeric string. The `SET PASSWORD <http://dev.mysql.com/doc/refman/5.6/en/set-password.html>`__ statement can be used for this:
+
+    .. prompt:: text $ auto
+
+        $ mysql -u oneadmin -p
+        mysql> SET PASSWORD = PASSWORD('newpass');
+
+
+.. _onedb_version:
+
+onedb version
+-------------
+
+Prints the current database schema version, e.g.:
 
 .. prompt:: text $ auto
 
-    $ onedb fsck --sqlite /var/lib/one/one.db
+    $ onedb version
+    Shared: 5.12.0
+    Local:  5.12.0
+    Required shared version: 5.12.0
+    Required local version:  5.12.0
+
+Use the ``-v`` flag to see the complete version with comments, e.g.:
+
+.. prompt:: text $ auto
+
+    $ onedb version -v
+    Shared tables version:   5.12.0
+    Required version:        5.12.0
+    Timestamp: 09/08 11:52:46
+    Comment:   Database migrated from 5.6.0 to 5.12.0 (OpenNebula 5.12.0) by onedb command.
+
+    Local tables version:    5.12.0
+    Required version:        5.12.0
+    Timestamp: 09/08 11:58:27
+    Comment:   Database migrated from 5.8.0 to 5.12.0 (OpenNebula 5.12.0) by onedb command.
+
+Command exits with different return codes based on the state of database:
+
+- ``0``: The current version of the DB match with the source version.
+- ``1``: The database has not been bootstraped yet, requires OpenNebula start.
+- ``2``: The DB version is older than required, requires upgrade.
+- ``3``: The DB version is newer and not supported by this release.
+- ``-1``: Any other problem (e.g., connection issues)
+
+.. _onedb_history:
+
+onedb history
+-------------
+
+Every database upgrade is internally logged into the table. You can use the ``history`` command to show the upgrade history, e.g.:
+
+.. prompt:: text $ auto
+
+    $ onedb history -S localhost -u oneadmin -p oneadmin -d opennebula
+    Version:   3.0.0
+    Timestamp: 10/07 12:40:49
+    Comment:   OpenNebula 3.0.0 daemon bootstrap
+
+    ...
+
+    Version:   3.7.80
+    Timestamp: 10/08 17:36:15
+    Comment:   Database migrated from 3.6.0 to 3.7.80 (OpenNebula 3.7.80) by onedb command.
+
+    Version:   3.8.0
+    Timestamp: 10/19 16:04:17
+    Comment:   Database migrated from 3.7.80 to 3.8.0 (OpenNebula 3.8.0) by onedb command.
+
+
+.. _onedb_fsck:
+
+onedb fsck
+----------
+
+Checks the consistency of OpenNebula objects inside the database and fixes any problems it finds. For example, if the machine where OpenNebula is running crashes, or loses connectivity to the database, you may have the wrong number of VMs running in a Host, or incorrect usage quotas for some users.
+
+.. prompt:: text $ auto
+
+    $ onedb fsck
     Sqlite database backup stored in /var/lib/one/one.db.bck
     Use 'onedb restore' or copy the file back to restore the DB.
 
@@ -69,17 +175,20 @@ Checks the consistency of the DB (database), and fixes any problems found. For e
 
     Total errors found: 12
 
-If onedb fsck shows the following error message:
+Repairing VM History End-time
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If ``onedb fsck`` shows the following error message:
 
 .. code-block:: none
 
     [UNREPAIRED] History record for VM <<vid>> seq # <<seq>> is not closed (etime = 0)
 
-It means that when using accounting or showback, the etime (end-time) of that history record was not set, and the VM was considered as still running when it should not have been. To fix this problem, you could locate the time when the VM was shut down in the logs and then execute this patch to edit the times manually:
+it means that when using accounting or showback, the etime (end-time) of that history record was not set, and the VM was considered as still running while it shouldn't been. To fix this problem, you could locate the time when the VM was shut down in the logs and then execute this patch to edit the times manually:
 
 .. prompt:: text $ auto
 
-    $ onedb patch -v --sqlite /var/lib/one/one.db /usr/lib/one/ruby/onedb/patches/history_times.rb
+    $ onedb patch -v /usr/lib/one/ruby/onedb/patches/history_times.rb
     Version read:
     Shared tables 4.11.80 : OpenNebula 5.0.1 daemon bootstrap
     Local tables  4.13.85 : OpenNebula 5.0.1 daemon bootstrap
@@ -126,162 +235,122 @@ It means that when using accounting or showback, the etime (end-time) of that hi
       > Total time: 27.79s
 
 
-onedb version
-=============
-
-Prints the current DB version.
-
-.. prompt:: text $ auto
-
-    $ onedb version --sqlite /var/lib/one/one.db
-    Shared: 5.12.0
-    Local:  5.12.0
-    Required shared version: 5.12.0
-    Required local version:  5.12.0
-
-
-
-Use the ``-v`` flag to see the complete version and comment.
-
-.. prompt:: text $ auto
-
-    $ onedb version -v --sqlite /var/lib/one/one.db
-    Shared tables version:   5.12.0
-    Required version:        5.12.0
-    Timestamp: 09/08 11:52:46
-    Comment:   Database migrated from 5.6.0 to 5.12.0 (OpenNebula 5.12.0) by onedb command.
-
-    Local tables version:    5.12.0
-    Required version:        5.12.0
-    Timestamp: 09/08 11:58:27
-    Comment:   Database migrated from 5.8.0 to 5.12.0 (OpenNebula 5.12.0) by onedb command.
-
-.. note:: ``onedb version`` command will return different RCs depending on the state of the installation. Run ``onedb version --help`` for more information.
-
-If the MySQL database password contains special characters, such as ``@`` or ``#``, the onedb command will fail to connect to it.
-
-The workaround is to temporarily change the oneadmin password to an alphanumeric string. The `set password <http://dev.mysql.com/doc/refman/5.6/en/set-password.html>`__ statement can be used for this:
-
-.. prompt:: text $ auto
-
-    $ mysql -u oneadmin -p
-
-    mysql> SET PASSWORD = PASSWORD('newpass');
-
-onedb history
-=============
-
-Each time the DB is upgraded, the process is logged. You can use the ``history`` command to retrieve the upgrade history.
-
-.. prompt:: text $ auto
-
-    $ onedb history -S localhost -u oneadmin -p oneadmin -d opennebula
-    Version:   3.0.0
-    Timestamp: 10/07 12:40:49
-    Comment:   OpenNebula 3.0.0 daemon bootstrap
-
-    ...
-
-    Version:   3.7.80
-    Timestamp: 10/08 17:36:15
-    Comment:   Database migrated from 3.6.0 to 3.7.80 (OpenNebula 3.7.80) by onedb command.
-
-    Version:   3.8.0
-    Timestamp: 10/19 16:04:17
-    Comment:   Database migrated from 3.7.80 to 3.8.0 (OpenNebula 3.8.0) by onedb command.
+.. _onedb_upgrade:
 
 onedb upgrade
-=============
+-------------
 
-The upgrade process is fully documented in the :ref:`upgrade guides <upgrade>`.
+Upgrades database for new OpenNebula version, process if fully documented in the :ref:`upgrade guides <upgrade>`.
+
+
+.. _onedb_backup:
 
 onedb backup
-============
+------------
 
-Dumps the OpenNebula DB to a file.
+Dumps OpenNebula database into a file, e.g.:
 
 .. prompt:: text $ auto
 
-    $ onedb backup --sqlite /var/lib/one/one.db /tmp/my_backup.db
+    $ onedb backup /tmp/my_backup.db
     Sqlite database backup stored in /tmp/my_backup.db
     Use 'onedb restore' or copy the file back to restore the DB.
 
+
+.. _onedb_restore:
+
 onedb restore
-=============
+-------------
 
-Restores the DB from a backup file. Please note that this tool will only restore backups generated from the same backend, i.e. you cannot backup an SQLite database and then try to populate a MySQL one.
+Restores OpenNebula database from a provided :ref:`backup <onedb_backup>` file. Please note that only backups **from same backend can be restored**, i.e. you cannot backup SQLite database and then restore to a MySQL. E.g.,
 
-.. _onedb_sqlite2mysql:
+.. prompt:: text $ auto
 
-onedb sqlite2mysql
-==================
+    $ onedb restore /tmp/my_backup.db
+    Sqlite database backup restored in /var/lib/one/one.db
 
-This command migrates from an SQLite database to a MySQL database. The procedure to follow is:
 
-* Stop OpenNebula
-* Change the DB directive in ``/etc/one/oned.conf`` to use MySQL instead of SQLite
-* Bootstrap the MySQL Database: ``oned -i``
-* Migrate the Database: ``onedb sqlite2mysql -s <SQLITE_PATH> -u <MYSQL_USER> -p <MYSQL_PASS> -d <MYSQL_DB>``
-* Start OpenNebula
+.. _onedb_purge_history:
 
 onedb purge-history
-===================
+-------------------
 
-Deletes all but the last 2 history records from non-DONE VMs. You can specify start and end dates in case you don't want to delete all history:
+.. warning::
+
+    The operation is done while OpenNebula is running. Make a **database backup** before executing!
+
+Deletes all but last 2 history records from metadata of Virtual Machines, which are still active (not in a ``DONE`` state). You can specify the start and end dates if you don't want to delete all history. E.g.,
 
 .. prompt:: text $ auto
 
     $ onedb purge-history --start 2014/01/01 --end 2016/06/15
 
-.. warning::
 
-    This action is done while OpenNebula is running. Make a backup of the database before executing.
+.. _onedb_purge_done:
 
 onedb purge-done
-================
+----------------
 
-Deletes information from machines in the DONE state; ``--start`` and ``--end`` parameters can be used as for ``purge-history``:
+.. warning::
+
+    The operation is done while OpenNebula is running. Make a **database backup** before executing!
+
+Deletes information from the database with already terminated Virtual Machines (state ``DONE``). You can set start and end dates via ``-start`` and ``--end`` parameters if you don't want to delete all old data. E.g.,
 
 .. prompt:: text $ auto
 
     $ onedb purge-done --end 2016/01
 
-.. warning::
 
-    This action is done while OpenNebula is running. Make a backup of the database before executing.
+.. _onedb_change_body:
 
 onedb change-body
-=================
+-----------------
 
-Changes a value from the body of an object. The possible objects are: ``vm``, ``host``, ``vnet``, ``image``, ``cluster``, ``document``, ``group``, ``marketplace``, ``marketplaceapp``, ``secgroup``, ``template``, ``vrouter`` or ``zone``.
+.. warning::
 
-You can filter the objects to modify using one of these options:
+    The operation is done while OpenNebula is running. Make a **database backup** before executing!
 
-    * ``--id``: object id, example: 156
-    * ``--xpath``: xpath expression, example: ``TEMPLATE[count(NIC)>1]``
-    * ``--expr``: xpath expression, can use operators ``=``, ``!=``, ``<``, ``>``, ``<=`` or ``>=``
-        examples: ``UNAME=oneadmin``, ``TEMPLATE/NIC/NIC_ID>0``
+This command allows updating of the body content of OpenNebula objects in a database. Supported object types are ``vm``, ``host``, ``vnet``, ``image``, ``cluster``, ``document``, ``group``, ``marketplace``, ``marketplaceapp``, ``secgroup``, ``template``, ``vrouter`` or ``zone``.
 
-If you want to change a value, use a third parameter. In case you want to delete it use ``--delete`` option.
+You can filter the objects to update using one of the options:
 
-Change the second network of VMs that belong to "user":
+* ``--id``: object ID. Example: ``156``
+* ``--xpath``: XPath expression. Example: ``TEMPLATE[count(NIC)>1]``
+* ``--expr``: Simple expression using operators ``=``, ``!=``, ``<``, ``>``, ``<=`` or ``>=``. Examples: ``UNAME=oneadmin``, ``TEMPLATE/NIC/NIC_ID>0``
+
+If you want to change a value, add it as a third parameter. Use ``--delete`` argument to delete matching objects.
+
+Examples:
+
+- Change the ``service`` network of VMs that belong to user ``johndoe`` to ``new_network``:
 
 .. prompt:: text $ auto
 
-    $ onedb change-body vm --expr UNAME=user '/VM/TEMPLATE/NIC[NETWORK="service"]/NETWORK' new_network
+    $ onedb change-body vm --expr UNAME=johndoe '/VM/TEMPLATE/NIC[NETWORK="service"]/NETWORK' new_network
 
-Delete the cache attribute for all disks, write XML, but do not modify the DB:
+- Delete the ``CACHE`` attribute for all VMs and their disks. Don't modify DB (``dry``), but only show the XML object content.
 
 .. prompt:: text $ auto
 
     $ onedb change-body vm '/VM/TEMPLATE/DISK/CACHE' --delete --dry
 
-Delete the cache attribute for all disks in poweroff:
+- Delete the ``CACHE`` attribute for all disks in VMs in ``poweroff`` state:
 
 .. prompt:: text $ auto
 
     $ onedb change-body vm --expr LCM_STATE=8 '/VM/TEMPLATE/DISK/CACHE' --delete
 
-.. warning::
 
-    This action is done while OpenNebula is running. Make a backup of the database before executing.
+.. _onedb_sqlite2mysql:
+
+onedb sqlite2mysql
+------------------
+
+This command migrates from an SQLite database to a MySQL database. Follow the steps:
+
+* Stop OpenNebula
+* Reconfigure database in :ref:`/etc/one/oned.conf <oned_conf>` to use MySQL instead of SQLite
+* Bootstrap the MySQL Database by running ``oned -i``
+* Migrate the Database: ``onedb sqlite2mysql -s <SQLITE_PATH> -u <MYSQL_USER> -p <MYSQL_PASS> -d <MYSQL_DB>``
+* Start OpenNebula
