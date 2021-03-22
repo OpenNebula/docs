@@ -8,15 +8,15 @@ When a new Virtual Machine is launched, OpenNebula will connect its virtual netw
 
 OpenNebula supports following networking modes:
 
-* :ref:`Bridged <bridged>`. The VM NIC is added to a Linux bridge on the hypervisor. This mode can be configured to use security groups and network isolation.
+* :ref:`Bridged <bridged>`. The VM NIC is added to a Linux bridge on the host. This mode can be configured to use Security Groups and network isolation.
 
-* :ref:`802.1Q VLAN <hm-vlan>`. The VM NIC is added to a Linux bridge on the hypervisor and the Virtual Network is configured to handle 802.1Q VLAN tagging traffic.
+* :ref:`802.1Q VLAN <hm-vlan>`. The VM NIC is added to a Linux bridge on the host and the Virtual Network is configured to handle 802.1Q VLAN isolation.
 
-* :ref:`VXLAN <vxlan>`. The VM NIC is added to a Linux bridge on the hypervisor and the Virtual Network implements VLANs using the VXLAN protocol that relies on a UDP encapsulation and IP multicast.
+* :ref:`VXLAN <vxlan>`. The VM NIC is added to a Linux bridge on the host and the Virtual Network implements isolation using the VXLAN encapsulation.
 
-* :ref:`Open vSwitch <openvswitch>`. The VM NIC is added to a Open vSwitch bridge on the hypervisor and the Virtual Network is configured to handle 802.1Q VLAN tagging traffic.
+* :ref:`Open vSwitch <openvswitch>`. The VM NIC is added to a Open vSwitch bridge on the host and the Virtual Network optionally handles 802.1Q VLAN isolation.
 
-* :ref:`Open vSwitch on VXLAN <openvswitch_vxlan>`. The VM NIC is added to a Open vSwitch bridge on the hypervisor and the Virtual Network is configured to handle VXLAN traffic.
+* :ref:`Open vSwitch on VXLAN <openvswitch_vxlan>`. The VM NIC is added to a Open vSwitch bridge on the host and the Virtual Network is configured to provide both isolation with VXLAN encapsulation and optionally 802.1Q VLAN.
 
 The attribute ``VN_MAD`` of a Virtual Network determines which of the above networking modes is used.
 

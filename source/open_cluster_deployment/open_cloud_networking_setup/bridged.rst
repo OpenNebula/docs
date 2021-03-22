@@ -38,6 +38,8 @@ The following configuration parameters can be adjusted in ``/var/lib/one/remotes
 | ``:ip_bridge_conf``    | *(Hash)* Options passed to ``ip`` cmd. on bridge create (``ip link add <bridge> type bridge ...``)            |
 +------------------------+---------------------------------------------------------------------------------------------------------------+
 
+.. note:: Remember to run ``onehost sync -f`` to synchonize the changes to all the nodes.
+
 .. _bridged_net:
 
 Defining Bridged Network

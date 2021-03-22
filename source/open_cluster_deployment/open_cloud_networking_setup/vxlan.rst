@@ -10,7 +10,6 @@ The VXLAN ID will be the same for every interface in a given network, calculated
 
 Additionally each VXLAN has associated a multicast address to encapsulate L2 broadcast and multicast traffic. By default, the address assigned will belong to the ``239.0.0.0/8`` range as defined by RFC 2365 (Administratively Scoped IP Multicast). In particular, the multicast address is obtained by adding the value of the attribute ``VLAN_ID`` to ``239.0.0.0/8`` base address.
 
-
 Considerations & Limitations
 ================================================================================
 
@@ -71,6 +70,8 @@ The following configuration parameters can be adjusted in ``/var/lib/one/remotes
 +------------------------+-------------------------------------------------------------------------------------------------------+
 | ``:ip_link_conf``      | *(Hash)* Options passed to ``ip`` cmd. on VLAN interface create (``ip link add``)                     |
 +------------------------+-------------------------------------------------------------------------------------------------------+
+
+.. note:: Remember to run ``onehost sync -f`` to synchonize the changes to all the nodes.
 
 Example:
 

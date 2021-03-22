@@ -13,7 +13,7 @@ OpenNebula Configuration
 
 The VLAN ID is calculated according to this configuration option of :ref:`/etc/one/oned.conf <oned_conf>`:
 
-.. code:: bash
+.. code::
 
     #  VLAN_IDS: VLAN ID pool for the automatic VLAN_ID assigment. This pool
     #  is for 802.1Q networks (Open vSwitch and 802.1Q drivers). The driver
@@ -27,7 +27,7 @@ The VLAN ID is calculated according to this configuration option of :ref:`/etc/o
         RESERVED = "0, 1, 4095"
     ]
 
-By modifying this section, you can reserve some VLANs so they aren't assigned to a Virtual Network. You can also define the first VLAN ID. When a new isolated network is created, OpenNebula will find a free VLAN ID from the VLAN pool. This pool is global, and it's also shared with the :ref:`Open vSwitch <openvswitch>` network mode.
+By modifying this section, you can reserve some VLANs so they aren't assigned to a Virtual Network. You can also define the first VLAN ID. When a new isolated network is created, OpenNebula will find a free VLAN ID from the VLAN pool. This pool is global, and it's also shared with the :ref:`Open vSwitch Networks <openvswitch>` network mode.
 
 The following configuration parameters can be adjusted in ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``:
 
@@ -42,6 +42,8 @@ The following configuration parameters can be adjusted in ``/var/lib/one/remotes
 +------------------------+-------------------------------------------------------------------------------------------------------+
 | ``:ip_link_conf``      | *(Hash)* Options passed to ``ip`` cmd. on VLAN interface create (``ip link add``)                     |
 +------------------------+-------------------------------------------------------------------------------------------------------+
+
+.. note:: Remember to run ``onehost sync -f`` to synchonize the changes to all the nodes.
 
 Example:
 
