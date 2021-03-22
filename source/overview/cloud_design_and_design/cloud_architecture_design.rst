@@ -84,7 +84,7 @@ OpenNebula comes by default with an internal **user/password authentication syst
 
 **Sunstone, the OpenNebula GUI**, brings by default a pre-defined configuration of views. Optionally it can be customized and extended to meet your needs. You can :ref:`customize the roles and views <suns_views>`, :ref:`improve security with x509 authentication and SSL <suns_auth>` or :ref:`improve scalability for large deployments <suns_advance>`.
 
-We also provide **references** with a detailed description of the different :ref:`configuration files <oned_conf>`, and :ref:`logging and debugging reports <log_debug>` of the OpenNebula services.
+We also provide **references** with a detailed description of the different :ref:`configuration files <oned_conf>`, and :ref:`troubleshooting <troubleshoot>` guide for the OpenNebula services.
 
 Step 4. Operate your Cloud
 ===============================================

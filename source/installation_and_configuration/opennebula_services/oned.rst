@@ -932,4 +932,4 @@ Other logs are also available in Journald, use the following command to show:
 
 .. important::
 
-    See :ref:`Troubleshooting <log_debug_additional>` guide to learn about logging of individual OpenNebula Daemon subsystems and drivers.
+    See :ref:`Troubleshooting <troubleshoot_additional>` guide to learn about logging of individual OpenNebula Daemon subsystems and drivers.

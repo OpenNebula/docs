@@ -1,4 +1,4 @@
-.. _log_debug:
+.. _troubleshoot:
 
 ===============
 Troubleshooting
@@ -8,8 +8,6 @@ Logging
 =======
 
 Every OpenNebula server generates logs with a configurable verbosity (level of detail) and through different means (file, syslog, or standard error output) to allow cloud administrators to troubleshoot the potential problems. Logs are stored in ``/var/log/one/`` on a Front-end host with a particular component. Some valuable error messages can be also seen by the end-users in :ref:`CLI <cli>` tools or the :ref:`Sunstone GUI <sunstone>`.
-
-.. _log_debug_configure_the_logging_system:
 
 Configure Logging System
 ------------------------
@@ -30,7 +28,7 @@ After change of logging level, don't forget to restart the service to take affec
 
     Logs are rotated on (re)start of particular component, find a historic logs alongside the current logs with date/time suffixes (e.g., latest ``/var/log/one/oned.log`` might have following historic log ``/var/log/one/oned.log-20210321-1616319097``, or even older compressed log ``/var/log/one/oned.log-20210314-1615719402.gz``)
 
-.. _log_debug_additional:
+.. _troubleshoot_additional:
 
 Additional Resources
 --------------------
