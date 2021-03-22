@@ -311,7 +311,7 @@ msgstr ""
 #: ../../source/administration/references/oned_conf.rst:173
 msgid ""
 "The :ref:`Storage Subsystem <sm>` allows users to set up images, which can "
-"be operative systems or data, to be used in Virtual Machines easily. These "
+"be operating systems or data, to be used in Virtual Machines easily. These "
 "images can be used by several Virtual Machines simultaneously, and also "
 "shared with other users."
 msgstr ""

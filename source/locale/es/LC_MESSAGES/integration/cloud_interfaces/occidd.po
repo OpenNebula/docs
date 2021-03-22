@@ -239,7 +239,7 @@ msgstr ""
 
 #: ../../source/integration/cloud_interfaces/occidd.rst:116
 msgid ""
-"The ``STORAGE`` is a resource containing an operative system or data, to be "
+"The ``STORAGE`` is a resource containing an operating system or data, to be "
 "used as a virtual machine disk:"
 msgstr ""
 
@@ -268,7 +268,7 @@ msgid "``TYPE``, type of the image"
 msgstr ""
 
 #: ../../source/integration/cloud_interfaces/occidd.rst:125
-msgid "``OS``: contains a working operative system"
+msgid "``OS``: contains a working operating system"
 msgstr ""
 
 #: ../../source/integration/cloud_interfaces/occidd.rst:126
