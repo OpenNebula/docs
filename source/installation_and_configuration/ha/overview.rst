@@ -21,5 +21,5 @@ Hypervisor Compatibility
 +==============================================+=============================================================================================================+
 | :ref:`Front-end HA <frontend_ha_setup>`      | This section applies to all hypervisors.                                                                    |
 +----------------------------------------------+-------------------------------------------------------------------------------------------------------------+
-| :ref:`Virtual Machines HA <ftguide>`         | This section applies only to KVM, LXD and Firecracker.                                                      |
+| :ref:`Virtual Machines HA <ftguide>`         | This section applies only to KVM, LXC and Firecracker.                                                      |
 +----------------------------------------------+-------------------------------------------------------------------------------------------------------------+

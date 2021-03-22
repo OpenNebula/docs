@@ -8,5 +8,5 @@ High Availability
    :maxdepth: 2
 
    Overview <overview>
-   Front-end HA <frontend_ha_setup>
-   Virtual Machines HA <ftguide>
+   Front-end HA <frontend_ha>
+   Virtual Machines HA <vm_ha>
