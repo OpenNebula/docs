@@ -10,7 +10,7 @@ This datastore is used to register already existing iSCSI volume available to th
 
 Frontend Setup
 ================================================================================
-No addtional configuration is needed
+No additional configuration is needed
 
 Node Setup
 ================================================================================
@@ -103,7 +103,7 @@ An example of datastore:
 Datastore Usage
 ================================================================================
 
-New images can be added as any other image specifying the path. If you are using the CLI **do not use the shorthand parameters** as the CLI check if the file exists and the device most provably won't exist in the frontend.
+New images can be added as any other image specifying the path. If you are using the CLI **do not use the shorthand parameters** as the CLI check if the file exists and the device most probably won't exist in the frontend.
 
 As an example here is an image template to add a node disk ``iqn.1992-01.com.example:storage:diskarrays-sn-a8675309``:
 
@@ -115,7 +115,7 @@ As an example here is an image template to add a node disk ``iqn.1992-01.com.exa
 
 .. warning:: As this datastore does is just a container for existing devices images does not take any size from it. All devices registered will render size of 0 and the overall devices datastore will show up with 1MB of available space
 
-.. note:: You may override the any of the following: ``ISCSI_HOST``, ``ISCSI_USER```, ``ISCSI_USAGE`` and ``ISCSI_IQN`` parameters in the image template. These overridden parameters will come into effect for new Virtual Machines.
+.. note:: You may override any of the following: ``ISCSI_HOST``, ``ISCSI_USER```, ``ISCSI_USAGE`` and ``ISCSI_IQN`` parameters in the image template. These overridden parameters will come into effect for new Virtual Machines.
 
 Here is an example of an iSCSI LUN template that uses the iSCSI transfer manager.
 
