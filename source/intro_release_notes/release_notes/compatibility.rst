@@ -124,3 +124,33 @@ Custom :ref:`Datastore Driver <sd>` which use ``DISPOSE="YES"`` in the export no
 NIC Names
 =========
 NIC names in the format ``NIC<number>`` are reserved for internal use. User NIC names in this format will be prefixed with ``_``
+
+LXD
+========================
+
+.. _lxd_compatibility:
+
+In OpenNebula 6.0 LXD VMM Driver have been deprecated in favor of LXC driver. The replacement of LXD driver by LXC have the following implications:
+
+   - LXC has less runtime dependencies and overhead.
+   - LXC can be easily upgraded to new versions. OpenNebula and LXD management of underlying storage conflicts and the 3.0 model is no longer supported
+   - LXC is supported by more OS distributions.
+
+Current Limitations of LXC vs LXD
+-----------------------------------
+
+   - In order to improve the security, LXC will only supports unprivileged containers.
+   - Any LXD feature (e.g container profiles) is not supported.
+   - LXC only supports file system images (i.e multipart images are not supported anymore for containers).
+   - Support for wild container is not implemented yet.
+   - Support for custom disk mountpoints is not implemented yet.
+   - The current list of LXC unsupported actions can be found :ref:`here <lxc_unsupported_actions>`.
+
+.. note:: Some of these limitations will be implemented depending on the users needs and the roadmap definition.
+
+LXD to LXC Migration Strategy
+-----------------------------------
+
+From OpenNebula 6.0, LXD drivers will be deprecated but they will still be supported. The aim of this is to provide our users a period of time for defining their migration strategy while they can run both kinds of containers.
+
+Specific information on how to carry out the migration can be found in the :ref:`LXD to LXC Migration guide <lxd_to_lxc>`.

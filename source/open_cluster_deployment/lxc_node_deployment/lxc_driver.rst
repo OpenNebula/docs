@@ -27,6 +27,8 @@ Storage Limitations
 
 - Only file system images are supported.
 
+.. _lxc_unsupported_actions:
+
 Container Actions
 --------------------------------------------------------------------------------
 
