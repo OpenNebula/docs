@@ -1,5 +1,5 @@
 .. _schg:
-.. _sched_configure:
+.. _sched_conf:
 .. _schg_configuration:
 
 =======================
@@ -38,7 +38,7 @@ The Scheduler configuration file is in ``/etc/one/sched.conf`` on the Front-end 
 
 .. note::
 
-    After a configuration change, the OpenNebula Scheduler must be :ref:`restarted <sched_configure_service>` to take effect.
+    After a configuration change, the OpenNebula Scheduler must be :ref:`restarted <sched_conf_service>` to take effect.
 
 * ``MESSAGE_SIZE``: Buffer size in bytes for XML-RPC responses (Default: ``1073741824``).
 * ``TIMEOUT``: Seconds to timeout XML-RPC calls to oned (Default: ``60``).
@@ -63,15 +63,15 @@ The default scheduling policies for hosts, datastores and virtual networks are d
 +--------+--------------------------------------------------------------------------------------------------------------------------------------------+
 | Policy |                                                 Description                                                                                |
 +========+============================================================================================================================================+
-|      0 | :ref:`Packing <sched_configure_packing>`: Minimize the number of hosts in use by packing the VMs in the hosts to reduce VM fragmentation   |
+|      0 | :ref:`Packing <sched_conf_packing>`: Minimize the number of hosts in use by packing the VMs in the hosts to reduce VM fragmentation        |
 +--------+--------------------------------------------------------------------------------------------------------------------------------------------+
-|      1 | :ref:`Striping <sched_configure_striping>`: Maximize resources available for the VMs by spreading the VMs in the hosts                     |
+|      1 | :ref:`Striping <sched_conf_striping>`: Maximize resources available for the VMs by spreading the VMs in the hosts                          |
 +--------+--------------------------------------------------------------------------------------------------------------------------------------------+
-|      2 | :ref:`Load-aware <sched_configure_load>`: Maximize resources available for the VMs by using those nodes with less load                     |
+|      2 | :ref:`Load-aware <sched_conf_load>`: Maximize resources available for the VMs by using those nodes with less load                          |
 +--------+--------------------------------------------------------------------------------------------------------------------------------------------+
 |      3 | **Custom**: Use a custom ``RANK``, see :ref:`Rank Expression Syntax <template_rank>`. Example: ``RANK="- (RUNNING_VMS * 50  + FREE_CPU)"`` |
 +--------+--------------------------------------------------------------------------------------------------------------------------------------------+
-|      4 | :ref:`Fixed <sched_configure_fixed>`: Hosts will be ranked according to the PRIORITY attribute found in the Host or Cluster template       |
+|      4 | :ref:`Fixed <sched_conf_fixed>`: Hosts will be ranked according to the PRIORITY attribute found in the Host or Cluster template            |
 +--------+--------------------------------------------------------------------------------------------------------------------------------------------+
 
 * ``DEFAULT_DS_SCHED``: Definition of the default storage scheduling algorithm.
@@ -82,13 +82,13 @@ The default scheduling policies for hosts, datastores and virtual networks are d
 +--------+--------------------------------------------------------------------------------------------------------------------------------------------+
 | Policy |                                               Description                                                                                  |
 +========+============================================================================================================================================+
-|      0 | :ref:`Packing <sched_configure_ds_packing>`: Tries to optimize storage usage by selecting the DS with less free space                      |
+|      0 | :ref:`Packing <sched_conf_ds_packing>`: Tries to optimize storage usage by selecting the DS with less free space                           |
 +--------+--------------------------------------------------------------------------------------------------------------------------------------------+
-|      1 | :ref:`Striping <sched_configure_ds_striping>`: Tries to optimize I/O by distributing the VMs across datastores                             |
+|      1 | :ref:`Striping <sched_conf_ds_striping>`: Tries to optimize I/O by distributing the VMs across datastores                                  |
 +--------+--------------------------------------------------------------------------------------------------------------------------------------------+
 |      2 | **Custom**: Use a custom RANK, see :ref:`Rank Expression Syntax <template_rank>`                                                           |
 +--------+--------------------------------------------------------------------------------------------------------------------------------------------+
-|      3 | :ref:`Fixed <sched_configure_ds_fixed>`: Datastores will be ranked according to the PRIORITY attribute found in the Datastore template     |
+|      3 | :ref:`Fixed <sched_conf_ds_fixed>`: Datastores will be ranked according to the PRIORITY attribute found in the Datastore template          |
 +--------+--------------------------------------------------------------------------------------------------------------------------------------------+
 
 * ``DEFAULT_NIC_SCHED``: Definition of the default virtual network scheduling algorithm.
@@ -115,7 +115,7 @@ The default scheduling policies for hosts, datastores and virtual networks are d
 
 The optimal values of the scheduler parameters depend on the hypervisor, storage subsystem, and a number of physical hosts. The values can be derived by finding out the max. number of VMs that can be started in your setup without getting hypervisor-related errors.
 
-.. _sched_configure_service:
+.. _sched_conf_service:
 
 Service Control and Logs
 ========================
@@ -192,7 +192,7 @@ Pre-defined Placement Policies
 
 The following list describes the predefined policies for ``DEFAULT_SCHED`` configuration parameter:
 
-.. _sched_configure_packing:
+.. _sched_conf_packing:
 
 Packing Policy
 ~~~~~~~~~~~~~~
@@ -205,7 +205,7 @@ Packing Policy
 
     RANK = RUNNING_VMS
 
-.. _sched_configure_striping:
+.. _sched_conf_striping:
 
 Striping Policy
 ~~~~~~~~~~~~~~~
@@ -218,7 +218,7 @@ Striping Policy
 
     RANK = "- RUNNING_VMS"
 
-.. _sched_configure_load:
+.. _sched_conf_load:
 
 Load-aware Policy
 ~~~~~~~~~~~~~~~~~
@@ -231,7 +231,7 @@ Load-aware Policy
 
     RANK = FREE_CPU
 
-.. _sched_configure_fixed:
+.. _sched_conf_fixed:
 
 Fixed Policy
 ~~~~~~~~~~~~
@@ -249,7 +249,7 @@ Pre-defined Storage Policies
 
 The following list describes the predefined storage policies for ``DEFAULT_DS_SCHED`` configuration parameter:
 
-.. _sched_configure_ds_packing:
+.. _sched_conf_ds_packing:
 
 Packing Policy
 ~~~~~~~~~~~~~~
@@ -264,7 +264,7 @@ Tries to optimize storage usage by selecting the DS with less free space
 
     RANK = "- FREE_MB"
 
-.. _sched_configure_ds_striping:
+.. _sched_conf_ds_striping:
 
 Striping Policy
 ~~~~~~~~~~~~~~~
@@ -277,7 +277,7 @@ Striping Policy
 
     RANK = "FREE_MB"
 
-.. _sched_configure_ds_fixed:
+.. _sched_conf_ds_fixed:
 
 Fixed Policy
 ~~~~~~~~~~~~

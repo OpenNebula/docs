@@ -929,3 +929,7 @@ Other logs are also available in Journald, use the following command to show:
 .. prompt:: bash # auto
 
     # journalctl -u opennebula.service
+
+.. important::
+
+    See :ref:`Troubleshooting <log_debug_additional>` guide to learn about logging of individual OpenNebula Daemon subsystems and drivers.

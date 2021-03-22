@@ -109,6 +109,8 @@ This should be the only driver activated in this file. The following configurati
 | ``THREADS``      | Number of threads used to process messages from monitor daemon                                       |
 +------------------+------------------------------------------------------------------------------------------------------+
 
+.. _mon_conf_service:
+
 Service Control and Logs
 ========================
 
