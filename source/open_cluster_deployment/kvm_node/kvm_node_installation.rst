@@ -13,7 +13,7 @@ This page shows you how to configure OpenNebula KVM Node from the binary package
 Step 1. Add OpenNebula Repositories
 ===================================
 
-.. include:: ../common_node_deployment/repositories.txt
+.. include:: ../common_node/repositories.txt
 
 Step 2. Installing the Software
 ===============================
@@ -21,7 +21,7 @@ Step 2. Installing the Software
 Installing on CentOS/RHEL
 -------------------------
 
-.. include:: ../common_node_deployment/epel.txt
+.. include:: ../common_node/epel.txt
 
 Install OpenNebula KVM Node Package
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -74,14 +74,14 @@ For further configuration check the specific :ref:`guide <kvmg>`.
 Step 3. Disable SELinux on CentOS/RHEL (Optional)
 =================================================
 
-.. include:: ../common_node_deployment/selinux.txt
+.. include:: ../common_node/selinux.txt
 
 .. _kvm_ssh:
 
 Step 4. Configure Passwordless SSH
 ==================================
 
-.. include:: ../common_node_deployment/passwordless_ssh.txt
+.. include:: ../common_node/passwordless_ssh.txt
 
 .. _kvm_node_networking:
 
@@ -90,14 +90,14 @@ Step 4. Configure Passwordless SSH
 Step 5. Networking Configuration
 ================================
 
-.. include:: ../common_node_deployment/networking.txt
+.. include:: ../common_node/networking.txt
 
 .. _kvm_storage:
 
 Step 6. Storage Configuration (Optional)
 ========================================
 
-.. include:: ../common_node_deployment/storage.txt
+.. include:: ../common_node/storage.txt
 
 .. _kvm_addhost:
 
@@ -158,7 +158,7 @@ You can import wild VMs anytime later.
 Next steps
 ================================================================================
 
-.. include:: ../common_node_deployment/next_steps.txt
+.. include:: ../common_node/next_steps.txt
 
 .. |image3| image:: /images/network-02.png
 .. |sunstone_create_host_dialog| image:: /images/sunstone_create_host_dialog.png

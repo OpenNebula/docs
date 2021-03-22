@@ -12,7 +12,7 @@ This page shows you how to configure OpenNebula Firecracker Node from the binary
 Step 1. Add OpenNebula Repositories
 ===================================
 
-.. include:: ../common_node_deployment/repositories.txt
+.. include:: ../common_node/repositories.txt
 
 Step 2. Installing the Software
 ===============================
@@ -20,7 +20,7 @@ Step 2. Installing the Software
 Installing on CentOS/RHEL
 -------------------------
 
-.. include:: ../common_node_deployment/epel.txt
+.. include:: ../common_node/epel.txt
 
 Install OpenNebula Firecracker Node Package
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -48,24 +48,24 @@ For further configuration check the specific :ref:`guide <fcmg>`.
 Step 3. Disable SELinux on CentOS/RHEL (Optional)
 =================================================
 
-.. include:: ../common_node_deployment/selinux.txt
+.. include:: ../common_node/selinux.txt
 
 Step 4. Configure Passwordless SSH
 ==================================
 
-.. include:: ../common_node_deployment/passwordless_ssh.txt
+.. include:: ../common_node/passwordless_ssh.txt
 
 Step 5. Networking Configuration
 ================================
 
-.. include:: ../common_node_deployment/networking.txt
+.. include:: ../common_node/networking.txt
 
 .. important:: Firecracker microVM Networking need to be enable in the hypervisor node. Please check :ref:`Network <fc_network>` section in Firecracker Driver guide.
 
 Step 6. Storage Configuration
 =============================
 
-.. include:: ../common_node_deployment/storage.txt
+.. include:: ../common_node/storage.txt
 
 Step 7. Adding Host to OpenNebula
 =================================
@@ -113,7 +113,7 @@ To add a node to the cloud, run this command as ``oneadmin`` in the Front-end (r
 Next steps
 ================================================================================
 
-.. include:: ../common_node_deployment/next_steps.txt
+.. include:: ../common_node/next_steps.txt
 
 .. |image3| image:: /images/network-02.png
 .. |sunstone_create_host_dialog| image:: /images/sunstone_create_host_dialog_fc.png
