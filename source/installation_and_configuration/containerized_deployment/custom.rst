@@ -45,8 +45,8 @@ Configure deployment with parameters containing absolute file names **inside the
 
 .. code::
 
-    OPENNEBULA_TLS_CERT=/certs/cert.pem
-    OPENNEBULA_TLS_KEY=/certs/cert.key
+    TLS_CERT=/certs/cert.pem
+    TLS_KEY=/certs/cert.key
 
 3. Restart Deployment
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -56,7 +56,7 @@ If the deployment is already running, it must be first stopped. Otherwise, it ca
 .. prompt:: bash # auto
 
     # docker-compose down
-    # docker-compose up
+    # docker-compose up -d
 
 Single-container
 ----------------
@@ -93,7 +93,7 @@ And, start again the deployment with following **additional** arguments:
      -e TLS_CERT='/certs/cert.pem' \
      -e TLS_KEY='/certs/cert.key' \
    ...
-     opennebula:5.13.85
+     $OPENNEBULA_IMAGE
 
 .. _container_custom_ssh:
 
@@ -127,7 +127,7 @@ If the deployment is already running, it must be first stopped. Otherwise, it ca
 .. prompt:: bash # auto
 
     # docker-compose down
-    # docker-compose up
+    # docker-compose up -d
 
 Single-container
 ----------------
@@ -166,7 +166,7 @@ And, start again the deployment with following **additional** arguments:
      -e ONEADMIN_SSH_PRIVKEY='/ssh/id_rsa' \
      -e ONEADMIN_SSH_PUBKEY='/ssh/id_rsa.pub' \
    ...
-     opennebula:5.13.85
+     $OPENNEBULA_IMAGE
 
 .. _container_custom_conf:
 
@@ -210,7 +210,7 @@ Multi-container
 2. Configure Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Configure deployment with parameters containing absolute file name **inside the container** to the diff file. The ``config/`` directory on your host is automatically passed into the container and mounted on ``/config``. For (example) files above, you need to adjust your configuration in ``.env`` and to contain the paths to certificate and key
+Adjust your configuration inside the ``.env`` with the parameter ``OPENNEBULA_ONECFG_PATCH`` containing the absolute path **inside the container** to the diff file. The ``config/`` directory on your host is automatically passed into the container and mounted on ``/config``. In our case:
 
 .. code::
 
@@ -224,7 +224,7 @@ If the deployment is already running, it must be first stopped. Otherwise, it ca
 .. prompt:: bash # auto
 
     # docker-compose down
-    # docker-compose up
+    # docker-compose up -d
 
 Single-container
 ----------------
@@ -250,7 +250,7 @@ And, start again the deployment with following **additional** arguments:
      -v "$(realpath ./config)":/config:z,ro \
      -e OPENNEBULA_ONECFG_PATCH="/config/onecfg_patch" \
    ...
-     opennebula:5.13.85
+     $OPENNEBULA_IMAGE
 
 .. _container_custom_hooks:
 .. _container_bootstrap:
@@ -260,7 +260,7 @@ Container Bootstrap and Hooks
 
 When the container is started, the dedicated script inside (called `entrypoint <https://docs.docker.com/engine/reference/builder/#entrypoint>`__) is executed to prepare the environment. In our case the ``/frontend-entrypoint.sh`` will configure and enable the **bootstrap service** and pass control to the service manager `Supervisor <http://supervisord.org/>`__. Once Supervisor is running it will start the aforementioned bootstrap service. This service is executing the bootstrap script ``/frontend-bootstrap.sh`` where all the required services are configured and enabled including OpenNebula itself. We refer to this process as **container bootstrapping**. Any failure (e.g., due to a wrong custom configuration) will abort the bootstrap process and will lead to container's failed start.
 
-The high-level over of startup is described on the following sequence diagram:
+The high-level overview of the startup process is described in the following sequence diagram:
 
 |onedocker_schema_bootstrap|
 
@@ -311,7 +311,7 @@ Multi-container
 2. Configure Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Configure deployment with parameters containing absolute file name **inside the container** to the bootstrap hooks. The ``config/`` directory on your host is automatically passed into the container and mounted on ``/config``. For (example) files above, you need to adjust your configuration in ``.env`` and to contain the paths to certificate and key
+Adjust your configuration inside the ``.env`` with the parameters containing the absolute path **inside the container** to the (relevant) bootstrap hook. You can opt to use just one of them or both. The ``config/`` directory on your host is automatically passed into the container and mounted on ``/config``. In our case:
 
 .. code::
 
@@ -326,7 +326,7 @@ If the deployment is already running, it must be first stopped. Otherwise, it ca
 .. prompt:: bash # auto
 
     # docker-compose down
-    # docker-compose up
+    # docker-compose up -d
 
 Single-container
 ----------------
@@ -353,7 +353,7 @@ And, start again the deployment with following **additional** arguments:
      -e OPENNEBULA_PREBOOTSTRAP_HOOK="/config/pre-bootstrap-hook.sh" \
      -e OPENNEBULA_POSTBOOTSTRAP_HOOK="/config/post-bootstrap-hook.sh" \
    ...
-     opennebula:5.13.85
+     $OPENNEBULA_IMAGE
 
 .. _container_maintenance:
 
@@ -508,7 +508,7 @@ And, start again the deployment with following **additional** argument:
    ...
      -e MAINTENANCE_MODE='yes' \
    ...
-     opennebula:5.13.85
+     $OPENNEBULA_IMAGE
 
 2. Perform Maintenance
 ^^^^^^^^^^^^^^^^^^^^^^
