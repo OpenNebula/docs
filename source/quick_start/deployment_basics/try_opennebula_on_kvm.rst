@@ -36,11 +36,24 @@ You'll need a server to try out OpenNebula. The provided host should have a fres
 If you don't have a server available with the above characteristics, we recommend using a the Amazon EC2 service to obtain a VM to act as OpenNebula front-end. A tested combination is the following (by no means the only one possible):
 
 - Frankfurt region
-- Red Hat Enterprise Linux 8 (HVM), SSD Volume Type - ami-009b16df9fcaac611
-- t2.micro
+- Ubuntu Server 20.04 LTS (HVM), SSD Volume Type - ami-0767046d1677be5a0
+- t2.small
+- 40 GB hard disk (you need to edit the Storage tab before launching the instance, by default comes with just 8GB)
 - before launching the instance, please open the ports defined above by editing the Security Groups as per the picture.
 
 |aws_security_groups|
+
+In order to ssh into the EC2 VM, you need to pass the correct user and PEM file (you can create one and download it prior to launching the instance). You'll then be conecting to your front-end using a comand similar to:
+
+.. prompt:: bash # auto
+
+    # ssh <FE-PublicIP> -l ubuntu -i <PATH-TO-PEM-FILE>
+
+We recommend updating the system:
+
+.. prompt:: bash # auto
+
+    # sudo apt update && sudo apt upgrade
 
 .. |aws_security_groups| image:: /images/aws_security_groups.png
 
@@ -78,7 +91,7 @@ Run the following command under the privileged user **root** to get ready the al
 
 .. prompt:: bash # auto
 
-    # bash minione --frontend
+    # sudo bash minione --frontend --vnet-gateway <FE-PublicIP>
 
 Be patient, it should take only a few minutes to get the host prepared. Main deployment steps are logged on the terminal and at the end of a successful deployment, the miniONE tool provides a report with connection parameters and initial credentials. For example:
 
