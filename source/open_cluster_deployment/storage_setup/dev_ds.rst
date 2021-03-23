@@ -107,4 +107,4 @@ If you are using the CLI shorthand parameters define the image using source:
 
     $ oneimage create -d 101 --name nbd --source /dev/sdc --driver raw --prefix vd --persistent --type OS --size 0MB
 
-.. note:: As this Datastore is just a container for existing devices, images doesn't take any size from it. All devices registered will render size of ``0`` and the overall devices Datastore will show up with 1MB of available space
+.. note:: As this Datastore is just a container for existing devices, images doesn't take any size from it. All devices registered will render size of 0 and the overall devices Datastore will show up with 1MB of available space
