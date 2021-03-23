@@ -46,7 +46,7 @@ You need a physical or virtual host with a recommended operating system, one of 
 Architecture
 ================================================================================
 
-Complete OpenNebula Front-end with all services and their dependencies is running within the supported container runtimes from the official container image (``opennebula``), the services and other required processes are confined inside the container(s). The inner container startup and lifecycle is controlled by the :ref:`bootstrap process <container_bootstrap>`, which can be customized and adjusted for user needs via the :ref:`image parameters <reference_params>`. Container(s) communicate with each other over the private container network. End-users interact with services running inside only via a limited set of :ref:`exposed IP ports <reference_ports>`.
+Complete OpenNebula Front-end with all services and their dependencies is running within the supported container runtimes from the official container image (``opennebula``), the services and other required processes are confined inside the container(s). The inner container startup and lifecycle is controlled by the :ref:`bootstrap process <container_bootstrap>`, which can be customized and adjusted for user needs via the :ref:`image parameters <container_reference_params>`. Container(s) communicate with each other over the private container network. End-users interact with services running inside only via a limited set of :ref:`exposed IP ports <container_reference_ports>`.
 
 Following OpenNebula Front-end containerized deployment types are supported no matter the container runtime:
 
@@ -86,7 +86,13 @@ Step 1. Install Container Runtime
 
 .. important::
 
-    SELinux can block some operations of the container runtime. If the administrator isn't experienced in SELinux tuning, **it's recommended to disable this functionality to avoid unexpected failures**. You can enable SELinux anytime later when you have the installation working. How to do both is described in the :ref:`SELinux Appendix <appendix_selinux>`.
+    SELinux can block some operations initiated by the OpenNebula Front-end, which results in a failure of the particular operation.  It's **not recommended to disable** the SELinux on production environments, as it degrades the security of your server, but to investigate and workaround each individual problem based on the `SELinux User's and Administrator's Guide <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/>`__. The administrator might disable the SELinux to temporarily workaround the problem or on non-production deployments by changing following line in ``/etc/selinux/config``:
+
+    .. code-block:: bash
+
+        SELINUX=disabled
+
+    After the change, you have to reboot the machine.
 
 Docker (recommended)
 --------------------
@@ -362,8 +368,8 @@ B. Configure Deployment
 
 It's **highly recommended NOT to modify** any of the provided files in the deployment (compose project) directory, which comes from the deployment archive. As new OpenNebula releases require to use of new deployment archives, such an approach would make your upgrades difficult. Create a new dedicated configuration file ``.env`` (which is loaded on deployment start) and **put inside all own customizations** with
 
-- :ref:`image parameters <reference_params>` (to override those in ``default.env``),
-- :ref:`deployment parameters <reference_deploy_params>` (to override those in ``docker-compose.yml``).
+- :ref:`image parameters <container_reference_params>` (to override those in ``default.env``),
+- :ref:`deployment parameters <container_reference_deploy_params>` (to override those in ``docker-compose.yml``).
 
 **Every deployment needs some minimal configuration, set the passwords and IP addresses.**
 
@@ -394,7 +400,7 @@ where is
 - ``OPENNEBULA_SSH_HOST`` - hostname/IP to connect to the integrated SSH server, used by hypervisor Nodes (defaults to ``OPENNEBULA_HOST``)
 - ``ONEADMIN_PASSWORD`` - **initial (only)** password for OpenNebula user ``oneadmin``
 
-See more image configuration options in :ref:`reference <reference_params>`.
+See more image configuration options in :ref:`reference <container_reference_params>`.
 
 Set Deployment Parameters
 #########################
@@ -471,7 +477,7 @@ When needed, stop the deployment by command:
 
     # docker-compose down
 
-The default settings ensure the individual deployment containers are **automatically restarted** on their failure. The complete deployment is automatically started on server boot with Docker, but on Podman the :ref:`extra steps <appendix_podman>` must be taken.
+The default settings ensure the individual deployment containers are **automatically restarted** on their failure. The complete deployment is automatically started on server boot with Docker, but on Podman the :ref:`extra steps <container_troubleshooting_podman>` must be taken.
 
 .. _container_deploy_single:
 

@@ -4,200 +4,375 @@
 Troubleshooting and Reference
 ================================================================================
 
-This page contains complementary information to :ref:`the official OpenNebula container image and its deployment <container_deployment>`.
+This page contains complementary information to the :ref:`containerized deployment <container_deployment>` of the OpenNebula Front-end. It provides hints on how to :ref:`troubleshoot <container_troubleshooting>` the problems with description of common problems, :ref:`tutorials <container_guides>` on how to control services in the containers or configure CLI, and :ref:`reference <container_references>` tables of all network services, image parameters, or volumes.
 
-:ref:`The reference section <container_reference>` below is the definitive guide to the container image internals, parameters and usage.
-
-.. _troubleshooting:
+.. _container_troubleshooting:
 
 Troubleshooting
-================================================================================
+===============
 
-Container output
-----------------
-
-First place to look for problems should be the standard output of the containers:
-
-.. prompt:: bash $ auto
-
-    $ docker logs -f opennebula
-
-docker-compose
-^^^^^^^^^^^^^^
+Container Logs
+--------------
 
 .. note::
 
     Beware that ``podman-compose`` may miss some of the mentioned functionality in this section.
 
-Realtime tailing of all the service output messages:
+First place to look for problems should be (log of) the standard output of the containers.
 
-.. prompt:: bash $ auto
+**docker**
 
-    $ docker-compose logs -f
+.. prompt:: bash # auto
 
-or checking only one container we are interested in (``opennebula-oned``):
+    # docker logs -f opennebula
 
-.. prompt:: bash $ auto
+**docker-compose**
 
-    $ docker-compose logs -f opennebula-oned
+Real-time tailing of all the service output messages:
 
-Logs and inside view
---------------------
+.. prompt:: bash # auto
 
-The most helpful debugging tool is to investigate the container from within:
+    # docker-compose logs -f
 
-.. prompt:: bash $ auto
+or, checking only one container you are interested in (e.g., ``opennebula-oned``):
 
-    $ docker exec -it opennebula /bin/bash
+.. prompt:: bash # auto
 
-This of course works with the docker-compose too - you just must use the proper name (or digest):
+    # docker-compose logs -f opennebula-oned
 
-.. prompt:: bash $ auto
+Service Logs
+------------
 
-    $ docker exec -it opennebula_opennebula-oned_1 /bin/bash
+The most helpful debugging approach is to investigate the container inside. First, get into the particular container. E.g.:
 
-Logs
-^^^^
+.. prompt:: bash # auto
 
-All the log files are located in ``/var/log`` as one would expect. Although there are two the most significant places where to look for information:
+    # docker exec -it opennebula /bin/bash
 
-* ``/var/log/one/``
-* ``/var/log/supervisor/services/``
+This works also with the multi-container deployment too, you just need to use the proper name (or, container ID). E.g.:
 
-One could do the following to not miss anything important while debugging an issue (inside the container):
+.. prompt:: bash # auto
 
-.. prompt:: bash $ auto
+    # docker exec -it opennebula_opennebula-oned_1 /bin/bash
 
-    $ tail -f /var/log/one/* /var/log/supervisor/services/*
+**Logs**
 
-Miscellaneous
--------------
+All the log files are located in ``/var/log`` on following significant places:
 
-Sunstone login is failing
-^^^^^^^^^^^^^^^^^^^^^^^^^
+- ``/var/log/one/``
+- ``/var/log/supervisor/services/``
 
-Sometimes can happen that login into Sunstone will fail even when the deployment seems to be correct. There will be no visible message on the webpage nor any helpful error in the logs.
+Failed to Login into Sunstone
+-----------------------------
 
-This can happen when we already **did** successfully login some other time before and **a cookie** was created. It happens quite regulerly while switching the deployment between HTTP and HTTPS.
+If you already used Sunstone over HTTPS and decide to change to HTTP-only later (or vice versa), you might experience issues to login into Sunstone without any visible error message. To fix the problem, drop the browser cookies for the Sunstone URL and try again.
 
-Simple fix is to just delete the cookie in the browser and try to login again.
+Container Name Already in Use
+-----------------------------
 
-Container refuses to start
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sometimes a similar error message can pop up:
+You might experience a similar error:
 
 .. code::
 
-    docker: Error response from daemon: Conflict. The container name "/opennebula" is already in use by container "93c5ebf71aa39eb66d5df0c1962d024456ddff6435c030d694aec78c6989bbc6". You have to remove (or rename) that container to be able to reuse that name.
+    docker: Error response from daemon: Conflict. The container name "/opennebula" is already in use by container
+    "93c5ebf71aa39eb66d5df0c1962d024456ddff6435c030d694aec78c6989bbc6". You have to remove (or rename) that
+    container to be able to reuse that name.
     See 'docker run --help'.
 
-The message is actually clear about what is the problem.
+In this case, user is trying to start a **new** container with the same name as the container which was already created. This happens usually when the previous container is stopped (``docker stop opennebula``) or crashes, but user is trying to *start* it again but with the ``docker run`` command (instead of ``docker start``).
 
-User is trying to start a **new** container with the same name as the other container which was already created.
+Depending on your intentions, you can *start* the existing container again:
 
-This happens a lot when container is stopped:
+.. prompt:: bash # auto
+
+    # docker start opennebula
+
+or, delete existing and start a new one:
+
+.. prompt:: bash # auto
+
+    # docker rm opennebula
+    # docker run ... --name opennebula opennebula:5.13
+
+.. _container_troubleshooting_podman:
+
+Starting Containers on Boot with Podman
+---------------------------------------
+
+Containers won't start on server boot with Podman and Podman Compose, even if the containers are configured with a restart policy (``--restart``). You need to implement the containers start via your init system, e.g. ``systemd``. Read more in the `Porting containers to systemd using <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/building_running_and_managing_containers/porting-containers-to-systemd-using-podman_building-running-and-managing-containers>`__ chapter of the *Building, running, and managing container* guide.
+
+.. _container_guides:
+
+Guides
+======
+
+This section containes various guides and tutorials.
+
+.. _container_cli:
+
+CLI Configuration
+-----------------
+
+You can access the OpenNebula Front-end services remotely over the API provided by each service. You need to install the :ref:`Command Line Tools <cli>`, configure credentials and connection endpoints.
+
+**Credentials**
+
+Create a file ``$HOME/.one/one_auth`` and put inside credentials of the OpenNebula user you'll connect with (you can use ``oneadmin``, or any other OpenNebula user you have already created). The syntax of the file is ``username:password``. For example:
+
+.. code::
+
+    oneadmin:changeme123
+
+**Endpoints**
+
+Next step is to setup the environmental variables with the API endpoints.
+
+.. note::
+
+    In the following examples, replace the ``${OPENNEBULA_HOST}`` with the actual domain name or IP address.
+
+For TLS-secured OpenNebula Front-end deployment, use:
 
 .. prompt:: bash $ auto
 
-    $ docker stop opennebula
+    $ export ONE_XMLRPC="https://${OPENNEBULA_HOST}:2633"
+    $ export ONEFLOW_URL="https://${OPENNEBULA_HOST}:2474"
 
-And user is trying to *start* it again but with the ``docker run`` command.
-
-Depending on what is the goal you can either delete the previous container:
-
-.. prompt:: bash $ auto
-
-    $ docker rm opennebula
-
-and run the new with presumably changed arguments (volumes, variables, ports etc.):
+For insecure OpenNebula Front-end deployment, use:
 
 .. prompt:: bash $ auto
 
-    $ docker run ... --name opennebula opennebula:5.13
+    $ export ONE_XMLRPC="http://${OPENNEBULA_HOST}:2633"
+    $ export ONEFLOW_URL="http://${OPENNEBULA_HOST}:2474"
 
-or if you don't need to modify the container at all - just start it again:
+.. warning::
+
+    If you are using the default untrusted (self-signed) TLS certificates, you might need disable TLS verification by
+
+    .. prompt:: bash $ auto
+
+        $ export ONE_DISABLE_SSL_VERIFY=yes
+
+.. _container_supervisord:
+
+Supervisor
+----------
+
+`Supervisor <http://supervisord.org/>`_ is a process manager used inside the OpenNebula Front-end container image as a manager of services. Once :ref:`the bootstrap script <container_bootstrap>` is done with the setup of the container, Supervisor takes control over the container. It has a responsibility for the lifetime of (almost) all the processes inside the running container.
+
+This is a quick introduction to using Supervisor.
+
+.. note::
+
+    We expect the user to know how to list running containers and has a basic knowledge of the Docker CLI. Otherwise, check the :ref:`container basics <container_basics>`.
+
+Enter the running container:
+
+.. prompt:: bash # auto
+
+    # docker exec -it opennebula /bin/bash
+
+The ``supervisorctl`` CLI tool is the interface to control the Supervisor daemon (``supervisord``):
+
+.. important::
+
+    Supervisor daemon starts only after the successful bootstrap, until then the ``supervisorctl`` might fail this way:
+
+    .. code::
+
+        [root@bdd24a7d817c /]# supervisorctl status
+        unix:///run/supervisor.sock no such file
+
+Get the available commands for supervisor CLI:
+
+.. prompt:: bash # auto
+
+    # supervisorctl help
+
+    default commands (type help <topic>):
+    =====================================
+    add    exit      open  reload  restart   start   tail
+    avail  fg        pid   remove  shutdown  status  update
+    clear  maintail  quit  reread  signal    stop    version
+
+Get status information about configured services inside the container, e.g.:
+
+.. prompt:: bash # auto
+
+    # supervisorctl status
+    containerd                       RUNNING   pid 1012, uptime 0:01:03
+    crond                            RUNNING   pid 1013, uptime 0:01:03
+    docker                           RUNNING   pid 1022, uptime 0:01:03
+    memcached                        RUNNING   pid 1014, uptime 0:01:03
+    mysqld                           RUNNING   pid 1015, uptime 0:01:03
+    mysqld-configure                 RUNNING   pid 1755, uptime 0:00:55
+    mysqld-upgrade                   RUNNING   pid 1682, uptime 0:01:01
+    oneprovision-sshd                RUNNING   pid 1016, uptime 0:01:03
+    opennebula                       RUNNING   pid 1033, uptime 0:01:03
+    opennebula-fireedge              RUNNING   pid 1036, uptime 0:01:03
+    opennebula-flow                  RUNNING   pid 1039, uptime 0:01:03
+    opennebula-gate                  RUNNING   pid 1049, uptime 0:01:03
+    opennebula-guacd                 RUNNING   pid 1055, uptime 0:01:03
+    opennebula-hem                   RUNNING   pid 1063, uptime 0:01:03
+    opennebula-httpd                 RUNNING   pid 1067, uptime 0:01:03
+    opennebula-novnc                 RUNNING   pid 1072, uptime 0:01:03
+    opennebula-scheduler             RUNNING   pid 1077, uptime 0:01:03
+    opennebula-showback              RUNNING   pid 1082, uptime 0:01:03
+    opennebula-ssh-add               RUNNING   pid 1662, uptime 0:01:01
+    opennebula-ssh-agent             RUNNING   pid 1497, uptime 0:01:02
+    opennebula-ssh-socks-cleaner     RUNNING   pid 1029, uptime 0:01:03
+    sshd                             RUNNING   pid 1019, uptime 0:01:03
+    stunnel                          RUNNING   pid 1020, uptime 0:01:03
+
+Show status of particular service, e.g.:
+
+.. prompt:: bash # auto
+
+    # supervisorctl status opennebula-httpd
+    opennebula-httpd                 RUNNING   pid 1067, uptime 0:01:03
+
+Stopping, starting and restarting of particular service is pretty intuitive. E.g.:
 
 .. prompt:: bash $ auto
 
-    $ docker start opennebula
+    $ supervisorctl stop    opennebula-httpd
+    $ supervisorctl start   opennebula-httpd
+    $ supervisorctl restart opennebula-httpd
 
-Managing terminated containers
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _container_basics:
 
-If the container is stopped or terminated (e.g. crashed) then the container's filesystem state will still be stored on the disc.
+Container Operations Basics
+---------------------------
 
-If the user is not naming the containers with the ``--name`` argument - these containers will not clash (as error message above) and their number will build up over time.
+This section shows examples of the most operations with the container runtime.
 
-This is the command to list them all:
+.. note::
 
-.. prompt:: bash $ auto
+    See :ref:`Get Container Image <container_image>` guide to get the OpenNebula Front-end image.
 
-    $ docker ps -a
+List the local container images:
 
-Now you can pick the one you wish to not have anymore and delete them:
+.. prompt:: bash # auto
 
-.. prompt:: bash $ auto
+   # docker images
+   REPOSITORY          TAG                      IMAGE ID            CREATED             SIZE
+   opennebula          5.13                     039a43d7b277        7 hours ago         2.05GB
+   centos              8                        300e315adb2f        6 weeks ago         209MB
 
-    $ docker rm opennebula
+Add custom tag to the pulled OpenNebula image:
 
-You could also trigger the automatic deletion on the container termination with the ``--rm`` argument.
+.. prompt:: bash # auto
 
-.. _reference:
+    # docker tag opennebula/opennebula:5.13 opennebula:custom
 
-Reference
-================================================================================
+Delete the local image based by name and tag:
 
+.. prompt:: bash # auto
 
-.. _reference_ports:
+    # docker image rm opennebula/opennebula:5.13
 
-Exposed ports
+Delete the local image based by a digest:
+
+.. prompt:: bash # auto
+
+    $ docker image rm 039a43d7b277
+
+Remove all dangling (unnamed) images taking storage place:
+
+.. prompt:: bash # auto
+
+    # docker image prune
+
+List all currently **running** containers:
+
+.. prompt:: bash # auto
+
+    # docker ps
+
+List all **created** containers (including running and stopped):
+
+.. prompt:: bash # auto
+
+    # docker ps -a
+
+Start a container and store its ID into env. variable ``CONTAINER``:
+
+.. prompt:: bash # auto
+
+    # CONTAINER=$(docker run -d nginx)
+
+Stop running container:
+
+.. prompt:: bash # auto
+
+    # docker stop ${CONTAINER}
+
+Kill misbehaving container:
+
+.. prompt:: bash # auto
+
+    # docker kill ${CONTAINER}
+
+Remove the container:
+
+.. prompt:: bash # auto
+
+    # docker rm ${CONTAINER}
+
+.. _container_references:
+
+References
+==========
+
+.. _container_reference_ports:
+
+Network Ports
 -------------
 
-Internal ports which are designed to be exposed to the host or overlay network.
+Internal container network (TCP/UDP) ports, which are expected to be exposed to the public:
 
 +-----------+----------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
 | Port      | Protocol | Service [*]_           |                     Description                                                                                       |
 +===========+==========+========================+=======================================================================================================================+
-| ``22``    | TCP      | ``sshd``               | SSH access to OpenNebula Front-end.                                                                                   |
+| ``22``    | TCP      | ``sshd``               | Integrated SSH Server                                                                                                 |
 +-----------+----------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| ``80``    | TCP      | ``sunstone``           | Sunstone server (HTTP) - automatically redirected to HTTPS (if HTTPS is enabled: ``SUNSTONE_HTTPS_ENABLED=yes``)      |
+| ``80``    | TCP      | ``sunstone``           | Sunstone server (HTTP) - automatically redirected to HTTPS (if ``SUNSTONE_HTTPS_ENABLED=yes``)                        |
 +-----------+----------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| ``443``   | TCP      | ``sunstone``           | Sunstone server (HTTPS) - can be disabled.                                                                            |
+| ``443``   | TCP      | ``sunstone``           | Sunstone server (HTTPS) - can be disabled                                                                             |
 +-----------+----------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| ``2474``  | TCP      | ``oneflow``            | OneFlow server.                                                                                                       |
+| ``2474``  | TCP      | ``oneflow``            | OneFlow server                                                                                                        |
 +-----------+----------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| ``2475``  | TCP      | ``oneflow``            | OneFlow server over HTTPS (if TLS proxy enabled: ``TLS_PROXY_ENABLED=yes``).                                          |
+| ``2475``  | TCP      | ``oneflow``            | OneFlow server over HTTPS (if enabled ``TLS_PROXY_ENABLED=yes``)                                                      |
 +-----------+----------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| ``2633``  | TCP      | ``oned``               | OpenNebula daemon, main XML-RPC API endpoint.                                                                         |
+| ``2633``  | TCP      | ``oned``               | OpenNebula Daemon, main XML-RPC API endpoint                                                                          |
 +-----------+----------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| ``2634``  | TCP      | ``oned``               | OpenNebula daemon over HTTPS (if TLS proxy enabled: ``TLS_PROXY_ENABLED=yes``), main XML-RPC API endpoint.            |
+| ``2634``  | TCP      | ``oned``               | OpenNebula Daemon over HTTPS (if enabled  ``TLS_PROXY_ENABLED=yes``)                                                  |
 +-----------+----------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| ``4124``  | TCP      | ``oned``               | Monitord server, collector of the monitoring messages from the nodes.                                                 |
+| ``4124``  | TCP      | ``oned``               | Monitord server, collector of the monitoring messages from the nodes                                                  |
 +-----------+----------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| ``4124``  | UDP      | ``oned``               | Monitord server, UDP access.                                                                                          |
+| ``4124``  | UDP      | ``oned``               | Monitord server over UDP                                                                                              |
 +-----------+----------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| ``5030``  | TCP      | ``onegate``            | OneGate server.                                                                                                       |
+| ``5030``  | TCP      | ``onegate``            | OneGate server                                                                                                        |
 +-----------+----------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| ``5031``  | TCP      | ``onegate``            | OneGate server over HTTPS (if TLS proxy enabled: ``TLS_PROXY_ENABLED=yes``).                                          |
+| ``5031``  | TCP      | ``onegate``            | OneGate server over HTTPS (if enabled ``TLS_PROXY_ENABLED=yes``)                                                      |
 +-----------+----------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| ``29876`` | TCP      | ``sunstone``           | VNC proxy port, used for translating and redirecting VNC connections to the hypervisors.                              |
+| ``29876`` | TCP      | ``sunstone``           | noVNC proxy port, used for translating and redirecting VNC connections to the hypervisors.                            |
 +-----------+----------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
 
 .. [*] Service as in the value of ``OPENNEBULA_SERVICE``
 
 .. important::
 
-    It is important to distinguish the difference between the internal port (as in the table) and external (published) ports - majority of the internal ports are hardwired and cannot be moved to another port number (exceptions are in the next info box).
+    It is important to distinguish between the **container internal** port (as in the table) and **external** (published) ports - the majority of the internal ports are hardwired and cannot be moved to another port number.
 
-    If one wants to avoid port conflicts with the already bound ports on the host then change to the external (published) port is needed. In a few cases the container itself also must be informed about the changes and a relevant image parameter thus must reflect the same value.
+    If one wants to avoid port conflicts with the already bound ports on the host then change to the external (published) port is needed. In a few cases, the container itself also must be informed about the changes and a relevant image parameter thus must reflect the same value.
 
-.. note::
+The following table demonstrates how to utilize different ports for different services via arguments of ``docker run`` command. Notice that in the case of **monitord** and **Sunstone VNC** both sides of expression must be modified not just the left (published) portion.
 
-    The following table showcases how to utilize different ports for different services. Notice that in the case of **monitord** and **Sunstone VNC** both sides of expression must be modified not just the left (published) portion.
+.. TODO - Drop table below:
 
 +------------------------+------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
-| Port mapping examples  | Affected Parameter |_| / |_| Service           |                     Note                                                                                                                  |
+| Port Mapping Examples  | Affected Parameter |_| / |_| Service           |                     Note                                                                                                                  |
 +========================+================================================+===========================================================================================================================================+
 | ``-p 2222:22``         |                                                | Change to the SSH port has consequences which are described in :ref:`the SSH service prerequisite <container_ssh>`.                       |
 +------------------------+------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
@@ -205,11 +380,11 @@ Internal ports which are designed to be exposed to the host or overlay network.
 +------------------------+------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 | ``-p 4443:443``        | ``SUNSTONE_TLS_PORT / sunstone``               | Sunstone port (HTTPS) - ``SUNSTONE_TLS_PORT=4443``                                                                                        |
 +------------------------+------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-p 12474:2474``      |                                                | OneFlow port - no image parameter is needed to set but :ref:`OpenNebula CLI tools <appendix_opennebula_cli>` must be configured properly. |
+| ``-p 12474:2474``      |                                                | OneFlow port - no image parameter is needed to set but :ref:`OpenNebula CLI tools <container_cli>` must be configured properly.           |
 +------------------------+------------------------------------------------+                                                                                                                                           +
 | ``-p 12474:2475``      |                                                |                                                                                                                                           |
 +------------------------+------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-p 12633:2633``      |                                                | OpenNebula main API port - only the :ref:`OpenNebula CLI tools <appendix_opennebula_cli>` need to be configured.                          |
+| ``-p 12633:2633``      |                                                | OpenNebula main API port - only the :ref:`OpenNebula CLI tools <container_cli>` need to be configured.                                    |
 +------------------------+------------------------------------------------+                                                                                                                                           +
 | ``-p 12633:2634``      |                                                |                                                                                                                                           |
 +------------------------+------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
@@ -224,12 +399,12 @@ Internal ports which are designed to be exposed to the host or overlay network.
 | ``-p 30000:30000``     | ``SUNSTONE_VNC_PORT / sunstone``               | VNC port - ``SUNSTONE_VNC_PORT`` - **BEWARE that both external/internal port must be set**.                                               |
 +------------------------+------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 
-.. _reference_params:
+.. _container_reference_params:
 
-Image parameters
+Image Parameters
 ----------------
 
-Environmental variables relayed to the container which modify the bootstrap process and consequently the container's runtime.
+**Image parameters** are environment variables passed into the container, which customize the bootstrap process and consequently the container's runtime. The following table provides a detailed description of user-adjustable image parameters:
 
 +--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
 |                  Name                | Required |_| [*]_ |_|  | Default                  |                     Description                                                                                          |
@@ -346,11 +521,7 @@ Environmental variables relayed to the container which modify the bootstrap proc
 .. [*] ``MYSQL_PASSWORD`` is not required when deployed in single container (*all-in-one*).
 .. [*] ``SUNSTONE_VNC_PORT`` must also match the internal port - it is an implementation detail which will require to change both the external (published) and internal port.
 
-.. note::
-
-    The next table describes another set of image parameters but their usability is only in multi-container deployment for which OpenNebula provides proper ``docker-compose.yml`` and ``default.env``.
-
-    They are listed here only for completeness and for users determined to replace some of our containers with their own servers (custom MySQL, host dockerd etc.).
+The next table describes set of another image parameters, where usability is limited only for multi-container deployment via Docker/Podman Compose. They are listed here only for completeness, usually, **users shouldn't modify** them!
 
 +--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
 |                  Name                | Required |_| [*]_      | Default                  |                     Description |_| [*]_                                                                                 |
@@ -393,37 +564,86 @@ Environmental variables relayed to the container which modify the bootstrap proc
 .. [*] In this column the value **YES** signals that parameter is mandatory for one or more services which are determined by listing the values of ``OPENNEBULA_SERVICE``. Regardless of YES/NO - only the listed services are actually affected by the parameter (otherwise all are affected).
 .. [*] Avoid the usage of an IP address, they are dynamically assigned in most cases.
 
-.. _reference_volumes:
+.. _container_reference_deploy_params:
 
-Volumes and data
-----------------
-
-OpenNebula image has defined implicit (anonymous) volumes and so every time a container is instantiated from the image a few unnamed volumes will be created holding the container's data. This is done as a precaution to losing important runtime data in the case someone realizes too late that container is running without assigned persistent storage.
+Deployment Parameters (only multi-container)
+--------------------------------------------
 
 .. important::
 
-    Once the running container is removed (``docker rm`` or started with ``--rm``) these implicit volumes may be automatically deleted too!
+    Do not confuse deployment parameters with :ref:`image parameters <container_reference_params>`. The deployment parameters are used only with a referential :ref:`multi-container deployment <container_deploy_multi>`, values are processed only by Docker/Podman Compose tools and they are not passed into the container instances!
 
-    **ALWAYS USE NAMED VOLUMES!**
++---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
+|                  Name                 | Default                                  | Container                 |                     Description                                                                                          |
++=======================================+==========================================+===========================+==========================================================================================================================+
+| ``DEPLOY_OPENNEBULA_IMAGE_NAME``      | ``opennebula/opennebula`` **OR**         | all                       | OpenNebula image name - the actual default value will depend on the CE/EE version of the image.                          |
+|                                       | ``enterprise.opennebula.io/opennebula``  |                           |                                                                                                                          |
++---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``DEPLOY_OPENNEBULA_IMAGE_TAG``       | ``5.13``                                 | all                       | OpenNebula image tag.                                                                                                    |
++---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``DEPLOY_BIND_ADDR``                  | ``0.0.0.0``                              | all (except sshd)         | This will tell the docker-compose where to bind the published ports - perfect for a designated IP address.               |
++---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``DEPLOY_BIND_ONEGATE_ADDR``          | ``0.0.0.0``                              | ``opennebula-gate``       | As with the ``DEPLOY_BIND_ADDR`` but this time only for OneGate service.                                                 |
++---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``DEPLOY_BIND_SSH_ADDR``              | ``0.0.0.0``                              | ``opennebula-sshd``       | As with the ``DEPLOY_BIND_ADDR`` but this time only for SSH service.                                                     |
++---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``DEPLOY_MONITORD_EXTERNAL_PORT``     | ``4124``                                 | ``opennebula-oned``       | External/published and internal port for the monitord (TCP and UDP) - it will also setup ``MONITORD_PORT``.              |
++---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``DEPLOY_ONED_INTERNAL_PORT``         | ``2634``                                 | ``opennebula-oned``       | Internal port for the main OpenNebula API (TLS).                                                                         |
++---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``DEPLOY_ONED_EXTERNAL_PORT``         | ``2633``                                 | ``opennebula-oned``       | External/published port for the main OpenNebula API.                                                                     |
++---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``DEPLOY_ONEGATE_INTERNAL_PORT``      | ``5031``                                 | ``opennebula-gate``       | Internal port for the OneGate service (TLS).                                                                             |
++---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``DEPLOY_ONEGATE_EXTERNAL_PORT``      | ``5030``                                 | ``opennebula-gate``       | External/published port for the OneGate service - it will also setup ``ONEGATE_PORT`` in ``opennebula-oned``.            |
++---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``DEPLOY_ONEFLOW_INTERNAL_PORT``      | ``2475``                                 | ``opennebula-flow``       | Internal port for the OneFlow service (TLS).                                                                             |
++---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``DEPLOY_ONEFLOW_EXTERNAL_PORT``      | ``2474``                                 | ``opennebula-flow``       | External/published port for the OneFlow service.                                                                         |
++---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``DEPLOY_RESTART_POLICY``             | ``unless-stopped``                       |  all                      | `Container restart policy <https://docs.docker.com/config/containers/start-containers-automatically/>`_.                 |
++---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``DEPLOY_SSH_EXTERNAL_PORT``          | ``22``                                   | ``opennebula-sshd``       | External/published SSH port.                                                                                             |
++---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``DEPLOY_SUNSTONE_EXTERNAL_PORT``     | ``80``                                   | ``opennebula-sunstone``   | External/published port for the Sunstone service (HTTP) - it will also setup ``SUNSTONE_PORT``.                          |
++---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``DEPLOY_SUNSTONE_EXTERNAL_TLS_PORT`` | ``443``                                  | ``opennebula-sunstone``   | External/published port for the Sunstone service (HTTPS) - it will also setup ``SUNSTONE_TLS_PORT``.                     |
++---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``DEPLOY_SUNSTONE_EXTERNAL_VNC_PORT`` | ``29876``                                | ``opennebula-sunstone``   | External/published and internal port for the Sunstone's VNC - it will also setup ``SUNSTONE_VNC_PORT``.                  |
++---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| ``DEPLOY_VOLUME_DATASTORES``          | ``opennebula_datastores``                | ``opennebula-oned`` |br|  | The value can be either a custom named volume (it must be precreated) or a path on the host - bind mount.                |
+|                                       |                                          | ``opennebula-sshd``       |                                                                                                                          |
++---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
 
-    Usage of containers tend to create a lot of implicit (anonymous) volumes - we can check them with the command:
+.. _container_reference_volumes:
 
-    .. prompt:: bash $ auto
+Volumes and Data
+----------------
 
-        $ docker volume ls
+The Front-end container defines few implicit (anonymous) volumes and every time a new container is instantiated from the image, a few unnamed volumes will be created holding the container's data. This is done as a precaution to losing important runtime data in the case someone realizes too late that the container is running without assigned persistent storage.
 
-    If we are sure that no data can be lost because we use only named volumes then periodic cleanup can be done like this:
+.. important::
 
-    .. prompt:: bash $ auto
-
-        $ docker volume prune -f
+   Always use named volumes!
 
 .. note::
 
-    In the table below are described crucial directories which are either implicit volumes, should be used as named volumes or are otherwise significant.
+    Once the running container is removed (``docker rm`` or started with ``--rm``), these implicit volumes may be automatically deleted too! Usage of containers tend to create a lot of implicit (anonymous) volumes - we can check them with the command:
+
+    .. prompt:: bash # auto
+
+        # docker volume ls
+
+    If we are sure that no data can be lost because we use only named volumes then periodic cleanup can be done like this:
+
+    .. prompt:: bash # auto
+
+        # docker volume prune -f
+
+This table describes directories in container, which are either implicit volumes, should be used as named volumes or are otherwise significant:
 
 +-------------------------------------------------+-----------------------------------------+-------------------------+------------------------------------+-----------------------------------------------------------------------------------------------------+
-| Canonical |_| volume |_| name |_| [*]_          | Directory |_| path                      | Implicit                | Used |_| by                        |  Description                                                                                        |
+| Canonical |_| Volume |_| Name |_| [*]_          | Directory |_| path                      | Implicit                | Used |_| by                        |  Description                                                                                        |
 +=================================================+=========================================+=========================+====================================+=====================================================================================================+
 |                                                 | ``/var/lib/one/backups``                | YES                     |                                    |  OpenNebula stores backup files into this location.                                                 |
 +-------------------------------------------------+-----------------------------------------+-------------------------+------------------------------------+-----------------------------------------------------------------------------------------------------+
@@ -485,467 +705,11 @@ OpenNebula image has defined implicit (anonymous) volumes and so every time a co
 |                                                 |                                         |                         | ``sunstone``                       |                                                                                                     |
 +-------------------------------------------------+-----------------------------------------+-------------------------+------------------------------------+-----------------------------------------------------------------------------------------------------+
 
-.. [*] These volume names and mountpoints are recommended to use - the very same are utilized in the referential :ref:`docker-compose deployment <container_deploy_multi>`.
+.. [*] These volume names and mountpoints are recommended to use - the very same are utilized in the referential :ref:`multi-container deployment <container_deploy_multi>`.
 
 .. note::
 
-    Locations of implicit volumes are adequate for single container deployment but in some cases they could become problematic in multi-container deployment if shared... The reason is simply due to the fact that some directories are not needed or desired to be accessible from other containers. There could also be write conflicts (logs for example).
-
-.. _reference_deploy_params:
-
-Deploy parameters for docker-compose
-------------------------------------
-
-.. important::
-
-    Do not mistake these variables with the image parameters - **these are recognized only inside the official OpenNebula's docker-compose.yml**!
-
-+---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-|                  Name                 | Default                                  | Container                 |                     Description                                                                                          |
-+=======================================+==========================================+===========================+==========================================================================================================================+
-| ``DEPLOY_OPENNEBULA_IMAGE_NAME``      | ``opennebula/opennebula`` **OR**         | all                       | OpenNebula image name - the actual default value will depend on the CE/EE version of the image.                          |
-|                                       | ``enterprise.opennebula.io/opennebula``  |                           |                                                                                                                          |
-+---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``DEPLOY_OPENNEBULA_IMAGE_TAG``       | ``5.13``                                 | all                       | OpenNebula image tag.                                                                                                    |
-+---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``DEPLOY_BIND_ADDR``                  | ``0.0.0.0``                              | all (except sshd)         | This will tell the docker-compose where to bind the published ports - perfect for a designated IP address.               |
-+---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``DEPLOY_BIND_ONEGATE_ADDR``          | ``0.0.0.0``                              | ``opennebula-gate``       | As with the ``DEPLOY_BIND_ADDR`` but this time only for OneGate service.                                                 |
-+---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``DEPLOY_BIND_SSH_ADDR``              | ``0.0.0.0``                              | ``opennebula-sshd``       | As with the ``DEPLOY_BIND_ADDR`` but this time only for SSH service.                                                     |
-+---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``DEPLOY_MONITORD_EXTERNAL_PORT``     | ``4124``                                 | ``opennebula-oned``       | External/published and internal port for the monitord (TCP and UDP) - it will also setup ``MONITORD_PORT``.              |
-+---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``DEPLOY_ONED_INTERNAL_PORT``         | ``2634``                                 | ``opennebula-oned``       | Internal port for the main OpenNebula API (TLS).                                                                         |
-+---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``DEPLOY_ONED_EXTERNAL_PORT``         | ``2633``                                 | ``opennebula-oned``       | External/published port for the main OpenNebula API.                                                                     |
-+---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``DEPLOY_ONEGATE_INTERNAL_PORT``      | ``5031``                                 | ``opennebula-gate``       | Internal port for the OneGate service (TLS).                                                                             |
-+---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``DEPLOY_ONEGATE_EXTERNAL_PORT``      | ``5030``                                 | ``opennebula-gate``       | External/published port for the OneGate service - it will also setup ``ONEGATE_PORT`` in ``opennebula-oned``.            |
-+---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``DEPLOY_ONEFLOW_INTERNAL_PORT``      | ``2475``                                 | ``opennebula-flow``       | Internal port for the OneFlow service (TLS).                                                                             |
-+---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``DEPLOY_ONEFLOW_EXTERNAL_PORT``      | ``2474``                                 | ``opennebula-flow``       | External/published port for the OneFlow service.                                                                         |
-+---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``DEPLOY_RESTART_POLICY``             | ``unless-stopped``                       |  all                      | `Container restart policy <https://docs.docker.com/config/containers/start-containers-automatically/>`_.                 |
-+---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``DEPLOY_SSH_EXTERNAL_PORT``          | ``22``                                   | ``opennebula-sshd``       | External/published SSH port.                                                                                             |
-+---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``DEPLOY_SUNSTONE_EXTERNAL_PORT``     | ``80``                                   | ``opennebula-sunstone``   | External/published port for the Sunstone service (HTTP) - it will also setup ``SUNSTONE_PORT``.                          |
-+---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``DEPLOY_SUNSTONE_EXTERNAL_TLS_PORT`` | ``443``                                  | ``opennebula-sunstone``   | External/published port for the Sunstone service (HTTPS) - it will also setup ``SUNSTONE_TLS_PORT``.                     |
-+---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``DEPLOY_SUNSTONE_EXTERNAL_VNC_PORT`` | ``29876``                                | ``opennebula-sunstone``   | External/published and internal port for the Sunstone's VNC - it will also setup ``SUNSTONE_VNC_PORT``.                  |
-+---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``DEPLOY_VOLUME_DATASTORES``          | ``opennebula_datastores``                | ``opennebula-oned`` |br|  | The value can be either a custom named volume (it must be precreated) or a path on the host - bind mount.                |
-|                                       |                                          | ``opennebula-sshd``       |                                                                                                                          |
-+---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-
-.. _reference_supervisord:
-
-Supervisor
-----------
-
-`Supervisor <http://supervisord.org/>`_ is a process manager used inside the OpenNebula Front-end container as a manager of services. Once :ref:`the bootstrap script <container_bootstrap>` is done with the setup of the container - supervisord process will take over. It has a responsibility for the lifetime of (almost) all the processes inside the running container.
-
-This section is dedicated to get familiarized with this program and how to use it when inside the container.
-
-.. note::
-
-    We will expect that the user already knows how to list running containers and has a basic knowledge of the Docker CLI - if not there is a concise :ref:`container primer <appendix_container_basics>` in the appendix.
-
-Entering the running container:
-
-.. prompt:: bash $ auto
-
-    $ docker exec -it opennebula /bin/bash
-
-The ``supervisorctl`` client tool is the interface through which we are communicating with the ``supervisord`` process (Supervisor daemon).
-
-.. important::
-
-    Supervisord process starts only after the bootstrap is finished and therefore until that happens the supervisorctl client will give similar output to this:
-
-    .. code::
-
-        [root@bdd24a7d817c /]# supervisorctl status
-        unix:///run/supervisor.sock no such file
-
-To get the usage:
-
-.. prompt:: bash $ auto
-
-    $ supervisorctl help
-
-The output can look like this:
-
-.. code::
-
-    default commands (type help <topic>):
-    =====================================
-    add    exit      open  reload  restart   start   tail
-    avail  fg        pid   remove  shutdown  status  update
-    clear  maintail  quit  reread  signal    stop    version
-
-Getting the status info about all configured services inside the container:
-
-.. prompt:: bash $ auto
-
-    $ supervisorctl status
-
-Sample output (single container *all-in-one* deployment):
-
-.. code::
-
-    containerd                       RUNNING   pid 1012, uptime 0:01:03
-    crond                            RUNNING   pid 1013, uptime 0:01:03
-    docker                           RUNNING   pid 1022, uptime 0:01:03
-    memcached                        RUNNING   pid 1014, uptime 0:01:03
-    mysqld                           RUNNING   pid 1015, uptime 0:01:03
-    mysqld-configure                 RUNNING   pid 1755, uptime 0:00:55
-    mysqld-upgrade                   RUNNING   pid 1682, uptime 0:01:01
-    oneprovision-sshd                RUNNING   pid 1016, uptime 0:01:03
-    opennebula                       RUNNING   pid 1033, uptime 0:01:03
-    opennebula-fireedge              RUNNING   pid 1036, uptime 0:01:03
-    opennebula-flow                  RUNNING   pid 1039, uptime 0:01:03
-    opennebula-gate                  RUNNING   pid 1049, uptime 0:01:03
-    opennebula-guacd                 RUNNING   pid 1055, uptime 0:01:03
-    opennebula-hem                   RUNNING   pid 1063, uptime 0:01:03
-    opennebula-httpd                 RUNNING   pid 1067, uptime 0:01:03
-    opennebula-novnc                 RUNNING   pid 1072, uptime 0:01:03
-    opennebula-scheduler             RUNNING   pid 1077, uptime 0:01:03
-    opennebula-showback              RUNNING   pid 1082, uptime 0:01:03
-    opennebula-ssh-add               RUNNING   pid 1662, uptime 0:01:01
-    opennebula-ssh-agent             RUNNING   pid 1497, uptime 0:01:02
-    opennebula-ssh-socks-cleaner     RUNNING   pid 1029, uptime 0:01:03
-    sshd                             RUNNING   pid 1019, uptime 0:01:03
-    stunnel                          RUNNING   pid 1020, uptime 0:01:03
-
-Status of only one specific service:
-
-.. prompt:: bash $ auto
-
-    $ supervisorctl status opennebula-httpd
-
-Stopping, starting and restarting is done as expected:
-
-
-.. prompt:: bash $ auto
-
-    $ supervisorctl stop opennebula-httpd
-    $ supervisorctl start opennebula-httpd
-    $ supervisorctl restart opennebula-httpd
-
-There are a few ways how to add/remove a service to/from Supervisor - here is described the cleanest.
-
-Removing the service - stop the service and remove it by supervisorctl:
-
-.. code::
-
-    [root@d3a9560266a2 /]# supervisorctl status crond
-    crond                            RUNNING   pid 1013, uptime 0:10:41
-    [root@d3a9560266a2 /]# supervisorctl stop crond
-    crond: stopped
-    [root@d3a9560266a2 /]# supervisorctl remove crond
-    crond: removed process group
-    [root@d3a9560266a2 /]# supervisorctl status crond
-    crond: ERROR (no such process)
-
-Adding the service - the *ini* file must be already created:
-
-.. code::
-
-    [root@d3a9560266a2 /]# ls -l /etc/supervisord.d/crond.ini
-    -rw-r--r-- 1 root root 174 Jan 26 11:16 /etc/supervisord.d/crond.ini
-    [root@d3a9560266a2 /]# supervisorctl add crond
-    crond: added process group
-    [root@d3a9560266a2 /]# supervisorctl status crond
-    crond                            RUNNING   pid 8127, uptime 0:00:06
-
-.. note::
-
-    All enabled services are represented as **ini** files inside the directory ``/etc/supervisord.d/`` - if you wish to modify some service you can edit the files and update the Supervisor:
-
-        $ supervisorctl update
-
-.. important::
-
-    Using the facility of the maintenance mode (parameter ``MAINTENANCE_MODE``) will prevent all services from starting (they will have ``autostart`` option set to ``false``).
-
-.. _container_appendix:
-
-Appendix
-================================================================================
-
-.. _appendix_glossary:
-
-Glossary
---------
-
-Container image
-^^^^^^^^^^^^^^^
-
-The container image is stored in a registry (explained in the next section) and it is just a plain tar archive with some metadata in the form of json files and with another tar archives inside. These inner archives represent so called layers which are basically snapshots of the data containing binaries, config files etc. The whole structure of the image is described in a source file named `Dockerfile <https://docs.docker.com/engine/reference/builder/>`_.
-
-After the image is build (based on the instructions in the Dockerfile) and a container is instantiated from it then the image layers (including the new container layer) are layed over one another creating a seemless view of the filesystem (rootfs).
-
-The official Docker document page `Images and layers <https://docs.docker.com/storage/storagedriver/#images-and-layers>`_ explains this topic in depth.
-
-Docker registry
-^^^^^^^^^^^^^^^
-
-Container images are stored in a `registry <https://docs.docker.com/registry/introduction/>`_.
-
-There are many public container registries and it is often the case that each runtime has some own list built in. Such a list of registries and the order in which they are searched for an image is project specific. For example the go-to registry for Docker images is `the Docker Hub <https://hub.docker.com/>`_ which is prioritized in Docker but that does not need to be the case with Podman.
-
-Container image is designated with an optional URL of the registry, repository, name and a tag. One image can have multiple assigned names and tags without taking any extra space on the disk. Visit the official documentation regarding `image names <https://docs.docker.com/engine/reference/commandline/tag/#extended-description>`_.
-
-.. _appendix_opennebula_cli:
-
-OpenNebula CLI configuration
-----------------------------
-
-You can access the OpenNebula Front-end's container(s) APIs from a remote system granted `the OpenNebula CLI tools <https://docs.opennebula.io/5.13/operation/references/cli.html>`_ are installed there.
-
-Oneadmin's one_auth
-^^^^^^^^^^^^^^^^^^^
-
-Before we can start using the CLI we must prepare a ``one_auth`` file:
-
-.. prompt:: bash $ auto
-
-    $ mkdir -p ~/.one
-    $ echo "oneadmin:${ONEADMIN_PASSWORD}" > ~/.one/one_auth
-
-.. important::
-
-   Replace ``${ONEADMIN_PASSWORD}`` with the actual password - ``ONEADMIN_PASSWORD`` must of course be the same as the one used in the deployment.
-
-API endpoints
-^^^^^^^^^^^^^
-
-Next step is to setup the shell environmental variables so the CLI tools will start using the API endpoints of our container deployment.
-
-.. note::
-
-    In the following examples replace the ``${OPENNEBULA_HOST}`` with the actual domain name or IP address.
-
-Setting up the OpenNebula API endpoint exposed over HTTPS (``TLS_PROXY_ENABLED=yes``) and on the typical port ``2633``:
-
-.. prompt:: bash $ auto
-
-    $ export ONE_XMLRPC="https://${OPENNEBULA_HOST}:2633"
-
-Alternatively we could access the non-TLS endpoint (``TLS_PROXY_ENABLED=no``) over plain HTTP:
-
-.. prompt:: bash $ auto
-
-    $ export ONE_XMLRPC="http://${OPENNEBULA_HOST}:2633"
-
-And the same goes for the OneFlow API (``TLS_PROXY_ENABLED=yes``):
-
-.. prompt:: bash $ auto
-
-    $ export ONEFLOW_URL="https://${OPENNEBULA_HOST}:2474"
-
-Or over plain HTTP (``TLS_PROXY_ENABLED=no``):
-
-.. prompt:: bash $ auto
-
-    $ export ONEFLOW_URL="http://${OPENNEBULA_HOST}:2474"
-
-CLI examples
-^^^^^^^^^^^^
-
-.. prompt:: bash $ auto
-
-    $ mkdir -p ~/.one
-    $ echo "oneadmin:changeme123" > ~/.one/one_auth
-
-.. prompt:: bash $ auto
-
-    $ ONE_XMLRPC="https://192.168.1.1:2633" onehost list
-
-.. prompt:: bash $ auto
-
-    $ ONEFLOW_URL="https://192.168.1.1:2474" oneflow-template list
-
-Further details can be found in the documentation regarding `the management of the users <http://docs.opennebula.io/stable/operation/users_groups_management/manage_users.html>`_.
-
-.. _appendix_single_container_examples:
-
-Single container examples
--------------------------
-
-
-Simple test
-^^^^^^^^^^^
-
-Limited **test** deployment without Docker-in-Docker, TLS, HTTPS or volumes:
-
-.. prompt:: bash $ auto
-
-    $ docker run -d --name opennebula-test \
-    -p 8080:80 \
-    -p 2222:22 \
-    -p 29876:29876 \
-    -p 2633:2633 \
-    -p 5030:5030 \
-    -p 2474:2474 \
-    -p 4124:4124 \
-    -p 4124:4124/udp \
-    -e OPENNEBULA_HOST=${HOSTNAME} \
-    -e OPENNEBULA_SSH_HOST=${HOSTNAME} \
-    -e ONEADMIN_PASSWORD=changeme123 \
-    -e TLS_PROXY_ENABLED=no \
-    -e SUNSTONE_HTTPS_ENABLED=no \
-    -e SUNSTONE_PORT=8080 \
-    -e DIND_ENABLED=no \
-    opennebula:5.13
-
-.. note::
-
-    Notice that ``--privileged`` argument is missing and ``DIND_ENABLED`` is disabled so in the least Docker Hub marketplace will not work and maybe other functionality will be missing/failing!
-
-.. _appendix_selinux:
-
-SELinux on CentOS/RHEL
-----------------------
-
-Disable SELinux (recommended)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Change the following line in ``/etc/selinux/config`` to **disable** SELinux:
-
-.. code-block:: bash
-
-    SELINUX=disabled
-
-After the change, you have to reboot the machine.
-
-Enable SELinux
-^^^^^^^^^^^^^^
-
-Change the following line in ``/etc/selinux/config`` to **enable** SELinux in ``enforcing`` state:
-
-.. code-block:: bash
-
-    SELINUX=enforcing
-
-When changing from the ``disabled`` state, it's necessary to trigger filesystem relabel on the next boot by creating a file ``/.autorelabel``, e.g.:
-
-.. prompt:: bash $ auto
-
-    $ touch /.autorelabel
-
-After the changes, you should reboot the machine.
-
-.. note:: Follow the `SELinux User's and Administrator's Guide <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/>`__ for more information on how to configure and troubleshoot SELinux.
-
-.. _appendix_podman:
-
-Podman
-------
-
-Restart policy
-^^^^^^^^^^^^^^
-
-Please note that restart (``--restart``) will not restart containers after a system reboot. If this functionality is required in your environment, you can invoke Podman from a **systemd unit file**, or create an init script for whichever init system is in use. To generate systemd unit files, please see ``podman generate systemd``.
-
-.. _appendix_container_basics:
-
-Container basics
-----------------
-
-Logging into private registry - in this case OpenNebula enterprise registry:
-
-.. prompt:: bash $ auto
-
-    $ docker login https://docker.opennebula.io # TODO
-
-Pulling image from the private repo:
-
-.. prompt:: bash $ auto
-
-    $ docker pull https://docker.opennebula.io/opennebula:5.13 # TODO
-
-Pulling image of the community edition from the Docker Hub:
-
-.. prompt:: bash $ auto
-
-    $ docker pull opennebula/opennebula:5.13
-
-Add ``latest`` tag to the pulled image:
-
-.. prompt:: bash $ auto
-
-    $ docker tag opennebula/opennebula:5.13 opennebula:latest
-
-List the local images:
-
-.. code::
-
-   $ docker images
-   REPOSITORY          TAG                      IMAGE ID            CREATED             SIZE
-   opennebula          5.13                     039a43d7b277        7 hours ago         2.05GB
-   opennebula          latest                   039a43d7b277        7 hours ago         2.05GB
-   centos              8                        300e315adb2f        6 weeks ago         209MB
-
-Delete the name and tag:
-
-.. prompt:: bash $ auto
-
-    $ docker image rm opennebula/opennebula:5.13
-
-Delete the image with all its names and tags (by using the digest):
-
-.. prompt:: bash $ auto
-
-    $ docker image rm 039a43d7b277
-
-Remove all dangling (unnamed) images taking storage place:
-
-.. prompt:: bash $ auto
-
-    $ docker image prune
-
-List all currently **running** containers:
-
-.. prompt:: bash $ auto
-
-    $ docker ps
-
-List all **created** containers including running and stopped:
-
-.. prompt:: bash $ auto
-
-    $ docker ps -a
-
-Start a container and store its ID into variable ``CONTAINER``:
-
-.. prompt:: bash $ auto
-
-    $ CONTAINER=$(docker run -d nginx)
-
-Stop running container:
-
-.. prompt:: bash $ auto
-
-    $ docker stop ${CONTAINER}
-
-Kill misbehaving container:
-
-.. prompt:: bash $ auto
-
-    $ docker kill ${CONTAINER}
-
-Remove the container:
-
-.. prompt:: bash $ auto
-
-    $ docker rm ${CONTAINER}
-
+    Location of implicit volumes are adequate for single container deployment, but in some cases, they could become problematic in multi-container deployment if shared. The reason is simply that some directories are not needed or desired to be accessible from other containers. There could also be write conflicts (e.g., logs).
 
 .. xxxxxxxxxxxxxxxxxxxxxxxx MARK THE END OF THE CONTENT xxxxxxxxxxxxxxxxxxxxxxxx
 

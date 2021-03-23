@@ -28,7 +28,7 @@ Containerized Front-end deployment features:
 How Should I Read This Chapter
 ================================================================================
 
-Start with the :ref:`Architecture and Simple Deployment <container_deployment>` where you learn how to deploy simple containerized OpenNebula Front-end. Continue with the :ref:`Advanced Deployment Customizations <container_custom>` for a more fine-tuned deployment and description of the internal :ref:`Bootstrap Process <container_bootstrap>`. The last section :ref:`Troubleshooting and Reference <container_reference>` is a helpful guide for various deployment configurations. It starts with a few troubleshooting hints and follows up with a complete reference about all possible deployment parameters and options. There is also a collection of some miscellaneous topics and other bits of advice in the :ref:`Appendix <container_appendix>`.
+Start with the :ref:`Architecture and Simple Deployment <container_deployment>` where you learn how to deploy simple containerized OpenNebula Front-end. Continue with the :ref:`Advanced Deployment Customizations <container_custom>` for a more fine-tuned deployment and description of the internal :ref:`Bootstrap Process <container_bootstrap>`. The last section :ref:`Troubleshooting and Reference <container_reference>` is a helpful guide for various deployment configurations. It starts with a few troubleshooting hints, tutorials, and follows up with a complete reference about all deployment parameters and options.
 
 Hypervisor Compatibility
 ================================================================================

@@ -1,0 +1,92 @@
+.. _appendix_glossary:
+
+Glossary
+--------
+
+Container image
+^^^^^^^^^^^^^^^
+
+The container image is stored in a registry (explained in the next section) and it is just a plain tar archive with some metadata in the form of json files and with another tar archives inside. These inner archives represent so called layers which are basically snapshots of the data containing binaries, config files etc. The whole structure of the image is described in a source file named `Dockerfile <https://docs.docker.com/engine/reference/builder/>`_.
+
+After the image is build (based on the instructions in the Dockerfile) and a container is instantiated from it then the image layers (including the new container layer) are layed over one another creating a seemless view of the filesystem (rootfs).
+
+The official Docker document page `Images and layers <https://docs.docker.com/storage/storagedriver/#images-and-layers>`_ explains this topic in depth.
+
+Docker registry
+^^^^^^^^^^^^^^^
+
+Container images are stored in a `registry <https://docs.docker.com/registry/introduction/>`_.
+
+There are many public container registries and it is often the case that each runtime has some own list built in. Such a list of registries and the order in which they are searched for an image is project specific. For example the go-to registry for Docker images is `the Docker Hub <https://hub.docker.com/>`_ which is prioritized in Docker but that does not need to be the case with Podman.
+
+Container image is designated with an optional URL of the registry, repository, name and a tag. One image can have multiple assigned names and tags without taking any extra space on the disk. Visit the official documentation regarding `image names <https://docs.docker.com/engine/reference/commandline/tag/#extended-description>`_.
+
+.. _appendix_single_container_examples:
+
+Single container examples
+-------------------------
+
+Simple test
+^^^^^^^^^^^
+
+Limited **test** deployment without Docker-in-Docker, TLS, HTTPS or volumes:
+
+.. prompt:: bash $ auto
+
+    $ docker run -d --name opennebula-test \
+    -p 8080:80 \
+    -p 2222:22 \
+    -p 29876:29876 \
+    -p 2633:2633 \
+    -p 5030:5030 \
+    -p 2474:2474 \
+    -p 4124:4124 \
+    -p 4124:4124/udp \
+    -e OPENNEBULA_HOST=${HOSTNAME} \
+    -e OPENNEBULA_SSH_HOST=${HOSTNAME} \
+    -e ONEADMIN_PASSWORD=changeme123 \
+    -e TLS_PROXY_ENABLED=no \
+    -e SUNSTONE_HTTPS_ENABLED=no \
+    -e SUNSTONE_PORT=8080 \
+    -e DIND_ENABLED=no \
+    opennebula:5.13
+
+.. note::
+
+    Notice that ``--privileged`` argument is missing and ``DIND_ENABLED`` is disabled so in the least Docker Hub marketplace will not work and maybe other functionality will be missing/failing!
+
+.. _appendix_selinux:
+
+SELinux on CentOS/RHEL
+----------------------
+
+Disable SELinux (recommended)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Change the following line in ``/etc/selinux/config`` to **disable** SELinux:
+
+.. code-block:: bash
+
+    SELINUX=disabled
+
+After the change, you have to reboot the machine.
+
+Enable SELinux
+^^^^^^^^^^^^^^
+
+Change the following line in ``/etc/selinux/config`` to **enable** SELinux in ``enforcing`` state:
+
+.. code-block:: bash
+
+    SELINUX=enforcing
+
+When changing from the ``disabled`` state, it's necessary to trigger filesystem relabel on the next boot by creating a file ``/.autorelabel``, e.g.:
+
+.. prompt:: bash $ auto
+
+    $ touch /.autorelabel
+
+After the changes, you should reboot the machine.
+
+.. note:: Follow the `SELinux User's and Administrator's Guide <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/>`__ for more information on how to configure and troubleshoot SELinux.
+
