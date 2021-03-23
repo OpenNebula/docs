@@ -75,7 +75,7 @@ To create an Image Datastore, you need to set following (template) parameters:
 
 An example template of Datastore:
 
-.. code::
+.. code-block::
 
     $ cat rdm.conf
     NAME      = rdm_datastore
