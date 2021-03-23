@@ -4,7 +4,7 @@
 OneGate Configuration
 =====================
 
-The OneGate server allows **Virtual Machines to pull and push information from/to OpenNebula**. It can be used with all hypervisor Host types (KVM, LXC, FIrecracker, and vCenter) if the guest operating system has preinstalled the OpenNebula :ref:`contextualization package <guest_os>`. It's a dedicated daemon installed by default as part of the :ref:`Single Front-end Installation <frontend_installation>`, but can be deployed independently on a different machine. The server is distributed as an operating system package ``opennebula-gate`` with system service ``opennebula-gate``.
+The OneGate server allows **Virtual Machines to pull and push information from/to OpenNebula**. It can be used with all hypervisor Host types (KVM, LXC, Firecracker, and vCenter) if the guest operating system has preinstalled the OpenNebula :ref:`contextualization package <guest_os>`. It's a dedicated daemon installed by default as part of the :ref:`Single Front-end Installation <frontend_installation>`, but can be deployed independently on a different machine. The server is distributed as an operating system package ``opennebula-gate`` with system service ``opennebula-gate``.
 
 Read more in :ref:`OneGate Usage <onegate_usage>`.
 
