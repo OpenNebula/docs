@@ -34,9 +34,9 @@ Disk images are transferred between the Image and System datastores by the :ref:
 +===============+===================================================================+
 | Filesystem    | ``shared`` - images are exported in a shared filesystem           |
 |               +-------------------------------------------------------------------+
-|               | ``ssh`` - images are copied using the ssh protocol                |
-|               +-------------------------------------------------------------------+
 |               | ``qcow2`` - like *shared* but specialized for the qcow2 format    |
+|               +-------------------------------------------------------------------+
+|               | ``ssh`` - images are copied using the SSH protocol                |
 +---------------+-------------------------------------------------------------------+
 | Ceph          | ``ceph`` - all images are exported in Ceph pools                  |
 |               +-------------------------------------------------------------------+
