@@ -16,7 +16,7 @@ If you're feeling adventurous, go ahead and try out the following.
 .. prompt:: bash # auto
 
     # wget 'https://github.com/OpenNebula/minione/releases/latest/download/minione'
-    # sudo bash minione --frontend
+    # sudo bash minione --frontend --with-onegate=<FE-PublicIP>
 
 Otherwise, read on!
 
@@ -27,10 +27,22 @@ You'll need a server to try out OpenNebula. The provided host should have a fres
 
 - 4 GiB RAM
 - 20 GiB free space on disk
-- default installation of the operating system with the latest updates
+- public IP address (FE-PublicIP)
 - privileged user access (`root`)
 - openssh-server package installed
-- operating system: CentOS 7 or 8, Debian 9 or 10, Ubuntu 18.04 or 20.04
+- operating system: CentOS 7 or 8, Debian 9 or 10, Ubuntu 18.04 or 20.04ç
+- open ports: 22 (SSH), 80 (Sunstone), 2616 (FireEdge), 5030 (OneGate)
+
+If you don't have a server available with the above characteristics, we recommend using a the Amazon EC2 service to obtain a VM to act as OpenNebula front-end. A tested combination is the following (by no means the only one possible):
+
+- Frankfurt region
+- Red Hat Enterprise Linux 8 (HVM), SSD Volume Type - ami-009b16df9fcaac611
+- t2.micro
+- before launching the instance, please open the ports defined above by editing the Security Groups as per the picture.
+
+|aws_security_groups|
+
+.. |aws_security_groups| image:: /images/aws_security_groups.png
 
 Download
 ========

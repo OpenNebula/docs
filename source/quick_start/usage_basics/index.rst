@@ -9,4 +9,5 @@ Usage Basics
 
    Overview <overview>
    Running Applications <running_applications>
-   Elastic Application Workflows <elastic_application_workflows>
+   Running OneFlow Services <running_oneflow_services>
+   Running Kubernetes Clusters <running_kubernetes_clusters>

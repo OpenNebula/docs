@@ -252,7 +252,7 @@ There is a bug in libvirt that the prevents the use of the save/restore mechanis
 Debian 9
 --------------------------------------------------------------------------------
 
-Guacamole does not come with RDP support due to the lack of availabilituy of libfreerdp2 in Debian 9. Hence this functionality won't be present if the front-end runs in this platform.
+Guacamole does not come with RDP support due to the lack of availability of libfreerdp2 in Debian 9. Hence this functionality won't be present if the front-end runs in this platform.
 
 
 Nodes Platform Notes

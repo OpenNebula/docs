@@ -6,6 +6,8 @@ Provisioning an Edge Cluster
 
 In this section you can check all the steps needed to deploy an **Edge Cluster**. It will involve the Fireedge OneProvision GUI and Sunstone to manage the resources created in OpenNebula.
 
+.. note:: We will be creating a virtual edge cluster, meaning that we are going to emulate rather than use true virtualization. This implies a more economic way to try out OpenNebula, but has a performance penalty. If you are planning to go all the way and also try the deployment of a K8s cluster, we recommend using a metal deployment with a c5.metal instance type.
+
 Overview
 ================================================================================
 
@@ -25,46 +27,28 @@ During the provision of the cluster all these resources and their corresponding 
 * An Internet Gateway to provide Internet access to host and VMs.
 * A routing table for the previous elements.
 
-Step 1: Requirements & Configuration
+
+Step 1: Configuring AWS & Needed Information
 ================================================================================
 
-External tools
-^^^^^^^^^^^^^^
+As a first step, if you don't have one, create an account in AWS. You can follow `this guide <https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/>`__.
 
-You also need to install Ansible and Terraform, as both components are used to deploy and configure all the resources in the remote provider. You can find below the supported versions for both components:
-
-+-----------+-----------------+
-| Component | Version         |
-+===========+=================+
-| Ansible   | 2.8.x and 2.9.x |
-+-----------+-----------------+
-| Terraform | 0.14.7          |
-+-----------+-----------------+
-
-AWS account
-^^^^^^^^^^^
-
-Finally, you need to create an account in AWS, you can follow `this guide <https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/>`__.
-
-Step 2: Configuring AWS & Needed Information
-================================================================================
-
-In order to be able to interact with AWS, you need to obtain both an ``access_key`` and a ``secret_key`` of a user that has access to instances management. You can follow `this guide <https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html>`__.
+Whenever your account is ready, you need to obtain both an ``access_key`` and a ``secret_key`` of a user that has access to instances management. You can follow `this guide <https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html>`__.
 
 Then, you need to choose the region where you want to deploy the resources. All the available regions can be checked `here <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html>`__.
 
 .. warning:: To be able to connect to the instances you deploy, you will need SSH keys. They are installed on ``/var/lib/one/.ssh-oneprovision``.
 
-Step 3: Create an AWS provider
+Step 2: Create an AWS provider
 ================================================================================
 
-To deploy a complete edge provision with oneprovision from GUI, you need first a remote provider. Including the connection parameters and location where deploy those resources.
+To deploy a complete edge provision with oneprovision from GUI, you need first a remote provider. Including the connection parameters and location where deploy those resources
 
 First, to **create a provider**, go to provider list view:
 
 |image_provider_list_empty|
 
-Then, **click over plus button** and fill the form:
+Then, **click the plus button** and fill the form:
 
 |image_provider_create_step1|
 
@@ -74,7 +58,7 @@ Then, **click over plus button** and fill the form:
 
 You now have a **new provider**.
 
-Step 4: Provision a Virtual Edge Cluster
+Step 3: Provision a Virtual Edge Cluster
 ================================================================================
 
 The user needs to provide the following user inputs to create the provision:
@@ -97,7 +81,7 @@ Let's go now to **create a provision**, and follow the same steps:
 
 |image_provision_list_empty|
 
-**Select the provider** where you will deploy the provision:
+**Select the provider** where you will deploy the provision. You will only have the one defined in the previous step.
 
 |image_provision_create_step1|
 
@@ -107,7 +91,7 @@ Let's go now to **create a provision**, and follow the same steps:
 
 |image_provision_create_step4|
 
-Once form is completed, you can see it at list:
+After clicking finish, you will be able to see the provision card in the Provisions tab:
 
 |image_provision_list|
 
@@ -117,7 +101,7 @@ Let's explore **the log and detailed information**
 
 |image_provision_log|
 
-Step 5: Validation
+Step 4: Validation
 ================================================================================
 
 **Infrastructure Validation**

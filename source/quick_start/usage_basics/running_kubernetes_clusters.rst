@@ -1,22 +1,17 @@
-.. _running_applications:
+.. _running_kubernetes:
 
-====================
-Running Applications
-====================
+============================
+Running Kubernetes Clusters
+============================
 
-Now that we have the OpenNebula front-end and on cluster prepared, we can start running Virtual Machines and containers in our new cloud!
+In order to successfully launch a Kubernetes cluster we need more computing power that the one provided by the Virtual Edge Cluster deployed in "Operations Basics". If you haven't done so already, please repeat the same steps but add a "Metal" type Provision and add at least two public IPs. We are going to assume the same naming schema "aws-cluster".
 
-Virtual Machines
-----------------
+Step 1. Download the OneFlow Service from the marketplace
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-OpenNebula Systems maintains a curated set of Virtual Machines in the `public marketplace <http://marketplace.opennebula.io>`__. We are going to use the WordPress appliance to try out our brand new cloud.
+Login into Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab, and search for Kubernetes. Select the "Service Kubernetes X.XX for OneFlow - KVM" and click on the icon with the cloud and the down arrow inside (two positions to the left from the green "+").
 
-Step 1. Download the image from the marketplace
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Login into Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab, and search for WordPress. Select it and click on the icon with the cloud and the down arrow inside (two positions to the left from the green "+").
-
-|wordpress_marketplace|
+|kubernetes_marketplace|
 
 Now you need to select a datastore. For efficiency, and taking into account we are only going to run this appliaction in the OpenNeblua cluster created in "Operations Basics", select the aws-cluster-images datastore.
 
@@ -24,7 +19,7 @@ Now you need to select a datastore. For efficiency, and taking into account we a
 
 The appliance will be ready when the image in ``Storage --> Images`` gets in READY from LOCKED state.
 
-.. |wordpress_marketplace| image:: /images/wordpress_marketplace.png
+.. |kubernetes_marketplace| image:: /images/kubernetes_marketplace.png
 .. |aws_cluster_images_datastore| image:: /images/aws_cluster_images_datastore.png
 
 Step 2. Instantiate the VM

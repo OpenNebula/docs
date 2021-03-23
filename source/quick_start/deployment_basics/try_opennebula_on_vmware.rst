@@ -214,18 +214,7 @@ In the dialog that pops up, select vCenter as Type in the drop-down. You now nee
 | **Password** | Password for the above user                          |
 +--------------+------------------------------------------------------+
 
-.. image:: /images/import_host_getClusters.png
-    :align: center
-
-Select the vCenter cluster to import as OpenNebula Host and click on "Import".
-
-.. image:: /images/import_host_import.png
-    :align: center
-
-After importing you should see a message indicating that the host was successfully imported.
-
-.. image:: /images/import_host_import_success.png
-    :align: center
+Select the vCenter cluster to import as OpenNebula Host and click on "Import". After importing you should see a message indicating that the host was successfully imported.
 
 .. _import_running_vms:
 
@@ -250,12 +239,7 @@ vCenter datastores hosts VMDK files and other file types so VMs and templates ca
 
 For example, if we have a vcenter datastore called ''nfs'', when we import the vCenter datastore into OpenNebula, two OpenNebula datastores will be created as an Images datastore and as a System datastore pointing to the same vCenter datastore.
 
-First go to ``Storage --> Datastores`` , click on the "+" green icon and click on "Import".
-
-.. image:: /images/import_datastore.png
-    :align: center
-
-Select the Host (vCenter cluster) and click on "Get Datastores".
+First go to ``Storage --> Datastores`` , click on the "+" green icon and click on "Import". Select the Host (vCenter cluster) and click on "Get Datastores".
 
 .. image:: /images/import_datastore_getDatastores.png
     :align: center
@@ -267,9 +251,6 @@ Select the datastore to import and click on "Import"
 
 After importing you should see a message indicating that the datastore was successfully imported.
 
-.. image:: /images/import_datastore_import_success.png
-    :align: center
-
 .. note:: If the vCenter instance features a read only datastore, please be aware that you should disable the SYSTEM representation of the datastore after importing it to avoid OpenNebula trying to deploy VMs in it.
 
 . _import_networks:
@@ -277,19 +258,9 @@ After importing you should see a message indicating that the datastore was succe
 Step 4. Import Networks
 ---------------------------------------------------------------------------------
 
-Similarly, Port Groups, Distributed Port Groups and NSX-T / NSX-V logical switches, can also be imported using a similar ``Import`` button in ``Network --> Virtual Networks``.
-
-.. image:: /images/import_vnet.png
-    :align: center
-
-Select the Host and click on "Get Networks".
+Similarly, Port Groups, Distributed Port Groups and NSX-T / NSX-V logical switches, can also be imported using a similar ``Import`` button in ``Network --> Virtual Networks``. Select the Host and click on "Get Networks".
 
 .. image:: /images/import_vnet_getNetworks.png
-    :align: center
-
-Select the network to import and click on "Import".
-
-.. image:: /images/import_vnet_import.png
     :align: center
 
 After importing you should see a message indicating that the network was successfully imported.
@@ -333,9 +304,6 @@ Select the template to import and click on "Import".
     :align: center
 
 After importing you should see a message indicating that the template was successfully imported.
-
-.. image:: /images/import_template_import_success.png
-    :align: center
 
 .. _operations_on_templates:
 .. _vmtemplates_and_networks:
