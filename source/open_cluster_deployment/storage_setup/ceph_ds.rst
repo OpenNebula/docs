@@ -4,7 +4,7 @@
 Ceph Datastore
 ==============
 
-The Ceph Datastore driver allows to storage Images into and run Virtual Machines from the Ceph storage.
+The Ceph Datastore driver allows using of Ceph storage for Images and disks of Virtual Machines.
 
 .. warning:: This driver requires that the OpenNebula Nodes using the Ceph driver to be Ceph clients of a running Ceph cluster. More information in `Ceph documentation <https://docs.ceph.com/en/latest/>`__.
 
@@ -189,7 +189,7 @@ To use your Ceph cluster with the OpenNebula, you need to define a System and Im
 +------------------+---------------------------------------------------------+-----------+
 | Attribute        | Description                                             | Mandatory |
 +==================+=========================================================+===========+
-| ``NAME``         | The name of the datastore                               | **YES**   |
+| ``NAME``         | Name of datastore                                       | **YES**   |
 +------------------+---------------------------------------------------------+-----------+
 | ``POOL_NAME``    | The Ceph pool name                                      | **YES**   |
 +------------------+---------------------------------------------------------+-----------+
@@ -263,7 +263,7 @@ Apart from the previous attributes, that need to be the same as the associated S
 +-----------------+-------------------------------------------------------+-----------+
 | Attribute       | Description                                           | Mandatory |
 +=================+=======================================================+===========+
-| ``NAME``        | The name of the datastore                             | **YES**   |
+| ``NAME``        | Name of datastore                                     | **YES**   |
 +-----------------+-------------------------------------------------------+-----------+
 | ``DS_MAD``      | ``ceph``                                              | **YES**   |
 +-----------------+-------------------------------------------------------+-----------+

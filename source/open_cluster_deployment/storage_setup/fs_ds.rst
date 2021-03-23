@@ -114,7 +114,7 @@ SSH Transfer Mode
 
 Just make sure that there is enough space under ``/var/lib/one/datastores`` to store the disks of running VMs on that host.
 
-.. warning:: Make sure all the hosts, including the Front-end, can ssh to any other host (including themselves). Otherwise migrations will not work.
+.. warning:: Make sure all the hosts, including the Front-end, can SSH to any other host (including themselves). Otherwise migrations will not work.
 
 SSH Transfer with Image Replication Mode
 --------------------------------------------------------------------------------
