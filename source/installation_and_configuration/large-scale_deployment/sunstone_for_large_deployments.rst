@@ -426,3 +426,19 @@ If you are using `Phusion Passenger <https://www.phusionpassenger.com/>`__, take
 
 If you are using another backend than Passenger, please port these recommendations to your backend.
 
+-------------------------
+
+.. TODO - this doesn't make sense here:
+.. _serveradmin_credentials:
+.. note:: To change the serveradmin password, follow the next steps:
+
+    .. prompt:: bash # auto
+
+        #oneuser passwd 1 --sha256 <PASSWORD>
+        #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/oneflow_auth
+        #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/ec2_auth
+        #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/onegate_auth
+        #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/occi_auth
+        #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/sunstone_auth
+
+    Restart Sunstone after changing the password.

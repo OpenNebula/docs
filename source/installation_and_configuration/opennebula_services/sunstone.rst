@@ -355,7 +355,7 @@ You can retrieve useful information from ``/var/log/one/novnc.log``. **Your brow
 websockets**, and have them enabled.
 
 When using secure websockets, make sure that your certificate and key (if not included in the
-certificate) are correctly set in the :ref:`Sunstone configuration files <suns_advance_ssl_proxy>`.
+certificate) are correctly set in the :ref:`Sunstone configuration files <sunstone_setup>`.
 Note that your certificate must be valid and trusted for the wss connection to work.
 
 If you are working with a certificate that it is not accepted by the browser, you can manually add
