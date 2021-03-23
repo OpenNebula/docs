@@ -154,7 +154,12 @@ The following variables are added to OpenNebula hosts representing ESX clusters:
 Step 4: Next Steps
 --------------------------------------------------------------------------------
 
-Jump to the :ref:`Verify your Installation <vcenter_based_cloud_verification>` section in order to launch a VM or learn how to setup the :ref:`VMWare infrastructure <vmware_infrastructure_setup_overview>`.
+Now, you can continue with:
+
+- :ref:`VMware Storage Setup <vmware_storage_setup>`,
+- :ref:`VMware Networking Setup <vmware_networking_setup>`
+
+to additionally configure, extend and control your cloud.
 
 .. _vcenter_permissions_requirement:
 

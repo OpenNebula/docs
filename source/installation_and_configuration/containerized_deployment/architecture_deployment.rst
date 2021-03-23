@@ -658,7 +658,14 @@ Open the browser and go to the hostname/IP provided as part of ``OPENNEBULA_HOST
 Step 6. Add Nodes(s) (optional)
 ================================================================================
 
-When needed, continue by adding hypervisor Nodes to your working containerized OpenNebula Front-end deployment by following the :ref:`Customized Clusters Installation <node_installation>` guide, the approach is the same as for Front-end installed the traditional way.
+Now that you have successfully started your OpenNebula services, you can continue with adding content to your cloud. Add hypervisor Nodes, storage, and Virtual Networks. Or, provision Users with Groups and permissions, Images, define and run Virtual Machines.
+
+Continue with the following guides:
+
+- :ref:`Open Cluster Deployment <open_cluster_deployment>` to provision hypervisor Nodes, storage, and Virtual Networks.
+- :ref:`VMware Node Deployment <vmware_cluster_deployment>` to add VMware vCenter Nodes.
+- :ref:`Management and Operations <operations_guide>` to add Users, Groups, Images, define Virtual Machines, and a lot of more ...
+
 
 .. xxxxxxxxxxxxxxxxxxxxxxxx MARK THE END OF THE CONTENT xxxxxxxxxxxxxxxxxxxxxxxx
 
