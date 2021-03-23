@@ -13,15 +13,15 @@ The :ref:`datastores common configuration attributes <ds_op_common_attributes>` 
 
 The specific attributes for Kernels & Files Datastore are listed in the following table:
 
-+------------+-----------------------------------------------------------------------+
-| Attribute  |                              Description                              |
-+============+=======================================================================+
-| ``TYPE``   | Use ``FILE_DS`` to setup a Kernels & Files Datastore                  |
-+------------+-----------------------------------------------------------------------+
-| ``DS_MAD`` | The Datastore type (recommended value: ``fs``)                        |
-+------------+-----------------------------------------------------------------------+
-| ``TM_MAD`` | Transfer drivers (recommended value: ``ssh``)                         |
-+------------+-----------------------------------------------------------------------+
++------------+---------------------------+
+| Attribute  |  Description              |
++============+===========================+
+| ``TYPE``   | ``FILE_DS``               |
++------------+---------------------------+
+| ``DS_MAD`` | ``fs``                    |
++------------+---------------------------+
+| ``TM_MAD`` | ``ssh``                   |
++------------+---------------------------+
 
 .. note:: The recommended ``DS_MAD`` and ``TM_MAD`` are the ones stated above, but any other can be used to fits specific use cases. Regarding this, the same :ref:`configuration guidelines <ds_definition>` defined for Image and System Datastores applies for Kernels & Files Datastore.
 
