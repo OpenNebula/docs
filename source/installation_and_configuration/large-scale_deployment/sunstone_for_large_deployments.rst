@@ -1,45 +1,38 @@
 .. _suns_advance:
 
-===========================================
-Configuring Sunstone for Large Deployments
-===========================================
+==============================
+Sunstone for Large Deployments
+==============================
 
-Low to medium size enterprise clouds will typically deploy Sunstone in a single machine along with the OpenNebula daemons. However this simple deployment can be improved by:
+Low to medium size enterprise clouds will typically deploy Sunstone in a single machine with the other OpenNebula daemons as part. However, this simple deployment can be extended
 
--  Isolating access from Web clients to the Sunstone server. This can be achieved by deploying the Sunstone server in a separate machine.
--  Improve the scalability of the server for large user pools. Usually deploying Sunstone in a separate application container in one or more hosts.
+-  **Isolating access from web** clients to the Sunstone server. This can be achieved by deploying the Sunstone server in a separate machine.
+-  **Improve scalability** of the server for large user pools. Usually deploying Sunstone as a separate application in one or more hosts.
 
-Check also the :ref:`api scalability guide <one_scalability_api_tuning>`, as those tips also have an impact on Sunstone performance.
+This guide introduces various deployment options how to achieve this. Check also the :ref:`API Scalability <one_scalability_api_tuning>` guide for tips on how to improve Sunstone and OpenNebula Daemon performance.
 
-Deploying Sunstone in a Different Machine
-=========================================
+Dedicated Host for Sunstone
+===========================
 
-By default the Sunstone server is configured to run on the Front-end, but you are able to install and run the Sunstone server on a different machine.
+By default, the Sunstone server is configured to run on the :ref:`Single Front-end <frontend_installation>` alongside the other OpenNebula components. You can also install and run the Sunstone server on a different dedicated machine.
 
--  You will need to install only the Sunstone server packages in the machine that will be running the server.
+- Install only the Sunstone server package in the machine that will be running the server.
 
--  Make sure the ``:one_xmlprc:`` variable in ``sunstone-server.conf`` points to the place where OpenNebula Front-end is running (e.g.: ``http://opennebula-oned:2633/RPC2``). You can also leave it undefined and export the ``ONE_XMLRPC`` environment variable.
+- Ensure the ``:one_xmlprc:`` option in :ref:`/etc/one/sunstone-server.conf <sunstone_conf>` points to the endpoint where OpenNebula Daemon is running (e.g., ``http://opennebula-oned:2633/RPC2``). You can also leave it undefined and export the ``ONE_XMLRPC`` environment variable.
 
--  Similarly you must set ``:subscriber_endpoint:`` for the connections to OpenNebula's ZeroMQ which will be running next to the oned service and Hook Manager. The value can look like the following: ``tcp://opennebula-oned:2101``. (The connection info can be found under ``HM_MAD/ARGUMENTS`` in ``/etc/one/oned.conf``.)
+- *(Optional)* On host running OpenNebula Daemon, enable ZeroMQ to listen on non-localhost address. In :ref:`/etc/one/oned.conf <oned_conf>` in ``HM_MAD/ARGUMENTS`` replace ``-p 127.0.0.1 -l 127.0.0.1`` with your IP address accessible by Sunstone from a different machine (e.g., ``-p 192.168.0.1 -l 192.168.0.1``). Update the endpoints accordingly in ``/etc/one/onehem-server.conf`` in paramters ``:subscriber_endpoint`` and ``:replier_endpoint``. **IMPORTANT**: This endpoint is not secured and should be available only through private IPs (unreachable from outside), set the IP carefully, **never set wildcard address** ``0.0.0.0``! Sensitive information from the OpenNebula might leak!!!
 
--  Provide the serveradmin credentials in the file ``/var/lib/one/.one/sunstone_auth``. If you changed the serveradmin password please check the :ref:`Cloud Servers Authentication guide <cloud_auth>`.
+- *(Optional)* In Sunstone configuration set ``:subscriber_endpoint`` for the connections to OpenNebula ZeroMQ endpoint above.
 
-.. code::
+- *(Optional)* In Sunstone configuration set FireEdge endpoints ``:public_fireedge_endpoint`` and ``:private_fireedge_endpoint``.
 
-    $ cat /var/lib/one/.one/sunstone_auth
-    serveradmin:1612b78a4843647a4b541346f678f9e1b43bbcf9
+- Provide the ``serveradmin`` and ``oneadmin`` credentials in the ``/var/lib/one/.one/``.
 
--  If you want to upload files to OpenNebula, you will have to share the upload directory (``/var/tmp`` by default) between sunstone and oned. Some servers do not take into account the ``TMPDIR`` environment variable, in which case this directory must be defined in the configuration file (``:tmpdir:``). It may also be needed to set it in Passenger (``client_body_temp_path``).
+- If you want to upload files to OpenNebula, you will have to share the uploads directory (``/var/tmp`` by default) between Sunstone and ``oned``. Some servers do not take into account the ``TMPDIR`` environment variable, in which case this directory must be defined in the configuration file (``:tmpdir``). It may also be needed to set it in Passenger (``client_body_temp_path``).
 
 -  For OneFlow service to work you will need to set ``:oneflow_server:``. The value will be pointing to the actual OneFlow server, e.g.: ``http://opennebula-oned:2474``
 
-.. note::
-
-    If FireEdge is installed and enabled then another option is required to configure. This is the public FireEdge endpoint ``:public_fireedge_endpoint:`` and the value must be a resolvable public facing address. FireEdge will be in most cases running next to the Sunstone server so if for example the Sunstone is reachable via the address ``one.example.com`` then the FireEdge endpoint could be ``http://one.example.com:2616``.
-
-.. important::
-
-    Using this setup the virtual machine logs will not be available. If you need to retrieve this information you must deploy the server in the Front-end or shared the directory between the two machines (like with the temp. directory).
+- *(Optional)* Share ``/var/log/one`` across Sunstone and OpenNebula Daemon machines to have access to Virtual Machine logs.
 
 Running Sunstone Inside Another Webserver
 =========================================
@@ -109,7 +102,7 @@ The first thing you have to do is install Phusion Passenger. For this you can us
 
 .. _suns_advance_apache_proxy:
 
-Apache configuration plain NON-TLS/SSL
+Apache configuration plain non-TLS/SSL
 --------------------------------------
 
 We must create the virtual host that will run our Sunstone server and we have to point to the ``public`` directory from the Sunstone installation. Here is an example:
@@ -409,36 +402,19 @@ You can find more information about the configuration options in the `unicorn do
 Running Sunstone in Multiple Servers
 ------------------------------------
 
-You can run Sunstone in several servers and use a load balancer that connects to them. Make sure you are using ``memcache`` for sessions and both Sunstone servers connect to the same ``memcached`` server. To do this change the parameter ``:memcache_host`` in the configuration file. Also make sure that both Sunstone instances connect to the same OpenNebula server.
+You can run Sunstone in several servers and use a load balancer that connects to them. Make sure you are using ``memcache`` for sessions and both Sunstone servers connect to the same ``memcached`` server. To do this, change the parameter ``:memcache_host`` in the configuration file. Also make sure that both Sunstone instances connect to the same OpenNebula server.
 
 .. _suns_advance_marketplace:
 
-MarketPlace
+Marketplace
 --------------------------------------------------------------------------------
 
-If you plan on using the :ref:`MarketPlaceApp download <marketapp_download>` functionality, the Sunstone server(s) will need access to the MarketPlace backends.
+If you plan to :ref:`download Appliances from Marketplace <marketapp_download>`, the Sunstone server(s) will need access to the Marketplace backends.
 
 If you are using `Phusion Passenger <https://www.phusionpassenger.com/>`__, take the following recommendations into account:
 
-* Set `PassengerResponseBufferHighWatermark <https://www.phusionpassenger.com/library/config/apache/reference/#passengerresponsebufferhighwatermark>`__ to `0`.
+* Set `PassengerResponseBufferHighWatermark <https://www.phusionpassenger.com/library/config/apache/reference/#passengerresponsebufferhighwatermark>`__ to ``0``.
 * Increase `PassengerMaxPoolSize <https://www.phusionpassenger.com/library/config/apache/reference/#passengermaxpoolsize>`__. Each MarketPlaceApp download will take one of these application processes.
-* If `Passenger Enterprise <https://www.phusionpassenger.com/enterprise>`__ is available, set `PassengerConcurrencyModel <https://www.phusionpassenger.com/library/config/apache/reference/#passengerconcurrencymodel>`__ to `thread`.
+* If `Passenger Enterprise <https://www.phusionpassenger.com/enterprise>`__ is available, set `PassengerConcurrencyModel <https://www.phusionpassenger.com/library/config/apache/reference/#passengerconcurrencymodel>`__ to ``thread``.
 
 If you are using another backend than Passenger, please port these recommendations to your backend.
-
--------------------------
-
-.. TODO - this doesn't make sense here:
-.. _serveradmin_credentials:
-.. note:: To change the serveradmin password, follow the next steps:
-
-    .. prompt:: bash # auto
-
-        #oneuser passwd 1 --sha256 <PASSWORD>
-        #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/oneflow_auth
-        #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/ec2_auth
-        #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/onegate_auth
-        #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/occi_auth
-        #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/sunstone_auth
-
-    Restart Sunstone after changing the password.
