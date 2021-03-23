@@ -18,7 +18,7 @@ Frontend Setup
 
 No additional setup is required. Make sure :ref:`/etc/one/oned.conf <oned_conf>` has the following configuration for the RDM Datastore:
 
-.. code-block::
+.. code::
 
     TM_MAD_CONF = [
         NAME = "dev", LN_TARGET = "NONE", CLONE_TARGET = "NONE", SHARED = "YES",
