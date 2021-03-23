@@ -391,8 +391,8 @@ and, start and daemonize the Unicorn server this way:
 
     See the complete Unicorn `configuration options <http://unicorn.bogomips.org/Unicorn/Configurator.html>`__.
 
-Dedicated Machine
-=================
+Deploy in Dedicated Host
+========================
 
 By default, the Sunstone server is configured to run on the :ref:`Single Front-end <frontend_installation>` alongside the other OpenNebula components. You can also install and run the Sunstone server on a different dedicated machine.
 
