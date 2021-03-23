@@ -105,6 +105,22 @@ Example:
       MEMORY = 128
       CPU    = 1
 
+Hotplug Resize VM Capacity
+--------------------------------------------------------------------------------
+.. important:: Hotplug implemented only for KVM and vCenter
+
+If you need to resize the capacity in the RUNNING state you have to setup some extra attributes to VM template, this attributes must be set befere the VM is started.
+
++------------------+------------------------------------------------------------------------------------------------+-----------+
+|  Attribute       |                              Description                                                       | Mandatory |
++==================+================================================================================================+===========+
+| ``VCPU_MAX``     | Maximum number of VCPUs which could be hotplugged                                              | NO        |
++------------------+------------------------------------------------------------------------------------------------+-----------+
+| ``MEMORY_MAX``   | Maximum memory which could be hotplugged                                                       | NO        |
++------------------+------------------------------------------------------------------------------------------------+-----------+
+| ``MEMORY_SLOTS`` | Optional, slots for hotplugging memory. Limits the number of hotplug operations. Defaults to 8 | NO        |
++------------------+------------------------------------------------------------------------------------------------+-----------+
+
 .. _template_showback_section:
 
 Showback Section

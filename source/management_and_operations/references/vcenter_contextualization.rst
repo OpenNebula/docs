@@ -1,27 +1,23 @@
 .. _vcenter_contextualization:
 
-===========================================
+================================================================================
 vCenter Contextualization and Customization
-===========================================
+================================================================================
 
-In OpenNebula you have two options if you want to prepare the guest OS on boot:
+You have two options to prepare a guest OS on boot:
 
-* :ref:`OpenNebula's contextualization<vcenter_one_context>`.
-* :ref:`vCenter customization<vcenter_customization>`.
+* OpenNebula's contextualization process.
+* vCenter customization.
 
 .. _vcenter_one_context:
 
-=========================
-vCenter Contextualization
-=========================
+OpenNebula Contextualization
+================================================================================
 
 OpenNebula uses a method called contextualization to send information to the VM at boot time. Its most basic usage is to share networking configuration and login credentials with the VM so it can be configured.
 
-Prepare the Virtual Machine Image
-=================================
-
 Step 1. Start a VM with the OS you want to Customize
-----------------------------------------------------
+--------------------------------------------------------------------------------
 
 Supported contextualization packages are available for the OS's described in the :ref:`platform notes <context_supported_platforms>`.
 
@@ -30,27 +26,27 @@ If you already happen to have a VM or Template in vCenter with the installed OS 
 .. include:: install_steps.txt
 
 Step 4. Install VMware Tools
-----------------------------
+--------------------------------------------------------------------------------
 
 CentOS, Debian/Ubuntu
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``open-vm-tools`` are installed as a dependency of contextualization package.
 
 Windows
-~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In vCenter open the VM menu, go to "Guest OS" section, click in "Install VMware Tools..." and follow the instructions.
 
 Step 5. Run Sysprep in Windows Machines
----------------------------------------
+--------------------------------------------------------------------------------
 
 Execute ``sysprep`` to prepare the OS for duplication. You can find more information at:
 
 https://technet.microsoft.com/en-us/library/cc721940(v=ws.10).aspx
 
 Step 6. Power Off the Machine and Save it
------------------------------------------
+--------------------------------------------------------------------------------
 
 These are the steps needed to finish the preparation and import it to OpenNebula:
 
@@ -67,7 +63,7 @@ The last two steps can be done using Sunstone or the CLI as explained in the :re
 .. _vcenter_customization:
 
 vCenter Customization
-=====================
+================================================================================
 
 vCenter offers a way to prepare the guest OS on boot. For example configuring its network, licenses, Active Directory server, etc. OpenNebula vCenter drivers offers a way to tie one OpenNebula template with one of these customizations so it is applied on VM startup. You can get more information about this system in `VMware documentation <https://pubs.vmware.com/vsphere-60/index.jsp?topic=%2Fcom.vmware.vsphere.vm_admin.doc%2FGUID-EB5F090E-723C-4470-B640-50B35D1EC016.html>`__.
 
@@ -80,7 +76,7 @@ There are a couple of things to take into account:
 
 
 Applying Customization to one Template Using Sunstone
------------------------------------------------------
+--------------------------------------------------------------------------------
 
 For vcenter templates there are two options in the context tab. To use vCenter Customization select "vCenter" in the as "Contextualization type". This will show a dropdown with all the customizations from all the hosts. There you can select from these possibilities:
 
@@ -101,7 +97,7 @@ Once we update the template, we'll get a VCENTER_CUSTOMIZATION_SPEC attribute in
     :align: center
 
 Getting the Available Customizations per Cluster
-------------------------------------------------
+--------------------------------------------------------------------------------
 
 OpenNebula monitoring probes get the list of available customization specifications per cluster. You can get the list with the command ``onehost show``. Look for ``CUSTOMIZATION`` data in `MONITORING INFORMATION`. For example:
 
@@ -119,7 +115,7 @@ OpenNebula monitoring probes get the list of available customization specificati
       TYPE="Windows" ]
 
 Applying Customization to a template Using CLI
-----------------------------------------------
+--------------------------------------------------------------------------------
 
 To add a customization specification to one template a parameter called ``VCENTER_CUSTOMIZATION_SPEC`` must be added inside the ``USER_TEMPLATE`` section. Take for example this template:
 

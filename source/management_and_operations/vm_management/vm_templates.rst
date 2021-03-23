@@ -5,9 +5,9 @@
 Virtual Machine Templates
 ================================================================================
 
-In OpenNebula the VMs are defined with VM Templates. This section explains how to describe a Virtual Machine, and how users typically interact with the system**.
+In OpenNebula, VMs are defined with VM Templates. This section explains how to describe a Virtual Machine, and how users typically interact with the system.
 
-The VM Template Pool allows OpenNebula administrators and users to register Virtual Machine definitions in the system, to be instantiated later as Virtual Machine instances. These VM Templates can be instantiated several times, and also shared with other users.
+OpenNebula administrators and users can register Virtual Machine definitions (VM Templates) in the system, to be instantiated later as Virtual Machine instances. These VM Templates can be instantiated several times, and also shared with other users.
 
 .. _vm_guide_defining_a_vm_in_3_steps:
 
@@ -59,7 +59,7 @@ The alias takes a lease from the network which it belongs to. So, for the OpenNe
 
 :ref:`See Network Section in the VM Template reference <template_network_section>`.
 
-Example
+A Complete Example
 --------------------------------------------------------------------------------
 
 The following example shows a VM Template file with a couple of disks and a network interface, also a VNC section and an alias were added.
@@ -97,7 +97,7 @@ For a complete reference of all the available options for ``onetemplate create``
 
 .. _vm_templates_endusers:
 
-Preparing Templates for End-Users
+Preparing VM Templates for End-Users
 ================================================================================
 
 Besides the basic VM definition attributes, you can setup some extra options in your VM Template to ease sharing it with other users.
@@ -105,14 +105,14 @@ Besides the basic VM definition attributes, you can setup some extra options in 
 Customizable Capacity
 --------------------------------------------------------------------------------
 
-The capacity attributes (CPU, MEMORY, VCPU) can be modified each time a VM Template is instantiated. The Template owner can decide `if` and `how` each attribute can be customized. The modification options available are:
+The capacity attributes (``CPU``, ``MEMORY``, ``VCPU``) can be modified each time a VM Template is instantiated. The Template owner can decide `if` and `how` each attribute can be customized. The modification options available are:
 
 * **fixed** (``fixed``): The value cannot be modified.
 * **any value** (``text``): The value can be changed to any number by the user instantiating the Template.
 * **range** (``range``): Users will be offered a range slider between the given minimum and maximum values.
 * **list** (``list``): Users will be offered a drop-down menu to select one of the given options.
 
-If you are using a template file instead of Sunstone, the modification is defined with user input attributes (:ref:`see below <vm_guide_user_inputs>`). The absence of user input is an implicit "any value". For example:
+If you are using a template file instead of Sunstone, the modification is defined with user input (``USER_INPUT``) attributes (:ref:`see below <vm_guide_user_inputs>`). The absence of user input is an implicit *any value*. For example:
 
 .. code-block:: none
 
@@ -133,9 +133,7 @@ If you are using a template file instead of Sunstone, the modification is define
 User Inputs
 --------------------------------------------------------------------------------
 
-The User Inputs functionality provides the VM Template creator the possibility to dynamically ask for dynamic values that must be defined. This is a convenient way to parametrize a base installation.
-
-These inputs will be presented to the user when the Template is instantiated. The VM guest needs to be :ref:`contextualized <context_overview>` to make use of the values provided by the user. The following example shows how to pass user inputs to a VM:
+The User Inputs functionality provides the VM Template creator the possibility to dynamically ask for dynamic values. This is a convenient way to parametrize a base installation. These inputs will be presented to the user when the VM Template is instantiated. The VM guest needs to be :ref:`contextualized <context_overview>` to make use of the values provided by the user. The following example shows how to pass some user inputs to a VM:
 
 .. code-block:: none
 
@@ -162,7 +160,7 @@ Schedule Actions
 
 If you want to perform a pre-defined operation on a VM, you can use the Scheduled Actions. The selected operation will be performed on the VM at a specific time, e.g. *"Shut down the VM 5 hours after it started"*. You can also add an Scheduled action at :ref:`VM instantiation <vm_guide2_scheduling_actions>`.
 
-:ref:`See Schedule Actions Section in the VM Template reference <template_scheduler_actions>`.
+:ref:`See Schedule Actions Section in the VM Template reference <template_schedule_actions>`.
 
 
 Set a Cost
