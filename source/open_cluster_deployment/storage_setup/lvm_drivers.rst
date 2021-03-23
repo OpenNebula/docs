@@ -58,7 +58,7 @@ Nodes needs to meet the following requirements:
 OpenNebula Configuration
 ================================================================================
 
-Once the Node storage setup is ready, the OpenNebula configuration comprises two steps:
+Once the Node storage setup is ready, the OpenNebula configuration comprises of two steps:
 
 * Create System Datastore
 * Create Image Datastore
