@@ -18,7 +18,7 @@ Frontend Setup
 
 No additional setup is required. Make sure :ref:`/etc/one/oned.conf <oned_conf>` has the following configuration for the RDM Datastore:
 
-.. code::
+.. code-block:: bash
 
     TM_MAD_CONF = [
         NAME = "dev", LN_TARGET = "NONE", CLONE_TARGET = "NONE", SHARED = "YES",
@@ -75,7 +75,7 @@ To create an Image Datastore, you need to set following (template) parameters:
 
 An example template of Datastore:
 
-.. code-block::
+.. code-block:: bash
 
     $ cat rdm.conf
     NAME      = rdm_datastore
@@ -92,7 +92,7 @@ Datastore Usage
 
 New images can be added as any other image specifying the path. As an example here is an image template to add a Node disk ``/dev/sdb``:
 
-.. code-block::
+.. code-block:: bash
 
     $ cat image.tmpl
     NAME=scsi_device
