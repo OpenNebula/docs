@@ -30,7 +30,7 @@ The appliance will be ready when the image in ``Storage --> Images`` gets in REA
 Step 2. Instantiate the VM
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Proceed to the ``Templates --> VMs`` tab and select the "Service WordPress - KVM" VM Template (that should be the only one available``). Click on Instantiate.
+Proceed to the ``Templates --> VMs`` tab and select the "Service WordPress - KVM" VM Template (that should one of two available, along with the default CentOS 7 pulled from the marketplace by miniONE). Click on Instantiate.
 
 Feel free to modify the capacity and to input data to configure the WordPress service. A required step is clicking on Network and selecting the aws-cluster-public network.
 
