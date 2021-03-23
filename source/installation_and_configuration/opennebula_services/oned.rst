@@ -4,7 +4,7 @@
 OpenNebula Configuration (oned)
 ===============================
 
-The OpenNebula Daemon (``oned``) is the **core service of the cloud management platform**. It manages the cluster nodes, virtual networks and storages, groups, users, and their virtual machines, provides the XML-RPC API to other services and end-users. The service is distributed as an operating system package ``opennebula`` with system service ``opennebula``.
+The OpenNebula Daemon (``oned``) is the **core service of the cloud management platform**. It manages the cluster nodes, virtual networks and storages, groups, users and their virtual machines, and provides the XML-RPC API to other services and end-users. The service is distributed as an operating system package ``opennebula`` with system service ``opennebula``.
 
 Configuration
 =============
