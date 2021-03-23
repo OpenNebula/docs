@@ -56,7 +56,14 @@ How Should I Read This Chapter
 
 Before reading this chapter make sure you are familiar with Node Deployment from :ref:`Open Cloud Deployment <vmmg>`.
 
-After that, proceed with the specific Datastore documentation you might be interested in.
+After that, proceed with the specific Datastore documentation you might be interested in:
+
+* :ref:`Filesystem <fs_ds>`
+* :ref:`Ceph <ceph_ds>`
+* :ref:`LVM <lvm_drivers>`
+* :ref:`Raw Device Mapping <dev_ds>`
+* :ref:`iSCSI - Libvirt Datastore <iscsi_ds>`
+* :ref:`Kernels & Files Datastore <file_ds>`
 
 Hypervisor Compatibility
 ========================
