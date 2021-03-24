@@ -1,30 +1,94 @@
 .. _equinix_cluster:
 
-=======================
+====================
 Equinix Edge Cluster
-=======================
+====================
 
 Supported Edge Cluster Types
 ================================================================================
 
-* Enumerate the ec supported: metal, virtual
-* Enumerate the supported hypervisors: kvm, fc, lxc
+There are two kinds of elastic clusters:
+
+* **Metal**: this uses baremetal resources, allowing you to have better performance. This is thought when you need a real server and higher compute capacities.
+* **Virtual**: this uses a virtual machine as a host, nested virtualization. This is thought for lighter resources like micro VMs or containers.
+
+The supported hypervisors are the following:
+
+* **KVM**: run virtual machines. In case you are using virtual cluster, instead of KVM, you will use **qemu**.
+* **Firecracker**: run micro VMs.
+* **LXC**: run containers.
 
 Equinix Providers
 ================================================================================
-* What is an Equinix provider ---> zone. List of predefined providers
-* Equinix parameters needed to define a provider
-* Plans and OS
-* Locations
-* How to add a new Equinix provider
-* How to customize and existing provider
+
+An Equinix provider contains the credentials to interact with Equinix and also the location to deploy all the resources. OpenNebula comes with four predefined providers in the following regions:
+
+* Amsterdam
+* Parsippany
+* Tokyo
+* California
+
+In order to define an Equinix provider, you need the following information:
+
+* **Credentials**: these are used to interact with the remote provider. You need to provide ``token`` and ``project``. You can follow `this guide <https://metal.equinix.com/developers/api/>`__.
+* **Facility**: this is the location in the world where the resources are going to be deployed. All the available facilities can be checked `here <https://www.equinix.com/data-centers/>`__.
+* **Plans and OS**: these define the capacity of the resources that are going to be deployed and the operating system that is going to be installed on them.
+
+How to add a new Equinix provider
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To add a new provider you need a template:
+
+.. prompt:: bash $ auto
+
+    $ cat provider.yaml
+    name: 'packet-amsterdam'
+
+    description: 'Edge cluster in Equinix Amsterdam'
+    provider: 'packet'
+
+    connection:
+      token: 'Packet token'
+      project: 'Packet project'
+      facility: 'ams1'
+
+    inputs:
+      - name: 'packet_os'
+        type: 'list'
+        options:
+          - 'centos_8'
+      - name: 'packet_plan'
+        type: 'list'
+        options:
+          - 'baremetal_0'
+
+Then you just need to use the command ``oneprovider create``:
+
+.. prompt:: bash $ auto
+
+   $ oneprovider create provider.yaml
+   ID: 0
+
+How to customize and existing provider
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The provider information is stored in OpenNebula database, it can be updated as any other resource. In this case, you need to use the command ``oneprovider update``. It will open an editor so you can edit all the information there. You can also use the OneProvision Fireedge GUI to update all the information.
 
 Equinix Edge Cluster Details
 ================================================================================
-* List of Equinix created as part of a provision
-* Public Networking implementation -> elastic IPs (overview of forwarding)
-* Private Networking FRR (BGP-EVPN) and VXLAN overview
+
+An edge cluster in Equinix creates the following resources:
+
+* **Packet Device**: host to run virtual machines.
+
+The network model is implemented in the following way:
+
+* **Public Networking**: this is implemeted using elastic IPs from Equinix and the IPAM driver from OpenNebula. When the virtual network is created in OpenNebula the elastic IPs are requested to Equinix. Then, inside the host, IP forwarding rules are applied so the VM can communicate over the public IP assigned by Equinix.
+* **Private Networking**: this is implemented using (BGP-EVPN) and VXLAN.
 
 Operating Providers & Edge Clusters
 ================================================================================
-Link to Edge Cluster Operations guide
+
+Refer to :ref:`cluster operation guide <cluster_operations>`, to check all the operations needed to create, manage and delete an edge cluster.
+
+.. include:: provider.txt
