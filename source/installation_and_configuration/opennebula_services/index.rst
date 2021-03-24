@@ -1,8 +1,8 @@
 .. _deployment_references:
 
-==========
-References
-==========
+===================
+OpenNebula Services
+===================
 
 .. toctree::
    :maxdepth: 2
