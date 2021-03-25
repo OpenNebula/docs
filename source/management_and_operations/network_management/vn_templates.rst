@@ -13,7 +13,7 @@ Virtual Network Template Definition
 
 A Virtual Network Template is a representation of a Virtual Network, so a template can be defined by using the same attributes available for a Virtual Network. Virtual Network Templates and Virtual Networks also share their required attributes depending on driver they are using (see the requirements :ref:`here <manage_vnets>`, Physical Network Attributes section).
 
-When a network is created by instantiating a Virtual Network Template is is associated to the default cluster. You can **control which clusters the networks** will be in with the ``CLUSTER_IDS`` attribute.
+When a network is created by instantiating a Virtual Network Template, it is associated to the default cluster. You can **control which clusters the networks** will be in with the ``CLUSTER_IDS`` attribute.
 
 Here is an example of a Virtual Network Template with one address range:
 
@@ -32,9 +32,9 @@ The networks created by instantiating this template will be on clusters 1 and 10
 Using Virtual Network Templates
 ================================================================================
 
-By default just oneadmin can create Virtual Network Templates, if other users need permissions for creating Virtual Network Templates it can be provided by creating a specific ACL.
+By default just ``oneadmin`` can create Virtual Network Templates, if other users need permissions for creating Virtual Network Templates it can be provided by creating a specific ACL.
 
-Once the Virtual Network Template is created, you can control access to it by its permissions. For example, if a end user needs to instantiate an specific template, it would be enough to give the template **USE** permmission for others. You can find more :ref:`information about permissions here <manage_vnets>`.
+Once the Virtual Network Template is created, you can control access to it by its permissions. For example, if a end user needs to instantiate an specific template, it would be enough to give the template **USE** permission for others. You can find more :ref:`information about permissions here <manage_vnets>`.
 
 .. note:: Depending on the user, ACLs might need to be created in order to allow the users to manage their own networks.
 
