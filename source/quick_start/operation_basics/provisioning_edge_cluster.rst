@@ -27,7 +27,7 @@ During the provision of the cluster all these resources and their corresponding 
 * An Internet Gateway to provide Internet access to host and VMs.
 * A routing table for the previous elements.
 
-.. note:: Take into account that FireEdge will request Elatic IPs for the public IPs you requested. If you receive an error creating a provision about not being able to request more IPs, please check the :ref:`limits of your account <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html>` in your zone.
+.. note:: Take into account that FireEdge will request Elatic IPs for the public IPs you requested. If you receive an error creating a provision about not being able to request more IPs, please check the `limits of your account <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html>`__ in your zone.
 
 Step 1: Configuring AWS & Needed Information
 ================================================================================
