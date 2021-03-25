@@ -6,7 +6,7 @@ Scheduling Policies
 
 The OpenNebula scheduler uses a *Matchmaking* algorithm to allocate VMs to Hosts. A *matchmaking* request consists of two parts:
 
-  - **Requirements**, the target resource needs to fulfill these to be considered to allocate the VM. Resources that does not fulfill are filtered out.
+  - **Requirements**, the target resource needs to fulfill these to be considered to allocate the VM. Resources that does not fulfill the requirements are filtered out.
   - **Rank**, or preferences, a function that ranks the suitable resources to sort them. Resources with a higher rank are used first.
 
 OpenNebula uses this algorithm to schedule all resources types:
@@ -35,7 +35,7 @@ Because of this, if you try to use resources that do not belong to the same Clus
     DISK [0]: IMAGE [0] from DATASTORE [1] requires CLUSTER [101]
     NIC [0]: NETWORK [1] requires CLUSTER [100]
 
-These automatic requirements are added to any additional ones included in the Virtual Machine template. There is also an implicit requirement that a resource needs to meet, it needs to have enough capacity to run the VM.
+These automatic requirements are added to any additional requirement included in the Virtual Machine template. There is also an implicit requirement that a resource needs to meet, it needs to have enough capacity to run the VM.
 
 .. warning:: Any Host belonging to a given cluster **must** be able to access any System or Image Datastore defined in that cluster.
 
