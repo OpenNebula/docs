@@ -72,12 +72,12 @@ User Authentication
 ================================================================================
 
 Sunstone Web interface
-^^^^^^^^^^^^^^^^^^^^^^
+------------------------
 
 In order to authenticate yourself as a user by using Sunstone you just need to provide your user and password in the login page.
 
 CLI & APIs
-^^^^^^^^^^^^
+-----------
 
 In order to authenticate with OpenNebula when using the CLI or any API binding, you need a valid password or authentication token to generate the session string.
 
