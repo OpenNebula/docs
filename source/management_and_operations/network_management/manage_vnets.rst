@@ -4,7 +4,7 @@
 Virtual Networks
 ================
 
-A Host is connected to one or more networks that are available to the VMs through bridges. OpenNebula allows the creation of Virtual Networks by mapping them on top of the physical ones.
+Commonly a Host is connected to one or more networks that are available to the VMs through bridges. OpenNebula allows the creation of Virtual Networks by mapping them on top of the physical ones.
 
 Virtual Network Definition
 ================================================================================
@@ -208,7 +208,7 @@ Virtual Network Tips
 
 * There are no need to plan all your IP assignment plan beforehand, ARs can be added and modified after the Virtual Network is created, see below.
 
-* Orphan vnets (i.e images not referenced by any template) can be shown with ``onevnet orphans`` command.
+* Orphan Virtual Networks (i.e Virtual Networks not referenced by any template) can be shown with ``onevnet orphans`` command.
 
 Updating a Virtual Network
 ================================================================================
@@ -366,7 +366,7 @@ Configuring the Virtual Machine Network
 
 Hypervisors will set the MAC address for the NIC of the Virtual Machines, but not the IP address. The IP configuration inside the guest is performed by the contextualization process, check the :ref:`contextualization guide <context_overview>` to learn how to prepare your Virtual Machines to automatically configure the network
 
-.. note:: Altenatively a custom external service can configure the Virtual Machine network (e.g. your own DHCP server in a separate virtual machine)
+.. note:: Alternatively a custom external service can configure the Virtual Machine network (e.g. your own DHCP server in a separate virtual machine)
 
 
 NSX Specific
@@ -379,7 +379,7 @@ This section describes how to create a vnet in OpenNebula that reference a logic
 
 Creating a new **logical switch**
 ---------------------------------
-Creating a new logical switch means, create a vnet in OpenNebula and a logical switch in NSX Manager at the same time. Once the logical switch is created in NSX, OpenNebula will update its vnet attibutes to reference to the created logical switch
+Creating a new logical switch means, create a vnet in OpenNebula and a logical switch in NSX Manager at the same time. Once the logical switch is created in NSX, OpenNebula will update its vnet attributes to reference to the created logical switch
 
 Creating from Sunstone
 ^^^^^^^^^^^^^^^^^^^^^^
