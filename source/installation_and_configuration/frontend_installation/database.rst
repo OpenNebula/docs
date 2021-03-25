@@ -8,7 +8,7 @@ OpenNebula Front-end uses the database to persist the complete state of the clou
 
 - default embedded :ref:`SQLite <sqlite_setup>` for small workloads,
 - recommended :ref:`MySQL/MariaDB <mysql_setup>` for production,
-- experimental :ref:`PostgreSQL <postgresql_setup>` for evaluation only (support still a **Technology Preview**),
+- experimental :ref:`PostgreSQL <postgresql_setup>` for evaluation only (support still in **Technology Preview**),
 
 It's recommended to decide and install the database back-end now. Later, when doing the :ref:`Front-end Installation <frontend_installation>`, return back here and only update the OpenNebula configuration for specific back-end based (ideally) *prior* starting OpenNebula for the first time.
 
