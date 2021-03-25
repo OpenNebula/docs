@@ -345,10 +345,10 @@ It is recommended that you disable PolicyKit for Libvirt:
   ...
 
 
-vCenter Platform Notes
+vCenter 7.0 Platform Notes
 --------------------------------------------------------------------------------
 
-Problem with vCenter 7 Boot Orden
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problem with Boot Order
+~~~~~~~~~~~~~~~~~~~~~~~
 
-Currently, in vCenter 7, it is only supported to change the boot order at instantiation of a Virtual Machine.
+Currently in vCenter 7.0 changing the boot order is only supported in Virtual Machines at deployment time.
