@@ -369,24 +369,14 @@ The ``onetemplate chmod --recursive`` option will perform the chmod action also 
 
 Sunstone offers an "alias" for ``onetemplate chmod --recursive 640``, the share action:
 
-|sunstone_template_share|
+|image1|
 
+Managing VM Templates with Sunstone
+================================================================================
 
+Sunstone exposes the above functionality in the Templates > VMs tab:
+
+|image2|
+
+.. |image1| image:: /images/sunstone_template_share.png
 .. |image2| image:: /images/sunstone_template_create.png
-.. |prepare-tmpl-user-input-1| image:: /images/prepare-tmpl-user-input-1.png
-.. |prepare-tmpl-user-input-2| image:: /images/prepare-tmpl-user-input-2.png
-.. |prepare-tmpl-user-input-3| image:: /images/prepare-tmpl-user-input-3.png
-.. |sunstone_clone_template| image:: /images/sunstone_clone_template.png
-.. |sunstone_template_share| image:: /images/sunstone_template_share.png
-.. |prepare-tmpl-network| image:: /images/prepare-tmpl-network.png
-.. |prepare-tmpl-nic-default| image:: /images/prepare-tmpl-nic-default.png
-.. |prepare-tmpl-ssh| image:: /images/prepare-tmpl-ssh.png
-.. |showback_template_wizard| image:: /images/showback_template_wizard.png
-.. |sunstone_template_create_capacity| image:: /images/sunstone_template_create_capacity.png
-.. |sunstone_template_create_image| image:: /images/sunstone_template_create_image.png
-.. |sunstone_template_create_nic| image:: /images/sunstone_template_create_nic.png
-.. |sunstone_template_create_volatile| image:: /images/sunstone_template_create_volatile.png
-.. |sunstone_disable_network_conf| image:: /images/sunstone_disable_network_conf.png
-.. |sunstone_admin_instantiate| image:: /images/sunstone_admin_instantiate.png
-.. |sunstone_template_custom_tags| image:: /images/custom_tags.png
-.. |sunstone_template_instantiate_as_uid_gid| image:: /images/instantiate_as_uid_gid.png

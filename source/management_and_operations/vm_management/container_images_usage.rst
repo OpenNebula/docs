@@ -10,6 +10,10 @@ The images from the OpenNebula container marketplaces (:ref:`Docker Hub <market_
 
 .. important:: Container images are not supported for vCenter hypervisor.
 
+DockerHub Applications
+================================================================================
+DockerHub uses a ``CMD`` or ``Entrypoint`` mechanism to automatically start the target application in the container. This process is not automatically triggered in your imported images. Please use the ``START_SCRIPT`` of :ref:`the contextualization process <template_context>` to execute the command that starts the application.
+
 Using Container Images with LXC
 ================================================================================
 
