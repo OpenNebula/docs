@@ -106,8 +106,8 @@ You can make the following virtual resources available to group users:
 
 * :ref:`Virtual Machine Templates <vm_guide>`
 * :ref:`Service Templates <appflow_use_cli>`
-* :ref:`Images <img_guide>`
-* :ref:`Files & Kernels <img_guide_files>`
+* :ref:`Images <images>`
+* :ref:`Files & Kernels <img_guide_kernel_and_ramdisk>`
 
 To make a virtual resource owned by oneadmin available to users of the new group, you have two options:
 

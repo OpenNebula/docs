@@ -1,13 +1,8 @@
 .. _quota_auth:
 
-================
-Managing Quotas
-================
-
-This guide will show you how to set the usage quotas for users and groups.
-
-Overview
-========
+================================================================================
+Usage Quotas
+================================================================================
 
 The quota system tracks user and group usage of system resources, and allows the system administrator to set limits on the usage of these resources. Quota limits can be set for:
 
@@ -15,8 +10,8 @@ The quota system tracks user and group usage of system resources, and allows the
 
 * **groups**, to limit the overall usage made by all the users in a given group. This can be of special interest for the OpenNebula Zones and Virtual Data Center (VDC) components.
 
-Which Resource can be limited?
-==============================
+Resource Limits
+================================================================================
 
 The quota system allows you to track and limit usage on:
 
@@ -28,16 +23,15 @@ The quota system allows you to track and limit usage on:
 
 * **Images**, you can limit the how many VM instances from a given user/group are using a given image. You can take advantage of this quota when the image contains consumable resources (e.g. software licenses).
 
-.. _quota_auth_ceph_warning:
-.. warning:: Only datastore size is consumed when using a Ceph backend, system disks will not be affected in this case. The reason is that this kind of datastores use the same space for system and for images, so OpenNebula can not know which space is used in each case.
-
 Defining User/Group Quotas
-==========================
+================================================================================
 
-Usage quotas are set in a traditional template syntax (either plain text or XML). The following table explains the attributes needed to set each quota:
+Usage quotas are set in the OpenNebula template syntax (either plain text or XML). The following tables summarizes the attributes to define a quota for each resource type.
 
-Datastore Quotas. Attribute name: DATASTORE
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Datastore Quotas.
+--------------------------------------------------------------------------------
+
+The attribute name is ``DATASTORE``.
 
 +---------------------+---------------------------------------------------------------+
 | DATASTORE Attribute |                          Description                          |
@@ -49,8 +43,10 @@ Datastore Quotas. Attribute name: DATASTORE
 | IMAGE               | Maximum number of images that can be created in the datastore |
 +---------------------+---------------------------------------------------------------+
 
-Compute Quotas. Attribute name: VM
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Compute Quotas.
+--------------------------------------------------------------------------------
+
+The attribute name is ``VM``
 
 +------------------+------------------------------------------------------------------------------+
 |   VM Attribute   |                                 Description                                  |
@@ -70,10 +66,12 @@ Compute Quotas. Attribute name: VM
 | SYSTEM_DISK_SIZE | Maximum size (in MB) of system disks that can be requested by user/group VMs |
 +------------------+------------------------------------------------------------------------------+
 
-.. note:: Running quotas will be increased or decreased depending on the state of the Virtual Machine. The states in which the machine is counted as ``ACTIVE`` "Running" are ``ACTIVE`` , ``HOLD``, ``PENDING`` and ``CLONING``.
+.. important:: Running quotas will be increased or decreased depending on the state of the Virtual Machine. The states in which the machine is counted as "Running" are ``ACTIVE`` , ``HOLD``, ``PENDING`` and ``CLONING``.
 
-Network Quotas. Attribute name: NETWORK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Network Quotas.
+--------------------------------------------------------------------------------
+
+The attribute name is ``NETWORK``.
 
 +-------------------+-------------------------------------------------+
 | NETWORK Attribute |                   Description                   |
@@ -83,9 +81,10 @@ Network Quotas. Attribute name: NETWORK
 | LEASES            | Maximum IPs that can be leased from the Network |
 +-------------------+-------------------------------------------------+
 
+Image Quotas.
+--------------------------------------------------------------------------------
 
-Image Quotas. Attribute name: IMAGE
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The attribute name is ``IMAGE``.
 
 +-----------------+-------------------------------------------------------+
 | IMAGE Attribute |                      Description                      |
@@ -94,6 +93,10 @@ Image Quotas. Attribute name: IMAGE
 +-----------------+-------------------------------------------------------+
 | RVMS            | Maximum VMs that can used this image at the same time |
 +-----------------+-------------------------------------------------------+
+
+
+Quota Limits and Usage
+================================================================================
 
 For each quota, there are two special limits:
 
@@ -137,9 +140,9 @@ The following template shows a quota example for a user in plain text. It limits
 .. warning:: Note that whenever a network, image, datastore or VM is used the corresponding quota counters are created for the user with an unlimited value. This allows to track the usage of each user/group even when quotas are not used.
 
 Setting User/Group Quotas
-=========================
+================================================================================
 
-User/group quotas can be easily set up either trough the command line interface or Sunstone. Note that you need ``MANAGE`` permissions to set a quota of user, and ``ADMIN`` permissions to set the quota of a group. In this way, by default, only oneadmin can set quotas for a group, but if you define a group manager she can set specific usage quotas for the users on her group (so distributing resources as required). You can always change this behavior setting the appropriate ACL rules.
+User/group quotas can be easily set up either trough the command line interface or Sunstone. Note that you need ``MANAGE`` permissions to set a quota of user, and ``ADMIN`` permissions to set the quota of a group. In this way, by default, only ``oneadmin`` can set quotas for a group, but if you define a group manager she can set specific usage quotas for the users on her group (so distributing resources as required). You can always change this behavior setting the appropriate ACL rules.
 
 To set the quota for a user, e.g. userA, just type:
 
@@ -167,14 +170,9 @@ There is a ``batchquota`` command that allows you to set the same quotas for sev
 
     $ onegroup batchquota 100..104
 
-You can also set the user/group quotas in Sunstone through the user/group tab.
-
-|image1|
-
-|image2|
 
 Setting Default Quotas
-======================
+================================================================================
 
 There are two default quota limit templates, one for users and another for groups. This template applies to all users/groups, unless they have an individual limit set.
 
@@ -185,7 +183,7 @@ Use the ``oneuser/onegroup defaultquota`` command.
     $ oneuser defaultquota
 
 Checking User/Group Quotas
-==========================
+================================================================================
 
 Quota limits and usage for each user/group is included as part of its standard information, so it can be easily check with the usual commands. Check the following examples:
 
@@ -249,7 +247,14 @@ And for the group:
 
     IMAGE USAGE & QUOTAS
 
-This information is also available through Sunstone as part of the user/group information.
+Managing Quotas with Sunstone
+================================================================================
+
+You can easily set the user/group quotas in Sunstone through the user/group tab. Similarly, usage and quota information is also available as part of the user/group information:
+
+|image1|
+
+|image2|
 
 .. |image1| image:: /images/sunstone_user_info_quotas.png
 .. |image2| image:: /images/sunstone_update_quota.png

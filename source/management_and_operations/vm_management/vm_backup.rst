@@ -6,9 +6,9 @@ Managing Virtual Machines Backup
 
 
 Requirements
-============
+================================================================================
 
-To be able to store the VMs backups you need to run your own MarketPlace, configure either HTTP or S3 MarketPlace.
+To be able to store the VMs backups you need to run your own MarketPlace ideally ir should be not coallocated with your datastores. You can configure two types:
 
 * :ref:`HTTP MarketPlace<market_s3>`.
 * :ref:`S3 MarketPlace<market_http>`.
@@ -17,10 +17,12 @@ To be able to store the VMs backups you need to run your own MarketPlace, config
    Currently, VM backups are not supported for vCenter hypervisor
 
 
-VM Template
-=============
+Backup Configuration
+================================================================================
 
-Each VM which you might need to backup needs separate configuration within the VM template, add following section to it:
+Each VM which you might need to backup needs a separate configuration within the VM template that specify where the backups will be saved and how often backups are taken.
+
+For exampl, the following section takes a backup every 24 hours and store them in Marketplace 100:
 
 .. prompt:: text $ auto
 
@@ -31,16 +33,16 @@ Each VM which you might need to backup needs separate configuration within the V
         MARKETPLACE_ID    = "100"
     ]
 
-* **FREQUENCY_SECONDS** - minimal time in second between 2 backups
+* **FREQUENCY_SECONDS** - time in second between 2 backups
 * **MARKETPLACE_ID**    - ID of the MarketPlace where the backups are stored
 
 
-Backup a single VM
-==================
+One-time Backups
+================================================================================
 
-To run the backup you simply run the following command for a particular VM.
+To peform a single backup you can simply run the following command for a particular VM.
 
-.. note:: Running VM will be powered off, backed up and resumed.
+.. important:: Running VM will be powered off, backed up and resumed.
 
 .. prompt:: bash $ auto
 
@@ -65,19 +67,18 @@ To run the backup you simply run the following command for a particular VM.
     VM 423: Backup
 
 
-Backup all VMs
-==============
+Automatic Backup all VMs
+================================================================================
 
-To backup all your VMs you may use a script located at `/usr/share/one/backup_vms`. You can
-add similar line to the oneadmin cron and adjust the VM backup frequency by updating the VM
-template.
+To backup all your VMs you may use a script located at `/usr/share/one/backup_vms`. Simply, add to the oneadmin cron something like:
 
 .. prompt:: text $ auto
 
    */30 * * * * /usr/share/one/backup_vms
 
-When the backup is finished the BACKUP section is extended with extra attributes **LAST_BACKUP_TIME** containing the backup timestamp and **MARKETPLACE_APP_IDS** which refers to the created marketplace appliances.
+and adjust the VM backup frequency by updating the VM templates.
 
+When a backup is finished the BACKUP section of each VM is extended with extra attributes **LAST_BACKUP_TIME** containing the backup timestamp and **MARKETPLACE_APP_IDS** which refers to the created marketplace appliances.
 
 .. prompt:: text $ auto
 
@@ -92,8 +93,8 @@ Also, those attributes are shown on the Sunstone VM info tab.
 
 |image1|
 
-Restore
-=======
+Restore a Backup
+================================================================================
 
 For restore you simply run `onevm restore` and should the VM have correct BACKUP data in the template it will be restored and started.
 

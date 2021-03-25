@@ -70,6 +70,8 @@ A simple example:
       </DISK>
     </TEMPLATE>
 
+.. _template_capacity_section:
+
 Capacity Section
 ================================================================================
 
@@ -102,6 +104,22 @@ Example:
       NAME   = test-vm
       MEMORY = 128
       CPU    = 1
+
+Hotplug Resize VM Capacity
+--------------------------------------------------------------------------------
+.. important:: Hotplug implemented only for KVM and vCenter
+
+If you need to resize the capacity in the RUNNING state you have to setup some extra attributes to VM template, this attributes must be set befere the VM is started.
+
++------------------+------------------------------------------------------------------------------------------------+-----------+
+|  Attribute       |                              Description                                                       | Mandatory |
++==================+================================================================================================+===========+
+| ``VCPU_MAX``     | Maximum number of VCPUs which could be hotplugged                                              | NO        |
++------------------+------------------------------------------------------------------------------------------------+-----------+
+| ``MEMORY_MAX``   | Maximum memory which could be hotplugged                                                       | NO        |
++------------------+------------------------------------------------------------------------------------------------+-----------+
+| ``MEMORY_SLOTS`` | Optional, slots for hotplugging memory. Limits the number of hotplug operations. Defaults to 8 | NO        |
++------------------+------------------------------------------------------------------------------------------------+-----------+
 
 .. _template_showback_section:
 
@@ -249,6 +267,7 @@ This section configures the features enabled for the VM.
     ]
 
 .. _reference_vm_template_disk_section:
+.. _template_disks_section:
 
 Disks Section
 ================================================================================
@@ -412,7 +431,7 @@ If the TARGET attribute is not set for a disk, OpenNebula will automatically ass
 -  **CDROM** type Images.
 -  The rest of **DATABLOCK** and **OS** Images, and **Volatile** disks.
 
-Please visit the guide for :ref:`managing images <img_guide>` and the :ref:`image template reference <img_template>` to learn more about the different image types.
+Please visit the guide for :ref:`managing images <images>` and the :ref:`image template reference <img_template>` to learn more about the different image types.
 
 You can find a complete description of the contextualization features in the :ref:`contextualization guide <context_overview>`.
 
@@ -535,7 +554,7 @@ Example, a VM with two NIC attached, one is an alias of the other one:
     NIC = [ NETWORK = "Test", NAME = "TestName" ]
     NIC_ALIAS = [ NETWORK = "Test", PARENT = "TestName" ]
 
-For more information on setting up virtual networks please check the :ref:`Managing Virtual Networks guide <vgg>`.
+For more information on setting up virtual networks please check the :ref:`Managing Virtual Networks guide <manage_vnets>`.
 
 .. _nic_default_template:
 
@@ -1141,6 +1160,8 @@ Valid ``types``:
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
 | boolean         | <VAR>="M|boolean| <desc>| | <default>"                          | Yes or not                                             |
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
+| fixed           | <VAR>="M|boolean| <desc>| | <value>"                            | A fixed value, cannot be changed.                      |
++-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
 
 There is the possibility of making the USER_INPUT mandatory or not. If it is mandatory, we will see a letter 'M' but if it is not mandatory a letter 'O' will appear.
 Example:
@@ -1151,6 +1172,8 @@ Example:
 In Sunstone, the ``USER_INPUTS`` can be ordered with the mouse.
 
 |user_inputs|
+
+.. _template_schedule_actions:
 
 Schedule actions Section
 ================================================================================
@@ -1258,6 +1281,8 @@ The following attributes are used to display elements in the sunstone:
 | NETWORK_RDP         | Disable interface network RDP Conection (active)                    |
 +---------------------+---------------------------------------------------------------------+
 | NETWORK_SSH         | Disable interface network SSH Conection (active)                    |
++---------------------+---------------------------------------------------------------------+
+| NETWORK_SELECT      | Disable Network selection for VM on instantiation                   |
 +---------------------+---------------------------------------------------------------------+
 
 For example:

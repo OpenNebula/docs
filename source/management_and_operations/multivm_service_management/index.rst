@@ -1,8 +1,8 @@
 .. _multivm_service_management:
 
-================================================================================
+===========================
 Multi-VM Service Management
-================================================================================
+===========================
 
 .. toctree::
    :maxdepth: 2
@@ -10,5 +10,4 @@ Multi-VM Service Management
    Overview <overview>
    OneFlow Services Management <appflow_use_cli>
    OneFlow Services Auto-scaling <appflow_elasticity>
-   VM Groups Affinity <vmgroups>
    OneGate Usage <onegate_usage>

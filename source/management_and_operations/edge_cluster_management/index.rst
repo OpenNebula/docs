@@ -11,4 +11,5 @@ Edge Cluster Management
    On-Prem Edge Cluster <onprem_cluster>
    Equinix Edge Cluster <equinix_cluster>
    AWS Edge Cluster <aws_cluster>
+   Edge Providers <provider_operations>
    Edge Cluster Operations <cluster_operations>

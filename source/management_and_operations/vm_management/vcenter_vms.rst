@@ -1,7 +1,7 @@
 .. _vcenter_specifics:
 
 ================================================================================
-vCenter Specifics
+VMware vCenter Virtual Machines
 ================================================================================
 
 vCenter VM and VM Templates
@@ -79,7 +79,7 @@ The monitoring attributes retrieved from a vCenter VM are:
 - DISK_x_ACTUAL_PATH: Physical path of the disk inside the vCenter datastore
 
 vCenter Template or Wild VM Importing Procedure
---------------------------------------------------------------------------------
+================================================================================
 
 While a template or Wild VM is being imported, OpenNebula will inspect the virtual disks and virtual nics and it will create images and virtual networks referencing the disks and port-groups used by the VM. This process may take some time, please be patient.
 
@@ -91,7 +91,7 @@ You have more information about these procedures:
 .. _vcenter_cloning_procedure:
 
 VM Template Cloning Procedure
---------------------------------------------------------------------------------
+================================================================================
 
 OpenNebula uses VMware cloning VM Template procedure to instantiate new Virtual Machines through vCenter. From the VMware documentation:
 
@@ -105,19 +105,19 @@ The cloning procedure involves:
 - Deciding the folder where the VM will be placed inside the VM and Templates inventory view.
 
 Choosing a datastore
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
 
 By default, the VM will be deployed in the datastore that the OpenNebula's scheduler chooses according to its policy.
 
 The policy is set in the /etc/one/sched.conf configuration file and by default OpenNebula will try to deploy the VMs trying to distibute them across the available datastores.
 
-You can force that OpenNebula uses specific datastores overriding the scheduler's policy with the SCHED_DS_REQUIREMENTS as explained :ref:`here <system_ds_multiple_system_datastore_setups>`.
+You can force that OpenNebula uses specific datastores overriding the scheduler's policy with the SCHED_DS_REQUIREMENTS as explained :ref:`here <sched_ds>`.
 
 It's compulsory that you import vCenter datastores before trying to deploy a VM and you must be sure that the datastores are shared by every ESX host in the cluster.
 
 
 Specifying how the disks are copied
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
 
 OpenNebula instructs vCenter to "move all disk backing an disallow sharing". That means that vCenter will create a full clone of the disks inside the template, and that full clone flattens all disks from the parent-most to the child-most disk.
 
@@ -126,13 +126,13 @@ However if you import the template with Linked Clones support OpenNebula will "m
 You have more information about disk moving operations `here <https://www.vmware.com/support/developer/vc-sdk/visdk41pubs/ApiReference/vim.vm.RelocateSpec.DiskMoveOptions.html>`__ and the use of Linked Clones :ref:`here <vcenter_linked_clones_description>` and :ref:`here <vcenter_linked_clones_import>` in OpenNebula docs.
 
 Selecting a Resource Pool
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
 
 OpenNebula uses the default cluster resource pool to place the VM instantiated from the VM template, unless VCENTER_RESOURCE_POOL variable is defined in the OpenNebula host template or VM template. You have more information about resource pools :ref:`here in OpenNebula docs<vcenter_resource_pool>`.
 
 
 Deciding the VM folder in vSphere's VM and Templates view
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
 
 When the VM is cloned from the VM template, you can found that VM in vSphere's Web Client is by default in the same location where the vCenter template is located. For instance, using the corelinux64 vcenter template I can find the OpenNebula's VM with the one- prefix in the same folder where my template lives.
 
@@ -145,7 +145,7 @@ However you may place the VM in a different folder using the VCENTER_VM_FOLDER a
 .. _vcenter_instantiate_to_persistent:
 
 Saving a VM Template: Instantiate to Persistent
---------------------------------------------------------------------------------
+================================================================================
 
 At the time of deploying a VM Template, a flag can be used to create a new VM Template out of the VM.
 
@@ -174,7 +174,7 @@ This functionality is very useful to create new VM Templates from a original VM 
 .. _vcenter_save_as_template:
 
 Saving a VM Template: Save As
---------------------------------------------------------------------------------
+================================================================================
 
 In the Sunstone's cloud_vcenter view you can poweroff a VM an use the save icon to create a new OpenNebula template from this VM.
 
@@ -205,7 +205,7 @@ Note that the new OpenNebula template has a :ref:`Managed Object Reference <vcen
 .. _vm_scheduling_vcenter:
 
 VM Scheduling
---------------------------------------------------------------------------------
+================================================================================
 
 OpenNebula scheduler should only chose a particular OpenNebula host for a OpenNebula VM Template representing a vCenter VM Template, since it most likely only would be available in a particular vCenter cluster.
 
@@ -224,7 +224,7 @@ In Sunstone, a host abstracting a vCenter cluster will have an extra tab showing
 .. _vcenter_attach_cdrom:
 
 Attaching a CDROM to a Virtual Machine
---------------------------------------------------------------------------------
+================================================================================
 
 You can attach a CDROM to a Virtual Machine :ref:`creating first an OpenNebula image from an ISO file<vcenter_upload_iso>`.
 
@@ -251,7 +251,7 @@ The rate of reading/write is provided by vCenter as an average using KB/s unit. 
 vCenter Images
 ================================================================================
 
-You can follow the :ref:`Managing Images Section <img_guide>` to learn how to manage images, considering that VMDK snapshots are not supported as well as the following considerations.
+You can follow the :ref:`Managing Images Section <images>` to learn how to manage images, considering that VMDK snapshots are not supported as well as the following considerations.
 
 Existing disks in vCenter VM Templates or Wild VMs will be imported in OpenNebula with information about those disks. OpenNebula will scan templates and Wild VMs for existing disks and it will create OpenNebula images that will represent those virtual disks. Thanks to this scanning process, existing disks will be visible for OpenNebula, and therefore can be detached from the deployed VMs. The following information is important about images created when a vCenter template or Wild VM is imported:
 
@@ -297,11 +297,11 @@ VMDK images in vCenter datastores can be:
 
 Images can be imported from the vCenter datastore using the :ref:`onevcenter<vcenter_import_images>` tool.
 
-.. warning: Both "VCENTER_ADAPTER_TYPE" and "VCENTER_DISK_TYPE" need to be set at either the Datastore level, the Image level or the VM Disk level. If not set, default values in /etc/one/vcenter_driver.defaults file should be used.
+.. warning:: Both "VCENTER_ADAPTER_TYPE" and "VCENTER_DISK_TYPE" need to be set at either the Datastore level, the Image level or the VM Disk level. If not set, default values in /etc/one/vcenter_driver.defaults file should be used.
 
-.. warning: Images spaces are not allowed for import
+.. warning:: Images spaces are not allowed for import
 
-.. note: By default, OpenNebula checks the datastore capacity to see if the image fits. This may cause a "Not enough space in datastore" error. To avoid this error, disable the datastore capacity check before importing images. This can be changed in /etc/one/oned.conf, using the DATASTORE_CAPACITY_CHECK set to "no".
+.. note:: By default, OpenNebula checks the datastore capacity to see if the image fits. This may cause a "Not enough space in datastore" error. To avoid this error, disable the datastore capacity check before importing images. This can be changed in /etc/one/oned.conf, using the DATASTORE_CAPACITY_CHECK set to "no".
 
 .. _vcenter_tags_and_categories:
 

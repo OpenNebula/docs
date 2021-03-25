@@ -6,7 +6,7 @@ Managing Permissions
 
 Most OpenNebula resources have associated permissions for the **owner**, the users in her **group**, and **others**. For each one of these groups, there are three rights that can be set: **USE**, **MANAGE** and **ADMIN**. These permissions are very similar to those of UNIX file system.
 
-The resources with associated permissions are :ref:`Templates <vm_guide>`, :ref:`VMs <vm_guide_2>`, :ref:`Images <img_guide>` and :ref:`Virtual Networks <vgg>`. The exceptions are :ref:`Users <manage_users>`, :ref:`Groups <manage_users>` and :ref:`Hosts <hostsubsystem>`.
+The resources with associated permissions are :ref:`Templates <vm_guide>`, :ref:`VMs <vm_guide_2>`, :ref:`Images <images>` and :ref:`Virtual Networks <manage_vnets>`. The exceptions are :ref:`Users <manage_users>`, :ref:`Groups <manage_users>` and :ref:`Hosts <hostsubsystem>`.
 
 Managing Permission through the CLI
 ===================================

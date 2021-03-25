@@ -4,7 +4,7 @@
 Overview
 ================================================================================
 
-This chapter contains documentation on how to create and manage Virtual Machine :ref:`templates <vm_guide>`, :ref:`instances <vm_instances>`, and :ref:`Images <img_guide>` (VM disks).
+This chapter contains documentation on how to create and manage Virtual Machine :ref:`templates <vm_guide>`, :ref:`instances <vm_instances>`, and :ref:`Images <images>` (VM disks).
 
 How Should I Read This Chapter
 ================================================================================
@@ -19,7 +19,7 @@ Hypervisor Compatibility
 +-------------------------------------------------+-----------------------------------------------+
 |                     Section                     |                 Compatibility                 |
 +=================================================+===============================================+
-| :ref:`Virtual Machine Images <img_guide>`       | This Section applies to all Hypervisors.      |
+| :ref:`Virtual Machine Images <images>`          | This Section applies to all Hypervisors.      |
 +-------------------------------------------------+-----------------------------------------------+
 | :ref:`Virtual Machine Templates <vm_templates>` | This Section applies to all Hypervisors.      |
 +-------------------------------------------------+-----------------------------------------------+

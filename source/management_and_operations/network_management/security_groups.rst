@@ -8,7 +8,7 @@ Security Groups
 Security Groups define firewall rules to be applied to Virtual Machines.
 
 .. warning::
-    Security groups is not supported for OpenvSwitch. In vCenter environments, NSX is mandatory to enable Security Groups functionality.
+    Security groups are not supported for OpenvSwitch. In vCenter environments, NSX is mandatory to enable Security Groups functionality.
 
 .. _security_groups_requirements:
 
@@ -22,7 +22,7 @@ A Security Group is composed of several Rules. Each Rule is defined with the fol
 +================+===========+===============================================================+=============================================+
 | **PROTOCOL**   | Mandatory | Defines the protocol of the rule                              | ALL, TCP, UDP, ICMP, IPSEC                  |
 +----------------+-----------+---------------------------------------------------------------+---------------------------------------------+
-| **RULE_TYPE**  | Mandatory | Defines the direction of the rule                             | INBOUND, OUTBOUND                           |
+| **RULE_TYPE**  | Mandatory | Defines the traffic direction                                 | INBOUND, OUTBOUND                           |
 +----------------+-----------+---------------------------------------------------------------+---------------------------------------------+
 | **IP**         | Optional  | If the rule only applies to a specific net. This is the first | A valid IP                                  |
 |                |           | **IP** of the consecutive set of **IPs**. Must be used with   |                                             |
@@ -116,9 +116,7 @@ Moreover, each Virtual Machine Template NIC can define a list of Security Groups
       SECURITY_GROUPS = "103, 125"
     ]
 
-If the Address Range or the Template NIC defines SECURITY_GROUPS, the IDs will
-be added to the ones defined in the Virtual Network. All the Security Group IDs
-are combined, and applied to the Virtual Machine instance.
+If the Address Range or the Template NIC defines SECURITY_GROUPS, the IDs will be added to the ones defined in the Virtual Network. All the Security Group IDs are combined, and applied to the Virtual Machine instance.
 
 The Default Security Group
 ================================================================================
@@ -129,25 +127,19 @@ group allows all OUTBOUND traffic and all INBOUND traffic.
 Whenever a network is created, the ``default`` Security Group is added to the
 network.
 
-This means the you **must** edit every newly created network and remove the
+This means that you **must** edit every newly created network and remove the
 ``default`` Security Group from it. Otherwise even if you add other Security
 Groups, the ``default`` one will allow all traffic and therefore override the rest
 of the Security Groups.
 
-**Note for administrators**: you may want to remove the rules included in the
-``default`` security groups. This way users are forced to create security groups
-(otherwise they will not have connectivity to and from the VMs) which avoid some
-security problems.
+.. note:: You may want to remove the rules included in the ``default`` security groups. This way users are forced to create security groups (otherwise they will not have connectivity to and from the VMs) which avoid some security problems.
 
 .. _security_groups_update:
 
 Security Group Update
 ================================================================================
 
-Security Groups can be updated to edit or add new rules. These changes are
-propagated to all VMs in the security group, so it may take some time till the
-changes are applied. The particular status of a VM can be checked in the security
-group properties, where outdated and up-to-date VMs are listed.
+Security Groups can be updated to edit or add new rules. These changes are propagated to all VMs in the security group, so it may take some time till the changes are applied. The particular status of a VM can be checked in the security group properties, where outdated and up-to-date VMs are listed.
 
 If the update process needs to be reset, i.e. apply again the rules, you can use the ``onesecgroup commit`` command.
 
@@ -156,32 +148,3 @@ If the update process needs to be reset, i.e. apply again the rules, you can use
 .. |sg_vnet_assign| image:: /images/sg_vnet_assign.png
 .. |sg_ar_assign| image:: /images/sg_ar_assign.png
 .. |sg_vm_view| image:: /images/sg_vm_view.png
-
-
-NSX Specific
-============
-
-This section describes NSX specifics regarding Security Groups, which are supported for NSX-T and NSX-V networks.
-
-.. warning:: NSX_STATUS must be OK before performs operations related to Security Groups.
-
-Security Groups are made up of rules that are applied into Distributed Firewall as follows:
-    - All rules are created under a section called "OpenNebula".
-    - The name pattern of the created rules is:
-    
-        **<sgID>-<sgName>-<vmID>-<vmDeployID>-<nicID>**
-            
-            - **sgID** = OpenNebula Security Group ID
-
-            - **sgName** = OpenNebula Security Group Name
-
-            - **vmID** = OpenNebula instance ID
-
-            - **vmDeployID** = vCenter vm-id
-
-            - **nicID** = OpenNebula instance nic ID
-
-    - The Security Groups rules are applied to a virtual machine logical port group.
-    - All sSecurity Groups rules are applied with action "ALLOW"
-
-.. warning:: Modificationof rules or sections created by OpenNebula using directly the NSX Manager interface is not supported, since the information won't be synced back in OpenNebula.

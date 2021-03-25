@@ -1,8 +1,8 @@
 .. _container_image_usage:
 
-====================================================
-Deploying VMs with Container Images
-====================================================
+================================================================================
+Using Container Images
+================================================================================
 
 The images from the OpenNebula container marketplaces (:ref:`Docker Hub <market_dh>`, :ref:`Turnkey Linux <market_turnkey_linux>`, and :ref:`Linux Containers <market_linux_container>`) are just filesystem images. Depending on the hypervisor some extra configuration might be required.
 
@@ -10,20 +10,24 @@ The images from the OpenNebula container marketplaces (:ref:`Docker Hub <market_
 
 .. important:: Container images are not supported for vCenter hypervisor.
 
-Using Container Images with LXD
-====================================================
+DockerHub Applications
+================================================================================
+DockerHub uses a ``CMD`` or ``Entrypoint`` mechanism to automatically start the target application in the container. This process is not automatically triggered in your imported images. Please use the ``START_SCRIPT`` of :ref:`the contextualization process <template_context>` to execute the command that starts the application.
 
-As container images are just filesystem images when using LXD no extra configuration is required.
+Using Container Images with LXC
+================================================================================
+
+As container images are just filesystem images when using LXC no extra configuration is required.
 
 Using Container Images with Firecracker
-====================================================
+================================================================================
 
 In order to deploy a Firecracker MicroVM using one of the images mentioned above, an uncompressed kernel image is required. The Firecracker project provides a recommended `configuration file <https://github.com/firecracker-microvm/firecracker/blob/master/resources/microvm-kernel-x86_64.config>`__ for building the kernel image.
 
 Once the image is in ready state, the only thing left to boot the MicroVM is to add the kernel image to the VM template.
 
 Using Container Images with KVM
-====================================================
+================================================================================
 
 In order to deploy KVM VMs using container images OpenNebula use the PVH entry point which allows to deploy VMs from an uncompressed kernel images with minimal firmware involvement. PVH entry point is a new feature for qemu+kvm which have the following requirements:
 
@@ -34,7 +38,7 @@ In order to deploy KVM VMs using container images OpenNebula use the PVH entry p
 If the requirements are fulfilled, the only thing needed to boot the container image as a VM is to add the kernel image to the VM template and set the root device (e.g ``vda``).
 
 Getting Kernel Images
-====================================================
+================================================================================
 
 The kernel images can be either directly build by using the kernel configuration files provided by Firecracker or OpenNebula or can be directly downloaded from OpenNebula marketplace:
 

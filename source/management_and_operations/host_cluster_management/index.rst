@@ -6,7 +6,6 @@ Hosts and Clusters Management
    :maxdepth: 2
 
    Overview <overview>
-   Hosts <host_guide>
+   Hosts <hosts>
    Clusters <cluster_guide>
-   Datastores <datastore_guide>
    NUMA and CPU Pinning <numa>

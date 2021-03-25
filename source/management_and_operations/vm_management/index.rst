@@ -6,9 +6,8 @@ Virtual Machine Management
    :maxdepth: 2
 
    Overview <overview>
-   Virtual Machine Images <img_guide>
    Virtual Machine Templates <vm_templates>
    Virtual Machine Instances <vm_instances>
    Virtual Machine Backup <vm_backup>
-   vCenter Specifics <vcenter_specifics>
-
+   Using Container Images <container_images_usage>
+   VMware vCenter Virtual Machines <vcenter_vms>
