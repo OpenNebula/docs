@@ -1,16 +1,18 @@
+.. _provider_operations:
+
+================================================================================
 Managing Providers
 ================================================================================
 
-To operate with providers you can use the command ``oneprovider``. This will allow you to register the provider into OpenNebula and use it. There are
-two ways of using it:
+You can manage your Edge providers with the command ``oneprovider``. This will allow you to register the provider into OpenNebula and use it. There are two ways of using it:
 
-- You can combine the use of the provider and the :ref:`provision template <ddc_provision_template_document>`. You can define a provision template with a provider inside of it and when you instantiate it, all the provider information will be used.
-- You can use the provider when creating a new provision with command ``oneprovision create`` using the parameter ``--provider``.
+- As part of :ref:`an Edge Cluster definition <ddc_provision_template_document>`. When you create the Edge Clusterthe provider information will be used.
+- You can set the provider when creating a new Edge Cluster with command ``oneprovision create`` and the parameter ``--provider``. This will override any provider in the Edge Cluster definition template.
 
 Command Usage
 ================================================================================
 
-The CLI command to manage providers is ``oneprovider``, it follows the same structure as the other CLI commands in OpenNebula. You can check all the available commands with the option ``-h`` or ``--help``.
+The CLI command to manage Edge Providers is ``oneprovider``, it follows the same structure as the other CLI commands in OpenNebula. You can check all the available commands with the option ``-h`` or ``--help``.
 
 .. warning:: Provider information is encrypted, so it can only be managed by oneadmin or oneadmin's group user.
 
@@ -36,3 +38,6 @@ To delete the provider use the command ``oneprovider delete``, e,g:
     $ oneprovider delete 2
 
 .. warning:: If you try to delete a provider that is being used by a provision or provision template, you will get an error.
+
+Adding and Customizing Edge Providers
+================================================================================

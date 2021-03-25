@@ -1,43 +1,31 @@
 .. _equinix_cluster:
 
-====================
+================================================================================
 Equinix Edge Cluster
-====================
-
-Supported Edge Cluster Types
 ================================================================================
 
-There are two kinds of elastic clusters:
+.. include:: cluster_hypervisor.txt
 
-* **Metal**: this uses baremetal resources, allowing you to have better performance. This is thought when you need a real server and higher compute capacities.
-* **Virtual**: this uses a virtual machine as a host, nested virtualization. This is thought for lighter resources like micro VMs or containers.
-
-The supported hypervisors are the following:
-
-* **KVM**: run virtual machines. In case you are using virtual cluster, instead of KVM, you will use **qemu**.
-* **Firecracker**: run micro VMs.
-* **LXC**: run containers.
-
-Equinix Providers
+Equinix Provider
 ================================================================================
 
-An Equinix provider contains the credentials to interact with Equinix and also the location to deploy all the resources. OpenNebula comes with four predefined providers in the following regions:
+An Equinix provider contains the credentials to interact with Equinix and also the location to deploy your Edge clusters. OpenNebula comes with four predefined providers in the following regions:
 
 * Amsterdam
-* Parsippany
+* Parsippany (NJ, US)
 * Tokyo
-* California
+* California (US)
 
 In order to define an Equinix provider, you need the following information:
 
-* **Credentials**: these are used to interact with the remote provider. You need to provide ``token`` and ``project``. You can follow `this guide <https://metal.equinix.com/developers/api/>`__.
-* **Facility**: this is the location in the world where the resources are going to be deployed. All the available facilities can be checked `here <https://www.equinix.com/data-centers/>`__.
+* **Credentials**: these are used to interact with the remote provider. You need to provide ``token`` and ``project``. You can follow `this guide <https://metal.equinix.com/developers/api/>`__ to get this data.
+* **Facility**: this is the location in the world where the resources are going to be deployed. All the available `facilities are listed here <https://www.equinix.com/data-centers/>`__.
 * **Plans and OS**: these define the capacity of the resources that are going to be deployed and the operating system that is going to be installed on them.
 
-How to add a new Equinix provider
+How to create an Equinix provider
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To add a new provider you need a template:
+To add a new provider you need to write the previous data in YAML template:
 
 .. prompt:: bash $ auto
 
@@ -74,7 +62,7 @@ How to customize and existing provider
 
 The provider information is stored in OpenNebula database, it can be updated as any other resource. In this case, you need to use the command ``oneprovider update``. It will open an editor so you can edit all the information there. You can also use the OneProvision Fireedge GUI to update all the information.
 
-Equinix Edge Cluster Details
+Equinix Edge Cluster Implementation
 ================================================================================
 
 An edge cluster in Equinix creates the following resources:
@@ -84,11 +72,10 @@ An edge cluster in Equinix creates the following resources:
 The network model is implemented in the following way:
 
 * **Public Networking**: this is implemeted using elastic IPs from Equinix and the IPAM driver from OpenNebula. When the virtual network is created in OpenNebula the elastic IPs are requested to Equinix. Then, inside the host, IP forwarding rules are applied so the VM can communicate over the public IP assigned by Equinix.
+
 * **Private Networking**: this is implemented using (BGP-EVPN) and VXLAN.
 
 Operating Providers & Edge Clusters
 ================================================================================
 
 Refer to :ref:`cluster operation guide <cluster_operations>`, to check all the operations needed to create, manage and delete an edge cluster.
-
-.. include:: provider.txt

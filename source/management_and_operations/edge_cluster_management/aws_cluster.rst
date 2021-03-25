@@ -4,40 +4,28 @@
 AWS Edge Cluster
 ================
 
-Supported Edge Cluster Types
-================================================================================
-
-There are two kinds of elastic clusters:
-
-* **Metal**: this uses baremetal resources, allowing you to have better performance. This is thought when you need a real server and higher compute capacities.
-* **Virtual**: this uses a virtual machine as a host, nested virtualization. This is thought for lighter resources like micro VMs or containers.
-
-The supported hypervisors are the following:
-
-* **KVM**: run virtual machines. In case you are using virtual cluster, instead of KVM, you will use **qemu**.
-* **Firecracker**: run micro VMs.
-* **LXC**: run containers.
+.. include:: cluster_hypervisor.txt
 
 AWS Providers
 ================================================================================
 
-An AWS provider contains the credentials to interact with Amazon and also the region to deploy all the resources. OpenNebula comes with four predefined providers in the following regions:
+An AWS provider contains the credentials to interact with Amazon and also the region to deploy your edge clusters. OpenNebula comes with four predefined providers in the following regions:
 
 * Frankfurt
 * London
-* North Virginia
-* North California
+* North Virginia (US)
+* North California (US)
 
 In order to define an AWS provider, you need the following information:
 
 * **Credentials**: these are used to interact with the remote provider. You need to provide ``access_key`` and ``secret_key``. You can follow `this guide <https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html>`__.
-* **Region**: this is the location in the world where the resources are going to be deployed. All the available regions can be checked `here <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html>`__.
+* **Region**: this is the location in the world where the resources are going to be deployed. All the available regions are `listed here <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html>`__.
 * **Instance types and AMI's**: these define the capacity of the resources that are going to be deployed and the operating system that is going to be installed on them.
 
 How to add a new AWS provider
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To add a new provider you need a template:
+To add a new provider you need a YAML template file with the above information:
 
 .. prompt:: bash $ auto
 
@@ -77,7 +65,7 @@ How to customize and existing provider
 
 The provider information is stored in OpenNebula database, it can be updated as any other resource. In this case, you need to use the command ``oneprovider update``. It will open an editor so you can edit all the information there. You can also use the OneProvision Fireedge GUI to update all the information.
 
-AWS Edge Cluster Details
+AWS Edge Cluster Implementation
 ================================================================================
 
 An edge cluster in AWS creates the following resources:
@@ -97,5 +85,3 @@ Operating Providers & Edge Clusters
 ================================================================================
 
 Refer to :ref:`cluster operation guide <cluster_operations>`, to check all the operations needed to create, manage and delete an edge cluster.
-
-.. include:: provider.txt
