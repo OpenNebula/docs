@@ -226,10 +226,12 @@ Sunstone
 
 .. _edge_cluster_provision_workloads_compatibility:
 
-Certified Edge Clusters Type Workload Compatibility
-===================================================
+Compatibility of Workloads on Certified Edge Clusters
+=====================================================
 
-The OneProvision tool enables the deployment of Edge Clusters and automatic enrolment to OpenNebula. The following table lays out the compatiblity of the type of edge cluster and valid workloads for it.
+Containers workloads are those imported from DockerHub, LinuxContainers or TunrkeyLinux, as well as images created from DockerFiles. Virtual Machine worloads uses full system disk images.
+
+The OneProvision tool enables the deployment of Edge Clusters and their automatic enrollment to OpenNebula. The following table lays out the certified configuration for each type of workload.
 
 +-------------------+-------------+------------------+
 | Edge Cluster Type |  Hypervisor |     Workload     |
