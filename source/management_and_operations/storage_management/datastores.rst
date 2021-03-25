@@ -28,7 +28,7 @@ By default, OpenNebula will create an image (``default``), system (``system``), 
 Attributes
 ================================================================================
 
-Image Datastore
+Image and Files & Kernels Datastores
 --------------------------------------------------------------------------------
 
 You can access the information about each datastore using the ``onedatastore show`` command. For example the information of your ``default`` datastore may look like:
@@ -81,6 +81,8 @@ There are four important sections:
   * **Capacity**, including basic usage metrics like total, used, and free space.
   * **Generic Attributes**, under ``DATASTORE TEMPLATE`` you can find configuration attributes and custom tags (see below).
   * **Images**, the list of images currently stored in this datastore.
+
+.. note:: The example above shows how a basic image datastore looks like. A Files & Kernels Datastore will look mostly the same but with different values in the type fields.
 
 System Datastore
 --------------------------------------------------------------------------------

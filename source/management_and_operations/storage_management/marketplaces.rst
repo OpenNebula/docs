@@ -9,7 +9,7 @@ OpenNebula Marketplaces provide a simple way to integrate your cloud with popula
 A Marketplace can be:
 
 * **Public**: accessible universally by all OpenNebula installations.
-* **Private**: local within an organization and specific for a single OpenNebula (a single zone) or shared by a federation (a collection of zones). If you are interested in setting up your own :ref:`private Marketplace, please follow this guide <private_marketplaces>`. 
+* **Private**: local within an organization and specific for a single OpenNebula (a single zone) or shared by a federation (a collection of zones). If you are interested in setting up your own :ref:`private Marketplace, please follow this guide <private_marketplaces>`.
 
 A Marketplace stores Marketplace Appliances. A MarketPlace Appliance includes one or more Images and, possibly, some associated metadata like VM Templates or OpenNebula Multi-VM service definitions.
 
