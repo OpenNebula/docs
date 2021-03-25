@@ -4,7 +4,11 @@
 Running Kubernetes Clusters
 ============================
 
-In order to successfully launch a Kubernetes cluster we need more computing power that the one provided by the Virtual Edge Cluster deployed in "Operations Basics". If you haven't done so already, please repeat the same steps but add a metal type provision with KVM hypervisor and add at least two public IPs. We are going to assume the same naming schema "aws-cluster".
+In the public OpenNebula System marketplace there are also services available that lets you deploy a multi-VM application. In this exercise we are going to import a Kubernetes cluster service and launch a Kubernetes cluster with it.
+
+We need a metal KVM edge cluster for this. If you haven't already done so, you can follow the same steps of the :ref:`provisioning an edge cluster <first_edge_cluster>` guide, using "metal" edge cloud type and kvm hypervisor. Make sure you request two public IPs.
+
+We are going to assume the edge cluster naming schema "metal-kvm-aws-cluster".
 
 Step 1. Download the OneFlow Service from the marketplace
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -13,36 +17,32 @@ Login into Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab, and search 
 
 |kubernetes_marketplace|
 
-Now you need to select a datastore. For efficiency, and taking into account we are only going to run this appliaction in the OpenNeblua cluster created in "Operations Basics", select the aws-cluster-images datastore.
+Now you need to select a datastore, select the metal-kvm-aws-cluster-images datastore.
 
-|aws_cluster_images_datastore|
+|metal_kvm_aws_cluster_images_datastore|
 
 The appliance will be ready when the image in ``Storage --> Images`` gets in READY from LOCKED state.
 
 .. |kubernetes_marketplace| image:: /images/kubernetes_marketplace.png
-.. |aws_cluster_images_datastore| image:: /images/aws_cluster_images_datastore.png
+.. |metal_kvm_aws_cluster_images_datastore| image:: /images/metal_kvm_aws_cluster_images_datastore.png
 
-Step 2. Instantiate the VM
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+Step 2. Instantiate the Kubernetes Service
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Proceed to the ``Templates --> VMs`` tab and select the "Service WordPress - KVM" VM Template (that should be the only one available``). Click on Instantiate.
+Proceed to the ``Templates --> Services`` tab and select the "Service Kubernetes 1.18 for OneFlow - KVM" Service Template (that should be the only one available``). Click on "+" and then Instantiate.
 
-Feel free to modify the capacity and to input data to configure the WordPress service. A required step is clicking on Network and selecting the aws-cluster-public network.
+A required step is clicking on Network and selecting the metal-kvm-aws-cluster-public network.
 
-|select_aws_cluster_public_network|
+|select_metal_aws_cluster_public_network|
 
-Now proceed to ``Instances --> VMs`` and wait for the only VM there to get into RUNNING state.
+Feel free to modify the capacity and to input data to configure the Kubernetes cluster.
 
-.. |select_aws_cluster_public_network| image:: /images/select_aws_cluster_public_network.png
+|configure_kubernetes_cluster|
 
-Step 3. Connect to WordPress
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Now proceed to ``Instances --> Services`` and wait for the only Service there to get into RUNNING state. You can also check the VMs being deployed in ``Instances --> VMs``.
 
-Select the public IP of the VM, which is highlighted in bold. You should only have one bold IP in that VM. Simply enter that in a new tab in your browser and you'll be greeted by the famous 5 min WordPress installation process! That's it, you have a working OpenNebula cloud. Congrats!
+.. |select_metal_aws_cluster_public_network| image:: /images/select_metal_aws_cluster_public_network.png
+.. |configure_kubernetes_cluster| image:: /images/configure_kubertes_cluster.png
 
-|wordpress_install_page|
-
-.. |wordpress_install_page| image:: /images/wordpress_install_page.png
-
-Containers
-----------------
+Step 3. Validate the Kubernetes cluster
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

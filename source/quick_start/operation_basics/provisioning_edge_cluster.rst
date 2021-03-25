@@ -16,7 +16,6 @@ In this quick start guide we are going to try different workloads. Each workload
 | :ref:`K8s cluster <running_kubernetes_clusters>` | metal             | kvm        |
 +--------------------------------------------------+-------------------+------------+
 
-
 In this section you can check all the steps needed to deploy an **Edge Cluster**. It will involve the Fireedge OneProvision GUI and Sunstone to manage the resources created in OpenNebula.
 
 .. note:: We will be creating a virtual edge cluster with lxc hypervisor, valid to deploy containers. If you are planning to go all the way and also try the deployment of VMs and K8s cluster, we recommend using a metal edge cluster deployment with kvm hypervisor.
@@ -114,6 +113,8 @@ Let's explore **the log and detailed information**
 |image_provision_info|
 
 |image_provision_log|
+
+Your provision will be ready when you see the message "Provision successfully created" in the log, followed by the ID of the recently created provision.
 
 Step 4: Validation
 ================================================================================
