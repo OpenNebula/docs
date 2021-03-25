@@ -131,7 +131,7 @@ VMGroups are placed by dynamically generating the requirement (``SCHED_REQUIREME
 Using a VM Group
 ================================================================================
 
-Once you have defined your VM Group you can start adding VMs to it, by either picking a role and VM group at instantiation or by setting it in the VM Template. To apply a VM Group to your Virtual Machines either use the Sunstone wizard, or set the VM_GROUP attribute:
+Once you have defined your VM Group you can start adding VMs to it, by either picking a role and VM group at instantiation or by setting it in the VM Template. To apply a VM Group to your Virtual Machines either use the Sunstone wizard, or set the ``VM_GROUP`` attribute:
 
 .. prompt:: bash $ auto
 
@@ -141,7 +141,7 @@ Once you have defined your VM Group you can start adding VMs to it, by either pi
 
 You can also specify the ``VM_GROUP`` by its id (``VMGROUP_ID``), and in case of multiple groups with the same name you can select it by owner with ``VMGROUP_UID``; as any other resource in OpenNebula.
 
-.. note:: You can also add the VMGROUP attribute when a VM is created (``onevm create``) or when the associated template is instantiated (``onetemplate instantiate``). This way the same VM template can be associated with different roles.
+.. note:: You can also add the ``VMGROUP`` attribute when a VM is created (``onevm create``) or when the associated template is instantiated (``onetemplate instantiate``). This way the same VM template can be associated with different roles.
 
 VM Group Management
 ================================================================================

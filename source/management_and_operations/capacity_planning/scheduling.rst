@@ -75,7 +75,7 @@ You can use these expressions to force the deployment on a Host with or without 
 .. code-block:: bash
 
     SCHED_REQUIREMENTS = "QOS = GOLD"
-     
+
     SCHED_REQUIREMENTS = "QOS != GOLD & HYPERVISOR = kvm"
 
 Similarly you can express your preferences for Hosts with QoS Gold, for example:
@@ -83,6 +83,7 @@ Similarly you can express your preferences for Hosts with QoS Gold, for example:
 .. code-block:: bash
 
    SCHED_RANK = FREE_CPU
+   SCHED_REQUIREMENTS = "QOS = GOLD"
 
 This expression will use first Hosts with a higher value of the FREE_CPU Attribute, i.e. those with less load.
 
@@ -101,7 +102,7 @@ Virtual Machine Storage Scheduling Policies
 
 Similarly to the Host policies, you can control which Datastores are used to run a Virtual Machine with:
 
-  - ``SCHED_DS_REQUIREMENTS``, A boolean expression to select System Datastores (evaluates to true) to run a  VM.
+  - ``SCHED_DS_REQUIREMENTS``, A boolean expression to select System Datastores (evaluates to true) to run a VM.
   - ``SCHED_DS_RANK``, Arithmetic expression to sort the suitable System Datastores for this VM.
 
 For example, to select Datastores that operate in *Production*, and trying to pack VMs in them, you may use the following attributes:

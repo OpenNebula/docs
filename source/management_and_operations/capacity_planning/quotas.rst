@@ -142,7 +142,7 @@ The following template shows a quota example for a user in plain text. It limits
 Setting User/Group Quotas
 ================================================================================
 
-User/group quotas can be easily set up either trough the command line interface or Sunstone. Note that you need ``MANAGE`` permissions to set a quota of user, and ``ADMIN`` permissions to set the quota of a group. In this way, by default, only oneadmin can set quotas for a group, but if you define a group manager she can set specific usage quotas for the users on her group (so distributing resources as required). You can always change this behavior setting the appropriate ACL rules.
+User/group quotas can be easily set up either trough the command line interface or Sunstone. Note that you need ``MANAGE`` permissions to set a quota of user, and ``ADMIN`` permissions to set the quota of a group. In this way, by default, only ``oneadmin`` can set quotas for a group, but if you define a group manager she can set specific usage quotas for the users on her group (so distributing resources as required). You can always change this behavior setting the appropriate ACL rules.
 
 To set the quota for a user, e.g. userA, just type:
 
