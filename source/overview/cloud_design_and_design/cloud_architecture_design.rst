@@ -4,24 +4,25 @@
 Cloud Architecture Design
 ===========================
 
-In order to get familiar with OpenNebula, or if you are only interested in building a True Hybrid and Edge deployment, we strongly recommend you start with the Quick Start guide where you will learn how to install a single OpenNebula front-end, deploy on-demand hybrid clusters on remote cloud provider resources, and the basic usage and operation of your cloud. This trial of a real cloud deplyment will help you create a plan with the features, performance, scalability, and high availability characteristics in order to get the most out of an OpenNebula Cloud.
+In order to get familiar with OpenNebula, or if you are only interested in building a True Hybrid and Edge deployment, we strongly recommend you start with the Quick Start guide [TODO:link] where you will learn how to install a single OpenNebula front-end, deploy on-demand hybrid clusters on remote cloud provider resources, and the basic usage and operation of your cloud. This trial of a real cloud deplyment will help you create a plan with the features, performance, scalability, and high availability characteristics in order to get the most out of an OpenNebula Cloud.
 
 .. todo:: Add Links above
 
 Step 1. Install the Front-end
 =================================================
 
-The first step is the **installation of OpenNebula in the cloud front-end**. This :ref:`installation process <frontend_installation>` is the same for any underlying hypervisor or deployment model.
+The first step is the installation of OpenNebula in the cloud front-end. This :ref:`installation process <frontend_installation>` is the same for any underlying hypervisor or deployment model.
 
-Optionally you can setup a :ref:`high available cluster for OpenNebula <frontend_ha_setup>` for OpenNebula to reduce downtime of core OpenNebula services, and :ref:`configure a MySQL backend <mysql>` as an alternative to the default Sqlite backend if you are planning a large-scale infrastructure.
+Optionally you can setup a :ref:`high available cluster <frontend_ha_setup>` for OpenNebula to reduce downtime of core OpenNebula services, and :ref:`configure a MySQL backend <mysql>` as an alternative to the default Sqlite backend if you are planning a large-scale infrastructure. :ref:`PostgreSQL <postgresql_setup>` is also supported but for evaluation only (Technology Preview).
 
-.. todo:: Include Postgress above
+Although a single OpenNebula front-end can manage multiple clusters geographicaly distributed in several data centers and cloud providers, a multi-zone deployment with :ref:`datacenter federation <introf>` functionality can be chosen when data centers are in different administrative domains or when the connectivity across data centers does not meet latency and bandwidth requirements. Multiple OpenNebula Zones can be configured as a federation, and in this case they will share the same user accounts, groups, and permissions across data centers.
+
+
 
 - :ref:`Marketplaces <public_marketplace_overview>` for sharing, provisioning and consuming cloud images. They can be seen as external datastores, where images can be easily imported, exported and shared by a federation of OpenNebula instances.
 
 .. todo:: Explain public marketplaces above and link to guide
 
-The :ref:`datacenter federation <introf>` functionality allows for the **centralized management of multiple instances of OpenNebula for scalability, isolation and multiple-site support**.
 
 
 Step 2. Deploy True Hybrid Clusters
