@@ -151,7 +151,7 @@ and details about it can be obtained with ``show``:
 Searching for VM Instances
 --------------------------------------------------------------------------------
 
-You can search for VM instances by using the ``--search`` option of the ``onevm list`` command. This is specially usefull on large environments with many VMs. The filter must be in a KEY=VALUE format and will return all the VMs which fit the filter.
+You can search for VM instances by using the ``--search`` option of the ``onevm list`` command. This is specially useful on large environments with many VMs. The filter must be in a KEY=VALUE format and will return all the VMs which fit the filter.
 
 The KEY must be in the VM template section or be one of the following:
 
@@ -166,7 +166,7 @@ The KEY must be in the VM template section or be one of the following:
     - ETIME
     - DEPLOY_ID
 
-For example, for searching a VM with a specific MAC addres:
+For example, for searching a VM with a specific MAC address:
 
 .. prompt:: text $ auto
 
@@ -174,7 +174,7 @@ For example, for searching a VM with a specific MAC addres:
      ID    USER     GROUP    NAME    STAT UCPU UMEM HOST TIME
      21005 oneadmin oneadmin test-vm pend    0   0K      1d 23h11
 
-Equivalently if there are more than one VM instance that matches the result they will be shown. for example, VMs with a given NAME:
+Equivalently if there are more than one VM instance that matches the result they will be shown. For example, VMs with a given NAME:
 
 .. prompt:: text $ auto
 
@@ -776,12 +776,12 @@ In this example, the first argument would be the disk and the second the snapsho
 
 .. _vm_charter:
 
-VM Charter
+Virtual Machine Charters
 ================================================================================
 
 This functionality automatically adds scheduling actions in VM templates. To enable Charters, you only need add the following to ``sunstone-server.conf`` file:
 
-|vm_charter|
+|image1|
 
 .. prompt:: text $ auto
 
@@ -843,7 +843,7 @@ The information about the charters can be checked with the command ``onevm show`
 
 .. _vm_guide2_user_defined_data:
 
-Add User Defined Data to a Virtual Machine
+User Defined Data
 ================================================================================
 
 Custom attributes can be added to a VM to store metadata related to this specific VM instance. To add custom attributes simply use the ``onevm update`` command.
@@ -929,12 +929,19 @@ Note: By default, the above operations do not check the target host capacity. Yo
 
 -  ``migrate`` or ``resched``: A VM in the UNKNOWN state can be booted in a different host manually (``migrate``) or automatically by the scheduler (``resched``). This action must be performed only if the storage is shared, or manually transfered by the administrator. OpenNebula will not perform any action on the storage for this migration.
 
-VNC/Spice Access through Sunstone
+Manging Virtual Machines with Sunstone
 ================================================================================
+
+Sunstone exposes the above functionality in the Instances > VMs tab:
+
+|image2|
+
+VNC/Spice Access through Sunstone
+--------------------------------------------------------------------------------
 
 If the VM supports VNC or Spice and is ``running``, then the VNC icon on the Virtual Machines view should be visible and clickable:
 
-|image7|
+|image3|
 
 .. note:: For the correct functioning of the SPICE Web Client, we recommend defining by default some SPICE parameters in ``/etc/one/vmm_mad/vmm_exec_kvm.conf``.
   In this way, once modified the file and restarted OpenNebula, it will be applied to all the VMs instantiated from now on.
@@ -942,23 +949,6 @@ If the VM supports VNC or Spice and is ``running``, then the VNC icon on the Vir
 
 The Sunstone documentation contains a section on :ref:`Accesing your VMs Console and Desktop <remote_access_sunstone>` section.
 
-.. |Virtual Machine States| image:: /images/states-simple.png
-    :width: 100 %
-.. |image2| image:: /images/sunstone_vm_attach.png
-.. |image3| image:: /images/sunstone_vm_attachnic.png
-.. |image4| image:: /images/sunstone_vm_snapshot.png
-.. |image5| image:: /images/sunstone_vm_resize.png
-.. |image6| image:: /images/sunstone_vm_list.png
-.. |image7| image:: /images/sunstone_vnc.png
-.. |image10| image:: /images/sunstone_save_button.png
-.. |image11| image:: /images/sunstone_save_dialog.png
-.. |image12| image:: /images/sunstone_cloud_save_button.png
-.. |vm_charter| image:: /images/vm_charter.png
-.. |sunstone_admin_instantiate| image:: /images/sunstone_admin_instantiate.png
-.. |sunstone_disk_snapshot| image:: /images/sunstone_disk_snapshot.png
-.. |sunstone_persistent_1| image:: /images/sunstone_persistent_1.png
-.. |sunstone_persistent_2| image:: /images/sunstone_persistent_2.png
-.. |sunstone_persistent_3| image:: /images/sunstone_persistent_3.png
-.. |sunstone_schedule_action| image:: /images/sunstone_schedule_action.png
-.. |sunstone_updateconf_1| image:: /images/sunstone_updateconf_1.png
-.. |lxd_vnc| image:: /images/lxd_vnc.png
+.. |image1| image:: /images/vm_charter.png
+.. |image2| image:: /images/sunstone_vm_list.png
+.. |image3| image:: /images/sunstone_vnc.png

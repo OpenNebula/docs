@@ -1,7 +1,7 @@
 .. _numa:
 
 ================================================================================
-NUMA and CPU Pinning
+Virtual Topology and CPU Pinning
 ================================================================================
 
 Overview
@@ -17,13 +17,15 @@ In this guide you'll learn to setup OpenNebula to control how VM resources are m
 
 In OpenNebula the virtual topology of a VM is defined by the number of sockets, cores and threads. We assume that a NUMA node or cell is equivalent to a socket and they will be used interchangeably in this guide.
 
+.. note:: Different limitations might exists regarding virtual topology definition and CPU pinning depending on the hypervisor. In order to get hypervisor specific information please check the corresponding hypervisor driver guide.
+
 Defining a Virtual Topology
 ================================================================================
 
 Basic Configuration
 --------------------------------------------------------------------------------
 
-The most basic configuration is to define just the number of vCPU (virtual CPU) and the amount of memory of the VM. In this case the guest OS will see VCPU sockets of 1 core and 1 thread each. The VM template in this case for 4 vCPUs VM is:
+The most basic configuration is to define just the number of vCPU (virtual CPU) and the amount of memory of the VM. In this case the guest OS will see ``VCPU`` sockets of 1 core and 1 thread each. The VM template in this case for 4 vCPUs VM is:
 
 .. code::
 
@@ -90,7 +92,7 @@ and the associated guest OS view:
    node   0
      0:  10
 
-.. important:: When defining a custom CPU Topology you need to set the number of sockets, cores and threads, and it should match the total number of vCPUS, i.e. ``VCPU = SOCKETS * CORES * THREAD``.
+.. important:: When defining a custom CPU Topology you need to set the number of sockets, cores and threads, and it must match the total number of vCPUS, i.e. ``VCPU = SOCKETS * CORES * THREAD``.
 
 
 NUMA Topology
@@ -161,7 +163,7 @@ For some applications you may need an asymmetric NUMA configuration, i.e. not di
 CPU and NUMA Pinning
 ================================================================================
 
-When you need to expose the NUMA topology to the guest you have to set a pinning policy to map each virtual NUMA node resources (memory and vCPUs) onto the hypervisor nodes. OpenNebula can work with three different policies:
+When you need to expose the NUMA topology to the guest you have to set a pinning policy to map each virtual NUMA node resources (memory and vCPUs) onto the hypervisor nodes. OpenNebula can work with four different policies:
 
 * ``CORE``: each vCPU is assigned to a whole hypervisor core. No other threads in that core will be used. This policy can be useful to isolate the VM workload for security reasons.
 * ``THREAD``: each vCPU is assigned to a hypervisor CPU thread.
@@ -170,14 +172,14 @@ When you need to expose the NUMA topology to the guest you have to set a pinning
 
 VM memory is assigned to the closet hypervisor NUMA node where the vCPUs are pinned, trying to prioritize local memory accesses.
 
-When using a pinning policy it is recommended to let the scheduler pick the number of cores and threads of the virtual topology. OpenNebula will try to optimize the VM performance by selecting the threads per core according to:
+When using a pinning policy it is recommended to fix only the number of vCPUs letting the scheduler pick the number of cores and threads of the virtual topology. OpenNebula will try to optimize the VM performance by selecting the threads per core according to:
 
 * For the ``CORE`` pin policy the number of ``THREADS`` is set to 1.
 * Prefer as close as possible to the hardware configuration of the host and so be power of 2.
 * The threads per core will not exceed that of the hypervisor.
 * Prefer the configuration with the highest number of threads/core that fits in the host.
 
-.. important:: When ``THREADS`` is set OpenNebula will look for a host that can allocate that number of threads per core; if not found the VM will remain in ``PENDING`` state. This may be required if you want the VM to run with a fixed nunber of threads per core.
+.. important:: When ``THREADS`` is set OpenNebula will look for a host that can allocate that number of threads per core; if not found the VM will remain in ``PENDING`` state. This may be required if you want the VM to run with a fixed number of threads per core.
 
 For example to run a 2 NUMA node VM with 8 vCPUS and 4G of memory, using the ``THREAD`` policy you can use:
 
@@ -189,12 +191,6 @@ For example to run a 2 NUMA node VM with 8 vCPUS and 4G of memory, using the ``T
 	TOPOLOGY = [ PIN_POLICY = thread, SOCKETS = 2 ]
 
 .. important:: For pinned VMs the CPU (assigned hypervisor capacity) is automatically set to the vCPU number. No overcommitment is allowed for pinned workloads.
-
-
-Pinning on LXD
---------------
-From the LXD perspective, only logical cores are perceived when assigning CPU resource to containers. The driver will only pin the cores assigned to the VM to the container, regardless of the complexity of the topology. The only required addition to pin CPUs on containers, would be ``TOPOLOGY = [ PIN_POLICY = <thread|core> ]``
-
 
 PCI Passthrough
 --------------------------------------------------------------------------------
@@ -211,9 +207,6 @@ To enable the use of hugepages for the memory allocation of the VM just add the 
 	TOPOLOGY = [ HUGEPAGE_SIZE = 2 ]
 
 OpenNebula will look for a host with enough free pages of the requested size to allocate the VM. The resources of each virtual node will be placed as close as possible to the node providing the hugepages.
-
-.. note:: Not supported on LXD
-
 
 Summary of Virtual Topology Attributes
 ================================================================================
@@ -237,7 +230,7 @@ Summary of Virtual Topology Attributes
 Configuring the Host
 ================================================================================
 
-When running VMs with a specific topology it is important to map (*pin*) it as close as possible to the that on the hypervisor, so vCPUs and memory are allocated into the same NUMA node. However, by default a VM is assigned to all the resources in the system making incompatible running pinned and no-pinned workloads in the same host.
+When running VMs with a specific topology it is important to map (*pin*) it as close as possible to that on the hypervisor, so vCPUs and memory are allocated into the same NUMA node. However, by default a VM is assigned to all the resources in the system making incompatible running pinned and no-pinned workloads in the same host.
 
 First you need to define which hosts are going to be used to run pinned workloads, and define the ``PIN_POLICY`` tag through Sunstone or using ``onehost update`` command. A Host can operate in two modes:
 
@@ -349,7 +342,7 @@ This characteristics can be also queried trough the OpenNebula CLI:
 
    NUMA MEMORY
 
-    NODE_ID TOTAL    USED_REAL            USED_ALLOCATED       FREE    
+    NODE_ID TOTAL    USED_REAL            USED_ALLOCATED       FREE
           0 7.6G     6.8G                 1024M                845.1M
 
    NUMA HUGEPAGES

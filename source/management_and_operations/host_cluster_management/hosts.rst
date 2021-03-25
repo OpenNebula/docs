@@ -23,8 +23,10 @@ Creating a host:
 
 The parameters are:
 
-* ``--im/-i``: Information Manager driver.
-* ``--vm/-v``: Virtual Machine Manager driver.
+* ``--im``: Information Manager driver.
+* ``--vm``: Virtual Machine Manager driver.
+
+.. note:: In the examples included in this guide we'll use `KVM` as hypervisor to show some real examples. Note that the procedure will be the same for any other hypervisor but just replacing the name.
 
 To remove a host you can either specify it by ID or by name. The following commands are equivalent:
 
@@ -127,11 +129,11 @@ To see a list of all the hosts:
        1 kvm1            kvm         0                  -                  - off
        2 kvm2            kvm         0                  -                  - off
 
-The above information can be also displayed in XML or JSON format using ``-x`` or ``-j``, respectively.
+The above information can be also displayed in XML, JSON or CSV format using ``-x`` or ``-j`` or ``-c``, respectively.
 
 .. _host_lifecycle:
 
-Host States: Enable, Disable, Offline and Flush
+Host States
 ================================================================================
 
 In order to manage the life cycle of a host it can be set to different operation modes: enabled (``on``), disabled (``dsbl``) and offline (``off``). The different operation status for each mode is described by the following table:
@@ -154,7 +156,10 @@ In order to manage the life cycle of a host it can be set to different operation
 | RETRY (retry)  |    Yes     |  Yes   |  No   | Monitoring a host in error state                                                   |
 +----------------+------------+--------+-------+------------------------------------------------------------------------------------+
 
-The ``onehost`` tool includes three commands to set the operation mode of a host: ``disable``, ``offline`` and ``enable``, for example:
+Host Operations
+================================================================================
+
+The ``onehost`` tool provides commands to set the operation mode of a host: ``disable``, ``offline`` and ``enable``, for example:
 
 .. prompt:: bash $ auto
 
@@ -172,13 +177,15 @@ Similarly to put the host offline:
 
     $ onehost offline 0
 
-Finally you may need to reset the monitoring process on the host:
+Apart from the commands above ``onehost`` tool also provides some commands that allows to easily perform common operation on a host.
+
+You can use ``forceupdate`` sub command to reset the monitoring process on the host:
 
 .. prompt:: bash $ auto
 
     $ onehost forceupdate 0
 
-The ``flush`` command will migrate all the active VMs in the specified host to another server with enough capacity. At the same time, the specified host will be disabled, so no more Virtual Machines are deployed in it. This command is useful to clean a host of active VMs. The migration process can be done by a resched action or by a recover delete-recreate action, it can be configured at the ``/etc/one/cli/onehost.yaml`` by setting the field ``default_actions\flush`` to ``delete-recreate`` or to ``resched``. Here is an example:
+Also, the ``flush`` command will migrate all the active VMs in the specified host to another server with enough capacity. At the same time, the specified host will be disabled, so no more Virtual Machines are deployed in it. This command is useful to clean a host of active VMs. The migration process can be done by a ``resched`` action or by a recover ``delete-recreate`` action, it can be configured at the ``/etc/one/cli/onehost.yaml`` by setting the field ``default_actions\flush`` to ``delete-recreate`` or to ``resched``. Here is an example:
 
 .. prompt:: bash $ auto
 
@@ -193,7 +200,7 @@ Host Monitoring
 The monitoring probes gathers information attributes and insert them in the Host template. This information is mainly used for:
 
   * Monitor the status of the host to detect any error condition.
-  * Gather the configuration of the host (e.g. capacity, PCI devices or NUMA nodes). This information is used to control VM resource assigments.
+  * Gather the configuration of the host (e.g. capacity, PCI devices or NUMA nodes). This information is used to control VM resource assignments.
   * Create placement constraints for VMs allocation, :ref:`see more details here <scheduling>`.
 
 In general, you can find the following monitoring information in a Host, note that each hypervisor may include additional attributes:
@@ -262,7 +269,7 @@ In general, you can find the following monitoring information in a Host, note th
 |            | OpenNebula but are not currently controlled by it.                                                 |
 +------------+----------------------------------------------------------------------------------------------------+
 
-Custom Host Atrributes
+Custom Host Attributes
 --------------------------------------------------------------------------------
 
 You can add custom attributes either :ref:`creating a probe in the host <devel-im>`, or updating the host information with: ``onehost update``.
@@ -340,6 +347,8 @@ And imported through the ``onehost importvm`` command:
        3 oneadmin oneadmin CentOS7         runn    0    590M MyvCenterHost  0d 01h02
 
 After a Virtual Machine is imported, their life-cycle (including creation of snapshots) can be controlled through OpenNebula. However, some  operations *cannot* be performed on an imported VM, including: poweroff, undeploy, migrate or delete-recreate.
+
+.. warning:: Wild VMs support and limitations may be different depending on the virtualization driver used (e.g KVM, LXC, ...). In order to find more specific information for the virtualization driver you're using please check the corresponding driver guide.
 
 Using Sunstone to Manage Hosts
 ================================================================================

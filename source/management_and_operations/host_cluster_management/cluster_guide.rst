@@ -14,7 +14,7 @@ Clusters should contain homogeneous resources, note that some operations like li
 Cluster Management
 ================================================================================
 
-Clusters are managed with the :ref:`''onecluster'' command <cli>`. To create new Clusters, use ``onecluster create <name>``. Existing Clusters can be inspected with the ``onecluster list`` and ``show`` commands.
+Clusters are managed with the ``onecluster`` command. To create new Clusters, use ``onecluster create <name>``. Existing Clusters can be inspected with the ``onecluster list`` and ``show`` commands.
 
 .. prompt:: bash $ auto
 
@@ -42,9 +42,9 @@ Clusters are managed with the :ref:`''onecluster'' command <cli>`. To create new
 Add Hosts to a Cluster
 --------------------------------------------------------------------------------
 
-Hosts can be created directly in a Cluster, using the ``--cluster`` option of ``onehost create``, or be added at any moment using the command ``onecluster addhost``. Hosts can be in **only one Cluster** at a time.
+Every Host must belong to a Cluster, so if no cluster is specified it will be assigned to the ``default`` cluster by default. Hosts can be created directly in a different Cluster, using the ``--cluster`` option of ``onehost create``, or be added at any moment using the command ``onecluster addhost``. Hosts can be in **only one Cluster** at a time.
 
-To delete a Host from a Cluster, the command ``onecluster delhost`` must be used. A Host needs to belong to a Cluster, so it will be moved to the ``default`` cluster.
+To delete a Host from a Cluster, the command ``onecluster delhost`` must be used.
 
 In the following example, we will add Host 0 to the Cluster we created before. You will notice that the ``onecluster show`` command will list the Host ID 0 as part of the Cluster.
 

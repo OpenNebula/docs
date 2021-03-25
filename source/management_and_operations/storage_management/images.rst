@@ -21,12 +21,12 @@ Additionally, *file* Images represents plain files that can be used as:
 * **RAM disk** (``RAMDISK``): loaded by initrd at boot time.
 * **Generic file** (``CONTEXT``): a plain file to be included in the context CD-ROM. Once started, the VM will have access to this file.
 
-.. note:: KERNEL, RAMDISK and CONTEXT file Images can be registered only in File Datastores. Some of the operations described in this guide do not apply to them, in particular: clone and persistent.
+.. note:: KERNEL, RAMDISK and CONTEXT file Images can be registered only in Files & Kernels Datastore. Some of the operations described in this guide do not apply to them, in particular: clone and persistent.
 
 Images of the previous types can also operate in two modes:
 
-* **Peristent**, represent stateful data. The modifications you made to the image will be preserved. There can be **only one VM** using a persistent Image at any given time. Use persistent Images for user/application data.
-* **Non-Persistent**, represent stateless data any modification will not be preserved. Non-persistent images can be used by multiple VMs at the same time as each one will work on its own copy. Use non-peristent images for OS/Application installations.
+* **Peristent**, the modifications you made to persistent images will be preserved after terminating the VM. There can be **only one VM** using a persistent Image at any given time.
+* **Non-Persistent**, the modifications will not be preserved after terminating the VM. Non-persistent images can be used by multiple VMs at the same time as each one will work on its own copy.
 
 .. _images_states:
 

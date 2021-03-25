@@ -7,7 +7,7 @@ MarketPlace Applications
 A Marketplace Application is a generic app resource that can be:
 
 * a single Image, optionally including a VM template.
-* A VM template refering to one or more images,
+* A VM template referring to one or more images,
 * a multi-VM service composed of one or more templates associated with images.
 
 In this guide you will learn to create and manage Marketplace Applications.
@@ -121,7 +121,7 @@ For example, if you want to import an exiting Image (e.g. with ``ID`` 0) into th
     $ onemarketapp create --name 'Alipe-Vanilla' --image 0 --market "Backup"
     ID: 40
 
-Importing VMs with multiple disks or Multi-VM Services can be a complex task. In this case the ``onemarketapp`` commands provides an interactive process, although they can run in batch mode (see below). The process of importing a Multi-VM Service is illustrated int the following example:
+Importing VMs with multiple disks or Multi-VM Services can be a complex task. In this case the ``onemarketapp`` commands provides an interactive process, although they can run in batch mode (see below). The process of importing a Multi-VM Service is illustrated in the following example:
 
 .. prompt:: bash $ auto
 
