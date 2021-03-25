@@ -193,7 +193,7 @@ where
 -  ``<user_dn>`` the DN of the user in the LDAP service
 -  ``ldap_password`` is the password of the user in the LDAP service
 
-Alternatively a user can generate an authentication token using the ``oneuser login`` command, so there is no need to keep the LDAP password in a plain file. Simply input the LDAP password when requested. More information on the management of login tokens and the ``$ONE_AUTH`` file can be found in :ref:`Managing Users Guide<manage_users_managing_users>`.
+Alternatively a user can generate an authentication token using the ``oneuser login`` command, so there is no need to keep the LDAP password in a plain file. Simply input the LDAP password when requested. More information on the management of login tokens and the ``$ONE_AUTH`` file can be found in :ref:`Managing Users Guide<manage_users>`.
 
 Update Existing Users to LDAP
 -----------------------------

@@ -261,7 +261,7 @@ For example, the following illustrates the creation of a filesystem datastore us
  $ onedatastore create ds.conf
  ID: 100
 
-Also note that there are additional attributes that can be set, check the :ref:`datastore template attributes <ds_op_common_attributes>`.
+Also note that there are additional attributes that can be set, check the :ref:`datastore template attributes <datastore_common>`.
 
 .. warning:: Be sure to use the same ``TM_MAD`` for both the System and Image datastore. When combining different transfer modes, check the section below.
 

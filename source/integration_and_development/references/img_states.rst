@@ -6,7 +6,7 @@ Image States Reference
 
 This page is a complete reference of all the Image states that will be useful for administrators doing troubleshooting and developers.
 
-The simplified life-cycle is explained in the :ref:`Virtual Machines Images guide <img_life_cycle_and_states>`. That simplified diagram uses a smaller number of state names. That section should be enough for end-users and every-day administration tasks.
+The simplified life-cycle is explained in the :ref:`Virtual Machines Images guide <images_states>`. That simplified diagram uses a smaller number of state names. That section should be enough for end-users and every-day administration tasks.
 
 List of States
 ================================================================================

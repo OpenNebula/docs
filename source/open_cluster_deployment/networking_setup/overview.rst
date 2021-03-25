@@ -4,7 +4,7 @@
 Overview
 ====================
 
-When a new Virtual Machine is launched, OpenNebula will connect its virtual network interfaces (defined by ``NIC`` attributes) to hypervisor network link devices as defined in the corresponding :ref:`Virtual Network <vgg>`. This will allow the VM to have access to public and private networks.
+When a new Virtual Machine is launched, OpenNebula will connect its virtual network interfaces (defined by ``NIC`` attributes) to hypervisor network link devices as defined in the corresponding :ref:`Virtual Network <manage_vnets>`. This will allow the VM to have access to public and private networks.
 
 OpenNebula supports following networking modes:
 

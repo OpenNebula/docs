@@ -25,6 +25,8 @@ By default, OpenNebula will create an image (``default``), system (``system``), 
        1 default              50G 86% 0             2 img  fs      ssh     on
        0 system                 - -   0             0 sys  -       ssh     on
 
+.. _datastore_common:
+
 Attributes
 ================================================================================
 

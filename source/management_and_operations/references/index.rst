@@ -5,6 +5,7 @@ References
 .. toctree::
    :maxdepth: 2
 
+   Overview <overview>
    Virtual Machine Template <template>
    Image Template <img_template>
    Virtual Network Template <vnet_template>

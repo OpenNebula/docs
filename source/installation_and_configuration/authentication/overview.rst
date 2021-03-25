@@ -17,7 +17,7 @@ In this figure you can see three authentication configurations you can customize
 
 You can choose from the following authentication drivers to access OpenNebula from the command line:
 
-- :ref:`Built-in User/Password and token authentication <manage_users_managing_users>`
+- :ref:`Built-in User/Password and token authentication <manage_users>`
 - :ref:`SSH Authentication <ssh_auth>`
 - :ref:`X.509 Authentication <x509_auth>`
 - :ref:`LDAP Authentication <ldap>`
@@ -43,7 +43,7 @@ When designing the architecture of your cloud you will have to choose where to s
 
 Usable with API, CLI and Sunstone:
 
-* :ref:`Built-in User/Password and token authentication <manage_users_managing_users>`
+* :ref:`Built-in User/Password and token authentication <manage_users>`
 * :ref:`LDAP Authentication <ldap>`
 
 Usable only with API and CLI:

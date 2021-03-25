@@ -158,7 +158,7 @@ DockerHub
 MarketPlace
 ===========
 
-- Add support for service templates, check :ref:`this <marketapp_import>` for more information.
+- Add support for service templates, check :ref:`this <marketapp>` for more information.
 
 Hooks
 =====

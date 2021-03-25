@@ -102,7 +102,7 @@ Step 4. Operate your Cloud
 
 Before configuring multi-tenancy and defining the provisioning model of your cloud, we recommend you go through this introduction to the :ref:`OpenNebula provisioning model <understand>`. In a small installation with a few hosts, you can skip this guide and use OpenNebula without giving much thought to infrastructure partitioning and provisioning. But for medium and large deployments you will probably want to provide some level of isolation and structure.
 
--  Regarding the **underlying infrastructure**, OpenNebula provides complete functionality for the management of the :ref:`physical hosts <host_guide>` and :ref:`clusters <cluster_guide>` in the cloud. A Cluster is a group of Hosts that can have associated Datastores and Virtual Networks.
+-  Regarding the **underlying infrastructure**, OpenNebula provides complete functionality for the management of the :ref:`physical hosts <hosts>` and :ref:`clusters <cluster_guide>` in the cloud. A Cluster is a group of Hosts that can have associated Datastores and Virtual Networks.
 
 -  Regarding **user management**, OpenNebula features advanced multi-tenancy with powerful :ref:`users and groups management <manage_users>`, an :ref:`Access Control List <manage_acl>` mechanism allowing different role management with fine grain permission granting over any resource, :ref:`resource quota management <quota_auth>` to track and limit computing, storage and networking utilization, and a configurable :ref:`accounting  <accounting>` and :ref:`showback  <showback>` system to visualize and report resource usage data and to allow their integration with chargeback and billing platforms, or to guarantee fair share of resources among users.
 
@@ -117,7 +117,7 @@ Now everything is ready for operation. OpenNebula provides full control to manag
 
 -  **Virtual machine image management** that allows storing :ref:`disk images in catalogs <img_guide>` (termed datastores), that can then be used to define VMs or shared with other users. The images can be OS installations, persistent data sets or empty data blocks that are created within the datastore.
 
--  **Virtual network management** of :ref:`Virtual networks <vgg>` that can be organized in network catalogs, and provide means to interconnect virtual machines. This kind of resource can be defined as IPv4, IPv6, or mixed networks, and can be used to achieve full isolation between virtual networks. Networks can be easily interconnected by using :ref:`virtual routers <vrouter>` and KVM, LXD and Firecracker users can also dynamically configure :ref:`security groups <security_groups>`
+-  **Virtual network management** of :ref:`Virtual networks <manage_vnets>` that can be organized in network catalogs, and provide means to interconnect virtual machines. This kind of resource can be defined as IPv4, IPv6, or mixed networks, and can be used to achieve full isolation between virtual networks. Networks can be easily interconnected by using :ref:`virtual routers <vrouter>` and KVM, LXD and Firecracker users can also dynamically configure :ref:`security groups <security_groups>`
 
 -  **Virtual machine template management** with a :ref:`template catalog <vm_guide>` system that allows registering :ref:`virtual machine <vm_guide_2>` definitions in the system, to be instantiated later as virtual machine instances.
 

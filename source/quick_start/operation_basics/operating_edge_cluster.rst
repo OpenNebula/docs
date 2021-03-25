@@ -37,7 +37,7 @@ The basic operations you can perform with the host are:
 * **Disable**: disable it, e.g to perform maintenance operations.
 * **Enable**: enable it, so OpeNnebula monitors it and it comes to MONITORED again.
 
-Check :ref:`this link <host_guide>` to get a complete vision of host management.
+Check :ref:`this link <hosts>` to get a complete vision of host management.
 
 Datastores
 ================================================================================
@@ -51,7 +51,7 @@ Each Edge Cluster contains two datastores, one system and one image. Both of the
 
 |image_datastore|
 
-Check :ref:`this link <ds_op>` to get a complete vision of datastore management.
+Check :ref:`this link <datastores>` to get a complete vision of datastore management.
 
 Virtual Networks: Public
 ================================================================================

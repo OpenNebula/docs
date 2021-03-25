@@ -9,7 +9,7 @@ The Kernels & Files Datastore lets you store plain files to be used as VM kernel
 Configuration
 =============
 
-The :ref:`datastores common configuration attributes <ds_op_common_attributes>` apply to the Kernels & Files Datastores and can be defined during the create process or updated once the datastore have been created.
+The :ref:`datastores common configuration attributes <datastore_common>` apply to the Kernels & Files Datastores and can be defined during the create process or updated once the datastore have been created.
 
 The specific attributes for Kernels & Files Datastore are listed in the following table:
 
@@ -23,7 +23,7 @@ The specific attributes for Kernels & Files Datastore are listed in the followin
 | ``TM_MAD`` | ``ssh``                   |
 +------------+---------------------------+
 
-.. note:: The recommended ``DS_MAD`` and ``TM_MAD`` are the ones stated above, but any other can be used to fits specific use cases. Regarding this, the same :ref:`configuration guidelines <ds_definition>` defined for Image and System Datastores applies for Kernels & Files Datastore.
+.. note:: The recommended ``DS_MAD`` and ``TM_MAD`` are the ones stated above, but any other can be used to fits specific use cases. Regarding this, the same :ref:`configuration guidelines <datastores>` defined for Image and System Datastores applies for Kernels & Files Datastore.
 
 For example, the following illustrates the creation of Kernels & Files.
 

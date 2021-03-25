@@ -35,7 +35,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 **VIRTUAL NETWORK MANAGEMENT**
 
-- :ref:`Advanced network virtualization capabilities <vgg>` with traffic isolation, address reservation, flexible definition of address ranges to accommodate any address distribution, definition of generic attributes to define multi-tier services...
+- :ref:`Advanced network virtualization capabilities <manage_vnets>` with traffic isolation, address reservation, flexible definition of address ranges to accommodate any address distribution, definition of generic attributes to define multi-tier services...
 
 - :ref:`IPv6 support <manage_vnets>` with definition site and global unicast addresses
 
@@ -103,7 +103,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Special authentication mechanisms for :ref:`SunStone (OpenNebula GUI) <suns_auth>` and the :ref:`Cloud Services (EC2) <cloud_auth>`
 
-- :ref:`Login token <manage_users_managing_users>` functionality to password based logins
+- :ref:`Login token <manage_users>` functionality to password based logins
 
 - Fine-grained auditing
 
@@ -123,7 +123,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 **CAPACITY AND PERFORMANCE MANAGEMENT**
 
-- :ref:`Host management <host_guide>` with complete functionality for the management of the virtualization nodes in the cloud
+- :ref:`Host management <hosts>` with complete functionality for the management of the virtualization nodes in the cloud
 
 - Dynamic creation of :ref:`Clusters <cluster_guide>` as pools of hosts that share datastores and virtual networks for load balancing, high availability, and high performance computing
 
