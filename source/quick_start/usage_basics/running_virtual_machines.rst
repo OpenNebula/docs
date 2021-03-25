@@ -1,15 +1,12 @@
-.. _running_applications:
+.. _running_virtual_machines:
 
-====================
-Running Applications
-====================
-
-Now that we have the OpenNebula front-end and on cluster prepared, we can start running Virtual Machines and containers in our new cloud!
-
-Virtual Machines
-----------------
+========================
+Running Virtual Machines
+========================
 
 OpenNebula Systems maintains a curated set of Virtual Machines in the `public marketplace <http://marketplace.opennebula.io>`__. We are going to use the WordPress appliance to try out our brand new cloud.
+
+Please take into account that you need to deploy a metal edge cluster with KVM hypervisor for this part. We are going to assume the same naming schema "aws-cluster".
 
 Step 1. Download the image from the marketplace
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -48,6 +45,3 @@ Select the public IP of the VM, which is highlighted in bold. You should only ha
 |wordpress_install_page|
 
 .. |wordpress_install_page| image:: /images/wordpress_install_page.png
-
-Containers
-----------------

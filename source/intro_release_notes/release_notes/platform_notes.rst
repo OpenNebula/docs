@@ -224,6 +224,23 @@ Sunstone
 
 .. note:: Generally for all Linux platforms, it is worth noting that Ruby gems should be used from packages shipped with OpenNebula or installed with the :ref:`install_gems <ruby_runtime>` utility. Avoid using Ruby gems versions shipped with your platform.
 
+.. _edge_cluster_provision_workloads_compatibility:
+
+Certified Edge Clusters Type Workload Compatibility
+===================================================
+
+The OneProvision tool enables the deployment of Edge Clusters and automatic enrolment to OpenNebula. The following table lays out the compatiblity of the type of edge cluster and valid workloads for it.
+
++-------------------+-------------+------------------+
+| Edge Cluster Type |  Hypervisor |     Workload     |
++===================+=============+==================+
+| virtual / metal   | lxc         | Containers       |
++-------------------+-------------+------------------+
+| metal             | firecracker | Containers       |
++-------------------+-------------+------------------+
+| metal             | kvm         | Virtual Machines |
++-------------------+-------------+------------------+
+
 
 Certified Infrastructure Scale
 ================================================================================

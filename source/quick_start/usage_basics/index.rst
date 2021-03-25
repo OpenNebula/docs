@@ -8,6 +8,6 @@ Usage Basics
    :maxdepth: 2
 
    Overview <overview>
-   Running Applications <running_applications>
-   Running OneFlow Services <running_oneflow_services>
+   Running Containers <running_containers>
+   Running Virtual Machines <running_virtual_machines>
    Running Kubernetes Clusters <running_kubernetes_clusters>

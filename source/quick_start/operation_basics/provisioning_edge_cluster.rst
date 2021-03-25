@@ -4,9 +4,22 @@
 Provisioning an Edge Cluster
 ============================
 
+In this quick start guide we are going to try different workloads. Each workload needs to be deployed in a compatible type of edge cluster, since not all of them are capable of running all types of workload. More information on this is available in the :ref:`platform notes <uspng>`.
+
++--------------------------------------------------+-------------------+------------+
+|                     Workload                     | Edge Cluster Type | Hypervisor |
++==================================================+===================+============+
+| :ref:`Containers <running_containers>`           | virtual           | lxc        |
++--------------------------------------------------+-------------------+------------+
+| :ref:`VMs <running_virtual_machines>`            | metal             | kvm        |
++--------------------------------------------------+-------------------+------------+
+| :ref:`K8s cluster <running_kubernetes_clusters>` | metal             | kvm        |
++--------------------------------------------------+-------------------+------------+
+
+
 In this section you can check all the steps needed to deploy an **Edge Cluster**. It will involve the Fireedge OneProvision GUI and Sunstone to manage the resources created in OpenNebula.
 
-.. note:: We will be creating a virtual edge cluster, meaning that we are going to emulate rather than use true virtualization. This implies a more economic way to try out OpenNebula, but has a performance penalty. If you are planning to go all the way and also try the deployment of a K8s cluster, we recommend using a metal deployment with a c5.metal instance type.
+.. note:: We will be creating a virtual edge cluster with lxc hypervisor, valid to deploy containers. If you are planning to go all the way and also try the deployment of VMs and K8s cluster, we recommend using a metal edge cluster deployment with kvm hypervisor.
 
 Overview
 ================================================================================
@@ -49,7 +62,7 @@ First, to **create a provider**, go to provider list view:
 
 |image_provider_list_empty|
 
-Then, **click the plus button** and fill the form:
+Then, **click the plus button** and fill the form. We will be using virtual edge cluster type with lxc hypervisor.
 
 |image_provider_create_step1|
 
@@ -64,19 +77,19 @@ Step 3: Provision a Virtual Edge Cluster
 
 The user needs to provide the following user inputs to create the provision:
 
-+-----------------------+-------------------------------------------------------------------------------------------------------------+
-| User Input            | Description                                                                                                 |
-+=======================+=============================================================================================================+
-| ``Provider``          | This is the provider you just created above.                                                                |
-+-----------------------+-------------------------------------------------------------------------------------------------------------+
-| ``Number of hosts``   | Number of physical hosts to be deployed on AWS.                                                             |
-+-----------------------+-------------------------------------------------------------------------------------------------------------+
-| ``Number of IPs``     | Number of public IPs to get from AWS in order to connect to VMs.                                            |
-+-----------------------+-------------------------------------------------------------------------------------------------------------+
-| ``AWS instance type`` | AWS instance type to deploy.                                                                                |
-+-----------------------+-------------------------------------------------------------------------------------------------------------+
-| ``Hypervisor``        | Hypervisor to install ``qemu`` (just for virtual servers)                                                   |
-+-----------------------+-------------------------------------------------------------------------------------------------------------+
++-----------------------+------------------------------------------------------------------+
+|       User Input      |                           Description                            |
++=======================+==================================================================+
+| ``Provider``          | This is the provider you just created above.                     |
++-----------------------+------------------------------------------------------------------+
+| ``Number of hosts``   | Number of physical hosts to be deployed on AWS.                  |
++-----------------------+------------------------------------------------------------------+
+| ``Number of IPs``     | Number of public IPs to get from AWS in order to connect to VMs. |
++-----------------------+------------------------------------------------------------------+
+| ``AWS instance type`` | AWS instance type to deploy.                                     |
++-----------------------+------------------------------------------------------------------+
+| ``Hypervisor``        | Hypervisor to install ``lxc`` (just for virtual servers)         |
++-----------------------+------------------------------------------------------------------+
 
 Let's go now to **create a provision**, and follow the same steps:
 
