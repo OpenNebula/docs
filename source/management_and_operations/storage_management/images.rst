@@ -189,7 +189,7 @@ There is also a dedicated ``oneimage dockerfile`` command that will open an edit
 Installing the Guest OS
 --------------------------------------------------------------------------------
 
-Finally, you can boot a VM from an ISO installation image and install the OS. Please refer to the :ref:`Guest OS installation guide for more information <guest_os>`.
+Finally, you can boot a VM from an ISO installation image and install the OS. Please refer to the :ref:`Guest OS installation guide for more information <os_install>`.
 
 LUKS encrypted Images
 --------------------------------------------------------------------------------
@@ -306,6 +306,8 @@ Use the ``oneimage persistent`` and ``oneimage nonpersistent`` commands to make 
     $ oneimage list
       ID USER     GROUP    NAME         DATASTORE     SIZE TYPE PER STAT  RVMS
        0 oneadmin oneadmin Ubuntu       default        10G   OS  No  rdy     0
+
+.. _images_snapshots:
 
 Managing Image Snapshots
 --------------------------------------------------------------------------------

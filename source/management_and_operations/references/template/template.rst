@@ -21,7 +21,7 @@ A **provision template** is a YAML-formatted file with parameters specifying the
 
 * list of OpenNebula infrastructure objects (cluster, hosts, datastores, virtual networks) to deploy with overrides to the global defaults above.
 
-* list of OpenNebula virtual objects (images, templates, vnet templates, marketplace apps, service templates). Refer to :ref:`this<ddc_virtual>`` for more information.
+* list of OpenNebula virtual objects (images, templates, vnet templates, marketplace apps, service templates). :ref:`See here for more information <ddc_virtual>``.
 
 .. _ddc_provision_template_header:
 

@@ -92,6 +92,8 @@ System-wide Scheduling Policies
 
 You can also define global scheduling policies for all the VMs in the cloud. Please check the :ref:`Scheduler configuration guide to learn how to do so <schg>`.
 
+.. _sched_ds:
+
 Scheduling System Datastores
 ================================================================================
 

@@ -431,7 +431,7 @@ If the TARGET attribute is not set for a disk, OpenNebula will automatically ass
 -  **CDROM** type Images.
 -  The rest of **DATABLOCK** and **OS** Images, and **Volatile** disks.
 
-Please visit the guide for :ref:`managing images <img_guide>` and the :ref:`image template reference <img_template>` to learn more about the different image types.
+Please visit the guide for :ref:`managing images <images>` and the :ref:`image template reference <img_template>` to learn more about the different image types.
 
 You can find a complete description of the contextualization features in the :ref:`contextualization guide <context_overview>`.
 
@@ -554,7 +554,7 @@ Example, a VM with two NIC attached, one is an alias of the other one:
     NIC = [ NETWORK = "Test", NAME = "TestName" ]
     NIC_ALIAS = [ NETWORK = "Test", PARENT = "TestName" ]
 
-For more information on setting up virtual networks please check the :ref:`Managing Virtual Networks guide <vgg>`.
+For more information on setting up virtual networks please check the :ref:`Managing Virtual Networks guide <manage_vnets>`.
 
 .. _nic_default_template:
 

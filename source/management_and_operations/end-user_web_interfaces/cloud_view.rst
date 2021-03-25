@@ -16,7 +16,7 @@ Create VM
 
 In this scenario the cloud administrator must prepare a set of Templates and Images to make them available to the cloud users. These resources must be **ready** to be used.
 
-E.g. when template attributes are defined as mandatory, users can optionally **customize the VM capacity**, **resize disks**, **add new Network Interfaces** and **provide values required by the template**. Read chapter how to :ref:`Adding Content to Your Cloud <add_content>` for more information.
+E.g. when template attributes are defined as mandatory, users can optionally **customize the VM capacity**, **resize disks**, **add new Network Interfaces** and **provide values required by the template**. Read tips on how to :ref:`prepare VM Templates for End-Users <vm_templates_endusers>`.
 
 |cloud_create_vm|
 
@@ -76,7 +76,7 @@ For more details about the limitations of saved VM, continue to the :ref:`Managi
 Create Service
 --------------------------------------------------------------------------------
 
-In the same way that instantiating a VM, the cloud administrator must prepare a set of Service Templates. Before instantiating them, users can optionally **customize the Service cardinality**, **define the network interfaces** and **provide values required by the template**. Read :ref:`Adding Content to Your Cloud <add_content>` for more information.
+In the same way that instantiating a VM, the cloud administrator must prepare a set of Service Templates. Before instantiating them, users can optionally **customize the Service cardinality**, **define the network interfaces** and **provide values required by the template**.
 
 |cloud_create_service|
 

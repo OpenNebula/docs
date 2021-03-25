@@ -6,8 +6,6 @@ Image Definition Template
 
 This page describes how to define a new image template. An image template follows the same syntax as the :ref:`VM template <template>`.
 
-If you want to learn more about the image repository, you can do so :ref:`here <img_guide>`.
-
 .. warning:: There are some template attributes that can compromise the security of the system or the security of other VMs, and can be used **only** by users in the oneadmin group. These attributes can be configured in :ref:`oned.conf <oned_conf>`, the default ones are labeled with ``*`` in the following tables. See the complete list in the :ref:`Restricted Attributes <img_template_restricted_attributes>` section.
 
 Template Attributes

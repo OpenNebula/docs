@@ -392,7 +392,7 @@ See the :ref:`Storage Driver <sd_tm>` guide for a reference on the driver action
 Persistent Images and Disk Snapshots
 --------------------------------------------------------------------------------
 
-These actions are available for both persistent and non-persistent images. In the case of persistent images the snapshots **will** be preserved upon VM termination and will be able to be used by other VMs using that image. See the :ref:`snapshots <img_guide_snapshots>` section in the Images guide for more information.
+These actions are available for both persistent and non-persistent images. In the case of persistent images the snapshots **will** be preserved upon VM termination and will be able to be used by other VMs using that image. See the :ref:`snapshots <images_snapshots>` section in the Images guide for more information.
 
 
 .. _disk_save_as_action:
@@ -913,7 +913,7 @@ There are some ``onevm`` commands operations meant for the cloud administrators:
 
 -  ``deploy``: Starts an existing VM in a specific Host.
 -  ``migrate --live``: The Virtual Machine is transferred between Hosts with no noticeable downtime. This action requires a :ref:`shared file system storage <sm>`.
--  ``migrate``: The VM gets stopped and resumed in the target host. In an infrastructure with :ref:`multiple system datastores <system_ds_multiple_system_datastore_setups>`, the VM storage can be also migrated (the datastore id can be specified).
+-  ``migrate``: The VM gets stopped and resumed in the target host. In an infrastructure with :ref:`multiple system datastores <sched_ds>`, the VM storage can be also migrated (the datastore id can be specified).
 
 Note: By default, the above operations do not check the target host capacity. You can use the ``--enforce`` option to be sure that the host capacity is not overcommitted.
 
