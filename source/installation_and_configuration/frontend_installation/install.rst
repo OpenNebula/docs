@@ -280,7 +280,7 @@ Initial OpenNebula deployment on a very first start creates a user ``oneadmin`` 
 
 .. prompt:: bash $ auto
 
-    $ echo 'oneadmin:changeme123' > ~/.one/one_auth
+    $ echo 'oneadmin:changeme123' > /var/lib/one/.one/one_auth
 
 .. warning:: This will set the oneadmin's password only on the first start of the OpenNebula. From that point, you must use the ``oneuser passwd`` command to change oneadmin's password. More information on how to change the oneadmin password is :ref:`here <change_credentials>`.
 
