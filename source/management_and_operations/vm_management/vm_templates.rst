@@ -95,6 +95,15 @@ For a complete reference of all the available options for ``onetemplate create``
 
 .. note:: OpenNebula Templates are designed to be hypervisor-agnostic, but there are additional attributes that are supported for each hypervisor. Check the corresponding hypervisor guide for specific details.
 
+.. _context_overview:
+
+Virtual Machine Contextualization
+================================================================================
+
+OpenNebula uses a method called contextualization to send information to the VM at boot time. Its most basic usage is to share networking configuration and login credentials with the VM so it can be configured. More advanced cases can be starting a custom script on VM boot or preparing configuration to use :ref:`OpenNebula Gate <onegate_usage>`.
+
+You can define contextualization data in the VM Template. :ref:`See Context Section in the VM Template reference <template_context>`.
+
 .. _vm_templates_endusers:
 
 Preparing VM Templates for End-Users
@@ -133,7 +142,7 @@ If you are using a template file instead of Sunstone, the modification is define
 User Inputs
 --------------------------------------------------------------------------------
 
-The User Inputs functionality provides the VM Template creator the possibility to dynamically ask for dynamic values. This is a convenient way to parametrize a base installation. These inputs will be presented to the user when the VM Template is instantiated. The VM guest needs to be :ref:`contextualized <context_overview>` to make use of the values provided by the user. The following example shows how to pass some user inputs to a VM:
+The User Inputs functionality provides the VM Template creator the possibility to dynamically ask for dynamic values. This is a convenient way to parametrize a base installation. These inputs will be presented to the user when the VM Template is instantiated. The VM guest needs to have the OpenNebula contextualization packages installed to make use of the values provided by the user. The following example shows how to pass some user inputs to a VM:
 
 .. code-block:: none
 
