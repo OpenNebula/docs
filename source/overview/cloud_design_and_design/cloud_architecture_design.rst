@@ -108,6 +108,8 @@ Before configuring multi-tenancy and defining the provisioning model of your clo
 
 -  Last but not least, you can define :ref:`VDCs <manage_vdcs>` (Virtual Data Center) as assignments of one or several user groups to a pool of physical resources. While clusters are used to group physical resources according to common characteristics such as networking topology or physical location, Virtual Data Centers (VDCs) allow creating “logical” pools of resources (which could belong to different clusters and zones) and allocate them to user groups.
 
+.. todo:: Review and complete previous list
+
 4.2. Manage Virtual Resources
 --------------------------------------------------
 
@@ -127,10 +129,14 @@ Now everything is ready for operation. OpenNebula provides full control to manag
 
 Several :ref:`reference guides <overview_references_operation>` are provided for more information about definition files, templates and the CLI.
 
+.. todo:: Review and complete previous list
+
 4.3. Create Virtual Machines
 --------------------------------------------------
 
 One of the most important aspects of the cloud is the **preparation of the images** for our users. OpenNebula uses a method called :ref:`contextualization <context_overview>` to send information to the VM at boot time. Its most basic usage is to share networking configuration and login credentials with the VM so it can be configured. More advanced cases can be starting a custom script on VM boot, or preparing a configuration to use :ref:`OpenNebula Gate <onegate_usage>`.
+
+.. todo:: Review and complete previous list
 
 Step 5. Integrate with other Components
 ===============================================
