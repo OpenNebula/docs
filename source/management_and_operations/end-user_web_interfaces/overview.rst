@@ -18,7 +18,3 @@ Hypervisor Compatibility
 ================================================================================
 
 Sunstone is available for all the hypervisors.
-
-.. note::
-
-    When using vCenter, the cloud admin should enable the ``groupadmin_vcenter`` and ``cloud_vcenter`` in ``sunstone-views.yaml``. Read about :ref:`Sunstone views <suns_views>` for more information.
