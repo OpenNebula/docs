@@ -4,9 +4,9 @@
 vCenter Node Installation
 ================================================================================
 
-This Section lays out the configuration requirements needed in the vCenter and ESX instances in order to be managed by OpenNebula.
+This guide lays out the configuration requirements needed in the vCenter and ESX instances in order to be managed by OpenNebula.
 
-The VMware vCenter drivers enable OpenNebula to access one or more vCenter servers that manage one or more ESX Clusters. Each ESX Cluster is presented in OpenNebula as an aggregated hypervisor, i.e. as an OpenNebula Host. This means that the representation is one OpenNebula Host per ESX Cluster.
+The VMware vCenter drivers enable OpenNebula to access one or more vCenter servers managing one or more ESX Clusters. Each ESX Cluster is presented in OpenNebula as an aggregated hypervisor, i.e. as an OpenNebula host. This means that the representation is one OpenNebula host per ESX Cluster.
 
 Note that OpenNebula scheduling decisions are therefore made at ESX Cluster level. vCenter then uses the DRS component to select the actual ESX host and Datastore to deploy the Virtual Machine.
 
@@ -16,11 +16,12 @@ Requirements
 The following must be met for a functional vCenter environment:
 
 * Supported vSphere version (check :ref:`Platform Notes <vcenter_nodes_platform_notes>`) with at least one cluster aggregating at least one ESX.
-* Define a vCenter user for OpenNebula. This vCenter user (let's call her ``oneadmin``) needs to have access to the ESX clusters that OpenNebula will manage. In order to avoid problems, the hassle free approach is to **declare this oneadmin user as Administrator**. However, in some enterprise environments declaring the user as Administrator is not allowed. In that case, you will need to grant permissions to perform some tasks. A table with the permissions required is found at the end of this chapter.
+* vCenter user for OpenNebula, with access to the ESX clusters that OpenNebula will manage. The hassle free approach is to **declare this oneadmin user as Administrator**. A table with the permissions required is found at the end of this guide.
 * All ESX hosts belonging to the same ESX cluster to be exposed to OpenNebula **must** share at least one datastore among them.
-* The ESX cluster **should** have DRS enabled. DRS is not required but it is recommended. As OpenNebula does not schedule to the granularity of ESX hosts, DRS is needed to select the actual ESX host within the cluster, otherwise the VM will be launched in the ESX where the VM template has been created.
-* If virtual standard switches are used, check that those switches exist in every ESX host belonging to the same ESX cluster, so the network represented by a port group can be used by a VM, no matter in what ESX host it's running. If you use distributed virtual switches, check that ESX hosts have been added to switches.
-* To enable VNC functionality, please check the detailed information in section `VNC on ESX hosts`_ below.
+* The ESX cluster **should** have DRS enabled. OpenNebula does not schedule to the granularity of ESX hosts, so DRS is needed to select the actual ESX host within the cluster
+* If virtual standard switches are used, check that those switches exist in every ESX host belonging to the same ESX cluster.
+* If you use distributed virtual switches, check that ESX hosts have been added to switches.
+* To enable VNC functionality, please check the detailed information in section :ref:`VNC on ESX hosts <vnc_one_esx_hosts>` below.
 
 .. important:: OpenNebula will **NOT** modify any vCenter configuration with some exceptions, the creation of virtual switches and port groups if the vcenter network driver is used, and the creation of images for VMDK and/or ISO files.
 
