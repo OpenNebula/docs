@@ -163,6 +163,8 @@ Customization the Edge Cluster
 ================================================================================
   - Ansible - roles
   - Povision elements
+  - Adding/removing Public IPs
+  - Adding Virtual Netwok
 
 OneProvision Usage: ORIGINAL AUTOMATIC PROVISION USAGE USE IS AS REFERENCE
 ================================================================================
