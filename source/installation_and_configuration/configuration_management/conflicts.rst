@@ -4,16 +4,16 @@
 Troubleshooting
 ===============
 
-The configuration files upgrade is a complex process, during which many problems may arise. The root cause of all problems is the users' customizations done in the configuration files on places that change in a newer version. Because the upgrade process tries to apply changes from newer versions to existing files, the tool can be confused when it reaches the incompatibly modified part.
+The configuration files upgrade is a complex process, during which many problems may arise. The root cause of all problems are the users' customizations done in the configuration files on places that also change in a newer version. Because the upgrade process tries to apply changes from newer versions to existing files, the tool can be confused when it reaches the incompatibly modified part.
 
-In case of a problem, the upgrade process terminates and leaves the state of configuration files unchanged. There is no automatic mechanism preconfigured, but the user has to instruct the tool on how to resolve the problem. This is done by specifying a **patch modes** globally for the whole process, for a particular file, or for a particular file and (intermediate) version we upgrade to.
+In case of a problem, the upgrade process terminates and **leaves the state of configuration files unchanged**. There is no automatic mechanism preconfigured, but the user has to instruct the tool on how to resolve the problem. This is done by specifying a **patch modes** globally for the whole process, for a particular file, or for a particular file and (intermediate) version we upgrade to.
 
 .. _cfg_patch_modes:
 
 Patch Modes
 ===========
 
-The way how the upgrade process works is a typical diff/patch approach. Each version change is described as a series of patches that must be applied. During the patching, some of the following problems may arise:
+The way how the upgrade process works is a typical diff/patch approach. Each version change is described as a series of patch operations that must be applied. During the patching, some of the following problems may arise:
 
 - A parameter has been removed by the user, but the patch tries to change it.
 - Data structure of the parameter isn't the expected one.
@@ -26,9 +26,9 @@ To deal with these situations, there are following patch modes available:
 +==================+=======================================================================+=========================================================+
 | ``skip``         | **Skip** patch operation                                              | Removed or incompatible configuration part.             |
 +------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| ``force``        | Place value in some suitable place, instead of precise place.         | No precise place for application found                  |
+| ``force``        | Place value in any suitable place, instead of precise place.          | No precise place for application found.                 |
 +------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| ``replace``      | **Replace** user changed values **with new default ones**.            | User changed value for which new default appeared       |
+| ``replace``      | **Replace** user changed values **with new default ones**.            | User changed value for which new default appeared.      |
 +------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
 
 The patch modes are specified using ``--patch-modes MODES`` parameter passed to the ``onecfg upgrade``. Patch modes can be used multiple times, but always the most specific one overrides the more general ones (patch mode for particular file/version overrides the default patch mode). The syntax of the parameter should follow one of the following syntaxes:
@@ -39,24 +39,24 @@ The patch modes are specified using ``--patch-modes MODES`` parameter passed to 
 
 Modes (``MODES``) is a comma (``,``) separated list of selected patch modes (**skip**, **force**, **replace**).
 
-Default Patch Modes
--------------------
+Default Safe Patch Modes
+------------------------
 
-Each different type of file you can find :ref:`here <cfg_files>` has the following default patch mode:
+Each different type of file you can find :ref:`here <cfg_files>` has the following default safe patch mode:
 
-+---------------+--------------------+
-| File Type     | Default Patch Mode |
-+===============+====================+
-| Simple        | None               |
-+---------------+--------------------+
-| Yaml          | None               |
-+---------------+--------------------+
-| Yaml::Strict  | ``force``          |
-+---------------+--------------------+
-| Augeas::Shell | None               |
-+---------------+--------------------+
-| Augeas::ONE   | ``skip``           |
-+---------------+--------------------+
++-------------------------+------------------------+
+| File Type               | Default Patch Mode     |
++=========================+========================+
+| Plain file              | None                   |
++-------------------------+------------------------+
+| YAML                    | None                   |
++-------------------------+------------------------+
+| YAML w/ ordered arrays  | ``force``              |
++-------------------------+------------------------+
+| Shell                   | None                   |
++-------------------------+------------------------+
+| oned.conf-like          | ``skip``               |
++-------------------------+------------------------+
 
 These default patching modes can be used in the upgrade process (``onecfg upgrade``) using the parameter ``--patch-safe``.
 

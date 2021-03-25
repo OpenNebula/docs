@@ -4,50 +4,20 @@
 Overview
 ================================================================================
 
-The Frontend is the central part of an OpenNebula installation. This is the machine where the server software is installed and where you connect to manage your cloud. It can be a physical node or a virtual instance.
+The Front-end is the central part of an OpenNebula installation and a very first thing, which needs to be deployed (or upgraded). It's a host where the OpenNebula server-side components are installed and which is responsible for the management of an entire virtualization stack. It can be a physical host or virtual machine (this decision is left up to the cloud administrator) as long as it matches the :ref:`requirements <uspng>`.
 
 How Should I Read This Chapter
 ================================================================================
 
-Before reading this chapter make sure you have picked the :ref:`Architecture Blueprint <architecture_blueprints>` that better fits your needs.
+Before reading this chapter make sure you are familiar with the :ref:`Architecture Blueprint <architecture_blueprints>`, the one which fits your needs.
 
-The aim of this chapter is to give you a quick-start guide to deploy OpenNebula. This is the simplest possible installation, but it is also the foundation for a more complex setup, with :ref:`Advanced Components <advanced_components>`.
+The aim of this chapter is to give you a quick-start guide to deploy OpenNebula. This is the simplest possible installation, but it is also the foundation for a more complex setup. First, you should go through the :ref:`Database Setup <database_setup>` section, esp. if you expect to use the OpenNebula for production. Then continue to the configuration of :ref:`OpenNebula Repositories <repositories>`, from which you'll install the components. And finally, proceed with the :ref:`Front-end Installation <frontend_installation>` section. You'll end up running a fully featured OpenNebula Front-end.
 
-First you should read the :ref:`Front-end Installation <frontend_installation>` section. Note that by default it uses an SQLite database that is not recommended for production. So, if this is not a small proof of concept, while following the Installation section you should use the :ref:`MySQL <mysql_setup>`.
+After reading this chapter, you can continue with adding the :ref:`KVM <kvm_node>`, :ref:`LXC <lxc_node>`,  :ref:`Firecracker <fc_node>` hypervisor nodes, or :ref:`vCenter <vcenter_node>`.
 
-After reading this chapter, read the :ref:`Node Installation <node_installation>` chapter next in order to add hypervisors to your cloud.
-
-Hypervisor Compatibility
-================================================================================
-
-+-------------------------------------------------------+-----------------------------------------------+
-|                        Section                        |                 Compatibility                 |
-+=======================================================+===============================================+
-| :ref:`Front-end Installation <frontend_installation>` | This Section applies to all hypervisors       |
-+-------------------------------------------------------+-----------------------------------------------+
-| :ref:`MySQL Setup <mysql_setup>`                      | This Section applies to all hypervisors       |
-+-------------------------------------------------------+-----------------------------------------------+
-| :ref:`Scheduler <schg>`                               | This Section applies to all hypervisors       |
-+-------------------------------------------------------+-----------------------------------------------+
-
-
-
-.. todo:: Contents from HA overview
-
-How Should I Read This Chapter
-================================================================================
-
-The :ref:`Front-end HA Setup <frontend_ha_setup>` section will guide you through the process of setting up a high availability (HA) cluster.
-
-If you want to enable automatic Virtual Machine recovery in case of a Host failure, or if you want to learn how to manually recover a Virtual Machine in a failed state, please read the :ref:`Virtual Machines High Availability <ftguide>` section.
+To scale from a single-host Front-end deployment to several hosts for better performance or reliability (HA), continue to the following chapters about :ref:`Large-scale Deployment <large_scale_deployment>`, :ref:`High Availability <ha>` and :ref:`Data Center Federation <federation_section>`.
 
 Hypervisor Compatibility
 ================================================================================
 
-+-----------------------------------------------------+------------------------------------------------------------------------+
-|                       Section                       |                 Compatibility                                          |
-+=====================================================+========================================================================+
-| :ref:`Font-end HA Setup <frontend_ha_setup>`        | This Section applies to all Hypervisors.                               |
-+-----------------------------------------------------+------------------------------------------------------------------------+
-| :ref:`Virtual Machines High Availability <ftguide>` | This Section applies only to KVM, LXD and Firecracker.                 |
-+-----------------------------------------------------+------------------------------------------------------------------------+
+This chapter applies to all supported hypervisors.

@@ -1,0 +1,3 @@
+In default OpenNebula configuration, the local storage is used for storing Images and running Virtual Machines. This is enough for basic use and you don't need to take any extra steps now unless you want to deploy an advanced storage solution.
+
+Follow the :ref:`Open Cloud Storage Setup <storage>` guide to learn how to use Ceph, NFS, LVM, etc.

@@ -1,0 +1,6 @@
+Now, you can continue with:
+
+- configuring :ref:`Storage <storage>` and :ref:`Networking <nm>`
+- exploring :ref:`Management and Operations <operations_guide>` guide
+
+to extend and control your cloud.

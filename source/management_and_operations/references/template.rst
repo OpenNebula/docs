@@ -946,6 +946,8 @@ For example, if you have a custom probe that generates a MACS attribute for the 
 
     SCHED_REQUIREMENTS = "MAC=\"$NIC[MAC]\""
 
+.. _template_rank:
+
 Rank Expression Syntax
 --------------------------------------------------------------------------------
 

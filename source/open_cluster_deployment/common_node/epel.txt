@@ -1,0 +1,22 @@
+Repository EPEL
+^^^^^^^^^^^^^^^
+
+OpenNebula depends on packages, which aren't in the base distribution repositories. Execute one of the commands below (distinguished by the host platform) to configure access to additional `EPEL <https://fedoraproject.org/wiki/EPEL>`__ (Extra Packages for Enterprise Linux) repository:
+
+**CentOS**
+
+.. prompt:: bash # auto
+
+    # yum -y install epel-release
+
+**RHEL 7**
+
+.. prompt:: bash # auto
+
+    # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+**RHEL 8**
+
+.. prompt:: bash # auto
+
+    # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm

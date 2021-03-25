@@ -1,43 +1,100 @@
 .. _operating_edge_cluster:
 
-================================================================================
+=========================
 Operating an Edge Cluster
-================================================================================
+=========================
 
-* Requirement Edge Cluster provisioned
-* Describe the OpenNebula resources that form an edge cluster: cluster, hosts...
+In this guide you will see all the resources created in OpenNebula as a part of the Edge Cluster. All the resources has been created using FireEdge OneProvision GUI in AWS.
 
 Cluster
 ================================================================================
-* What is an OpenNebula cluster? Purpose?
-* Show the OpenNebula cluster created with the provision and the associated resources: hosts, datastores etc...
-* Link to full operation guide for advance usage
+
+A cluster is the main object that groups all the physical resources and ensures that everything will work correctly, in terms of scheduling and the needed resources.
+
+|image_cluster|
+
+Check :ref:`this link <cluster_guide>` to get a complete vision of cluster management.
 
 Hosts
 ================================================================================
-* What is an OpenNebula host? Purpose?
-* Hosts used in the ec (drivers = qemu)
-* Show one host and basic information, status on, monitor metrics...
-* Basic operation offline/enable
-* Link to full operation guide for advance usage
+
+A host is mainly anything that is able to run a VM, container or Micro VM. It is in charge of executing them and retrieve all the monitoring information. A host have two important attributes:
+
+* ``VM_MAD``: this indicates the virtualization technology that is going to be used.
+* ``IM_MAD``: this driver retrieves all the monitoring metrics from the host.
+
+The following screenshot shows the information about the host, important information here is:
+
+* The **state** of the host, as you can see it is in **MONITORED** state, this means the host is correctly monitored.
+* The monitor metrics that can be found in attributes list.
+* And some extra information like the VMs running on it and those kind of things.
+
+|image_host|
+
+The basic operations you can perform with the host are:
+
+* **Offline**: host is totally offline.
+* **Disable**: disable it, e.g to perform maintenance operations.
+* **Enable**: enable it, so OpeNnebula monitors it and it comes to MONITORED again.
+
+Check :ref:`this link <hosts>` to get a complete vision of host management.
 
 Datastores
 ================================================================================
-* What is an OpenNebula datastore? Purpose?
-* Datastore used in ec (drivers = ssh + replica). Default = shared, Image+System = per ec
-* Show datastores and basic information, status on, monitor metrics...
-* Link to full operation guide for advance usage
+
+There are two types of datastores:
+
+* **System**: this datastore contains the information of running VMs, such as disks or context CD-ROM.
+* **Image**: this datastore stores the images in your cloud.
+
+Each Edge Cluster contains two datastores, one system and one image. Both of them use the SSH replica driver to decrease VMs deployment time using the cached images.
+
+|image_datastore|
+
+Check :ref:`this link <datastores>` to get a complete vision of datastore management.
 
 Virtual Networks: Public
 ================================================================================
-* What is an OpenNebula Network? Purpose?
-* Show the public network created an characteristic. Leases etc...
-* Show how to add more elastic IP's to the provision
-* Link to full operation guide for advance usage
+
+A vitual network in OpenNebula basically resembles the physical network on the datacenter. Using this allow VMs to have connectivity between them and with rest of the world. Each Edge Cluster has one public networking with the number of the IPs chosen by the user, this will allow VMs to have public connectivity so the user can connect to them.
+
+|image_public_net|
+
+If you want to add more IPs to the network, you need to follow these steps:
+
+* Click on the virtual network.
+* Go to address ranges tab.
+* Click on ``+ address range`` button.
+* Fill the information according to the following screenshot:
+
+|image_add_ar|
+
+.. note:: You should put your valid provision ID and CIDR.
+
+.. important:: You can only request 1 IP per address range.
+
+Check :ref:`this link <net_guide>` to get a complete vision of virtual network management.
 
 Virtual Networks: Private
 ================================================================================
-* What is an OpenNebula Network Template? Purpose?
-* Show the network template created an characteristic. driver VLXAN - BGP EVPN
-* Show how to create a private network instantiating the template
-* Link to full operation guide for advance usage
+
+A virtual network template contains all the physical information about the network defined by the administrator. Users need to provide only the logical attributes when instantiating it, like the IP or the number of address ranges.
+
+The network uses driver VLXAN - BGP EVPN:
+
+|image_private_net|
+
+In order to instantiate it, you need to follow these steps:
+
+* Click on the virtual network template.
+* Click on ``instantiate`` button.
+* Click on ``+ address range`` to add all the address ranges you need.
+
+Check :ref:`this link <vn_templates>` to get a complete vision of virtual network templates management.
+
+.. |image_cluster| image:: /images/edge_cluster.png
+.. |image_host| image:: /images/edge_host.png
+.. |image_datastore| image:: /images/edge_datastore.png
+.. |image_public_net| image:: /images/edge_public_net.png
+.. |image_add_ar| image:: /images/edge_add_ar.png
+.. |image_private_net| image:: /images/edge_private_net.png

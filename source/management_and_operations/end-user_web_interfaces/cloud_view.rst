@@ -20,6 +20,8 @@ E.g. when template attributes are defined as mandatory, users can optionally **c
 
 |cloud_create_vm|
 
+.. _cloudview_ssh_keys:
+
 Access the VMs with SSH Keys
 --------------------------------------------------------------------------------
 

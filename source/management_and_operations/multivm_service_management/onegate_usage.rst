@@ -19,7 +19,7 @@ OneGate is a server that listens to http connections from the Virtual Machines. 
 OneGate Usage
 ================================================================================
 
-First, the cloud administrator must configure and start the :ref:`OneGate server <onegate_configure>`.
+First, the cloud administrator must configure and start the :ref:`OneGate server <onegate_conf>`.
 
 Setup the VM Template
 --------------------------------------------------------------------------------

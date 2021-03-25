@@ -1,3 +1,4 @@
+.. _cfg:
 .. _cfg_index:
 
 =====================================
@@ -10,6 +11,6 @@ Configuration Management (EE)
    Overview <overview>
    Basic Usage <usage>
    Diff Formats <diff_formats>
-   Troubleshooting <conflicts>
    OpenNebula Upgrade Workflow <workflow>
+   Troubleshooting <conflicts>
    Appendix - List of Configurations <appendix>

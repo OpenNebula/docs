@@ -19,7 +19,7 @@ msgstr ""
 #: ../../source/user/virtual_resource_management/img_guide.rst:7
 msgid ""
 "The :ref:`Storage system <sm>` allows OpenNebula administrators and users to"
-" set up images, which can be operative systems or data, to be used in "
+" set up images, which can be operating systems or data, to be used in "
 "Virtual Machines easily. These images can be used by several Virtual "
 "Machines simultaneously, and also shared with other users."
 msgstr ""
@@ -42,7 +42,7 @@ msgstr ""
 
 #: ../../source/user/virtual_resource_management/img_guide.rst:16
 msgid ""
-"**OS**: An OS image contains a working operative system. Every :ref:`VM "
+"**OS**: An OS image contains a working operating system. Every :ref:`VM "
 "template <template>` must define one DISK referring to an image of this "
 "type."
 msgstr ""

@@ -22,7 +22,7 @@ Additionally, OpenNebula 6.0 ‘Mutara’ comes with the following goodies:
 
 As usual, OpenNebula 6.0 codename refers to a nebula, in this case to the Mutara Nebula, an interstellar dust cloud located in the Mutara sector of the Beta Quadrant. In 2285, it was the site of the epic battle between the USS Reliant (commanded by the infamous Khan Noonien Singh) and the USS Enterprise (commanded by Captain James T. Kirk), which ended [Spoiler Alert] with the detonation of the Genesis Device and the USS Enterprise making a last-minute escape thanks to the dramatic self-sacrifice of Mr Spock—as seen in Star Trek II: The Wrath of Khan :)
 
-The OpenNebula team is now transitioning to “bug-fixing mode”. Note that this is a first beta release aimed at testers and developers to try the new features, and we welcome you to send feedback for the final release. Please check the :ref:`known issues <known_issues>` before submitting an `issue through GitHub <https://github.com/OpenNebula/one/issues/new?template=bug_report.md>`__. Also note that being a beta, there is no migration path from the previous stable version (5.12.x) nor migration path to the final stable version (6.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/32>`__.
+This is a Release Candidate version for 6.0, aimed at testers and developers to try the new features. All the functionality is present and only bugfixes will happen between this release and final 6.0. Please check the :ref:`known issues <known_issues>` before submitting an `issue through GitHub <https://github.com/OpenNebula/one/issues/new?template=bug_report.md>`__. Also note that being a development version, there is no migration path from the previous stable version (5.12.x) nor migration path to the final stable version (6.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/32>`__.
 
 
 In the following list you can check the highlights of OpenNebula 6.0 (a detailed list of changes can be found `here <https://github.com/OpenNebula/one/milestone/32?closed=1>`__):
@@ -85,6 +85,7 @@ Sunstone
 - Add option to set VM Backups. Check more information :ref:`here <template_os_and_boot_options_section>`.
 - Add option to format Datablocks. Check more information :ref:`here <img_template>`.
 - Add option to purge services in DONE state. Check more information :ref:`here <flow_purge_done>`.
+- Add option to set IOTHREAD id on disks in Sunstone. Check more information :ref:`here <reference_vm_template_disk_section>`.
 
 Scheduler
 ================================================================================
@@ -157,7 +158,7 @@ DockerHub
 MarketPlace
 ===========
 
-- Add support for service templates, check :ref:`this <marketapp_import>` for more information.
+- Add support for service templates, check :ref:`this <marketapp>` for more information.
 
 Hooks
 =====
@@ -185,3 +186,4 @@ Other Issues Solved
 - `Allow = symbols in OneGate update <https://github.com/OpenNebula/one/issues/5240>`__.
 - `Prevent xtables (iptables/iptables6) collisions with non-OpenNebula related processes <https://github.com/OpenNebula/one/issues/3624>`__.
 - `Fix bug when updating VM configuration with non admin users <https://github.com/OpenNebula/one/issues/5096>`__.
+- `Fix bug when updating VCPU that blocked NUMA sockets <https://github.com/OpenNebula/one/issues/5291>`__.

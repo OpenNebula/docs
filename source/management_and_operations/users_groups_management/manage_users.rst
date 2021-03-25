@@ -243,6 +243,7 @@ All the described functionality is available graphically using :ref:`Sunstone <s
 
 
 .. _change_credentials:
+.. _serveradmin_credentials:
 
 Change credentials for oneadmin or serveradmin
 ================================================================================

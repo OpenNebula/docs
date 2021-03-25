@@ -8,6 +8,6 @@ Large-scale Deployment
    :maxdepth: 2
 
    Overview <overview>
-   Scalability Testing and Tuning <scalability_testing_and_tuning>
+   Scalability Testing and Tuning <scalability>
    Sunstone for Large Deployments <sunstone_for_large_deployments>
    Advanced SSH Usage <advanced_ssh_usage>

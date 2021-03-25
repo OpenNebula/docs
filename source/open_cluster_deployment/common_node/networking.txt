@@ -1,0 +1,25 @@
+.. image:: /images/network-02.png
+    :width: 30%
+    :align: center
+
+.. TODO - This needs rework or drop.
+
+Network connection is needed by the OpenNebula Front-end daemons to access, manage and monitor the Hosts, and to transfer the Image files. It is highly recommended to use a dedicated network for this purpose.
+
+There are various models for Virtual Networks, check the :ref:`Open Cloud Networking <nm>` chapter to find the ones supported by OpenNebula.
+
+You may want to use the simplest network model, that corresponds to the :ref:`bridged <bridged>` driver. For this driver, you will need to setup a Linux bridge and include a physical device in the bridge. Later on, when defining the network in OpenNebula, you will specify the name of this bridge and OpenNebula will know that it should connect the VM to this bridge, thus giving it connectivity with the physical network device connected to the bridge. For example, a typical host with two physical networks, one for public IP addresses (attached to an ``eth0`` NIC for example) and the other for private virtual LANs (NIC ``eth1`` for example) should have two bridges:
+
+.. prompt:: bash # auto
+
+    # ip link show type bridge
+    4: br0: ...
+    5: br1: ...
+
+    # ip link show master br0
+    2: eth0: ...
+
+    # ip link show master br1
+    3: eth1: ...
+
+.. note:: Remember that this is only required in the Hosts, not in the Front-end. Also remember that the exact name of the resources is not important (``br0``, ``br1``, etc...), however it's important that the bridges and NICs have the same name in all the Hosts.

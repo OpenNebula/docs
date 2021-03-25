@@ -8,7 +8,7 @@ Overview
 
 As a complement to the traditional installation via operating system packages (see :ref:`Single Front-end Installation <frontend_installation>`), it's possible to deploy the complete OpenNebula Front-end (only, not hypervisor nodes!) from the official container image on supported container runtimes `Docker <https://www.docker.com/>`__ and `Podman <https://podman.io>`__  in multiple ways.
 
-Containerized front-end deployment features:
+Containerized Front-end deployment features:
 
 - **Simpler and faster setup** than conventional installation.
 - **Easy code rollback** to the previous version on upgrade failure (NOTE: still requires revert to a particular snapshot of database/datastores).
@@ -18,7 +18,8 @@ Containerized front-end deployment features:
 - **Multi-tenant deployment**, when a single host can run multiple isolated instances of OpenNebula Front-end.
 - Requires **proficiency in using and maintaining container** runtime environments!
 - Might look **harder or less transparent** when compared to the traditional approach!
-- Supports only Docker and Podman runtimes and covers only Front-end, not nodes!
+- Supports only direct deployment on Docker and Podman runtimes (not Kubernetes or others).
+- Deploys only Front-end, hypervisor Nodes must be handled separately in a traditional way. See :ref:`Open Cluster Deployment <open_cluster_deployment>`.
 
 .. note::
 
@@ -27,11 +28,9 @@ Containerized front-end deployment features:
 How Should I Read This Chapter
 ================================================================================
 
-Continue with the :ref:`Architecture and Deployment <container_deployment>` where you learn how to deploy containerized OpenNebula Front-end.
-
-The subsequent :ref:`Troubleshooting and Reference <container_reference>` will be a very helpful guide for various deployment configurations. It starts with a few troubleshooting hints and quickly follows-up with comprehensive information about the internals of the container image and contains a complete reference about all possible deployment parameters and options. There is also a collection of some miscellaneous topics and bits of advice in :ref:`the Appendix <container_appendix>`.
+Start with the :ref:`Architecture and Simple Deployment <container_deployment>` where you learn how to deploy simple containerized OpenNebula Front-end. Continue with the :ref:`Advanced Deployment Customizations <container_custom>` for a more fine-tuned deployment and description of the internal :ref:`Bootstrap Process <container_bootstrap>`. The last section :ref:`Troubleshooting and Reference <container_reference>` is a helpful guide for various deployment configurations. It starts with a few troubleshooting hints, tutorials, and follows up with a complete reference about all deployment parameters and options.
 
 Hypervisor Compatibility
 ================================================================================
 
-:ref:`Containerized Deployment <container_deployment>` describes only the deployment of containerized OpenNebula Front-end. Such deployment supports all hypervisors as the traditionally installed OpenNebula Front-end. Hypervisors are not covered by the containerized deployment and this guide, continue to the :ref:`Customized Clusters Installation <node_installation>`.
+This chapter applies to all supported hypervisors.
