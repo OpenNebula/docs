@@ -1,39 +1,24 @@
 .. _scheduling:
 
-
-
-
-Custom Host Tags & Scheduling Policies
+================================================================================
+Scheduling Policies
 ================================================================================
 
-The Host attributes are inserted by the monitoring probes that run from time to time on the nodes to get information. The administrator can add custom attributes either :ref:`creating a probe in the host <devel-im>`, or updating the host information with: ``onehost update``.
+The OpenNebula scheduler uses a *Matchmaking* algorithm to allocate VMs to Hosts. A *matchmaking* request consists of two parts:
 
-For example to label a host as *production* we can add a custom tag *TYPE*:
+  - **Requirements**, the target resource needs to fulfill these to be considered to allocate the VM. Resources that does not fulfill are filtered out.
+  - **Rank**, or preferences, a function that ranks the suitable resources to sort them. Resources with a higher rank are used first.
 
-.. prompt:: bash $ auto
+OpenNebula uses this algorithm to schedule all resources types:
 
-	$ onehost update
-	...
-    TYPE="production"
+  - **Hosts**, to select the Host where the VM will run.
+  - **System Datastores**, to select the System Datastore to be used.
+  - **Virtual Networks**, to select the Virtual Networks to attach the VM interfaces in ``auto`` mode.
 
-This tag can be used at a later time for scheduling purposes by adding the following section in a VM template:
+Virtual Machine Automatic Requirements
+================================================================================
 
-.. code-block:: bash
-
-    SCHED_REQUIREMENTS="TYPE=\"production\""
-
-That will restrict the Virtual Machine to be deployed in ``TYPE=production`` hosts. The scheduling requirements can be defined using any attribute reported by ``onehost show``, see the :ref:`Scheduler Guide <schg>` for more information.
-
-This feature is useful when we want to separate a series of hosts or marking some special features of different hosts. These values can then be used for scheduling the same as the ones added by the monitoring probes, as a :ref:`placement requirement <template_placement_section>`.
-
-
-Scheduling and Clusters
-=======================
-
-Automatic Requirements
-----------------------
-
-When a Virtual Machine uses resources (Images or Virtual Networks) from a Cluster, OpenNebula adds the following :ref:`requirement <template_placement_section>` to the template:
+OpenNebula will prevent you from using incompatible resources. When a Virtual Machine uses resources (Images or Virtual Networks) from a Cluster, OpenNebula adds the following :ref:`requirement <template_placement_section>` to the template:
 
 .. prompt:: bash $ auto
 
@@ -50,10 +35,24 @@ Because of this, if you try to use resources that do not belong to the same Clus
     DISK [0]: IMAGE [0] from DATASTORE [1] requires CLUSTER [101]
     NIC [0]: NETWORK [1] requires CLUSTER [100]
 
-Manual Requirements and Rank
-----------------------------
+These automatic requirements are added to any additional ones included in the Virtual Machine template. There is also an implicit requirement that a resource needs to meet, it needs to have enough capacity to run the VM.
 
-The placement attributes :ref:`SCHED\_REQUIREMENTS and SCHED\_RANK <template_placement_section>` can use attributes from the Cluster template. Let’s say you have the following scenario:
+.. warning:: Any Host belonging to a given cluster **must** be able to access any System or Image Datastore defined in that cluster.
+
+Scheduling Hosts
+================================================================================
+
+Virtual Machine Scheduling Policies
+--------------------------------------------------------------------------------
+
+You can define VM allocation policies with the placement attributes:
+
+  - ``SCHED_REQUIREMENTS``, Boolean expression to select a Host (evaluates to true)
+  - ``SCHED_RANK``, Arithmetic expression to sort the suitable Hosts
+
+The expressions combine attributes of the Host and/or its Cluster templates.  Note that the Host attributes are inserted by the monitoring probes that run from time to time on the nodes to get information. The administrator can add custom attributes either :ref:`creating a probe in the host <devel-im>`, or updating the host information with: ``onehost update``.
+
+For example, consider the following scenario, where you have hosts with a QoS Gold and others with Silver:
 
 .. prompt:: bash $ auto
 
@@ -71,7 +70,7 @@ The placement attributes :ref:`SCHED\_REQUIREMENTS and SCHED\_RANK <template_pla
     CLUSTER TEMPLATE
     QOS="SILVER"
 
-You can use these expressions:
+You can use these expressions to force the deployment on a Host with or without QoS Gold:
 
 .. code-block:: bash
 
@@ -79,45 +78,66 @@ You can use these expressions:
      
     SCHED_REQUIREMENTS = "QOS != GOLD & HYPERVISOR = kvm"
 
+Similarly you can express your preferences for Hosts with QoS Gold, for example:
 
-Multiple System Datastore Setup
+.. code-block:: bash
+
+   SCHED_RANK = FREE_CPU
+
+This expression will use first Hosts with a higher value of the FREE_CPU Attribute, i.e. those with less load.
+
+System-wide Scheduling Policies
+--------------------------------------------------------------------------------
+
+You can also define global scheduling policies for all the VMs in the cloud. Please check the :ref:`Scheduler configuration guide to learn how to do so <schg>`.
+
+Scheduling System Datastores
 ================================================================================
 
 In order to distribute efficiently the I/O of the Virtual Machines across different disks, LUNs or several storage backends, OpenNebula is able to define multiple System Datastores per cluster. Scheduling algorithms take into account disk requirements of a particular VM, so OpenNebula is able to pick the best execution host based on capacity and storage metrics.
 
-Configuring Multiple Datastores
+Virtual Machine Storage Scheduling Policies
 --------------------------------------------------------------------------------
 
-When more than one System Datastore is added to a cluster, all of them can be taken into account by the scheduler to place Virtual Machines into. System wide scheduling policies are defined in ``/etc/one/sched.conf``. The storage scheduling policies are:
+Similarly to the Host policies, you can control which Datastores are used to run a Virtual Machine with:
 
-* **Packing**. Tries to optimize storage usage by selecting the Datastore with less free space.
-* **Striping**. Tries to optimize I/O by distributing the Virtual Machines across Datastores.
-* **Custom**. Based on any of the attributes present in the Datastore template.
+  - ``SCHED_DS_REQUIREMENTS``, A boolean expression to select System Datastores (evaluates to true) to run a  VM.
+  - ``SCHED_DS_RANK``, Arithmetic expression to sort the suitable System Datastores for this VM.
 
-To activate for instance the Stripping storage policy, ``/etc/one/sched.conf`` must contain:
+For example, to select Datastores that operate in *Production*, and trying to pack VMs in them, you may use the following attributes:
 
-.. code::
+.. code-block:: bash
 
-    DEFAULT_DS_SCHED = [
-       policy = 1
-    ]
+   SCHED_DS_REQUIREMENTS="MODE=Production"
+   SCHED_DS_RANK=-FREE_MB
 
-These policies may be overriden in the Virtual Machine Template, and so apply specific storage policies to specific Virtual Machines:
+.. note:: The administrator needs to manually label Datastores with `MODE`
 
-+-----------------------+-----------------------------------------------------------------------------------+--------------------------------------------+
-|       Attribute       |                    Description                                                    |                 Example                    |
-+=======================+===================================================================================+============================================+
-| SCHED_DS_REQUIREMENTS | Boolean expression to select System Datastores (evaluates to true) to run a  VM.  | ``SCHED_DS_REQUIREMENTS="ID=100"``         |
-|                       |                                                                                   | ``SCHED_DS_REQUIREMENTS="NAME=GoldenDS"``  |
-|                       |                                                                                   | ``SCHED_DS_REQUIREMENTS=FREE_MB > 250000`` |
-+-----------------------+-----------------------------------------------------------------------------------+--------------------------------------------+
-| SCHED_DS_RANK         | Arithmetic expression to sort the suitable datastores for this VM.                | ``SCHED_DS_RANK= FREE_MB``                 |
-|                       |                                                                                   | ``SCHED_DS_RANK=-FREE_MB``                 |
-+-----------------------+-----------------------------------------------------------------------------------+--------------------------------------------+
+System-wide Scheduling Policies
+--------------------------------------------------------------------------------
 
-After a VM is deployed in a System Datastore, the admin can migrate it to another System Datastore. To do that, the VM must be first :ref:`powered-off <vm_guide_2>`. The command ``onevm migrate`` accepts both a new Host and Datastore id, that must have the same ``TM_MAD`` drivers as the source Datastore.
+You can also define global storage scheduling policies for all the VMs in the cloud. Please check the :ref:`Scheduler configuration guide to learn how to do so <schg>`.
 
-.. warning:: Any Host belonging to a given cluster **must** be able to access any System or Image Datastore defined in that cluster.
+Scheduling Virtual Networks
+================================================================================
 
-.. warning:: Admins rights grant permissions to deploy a virtual machine to a certain datastore, using 'onevm deploy' command.
+You can also let the scheduler pick the Virtual Networks the VM NICs will be attached to. The OpenNebula scheduler will look for a suitable Virtual Network in the Cluster for those NICs with ``NETWORK_MODE = "auto"``. The selection process uses also the above matchmaking algorithm based on:
+
+  - ``SCHED_DS_REQUIREMENTS``, A boolean expression to select Virtual Networks (evaluates to true) to attach the NIC.
+  - ``SCHED_DS_RANK``, Arithmetic expression to sort the suitable Virtual Networks for this NIC.
+
+Note that this attributes are set by NIC. For example a VM may include:
+
+.. code-block:: bash
+
+    NIC = [ NETWORK_MODE = "auto",
+            SCHED_REQUIREMENTS = "TRAFFIC_TYPE = \"public\"",
+            SCHED_RANK = "-USED_LEASES" ]
+
+    NIC = [ NETWORK_MODE = "auto",
+            SCHED_REQUIREMENTS = "TRAFFIC_TYPE = \"private\"" ]
+
+The first NIC will look for a *public* network, and will pick that more free leases, the second NIC will simply look for a *private* network.
+
+.. note:: The administrator needs to manually label the Virtual Networks with `TRAFFIC_TYPE`
 

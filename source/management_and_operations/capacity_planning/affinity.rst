@@ -1,10 +1,10 @@
 .. _vmgroups:
 
-==================================
-Virtual Machine Groups (VM Groups)
-==================================
+================================================================================
+Virtual Machine Affinity
+================================================================================
 
-A VM Group defines a set of related VMs, and associated placement constraints for the VMs in the group. A VM Group allows you to place together (or separately) certain VMs (or VM classes, roles). VMGroups will help you to optimize the performance (e.g. not placing all the CPU bound VMs in the same host) or improve the fault tolerance (e.g. not placing all your front-ends in the same host) of your multi-VM applications.
+A VM Group defines a set of related VMs, and associated placement constraints for the VMs in the group. A VM Group allows you to place together (or separately) certain VMs (or VM classes, called roles). VMGroups will help you to optimize the performance (e.g. not placing all the CPU bound VMs in the same host) or improve the fault tolerance (e.g. not placing all your front-ends in the same host) of your multi-VM applications.
 
 Defining a VM Group
 ================================================================================
@@ -60,10 +60,6 @@ To create a VM Group, use the Sunstone web interface, or create a template file 
     $ onevmgroup create ./vmg.txt
     ID: 0
 
-|vmg_wizard_create|
-
-.. note:: This guide focuses on the CLI command ``onevmgroup``, but you can also manage VM Groups using :ref:`Sunstone <sunstone>`, through the VM Group tab.
-
 Placement Policies
 ================================================================================
 
@@ -102,12 +98,12 @@ Role to Role Affinity
 
 Specifies whether the VMs of a role have to be placed together or separately with the VMs of other role. This useful to combine the Host-VM and VM-VM policies. Affinity rules for roles are set with the ``AFFINED`` and ``ANTI_AFFINED`` attributes.
 
-For example, I want the VMs of a database to run together so they access the same storage, I want all the backup VMs to run in a separate hosts; and I want database and backups to be also in different hosts. Finally, I may have some constraints about where the database and backups may run:
+For example, consider that you need the VMs of a database to run together so they access the same storage. At the same time, you need all the backup VMs to run in a separate hosts; and you need database and backups to be also in different hosts. Finally, you may have some constraints about where the database and backups may run:
 
 .. prompt:: bash $ auto
 
     ROLE = [
-        NAME  = "apps",
+        NAME  = "databases",
         HOST_AFFINED = "1,2,3,4,5,6,7"
         POLICY = "AFFINED"
     ]
@@ -118,9 +114,9 @@ For example, I want the VMs of a database to run together so they access the sam
         POLICY = "ANTI_AFFINED"
     ]
 
-    ANTI_AFFINED = "workers, backup"
+    ANTI_AFFINED = "databases, backup"
 
-.. warning:: Note that a role policy has to be coherent with any role-role policy, i.e. a role with an ``ANTI_AFFINED`` policy cannot be included in any ``AFFINED`` role-role rule.
+.. important:: Note that a role policy has to be coherent with any role-role policy, i.e. a role with an ``ANTI_AFFINED`` policy cannot be included in any ``AFFINED`` role-role rule.
 
 Scheduler Configuration and Remarks
 --------------------------------------------------------------------------------
@@ -130,7 +126,7 @@ VMGroups are placed by dynamically generating the requirement (``SCHED_REQUIREME
 * The scheduler will look for a host with enough capacity for an affined set of VMs. If there is no such host all the affined VMs will remain pending.
 * If new VMs are added to an affined role, it will pick one of the hosts where the VMs are running. By default, all should be running in the same host but if you manually migrate a VM to another host it will be considered feasible for the role.
 * The scheduler does not have any synchronization point with the state of the VM group, it will start scheduling pending VMs as soon as they show up.
-* Re-scheduling of VMs works as for any other VM, it will look for a different host considering the placement constraints.
+* Re-scheduling of VM Groups works as for any other VM, it will look for a different host considering the placement constraints.
 
 Using a VM Group
 ================================================================================
@@ -153,5 +149,13 @@ VM Group Management
 VM Groups can be updated to edit or add new rules. Currently only role to role rules can be updated if there are no VMs in the roles. All base operations are supported for the VMGroup object: ``rename``, ``chgrp``, ``chown``, ``chmod``, ``list``, ``show`` and ``delete``.
 
 Note also that the same ACL/permission system is applied to VM Groups, so use access is required to place VMs in a group.
+
+
+Managing VM Groups with Sunstone
+================================================================================
+
+You can also manage VM Groups using :ref:`Sunstone <sunstone>`, through the VM Group tab.
+
+|vmg_wizard_create|
 
 .. |vmg_wizard_create| image:: /images/vmg_wizard_create.png
