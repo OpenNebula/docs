@@ -17,12 +17,9 @@ Optionally you can setup a :ref:`high available cluster <frontend_ha_setup>` for
 
 Although a single OpenNebula front-end can manage multiple clusters geographicaly distributed in several data centers and cloud providers, a multi-zone deployment with :ref:`datacenter federation <introf>` functionality can be chosen when data centers are in different administrative domains or when the connectivity across data centers does not meet latency and bandwidth requirements. Multiple OpenNebula Zones can be configured as a federation, and in this case they will share the same user accounts, groups, and permissions across data centers.
 
+Besides conencting your cloud to the public OpenNebula Marketplace [TODO:LINK] and other third-party marketplaces like Docker Hub and Linux Containers [TODO:LINK], you can build your own private marketplace [TODO:LINK] to provide your users with an easy way of privately publishing, downloading and sharing own custom Appliances.
 
-
-- :ref:`Marketplaces <public_marketplace_overview>` for sharing, provisioning and consuming cloud images. They can be seen as external datastores, where images can be easily imported, exported and shared by a federation of OpenNebula instances.
-
-.. todo:: Explain public marketplaces above and link to guide
-
+.. todo:: Add Links above
 
 
 Step 2. Deploy True Hybrid Clusters
