@@ -4,9 +4,6 @@
 Sunstone Labels
 ================================================================================
 
-================================================================================
-Labels
-================================================================================
 |labels_edit|
 
 Labels can be defined for most of the OpenNebula resources from the admin view. Each resource will store the label information in its own template, thus it can be easily edited from the CLI or Sunstone. This feature enables the possibility to group the different resources under a given label and filter them in the admin and cloud views. The user will be able to easily find the template she wants to instantiate, or select a set of resources to apply a given action.

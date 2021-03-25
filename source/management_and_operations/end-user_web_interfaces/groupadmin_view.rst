@@ -1,11 +1,11 @@
 .. _vdc_admin_view:
 .. _group_admin_view:
 
-========================
+================================================================================
 Group Admin View
-========================
+================================================================================
 
-The role of a Group Admin is to manage all the virtual resources of the Group, including the creation of new users. When one of these Group Admin users access Sunstone, they get a limited version of the cloud administrator view. You can read more about OpenNebula's approach to Groups and VDC's from the perspective of different user roles in the :ref:`Understanding OpenNebula <understand>` guide.
+The role of a Group Admin is to manage all the virtual resources of the Group, including the creation of new users. When these Group Admin users access Sunstone, they get a limited version of the cloud administrator view. You can read more about OpenNebula's approach to Groups and VDC's from the perspective of different user roles in the :ref:`Understanding OpenNebula <understand>` guide.
 
 Group administrators can also access the :ref:`simplified Cloud View <cloud_view>` if they prefer to.
 
