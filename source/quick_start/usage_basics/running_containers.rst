@@ -4,7 +4,7 @@
 Running Containers
 ==================
 
-OpenNebula comes out of the box with integrations with various container marketplaces like Docker Hub, Turnkey Linux and Linuxcontainers. We are going to use the nginx container from Docker Hub to try out our brand new cloud.
+OpenNebula comes out of the box with integrations with various container marketplaces like Docker Hub, Turnkey Linux and Linux Containers. We are going to use the nginx container from Docker Hub to try out our brand new cloud.
 
 We are going to use the virtual AWS edge cluster deployed in the Operations Basics guide in order to achieve this. We are going to assume the naming schema “aws-cluster” (which is the default if you haven't changed it).
 
