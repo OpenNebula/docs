@@ -6,7 +6,7 @@ Running Kubernetes Clusters
 
 In the public OpenNebula System marketplace there are also services available that lets you deploy a multi-VM application. In this exercise we are going to import a Kubernetes cluster service and launch a Kubernetes cluster with it.
 
-We need a metal KVM edge cluster for this. If you haven't already done so, you can follow the same steps of the :ref:`provisioning an edge cluster <first_edge_cluster>` guide, using "metal" edge cloud type and kvm hypervisor. Make sure you request two public IPs.
+.. warning:: We need a metal KVM edge cluster for this. If you haven't already done so, you can follow the same steps of the :ref:`provisioning an edge cluster <first_edge_cluster>` guide, using "metal" edge cloud type and kvm hypervisor. Make sure you request two public IPs.
 
 We are going to assume the edge cluster naming schema "metal-kvm-aws-cluster".
 

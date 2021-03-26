@@ -6,7 +6,7 @@ Running Containers
 
 OpenNebula comes out of the box with integrations with various container marketplaces like Docker Hub, Turnkey Linux and Linux Containers. We are going to use the nginx container from Docker Hub to try out our brand new cloud.
 
-We are going to use the virtual AWS edge cluster deployed in the Operations Basics guide in order to achieve this. We are going to assume the naming schema “aws-cluster” (which is the default if you haven't changed it).
+.. warning:: We are going to use the virtual AWS edge cluster deployed in the Operations Basics guide in order to achieve this. We are going to assume the naming schema “aws-cluster” (which is the default if you haven't changed it).
 
 Step 1. Download the container image from Docker Hub
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -60,4 +60,6 @@ Simply enter that IP in a new tab in your browser and you'll be greeted by the f
 |nginx_install_page|
 
 .. |get_public_ip_nginx| image:: /images/get_public_ip_nginx.png
-.. |nginx_install_page| image:: /images/nginx_install_page.png
+
+Step 5. Building a Multi-Container Service
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
