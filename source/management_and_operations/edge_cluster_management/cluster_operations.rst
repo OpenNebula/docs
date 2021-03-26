@@ -86,7 +86,7 @@ Examples:
     VNTEMPLATES
     0: aws-cluster-private
 
-.. note:: the Terraform state is stored inside the provision information, so user doesn't need to manage it directly.
+.. note:: The Terraform state is stored inside the provision information, so user doesn't need to manage it directly.
 
 Configuring
 --------------------------------------------------------------------------------
@@ -161,13 +161,26 @@ Examples:
 
 Customization the Edge Cluster
 ================================================================================
-  - Ansible - roles
-  - Povision elements
-  - Adding/removing Public IPs
-  - Adding Virtual Netwok
 
-OneProvision Usage: ORIGINAL AUTOMATIC PROVISION USAGE USE IS AS REFERENCE
-================================================================================
+Ansible
+--------------------------------------------------------------------------------
+
+Ansible is used to configure the hosts. All the playbooks and roles are located in ``/usr/share/one/oneprovision/ansible``. OpenNebula comes with a set of roles ready to configure the provision, but in case you want to add new roles or modify the existing ones, please check :ref:`this guide <ddc_config>`.
+
+Povision Elements
+--------------------------------------------------------------------------------
+
+You can create multiple elements with a single provision, check :ref:`this guide <ddc_virtual>` for more information.
+
+Adding/Removing Public IPs
+--------------------------------------------------------------------------------
+
+Check :ref:`this <edge_public>` to know how you can add more public IPs to an existing Edge Cluster.
+
+Adding Virtual Netwok
+--------------------------------------------------------------------------------
+
+Check :ref:`this <edge_private>` to know how you can add more private networks to an existing Edge Cluster.
 
 CLI Commands
 ================================================================================

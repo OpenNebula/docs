@@ -1,8 +1,8 @@
 .. _ddc_config:
 
-=======================
-Automated Configuration
-=======================
+====================================
+Edge Cluster Automated Configuration
+====================================
 
 .. toctree::
    :maxdepth: 2

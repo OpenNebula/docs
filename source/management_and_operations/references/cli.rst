@@ -51,6 +51,8 @@ OneGate Commands
 
 * `onegate </doc/5.13/cli/oneflow.1.html>`__: OneGate Service management.
 
+.. _cli_shell:
+
 Shell Environment
 ================================================================================
 

@@ -1,8 +1,8 @@
 .. _ddc_template_index:
 
-==================
-Provision Template
-==================
+===============================
+Edge Cluster Provision Template
+===============================
 
 .. toctree::
    :maxdepth: 2
