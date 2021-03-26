@@ -115,14 +115,12 @@ onedb
 Distributed Edge Provisioning
 ================================================================================
 
-- Provision information is stored using a JSON document. New commands has been also added in the CLI, you can check all the information :ref:here <ddc>.
-- Provider concept has been included in OpenNebula, you can check all the information :ref:here <ddc_provider>.
-- Provision template concept has been included in OpenNebula, you can check all the information :ref:here <ddc_provision_template_document>.
+- Provision information is stored using a JSON document. New commands has been also added in the CLI, you can check all the information :ref:`here <cluster_operations>`.
+- Provider concept has been included in OpenNebula, you can check all the information :ref:`here <provider_operations>`.
 - Provision operations has been implemented using Terraform. The same functionality is supported, but actions are triggered using Terraform.
-- Terraform is able to create more resources on the remote provider. Check more information :ref:here <terraform_advanced>.
-- Count attribute has been addded. This allow you to create multiple same hosts. Check more information :ref:here <ddc_provision_template_devices>.
-- ERB syntax has been changed by a new syntax. Check more information :ref:here <ddc_virtual_all>.
-- Dynamic user inputs has been added. This allow you to set multiple values inside the template. Check more information :ref:here <ddc_user_inputs>.
+- Count attribute has been addded. This allow you to create multiple same hosts. Check more information :ref:`here <ddc_virtual>`.
+- ERB syntax has been changed by a new syntax. Check more information :ref:`here <ddc_virtual>`.
+- Dynamic user inputs has been added. This allow you to set multiple values inside the template. Check more information :ref:`here <ddc_user_inputs>`.
 
 Packaging
 ================================================================================

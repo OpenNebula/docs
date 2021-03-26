@@ -10,5 +10,5 @@ You can run the following hypervisors in the clusters:
 
 * **KVM**, runs virtual machines. This hypervisor can be only used with metal clusters.
 * **Firecracker**, runs micro VMs. This hypervisor can be only used with metal clusters.
-* **LXC**: runs system containers.
+* **LXC**, runs system containers.
 

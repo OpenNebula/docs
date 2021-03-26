@@ -22,7 +22,7 @@ In order to define an Equinix provider, you need the following information:
 * **Facility**: this is the location in the world where the resources are going to be deployed. All the available `facilities are listed here <https://www.equinix.com/data-centers/>`__.
 * **Plans and OS**: these define the capacity of the resources that are going to be deployed and the operating system that is going to be installed on them.
 
-How to create an Equinix provider
+How to Create an Equinix Provider
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To add a new provider you need to write the previous data in YAML template:
@@ -57,7 +57,9 @@ Then you just need to use the command ``oneprovider create``:
    $ oneprovider create provider.yaml
    ID: 0
 
-How to customize and existing provider
+The providers templates are located in ``/usr/share/one/oneprovision/edge-clusters/<type>/providers/packet``. You just need to put valid credentials.
+
+How to Customize and Existing Provider
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The provider information is stored in OpenNebula database, it can be updated as any other resource. In this case, you need to use the command ``oneprovider update``. It will open an editor so you can edit all the information there. You can also use the OneProvision Fireedge GUI to update all the information.
@@ -75,7 +77,16 @@ The network model is implemented in the following way:
 
 * **Private Networking**: this is implemented using (BGP-EVPN) and VXLAN.
 
+|image_cluster|
+
 Operating Providers & Edge Clusters
 ================================================================================
 
-Refer to :ref:`cluster operation guide <cluster_operations>`, to check all the operations needed to create, manage and delete an edge cluster.
+Refer to :ref:`cluster operation guide <cluster_operations>`, to check all the operations needed to create, manage and delete an edge cluster. Refer to :ref:`providers guide <provider_operations>`, to checkk all the operations related with providers.
+
+You can also manage Equinix Cluster using OneProvision Fireedge GUI.
+
+|image_fireedge|
+
+.. |image_cluster| image:: /images/equinix_deployment.png
+.. |image_fireedge| image:: /images/oneprovision_fireedge.png

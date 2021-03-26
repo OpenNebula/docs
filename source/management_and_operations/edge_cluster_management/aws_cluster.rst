@@ -22,7 +22,7 @@ In order to define an AWS provider, you need the following information:
 * **Region**: this is the location in the world where the resources are going to be deployed. All the available regions are `listed here <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html>`__.
 * **Instance types and AMI's**: these define the capacity of the resources that are going to be deployed and the operating system that is going to be installed on them.
 
-How to add a new AWS provider
+How to Add a New AWS provider
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To add a new provider you need a YAML template file with the above information:
@@ -60,7 +60,9 @@ Then you just need to use the command ``oneprovider create``:
    $ oneprovider create provider.yaml
    ID: 0
 
-How to customize and existing provider
+The providers templates are located in ``/usr/share/one/oneprovision/edge-clusters/<type>/providers/aws``. You just need to put valid credentials.
+
+How to Customize and Existing Provider
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The provider information is stored in OpenNebula database, it can be updated as any other resource. In this case, you need to use the command ``oneprovider update``. It will open an editor so you can edit all the information there. You can also use the OneProvision Fireedge GUI to update all the information.
@@ -81,7 +83,16 @@ The network model is implemented in the following way:
 * **Public Networking**: this is implemeted using elastic IPs from AWS and the IPAM driver from OpenNebula. When the virtual network is created in OpenNebula the elastic IPs are requested to AWS. Then, inside the host, IP forwarding rules are applied so the VM can communicate over the public IP assigned by AWS. There are some limits in the number of elastic IPs that can be request, please refer to `this link <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#using-instance-addressing-limit>`__ for more information.
 * **Private Networking**: this is implemented using (BGP-EVPN) and VXLAN.
 
+|image_cluster|
+
 Operating Providers & Edge Clusters
 ================================================================================
 
-Refer to :ref:`cluster operation guide <cluster_operations>`, to check all the operations needed to create, manage and delete an edge cluster.
+Refer to :ref:`cluster operation guide <cluster_operations>`, to check all the operations needed to create, manage and delete an edge cluster. Refer to :ref:`providers guide <provider_operations>`, to checkk all the operations related with providers.
+
+You can also manage AWS Cluster using OneProvision Fireedge GUI.
+
+|image_fireedge|
+
+.. |image_cluster| image:: /images/aws_deployment.png
+.. |image_fireedge| image:: /images/oneprovision_fireedge.png
