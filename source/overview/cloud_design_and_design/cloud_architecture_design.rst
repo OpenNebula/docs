@@ -127,7 +127,7 @@ Now everything is ready for operation. OpenNebula provides full control to manag
 
 -  **Application insight** with :ref:`OneGate <onegate_overview>` allows Virtual Machine guests to pull and push VM information from OpenNebula. Users and administrators can use it to gather metrics, detect problems in their applications, and trigger OneFlow elasticity rules from inside the VM.
 
-Several :ref:`reference guides <overview_references_operation>` are provided for more information about definition files, templates and the CLI.
+Several reference guides are provided for more information about definition files, templates and the CLI.
 
 .. todo:: Review and complete previous list
 
