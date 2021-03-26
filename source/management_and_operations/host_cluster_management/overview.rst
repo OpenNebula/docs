@@ -4,6 +4,19 @@
 Overview
 ==========================
 
-A **Host** is a server that has the ability to run Virtual Machines and that is connected to OpenNebula's Front-end server. OpenNebula can work with Hosts with a heterogeneous configuration, i.e. you can connect Hosts to the same OpenNebula with different hypervisors or Linux distributions. To learn how to prepare the hosts you can read the :ref:`Open Cluster Deployment <open_cluster_deployment>` guide.
+A **Host** is a server that has the ability to run Virtual Machines and that is connected to OpenNebula's Front-end server. To learn how to prepare the hosts you can read the :ref:`Open Cluster Deployment <open_cluster_deployment>` guide. Hosts are usually group in **Clusters**.
 
-**Clusters** are pools of hosts that share datastores and virtual networks.
+How Should I Read This Chapter
+================================================================================
+
+In this chapter there are four guides describing these objects.
+
+* **Host Management**: Host management is achieved through the ``onehost`` CLI command or through the Sunstone GUI. You can read about Host Management in more detail in the :ref:`Managing Hosts <host_guide>` guide.
+* **Cluster Management**: Hosts can be grouped in Clusters. These Clusters are managed with the ``onecluster`` CLI command, or through the Sunstone GUI. You can read about Cluster Management in more detail in the :ref:`Managing Clusters <cluster_guide>` guide.
+
+You should read all the guides in this chapter to familiarize with these objects. For small and homogeneous clouds you may not need to create new clusters.
+
+Hypervisor Compatibility
+================================================================================
+
+These guides are compatible with all hypervisors.

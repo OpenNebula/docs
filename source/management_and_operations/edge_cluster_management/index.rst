@@ -8,7 +8,6 @@ Edge Cluster Management
    :maxdepth: 2
 
    Overview <overview>
-   On-Prem Edge Cluster <onprem_cluster>
    Equinix Edge Cluster <equinix_cluster>
    AWS Edge Cluster <aws_cluster>
    Edge Providers <provider_operations>

@@ -10,12 +10,9 @@ The resources a user may access in OpenNebula are controlled by a permissions sy
 
 Upon group creation, an associated administrator user can be created. By default this user will be able to create users in the new group, and manage non owned resources for the regular group, through the CLI and/or a special Sunstone view. Groups can also be assigned to :ref:`Virtual Data Centers <manage_vdcs>` (VDCs).
 
-Along with the users & groups the Auth Subsystem is responsible for the authentication and authorization of user's requests. Any OpenNebula interface (CLI, Sunstone, or any API binding) communicates with the core using XML-RPC calls, that contain the user's session string, which is authenticated by the OpenNebula core comparing the username and password with the registered users. Each of this operations generate an authorization request that is checked against the registered ACL rules. The Auth Subsystem then can grant permission, or reject the request.
-
 OpenNebula comes with a default set of ACL rules that enables a standard usage. For common use cases, you don't need to manage the :ref:`ACL rules <manage_acl>` but they might by useful if you need a high level of permission customization.
 
 By default, the authentication and authorization is handled by the OpenNebula Service as described above. Optionally, you can delegate it to an external module, see the :ref:`Authentication Guide <external_auth>` for more information.
-
 
 How Should I Read This Chapter
 ================================================================================
@@ -25,8 +22,11 @@ For basic users it's recommended to read at least the ones for **Users**, **Grou
 * :ref:`Managing Users <manage_users>`
 * :ref:`Managing Groups <manage_groups>`
 * :ref:`Managing VDCs <manage_vdcs>`
-* :ref:`Managing Permissions <chmod>`
+* :ref:`Managing Permissions and ACLs<chmod>`
 * :ref:`Accounting Tool <accounting>`
 * :ref:`Showback <showback>`
-* :ref:`Managing ACL Rules <manage_acl>`
-* :ref:`Quota Management <quota_auth>`
+
+Hypervisor Compatibility
+================================================================================
+
+These guides are compatible with all hypervisors.
