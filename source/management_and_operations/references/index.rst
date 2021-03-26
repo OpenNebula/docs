@@ -12,6 +12,5 @@ References
    Edge Cluster Provision Template <template/index>
    Edge Cluster Automated Configuration <config/index>
    Creating Disk Images <creating_images>
-   Guest OS Installation <os_install>
    Contextualization (Open Source Cloud) <kvm_contextualization>
    Contextualization (VMware vCenter) <vcenter_contextualization>
