@@ -1,34 +1,41 @@
-.. _existing_images:
+.. _creating_images:
 
 ================================================================================
-Using Existing Disk Images
+Creating Disk Images
 ================================================================================
 
-You can use as basis for your images the ones provided by the distributions. These images are usually prepared to be used with other clouds and won't behave correctly or will not have all the features provided by OpenNebula. You can do a customization of these images before importing them.
 
-To do this modification we are going to use the software `libguestfs <http://libguestfs.org/>`__ in a Linux machine with kvm support. You should use a modern distribution to have a recent version of libguestfs (>= 1.26). To have the latest version you can use Arch Linux but a CentOS 7 is OK.
+You can use the images provided by the distributions as a basis for your images.
+These images are usually prepared to be used with other clouds and won't behave correctly or won't have all the features provided by OpenNebula.
+However, you can customize these images before importing them.
+
+Using a GNU/Linux Host
+================================================================================
+
+To perform the image modification we'll use the `libguestfs <http://libguestfs.org/>`__ software running on a Linux machine with KVM support.
+A modern distribution with a recent version of libguestfs (>= 1.26) should be used.
 
 Step 1. Install Libguestfs
-================================================================================
+--------------------------------------------------------------------------------
 
 The package is available in most distributions. Here are the commands to do it in some of them.
 
 CentOS
---------------------------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. prompt:: bash # auto
 
     # yum install libguestfs-tools
 
 Debian/Ubuntu
---------------------------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. prompt:: bash # auto
 
     # apt-get install libguestfs-tools
 
 Arch Linux
---------------------------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This package is available in `aur repository <https://aur.archlinux.org/packages/libguestfs/>`__. You can either download the ``PKGBUILD`` and compile it manually or use a pacman helper like `yaourt <https://archlinux.fr/yaourt-en>`__:
 
@@ -38,20 +45,22 @@ This package is available in `aur repository <https://aur.archlinux.org/packages
 
 
 Step 2. Download the Image
-================================================================================
+--------------------------------------------------------------------------------
 
 You can find the images for distributions in these links. We are going to use the ones from CentOS but the others are here for reference:
 
-* **CentOS 7**: http://cloud.centos.org/centos/7/images/
+* **CentOS**: http://cloud.centos.org/centos/
 * **Debian**: http://cdimage.debian.org/cdimage/openstack/
 * **Ubuntu**: https://cloud-images.ubuntu.com/
 
 Step 3. Download Context Packages
-================================================================================
+--------------------------------------------------------------------------------
 
-The context packages can be downloaded from the `release section of the project <https://github.com/OpenNebula/addon-context-linux/releases>`__. Make sure you download the version you need. For example, for CentOS download the `rpm` version. Also, don't download the packages marked with `ec2` as they are specific for EC2 images.
+The context packages can be downloaded from the `release section of the project <https://github.com/OpenNebula/addon-context-linux/releases>`__.
+Make sure you download the version you need. For example, for CentOS 8, download the corresponding `rpm` package (``one-context-<VERSION>.el8.noarch.rpm``).
+Do not download the packages marked with `ec2` as they are specific for EC2 images.
 
-You have to download them to a directory that we will later refer. In this example it's going to be called ``packages``.
+You have to download them to a directory that we will later refer. For our example, we'll call it ``packages``.
 
 .. prompt:: bash $ auto
 
@@ -68,9 +77,9 @@ You have to download them to a directory that we will later refer. In this examp
     $ cd ..
 
 Step 4. Create a CDROM Image with Context Packages
-================================================================================
+--------------------------------------------------------------------------------
 
-We will use this image as the source to install the context package. The image will be created with an specific label so later is easier to mount it. The label chosen is ``PACKAGES``.
+The CDROM image (ISO) will be created with an specific label so later it is easier to mount it. The label chosen is ``PACKAGES``.
 
 
 .. prompt:: bash $ auto
@@ -78,15 +87,16 @@ We will use this image as the source to install the context package. The image w
     $ genisoimage -o packages.iso -R -J -V PACKAGES packages/
 
 
-Step 5. Create a Script to Prepare the Image
-================================================================================
+Step 5. Guest OS Installation
+--------------------------------------------------------------------------------
 
-The script will be different depending on the distribution and any extra steps we want to do to the image. The script will be executed in a chroot of the image root filesystem.
+The script will be different depending on the distribution and the extra steps we want to perform in the image.
+It will be executed in a *chroot* jail of the image root filesystem.
 
-Here are some versions of the script for several distributions. The script will be called ``script.sh``.
+Here are some versions of the script for several distributions. The script name will be ``script.sh``.
 
 CentOS 6
---------------------------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
@@ -110,7 +120,7 @@ CentOS 6
     sed -i --follow-symlinks 's/console=ttyS[^ "]*//g' /etc/grub.conf
 
 CentOS 7
-_-------------------------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
@@ -129,8 +139,28 @@ _-------------------------------------------------------------------------------
     # (it can freeze during the boot process).
     sed -i --follow-symlinks 's/console=ttyS[^ "]*//g' /etc/default/grub /etc/grub2.cfg
 
+CentOS 8
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    mkdir /tmp/mount
+    mount LABEL=PACKAGES /tmp/mount
+
+    yum install -y epel-release
+
+    # Remove NetworkManager
+    yum remove -y NetworkManager
+
+    # Install OpenNebula context package
+    yum install -y /tmp/mount/one-context*el7*rpm
+
+    # Take out serial console from kernel configuration
+    # (it can freeze during the boot process).
+    sed -i --follow-symlinks 's/console=ttyS[^ "]*//g' /etc/default/grub /etc/grub2.cfg
+    
 Debian 8
---------------------------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
@@ -153,7 +183,7 @@ Debian 8
 
 
 Debian 9
---------------------------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
@@ -176,8 +206,8 @@ Debian 9
     sed -i 's/earlyprintk=ttyS[^ "]*//' /etc/default/grub /boot/grub/grub.cfg
 
 
-Ubuntu 14.04, 16.04
---------------------------------------------------------------------------------
+Ubuntu
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
@@ -199,8 +229,8 @@ Ubuntu 14.04, 16.04
     sed -i 's/console=ttyS[^ "]*//g' /etc/default/grub /boot/grub/grub.cfg
 
 
-Step 6. Create an Overlay Image
-================================================================================
+Create an Overlay Image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 It's always a good idea to not modify the original image in case you want to use it again or something goes wrong with the process. To do it we can use ``qemu-img`` command:
 
@@ -208,8 +238,8 @@ It's always a good idea to not modify the original image in case you want to use
 
     $ qemu-img create -f qcow2 -b <original image> modified.qcow2
 
-Step 7. Apply Customizations to the Image
-================================================================================
+Apply Customizations to the Image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Now we are going to execute ``virt-customize`` (a tool of libguestfs) to modify the image. This is the meaning of the parameters:
 
@@ -218,56 +248,67 @@ Now we are going to execute ``virt-customize`` (a tool of libguestfs) to modify 
 * ``--format qcow2``: the image format is qcow2
 * ``-a modified.qcow2``: the disk image we want to modify
 * ``--run script.sh``: script with the instructions to modify the image
-* ``--root-password disabled``: deletes root password. In case you want to set a password (for debugging) use ``--root-password password:the-new-root-password``
+* ``--root-password disabled``: delete root password. In case you want to set a password (for debugging) use ``--root-password password:the-new-root-password``
 
 .. prompt:: bash $ auto
 
     $ virt-customize -v --attach packages.iso --format qcow2 -a modified.qcow2 --run script.sh --root-password disabled
 
-Step 8. Convert the Image to the Desired Format
-================================================================================
+Alternatively, you can force `start qemu directly <https://libguestfs.org/libguestfs-test-tool.1.html>`__ (instead of using *libvirt* as backend):
 
-After we are happy with the result we can convert the image to the preferred format to import to OpenNebula. Even if we want a ``qcow2`` image we have to convert it to consolidate all the layers in one file. For example, to create a ``qcow2`` image that can be imported to fs (ssh, shared and qcow2), ceph and fs_lvm datastores we can execute this command:
+.. prompt:: bash $ auto
+
+    $ LIBGUESTFS_BACKEND=direct virt-customize -v --attach packages.iso --format qcow2 -a modified.qcow2 --run script.sh --root-password disabled
+
+Convert the Image to the Desired Format
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+After we are happy with the result, we can convert the image to the preferred format to import to OpenNebula.
+Even if we want a final ``qcow2`` image we need to convert it to consolidate all the layers in one file.
+For example, to create a ``qcow2`` image that can be imported to *fs* (ssh, shared and qcow2), *ceph* and *fs_lvm* datastores we can execute this command:
 
 .. prompt:: bash $ auto
 
     $ qemu-img convert -O qcow2 modified.qcow2 final.qcow2
 
-To create a vmdk image, for vCenter hypervisors we can use this other command:
+If you want to create a ``vmdk`` image, for vCenter hypervisors, you can use this other command:
 
 .. prompt:: bash $ auto
 
     $ qemu-img convert -O vmdk modified.qcow2 final.vmdk
 
-Step 9. Upload it to an OpenNebula Datastore
-================================================================================
+Upload it to an OpenNebula Datastore
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You can now use Sunstone to upload the final version of the image or copy it to the frontend and import it. If you are going to use the second option make sure that the image is in a directory that allows image imports (by default ``/var/tmp``). For example:
 
 .. prompt:: bash $ auto
 
-    $ oneimage create --name centos7 --path /var/tmp/final.qcow2 --driver qcow2 --prefix vd --datastore default
+    $ oneimage create --name centos7 --path /var/tmp/final.qcow2 --prefix vd --datastore default
 
 .. _add_content_install_withing_opennebula:
 
-Install within OpenNebula
-=========================
+Using OpenNebula
+================
 
-If you are using KVM hypervisor you can do the installations using OpenNebula. Here are the steps to do it:
+If you are using KVM hypervisor you can create base images using OpenNebula.
 
 Step 1. Add the Installation Medium
 -----------------------------------
 
-You can add the installation CD to OpenNebula uploading the image using Sunstone and setting its type to CDROM or using the command line. For example, to add the CentOS ISO file you can use this command:
+You can add the installation CD to OpenNebula by uploading the image using Sunstone and setting its type to CDROM or using the command line.
+For example, to add the CentOS ISO file you can use this command:
 
 .. prompt:: bash $ auto
 
-    $ oneimage create --name centos7-install --path http://buildlogs.centos.org/rolling/7/isos/x86_64/CentOS-7-x86_64-DVD.iso --type CDROM --datastore default
+    $ oneimage create --name centos7-install --path https://buildlogs.centos.org/rolling/7/isos/x86_64/CentOS-7-x86_64-DVD-1910-01.iso --type CDROM --datastore default
 
 Step 2. Create Installation Disk
 --------------------------------
 
-The disk where the OS will be installed needs to be created as a DATABLOCK. Don't make the image too big as it can be resized afterwards on VM instantiation. Also make sure to make it persistent so we don't lose the installation when the Virtual Machine terminates.
+The disk where the OS will be installed needs to be created as a ``DATABLOCK``.
+Don't make the image too big as it can be resized afterwards on VM instantiation.
+Also make sure to make it persistent so we won't lose the disk changes when the Virtual Machine terminates.
 
 |sunstone_datablock_create|
 
@@ -280,29 +321,33 @@ If you are using the CLI you can do the same with this command:
 Step 3. Create a Template to do the Installation
 ------------------------------------------------
 
-In this step you have to take the following into account:
+You'll need to create a VM Template with the following caracteristics:
 
-* Add first the persistent datablock and second the installation media in the storage tab
-* Add a network as it will be needed to download context packages
-* On OS Booting tab enable both disks for booting. The first time it will use the CD and after installing the OS the DATABLOCK will be used
-* In Input/Output tab enable VNC and add as input an USB Tablet. This will be useful in case the OS has a graphical installation
+* In *Storage* tab, ``DISK 0`` disk will be the installation disk (future base image) created in step 2, and ``DISK 1`` Second disk will be the installation CD image created in step 1.
+* In *Network* tab, attach ``NIC 0`` to a Virtual Network as it will be needed to download context packages.
+* In *Boot* tab of *OS & CPU* tab, enable (check) both disks for booting.
+  The boot order will be: first the installation media and second the installation disk.
+* In *Input/Output* tab: enable VNC in *Graphics* and set ``Tablet`` ``USB`` in *Inputs*.
+  This will be useful in case the OS has a graphical installation.
 
-This can be done with the CLI using this command:
+This can be done from the CLI as well using this command:
 
 .. prompt:: bash $ auto
 
     $ onetemplate create --name centos7-cli --cpu 1 --memory 1G --disk centos7,centos7-install --nic network --boot disk0,disk1 --vnc --raw "INPUT=[TYPE=tablet,BUS=usb]"
 
-Now instantiate the template and do the installation using the VNC viewer. Make sure that you configure the network manually as there are no context packages in the installation media. Upon completion tell the instanter to reboot the machine, log into the new OS and follow the instructions from the accompanying sections to install the contextualization.
+Now, instantiate the recently created VM Template and do the guest OS installation using the VNC viewer.
+You'll need to configure the network manually as there are no context packages in the installation media.
+Upon completion, tell the instanter to reboot the machine, login to the guest OS and follow the :ref:`Open Cloud Contextualization <kvm_contextualization>` instructions.
 
-As a tip, one of the latest things you should do when using this method is disabling ``root`` password and deleting any extra users that the install tool has created.
+As a tip, one of the latest things you should do when using this method is disabling ``root`` password and deleting any extra users created by the installation tools.
 
 Step 4. Shutdown the Machine and Configure the Image
 ----------------------------------------------------
 
-You can now shutdown the Virtual Machine from inside, that is, use the OS to shutdown itself. When the machine appears as poweroff in OpenNebula terminate it.
+Now, you can shutdown the Virtual Machine from the guest OS. When the Vitual Machine appears as ``POWEROFF`` in OpenNebula, terminate it.
 
-Make sure that you change the image to non persistent and you give access to other people.
+Make sure to change the attribute ``PERSISTENT`` of the installation disk image to ``NO`` and set access permissions for other users (optional).
 
 Using the CLI you can do:
 
@@ -314,14 +359,19 @@ Using the CLI you can do:
 
 .. _add_content_marketplace:
 
-Use the OpenNebula Marketplace
-==============================
+Using the OpenNebula Marketplace
+================================
 
-If your frontend is connected to the internet it should have access to the public OpenNebula Marketplace. In it there are several images prepared to run in an OpenNebula Cloud. To get images from it you can go to the Storage/Apps tab in Sunstone web interface, select one of the images and click the download button:
+If you have access to the public OpenNebula Marketplace from your frontend, you'll find there images prepared to run in a OpenNebula Cloud.
+To get images from the OpenNebula Marketplace:
+
+* Go to the *Storage/Apps* tab in Sunstone
+* Select one of the images displayed
+* Click the *Download* button
 
 |sunstone_marketplace_list_import|
 
-Using the CLI we can list an import using these commands:
+Using the CLI, you can list an import images using these commands:
 
 .. prompt:: text $ auto
 
@@ -339,30 +389,5 @@ Using the CLI we can list an import using these commands:
 	VMTEMPLATE
 		ID: -1
 
-
-.. _cloud_view_services:
-
-How to Prepare the Service Templates
-================================================================================
-
-When you prepare a :ref:`OneFlow Service Template <appflow_use_cli>` to be used by the Cloud View users, take into account the following:
-
-* You can define :ref:`dynamic networks <appflow_use_cli_networks>` in the Service Template, to allow users to choose the virtual networks for the new Service instance.
-* If any of the Virtual Machine Templates used by the Roles has User Inputs defined (see the section above), the user will be also asked to fill them when the Service Template is instantiated.
-* Users will also have the option to change the Role cardinality before the Service is created.
-
-|prepare-tmpl-flow-1|
-
-|prepare-tmpl-flow-2|
-
-To make a Service Template available to other users, you have two options:
-
-* Change the Template's group, and give it ``GROUP USE`` permissions. This will make the Service Template only available to users in that group.
-* Leave the Template in the oneadmin group, and give it ``OTHER USE`` permissions. This will make the Service Template available to every user in OpenNebula.
-
-Please note that you will need to do the same for any VM Template used by the Roles, and any Image and Virtual Network referenced by those VM Templates, otherwise the Service deployment will fail.
-
 .. |sunstone_datablock_create| image:: /images/sunstone_datablock_create.png
 .. |sunstone_marketplace_list_import| image:: /images/sunstone_marketplace_list_import.png
-.. |prepare-tmpl-flow-1| image:: /images/prepare-tmpl-flow-1.png
-.. |prepare-tmpl-flow-2| image:: /images/prepare-tmpl-flow-2.png
