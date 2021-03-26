@@ -60,6 +60,7 @@ Simply enter that IP in a new tab in your browser and you'll be greeted by the f
 |nginx_install_page|
 
 .. |get_public_ip_nginx| image:: /images/get_public_ip_nginx.png
+.. |nginx_install_page| image:: /images/nginx_install_page.png
 
 Step 5. Building a Multi-Container Service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
