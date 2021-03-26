@@ -124,5 +124,6 @@ The :ref:`Sunstone UI interface <sunstone>` offers an easy way to manage cluster
 -  Create new clusters selecting the resources you want to include in this cluster.
 -  See the list of current clusters, from which you can update the template of existing ones, or delete them.
 
-.. |image0| image:: /images/sunstone_cluster_create.png
+|image1|
+
 .. |image1| image:: /images/sunstone_cluster_list2.png

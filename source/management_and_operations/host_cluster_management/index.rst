@@ -8,4 +8,4 @@ Hosts and Clusters Management
    Overview <overview>
    Hosts <hosts>
    Clusters <cluster_guide>
-   NUMA and CPU Pinning <numa>
+   Virtual Topology and CPU Pinning <numa>

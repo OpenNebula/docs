@@ -368,3 +368,8 @@ Hypervisors will set the MAC address for the NIC of the Virtual Machines, but no
 
 .. note:: Alternatively a custom external service can configure the Virtual Machine network (e.g. your own DHCP server in a separate virtual machine)
 
+Using Sunstone to Manage Virtual Networks
+================================================================================
+You can also manage your Virtual Networks using :ref:`Sunstone <sunstone>`. Select the Networks tab, and there, you will be able to create, enable, and operate your Virtual Networks in a user friendly way.
+
+.. |image0| image:: /images/sunstone_vnet_create.png

@@ -244,3 +244,11 @@ Like any other OpenNebula Resource, Marketplace Applications respond to the base
 * disable
 
 Please take a look at the CLI reference to see how to use these actions. These options are also available in Sunstone.
+
+Using Sunstone to Manage Marketplace Applications
+================================================================================
+You can also import and export Marketplace Applications using :ref:`Sunstone <sunstone>`. Select the Storage > MarketApps tab, and there, you will be able see the available Applications in a user friendly way.
+
+.. image:: /images/show_marketplaceapp.png
+    :width: 90%
+    :align: center
