@@ -14,13 +14,12 @@ Each user has a unique ID, and belongs at least to one group.
 
 After the installation, you will have two administrative accounts, ``oneadmin`` and ``serveradmin`` and two default groups ``oneadmin`` and ``users``. You can check it using the ``oneuser list`` and ``onegroup list`` commands.
 
-There are different user types in the OpenNebula system:
+There are different user accounts in OpenNebula, depending on the default permissions granted to them:
 
 * **Administrators**, the ``oneadmin`` account is created **the first time** OpenNebula is started. ``oneadmin`` has enough privileges to perform any operation on any object (similar to ``root`` user in UNIX like systems). Any other user added to ``oneadmin`` group is considered and administrator user and has the same privileges than ``oneadmin``.
-* **Infrastructure User** accounts may access most of the functionality offered by OpenNebula to manage resources.
-* **Group Administrators** accounts manage a limited set of resources and users.
-* **Users** access a simplified Sunstone view with limited actions to create new VMs, and perform basic life cycle operations.
-* **Service Users**, they are used by the OpenNebula services (e.g Sunstone web interface, OneFlow, ...) to proxy auth request. By default, ``serveradmin`` user is created the first time OpenNebula service is started.This user is only intended to be used by OpenNebula services.
+* **Users** accounts may access most of the functionality offered by OpenNebula to manage resources.
+* **Group Administrators** similar to users but can manage user accounts and resources in their group.
+* **Service Users**, they are used by the OpenNebula services (e.g Sunstone web interface, OneFlow, ...) to proxy auth request. By default, ``serveradmin`` user is created the first time OpenNebula service is started. This user is only intended to be used by OpenNebula services.
 
 .. note:: ``oneadmin`` credentials are set the first time OpenNebula service is started. By default, it looks for a session string in ``/var/lib/one/.one/one_auth`` and define the credentials accordingly to it.
 
