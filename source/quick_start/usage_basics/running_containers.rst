@@ -44,6 +44,8 @@ Feel free to modify the capacity. A required step is clicking on Network and sel
 
 Now proceed to ``Instances --> VMs`` and wait for the only VM there to get into RUNNING state.
 
+.. note:: Even though Sunstone shows the VNC console button, VNC access to Containers or VMs running in edge clusters has been deemed insecure and as such OpenNebula filters this traffic. This means that the VNC access won't work to VMs running in edge clusters.
+
 .. |select_aws_cluster_public_network_nginx| image:: /images/select_aws_cluster_public_network_nginx.png
 
 Step 4. Connect to nginx
