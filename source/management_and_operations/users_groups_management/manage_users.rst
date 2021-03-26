@@ -46,7 +46,7 @@ A new user can be easily created by running the ``oneuser create`` command or by
 
     When defining user names and passwords consider the following invalid characters:
 
-    .. code-block::
+    .. code-block:: none
 
         username = [" ", ":", "\t", "\n", "\v", "\f", "\r"]
         password = [" ", "\t", "\n", "\v", "\f", "\r"]
