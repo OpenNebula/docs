@@ -239,7 +239,7 @@ Select the datastore to import and click on "Import". After importing you should
 
 .. note:: If the vCenter instance features a read only datastore, please be aware that you should disable the SYSTEM representation of the datastore after importing it to avoid OpenNebula trying to deploy VMs in it.
 
-. _import_networks:
+.. _import_networks:
 
 Step 4. Import Networks
 ---------------------------------------------------------------------------------
