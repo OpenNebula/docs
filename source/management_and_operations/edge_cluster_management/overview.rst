@@ -4,7 +4,7 @@
 Overview
 ================================================================================
 
-Edge Clusters provide you with the tools and methods needed to dynamically grow your cloud infrastructure with physical or virtual resources running on remote cloud providers. Edge clusters supports two main use cases:
+Edge Clusters provide you with the tools needed to dynamically grow your cloud infrastructure with physical or virtual resources running on remote cloud providers. Edge clusters supports two main use cases:
 
 * **Edge Cloud Computing**, to transition from centralized clouds to distributed edge-like cloud environments. You will be able to grow your on-premises cloud with resources at edge data center locations to meet latency, bandwidth or data regulation needs of your workload.
 * **Hybrid Cloud Computing**, to address peaks of demand and need for extra computing power by dynamically growing your underlying physical infrastructure.

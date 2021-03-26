@@ -4,6 +4,9 @@
 Overview
 ================================================================================
 
+How Should I Read This Chapter
+================================================================================
+
 In OpenNenbula there are two main places where VM disk images are stored:
 
 * :ref:`Marketplaces <marketplaces>`, these are shared locations across multiple OpenNebula clouds. They can be public or for private use. Marketplaces store :ref:`Marketplace Applications <marketapp>` (or Appliances), that includes the application definition together with the disk images.

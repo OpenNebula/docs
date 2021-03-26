@@ -4,6 +4,7 @@ Overview
 
 This chapter contains documentation on how to create and manage :ref:`Virtual Networks <manage_vnets>` and their related objects
 
+How Should I Read This Chapter
 ================================================================================
 
 Before reading this chapter, you should have already installed and configured your cloud. The Chapter is structured as follows:
