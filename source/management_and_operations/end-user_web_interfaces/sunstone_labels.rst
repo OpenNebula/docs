@@ -4,40 +4,64 @@
 Sunstone Labels
 ================================================================================
 
+Labels can be defined for most of the OpenNebula resources from the admin view.
+
+Each resource **will store the label information in its own template**, thus it can be easily edited from the CLI or Sunstone.
+
 |labels_edit|
 
-Labels can be defined for most of the OpenNebula resources from the admin view. Each resource will store the label information in its own template, thus it can be easily edited from the CLI or Sunstone. This feature enables the possibility to group the different resources under a given label and filter them in the admin and cloud views. The user will be able to easily find the template she wants to instantiate, or select a set of resources to apply a given action.
+This feature enables the possibility to **group the different resources** under a given label and filter them in the admin and cloud views. The user will be able to easily find the template she wants to instantiate, **or select a set of resources** to apply a given action.
 
 |labels_filter|
 
-The list of labels defined for each pool will be shown in the left navigation menu. After clicking on one of these labels only the resources with this label will be shown in the table. This filter is also available in the cloud view inside the virtual machine creation form to easily select a specific template.
+The list of labels defined for each pool **will be shown in the left navigation menu**. After clicking on one of these labels, only the resources with this label will be shown in the table.
 
-To create a label hierarchy, use the '/' character. For example, you could have the labels 'Linux/Ubuntu' and 'Linux/CentOS'. Please note that a resource with the label 'Linux/Ubuntu' is not automatically added to the parent 'Linux' label, but you can do it explicitly.
+This filter is **also available in the cloud view** inside the virtual machine creation form to easily select a specific template.
+
+|labels_cloud|
+
+To create a **label hierarchy**, use slash character: ``/``. For example, you could have the labels ``Linux/Ubuntu`` and ``Linux/Centos``.
 
 .. _suns_views_labels_behavior:
 
-.. note:: Labels created from Sunstone will ignore the labels case, and show them in lowercase with the first letter in upper case.
-    Eg: ``label with-spaces/andSubtree`` will tranform to ``Label With-spaces/Andsubtree``
+Normalization
+================================================================================
+
+Labels have a few peculiarities worth taking into account:
+
+* When a resource is assigned a the label with hierarchy, e.g. ``Linux/Ubuntu`` the label parent ``Linux`` **isn't automatically added**, but you can do it manually.
+
+* Labels created from Sunstone **will ignore the labels case**, and show them in lowercase with the first letter in uppercase. For example, ``label with-spaces/andSubtree`` will transform to ``Label With-spaces/Andsubtree``
 
 Persistent Labels
 ================================================================================
-You can also create persistent labels. These types of labels will not be deleted even when they have no associated resources. To define persistent tags we have 2 options, defining them as system tags, and including them in the file ``/etc/one/sunstone-views.yaml`` or adding them to the user's template. This second form can be done through the CLI or through the sunstone interface, doing Click on the padlock of already-created tags.
+Persistent labels have an extra behavior: it **isn't removed** when it does not have associated resources.
 
-|labels_persis|
+To define persistent a labels we have two options: :ref:`system label <suns_views_system_labels>` or :ref:`user label <suns_views_user_labels>`.
+
+.. _suns_views_user_labels:
 
 User Labels
 --------------------------------------------------------------------------------
-These labels will be saved in the user's template when the user clicks on the padlock. These labels are easily editable from the CLI or Sunstone interface. Add the following template when you save a label in the user's template
+These labels will be **saved in the User's template** through the CLI or Sunstone interface
+
+|labels_user_persis|
+
+When the user clicks on the **padlock** of already-created labels, it add the following block in the User's template:
 
 .. code-block:: none
 
     TEMPLATE = [
-        LABELS = "labels_persis,label_persis_2"
+        LABELS = "Nodejs/Old,Linux/Ubuntu"
     ]
+
+.. _suns_views_system_labels:
 
 System Labels
 --------------------------------------------------------------------------------
-These labels are defined in ``/etc/one/sunstone-views.yaml``. You can separate them per groups of users or introduce them into the default section.
+These labels are defined in ``/etc/one/sunstone-views.yaml``.
+
+You can separate them per groups of users or introduce them into the default section. For example:
 
 .. code-block:: yaml
 
@@ -45,12 +69,9 @@ These labels are defined in ``/etc/one/sunstone-views.yaml``. You can separate t
     groups:
         oneadmin:
             - admin
-            - admin_vcenter
             - groupadmin
-            - groupadmin_vcenter
             - user
             - cloud
-            - cloud_vcenter
     default:
         - cloud
     default_groupadmin:
@@ -58,10 +79,12 @@ These labels are defined in ``/etc/one/sunstone-views.yaml``. You can separate t
         - cloud
     labels_groups:
         oneadmin:
-            - oneadmin
+            - Linux/Ubuntu
+            - Linux/Centos
         default:
             - default
 
-.. |labels_edit| image:: /images/labels_edit.png
-.. |labels_persis| image:: /images/labels_persis.png
-.. |labels_filter| image:: /images/labels_filter.png
+.. |labels_edit| image:: /images/sunstone_labels_edit.png
+.. |labels_filter| image:: /images/sunstone_labels_filter.png
+.. |labels_cloud| image:: /images/sunstone_labels_cloud.png
+.. |labels_user_persis| image:: /images/sunstone_labels_user_persis.png

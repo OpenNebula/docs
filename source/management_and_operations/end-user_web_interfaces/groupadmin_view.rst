@@ -89,18 +89,17 @@ Group administrators **can create** :ref:`Virtual Routers <vrouter>` **from Temp
 |groupadmin_topology|
 
 
-.. |groupadmin_dash| image:: /images/groupadmin_dash.png
-.. |groupadmin_change_view| image:: /images/groupadmin_change_view.png
-.. |groupadmin_users| image:: /images/groupadmin_users.png
-.. |groupadmin_create_user| image:: /images/groupadmin_create_user.png
-.. |groupadmin_edit_quota| image:: /images/groupadmin_edit_quota.png
-.. |groupadmin_list_vms| image:: /images/groupadmin_list_vms.png
-.. |groupadmin_instantiate| image:: /images/groupadmin_instantiate.png
-.. |groupadmin_share_template| image:: /images/groupadmin_share_template.png
-.. |groupadmin_filtering_resources| image:: /images/vdcadmin_filtering_resources.png
-.. |groupadmin_create_vm_templates_list| image:: /images/groupadmin_create_vm_templates_list.png
-.. |groupadmin_group_acct| image:: /images/groupadmin_group_acct.png
-.. |groupadmin_group_showback| image:: /images/groupadmin_group_showback.png
-.. |groupadmin_user_acct| image:: /images/groupadmin_user_acct.png
-.. |groupadmin_create_vrouter| image:: /images/groupadmin_create_vrouter.png
-.. |groupadmin_topology| image:: /images/groupadmin_topology.png
+.. |groupadmin_dash| image:: /images/sunstone_groupadmin_dash.png
+.. |groupadmin_change_view| image:: /images/sunstone_groupadmin_change_view.png
+.. |groupadmin_users| image:: /images/sunstone_groupadmin_users.png
+.. |groupadmin_create_user| image:: /images/sunstone_groupadmin_create_user.png
+.. |groupadmin_edit_quota| image:: /images/sunstone_groupadmin_edit_quota.png
+.. |groupadmin_list_vms| image:: /images/sunstone_groupadmin_list_vms.png
+.. |groupadmin_instantiate| image:: /images/sunstone_groupadmin_instantiate.png
+.. |groupadmin_share_template| image:: /images/sunstone_groupadmin_share_template.png
+.. |groupadmin_create_vm_templates_list| image:: /images/sunstone_groupadmin_create_vm_templates_list.png
+.. |groupadmin_group_acct| image:: /images/sunstone_groupadmin_group_acct.png
+.. |groupadmin_group_showback| image:: /images/sunstone_groupadmin_group_showback.png
+.. |groupadmin_user_acct| image:: /images/sunstone_groupadmin_user_acct.png
+.. |groupadmin_create_vrouter| image:: /images/sunstone_groupadmin_create_vrouter.png
+.. |groupadmin_topology| image:: /images/sunstone_groupadmin_topology.png
