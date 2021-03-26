@@ -11,7 +11,7 @@ How Should I Read This Chapter
 
 In this chapter there are four guides describing these objects.
 
-* **Host Management**: Host management is achieved through the ``onehost`` CLI command or through the Sunstone GUI. You can read about Host Management in more detail in the :ref:`Managing Hosts <host_guide>` guide.
+* **Host Management**: Host management is achieved through the ``onehost`` CLI command or through the Sunstone GUI. You can read about Host Management in more detail in the :ref:`Managing Hosts <hosts_guide>` guide.
 * **Cluster Management**: Hosts can be grouped in Clusters. These Clusters are managed with the ``onecluster`` CLI command, or through the Sunstone GUI. You can read about Cluster Management in more detail in the :ref:`Managing Clusters <cluster_guide>` guide.
 
 You should read all the guides in this chapter to familiarize with these objects. For small and homogeneous clouds you may not need to create new clusters.
