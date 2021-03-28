@@ -72,57 +72,59 @@ Go to the ``Storage --> Apps`` tab, and search for wordpress. Select it and clic
 
 |wordpress_marketplace|
 
-Now you need to select a datastore. Taking into account we are only going to run this application in the OpenNebula cluster created in "Operations Basics", select the aws-cluster-images datastore.
+Now you need to select a datastore. Taking into account we are only going to run this application in the OpenNebula cluster created in "Operations Basics", select the aws-cluster-image datastore.
 
 |aws_cluster_images_datastore_wordpress|
 
 The appliance will be ready when the image in ``Storage --> Images`` (called "wordpress") gets in READY from LOCKED state.
 
-You need to modify the wordpress VM template. Proceed to the ``Templates --> VM`` tab and select the wordpress VM Template. Click on update, proceed to the Network tab and select the aws-cluster-public network. 
+You need to modify the wordpress VM template. Proceed to the ``Templates --> VMs`` tab and select the wordpress VM Template. Click on update, proceed to the Network tab and select the aws-cluster-public network. 
 
 |wordpress_public_network|
 
-Then proceed to the Context Tab, and add the following script in the Start Script section; the script will be executed during the booting process of the VM. You need also to tick the ``Add OneGate token`` option. 
+Then proceed to the Context tab, and add the following script in the Start Script section; the script will be executed during the booting process of the VM. You need also to tick the ``Add OneGate token`` option. 
 
 |wordpress_start_script|
 
-You need to repeat the same operations for the mariadb image. Go to the ``Storage --> Apps`` tab, and search for mariadb. Select it and click on the icon with the cloud and the down arrow inside (two positions to the right from the green "+"). Make sure you select the mariadb image coming from the "Docker Hub" marketplace.
+You need to repeat the same operations for the mariadb image. Go to the ``Storage --> Apps`` tab, and search for mariadb. Select it and click on the icon with the cloud and the down arrow inside (two positions to the right from the green "+").
 
 |mariadb_marketplace|
 
-Now you need to select a datastore. Taking into account we are only going to run this application in the OpenNebula cluster created in "Operations Basics", select the aws-cluster-images datastore.
+Now you need to select a datastore. Taking into account we are only going to run this application in the OpenNebula cluster created in "Operations Basics", select the aws-cluster-image datastore.
 
 |aws_cluster_images_datastore_mariadb|
 
 The appliance will be ready when the image in ``Storage --> Images`` (called "mariadb") gets in READY from LOCKED state. 
 
-You need to modify the wordpress VM template. Proceed to the ``Templates --> VM`` tab and select the wordpress VM Template. Click on update, proceed to the Network tab and select the aws-cluster-public network. 
+You need to modify the wordpress VM template. Proceed to the ``Templates --> VMs`` tab and select the wordpress VM Template. Click on update, proceed to the Network tab and select the aws-cluster-public network. 
 
 |mariadb_public_network|
 
-Then proceed to the Context Tab, and add the following script in the Start Script section; the script will be executed during the booting process of the VM. You need also to tick the ``Add OneGate token`` option.
+Then proceed to the Context tab, and add the following script in the Start Script section; the script will be executed during the booting process of the VM. You need also to tick the ``Add OneGate token`` option.
 
 |mariadb_start_script|
 
-Now you can proceed to the creation of the OneFlow service. Go to the ``Templates --> Services`` tab and click on ``Create`` (green button with + sign).
+Now you can proceed to the creation of the OneFlow service. Go to the ``Templates --> Services`` tab and click on the green button with + sign and the on ``Create`` from the drop-down menu.
 
-First of all, write "wordpress" as the name of the service and in the section ``Advanced service parameters`` tick the option ``Wait for VMs to report that they are READY via OneGate to consider them running``
+Write "wordpress" as the name of the service, and in the section ``Advanced service parameters`` tick the option ``Wait for VMs to report that they are READY via OneGate to consider them running``
 
 |wordpress_service_template_create|
 
-Then, you need to add two roles to the service: one role for the db and one for wordpress. 
-
-Go to the ``Roles`` section of the template, write db in the ``Role name`` input text and select the mariadb VM template previously created. 
+Then, you need to add two roles to the service: one role for the db and one for wordpress. Go to the ``Roles`` section of the template, write db in the ``Role name`` input text and select the mariadb VM template previously created. 
 
 |mariadb_oneflow_role|
 
-Then click on the + sign close to ``Roles`` to create a new role. Write wordpress in the ``Role name`` input text and select the wordpress VM template previously created. In this case, also tick the flag for the dependency with the db role; this means that wordpress role will be deployed after the db role is READY.
+Then click on the + sign close to ``Roles`` to create a new role. Write wordpress in the ``Role name`` input text and select the wordpress VM template previously created. In this case, also tick the option for the dependency with the parent db role; this means that the wordpress role will be deployed after the db role is READY.
 
 |wordpress_oneflow_role|
 
-Once you have finished click the green "Create" button.
+Once you have finished click the green ``Create`` button. 
 
-Now go to the ``Instances --> Services`` tab and create a new service selecting the oneflow service wordpress Once the VM related to the two roles are in RUNNING state, you can connect to the Public IP of wordpress (select the public IP of the wordpress VM that is highlighted in bold).
+Now go to the ``Instances --> Services`` tab, click on the green + sign and create a new service selecting the oneflow service template named wordpress.
+
+|wordpress_service_instantiate|
+
+Once the VM related to the two roles are in RUNNING state, you can connect to the Public IP of wordpress (select the public IP of the wordpress VM that is highlighted in bold).
 
 |wordpress_service_running|
 
@@ -143,6 +145,7 @@ Simply enter that IP in a new tab in your browser and you’ll be greeted by the
 .. |wordpress_service_template_create| image:: /images/wordpress_service_template_create.png
 .. |mariadb_oneflow_role| image:: /images/wordpress_service_db_role.png
 .. |wordpress_oneflow_role| image:: /images/wordpress_service_wp_role.png
+.. |wordpress_service_instantiate| image:: /images/wordpress_service_instantiate.png
 .. |wordpress_service_running| image:: /images/wordpress_service_running.png
 .. |wordpress_public_ip| image:: /images/wordpress_public_ip.png
 .. |wordpress_installation| image:: /images/wordpress_install_page.png
