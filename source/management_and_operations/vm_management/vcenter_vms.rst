@@ -123,7 +123,7 @@ OpenNebula instructs vCenter to "move all disk backing an disallow sharing". Tha
 
 However if you import the template with Linked Clones support OpenNebula will "move only the child-most disk backing" which means that any parent disk backings should be left in their current locations and if the disks hace delta disks on top of them, then linked clones of the template disks will be used.
 
-You have more information about disk moving operations `here <https://www.vmware.com/support/developer/vc-sdk/visdk41pubs/ApiReference/vim.vm.RelocateSpec.DiskMoveOptions.html>`__ and the use of Linked Clones :ref:`here <vcenter_linked_clones_description>` and :ref:`here <vcenter_linked_clones_import>` in OpenNebula docs.
+You have more information about disk moving operations `here <https://www.vmware.com/support/developer/vc-sdk/visdk41pubs/ApiReference/vim.vm.RelocateSpec.DiskMoveOptions.html>`__ and the use of Linked Clones :ref:`here <vcenter_linked_clones_description>`.
 
 Selecting a Resource Pool
 --------------------------------------------------------------------------------
@@ -344,6 +344,6 @@ OpenNebula uses the ``MEMORY_HOT_ADD_ENABLED`` field to activate or desactivate 
 
 .. important:: To activate or deactivate these options it is necessary to turn off and resume the Virtual Machine. since vCenter does not allow changing these settings with the Virtual Machine turned on.
 
-.. warning:: CPU Hot Add is a feature that allows the addition of vCPUs to a running virtual machine. Enabling this feature disables vNUMA for that Virtual Machine. You can find more info here in this `VMware KB article 2040375 <https://kb.vmware.com/s/article/2040375>`__ 
+.. warning:: CPU Hot Add is a feature that allows the addition of vCPUs to a running virtual machine. Enabling this feature disables vNUMA for that Virtual Machine. You can find more info here in this `VMware KB article 2040375 <https://kb.vmware.com/s/article/2040375>`__
 
 You can find more information on how to resize a Virtual Machine in OpenNebula using the CLI or in Sunstone :ref:`here <vm_guide2_resizing_a_vm>`

@@ -1,4 +1,4 @@
-.. _vmware_infrastructure_setup_overview:
+.. _vmware_storage_setup_overview:
 
 .. todo:: Review and adapt
 
