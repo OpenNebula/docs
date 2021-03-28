@@ -1,6 +1,4 @@
-.. _vmware_infrastructure_setup_overview:
-
-.. todo:: Review and adapt
+.. _vmware_networking_setup_overview:
 
 ================================================================================
 Overview

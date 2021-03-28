@@ -1,14 +1,14 @@
 .. _vcenter_networking_setup:
 .. _virtual_network_vcenter_usage:
 
-vCenter Networking Overview
+vCenter Networking
 ================================================================================
 
-Virtual Networks from vCenter can be represented using OpenNebula virtual networks, where a one-to-one relationship exists between an OpenNebula's virtual network and a vSphere's port group. When :ref:`adding NICs in a VM template <vm_templates>` or :ref:`when attaching a NIC (hot-plugging) to a running VM <vm_instances>` in OpenNebula, a network interface can be attached to an OpenNebula's Virtual Network.
+vCenter virtual networks can be represented as OpenNebula virtual networks, where a one-to-one relationship exists between an OpenNebula's virtual network and a vSphere's port group. When :ref:`adding NICs in a VM template <vm_templates>` or :ref:`when attaching a NIC (hot-plugging) to a running VM <vm_instances>` in OpenNebula, a network interface can be attached to an OpenNebula's Virtual Machine that is connected to a particular vCenter virtual network.
 
 OpenNebula can consume port groups or create port groups.
 
-In vSphere's terminology, a port group can be seen as a template for creating virtual ports with particular sets of specifications such as VLAN tagging. The VM's network interfaces connect to vSphere's virtual switches through port groups. vSphere provides two types of port groups:
+In vSphere's terminology, a port group can be seen as a template to create virtual ports with particular sets of specifications such as VLAN tagging. The VM's network interfaces connect to vSphere's virtual switches through port groups. vSphere provides two types of port groups:
 
 - Port Group (or Standard Port Group). The port group is connected to a vSphere Standard Switch.
 - Distributed Port Group. The port group is connected to a vSphere Distributed Switch.
@@ -18,9 +18,7 @@ According to `VMWare's vSphere Networking Guide <https://pubs.vmware.com/vsphere
 - vSphere Standard Switch. It works much like a physical Ethernet switch. A vSphere standard switch can be connected to physical switches by using physical Ethernet adapters, also referred to as uplink adapters, to join virtual networks with physical networks. You create and configure the virtual standard switch on each ESXi host where you want that virtual switch to be available.
 - vSphere Distributed Switch. It acts as a single switch across all associated hosts in a datacenter to provide centralized provisioning, administration, and monitoring of virtual networks. You configure a vSphere distributed switch on the vCenter Server system and the configuration is populated across all hosts that are associated with the switch. This lets virtual machines to maintain consistent network configuration as they migrate across multiple hosts.
 
-.. note:: The vSphere Distributed Switch is only available for VMWare's vSphere Enterprise Plus licence.
-
-If you want to associate OpenNebula's virtual networks to vSphere's port groups:
+If you want to associate OpenNebula's virtual networks to vSphere's port groups you have two choices:
 
 - You can create the port groups using vSphere's Web Client and then consume them using the import tools or,
 - You can create port groups directly from OpenNebula using a virtual network definition, adding the attribute ``VN_MAD=vcenter`` to the network template and letting OpenNebula create the network elements for you.
@@ -29,32 +27,29 @@ If you want to associate OpenNebula's virtual networks to vSphere's port groups:
 Consuming existing vCenter port groups
 --------------------------------------
 
-Existing vCenter networks can be represented using OpenNebula Virtual Networks, taking into account that the BRIDGE attribute of the Virtual Network needs to match the name of the Network (port group) defined in vCenter.
+Existing vCenter networks are represented in OpenNebula as virtual networks which BRIDGE attribute  matches the name of the Network (port group) defined in vCenter.
 
-OpenNebula supports both "Port Groups" and "Distributed Port Groups", and as such can **create or consume** any vCenter defined network resource.
+OpenNebula supports both "Port Groups" and "Distributed Port Groups", and as such can create or consume any vCenter defined network resource.
 
 Networks can be created using vSphere's web client, with any specific configuration like for instance VLANs. OpenNebula will use these networks with the defined characteristics representing them as Virtual Networks. OpenNebula additionally can handle on top of these networks three types of :ref:`Address Ranges: Ethernet, IPv4 and IPv6 <manage_vnets>`.
 
 vCenter VM Templates can define their own NICs, and OpenNebula will manage them and its information (IP, MAC, etc) is known by OpenNebula. Any NIC present in the OpenNebula VM Template, or added through the attach_nic operation, will be handled by OpenNebula, and as such it is subject to be detached.
 
-OpenNebula Virtual Networks which consume existing port groups will have the attribute ``VN_MAD=dummy``.
-
-You can easily consume vCenter networks using the import tools as explained in the :ref:`Importing vCenter Networks<vcenter_import_networks>` section.
+You can easily consume vCenter networks using the import tools as explained in the :ref:`Importing vCenter Networks <vcenter_import_networks>` section.
 
 .. _vcenter_enhanced_networking:
 
 Creating Port Groups from OpenNebula
 ------------------------------------
 
-OpenNebula can create a vCenter network from a Virtual Network template if the vCenter network driver is used (thanks to the attribute ``VN_MAD=vcenter``).
+OpenNebula can create a vCenter network from a virtual network template if the vCenter network driver is used.
 
 This is the workflow when OpenNebula needs to create a vCenter network:
 
-1. Enable the VNET hooks in OpenNebula's oned configuration file.
-2. Create a new OpenNebula Virtual Network template. Add the required attributes to the template including the OpenNebula's Host ID which represents the vCenter cluster where the network elements will be created.
-3. When the Virtual Network is created, a hook will create the network elements required on each ESX host that are members of the specified vCenter cluster.
-4. The Virtual Network will be automatically assigned to the OpenNebula cluster which includes the vCenter cluster represented as an OpenNebula host.
-5. The hooks works asynchronously so you may have to refresh the Virtual Network information until you find the VCENTER_NET_STATE attribute. If it completes the actions successfully that attribute will be set to READY and hence you can use it from VMs and templates. If the hook fails VCENTER_NET_STATE will be set to ERROR and the VCENTER_NET_ERROR attribute will offer more information.
+1. Create a new OpenNebula virtual network template. Add the :ref:`required attributes <vcenter_network_attributes>` to the template including the OpenNebula's host ID which represents the vCenter cluster where the network elements will be created.
+2. When the virtual network is created, a hook will create the network elements required on each ESX host that are members of the specified vCenter cluster.
+3. The virtual network will be automatically assigned to the OpenNebula cluster which includes the vCenter cluster represented as an OpenNebula host.
+4. The hooks works asynchronously so you may have to refresh the Virtual Network information until you find the VCENTER_NET_STATE attribute. If it completes the actions successfully that attribute will be set to READY and hence you can use it from VMs and templates. If the hook fails VCENTER_NET_STATE will be set to ERROR and the VCENTER_NET_ERROR attribute will offer more information.
 
 Hooks information
 --------------------------------------------------------------------------------
@@ -69,9 +64,9 @@ These hooks are the scripts responsible of creating the vCenter network elements
 The creation hook performs the following actions for each ESX host found in the cluster assigned to the template if a standard port group has been chosen:
 
 * If the port group does not exist, it will create it.
-* If the port group or switch name exist, **they won't be updated** ignoring new attributes to protect you from unexpected changes that may break your connectivity.
+* If the port group or switch name exist, they won't be updated ignoring new attributes to protect you from unexpected changes that may break your connectivity.
 
-The creation hook performs the following actions if a distributed port group has been chosen:
+The **creation** hook performs the following actions if a distributed port group has been chosen:
 
 * OpenNebula creates the distributed switch if it doesn't exist. If the switch exists, it's not updated ignoring any attribute you've set.
 * OpenNebula creates the distributed port group if it doesn't exist in the datacenter associated with the vCenter cluster. If the distributed port group already exists **it won't be updated** to protect you from unexpected changes.
@@ -79,13 +74,7 @@ The creation hook performs the following actions if a distributed port group has
 
 Creation hook is asynchronous which means that you'll have to check if the VCENTER_NET_STATE attribute has been set. Once the hook finishes you'll find the VCENTER_NET_STATE either with the READY value or the ERROR value. If an error was found you can check what was wrong.
 
-Here's a screenshot once the hook has finished and the network is ready:
-
-.. image:: /images/vcenter_network_created.png
-    :width: 50%
-    :align: center
-
-The removal hook performs the following actions:
+The **removal** hook performs the following actions:
 
 * OpenNebula contacts with the vCenter server.
 * For each ESX host found in the vCenter cluster assigned to the template, it tries to remove both the port group and the switch. If the switch has no more port groups left then the switch will be removed too.
@@ -99,6 +88,8 @@ In this case the hook is also asynchronous. If you want to know if it suceeded o
 If the script failed, you can check the lines before EXECUTE FAILURE in the /var/log/one/oned.log to get more information on the failure. If the removal hook fails you may have to check your vCenter server and delete those resources that could not be deleted automatically.
 
 .. warning:: If a port group or switch is in use e.g a VM is running and have a NIC attached to that port group the remove operation will fail so please ensure that you have no VMs or templates using that port group before trying to remove the Virtual Network representation.
+
+Check the :ref:`vCenter driver guide <vcenter_hooks>` for more information on how to operate the vCenter virtual network hooks.
 
 .. _vcenter_network_attributes:
 
@@ -158,37 +149,19 @@ Distributed port groups created by OpenNebula have the following settings:
 - Early Bindind is enabled. A free DistributedVirtualPort will be selected to assign to a Virtual Machine when the Virtual Machine is reconfigured to connect to the port group.
 
 
-OpenNebula Virtual Network template (Sunstone)
+Creating a vCenter virtual network in Sunstone
 --------------------------------------------------------------------------------
 
-In this section we will explain how a Virtual Network definition can be created using the Sunstone user interface, and we will introduce the available attributes for the vcenter network driver.
-
-The first step requires you to introduce the virtual network's name:
-
-.. image:: /images/vcenter_create_virtual_network_name.png
-    :width: 50%
-    :align: center
+Go to ``Network --> Virtual Network`` in Sunstone. Click on the green "+" button and set a virtual network name.
 
 In the Conf tab, select vCenter from the Network Mode menu, so the vcenter network driver is used (the ``VN_MAD=vcenter`` attribute will be added to OpenNebula's template). The Bridge name will be the name of the port group, and by default it's the name of the Virtual Network but you can choose a different port group name.
 
-.. image:: /images/vcenter_network_mode.png
-    :width: 50%
-    :align: center
-
-Once you've selected the vCenter network mode, Sunstone will show several network attributes that can be defined.
-
-.. image:: /images/vcenter_network_attributes.png
-    :width: 50%
-    :align: center
-
-You have more information about these attributes in the :ref:`vCenter Network attributes <vcenter_network_attributes>` section, but we'll comment some of them:
-
+Once you've selected the vCenter network mode, Sunstone will show several network attributes that can be defined. You have more information about these attributes in the :ref:`vCenter Network attributes <vcenter_network_attributes>` section, but we'll comment some of them now.
 
 OpenNebula Host's ID
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In order to create a Virtual Network using the vcenter driver we must select which vCenter cluster, represented as an OpenNebula host, this virtual network will be associated to. OpenNebula will act on each of the ESX hosts which are members of the vCenter cluster.
-
+In order to create a Virtual Network using the vCenter driver we must select which vCenter cluster, represented as an OpenNebula host, this virtual network will be associated to. OpenNebula will act on each of the ESX hosts which are members of the vCenter cluster.
 
 Physical device
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -238,7 +211,7 @@ In order to create your Virtual Network you must also add an Address Range in th
 Limitations
 --------------------------------------------------------------------------------
 
-**OpenNebula won't sync ESX hosts.** OpenNebula won't create or delete port groups or switches on ESX hosts that are added/removed after the Virtual Network was created. For example, if you're using vMotion and DPM and an ESX host is powered on, that ESX host won't have the switch and/or port group that was created by OpenNebula hence a VM cannot be migrated to that host.
+**OpenNebula won't sync ESX hosts.** OpenNebula won't create or delete port groups or switches on ESX hosts that are added/removed after the virtual network was created. For example, if you're using vMotion and DPM and an ESX host is powered on, that ESX host won't have the switch and/or port group that was created by OpenNebula hence a VM cannot be migrated to that host.
 
 **Virtual Network Update is not supported.** If you update a Virtual Network definition, OpenNebula won't update the attributes in existing port groups or switches so you should remove the virtual network and create a new one with the new attributes.
 
@@ -250,7 +223,7 @@ Limitations
 
     $ /usr/sbin/one-contextd all reconfigure
 
-**Importing networks.** OpenNebula won't import a network if it not belongs to any host. In the case of distributed port groups if DVS has no host attached to it.
+**Importing networks.** OpenNebula won't import a network if it does not belong to any host. In the case of distributed port groups if DVS has no host attached to it.
 
 .. _network_monitoring:
 
@@ -259,4 +232,4 @@ Network monitoring
 
 OpenNebula gathers network monitoring info for each VM. Real-time data is retrieved from vCenter thanks to the Performance Manager which collects data every 20 seconds and maintains it for one hour. Real-time samples are used so no changes have to be applied to vCenter's Statistics settings. Network metrics for transmitted and received traffic are provided as an average using KB/s unit.
 
-The graphs provided by Sunstone are different from those found in vCenter under the Monitor -> Performance Tab when selecting Realtime in the Time Range drop-down menu or in the Advanced view selecting the Network View. The reason is that Sunstone uses polling time as time reference while vCenter uses sample time on their graphs, so an approximation to the real values aggregating vCenter's samples between polls is needed. As a result, upload and download peaks will be different in value and different peaks between polls won't be depicted. Sunstone's graphs will provide a useful information about networking behaviour which can be examined on vCenter later with greater detail.
+The graphs provided by Sunstone are different from those found in vCenter under the ``Monitor -> Performance`` tab when selecting Realtime in the Time Range drop-down menu or in the Advanced view selecting the Network View. The reason is that Sunstone uses polling time as time reference while vCenter uses sample time on their graphs, so an approximation to the real values aggregating vCenter's samples between polls is needed. As a result, upload and download peaks will be different in value and different peaks between polls won't be depicted. Sunstone's graphs will provide a useful information about networking behaviour which can be examined on vCenter later with greater detail.
