@@ -1,14 +1,12 @@
 .. _vmware_storage_setup_overview:
 
-.. todo:: Review and adapt
-
 ================================================================================
 Overview
 ================================================================================
 
-After configuring the OpenNebula front-end and the vCenter nodes, the next step is to learn what capabilities can be leveraged from the vCenter infrastructure and fine tune the OpenNebula cloud to make use of them.
+After configuring the OpenNebula front-end and the vCenter nodes, it's time to learn more about the storage drivers and configure the storage model over VMware.
 
-The Virtualization Subsystem is the component in charge of talking with the hypervisor and taking the actions needed for each step in the VM life-cycle. This Chapter gives a detailed view of the vCenter drivers, the resources it manages and how to setup OpenNebula to leverage different vCenter features.
+The vCenter storage drivers are in charge of copying images (in VMDK format) to and from tje images and system datstores.
 
 How Should I Read This Chapter
 ================================================================================
