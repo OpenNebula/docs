@@ -10,8 +10,8 @@ In the public OpenNebula System marketplace there are services available that le
 
 We are going to assume the edge cluster has been named "fc-metal-aws-cluster".
 
-Step 1. Download the OneFlow Service from the marketplace
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Step 1. Download the OneFlow K3s Service from the Marketplace
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Login into Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab, and search for K3s. Select the "Service K3Ss - Firecracker" and click on the icon with the cloud and the down arrow inside (two positions to the right from the green "+").
 
@@ -26,7 +26,7 @@ The appliance will be ready when the image in ``Storage --> Images`` (named "Ser
 .. |k3s_marketplace| image:: /images/k3s_marketplace.png
 .. |k3s_fc_metal_aws_cluster_image_datastore| image:: /images/k3s_fc_metal_aws_cluster_image_datastore.png
 
-Step 2. Import the Kernel and Update the K3s Vm Template
+Step 2. Import the Kernel and Update the K3s VM Template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 In order to deploy Firecracker microVMs, you need to import a kernel from the MarketPlace. Go to ``Storage --> Apps`` tab, and search for kernel. Select "Kernel 4.19 x86_64 - Firecracker" and click on the icon with the cloud and the down arrow inside (two positions to the right from the green "+"). 
 
@@ -36,7 +36,7 @@ You need to select the files datastore to download the kernel.
 
 |k3s_kernel_files_datastore|
 
-You need to modify the k3s VM template to add the kernel just imported. Proceed to the ``Templates --> VMs`` tab and select the ``Service K3s - Firecracker-0`` VM Template. Click on update, proceed to the OS&CPU tab and in the kernel section, select "Kernel 4.19 x86_64 - Firecracker".
+You need to modify the k3s VM template to add the kernel just imported. Proceed to the ``Templates --> VMs`` tab and select the ``Service K3s - Firecracker-0`` VM Template. Click on update, proceed to the OS&CPU tab and in the kernel section select "Kernel 4.19 x86_64 - Firecracker".
 
 |add_kernel_k3s_vm_template|
 
@@ -65,18 +65,18 @@ Now proceed to ``Instances --> Services`` and wait for the only Service there to
 .. |k3s_service_vm_running| image:: /images/k3s_service_vm_running.png
 
 
-Step 3. Validate the Kubernetes cluster
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Step 3. Validate the K3s cluster and Deploy an Application
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Once the service is in RUNNING state, you can start using the K3s cluster. Let's login first into the K3s server node. Go to ``Instances --> VMs`` and check the public IP (from the dropdown, the one highlighted in bold).
+Once the service is in RUNNING state, you can start using the K3s cluster. Let's login first into the K3s server node. Go to ``Instances --> VMs`` and check the public IP of the server VM (from the dropdown, the one highlighted in bold).
 
 |k3s_server_public_ip|
 
 We'll use the "oneadmin" account in your OpenNebula front-end. Please ssh to the front-end first, and from there as oneadmin, ssh in to the K3s cluster server node as "root".
 
-You can use the file in ``/etc/rancher/k3s/k3s.yaml`` to control the K3s clusters from the outside. We are going to use the root account in the server node to deploy an nginx application.
+You can use the file in ``/etc/rancher/k3s/k3s.yaml`` to control the K3s cluster from the outside. We are going to use the root account in the server node to deploy an nginx application.
 
-First step is to check the cluster is healthy. You should get a similar output as:
+First step is to check if the cluster is healthy. You should get a similar output as:
 
 .. prompt:: bash $ auto
 
@@ -122,7 +122,7 @@ Let's check the service:
     kubernetes   ClusterIP      10.43.0.1     <none>                       443/TCP          4m46s
     nginx        LoadBalancer   10.43.89.55   18.168.60.179,52.56.88.133   8080:31087/TCP   11s
 
-and use one of the IP to connect to the nginx application
+and use one of the EXTERNAL IPs to connect to the nginx application using the port 8080
 
 |nginx_install_page|
 
