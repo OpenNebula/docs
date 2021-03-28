@@ -12,3 +12,7 @@ Drivers - Network
 =======================
 
 If the nic-attach fails due to libvirt bug (VM can not eject cdrom after reset) the nic appears in the VM (although without proper configuration) but it's not visible on OpenNebla VM `#5268 <http://dev.opennebula.org/issues/5268>`_
+
+High Availability
+=================
+HA server configuration synchronization by command `onezone serversync` do not work for PostgreSQL and SQLite DB backend
