@@ -4,7 +4,7 @@
 Java OpenNebula Cloud API
 ================================================================================
 
-This page contains the OpenNebula Cloud API Specification for Java. It has been designed as a wrapper for the :ref:`XML-RPC methods <api>`, with some basic helpers. This means that you should be familiar with the XML-RPC API and the XML formats returned by the OpenNebula core. As stated in the :ref:`XML-RPC documentation <api>`, you can download the :ref:`XML Schemas (XSD) here <api_xsd_reference>`.
+This page contains the OpenNebula Cloud API Specification for Java. It has been designed as a wrapper for the :ref:`XML-RPC methods <api>`, with some basic helpers. This means that you should be familiar with the XML-RPC API and the XML formats returned by the OpenNebula core. As stated in the :ref:`XML-RPC documentation <api>`, you can download the `XML Schemas (XSD) here <https://github.com/OpenNebula/one/tree/master/share/doc/xsd>`__.
 
 Download
 ================================================================================
@@ -16,7 +16,7 @@ You can also consult the `javadoc online </doc/5.13/oca/java/>`__.
 Usage
 ================================================================================
 
-To use the OpenNebula Cloud API for Java in your Java project, you have to add to the classpath the org.opennebula.client.jar file and the xml-rpc libraries located in the lib directory.
+To use the OpenNebula Cloud API for Java in your Java project, you have to add to the classpath the org.opennebula.client.jar file and the XML-RPC libraries located in the lib directory.
 
 Code Sample
 ================================================================================
@@ -28,7 +28,7 @@ This is a small code snippet. As you can see, the code flow would be as follows:
 -  You can perform “actions” over these objects right away, like ``myVNet.delete();``
 -  If you want to query any information (like what objects the pool contains, or one of the element attributes), you have to issue an ``info()`` call before, so the object retrieves the data from OpenNebula.
 
-For more complete examples, please check the ``src/oca/java/share/examples`` directory included. You may be also interested in the java files included in ``src/oca/java/test``.
+For more complete examples, please check the examples available at the `official repository <https://github.com/OpenNebula/one/tree/master/src/oca/java/share/examples>`__.
 
 .. code-block:: java
 
