@@ -10,7 +10,7 @@ This page lists the **build** dependencies for OpenNebula.
 * **xmlrpc-c** development libraries (>= 1.06)
 * **scons** build tool (>= 0.98)
 * **sqlite3** development libraries (if compiling with sqlite support) (>= 3.6)
-* **mysql** client development libraries (if compiling with mysql support) (>= 5.1)
+* **mysql** client development libraries (if compiling with mysql support) (>= 5.1, >= 5.6 is recommended for pool search)
 * **postgresql** client development libraries (if compiling with PostgrSQL support) (>= 9.2)
 * **libxml2** development libraries (>= 2.7)
 * **libvncserver** development libraries (>= 0.9)
@@ -63,31 +63,6 @@ Ubuntu 18.04
 * **libxslt1-dev**
 * **libcurl4-openssl-dev**
 * **libcurl4**
-* **libvncserver-dev**
-* **postgresql-server-dev-all**
-* **ruby**
-* **scons**
-
-Ubuntu 16.04
-================================================================================
-
-* **bash-completion**
-* **bison**
-* **debhelper (>= 7.0.50~)**
-* **default-jdk**
-* **flex**
-* **javahelper (>= 0.32)**
-* **kpartx**
-* **libmysql++-dev**
-* **libsqlite3-dev**
-* **libssl-dev**
-* **libsystemd-dev**
-* **libws-commons-util-java**
-* **libxml2-dev**
-* **libxmlrpc3-client-java**
-* **libxmlrpc3-common-java**
-* **libxslt1-dev**
-* **libcurl4-openssl-dev**
 * **libvncserver-dev**
 * **postgresql-server-dev-all**
 * **ruby**
