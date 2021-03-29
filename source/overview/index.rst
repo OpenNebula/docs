@@ -4,7 +4,7 @@
 Overview
 ================================================================================
 
-Here comes description ...
+The Overview Guide is designed to help understand the OpenNebula model, explore some popular use cases and design a cloud infrastructure. To deploy a learning environment, follow the Quick Start Guide.
 
 .. toctree::
    :maxdepth: 2
