@@ -58,7 +58,9 @@ The FireEdge configuration file can be found in ``/etc/one/fireedge-server.conf`
 
 Once the server is initialized, it creates the file ``/var/lib/one/.one/fireedge_key``.
 
-.. note:: In HA environments, directories ``/var/lib/one/.one`` and ``/var/lib/one/fireedge`` need to be shared between nodes.
+.. _fireedge_in_ha:
+
+In HA environments, this file fireedge_key needs to be copied from the first leader to the followers. Optionally, in order to have the provision logs available in all the HA nodes, ``/var/lib/one/fireedge`` need to be shared between nodes.
 
 .. _fireedge_configuration_for_sunstone:
 
