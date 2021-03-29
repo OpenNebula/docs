@@ -5,6 +5,8 @@
 Management and Operations
 ================================================================================
 
+The Management and Operations Guide provides complete information about how to operate and manage the clusters, hosts, VDCs, users, VMs, networks and provisions of your OpenNebula cloud deployment for true edge, hybrid and multi-cloud computing, using the CLI and the Sunstone graphical interface. To deploy a learning environment, follow the Quick Start Guide. To install a production-ready environment, go to the Installation and Configuration Guide after completing this guide.
+
 .. toctree::
    :maxdepth: 2
 
