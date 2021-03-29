@@ -116,6 +116,15 @@ vCenter clusters and Virtual Machines monitoring is performed through ``onemonit
 
 See the :ref:`Monitoring Drivers reference <devel-im>` for development information about these drivers and how to customize and extend them.
 
+.. _vcenter_driver_limitations:
+
+Limitations
+-----------
+
+* only the disk-saveas operation is supported and for VMs in the ``POWEROFF`` state.
+* imported Wild VMs cannot be stopped, undeployed nor recover --recreated.
+
+
 vCenter Import Tool
 --------------------------------------------------------------------------------
 
@@ -501,12 +510,6 @@ Also the Sunstone user interface can be used from the host's Wilds tab. Select a
 .. image:: /images/vcenter_wild_vm_list_import_sunstone.png
     :width: 70%
     :align: center
-
-After a Virtual Machine is imported, their life-cycle (including creation of snapshots) can be controlled through OpenNebula. The following operations *cannot* be performed on an imported VM:
-
-* Recover --recreate
-* Undeploy (and Undeploy --hard)
-* Stop
 
 Once a Wild VM is imported, OpenNebula will reconfigure the vCenter VM so VNC connections can be established once the VM is monitored.
 
