@@ -64,7 +64,7 @@ The source code can be downloaded from the OpenNebula `repository <https://githu
 Usage
 ================================================================================
 
-To use the OpenNebula Cloud API for Go in your Go project, you have to import goca at your project as the example below and make a ``go get``.
+To use the OpenNebula Cloud API for Go in your Go project, you have to import ``GOCA`` at your project as the example below and make a ``go get``.
 
 Code Sample
 ================================================================================
@@ -121,7 +121,7 @@ The example below shows how to poweroff a running VM. You need to pass the VM ID
     }
 
 
-Take a look at these `examples <https://github.com/OpenNebula/one/tree/master/src/oca/go/share/examples>`__ in order to get a more in-depth usage of GOCA.
+Take a look at these `examples <https://github.com/OpenNebula/one/tree/master/src/oca/go/share/examples>`__ in order to get a more in-depth usage of ``GOCA``.
 
 Error handling
 ================================================================================
@@ -138,4 +138,3 @@ Extend the client
 
 The provided client is a basic XML-RPC client for OpenNebula, without any complex features.
 It's possible to use another client or enhance the basic client with Goca if it implements the RPCCaller interface.
-

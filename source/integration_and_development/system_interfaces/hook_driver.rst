@@ -11,12 +11,12 @@ Overview
 
 The hook subsystem has two main components:
 
-- **Hook Manager Driver**: it receives information about every event triggered by oned and publishes it to an event queue. Custom components can also use this queue to subscribe to oned events, :ref:`more information here <hook_manager_events>`.
+- **Hook Manager Driver**: it receives information about every event triggered by OpenNebula service and publishes it to an event queue. Custom components can also use this queue to subscribe to OpenNebula events, :ref:`more information here <hook_manager_events>`.
 - **Hook Execution Manager** (HEM): It registers itself to the events that triggers the hooks defined in the system. When an event is received it takes care of executing the corresponding hook command.
 
 |hook-subsystem|
 
-Both components are started together with the OpenNebula daemon. Note that, provided the network communication is secure, you can grant network access to the event queue and hence deploy HEM in a different server.
+Both components are started together with the OpenNebula service. Note that, provided the network communication is secure, you can grant network access to the event queue and hence deploy HEM in a different server.
 
 Configuration
 ================================================================================
@@ -179,7 +179,7 @@ The following examples define two state hooks for VMs, hosts and images:
 Managing Hooks
 ================================================================================
 
-Hooks can be managed via the CLI through the ``onehook`` command and via the API. This section describes the common operations to control the life-cycle of a hook using the CLI.
+Hooks can be managed via the CLI through the ``onehook`` command and the API. This section describes the common operations to control the life-cycle of a hook using the CLI.
 
 Creating Hooks
 --------------------------------------------------------------------------------
@@ -206,7 +206,7 @@ Then, simply create the hook by running the following command:
     $ onehook create hook.tmpl
       ID: 0
 
-We have just created a hook which will be triggered each time a VM switch to PENDING state.
+We have just created a hook which will be triggered each time a VM switch to ``PENDING`` state.
 
 .. note:: Note that just one hook can be created for each trigger event.
 
@@ -354,6 +354,28 @@ Developing Hooks
 First thing you need to decide is the type of hook you are interested in, being it API or STATE hooks. Each type of hook is triggered by a different event and requires/provides different runtime information.
 
 In this section you'll find two simple script hooks (in ruby) for each type. This examples are good starting points for developing custom hooks.
+
+.. warning::
+
+    Note that the scripts below import some dependencies that need to be installed properly in the front-end node. As most of the dependencies are OpenNebula dependencies these dependencies can be used by adding the snippet below to your scripts.
+
+    .. code::
+
+        ONE_LOCATION = ENV['ONE_LOCATION']
+
+        if !ONE_LOCATION
+            RUBY_LIB_LOCATION = '/usr/lib/one/ruby'
+            GEMS_LOCATION     = '/usr/share/one/gems'
+        else
+            RUBY_LIB_LOCATION = ONE_LOCATION + '/lib/ruby'
+            GEMS_LOCATION     = ONE_LOCATION + '/share/gems'
+        end
+
+        if File.directory?(GEMS_LOCATION)
+            Gem.use_paths(GEMS_LOCATION)
+        end
+
+        $LOAD_PATH << RUBY_LIB_LOCATION
 
 API Hook example
 --------------------------------------------------------------------------------
