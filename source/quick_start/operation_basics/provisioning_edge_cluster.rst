@@ -1,3 +1,4 @@
+
 .. _first_edge_cluster:
 
 ============================
@@ -6,15 +7,17 @@ Provisioning an Edge Cluster
 
 In this quick start guide we are going to try different workloads. Each workload needs to be deployed in a compatible type of edge cluster, since not all of them are capable of running all types of workload. More information on this is available in the :ref:`platform notes <uspng>`.
 
-+--------------------------------------------------+-------------------+------------+
-|                     Workload                     | Edge Cluster Type | Hypervisor |
-+==================================================+===================+============+
-| :ref:`Containers <running_containers>`           | virtual           | lxc        |
-+--------------------------------------------------+-------------------+------------+
-| :ref:`VMs <running_virtual_machines>`            | metal             | kvm        |
-+--------------------------------------------------+-------------------+------------+
-| :ref:`K8s cluster <running_kubernetes_clusters>` | metal             | kvm        |
-+--------------------------------------------------+-------------------+------------+
++--------------------------------------------------+-------------------+-------------+
+|                     Workload                     | Edge Cluster Type |  Hypervisor |
++==================================================+===================+=============+
+| :ref:`Containers <running_containers>`           | virtual           | lxc         |
++--------------------------------------------------+-------------------+-------------+
+| :ref:`VMs <running_virtual_machines>`            | metal             | kvm         |
++--------------------------------------------------+-------------------+-------------+
+| :ref:`K8s cluster <running_kubernetes_clusters>` | metal             | kvm         |
++--------------------------------------------------+-------------------+-------------+
+| :ref:`K3s cluster <running_k3s_clusters>`        | metal             | firecracker |
++--------------------------------------------------+-------------------+-------------+
 
 In this section you can check all the steps needed to deploy an **Edge Cluster**. It will involve the Fireedge OneProvision GUI and Sunstone to manage the resources created in OpenNebula.
 
@@ -40,6 +43,8 @@ During the provision of the cluster all these resources and their corresponding 
 * A routing table for the previous elements.
 
 .. note:: Take into account that FireEdge will request Elatic IPs for the public IPs you requested. If you receive an error creating a provision about not being able to request more IPs, please check the `limits of your account <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html>`__ in your zone.
+
+We will be using the FireEdge GUI in this guide. Please make sure you can login into it, usin your front-end IP and default port 2616, as well as your oneadmin credentials.
 
 Step 1: Configuring AWS & Needed Information
 ================================================================================
