@@ -20,5 +20,3 @@ How Should I Read This Chapter
 You should be reading this Chapter if you are trying to extend OpenNebula functionality.
 
 You can proceed to any of the following sections depending on which component you want to understand and extend the :ref:`virtualization system <devel-vmm>`, the :ref:`storage system <sd>`, the :ref:`information system <devel-im>`, the :ref:`authentication system <auth_overview>`, the :ref:`network system <devel-nm>` or the :ref:`marketplace drivers <devel-market>`. Also you might be interested in the :ref:`Hook mechanism <hooks>`, a powerful way of integrating OpenNebua within your datacenter processes.
-
-After this Chapter, congratulations! You finished OpenNebula.
