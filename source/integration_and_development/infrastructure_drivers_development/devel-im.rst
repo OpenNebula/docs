@@ -15,7 +15,7 @@ The structure of monitoring message is:
 
 .. code::
 
-    MESSAGE_TYPE ID RESULT PAYLOAD
+    MESSAGE_TYPE ID RESULT TIMESTAMP PAYLOAD
 
 +-----------------+--------------------------------------------------------------------------+
 | Name            | Description                                                              |
@@ -26,10 +26,12 @@ The structure of monitoring message is:
 +-----------------+--------------------------------------------------------------------------+
 | RESULT          | Result of the action, possible values SUCCESS or FAILURE                 |
 +-----------------+--------------------------------------------------------------------------+
+| TIMESTAMP       | Timestamp of the message as unix epoch time                              |
++-----------------+--------------------------------------------------------------------------+
 | PAYLOAD         | Message data, depends on MESSAGE_TYPE                                    |
 +-----------------+--------------------------------------------------------------------------+
 
-Descriptionof message types:
+Description of message types:
 
 - **SYSTEM_HOST** - General information about the host, which doesn't change too often (e.g. total memory, disk cpacity, datastores, pci devices, NUMA nodes, ...)
 - **MONITOR_HOST** - Monitoring information: used memory, used cpu, network traffic, ...
@@ -38,11 +40,12 @@ Descriptionof message types:
 - **STATE_VM** - VMs state: running, poweroff, ...
 
 The provided hypervisors compose each message from data provided by probes in a specific directory:
-- SYSTEM_HOST - im/<hypervisor>-probes.d/host/system
-- MONITOR_HOST - im/<hypervisor>-probes.d/host/monitor
-- BEACON_HOST - im/<hypervisor>-probes.d/host/beacon
-- MONITOR_VM - im/<hypervisor>-probes.d/vm/monitor
-- STATE_VM - im/<hypervisor>-probes.d/vm/status
+
+- SYSTEM_HOST - ``im/<hypervisor>-probes.d/host/system``
+- MONITOR_HOST - ``im/<hypervisor>-probes.d/host/monitor``
+- BEACON_HOST - ``im/<hypervisor>-probes.d/host/beacon``
+- MONITOR_VM - ``im/<hypervisor>-probes.d/vm/monitor``
+- STATE_VM - ``im/<hypervisor>-probes.d/vm/status``
 
 Each IM probe is composed of one or several scripts that write to ``stdout`` information in this form:
 
@@ -124,7 +127,7 @@ The format of the MONITOR_VM Message:
 +---------------+----------------------------------------------------------------------------------------------+
 | TIMESTAMP     | Timestamp of the measurement.                                                                |
 +---------------+----------------------------------------------------------------------------------------------+
-| CPU           | Percentage of 1 CPU consumed (two fully consumed cpu is 2.0).                                |
+| CPU           | Percentage of 1 CPU consumed (two fully consumed cpu is 200).                                |
 +---------------+----------------------------------------------------------------------------------------------+
 | MEMORY        | MEMORY consumption in kilobytes.                                                             |
 +---------------+----------------------------------------------------------------------------------------------+
