@@ -7,7 +7,7 @@ Storage Driver
 The Storage subsystem is highly modular. These drivers are separated into two logical sets:
 
 -  **DS**: Datastore drivers. They serve the purpose of managing images: register, delete, and create empty datablocks.
--  **TM**: Transfer Manager drivers. They manage images associated to instantiated VMs.
+-  **TM**: Transfer Manager drivers. They manage images associated with instantiated VMs.
 
 Datastore Drivers Structure
 ================================================================================
@@ -67,7 +67,7 @@ Located under ``/var/lib/one/remotes/datastore/<ds_mad>``
    -  **RETURNS**: ``-``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`. This dump, in addition to the elements in the example, contains a ROOT element: ``TARGET_SNAPSHOT``, with the ID of the snapshot.
 
--  **snap_revert**: Overwrites the contents of the image by the selected snapshot (discarding any non-saved changes).
+-  **snap_revert**: Overwrites the contents of the image by the selected snapshot (discarding any unsaved changes).
 
    -  **ARGUMENTS**: ``datastore_action_dump image_id``
    -  **RETURNS**: ``-``
@@ -93,7 +93,7 @@ Located under ``/var/lib/one/remotes/datastore/<ds_mad>``
 TM Drivers Structure
 ================================================================================
 
-This is a list of the TM drivers and their action. Note that they don't return anything. If the exit code is not ``0``, the driver failed.
+This is a list of the TM drivers and their actions. Note that they don't return anything. If the exit code is not ``0``, the driver failed.
 
 Located under ``/var/lib/one/remotes/tm/<tm_mad>``. There are two types of action scripts: the first group applies to general image datastores and includes (``clone``, ``ln``, ``mv`` and ``mvds``); the second one is only used in conjunction with the system datastore.
 
@@ -140,7 +140,7 @@ Action scripts for generic image datastores:
    -  ``vm_id`` is the id of the VM
    -  ``ds_id`` is the target datastore (the original datastore for the image)
 
--  **mv**: moves images/directories across system\_ds in different hosts. When used for the system datastore the script will received the directory ARGUMENT. This script will be also called for the image TM for each disk to perform setup tasks on the target node.
+-  **mv**: moves images/directories across system\_ds in different hosts. When used for the system datastore the script will receive the directory ARGUMENT. This script will be also called for the image TM for each disk to perform setup tasks on the target node.
 
    -  **ARGUMENTS**: ``hostA:system_ds/disk.i|hostB:system_ds/disk.i vm_id ds_id`` OR ``hostA:system_ds/|hostB:system_ds/ vm_id ds_id``
    -  ``hostA`` is the host the VM is in.
@@ -239,7 +239,7 @@ Action scripts needed when the TM is used for the system datastore:
    -  **RETURNS**: ``monitor data``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`.
    -  ``monitor data`` The monitoring information of the datastore, namely “USED\_MB=...\\nTOTAL\_MB=...\\nFREE\_MB=...” which are respectively the used size of the datastore in MB, the total capacity of the datastore in MB and the available space in the datastore in MB.
-   -  ``monitor VMs data`` For each VM the size of each disk and any snapshot on those disks. This data are send by UDP to Monitor Daemon. The MONITOR parameter is encoded in base64 format. Decoded example:
+   -  ``monitor VMs data`` For each VM the size of each disk and any snapshot on those disks. This data are sent by UDP to Monitor Daemon. The MONITOR parameter is encoded in base64 format. Decoded example:
 
 .. code::
 
@@ -258,7 +258,7 @@ Action scripts needed when the TM is used for the system datastore:
 
 .. _ds_monitor:
 
-Tunning OpenNebula Core and Driver Integration
+Tuning OpenNebula Core and Driver Integration
 ================================================================================
 The behavior of OpenNebula can be adapted depending on how the storage perform the underlying operations. For example quotas are computed on the original image datastore depending on the CLONE attribute. In particular, you may want to set two configuration attributes for your drivers: ``DS_MAD_CONF`` and ``TM_MAD_CONF``. See :ref:`the OpenNebula configuration reference <oned_conf_transfer_driver>` for details.
 
@@ -295,7 +295,7 @@ The monitor_ds script.
 --------------------------------------------------------------------------------
 The monitor_ds.sh probe from the IM, if the ``.monitor`` file is present (e.g. ``/var/lib/one/datastores/100/.monitor``), will execute its contents in the form ``/var/tmp/one/remotes/tm/$(cat .monitor)/monitor_ds /var/lib/one/datastores/100/``. Note that the argument is the datastore path and not the VM or VM disk.
 
-The script is responsible from getting the information from all disks of all VMs in the datastore in that node.
+The script is responsible for getting the information from all disks of all VMs in the datastore in that node.
 
 .. _mixed-tm-modes:
 
@@ -381,7 +381,7 @@ Helper Scripts
 
 There is a helper shell script with some functions defined to do some common tasks. It is located in ``/var/lib/one/remotes/scripts_common.sh``
 
-Here are the description of those functions.
+Here is the description of those functions.
 
 -  **log**: Takes one parameter that is a message that will be logged into the VM log file.
 
@@ -389,7 +389,7 @@ Here are the description of those functions.
 
     log "Creating directory $DST_DIR"
 
--  **error\_message**: sends an exit message to oned surrounding it by separators, use to send the error message when a command fails.
+-  **error\_message**: sends an exit message to oned surrounding it by separators, used to send the error message when a command fails.
 
 .. code::
 
@@ -425,7 +425,7 @@ Here are the description of those functions.
 
     timeout_exec_and_log 15 "cp $SRC_PATH $DST_PATH"
 
-The are additional minor helper functions, please read the ``scripts_common.sh`` to see them.
+There are additional minor helper functions, please read the ``scripts_common.sh`` to see them.
 
 Decoded Example
 ================================================================================
