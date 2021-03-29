@@ -13,10 +13,8 @@ OpenNebula is an open-source cloud management platform that combines virtualizat
 * The **Integration and Development Guide** provides details about APIs to integrate your OpenNebula cloud with third party applications and development of drivers to support new infrastructure platforms.
 * **Release Notes** provide information on new features, improvements, and fixes implemented, and the upgrade process in each OpenNebula version.
 
-.. note:: EE: Component only available in the Enterprise Edition; TP: Component distributed as Technology Preview and not recommended for production environments
+.. note:: * EE: Component only available in the Enterprise Edition; * TP: Component distributed as Technology Preview and not recommended for production environments
 
-EE: Component only available in the Enterprise Edition 
-TP: Component distributed as Technology Preview and not recommended for production environments
 
 .. _entry_point:
 
