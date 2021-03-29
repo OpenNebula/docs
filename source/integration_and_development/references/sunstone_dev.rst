@@ -360,7 +360,7 @@ More information about `ESlint <https://eslint.org/>`__ project.
 Autorefresh
 ================================================================================
 
-When Sunstone is working alongside FireEdge is constantly receiving changes via OpenNebula's ZeroMQ server, which means no more clicks on the refresh button at the VM instances view and the Hosts view.
+When Sunstone is working alongside FireEdge, it's constantly receiving changes via OpenNebula's ZeroMQ server, which means no more clicks on the refresh button at the VM instances view and the Hosts view.
 
 It works in an easy way when you open the browser and get logged into Sunstone, after that will create a WebSocket with FireEdge Server, and they will exchange information about VM and Hosts and send it back to the front-end where JavaScript functions update the views when they receive new information.
 
