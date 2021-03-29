@@ -2632,6 +2632,8 @@ For example:
         </HOST>
     </MONITORING_DATA>
 
+.. _api_hostpool_info:
+
 one.hostpool.info
 --------------------------------------------------------------------------------
 
