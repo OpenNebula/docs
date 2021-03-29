@@ -11,11 +11,11 @@ The monitoring subsystem is represented by a dedicated daemon (``onemonitord``) 
 Overview
 ========
 
-Each host periodically sends monitoring data via the network to the Front-end, which collects and processes them in a dedicated module. This distributed monitoring system resembles the architecture of dedicated monitoring systems, using a lightweight communication protocol, and a push model.
+Each host periodically sends monitoring data via the network to the Front-end, which collects and processes it in a dedicated module. This distributed monitoring system resembles the architecture of dedicated monitoring systems, using a lightweight communication protocol and a push model.
 
 As part of the regular start process, OpenNebula starts a ``onemonitord`` daemon running in the Front-end, that listens for network connections on port 4124 (both UDP and TCP). Initially, OpenNebula connects to the hosts using SSH and starts a light agent that executes the probe scripts to collect and send data back to the ``onemonitord`` daemon in the Front-end.
 
-Probes are structured in information categories for host and virtual machine information. Every specific amount of seconds (configurable per category in the ``monitord.conf``) the data are transmitted, so the monitoring subsystem doesn't need to make any additional connections to gather them.
+Probes are structured in information categories for host and virtual machine information. At regular intervals (in seconds) (configurable per category in the ``monitord.conf``) the data is transmitted, so the monitoring subsystem doesn't need to make any additional connections to gather it.
 
 |image0|
 
@@ -23,7 +23,7 @@ If information stops coming from a specific Host, OpenNebula detects it by missi
 
 .. important::
 
-    The firewall on the Front-end (if enabled) must allow incoming TCP and UDP packets on port 4124 from the hosts.
+    The firewall on the Front-end (if enabled) must allow incoming TCP and UDP packets on port 4124 from the Hosts.
 
 Configuration
 =============
@@ -33,11 +33,11 @@ The monitor daemon (``onemonitord``) is configured in ``/etc/one/monitord.conf``
 +---------------------+---------------------+------------------------------------------------------------------------------------+
 | Parameter           | Attribute           | Description                                                                        |
 +=====================+=====================+====================================================================================+
-| ``MANAGER_TIMER``                         | Timer in seconds, monitord evaluates host timeouts                                 |
+| ``MANAGER_TIMER``                         | Timer in seconds, monitord evaluates Host timeouts                                 |
 +---------------------+---------------------+------------------------------------------------------------------------------------+
-| ``MONITORING_INTERVAL_HOST``              | Wait this time (seconds) without receiving any beacon before restarting the probes |
+| ``MONITORING_INTERVAL_HOST``              | Wait time (seconds) without receiving any beacon before restarting the probes      |
 +---------------------+---------------------+------------------------------------------------------------------------------------+
-| ``HOST_MONITORING_EXPIRATION_TIME``       | Seconds to expire host monitoring information, 0 to disable monitoring recording.  |
+| ``HOST_MONITORING_EXPIRATION_TIME``       | Seconds before Host monitoring information expires, 0 to disable monitoring.       |
 +---------------------+---------------------+------------------------------------------------------------------------------------+
 | **Database** (main configuration taken from ``oned.conf``, only ``onemonitord`` specifics here)                                |
 +---------------------+---------------------+------------------------------------------------------------------------------------+
@@ -49,7 +49,7 @@ The monitor daemon (``onemonitord``) is configured in ``/etc/one/monitord.conf``
 |                     +---------------------+------------------------------------------------------------------------------------+
 |                     | ``MONITOR_ADDRESS`` | Agents will send updates to this monitor address.                                  |
 |                     |                     | If "auto" is used, agents will detect the address from the ssh connection          |
-|                     |                     | frontend -> host ($SSH_CLIENT), "auto" is not usable for HA setup                  |
+|                     |                     | Front-end -> host ($SSH_CLIENT), "auto" is not usable for HA setup                 |
 |                     +---------------------+------------------------------------------------------------------------------------+
 |                     | ``PORT``            | Listening port                                                                     |
 |                     +---------------------+------------------------------------------------------------------------------------+
@@ -89,7 +89,7 @@ Additionally, you need to enable the drivers that ``onemonitord`` will use to in
 Configure OpenNebula
 --------------------
 
-No initial configuration is required, because monitoring daemon is enabled by default in :ref:`/etc/one/oned.conf <oned_conf>` as a monitor driver.
+No initial configuration is required because the monitoring daemon is enabled by default in :ref:`/etc/one/oned.conf <oned_conf>` as a monitor driver.
 
 For example:
 
@@ -119,19 +119,19 @@ Monitoring daemon is started as part of OpenNebula Daemon (service ``opennebula`
 **Logs** are located in ``/var/log/one`` in following file(s):
 
 - ``/var/log/one/monitor.log``
-- ``/var/log/one/oned.log`` (relevant monitoring messages may apear also in OpenNebula log)
+- ``/var/log/one/oned.log`` (relevant monitoring messages may appear also in OpenNebula log)
 
 Advanced Setup
 ==============
 
-Following sections present optional advanced setups improving security or performance of monitoring subsystem:
+The following sections present optional advanced setups, improving the security or performance of the monitoring subsystem:
 
 Encryption of Monitoring Messages
 ---------------------------------
 
 You can configure the probes to encrypt the monitoring messages sent to the Front-end. This may help to secure your environment when some of the hypervisors are in cloud/edge locations. Follow the next steps to configure encryption.
 
-1. Generate dedicated public and private keys for the monitor system. And place them in a safe place, we'll use ``/etc/one``. Do not use any passphrase to encrypt the private key.
+1. Generate dedicated public and private keys for the monitor system and store them in a safe place (we'll use ``/etc/one``). Do not use any passphrase to encrypt the private key.
 
 .. prompt:: bash # auto
 
@@ -180,7 +180,7 @@ If you are running OpenNebula in an HA cluster, it is recommended to use a virtu
 Adjust Monitoring Intervals
 ---------------------------
 
-For medium size clouds, the default values should perform well. For larger environments, you may need to tune your OpenNebula installation with appropriate values of the monitoring parameters and monitoring intervals in the ``PROBES_PERIOD`` section. The final values should consider the number of hosts and VMs that, in turn, will determine the processing requirements for OpenNebula. Also, you may need to increase the number of threads (``THREADS``) in :ref:`/etc/one/oned.conf <oned_conf>` and drivers in ``/etc/one/monitord.conf``.
+For medium-sized clouds, the default values should perform well. For larger environments, you may need to tune your OpenNebula installation with appropriate values of the monitoring parameters and monitoring intervals in the ``PROBES_PERIOD`` section. The final values should consider the number of hosts and VMs that, in turn, will determine the processing requirements for OpenNebula. Also, you may need to increase the number of threads (``THREADS``) in :ref:`/etc/one/oned.conf <oned_conf>` and drivers in ``/etc/one/monitord.conf``.
 
 If the system is not working well, the problem could be in database performance. If the number of virtual machines and hosts is too large and the monitoring periods too low, OpenNebula will not be able to write that amount of data to the database.
 
@@ -189,12 +189,12 @@ If the system is not working well, the problem could be in database performance.
 Troubleshooting
 ===============
 
-.. important:: When debuging the monitor system, we recomend to increase the ``DEBUG`` level for both ``oned`` and ``onemonitord``, and restart OpenNebula.
+.. important:: When debuging the monitor system, we recommend increasing the ``DEBUG`` level for both ``oned`` and ``onemonitord``, and restarting OpenNebula.
 
 Healthy Monitoring System
 -------------------------
 
-Default location for monitoring log file is ``/var/log/one/monitor.log``. Every (approximately) configured monitor period OpenNebula is receiving the monitoring data of every Virtual Machine and of a host as follows:
+The default location for monitoring the log file is ``/var/log/one/monitor.log``. Approximately every configured monitor period OpenNebula receives the monitoring data of every Virtual Machine and of a Host as follows:
 
 .. code::
 
@@ -203,7 +203,7 @@ Default location for monitoring log file is ``/var/log/one/monitor.log``. Every 
     Sun Mar 15 22:13:45 2020 [Z0][HMM][I]: Successfully monitored VM: 2
     Sun Mar 15 22:15:10 2020 [Z0][HMM][I]: Successfully monitored host: 1
 
-However, if in ``/var/log/one/monitor.log`` a host is being monitored **actively** periodically (every ``MONITORING_INTERVAL_HOST`` seconds) then the monitorization is **not** working correctly:
+However, if in ``/var/log/one/monitor.log`` a Host is being monitored **actively** periodically (every ``MONITORING_INTERVAL_HOST`` seconds) then the monitorization is **not** working correctly:
 
 .. code::
 
@@ -212,12 +212,12 @@ However, if in ``/var/log/one/monitor.log`` a host is being monitored **actively
     Sun Mar 15 22:35:10 2020 [Z0][HMM][D]: Monitoring host localhost(0)
     Sun Mar 15 22:35:19 2020 [Z0][HMM][D]: Start monitor success, host: 0
 
-If this is the case, it's probably because the Monitor Daemon doesn't receive any data from probes, and could be caused by wrong UDP settings. You should not see restarting of ``onemonitord`` process.
+If this is the case, it's probably because the Monitor Daemon isn't receiving any data from probes and it could be caused by the wrong UDP settings. You should not see a restarting of the ``onemonitord`` process.
 
 Monitoring Probes
 -----------------
 
-For the troubleshooting of errors produced during the execution of the monitoring probes, try to execute them directly through the command line as oneadmin in the hosts. Information about malformed messages should be reported in ``/var/log/one/oned.log`` or ``/var/log/one/monitord.log``
+To troubleshoot errors produced during the execution of the monitoring probes, try to execute them directly through the command line as oneadmin in the Hosts. Information about malformed messages should be reported in ``/var/log/one/oned.log`` or ``/var/log/one/monitord.log``
 
 
 .. |image0| image:: /images/collector.png
@@ -225,7 +225,7 @@ For the troubleshooting of errors produced during the execution of the monitorin
 Tuning and Extending
 ====================
 
-The monitor system can be easily customized to include additional monitoring metrics. These new metrics can be used to implement custom scheduling policies or gather data of interest for the hosts or VMs. Metrics are gathered by **probes**, simple programs that print the metric value to standard output using OpenNebula Template syntax. For example, in a KVM hypervisor, the system usage probe outputs:
+The monitor system can be easily customized to include additional monitoring metrics. These new metrics can be used to implement custom scheduling policies or gather data of interest for the Hosts or VMs. Metrics are gathered by **probes**, simple programs that print the metric value to standard output using OpenNebula Template syntax. For example, in a KVM hypervisor, the system usage probe outputs:
 
 .. prompt:: bash host/monitor$ auto
 
@@ -281,11 +281,11 @@ The purpose of each directory is described in the following table:
 +------------------+------------------------------------------------------------------------------------------------------------------+-----------------------------+
 | Directory        | Purpose                                                                                                          | Update Frequency            |
 +==================+==================================================================================================================+=============================+
-| ``host/beacon``  | Heartbeat & watchdog to collect rouge probe processes                                                            | ``BEACON_HOST`` (30s)       |
+| ``host/beacon``  | Heartbeat & watchdog to collect rogue probe processes                                                            | ``BEACON_HOST`` (30s)       |
 +------------------+------------------------------------------------------------------------------------------------------------------+-----------------------------+
 | ``host/monitor`` | Monitor information (variable) (e.g. memory usage) stored in ``HOST/MONITORING``                                 | ``MONITOR_HOST`` (120s)     |
 +------------------+------------------------------------------------------------------------------------------------------------------+-----------------------------+
-| ``host/system``  | General quasi-static info. about host (e.g. NUMA nodes) stored in ``HOST/TEMPLATE`` and ``HOST/SHARE``           | ``SYSTEM_HOST`` (600s)      |
+| ``host/system``  | General quasi-static info. about Host (e.g. NUMA nodes) stored in ``HOST/TEMPLATE`` and ``HOST/SHARE``           | ``SYSTEM_HOST`` (600s)      |
 +------------------+------------------------------------------------------------------------------------------------------------------+-----------------------------+
 | ``vm/monitor``   | Monitor information (variable) (e.g. used cpu, network usage) stored in ``VM/MONITORING``                        | ``MONITOR_VM`` (30s)        |
 +------------------+------------------------------------------------------------------------------------------------------------------+-----------------------------+
@@ -295,7 +295,7 @@ The purpose of each directory is described in the following table:
 If you need to add custom metrics, the procedure is:
 
 1. Develop a program that gathers the metric and output it to stdout
-2. Place the program in the target directory, depending on the nature and object it should be one of ``host/monitor``, ``host/system`` or ``vm/monitor``. You should not modify probes in the other directories.
+2. Place the program in the target directory. Depending on the nature and object it should be one of ``host/monitor``, ``host/system`` or ``vm/monitor``. You should not modify probes in the other directories.
 3. Increment the ``VERSION`` number in ``/var/lib/one/remotes/VERSION``
 4. Distribute changes to the hosts by running ``onehost sync``.
 
