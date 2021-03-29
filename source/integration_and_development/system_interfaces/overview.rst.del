@@ -1,0 +1,15 @@
+.. _system_interfaces_overview:
+
+================================================================================
+Overview
+================================================================================
+
+How Should I Read This Chapter
+================================================================================
+
+These guides includes a description of the API of several OpenNebula services. You can find also the Hook guide, that explains how to trigger custom actions on OpenNebula events. Also you'll find there how to receive such events in your own modules using the ZeroMQ event queue.
+
+Hypervisor Compatibility
+================================================================================
+
+These guides are compatible with all hypervisors.
