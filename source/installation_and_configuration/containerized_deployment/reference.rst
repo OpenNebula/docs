@@ -101,6 +101,15 @@ Starting Containers on Boot with Podman
 
 Containers won't start on server boot with Podman and Podman Compose, even if the containers are configured with a restart policy (``--restart``). You need to implement the containers start via your init system, e.g. ``systemd``. Read more in the `Porting containers to systemd using <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/building_running_and_managing_containers/porting-containers-to-systemd-using-podman_building-running-and-managing-containers>`__ chapter of the *Building, running, and managing container* guide.
 
+.. _container_troubleshooting_apparmor:
+
+AppArmor and Docker Compose on Ubuntu/Debian
+--------------------------------------------
+
+On Ubuntu/Debian with AppArmor enabled, the multi-container Docker deployment (started using the **Docker Compose**) is configured to run the container with ``oned`` **without AppArmor security policies** applied, i.e. it's running in the unconfined mode. It can be changed via the :ref:`deployment parameter <container_reference_deploy_params>` ``DEPLOY_APPARMOR_PROFILE``.
+
+Rationale: On Debian/Ubuntu with AppArmor enabled, the Docker uses the default `AppArmor profile <https://docs.docker.com/engine/security/apparmor/>`_ ``docker-default``, which doesn't reflect correctly extra ``SYS_ADMIN`` capabilities configured in the container. As a result, the AppArmor breaks the integration with Docker Hub, Linux Containers, and TurnKey Linux Marketplaces in the OpenNebula as it blocks its user-space mounts via ``FUSE``.
+
 .. _container_guides:
 
 Guides
@@ -581,7 +590,7 @@ Deployment Parameters (only multi-container)
 +---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
 | ``DEPLOY_OPENNEBULA_IMAGE_TAG``       | ``5.13``                                 | all                       | OpenNebula image tag.                                                                                                    |
 +---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``DEPLOY_APPARMOR_PROFILE``           | ``unconfined``                           | ``opennebula-oned``       | Modifies the `AppArmor profile <https://docs.docker.com/engine/security/apparmor/>`_ - it disables it by default.        |
+| ``DEPLOY_APPARMOR_PROFILE``           | ``unconfined``                           | ``opennebula-oned``       | Modifies the `AppArmor profile <https://docs.docker.com/engine/security/apparmor/>`_ - disables it by default.           |
 +---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
 | ``DEPLOY_BIND_ADDR``                  | ``0.0.0.0``                              | all (except sshd)         | This will tell the docker-compose where to bind the published ports - perfect for a designated IP address.               |
 +---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+

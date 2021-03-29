@@ -40,6 +40,7 @@ You need a physical or virtual host with a recommended operating system, one of 
    - in **unprivileged mode** - Exports from following Marketplaces - :ref:`Docker Hub <market_dh>`, :ref:`Linux Containers <market_linux_container>`, :ref:`TurnKey Linux <market_turnkey_linux>`
    - in **unprivileged mode** - :ref:`Creating an image based on a Dockerfile <dockerfile>`
    - in **rootless Podman** - Deployment on privileged ports (22, 80, 443)
+   - on Ubuntu/Debian in multi-container Docker deployment, the container with ``oned`` is running without :ref:`AppArmor security profile <container_troubleshooting_apparmor>`
 
 .. _container_architecture:
 
