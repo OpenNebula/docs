@@ -87,7 +87,7 @@ For example, this is the directory tree of the bridge driver synced to a virtual
 Driver Parameters
 ================================================================================
 
-All three driver actions receive the **XML VM template** encoded in base64 format by ``stdin`` and a parameter which is the **deploy-id** of the Virtual Machine e.g.: ``one-17``.
+All three driver actions receive the **XML VM template** encoded in base64 format by ``stdin`` and the **deploy-id** of the Virtual Machine as parameter, e.g.: ``one-17``.
 
 The ``clean`` action doesn't require **deploy-id**
 
@@ -199,7 +199,7 @@ Driver Actions
 +-----------+--------------------------------------------------------------------------------+
 |   Action  |                           Description                                          |
 +===========+================================================================================+
-| **Pre**   | Creates the bridge if it doesn't exists.                                       |
+| **Pre**   | Nothing is done. Just pass the arguments to the corresponding hooks.           |
 +-----------+--------------------------------------------------------------------------------+
 | **Post**  | Nothing is done. Just pass the arguments to the corresponding hooks.           |
 +-----------+--------------------------------------------------------------------------------+
@@ -221,7 +221,7 @@ Driver Actions
 +-----------+--------------------------------------------------------------------------------+
 |   Action  |                           Description                                          |
 +===========+================================================================================+
-| **Pre**   | Nothing is done. Just pass the arguments to the corresponding hooks.           |
+| **Pre**   | Creates the bridge if it doesn't exists.                                       |
 +-----------+--------------------------------------------------------------------------------+
 | **Post**  | N/A                                                                            |
 +-----------+--------------------------------------------------------------------------------+
@@ -237,7 +237,7 @@ The code can be enhanced and modified, by changing the following files in the fr
 * /var/lib/one/remotes/vnm/fw/clean
 * /var/lib/one/remotes/vnm/fw/pre
 
-It performs the same action than Bridge driver but adding extra firewall check defined by security groups.
+It performs the same action than Bridge driver but adding extra iptables rules to implement the security groups of the VM.
 
 The Elastic Driver
 ================================================================================
@@ -254,11 +254,11 @@ Driver Actions
 +-----------+--------------------------------------------------------------------------------+
 |   Action  |                           Description                                          |
 +===========+================================================================================+
-| **Pre**   | Nothing is done. Just pass the arguments to the corresponding hooks.           |
+| **Pre**   | Creates the bridge if it doesn't exists. Setup forward rules                   |
 +-----------+--------------------------------------------------------------------------------+
-| **Post**  | N/A                                                                            |
+| **Post**  | Assign elastic IPs to the target host                                          |
 +-----------+--------------------------------------------------------------------------------+
-| **Clean** | Remove the bridge if it's empty.                                               |
+| **Clean** | Remove the bridge if it's empty. Unassigns elastic IPs                          |
 +-----------+--------------------------------------------------------------------------------+
 
 
