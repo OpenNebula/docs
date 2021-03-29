@@ -8,11 +8,13 @@ This section will explain how to configure two (or more) OpenNebula zones to wor
 
 OpenNebula *master* zone server replicates database changes on *slaves* using a federated log. The log contains the SQL commands which should be applied in all zones.
 
-.. important:: In the following, each configuration step starts with **Master** or **Slave** to indicate the server where the step must be performed.
+In this document, each configuration step starts with **Master** or **Slave** to indicate the server where the step must be performed.
 
 .. important:: *Master* and *slave* servers need to talk to each other through their XML-RPC API. You may need to update the ``LISTEN_ADDRESS``, and or ``PORT`` in :ref:`/etc/one/oned.conf <oned_conf>` or any firewall rule blocking this communication. Note that by default this traffic is not secured, so if you are using public links you need to secure the communication.
 
 .. important:: The federation can be setup with MySQL or SQLite backends, but you cannot mix them across zones. MySQL is recommended for production deployments.
+
+.. important:: FireEdge is a next-generation GUI, which is not fully supported in federation environments yet. Please connect only to the zone you which to operate with FireEdge directly, as it doesn't allow to switch zones. Also take into account that the FireEdge functionality enabled in Sunstone won't be present if you switch to a remote zone in Sunstone.
 
 Step 1. Configure the OpenNebula Federation Master Zone
 ================================================================================

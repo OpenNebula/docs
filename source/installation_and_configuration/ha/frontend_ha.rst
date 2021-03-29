@@ -330,16 +330,19 @@ HA deployment requires the filesystem view of most datastores (by default in ``/
 
 OpenNebula stores virtual machine logs inside ``/var/log/one/`` as files named ``${VMID}.log``. It is not recommended to share the whole log directory between the front-ends as there are also other OpenNebula logs which would be randomly overwritten. It is up to the cloud administrator to periodically backup the virtual machine logs on the cluster *leader*, and on fail-over to restore from the backup on a new *leader* (e.g. as part of the raft hook).
 
+Optionally, if you are planning to use the FireEdge OneProvision GUI, in order to have all provision logs available in all HA nodes (hence, available on leader change), all nodes need to share the same ``/var/lib/one/fireedge`` folder.
+
+
 Sunstone and FireEdge
 ================================================================================
 
-There are several types of Sunstone deployment in an HA environment. The basic one is Sunstone running on each OpenNebula frontend node configured with the local OpenNebula. Only one server, the *leader* with floating IP, is used by the clients.
+There are several types of Sunstone deployments in an HA environment. The basic one is Sunstone running on each OpenNebula frontend node configured with the local OpenNebula. Only one server, the *leader* with floating IP, is used by the clients.
 
 It is possible to configure a load balancer (e.g. HAProxy, Pound, Apache, or Nginx) over the front-ends to spread the load (read operations) among the nodes. In this case, the **Memcached** and shared ``/var/tmp/`` may be required, please see :ref:`Configuring Sunstone for Large Deployments <suns_advance>`.
 
 To easy scale out beyond the total number of core OpenNebula daemons, Sunstone can be running on separate machines. They should talk to the cluster floating IP (see ``:one_xmlprc:`` in ``sunstone-server.conf``) and may also require **Memcached** and shared ``/var/tmp/`` between Sunstone and front-end nodes. Please check :ref:`Configuring Sunstone for Large Deployments <suns_advance>`.
 
-FireEdge is a next-generation GUI, which doesn't support highly available deployment yet.
+FireEdge and Sunstone need to share the same ``/var/lib/one/.one/fireedge_key``. This is covered by the above procedure. Additionally, to have all provision logs available in all HA nodes (hence, available on leader change), all nodes need to share the same ``/var/lib/one/fireedge`` folder.
 
 Raft Configuration Attributes
 ================================================================================
