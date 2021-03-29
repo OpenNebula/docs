@@ -4,7 +4,7 @@
 OneGate Configuration
 =====================
 
-The OneGate server allows **Virtual Machines to pull and push information from/to OpenNebula**. It can be used with all hypervisor Host types (KVM, LXC, Firecracker, and vCenter) if the guest operating system has preinstalled the OpenNebula :ref:`contextualization package <os_install>`. It's a dedicated daemon installed by default as part of the :ref:`Single Front-end Installation <frontend_installation>`, but can be deployed independently on a different machine. The server is distributed as an operating system package ``opennebula-gate`` with system service ``opennebula-gate``.
+The OneGate server allows **Virtual Machines to pull and push information from/to OpenNebula**. It can be used with all hypervisor Host types (KVM, LXC, Firecracker, and vCenter) if the guest operating system has preinstalled the OpenNebula :ref:`contextualization package <os_install>`. It's a dedicated daemon installed by default as part of the :ref:`Single Front-end Installation <frontend_installation>`, but can be deployed independently on a different machine. The server is distributed as an operating system package ``opennebula-gate`` with the system service ``opennebula-gate``.
 
 Read more in :ref:`OneGate Usage <onegate_usage>`.
 
@@ -32,7 +32,7 @@ The OneGate configuration file can be found in ``/etc/one/onegate-server.conf`` 
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Authentication**                                                                                                                                                                                      |
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``:auth``                     | Authentication driver for incomming requests.                                                                                                                           |
+| ``:auth``                     | Authentication driver for incoming requests.                                                                                                                           |
 |                               |                                                                                                                                                                         |
 |                               | * ``onegate`` based on tokens provided in VM context                                                                                                                    |
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -49,7 +49,7 @@ The OneGate configuration file can be found in ``/etc/one/onegate-server.conf`` 
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Permissions**                                                                                                                                                                                         |
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``:permissions``              | By default OneGate exposes all the available API calls, each of the actions can be enabled/disabled in the server configuration.                                        |
+| ``:permissions``              | By default OneGate exposes all the available API calls. Each of the actions can be enabled/disabled in the server configuration.                                        |
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``:restricted_attrs``         | Attributes that cannot be modified when updating a VM template                                                                                                          |
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -67,7 +67,7 @@ In the default configuration, the OneGate server will only listen to requests co
 Configure OpenNebula
 --------------------
 
-Before Virtual Machines can communicate with OneGate, you need to edit :ref:`/etc/one/oned.conf <oned_conf_onegate>` and set the OneGate endpoint in parameter ``ONEGATE_ENDPOINT``. This endpoint (IP/hostname) must be reachable from the Virtual Machines over network!
+Before Virtual Machines can communicate with OneGate, you need to edit :ref:`/etc/one/oned.conf <oned_conf_onegate>` and set the OneGate endpoint in parameter ``ONEGATE_ENDPOINT``. This endpoint (IP/hostname) must be reachable from the Virtual Machines over the network!
 
 .. code::
 
@@ -82,7 +82,7 @@ Service Control and Logs
 
 Change the server running state by managing the operating system service ``opennebula-gate``.
 
-To start, restart, stop the server, execute one of:
+To start, restart or stop the server, execute one of:
 
 .. prompt:: bash # auto
 
@@ -90,7 +90,7 @@ To start, restart, stop the server, execute one of:
     # systemctl restart opennebula-gate
     # systemctl stop    opennebula-gate
 
-To enable or disable automatic start on host boot, execute one of:
+To enable or disable automatic start on Host boot, execute one of:
 
 .. prompt:: bash # auto
 
@@ -102,7 +102,7 @@ Server **logs** are located in ``/var/log/one`` in following files:
 - ``/var/log/one/onegate.log``
 - ``/var/log/one/onegate.error``
 
-Other logs are also available in Journald, use the following command to show:
+Other logs are also available in Journald. Use the following command to show:
 
 .. prompt:: bash # auto
 
@@ -123,14 +123,14 @@ This is an **example** of how to configure Nginx as a SSL/TLS proxy for OneGate 
     # apt-get update
     # apt-get -y install nginx
 
-2. Get trusted SSL/TLS certificate. For testing, we'll generate a self-signed certificate:
+2. Get a trusted SSL/TLS certificate. For testing, we'll generate a self-signed certificate:
 
 .. prompt:: bash # auto
 
     # cd /etc/one
     # openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/one/cert.key -out /etc/one/cert.crt
 
-3. Use following content as an Nginx configuration. NOTE: Change the ``one.example.com`` variable with your own domain:
+3. Use the following content as an Nginx configuration. NOTE: Change the ``one.example.com`` variable for your own domain:
 
 .. code::
 
@@ -175,7 +175,7 @@ This is an **example** of how to configure Nginx as a SSL/TLS proxy for OneGate 
 
     ONEGATE_ENDPOINT = "https://one.example.com"
 
-5. Configure OneGate (``/etc/one/onegate-server.conf``) with new secured OneGate endpoint in ``:ssl_server``, e.g.:
+5. Configure OneGate (``/etc/one/onegate-server.conf``) with new secure OneGate endpoint in ``:ssl_server``, e.g.:
 
 .. code::
 
