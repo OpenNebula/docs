@@ -71,7 +71,7 @@ If you want to add more IPs to the network, you need to follow these steps:
 
 |image_add_ar|
 
-.. note:: You should put your valid provision ID and CIDR.
+.. note:: You should put your valid provision ID.
 
 .. important:: You can only request 1 IP per address range.
 
