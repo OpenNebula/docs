@@ -525,9 +525,9 @@ Network Section
 +------------------------+----------------------------------------------------------------------------------------------------------+-----------------------+-----------------------+-----------------------+-----------------------+
 | ``SCHED_RANK``         | Define the rank when ``NETMORW_MODE`` is `auto`.                                                         | O                     | O                     | O                     | O                     |
 +------------------------+----------------------------------------------------------------------------------------------------------+-----------------------+-----------------------+-----------------------+-----------------------+
-| ``NAME``               | Name of the nic.                                                                                         | O                     | O                     | O                     | O                     |
+| ``NAME``               | Name of the NIC.                                                                                         | O                     | O                     | O                     | O                     |
 +------------------------+----------------------------------------------------------------------------------------------------------+-----------------------+-----------------------+-----------------------+-----------------------+
-| ``PARENT``             | It is used only on alias, it references the nic which is alias of.                                       | O                     | O                     | O                     | O                     |
+| ``PARENT``             | It is used only on alias, it references the NIC which is alias of.                                       | O                     | O                     | O                     | O                     |
 +------------------------+----------------------------------------------------------------------------------------------------------+-----------------------+-----------------------+-----------------------+-----------------------+
 | ``EXTERNAL``           | It is used only on alias, it indicates if the alias is external to the VM or not. If it is set to "yes"  | O                     | \-                    | \-                    | O                     |
 |                        | it will call pre, post, clean and reconfigure actions. If it set to "no" or it is empty, it will just    |                       |                       |                       |                       |
@@ -745,7 +745,7 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 |                                   | (re)contextualization is finished.                                                |                              |         |
 +-----------------------------------+-----------------------------------------------------------------------------------+------------------------------+---------+
 
-.. note::  Limitations apply in vCenter alias for :ref:`attach/detach nic operations <vcenter_networking_limitations>`.
+.. note::  Limitations apply in vCenter alias for :ref:`attach/detach NIC operations <vcenter_networking_limitations>`.
 
 .. note::   If more than one of the password changing attributes listed above is defined, only the one with highest priority will be applied. The priority is the same as the order of appearance in this table.
 
