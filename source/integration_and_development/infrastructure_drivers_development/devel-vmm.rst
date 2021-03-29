@@ -38,6 +38,7 @@ These are the actions valid in the -l parameter:
 -  poll
 -  reboot
 -  reset
+-  resize
 -  restore
 -  save
 -  shutdown
@@ -102,10 +103,16 @@ These supported action are specified in the :ref:`oned.conf file <oned_conf>`, `
         default        = "vmm_exec/vmm_exec_kvm.conf",
         type           = "kvm",
         keep_snapshots = "no",
+        live_resize    = "yes",
+        support_shareable    = "yes",
         imported_vms_actions = "shutdown,shutdown-hard,hold,release,suspend,resume,delete,reboot,reboot-hard,resched,unresched,disk-attach,disk-detach,nic-attach,nic-detach,snap-create,snap-delete"
     ]
 
 The hypervisor may preserve system snapshots across power on/off cycles and live migrations, in that case you can set ``keep_snapshots`` variable to ``yes``.
+
+If hypervisor allows live VM resize, set ``live_resize`` to ``yes``.
+
+If hypervisor supports shareable disks, set ``support_shareable`` to ``yes``.
 
 The sunstone name will be used in the host creation dialog in the Sunstone WebUI.
 
@@ -258,6 +265,17 @@ VMM actions, they are the same as the names of the scripts:
 
       -  **DOMAIN**: Domain name: one-286
       -  **HOST**: Host where the VM is running
+
+   -  Response
+
+      -  Success: -
+      -  Failure: Error message
+
+-  **resize**: Resize a  VM
+
+   -  Arguments:
+
+      -  **DOMAIN**: Domain name: one-286
 
    -  Response
 
