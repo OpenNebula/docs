@@ -181,7 +181,7 @@ OpenNebula allows you import NSX networks attached to vms in two ways:
 In the first mode the imported network should have NSX_ID, allowing this network be able to use other NSX features as Security Groups.
 In the second mode the imported network won't have a NSX_ID, so other NSX features will not be available for these networks.
 
-Oher Virtual Network Operations
+Other Virtual Network Operations
 ================================================================================
 The process of **deleting**, **attaching** and **detaching** a logical switch is the same as others Virtual Networks.
 
@@ -209,9 +209,9 @@ Security Groups are made up of rules that are applied into Distributed Firewall 
             - **nicID** = OpenNebula instance nic ID
 
     - The Security Groups rules are applied to a virtual machine logical port group.
-    - All sSecurity Groups rules are applied with action "ALLOW"
+    - All Security Groups rules are applied with action "ALLOW"
 
-.. warning:: Modificationof rules or sections created by OpenNebula using directly the NSX Manager interface is not supported, since the information won't be synced back in OpenNebula.
+.. warning:: Modification of rules or sections created by OpenNebula using directly the NSX Manager interface is not supported, since the information won't be synced back in OpenNebula.
 
 Limitations
 ================================================================================
