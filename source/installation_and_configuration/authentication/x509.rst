@@ -18,12 +18,12 @@ If you want to use X.509 certificates with Sunstone, you must deploy a TLS-capab
 Considerations & Limitations
 ============================
 
-The authentication driver handles the certificate DN like user passwords. It will remove any space in the certificate DN. This may cause problems in the unlikely situation that you are using a CA signing certificate subjects that only differ in spaces.
+The authentication driver handles the certificate DN like user passwords. It will remove any space in the certificate DN. This may cause problems in the unlikely situation that you are using CA signing certificate subjects that only differ in spaces.
 
 Configuration
 =============
 
-This authentication mechanism is enabled by default. If it still doesn't work, make sure you have the authentication method ``x509`` enabled in the ``AUTH_MAD`` section of your :ref:`/etc/one/oned.conf <oned_conf>`. For example:
+This authentication mechanism is enabled by default. If it doesn't work, make sure you have the authentication method ``x509`` enabled in the ``AUTH_MAD`` section of your :ref:`/etc/one/oned.conf <oned_conf>`. For example:
 
 .. code-block:: bash
 
@@ -115,7 +115,7 @@ You can also map multiple certificates to the same OpenNebula account. Just add 
 User Login
 ----------
 
-Before using the OpenNebula CLI, users must execute the ``oneuser login`` command to generate a login token. The token will be stored in the filename set by ``$ONE_AUTH`` environment variable (which defaults to ``$HOME/.one/one_auth``). The command requires the OpenNebula username and the argument ``--x509`` spcifying the authentication method. FOr example:
+Before using the OpenNebula CLI, users must execute the ``oneuser login`` command to generate a login token. The token will be stored in the filename set by ``$ONE_AUTH`` environment variable (which defaults to ``$HOME/.one/one_auth``). The command requires the OpenNebula username and the argument ``--x509`` specifying the authentication method. For example:
 
 .. prompt:: bash $ auto
 
@@ -163,7 +163,7 @@ Follow these steps to change oneadmin's authentication method to ``x509``:
 Enabling x509 in Sunstone
 =========================
 
-Update in ``/etc/one/sunstone-server.conf`` parameter ``:auth`` to ``x509``:
+In ``/etc/one/sunstone-server.conf`` update parameter ``:auth`` to ``x509``:
 
 .. code-block:: yaml
 
