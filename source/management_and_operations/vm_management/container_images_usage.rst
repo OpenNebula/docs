@@ -22,7 +22,7 @@ As container images are just filesystem images when using LXC no extra configura
 Using Container Images with Firecracker
 ================================================================================
 
-In order to deploy a Firecracker MicroVM using one of the images mentioned above, an uncompressed kernel image is required. The Firecracker project provides a recommended `configuration file <https://github.com/firecracker-microvm/firecracker/blob/master/resources/microvm-kernel-x86_64.config>`__ for building the kernel image.
+In order to deploy a Firecracker MicroVM using one of the images mentioned above, an uncompressed kernel image is required. The Firecracker project provides a recommended `configuration file <https://github.com/firecracker-microvm/firecracker/blob/master/resources/microvm-kernel-x86_64.config>`__ for building the kernel image. This configuration file provides the minimum required dependencies for booting a MicroVM.
 
 Once the image is in ready state, the only thing left to boot the MicroVM is to add the kernel image to the VM template.
 

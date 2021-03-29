@@ -51,7 +51,7 @@ The life-cycle of a Virtual Machine within OpenNebula includes the following sta
 |             |                      |                                                                                                                                                                                                                                                                                                          |
 |             |                      | When the VM guest is shutdown, OpenNebula will put the VM in this state.                                                                                                                                                                                                                                 |
 +-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``unde``    | ``Undeployed``       | The VM is shut down. The VM disks are transfered to the system datastore. The VM can be resumed later.                                                                                                                                                                                                   |
+| ``unde``    | ``Undeployed``       | The VM is shut down. The VM disks are transferred to the system datastore. The VM can be resumed ater.                                                                                                                                                                                                   |
 +-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``fail``    | ``Failed``           | The VM failed.                                                                                                                                                                                                                                                                                           |
 +-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -98,7 +98,7 @@ Afterwards, the VM can be listed with the ``onevm list`` command. You can also u
         ID USER     GROUP    NAME         STAT CPU     MEM        HOSTNAME        TIME
          0 oneadmin oneadmin my_vm        pend   0      0K                 00 00:00:03
 
-The scheduler VM will automatically deploy to one of the available resources. The deployment can also be forced by oneadmin using ``onevm deploy``:
+The scheduler will automatically deploy the VM in one of the hosts with enough resources available. The deployment can also be forced by oneadmin using ``onevm deploy``:
 
 .. prompt:: text $ auto
 
@@ -151,7 +151,7 @@ and details about it can be obtained with ``show``:
 Searching for VM Instances
 --------------------------------------------------------------------------------
 
-You can search for VM instances by using the ``--search`` option of the ``onevm list`` command. This is specially useful on large environments with many VMs. The filter must be in a KEY=VALUE format and will return all the VMs which fit the filter.
+You can search for VM instances by using the ``--search`` option of the ``onevm list`` command. This is specially useful on large environments with many VMs. The filter must be in a ``KEY=VALUE`` format and will return all the VMs which fit the filter.
 
 The KEY must be in the VM template section or be one of the following:
 
@@ -243,6 +243,8 @@ Then you can resume it with:
 Hotplug Devices to a Virtual Machine
 ================================================================================
 
+.. warning:: Hotplugging might not be available for every supported hypervisor. Please check the limitations of the specific virtualization driver you're using to ensure this feature is available before using it.
+
 Disk Hot-plugging
 --------------------------------------------------------------------------------
 
@@ -326,6 +328,9 @@ You can also detach a NIC by its ID. If you want to detach interface 1 (MAC ``02
 Virtual Machine System Snapshots
 ================================================================================
 
+.. warning:: Snapshotting might not be available for every supported hypervisor. Please check the limitations of the specific virtualization driver you're using to ensure this feature is available before using it.
+
+
  A system snapshot will contain the current disks and memory state. You can create, delete and restore snapshots for running VMs.
 
 .. prompt:: text $ auto
@@ -356,14 +361,14 @@ There are two kinds of operations related to disk snapshots:
 * ``disk-snapshot-create``, ``disk-snapshot-revert``, ``disk-snapshot-delete``, ``disk-snapshot-rename``: Allows the user to take snapshots of the disk states and return to them during the VM life-cycle. It is also possible to rename or delete snapshots.
 * ``disk-saveas``: Exports VM disk (or a previously created snapshot) to an Image in an OpenNebula Datastore. This is a live action.
 
-.. important:: In vCenter, only the disk-saveas operation is supported and for VMs in the ``POWEROFF`` state.
+.. warning:: Disk snapshost might have different limitations depending on the hypervisor. Please check the limitations of the specific virtualization driver you're using to ensure this feature is available before using it.
 
 .. _vm_guide_2_disk_snapshots_managing:
 
 Managing Disk Snapshots
 --------------------------------------------------------------------------------
 
-A user can take snapshots of VM disks at any moment in time (if the VM is in ``RUNNING``, ``POWEROFF`` or ``SUSPENDED`` states). These snapshots can be organized, depending on the storage backend:
+A user can take snapshots of VM disks to create a checkpoint of the state of an specific disk at any time. These snapshots can be organized, depending on the storage backend:
 
 - In a tree-like structure, meaning that every snapshot has a parent, except for the first snapshot whose parent is ``-1``. The active snapshot, the one the user has last reverted to, or taken, will act as the parent of the next snapshot. It's possible to delete snapshots that are not active and that have no children.
 - Flat structure, without parent/child relationship. In that case, snapshots can be freely removed.
@@ -381,7 +386,7 @@ Disk snapshots are managed with the following commands:
 
 With these combinations (CEPH and qcow2 datastores and KVM hypervisor) you can :ref:`enable QEMU Guest Agent <enabling_qemu_guest_agent>`. With this agent enabled the filesystem will be frozen while the snapshot is being done.
 
-OpenNebula will not automatically handle non-live ``disk-snapshot-create`` and ``disk-snapshot-revert`` operations for VMs in ``RUNNING`` if the drivers do not support it. In this case the user needs to suspend or poweroff the VM before creating the snapshot.
+.. warning:: OpenNebula will not automatically handle live ``disk-snapshot-create`` and ``disk-snapshot-revert`` operations for VMs in ``RUNNING`` if the virtualization driver do not support it (check the limitations of the corresponding virtualization driver guide to know if this feature is available for your hypervisor). In this case the user needs to suspend or poweroff the VM before creating the snapshot.
 
 See the :ref:`Storage Driver <sd_tm>` guide for a reference on the driver actions invoked to perform live and non-live snapshost.
 
@@ -405,8 +410,6 @@ Any VM disk can be saved to a new image (if the VM is in ``RUNNING``, ``POWEROFF
 .. warning::
 
   This action is not in sync with the hypervisor. If the VM is in ``RUNNING`` state make sure the disk is unmounted (preferred), synced or quiesced in some way or another before doing the ``disk-saveas`` operation.
-
-
 
 .. _vm_guide2_resizing_a_vm:
 
@@ -459,7 +462,7 @@ Resizing VM Disks
 If the disks assigned to a Virtual Machine need more size, this can achieved at instantiation time of the VM. The SIZE parameter of the disk can be adjusted and, if it is bigger than the original size of the image, OpenNebula will:
 
 - Increase the size of the disk container prior to launching the VM
-- Using the :ref:`contextualization packages <context_overview>`, at boot time the VM will grow the filesystem to adjust to the new size. **This is only available for Linux guests in KVM and vCenter**.
+- Using the :ref:`contextualization packages <context_overview>`, at boot time the VM will grow the filesystem to adjust to the new size.
 
 You can override the size of a ``DISK`` in a VM Template at instantiation:
 
@@ -497,11 +500,11 @@ Some of the VM configuration attributes defined in the VM Template can be update
 | ``CONTEXT``  | Any value. **Variable substitution will be made**                       |
 +--------------+-------------------------------------------------------------------------+
 
-.. note:: Visit the :ref:`Virtual Machine Template reference <template>` for a complete description of each attribute
+Visit the :ref:`Virtual Machine Template reference <template>` for a complete description of each attribute.
 
-.. warning:: If the VM is running, the action may fail and the context will not be changed. You can try to manualy trigger the action again.
+.. warning:: This action might not be supported for ``RUNNING`` VMs depending on the hypervisor. Please check the limitation section of the specific virtualization driver.
 
-.. note:: In running state only changes in CONTEXT take effect immediately, other values may need a VM restart
+.. note:: In running state only changes in CONTEXT take effect immediately, other values may need a VM restart. Also, the action may fail and the context will not be changed if the VM is running. You can try to manualy trigger the action again.
 
 .. _vm_guide2_clone_vm:
 

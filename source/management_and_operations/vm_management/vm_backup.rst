@@ -22,7 +22,7 @@ Backup Configuration
 
 Each VM which you might need to backup needs a separate configuration within the VM template that specify where the backups will be saved and how often backups are taken.
 
-For exampl, the following section takes a backup every 24 hours and store them in Marketplace 100:
+For example, the following section takes a backup every 24 hours and store them in Marketplace 100:
 
 .. prompt:: text $ auto
 
@@ -40,7 +40,7 @@ For exampl, the following section takes a backup every 24 hours and store them i
 One-time Backups
 ================================================================================
 
-To peform a single backup you can simply run the following command for a particular VM.
+To perform a single backup you can simply run the following command for a particular VM.
 
 .. important:: Running VM will be powered off, backed up and resumed.
 
@@ -70,7 +70,7 @@ To peform a single backup you can simply run the following command for a particu
 Automatic Backup all VMs
 ================================================================================
 
-To backup all your VMs you may use a script located at `/usr/share/one/backup_vms`. Simply, add to the oneadmin cron something like:
+To backup all your VMs you may use a script located at `/usr/share/one/backup_vms`. Simply, add to the ``oneadmin`` cron something like:
 
 .. prompt:: text $ auto
 
@@ -78,7 +78,7 @@ To backup all your VMs you may use a script located at `/usr/share/one/backup_vm
 
 and adjust the VM backup frequency by updating the VM templates.
 
-When a backup is finished the BACKUP section of each VM is extended with extra attributes **LAST_BACKUP_TIME** containing the backup timestamp and **MARKETPLACE_APP_IDS** which refers to the created marketplace appliances.
+When a backup is finished the ``BACKUP`` section of each VM is extended with extra attributes ``LAST_BACKUP_TIME`` containing the backup timestamp and ``MARKETPLACE_APP_IDS`` which refers to the created marketplace appliances.
 
 .. prompt:: text $ auto
 
@@ -96,7 +96,7 @@ Also, those attributes are shown on the Sunstone VM info tab.
 Restore a Backup
 ================================================================================
 
-For restore you simply run `onevm restore` and should the VM have correct BACKUP data in the template it will be restored and started.
+To restore a backup you simply run `onevm restore` and if the VM have correct BACKUP data in the template it will be restored and started.
 
 .. prompt:: text $ auto
 

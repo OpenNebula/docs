@@ -11,6 +11,6 @@ References
    Command Line Interface <cli>
    Edge Cluster Provision Template <template/index>
    Edge Cluster Automated Configuration <config/index>
-   Creating Disk Images <creating_images>
+   Guest OS Installation <creating_images>
    Contextualization (Open Source Cloud) <kvm_contextualization>
    Contextualization (VMware vCenter) <vcenter_contextualization>
