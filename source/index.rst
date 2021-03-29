@@ -33,3 +33,7 @@ OpenNebula is an open-source cloud management platform that combines virtualizat
 
 .. raw:: html
    :file: toc.html
+   
+.. note::
+    * EE: Component only available in the Enterprise Edition
+    * TP: Component distributed as Technology Preview and not recommended for production environments
