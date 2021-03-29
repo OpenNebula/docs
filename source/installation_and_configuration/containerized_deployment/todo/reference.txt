@@ -90,3 +90,15 @@ After the changes, you should reboot the machine.
 
 .. note:: Follow the `SELinux User's and Administrator's Guide <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/>`__ for more information on how to configure and troubleshoot SELinux.
 
+.. _appendix_apparmor:
+
+AppArmor on Debian/Ubuntu
+-------------------------
+
+Docker is using the default `AppArmor profile <https://docs.docker.com/engine/security/apparmor/>`_ ``docker-default`` but this profile does not allow mounting via ``fuse`` in an unprivileged container (even with the ``SYS_ADMIN`` capability).
+
+This prevents the OpenNebula to utilize its Docker Hub marketplace. The workaround is to deploy a custom and fixed profile or simply set AppArmor's profile to ``unconfined``. Both can be achieved via ``DEPLOY_APPARMOR_PROFILE`` variable - the default is to disable AppArmor (``unconfined``) for the affected containers as can be seen in :ref:`the reference for deploy parameters <container_reference_deploy_params>`.
+
+.. note::
+
+    There is a long-term issue regarding the Docker support of AppArmor and its default profile: https://github.com/moby/moby/issues/33060
