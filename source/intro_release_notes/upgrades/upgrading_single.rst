@@ -4,95 +4,85 @@
 Upgrading Single Front-end Deployments
 ================================================================================
 
-If you are upgrading from a :ref:`5.12.x <upgrade_512>` installation you only need to follow a reduced set of steps. If you are running a 5.10.x version or older, please check these :ref:`set of steps <upgrading_from_previous_extended_steps>` (some additional ones may apply, please review them at the end of the section).
+If you are running a 5.12.x version or older, please check these :ref:`set of steps <upgrading_from_previous_extended_steps>` (some additional ones may apply, please review them at the end of the section).
 
-.. _upgrade_512:
+..
+    If you are upgrading from a :ref:`6.0.x <upgrade_60>` installation you only need to follow a reduced set of steps.
+    .. _upgrade_60:
+    Upgrading from 6.0.x
+    ^^^^^^^^^^^^^^^^^^^^^
 
-Upgrading from 5.12.x
-^^^^^^^^^^^^^^^^^^^^^
+    This section describes the installation procedure for systems that are already running a 6.0.x OpenNebula. The upgrade to OpenNebula |version| can be done directly following this section, you don't need to perform intermediate version upgrades. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
-This section describes the installation procedure for systems that are already running a 5.12.x OpenNebula. The upgrade to OpenNebula |version| can be done directly following this section, you don't need to perform intermediate version upgrades. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
+    When performing a minor upgrade OpenNebula adheres to the following convention to ease the process:
 
-When performing a minor upgrade OpenNebula adheres to the following convention to ease the process:
+      * No changes are made to the configuration files, so no configuration file will be changed during the upgrade.
+      * Database versions are preserved, so no upgrade of the database schema is needed.
 
-  * No changes are made to the configuration files, so no configuration file will be changed during the upgrade.
-  * Database versions are preserved, so no upgrade of the database schema is needed.
+    When a critical bug requires an exception to the previous rules it will be explicitly noted in this guide.
 
-When a critical bug requires an exception to the previous rules it will be explicitly noted in this guide.
+    Upgrading a Federation and High Availability
+    ================================================================================
 
-Upgrading a Federation and High Availability
-================================================================================
+    You need to perform the following steps in all the HA nodes and all zones. You can upgrade the servers one by one to not incur in any downtime.
 
-You need to perform the following steps in all the HA nodes and all zones. You can upgrade the servers one by one to not incur in any downtime.
+    Step 1 Stop OpenNebula services
+    ===============================
 
-Step 1 Stop OpenNebula services
-===============================
+    Before proceeding, make sure you don't have any VMs in a transient state (prolog, migr, epil, save). Wait until these VMs get to a final state (runn, suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide <vm_guide_2>` for more information on the VM life-cycle.
 
-Before proceeding, make sure you don't have any VMs in a transient state (prolog, migr, epil, save). Wait until these VMs get to a final state (runn, suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide <vm_guide_2>` for more information on the VM life-cycle.
+    Now you are ready to stop OpenNebula and any other related services you may have running, e.g. Sunstone or OneFlow. Use preferably the system tools, like `systemctl` or `service` as `root` in order to stop the services.
 
-Now you are ready to stop OpenNebula and any other related services you may have running, e.g. Sunstone or OneFlow. Use preferably the system tools, like `systemctl` or `service` as `root` in order to stop the services.
+    Step 2 Upgrade frontend to the new version
+    ==========================================
 
-Step 2 Upgrade frontend to the new version
-==========================================
+    Upgrade the OpenNebula software using the package manager of your OS. Refer to the :ref:`Installation guide <ignc>` for a complete list of the OpenNebula packages installed in your system. Package repos need to be pointing to the latest version (|version|).
 
-Upgrade the OpenNebula software using the package manager of your OS. Refer to the :ref:`Installation guide <ignc>` for a complete list of the OpenNebula packages installed in your system. Package repos need to be pointing to the latest version (|version|).
+    For example, in CentOS/RHEL simply execute:
 
-For example, in CentOS/RHEL simply execute:
+    .. prompt:: text # auto
 
-.. prompt:: text # auto
+        # yum upgrade opennebula
 
-    # yum upgrade opennebula
+    For Debian/Ubuntuy use:
 
-For Debian/Ubuntuy use:
+    .. prompt:: text # auto
 
-.. prompt:: text # auto
+       # apt-get update
+       # apt-get install --only-upgrade opennebula
 
-   # apt-get update
-   # apt-get install --only-upgrade opennebula
+    Step 3 Upgrade hypervisors to the new version
+    =============================================
 
-Step 3 Upgrade hypervisors to the new version
-=============================================
+    You can skip this section for vCenter hosts.
 
-You can skip this section for vCenter hosts.
+    Upgrade the OpenNebula node KVM or LXD packages, using the package manager of your OS.
 
-Upgrade the OpenNebula node KVM or LXD packages, using the package manager of your OS.
+    For example, in a rpm based Linux distribution simply execute:
 
-For example, in a rpm based Linux distribution simply execute:
+    .. prompt:: text # auto
 
-.. prompt:: text # auto
+       # yum upgrade opennebula-node-kvm
 
-   # yum upgrade opennebula-node-kvm
+    For deb based distros use:
 
-For deb based distros use:
+    .. prompt:: text # auto
 
-.. prompt:: text # auto
+       # apt-get update
+       # apt-get install --only-upgrade opennebula-node-kvm
 
-   # apt-get update
-   # apt-get install --only-upgrade opennebula-node-kvm
+    .. note:: If you are using LXD the package is ``opennebula-node-lxd``.
 
-.. note:: If you are using LXD the package is ``opennebula-node-lxd``.
+    Update the Drivers
+    ==================
 
-Update the Drivers
-==================
+    You should be able now to start OpenNebula as usual, running ``service opennebula start`` as ``root``. At this point, as ``oneadmin`` user, execute ``onehost sync`` to update the new drivers in the hosts.
 
-You should be able now to start OpenNebula as usual, running ``service opennebula start`` as ``root``. At this point, as ``oneadmin`` user, execute ``onehost sync`` to update the new drivers in the hosts.
+    .. note:: You can skip this step if you are not using KVM hosts, or any hosts that use remove monitoring probes.
 
-.. note:: You can skip this step if you are not using KVM hosts, or any hosts that use remove monitoring probes.
+..
 
-Testing
-=======
-
-OpenNebula will continue the monitoring and management of your previous Hosts and VMs.
-
-As a measure of caution, look for any error messages in oned.log, and check that all drivers are loaded successfully. After that, keep an eye on oned.log while you issue the onevm, onevnet, oneimage, oneuser, onehost **list** commands. Try also using the **show** subcommand for some resources.
-
-Restoring the Previous Version
-==============================
-
-If for any reason you need to restore your previous OpenNebula, simply uninstall OpenNebula |version|, and install again your previous version. After that, update the drivers as described above.
-
-.. _upgrading_from_previous_extended_steps:
-
+ .. _upgrading_from_previous_extended_steps:
 
 Upgrading from 5.6.x+
 ^^^^^^^^^^^^^^^^^^^^^
@@ -225,8 +215,6 @@ After checking the state of configuration, in most cases running the following c
 
 If you get conflicts when running onecfg upgrade refer to the :ref:`onecfg upgrade basic usage documentation <cfg_usage>` on how to upgrade and troubleshoot the configurations, in particular the :ref:`onecfg upgrade doc <cfg_upgrade>` and the :ref:`troubleshooting section <cfg_conflicts>`.
 
-.. todo: Is onescape ready for 5.12
-
 Step 7. Upgrade the Database version
 ================================================================================
 
@@ -315,3 +303,15 @@ After following all the steps, please review corresponding guide:
 
    Additional Steps for 5.8.x <upgrade_58>
    Additional Steps for 5.6.x <upgrade_56>
+
+Testing
+=======
+
+OpenNebula will continue the monitoring and management of your previous Hosts and VMs.
+
+As a measure of caution, look for any error messages in oned.log, and check that all drivers are loaded successfully. After that, keep an eye on oned.log while you issue the onevm, onevnet, oneimage, oneuser, onehost **list** commands. Try also using the **show** subcommand for some resources.
+
+Restoring the Previous Version
+==============================
+
+If for any reason you need to restore your previous OpenNebula, simply uninstall OpenNebula |version|, and install again your previous version. After that, update the drivers if needed as in Step 11.

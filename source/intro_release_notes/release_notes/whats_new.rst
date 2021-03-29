@@ -4,7 +4,7 @@
 What's New in 6.0
 ================================================================================
 
-OpenNebula 6.0 ‘Mutara’ is the first stable release of the new OpenNebula 6 series. This release comes with a significant number of new functionalities, among which we can highlight the maturity of the new innovative edge features developed in the context of the `ONEedge <http://oneegde.io>`__ innovation project to deploy on-demand distributed edge cloud environments based on OpenNebula. These new edge computing features enable IT organizations to deploy true hybrid and multi-cloud environments that avoid vendor lock-in, reducing operational costs, expanding service availability, and enabling new ultra-low-latency applications. Organizations maintain a single control panel with centralized operations and management that abstracts cloud functionality and ensures portability across clouds. IT organizations can now automatically deploy and manage multiple Kubernetes clusters across edge locations to enable truly multi-tenant and large-scale container orchestration.
+OpenNebula 6.0 ‘Mutara’ is the first stable release of the new OpenNebula 6 series. This release comes with a significant number of new functionalities, among which we can highlight the maturity of the new innovative edge features developed in the context of the `ONEedge <https://oneedge.io/>`__ innovation project to deploy on-demand distributed edge cloud environments based on OpenNebula. These new edge computing features enable IT organizations to deploy true hybrid and multi-cloud environments that avoid vendor lock-in, reducing operational costs, expanding service availability, and enabling new ultra-low-latency applications. Organizations maintain a single control panel with centralized operations and management that abstracts cloud functionality and ensures portability across clouds. IT organizations can now automatically deploy and manage multiple Kubernetes clusters across edge locations to enable truly multi-tenant and large-scale container orchestration.
 
 These new edge features in OpenNebula 6.0 include:
 
@@ -12,6 +12,8 @@ These new edge features in OpenNebula 6.0 include:
 - A fully featured command line interface and a modern, slick web interface—FireEdge—to easily manage public cloud and edge providers  and the seamless provisioning of OpenNebula’s edge clusters. You can quickly expand on-demand your OpenNebula cloud with third-party resources thanks to this point and click interface and create an “Edge as a Service” environment in just a few minutes!
 - A first set of templates and drivers to expand your OpenNebula cloud using  AWS and Equinix Metal resources, creating edge clusters based on QEMU, KVM and Firecracker.
 - The new support for Dockerfiles and a revamped Marketplace for VM templates, which now is able to store service templates, which considerably improves user experience in the  execution of complex container workflows, multi-tier services and management of CNCF-certified Kubernetes clusters on the edge.
+
+.. image:: /images/fireedge_for_rns.png
 
 Additionally, OpenNebula 6.0 ‘Mutara’ comes with the following goodies:
 

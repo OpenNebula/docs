@@ -12,7 +12,7 @@ The following components have been deprecated:
  - ECONE server (implementing EC2Query REST interface), is no longer available.
  - Hybrid drivers for Amazon EC2 and Microsoft Azure, as well as the hybrid connection to remote OpenNebula instances, are no longer available. The preferred mechanism to grow your cloud with public cloud providers is through the :ref:`Edge Cluster Provisioning <first_edge_cluster>`.
 
-Visit the :ref:`Features list <features>` and the `Release Notes <https://opennebula.io/use/>`__ for a comprehensive list of what's new in OpenNebula 5.13.
+Visit the :ref:`Features list <features>` and the :ref:`What's New guide <whats_new>` for a comprehensive list of what's new in OpenNebula 5.13.
 
 HTTP_PROXY and XMLRPC API
 =========================

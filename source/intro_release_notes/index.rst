@@ -4,7 +4,7 @@
 Release Notes
 ================================================================================
 
-The Release Notes provide information on new features, improvements, and fixes implemented in each OpenNebula version. This guide also includes information about how to upgrade from previous versions. 
+The Release Notes provide information on new features, improvements, and fixes implemented in each OpenNebula version. This guide also includes information about how to upgrade from previous versions.
 
 .. toctree::
    :maxdepth: 2
