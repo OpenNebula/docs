@@ -10,5 +10,5 @@ The Overview Guide is designed to help understand the OpenNebula model, explore 
    :maxdepth: 2
 
    OpenNebula Concepts <opennebula_concepts/index>
-   Cloud Design and Design <cloud_architecture_and_design/index>
+   Cloud Architecture and Design <cloud_architecture_and_design/index>
    Solutions and Best Practices <solutions_and_best_practices/index>
