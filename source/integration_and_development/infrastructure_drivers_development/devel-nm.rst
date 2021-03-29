@@ -258,7 +258,7 @@ Driver Actions
 +-----------+--------------------------------------------------------------------------------+
 | **Post**  | Assign elastic IPs to the target host                                          |
 +-----------+--------------------------------------------------------------------------------+
-| **Clean** | Remove the bridge if it's empty. Unassigns elastic IPs                          |
+| **Clean** | Remove the bridge if it's empty. Unassigns elastic IPs                         |
 +-----------+--------------------------------------------------------------------------------+
 
 
