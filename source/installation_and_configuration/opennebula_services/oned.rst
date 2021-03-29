@@ -22,9 +22,9 @@ The OpenNebula Daemon configuration file can be found in ``/etc/one/oned.conf`` 
 -  ``DS_MONITOR_VM_DISK``: Number of ``MONITORING_INTERVAL_DATASTORE`` intervals to monitor VM disks. ``0`` to disable. Only applies to ``fs`` and ``fs_lvm`` datastores.
 -  ``SCRIPTS_REMOTE_DIR``: Remote path to store the monitoring and VM management script.
 -  ``PORT``: Port where ``oned`` will listen for XML-RPC calls.
--  ``LISTEN_ADDRESS``: Host IP to listen on for XML-RPC calls (default: all IPs).
--  ``HOSTNAME``: Hostname to use instead of autodetect it. This hostname is used to connect to frontend during driver operations.
--  ``DB``: Vector of configuration attributes for the database back-end.
+-  ``LISTEN_ADDRESS``: Host IP to listen for XML-RPC calls (default: all IPs).
+-  ``HOSTNAME``: Hostname to use instead of autodetect it. This hostname is used to connect to Front-end during driver operations.
+-  ``DB``: Vector of configuration attributes for the database Back-end.
 
    -  ``BACKEND``: Set to ``sqlite`` or ``mysql`` or ``postgresql``. Please visit the :ref:`MySQL configuration guide <mysql>` or :ref:`PostgreSQL configuration guide <postgresql>` for more information.
    -  ``SERVER`` (MySQL only): Host name or IP address of the MySQL server.
@@ -119,10 +119,10 @@ Control the :ref:`federation capabilities of oned <introf>`. Operation in a fede
    -  ``MODE``: Operation mode of this oned.
 
       -  ``STANDALONE``: Not federated. This is the default operational mode.
-      -  ``MASTER``: This oned is the master zone of the federation.
-      -  ``SLAVE``: This oned is a slave zone.
+      -  ``MASTER``: This oned is the master Zone of the federation.
+      -  ``SLAVE``: This oned is a slave Zone.
 
--  ``ZONE_ID``: The zone ID, as returned by the ``onezone`` command.
+-  ``ZONE_ID``: The Zone ID, as returned by the ``onezone`` command.
 -  ``MASTER_ONED``: The XML-RPC endpoint of the master oned, e.g. ``http://master.one.org:2633/RPC2``.
 
 .. code-block:: bash
@@ -140,13 +140,13 @@ Control the :ref:`federation capabilities of oned <introf>`. Operation in a fede
 Raft Configuration Attributes
 =============================
 
-Opennebula uses the Raft algorithm. It can be tuned by following options:
+Opennebula uses the Raft algorithm. It can be tuned by the following options:
 
 - ``LIMIT_PURGE``: Number of DB log records that will be deleted on each purge.
 - ``LOG_RETENTION``: Number of DB log records kept. It determines the synchronization window across servers and extra storage space needed.
 - ``LOG_PURGE_TIMEOUT``: How often applied records are purged according to the log retention value (in seconds).
 - ``ELECTION_TIMEOUT_MS``: Timeout to start an election process if no heartbeat or log is received from the leader (in milliseconds).
-- ``BROADCAST_TIMEOUT_MS``: How often heartbeats are sent to  followers (in milliseconds).
+- ``BROADCAST_TIMEOUT_MS``: How often heartbeats are sent to followers (in milliseconds).
 - ``XMLRPC_TIMEOUT_MS``: Timeout for Raft-related API calls (in milliseconds). For an infinite timeout, set this value to ``0``.
 
 Example:
@@ -264,11 +264,11 @@ Sample configuration:
 Datastores
 ==========
 
-The :ref:`Storage Subsystem <sm>` allows users to set up images, which can be operating systems or data, to be used in Virtual Machines easily. These images can be used by several Virtual Machines simultaneously, and also shared with other users.
+The :ref:`Storage Subsystem <sm>` allows users to set up images, which can be operating systems or data, to be used in Virtual Machines easily. These images can be used by several Virtual Machines simultaneously and also shared with other users.
 
 Here you can configure the default values for the Datastores and Image templates. There is more information about the template syntax :ref:`here <img_template>`.
 
--  ``DATASTORE_LOCATION``: Path for Datastores. It is the same for all the hosts and front-end. It defaults to ``/var/lib/one/datastores`` (or in self-contained mode defaults to ``$ONE_LOCATION/var/datastores``). Each datastore has its own directory (called ``BASE_PATH``) of the form: ``$DATASTORE_LOCATION/<datastore_id>``. You can symlink this directory to any other path, if needed. ``BASE_PATH`` is generated from this attribute each time oned is started.
+-  ``DATASTORE_LOCATION``: Path for Datastores. It is the same for all the hosts and Front-end. It defaults to ``/var/lib/one/datastores`` (or in self-contained mode defaults to ``$ONE_LOCATION/var/datastores``). Each datastore has its own directory (called ``BASE_PATH``) of the form: ``$DATASTORE_LOCATION/<datastore_id>``. You can symlink this directory to any other path, if needed. ``BASE_PATH`` is generated from this attribute each time oned is started.
 -  ``DATASTORE_CAPACITY_CHECK``: Check that there is enough capacity before creating a new image. Defaults to ``yes``.
 -  ``DEFAULT_IMAGE_TYPE``: Default value for ``TYPE`` field when it is omitted in a template. Values accepted are:
 
@@ -276,7 +276,7 @@ Here you can configure the default values for the Datastores and Image templates
    -  ``CDROM``: Image file holding a CDROM
    -  ``DATABLOCK``: Image file holding a datablock, created as an empty block
 
--  ``DEFAULT_DEVICE_PREFIX``: Default value for the ``DEV_PREFIX`` field when it is omitted in a template. The missing ``DEV_PREFIX`` attribute is filled when Images are created, so changing this prefix won't affect existing Images. It can be set to:
+-  ``DEFAULT_DEVICE_PREFIX``: Default value for the ``DEV_PREFIX`` field when it is omitted in a template. The missing ``DEV_PREFIX`` attribute is filled when images are created, so changing this prefix won't affect existing images. It can be set to:
 
 +----------+--------------------+
 | Prefix   | Device type        |
@@ -318,7 +318,7 @@ Sample configuration:
 Information Collector
 =====================
 
-This driver **cannot be assigned to a host**, and needs to be used with KVM drivers. Options that can be set:
+This driver **cannot be assigned to a host**, and needs to be used with KVM drivers. These are the options that can be set:
 
 -  ``-a``: Address to bind the ``collectd`` socket (default ``0.0.0.0``)
 -  ``-p``: UDP port to listen for monitor information (default ``4124``)
@@ -338,7 +338,7 @@ Sample configuration:
 Information Drivers
 ===================
 
-The information drivers are used to gather information from the cluster nodes, and they depend on the virtualization you are using. You can define more than one information manager, but make sure they have different names. To define one, the following need to be set:
+The information drivers are used to gather information from the cluster nodes and they depend on the virtualization you are using. You can define more than one information manager, but make sure they have different names. To define one, the following need to be set:
 
 -  **name**: name for this information driver.
 -  **executable**: path of the information driver executable as an absolute path or relative to ``/usr/lib/one/mads/``
@@ -406,12 +406,12 @@ The virtualization drivers are used to create, control and monitor VMs on the ho
    - ``snap-create``
    - ``snap-delete``
 
-There are some non mandatory attributes:
+There are some non-mandatory attributes:
 
 - ``DS_LIVE_MIGRATION``: live migration between datastores is allowed.
 - ``COLD_NIC_ATTACH``: NIC attach/detach in poweroff state calls networks scripts (``pre``, ``post``, ``clean``) and virtualization driver attach/detach actions.
 
-For more information on configuring and setting up the Virtual Machine Manager Driver please check the section that suits you:
+For more information on configuring and setting up the Virtual Machine Manager Driver please check the section relevant to you:
 
 * :ref:`KVM Driver <kvmg>`
 * :ref:`vCenter Driver <vcenterg>`
@@ -472,13 +472,13 @@ The configuration for each driver is defined in the ``TM_MAD_CONF`` section. The
 -  ``NAME``: name of the transfer driver, listed in the ``-d`` option of the ``TM_MAD`` section
 -  ``LN_TARGET``: determines how persistent images will be cloned when a new VM is instantiated:
 
-   -  ``NONE``: The image will be linked, and no more storage capacity will be used
+   -  ``NONE``: The image will be linked and no more storage capacity will be used
    -  ``SELF``: The image will be cloned in the Images datastore
    -  ``SYSTEM``: The image will be cloned in the System datastore
 
 -  ``CLONE_TARGET``: determines how non-persistent images will be cloned when a new VM is instantiated:
 
-   -  ``NONE``: The image will be linked, and no more storage capacity will be used
+   -  ``NONE``: The image will be linked and no more storage capacity will be used
    -  ``SELF``: The image will be cloned in the Images datastore
    -  ``SYSTEM``: The image will be cloned in the System datastore
 
@@ -486,7 +486,7 @@ The configuration for each driver is defined in the ``TM_MAD_CONF`` section. The
 
 - ``DS_MIGRATE``: set to ``YES`` if system datastore migrations are allowed for this TM. Only useful for system datastore TMs.
 
-- ``ALLOW_ORPHANS``: Whether snapshots can live without parents. It allows three values: ``YES``, ``NO`` and ``MIXED``. The last mode, ``MIXED``, allows creating orphan snapshots, but taking into account some dependencies which can appear after a revert snapshot action on Ceph datastores.
+- ``ALLOW_ORPHANS``: Whether snapshots can live without parents. It allows three values: ``YES``, ``NO`` and ``MIXED``. The last mode, ``MIXED``, allows the creation of orphan snapshots but takes into account some dependencies which can appear after a revert snapshot action on Ceph datastores.
 
 Sample configuration:
 
@@ -511,7 +511,7 @@ Sample configuration:
 Datastore Driver
 ================
 
-The Datastore Driver defines a set of scripts to manage the storage backend.
+The Datastore Driver defines a set of scripts to manage the storage Back-end.
 
 -  ``EXECUTABLE``: path of the transfer driver executable as an absolute path or relative to ``/usr/lib/one/mads/``
 -  ``ARGUMENTS``: for the driver executable
@@ -534,7 +534,7 @@ For more information on this driver and how to customize it, please visit the :r
 Marketplace Driver Configuration
 ================================================================================
 
-Drivers to manage different marketplaces, specialized for the storage back-end
+Drivers to manage different marketplaces, specialized for the storage Back-end
 
 -  ``EXECUTABLE``: path of the transfer driver executable as an absolute path or relative to ``/usr/lib/one/mads/``
 -  ``ARGUMENTS``: for the driver executable:
@@ -556,7 +556,7 @@ Sample configuration:
 Hook System
 ===========
 
-Hooks in OpenNebula are programs (usually scripts) whose execution is triggered by a change in state in Virtual Machines or Hosts. The hooks can be executed either locally or remotely to the node where the VM or Host is running. To configure the Hook System the following need to be set in the OpenNebula configuration file:
+Hooks in OpenNebula are programs (usually scripts) whose execution is triggered by a change in state in Virtual Machines or Hosts. The hooks can be executed either locally or remotely to the node where the VM or Host is running. To configure the Hook System the following needs to be set in the OpenNebula configuration file:
 
 -  ``EXECUTABLE``: path of the hook driver executable as an absolute path or relative to ``/usr/lib/one/mads/``
 -  ``ARGUMENTS``: for the driver executable as an absolute path or relative to ``/etc/one/``
@@ -635,7 +635,7 @@ Sample configuration:
 Auth Manager Configuration
 ==========================
 
--  ``AUTH_MAD``: The :ref:`driver <external_auth>` that will be used to authenticate and authorize OpenNebula requests. If not defined, OpenNebula will use the built-in auth policies.
+-  ``AUTH_MAD``: The :ref:`driver <external_auth>` that will be used to authenticate and authorize OpenNebula requests. If not defined, OpenNebula will use the built-in authorization policies.
 
    -  ``EXECUTABLE``: path of the auth driver executable as an absolute path or relative to ``/usr/lib/one/mads/``
    -  ``AUTHN``: list of authentication modules, separated by commas. If not defined, all the modules available will be enabled
@@ -866,7 +866,7 @@ Default ACL rules created when a resource is added to a VDC. The following attri
 -  ``DEFAULT_VDC_CLUSTER_NET_ACL``: permissions granted to cluster vnets when a cluster is added to the VDC.
 -  ``DEFAULT_VDC_CLUSTER_DATASTORE_ACL``: permissions granted to a datastores added to a cluster.
 
-When defining the permissions you can use ``""`` or ``"-"`` to avoid adding any rule to that specific resource. Also you can combine several permissions with ``"+"``, for example ``"MANAGE+USE"``. Valid permissions are **USE**, **MANAGE**, or **ADMIN**.
+When defining the permissions you can use ``""`` or ``"-"`` to avoid adding any rule to that specific resource. Also, you can combine several permissions with ``"+"``, for example ``"MANAGE+USE"``. Valid permissions are **USE**, **MANAGE**, or **ADMIN**.
 
 Example:
 
@@ -932,4 +932,4 @@ Other logs are also available in Journald, use the following command to show:
 
 .. important::
 
-    See :ref:`Troubleshooting <troubleshoot_additional>` guide to learn about logging of individual OpenNebula Daemon subsystems and drivers.
+    See :ref:`Troubleshooting <troubleshoot_additional>` guide to learn about the logging of individual OpenNebula Daemon subsystems and drivers.
