@@ -21,7 +21,7 @@ This section covers ``onecfg`` tool subcommands:
 
         $ sudo onecfg status
 
-The tool comes with help for each subcommand and command-line option. Simple run without any parameter or a run with the parameter ``--help`` prints the brief documentation (e.g., ``onecfg status --help``).
+The tool comes with help for each subcommand and command-line option. Simply run without any parameter or run with the parameter ``--help`` to print the brief documentation (e.g., ``onecfg status --help``).
 
 .. _cfg_status:
 
@@ -37,7 +37,7 @@ The ``status`` subcommand provides an overview of the OpenNebula installation. I
 
 .. note::
 
-   If status subcommand fails on an **unknown** configuration version, check the section about :ref:`init <cfg_init>` subcommand below.
+   If status subcommand fails on an **unknown** configuration version, check the section on :ref:`init <cfg_init>` subcommand below.
 
 Example:
 
@@ -59,9 +59,9 @@ Example:
 
 .. important::
 
-    **OpenNebula version** and **Configuration version** are tracked independently, but both versions are closely related and must be from the same ``X.Y`` release (i.e., OpenNebula 5.10.Z must have a configuration on version 5.10.Z). Minor configuration releases ``X.Y.Z`` are linked to the OpenNebula version for which a significant update has happened. Usually, configuration version **remains on the same version for all OpenNebula releases** within the same ``X.Y`` release (i.e., configuration version 5.10.0 is valid for all OpenNebula releases from 5.10.0 to latest available 5.10.5).
+    **OpenNebula version** and **Configuration version** are tracked independently, but both versions are closely related and must be from the same ``X.Y`` release (i.e., OpenNebula 5.10.Z must have a configuration on version 5.10.Z). Minor configuration releases ``X.Y.Z`` are linked to the OpenNebula version for which a significant update has happened. Usually, the configuration version **remains on the same version for all OpenNebula releases** within the same ``X.Y`` release (i.e., configuration version 5.10.0 is valid for all OpenNebula releases from 5.10.0 to the latest available 5.10.5).
 
-**Backup to Process** is a one-shot backup that needs to be processed. It's created automatically by OpenNebula packages (since 5.10.2) during the upgrade and contains a backup of all configuration files from the previous version. Content of the backup is taken, upgraded for current OpenNebula version and placed into production directories (``/etc/one/`` and ``/var/lib/one/remotes/etc``). Any existing content will be replaced there.
+**Backup to Process** is a one-shot backup that needs to be processed. It's created automatically by OpenNebula packages (since 5.10.2) during the upgrade and contains a backup of all configuration files from the previous version. Content of the backup is taken, upgraded for the current OpenNebula version and placed into production directories (``/etc/one/`` and ``/var/lib/one/remotes/etc``). Any existing content will be replaced there.
 
 Example of status without available updates:
 
@@ -79,7 +79,7 @@ Example of status without available updates:
 Exit codes
 ----------
 
-Based on different status, the command ends with the following exit codes:
+Based on the various statuses, the command will end with the following exit codes:
 
 - **0** - No update available.
 - **1** - Updates available.
@@ -112,14 +112,14 @@ Examples:
     # onecfg init
     ANY   : Already initialized
 
-You can also force configuration reinitialization based on detected OpenNebula version:
+You can also force configuration reinitialization based on the detected OpenNebula version:
 
 .. prompt:: bash # auto
 
     # onecfg init --force
     INFO  : Initialized on version 5.10.0
 
-Or, force reinitialization on own provided version:
+Or force reinitialization on your own provided version:
 
 .. prompt:: bash # auto
 
@@ -128,7 +128,7 @@ Or, force reinitialization on own provided version:
 
 .. note::
 
-   Version state is stored in configuration file ``/etc/onecfg.conf``. You **shouldn't modify this file directly**, as it might result in unpredictable behavior.
+   The version state is stored in the configuration file ``/etc/onecfg.conf``. You **shouldn't modify this file directly**, as it might result in unpredictable behavior.
 
 Example
 -------
@@ -143,7 +143,7 @@ Initialization is necessary when the Onecfg is not sure about the version of cur
     Config:      unknown
     ERROR: Unknown config version
 
-If you are sure the configuration files are current for the OpenNebula version you have (i.e., 5.8.0 in the example above), you can initialize the version management by using OpenNebula version (e.g., ``onecfg init``). Or, by explicitly providing the version configuration files match (e.g., ``onecfg init --to 5.6.0``).
+If you are sure the configuration files are current for the OpenNebula version you have (i.e., 5.8.0 in the example above), you can initialize the version management by using OpenNebula version (e.g., ``onecfg init``) or by explicitly providing the version configuration files match (e.g., ``onecfg init --to 5.6.0``).
 
 In both cases, after the initialization, the configuration version should be known:
 
@@ -218,7 +218,7 @@ Exit codes
 Diff
 ====
 
-Similar to the validation functionality above, the ``diff`` subcommand reads all :ref:`configuration files <cfg_files>` and identifies changes that were done by the user when compared to base configuration files. It doesn't do any changes in the files, only reads and compares them.
+Similarly to the validation functionality above, the ``diff`` subcommand reads all :ref:`configuration files <cfg_files>` and identifies changes that were made by the user when compared to base configuration files. It doesn't make any changes in the files; it only reads and compares them.
 
 Parameters:
 
@@ -254,7 +254,7 @@ Patch
 
    This subcommand is also available in OpenNebula **Community Edition**.
 
-Patch applies diffs, change descriptors, generated by ``diff`` subcommand or created manually (as ``line`` or ``yaml`` formats) and provided on standard input or as filename passed as an argument. Changes are applied in ``replace`` :ref:`mode <cfg_patch_modes>` and any user customizations on addressed places are overwritten.
+Patch applies diffs, change descriptors, generated by the ``diff`` subcommand or created manually (as ``line`` or ``yaml`` formats) and provided on standard input or as a filename passed as an argument. Changes are applied in ``replace`` :ref:`mode <cfg_patch_modes>` and any user customizations on addressed places are overwritten.
 
 Parameters:
 
@@ -292,13 +292,13 @@ Example with diff passed on standard input:
     INFO  : Patched '/etc/one/oned.conf' with 6/7 changes
     INFO  : Applied 7/7 changes
 
-Same example with diff passed as file:
+Here is the same example with diff passed as a file:
 
 .. prompt:: bash # auto
 
     # onecfg patch --verbose --format line /tmp/diff-oned1
 
-By default, patch process finishes successfully even if all changes were not applied. We can distinguish between full or partial application by checking the exit code of the command. We can also request to apply all or none changes by using ``--all`` argument.
+By default, patch process finishes successfully even if all changes were not applied. We can distinguish between full or partial application by checking the exit code of the command. We can also request to apply all or none of the changes by using ``--all`` argument.
 
 .. prompt:: bash # auto
 
@@ -309,7 +309,7 @@ By default, patch process finishes successfully even if all changes were not app
     INFO  : Applied 3/7 changes
     ERROR : Modifications not saved due to 4 unapplied changes!
 
-Subcommands ``diff`` and ``patch`` can be chained to apply changes from one front-end to another front-end (use carefully!):
+Subcommands ``diff`` and ``patch`` can be chained to apply changes from one Front-end to another Front-end (use carefully!):
 
 .. prompt:: bash # auto
 
@@ -329,14 +329,14 @@ Upgrade
 
 The ``upgrade`` subcommand makes all the changes in configuration files to update content from one version to another. It mainly does the following steps:
 
-- Detect if an upgrade is necessary (or, at least if one-shot backup should be processed)
-- Backup existing configuration files
+- Detect if an upgrade is necessary (or, at least, if one-shot backup should be processed)
+- Back-up existing configuration files
 - Apply upgrades (run migrators)
 - Copy upgraded files back
 
 .. important::
 
-    Upgrade operation is always done on a copy of your production configuration files in the temporary directory. If anything fails during the upgrade process, it doesn't affect the real files. When the upgrade is successfully done for all files and for all intermediate versions, the new state is copied back to production locations. In case of serious failure during the final copy back, there should be a backup stored in ``/var/lib/one/backups/config/`` for manual restore.
+    Upgrade operation is always done on a copy of your production configuration files in the temporary directory. If anything fails during the upgrade process, it doesn't affect the real files. When the upgrade is successfully completed for all files and for all intermediate versions, the new state is copied back to production locations. In case of serious failure during the final copy back, there should be a backup stored in ``/var/lib/one/backups/config/`` for manual restore.
 
 .. note::
 
@@ -344,7 +344,7 @@ The ``upgrade`` subcommand makes all the changes in configuration files to updat
 
 .. important::
 
-    Upgrade operation detects changed values and preserves their content. Using patch mode **replace** described in :ref:`Troubleshooting <cfg_conflicts>`, the user can request to replace changed values with default ones for which **new default appears in the newer version**.
+    Upgrade operation detects changed values and preserves their content. Using patch mode's **replace** described in :ref:`Troubleshooting <cfg_conflicts>`, the user can request to replace changed values with default ones for which **new default appears in the newer version**.
 
 Parameters:
 
@@ -371,7 +371,7 @@ Parameters:
 |                          | (instead of production directories)                                |           |
 +--------------------------+--------------------------------------------------------------------+-----------+
 
-In most cases, the upgrade from one version to another will be as easy as simply run of command ``onecfg upgrade`` without any extra parameters. It'll upgrade based on internal configuration version tracking and currently installed OpenNebula. For example:
+In most cases, the upgrade from one version to another will be as easy as simply running the command ``onecfg upgrade`` without any extra parameters. It'll upgrade based on internal configuration version tracking and the currently installed OpenNebula. For example:
 
 .. prompt:: bash # auto
 
@@ -409,7 +409,7 @@ To see the files changed during the upgrade, run the command in verbose mode via
 Versions Override
 -----------------
 
-It can be useful to control the upgrade process by providing custom source configuration version (``--from VERSION``), target configuration version (``--to VERSION``), or both configuration versions in cases when some version is not known or when user wants to have control over the process when upgrading over multiple major versions.
+It can be useful to control the upgrade process by providing custom source configuration version (``--from VERSION``), target configuration version (``--to VERSION``), or both configuration versions in cases when some version is not known or when the user wants to have control over the process when upgrading over multiple major versions.
 
 The example below demonstrates step-by-step manual upgrade with versions enforcing (verbose output was filtered):
 
@@ -444,7 +444,7 @@ Successful upgrade saves the target version as a new current configuration versi
 Debug Output
 ------------
 
-The tool provides more detailed information even about individual changes done in the configuration files and status of their application, if run with the debug logging enabled via parameter ``--debug``. On the example below, see the **Patch Report** section which uses the format introduced for :ref:`diff subcommand <cfg_diff>` prefixed by patch application status in square brackets:
+The tool provides more detailed information even about individual changes made in the configuration files and status of their application, if run with the debug logging enabled via parameter ``--debug``. In the example below, see the **Patch Report** section which uses the format introduced for :ref:`diff subcommand <cfg_diff>` prefixed by patch application status in square brackets:
 
 .. prompt:: bash $ auto
 
