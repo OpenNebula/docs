@@ -4,6 +4,8 @@
 Integration and Development
 ===========================
 
+The Development Guide provides details about APIs to integrate cloud with third party applications, development of new infrastructure drivers to interface any specific storage, virtualization, monitoring or authorization system, and how to build OpenNebula for source code.
+
 .. toctree::
    :maxdepth: 2
 
