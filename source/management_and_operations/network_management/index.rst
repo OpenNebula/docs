@@ -13,4 +13,4 @@ Virtual Network Management
    Security Groups <security_groups>
    Self Provision <self_provision>
    Virtual Routers <vrouter>
-   VMware NSX Networks <nsx_networks>
+   NSX Networks <nsx_networks>
