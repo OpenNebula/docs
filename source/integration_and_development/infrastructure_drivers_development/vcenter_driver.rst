@@ -49,19 +49,19 @@ In vSphere's web client, when we click on a resource in the Inventory like a Vir
 Here you have two examples where you can find the instance uuid and the moref:
 
 .. image:: /images/vcenter_moref_url1.png
-    :width: 50%
+    :width: 80%
     :align: center
 
 .. image:: /images/vcenter_moref_url2.png
-    :width: 50%
+    :width: 80%
     :align: center
 
-If you want to get information about a resource, you can use the Managed Object Browser provided by VMWare, which is listens on https://x.x.x.x/mob/ where x.x.x.x is the FQDN/IP of your vCenter instance. Use your vSphere credentials and you can browse a resource using an URL like this https://x.x.x.x/mob/?moid=yyyyy where yyyyy is the moref of the resource you want to browse.
+If you want to get information about a resource, you can use the Managed Object Browser provided by VMware, which is listens on https://x.x.x.x/mob/ where x.x.x.x is the FQDN/IP of your vCenter instance. Using your vSphere credentials you can browse a resource using an URL like this https://x.x.x.x/mob/?moid=yyyyy where yyyyy is the moref of the resource.
 
 This a screenshot of a virtual machine browsed by the Managed Object Browser:
 
 .. image:: /images/vcenter_mob_browser.png
-    :width: 50%
+    :width: 70%
     :align: center
 
 
@@ -70,17 +70,15 @@ VMware VM Templates and OpenNebula
 
 In OpenNebula, Virtual Machines are deployed from VMware VM Templates that **must exist previously in vCenter and must be imported into OpenNebula**. There is a one-to-one relationship between each VMware VM Template and the equivalent OpenNebula VM Template. Users will then instantiate the OpenNebula VM Template and OpenNebula will create a Virtual Machine clone from the vCenter template.
 
-.. note:: VMs launched in vCenter through OpenNebula can access VMware advanced features and it can be managed through the OpenNebula provisioning portal -to control the life-cycle, add/remove NICs, make snapshots- or through vCenter (e.g. to move the VM to another datastore or migrate it to another ESX). OpenNebula will poll vCenter to detect these changes and update its internal representation accordingly.
+VMs launched in vCenter through OpenNebula can access VMware advanced features and it can be managed through the OpenNebula provisioning portal -to control the life-cycle, add/remove NICs, make snapshots-. It is not recommended to manage them through vCenter. Changes in ESX locatoin made by DRS will be detected by OpenNebula and update its internal representation accordingly.
 
-.. note:: Changes to the VM Template in vCenter (like for instance migrate its disk to another datastore) are not supported. If any change is made to the vCenter VM Template, it needs to be reimported into OpenNebula.
+.. warning:: Changes to the VM Template in vCenter (like for instance migrate its disk to another datastore) are not supported. If any change is made to the vCenter VM Template, it needs to be reimported into OpenNebula.
 
-There is no need to convert your current Virtual Machines or Templates, or import/export them through any process; once ready just save them as VM Templates in vCenter, following `this procedure <http://pubs.vmware.com/vsphere-55/index.jsp?topic=%2Fcom.vmware.vsphere.vm_admin.doc%2FGUID-FE6DE4DF-FAD0-4BB0-A1FD-AFE9A40F4BFE_copy.html>`__ and import it into OpenNebula as explained later in this chapter.
+There is no need to convert your current Virtual Machines or VM Templates; once you have a VM ready just save them as VM Templates in vCenter, following `this procedure <http://pubs.vmware.com/vsphere-55/index.jsp?topic=%2Fcom.vmware.vsphere.vm_admin.doc%2FGUID-FE6DE4DF-FAD0-4BB0-A1FD-AFE9A40F4BFE_copy.html>`__ and import it into OpenNebula.
 
 When a VMware VM Template is imported, OpenNebula will detect any virtual disk and network interface within the template. For each virtual disk, OpenNebula will create an OpenNebula image representing each disk discovered in the template. In the same way, OpenNebula will create a network representation for each standard or distributed port group associated to virtual network interfaces found in the template.
 
-.. warning:: The process that discovers virtual disks and networks and then creates OpenNebula representations take some time depending on the number of discovered resources and the operations that must be performed so be patient.
-
-The following sections explain some features that are related with vCenter templates and virtual machines deployed by OpenNebula.
+The following sections explain some features that are related with vCenter VM Templates and virtual machines deployed by OpenNebula.
 
 .. _vcenter_linked_clones_description:
 
@@ -89,28 +87,30 @@ Linked Clones
 
 In OpenNebula, a new VM is deployed when a clone of an existing vCenter template is created, that's why OpenNebula requires that templates are first created in vCenter and then imported into OpenNebula.
 
-In VMWare there are two types of cloning operations:
+In VMware there are two types of cloning operations:
 
 * The Full Clone. A full clone is an independent copy of a template that shares nothing with the parent template after the cloning operation. Ongoing operation of a full clone is entirely separate from the parent template. This is the default clone action in OpenNebula.
+
 * The Linked Clone. A linked clone is a copy of a template that shares virtual disks with the parent template in an ongoing manner. This conserves disk space, and allows multiple virtual machines to use the same software installation.
 
 When the **onevcenter** tool is used to import a vCenter template, as explained later, you'll be able to specify if you want to use linked clones when the template is imported. Note that if you want to use linked clones, OpenNebula has to create delta disks on top of the virtual disks that are attached to the template. This operation will modify the template so you may prefer that OpenNebula creates a copy of the template and modify that template instead, the onevcenter tool will allow you to choose what you prefer to do.
 
-.. important:: Linked clone disks cannot be resized.
 
-.. note:: Sunstone does not allow you to specify if you want to use Linked Clones as the operations involved are heavy enough to keep them out of the GUI.
+Sunstone does not allow you to specify if you want to use Linked Clones as the operations involved are heavy enough to keep them out of the GUI.
+
+.. important:: Linked clone disks cannot be resized.
 
 .. _vcenter_folder_placement:
 
 VM Placement
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In OpenNebula, by default, a new virtual machine cloned from a vCenter template will be displayed in the same folder where the template lives in vSphere's VM and Templates inventory. However you have the chance to select in which folder you want to see the VM's based on that template.
+In OpenNebula, by default, a new virtual machine cloned from a vCenter template will be displayed in the same folder where the template lives in vSphere's VM and VM Templates inventory. However you have the chance to select in which folder you want to see the VM's based on that template.
 
 For example, if you have the following directory tree and you want VMs to be placed in the VMs folder under Management, the path to that folder from the datacenter root would be /Management/VMs. You can use that path in different OpenNebula actions e.g when a template is imported.
 
 .. image:: /images/vcenter_vm_folder_placement.png
-    :width: 35%
+    :width: 40%
     :align: center
 
 
@@ -119,10 +119,7 @@ For example, if you have the following directory tree and you want VMs to be pla
 Resource Pools in OpenNebula
 --------------------------------------------------------------------------------
 
-OpenNebula can place VMs in different Resource Pools. There are two approaches to achieve this:
-
-* fixed per Cluster basis
-* flexible per VM Template basis.
+OpenNebula can place VMs in different Resource Pools, and can do so using two approaches.
 
 Fixed per Cluster basis
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -137,9 +134,8 @@ In the fixed per Cluster basis approach, the vCenter connection that OpenNebula 
 * Add a new attribute called VCENTER_RESOURCE_POOL to OpenNebula's host template representing the vCenter cluster (for instance, in the info tab of the host, or in the CLI), with the reference to a Resource Pool.
 
 .. image:: /images/vcenter_resource_pool_cluster.png
-    :width: 50%
+    :width: 80%
     :align: center
-
 
 Flexible per VM Template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -174,14 +170,10 @@ The VCENTER_RESOURCE_POOL has the following elements:
 * TestResourcePool/NestedResourcePool,TestResourcePool: that's the list of Resource Pool references separeted with commas that are available to the user.
 * TestResourcePool/NestedResourcePool: is the default Resource Pool that will be selected on the list.
 
-.. note:: As we'll see later, the import tools provided by OpenNebula will create the VCENTER_RESOURCE_POOL attribute easily.
-
-Using Sunstone we have the same actions described for the onevcenter tool.
-
-If we want to specify a Resource Pool we should select Fixed from the Type drop-down menu and introduce the reference under Default Resource Pool:
+The import process guides the OpenNbula admin and creates the VCENTER_RESOURCE_POOL attribute so it doesn't need to be hand-crafted. If we want to specify a Resource Pool we should select Fixed from the Type drop-down menu and introduce the reference under Default Resource Pool:
 
 .. image:: /images/vcenter_resource_pool_fixed_sunstone.png
-    :width: 50%
+    :width: 65%
     :align: center
 
 If we wanted to offer a list to the user:
@@ -191,7 +183,7 @@ If we wanted to offer a list to the user:
 * We would introduce the references of the Resource Pools that we want to include in the list, using a comma to separate values.
 
 .. image:: /images/vcenter_resource_pool_list_sunstone.png
-    :width: 50%
+    :width: 65%
     :align: center
 
 
@@ -251,7 +243,7 @@ Snapshot limitations
 
 OpenNebula treats **snapshots** a tad different than VMware. OpenNebula assumes that they are independent, whereas VMware builds them incrementally. This means that OpenNebula will still present snapshots that are no longer valid if one of their parent snapshots are deleted, and thus revert operations applied upon them will fail. The snapshot preserves the state and data of a virtual machine at a specific point in time including disks, memory, and other devices, such as virtual network interface cards so this operation may take some time to finish.
 
-vCenter impose some limitations and its behavior may differ from vCenter 5.5 to 6.5. If you create a snapshot in OpenNebula note the following limitations:
+If you create a snapshot in OpenNebula note the following limitations:
 
 - **It's not a good idea to add or detach disks or nics if you have created a snapshot**. DISKs and NICs elements will be removed from your OpenNebula VM and if you revert to your snapshot, those elements that were added or removed won't be added again to OpenNebula VM and vCenter configuration may not be in sync with OpenNebula's representation of the VM. It would be best to remove any snapshot, perform the detach actions and then create a snapshot again affecting operations.
 - If despite the previous point you try to detach a disk while the VM is powered on, OpenNebula will not allow this action. If you detach the disk while the VM is in POWEROFF OpenNebula will remove the DISK element but the disk won't be removed from vCenter.
