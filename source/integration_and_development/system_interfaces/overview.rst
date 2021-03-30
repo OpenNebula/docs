@@ -6,8 +6,6 @@ Overview
 
 OpenNebula has been designed to be easily adapted to any infrastructure and easily extended with new components. The result is a modular system that can implement a variety of Cloud architectures and can interface with multiple datacenter services. In this Guide we review the main interfaces of OpenNebula and their.
 
-.. todo:: Add FireEdge to image
-
 |image0|
 
 How Should I Read This Chapter
@@ -26,5 +24,5 @@ Hypervisor Compatibility
 
 All the Sections of this Chapter applies to both KVM and vCenter hypervisors.
 
-.. |image0| image:: /images/opennebula_interfaces.png
+.. |image0| image:: /images/overview_architecture.png
    :scale: 75 %
