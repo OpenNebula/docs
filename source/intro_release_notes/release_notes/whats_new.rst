@@ -187,3 +187,4 @@ Other Issues Solved
 - `VM terminate, poweroff and undeploy hard overrides their soft counterpart <https://github.com/OpenNebula/one/issues/2586>`__.
 - `AR inherits IPAM_MAD from VNET <https://github.com/OpenNebula/one/issues/2593>`__.
 - `INHERIT_VNET_ATTR, INHERIT_DATASTORE_ATTR and INHERIT_IMAGE_ATTR allows inherit of complex type <https://github.com/OpenNebula/one/issues/4090>`__.
+- `Fix OneGate service scale operation <https://github.com/OpenNebula/one/issues/5313>`__.
