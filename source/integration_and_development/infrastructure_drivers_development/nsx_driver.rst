@@ -3,10 +3,7 @@
 NSX Driver
 ==========
 
-The NSX Driver for OpenNebula enables the interaction with NSX Manager API to manage its different components, such as logical switches, distributed firewall and so on.
-
-UML diagram
------------
+The NSX Driver for OpenNebula enables the interaction with NSX Manager API to manage its different components, such as logical switches and distributed firewall.
 
 Here is the dependency between classes into the NSX driver.
 
@@ -18,25 +15,20 @@ NSX Integration
 Logical switches integration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-OpenNebula manages logical switches using NSX Driver and the hook subsystem. How does it work?
+OpenNebula manages logical switches using NSX Driver and the hook subsystem.
 
-An action to create or delete a logical switch either from Sunstone, CLI or API, generates an specific event. If there is a hook subscribed to that event, it will execute an action or script.
+An action to create or delete a logical switch either from Sunstone, CLI or API, generates an specific event. If there is a hook subscribed to that event, it will execute an action or script. In the NSX integration a hook will use the NSX Driver to send commands to the NSX Manager API and will wait for an answer.
 
-In the NSX integration a hook will use the NSX Driver to send commands to the NSX Manager API and will wait for an answer.
-
-When NSX Manager finishes the action it will return a response and the hook, based on that response, will end up as success or error.
-
-The process of creating a logical switch is depicted below.
+When NSX Manager finishes the action it will return a response and the hook, based on that response, will end up as success or error. The process of creating a logical switch is depicted below.
 
 .. figure:: /images/nsx_driver_integration.png
-
 
 Security Groups integration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 OpenNebula security groups defines rules, associated to vnet, that are applied into NSX Distributed Firewall over a specific virtual machine logical port group. NSXDriver is in charge of translating OpenNebula security group rules into DFW rules, on both NSX-T and NSX-V.
 
-Here are the actions that affect to the creation, modification or deletion of rules in the Distributed Firewall. 
+Here are the actions that affect to the creation, modification or deletion of rules in the Distributed Firewall.
 
 +-----------------------------------+--------------------+--------------------+
 | OpenNebula action                 | NET driver actions | NSX driver action  |
