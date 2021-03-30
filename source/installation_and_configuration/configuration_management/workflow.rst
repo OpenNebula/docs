@@ -95,16 +95,4 @@ After ``onecfg upgrade`` follow the rest steps from OpenNebula upgrade document.
 Step 3 - Validation
 -------------------
 
-When all steps are done, run the OpenNebula and check the working state.
-
-Check the configuration state via ``onecfg status``. There shouldn't be any errors and no new updates available. Your configuration should be current to the installed OpenNebula version. For example:
-
-.. prompt:: bash # auto
-
-    # onecfg status
-    --- Versions ------------------------------
-    OpenNebula:  5.12.0
-    Config:      5.12.0
-
-    --- Available Configuration Updates -------
-    No updates available.
+When all steps are done, run the OpenNebula and check the working state as explained :ref:`here <validate_upgrade>`.
