@@ -7,9 +7,11 @@ What Is OpenNebula Enterprise Edition
 The Enterprise Edition of OpenNebula is a tested, hardened, and production-ready version that incorporates:
 
 * Additional bug fixes and software patches with minor enhancements.
-* `Migration Packages <upgrade>` to easily upgrade your production cloud to the latest version.
+* :ref:`Migration Packages <upgrade>` to easily upgrade your production cloud to the latest version.
 
-While we have made all of our products open source under the Apache 2 license, the packages of the Enterprise Edition and the Enterprise Tools are distributed under commercial license terms to customers with an active `OpenNebula Subscription <https://opennebula.io/subscriptions>`__. This `article <https://support.opennebula.pro/hc/en-us/articles/360043961492-OpenNebula-Subscription-FAQ>`__ from our Knowledge Base explains the main differences between the Community and teh Enterprise versiones of OpenNebula.
+The Enterprise Edition of OpenNebula is updated and released every 6 months and is maintained through the `Customer Portal <https://opennebula.pro>`__. OpenNebula Systems releases regular maintenance versions with minor features and bug fixes for the Enterprise Edition, as well as LTS versions to reduce the risk, expense, and disruption of software deployment. Our GitHub provides all the details of the `OpenNebula Release Cycle Policy <https://github.com/OpenNebula/one/wiki/Release-Policy>`__.
+
+While we have made all of our products open source under the Apache 2 license, the packages of the Enterprise Edition and the Enterprise Tools are distributed under commercial license terms to customers with an active `OpenNebula Subscription <https://opennebula.io/subscriptions>`__. This `article <https://support.opennebula.pro/hc/en-us/articles/360043961492-OpenNebula-Subscription-FAQ>`__ from our Knowledge Base explains the main differences between the Community and the Enterprise versiones of OpenNebula.
 
 If you are an OpenNebula Systems customer with an active support subscription, you have immediate access to the Enterprise Edition. Please check your private repository at OpenNebula.pro
 
