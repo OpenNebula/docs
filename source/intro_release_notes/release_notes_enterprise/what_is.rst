@@ -27,5 +27,3 @@ Why customers want to purchase an OpenNebula Subscription:
 * **Exclusive Contents** – Access to exclusive knowledge base and critical notifications.
 * **SLA-based Support** – Secure and private support under a commercial SLA.
 * **Professional Services** – Access to Professional Services offered by OpenNebula Systems to streamline your cloud.
-
-https://support.opennebula.pro/hc/en-us/articles/360043961492-OpenNebula-Subscription-FAQ
