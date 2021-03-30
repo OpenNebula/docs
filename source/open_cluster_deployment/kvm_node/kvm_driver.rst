@@ -104,6 +104,8 @@ Working with cgroups (Optional)
 
 Optionally, you can setup cgroups to control resources on your hosts. The `libvirt cgroups documentation <https://libvirt.org/cgroups.html>`__ describes all the cases and a way the cgroups are managed by libvirt/KVM.
 
+.. _kvmg_memory_cleanup:
+
 Memory Cleanup (Optional)
 -------------------------
 
