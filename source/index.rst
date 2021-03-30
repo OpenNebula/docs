@@ -9,9 +9,9 @@ OpenNebula is an open-source cloud management platform that combines virtualizat
 +========================================================================+==================================================================================================================+
 | :ref:`Overview <overview>`                                             | Learn the OpenNebula model, popular use cases and how to design a cloud infrastructure                           |
 +------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
-| :ref:`Quick Start Guide <quick_start>`                                 | Build a learning, development or testing OpenNebula installation with local resources and an edge cluster on AWS |
+| :ref:`Quick Start Guide <quick_start>`                                 | Build a learning or development OpenNebula installation with local and edge resources                           |
 +------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
-| :ref:`Management and Operations <management_and_operations>`           | How to operate and manage your OpenNebula cloud, including deployment of edge clusters for multi-cloud computing |
+| :ref:`Management and Operations <management_and_operations>`           | How to operate and manage your cloud, including deployment of clusters on remote providers                       |
 +------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
 | :ref:`Installation and Configuration <installation_and_configuration>` | How to install and configure the main OpenNebula services                                                        |
 +------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
@@ -21,7 +21,7 @@ OpenNebula is an open-source cloud management platform that combines virtualizat
 +------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
 | :ref:`Integration and Development <integration_and_development>`       | APIs to integrate  OpenNebula  with third party applications and development of new drivers                      |
 +------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
-| :ref:`Release Notes <release_notes>`                                   | New features, improvements, and fixes implemented, and the upgrade process in each OpenNebula version.           |
+| :ref:`Release Notes <release_notes>`                                   | New features, improvements and fixes, and the upgrade process in each  version                                    |
 +------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
 
 
