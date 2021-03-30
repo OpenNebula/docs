@@ -436,25 +436,14 @@ The following is an example of the previous procedure from the command line:
     $ onevm resize web_vm --memory 2G --vcpu 2
     $ onevm resume web_vm
 
-
-.. _vm_guide2_resize_disk:
-
 Live Resize of Capacity
 --------------------------------------------------------------------------------
 
-If you need to resize the capacity in the RUNNING state you have to setup some extra attributes to VM template, this attributes **must be set before the VM is started**.
+If you need to resize the capacity in the RUNNING state you have to setup some extra attributes to VM template, this attributes **must be set before the VM is started**. These attributes are driver specific, more info for :ref:`KVM <kvm_live_resize>` and :ref:`vCenter <vcenter_live_resize>`.
 
-+------------------+------------------------------------------------------------------------------------------------+
-|  Attribute       |                              Description                                                       |
-+==================+================================================================================================+
-| ``VCPU_MAX``     | Maximum number of VCPUs which could be hotplugged                                              |
-+------------------+------------------------------------------------------------------------------------------------+
-| ``MEMORY_MAX``   | Maximum memory which could be hotplugged                                                       |
-+------------------+------------------------------------------------------------------------------------------------+
-| ``MEMORY_SLOTS`` | Optional, slots for hotplugging memory. Limits the number of hotplug operations. Defaults to 8 |
-+------------------+------------------------------------------------------------------------------------------------+
+.. warning:: Hotplug implemented only for KVM and vCenter.
 
-.. warning:: Hotplug implemented only for KVM and vCenter. Please check :ref:`here <vcenter_live_resize>` if you are using vCenter.
+.. _vm_guide2_resize_disk:
 
 Resizing VM Disks
 --------------------------------------------------------------------------------
