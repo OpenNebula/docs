@@ -7,7 +7,7 @@ Hosts
 
 In order to use your existing physical nodes, you have to add them to OpenNebula as Hosts. To add a Host only its hostname and type is needed.
 
-.. warning:: Before adding a Linux host check that you can ssh to it without being prompt for a password.
+.. warning:: Before adding a Linux host check that you can ssh to it without being prompted for a password.
 
 
 Creating and Deleting Hosts
@@ -27,7 +27,7 @@ The parameters are:
 * ``--im``: Information Manager driver.
 * ``--vm``: Virtual Machine Manager driver.
 
-.. note:: In the examples included in this guide we'll use `KVM` as hypervisor to show some real examples. Note that the procedure will be the same for any other hypervisor but just replacing the name.
+.. note:: In the examples included in this guide we'll use `KVM` as the hypervisor to show some real examples. Note that the procedure will be the same for any other hypervisor but just replacing the name.
 
 To remove a host you can either specify it by ID or by name. The following commands are equivalent:
 
