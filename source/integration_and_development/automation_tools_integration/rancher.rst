@@ -1,10 +1,10 @@
-.. _rancher:
+.. _rancher_integration:
 
 ================================================================================
 Rancher Integration
 ================================================================================
 
-`Rancher <https://rancher.com/>`_ is an open source sofware stack to run and manage containers and `Kubernetes <https://kubernetes.io/>`_ clusters while providing other integrated tools to enhance DevOps workflows.
+`Rancher <https://rancher.com/>`_ is an open source software stack to run and manage containers and `Kubernetes <https://kubernetes.io/>`_ clusters while providing other integrated tools to enhance DevOps workflows.
 
 Rancher Installation
 --------------------------------------------------------------------------------
@@ -28,7 +28,7 @@ For all the different options to run Rancher on a single Docker Host, you can ch
 
 For production environments, it is recommended to install Rancher in a high-availability configuration. Rancher can be installed on a Kubernetes Single Node or on a multiple-node Kubernetes Clusters using `Helm <https://helm.sh>`_.
 
-Within OpenNebula you can deploy Kubernetes Clusters by instantiating the :ref:`OpenNebula Kubernetes Appliance <running_kubernetes_clusters>`_ or by instantiating the :ref:`OpenNebula K3s Appliance <running_k3s_clusters>`.
+Within OpenNebula you can deploy Kubernetes Clusters by instantiating the :ref:`OpenNebula Kubernetes Appliance <running_kubernetes_clusters>` or by instantiating the :ref:`OpenNebula K3s Appliance <running_k3s_clusters>`.
 
 Once you setup a Kubernetes cluster within OpenNebula you can follow the documentation to `install Rancher on a Kubernetes Cluster <https://rancher.com/docs/rancher/v2.x/en/installation/k8s-install/helm-rancher/>`_ by using Helm.
 
