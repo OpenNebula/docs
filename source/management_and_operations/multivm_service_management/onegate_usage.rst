@@ -510,14 +510,14 @@ The new metric is stored in the user template section of the VM:
 Self-configuration
 --------------------------------------------------------------------------------
 
-* ``PUT ${ONEGATE_ENDPOINT}/service/role/${ROLE_NAME}``: to change the cardinality of a specific role of the Service.
+* ``POST ${ONEGATE_ENDPOINT}/service/${SERVICE_ID}/scale``: to change the cardinality of a specific role of the Service.
 
 .. prompt:: bash $ auto
 
-      $ curl -X "PUT" "${ONEGATE_ENDPOINT}/service/role/worker" \
+      $ curl -X "PUT" "${ONEGATE_ENDPOINT}/service/0/scale" \
           --header "X-ONEGATE-TOKEN: `cat token.txt`" \
           --header "X-ONEGATE-VMID: $VMID" \
-          -d "{'cardinality' : 10}"
+          -d "{'role_name': 'worker', 'cardinality' : 10, 'force': false}"
 
 * ``POST ${ONEGATE_ENDPOINT}/vms/${VM_ID}/action``: to perform an action on a specific VM of the Service. Supported actions (resume, stop, suspend, terminate, reboot, poweroff, resched, unresched, hold, release)
 
