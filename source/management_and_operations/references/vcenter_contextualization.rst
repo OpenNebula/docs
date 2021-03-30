@@ -69,39 +69,32 @@ vCenter offers a way to prepare the guest OS on boot. For example configuring it
 
 There are a couple of things to take into account:
 
-* It only works with OpenNebula ``vcenter`` driver.
-* This system is not compatible with :ref:`OpenNebula contextualization<vcenter_contextualization>` as this customization overwrites the networking changes made by context scripts.
-* VM network configuration must be done externaly to OpenNebula. Either with a DHCP server or manually setting IPs for each interface.
+* This system is not compatible with :ref:`OpenNebula contextualization <vcenter_one_context>` as this customization overwrites the networking changes made by context scripts.
+* VM network configuration must be done externally to OpenNebula. Either with a DHCP server or manually setting IPs for each interface.
 * This method can be used in all the `Guest OSs supported by vCenter <https://pubs.vmware.com/vsphere-60/index.jsp?topic=%2Fcom.vmware.vsphere.vm_admin.doc%2FGUID-E63B6FAA-8D35-428D-B40C-744769845906.html>`__.
 
 
-Applying Customization to one Template Using Sunstone
+Applying Customization to a VM Template Using Sunstone
 --------------------------------------------------------------------------------
 
-For vcenter templates there are two options in the context tab. To use vCenter Customization select "vCenter" in the as "Contextualization type". This will show a dropdown with all the customizations from all the hosts. There you can select from these possibilities:
+For vCenter VM Templates there are two options in the context tab. To use vCenter Customization select "vCenter" in the as "Contextualization type". This will show a dropdown with all the customizations from all the hosts. There you can select from these possibilities:
 
 * **None**: No customization will be applied
 * **Custom**: You will be able to type manually the name of one customization
 * The name of customizations found in vCenters
 
 .. image:: /images/vcenter_customization_step1.png
-    :width: 50%
+    :width: 80%
     :align: center
 
-Make sure that the customization applied is available in the vCenter where the VM template reside.
-
-Once we update the template, we'll get a VCENTER_CUSTOMIZATION_SPEC attribute inside the USER_TEMPLATE section.
-
-.. image:: /images/vcenter_customization_step2.png
-    :width: 50%
-    :align: center
+Make sure that the customization applied is available in the vCenter where the VM template reside. After the VM Template is updated it will get a VCENTER_CUSTOMIZATION_SPEC attribute inside the USER_TEMPLATE section.
 
 Getting the Available Customizations per Cluster
 --------------------------------------------------------------------------------
 
-OpenNebula monitoring probes get the list of available customization specifications per cluster. You can get the list with the command ``onehost show``. Look for ``CUSTOMIZATION`` data in `MONITORING INFORMATION`. For example:
+OpenNebula monitoring probes get the list of available customization specifications per cluster. You can get the list with the command ``onehost show``. Look for ``CUSTOMIZATION`` data in ``MONITORING INFORMATION``.
 
-.. code::
+.. prompt:: auto $ bash
 
     $ onehost show 20
     [...]
