@@ -82,9 +82,9 @@ The network model is implemented in the following way:
 Operating Providers & Edge Clusters
 ================================================================================
 
-Refer to :ref:`cluster operation guide <cluster_operations>`, to check all the operations needed to create, manage and delete an edge cluster. Refer to :ref:`providers guide <provider_operations>`, to checkk all the operations related with providers.
+Refer to the :ref:`cluster operation guide <cluster_operations>`, to check all of the operations needed to create, manage and delete an edge cluster. Refer to the :ref:`providers guide <provider_operations>`, to check all of the operations related to providers.
 
-You can also manage Equinix Cluster using OneProvision Fireedge GUI.
+You can also manage Equinix Clusters using the OneProvision Fireedge GUI.
 
 |image_fireedge|
 
