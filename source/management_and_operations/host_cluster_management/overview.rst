@@ -4,7 +4,7 @@
 Overview
 ==========================
 
-A **Host** is a server that has the ability to run Virtual Machines and that is connected to OpenNebula's Front-end server. To learn how to prepare the hosts you can read the :ref:`Open Cluster Deployment <open_cluster_deployment>` guide. Hosts are usually group in **Clusters**.
+A **Host** is a server that has the ability to run Virtual Machines and that is connected to OpenNebula's Front-end server. To learn how to prepare the hosts you can read the :ref:`Open Cluster Deployment <open_cluster_deployment>` guide. Hosts are usually grouped in **Clusters**.
 
 How Should I Read This Chapter
 ================================================================================
