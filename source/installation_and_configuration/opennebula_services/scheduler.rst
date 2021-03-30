@@ -1,6 +1,5 @@
 .. _schg:
 .. _sched_conf:
-.. _schg_configuration:
 
 =======================
 Scheduler Configuration
@@ -31,6 +30,8 @@ The policy used to place a VM can be configured in two places:
 * Globally, for all the VMs in the configuration file ``/etc/one/sched.conf`` of Scheduler.
 * For each VM, as defined by the general ``SCHED_RANK`` and ``SCHED_DS_RANK`` and NIC-specific ``SCHED_RANK`` in the VM template.
 
+.. _schg_configuration:
+
 Configuration
 =============
 
@@ -49,7 +50,7 @@ The Scheduler configuration file is in ``/etc/one/sched.conf`` on the Front-end 
 * ``MAX_DISPATCH``: Maximum number of Virtual Machines actually dispatched to a host in each scheduling action (Default: 30)
 * ``MAX_HOST``: Maximum number of Virtual Machines dispatched to a given host in each scheduling action (Default: 1)
 * ``LIVE_RESCHEDS``: Rescheduling VMs performs migrations as ``1`` - live, ``0`` - cold.
-* ``COLD_MIGRATION_MODE``: Defines mode of cold VM migration. Options ``0`` - save, ``1`` - poweroff, ``2`` - poweroff hard. See :ref:`one.vm.migrate <one_vm_migrate>`.
+* ``COLD_MIGRATE_MODE``: Defines mode of cold VM migration. Options ``0`` - save, ``1`` - poweroff, ``2`` - poweroff hard. See :ref:`one.vm.migrate <one_vm_migrate>`.
 * ``MEMORY_SYSTEM_DS_SCALE``: This factor scales the VM usage of the system DS with the memory size. This factor can be use to make the scheduler consider the overhead of checkpoint files (*system_ds_usage = system_ds_usage + memory_system_ds_scale * memory*).
 * ``DIFFERENT_VNETS``: When set (``YES``) the NICs of a VM will be forced to be in different Virtual Networks.
 

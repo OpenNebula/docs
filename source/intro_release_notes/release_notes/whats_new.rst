@@ -41,16 +41,13 @@ In the following list you can check the highlights of OpenNebula 6.0 (a detailed
 
 OpenNebula Core
 ================================================================================
-- `Add option set cold migration type for rescheduling <http://github.com/OpenNebula/one/issues/2983>`__.
-- `Add option to create formatted datablocks <https://github.com/OpenNebula/one/issues/4989>`__.
+- Add option set cold migration mode for rescheduling. See :ref:`Scheduler configuration <schg_configuration>`.
+- Add option to create formatted datablocks. See :ref:`Image template <img_template>`.
 - Add support for document encrypted attributes, check :ref:`this <encrypted_attrs>` for more information.
-- `VM terminate, poweroff and undeploy hard overrides their soft counterpart <https://github.com/OpenNebula/one/issues/2586>`__.
-- `AR inherits IPAM_MAD from VNET <https://github.com/OpenNebula/one/issues/2593>`__.
-- `INHERIT_VNET_ATTR, INHERIT_DATASTORE_ATTR and INHERIT_IMAGE_ATTR allows inherit of complex type <https://github.com/OpenNebula/one/issues/4090>`__.
-- `Allow 'onevm disk-saveas' in undeployed and stopped state <https://github.com/OpenNebula/one/issues/1112>`__.
-- `Terminate oned in HA in case of lost DB connection <https://github.com/OpenNebula/one/issues/5186>`__.
-- `Unique VM identification, allow to force uuid to VM <https://github.com/OpenNebula/one/issues/1048>`__.
-- `Enable live CPU and memory resize <https://github.com/OpenNebula/one/issues/1660>`__.
+- Allow 'onevm disk-saveas' in undeployed and stopped state. See :ref:`disk-saveas <disk_save_as_action>`.
+- Terminate oned in HA in case of lost DB connection. Configured by ``ERRORS_LIMIT`` in :ref:`oned.conf <oned_conf>`.
+- Unique VM identification, allow to force uuid to VM. See :ref:`UUID in VM template <template_os_and_boot_options_section>`.
+- Enable :ref:`live CPU and memory resize <vm_guide2_resizing_a_vm>`.
 
 Storage
 ================================================================================
@@ -187,3 +184,6 @@ Other Issues Solved
 - `Prevent xtables (iptables/iptables6) collisions with non-OpenNebula related processes <https://github.com/OpenNebula/one/issues/3624>`__.
 - `Fix bug when updating VM configuration with non admin users <https://github.com/OpenNebula/one/issues/5096>`__.
 - `Fix bug when updating VCPU that blocked NUMA sockets <https://github.com/OpenNebula/one/issues/5291>`__.
+- `VM terminate, poweroff and undeploy hard overrides their soft counterpart <https://github.com/OpenNebula/one/issues/2586>`__.
+- `AR inherits IPAM_MAD from VNET <https://github.com/OpenNebula/one/issues/2593>`__.
+- `INHERIT_VNET_ATTR, INHERIT_DATASTORE_ATTR and INHERIT_IMAGE_ATTR allows inherit of complex type <https://github.com/OpenNebula/one/issues/4090>`__.

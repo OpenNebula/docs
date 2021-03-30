@@ -230,6 +230,23 @@ They correspond to their values OpenNebula equivalents for the XML representatio
 
 Also the VM name is included at libvirt XML ``title`` field, so if the ``--title`` option is used for listing the libvirt domains the VM name will be shown with the domain name.
 
+.. _kvm_live_resize:
+
+Live Resize VCPU and Memory
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+If you need to resize the capacity of VM in ``RUNNING`` state you have to setup some extra attributes to VM template, these attributes must be set before the VM is started.
+
++------------------+-------------------------------------------------------------------------------------------------+-----------+
+| Attribute        | Description                                                                                     | Mandatory |
++==================+=================================================================================================+===========+
+| ``VCPU_MAX``     | Maximum number of VCPUs which could be hotplugged.                                              | **NO**    |
++------------------+-------------------------------------------------------------------------------------------------+-----------+
+| ``MEMORY_MAX``   | Maximum memory which could be hotplugged.                                                       | **NO**    |
++------------------+-------------------------------------------------------------------------------------------------+-----------+
+| ``MEMORY_SLOTS`` | Optional, slots for hotplugging memory. Limits the number of hotplug operations. Defaults to 8. | **NO**    |
++------------------+-------------------------------------------------------------------------------------------------+-----------+
+
+
 Disk/NIC Hotplugging
 --------------------
 
