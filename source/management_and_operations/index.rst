@@ -1,3 +1,4 @@
+.. _mo:
 .. _operations_guide:
 .. _operation_guide:
 .. _management_and_operations:
