@@ -29,7 +29,6 @@ Step 3. Setup Customized Clusters On-premises
 
 OpenNebula is certified to work on top of multiple combinations of hypervisors, storage and networking technologies. In this model you need to install and configure the underlying cloud infrastructure software components first and then install OpenNebula to build the cloud. The clusters can be deployed on-premises or on your choice of bare-metal cloud or hosting provider. If you are interested in designing and deploying an OpenNebula cloud on top of VMware vCenter, please refer to our :ref:`VMWare Cloud Reference Architecture <vmware_cloud_architecture>`. If you are interested in an OpenNebula cloud fully based on open-source platforms and technologies, please refer to our :ref:`Open Cloud Reference Architecture <open_cloud_architecture>`. These guides have been created from the collective information and experiences from hundreds of users and cloud client engagements. Besides the main logical components and interrelationships, these guides document software products, configurations, and requirements of infrastructure platforms recommended for a smooth OpenNebula installation.
 
-
 3.1.Choose Your Hypervisor
 --------------------------------------------------
 
