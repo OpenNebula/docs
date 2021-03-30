@@ -156,9 +156,14 @@ The second action needed is to set the **oneadmin account password**. You will n
 
 .. _advanced_login:
 
-AS a last step you need to define a **root password.** You won't be using this very often, so write it down somewhere safe. It's your master password to the appliance.
+In the third step, you need to define a **root password.** You won't be using this very often, so write it down somewhere safe. It's your master password to the appliance.
 
 This password can be used to access the OpenNebula command line interface, for that you need to ssh to vOneCloud using the `root` account and password. In OS X and Linux environments, simply use `ssh` to log into the root account of vOneCloud's IP. For Windows environments you can use software like `PuTTY <http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>`__ or even SFTP clients like `WinSCP <https://winscp.net/>`__. Alternatively, open the console of the vOneCloud VM in vCenter and change the tty (Ctrl + Alt + F2).
+
+As the last step, you need to configure a public-facing address that will be used to access your vOneCloud instance by end-users. This address is used by Sunstone interface to redirect to different service FireEdge running within the vOneCloud instance. Enter the fully qualified domain name, hostname valid within your network, or the IP address.
+
+.. image:: /images/control-console-fe-endpoint.png
+    :align: center
 
 Step 3. Enjoy the Out-of-the-Box Features
 --------------------------------------------------------------------------------
@@ -166,6 +171,11 @@ Step 3. Enjoy the Out-of-the-Box Features
 After opening the Sunstone interface (``http://<appliance_ip>`` with oneadmin credentials) you are now ready to enjoy the out-of-the-box features of OpenNebula!
 
 .. image:: /images/sunstone-main.png
+    :align: center
+
+If Sunstone greets you with an error while connecting to the public FireEdge endpoint, return to Control Center in the previous step and configure a valid endpoint:
+
+.. image:: /images/sunstone-fe-error.png
     :align: center
 
 .. _import_vcenter:
