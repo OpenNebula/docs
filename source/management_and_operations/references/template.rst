@@ -212,6 +212,8 @@ This section (``CPU_MODEL``) configures the hardware configuration of the CPU ex
 |                         | in the host information and obtained through monitor.    |     |         |         |
 +-------------------------+----------------------------------------------------------+-----+---------+---------+
 
+.. _template_features:
+
 Features Section
 ================================================================================
 
