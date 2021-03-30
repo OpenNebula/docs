@@ -12,6 +12,6 @@ Use Cases
 
 .. note:: Browse inspiring user stories from organizations using OpenNebula `here <https://opennebula.io/opennebula-user-stories/>`__.
 
-.. todo:: Include brief description of use cases
+.. todo:: Include brief description of case studies
 
 .. note:: Browse inspiring case studies from organizations using OpenNebula `here <https://opennebula.io/case-studies/>`__.
