@@ -1,123 +1,66 @@
 .. _devel-market:
 
-================================================================================
+=============
 Market Driver
+=============
+
+The Market Driver is in charge of managing both Marketplaces and MarketPlace Apps.
+
+Marketplace Drivers Structure
 ================================================================================
 
-The Market Driver is in charge of managing both MarketPlaces and MarketPlaceApps.
-
-MarketPlace Drivers Structure
-================================================================================
-
-The main drivers are located under ``/var/lib/one/remotes/market/<market_mad>``.
-
-================================================================================
-
-Marketplaces support the following operations:
+The main drivers are located under ``/var/lib/one/remotes/market/<market_mad>``. Marketplaces support the following operations:
 
 +-------------+---------------------------------------------------------------------+
 | Action      | Description                                                         |
 +=============+=====================================================================+
 | ``create``  | Create a new Marketplace.                                           |
 +-------------+---------------------------------------------------------------------+
-| ``monitor`` | This automatic action discovers the available MarketPlaceApps and   |
-|             | monitors the available space of the MarketPlace.                    |
+| ``monitor`` | This automatic action discovers the available Marketplace Apps and  |
+|             | monitors the available space of the Marketplace.                    |
 +-------------+---------------------------------------------------------------------+
-| ``delete``  | Removes a MarketPlace from OpenNebula. For a Public MarketPlace,    |
-|             | it will also remove the MarketPlaceApps, but for any other type of  |
-|             | MarketPlace this will not remove the MarketPlaceApps, and will only |
-|             | work if the MarketPlace is empty.                                   |
+| ``delete``  | Removes a Marketplace from OpenNebula. For a Public Marketplace,    |
+|             | it will also remove the Marketplace Apps, but for any other type of |
+|             | Marketplace this will not remove the Marketplace Apps, and will     |
+|             | only work if the Marketplace is empty.                              |
 +-------------+---------------------------------------------------------------------+
 | *other*     | Generic actions common to OpenNebula resources are also available:  |
-|             | update, chgrp, chown, chmod and rename.                             |
+|             | ``update``, ``chgrp``, ``chown``, ``chmod`` and ``rename``.         |
 +-------------+---------------------------------------------------------------------+
 
-As for the MarketPlaceApps, they support these actions:
+As for the Marketplace Apps, they support these actions:
 
-+--------------+--------------------------------------------------------------------+
-| Action       | Description                                                        |
-+==============+====================================================================+
-| ``create``   | Upload a local image to the MarketPlace. **NOTE:** This            |
-|              | action can only be done with marketplaces associated with the      |
-|              | current zone.                                                      |
-+--------------+--------------------------------------------------------------------+
-| ``export``   | Export the MarketPlaceApp and download it into a local Datastore.  |
-+--------------+--------------------------------------------------------------------+
-| ``delete``   | Removes a MarketPlaceApp.                                          |
-+--------------+--------------------------------------------------------------------+
-| ``download`` | Downloads a MarketPlaceApp to a file.                              |
-+--------------+--------------------------------------------------------------------+
-| *other*      | Generic actions common to OpenNebula resources are also available: |
-|              | update, chgrp, chown, chmod, rename, enable and disable.           |
-+--------------+--------------------------------------------------------------------+
-
-
-``import``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The ``import`` action is a special action that involves two driver calls chained one after the other. The involved actors are: ``/var/lib/one/remotes/datastore/<ds_mad>/export`` and ``/var/lib/one/remotes/market/<market_mad>/import``. Note they they aren't piped together: the core will run the ``export`` action first, collect the output and use it for the driver message of the ``import`` action.
-
-``<ds_mad>/export``:
-
-The job of the export is to:
-
-* Calculate the ``MD5``, ``FORMAT``, ``SIZE``
-* Generate an ``IMPORT_SOURCE`` so the ``<market_mad>/import`` can do the image => market dump
-* Specify ``DISPOSE="YES"`` and ``DISPOSE_CMD``  if the ``IMPORT_SOURCE`` is a temporary file that must be removed after the dump performed by ``<market_mad>/import``. ``DISPOSE="NO"`` if otherwise.
-
-**ARGUMENTS**: ``driver_dump_xml image_id``. The ``driver_dump_xml`` is an XML dump of the driver action encoded in Base 64, which contains all the required information: ``image_data`` and ``ds_data``.
-
-**RETURNS**
-
-It should return an XML document:
-
-.. code::
-
-    <IMPORT_INFO>
-        <IMPORT_SOURCE>$IMPORT_SOURCE</IMPORT_SOURCE>
-        <MD5>$MD5_SUM</MD5>
-        <SIZE>$SIZE</SIZE>
-        <FORMAT>$FORMAT</FORMAT>
-        <DISPOSE>NO</DISPOSE>
-    </IMPORT_INFO>"
-
-``<market_mad>/import``:
-
-The job of the export is to grab the ``IMPORT_SOURCE`` and dump it to the backend.
-
-**ARGUMENTS**: ``driver_dump_xml image_id``. The ``driver_dump_xml`` is an XML dump of the driver action encoded in Base 64, which contains all the required information: ``app_data``, ``market_data``, ``image_data`` and ``ds_data``.
-
-**RETURNS**
-
-It should return this OpenNebula-syntax template:
-
-.. code::
-
-    SOURCE="<SOURCE>"
-    MD5="<MD5>"
-    SIZE="<SIZE_IN_MB>"
-    FORMAT="<FORMAT>"
-
-Note that typically inside the ``import`` script we will find a call to the ``downloader.sh`` as such:
-
-.. code::
-
-    ${UTILS_PATH}/downloader.sh $IMPORT_SOURCE -
-
-Which will be in turn piped to the target destination in the MarketPlace, or in some Market Drivers the target file will appear in the ``downloader.sh`` command as the destination instead of ``-``. Note that this might require extending ``downloader.sh`` to handle a custom new protocol, like: ``s3://``, ``rbd://``, etc...
++--------------+--------------------------------------------------------------------------------------+
+| Action       | Description                                                                          |
++==============+======================================================================================+
+| ``import``   | Upload a local image to the Marketplace. **NOTE:** This                              |
+|              | action can only be done with Marketplaces associated with the                        |
+|              | current zone.                                                                        |
++--------------+--------------------------------------------------------------------------------------+
+| ``export``   | Export the Marketplace App and download it into a local Datastore.                   |
++--------------+--------------------------------------------------------------------------------------+
+| ``delete``   | Removes a Marketplace App.                                                           |
++--------------+--------------------------------------------------------------------------------------+
+| ``download`` | Downloads a Marketplace App to a file.                                               |
++--------------+--------------------------------------------------------------------------------------+
+| *other*      | Generic actions common to OpenNebula resources are also available:                   |
+|              | ``update``, ``chgrp``, ``chown``, ``chmod``, ``rename``, ``enable`` and ``disable``. |
++--------------+--------------------------------------------------------------------------------------+
 
 ``monitor``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The monitor action is orchestrated by the ``/var/lib/one/remotes/market/<market_mad>/monitor`` script.
 
-There are two kinds of ``monitor`` scripts, those that do not require the discovery of the MarketPlaceApps, since OpenNebula already know about them because it has created them. And those that include this discovery, like in the case of the ``one/monitor`` script to monitor the official OpenNebula Systems MarketPlace.
+There are two kinds of ``monitor`` scripts, those that do not require the discovery of the Marketplace Apps, since OpenNebula already know about them because it has created them. And those that include this discovery, like in the case of the ``one/monitor`` script to monitor the official OpenNebula Systems Marketplace.
 
-**ARGUMENTS**: ``driver_dump_xml market_id``. The ``driver_dump_xml`` is an XML dump of the driver action encoded in Base 64, which contains all the required information: ``market_data``.
+**ARGUMENTS**
+
+``driver_dump_xml market_id``. The ``driver_dump_xml`` is an XML dump of the driver action encoded in Base 64, which contains all the required information: ``market_data``.
 
 **RETURNS**
 
-In the case of simple monitoring with no discovery, the ``monitor`` action must return a report of the available and used space in the MarketPlace in OpenNebula-syntax template format:
+In the case of simple monitoring with no discovery, the ``monitor`` action must return a report of the available and used space in the Marketplace in OpenNebula-syntax template format:
 
 .. code::
 
@@ -158,25 +101,87 @@ If we unpack one of these APPs we will obtain the following:
     MD5="04c7d00e88fa66d9aaa34d9cf8ad6aaa"
     VMTEMPLATE64="Q09OVEVYVCA9IFsgTkVUV09SSyAgPSJZRVMiLFNTSF9QVUJMSUNfS0VZICA9IiRVU0VSW1NTSF9QVUJMSUNfS0VZXSJdCgpDUFUgPSAiMC4xIgpHUkFQSElDUyA9IFsgTElTVEVOICA9IjAuMC4wLjAiLFRZUEUgID0idm5jIl0KCk1FTU9SWSA9ICIxMjgiCkxPR08gPSAiaW1hZ2VzL2xvZ29zL2xpbnV4LnBuZyI="
 
-Which is the MarketPlaceApp template in OpenNebula-syntax format.
+Which is the Marketplace App template in OpenNebula-syntax format.
+
+``import``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``import`` action is an special action that involves two driver calls chained one after the other. The involved actors are: ``/var/lib/one/remotes/datastore/<ds_mad>/export`` and ``/var/lib/one/remotes/market/<market_mad>/import``. Note they they aren't piped together: the core will run the ``export`` action first, collect the output and use it for the driver message of the ``import`` action.
+
+``<ds_mad>/export``:
+
+The job of the export is to:
+
+* Calculate the ``MD5``, ``FORMAT``, ``SIZE``.
+* Generate an ``IMPORT_SOURCE`` so the ``<market_mad>/import`` can do the image => market dump.
+* Specify ``DISPOSE="YES"`` and ``DISPOSE_CMD``  if the ``IMPORT_SOURCE`` is a temporary file that must be removed after the dump performed by ``<market_mad>/import``. ``DISPOSE="NO"`` if otherwise.
+
+**ARGUMENTS**
+
+``driver_dump_xml image_id``. The ``driver_dump_xml`` is an XML dump of the driver action encoded in Base 64, which contains all the required information: ``image_data`` and ``ds_data``.
+
+**RETURNS**
+
+It should return an XML document:
+
+.. code::
+
+    <IMPORT_INFO>
+        <IMPORT_SOURCE>$IMPORT_SOURCE</IMPORT_SOURCE>
+        <MD5>$MD5_SUM</MD5>
+        <SIZE>$SIZE</SIZE>
+        <FORMAT>$FORMAT</FORMAT>
+        <DISPOSE>NO</DISPOSE>
+    </IMPORT_INFO>"
+
+``<market_mad>/import``:
+
+The job of the export is to grab the ``IMPORT_SOURCE`` and dump it to the back-end.
+
+**ARGUMENTS**
+
+``driver_dump_xml image_id``. The ``driver_dump_xml`` is an XML dump of the driver action encoded in Base 64, which contains all the required information: ``app_data``, ``market_data``, ``image_data`` and ``ds_data``.
+
+**RETURNS**
+
+It should return this OpenNebula syntax template:
+
+.. code::
+
+    SOURCE="<SOURCE>"
+    MD5="<MD5>"
+    SIZE="<SIZE_IN_MB>"
+    FORMAT="<FORMAT>"
+
+Note that typically inside the ``import`` script we will find a call to the ``downloader.sh`` as such:
+
+.. code::
+
+    ${UTILS_PATH}/downloader.sh $IMPORT_SOURCE -
+
+Which will be in turn piped to the target destination in the Marketplace, or in some Market Drivers the target file will appear in the ``downloader.sh`` command as the destination instead of ``-``. Note that this might require extending ``downloader.sh`` to handle a custom new protocol, like: ``s3://``, ``rbd://``, etc...
 
 ``export``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``export`` job is again two-fold:
 
-* Create a new image by calling ``<ds_mad>/cp``
-* Create a new template, if it exists in the MarketPlaceApp (``VMTEPLATE64``)
+* Create a new image by calling ``<ds_mad>/cp``.
+* Create a new template, if it exists in the Marketplace App (``VMTEPLATE64``)
 
 There is no specific ``<market_mad>`` driver file associated with this job, it actually calls an already existing driver, the ``<ds_mad>/cp``. Please read the :ref:`Storage Driver <sd>` guide to learn more about this driver action.
 
-It is worth noting that the MarketPlaceApp's ``IMPORT_SOURCE`` field will be used as the ``PATH`` argument for the ``<ds_mad>/cp`` action. Therefore, this action must understand that ``IMPORT_SOURCE`` which in turn means that ``downloader.sh`` must understand it too.
+It is worth noting that the Marketplace App's ``IMPORT_SOURCE`` field will be used as the ``PATH`` argument for the ``<ds_mad>/cp`` action. Therefore, this action must understand that ``IMPORT_SOURCE`` which in turn means that ``downloader.sh`` must understand it too.
 
 ``delete``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This job deletes a MarketPlaceApp.
+This job deletes a Marketplace App.
 
-**ARGUMENTS**: ``driver_dump_xml image_id``. The ``driver_dump_xml`` is an XML dump of the driver action encoded in Base 64, which contains all the required information: ``market_data`` and ``marketapp_data``.
+**ARGUMENTS**
 
-**RETURNS**: No return message.
+``driver_dump_xml image_id``. The ``driver_dump_xml`` is an XML dump of the driver action encoded in Base 64, which contains all the required information: ``market_data`` and ``marketapp_data``.
+
+**RETURNS**
+
+No return message.
