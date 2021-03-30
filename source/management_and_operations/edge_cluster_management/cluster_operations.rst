@@ -159,7 +159,7 @@ Examples:
 
  - states
 
-Customization the Edge Cluster
+Customization of the Edge Cluster
 ================================================================================
 
 Ansible
