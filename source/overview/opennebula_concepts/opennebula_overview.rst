@@ -87,10 +87,14 @@ Edge Cluster
 
 OpenNebula brings its own Edge Cluster configuration that is based on solid open source storage and networking technologies, and is a much simpler approach than those of customized cloud architectures made of more complex, general-purpose and separate infrastructure components. It can be deployed on-demand on virtual or bare-metal resources both on-premises and on your choice of public cloud or edge provider. Our Edge Clusters are **fully supported end-to-end by OpenNebula Systems**. More info on this approach can be found on our `website <https://opennebula.io/edge-cloud/>`_.
 
+|image5|
+
 Customized Cluster
 ==================
 
 OpenNebula is certified to work on top of multiple combinations of hypervisors, storage and networking technologies. In this model you need to install and configure the underlying cloud infrastructure software components first and then install OpenNebula to build the cloud. The clusters can be deployed on-premises or on your choice of bare-metal cloud or hosting provider. While we support OpenNebula and can troubleshoot the cloud infrastructure as a whole, please be aware that you might need to seek commercial support from third-party vendors for the rest of components in your cloud stack. If you are interested in designing and deploying an OpenNebula cloud on top of VMware vCenter, please refer to our `VMWare Cloud Reference Architecture <https://support.opennebula.pro/hc/en-us/articles/206652953>`_. If you are interested in an OpenNebula cloud fully based on open-source platforms and technologies, please refer to our `Open Cloud Reference Architecture <https://support.opennebula.pro/hc/en-us/articles/204210319>`_.
+
+|image6|
 
 Which is the Right One for You?
 ===============================
@@ -166,6 +170,8 @@ If you are interested in building a production environment, the `Cloud Architect
 .. |image2| image:: /images/overview_containers.png
 .. |image3| image:: /images/overview_vdc.png
 .. |image4| image:: /images/overview_resources.png
+.. |image5| image:: /images/overview_edge-cluster.png
+.. |image6| image:: /images/overview_customized-cluster.png
 .. |image7| image:: /images/overview_architecture.png
 
 
