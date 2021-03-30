@@ -1,7 +1,7 @@
 .. _vcenter_specifics:
 
 ================================================================================
-VMware vCenter Virtual Machines
+vCenter Virtual Machines
 ================================================================================
 
 vCenter VM and VM Templates
@@ -50,11 +50,7 @@ After a VM Template is instantiated, the life-cycle of the resulting virtual mac
 - VNC connectivity
 - Attach/detach VMDK images as disks
 - Resize VM disks (shrink not supported) before the VM is deployed or when the VM is in POWEROFF state.
-
-The following operations are not available for vCenter VMs:
-
-- migrate
-- livemigrate
+- Migrate VMs to other vCenter clusters. Migrating to other vCenter instances is not supported.
 
 .. _vm_monitoring_attributes_vcenter:
 
@@ -81,7 +77,7 @@ The monitoring attributes retrieved from a vCenter VM are:
 vCenter Template or Wild VM Importing Procedure
 ================================================================================
 
-While a template or Wild VM is being imported, OpenNebula will inspect the virtual disks and virtual nics and it will create images and virtual networks referencing the disks and port-groups used by the VM. This process may take some time, please be patient.
+While a VM Template or Wild VM is being imported, OpenNebula will inspect the virtual disks and virtual nics and it will create images and virtual networks referencing the disks and port-groups used by the VM. This process may take some time, please be patient.
 
 You have more information about these procedures:
 
@@ -97,14 +93,9 @@ OpenNebula uses VMware cloning VM Template procedure to instantiate new Virtual 
 
   Deploying a virtual machine from a template creates a virtual machine that is a copy of the template. The new virtual machine has the virtual hardware, installed software, and other properties that are configured for the template.
 
-The cloning procedure involves:
+The cloning procedure involves the following steps:
 
-- Choosing a datastore.
-- Specifying how the template disks are copied.
-- Selecting a Resource Pool where the VM will run if DRS is enabled in the vCenter cluster.
-- Deciding the folder where the VM will be placed inside the VM and Templates inventory view.
-
-Choosing a datastore
+Step 1. Choosing a datastore
 --------------------------------------------------------------------------------
 
 By default, the VM will be deployed in the datastore that the OpenNebula's scheduler chooses according to its policy.
@@ -116,7 +107,7 @@ You can force that OpenNebula uses specific datastores overriding the scheduler'
 It's compulsory that you import vCenter datastores before trying to deploy a VM and you must be sure that the datastores are shared by every ESX host in the cluster.
 
 
-Specifying how the disks are copied
+Step 2. Specifying how the disks are copied
 --------------------------------------------------------------------------------
 
 OpenNebula instructs vCenter to "move all disk backing an disallow sharing". That means that vCenter will create a full clone of the disks inside the template, and that full clone flattens all disks from the parent-most to the child-most disk.
@@ -125,22 +116,16 @@ However if you import the template with Linked Clones support OpenNebula will "m
 
 You have more information about disk moving operations `here <https://www.vmware.com/support/developer/vc-sdk/visdk41pubs/ApiReference/vim.vm.RelocateSpec.DiskMoveOptions.html>`__ and the use of Linked Clones :ref:`here <vcenter_linked_clones_description>`.
 
-Selecting a Resource Pool
+Step 3. Selecting a Resource Pool
 --------------------------------------------------------------------------------
 
 OpenNebula uses the default cluster resource pool to place the VM instantiated from the VM template, unless VCENTER_RESOURCE_POOL variable is defined in the OpenNebula host template or VM template. You have more information about resource pools :ref:`here in OpenNebula docs<vcenter_resource_pool>`.
 
 
-Deciding the VM folder in vSphere's VM and Templates view
+Step 4. Deciding the VM folder in vSphere's VM and Templates view
 --------------------------------------------------------------------------------
 
-When the VM is cloned from the VM template, you can found that VM in vSphere's Web Client is by default in the same location where the vCenter template is located. For instance, using the corelinux64 vcenter template I can find the OpenNebula's VM with the one- prefix in the same folder where my template lives.
-
-.. image:: /images/vcenter_template_in_same_location_than_vm.png
-    :width: 35%
-    :align: center
-
-However you may place the VM in a different folder using the VCENTER_VM_FOLDER attribute as explained :ref:`here in OpenNebula docs <vcenter_folder_placement>`
+When the VM is cloned from the VM template the VM is placed in vCenter by default in the same location where the vCenter template is located. However you may place the VM in a different folder using the VCENTER_VM_FOLDER attribute as explained :ref:`here in OpenNebula docs <vcenter_folder_placement>`
 
 .. _vcenter_instantiate_to_persistent:
 
@@ -156,7 +141,7 @@ At the time of deploying a VM Template, a flag can be used to create a new VM Te
 You can also use this feature from Sunstone when you instantiate a template:
 
 .. image:: /images/vcenter_instantiate_as_persistent_1.png
-    :width: 35%
+    :width: 80%
     :align: center
 
 OpenNebula does the following when you use Instantiate to Persistent:
@@ -176,31 +161,19 @@ This functionality is very useful to create new VM Templates from a original VM 
 Saving a VM Template: Save As
 ================================================================================
 
-In the Sunstone's cloud_vcenter view you can poweroff a VM an use the save icon to create a new OpenNebula template from this VM.
+In Sunstone Cloud View  you can poweroff a VM an use the save icon to create a new OpenNebula template from this VM.
 
 .. image:: /images/vcenter_save_as_template_1.png
-    :width: 35%
+    :width: 55%
     :align: center
 
-OpenNebula will offer to create a copy of the disks, select non-persistent images or persistent images.
-
-.. image:: /images/vcenter_save_as_template_2.png
-    :width: 35%
-    :align: center
-
-a message will inform you that the new OpenNebula template has been created and the VM will show the state SAVING_IMAGE.
-
-.. image:: /images/vcenter_save_as_template_3.png
-    :width: 35%
-    :align: center
+OpenNebula will ask if you want to create a copy of the disks, select non-persistent images or persistent images. A message will inform you that the new OpenNebula template has been created and the VM will show the state SAVING_IMAGE.
 
 Refresh the VM state with the icon next to the VM's name, you'll see the VM in OFF state when your new OpenNebula template is ready to use in the templates tab.
 
 Your new VM template will contain DISK elements that will point to the disk copies created and NIC elements that will point to the same OpenNebula virtual networks used by the VM this template is based on.
 
-Note that the new OpenNebula template has a :ref:`Managed Object Reference <vcenter_managed_object_reference>` to the vCenter template used to create the original VM. This implies that when a VM is deployed from the new OpenNebula template, a VM will be cloned from the original vCenter template where the old disks will be detached and the disk copies that were created previously will be attached.
-
-
+.. note:: The new OpenNebula VM Template has a :ref:`Managed Object Reference <vcenter_managed_object_reference>` to the vCenter template used to create the original VM. This implies that when a VM is deployed from the new OpenNebula template, a VM will be cloned from the original vCenter template where the old disks will be detached and the disk copies that were created previously will be attached.
 
 .. _vm_scheduling_vcenter:
 
@@ -209,7 +182,7 @@ VM Scheduling
 
 OpenNebula scheduler should only chose a particular OpenNebula host for a OpenNebula VM Template representing a vCenter VM Template, since it most likely only would be available in a particular vCenter cluster.
 
-The scheduler will inspect the VM Template and it will choose to deploy the VM in an OpenNebula host which is member of an OpenNebula cluster that contains the datastores where the DISKs images are stored and that contains the virtual networks used by the NICs elements of the VM template. When a vCenter cluster is imported into OpenNebula an OpenNebula Host that represents that vCenter cluster is created and that OpenNebula Host is added to an OpenNebula Cluster that is created by default if no other OpenNebula cluster is selected. Note that if you import a vCenter templatee which has no disks or networks, OpenNebula Scheduler's won't be able to decide on which OpenNebula host (vCenter cluster) it can use to deploy the VM.
+The scheduler will inspect the VM Template and it will choose to deploy the VM in an OpenNebula host which is member of an OpenNebula cluster that contains the datastores where the DISKs images are stored and that contains the virtual networks used by the NICs  of the VM template. When a vCenter cluster is imported into OpenNebula an OpenNebula Host is created and added to a OpenNebula cluster that is created by default if no other cluster is specified in the import process.
 
 .. note:: If a VM is stuck in the PENDING state, that means that the scheduler hasn't found a host and datastores that satisfies its requirement. In this case check that the images and networks defined in the VM template are located in an OpenNebula cluster other than the default cluster and check that the OpenNebula host is also assigned to the same OpenNebula cluster.
 
@@ -226,7 +199,7 @@ In Sunstone, a host abstracting a vCenter cluster will have an extra tab showing
 Attaching a CDROM to a Virtual Machine
 ================================================================================
 
-You can attach a CDROM to a Virtual Machine :ref:`creating first an OpenNebula image from an ISO file<vcenter_upload_iso>`.
+You can attach a CDROM to a Virtual Machine :ref:`creating first an OpenNebula image from an ISO file <vcenter_upload_iso>`.
 
 Then the CDROM can be attached to a Virtual Machine template or can be attached to deployed Virtual Machine, **ONLY** if the Virtual Machines is in the POWEROFF state. OpenNebula tries to connect the ISO file as an IDE CD-ROM drive which is not a hot-pluggable device that's why the Virtual Machine must not be RUNNING (powered on).
 
@@ -237,7 +210,7 @@ Disks monitoring
 
 OpenNebula gathers disks monitoring info for each VM providing metrics like the rate of reading/writing data to the VM's virtual disks and the read/write IOPS. Real-time data is retrieved from vCenter thanks to the Performance Manager which collects data every 20 seconds and maintains it for one hour.
 
-.. important:: OpenNebula requires that you set the right Statistics Level so disk metrics are generated and stored by vCenter. Increasing the statistics level implies that more space is needed to store metrics so check that you have enough storage before changing the level.
+.. important:: OpenNebula requires that you set the right Statistics Level in vCenter so disk metrics are generated and stored. Increasing the level implies that more space is needed to store metrics so check that you have enough storage before changing the level.
 
 vCenter Statistics level for 5-minutes data must be set to 2.
 
@@ -245,18 +218,18 @@ vCenter Statistics level for 5-minutes data must be set to 2.
     :width: 75%
     :align: center
 
-The rate of reading/write is provided by vCenter as an average using KB/s unit. The graphs provided by Sunstone are different from those found in vCenter under the Monitor -> Performance Tab when selecting Realtime in the Time Range drop-down menu. The reason is that Sunstone uses polling time as time reference while vCenter uses sample time on their graphs, so an approximation to the real values aggregating vCenter's samples between polls is needed. As a result, peaks may be different in value and different peaks between polls won't be depicted. Sunstone's graphs will provide a useful information about disks behaviour which can be examined on vCenter later with greater detail.
+The rate of reading/write is provided by vCenter as an average using KB/s unit. The graphs provided by Sunstone are different from those found in vCenter under the ``Monitor --> Performance`` tab when selecting Realtime in the Time Range drop-down menu. The reason is that Sunstone uses polling time as time reference while vCenter uses sample time on their graphs, so an approximation to the real values aggregating vCenter's samples between polls is needed. As a result, peaks may be different in value and different peaks between polls won't be depicted. Sunstone's graphs will provide a useful information about disks behaviour which can be examined on vCenter later with more detail.
 
 .. _vcenter_images_operations:
 
 vCenter Images
 ================================================================================
 
-You can follow the :ref:`Managing Images Section <images>` to learn how to manage images, considering that VMDK snapshots are not supported as well as the following considerations.
+You can follow the common :ref:`Managing Images Section <images>`, considering that VMDK snapshots are not supported as well as the following considerations.
 
-Existing disks in vCenter VM Templates or Wild VMs will be imported in OpenNebula with information about those disks. OpenNebula will scan templates and Wild VMs for existing disks and it will create OpenNebula images that will represent those virtual disks. Thanks to this scanning process, existing disks will be visible for OpenNebula, and therefore can be detached from the deployed VMs. The following information is important about images created when a vCenter template or Wild VM is imported:
+OpenNebula scans VM Templates and Wild VMs for existing disks and it will create OpenNebula images that will represent those virtual disks. Thanks to this scanning process, existing disks will be visible for OpenNebula, and therefore can be detached from the deployed VMs. The following information is important about images created when a vCenter template or Wild VM is imported:
 
-- The disks are considered unmanaged images.
+- VM disks in imported as part of a VM Template or Wild VM are considered unmanaged images.
 - An unmanaged image won't be cloned by OpenNebula when a VM is instantiated. When OpenNebula deploys a VM, vCenter will clone the vCenter template and it will be  responsible of creating the copies of the template disks and attach them to the new Virtual Machine.
 - Although the images are considered unmanaged, you can perform operations like detaching the disks.
 - Virtual Machines in vCenter will have some variables created by OpenNebula that allows an OpenNebula disk element to be related with a vCenter Virtual Hard Disk. For example the unmanaged DISK with ID=0 has a variable called opennebula.disk.0 in vCenter's VM that stores a reference to the disk created by vCenter that will help OpenNebula identify what disk has to be detached.
@@ -266,9 +239,9 @@ Existing disks in vCenter VM Templates or Wild VMs will be imported in OpenNebul
 
 There are three ways of adding VMDK representations in OpenNebula:
 
-- :ref:`Upload a new VMDK from the local filesystem<vcenter_upload_vmdk>`
-- :ref:`Register an existent VMDK image already in the datastore<vcenter_import_images>`
-- :ref:`Create a new empty datablock<vcenter_create_datablock>`
+- :ref:`Upload a new VMDK from the local filesystem <vcenter_upload_vmdk>`
+- :ref:`Register an existent VMDK image already in the datastore <vcenter_import_images>`
+- :ref:`Create a new empty datablock <vcenter_create_datablock>`
 
 The following image template attributes need to be considered for vCenter VMDK image representation in OpenNebula:
 
@@ -298,11 +271,9 @@ VMDK images in vCenter datastores can be:
 
 Images can be imported from the vCenter datastore using the :ref:`onevcenter<vcenter_import_images>` tool.
 
-.. warning:: Both "VCENTER_ADAPTER_TYPE" and "VCENTER_DISK_TYPE" need to be set at either the Datastore level, the Image level or the VM Disk level. If not set, default values in /etc/one/vcenter_driver.defaults file should be used.
+Both "VCENTER_ADAPTER_TYPE" and "VCENTER_DISK_TYPE" need to be set at either the Datastore level, the Image level or the VM Disk level. If not set, default values in /etc/one/vcenter_driver.defaults file should be used.
 
-.. warning:: Images spaces are not allowed for import
-
-.. note:: By default, OpenNebula checks the datastore capacity to see if the image fits. This may cause a "Not enough space in datastore" error. To avoid this error, disable the datastore capacity check before importing images. This can be changed in /etc/one/oned.conf, using the DATASTORE_CAPACITY_CHECK set to "no".
+.. note:: By default, OpenNebula checks the datastore capacity to see if the image fits. This may cause a "Not enough space in datastore" error. To avoid this error, disable the datastore capacity check before importing images. This can be changed in /etc/one/oned.conf, using the DATASTORE_CAPACITY_CHECK set to "no", and restarting OpenNebula.
 
 .. _vcenter_tags_and_categories:
 
@@ -328,7 +299,7 @@ OpenNebula uses the ``NAME`` and ``DESCRIPTION`` fields to create a ``TAG`` with
 
 .. _vcenter_live_resize:
 
-vCenter Live Resize
+vCenter Live Capacity Resize (CPU & MEMORY)
 ================================================================================
 
 To enable resize for a virtual machine, add the following block to the template definition before creating an instance or in the ``USER_TEMPLATE`` directly in the Virtual Machine.
@@ -343,8 +314,8 @@ OpenNebula uses the ``CPU_HOT_ADD_ENABLED`` field to activate or desactivate the
 
 OpenNebula uses the ``MEMORY_HOT_ADD_ENABLED`` field to activate or desactivate the MEMORY Hot resize in vCenter. If a ``MEMORY_HOT_ADD_ENABLED`` is not supplied or the value is ``NO``, OpenNebula will desactivate the MEMORY Hot resize in vCenter.
 
-.. important:: To activate or deactivate these options it is necessary to turn off and resume the Virtual Machine. since vCenter does not allow changing these settings with the Virtual Machine turned on.
+To activate or deactivate these options it is necessary to turn off and resume the Virtual Machine, since vCenter does not allow changing these settings with the Virtual Machine turned on.
 
-.. warning:: CPU Hot Add is a feature that allows the addition of vCPUs to a running virtual machine. Enabling this feature disables vNUMA for that Virtual Machine. You can find more info here in this `VMware KB article 2040375 <https://kb.vmware.com/s/article/2040375>`__
+.. note:: CPU Hot Add is a feature that allows the addition of vCPUs to a running virtual machine. Enabling this feature disables vNUMA for that Virtual Machine. You can find more info here in this `VMware KB article 2040375 <https://kb.vmware.com/s/article/2040375>`__
 
 You can find more information on how to resize a Virtual Machine in OpenNebula using the CLI or in Sunstone :ref:`here <vm_guide2_resizing_a_vm>`

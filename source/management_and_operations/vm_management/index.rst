@@ -10,4 +10,4 @@ Virtual Machine Management
    Virtual Machine Instances <vm_instances>
    Virtual Machine Backup <vm_backup>
    Using Container Images <container_images_usage>
-   VMware vCenter Virtual Machines <vcenter_vms>
+   vCenter Virtual Machines <vcenter_vms>
