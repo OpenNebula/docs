@@ -9,6 +9,8 @@ You can manage your Edge providers with the command ``oneprovider``. This will a
 - As part of :ref:`an Edge Cluster definition <ddc_template>`. When you create the Edge Cluster the provider information will be used.
 - You can set the provider when creating a new Edge Cluster with command ``oneprovision create`` and the parameter ``--provider``. This will override any provider in the Edge Cluster definition template.
 
+.. important:: The information stored in providers is encrypted due to security reasons. Because of this, user should belong to ``oneadmin's`` group in order to use them.
+
 Command Usage
 ================================================================================
 
