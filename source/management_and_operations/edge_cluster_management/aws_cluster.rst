@@ -62,7 +62,7 @@ Then you just need to use the command ``oneprovider create``:
 
 The providers templates are located in ``/usr/share/one/oneprovision/edge-clusters/<type>/providers/aws``. You just need to put valid credentials.
 
-How to Customize and Existing Provider
+How to Customize an Existing Provider
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The provider information is stored in OpenNebula database, it can be updated as any other resource. In this case, you need to use the command ``oneprovider update``. It will open an editor so you can edit all the information there. You can also use the OneProvision Fireedge GUI to update all the information.
@@ -88,7 +88,7 @@ The network model is implemented in the following way:
 Operating Providers & Edge Clusters
 ================================================================================
 
-Refer to :ref:`cluster operation guide <cluster_operations>`, to check all the operations needed to create, manage and delete an edge cluster. Refer to :ref:`providers guide <provider_operations>`, to checkk all the operations related with providers.
+Refer to the :ref:`cluster operation guide <cluster_operations>`, to check all the operations needed to create, manage and delete an edge cluster. Refer to the :ref:`providers guide <provider_operations>`, to check all of the operations related to providers.
 
 You can also manage AWS Cluster using OneProvision Fireedge GUI.
 
