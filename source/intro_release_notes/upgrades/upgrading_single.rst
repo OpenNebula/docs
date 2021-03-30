@@ -256,8 +256,10 @@ Step 10. Restore Custom Probes
 If you have any custom monitoring probe, follow :ref:`these instructions <devel-im>`, to update them to new monitoring system
 
 
-Step 11. Update the Hypervisors (LXD & KVM only)
+Step 11. Update the Hypervisors
 ================================================================================
+
+.. warning:: If you're using vCenter please jump to the next step.
 
 First update the virtualization, storage and networking drivers.  As the ``oneadmin`` user execute:
 
