@@ -4,7 +4,7 @@
 Cloud Architecture Design
 ===========================
 
-In order to get familiar with OpenNebula, or if you want to try an Edge deployment, we strongly recommend you start with the :ref:`Quick Start guide <quick_start>`. In the Quick Start, you will learn how to install a single OpenNebula front-end, deploy on-demand hybrid clusters on remote cloud providers, as well as the basic usage and operation of your cloud. This trial of a real cloud deployment will help you create a plan with the features, performance, scalability, and high availability characteristics in order to get the most out of an OpenNebula Cloud.
+In order to get familiar with OpenNebula, or if you want to try an Edge, Hybrid or Multi-cloud deployment, we strongly recommend you start with the :ref:`Quick Start guide <quick_start>`. In the Quick Start, you will learn how to install a single OpenNebula front-end, deploy on-demand edge clusters on remote cloud providers, as well as the basic usage and operation of your cloud. This trial of a real cloud deployment will help you create a plan with the features, performance, scalability, and high availability characteristics in order to get the most out of an OpenNebula Cloud.
 
 Step 1. Install the Front-end
 =================================================
@@ -22,7 +22,7 @@ Besides connecting your cloud to the public :ref:`OpenNebula Marketplace and oth
 Step 2. Deploy Edge Clusters
 =================================================
 
-OpenNebula brings its own :ref:`Edge Cluster configuration that is based on solid open source storage and networking technologies <true_hybrid_cloud_reference_architecture>`, and is a much simpler approach than those of customized cloud architectures made of more complex, general-purpose and separate infrastructure components. It can be deployed on-demand on virtual or bare-metal resources both on-premises and on your choice of public cloud or edge provider. 
+OpenNebula brings its own :ref:`Edge Cluster configuration that is based on solid open source storage and networking technologies <true_hybrid_cloud_reference_architecture>`, and is a much simpler approach than those of customized cloud architectures made of more complex, general-purpose and separate infrastructure components. :ref:`OpenNebula automates the deployment of edge clusters on-demand on virtual or bare-metal resources both on-premises and on your choice of public cloud or edge provider<try_hybrid_overview>`. 
 
 Step 3. Setup Customized Clusters On-premises
 =================================================
