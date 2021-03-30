@@ -9,7 +9,7 @@ OpenNebula is an open-source cloud management platform that combines virtualizat
 +========================================================================+=============================================================================================+
 | :ref:`Overview <overview>`                                             | Learn the OpenNebula model, popular use cases and how to design a cloud                     |
 +------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
-| :ref:`Quick Start Guide <quick_start>`                                 | Build a learning OpenNebula installation with local and remote resources                    |
+| :ref:`Quick Start <quick_start>`                                       | Build a learning OpenNebula installation with local and remote resources                    |
 +------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
 | :ref:`Management and Operations <management_and_operations>`           | How to operate and manage your cloud, including deployment of remote clusters               |
 +------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
@@ -23,8 +23,6 @@ OpenNebula is an open-source cloud management platform that combines virtualizat
 +------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
 | :ref:`Release Notes <release_notes>`                                   | New features, improvements and fixes, and the upgrade process in each version               |
 +------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
-
-
 
 .. _entry_point:
 
