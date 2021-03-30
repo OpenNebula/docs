@@ -23,6 +23,8 @@ OpenNebula can manage:
 
 * **Any Time**: Automatically add and remove new resources in order to meet peaks in demand, or to implement fault-tolerant strategies or latency requirements.
 
+|image1|
+
 The OpenNebula Model for Cloud Users
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -48,6 +50,8 @@ OpenNebula offers a new, native approach for running containerized applications 
 
 For those cases where Kubernetes is required or is the best fit, OpenNebula also brings support for the deployment of Kubernetes clusters through a virtual appliance available from the OpenNebula Public Marketplace. For more details, please refer to the `web section and white paper <https://opennebula.io/mastering-containers/>`_ in which we describe OpenNebula’s native features for container orchestration, and how it integrates with third-party technologies like Docker, Kubernetes and Rancher.
 
+|image2|
+
 Cloud Access Model and Roles
 ============================
 
@@ -59,6 +63,8 @@ OpenNebula offers a flexible and powerful cloud provisioning model based on Virt
 
 A key management task in any OpenNebula Infrastructure environment has to do with determining who can use the cloud interfaces and what tasks those users are authorized to perform. The person with the role of cloud service administrator is authorized to assign the appropriate rights required by other users. OpenNebula brings three default types of user roles: cloud users, cloud service administrators (operators), and cloud infrastructure administrators. The OpenNebula documentation provides information to help with the designing of custom roles, and gives recommendations for how to work with roles and privileges in OpenNebula. For more details, please refer to the `Cloud Provisioning Model and User Roles <http://docs.opennebula.io/5.13/overview/solutions_and_best_practices/cloud_access_model_and_roles.html>`_ section.
 
+|image3|
+
 The OpenNebula Model for Cloud Infrastructure Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -67,6 +73,8 @@ A standard OpenNebula Cloud Architecture consists of:
 * The **Cloud Management Cluster** with the Front-end node(s), and
 
 * The **Cloud Infrastructure**, made of one or several workload **Clusters** with the hypervisor nodes and the storage system, which can be located at multiple geographical locations, all interconnected with multiple networks for internal storage and node management, and for private and public guest (VM or container) communication.
+
+|image4|
 
 An OpenNebula Cloud Infrastructure can combine multiple clusters with different configurations and technologies to better meet your needs. In general, there are two types of Cluster models that can be used with OpenNebula:
 
@@ -93,6 +101,8 @@ OpenNebula Components
 ^^^^^^^^^^^^^^^^^^^^^
 
 OpenNebula has been designed to be easily adapted to any infrastructure and easily extended with new components. The result is a modular system that can implement a variety of cloud architectures and can interface with multiple data center services.
+
+|image7|
 
 The main components of an OpenNebula installation are:
 
@@ -150,3 +160,12 @@ You can always evaluate OpenNebula by following our `Quick Start <http://docs.op
 **Setting up a production environment**
 
 If you are interested in building a production environment, the `Cloud Architecture Design <http://docs.opennebula.io/5.13/overview/cloud_architecture_and_design/cloud_architecture_design.html>`_ guide is a good resource for you to explore the different options to consider and the available choices. Remember that if you need our support at any time, or access to our professional services (including our **Managed Cloud Services**) or to the **Enterprise Edition**, you can always `contact us <https://opennebula.io/enterprise>`_.
+
+
+.. |image1| image:: /images/overview_key-features.png
+.. |image2| image:: /images/overview_containers.png
+.. |image3| image:: /images/overview_vdc.png
+.. |image4| image:: /images/overview_resources.png
+.. |image7| image:: /images/overview_architecture.png
+
+
