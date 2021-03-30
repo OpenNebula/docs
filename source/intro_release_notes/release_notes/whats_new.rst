@@ -111,7 +111,7 @@ CLI
 
 onedb
 ================================================================================
-- ``version`` command have been improved to be aware of available upgrades.
+- ``version`` command have been improved to be aware of available upgrades. An example is available :ref:`here <onedb_version>`.
 - ``upgrade`` command have been improved to create backup only if necessary. Also ``--no-backup`` have been added to avoid backup creation always.
 
 Distributed Edge Provisioning
