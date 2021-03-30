@@ -167,11 +167,24 @@ If you are interested in building a production environment, the `Cloud Architect
 
 
 .. |image1| image:: /images/overview_key-features.png
+  :width: 70%
+
 .. |image2| image:: /images/overview_containers.png
+  :width: 70%
+
 .. |image3| image:: /images/overview_vdc.png
+  :width: 70%
+
 .. |image4| image:: /images/overview_resources.png
+  :width: 70%
+
 .. |image5| image:: /images/overview_edge-cluster.png
+  :width: 70%
+
 .. |image6| image:: /images/overview_customized-cluster.png
+  :width: 70%
+
 .. |image7| image:: /images/overview_architecture.png
+  :width: 70%
 
 
