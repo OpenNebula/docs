@@ -118,5 +118,3 @@ After a few seconds, you should be able to see the simple pod in Running state:
 
 Congrats! You successfully deployed a fully functional Kubernetes cluster in the edge. Have fun with your new OpenNebula cloud!
 
-Step 4. Deploying a Helm Chart
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
