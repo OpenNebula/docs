@@ -5,7 +5,7 @@
 Bridged Networking
 ================================================================================
 
-This guide describes how to deploy Bridged networks. In this mode, the virtual machine traffic is directly bridged through the Linux bridge on the hypervisor Nodes. Bridged networks can operate in four different modes depending on the additional traffic filtering made by the OpenNebula:
+This guide describes how to deploy Bridged networks. In this mode, the virtual machine traffic is directly bridged through the Linux bridge on the hypervisor Nodes. Bridged networks can operate in four different modes depending on the additional traffic filtering made by OpenNebula:
 
 * **Dummy Bridged**, no filtering, no bridge setup (legacy no-op driver).
 * **Bridged**, no filtering is made, managed bridge.
@@ -31,14 +31,14 @@ The following configuration parameters can be adjusted in ``/var/lib/one/remotes
 +------------------------+---------------------------------------------------------------------------------------------------------------+
 | Parameter              | Description                                                                                                   |
 +========================+===============================================================================================================+
-| ``:ipset_maxelem``     | Maximal number of entries in the IP set (used for the security group rules)                                   |
+| ``:ipset_maxelem``     | Maximum number of entries in the IP set (used for the security group rules)                                   |
 +------------------------+---------------------------------------------------------------------------------------------------------------+
 | ``:keep_empty_bridge`` | Set to ``true`` to preserve bridges with no virtual interfaces left.                                          |
 +------------------------+---------------------------------------------------------------------------------------------------------------+
 | ``:ip_bridge_conf``    | *(Hash)* Options passed to ``ip`` cmd. on bridge create (``ip link add <bridge> type bridge ...``)            |
 +------------------------+---------------------------------------------------------------------------------------------------------------+
 
-.. note:: Remember to run ``onehost sync -f`` to synchonize the changes to all the nodes.
+.. note:: Remember to run ``onehost sync -f`` to synchonize the changes to all the Nodes.
 
 .. _bridged_net:
 
@@ -63,7 +63,7 @@ To create a Virtual Network, include the following information in the template:
 |             | (does not apply for ``dummy`` driver)                                   |                       |
 +-------------+-------------------------------------------------------------------------+-----------------------+
 
-For example, you can define a *Bridged with Security Groups* type network with following template:
+For example, you can define a *Bridged with Security Groups* type network with the following template:
 
 .. code::
 
