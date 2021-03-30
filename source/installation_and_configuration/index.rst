@@ -1,6 +1,7 @@
 .. _advanced_components:
 .. _design_and_installation_guide:
 .. _deployment_guide:
+.. _installation_and_configuration:
 
 ================================================================================
 Installation and Configuration

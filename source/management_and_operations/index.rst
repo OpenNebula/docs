@@ -1,5 +1,6 @@
 .. _operations_guide:
 .. _operation_guide:
+.. _management_and_operations:
 
 ================================================================================
 Management and Operations
