@@ -70,7 +70,7 @@ Step 8. Check Cluster Health
 
 At this point the ``onezone show`` command should display all the followers active and in sync with the leader.
 
-Step 9. Update the Hypervisors (KVM & LXD)
+Step 9. Update the Hypervisors
 ================================================================================
 
-Finally upgrade the hypervisors as described in Step 11 in the :ref:`Upgrading Single Front-end Deployments <upgrade_single>` guide.
+Finally upgrade the hypervisors and enable them as described in Steps 11-12 in the :ref:`Upgrading Single Front-end Deployments <upgrade_single>` guide.
