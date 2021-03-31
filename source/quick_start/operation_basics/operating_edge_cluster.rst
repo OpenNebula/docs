@@ -18,7 +18,7 @@ Check :ref:`this link <cluster_guide>` to get a complete vision of cluster manag
 Hosts
 ================================================================================
 
-A host is mainly anything that is able to run a VM, container or Micro VM. It is in charge of executing them and retrieve all the monitoring information. A host have two important attributes:
+A host is mainly anything that is able to run a VM, container or Micro VM. It is in charge of executing them and retrieves all of the monitoring information. A host has two important attributes:
 
 * ``VM_MAD``: this indicates the virtualization technology that is going to be used.
 * ``IM_MAD``: this driver retrieves all the monitoring metrics from the host.
@@ -35,7 +35,7 @@ The basic operations you can perform with the host are:
 
 * **Offline**: host is totally offline.
 * **Disable**: disable it, e.g to perform maintenance operations.
-* **Enable**: enable it, so OpeNnebula monitors it and it comes to MONITORED again.
+* **Enable**: enable it, so OpenNebula monitors it and it comes to MONITORED again.
 
 Check :ref:`this link <hosts>` to get a complete vision of host management.
 
@@ -58,7 +58,7 @@ Check :ref:`this link <datastores>` to get a complete vision of datastore manage
 Virtual Networks: Public
 ================================================================================
 
-A virtual network in OpenNebula basically resembles the physical network on the datacenter. Using this allow VMs to have connectivity between them and with rest of the world. Each Edge Cluster has one public networking with the number of the IPs chosen by the user, this will allow VMs to have public connectivity so the user can connect to them.
+A virtual network in OpenNebula basically resembles the physical network in the datacenter. Virtual Networks allow VMs to have connectivity between them and with the rest of the world. Each Edge Cluster has one public network with the number of the IPs chosen by the user (in FireEdge), this will allow VMs to have public connectivity so the user can connect to them.
 
 |image_public_net|
 
