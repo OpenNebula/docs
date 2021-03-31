@@ -13,5 +13,5 @@ The document has been created from the collective information and experiences fr
 .. note:: The White Paper of the True Hybrid Cloud Architecture is publicly available for download `here <https://support.opennebula.pro/hc/en-us/articles/206652953-VMware-Cloud-Reference-Architecture-White-Paper>`__.
 
 .. |image| image:: /images/one_vcenter_high.png
-  :width: 70%
+  :width: 50%
 
