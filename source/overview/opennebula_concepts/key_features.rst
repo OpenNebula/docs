@@ -23,8 +23,8 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 **APPLIANCE MARKETPLACE**
 
 * Public Marketplace with pre-built applications ( PaaS, K8S, CI/CD…)
-* Build your private Marketplace to share and distribute applications within your organization.
-* Integration with third-party marketplaces like Docker Hub and Linux Containers.
+* Build your private Marketplace to share and distribute applications within your organization
+* Integration with third-party marketplaces like Docker Hub and Linux Containers
 
 **CHARGEBACK**
 
