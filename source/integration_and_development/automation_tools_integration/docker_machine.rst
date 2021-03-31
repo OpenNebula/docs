@@ -6,12 +6,6 @@ Docker Machine
 
 `Docker Machine <https://docs.docker.com/machine/overview/>`_ is a client and management tool for the `Docker <https://www.docker.com>`_ daemons on remote systems. OpenNebula provides its users with a custom **Docker Machine driver** (described on this page) which enables functionality like automated creation of a ready Dockerized host without the need to instantiate VM beforehand.
 
-.. _docker_host_provision_with_docker_machine:
-
-Docker Hosts Provision with Docker Machine
---------------------------------------------------------------------------------
-
-This guide shows how to provision and manage remote Docker Hosts with Docker Machine on your OpenNebula cloud.
 To follow this guide you need:
 
     * Access to a fully working OpenNebula cloud running version 5.6 or later. You can check this by using any OpenNebula CLI command without parameters.
@@ -49,13 +43,13 @@ Step 3 - Start your First Docker Host
 
 In order to create a docker host, you need a VM template or an OS image, and a network defined in your OpenNebula cloud. Make sure the network allows Docker Machine to connect to the VM.
 
-::.. note:: For vCenter hypervisor you will need to follow these steps to be able to use Docker Machine:
+.. note:: For vCenter hypervisor you will need to follow these steps to be able to use Docker Machine:
 
     * Make sure you have a network defined in vCenter to connect Docker to.
     * Create a template in vCenter with the desired capacity (CPU, Memory), a new hard disk (select the desired capacity) and new CD/DVD Drive (Datastore ISO File) with the ISO of the selected OS. Make sure you check Connect At Power On. Do not specify a network.
     * In OpenNebula you will need to import the template and the desired networks. Make sure you make the network type ipv4.
 
-To start your first Docker host you just need to use the `docker-machine create` command:
+To start your first Docker host you just need to use the ``docker-machine create`` command:
 
 .. prompt:: bash # auto
 
@@ -65,7 +59,7 @@ This command creates a VM in OpenNebula using $TEMPLATE_ID as the template and $
 
 If you want to create a VM without using a template (only for KVM) you can take a look at "Not Using a Template" section from :ref:`Docker Machine Driver References <docker_machine_driver_reference>`.
 
-Step 5 - Interact with your Docker Engine
+Step 4 - Interact with your Docker Engine
 --------------------------------------------------------------------------------
 
 You can list the VMs deployed by docker machine:
