@@ -5,7 +5,7 @@ Firecracker Node Installation
 ==========================================
 
 
-This page shows you how to configure OpenNebula Firecracker Node from the binary packages.
+This page shows you how to configure the OpenNebula Firecracker Node from the binary packages.
 
 .. note:: Before reading this chapter, you should have at least installed your :ref:`Front-end node <frontend_installation>`.
 
@@ -60,7 +60,7 @@ Step 5. Networking Configuration
 
 .. include:: ../common_node/networking.txt
 
-.. important:: Firecracker microVM Networking need to be enable in the hypervisor node. Please check :ref:`Network <fc_network>` section in Firecracker Driver guide.
+.. important:: Firecracker microVM Networking needs to be enabled in the hypervisor Node. Please check the :ref:`Network <fc_network>` section in Firecracker Driver guide.
 
 Step 6. Storage Configuration
 =============================
@@ -70,31 +70,31 @@ Step 6. Storage Configuration
 Step 7. Adding Host to OpenNebula
 =================================
 
-In this step, we'll register the hypervisor Node we have configured above into the OpenNebula Front-end, so that OpenNebula can launch Virtual Machines on it. Step is documented for Sunstone GUI and CLI, but both accomplish the same. Select and proceed with only one way.
+In this step, we'll register the hypervisor Node we have configured above into the OpenNebula Front-end, so that OpenNebula can launch Virtual Machines on it. This step is documented for Sunstone GUI and CLI, but both accomplish the same result. Select and proceed with just one of the two options.
 
 Learn more in :ref:`Hosts and Clusters Management <hostsubsystem>`.
 
-.. note:: If the host turns to ``err`` state instead of ``on``, check OpenNebula log ``/var/log/one/oned.log``. Problem might be with connecting over SSH.
+.. note:: If the Host turns to ``err`` state instead of ``on``, check OpenNebula log ``/var/log/one/oned.log``. The problem might be with connecting over SSH.
 
 Add Host with Sunstone
 ----------------------
 
-Open Sunstone as documented :ref:`here <verify_frontend_section_sunstone>`. In the left side menu go to **Infrastructure** → **Hosts**. Click on the ``+`` button.
+Open Sunstone as documented :ref:`here <verify_frontend_section_sunstone>`. On the left side menu go to **Infrastructure** → **Hosts**. Click on the ``+`` button.
 
 |sunstone_select_create_host|
 
-Then fill-in the hostname, FQDN, or IP of the Node in the ``Hostname`` field.
+Then fill in the hostname, FQDN, or IP of the Node in the ``Hostname`` field.
 
 |sunstone_create_host_dialog|
 
-Finally, return back to the **Hosts** list, and check that the Host has switched to ``ON`` status. It can take up to 1 minute. Clicking on the refresh button to check the status more frequently.
+Finally, return back to the **Hosts** list and check that the Host has switched to ``ON`` status. It can take up to one minute. You can click on the refresh button to check the status more frequently.
 
 |sunstone_list_hosts|
 
 Add Host with CLI
 -----------------
 
-To add a node to the cloud, run this command as ``oneadmin`` in the Front-end (replace ``<node01>`` with your Node hostname):
+To add a Node to the cloud, run this command as ``oneadmin`` in the Front-end (replace ``<node01>`` with your Node hostname):
 
 .. code::
 
