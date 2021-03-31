@@ -34,7 +34,7 @@ Learn more from some of OpenNebula users’ experience about how they are puttin
 .. |image1| image:: /images/use_cases.png
   :width: 70%
 
-.. |image2| image:: /images/success_stories.png
+.. |image2| image:: /images/user_stories.png
   :width: 70%
 
 .. |image3| image:: /images/case_studies.png
