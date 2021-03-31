@@ -4,7 +4,14 @@
 Equinix Edge Cluster
 ================================================================================
 
-.. include:: cluster_hypervisor.txt
+Edge Cluster Types
+================================================================================
+
+Equinix supports **metal** elastic clusters, that uses baremetal instances to create OpenNebula Hosts. You can run the following hypervisors in metal clusters:
+
+* **KVM**, runs virtual machines.
+* **Firecracker**, runs micro VMs.
+* **LXC**, runs system containers.
 
 Equinix Provider
 ================================================================================
