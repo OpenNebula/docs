@@ -291,7 +291,7 @@ OpenNebula drivers have by default 15 threads. This is the maximum number of act
 Database Tuning
 -------------------------
 
-For non-test installations use a MySQL database. SQLite is too slow for more than a couple of hosts and a few VMs.
+For non-test installations use a MySQL/MariaDB database. SQLite is too slow for more than a couple of hosts and a few VMs.
 
 Be sure to review the :ref:`recommended maintenance procedures <mysql_maintenance>` for the MySQL database backend.
 

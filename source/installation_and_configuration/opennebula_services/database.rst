@@ -13,8 +13,8 @@ Optimize Database
 
 Depending on the environment, following tasks should be considered to execute periodically for an optimal database performance:
 
-MySQL FTS Index
----------------
+MySQL/MariaDB FTS Index
+-----------------------
 
 To be able to search for VMs by different attributes, the OpenNebula database leverages `full-text search indexes <https://dev.mysql.com/doc/refman/5.6/en/innodb-fulltext-index.html>`__ (FTS). The size of this index can grow fast, depending on the cloud load. To free some space, periodically recreate FTS indexes by executing the following SQL commands:
 
@@ -48,7 +48,7 @@ Available subcommands (visit the :ref:`manual page <cli>` for full reference):
 - :ref:`change-body <onedb_change_body>` - Allows to update OpenNebula objects in database
 - :ref:`sqlite2mysql <onedb_sqlite2mysql>` - Migration tool from SQLite to MySQL/MariaDB
 
-The command ``onedb`` works with all supported database backends - SQLite, MySQL, or PostgreSQL. The database type and connection parameters are automatically taken from OpenNebula Daemon configuration (:ref:`/etc/one/oned.conf <oned_conf>`), but can be overriden on the command line with the following example parameters:
+The command ``onedb`` works with all supported database backends - SQLite, MySQL/MariaDB, or PostgreSQL. The database type and connection parameters are automatically taken from OpenNebula Daemon configuration (:ref:`/etc/one/oned.conf <oned_conf>`), but can be overriden on the command line with the following example parameters:
 
 **Automatic Connection Parameters**
 
