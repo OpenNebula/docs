@@ -13,7 +13,7 @@ The VLAN ID will be the same for every interface in a given network, calculated 
 OpenNebula Configuration
 ================================================================================
 
-The VLAN ID is calculated according to this configuration option of :ref:`/etc/one/oned.conf <oned_conf>`:
+The VLAN ID is calculated according to this configuration option :ref:`/etc/one/oned.conf <oned_conf>`:
 
 .. code::
 
@@ -29,7 +29,7 @@ The VLAN ID is calculated according to this configuration option of :ref:`/etc/o
         RESERVED = "0, 1, 4095"
     ]
 
-By modifying this section, you can reserve some VLANs so they aren't assigned to a Virtual Network. You can also define the first VLAN ID. When a new isolated network is created, OpenNebula will find a free VLAN ID from the VLAN pool. This pool is global, and it's also shared with the :ref:`802.1Q Networks <hm-vlan>`.
+By modifying this section, you can reserve some VLANs so they aren't assigned to a Virtual Network. You can also define the first VLAN ID. When a new isolated network is created, OpenNebula will find a free VLAN ID from the VLAN pool. This pool is global and it's also shared with the :ref:`802.1Q Networks <hm-vlan>`.
 
 The following configuration parameters can be adjusted in ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``:
 
@@ -67,7 +67,7 @@ To create an Open vSwitch network, include the following information:
 | ``AUTOMATIC_VLAN_ID`` | Ignored if ``VLAN_ID`` defined. Set to ``YES`` to automatically assign ``VLAN_ID`` | NO                            |
 +-----------------------+------------------------------------------------------------------------------------+-------------------------------+
 
-For example, you can define an *Open vSwitch Network* with following template:
+For example, you can define an *Open vSwitch Network* with the following template:
 
 .. code::
 
@@ -91,7 +91,7 @@ Using Open vSwitch on VXLAN Networks
 
 This section describes how to use `Open vSwitch <http://openvswitch.org/>`__ on VXLAN networks. To use VXLAN you need to use a specialized version of the Open vSwtich driver that incorporates the features of the :ref:`VXLAN <vxlan>` driver. It's necessary to be familiar with these two drivers, their configuration options, benefits, and drawbacks.
 
-The VXLAN overlay network is used as a base with the Open vSwitch (instead of regular Linux bridge) on top. Traffic on the lowest level is isolated by the VXLAN encapsulation protocol, and Open vSwitch still allows to use the second level isolation by 802.1Q VLAN tags **inside the encapsulated traffic**. Main isolation is always provided by VXLAN, not 802.1Q VLANs. If 802.1Q is required to isolate the VXLAN, the driver needs to be configured with user-created 802.1Q tagged physical interface.
+The VXLAN overlay network is used as a base with the Open vSwitch (instead of regular Linux bridge) on top. Traffic on the lowest level is isolated by the VXLAN encapsulation protocol and Open vSwitch still allows second level isolation by 802.1Q VLAN tags **inside the encapsulated traffic**. The main isolation is always provided by VXLAN, not 802.1Q VLANs. If 802.1Q is required to isolate the VXLAN, the driver needs to be configured with user-created 802.1Q tagged physical interface.
 
 This hierarchy is important to understand.
 
@@ -128,7 +128,7 @@ To create a network, include the following information:
 | ``MTU``                     | The MTU for the VXLAN interface and bridge                              |  NO                                            |
 +-----------------------------+-------------------------------------------------------------------------+------------------------------------------------+
 
-For example, you can define an *Open vSwitch - VXLAN Network* with following template:
+For example, you can define an *Open vSwitch - VXLAN Network* with the following template:
 
 .. code::
 
@@ -159,14 +159,14 @@ Please consider the following when using the DPDK datapath for Open vSwitch:
 * An Open vSwitch version compiled with DPDK support is required.
 * This mode cannot be combined with non-DPDK switches.
 * The VMs need to use the virtio interface for its NICs.
-* Although not needed to make it work, you'd probably be interested in configuring NUMA pinning and hugepages in your hosts. See :ref:`here <numa>`.
+* Although not needed to make it work, you'd probably be interested in configuring NUMA pinning and hugepages in your Hosts. See :ref:`here <numa>`.
 
 OpenNebula Configuration
 --------------------------------------------------------------------------------
 
 Follow these steps to configure OpenNebula:
 
-* **Select the DPDK backend for the switches**. CHange configuration of the ``openvswitch`` driver in ``/ect/one/oned.conf`` to
+* **Select the DPDK Back-end for the switches**. Change configuration of the ``openvswitch`` driver in ``/ect/one/oned.conf`` to
 
 .. code::
 
@@ -196,7 +196,7 @@ There are no additional changes, simply:
 * Create your networks using the ``ovswitch`` driver, :ref:`see above <openvswitch>`.
 * Make sure that the NIC model is set to ``virtio``. This setting can be added as a default in ``/etc/one/vmm_exec/vmm_exec_kvm.conf``.
 
-You can verify that the VMs are using the vhost interface by looking at their domain definition in the host. You should see something like:
+You can verify that the VMs are using the vhost interface by looking at their domain definition in the Host. You should see something like:
 
 .. code:: bash
 
