@@ -8,7 +8,7 @@ LXC Driver
 Requirements
 ============
 
-OpenNebula LXC Driver requires the LXC version >= 3.0.3 to be installed on the host.
+OpenNebula LXC Driver requires the LXC version >= 3.0.3 to be installed on the Host.
 
 Considerations & Limitations
 ================================================================================
@@ -16,14 +16,14 @@ Considerations & Limitations
 Security
 --------------------------------------------------------------------------------
 
-In order to ensure the security in a multitenant environment only unprivileged containers are supported by LXC drivers.
+In order to ensure the security in a multitenant environment, only unprivileged containers are supported by LXC drivers.
 
-The unprivileged containers will be deployed as ``root``. It will use ``600100001-600165537`` sub UID/GID range for mapping users/groups in order to increase security in case a malicious agent is able to scape the container.
+The unprivileged containers will be deployed as ``root``. It will use ``600100001-600165537`` sub UID/GID range for mapping users/groups in order to increase security in case a malicious agent is able to escape the container.
 
 Storage Limitations
 --------------------------------------------------------------------------------
 
-- Datablocks require to be formatted with a file system in order to being able to attach it to a container.
+- Datablocks require formatting with a file system in order to be attached to a container.
 
 - Only file system images are supported.
 
@@ -61,7 +61,7 @@ Configuration
 OpenNebula
 --------------------------------------------------------------------------------
 
-The LXC driver is enabled by default in OpenNebula ``/etc/one/oned.conf`` on your Front-end host with reasonable defaults. Read the :ref:`oned Configuration <oned_conf_virtualization_drivers>` to understand these configuration parameters and :ref:`Virtual Machine Drivers Reference <devel-vmm>` to know how to customize and extend the drivers.
+The LXC driver is enabled by default in OpenNebula ``/etc/one/oned.conf`` on your Front-end Host with reasonable defaults. Read the :ref:`oned Configuration <oned_conf_virtualization_drivers>` to understand these configuration parameters and :ref:`Virtual Machine Drivers Reference <devel-vmm>` to know how to customize and extend the drivers.
 
 Driver
 --------------------------------------------------------------------------------
@@ -76,7 +76,7 @@ LXC driver-specific configuration is available in ``/var/lib/one/remotes/etc/vmm
 |                            | ``:command`` can be set                                            |
 +----------------------------+--------------------------------------------------------------------+
 | ``:datastore_location``    | Default path for the datastores. This only need to be              |
-|                            | change if the corresponding value in oned.conf has                 |
+|                            | changed if the corresponding value in oned.conf has                 |
 |                            | been modified                                                      |
 +----------------------------+--------------------------------------------------------------------+
 | ``:default_lxc_config``    | Path to the LXC default configuration file. This file              |
@@ -87,9 +87,9 @@ LXC driver-specific configuration is available in ``/var/lib/one/remotes/etc/vmm
 Storage
 ================================================================================
 
-LXC containers need a root file system image in order to boot. This images can be downloaded directly to OpenNebula from `Docker Hub <https://hub.docker.com/>`__, `Linux Containers <https://uk.images.linuxcontainers.org/>`__ and `Turnkey Linux <https://www.turnkeylinux.org/>`__ Marketplaces. Check :ref:`Public Marketplaces <public_marketplaces>` chapter for more information.
+LXC containers need a root file system image in order to boot. This image can be downloaded directly to OpenNebula from `Docker Hub <https://hub.docker.com/>`__, `Linux Containers <https://uk.images.linuxcontainers.org/>`__ and `Turnkey Linux <https://www.turnkeylinux.org/>`__ Marketplaces. Check the :ref:`Public Marketplaces <public_marketplaces>` chapter for more information.
 
-.. note:: Custom images can also be created by using common linux tools like ``mkfs`` command for creating the file system and ``dd`` for copying and existing file system inside the new one.
+.. note:: Custom images can also be created by using common linux tools like the ``mkfs`` command for creating the file system and ``dd`` for copying an existing file system inside the new one.
 
 Networking
 ================================================================================
@@ -136,7 +136,7 @@ Containers supports remote access via VNC protocol which allows easy access to t
 Additional Attributes
 -----------------------
 
-The ``RAW`` attribute allows to add raw LXC configuration attributes to the final container deployment file. This allows to set configuration attributes that are not directly supported by OpenNebula.
+The ``RAW`` attribute allows us to add raw LXC configuration attributes to the final container deployment file. This permits us to set configuration attributes that are not directly supported by OpenNebula.
 
 .. code::
 
