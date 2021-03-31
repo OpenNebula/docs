@@ -46,9 +46,6 @@ After having installed the cloud with one hypervisor you may add other hyperviso
 
 |OpenNebula Hypervisors|
 
-.. todo:: Update Figure
-
-
 3.2. Install the Virtualization hosts
 -------------------------------------------------
 
@@ -134,4 +131,8 @@ Because no two clouds are the same, OpenNebula provides many different interface
 |OpenNebula Cloud Architecture|
 
 .. |OpenNebula Hypervisors| image:: /images/6_features.png
+  :width: 70%
+
 .. |OpenNebula Cloud Architecture| image:: /images/new_overview_integrators.png
+  :width: 70%
+
