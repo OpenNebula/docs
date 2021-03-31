@@ -14,7 +14,7 @@ You can install Rancher within your OpenNebula cloud by using one of the followi
 
 **Docker Install**
 
-You need to create a VM with OpenNebula's Docker appliance, or by using OpenNebula :ref:`Docker Machine driver <docker_machine_overview>`. You can find information about this step here :ref:`Step 3 - Start your First Docker Host <start_your_first_docker_host>`.
+You need to create a VM with OpenNebula's Docker appliance, or by using OpenNebula :ref:`Docker Machine driver <docker_machine>`. You can find information about this step here :ref:`Step 3 - Start your First Docker Host <start_your_first_docker_host>`.
 
 Once the machine is created, you can proceed to install the Rancher server on the Docker host using the following command:
 
