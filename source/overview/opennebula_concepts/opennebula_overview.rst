@@ -6,7 +6,7 @@ OpenNebula Overview
 
 Welcome to OpenNebula, the open source **Cloud & Edge Computing Platform** bringing real freedom to your Enterprise Cloud 🚀
 
-OpenNebula is a **powerful, but easy to use, open source solution to build and manage Enterprise Clouds**. It combines virtualization and container technologies with multi-tenancy, automatic provision and elasticity to offer on-demand applications and services. This guide introduces the basic concepts that you need to install, configure and operate an OpenNebula cloud, both on-premises and as a hosted solution.
+OpenNebula is a **powerful, but easy to use, open source solution to build and manage Enterprise Clouds**. It combines virtualization and container technologies with multi-tenancy, automatic provision and elasticity to offer on-demand applications and services on private, hybrid and edge environments. This guide introduces the basic concepts that you need to design, install, configure and operate an OpenNebula cloud, both on-premises and as a hosted solution.
 
 Bringing Real Freedom to Your Enterprise Cloud
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -46,16 +46,16 @@ Virtualized Applications
 Containerized Applications
 ==========================
 
-OpenNebula offers a new, native approach for running containerized applications and workflows by directly using the official Docker images available from the Docker Hub and running them as lightweight Firecracker microVMs, a method that provides an extra level of efficiency and security. This solution combines all the benefits of containers with the security, orchestration and multi-tenant features of a solid Cloud Management Platform but without adding extra layers of management, thus reducing the complexity and costs—compared with Kubernetes or OpenShift.
+OpenNebula offers a new, native approach for running containerized applications and workflows by directly using the official Docker images available from the **Docker Hub** and running them as LXC system containers or as lightweight **Firecracker microVMs**, a method that provides an extra level of efficiency and security. This solution combines all the benefits of containers with the security, orchestration and multi-tenant features of a solid Cloud Management Platform but without adding extra layers of management, thus reducing the complexity and costs—compared with Kubernetes or OpenShift.
 
-For those cases where Kubernetes is required or is the best fit, OpenNebula also brings support for the deployment of Kubernetes clusters through a virtual appliance available from the OpenNebula Public Marketplace. For more details, please refer to the `web section and white paper <https://opennebula.io/mastering-containers/>`_ in which we describe OpenNebula’s native features for container orchestration, and how it integrates with third-party technologies like Docker, Kubernetes and Rancher.
+For those cases where Kubernetes is required or is the best fit, OpenNebula also brings support for the deployment of Kubernetes clusters through a **CNCF-certified** virtual appliance available from the OpenNebula Public Marketplace or through the **k3s** Lightweight Kubernetes for resource-constrained and edge locations. For more details, please refer to the `web section and white paper <https://opennebula.io/mastering-containers/>`_ in which we describe OpenNebula’s native features for container orchestration, and how it integrates with third-party technologies like Docker, Kubernetes and Rancher.
 
 |image2|
 
 Cloud Access Model and Roles
 ============================
 
-OpenNebula offers a flexible and powerful cloud provisioning model based on Virtual Data Centers (VDCs) that enables an integrated, comprehensive framework to dynamically provision the infrastructure resources in large multi-datacenter and multi-cloud environments to different customers, business units or groups. For example, the following are common enterprise use cases in large cloud computing deployments:
+OpenNebula offers a flexible and powerful cloud provisioning model based on **Virtual Data Centers (VDCs)** that enables an integrated, comprehensive framework to dynamically provision the infrastructure resources in large multi-datacenter and multi-cloud environments to different customers, business units or groups. For example, the following are common enterprise use cases in large cloud computing deployments:
 
 * **On-premise Private Clouds** serving multiple Projects, Departments, Units or Organizations: On-premise private clouds in large organizations require powerful and flexible mechanisms to manage the access privileges to the virtual and physical infrastructure and to dynamically allocate the available resources.
 
