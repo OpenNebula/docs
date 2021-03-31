@@ -8,4 +8,5 @@ Automation Tools Integration
    Overview <overview>
    Terraform <terraform>
    Ansible <ansible>
+   Docker Machine <docker_machine>
    Rancher <rancher>
