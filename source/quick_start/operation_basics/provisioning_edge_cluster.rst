@@ -30,7 +30,7 @@ An Edge Cluster is a group of resources in OpenNebula and the corresponding reso
 
 The following resources are created in OpenNebula:
 
-* **Cluster**: one cluster containing all the resources is created with each provision. There is a relation one to one between the provision and the cluster, so each provision can only have **one** cluster.
+* **Cluster**: one cluster containing all the resources is created with each provision. There is a one to one relation between the provision and the cluster, so each provision can only have **one** cluster.
 * **Datastore**: each provision deploys two datastores, the system and the image.
 * **Host**: user can deploy as many as he wants. They will be used to run VMs.
 * **Virtual Network**: for private networking there is a network template ready to be instantiated with the parameters the user needs. There is also one public networking that uses the elastic drivers to preallocate IPs, so VMs have public connectivity.
@@ -42,9 +42,9 @@ During the provision of the cluster all these resources and their corresponding 
 * An Internet Gateway to provide Internet access to host and VMs.
 * A routing table for the previous elements.
 
-.. note:: Take into account that FireEdge will request Elatic IPs for the public IPs you requested. If you receive an error creating a provision about not being able to request more IPs, please check the `limits of your account <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html>`__ in your zone.
+.. note:: Take into account that FireEdge will request Elastic IPs for the public IPs you requested. If you receive an error creating a provision about not being able to request more IPs, please check the `limits of your account <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html>`__ in your zone.
 
-We will be using the FireEdge GUI in this guide. Please make sure you can login into it, usin your front-end IP and default port 2616, as well as your oneadmin credentials.
+We will be using the FireEdge GUI in this guide. Please make sure you can login into it, using your front-end IP and default port 2616, as well as your oneadmin credentials.
 
 Step 1: Configuring AWS & Needed Information
 ================================================================================
@@ -60,7 +60,7 @@ Then, you need to choose the region where you want to deploy the resources. All 
 Step 2: Create an AWS provider
 ================================================================================
 
-To deploy a complete edge provision with oneprovision from GUI, you need first a remote provider. Including the connection parameters and location where deploy those resources
+To deploy a complete edge provision with oneprovision from GUI, you first need to add a remote provider using the connection parameters above and choosing the location you wish to deploy those resources
 
 First, to **create a provider**, go to provider list view:
 
