@@ -47,7 +47,7 @@ Hook Execution Manager configuration is set in ``/etc/one/onehem-server.conf``:
 +-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Parameter             | Description                                                                                                                                                               |
 +=======================+===========================================================================================================================================================================+
-| debug_level           | Set the log debug level shown in ``/var/log/one/onehem-server.log``                                                                                                       |
+| debug_level           | Set the log debug level shown in ``/var/log/one/onehem.log``                                                                                                       |
 +-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | hook_base_path        | Base location to look for hook scripts when commands use a relative path (default value ``/var/lib/one/remotes/hooks``)                                                   |
 +-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -388,7 +388,7 @@ This script prints to stdout the result of one.user.create API call and the user
     #
     # NAME = user-create
     # TYPE = api
-    # COMMAND = "user_create_hook.rb"
+    # COMMAND = "user_create.rb"
     # ARGUMENTS = "$API"
     # CALL = "one.user.allocate"
 
@@ -413,13 +413,15 @@ This script prints to stdout the result of one.user.create API call and the user
 State Hook example (HOST)
 --------------------------------------------------------------------------------
 
+This script prints to stdout when an host is in error state.
+
 .. code-block:: ruby
 
     # Hook template
     #
-    #NAME = hook-error
+    #NAME = host-error
     #TYPE = state
-    #COMMAND = hook_error.rb
+    #COMMAND = host_error.rb
     #ARGUMENTS="$TEMPLATE"
     #STATE = ERROR
     #RESOURCE = HOST
@@ -438,6 +440,8 @@ State Hook example (HOST)
 
 State Hook example (VM)
 --------------------------------------------------------------------------------
+
+This script prints to stdout if when a VM is in prolog state.
 
 .. code-block:: ruby
 
@@ -462,23 +466,21 @@ State Hook example (VM)
 
     puts "VM #{vm_id} is in PROLOG state"
 
-.. note:: Note that any command can be specified in ``COMMAND``, for debugging. (``COMMAND="/usr/bin/echo"``) can be very helpful.
-
 State Hook example (IMAGE)
 --------------------------------------------------------------------------------
 
-This script prints to stdout the ID of the user that invoked one.host.create API call and the ID of the new host.
+This script prints to stdout the ID of image when it is ready to use.
 
 .. code-block:: ruby
 
     # Hook template
     #
-    # NAME = hook
+    # NAME = image-ready
     # TYPE = state
     # COMMAND = image_ready.rb
     # STATE = READY
     # RESOURCE = IMAGE
-    # ARGUMENTS = "test $TEMPLATE"
+    # ARGUMENTS = "$TEMPLATE"
 
     #!/usr/bin/ruby
 
@@ -488,9 +490,11 @@ This script prints to stdout the ID of the user that invoked one.host.create API
     #img_template = Nokogiri::XML(Base64::decode64(STDIN.gets.chomp)) for reading from STDIN
     img_template = Nokogiri::XML(Base64::decode64(ARGV[0]))
 
-    img_id = host_template.xpath("//ID").text.to_i
+    img_id = img_template.xpath("//ID").text.to_i
 
     puts "Image #{img_id} ready to use!!"
+
+.. note:: Note that any command can be specified in ``COMMAND``, for debugging. (``COMMAND="/usr/bin/echo"``) can be very helpful.
 
 .. |hook-subsystem| image:: /images/hooks-subsystem-architecture.png
 
