@@ -133,5 +133,5 @@ Because no two clouds are the same, OpenNebula provides many different interface
 
 |OpenNebula Cloud Architecture|
 
-.. |OpenNebula Hypervisors| image:: /images/OpenNebula_Hypervisors.png
+.. |OpenNebula Hypervisors| image:: /images/6_features.png
 .. |OpenNebula Cloud Architecture| image:: /images/new_overview_integrators.png
