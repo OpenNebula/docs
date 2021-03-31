@@ -8,4 +8,9 @@ Application container technologies, like Docker and Kubernetes, are becoming the
 
 OpenNebula offers a simple, but powerful approach for running containerized applications and workflows by directly using the Docker official images available from the Docker Hub and running them on light-weighted microVMs that provide an extra level of efficiency and security. This solution combines all the benefits of containers with the security, orchestration and multi-tenant features of a solid Cloud Management Platform but without adding extra layers of management, thus reducing the complexity and costs, compared with Kubernetes or OpenShift. For those cases where Kubernetes is required or is the best fit, OpenNebula brings support for the deployment of Kubernetes clusters through a Virtual Appliance available from the OpenNebula Public Marketplace. Last but not least, OpenNebula also offers an integration with other popular orchestration engines such as Docker Machine, Docker Swarm and Rancher.
 
+|image|
+
 .. note:: The White Paper of Mastering Application Containers with OpenNebuka is publicly available for download `here <https://support.opennebula.pro/hc/en-us/articles/360050448232-Mastering-Containers-with-OpenNebula-White-Paper>`__.
+
+.. |image| image:: /images/overview_containers.png
+  :width: 70%
