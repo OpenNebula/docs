@@ -261,7 +261,13 @@ Step 11. Update the Hypervisors
 
 .. warning:: If you're using vCenter please jump to the next step.
 
-First update the virtualization, storage and networking drivers.  As the ``oneadmin`` user execute:
+First we need to let OpenNebula know that the hypervisors can be monitored again, but we still don't want to deploy any VM on them until they are fully updated. So we will switch them to ``DISABLE`` state:
+
+.. prompt:: text $ auto
+
+   $ onehost disable <host_id>
+
+After that, update the virtualization, storage and networking drivers.  As the ``oneadmin`` user execute:
 
 .. prompt:: text $ auto
 

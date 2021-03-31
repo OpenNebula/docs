@@ -73,6 +73,9 @@ Follow :ref:`onecfg upgrade <cfg_upgrade>` documentation on how to upgrade and t
 
     Please read the corresponding guides (only the one that applies to the specific version you are upgrading from) if you are upgrading from OpenNebula :ref:`5.6 <upgrade_56>` or :ref:`5.8 <upgrade_58>` and make sure you apply any required change described in the corresponding guide.
 
+
+.. _validate_upgrade:
+
 Validate OpenNebula
 ==============================================
 
