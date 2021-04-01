@@ -4,7 +4,7 @@
 Appendix - List of Configuration Files
 ======================================
 
-Following table describes all configuration files and their type from directories
+The following table describes all configuration files and their type from directories
 
 - ``/etc/one/``
 - ``/var/lib/one/remotes/``
