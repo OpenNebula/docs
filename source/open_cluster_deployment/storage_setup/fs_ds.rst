@@ -200,9 +200,9 @@ When using replication, the following attributes can be tuned in configuration f
 +--------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
 | ``REPLICA_RECOVERY_SNAPS_DIR`` | Default directory to store the recovery snapshots. These snapshots are used to recover VMs in case of Host failure in a cluster   |
 +--------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
-| ``REPLICA_SSH_OPTS``           | SSH options when copying from the replica to the hypervisor speed. Weaker ciphers on secure networks are preferred                       |
+| ``REPLICA_SSH_OPTS``           | SSH options when copying from the replica to the hypervisor speed. Weaker ciphers on secure networks are preferred                |
 +--------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
-| ``REPLICA_SSH_FE_OPTS``        | SSH options when copying from the Front-end to the replica. Stronger ciphers on public networks are preferred                            |
+| ``REPLICA_SSH_FE_OPTS``        | SSH options when copying from the Front-end to the replica. Stronger ciphers on public networks are preferred                     |
 +--------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
 | ``REPLICA_MAX_SIZE_MB``        | Maximum size of cached images on replica in MB                                                                                    |
 +--------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
