@@ -4,14 +4,14 @@
 Try OpenNebula on VMware
 ========================
 
-In this guide, we'll go through a front-end OpenNebula environment deployment, where all the necessary OpenNebula services to use, manage and run the cloud will bei deployed through an OVA and colocated on the single VM running on a vCenter instance. Later, we'll import some vCenter resources and launch a VM Template. Afterwards you can continue to the Operations Basics section to add a remote edge cluster to your shiny new OpenNebula cloud!
+In this guide, we'll go through a Front-end OpenNebula environment deployment, where all the OpenNebula services needed to use, manage and run the cloud will bei deployed through an OVA and collocated on the single VM running on a vCenter instance. Later, we'll import some vCenter resources and launch a VM Template. Afterwards you can continue to the Operations Basics section to add a remote Edge Cluster to your shiny new OpenNebula cloud!
 
-OpenNebula over VMware is intended for companies willing to create a self-service cloud environment on top of their VMware infrastructure without having to abandon their investment in VMware and retool the entire stack. In these environments, OpenNebula seamlessly integrates with existing vCenter infrastructures to leverage advanced features—such as vMotion, HA or DRS. OpenNebula exposes a multi-tenant, cloud-like provisioning layer on top of vCenter, enabling taking steps towards liberating your stack from vendor lock-in. Once you have built your cloud with OpenNebula on VMware, you can then add new resources based on open source hypervisors⁠—like KVM—and hence use OpenNebula as a migration framework to the open cloud.
+OpenNebula over VMware is intended for companies willing to create a self-service cloud environment on top of their VMware infrastructure without having to abandon their investment in VMware and retool the entire stack. In these environments, OpenNebula seamlessly integrates with existing vCenter infrastructures to leverage advanced features such as vMotion, HA or DRS. OpenNebula exposes a multi-tenant, cloud-like provisioning layer on top of vCenter, enabling you to take steps towards liberating your stack from vendor lock-in. Once you have built your cloud with OpenNebula on VMware, you can then add new resources based on open source hypervisors ⁠— like KVM — and hence use OpenNebula as a migration framework to the open cloud.
 
 .. image:: /images/vonecloud_logo.png
     :align: center
 
-vOneCloud is a virtual appliance for vSphere that builds on top of your vCenter an OpenNebula cloud for development, testing or product evaluation in 5 minutes. In a nutshell, it is an OVA file with a configured CentOS and OpenNebula installation ready to import resources from vCenter environments. vOneCloud is free to download and use. The virtual appliance does not interfere with existing vSphere configurations, procedures and workflows. This means that you can try it and if you decide not to adopt it, you can just delete it. vOneCloud can be also used for small-size production deployments.
+vOneCloud is a virtual appliance for vSphere that builds on top of your vCenter an OpenNebula cloud for development, testing or product evaluation in five minutes. In a nutshell, it is an OVA file with a configured CentOS and OpenNebula installation ready to import resources from vCenter environments. vOneCloud is free to download and use. The virtual appliance does not interfere with existing vSphere configurations, procedures and workflows. This means that you can try it and if you decide not to adopt it, you can just delete it. vOneCloud can be also used for small-size production deployments.
 
 vOneCloud ships with the following components under the hood:
 
@@ -27,23 +27,23 @@ vOneCloud ships with the following components under the hood:
 
 .. _control_console:
 
-vOneCloud comes with a Control Console, a text based wizard accessible through the vCenter console to the vOneCloud appliance. It is available by opening the vOneCloud appliance console in vCenter. It requires no authentication since only the vCenter administrator will be able to open the vOneCloud console. It can be used to to configure the network, root password and change the password of the OpenNebula oneadmin user.
+vOneCloud comes with a Control Console, a text-based wizard accessible through the vCenter console to the vOneCloud appliance. It is available by opening the vOneCloud appliance console in vCenter. It requires no authentication since only the vCenter administrator will be able to open the vOneCloud console. It can be used to configure the network, root password and change the password of the OpenNebula oneadmin user.
 
 .. _vonecloud_requirements:
 
 Requirements
 ============
 
-It is advised to manage one vCenter by only one OpenNebula (ie, do not manage the same vCenter from two different OpenNebulas). Otherwise VMs from both server will clash and produce errors.
+It is advised to manage one vCenter through one OpenNebula only (i.e., do not manage the same vCenter from two different OpenNebulas). If you do, VMs from both servers will clash and produce errors.
 
-The following components are needed to be present in the infrastructure to implement a cloud infrastructure run by OpenNebula:
+The following components need to be present in the infrastructure to implement a cloud infrastructure run by OpenNebula:
 
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |             **Component**             |                                                                                                                                                      **Observations**                                                                                                                                                     |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | vCenter 6.5/6.7/7.0                   | - ESX hosts, VM Templates and Running VMs expected to be managed by OpenNebula need to be grouped into clusters.                                                                                                                                                                                                          |
 |                                       | - The IP or DNS needs to be known, as well as the credentials (username and password) of an admin user.                                                                                                                                                                                                                   |
-|                                       | - DRS is not required but it is recommended. OpenNebula does not schedule to the granularity of ESX hosts, and you would need DRS to select the actual ESX host within the cluster. Otherwise the VM will be started in the ESX host associated to the VM Template.                                                       |
+|                                       | - DRS is not required but it is recommended. OpenNebula does not schedule to the granularity of ESX hosts and you would need DRS to select the actual ESX host within the cluster. Otherwise the VM will be started in the ESX host associated with the VM Template.                                                       |
 |                                       | - VMs that will be instantiated through OpenNebula need to be saved as VMs Templates in vCenter. OpenNebula only creates new VMs by instantiating VM Templates.                                                                                                                                                           |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ESX 6.5/6.7/7.0                       | - With at least 2 GB of free RAM and 1 free CPU.                                                                                                                                                                                                                                                                          |
@@ -61,9 +61,9 @@ vOneCloud ships with a default of 1 vCPUs and 2 GB of RAM, and as such it has be
 - Up to 4 vCenters
 - Up to 40 ESXs managed by each vCenter
 - Up to 1.000 VMs in total, each vCenter managing up to 250 VMs
-- Up to 100 users, being the concurrent limit 10 users accessing the system simultaneously
+- Up to 100 users, the limit being 10 users accessing the system simultaneously
 
-Take into account that vOneCloud is shipped for evaluation purposes, for infrastructures exceeding the aforementioned limits we recommend an installation of OpenNebula from scratch on a bare metal server, using the vCenter drivers.
+Take into account that vOneCloud is shipped for evaluation purposes. For infrastructures exceeding the aforementioned limits we recommend an installation of OpenNebula from scratch on a bare-metal server, using the vCenter drivers.
 
 .. _accounts:
 
@@ -79,7 +79,7 @@ vOneCloud ships with several pre-created user accounts which will be described i
 +----------+---------------------+-------------------------+----------------------------------------------------------------------------------+
 | oneadmin | linux               | Service user            | Used to run all OpenNebula services.                                             |
 +----------+---------------------+-------------------------+----------------------------------------------------------------------------------+
-| oneadmin | OpenNebula Sunstone | Cloud Administrator     | Cloud Administrator. Run any task in OpenNebula, including creating other users. |
+| oneadmin | OpenNebula Sunstone | Cloud administrator     | Cloud administrator. Run any task in OpenNebula, including creating other users. |
 +----------+---------------------+-------------------------+----------------------------------------------------------------------------------+
 
 .. _download_and_deploy:
@@ -89,30 +89,30 @@ Download and Deploy
 
 vOneCloud can be downloaded by completing the form `here <https://opennebula.io/get-vonecloud>`__.
 
-The OVA file can be imported in an existing vCenter infrastructure. It is based on `CentOS 8 <http://www.centos.org/>`__ and has VMware tools enabled.
+The OVA file can be imported into an existing vCenter infrastructure. It is based on `CentOS 8 <http://www.centos.org/>`__ and has VMware tools enabled.
 
 Follow the next steps to deploy a fully functional OpenNebula cloud.
 
 Step 1. Deploying the OVA
 --------------------------------------------------------------------------------
 
-Login to your vCenter installation and select the appropriate datacenter and cluster where you want to deploy the appliance. Select ``Deploy OVF Template``.
+Log in to your vCenter installation and select the appropriate datacenter and cluster where you want to deploy the appliance. Select ``Deploy OVF Template``.
 
 .. image:: /images/vOneCloud-download-deploy-001.png
     :align: center
 
 Browse to the download path of the OVA that can be downloaded from the link above.
 
-Select the name and folder and a compute resource on where you want vOneCloud deployed. Also, you'll need to select the datastore where to copy the OVA into.
+Select the name, folder, and a compute resource where you want vOneCloud to be deployed. Also, you'll need to select the datastore in which to copy the OVA.
 
-Select the Network. You will need to choose a network that has access to the ESX hosts.
+Select the network. You will need to choose a network that has access to the ESX hosts.
 
 Review the settings selection and click finish. Wait for the Virtual Machine to appear in the cluster.
 
 .. image:: /images/vOneCloud-download-deploy-007.png
     :align: center
 
-After importing the vOneCloud OVA, and before powering it on, the vOneCloud Virtual Machine can be edited to, for instance, add a new network interface, increase the amount of RAM, the available CPUs for performance, etc.
+After importing the vOneCloud OVA and before powering it on, the vOneCloud Virtual Machine can be edited to, for instance, add a new network interface, increase the amount of RAM, the available CPUs for performance, etc.
 
 Now you can power on the Virtual Machine.
 
@@ -144,12 +144,12 @@ If you are using a static network configuration, answer yes and you will need to
 - Input Gateway and DNS Servers
 - Select OK and then quit the dialog
 
-An example of static network configuration on the available network interface on the 10.0.1.x class C network, with a gateway in 10.0.1.1 and using 8.8.8.8 as the DNS server:
+Here's an example of static network configuration on the available network interface on the 10.0.1.x class C network, with a gateway in 10.0.1.1 and using 8.8.8.8 as the DNS server:
 
 .. image:: /images/network-conf-example.png
     :align: center
 
-The second action needed is to set the **oneadmin account password**. You will need this to login to OpenNebula. Check the :ref:`Accounts section <accounts>` to learn more about vOneCloud roles and users.
+The second action needed is to set the **oneadmin account password**. You will need this to log in to OpenNebula. Check the :ref:`Accounts section <accounts>` to learn more about vOneCloud roles and users.
 
 .. image:: /images/set_oneadmin_password.png
     :align: center
@@ -158,7 +158,7 @@ The second action needed is to set the **oneadmin account password**. You will n
 
 In the third step, you need to define a **root password.** You won't be using this very often, so write it down somewhere safe. It's your master password to the appliance.
 
-This password can be used to access the OpenNebula command line interface, for that you need to ssh to vOneCloud using the `root` account and password. In OS X and Linux environments, simply use `ssh` to log into the root account of vOneCloud's IP. For Windows environments you can use software like `PuTTY <http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>`__ or even SFTP clients like `WinSCP <https://winscp.net/>`__. Alternatively, open the console of the vOneCloud VM in vCenter and change the tty (Ctrl + Alt + F2).
+This password can be used to access the OpenNebula command line interface; for that, you need to SSH to vOneCloud using the `root` account and password. In OS X and Linux environments, simply use `ssh` to log in to the root account of vOneCloud's IP. For Windows environments you can use software like `PuTTY <http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>`__ or even SFTP clients like `WinSCP <https://winscp.net/>`__. Alternatively, open the console of the vOneCloud VM in vCenter and change the tty (Ctrl + Alt + F2).
 
 As the last step, you need to configure a public-facing address that will be used to access your vOneCloud instance by end-users. This address is used by Sunstone interface to redirect to different service FireEdge running within the vOneCloud instance. Enter the fully qualified domain name, hostname valid within your network, or the IP address.
 
@@ -168,7 +168,7 @@ As the last step, you need to configure a public-facing address that will be use
 Step 3. Enjoy the Out-of-the-Box Features
 --------------------------------------------------------------------------------
 
-After opening the Sunstone interface (``http://<appliance_ip>`` with oneadmin credentials) you are now ready to enjoy the out-of-the-box features of OpenNebula!
+After opening the Sunstone interface (``http://<appliance_ip>`` with oneadmin credentials), you are now ready to enjoy the out-of-the-box features of OpenNebula!
 
 .. image:: /images/sunstone-main.png
     :align: center
@@ -185,14 +185,14 @@ Import Existing vCenter Resources
 
 Importing a vCenter infrastructure into OpenNebula can be carried out easily through the Sunstone Web UI. Follow the next steps to import an existing vCenter cluster as well as any already defined VM Template and Networks.
 
-You will need the IP or hostname of the vCenter server, as well as a user declared as Administrator in vCenter. More info on needed permissions in the :ref:`vCenter node installation guide <vcenter_permissions_requirement>`.
+You will need the IP or hostname of the vCenter server, as well as a user declared as Administrator in vCenter. There's more info on needed permissions in the :ref:`vCenter node installation guide <vcenter_permissions_requirement>`.
 
-.. note:: For security reasons, you may define different users to access different ESX Clusters. A different user can be defined in OpenNebula per ESX cluster, which is encapsulated in OpenNebula as an OpenNebula host.
+.. note:: For security reasons, you may define different users to access different ESX Clusters. A different user can be defined in OpenNebula per ESX cluster, which is encapsulated in OpenNebula as an OpenNebula Host.
 
 Step 1. Sunstone login
 -----------------------
 
-Log in into Sunstone as **oneadmin**, as explained in :ref:`the previous section <download_and_deploy>`.
+Log in to Sunstone as **oneadmin**, as explained in :ref:`the previous section <download_and_deploy>`.
 
 The *oneadmin* account has full control of all the physical and virtual resources.
 
@@ -218,27 +218,27 @@ In the dialog that pops up, select vCenter as Type in the drop-down. You now nee
 | **Password** | Password for the above user                          |
 +--------------+------------------------------------------------------+
 
-Select the vCenter cluster to import as OpenNebula Host and click on "Import". After importing you should see a message indicating that the host was successfully imported.
+Select the vCenter cluster to import as OpenNebula Host and click on "Import". After importing you should see a message indicating that the Host was successfully imported.
 
 .. _import_running_vms:
 
-Now it's time to check that the vCenter import has been successful. In ``Infrastructure --> Hosts`` check if vCenter cluster has been imported, and if all the ESX hosts are available in the ESX tab.
+Now it's time to check that the vCenter import has been successful. In ``Infrastructure --> Hosts`` check if the vCenter cluster has been imported, and if all the ESX Hosts are available in the ESX tab.
 
-.. note:: Take into account that one vCenter cluster (with all its ESX hosts) will be represented as one OpenNebula host. Is not possible to import individual ESX hosts, they need to be grouped in vCenter clusters.
+.. note:: Take into account that one vCenter cluster (with all its ESX Hosts) will be represented as one OpenNebula Host. It's not possible to import individual ESX Hosts; they need to be grouped in vCenter clusters.
 
 Step 3. Import Datastores
 ---------------------------------------------------------------------------------
 
 .. _import_images_and_ds:
 
-Datastores can be imported from the ``Storage --> Datastores`` Since datastores are going to be used to hold the images from VM Templates, all datastore **must** be imported before VM Template import.
+Datastores can be imported from the ``Storage --> Datastores`` Since datastores are going to be used to hold the images from VM Templates, all datastores **must** be imported before VM Template import.
 
-vCenter datastores hosts VMDK files and other file types so VMs and templates can use them, and these datastores can be represented in OpenNebula as both an Images datastore and a System datastore:
+vCenter datastores hosts VMDK files and other file types so VMs and templates can use them, and these datastores can be represented in OpenNebula as both an Images Datastore and a System Datastore:
 
 - Images Datastore. Stores the images repository. VMDK files are represented as OpenNebula images stored in this datastore.
 - System Datastore. Holds disk for running virtual machines, copied or cloned from the Images Datastore.
 
-For example, if we have a vcenter datastore called ''nfs'', when we import the vCenter datastore into OpenNebula, two OpenNebula datastores will be created as an Images datastore and as a System datastore pointing to the same vCenter datastore.
+For example, if we have a vcenter datastore called ''nfs'', when we import the vCenter datastore into OpenNebula, two OpenNebula datastores will be created as an Images Datastore and as a System Datastore pointing to the same vCenter datastore.
 
 First go to ``Storage --> Datastores`` , click on the "+" green icon and click on "Import". Select the Host (vCenter cluster) and click on "Get Datastores".
 
@@ -247,7 +247,7 @@ First go to ``Storage --> Datastores`` , click on the "+" green icon and click o
 
 Select the datastore to import and click on "Import". After importing you should see a message indicating that the datastore was successfully imported.
 
-.. note:: If the vCenter instance features a read only datastore, please be aware that you should disable the SYSTEM representation of the datastore after importing it to avoid OpenNebula trying to deploy VMs in it.
+.. note:: If the vCenter instance features a read-only datastore, please be aware that you should disable the SYSTEM representation of the datastore after importing it to avoid OpenNebula trying to deploy VMs in it.
 
 .. _import_networks:
 
@@ -264,7 +264,7 @@ Select the Host and click on "Get Networks". Select the Network and click on ``I
 Virtual Networks can be further refined with the inclusion of different Address Ranges. This refinement can be done at import time, defining the size of the network one of the following supported Address Ranges:
 
 - IPv4: Need to define at least starting IP address. MAC address can be defined as well
-- IPv6: Can optionally define starting MAC address, GLOBAL PREFIX and ULA PREFIX
+- IPv6: Can optionally define starting MAC address, GLOBAL PREFIX, and ULA PREFIX
 - Ethernet: Does not manage IP addresses but rather MAC addresses. If a starting MAC is not provided, OpenNebula will generate one.
 
 .. _import_vm_templates:
@@ -286,24 +286,24 @@ Select the Host and click on "Get Templates". Select the template to import and 
 .. _operations_on_templates:
 .. _vmtemplates_and_networks:
 
-When a VMware VM Template is imported, OpenNebula will detect any virtual disk and network interface within the template. For each virtual disk, OpenNebula will create an image representing each disk discovered in the template. In the same way, OpenNebula will create a network representation for each standard or distributed port group associated to virtual network interfaces found in the template. The imported OpenNebula VM templates can be modified selecting the VM Template in ``Virtual Resources --> Templates`` and clicking on the Update button.
+When a VMware VM Template is imported, OpenNebula will detect any virtual disk and network interface within the template. For each virtual disk, OpenNebula will create an image representing each disk discovered in the template. In the same way, OpenNebula will create a network representation for each standard or distributed port group associated with virtual network interfaces found in the template. The imported OpenNebula VM templates can be modified by selecting the VM Template in ``Virtual Resources --> Templates`` and clicking on the Update button.
 
-If the vCenter infrastructure has running or powered off **Virtual Machines**, OpenNebula can import and subsequently manage them. To import vCenter VMs, proceed to the **Wilds** tab in the Host info tab representing the vCenter cluster where the VMs are running in, select the VMs to be imported and click on the import button.
+If the vCenter infrastructure has running or powered off **Virtual Machines**, OpenNebula can import and subsequently manage them. To import vCenter VMs, proceed to the **Wilds** tab in the Host info tab representing the vCenter cluster the VMs are running in, select the VMs to be imported and click on the import button.
 
 .. _operations_on_running_vms:
 
-After the VMs are in the Running state, you can operate on their life-cycle, assign them to particular users, attach or detach network interfaces, create snapshots, do capacity resizing (change CPU and MEMORY after powering the VMs off), etc.
+After the VMs are in the running state, you can operate on their life-cycle, assign them to particular users, attach or detach network interfaces, create snapshots, do capacity resizing (change CPU and MEMORY after powering the VMs off), etc.
 
 .. _cluster_prefix:
 
-.. note:: Resources imported from vCenter will have their names appended with a the name of the cluster where this resources belong in vCenter, to ease their identification within OpenNebula.
+.. note:: Resources imported from vCenter will have their names appended with the name of the cluster where these resources belong in vCenter, to ease their identification within OpenNebula.
 
 Step 6. Verification - Launch a VM
 ---------------------------------------------------------------
 
-Let's validate this OpenNebula installation doing what it does best, launching Virtual Machines. Go to your ``Instances -> VMs`` tab in Sunstone and click on the "+" green icon. Select the VM Template imported in the previous step (feel free to change any configuration aspect) and click on Instantiate.
+Let's check out this OpenNebula installation doing what it does best: launching Virtual Machines. Go to your ``Instances -> VMs`` tab in Sunstone and click on the "+" green icon. Select the VM Template imported in the previous step (feel free to change any configuration aspect) and click on Instantiate.
 
 .. image:: /images/instantiate_vcenter_vm_template.png
     :align: center
 
-Alright! Your VM should be up and running switfly. Check the console icon to access your VM through VMRC within Sunstone.
+OK! Your VM should be up and running switfly. Check the console icon to access your VM through VMRC within Sunstone.
