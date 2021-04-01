@@ -160,7 +160,7 @@ In the third step, you need to define a **root password.** You won't be using th
 
 This password can be used to access the OpenNebula command line interface; for that, you need to SSH to vOneCloud using the `root` account and password. In OS X and Linux environments, simply use `ssh` to log in to the root account of vOneCloud's IP. For Windows environments you can use software like `PuTTY <http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>`__ or even SFTP clients like `WinSCP <https://winscp.net/>`__. Alternatively, open the console of the vOneCloud VM in vCenter and change the tty (Ctrl + Alt + F2).
 
-As the last step, you need to configure a public-facing address that will be used to access your vOneCloud instance by end-users. This address is used by Sunstone interface to redirect to different service FireEdge running within the vOneCloud instance. Enter the fully qualified domain name, hostname valid within your network, or the IP address.
+As the last step, you need to configure a public-facing address that will be used to access your vOneCloud instance by end-users. Enter the fully qualified domain name, hostname valid within your network, or the IP address.
 
 .. image:: /images/control-console-fe-endpoint.png
     :align: center
