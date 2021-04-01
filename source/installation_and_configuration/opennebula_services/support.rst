@@ -8,14 +8,14 @@ Support Utilities
 
    This feature is available only in OpenNebula **Enterprise Edition**.
 
-OpenNebula provides customers means to generate diagnostic bundles with all details necessary handle the support cases. It covers:
+OpenNebula provides customers with means to generate diagnostic bundles with all details necessary to handle the support cases. It covers:
 
-- Gathering configuration state of operating system and services on front-end and nodes.
-- Inspecting OpenNebula configuration, state and metadata of VMs, Hosts, Virtual Networks, etc.
+- Gathering the configuration state of operating system and services on the Front-end and nodes.
+- Inspecting OpenNebula configuration, the state and metadata of VMs, Hosts, Virtual Networks, etc.
 - Dumping OpenNebula database.
 - Scanning vCenter user permissions.
 
-There are 2 specialized tools contained in the OpenNebula server package:
+There are two specialized tools contained in the OpenNebula server package:
 
 - :ref:`generate support diagnostic bundle <support_bundle>`,
 - :ref:`scan vCenter permissions <support_vcenter>`.
@@ -47,7 +47,7 @@ Please **attach this file to the support ticket**.
 
         $ sudo onesupport frontend nodb
 
-The tool prints all actions, based on which you can decide if you want to provide such a bundle to the support team. Example full output:
+The tool prints all actions, based on which you can decide if you want to provide such a bundle to the support team. Here's an example of a full output:
 
 .. code-block:: bash
 
@@ -130,7 +130,7 @@ The tool prints all actions, based on which you can decide if you want to provid
 Advanced Usage
 --------------
 
-The purpose of the ``onesupport`` tool is to gather as much as possible information about the environment so that OpenNebula's customer care can give more accurate and faster responses. The usage is very simple, there are only a few configuration options. All are described in brief documentation available via argument ``--help``.
+The purpose of the ``onesupport`` tool is to gather as much information as possible about the environment so that OpenNebula's customer care can give more accurate and faster responses. The usage is very simple and there are only a few configuration options. There are brief descriptions of all of them available via argument ``--help``.
 
 .. prompt:: bash $ auto
 
@@ -148,7 +148,7 @@ The purpose of the ``onesupport`` tool is to gather as much as possible informat
       nologs, logs  ... (don't) dump logs (ONE and system logs)
 
 
-There are 2 types of arguments to specify:
+There are two types of arguments to specify:
 
 - *host type*
 - *dump type*
@@ -156,7 +156,7 @@ There are 2 types of arguments to specify:
 Host Types
 ^^^^^^^^^^
 
-What data are gathered depends mainly on the type of host we are running tool on. Each *host type* gets same common data (operating system, hardware, memory, installed software packages, system services, mounts, logs etc.) and differs only in data specific for the type.
+What data is gathered depends mainly on the type of host we are running the tool on. Each *host type* gets the same common data (operating system, hardware, memory, installed software packages, system services, mounts, logs etc.) and differs only in data specific to the type.
 
 Available options are:
 
@@ -169,8 +169,8 @@ Available options are:
 | ``host``      | Hypervisor services (libvirt, KVM) and network configuration.                  |
 +---------------+--------------------------------------------------------------------------------+
 | ``all``       | Combination of ``frontend`` mode and ``host`` mode.                            |
-|               | It starts with front-end specific data and connects to each virtualization     |
-|               | host to get host-specific data. This mode is the **default**.                  |
+|               | It starts with Front-end specific data and connects to each virtualization     |
+|               | host to get Host-specific data. This mode is the **default**.                  |
 +---------------+--------------------------------------------------------------------------------+
 
 Examples
@@ -183,13 +183,13 @@ Simple run gathers all information (runs are equivalent):
     $ sudo onesupport
     $ sudo onesupport all
 
-Get only Front-end specific data, must run on Front-end:
+Get only Front-end specific data (must run on Front-end):
 
 .. prompt:: bash $ auto
 
     $ sudo onesupport frontend
 
-Get only host-specific data, must run on hypervizor Node:
+Get only host-specific data (must run on hypervizor Node):
 
 .. prompt:: bash $ auto
 
@@ -198,7 +198,7 @@ Get only host-specific data, must run on hypervizor Node:
 Dump Types
 ^^^^^^^^^^
 
-Level of detail contained in the gathered data can be adjusted by *dump type* parameters. Following types are supported:
+The level of detail contained in the gathered data can be adjusted by *dump type* parameters. The following types are supported:
 
 +----------------------+-------------------------------------------------------------------------+
 | Option               | Description                                                             |
@@ -216,12 +216,12 @@ All dump types are enabled by default (``db conf logs``), but can be selectively
 
     If positive dump types (``db``, ``conf``, ``logs``) are used on the command line, only the specified types are gathered and no other ones.
 
-    If negative dump types (``nodb``, ``noconf``, ``nologs``) are used, these types are excluded from the support bundle. All the rest types are included.
+    If negative dump types (``nodb``, ``noconf``, ``nologs``) are used, these types are excluded from the support bundle. All the remaining types are included.
 
 Examples
 ~~~~~~~~
 
-Simple run gathers all information (these runs are equivalent):
+A simple run gathers all information (these runs are equivalent):
 
 .. prompt:: bash $ auto
 
@@ -251,9 +251,9 @@ Dump types and host types parameters can be combined
 Scan vCenter Permissions
 ========================
 
-When you are using OpenNebula cloud to manage vCenter infrastructure, it might be necessary to know also details about the permissions configuration inside vCenter. This is **automatically got during the support bundle preparation**, but can be scanned separately at any time (e.g., in case the automatic run fails).
+When you are using OpenNebula cloud to manage vCenter infrastructure, it might also be necessary to know details about the permissions configuration inside vCenter. This is **automatically retrieved during the support bundle preparation** but can be scanned separately at any time (e.g., in case the automatic run fails).
 
-Dedicated tool ``onesupport_vcenter_privs`` is used to gather permissions configuration.
+The dedicated tool ``onesupport_vcenter_privs`` is used to gather permissions configuration.
 
 .. important::
 
@@ -280,4 +280,4 @@ Example run:
         --user=administrator@vsphere.local --password=TopSecretPassword \
         --check-user=oneadmin@vsphere.local
 
-The result is printed on the terminal (standard output). Can be redirected to the file, or just copy&pasted into the support ticket.
+The result is printed on the terminal (standard output). It can be redirected to the file or just copied and pasted in the support ticket.
