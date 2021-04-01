@@ -6,14 +6,14 @@ Raw Device Mapping (RDM) Datastore
 
 The RDM Datastore is an Image Datastore that enables raw access to block devices on Nodes. This Datastore enables fast VM deployments due to a non-existent transfer operation from the Image Datastore to the System Datastore.
 
-.. warning:: The Datastore should only be usable by the administrators. Letting users create images in this Datastore is a huge **security risk**! For example, users could register an image ``/dev/sda`` and read the host filesystem.
+.. warning:: The Datastore should only be usable by the administrators. Letting users create images in this Datastore is a huge **security risk**! For example, users could register an image ``/dev/sda`` and read the Host filesystem.
 
 Datastore Layout
 ================================================================================
 
-The RDM Datastore is used to register already existing block devices on the Nodes. The devices should be already setup and available and VMs using these devices must be enforced to run on the Nodes ready for them. Additional Virtual Machine files, like deployment files or volatile disks, are created as regular files.
+The RDM Datastore is used to register already existing block devices on the Nodes. The devices should be already set up and available, and VMs using these devices must be enforced to run on the Nodes ready for them. Additional Virtual Machine files, like deployment files or volatile disks, are created as regular files.
 
-Frontend Setup
+Front-end Setup
 ================================================================================
 
 No additional setup is required. Make sure :ref:`/etc/one/oned.conf <oned_conf>` has the following configuration for the RDM Datastore:
@@ -32,14 +32,14 @@ No additional setup is required. Make sure :ref:`/etc/one/oned.conf <oned_conf>`
 Node Setup
 ================================================================================
 
-The devices you want to attach to a VM should be accessible by the hypervisor. KVM usually runs under identity of ``oneadmin`` user, make sure this user is in a group with access to the disk (like ``disk``) and has read write permissions for the group.
+The devices you want to attach to a VM should be accessible by the hypervisor. KVM usually runs under the identity of ``oneadmin`` user; make sure this user is in a group with access to the disk (like ``disk``) and has read write permissions for the group.
 
 .. _dev_ds_templates:
 
 OpenNebula Configuration
 ================================================================================
 
-Once the Node storage setup is ready, the OpenNebula configuration comprises of two steps:
+Once the Node storage setup is ready, the OpenNebula configuration comprises two steps:
 
 * Create System Datastore
 * Create Image Datastore
@@ -90,7 +90,7 @@ An example template of Datastore:
 Datastore Usage
 ================================================================================
 
-New images can be added as any other image specifying the path. As an example here is an image template to add a Node disk ``/dev/sdb``:
+New images can be added just like any other image by specifying the path. As an example, here is an image template to add a Node disk ``/dev/sdb``:
 
 .. code-block:: bash
 
@@ -101,10 +101,10 @@ New images can be added as any other image specifying the path. As an example he
 
     $ oneimage create image.tmpl -d 101
 
-If you are using the CLI shorthand parameters define the image using source:
+If you are using the CLI, shorthand parameters define the image using the source:
 
 .. prompt:: bash $ auto
 
     $ oneimage create -d 101 --name nbd --source /dev/sdc --driver raw --prefix vd --persistent --type OS --size 0MB
 
-.. note:: As this Datastore is just a container for existing devices, images doesn't take any size from it. All devices registered will render size of 0 and the overall devices Datastore will show up with 1MB of available space
+.. note:: As this Datastore is just a container for existing devices, images don't take any size from it. All devices registered will render a size of 0 and the overall devices Datastore will show up with 1MB of available space
