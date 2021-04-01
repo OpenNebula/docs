@@ -5,7 +5,7 @@
 Scheduler Configuration
 =======================
 
-The OpenNebula Scheduler is responsible for **planning of the pending Virtual Machines on available hypervisor Nodes**. It's a dedicated daemon installed alongside the OpenNebula Daemon (``oned``), but can be deployed independently on a different machine. The Scheduler is distributed as an operating system package ``opennebula`` with system service ``opennebula-scheduler``.
+The OpenNebula Scheduler is responsible for **planning of the pending Virtual Machines on available hypervisor Nodes**. It's a dedicated daemon installed alongside the OpenNebula Daemon (``oned``), but can be deployed independently on a different machine. The Scheduler is distributed as an operating system package ``opennebula`` with the system service ``opennebula-scheduler``.
 
 .. _schg_the_match_making_scheduler:
 
@@ -23,7 +23,7 @@ The match-making algorithm works as follows:
 * The :ref:`SCHED_RANK and SCHED_DS_RANK expressions <template_placement_section>` are evaluated upon the Host and Datastore list using the information gathered by the monitor drivers. Also, the :ref:`NIC/SCHED_RANK expressions <template_network_section>` are evaluated upon the Network list using the information in the Virtual Network template. Any variable reported by the monitor driver (or manually set in the Host, Datastore, or Network template) can be included in the rank expressions.
 * The resources with a higher rank are used first to allocate VMs.
 
-Scheduling algorithm easily allows implementing several placement heuristics (see below) depending on the selected ``RANK`` expressions.
+The Scheduling algorithm easily allows us to implement several placement heuristics (see below) depending on the selected ``RANK`` expressions.
 
 The policy used to place a VM can be configured in two places:
 
@@ -35,7 +35,7 @@ The policy used to place a VM can be configured in two places:
 Configuration
 =============
 
-The Scheduler configuration file is in ``/etc/one/sched.conf`` on the Front-end and can be adapted to your needs with folowing parameters:
+The Scheduler configuration file is in ``/etc/one/sched.conf`` on the Front-end and can be adapted to your needs with the following parameters:
 
 .. note::
 
@@ -123,7 +123,7 @@ Service Control and Logs
 
 Change the server running state by managing the operating system service ``opennebula-scheduler``.
 
-To start, restart, stop the server, execute one of:
+To start, restart or stop the server, execute one of:
 
 .. prompt:: bash # auto
 
@@ -133,13 +133,13 @@ To start, restart, stop the server, execute one of:
 
 .. note::
 
-   Service is automatically started (unless masked) with the start of OpenNebula Daemon.
+   Service is automatically started (unless masked) upon the start of OpenNebula Daemon.
 
 Server **logs** are located in ``/var/log/one`` in following file:
 
 - ``/var/log/one/sched.log``
 
-Other logs are also available in Journald, use the following command to show:
+Other logs are also available in Journald; use the following command to show:
 
 .. prompt:: bash # auto
 
@@ -150,7 +150,7 @@ Advanced Usage
 
 VM Policies
 -----------
-VMs are dispatched to hosts in a FIFO fashion. You can alter this behavior by giving each VM (or the base template) a priority. Just set the attribute ``USER_PRIORITY`` to sort the VMs based on this attribute, and so alter the dispatch order. The ``USER_PRIORITY`` can be set for example in the VM templates for a user group if you want to prioritize those templates. Note that this priority is also used for rescheduling.
+VMs are dispatched to hosts in a FIFO fashion. You can alter this behavior by giving each VM (or the base template) a priority. Just set the attribute ``USER_PRIORITY`` to sort the VMs based on this attribute and so alter the dispatch order. The ``USER_PRIORITY`` can be set for example in the VM templates for a user group if you want to prioritize those templates. Note that this priority is also used for rescheduling.
 
 .. _schg_re-scheduling_virtual_machines:
 
@@ -174,7 +174,7 @@ Users can schedule one or more VM actions to be executed at a certain date and t
 Limit/Overprovision Host Capacity
 ---------------------------------
 
-Prior to assigning a VM to a Host, the available capacity is checked to ensure that the VM fits in the host. The capacity is obtained by the monitor probes. You may alter this behavior by reserving an amount of capacity (``MEMORY`` and ``CPU``). You can reserve this capacity:
+Prior to assigning a VM to a Host, the available capacity is checked to ensure that the VM fits in the Host. The capacity is obtained by the monitor probes. You may alter this behavior by reserving an amount of capacity (``MEMORY`` and ``CPU``). You can reserve this capacity:
 
 * **Cluster-wise**, by updating the cluster template (e.g. ``onecluster update``). All the hosts of the cluster will reserve the same amount of capacity.
 * **Host-wise**, by updating the host template (e.g. ``onehost update``). This value will override those defined at the cluster level.
