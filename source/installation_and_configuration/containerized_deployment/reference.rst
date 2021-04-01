@@ -4,7 +4,7 @@
 Troubleshooting and Reference
 ================================================================================
 
-This page contains complementary information to the :ref:`containerized deployment <container_deployment>` of the OpenNebula Front-end. It provides hints on how to :ref:`troubleshoot <container_troubleshooting>` the problems with description of common problems, :ref:`tutorials <container_guides>` on how to control services in the containers or configure CLI, and :ref:`reference <container_references>` tables of all network services, image parameters, or volumes.
+This page contains complementary information to the :ref:`containerized deployment <container_deployment>` of the OpenNebula Front-end. It provides hints on how to :ref:`troubleshoot <container_troubleshooting>` problems with descriptions of common issues, :ref:`tutorials <container_guides>` on how to control services in the containers or configure CLI, and :ref:`reference <container_references>` tables of all network services, image parameters, or volumes.
 
 .. _container_troubleshooting:
 
@@ -16,9 +16,9 @@ Container Logs
 
 .. note::
 
-    Beware that ``podman-compose`` may miss some of the mentioned functionality in this section.
+    Beware that ``podman-compose`` may miss some of the functionality mentioned in this section.
 
-First place to look for problems should be (log of) the standard output of the containers.
+The first place to look for problems should be the standard output of the containers (and the log of this).
 
 **docker**
 
@@ -34,7 +34,7 @@ Real-time tailing of all the service output messages:
 
     # docker-compose logs -f
 
-or, checking only one container you are interested in (e.g., ``opennebula-oned``):
+or for checking only one container you are interested in (e.g., ``opennebula-oned``):
 
 .. prompt:: bash # auto
 
@@ -49,7 +49,7 @@ The most helpful debugging approach is to investigate the container inside. Firs
 
     # docker exec -it opennebula /bin/bash
 
-This works also with the multi-container deployment too, you just need to use the proper name (or, container ID). E.g.:
+This works with the multi-container deployment too, you just need to use the proper name (or, container ID). E.g.:
 
 .. prompt:: bash # auto
 
@@ -57,7 +57,7 @@ This works also with the multi-container deployment too, you just need to use th
 
 **Logs**
 
-All the log files are located in ``/var/log`` on following significant places:
+All the log files are located in ``/var/log`` in the following significant places:
 
 - ``/var/log/one/``
 - ``/var/log/supervisor/services/``
@@ -65,7 +65,7 @@ All the log files are located in ``/var/log`` on following significant places:
 Failed to Login into Sunstone
 -----------------------------
 
-If you already used Sunstone over HTTPS and decide to change to HTTP-only later (or vice versa), you might experience issues to login into Sunstone without any visible error message. To fix the problem, drop the browser cookies for the Sunstone URL and try again.
+If you already used Sunstone over HTTPS and decide to change to HTTP-only later (or vice versa), you might experience issues logging in into Sunstone without any visible error message. To fix the problem, drop the browser cookies for the Sunstone URL and try again.
 
 Container Name Already in Use
 -----------------------------
@@ -79,7 +79,7 @@ You might experience a similar error:
     container to be able to reuse that name.
     See 'docker run --help'.
 
-In this case, user is trying to start a **new** container with the same name as the container which was already created. This happens usually when the previous container is stopped (``docker stop opennebula``) or crashes, but user is trying to *start* it again but with the ``docker run`` command (instead of ``docker start``).
+In this case, the user is trying to start a **new** container with the same name as the container which was already created. This happens usually when the previous container is stopped (``docker stop opennebula``) or crashes, but the user is trying to *start* it again with the ``docker run`` command (instead of ``docker start``).
 
 Depending on your intentions, you can *start* the existing container again:
 
@@ -87,7 +87,7 @@ Depending on your intentions, you can *start* the existing container again:
 
     # docker start opennebula
 
-or, delete existing and start a new one:
+or delete it and start a new one:
 
 .. prompt:: bash # auto
 
@@ -99,23 +99,23 @@ or, delete existing and start a new one:
 Starting Containers on Boot with Podman
 ---------------------------------------
 
-Containers won't start on server boot with Podman and Podman Compose, even if the containers are configured with a restart policy (``--restart``). You need to implement the containers start via your init system, e.g. ``systemd``. Read more in the `Porting containers to systemd using <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/building_running_and_managing_containers/porting-containers-to-systemd-using-podman_building-running-and-managing-containers>`__ chapter of the *Building, running, and managing container* guide.
+Containers won't start upon server boot with Podman and Podman Compose, even if the containers are configured with a restart policy (``--restart``). You need to implement the containers' start via your init system, e.g. ``systemd``. Read more in the `Porting containers to systemd using <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/building_running_and_managing_containers/porting-containers-to-systemd-using-podman_building-running-and-managing-containers>`__ chapter of the *Building, running, and managing container* guide.
 
 .. _container_troubleshooting_apparmor:
 
 AppArmor and Docker Compose on Ubuntu/Debian
 --------------------------------------------
 
-On Ubuntu/Debian with AppArmor enabled, the multi-container Docker deployment (started using the **Docker Compose**) is configured to run the container with ``oned`` **without AppArmor security policies** applied, i.e. it's running in the unconfined mode. It can be changed via the :ref:`deployment parameter <container_reference_deploy_params>` ``DEPLOY_APPARMOR_PROFILE``.
+On Ubuntu/Debian with AppArmor enabled, the multi-container Docker deployment (started by using the **Docker Compose**) is configured to run the container with ``oned`` **without AppArmor security policies** applied, e.g. it's running in the unconfined mode. It can be changed via the :ref:`deployment parameter <container_reference_deploy_params>` ``DEPLOY_APPARMOR_PROFILE``.
 
-Rationale: On Debian/Ubuntu with AppArmor enabled, the Docker uses the default `AppArmor profile <https://docs.docker.com/engine/security/apparmor/>`_ ``docker-default``, which doesn't reflect correctly extra ``SYS_ADMIN`` capabilities configured in the container. As a result, the AppArmor breaks the integration with Docker Hub, Linux Containers, and TurnKey Linux Marketplaces in the OpenNebula as it blocks its user-space mounts via ``FUSE``.
+Rationale: On Debian/Ubuntu with AppArmor enabled, the Docker uses the default `AppArmor profile <https://docs.docker.com/engine/security/apparmor/>`_ ``docker-default``, which doesn't correctly reflect extra ``SYS_ADMIN`` capabilities configured in the container. As a result, the AppArmor breaks the integration with Docker Hub, Linux Containers, and TurnKey Linux Marketplaces in the OpenNebula as it blocks its user-space mounts via ``FUSE``.
 
 .. _container_guides:
 
 Guides
 ======
 
-This section containes various guides and tutorials.
+This section contains various guides and tutorials.
 
 .. _container_cli:
 
@@ -126,7 +126,7 @@ You can access the OpenNebula Front-end services remotely over the API provided 
 
 **Credentials**
 
-Create a file ``$HOME/.one/one_auth`` and put inside credentials of the OpenNebula user you'll connect with (you can use ``oneadmin``, or any other OpenNebula user you have already created). The syntax of the file is ``username:password``. For example:
+Create a file ``$HOME/.one/one_auth`` and put inside the credentials of the OpenNebula user you'll connect with (you can use ``oneadmin``, or any other OpenNebula user you have already created). The syntax of the file is ``username:password``. For example:
 
 .. code::
 
@@ -134,7 +134,7 @@ Create a file ``$HOME/.one/one_auth`` and put inside credentials of the OpenNebu
 
 **Endpoints**
 
-Next step is to setup the environmental variables with the API endpoints.
+The next step is to set-up the environmental variables with the API endpoints.
 
 .. note::
 
@@ -156,7 +156,7 @@ For insecure OpenNebula Front-end deployment, use:
 
 .. warning::
 
-    If you are using the default untrusted (self-signed) TLS certificates, you might need disable TLS verification by
+    If you are using the default untrusted (self-signed) TLS certificates, you might need to disable TLS verification by using
 
     .. prompt:: bash $ auto
 
@@ -167,13 +167,13 @@ For insecure OpenNebula Front-end deployment, use:
 Supervisor
 ----------
 
-`Supervisor <http://supervisord.org/>`_ is a process manager used inside the OpenNebula Front-end container image as a manager of services. Once :ref:`the bootstrap script <container_bootstrap>` is done with the setup of the container, Supervisor takes control over the container. It has a responsibility for the lifetime of (almost) all the processes inside the running container.
+`Supervisor <http://supervisord.org/>`_ is a process manager used inside the OpenNebula Front-end container image as a manager of services. Once :ref:`the bootstrap script <container_bootstrap>` is done with the setup of the container, Supervisor takes control of the container. It has responsibility for the lifetime of (almost) all the processes inside the running container.
 
 This is a quick introduction to using Supervisor.
 
 .. note::
 
-    We expect the user to know how to list running containers and has a basic knowledge of the Docker CLI. Otherwise, check the :ref:`container basics <container_basics>`.
+    We expect the user to know how to list running containers and to have a basic knowledge of the Docker CLI. Otherwise, check the :ref:`container basics <container_basics>`.
 
 Enter the running container:
 
@@ -185,7 +185,7 @@ The ``supervisorctl`` CLI tool is the interface to control the Supervisor daemon
 
 .. important::
 
-    Supervisor daemon starts only after the successful bootstrap, until then the ``supervisorctl`` might fail this way:
+    The Supervisor daemon starts only after the successful bootstrap, until then the ``supervisorctl`` might fail like this:
 
     .. code::
 
@@ -233,14 +233,14 @@ Get status information about configured services inside the container, e.g.:
     sshd                             RUNNING   pid 1019, uptime 0:01:03
     stunnel                          RUNNING   pid 1020, uptime 0:01:03
 
-Show status of particular service, e.g.:
+Show the status of particular service, e.g.:
 
 .. prompt:: bash # auto
 
     # supervisorctl status opennebula-httpd
     opennebula-httpd                 RUNNING   pid 1067, uptime 0:01:03
 
-Stopping, starting and restarting of particular service is pretty intuitive. E.g.:
+Stopping, starting and restarting a particular service is pretty intuitive. E.g.:
 
 .. prompt:: bash $ auto
 
@@ -253,7 +253,7 @@ Stopping, starting and restarting of particular service is pretty intuitive. E.g
 Container Operations Basics
 ---------------------------
 
-This section shows examples of the most operations with the container runtime.
+This section shows examples of most operations with the container runtime.
 
 .. note::
 
@@ -268,7 +268,7 @@ List the local container images:
    opennebula          5.13                     039a43d7b277        7 hours ago         2.05GB
    centos              8                        300e315adb2f        6 weeks ago         209MB
 
-Add custom tag to the pulled OpenNebula image:
+Add a custom tag to the pulled OpenNebula image:
 
 .. prompt:: bash # auto
 
@@ -286,7 +286,7 @@ Delete the local image based by a digest:
 
     $ docker image rm 039a43d7b277
 
-Remove all dangling (unnamed) images taking storage place:
+Remove all dangling (unnamed) images taking up storage place:
 
 .. prompt:: bash # auto
 
@@ -338,7 +338,7 @@ References
 Network Ports
 -------------
 
-Internal container network (TCP/UDP) ports, which are expected to be exposed to the public:
+Internal container network (TCP/UDP) ports which are expected to be exposed to the public:
 
 +-----------+----------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
 | Port      | Protocol | Service [*]_           |                     Description                                                                                       |
@@ -372,11 +372,11 @@ Internal container network (TCP/UDP) ports, which are expected to be exposed to 
 
 .. important::
 
-    It is important to distinguish between the **container internal** port (as in the table) and **external** (published) ports - the majority of the internal ports are hardwired and cannot be moved to another port number.
+    It is important to distinguish between the **container's internal** port (as in the table) and **external** (published) ports - the majority of the internal ports are hardwired and cannot be moved to another port number.
 
-    If one wants to avoid port conflicts with the already bound ports on the host then change to the external (published) port is needed. In a few cases, the container itself also must be informed about the changes and a relevant image parameter thus must reflect the same value.
+    If you want to avoid port conflicts with the already bound ports on the Host then a change to the external (published) port is needed. In a few cases, the container itself also must be informed about the changes and a relevant image parameter thus must reflect the same value.
 
-The following table demonstrates how to utilize different ports for different services via arguments of ``docker run`` command. Notice that in the case of **monitord** and **Sunstone VNC** both sides of expression must be modified not just the left (published) portion.
+The following table demonstrates how to utilize different ports for different services via arguments of the ``docker run`` command. Notice that in the case of **monitord** and **Sunstone VNC** both sides of expression must be modified not just the left (published) portion.
 
 .. TODO - Drop table below:
 
@@ -470,9 +470,9 @@ Image Parameters
 |                                      | ``mysqld`` |br|        |                          |                                                                                                                          |
 |                                      | ``oned``               |                          |                                                                                                                          |
 +--------------------------------------+                        +--------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``MYSQL_DATABASE``                   |                        | ``opennebula``           | Name of the OpenNebula's database stored in the MySQL server (it will be created).                                       |
+| ``MYSQL_DATABASE``                   |                        | ``opennebula``           | Name of OpenNebula's database stored in the MySQL server (it will be created).                                       |
 +--------------------------------------+                        +--------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``MYSQL_USER``                       |                        | ``oneadmin``             | User allowed to access the OpenNebula's database (it will be created).                                                   |
+| ``MYSQL_USER``                       |                        | ``oneadmin``             | User allowed to access OpenNebula's database (it will be created).                                                   |
 +--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
 | ``MYSQL_PASSWORD``                   | YES |_| [*]_: |br|     |                          | User's database password otherwise it will be randomly generated in the case of *all-in-one* deployment (only once).     |
 |                                      | ``mysqld`` |br|        |                          |                                                                                                                          |
@@ -523,14 +523,14 @@ Image Parameters
 | ``TLS_CERT``                         |                        |                          | Path within the container to the custom ceritificate (public portion).                                                   |
 +--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
 
-.. [*] In this column the value **YES** signals that parameter is mandatory for one or more services which are determined by listing the values of ``OPENNEBULA_SERVICE``. Regardless of YES/NO - only the listed services are actually affected by the parameter (otherwise all are affected).
+.. [*] In this column the value **YES** signals that parameter is mandatory for one or more services which are determined by listing the values of ``OPENNEBULA_SERVICE``. Regardless of whether or not they are required, only the listed services are actually affected by the parameter (otherwise all are affected).
 .. [*] ``OPENNEBULA_SERVICE`` must be defined every time **only** if it is intended as multi-container setup otherwise it defaults to ``all`` and therefore will start *all-in-one* deployment in each container...
-.. [*] This variable can be still useful even when ``DIND_ENABLED`` is false because the host's Docker socket can be bind-mounted inside the container.
-.. [*] ``MONITORD_PORT`` must also match the internal port - it is an implementation detail which will require to change both the external (published) and internal port.
+.. [*] This variable can be still useful even when ``DIND_ENABLED`` is false because the Host's Docker socket can be bind-mounted inside the container.
+.. [*] ``MONITORD_PORT`` must also match the internal port - it is an implementation detail which will require changing both the external (published) and internal port.
 .. [*] ``MYSQL_PASSWORD`` is not required when deployed in single container (*all-in-one*).
-.. [*] ``SUNSTONE_VNC_PORT`` must also match the internal port - it is an implementation detail which will require to change both the external (published) and internal port.
+.. [*] ``SUNSTONE_VNC_PORT`` must also match the internal port - it is an implementation detail which will require changing both the external (published) and internal port.
 
-The next table describes set of another image parameters, where usability is limited only for multi-container deployment via Docker/Podman Compose. They are listed here only for completeness, usually, **users shouldn't modify** them!
+The next table describes a further set of image parameters where usability is limited only for multi-container deployment via Docker/Podman Compose. They are listed here only for information, usually, **users shouldn't modify** them!
 
 +--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
 |                  Name                | Required |_| [*]_      | Default                  |                     Description |_| [*]_                                                                                 |
@@ -570,7 +570,7 @@ The next table describes set of another image parameters, where usability is lim
 | ``ONEPROVISION_HOST``                | YES: ``fireedge``      | ``localhost``            | Container host for OneProvision with SSH keys.                                                                           |
 +--------------------------------------+------------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------+
 
-.. [*] In this column the value **YES** signals that parameter is mandatory for one or more services which are determined by listing the values of ``OPENNEBULA_SERVICE``. Regardless of YES/NO - only the listed services are actually affected by the parameter (otherwise all are affected).
+.. [*] In this column the value **YES** signals that parameter is mandatory for one or more services which are determined by listing the values of ``OPENNEBULA_SERVICE``. Regardless of whether or not they are required - only the listed services are actually affected by the parameter (otherwise all are affected).
 .. [*] Avoid the usage of an IP address, they are dynamically assigned in most cases.
 
 .. _container_reference_deploy_params:
@@ -580,7 +580,7 @@ Deployment Parameters (only multi-container)
 
 .. important::
 
-    Do not confuse deployment parameters with :ref:`image parameters <container_reference_params>`. The deployment parameters are used only with a referential :ref:`multi-container deployment <container_deploy_multi>`, values are processed only by Docker/Podman Compose tools and they are not passed into the container instances!
+    Do not confuse deployment parameters with :ref:`image parameters <container_reference_params>`. The deployment parameters are used only with a referential :ref:`multi-container deployment <container_deploy_multi>`. Values are processed only by Docker/Podman Compose tools and they are not passed into the container instances!
 
 +---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
 |                  Name                 | Default                                  | Container                 |                     Description                                                                                          |
@@ -631,7 +631,7 @@ Deployment Parameters (only multi-container)
 Volumes and Data
 ----------------
 
-The Front-end container defines few implicit (anonymous) volumes and every time a new container is instantiated from the image, a few unnamed volumes will be created holding the container's data. This is done as a precaution to losing important runtime data in the case someone realizes too late that the container is running without assigned persistent storage.
+The Front-end container defines a few implicit (anonymous) volumes and every time a new container is instantiated from the image, a few unnamed volumes will be created holding the container's data. This is done as a precaution to avoid losing important runtime data in the case someone realizes too late that the container is running without assigned persistent storage.
 
 .. important::
 
@@ -639,19 +639,19 @@ The Front-end container defines few implicit (anonymous) volumes and every time 
 
 .. note::
 
-    Once the running container is removed (``docker rm`` or started with ``--rm``), these implicit volumes may be automatically deleted too! Usage of containers tend to create a lot of implicit (anonymous) volumes - we can check them with the command:
+    Once the running container is removed (``docker rm`` or started with ``--rm``), these implicit volumes may be automatically deleted too! Usage of containers tends to create a lot of implicit (anonymous) volumes - we can check them with the command:
 
     .. prompt:: bash # auto
 
         # docker volume ls
 
-    If we are sure that no data can be lost because we use only named volumes then periodic cleanup can be done like this:
+    If we are sure that no data can be lost because we use only named volumes then a periodic cleanup can be done like this:
 
     .. prompt:: bash # auto
 
         # docker volume prune -f
 
-This table describes directories in container, which are either implicit volumes, should be used as named volumes or are otherwise significant:
+This table describes directories in the container which are either implicit volumes, should be used as named volumes or are otherwise significant:
 
 +-------------------------------------------------+-----------------------------------------+-------------------------+------------------------------------+-----------------------------------------------------------------------------------------------------+
 | Canonical |_| Volume |_| Name |_| [*]_          | Directory |_| path                      | Implicit                | Used |_| by                        |  Description                                                                                        |
@@ -716,11 +716,11 @@ This table describes directories in container, which are either implicit volumes
 |                                                 |                                         |                         | ``sunstone``                       |                                                                                                     |
 +-------------------------------------------------+-----------------------------------------+-------------------------+------------------------------------+-----------------------------------------------------------------------------------------------------+
 
-.. [*] These volume names and mountpoints are recommended to use - the very same are utilized in the referential :ref:`multi-container deployment <container_deploy_multi>`.
+.. [*] These volume names and mountpoints are recommended for use - the very same ones are utilized in the referential :ref:`multi-container deployment <container_deploy_multi>`.
 
 .. note::
 
-    Location of implicit volumes are adequate for single container deployment, but in some cases, they could become problematic in multi-container deployment if shared. The reason is simply that some directories are not needed or desired to be accessible from other containers. There could also be write conflicts (e.g., logs).
+    The location of implicit volumes is adequate for single container deployment but, in some cases, they could become problematic in multi-container deployment if shared. The reason is simply that some directories are not needed or desired to be accessible from other containers. There could also be write conflicts (e.g., logs).
 
 .. xxxxxxxxxxxxxxxxxxxxxxxx MARK THE END OF THE CONTENT xxxxxxxxxxxxxxxxxxxxxxxx
 
