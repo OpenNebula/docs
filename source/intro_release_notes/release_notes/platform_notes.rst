@@ -235,15 +235,15 @@ Containers workloads are those imported from DockerHub, LinuxContainers or Tunrk
 
 The OneProvision tool enables the deployment of Edge Clusters and their automatic enrollment to OpenNebula. The following table lays out the certified configuration for each type of workload.
 
-+-------------------+-------------+------------------+
-| Edge Cluster Type |  Hypervisor |     Workload     |
-+===================+=============+==================+
-| virtual / metal   | lxc         | Containers       |
-+-------------------+-------------+------------------+
-| metal             | firecracker | Containers       |
-+-------------------+-------------+------------------+
-| metal             | kvm         | Virtual Machines |
-+-------------------+-------------+------------------+
++-------------------+-------------+---------------------------------+
+| Edge Cluster Type |  Hypervisor |     Workload                    |
++===================+=============+=================================+
+| virtual / metal   | lxc         | Containers                      |
++-------------------+-------------+---------------------------------+
+| metal             | firecracker | Containers / k3s clusters       |
++-------------------+-------------+---------------------------------+
+| metal             | kvm         | Virtual Machines / k8s clusters |
++-------------------+-------------+---------------------------------+
 
 
 Certified Infrastructure Scale
