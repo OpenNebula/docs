@@ -4,24 +4,24 @@
 Running Kubernetes Clusters
 ============================
 
-In the public OpenNebula System marketplace there are also services available that lets you deploy a multi-VM application. In this exercise we are going to import a Kubernetes cluster service and launch a Kubernetes cluster with it.
+In the public OpenNebula System Marketplace there are also services available that let you deploy a multi-VM application. In this exercise we are going to import a Kubernetes cluster service and launch a Kubernetes cluster with it.
 
-.. warning:: We need a metal KVM edge cluster for this. If you haven't already done so, you can follow the same steps of the :ref:`provisioning an edge cluster <first_edge_cluster>` guide, using "metal" edge cloud type and kvm hypervisor. Make sure you request two public IPs.
+.. warning:: We need a metal KVM Edge Cluster for this. If you haven't already done so, you can follow the same steps of the :ref:`provisioning an edge cluster <first_edge_cluster>` guide, using "metal" edge cloud type and kvm hypervisor. Make sure you request two public IPs.
 
-We are going to assume the edge cluster naming schema "metal-kvm-aws-cluster".
+We are going to assume the Edge Cluster naming schema "metal-kvm-aws-cluster".
 
-Step 1. Download the OneFlow Service from the marketplace
+Step 1. Download the OneFlow Service from the Marketplace
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Login into Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab, and search for Kubernetes. Select the "Service Kubernetes X.XX for OneFlow - KVM" and click on the icon with the cloud and the down arrow inside (two positions to the left from the green "+").
+Log in to Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab and search for Kubernetes. Select the "Service Kubernetes X.XX for OneFlow - KVM" and click on the icon with the cloud and the down arrow inside (two positions to the left from the green "+").
 
 |kubernetes_marketplace|
 
-Now you need to select a datastore, select the metal-kvm-aws-cluster-images datastore.
+Now you need to select a datastore. Select the metal-kvm-aws-cluster-Images Datastore.
 
 |metal_kvm_aws_cluster_images_datastore|
 
-The appliance will be ready when the image in ``Storage --> Images`` gets in READY from LOCKED state.
+The appliance will be ready when the image in ``Storage --> Images`` switches to READY from its LOCKED state.
 
 .. |kubernetes_marketplace| image:: /images/kubernetes_marketplace.png
 .. |metal_kvm_aws_cluster_images_datastore| image:: /images/metal_kvm_aws_cluster_images_datastore.png
@@ -39,9 +39,9 @@ Feel free to modify the capacity and to input data to configure the Kubernetes c
 
 |configure_kubernetes_cluster|
 
-Now proceed to ``Instances --> Services`` and wait for the only Service there to get into RUNNING state. You can also check the VMs being deployed in ``Instances --> VMs``.
+Now proceed to ``Instances --> Services`` and wait for the only Service there to get into a RUNNING state. You can also check the VMs being deployed in ``Instances --> VMs``.
 
-.. note:: Even though Sunstone shows the VNC console button, VNC access to Containers or VMs running in edge clusters has been deemed insecure and as such OpenNebula filters this traffic. This means that the VNC access won't work to VMs running in edge clusters.
+.. note:: Even though Sunstone shows the VNC console button, VNC access to Containers or VMs running in Edge Clusters has been deemed insecure and as such OpenNebula filters this traffic. This means that the VNC access won't work for VMs running in Edge Clusters.
 
 .. |select_metal_aws_cluster_public_network| image:: /images/select_metal_aws_cluster_public_network.png
 .. |configure_kubernetes_cluster| image:: /images/configure_kubertes_cluster.png
@@ -49,9 +49,9 @@ Now proceed to ``Instances --> Services`` and wait for the only Service there to
 Step 3. Validate the Kubernetes cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Once the service is in RUNNING state, you can start using the Kubernetes cluster. Let's login first into the Kubernetes cluster master. Go to ``Instances --> VMs`` and check the public IP (from the dropdown, the one highlighted in bold).
+Once the service is in RUNNING state, you can start using the Kubernetes cluster. Let's first log in to the Kubernetes cluster master. Go to ``Instances --> VMs`` and check the public IP (from the dropdown, the one highlighted in bold).
 
-We'll use the "oneadmin" account in your OpenNebula front-end. Please ssh to the front-end first, and from there as oneadmin, ssh in to the Kubernetes cluster master as "root". You should be greeted with the following message:
+We'll use the "oneadmin" account in your OpenNebula Front-end. Please SSH to the Front-end first, and from there, as oneadmin, you should SSH in to the Kubernetes cluster master as "root". You should be greeted with the following message:
 
 .. prompt:: bash $ auto
 
@@ -64,7 +64,7 @@ We'll use the "oneadmin" account in your OpenNebula front-end. Please ssh to the
 
 You can use the file in ``/root/.kube/config`` to control the Kubernetes clusters from the outside. We are going to use the root account in the master to perform a simple validation of the cluster.
 
-First step is to check the workers are healthy. You should get a similar output as:
+The first step is to check the workers are healthy. You should get a similar output to:
 
 .. prompt:: bash $ auto
 
@@ -102,13 +102,13 @@ Now create a file "kubetest_1pod.yaml" with the following contents:
              containerPort: 8080
 
 
-Now is time to apply it in Kubernetes:
+Now it's time to apply it in Kubernetes:
 
 .. prompt:: bash $ auto
 
    kubectl apply -f kubetest_1pod.yaml
 
-After a few seconds, you should be able to see the simple pod in Running state:
+After a few seconds, you should be able to see the simple pod in RUNNING state:
 
 .. prompt:: bash $ auto
 
