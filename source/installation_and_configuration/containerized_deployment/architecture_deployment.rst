@@ -6,7 +6,7 @@ Architecture and Simple Deployment
 
 .. important:: This feature is a **Technology Preview**. It's not recommended for production environments!
 
-This page describes how to deploy containerized OpenNebula Front-end.
+This page describes how to deploy the containerized OpenNebula Front-end.
 
 .. _container_requirements:
 
@@ -28,7 +28,7 @@ You need a physical or virtual host with a recommended operating system, one of 
 - x86-64 Linux host with CentOS/RHEL 8
 - **Podman** version 2.0 (or newer)
 - optionally **podman-compose** version 0.1.7-2.git20201120 (or newer) from `EPEL <https://fedoraproject.org/wiki/EPEL>`__ (Extra Packages for Enterprise Linux)
-- recommended ``root`` user to run privileged containers and bind on privileged ports (22, 80, 443)
+- recommended ``root`` user to run privileged containers and bind to privileged ports (22, 80, 443)
 
 .. warning::
 
@@ -37,7 +37,7 @@ You need a physical or virtual host with a recommended operating system, one of 
    - federated and HA deployments,
    - shared datastores (NFS, qcow2, Ceph, LVM, ...), only SSH-based available
    - migration of existing Front-end deployment installed from packages into containers,
-   - in **unprivileged mode** - Exports from following Marketplaces - :ref:`Docker Hub <market_dh>`, :ref:`Linux Containers <market_linux_container>`, :ref:`TurnKey Linux <market_turnkey_linux>`
+   - in **unprivileged mode** - Exports from the following Marketplaces - :ref:`Docker Hub <market_dh>`, :ref:`Linux Containers <market_linux_container>`, :ref:`TurnKey Linux <market_turnkey_linux>`
    - in **unprivileged mode** - :ref:`Creating an image based on a Dockerfile <dockerfile>`
    - in **rootless Podman** - Deployment on privileged ports (22, 80, 443)
    - on Ubuntu/Debian in multi-container Docker deployment, the container with ``oned`` is running without :ref:`AppArmor security profile <container_troubleshooting_apparmor>`
@@ -47,9 +47,9 @@ You need a physical or virtual host with a recommended operating system, one of 
 Architecture
 ================================================================================
 
-Complete OpenNebula Front-end with all services and their dependencies is running within the supported container runtimes from the official container image (``opennebula``), the services and other required processes are confined inside the container(s). The inner container startup and lifecycle is controlled by the :ref:`bootstrap process <container_bootstrap>`, which can be customized and adjusted for user needs via the :ref:`image parameters <container_reference_params>`. Container(s) communicate with each other over the private container network. End-users interact with services running inside only via a limited set of :ref:`exposed IP ports <container_reference_ports>`.
+The complete OpenNebula Front-end with all services and their dependencies is running within the supported container runtimes from the official container image (``opennebula``); the services and other required processes are confined inside the container(s). The inner container startup and lifecycle is controlled by the :ref:`bootstrap process <container_bootstrap>`, which can be customized and adjusted for users' needs via the :ref:`image parameters <container_reference_params>`. Container(s) communicate with each other over the private container network. End-users interact with services running inside only via a limited set of :ref:`exposed IP ports <container_reference_ports>`.
 
-Following OpenNebula Front-end containerized deployment types are supported no matter the container runtime:
+The following OpenNebula Front-end containerized deployment types are supported no matter the container runtime:
 
 1. **multi-container** (the composition of containers, microservice pattern)
 2. **single-container** (all-in-one container)
@@ -57,13 +57,13 @@ Following OpenNebula Front-end containerized deployment types are supported no m
 Multi-container (recommended)
 -----------------------------
 
-In multi-container deployment type, each group of OpenNebula Front-end services is running in their own dedicated container.
+In the multi-container deployment type, each group of OpenNebula Front-end services runs in its own dedicated container.
 
 .. TODO - update image
 
 |container_multi|
 
-This approach vastly improves the security of the deployment, while preserving the simplicity to run. OpenNebula comes with a referential deployment descriptor for multi-container setup in a (Docker) Compose format and requires corresponding tools to be installed for the particular container runtime - Docker Compose for Docker or Podman Compose for Podman.
+This approach vastly improves the security of the deployment while preserving the operation simplicity. OpenNebula comes with a referential deployment descriptor for multi-container setup in a (Docker) Compose format and requires the corresponding tools to be installed for the particular container runtime - Docker Compose for Docker or Podman Compose for Podman.
 
 Single-container
 ----------------
@@ -72,13 +72,13 @@ Single-container
 
     This type is recommended only for **evaluation or simple usage**.
 
-In the single-container deployment type, also called the *all-in-one*, all OpenNebula Front-end services are running inside only a single one container.
+In the single-container deployment type, also called the *all-in-one*, all OpenNebula Front-end services are running inside one single container.
 
 .. TODO - update image
 
 |onedocker_schema_all_in_one|
 
-Using the single-container type is easy and the most straightforward way how to start with containerized OpenNebula Front-end. The security of such deployment is on a similar level as the traditional way of installation, when all services are installed on a single host without any separation among the OpenNebula services themselves. Management and customization operations of the container deployment are done directly via the container runtime commands and vast set of (configuration) environment variables, which might be confusing and hard to maintain during the time (esp. when doing the upgrade to the next major/minor version).
+Using the single-container type is easy and the most straightforward way to start with containerized OpenNebula Front-end. The security of such deployment is on a similar level to that of the traditional way of installation, when all services are installed on a single Host without any separation among the OpenNebula services themselves. Management and customization operations of the container deployment are done directly via the container runtime commands and vast set of (configuration) environment variables, which might be confusing and hard to maintain during the time (especially when upgrading to the next major/minor version).
 
 .. _container_install:
 
@@ -87,7 +87,7 @@ Step 1. Install Container Runtime
 
 .. important::
 
-    SELinux can block some operations initiated by the OpenNebula Front-end, which results in a failure of the particular operation.  It's **not recommended to disable** the SELinux on production environments, as it degrades the security of your server, but to investigate and workaround each individual problem based on the `SELinux User's and Administrator's Guide <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/>`__. The administrator might disable the SELinux to temporarily workaround the problem or on non-production deployments by changing following line in ``/etc/selinux/config``:
+    SELinux can block some operations initiated by the OpenNebula Front-end, which results in a failure of the particular operation.  It's **not recommended to disable** the SELinux on production environments, as it degrades the security of your server, but to investigate and work around each individual problem based on the `SELinux User's and Administrator's Guide <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/>`__. The administrator might disable the SELinux to temporarily work around the problem or on non-production deployments by changing following line in ``/etc/selinux/config``:
 
     .. code-block:: bash
 
@@ -145,7 +145,7 @@ Podman
 Step 2. Reconfigure Host SSH
 ================================================================================
 
-Containerized OpenNebula Front-end comes with the **integrated OpenSSH server**, which provides access to datastores both for the Front-end and hypervisor Nodes. OpenNebula is **not yet ready** to be able to directly connect to the SSH server on Front-end relocated to a different port. The integrated OpenSSH server (port 22) will clash with the OpenSSH server (port 22) running on your host, which is used for the host management operations. This is expected to be improved in the future version to provide a hassle-free experience, but right now requires an extra step to prepare the host itself.
+The containerized OpenNebula Front-end comes with the **integrated OpenSSH server**, which provides access to datastores both for the Front-end and hypervisor Nodes. OpenNebula is **not yet ready** to directly connect to the SSH server on a Front-end relocated to a different port. The integrated OpenSSH server (port 22) will clash with the OpenSSH server (port 22) running on your host, which is used for the host management operations. This is expected to be improved in the future version to provide a hassle-free experience, but right now it requires an extra step to prepare the host itself.
 
 .. important::
 
@@ -158,7 +158,7 @@ One of the following options **need to be selected and applied**:
 Option A. Dedicated IP address for OpenNebula (recommended)
 -----------------------------------------------------------
 
-Recommended option is to allocate and configure your host with the additional IP address, which will be dedicated only for the containerized OpenNebula deployment. The host SSH server will run on your main host IP address and the OpenNebula's SSH server will run only on the dedicated IP address. Both running on the same default ports 22, but different IPs.
+The recommended option is to allocate and configure your host with the additional IP address, which will be dedicated only for the containerized OpenNebula deployment. The host SSH server will run on your main host IP address and the OpenNebula's SSH server will run only on the dedicated IP address. Both will be running on the same default ports 22, but different IPs.
 
 |container_ssh1|
 
@@ -166,7 +166,7 @@ You need to proceed with the following actions:
 
 1. **Allocate new IP address** and configure it on your host. The setup is platform-specific and out of the scope of this guide. Check the official documentation of your operating systems, e.g. `CentOS/RHEL <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_networking>`__, `Debian <https://wiki.debian.org/NetworkConfiguration>`__,  `Ubuntu <https://ubuntu.com/server/docs/network-configuration>`__.
 
-2. Host **OpenSSH server must be reconfigured** not use (bind to) the new IP address (by default server works on all configured addresses). Edit ``/etc/ssh/sshd_config`` and update the ``ListenAddress`` with your main IP address, **distinct to the newly allocated one for OpenNebula**. For example:
+2. Host **OpenSSH server must be reconfigured** not to use (bind to) the new IP address (by default the server works on all configured addresses). Edit ``/etc/ssh/sshd_config`` and update the ``ListenAddress`` with your main IP address, **different to the newly allocated one for OpenNebula**. For example:
 
 .. code::
 
@@ -182,26 +182,26 @@ You need to proceed with the following actions:
 
 .. important::
 
-    After the OpenSSH server restart and before closing any your current terminal session to the host, validate in a different terminal that the restarted host SSH works as expected and you can still connect to the host! You could end up with no way to connect the host back!
+    After the OpenSSH server restart and before closing any your current terminal session to the Host, check in a different terminal that the restarted Host SSH works as expected and you can still connect to the Host! You could end up with no way to connect back to the Host!
 
-4. Dedicated IP address needs to be configured in next :ref:`Step 4. Deploy OpenNebula Front-end <container_deploy>` (:ref:`multi-container <container_deploy_multi>`, :ref:`single-container <container_deploy_single>`)!
+4. A dedicated IP address needs to be configured in the next :ref:`Step 4. Deploy OpenNebula Front-end <container_deploy>` (:ref:`multi-container <container_deploy_multi>`, :ref:`single-container <container_deploy_single>`)!
 
 .. _container_ssh_relocate:
 
-Option B. Relocate host SSH to different port
+Option B. Relocate Host SSH to different port
 ---------------------------------------------
 
-The easiest option is to relocate host SSH server to a different port (e.g., 2222) which will be used for a host management operations. Containerized OpenNebula Front-end will then use the default port.
+The easiest option is to relocate Host SSH server to a different port (e.g., 2222) which will be used for Host management operations. The containerized OpenNebula Front-end will then use the default port.
 
 |container_ssh2|
 
-1. On **SELinux enabled hosts**, you need to allow the usage of a different port by the host OpenSSH server. For example:
+1. On **SELinux enabled Hosts**, you need to allow the usage of a different port by the Host OpenSSH server. For example:
 
 .. prompt:: bash # auto
 
     # semanage port -a -t ssh_port_t -p tcp 2222
 
-2. Host **OpenSSH server must be reconfigured** to listen on the different port. Edit ``/etc/ssh/sshd_config`` and update the ``Port`` with the selected management port. Make sure that only one occurrence of directive ``Port`` is set/uncommented! For example:
+2. Host **OpenSSH server must be reconfigured** to listen to the different port. Edit ``/etc/ssh/sshd_config`` and update the ``Port`` with the selected management port. Make sure that only one occurrence of directive ``Port`` is set/uncommented! For example:
 
 .. code::
 
@@ -217,7 +217,7 @@ The easiest option is to relocate host SSH server to a different port (e.g., 222
 
 .. important::
 
-    After the OpenSSH server restart and before closing any of your current terminal sessions to the host, validate in different terminal that the restarted host SSH works as expected and you can still connect to the host! You could end up with no way to connect the host back! The new port must be specified as an argument to the SSH client, for example:
+    After the OpenSSH server restart and before closing any of your current terminal sessions to the Host, check in a different terminal that the restarted Host SSH works as expected and you can still connect to the Host! You could end up with no way to connect back to the Host! The new port must be specified as an argument to the SSH client, for example:
 
     .. prompt:: bash $ auto
 
@@ -228,19 +228,19 @@ The easiest option is to relocate host SSH server to a different port (e.g., 222
 Option C. Reconfigure nodes to connect to different port
 --------------------------------------------------------
 
-If approaches above are not possible, the last (documented) option proposes to relocate OpenNebula integrated SSH server port and reconfigure all current and future hypervisor Nodes to use a related SSH port **only** when connecting back to the OpenNebula Front-end.
+If approaches above are not possible, the last (documented) option proposes to relocate OpenNebula's integrated SSH server port and reconfigure all current and future hypervisor Nodes to use a related SSH port **only** when connecting back to the OpenNebula Front-end.
 
 |container_ssh3|
 
-Following changes are required for your current and future hypervisor Nodes:
+The following changes are required for your current and future hypervisor Nodes:
 
-1. Decide **hostname/IP and port** on which OpenNebula Front-end's integrate SSH server will be available to the hypervisor Nodes (can be different to the hostname/IP used for OpenNebula end-users!). Needs to be configured also in next :ref:`Step 4. Deploy OpenNebula <container_deploy>`!
+1. Decide **hostname/IP and port** on which OpenNebula Front-end's integrated SSH server will be available to the hypervisor Nodes (it can be different to the hostname/IP used for OpenNebula end-users!). It needs to be configured also in the next :ref:`Step 4. Deploy OpenNebula <container_deploy>`!
 
 .. note::
 
-   If there are no existing hypervisor Nodes to connect, rest point(s) can be skipped now and applied on new Nodes later.
+   If there are no existing hypervisor Nodes to connect, the remaining step(s) can be skipped now and applied on new Nodes later.
 
-2. Login the hypervisor Nodes (they must have preinstalled OpenNebula node package in a version corresponding to the OpenNebula Front-end version) and **update the SSH client** configuration for user ``oneadmin`` in ``/var/lib/one/.ssh/config``. Put following snippet at the very beginning and replace example values ``one.example.com`` and port ``2222`` with network parameters selected in previous point.
+2. Login to the hypervisor Nodes (they must have the OpenNebula node package preinstalled in a version corresponding to the OpenNebula Front-end version) and **update the SSH client** configuration for user ``oneadmin`` in ``/var/lib/one/.ssh/config``. Put the following snippet at the very beginning and replace example values ``one.example.com`` and port ``2222`` with network parameters selected in previous point.
 
 **CentOS/RHEL 7**, **Debian 9** and **Ubuntu 16.04**:
 
@@ -249,7 +249,7 @@ Following changes are required for your current and future hypervisor Nodes:
     Host one.example.com
       Port 2222
 
-(and ensure the OpenNebula Front-end's host SSH key is in the trusted SSH known keys)
+(and ensure the OpenNebula Front-end's Host SSH key is in the trusted SSH known keys)
 
 **Rest newer platforms**:
 
@@ -261,7 +261,7 @@ Following changes are required for your current and future hypervisor Nodes:
 
 Needs to be deployed on all hypervisor Nodes, no other changes are necessary.
 
-3. Selected port  needs to be configured in the next :ref:`Step 4. Deploy OpenNebula Front-end <container_deploy>` (:ref:`multi-container <container_deploy_multi>`, :ref:`single-container <container_deploy_single>`)!
+3. The selected port needs to be configured in the next :ref:`Step 4. Deploy OpenNebula Front-end <container_deploy>` (:ref:`multi-container <container_deploy_multi>`, :ref:`single-container <container_deploy_single>`)!
 
 .. _container_image:
 
@@ -272,16 +272,16 @@ OpenNebula image is built as a standard OCI container image with variants for th
 
 .. note::
 
-   There is only a single one image with all Front-end services and their dependencies preinstalled for all types of supported deployments!
+   There is only one single image with all Front-end services and their dependencies preinstalled for all types of supported deployments!
 
 Repeat the same approach below to update to the newer image build or to get the newer OpenNebula releases.
 
 Enterprise Edition
 ------------------
 
-OpenNebula **Enterprise Edition** is provided for customers with an active subscription. The container images for major, minor, and maintenance releases are available only in a private enterprise repository (container registry) and only accessible by customers. To access the repository, you should have received an authentication ``token`` (in format ``username:password``), which is the same for both traditional :ref:`package repositories <repositories>` and container registry.
+OpenNebula **Enterprise Edition** is provided for customers with an active subscription. The container images for major, minor, and maintenance releases are available only in a private enterprise repository (container registry) and only accessible by customers. To access the repository, you should have received an authentication ``token`` (in format ``username:password``), which is the same for both traditional :ref:`package repositories <repositories>` and container registries.
 
-Download the image to your container runtime in 2 simple steps:
+Download the image to your container runtime in two simple steps:
 
 1. **Login** to the customer registry `enterprise.opennebula.io <https://enterprise.opennebula.io>`__ with your customer *username* and *password*:
 
@@ -292,9 +292,9 @@ Download the image to your container runtime in 2 simple steps:
     Password: ***************
     Login Succeeded
 
-(required only before very first download)
+(required only before the very first download)
 
-2. **Download** the current version of image to your host:
+2. **Download** the current version of image to your Host:
 
 .. prompt:: bash # auto
 
@@ -309,7 +309,7 @@ Download the image to your container runtime in 2 simple steps:
 Community Edition
 -----------------
 
-OpenNebula Community Edition is a free and public version, which offers the full functionality of the Cloud Management Platform. It's published on the `Docker Hub <https://hub.docker.com/r/opennebula/opennebula>`__, the most popular hosted container registry, and can be fetched simply by running the following command:
+OpenNebula Community Edition is a free and public version, which offers the full functionality of the Cloud Management Platform. It's published on the `Docker Hub <https://hub.docker.com/r/opennebula/opennebula>`__, the most popular hosted container registry, and can be accessed simply by running the following command:
 
 .. prompt:: bash # auto
 
@@ -320,11 +320,11 @@ OpenNebula Community Edition is a free and public version, which offers the full
 Step 4. Deploy OpenNebula Front-end
 ================================================================================
 
-There are 2 types of supported deployments, **multi-container** and **single-container** on Docker and Podman. The multi-container deployment is recommended for production/serious usage, the single-container deployment is easier and suitable for learning, quick evaluation, and simple usage. For new users, it's always good to start with the single-container first to learn and move to multi-container later.
+There are two types of supported deployments, **multi-container** and **single-container** on Docker and Podman. The multi-container deployment is recommended for production/serious usage, the single-container deployment is easier and suitable for learning, quick evaluation, and simple usage. For new users, it's always good to start with the single-container first to learn and move to multi-container later.
 
 Each deployment type is documented in variants with
 
-- **TLS-secured services** (recommended) with all public OpenNebula services secured by self-signed (default) or custom TLS certificate,
+- **TLS-secured services** (recommended) with all public OpenNebula services secured by self-signed (default) or a custom TLS certificate,
 - **insecure services** where all services are directly exposed without any encryption.
 
 Continue to the deployment guide for the selected type below:
@@ -337,14 +337,14 @@ Continue to the deployment guide for the selected type below:
 Multi-container (recommended)
 -----------------------------
 
-Multi-container deployment is managed by the **Docker Compose** or **Podman Compose** tools. OpenNebula provides an archive with a deployment descriptor (file ``docker-compose.yml``), default parameters, and configuration directories to use by these tools. The deployment archive needs to be downloaded, configured with site-specific parameters and passed to deployment tools to start.
+Multi-container deployment is managed by the **Docker Compose** or **Podman Compose** tools. OpenNebula provides an archive with a deployment descriptor (file ``docker-compose.yml``), default parameters, and configuration directories to be used by these tools. The deployment archive needs to be downloaded, configured with site-specific parameters, and passed to deployment tools to start.
 
 A. Get Deployment Archive
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. important::
 
-    Deployment archive is **specific for each OpenNebula edition and version**. When updating the existing containerized deployment with the newer OpenNebula release, it's needed to **redownload again and use the deployment archive** for the corresponding OpenNebula version.
+    Deployment archive is **specific for each OpenNebula edition and version**. When updating the existing containerized deployment with the newer OpenNebula release, you need to **redownload and use the deployment archive** for the corresponding OpenNebula version.
 
 **Enterprise Edition**
 
@@ -367,7 +367,7 @@ Update *username* and interactively pass *password* from your customer ``token``
 B. Configure Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-It's **highly recommended NOT to modify** any of the provided files in the deployment (compose project) directory, which comes from the deployment archive. As new OpenNebula releases require to use of new deployment archives, such an approach would make your upgrades difficult. Create a new dedicated configuration file ``.env`` (which is loaded on deployment start) and **put inside all own customizations** with
+It's **highly recommended NOT to modify** any of the provided files in the deployment (compose project) directory, which comes from the deployment archive. As new OpenNebula releases require you to use new deployment archives, such an approach would make your upgrades difficult. Create a new dedicated configuration file ``.env`` (which is loaded on deployment start) and **put inside all own customizations** with
 
 - :ref:`image parameters <container_reference_params>` (to override those in ``default.env``),
 - :ref:`deployment parameters <container_reference_deploy_params>` (to override those in ``docker-compose.yml``).
@@ -381,13 +381,13 @@ Set Image Parameters
 
 .. note::
 
-    For insecure deployment (without TLS), append also following snippet into your ``.env``.
+    For insecure deployment (without TLS), also append the following snippet into your ``.env``.
 
     .. code::
 
         SUNSTONE_HTTPS_ENABLED=no
 
-Create file ``.env`` with the following example content and adapt to your environment:
+Create a file ``.env`` with the following example content and adapt to your environment:
 
 .. code::
 
@@ -395,22 +395,22 @@ Create file ``.env`` with the following example content and adapt to your enviro
     OPENNEBULA_SSH_HOST=one.example.com
     ONEADMIN_PASSWORD=changeme123
 
-where is
+where 
 
-- ``OPENNEBULA_HOST`` - hostname/IP which will be used by end-users to access Front-end
-- ``OPENNEBULA_SSH_HOST`` - hostname/IP to connect to the integrated SSH server, used by hypervisor Nodes (defaults to ``OPENNEBULA_HOST``)
-- ``ONEADMIN_PASSWORD`` - **initial (only)** password for OpenNebula user ``oneadmin``
+- ``OPENNEBULA_HOST`` - is the hostname/IP which will be used by end-users to access the Front-end
+- ``OPENNEBULA_SSH_HOST`` - is the hostname/IP to connect to the integrated SSH server, used by hypervisor Nodes (defaults to ``OPENNEBULA_HOST``)
+- ``ONEADMIN_PASSWORD`` - is the **initial (only)** password for OpenNebula user ``oneadmin``
 
 See more image configuration options in :ref:`reference <container_reference_params>`.
 
 Set Deployment Parameters
 #########################
 
-Into configuration file ``.env`` created above append following additional parameters. Please note the required parameters are **different for each approach you have selected** in :ref:`Step 2. Reconfigure Host SSH <container_ssh>`.
+Into the configuration file ``.env`` created above, append the following additional parameters. Please note the required parameters are **different for each approach you have selected** in :ref:`Step 2. Reconfigure Host SSH <container_ssh>`.
 
 .. note::
 
-    For insecure deployment (without TLS), append also following snippet into your ``.env``.
+    For insecure deployment (without TLS), also append the following snippet into your ``.env``.
 
     .. code::
 
@@ -418,34 +418,34 @@ Into configuration file ``.env`` created above append following additional param
         DEPLOY_ONEGATE_INTERNAL_PORT=5030
         DEPLOY_ONEFLOW_INTERNAL_PORT=2474
 
-- Option :ref:`A. Dedicated IP address for OpenNebula <container_ssh_ip>` - append into ``.env`` the dedicated IP address of your OpenNebula Front-end. It's possible (but not required) to configure integrated SSH and the rest of Front-end services independently. For example:
+- Option :ref:`A. Dedicated IP address for OpenNebula <container_ssh_ip>` - append into ``.env`` the dedicated IP address of your OpenNebula Front-end. It's possible (but not required) to configure the integrated SSH and the rest of the Front-end services independently. For example:
 
 .. code::
 
     DEPLOY_BIND_ADDR=192.168.10.3
     DEPLOY_BIND_SSH_ADDR=192.168.10.2
 
-where is
+where 
 
-  - ``DEPLOY_BIND_ADDR`` - dedicated IP address for (most) **Front-end** services
-  - ``DEPLOY_BIND_SSH_ADDR`` - dedicated IP address for **integrated SSH** server (can be same as ``DEPLOY_BIND_ADDR``)
+  - ``DEPLOY_BIND_ADDR`` - is the dedicated IP address for (most) **Front-end** services
+  - ``DEPLOY_BIND_SSH_ADDR`` - is the dedicated IP address for **integrated SSH** server (can be same as ``DEPLOY_BIND_ADDR``)
 
-- Option :ref:`B. Relocate host SSH to different port <container_ssh_relocate>` - no additional deployment configuration required.
+- Option :ref:`B. Relocate Host SSH to a different port <container_ssh_relocate>` - no additional deployment configuration required.
 
-- Option :ref:`C. Reconfigure Nodes to connect to different port <container_ssh_nodes>` - append into ``.env`` the port of the OpenNebula integrated SSH server, on which will available for hypervisor Nodes to connect back to the Front-end. For example:
+- Option :ref:`C. Reconfigure Nodes to connect to a different port <container_ssh_nodes>` - append into ``.env`` the port of the OpenNebula integrated SSH server which will be available for hypervisor Nodes to connect back to the Front-end. For example:
 
 .. code::
 
     DEPLOY_SSH_EXTERNAL_PORT=2222
 
-where is
+where 
 
-  - ``DEPLOY_SSH_EXTERNAL_PORT`` - port on host on which OpenNebula integrated SSH server will be exposed
+  - ``DEPLOY_SSH_EXTERNAL_PORT`` - is the port on the Host on which OpenNebula's integrated SSH server will be exposed
 
 C. Start Deployment
 ^^^^^^^^^^^^^^^^^^^
 
-Inside the deployment (compose project) directory ``opennebula/``, start the containerized OpenNebula Front-end by following command:
+Inside the deployment (compose project) directory ``opennebula/``, start the containerized OpenNebula Front-end by running the following command:
 
 .. prompt:: bash # auto
 
@@ -453,7 +453,7 @@ Inside the deployment (compose project) directory ``opennebula/``, start the con
 
 .. hint::
 
-    To monitor the deployment :ref:`bootstrap process <container_bootstrap>` use following command to watch the logs (not supported with Podman Compose):
+    To monitor the deployment :ref:`bootstrap process <container_bootstrap>` use the following command to watch the logs (not supported with Podman Compose):
 
     .. prompt:: bash # auto
 
@@ -467,7 +467,7 @@ Inside the deployment (compose project) directory ``opennebula/``, start the con
 
 .. note::
 
-    If you already use Sunstone over HTTPS and decide to change to HTTP-only later (or vice versa), you might experience issues to login into Sunstone. To fix the problem, drop the browser cookies for the Sunstone URL and try again.
+    If you already use Sunstone over HTTPS and decide to change to HTTP-only later (or vice versa), you might experience issues when logging in into Sunstone. To fix the problem, drop the browser cookies for the Sunstone URL and try again.
 
 D. Stop Deployment (optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -478,23 +478,23 @@ When needed, stop the deployment by command:
 
     # docker-compose down
 
-The default settings ensure the individual deployment containers are **automatically restarted** on their failure. The complete deployment is automatically started on server boot with Docker, but on Podman the :ref:`extra steps <container_troubleshooting_podman>` must be taken.
+The default settings ensure the individual deployment containers are **automatically restarted** upon their failure. The complete deployment is automatically started upon server boot with Docker, but on Podman the :ref:`extra steps <container_troubleshooting_podman>` must be taken.
 
 .. _container_deploy_single:
 
 Single-container
 ----------------
 
-Single-container (*all-in-one*) deployment is the most straightforward and simple way to run OpenNebula Front-end in a single container. In such case all needed services are running together in the same process space, communicate simply over localhost and the local filesystem.
+Single-container (*all-in-one*) deployment is the most straightforward and simple way to run the OpenNebula Front-end in a single container. In this case all necessary services are running together in the same process space and communicate simply over localhost and the local filesystem.
 
 A. Start Deployment
 ^^^^^^^^^^^^^^^^^^^
 
 .. note::
 
-    If you already use Sunstone over HTTPS and decide to change to HTTP-only later (or vice versa), you might experience issues to login into Sunstone. To fix the problem, drop the browser cookies for the Sunstone URL and try again.
+    If you already use Sunstone over HTTPS and decide to change to HTTP-only later (or vice versa), you might experience issues logging in into Sunstone. To fix the problem, drop the browser cookies for the Sunstone URL and try again.
 
-Based on selected approach in :ref:`Step 2. Reconfigure Host SSH <container_ssh>` update one of the following command examples with required extra parameters.
+Based on your selected approach in :ref:`Step 2. Reconfigure Host SSH <container_ssh>` update one of the following command examples with the required extra parameters.
 
 - Option :ref:`A. Dedicated IP address for OpenNebula <container_ssh_ip>` - take and **customize** (see instructions below) one of the examples below:
 
@@ -530,11 +530,11 @@ Based on selected approach in :ref:`Step 2. Reconfigure Host SSH <container_ssh>
 |      $OPENNEBULA_IMAGE                                                        |      $OPENNEBULA_IMAGE                                                        |
 +-------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
 
-Carefully replace following occurrences with
+Carefully replace the following occurrences with
 
   - ``192.168.10.3`` - your dedicated IP address for OpenNebula Front-end
   - ``192.168.10.2`` - your dedicated IP address for integrated SSH server (can be same as above)
-  - ``one.example.com`` - hostname/IP which will be used by end-users to access Front-end (and SSH)
+  - ``one.example.com`` - hostname/IP which will be used by end-users to access the Front-end (and SSH)
   - ``changeme123`` - custom initial password for OpenNebula user ``oneadmin``
   - ``$OPENNEBULA_IMAGE`` - substitute
 
@@ -575,16 +575,16 @@ Carefully replace following occurrences with
 |      $OPENNEBULA_IMAGE                                                        |      $OPENNEBULA_IMAGE                                                        |
 +-------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
 
-Carefully replace following occurrences with
+Carefully replace the following occurrences with
 
-  - ``one.example.com`` - hostname/IP which will be used by end-users to access Front-end (and SSH)
+  - ``one.example.com`` - hostname/IP which will be used by end-users to access the Front-end (and SSH)
   - ``changeme123`` - custom initial password for OpenNebula user ``oneadmin``
   - ``$OPENNEBULA_IMAGE`` - substitute
 
     - for **Enterprise Edition** with ``enterprise.opennebula.io/opennebula:5.13.90``
     - for **Community Edition** with ``docker.io/opennebula/opennebula:5.13.90``
 
-- Option :ref:`C. Reconfigure Nodes to connect to different port <container_ssh_nodes>` - take and **customize** (see instructions below) one of the examples below:
+- Option :ref:`C. Reconfigure Nodes to connect to a different port <container_ssh_nodes>` - take and **customize** (see instructions below) one of the examples below:
 
 +-------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
 | TLS-secured Services                                                          | Insecure Services                                                             |
@@ -618,10 +618,10 @@ Carefully replace following occurrences with
 |      $OPENNEBULA_IMAGE                                                        |      $OPENNEBULA_IMAGE                                                        |
 +-------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
 
-Carefully replace following occurrences with
+Carefully replace the following occurrences with
 
-  - ``2222`` - selected port on host on which OpenNebula's integrated SSH server will be exposed
-  - ``one.example.com`` - hostname/IP which will be used by end-users to access Front-end (and SSH)
+  - ``2222`` - selected port on Host on which OpenNebula's integrated SSH server will be exposed
+  - ``one.example.com`` - hostname/IP which will be used by end-users to access the Front-end (and SSH)
   - ``changeme123`` - custom initial (only) password for OpenNebula user ``oneadmin``
   - ``$OPENNEBULA_IMAGE`` - substitute
 
@@ -665,13 +665,13 @@ Open the browser and go to the hostname/IP provided as part of ``OPENNEBULA_HOST
 Step 6. Add Nodes(s) (optional)
 ================================================================================
 
-Now that you have successfully started your OpenNebula services, you can continue with adding content to your cloud. Add hypervisor Nodes, storage, and Virtual Networks. Or, provision Users with Groups and permissions, Images, define and run Virtual Machines.
+Now that you have successfully started your OpenNebula services, you can continue adding content to your cloud. Add hypervisor Nodes, storage, and Virtual Networks or provision Users with Groups and permissions, Images, define and run Virtual Machines.
 
 Continue with the following guides:
 
 - :ref:`Open Cluster Deployment <open_cluster_deployment>` to provision hypervisor Nodes, storage, and Virtual Networks.
 - :ref:`VMware Node Deployment <vmware_cluster_deployment>` to add VMware vCenter Nodes.
-- :ref:`Management and Operations <operations_guide>` to add Users, Groups, Images, define Virtual Machines, and a lot of more ...
+- :ref:`Management and Operations <operations_guide>` to add Users, Groups, Images, define Virtual Machines, and a lot more ...
 
 
 .. xxxxxxxxxxxxxxxxxxxxxxxx MARK THE END OF THE CONTENT xxxxxxxxxxxxxxxxxxxxxxxx
