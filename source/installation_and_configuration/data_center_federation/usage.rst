@@ -17,7 +17,7 @@ What's happening behind the scenes is that the Sunstone server you are using is 
 
 .. |zoneswitchsunstone| image:: /images/zoneswitchsunstone.png
 
-.. warning:: Uploading an image functionality is limited to the Zone where the Sunstone instance the user is connecting to, even though it can switch to other federated zones.
+.. warning:: Uploading Virtual Machine Images over Sunstone works only for the main Zone to which the particular Sunstone instance belongs, not with other Zones users can switch to.
 
 CLI
 ================================================================================
