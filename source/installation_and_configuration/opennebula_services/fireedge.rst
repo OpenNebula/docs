@@ -6,14 +6,14 @@
 FireEdge Configuration
 ================================================================================
 
-The OpenNebula FireEdge server provides a **next-generation web-management interface** for remote OpenNebula Clusters provisioning (OneProvision GUI) as well as additional functionality to Sunstone. It's a dedicated daemon installed by default as part of the :ref:`Single Front-end Installation <frontend_installation>`, but can be deployed independently on a different machine. The server is distributed as an operating system package ``opennebula-fireedge`` with system service ``opennebula-fireedge``.
+The OpenNebula FireEdge server provides a **next-generation web-management interface** for remote OpenNebula Cluster provisioning (OneProvision GUI) as well as additional functionality to Sunstone. It's a dedicated daemon installed by default as part of the :ref:`Single Front-end Installation <frontend_installation>`, but can be deployed independently on a different machine. The server is distributed as an operating system package ``opennebula-fireedge`` with the system service ``opennebula-fireedge``.
 
 Features:
 
 - **OneProvision GUI**, to manage deployments of fully operational Clusters on remote Edge Cloud providers. See :ref:`Provisioning an Edge Cluster <first_edge_cluster>`.
 - **VMRC and Guacamole Proxy** for Sunstone to remotely access the VMs (incl., VNC, RDP, and SSH).
 
-.. warning:: The FireEdge currently doesn't support :ref:`federated environments <federation>`. It can interact only with a local OpenNebula instance (even if it's federated), but can't interact with remote, federated OpenNebula instances.
+.. warning:: FireEdge currently doesn't support :ref:`federated environments <federation>`. It can interact only with a local OpenNebula instance (even if it's federated), but can't interact with remote, federated OpenNebula instances.
 
 .. _fireedge_install_configuration:
 
@@ -71,7 +71,7 @@ Configure Sunstone
 
     After a configuration change, the Sunstone server must be :ref:`restarted <sunstone_conf_service>` to take effect.
 
-You need to configure Sunstone with the public endpoint of the FireEdge so that one service can redirect the users to the other. To configure the public FireEdge endpoint in Sunstone, edit ``/etc/one/sunstone-server.conf`` and update the ``:public_fireedge_endpoint`` with the base URL (domain or IP-based) over which end-users can access the service. For example:
+You need to configure Sunstone with the public endpoint of FireEdge so that one service can redirect users to the other. To configure the public FireEdge endpoint in Sunstone, edit ``/etc/one/sunstone-server.conf`` and update the ``:public_fireedge_endpoint`` with the base URL (domain or IP-based) over which end-users can access the service. For example:
 
 .. code::
 
@@ -91,17 +91,17 @@ You need to configure Sunstone with the public endpoint of the FireEdge so that 
 Configure Guacamole
 -------------------
 
-FireEdge uses `Apache Guacamole <guacamole.apache.org>`__, a free and open source web application that allows you to access a remote console or desktop of the Virtual Machine anywhere using a modern web browser. It is a clientless **remote desktop gateway**, which only requires Guacamole installed on a server and a web browser supporting HTML5.
+FireEdge uses `Apache Guacamole <guacamole.apache.org>`__, a free and open source web application that allows you to access a remote console or desktop of the Virtual Machine anywhere using a modern web browser. It is a clientless **remote desktop gateway** which only requires Guacamole installed on a server and a web browser supporting HTML5.
 
-Guacamole supports multiple connection methods such as **VNC, RDP, and SSH** and is made up of two separate parts - server and client. Guacamole server consists of the native server-side libraries required to connect to the server and the Guacamole proxy daemon (``guacd``), which accepts the user's requests and connects to the remote desktop on their behalf.
+Guacamole supports multiple connection methods such as **VNC, RDP, and SSH** and is made up of two separate parts - server and client. The Guacamole server consists of the native server-side libraries required to connect to the server and the Guacamole proxy daemon (``guacd``), which accepts the user's requests and connects to the remote desktop on their behalf.
 
 .. note::
 
-    The OpenNebula **binary packages** provide Guacamole proxy daemon (package ``opennebula-guacd`` and service ``opennebula-guacd``), which is installed alongside the FireEdge. In the default configuration, the Guacamole proxy daemon is automatically started with the start of FireEdge, and FireEdge is configured to connect to the locally running Guacamole.
+    The OpenNebula **binary packages** provide Guacamole proxy daemon (package ``opennebula-guacd`` and service ``opennebula-guacd``), which is installed alongside FireEdge. In the default configuration, the Guacamole proxy daemon is automatically started along with FireEdge, and FireEdge is configured to connect to the locally-running Guacamole.
 
     No extra steps are required!
 
-If Guacamole is running on a different host distinct to the FireEdge, following FireEdge configuration parameters has to be customized:
+If Guacamole is running on a different host to the FireEdge, following FireEdge configuration parameters has to be customized:
 
 - ``guacd/host``
 - ``guacd/port``
@@ -113,7 +113,7 @@ Service Control and Logs
 
 Change the server running state by managing the operating system service ``opennebula-fireedge``.
 
-To start, restart, stop the server, execute one of:
+To start, restart or stop the server, execute one of:
 
 .. prompt:: bash # auto
 
@@ -128,12 +128,12 @@ To enable or disable automatic start on host boot, execute one of:
     # systemctl enable  opennebula-fireedge
     # systemctl disable opennebula-fireedge
 
-Server **logs** are located in ``/var/log/one`` in following files:
+Server **logs** are located in ``/var/log/one`` in the following files:
 
 - ``/var/log/one/fireedge.log`` - operational log,
 - ``/var/log/one/fireedge.error`` - log of errors/exceptions.
 
-Other logs are also available in Journald, use the following command to show:
+Other logs are also available in Journald. Use the following command to show them:
 
 .. prompt:: bash # auto
 
