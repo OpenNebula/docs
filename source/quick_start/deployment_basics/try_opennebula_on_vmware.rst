@@ -261,7 +261,7 @@ Select the Host and click on "Get Networks". Select the Network and click on ``I
 .. image:: /images/import_vnet_import_success.png
     :align: center
 
-Virtual Networks can be further refined with the inclusion of different Address Ranges. This refinement can be done at import time, defining the size of the network one of the following supported Address Ranges:
+Virtual Networks can be further refined with the inclusion of different Address Ranges. This refinement can be done at import time, defining the size of the network using one of the following supported Address Ranges:
 
 - IPv4: Need to define at least starting IP address. MAC address can be defined as well
 - IPv6: Can optionally define starting MAC address, GLOBAL PREFIX, and ULA PREFIX
