@@ -8,7 +8,7 @@ This section describes the typical OpenNebula upgrade process incorporating the 
 
 .. important::
 
-    **For every OpenNebula upgrade (even between maintenance releases, e.g. 5.10.2 and 5.10.3), configuration files must be processed via 'onecfg upgrade'!** If you skip configuration upgrade step for some OpenNebula upgrade, the tool will lose the current version state and you'll have to handle files upgrade manually and :ref:`reinitialize <cfg_init>` the configuration version management state.
+    **For every OpenNebula upgrade (even between maintenance releases, e.g. 5.10.2 and 5.10.3), configuration files must be processed via 'onecfg upgrade'!** If you skip the configuration upgrade step for any OpenNebula upgrade, the tool will lose the current version state and you'll have to handle the files upgrade manually and :ref:`reinitialize <cfg_init>` the configuration version management state.
 
     .. prompt:: bash # auto
 
@@ -25,9 +25,9 @@ This section describes the typical OpenNebula upgrade process incorporating the 
 Step 1 - Prepare Onecfg
 --------------------------
 
-Before upgrading OpenNebula, you need to ensure that state of Onecfg configuration tool is clean without any pending migrations from past or outdated configurations. Run ``onecfg status`` to check the configuration state.
+Before upgrading OpenNebula, you need to ensure that the state of the Onecfg configuration tool is clean and without any pending migrations from past or outdated configurations. Run ``onecfg status`` to check the configuration state.
 
-Clean state might look like:
+A clean state might look like:
 
     .. prompt:: bash # auto
 
@@ -42,7 +42,7 @@ Clean state might look like:
 Unknown Configuration Version Error
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you get error message about unknown configuration version, you don't need to do anything. Configuration version will be automatically initialized during OpenNebuyla upgrade. Version of current configuration will be based on old OpenNebula version.
+If you get an error message about unknown configuration version, you don't need to do anything. The configuration version will be automatically initialized during OpenNebuyla upgrade. The version of current configuration will be based on the former OpenNebula version.
 
     .. prompt:: bash # auto
 
@@ -55,9 +55,9 @@ If you get error message about unknown configuration version, you don't need to 
 Configuration Metadata Outdated Error
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If the ``onecfg`` tool complains about outdated metadata, you have missed to run configuration upgrade during some of OpenNebula upgrades in the past. Please note configuration must be upgraded or processed with even OpenNebula maintenance releases.
+If the ``onecfg`` tool complains about outdated metadata, you have not run the configuration upgrade during some OpenNebula upgrades in the past. Please note configuration must be upgraded or processed even with OpenNebula maintenance releases.
 
-Following invalid state:
+The following invalid state:
 
     .. prompt:: bash # auto
 
@@ -67,7 +67,7 @@ Following invalid state:
         Config:      5.8.0
         ERROR: Configurations metadata are outdated.
 
-needs to be fixed by reinitialization of the configuration state. Any unprocessed upgrades will be lost and current state will be initialized based on your current OpenNebula version and configurations located in system directories.
+needs to be fixed by reinitialization of the configuration state. Any unprocessed upgrades will be lost and the current state will be initialized based on your current OpenNebula version and configurations located in the system directories.
 
     .. prompt:: bash # auto
 
@@ -83,16 +83,16 @@ needs to be fixed by reinitialization of the configuration state. Any unprocesse
 Step 2 - Upgrade OpenNebula
 ---------------------------
 
-Upgrade your OpenNebula packages by following the :ref:`Upgrades <upgrade>` chapter for a specific OpenNebula version you are upgrading from and to. Take into account that step **Update Configuration Files** in **Enterprise Edition** can be fully automated by running ``onecfg upgrade``. Follow the :ref:`onecfg upgrade <cfg_upgrade>` documentation on how to upgrade and troubleshoot the configurations.
+Upgrade your OpenNebula packages by following the :ref:`Upgrades <upgrade>` chapter for the specific OpenNebula version you are upgrading from and to. Take into account that step **Update Configuration Files** in **Enterprise Edition** can be fully automated by running ``onecfg upgrade``. Follow the :ref:`onecfg upgrade <cfg_upgrade>` documentation on how to upgrade and troubleshoot the configurations.
 
 .. important::
 
-   It's necessary to upgrade your current OpenNebula directly to **5.10.2** or later, which supports the automatic configuration backups. Also, configuration upgrade must be done after each OpenNebula upgrade!
+   It's necessary to upgrade your current OpenNebula directly to **5.10.2** or later, which supports the automatic configuration backups. Also, the configuration upgrade must be done after each OpenNebula upgrade!
 
 
-After ``onecfg upgrade`` follow the rest steps from OpenNebula upgrade document. It might be necessary to upgrade database, or do some other OpenNebula version-specific steps.
+After ``onecfg upgrade`` follow the rest of the steps on the OpenNebula upgrade document. It might be necessary to upgrade the database or to carry out some other OpenNebula version-specific steps.
 
 Step 3 - Validation
 -------------------
 
-When all steps are done, run the OpenNebula and check the working state as explained :ref:`here <validate_upgrade>`.
+When all steps are done, run OpenNebula and check the working state as explained :ref:`here <validate_upgrade>`.
