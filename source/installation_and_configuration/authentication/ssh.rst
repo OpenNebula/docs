@@ -14,12 +14,12 @@ No additional installation required.
 Considerations & Limitations
 ============================
 
-Authentication method works only for interaction with OpenNebula **over CLI**.
+This authentication method works only for interaction with OpenNebula **over CLI**.
 
 Configuration
 =============
 
-This authentication mechanism is enabled by default. If it still doesn't work, make sure you have the authentication method ``ssh`` enabled in the ``AUTH_MAD`` section of your :ref:`/etc/one/oned.conf <oned_conf>`. For example:
+This authentication mechanism is enabled by default. If it doesn't work, make sure you have the authentication method ``ssh`` enabled in the ``AUTH_MAD`` section of your :ref:`/etc/one/oned.conf <oned_conf>`. For example:
 
 .. code-block:: bash
 
@@ -40,9 +40,9 @@ This authentication method uses standard SSH RSA key pairs for authentication. U
 
     $ ssh-keygen -t rsa
 
-OpenNebula commands look for the generated SSH keys in the standard location ``$HOME/.ssh/id_rsa``, so it is a good idea not to change the default path. It is recommended to protect the private key with a password!
+OpenNebula commands look for the generated SSH keys in the standard location ``$HOME/.ssh/id_rsa``, so it is a good idea not to change the default path. It's recommended to protect the private key with a password!
 
-The users requesting a new account have to get a **public key** by running ``oneuser key``. For example:
+Users requesting a new account have to get a **public key** by running ``oneuser key``. For example:
 
 .. prompt:: bash $ auto
 
@@ -78,7 +78,7 @@ Change the authentication method of an existing user to SSH with the following c
     $ oneuser chauth <id|name> ssh
     $ oneuser passwd <id|name> --ssh --read-file /tmp/pub_key
 
-As with the ``create`` command, you can specify the public key as the second parameter, or use the user's private key with the ``--key`` option.
+As with the ``create`` command, you can specify the public key as the second parameter or use the user's private key with the ``--key`` option.
 
 User Login
 ----------
