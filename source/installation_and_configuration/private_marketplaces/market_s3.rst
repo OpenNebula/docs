@@ -7,7 +7,7 @@ S3 Marketplace
 Overview
 ================================================================================
 
-This Marketplace uses an S3 API-capable service as the backend. This means Marketplace Appliances will be stored in the official `AWS S3 service <https://aws.amazon.com/s3/>`__ , or in services that implement that API, like `Ceph Object Gateway S3 <https://docs.ceph.com/en/latest/radosgw/s3/>`__.
+This Marketplace uses an S3 API-capable service as the Back-end. This means Marketplace Appliances will be stored in the official `AWS S3 service <https://aws.amazon.com/s3/>`__ , or in services that implement that API, like `Ceph Object Gateway S3 <https://docs.ceph.com/en/latest/radosgw/s3/>`__.
 
 Limitations
 ================================================================================
@@ -70,7 +70,7 @@ For example, the following template illustrates the definition of a Marketplace:
     REGION            = "default"
     SIGNATURE_VERSION = s3
 
-which is created by passing to the following command:
+which is created by passing the following command:
 
 .. prompt:: bash $ auto
 
@@ -82,7 +82,7 @@ which is created by passing to the following command:
 Tuning & Extending
 ================================================================================
 
-.. important:: Any modification of code should be handled carefully. Although we might provide hints on how to fine-tune various parts by customizing the OpenNebula internals, in general, **it's NOT recommended to do changes in the existing code**. Please note the changes will be lost during the OpenNebula upgrade and have to be introduced back again manually!
+.. important:: Any modification of code should be handled carefully. Although we might provide hints on how to fine-tune various parts by customizing the OpenNebula internals, in general, **it's NOT recommended to make changes in the existing code**. Please note the changes will be lost during the OpenNebula upgrade and have to be introduced back again manually!
 
 In order to change the available size of the Marketplace from 1 TB to your desired value, you can modify ``/var/lib/one/remotes/market/s3/monitor`` and change:
 
