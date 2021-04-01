@@ -133,7 +133,7 @@ The structure is a hash where any key different to ``:order`` will contain the c
 +----------------------------+-------------------------------------------------+
 | ``:group``                 | If set, the users need to belong to this group  |
 +----------------------------+-------------------------------------------------+
-| ``:user_field``            | Field in LDAP that holds the username          |
+| ``:user_field``            | Field in LDAP that holds the username           |
 +----------------------------+-------------------------------------------------+
 | ``:mapping_generate``      | Automatically generate a mapping file. It can   |
 |                            | be disabled in case it needs to be done         |
