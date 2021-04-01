@@ -3,16 +3,16 @@
 PCI Passthrough
 ===============
 
-It is possible to discover PCI devices in the Hosts and directly assign them to Virtual Machines oin the KVM hypervisor.
+It is possible to discover PCI devices in the Hosts and directly assign them to Virtual Machines in the KVM hypervisor.
 
-The setup and environment information is taken from `here <https://stewartadam.io/howtos/fedora-20/create-gaming-virtual-machine-using-vfio-pci-passthrough-kvm>`__. You can safely ignore all the VGA related sections, for PCI devices that are not graphic cards, or if you don't want to output video signal from them.
+The setup and environment information is taken from `here <https://stewartadam.io/howtos/fedora-20/create-gaming-virtual-machine-using-vfio-pci-passthrough-kvm>`__. You can safely ignore all the VGA related sections, those for PCI devices that are not graphic cards, or if you don't want to output video signal from them.
 
 .. warning:: The overall setup state was extracted from a preconfigured Fedora 22 machine. **Configuration for your distro may be different.**
 
 Requirements
 ------------
 
-Virtualization host must
+Virtualization Host must
 
 * support `I/O MMU <https://en.wikipedia.org/wiki/IOMMU>`__ (processor features Intel VT-d or AMD-Vi).
 * have Linux kernel >= 3.12
@@ -25,7 +25,7 @@ Machine Configuration (Hypervisor)
 Kernel Configuration
 ~~~~~~~~~~~~~~~~~~~~
 
-The kernel must be configured to support I/O MMU and to blacklist any driver that could be accessing the PCI's that we want to use in our VMs. The parameter to enable I/O MMU is:
+The kernel must be configured to support I/O MMU and to blacklist any driver that could be accessing the PCIs that we want to use in our VMs. The parameter to enable I/O MMU is:
 
 .. code::
 
@@ -41,7 +41,7 @@ We also need to tell the kernel to load the ``vfio-pci`` driver and blacklist th
 Loading VFIO Driver in initrd
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The modules for vfio must be added to initrd. The list of modules are ``vfio vfio_iommu_type1 vfio_pci vfio_virqfd``. For example, if your system uses ``dracut`` add the file ``/etc/dracut.conf.d/local.conf`` with this line:
+The modules for vfio must be added to initrd. The list of modules are ``vfio vfio_iommu_type1 vfio_pci vfio_virqfd``. For example, if your system uses ``dracut``, add the file ``/etc/dracut.conf.d/local.conf`` with this line:
 
 .. code::
 
@@ -67,7 +67,7 @@ The same blacklisting done in the kernel parameters must be done in the system c
     alias nouveau off
     alias lbm-nouveau off
 
-Alongside this configuration VFIO driver should be loaded passing the id of the PCI cards we want to attach to VMs. For example, for NVIDIA GRID K2 GPU we pass the id ``10de:11bf``. File ``/etc/modprobe.d/local.conf``:
+Alongside this configuration the VFIO driver should be loaded passing the id of the PCI cards we want to attach to VMs. For example, for NVIDIA GRID K2 GPU we pass the id ``10de:11bf``. File ``/etc/modprobe.d/local.conf``:
 
 .. code::
 
@@ -79,7 +79,7 @@ VFIO Device Binding
 
 I/O MMU separates PCI cards into groups to isolate memory operation between devices and VMs. To add the cards to VFIO and assign a group to them we can use the scripts shared in the `aforementioned web page <http://www.firewing1.com/howtos/fedora-20/create-gaming-virtual-machine-using-vfio-pci-passthrough-kvm>`__.
 
-This script binds a card to vfio. It goes into ``/usr/local/bin/vfio-bind``:
+This script binds a card to VFIO. It goes into ``/usr/local/bin/vfio-bind``:
 
 .. code::
 
@@ -94,7 +94,7 @@ This script binds a card to vfio. It goes into ``/usr/local/bin/vfio-bind``:
             echo $vendor $device > /sys/bus/pci/drivers/vfio-pci/new_id
     done
 
-The configuration goes into ``/etc/sysconfig/vfio-bind``. The cards are specified with PCI addresses. Addresses can be retrieved with ``lspci`` command. Make sure to prepend the domain that is usually ``0000``. For example:
+The configuration goes into ``/etc/sysconfig/vfio-bind``. The cards are specified with PCI addresses. Addresses can be retrieved with the ``lspci`` command. Make sure to prepend the domain that is usually ``0000``. For example:
 
 .. code::
 
@@ -143,12 +143,12 @@ In our example our cards have the groups 45, 46, 58 and 59 so we add this config
 Driver Configuration
 --------------------
 
-The only configuration needed is the filter for the monitoring probe that gets the list of PCI cards. By default, the probe doesn't list any cards from a host. To narrow the list, configuration can be changed in ``/var/lib/one/remotes/etc/im/kvm-probes.d/pci.conf``. Following configuration attributes are available:
+The only configuration needed is the filter for the monitoring probe that gets the list of PCI cards. By default, the probe doesn't list any cards from a Host. To narrow the list, the configuration can be changed in ``/var/lib/one/remotes/etc/im/kvm-probes.d/pci.conf``. The following configuration attributes are available:
 
 +--------------------+-------------------------------------------------------------------------------------+
 | Parameter          | Description                                                                         |
 +====================+=====================================================================================+
-| ``:filter``        | *(List)* Filters by PCI ``vendor:device:class`` patterns (same as as for ``lspci``) |
+| ``:filter``        | *(List)* Filters by PCI ``vendor:device:class`` patterns (same as for ``lspci``)    |
 +--------------------+-------------------------------------------------------------------------------------+
 | ``:short_address`` | *(List)* Filters by short PCI address ``bus:device.function``                       |
 +--------------------+-------------------------------------------------------------------------------------+
@@ -218,12 +218,12 @@ Example:
 Usage
 -----
 
-The basic workflow is to inspect the host information, either in the CLI or in Sunstone, to find out the available PCI devices, and to add the desired device to the template. PCI devices can be added by specifying ``VENDOR``, ``DEVICE`` and ``CLASS``, or simply ``CLASS``. Note that OpenNebula will only deploy the VM in a host with the available PCI device. If no hosts match, an error message will appear in the Scheduler log.
+The basic workflow is to inspect the Host information, either in the CLI or in Sunstone, to find out the available PCI devices and to add the desired device to the template. PCI devices can be added by specifying ``VENDOR``, ``DEVICE`` and ``CLASS``, or simply ``CLASS``. Note that OpenNebula will only deploy the VM in a Host with the available PCI device. If no Hosts match, an error message will appear in the Scheduler log.
 
 CLI
 ~~~
 
-A new table in ``onehost show`` command gives us the list of PCI devices per host. For example:
+A new table in ``onehost show`` command gives us the list of PCI devices per Host. For example:
 
 .. code::
 
@@ -258,7 +258,7 @@ To make use of one of the PCI devices in a VM a new option can be added selectin
       DEVICE = "0a0c",
       CLASS  = "0403" ]
 
-The device can be also specified without all the type values. For example, to get any *PCI Express Root Ports* this can be added to a VM tmplate:
+The device can also be specified without all the type values. For example, to get any *PCI Express Root Ports* this can be added to a VM template:
 
 .. code::
 
@@ -281,7 +281,7 @@ To add a PCI device to a template, select the **Other** tab:
 Usage as Network Interfaces
 ---------------------------
 
-It is possible use a PCI device as a NIC interface directly in OpenNebula. In order to do so you will need to follow the configuration steps mentioned in this guide, namely changing the device driver.
+It is possible use a PCI device as an NIC interface directly in OpenNebula. In order to do so you will need to follow the configuration steps mentioned in this guide, namely changing the device driver.
 
 When defining a Network that will be used for PCI passthrough nics, please use either the ``dummy`` network driver or the ``802.1Q`` if you are using VLAN. In any case, type any random value into the ``BRIDGE`` field, and it will be ignored. For ``802.1Q`` you can also leave ``PHYDEV`` blank.
 
@@ -310,7 +310,7 @@ This is an example of the PCI section of an interface that will be treated as a 
       VENDOR = "8086" ]
 
 
-Note that the order of appearence of the ``PCI`` elements and ``NIC`` elements in the template is relevant. The will be mapped to nics in the order they appear, regardless if they're NICs of PCIs.
+Note that the order of appearence of the ``PCI`` elements and ``NIC`` elements in the template is relevant. They will be mapped to NICs in the order they appear, regardless of whether or not they're NICs of PCIs.
 
 Sunstone
 ~~~~~~~~
