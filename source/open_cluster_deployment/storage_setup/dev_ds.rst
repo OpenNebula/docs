@@ -101,10 +101,10 @@ New images can be added just like any other image by specifying the path. As an 
 
     $ oneimage create image.tmpl -d 101
 
-If you are using the CLI, shorthand parameters define the image using the source:
+If you are using the CLI, pass the absolute path to the device with parameter ``--source``:
 
 .. prompt:: bash $ auto
 
     $ oneimage create -d 101 --name nbd --source /dev/sdc --driver raw --prefix vd --persistent --type OS --size 0MB
 
-.. note:: As this Datastore is just a container for existing devices, images don't take any size from it. All devices registered will render a size of 0 and the overall devices Datastore will show up with 1MB of available space
+.. note:: As this Datastore is just a container for existing devices, the size of images in OpenNebula doesn't reflect the real block device size. All devices registered will render a size of 0 and the overall devices Datastore will show up with 1MB of available space
