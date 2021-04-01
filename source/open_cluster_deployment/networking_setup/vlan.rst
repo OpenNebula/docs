@@ -4,7 +4,7 @@
 802.1Q VLAN Networks
 ================================================================================
 
-This guide describes how to enable network isolation provided through host-managed VLANs. This driver will create a bridge for each OpenNebula Virtual Network and attach a VLAN tagged network interface to the bridge. This mechanism is compliant with `IEEE 802.1Q <http://en.wikipedia.org/wiki/IEEE_802.1Q>`__.
+This guide describes how to enable network isolation provided through Host-managed VLANs. This driver will create a bridge for each OpenNebula Virtual Network and attach a VLAN tagged network interface to the bridge. This mechanism is compliant with `IEEE 802.1Q <http://en.wikipedia.org/wiki/IEEE_802.1Q>`__.
 
 The VLAN ID will be the same for every interface in a given network, automatically computed by OpenNebula. It may also be forced by specifying a ``VLAN_ID`` parameter in the :ref:`Virtual Network template <vnet_template>`.
 
@@ -27,14 +27,14 @@ The VLAN ID is calculated according to this configuration option of :ref:`/etc/o
         RESERVED = "0, 1, 4095"
     ]
 
-By modifying this section, you can reserve some VLANs so they aren't assigned to a Virtual Network. You can also define the first VLAN ID. When a new isolated network is created, OpenNebula will find a free VLAN ID from the VLAN pool. This pool is global, and it's also shared with the :ref:`Open vSwitch Networks <openvswitch>` network mode.
+By modifying this section, you can reserve some VLANs so they aren't assigned to a Virtual Network. You can also define the first VLAN ID. When a new isolated network is created, OpenNebula will find a free VLAN ID from the VLAN pool. This pool is global and it's also shared with the :ref:`Open vSwitch Networks <openvswitch>` network mode.
 
 The following configuration parameters can be adjusted in ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``:
 
 +------------------------+-------------------------------------------------------------------------------------------------------+
 | Parameter              | Description                                                                                           |
 +========================+=======================================================================================================+
-| ``:validate_vlan_id``  | Set to ``true`` to check that no other vlans are connected to the bridge                              |
+| ``:validate_vlan_id``  | Set to ``true`` to check that no other VLANs are connected to the bridge                              |
 +------------------------+-------------------------------------------------------------------------------------------------------+
 | ``:keep_empty_bridge`` | Set to ``true`` to preserve bridges with no virtual interfaces left.                                  |
 +------------------------+-------------------------------------------------------------------------------------------------------+
@@ -89,7 +89,7 @@ To create an 802.1Q network, include the following information in the template:
 | ``MTU``               | The MTU for the tagged interface and bridge                                                | NO                                     |
 +-----------------------+--------------------------------------------------------------------------------------------+----------------------------------------+
 
-For example, you can define a *802.1Q Network* with following template:
+For example, you can define a *802.1Q Network* with the following template:
 
 .. code::
 
