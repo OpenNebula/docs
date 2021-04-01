@@ -4,7 +4,7 @@
 Diff Formats
 ============
 
-Configuration management tool ``onecfg`` allows comparing of the configuration files to identify user changes against the OpenNebula distributed files. The result of a comparison, the differential output, describes all the individual changes which were done and which can be even applied back again later or on a different machine.
+The configuration management tool ``onecfg`` allows us to compare the configuration files to identify user changes against the OpenNebula distributed files. The result of a comparison, the differential output, describes all the individual changes which were made and which can even be applied again later or on a different machine.
 
 The following table shows supported formats by each subcommand:
 
@@ -18,26 +18,26 @@ The following table shows supported formats by each subcommand:
 | ``yaml``  | Complete change structure   | YES             | YES              |
 +-----------+-----------------------------+-----------------+------------------+
 
-Only ``line`` format will be described in a detail, as it's powerful to achieve even complex changes and easy enough to read or write manually.
+Only ``line`` format will be described in a detail, as it's powerful in achieving even complex changes and easy enough to read or write manually.
 
 Line Format
 ===========
 
-Each line of change consists of following space separated parts:
+Each line of change consists of the following space separated parts:
 
 ``<FILENAME> <COMMAND> <PATH> [<JSON VALUE>]``
 
-with following meanings:
+with the following meanings:
 
 ``FILENAME``
 ------------
 
-Filename is an **absolute path** to the well-known configuration file of OpenNebula, which is going to be changed.
+Filename is an **absolute path** to the well-known configuration file of OpenNebula that is going to be changed.
 
 ``COMMAND``
 -----------
 
-Command is a type of operation to be executed on configuration file. Only the following commands are available:
+Command is a type of operation to be executed on the configuration file. Only the following commands are available:
 
   - ``ins`` - insert new configuration parameter
   - ``set`` - change existing parameter
@@ -79,7 +79,7 @@ these paths are valid to address the emphasized parameters:
 
 	In the ``oned.conf``-like configurations, some nested structures are unique (e.g., ``DB=[...]`` is just a single database connection configuration) and some can appear several times (e.g., ``VM_MAD=[...]`` configures execution of different drivers for different hypervisors, one section for each driver). In the second case, the nested structure is uniquely addressed by a value of one identifying parameter inside the structure, usually ``NAME``. This value (including the quotes) is placed as part of the path. See path 3 above.
 
-- for following ``/etc/one/sunstone-server.conf`` snippet
+- for the following ``/etc/one/sunstone-server.conf`` snippet
 
 .. code::
 
@@ -91,7 +91,7 @@ these paths are valid to address the emphasized parameter(s):
 
   4. ``:one_xmlrpc`` or ``":one_xmlrpc"``
 
-- for following ``/etc/one/cli/oneimage.yaml`` snippet
+- for the following ``/etc/one/cli/oneimage.yaml`` snippet
 
 .. code::
 
@@ -107,12 +107,12 @@ these paths are valid to address the emphasized parameter(s):
 
 .. important::
 
-   Path accepts only double qoutes (``"``) to enclose paths which include spaces. Single quotes (``'``) are always understood as part of the string.
+   Path accepts only double quotes (``"``) to enclose paths that include spaces. Single quotes (``'``) are always understood as part of the string.
 
 ``JSON VALUE``
 --------------
 
-The value encoded in JSON, mandatory only for ``ins`` and ``set`` commands. Can contain simple values or complex structures, **string values must be quoted with (and only with!) double quotes** (``"``).
+The value encoded in JSON is mandatory only for ``ins`` and ``set`` commands. It can contain simple values or complex structures, **string values must be quoted with (and only with!) double quotes** (``"``).
 
 Examples:
 
@@ -132,7 +132,7 @@ Examples:
 
 .. important::
 
-   When the value in addressed configuration file contains quotes, these must be also specified in the JSON value or within a path. This leads to double quotting of values, first quotes identify a JSON string, second (inner) escaped quotes are passed to the configuration file (e.g., ``"\"quoted string\"'``). This is usually seen in the ``oned.conf``-like configuration files.
+   When the value in the addressed configuration file contains quotes, these must also be specified in the JSON value or within a path. This leads to double quoting of values; the first quotes identify a JSON string and the second (inner) escaped quotes are passed to the configuration file (e.g., ``"\"quoted string\"'``). This is usually seen in the ``oned.conf``-like configuration files.
 
 Examples
 --------
@@ -159,7 +159,7 @@ How to read the output? Let's go through few examples from above:
 Text Format
 ===========
 
-Text format is similar to line format with visually separated sections for each configuration file and without redundant filename on each line. It's easier to read by humans but can't be used as input of ``patch`` subcommand.
+Text format is similar to line format with visually separated sections for each configuration file and without a redundant filename on each line. It's easier to read by humans but can't be used as an input of the ``patch`` subcommand.
 
 Example
 -------
@@ -183,7 +183,7 @@ Example
 YAML Format
 ===========
 
-Contains complete information about the changes, the old original and new values, position (index) of value within an array, and even preserves symbolized keys and values (which are used in several configuration files). This format is recommended to be used if it's expected to identify and apply (patch) changes the most accurately.
+Contains complete information about the changes, the old original and new values, position (index) of value within an array, and even preserves symbolized keys and values (which are used in several configuration files). This format is recommended for use if it's expected to identify and apply (patch) changes most accurately.
 
 Example
 -------
