@@ -26,7 +26,7 @@ Installing on CentOS/RHEL
 Install OpenNebula KVM Node Package
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Execute the following commands to install the OpenNebula KVM Node package and restart libvirt to use the OpenNebula provided configuration file:
+Execute the following commands to install the OpenNebula KVM Node package and restart libvirt to use the OpenNebula-provided configuration file:
 
 .. prompt:: bash # auto
 
@@ -49,7 +49,7 @@ Optional: Newer QEMU/KVM (only CentOS/RHEL 7)
         # yum -y install centos-release-qemu-ev
         # yum -y install qemu-kvm-ev
 
-    On **RHEL 7**, you need a paid subscription to the Red Hat Virtualization (RHV) or Red Hat OpenStack (RHOS) products license only for the Red Hat Enterprise Linux isn't enough! You have to check the RHV `Installation Guide <https://access.redhat.com/documentation/en-us/red_hat_virtualization/>`__ for your licensed version. Usually, the following commands should enable and install the enterprise packages:
+    On **RHEL 7**, you need a paid subscription to the Red Hat Virtualization (RHV) or Red Hat OpenStack (RHOS) products license only for the Red Hat Enterprise. Linux isn't enough! You have to check the RHV `Installation Guide <https://access.redhat.com/documentation/en-us/red_hat_virtualization/>`__ for your licensed version. Usually, the following commands should enable and install the enterprise packages:
 
     .. prompt:: bash # auto
 
@@ -104,24 +104,24 @@ Step 6. Storage Configuration (Optional)
 Step 7. Adding Host to OpenNebula
 =================================
 
-In this step, we'll register the hypervisor Node we have configured above into the OpenNebula Front-end, so that OpenNebula can launch Virtual Machines on it. Step is documented for Sunstone GUI and CLI, but both accomplish the same. Select and proceed with only one way.
+In this step, we'll register the hypervisor Node we have configured above into the OpenNebula Front-end, so that OpenNebula can launch Virtual Machines on it. This step is documented for Sunstone GUI and CLI but both accomplish the same. Select one of the two options only.
 
 Learn more in :ref:`Hosts and Clusters Management <hostsubsystem>`.
 
-.. note:: If the host turns to ``err`` state instead of ``on``, check OpenNebula log ``/var/log/one/oned.log``. Problem might be with connecting over SSH.
+.. note:: If the Host turns to ``err`` state instead of ``on``, check OpenNebula log ``/var/log/one/oned.log``. The problem might be with connecting over SSH.
 
 Add Host with Sunstone
 ----------------------
 
-Open Sunstone as documented :ref:`here <verify_frontend_section_sunstone>`. In the left side menu go to **Infrastructure** → **Hosts**. Click on the ``+`` button.
+Open Sunstone as documented :ref:`here <verify_frontend_section_sunstone>`. On the left side menu go to **Infrastructure** → **Hosts**. Click on the ``+`` button.
 
 |sunstone_select_create_host|
 
-Then fill-in the hostname, FQDN, or IP of the Node in the ``Hostname`` field.
+Then fill in the hostname, FQDN, or IP of the Node in the ``Hostname`` field.
 
 |sunstone_create_host_dialog|
 
-Finally, return back to the **Hosts** list, and check that the Host has switched to ``ON`` status. It can take up to 1 minute. Clicking on the refresh button to check the status more frequently.
+Finally, return back to the **Hosts** list, and check that the Host has switched to ``ON`` status. It can take up to 1 minute. Click on the refresh button to check the status more frequently.
 
 |sunstone_list_hosts|
 
@@ -149,7 +149,7 @@ To add a node to the cloud, run this command as ``oneadmin`` in the Front-end (r
 Step 8. Import Existing VMs (Optional)
 ======================================
 
-Optionally, you can import virtual machines already running on the Host. You'll be able to control such virtual machines from OpenNebula, although the set of operations is vastly reduced (when compared to the virtual machines started from the OpenNebula). Follow the :ref:`Importing Wild VMs <import_wild_vms>` guide.
+Optionally, you can import virtual machines already running on the Host. You'll be able to control such virtual machines from OpenNebula, although the set of operations is vastly reduced (when compared to the virtual machines started from OpenNebula). Follow the :ref:`Importing Wild VMs <import_wild_vms>` guide.
 
 You can import wild VMs anytime later.
 
