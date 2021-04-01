@@ -6,7 +6,7 @@ Overview
 
 .. important:: This feature is a **Technology Preview**. It's not recommended for production environments!
 
-As a complement to the traditional installation via operating system packages (see :ref:`Single Front-end Installation <frontend_installation>`), it's possible to deploy the complete OpenNebula Front-end (except hypervisor nodes!) from the official container image on supported container runtimes `Docker <https://www.docker.com/>`__ and `Podman <https://podman.io>`__  in multiple ways.
+As a complement to the traditional installation via operating system packages (see :ref:`Single Front-end Installation <frontend_installation>`), it's possible to deploy the complete OpenNebula Front-end (except hypervisor nodes!) in the container(s). The official OpenNebula Front-end container image can be used with `Docker <https://www.docker.com/>`__ and `Podman <https://podman.io>`__ container runtimes and multiple deployment scenarios.
 
 Containerized Front-end deployment features:
 
