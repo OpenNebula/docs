@@ -326,7 +326,7 @@ Sunstone provides several different methods to access your VM console and deskto
 
 .. important::
 
-    :ref:`FireEdge <fireedge_conf>` server must be running to get Guacamole conn. working. For VMRC conn., Sunstone and FireEdge must be running on the **same server**.
+    :ref:`FireEdge <fireedge_conf>` server must be running to get Guacamole connections working. For VMRC, Sunstone and FireEdge must be running on the **same server**.
 
 .. _requirements_remote_access_sunstone:
 
@@ -432,8 +432,8 @@ RDP file and open it with an RDP client to establish a connection with your Virt
 RDP with FireEdge
 """""""""""""""""
 
-To add one RDP connection link for a network in a VM, you must have one ``NIC``
-with ``RDP`` attribute equals ``YES`` in his template.
+To enable RDP connections to the VM, you must have one ``NIC``
+with ``RDP`` attribute equal to ``YES`` in the template.
 
 Via Sunstone, you need to enable a RDP connection on one of the VM template networks, **after or
 before its instantiation**.
