@@ -147,7 +147,7 @@ In order to properly use U2F/FIDO2 authentication the following parameters need 
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 |       Parameter           |                          Description                                                                                                      |
 +===========================+===========================================================================================================================================+
-| ``:webauthn_origin``      | This value needs to match ``window.location.origin`` evaluated by the User Agent during registration and authentication ceremonies.      |
+| ``:webauthn_origin``      | This value needs to match ``window.location.origin`` evaluated by the User Agent during registration and authentication ceremonies.       |
 |                           | Remember that WebAuthn requires TLS on anything else than localhost.                                                                      |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 | ``:webauthn_rpname``      | Relying Party name for display purposes                                                                                                   |
