@@ -76,7 +76,7 @@ LXC driver-specific configuration is available in ``/var/lib/one/remotes/etc/vmm
 |                            | ``:command`` can be set                                            |
 +----------------------------+--------------------------------------------------------------------+
 | ``:datastore_location``    | Default path for the datastores. This only need to be              |
-|                            | changed if the corresponding value in oned.conf has                 |
+|                            | changed if the corresponding value in oned.conf has                |
 |                            | been modified                                                      |
 +----------------------------+--------------------------------------------------------------------+
 | ``:default_lxc_config``    | Path to the LXC default configuration file. This file              |
