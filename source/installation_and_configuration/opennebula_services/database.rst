@@ -4,14 +4,14 @@
 Database Maintenance
 ====================
 
-OpenNebula persists the state of the cloud into the selected :ref:`SQL database <database_setup>`. The database should be monitored and tuned for the best performance by cloud administrators following the best practices of the particular database product. In this guide, we provide a few tips on how to optimize database for OpenNebula and thoroughly describe OpenNebula database maintenance tool ``onedb``, which simplifies the most common database operations - backups and restores, version upgrades, or consistency checks.
+OpenNebula persists the state of the cloud into the selected :ref:`SQL database <database_setup>`. The database should be monitored and tuned for the best performance by cloud administrators following the best practices of the particular database product. In this guide, we provide a few tips on how to optimize database for OpenNebula and thoroughly describe OpenNebula's database maintenance tool ``onedb``, which simplifies the most common database operations - backups and restores, version upgrades, or consistency checks.
 
 .. _mysql_maintenance:
 
 Optimize Database
 =================
 
-Depending on the environment, following tasks should be considered to execute periodically for an optimal database performance:
+Depending on the environment, you should consider periodically executing the following tasks for an optimal database performance:
 
 MySQL/MariaDB FTS Index
 -----------------------
@@ -26,25 +26,25 @@ To be able to search for VMs by different attributes, the OpenNebula database le
 Cleanup Old Content
 -------------------
 
-When Virtual Machines are terminated (change into state ``DONE``), the OpenNebula just changes their state in database, but keeps the information in the database in case it would be required in the future (e.g., to generate accounting reports). To reduce the size of the VM table, it is recommended to periodically delete the information about already terminated Virtual Machines if not needed with :ref:`onedb purge-done <onedb_purge_done>` tool is available below.
+When Virtual Machines are terminated (changed into a ``DONE`` state), OpenNebula just changes their state in database but keeps the information in the database in case it's required in the future (e.g., to generate accounting reports). To reduce the size of the VM table, it is recommended to periodically delete the information about already terminated Virtual Machines if no longer needed with :ref:`onedb purge-done <onedb_purge_done>` (tool is available below).
 
 .. _onedb:
 
 OpenNebula Database Maintenance Tool
 ====================================
 
-This section describes the OpenNebula database maintenance command-line tool ``onedb``. It can be used to get information from an OpenNebula database, backup and restore, upgrade to new versions of OpenNebula database, cleanup unused content, or fix inconsistency problems.
+This section describes the OpenNebula database maintenance command-line tool ``onedb``. It can be used to get information from an OpenNebula database, backup and restore, upgrade to new versions of an OpenNebula database, clean up unused content, or fix inconsistency problems.
 
 Available subcommands (visit the :ref:`manual page <cli>` for full reference):
 
 - :ref:`version <onedb_version>` - Shows current database schema version
 - :ref:`history <onedb_history>` - Lists history of schema upgrades
 - :ref:`fsck <onedb_fsck>` - Performs consistency check and repair on data
-- :ref:`upgrade <onedb_upgrade>` - Upgrades database for new OpenNebula version
-- :ref:`backup <onedb_backup>` - Backups database into a file
+- :ref:`upgrade <onedb_upgrade>` - Upgrades database to new OpenNebula version
+- :ref:`backup <onedb_backup>` - Backs up database into a file
 - :ref:`restore <onedb_restore>` - Restores database from backup
-- :ref:`purge-history <onedb_purge_history>` - Cleanups history records in VM metadata
-- :ref:`purge-done <onedb_purge_done>` - Cleanups database from unused content
+- :ref:`purge-history <onedb_purge_history>` - Cleans up history records in VM metadata
+- :ref:`purge-done <onedb_purge_done>` - Cleans database of unused content
 - :ref:`change-body <onedb_change_body>` - Allows to update OpenNebula objects in database
 - :ref:`sqlite2mysql <onedb_sqlite2mysql>` - Migration tool from SQLite to MySQL/MariaDB
 
@@ -152,7 +152,7 @@ Every database upgrade is internally logged into the table. You can use the ``hi
 onedb fsck
 ----------
 
-Checks the consistency of OpenNebula objects inside the database and fixes any problems it finds. For example, if the machine where OpenNebula is running crashes, or loses connectivity to the database, you may have the wrong number of VMs running in a Host, or incorrect usage quotas for some users.
+Checks the consistency of OpenNebula objects inside the database and fixes any problems it finds. For example, if the machine where OpenNebula is running crashes or loses connectivity to the database, you may have the wrong number of VMs running in a Host or incorrect usage quotas for some users.
 
 .. prompt:: text $ auto
 
@@ -184,7 +184,7 @@ If ``onedb fsck`` shows the following error message:
 
     [UNREPAIRED] History record for VM <<vid>> seq # <<seq>> is not closed (etime = 0)
 
-it means that when using accounting or showback, the etime (end-time) of that history record was not set, and the VM was considered as still running while it shouldn't been. To fix this problem, you could locate the time when the VM was shut down in the logs and then execute this patch to edit the times manually:
+it means that when using accounting or showback, the etime (end-time) of that history record was not set and the VM was considered as still running while it shouldn't have been. To fix this problem, you can locate the time when the VM was shut down in the logs and then execute this patch to edit the times manually:
 
 .. prompt:: text $ auto
 
@@ -240,7 +240,7 @@ it means that when using accounting or showback, the etime (end-time) of that hi
 onedb upgrade
 -------------
 
-Upgrades database for new OpenNebula version, process if fully documented in the :ref:`upgrade guides <upgrade>`.
+Upgrades database to the new OpenNebula version. This process is fully documented in the :ref:`upgrade guides <upgrade>`.
 
 
 .. _onedb_backup:
@@ -262,7 +262,7 @@ Dumps OpenNebula database into a file, e.g.:
 onedb restore
 -------------
 
-Restores OpenNebula database from a provided :ref:`backup <onedb_backup>` file. Please note that only backups **from same backend can be restored**, i.e. you cannot backup SQLite database and then restore to a MySQL. E.g.,
+Restores OpenNebula database from a provided :ref:`backup <onedb_backup>` file. Please note that only backups **from the same Back-end can be restored**, e.g. you can't back-up SQLite database and then restore to a MySQL. E.g.,
 
 .. prompt:: text $ auto
 
@@ -279,7 +279,7 @@ onedb purge-history
 
     The operation is done while OpenNebula is running. Make a **database backup** before executing!
 
-Deletes all but last 2 history records from metadata of Virtual Machines, which are still active (not in a ``DONE`` state). You can specify the start and end dates if you don't want to delete all history. E.g.,
+Deletes all but the last two history records from the metadata of Virtual Machines which are still active (not in a ``DONE`` state). You can specify the start and end dates if you don't want to delete all history. E.g.,
 
 .. prompt:: text $ auto
 
@@ -295,7 +295,7 @@ onedb purge-done
 
     The operation is done while OpenNebula is running. Make a **database backup** before executing!
 
-Deletes information from the database with already terminated Virtual Machines (state ``DONE``). You can set start and end dates via ``-start`` and ``--end`` parameters if you don't want to delete all old data. E.g.,
+Deletes information from the database with already terminated Virtual Machines (state ``DONE``). You can set start and end dates via ``-start`` and ``--end`` parameters if you don't want to delete all the old data. E.g.,
 
 .. prompt:: text $ auto
 
@@ -311,7 +311,7 @@ onedb change-body
 
     The operation is done while OpenNebula is running. Make a **database backup** before executing!
 
-This command allows updating of the body content of OpenNebula objects in a database. Supported object types are ``vm``, ``host``, ``vnet``, ``image``, ``cluster``, ``document``, ``group``, ``marketplace``, ``marketplaceapp``, ``secgroup``, ``template``, ``vrouter`` or ``zone``.
+This command allows you to update the body content of OpenNebula objects in a database. Supported object types are ``vm``, ``host``, ``vnet``, ``image``, ``cluster``, ``document``, ``group``, ``marketplace``, ``marketplaceapp``, ``secgroup``, ``template``, ``vrouter`` or ``zone``.
 
 You can filter the objects to update using one of the options:
 
