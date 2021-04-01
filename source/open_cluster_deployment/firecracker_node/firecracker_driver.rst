@@ -130,7 +130,7 @@ Also, root file system images can be downloaded directly to OpenNebula from `Doc
 Kernels
 --------------------------------------------------------------------------------
 
-The kernel images must be uploaded to a :ref:`Kernels & Files Datastore <file_ds>` with the kernel type. Once the kernel is available it can be referenced by using the attribute ``KERNEL_DS`` inside ``OS`` section at microVM template.
+The kernels must be uploaded to a :ref:`Kernels & Files Datastore <file_ds>` with the "Kernel" type. Once the kernel is available it can be referenced by using the attribute ``KERNEL_DS`` inside ``OS`` section at microVM template.
 
 Kernel images can build the desired kernel version, with the configuration attribute required for the use case. In order to improve the performance, the kernel image can be compiled with the minimal options required. Firecracker project provides a suggested configuration file in the `official repository <https://github.com/firecracker-microvm/firecracker/tree/master/resources>`__
 
