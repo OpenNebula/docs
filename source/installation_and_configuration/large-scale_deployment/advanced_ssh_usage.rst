@@ -127,7 +127,7 @@ Disable SSH Host Keys Checking
 
    This configuration is mentioned only for information but is **NOT RECOMMENDED** for general use.
 
-The following configuration completely disables storing and checking the identity of the remote sides you are connecting to over SSH. You can use the configuration if you don't need or want to manage the list of host SSH keys in ``known_hosts`` at all. **It introduces a major security issue and shouldn't be used.**
+The following configuration completely disables storing and checking the identity of the remote hosts you are connecting to over SSH. You can use the configuration if you don't need or want to manage the list of host SSH keys in ``known_hosts`` at all. **It introduces a major security issue and shouldn't be used.**
 
 .. prompt:: bash $ auto
 
@@ -140,7 +140,7 @@ The following configuration completely disables storing and checking the identit
 Populate Host Keys
 ==================
 
-Unless the infrastructure hosts are configured not :ref:`check host SSH keys <node_ssh_config_ignore>` of communicating parties (which is not recommended), it's crucial to populate the host keys of each host into the ``known_hosts`` file in a secure manner. The configuration management system can help with creating such a file to a certain extent, as it has insight into the configuration of your hosts and might leverage a different way to access the host than over SSH.
+Unless the infrastructure hosts are configured not to :ref:`check host SSH keys <node_ssh_config_ignore>` of communicating parties (which is not recommended), it's crucial to populate the host keys of each host into the ``known_hosts`` file in a secure manner. The configuration management system can help with creating such a file to a certain extent, as it has insight into the configuration of your hosts and might leverage a different way to access the host than over SSH.
 
 Manual Secure Add
 -----------------
