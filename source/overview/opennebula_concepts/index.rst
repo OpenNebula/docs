@@ -9,4 +9,3 @@ OpenNebula Concepts
 
    OpenNebula Overview <opennebula_overview>
    Key Features <key_features>
-   Terminology <terminology>
