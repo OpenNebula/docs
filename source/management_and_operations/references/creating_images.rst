@@ -21,7 +21,7 @@ Step 1. Install Libguestfs
 
 The package is available in most distributions. Here are the commands to do it in some of them.
 
-CentOS
+RHEL/CentOS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. prompt:: bash # auto
@@ -50,9 +50,11 @@ Step 2. Download the Image
 
 You can find the images for distributions in these links. We are going to use the ones from CentOS but the others are here for reference:
 
-* **CentOS**: http://cloud.centos.org/centos/
-* **Debian**: http://cdimage.debian.org/cdimage/openstack/
+* **CentOS**: https://cloud.centos.org/centos/
+* **Debian**: https://cdimage.debian.org/cdimage/openstack/
 * **Ubuntu**: https://cloud-images.ubuntu.com/
+* **Amazon Linux**: https://cdn.amazonlinux.com/os-images/latest/kvm/
+* **Oracle Linux**: https://yum.oracle.com/oracle-linux-templates.html
 
 Step 3. Download Context Packages
 --------------------------------------------------------------------------------
@@ -67,14 +69,14 @@ You have to download them to a directory that we will later refer. For our examp
 
     $ mkdir packages
     $ cd packages
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2-1.el6.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2-1.el7.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2-1.el8.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2-1.suse.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2-alt1.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context_5.12.0.2-1.deb
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2-r1.apk
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.12.0.2/one-context-5.12.0.2_1.txz
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.0.0/one-context-6.0.0-1.el6.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.0.0/one-context-6.0.0-1.el7.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.0.0/one-context-6.0.0-1.el8.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.0.0/one-context-6.0.0-1.suse.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.0.0/one-context-6.0.0-alt1.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.0.0/one-context_6.0.0-1.deb
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.0.0/one-context-6.0.0-r1.apk
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.0.0/one-context-6.0.0_1.txz
     $ cd ..
 
 Step 4. Create a CDROM Image with Context Packages
@@ -154,12 +156,13 @@ CentOS 8
     yum remove -y NetworkManager
 
     # Install OpenNebula context package
-    yum install -y /tmp/mount/one-context*el7*rpm
+    yum install -y /tmp/mount/one-context*el8*rpm
+    systemctl enable network.service
 
     # Take out serial console from kernel configuration
     # (it can freeze during the boot process).
     sed -i --follow-symlinks 's/console=ttyS[^ "]*//g' /etc/default/grub /etc/grub2.cfg
-    
+
 Debian 8
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
