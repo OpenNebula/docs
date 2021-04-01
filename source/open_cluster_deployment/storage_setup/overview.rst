@@ -8,7 +8,7 @@ Overview
 Datastore Types
 ================================================================================
 
-Storage in OpenNebula is designed around the concept of Datastores. A Datastore is any storage medium to store disk images. OpenNebula distinguishes among three different Datastore types:
+Storage in OpenNebula is designed around the concept of Datastores. A Datastore is any storage medium to store disk images. OpenNebula distinguishes between three different Datastore types:
 
 * **Images Datastore**, which stores the base operating system images, persistent data volumes, CD-ROMs.
 * **System Datastore** holds disks of running Virtual Machines. Disk are moved from/to the Images when the VMs are deployed/terminated.
