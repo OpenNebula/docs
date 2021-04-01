@@ -173,7 +173,7 @@ And start the deployment again with the following **additional** arguments:
 Custom OpenNebula Config.
 =========================
 
-Upon container start, the bootstrap script automatically applies a limited configuration of the OpenNebula services - configured inter-service connections and a set set of :ref:`image parameters <container_reference_params>` customized by the user. This doesn't cover all needs, as OpenNebula comes with several services and tens of :ref:`configuration files <cfg_files>`. Instead of copying the complete OpenNebula configurations into the containers, it's recommended to use the special configuration differential format for :ref:`onecfg tool <cfg_index>` which describes individual changes in the files. Changes are then applied to the default stock configuration files in the container by :ref:`onecfg patch <cfg_patch>`.
+Upon container start, the bootstrap script automatically applies a limited configuration of the OpenNebula services - configure inter-service connections following a set of :ref:`image parameters <container_reference_params>` customized by the user. This doesn't cover all needs, as OpenNebula comes with several services and tens of :ref:`configuration files <cfg_files>`. Instead of copying the complete OpenNebula configurations into the containers, it's recommended to use the special configuration differential format for :ref:`onecfg tool <cfg_index>` which describes individual changes in the files. Changes are then applied to the default stock configuration files in the container by :ref:`onecfg patch <cfg_patch>`.
 
 .. important::
 
@@ -196,7 +196,7 @@ changes
 
 - OpenNebula scheduling interval to 10 seconds,
 - timeout for KVM virtual machines shutdown to 60 seconds and
-- default cost of CPU, memory a disk for showback.
+- default cost of CPU, memory a disk for OpenNebula Showback functionality.
 
 .. note::
 
@@ -475,7 +475,7 @@ and connect to those where you need to start services and proceed with any requi
     [root@6cc7ad7ead2d /]# exit
 
 5. Exit Maintenance Mode
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Stop your deployment
 
