@@ -10,7 +10,7 @@ Authentication is two-fold:
 
 * **Web client and Sunstone server**. Authentication is based on the credentials stored in the OpenNebula database for the user. Depending on the type of these credentials the authentication method can be: ``sunstone``, ``x509`` and ``opennebula`` (supporting LDAP or other custom methods).
 
-* **Sunstone server and OpenNebula core**. The requests of a user are forwarded to the core daemon, including the original user name. Each request is signed with the credentials of a special ``serveradmin`` user. This authentication mechanism is based either on symmetric key cryptography (default) or X.509 certificates. Details on how to configure these methods can be found in the :ref:`Cloud Authentication section <cloud_auth>`.
+* **Sunstone server and OpenNebula core**. The requests of a user are forwarded to the core daemon, including the original username. Each request is signed with the credentials of a special ``serveradmin`` user. This authentication mechanism is based either on symmetric key cryptography (default) or X.509 certificates. Details on how to configure these methods can be found in the :ref:`Cloud Authentication section <cloud_auth>`.
 
 The following sections explain the client-to-Sunstone server authentication methods.
 
@@ -28,7 +28,7 @@ To enable this login method, set the ``:auth:`` option in ``/etc/one/sunstone-se
 OpenNebula Auth
 ================
 
-Using this method the credentials included in the header will be sent to the OpenNebula core, and the authentication will be delegated to the OpenNebula auth system using the specified driver for that user. Therefore any OpenNebula auth driver can be used through this method to authenticate the user (e.g. LDAP).
+Using this method the credentials included in the header will be sent to the OpenNebula core and the authentication will be delegated to the OpenNebula auth system using the specified driver for that user. Therefore any OpenNebula auth driver can be used through this method to authenticate the user (e.g. LDAP).
 
 To enable this login method, set the ``:auth:`` option in ``/etc/one/sunstone-server.conf`` to ``opennebula`` and restart Sunstone:
 
@@ -47,7 +47,7 @@ The user password has to be changed by running one of the following commands:
 
     $ oneuser chauth johndoe x509 "/C=ES/O=ONE/OU=DEV/CN=clouduser"
 
-or, the same command using a certificate file:
+or the same command using a certificate file:
 
 .. prompt:: bash $ auto
 
@@ -59,7 +59,7 @@ New users with this authentication method should be created as follows:
 
     $ oneuser create johndoe "/C=ES/O=ONE/OU=DEV/CN=clouduser" --driver x509
 
-or, using a certificate file:
+or using a certificate file:
 
 .. prompt:: bash $ auto
 
@@ -75,7 +75,7 @@ The login screen will not display the username and password fields anymore, as a
 
 |image0|
 
-Note that OpenNebula will not verify that the user is holding a valid certificate at the time of login: this is expected to be done by the external container of the Sunstone server (normally Apache), whose job is to tell the user's browser that the site requires a user certificate, and to check that the certificate is consistently signed by the chosen Certificate Authority (CA).
+Note that OpenNebula will not verify that the user holds a valid certificate at the time of login: this is expected to be done by the external container of the Sunstone server (normally Apache), whose job is to tell the user's browser that the site requires a user certificate and to check that the certificate is consistently signed by the chosen Certificate Authority (CA).
 
 .. warning:: The Sunstone X.509 authentication only handles the authentication of the user at the time of login. Authentication of the user certificate is a complementary setup, which can rely on Apache.
 
@@ -102,7 +102,7 @@ To enable this login method, set the ``:auth:`` option in ``/etc/one/sunstone-se
 
 The login screen will not display the username and password fields anymore, as all information is fetched from the Kerberos server or a remote authentication service.
 
-Note that OpenNebula will not verify that the user is holding a valid Kerberos ticket at the time of login: this is expected to be done by the external container of the Sunstone server (normally Apache), whose job is to tell the user's browser that the site requires a valid ticket to login.
+Note that OpenNebula will not verify that the user holds a valid Kerberos ticket at the time of login: this is expected to be done by the external container of the Sunstone server (normally Apache), whose job is to tell the user's browser that the site requires a valid ticket to login.
 
 .. warning:: The Sunstone remote authentication method only handles the authentication of the user at the time of login. Authentication of the remote ticket is a complementary setup, which can rely on Apache.
 
@@ -111,23 +111,23 @@ Note that OpenNebula will not verify that the user is holding a valid Kerberos t
 Two Factor Authentication
 =========================
 
-You can get additional authentication level by using a two-factor authentication, that not only requests for the username and password, but also for the one-time (or pregenerated security) keys generated by an authenticator application.
+You can get an additional authentication level by using a two-factor authentication that not only requests the username and password but also the one-time (or pregenerated security) keys generated by an authenticator application.
 
 |sunstone_settings_2fa_login|
 
 Authenticator App
 ------------------
 
-With this method, requires a token generated by any of these applications: `Google Authentication <https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en>`__, `Authy <https://authy.com/download/>`__ or `Microsoft Authentication <https://www.microsoft.com/en-us/p/microsoft-authenticator/9nblgggzmcj6?activetab=pivot:overviewtab>`__.
+This method requires a token generated by any of these applications: `Google Authentication <https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en>`__, `Authy <https://authy.com/download/>`__ or `Microsoft Authentication <https://www.microsoft.com/en-us/p/microsoft-authenticator/9nblgggzmcj6?activetab=pivot:overviewtab>`__.
 
 To enable this, you must follow these steps:
 
--  Log in Sunstone, and select menu **Setting**. Inside find and select the tab **Auth**.
--  Inside find and select the button **Manage two factor authentication** and **Register authenticator app**.
+-  Log in to Sunstone and select menu **Setting**. Inside, find and select the tab **Auth**.
+-  Inside, find and select the button **Manage two factor authentication** and **Register authenticator app**.
 
 |sunstone_settings_auth|
 
--  A window will appear with a QR code. It must be scanned with your authenticator app. That will generate a 6-character code which you must place in the code input field.
+-  A window will appear with a QR code. It must be scanned with your authenticator app. That will generate a 6-character code that you must place in the code input field.
 
 |sunstone_settings_2fa_app|
 
@@ -147,7 +147,7 @@ In order to properly use U2F/FIDO2 authentication the following parameters need 
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 |       Parameter           |                          Description                                                                                                      |
 +===========================+===========================================================================================================================================+
-| ``:webauthn_origin``      | This value needs to match ``window.location.origin`` evaluated by the User Agent  during registration and authentication ceremonies.      |
+| ``:webauthn_origin``      | This value needs to match ``window.location.origin`` evaluated by the User Agent during registration and authentication ceremonies.      |
 |                           | Remember that WebAuthn requires TLS on anything else than localhost.                                                                      |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 | ``:webauthn_rpname``      | Relying Party name for display purposes                                                                                                   |
@@ -157,10 +157,10 @@ In order to properly use U2F/FIDO2 authentication the following parameters need 
 | ``:webauthn_rpid``        | Optional differing Relying Party ID. See https://www.w3.org/TR/webauthn/#relying-party-identifier                                         |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 | ``:webauthn_algorithms``  | Optional list of  supported cryptographic algorithms (https://www.iana.org/assignments/jose/jose.xhtml).                                  |
-|                           | Possible is any list of ES256, ES384, ES512, PS256, PS384,  PS512, RS256, RS384, RS512, RS1.                                              |
+|                           | Any list of ES256, ES384, ES512, PS256, PS384,  PS512, RS256, RS384, RS512, RS1 is possible.                                              |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 
-This allows to use e.g. U2F/FIDO2 authentication keys. In this case to enable this authentication method, we follow the same steps but select **Register new security key**.
+This allows us to use e.g. U2F/FIDO2 authentication keys. In this case, to enable this authentication method, we follow the same steps but select **Register new security key**.
 
 |sunstone_settings_2fa_keys|
 
