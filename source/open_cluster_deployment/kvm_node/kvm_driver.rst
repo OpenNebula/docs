@@ -201,7 +201,7 @@ For disks you can also use SCSI bus (``sd``) and it will use the virtio-scsi con
 Additional Attributes
 ~~~~~~~~~~~~~~~~~~~~~
 
-The **raw** attribute offers the end-user the possibility of passing by attributes not known by OpenNebula to KVM. Basically, everything placed here will be written literally into the KVM deployment file (**use libvirt xml format and semantics**). You can selectively disable validation of the RAW data by adding ``VALIDATE="no"`` to the ``RAW`` section. By default, the data will be checked against the libvirt schema.
+The ``RAW`` attribute allows the end-users to pass custom libvirt/KVM attributes not yet supported by OpenNebula. Basically, everything placed here will be written literally into the KVM deployment file (**use libvirt xml format and semantics**). You can selectively disable validation of the RAW data by adding ``VALIDATE="no"`` to the ``RAW`` section. By default, the data will be checked against the libvirt schema.
 
 .. code::
 
@@ -228,7 +228,7 @@ The following OpenNebula information is added to the metadata section of the Lib
 - ``stime``
 - ``deployment_time``
 
-They correspond to their OpenNebula equivalents for the XML representation of the VM. ``opennebula_version`` and ``deployment_time`` are the OpenNebula versions used during the deployment and deployment time at epoch format, respectively.
+They correspond to their OpenNebula equivalents for the XML representation of the VM. ``opennebula_version`` and ``deployment_time`` are the OpenNebula version used during the deployment and deployment time at epoch format, respectively.
 
 Also the VM name is included at libvirt XML ``title`` field, so if the ``--title`` option is used for listing the libvirt domains the VM name will be shown with the domain name.
 
@@ -245,7 +245,7 @@ If you need to resize the capacity of the VM in ``RUNNING`` state, you have to s
 +------------------+-------------------------------------------------------------------------------------------------+-----------+
 | ``MEMORY_MAX``   | Maximum memory which can be hotplugged.                                                         | **NO**    |
 +------------------+-------------------------------------------------------------------------------------------------+-----------+
-| ``MEMORY_SLOTS`` | Optional slots for hotplugging memory. Limits the number of hotplug operations. Defaults to 8. | **NO**    |
+| ``MEMORY_SLOTS`` | Optional slots for hotplugging memory. Limits the number of hotplug operations. Defaults to 8.  | **NO**    |
 +------------------+-------------------------------------------------------------------------------------------------+-----------+
 
 
@@ -375,9 +375,7 @@ The driver consists of the following files:
 
 And the following driver configuration files:
 
-* ``/etc/one/vmm_exec/vmm_exec_kvm.conf`` : This file is home for default values for domain definitions (in other words, OpenNebula templates).
-
-It is generally a good idea to place defaults for the KVM-specific attributes, that is, attributes mandatory in the KVM driver that are not mandatory for other hypervisors. Non-mandatory attributes for KVM but specific to them are also recommended to have a default. Changes to this file **require opennebula to be restarted**.
+* ``/etc/one/vmm_exec/vmm_exec_kvm.conf`` : This file contains default values for KVM domain definitions (in other words, OpenNebula templates). It is generally a good idea to configure here defaults for the KVM-specific attributes, that is, attributes mandatory in the KVM driver that are not mandatory for other hypervisors. Non-mandatory attributes for KVM but specific to them are also recommended to have a default. Changes to this file **require opennebula to be restarted**.
 
 -  ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc`` : This file holds instructions to be executed before the actual driver load to perform specific tasks or to pass environmental variables to the driver. The syntax used for the former is plain shell script that will be evaluated before the driver execution. For the latter, the syntax is the familiar:
 
@@ -402,7 +400,7 @@ The parameters that can be changed here are as follows:
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``FORCE_DESTROY``                             | Force VM cancellation after shutdown timeout                                                                                                                                                                    |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``CANCEL_NO_ACPI``                            | Force VMs without ACPI enabled to be destroyed on shutdown                                                                                                                                                     |
+| ``CANCEL_NO_ACPI``                            | Force VMs without ACPI enabled to be destroyed on shutdown                                                                                                                                                      |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``MIGRATE_OPTIONS``                           | Set options for the virsh migrate command                                                                                                                                                                       |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -410,7 +408,7 @@ The parameters that can be changed here are as follows:
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``CLEANUP_MEMORY_ON_STOP``                    | Compact memory after VM stops. Values ``yes`` (default) or ``no``                                                                                                                                               |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_CACHE``                      | This parameter will set the default cache type for new attached disks. It will be used in case the attached disk does not have a specific cache method set (can be set using templates when attaching a disk). |
+| ``DEFAULT_ATTACH_CACHE``                      | This parameter will set the default cache type for new attached disks. It will be used in case the attached disk does not have a specific cache method set (can be set using templates when attaching a disk).  |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``DEFAULT_ATTACH_DISCARD``                    | Default dicard option for newly attached disks, if the attribute is missing in the template.                                                                                                                    |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
