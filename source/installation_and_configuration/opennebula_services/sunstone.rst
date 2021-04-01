@@ -7,7 +7,7 @@
 Sunstone Configuration
 ======================
 
-The OpenNebula Sunstone server provides a **web-based management interface**. It's a dedicated daemon installed by default as part of the :ref:`Single Front-end Installation <frontend_installation>`, but can be deployed independently on a different machine. The server is distributed as an operating system package ``opennebula-sunstone`` with system services ``opennebula-sunstone`` for Sunstone and ``opennebula-novnc`` for noVNC Proxy.
+The OpenNebula Sunstone server provides a **web-based management interface**. It's a dedicated daemon installed by default as part of the :ref:`Single Front-end Installation <frontend_installation>`, but can be deployed independently on a different machine. The server is distributed as an operating system package ``opennebula-sunstone`` with the system services ``opennebula-sunstone`` for Sunstone and ``opennebula-novnc`` for noVNC Proxy.
 
 Configuration
 =============
@@ -52,7 +52,7 @@ The Sunstone configuration file can be found in ``/etc/one/sunstone-server.conf`
 |                                 | for details on how to run Sunstone in development. With ``prod``, the minified JS                   |
 |                                 | will be used (``dist/main.js``) (Default: ``prod``)                                                 |
 +---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:max_upload_file_size``       | Maximum allowed size of uploaded images (in bytes). Leave commented for unlimited size              |
+| ``:max_upload_file_size``       | Maximum permitted size of uploaded images (in bytes). Leave commented for unlimited size            |
 +---------------------------------+-----------------------------------------------------------------------------------------------------+
 | **Logging**                                                                                                                           |
 +---------------------------------+-----------------------------------------------------------------------------------------------------+
@@ -131,7 +131,7 @@ The Sunstone configuration file can be found in ``/etc/one/sunstone-server.conf`
 +---------------------------------+-----------------------------------------------------------------------------------------------------+
 | ``:get_extended_vm_monitoring`` | True to display extended information from VM monitoring from OpenNebula (Default: ``false``)        |
 +---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:paginate``                   | Array for paginate, the first position is for internal use. the second is used to put               |
+| ``:paginate``                   | Array for paginate, the first position is for internal use. The second is used to put               |
 |                                 | names to each value.                                                                                |
 +---------------------------------+-----------------------------------------------------------------------------------------------------+
 | ``:leases``                     | Displays button and clock icon in table of VM                                                       |
@@ -179,7 +179,7 @@ The Sunstone configuration file can be found in ``/etc/one/sunstone-server.conf`
 
 .. _sunstone_in_ha:
 
-In order to properly use Sunstone with FireEdge in HA environments and have the Guacamole functionality available, all Susntone servers need to access ``/var/lib/one/.one/fireedge_key``.
+In order to properly use Sunstone with FireEdge in HA environments and have the Guacamole functionality available, all Sunstone servers need to access ``/var/lib/one/.one/fireedge_key``.
 
 .. note::
 
@@ -190,7 +190,7 @@ In order to properly use Sunstone with FireEdge in HA environments and have the 
         :host: 0::1
         :host: 0::0
 
-Sunstone settings can be also configured on user-level through the user template (within a ``SUNSTONE=[]`` section, for example ``SUNSTONE=[TABLE_ORDER="asc"]``). Following attributes are available for customization:
+Sunstone settings can be also configured on user-level through the user template (within a ``SUNSTONE=[]`` section, for example ``SUNSTONE=[TABLE_ORDER="asc"]``). The following attributes are available for customization:
 
 +-------------------------------+------------------------------------------------------------------------+
 |         Attribute             |                            Description                                 |
@@ -224,7 +224,7 @@ Sunstone has to be configured (``/etc/one/sunstone-server.conf``) with two FireE
 - ``:private_fireedge_endpoint`` - base URL reachable by **Sunstone** (leave default if running on same host),
 - ``:public_fireedge_endpoint`` - base URL reachable by **end-users**.
 
-Both values can be same, as long as they are valid. Example:
+Both values can be same, as long as they are valid. For example:
 
 .. code::
 
@@ -240,7 +240,7 @@ Both values can be same, as long as they are valid. Example:
         #:private_fireedge_endpoint: http://localhost:2616
         #:public_fireedge_endpoint: http://localhost:2616
 
-If FireEdge is running on a different host, cipher key ``/var/lib/one/.one/fireedge_key`` for Guacamole connections must be copied among hosts.
+If FireEdge is running on a different host, the cipher key ``/var/lib/one/.one/fireedge_key`` for Guacamole connections must be copied among Hosts.
 
 .. _sunstone_conf_service:
 
@@ -249,7 +249,7 @@ Service Control and Logs
 
 Manage operating system services ``opennebula-sunstone`` and ``opennebula-novnc`` to change the server(s) running state.
 
-To start, restart, stop the server, execute one of:
+To start, restart or stop the server, execute one of:
 
 .. prompt:: bash # auto
 
@@ -257,7 +257,7 @@ To start, restart, stop the server, execute one of:
     # systemctl restart opennebula-sunstone
     # systemctl stop    opennebula-sunstone
 
-To enable or disable automatic start on host boot, execute one of:
+To enable or disable automatic start on Host boot, execute one of:
 
 .. prompt:: bash # auto
 
@@ -266,7 +266,7 @@ To enable or disable automatic start on host boot, execute one of:
 
 .. note::
 
-   noVNC Proxy Server is automatically started (unless masked) with the start of OpenNebula Sunstone.
+   noVNC Proxy Server is automatically started (unless masked) when OpenNebula Sunstone starts.
 
 Servers **logs** are located in ``/var/log/one`` in following files:
 
@@ -274,7 +274,7 @@ Servers **logs** are located in ``/var/log/one`` in following files:
 - ``/var/log/one/sunstone.error``
 - ``/var/log/one/novnc.log``
 
-Other logs are also available in Journald, use the following command to show:
+Other logs are also available in Journald; use the following command to show these:
 
 .. prompt:: bash # auto
 
@@ -290,7 +290,7 @@ Commercial Support Integration
 ------------------------------
 
 We are aware that in production environments, access to professional, efficient support is
-a must, and this is why we have introduced an integrated tab in Sunstone to access
+a must and this is why we have introduced an integrated tab in Sunstone to access
 `OpenNebula Systems <http://opennebula.systems>`_ (the company behind OpenNebula, formerly C12G)
 professional support. In this way, support ticket management can be performed through Sunstone,
 avoiding disruption of work and enhancing productivity.
@@ -304,9 +304,9 @@ avoiding disruption of work and enhancing productivity.
 Accessing VM Console and Desktop
 --------------------------------
 
-Sunstone provides several different methods to access your VM console and desktop: VNC, SPICE, RDP, VMRC, SSH, and ``virt-viewer``. If configured in the VM, these metods can be used to access the VM console through Sunstone.  For some of those connections, we will need to start new FireEdge server to establish the remote connection. This section shows how these different technologies can be configured and what are each requirement.
+Sunstone provides several different methods to access your VM console and desktop: VNC, SPICE, RDP, VMRC, SSH, and ``virt-viewer``. If configured in the VM, these methods can be used to access the VM console through Sunstone.  For some of those connections, we will need to start a new FireEdge server to establish the remote connection. This section shows how these different technologies can be configured and what each requirement is.
 
-:ref:`FireEdge <fireedge_configuration>` automatically installs dependencies for Guacamole connectinos and VMRC proxy, which are necessary for use VNC, RDP, SSH, and VMRC.
+:ref:`FireEdge <fireedge_configuration>` automatically installs dependencies for Guacamole connectinos and VMRC proxy, which are necessary to use VNC, RDP, SSH, and VMRC.
 
 +-----------------+-------------------+---------------------+
 |   Connection    |   With FireEdge   |  Without FireEdge   |
@@ -326,7 +326,7 @@ Sunstone provides several different methods to access your VM console and deskto
 
 .. important::
 
-    :ref:`FireEdge <fireedge_conf>` server must be running to get Guacamole conn. working. For VMRC conn. Sunstone and FireEdge must be running on the **same server**.
+    :ref:`FireEdge <fireedge_conf>` server must be running to get Guacamole conn. working. For VMRC conn., Sunstone and FireEdge must be running on the **same server**.
 
 .. _requirements_remote_access_sunstone:
 
@@ -334,14 +334,14 @@ Requirements for connections via noVNC
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Sunstone GUI offers the possibility of starting a VNC/SPICE session to a Virtual
-Machine. This is done by using a **VNC/SPICE websocket-based client (noVNC)** on the client-side and
-a VNC proxy translating and redirecting the connections on the server-side.
+Machine. This is done by using a **VNC/SPICE websocket-based client (noVNC)** on the client side and
+a VNC proxy translating and redirecting the connections on the server side.
 
 To enable VNC/SPICE console service, you must have a ``GRAPHICS`` section in the VM template, as
 stated in the documentation. Make sure the attribute ``IP`` is set correctly (``0.0.0.0`` to allow
-connections from everywhere), otherwise, no connections will be allowed from the outside.
+connections from everywhere), otherwise no connections will be allowed from the outside.
 
-For example, to configure this in Virtual Machine template:
+For example, to configure this in the Virtual Machine template:
 
 .. code-block:: none
 
@@ -362,7 +362,7 @@ When using secure websockets, make sure that your certificate and key (if not in
 certificate) are correctly set in the :ref:`Sunstone configuration files <sunstone_setup>`.
 Note that your certificate must be valid and trusted for the wss connection to work.
 
-If you are working with a certificate that it is not accepted by the browser, you can manually add
+If you are working with a certificate that is not accepted by the browser, you can manually add
 it to the browser trust list by visiting ``https://sunstone.server.address:vnc_proxy_port``.
 The browser will warn that the certificate is not secure and prompt you to manually trust it.
 
@@ -376,15 +376,15 @@ VNC is a graphical console with wide support among many hypervisors and clients.
 VNC without FireEdge
 """"""""""""""""""""
 
-When clicking the VNC icon, a request is made, and if a VNC session is possible, the Sunstone server will add the VM
-Host to the list of allowed vnc session targets and create a **random token** associated to it. The
+When clicking the VNC icon a request is made, and if a VNC session is possible, the Sunstone server will add the VM
+Host to the list of allowed vnc session targets and create a **random token** associated with it. The
 server responds with the session token, then a ``noVNC`` dialog pops up.
 
 The VNC console embedded in this dialog will try to connect to the proxy, either using websockets
 (default) or emulating them using Flash. Only connections providing the right token will be successful.
 The token expires and cannot be reused.
 
-Make sure that you can connect directly from the Sunstone frontend to the VM using a normal VNC
+Make sure that you can connect directly from the Sunstone Front-end to the VM using a normal VNC
 client tool, such as ``vncviewer``.
 
 .. _requirements_guacamole_vnc_sunstone:
@@ -392,7 +392,7 @@ client tool, such as ``vncviewer``.
 VNC with FireEdge
 """""""""""""""""
 
-To enable VNC console service, you must have a ``GRAPHICS`` section in the VM template,
+To enable the VNC console service you must have a ``GRAPHICS`` section in the VM template,
 as stated in the documentation.
 
 To configure it via Sunstone, you need to update the VM template. In the Input/Output tab,
@@ -418,7 +418,7 @@ To configure this in Virtual Machine template in **advanced mode**:
 Configure VM for RDP
 ^^^^^^^^^^^^^^^^^^^^
 
-Short for **Remote Desktop Protocol**, allows one computer to connect to another computer
+Short for **Remote Desktop Protocol**, it allows one computer to connect to another computer
 over a network in order to use it remotely.
 
 RDP without FireEdge
@@ -435,8 +435,8 @@ RDP with FireEdge
 To add one RDP connection link for a network in a VM, you must have one ``NIC``
 with ``RDP`` attribute equals ``YES`` in his template.
 
-Via Sunstone, you need to enable RDP connection on one of VM template networks, **after or
-before his instantiation**.
+Via Sunstone, you need to enable a RDP connection on one of the VM template networks, **after or
+before its instantiation**.
 
 |sunstone_guac_nic|
 
@@ -470,9 +470,9 @@ Configure VM for SSH
 **SSH connections are available only when a reachable Firedge server is found**. Unlike VNC or RDP,
 SSH is a text protocol. SSH connections require a hostname or IP address defining
 the destination machine. Like with the :ref:`RDP <requirements_guacamole_rdp_sunstone>` connections,
-you need to enable the SSH connection on one of VM template networks.
+you need to enable the SSH connection on one of the VM template networks.
 
-For example, to configure this in Virtual Machine template in **advanced mode**:
+For example, to configure this in the Virtual Machine template in **advanced mode**:
 
 .. code-block:: none
 
@@ -489,7 +489,7 @@ not using the standard port.
 	section, this will be reflected in the SSH connection. You can read about them in the
 	:ref:`Virtual Machine Definition File reference section <template_context>`.
 
-For example, to allow connection by username and password to a guest VM. First make sure you
+For example, to allow connection by username and password to a guest VM, first make sure you
 have SSH root access to the VM, check more info :ref:`here <cloudview_ssh_keys>`.
 
 After that you can access the VM and configure the SSH service:
@@ -517,8 +517,7 @@ a similar architecture to the VNC implementation. Sunstone use a **SPICE-HTML5**
 its console dialog that communicates with the proxy by using websockets.
 
 .. note:: For the correct functioning of the SPICE Web Client, we recommend defining by default
-    some SPICE parameters in ``/etc/one/vmm_mad/vmm_exec_kvm.conf``. In this way, once modified the
-    file and restarted OpenNebula, it will be applied to all the VMs instantiated from now on. You can
+    some SPICE parameters in ``/etc/one/vmm_mad/vmm_exec_kvm.conf``. In this way, once the file is modified and OpenNebula is restarted, it will be applied to all  the VMs instantiated from now on. You can
     also override these SPICE parameters in VM Template. For more info check :ref:`Driver Defaults
     <kvmg_default_attributes>` section.
 
@@ -529,10 +528,10 @@ Configure VM for virt-viewer
 
 ``virt-viewer`` connections are channeled only through the noVNC proxy. virt-viewer is a minimal tool
 for displaying the graphical console of a virtual machine. It can **display VNC or SPICE protocol**,
-and uses libvirt to lookup the graphical connection details.
+and uses libvirt to look up the graphical connection details.
 
 In this case, Sunstone allows you to download the **virt-viewer configuration file** for the VNC and
-SPICE protocols. The only requirement is the ``virt-viewer`` being installed on your machine from which you are accessing the Sunstone.
+SPICE protocols. The only requirement is the ``virt-viewer`` being installed on the machine from which you are accessing the Sunstone.
 
 To use this option, you will only have to enable any of two protocols in the VM. Once the VM is
 ``instantiated`` and ``running``, users will be able to download the ``virt-viewer`` file.
@@ -550,7 +549,7 @@ Configure VM for VMRC
 
 *VMware Remote Console* provides console access and client device connection to VMs on a remote host.
 
-These type of connections requests a ``TOKEN`` from vCenter to connect with the Virtual Machine
+These types of connections request a ``TOKEN`` from vCenter to connect with the Virtual Machine
 allocated on vCenter every time you click on the VMRC button.
 
 To use this option, you will only have to enable VNC / VMRC connections to your VMs and start the
@@ -580,15 +579,15 @@ Sunstone supports multiple languages. If you want to contribute a new language, 
 complete a translation, you can visit our `Transifex <https://www.transifex.com/projects/p/one/>`__ project page.
 Translating through Transifex is easy and quick. All translations **should be submitted via Transifex**.
 
-Users can update or contribute translations anytime. Prior to every release, normally after the
+Users can update or contribute translations any time. Prior to every release, normally after the
 beta release, a call for translations will be made in the forum. Then the source strings will be
 updated in Transifex so all the translations can be updated to the latest OpenNebula version.
-Translation with an acceptable level of completeness will be added to the final OpenNebula release.
+Translations with an acceptable level of completeness will be added to the final OpenNebula release.
 
 Customize VM Logos
 ------------------
 
-The VM Templates can have an image logo to identify the guest OS. Edit ``/etc/one/sunstone-logos.yaml`` to modify list of available logos. Example:
+The VM Templates can have an image logo to identify the guest OS. Edit ``/etc/one/sunstone-logos.yaml`` to modify the list of available logos. Example:
 
 .. code-block:: yaml
 
@@ -610,7 +609,7 @@ The VM Templates can have an image logo to identify the guest OS. Edit ``/etc/on
     - { 'name': "Windows 8/2012",  'path': "images/logos/windows8.png"}
     - { 'name': "Windows 10/2016", 'path': "images/logos/windows8.png"}
 
-Guest OS logo as shown in the Sunstone:
+Guest OS logo as shown in Sunstone:
 
 |sunstone_vm_logo|
 
@@ -638,17 +637,17 @@ resources the users have access to. Its behavior can be customized and extended 
 :ref:`Sunstone Views <suns_views>`.
 
 The preferred method to select which views are available to each group is to update the group
-configuration from Sunstone; as described in :ref:`Sunstone Views section <suns_views_configuring_access>`.
+configuration from Sunstone, as described in :ref:`Sunstone Views section <suns_views_configuring_access>`.
 There is also the ``/etc/one/sunstone-views.yaml`` file that defines an alternative method to
 set the view for each user or group.
 
-Sunstone will offer the available views to each user following way:
+Sunstone will offer the available views to each user in the following way:
 
 * From all the groups the user belongs to, the views defined inside each group are combined and presented to the user.
 
 * If no views are available from the user's group, the defaults are taken from ``/etc/one/sunstone-views.yaml``. Here, views can be defined for:
 
-  * Each user (``users:`` section): list each user and the set of views available for her.
+  * Each user (``users:`` section): list each user and the set of views available for him or her.
   * Each group (``groups:`` section): list the set of views for the group.
   * The default view: if a user is not listed in the ``users:`` section, nor its group in the ``groups:`` section, the default views will be used.
   * The default views for group admins: if a group admin user is not listed in the ``users:`` section, nor its group in the ``groups:`` section, the default_groupadmin views will be used.
@@ -658,7 +657,7 @@ group can use the ``cloud`` view.
 
 The following example of ``/etc/one/sunstone-views.yaml`` enables the *user* (``user.yaml``) and the
 *cloud* (``cloud.yaml``) views for user ``helen`` and the *cloud* (``cloud.yaml``) view for group ``cloud-users``. If more
-than one view is available for a given user the first one is the default.
+than one view is available for a given user, the first one is the default.
 
 .. code-block:: yaml
 
@@ -681,7 +680,7 @@ Different Endpoint for Different View
 -------------------------------------
 
 OpenNebula :ref:`Sunstone Views <suns_views>` can be adapted to use a different endpoint for
-each kind of user. For example, if you want an endpoint for the admins and a different one for the
+each kind of user, such as if you want one endpoint for the admins and a different one for the
 cloud users. You just have to deploy a :ref:`new sunstone server <suns_advance>` and set a default
 view for each sunstone instance:
 
@@ -718,7 +717,7 @@ view for each sunstone instance:
 Hyperlinks in Templates
 -----------------------
 
-Editable template attributes are on various places of the Sunstone, for example in details of Marketplace Appliance. You can add an attribute with the name ``LINK``, which contains an URL. The value will be automatically transformed into the clickable hyperlink.
+Editable template attributes are in various places on Sunstone, for example in the details of Marketplace Appliance. You can add an attribute with the name ``LINK`` that contains an URL. The value will be automatically transformed into the clickable hyperlink.
 
 |sunstone_link_attribute|
 
