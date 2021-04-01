@@ -27,7 +27,7 @@ The OneFlow configuration file can be found in ``/etc/one/oneflow-server.conf`` 
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``:subscriber_endpoint``  | Endpoint for ZeroMQ subscriptions                                                                                                                                       |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``:autoscaler_interval``  | Time in seconds between each evaulation of elasticity rules                                                                                                         |
+| ``:autoscaler_interval``  | Time in seconds between each evaulation of elasticity rules                                                                                                             |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``:host``                 | Host/IP where OneFlow will listen                                                                                                                                       |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -39,7 +39,7 @@ The OneFlow configuration file can be found in ``/etc/one/oneflow-server.conf`` 
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``:default_cooldown``     | Default cooldown period after a scale operation, in seconds                                                                                                             |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``:wait_timeout``         | Default time to wait for VMs state changes, in seconds                                                                                                                     |
+| ``:wait_timeout``         | Default time to wait for VMs state changes, in seconds                                                                                                                  |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``:concurrency``          | Number of threads to make actions with flows                                                                                                                            |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -132,4 +132,4 @@ Advanced Setup
 Permission to Create Services
 -----------------------------
 
-*Documents* are special types of resources in OpenNebula used by OneFlow to store *Service Templates* and information about *Services*. When a new user Group is created, you can decide if you want to allow/deny its users to create *Documents*, resp. OneFlow Services. By default, :ref:`new groups <manage_groups>` are allowed to create Document resources.
+*Documents* are special types of resources in OpenNebula used by OneFlow to store *Service Templates* and information about *Services*. When a new user Group is created, you can decide if you want to allow/deny its users to create *Documents* (and also OneFlow Services). By default, :ref:`new groups <manage_groups>` are allowed to create Document resources.
