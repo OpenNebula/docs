@@ -24,7 +24,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 * Public Marketplace with pre-built applications ( PaaS, K8S, CI/CD…)
 * Build your private Marketplace to share and distribute applications within your organization
-* Integration with third-party marketplaces like Docker Hub and Linux Containers
+* Integration with third-party Marketplaces like Docker Hub and Linux Containers
 
 **CHARGEBACK**
 
@@ -35,7 +35,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 * Fine-grained ACLs for resource allocation
 * Resource Quota Management to track and limit resource utilization
-* Dynamic creation of Clusters as pools of hosts
+* Dynamic creation of clusters as pools of Hosts
 * Dynamic creation of Virtual Data Centers as fully-isolated virtual environments
 * Federation of multiple Zones for scalability, isolation or multiple-site support
 * Powerful and flexible Scheduler - deploy your workload in different locations 
@@ -43,7 +43,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 **HIGH AVAILABILITY AND BUSINESS CONTINUITY**
 
 * High availability architecture
-* Persistent database backend with support for high availability configurations
+* Persistent database Back-end with support for high availability configurations
 * Configurable behavior in the event of failure for cost-effective failover solutions
 
 **VIRTUAL INFRASTRUCTURE MANAGEMENT**
@@ -69,7 +69,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 * Fine-grained ACLs and user quotas
 * Powerful user, group and role management
-* Integration with enterprise and open-source user management services
+* Integration with enterprise and open source user management services
 * Login token functionality
 * Fine-grained auditing and support for isolation at different levels
 
@@ -81,13 +81,13 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 **LICENSING**
 
-* Fully open-source software released under Apache license 
+* Fully open source software released under Apache license 
 
 **UPGRADE PROCESS**
 
 * Automatic import of existing environments
 * All key functionalities for enterprise cloud in a single install
-* Long term stability & performance through a single patching and upgrade process
+* Long-term stability & performance through a single patching and upgrade process
 
 **QUALITY ASSURANCE**
 
