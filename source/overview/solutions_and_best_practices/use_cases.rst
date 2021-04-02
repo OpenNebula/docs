@@ -25,7 +25,7 @@ OpenNebula is used to implement different types of cloud deployments, from cloud
 Case Studies
 =================================================
 
-Learn more from some of OpenNebula users’ experience about how they are putting OpenNebula to work! See how its flexibility and simplicity, its true hybrid and edge capabilities, along with its compatibility with other open source platforms and third-party technologies like Kubernetes, Docker, Ansible and Terraform make it the ideal versatile solution for complex environments, no matter the industry.
+Learn more from OpenNebula users about how they are putting OpenNebula to work! See how its flexibility and simplicity, its true hybrid and edge capabilities, along with its compatibility with other open source platforms and third-party technologies like Kubernetes, Docker, Ansible and Terraform make it the ideal versatile solution for complex environments, no matter what the industry may be.
 
 |image3|
 
