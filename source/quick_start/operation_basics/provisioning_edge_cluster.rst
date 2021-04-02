@@ -5,7 +5,7 @@
 Provisioning an Edge Cluster
 ============================
 
-In this quick start guide we are going to try different workloads. Each workload needs to be deployed in a compatible type of edge cluster, since not all of them are capable of running all types of workload. More information on this is available in the :ref:`platform notes <uspng>`.
+In this quick start guide we are going to try different workloads. Each workload needs to be deployed in a compatible type of Edge Cluster, since not all of them are capable of running all types of workload. More information on this is available in the :ref:`platform notes <uspng>`.
 
 +--------------------------------------------------+-------------------+-------------+
 |                     Workload                     | Edge Cluster Type |  Hypervisor |
@@ -19,43 +19,43 @@ In this quick start guide we are going to try different workloads. Each workload
 | :ref:`K3s cluster <running_k3s_clusters>`        | metal             | firecracker |
 +--------------------------------------------------+-------------------+-------------+
 
-In this section you can check all the steps needed to deploy an **Edge Cluster**. It will involve the Fireedge OneProvision GUI and Sunstone to manage the resources created in OpenNebula.
+In this section you can check all the steps needed to deploy an **Edge Cluster**. This involves the FireEdge OneProvision GUI and Sunstone to manage the resources created in OpenNebula.
 
-.. note:: We will be creating a virtual edge cluster with lxc hypervisor, valid to deploy containers. If you are planning to go all the way and also try the deployment of VMs and K8s cluster, we recommend using a metal edge cluster deployment with kvm hypervisor.
+.. note:: We'll be creating a virtual Edge Cluster with LXC hypervisor, suitable for deploying containers. If you're planning to go all the way and to also try the deployment of VMs and K8s cluster, we recommend using a metal Edge Cluster deployment with a KVM hypervisor.
 
 Overview
 ================================================================================
 
-An Edge Cluster is a group of resources in OpenNebula and the corresponding resources into AWS. OpenNebula provides an specification of the cluster ready to be created.
+An Edge Cluster is a group of resources in OpenNebula and the corresponding resources in AWS. OpenNebula provides a specification of the cluster ready to be created.
 
 The following resources are created in OpenNebula:
 
-* **Cluster**: one cluster containing all the resources is created with each provision. There is a one to one relation between the provision and the cluster, so each provision can only have **one** cluster.
+* **Cluster**: one cluster containing all the resources is created with each provision. There is a one-to-one relationship between the provision and the cluster, so each provision can only have **one** cluster.
 * **Datastore**: each provision deploys two datastores, the system and the image.
-* **Host**: user can deploy as many as he wants. They will be used to run VMs.
-* **Virtual Network**: for private networking there is a network template ready to be instantiated with the parameters the user needs. There is also one public networking that uses the elastic drivers to preallocate IPs, so VMs have public connectivity.
+* **Host**: the user can deploy as many as he or she wants. They will be used to run VMs.
+* **Virtual Network**: for private networking there is a network template ready to be instantiated with the parameters the user needs. There is also one public network that uses the elastic drivers to pre-allocate IPs, so VMs have public connectivity.
 
-During the provision of the cluster all these resources and their corresponding AWS objects are created with the aid of Terraform. In particular the following AWS resources are created:
+During the provision of the cluster all these resources and their corresponding AWS objects are created with the aid of Terraform. In particular, the following AWS resources are created:
 
-* A virtual private cloud (VPC) to allocate the OpenNebula hosts (AWS instances)
-* A CIDR block for the AWS instances. This CIDR block is used to assign secondary IPs to the hosts to allocate elastic IPs.
-* An Internet Gateway to provide Internet access to host and VMs.
+* A virtual private cloud (VPC) to allocate the OpenNebula Hosts (AWS instances)
+* A CIDR block for the AWS instances. This CIDR block is used to assign secondary IPs to the Hosts to allocate elastic IPs.
+* An Internet Gateway to provide Internet access to the Host and VMs.
 * A routing table for the previous elements.
 
-.. note:: Take into account that FireEdge will request Elastic IPs for the public IPs you requested. If you receive an error creating a provision about not being able to request more IPs, please check the `limits of your account <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html>`__ in your zone.
+.. note:: Take into account that FireEdge will request Elastic IPs for the public IPs you request. If you receive an error message about not being able to request more IPs when creating a provision, please check the `limits of your account <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html>`__ in your zone.
 
-We will be using the FireEdge GUI in this guide. Please make sure you can login into it, using your front-end IP and default port 2616, as well as your oneadmin credentials.
+We'll be using the FireEdge GUI in this guide, so please make sure you can log in to it using your Front-end IP and default port 2616, as well as your oneadmin credentials.
 
-Step 1: Configuring AWS & Needed Information
+Step 1: Configuring AWS & Required Information
 ================================================================================
 
-As a first step, if you don't have one, create an account in AWS. You can follow `this guide <https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/>`__.
+As a first step, if you don't already have one, create an account in AWS. You can follow `this guide <https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/>`__.
 
-Whenever your account is ready, you need to obtain both an ``access_key`` and a ``secret_key`` of a user that has access to instances management. You can follow `this guide <https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html>`__.
+Whenever your account is ready, you need to obtain both an ``access_key`` and a ``secret_key`` of a user that has access to instances management. For this, you can follow `this guide <https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html>`__.
 
-Then, you need to choose the region where you want to deploy the resources. All the available regions can be checked `here <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html>`__.
+Next, you need to choose the region where you want to deploy the resources. All the available regions can be checked `here <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html>`__.
 
-.. warning:: To be able to connect to the instances you deploy, you will need SSH keys. They are installed on ``/var/lib/one/.ssh-oneprovision``.
+.. warning:: To be able to connect to the instances you deploy, you'll need SSH keys. They are installed in ``/var/lib/one/.ssh-oneprovision``.
 
 Step 2: Create an AWS provider
 ================================================================================
@@ -66,7 +66,7 @@ First, to **create a provider**, go to provider list view:
 
 |image_provider_list_empty|
 
-Then, **click the plus button** and fill the form. We will be using virtual edge cluster type with lxc hypervisor.
+Then, **click the plus button** and fill in the form. We will be using the virtual Edge Cluster type with the LXC hypervisor.
 
 |image_provider_create_step1|
 
@@ -79,14 +79,14 @@ You now have a **new provider**.
 Step 3: Provision a Virtual Edge Cluster
 ================================================================================
 
-The user needs to provide the following user inputs to create the provision:
+The user needs to provide the following inputs to create the provision:
 
 +-----------------------+------------------------------------------------------------------+
 |       User Input      |                           Description                            |
 +=======================+==================================================================+
 | ``Provider``          | This is the provider you just created above.                     |
 +-----------------------+------------------------------------------------------------------+
-| ``Number of hosts``   | Number of physical hosts to be deployed on AWS.                  |
+| ``Number of Hosts``   | Number of physical Hosts to be deployed on AWS.                  |
 +-----------------------+------------------------------------------------------------------+
 | ``Number of IPs``     | Number of public IPs to get from AWS in order to connect to VMs. |
 +-----------------------+------------------------------------------------------------------+
@@ -95,7 +95,7 @@ The user needs to provide the following user inputs to create the provision:
 | ``Hypervisor``        | Hypervisor to install ``lxc`` (just for virtual servers)         |
 +-----------------------+------------------------------------------------------------------+
 
-Let's go now to **create a provision**, and follow the same steps:
+Now let's go to **create a provision** and follow the same steps:
 
 |image_provision_list_empty|
 
