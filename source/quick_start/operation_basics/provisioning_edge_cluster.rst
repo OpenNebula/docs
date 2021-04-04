@@ -10,13 +10,13 @@ In this quick start guide we are going to try different workloads. Each workload
 +--------------------------------------------------+-------------------+-------------+
 |                     Workload                     | Edge Cluster Type |  Hypervisor |
 +==================================================+===================+=============+
-| :ref:`Containers <running_containers>`           | virtual           | lxc         |
+| :ref:`Containers <running_containers>`           | virtual           | LXC         |
 +--------------------------------------------------+-------------------+-------------+
-| :ref:`VMs <running_virtual_machines>`            | metal             | kvm         |
+| :ref:`VMs <running_virtual_machines>`            | metal             | KVM         |
 +--------------------------------------------------+-------------------+-------------+
-| :ref:`K8s cluster <running_kubernetes_clusters>` | metal             | kvm         |
+| :ref:`K8s cluster <running_kubernetes_clusters>` | metal             | KVM         |
 +--------------------------------------------------+-------------------+-------------+
-| :ref:`K3s cluster <running_k3s_clusters>`        | metal             | firecracker |
+| :ref:`K3s cluster <running_k3s_clusters>`        | metal             | Firecracker |
 +--------------------------------------------------+-------------------+-------------+
 
 In this section you can check all the steps needed to deploy an **Edge Cluster**. This involves the FireEdge OneProvision GUI and Sunstone to manage the resources created in OpenNebula.
