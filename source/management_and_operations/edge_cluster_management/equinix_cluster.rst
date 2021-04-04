@@ -7,16 +7,16 @@ Equinix Edge Cluster
 Edge Cluster Types
 ================================================================================
 
-Equinix supports **metal** elastic clusters, that uses baremetal instances to create OpenNebula Hosts. You can run the following hypervisors in metal clusters:
+Equinix supports **metal** elastic clusters that use bare-metal instances to create OpenNebula Hosts. You can run the following hypervisors in metal clusters:
 
 * **KVM**, runs virtual machines.
-* **Firecracker**, runs micro VMs.
+* **Firecracker**, runs microVMs.
 * **LXC**, runs system containers.
 
 Equinix Provider
 ================================================================================
 
-An Equinix provider contains the credentials to interact with Equinix and also the location to deploy your Edge clusters. OpenNebula comes with four predefined providers in the following regions:
+An Equinix provider contains the credentials to interact with Equinix and also the location to deploy your Edge Clusters. OpenNebula comes with four pre-defined providers in the following regions:
 
 * Amsterdam
 * Parsippany (NJ, US)
@@ -64,23 +64,23 @@ Then you just need to use the command ``oneprovider create``:
    $ oneprovider create provider.yaml
    ID: 0
 
-The providers templates are located in ``/usr/share/one/oneprovision/edge-clusters/<type>/providers/packet``. You just need to put valid credentials.
+The providers' templates are located in ``/usr/share/one/oneprovision/edge-clusters/<type>/providers/packet``. You just need to enter valid credentials.
 
-How to Customize and Existing Provider
+How to Customize an Existing Provider
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The provider information is stored in OpenNebula database, it can be updated as any other resource. In this case, you need to use the command ``oneprovider update``. It will open an editor so you can edit all the information there. You can also use the OneProvision Fireedge GUI to update all the information.
+The provider information is stored in the OpenNebula database and can be updated just like any other resource. In this case, you need to use the command ``oneprovider update``. It will open an editor so you can edit all the information there. You can also use the OneProvision FireEdge GUI to update all the information.
 
 Equinix Edge Cluster Implementation
 ================================================================================
 
-An edge cluster in Equinix creates the following resources:
+An Edge Cluster in Equinix creates the following resources:
 
-* **Packet Device**: host to run virtual machines.
+* **Packet Device**: Host to run virtual machines.
 
 The network model is implemented in the following way:
 
-* **Public Networking**: this is implemeted using elastic IPs from Equinix and the IPAM driver from OpenNebula. When the virtual network is created in OpenNebula the elastic IPs are requested to Equinix. Then, inside the host, IP forwarding rules are applied so the VM can communicate over the public IP assigned by Equinix.
+* **Public Networking**: this is implemeted using elastic IPs from Equinix and the IPAM driver from OpenNebula. When the virtual network is created in OpenNebula, the elastic IPs are requested from Equinix. Then, inside the Host, IP forwarding rules are applied so the VM can communicate over the public IP assigned by Equinix.
 
 * **Private Networking**: this is implemented using (BGP-EVPN) and VXLAN.
 
@@ -89,9 +89,9 @@ The network model is implemented in the following way:
 Operating Providers & Edge Clusters
 ================================================================================
 
-Refer to the :ref:`cluster operation guide <cluster_operations>`, to check all of the operations needed to create, manage and delete an edge cluster. Refer to the :ref:`providers guide <provider_operations>`, to check all of the operations related to providers.
+Refer to the :ref:`cluster operation guide <cluster_operations>` to check all of the operations needed to create, manage, and delete an Edge Cluster. Refer to the :ref:`providers guide <provider_operations>` to check all of the operations related to providers.
 
-You can also manage Equinix Clusters using the OneProvision Fireedge GUI.
+You can also manage Equinix Clusters using the OneProvision FireEdge GUI.
 
 |image_fireedge|
 
