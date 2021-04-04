@@ -86,16 +86,16 @@ Examples:
     VNTEMPLATES
     0: aws-cluster-private
 
-.. note:: The Terraform state is stored inside the provision information, so user doesn't need to manage it directly.
+.. note:: The Terraform state is stored inside the provision information, so the user doesn't need to manage it directly.
 
 Configuring
 --------------------------------------------------------------------------------
 
 .. warning::
 
-    It's important to understand that the (re)configuration can happen only on physical hosts that aren't actively used (e.g., no virtual machines running on the host) and with the operating system/services configuration untouched since the last (re)configuration. It's not possible to (re)configure the host with a manually modified OS/services configuration. Also it's not possible to fix a seriously broken host. Such a situation needs to be handled manually by an experienced systems administrator.
+    It's important to understand that the (re)configuration can happen only on physical Hosts that aren't actively used (e.g., no virtual machines running on the Host) and with the operating system/services configuration untouched since the last (re)configuration. It's not possible to (re)configure the Host with a manually modified OS/services configuration. Also, it's not possible to fix a seriously broken Host. Such a situation needs to be handled manually by an experienced systems administrator.
 
-The ``configure`` command offlines the OpenNebula hosts (making them unavailable to users) and triggers the deployment configuration phase. If the provision was already successfully configured before, the argument ``--force`` needs to be used. After successful configuration, the OpenNebula hosts are re-enabled.
+The ``configure`` command offlines the OpenNebula Hosts (making them unavailable to users) and triggers the deployment configuration phase. If the provision was already successfully configured before, the argument ``--force`` needs to be used. After successful configuration, the OpenNebula Hosts are re-enabled.
 
 Parameters:
 
@@ -130,7 +130,7 @@ The ``delete`` command releases the physical resources to the remote provider an
     2018-11-27 12:45:21 INFO  : Undeploying hosts
     2018-11-27 12:45:23 INFO  : Deleting provision objects
 
-Only provisions with no running VMs or images in the datastores can be easily deleted. You can force ``oneprovision`` to terminate VMs running on provisioned hosts and delete all images in the datastores with the ``--cleanup`` parameter.
+Only provisions with no running VMs or images in the datastores can be easily deleted. You can force ``oneprovision`` to terminate VMs running on provisioned Hosts and delete all images in the datastores by using the ``--cleanup`` parameter.
 
 Parameters:
 
@@ -165,12 +165,12 @@ Customization of the Edge Cluster
 Ansible
 --------------------------------------------------------------------------------
 
-Ansible is used to configure the hosts. All the playbooks and roles are located in ``/usr/share/one/oneprovision/ansible``. OpenNebula comes with a set of roles ready to configure the provision, but in case you want to add new roles or modify the existing ones, please check :ref:`this guide <ddc_config>`.
+Ansible is used to configure the Hosts. All the playbooks and roles are located in ``/usr/share/one/oneprovision/ansible``. OpenNebula comes with a set of roles ready to configure the provision, but in case you want to add new roles or modify the existing ones, please check :ref:`this guide <ddc_config>`.
 
-Povision Elements
+Provision Elements
 --------------------------------------------------------------------------------
 
-You can create multiple elements with a single provision, check :ref:`this guide <ddc_virtual>` for more information.
+You can create multiple elements with a single provision; check :ref:`this guide <ddc_virtual>` for more information.
 
 Adding/Removing Public IPs
 --------------------------------------------------------------------------------
@@ -188,12 +188,12 @@ CLI Commands
 Validate
 --------------------------------------------------------------------------------
 
-The ``validate`` command checks the provided :ref:`provision template <ddc_provision_template>` is correct. Returns exit code 0 if the template is valid.
+The ``validate`` command checks the provided :ref:`provision template <ddc_provision_template>` is correct. It returns exit code 0 if the template is valid.
 
 Host Management
 --------------------------------------------------------------------------------
 
-Individual hosts from the provision can be managed by the ``oneprovision host`` subcommands.
+Individual Hosts from the provision can be managed by the ``oneprovision host`` subcommands.
 
 Cluster Management
 --------------------------------------------------------------------------------
@@ -233,7 +233,7 @@ Individual Flow templates from the provision can be managed by the ``oneprovisio
 Logging Modes
 ================================================================================
 
-The ``oneprovision`` tool in the default mode returns only minimal requested output (e.g., provision IDs after create), or errors. Operations on the remote providers or the host configuration are complicated and time-consuming tasks. For better insight and for debugging purposes there are 2 logging modes available, providing more information on the standard error output.
+The ``oneprovision`` tool in the default mode returns only minimal requested output (e.g., provision IDs after create), or errors. Operations on the remote providers or the Host configuration are complicated and time-consuming tasks. For better insight and for debugging purposes there are two logging modes available, providing more information on the standard error output.
 
 * **verbose** (``--verbose/-d``). Only the main steps are logged.
 * **debug** (``--debug/-D``). All internal actions, including generated configurations with **sensitive data**, are logged.
@@ -241,7 +241,7 @@ The ``oneprovision`` tool in the default mode returns only minimal requested out
 Running Modes
 ================================================================================
 
-The ``oneprovision`` tool is ready to deal with common problems during execution. It's able to retry some actions or clean up an incomplete provision. Depending on where and how the tool is used, it offers 2 running modes:
+The ``oneprovision`` tool is ready to deal with common problems during execution. It's able to retry some actions or clean up an incomplete provision. Depending on where and how the tool is used, it offers two running modes:
 
-* **interactive** (default). If the unexpected condition appears, the user is asked how to continue.
-* **batch** (``--batch``). It's expected to be run from scripts. No questions are asked, and the tool tries to deal automatically with the problem according to the failover method specified as a command line parameter:
+* **interactive** (default). If an unexpected condition appears, the user is asked how to continue.
+* **batch** (``--batch``). It's expected to be run from scripts. No questions are asked and the tool tries to deal automatically with the problem according to the failover method specified as a command line parameter:
