@@ -6,7 +6,7 @@
 Open Cluster Deployment
 ================================================================================
 
-The Open Cluster Deployment Guide provides instructions on how to install and set up customized clusters based on open-source components. First you need to install the OpenNebula services by following the Installation and Configuration Guide.
+The Open Cluster Deployment Guide provides instructions on how to install and set up customized clusters based on open source components. First, you need to install the OpenNebula services by following the Installation and Configuration Guide.
 
 .. toctree::
    :maxdepth: 2
