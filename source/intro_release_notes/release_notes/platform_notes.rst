@@ -4,7 +4,7 @@
 Platform Notes
 ================================================================================
 
-This page will show you the specific considerations at the time of using an OpenNebula cloud, according to the different supported platforms.
+This page will show you the specific considerations when using an OpenNebula cloud, according to the different supported platforms.
 
 This is the list of the individual platform components that have been through the complete `OpenNebula Quality Assurance and Certification Process <https://github.com/OpenNebula/one/wiki/Quality-Assurance>`__.
 
@@ -216,22 +216,22 @@ Sunstone
 
 .. note::
 
-    For Windows desktops using **Chrome** or **Firefox** you should disable the option ``touch-events`` of your browser:
+    For Windows desktops using **Chrome** or **Firefox** you should disable the option ``touch-events`` for your browser:
 
     **Chrome**: chrome://flags -> #touch-events: disabled.
     **Firefox**: about:config -> dom.w3c_touch_events: disabled.
 
-    Internet Explorer is **not** supported with the Compatibility Mode enabled, since it emulates IE7 which is not supported.
+    Internet Explorer is **not** supported with the Compatibility Mode enabled, since it emulates IE7, which is not supported.
 
 
-.. note:: Generally for all Linux platforms, it is worth noting that Ruby gems should be used from packages shipped with OpenNebula or installed with the :ref:`install_gems <ruby_runtime>` utility. Avoid using Ruby gems versions shipped with your platform.
+.. note:: Generally, for all Linux platforms, it is worth noting that Ruby gems should be used from packages shipped with OpenNebula or installed with the :ref:`install_gems <ruby_runtime>` utility. Avoid using Ruby gem versions shipped with your platform.
 
 .. _edge_cluster_provision_workloads_compatibility:
 
 Compatibility of Workloads on Certified Edge Clusters
 =====================================================
 
-Containers workloads are those imported from DockerHub, LinuxContainers or TunrkeyLinux, as well as images created from DockerFiles. Virtual Machine worloads uses full system disk images.
+Container workloads are those imported from DockerHub, LinuxContainers or TunrkeyLinux, as well as images created from DockerFiles. Virtual Machine workloads use full system disk images.
 
 The OneProvision tool enables the deployment of Edge Clusters and their automatic enrollment to OpenNebula. The following table lays out the certified configuration for each type of workload.
 
@@ -249,9 +249,9 @@ The OneProvision tool enables the deployment of Edge Clusters and their automati
 Certified Infrastructure Scale
 ================================================================================
 
-A single instance of OpenNebula (ie, a single ``oned`` process) has been stress-tested to cope with 500 hypervisors without performance degradation. This is the maximum recommended configuration for a single instance, and depending on the underlying configuration of storage and networking mainly, it is recommended to switch to a federated scenario for any larger number of hypervisors.
+A single instance of OpenNebula (i.e., a single ``oned`` process) has been stress-tested to cope with 500 hypervisors without performance degradation. This is the maximum recommended configuration for a single instance, and depending on the underlying configuration of storage and networking, it is mainly recommended to switch to a federated scenario for any larger number of hypervisors.
 
-However, there are several OpenNebula users managing significant higher numbers of hypervisors (on the order of two thousand) with a single instance. This largely depends, as mentioned, on the storage, networking and also monitoring configuration.
+However, there are several OpenNebula users managing significantly higher numbers of hypervisors (to the order of two thousand) with a single instance. This largely depends, as mentioned, on the storage, networking, and also monitoring configuration.
 
 Frontend Platform Notes
 ================================================================================
@@ -268,12 +268,12 @@ When using Apache to serve Sunstone, it is required that you disable or comment 
 
 There is an automatic job that removes all data from ``/var/tmp/``. In order to disable this, please edit the ``/usr/lib/tmpfiles.d/tmp.conf`` and remove the line that removes ``/var/tmp``.
 
-There is a bug in libvirt that the prevents the use of the save/restore mechanism if ``cpu_model`` is set to ``'host-passthrough'`` via ``RAW``. The `work around if needed is described in this issue <http://dev.opennebula.org/issues/4204>`__.
+There is a bug in libvirt that prevents the use of the save/restore mechanism if ``cpu_model`` is set to ``'host-passthrough'`` via ``RAW``. The `work around if needed is described in this issue <http://dev.opennebula.org/issues/4204>`__.
 
 Debian 9
 --------------------------------------------------------------------------------
 
-Guacamole does not come with RDP support due to the lack of availability of libfreerdp2 in Debian 9. Hence this functionality won't be present if the front-end runs in this platform.
+Guacamole does not come with RDP support due to the lack of availability of libfreerdp2 in Debian 9. Hence, this functionality won't be present if the Front-end runs in this platform.
 
 
 Nodes Platform Notes
@@ -283,8 +283,8 @@ The following items apply to all distributions:
 
 * Since OpenNebula 4.14 there is a new monitoring probe that gets
   information about PCI devices. By default it retrieves all the PCI
-  devices in a host. To limit the PCI devices for which it gets info and appear in ``onehost show`` refer to :ref:`kvm_pci_passthrough`.
-* When using qcow2 storage drivers you can make sure that the data is written to disk when doing snapshots setting the ``cache`` parameter to ``writethrough``. This change will make writes slower than other cache modes but safer. To do this edit the file ``/etc/one/vmm_exec/vmm_exec_kvm.conf`` and change the line for ``DISK``:
+  devices in a Host. To limit the PCI devices for which it gets info and appear in ``onehost show``, refer to :ref:`kvm_pci_passthrough`.
+* When using qcow2 storage drivers you can make sure that the data is written to disk when doing snapshots by setting the ``cache`` parameter to ``writethrough``. This change will make writes slower than other cache modes but safer. To do this edit the file ``/etc/one/vmm_exec/vmm_exec_kvm.conf`` and change the line for ``DISK``:
 
 .. code::
 
