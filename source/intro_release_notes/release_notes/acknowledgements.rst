@@ -4,7 +4,7 @@
 Acknowledgements
 ================
 
-The OpenNebula project would like to thank the `community members <https://github.com/OpenNebula/one/graphs/contributors>`__ and `users <http://opennebula.io/featuredusers/>`__ who have contributed to this software release by being active with the discussions, answering user questions, or providing patches for bugfixes, features and documentation.
+The OpenNebula project would like to thank the `community members <https://github.com/OpenNebula/one/graphs/contributors>`__ and `users <http://opennebula.io/featuredusers/>`__ who have contributed to this software release by being active in discussions, answering user questions, or providing patches for bugfixes, features, and documentation.
 
 We’d like to acknowledge the following significant contributions:
 
