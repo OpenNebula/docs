@@ -124,7 +124,7 @@ You can easily create a Virtual Network definition from Sunstone but you can als
 | ``VCENTER_IMPORTED``        | boolean    | No                                 | This attribute is a protection mechanism to prevent accidental deletion with vcenter_vnet_delete hook                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 +-----------------------------+------------+------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-Settings applied to virtual switches and port groups created by OpeNebula
+Settings applied to virtual switches and port groups created by OpenNebula
 ---------------------------------------------------------------------------------
 
 OpenNebula uses the following values when creating virtual switches and port groups in vCenter according to what the vSphere's Web Client uses in the same operations:
@@ -134,7 +134,7 @@ OpenNebula uses the following values when creating virtual switches and port gro
 
 Standard port groups created by OpenNebula have the following settings:
 
-- Number of ports is set to Elastic. According to VMWare's documentation, the Elastic mode is used to ensure efficient use of resources on ESXi hosts where the ports of virtual switches are dynamically scaled up and down. In any case, the default port number for standard switches is 128.
+- Number of ports is set to Elastic. According to VMware's documentation, the Elastic mode is used to ensure efficient use of resources on ESXi hosts where the ports of virtual switches are dynamically scaled up and down. In any case, the default port number for standard switches is 128.
 - Security - Promiscuous mode is set to Reject, which means that the virtual network adapter only receives frames that are meant for it.
 - Security - MAC Address Changes is set to Accept, so the ESXi host accepts requests to change the effective MAC address to other than the initial MAC address.
 - Security - Forged transmits is set to Accept, which means that the ESXi host does not compare source and effective MAC addresses.
@@ -143,7 +143,7 @@ Standard port groups created by OpenNebula have the following settings:
 
 Distributed port groups created by OpenNebula have the following settings:
 
-- Number of ports is set to Elastic. According to VMWare's documentation, the Elastic mode is used to ensure efficient use of resources on ESXi hosts where the ports of virtual switches are dynamically scaled up and down. The default port number for distributed switches is 8.
+- Number of ports is set to Elastic. According to VMware's documentation, the Elastic mode is used to ensure efficient use of resources on ESXi hosts where the ports of virtual switches are dynamically scaled up and down. The default port number for distributed switches is 8.
 - Static binding. When you connect a virtual machine to a distributed port group, a port is immediately assigned and reserved for it, guaranteeing connectivity at all times. The port is disconnected only when the virtual machine is removed from the port group.
 - Auto expand is enabled. When the port group is about to run out of ports, the port group is expanded automatically by a small predefined margin.
 - Early Bindind is enabled. A free DistributedVirtualPort will be selected to assign to a Virtual Machine when the Virtual Machine is reconfigured to connect to the port group.
