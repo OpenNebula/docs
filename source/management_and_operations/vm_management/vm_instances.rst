@@ -441,7 +441,7 @@ Live Resize of Capacity
 
 If you need to resize the capacity in the RUNNING state you have to setup some extra attributes to VM template, this attributes **must be set before the VM is started**. These attributes are driver specific, more info for :ref:`KVM <kvm_live_resize>` and :ref:`vCenter <vcenter_live_resize>`.
 
-.. warning:: Hotplug implemented only for KVM and vCenter.
+.. warning:: Hotplug is only implemented only for KVM and vCenter.
 
 .. _vm_guide2_resize_disk:
 
@@ -959,10 +959,10 @@ Note: By default, the above operations do not check the target host capacity. Yo
 
 -  ``migrate`` or ``resched``: A VM in the UNKNOWN state can be booted in a different host manually (``migrate``) or automatically by the scheduler (``resched``). This action must be performed only if the storage is shared, or manually transfered by the administrator. OpenNebula will not perform any action on the storage for this migration.
 
+.. _remote_access_sunstone:
+
 Accessing VM Console and Desktop
 ================================================================================
-
-.. _remote_access_sunstone:
 
 .. TODO - Needs review and rewrite
 
