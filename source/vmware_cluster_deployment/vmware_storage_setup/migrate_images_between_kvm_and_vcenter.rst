@@ -62,7 +62,7 @@ QCOW2 Image to VMDK Datastore
 .. image:: /images/market_migrate_qcow2_vmdk_5.png
     :align: center
 
-Behind scenes
+Behind the scenes
 --------------------------------------------------------------------------------
 
 When the image that we selected from the MarketPlace is downloaded to the frontend, and the download process is finished, it is converted with the ``qemu-img convert`` tool as follows:
