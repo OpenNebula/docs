@@ -24,19 +24,19 @@ If you are running a 5.12.x version or older, please check these :ref:`set of st
     Upgrading a Federation and High Availability
     ================================================================================
 
-    You need to perform the following steps in all the HA nodes and all zones. You can upgrade the servers one by one to not incur in any downtime.
+    You need to perform the following steps in all the HA nodes and all zones. You can upgrade the servers one by one to not incur any downtime.
 
-    Step 1 Stop OpenNebula services
+    Step 1 Stop OpenNebula Services
     ===============================
 
-    Before proceeding, make sure you don't have any VMs in a transient state (prolog, migr, epil, save). Wait until these VMs get to a final state (runn, suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide <vm_guide_2>` for more information on the VM life-cycle.
+    Before proceeding, make sure you don't have any VMs in a transient state (prolog, migr, epil, save). Wait until these VMs get to a final state (run, suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide <vm_guide_2>` for more information on the VM life-cycle.
 
-    Now you are ready to stop OpenNebula and any other related services you may have running, e.g. Sunstone or OneFlow. Use preferably the system tools, like `systemctl` or `service` as `root` in order to stop the services.
+    Now you are ready to stop OpenNebula and any other related services you may have running, e.g. Sunstone or OneFlow. It's preferable to use the system tools, like `systemctl` or `service` as `root` in order to stop the services.
 
-    Step 2 Upgrade frontend to the new version
-    ==========================================
+    Step 2 Upgrade Front-end to the New Version
+    ===========================================
 
-    Upgrade the OpenNebula software using the package manager of your OS. Refer to the :ref:`Installation guide <ignc>` for a complete list of the OpenNebula packages installed in your system. Package repos need to be pointing to the latest version (|version|).
+    Upgrade the OpenNebula software using the package manager of your OS. Refer to the :ref:`Installation guide <ignc>` for a complete list of the OpenNebula packages installed on your system. Package repos need to be pointing to the latest version (|version|).
 
     For example, in CentOS/RHEL simply execute:
 
@@ -44,27 +44,27 @@ If you are running a 5.12.x version or older, please check these :ref:`set of st
 
         # yum upgrade opennebula
 
-    For Debian/Ubuntuy use:
+    For Debian/Ubuntu use:
 
     .. prompt:: text # auto
 
        # apt-get update
        # apt-get install --only-upgrade opennebula
 
-    Step 3 Upgrade hypervisors to the new version
+    Step 3 Upgrade Hypervisors to the New Version
     =============================================
 
-    You can skip this section for vCenter hosts.
+    You can skip this section for vCenter Hosts.
 
     Upgrade the OpenNebula node KVM or LXD packages, using the package manager of your OS.
 
-    For example, in a rpm based Linux distribution simply execute:
+    For example, in a rpm-based Linux distribution simply execute:
 
     .. prompt:: text # auto
 
        # yum upgrade opennebula-node-kvm
 
-    For deb based distros use:
+    For deb-based distros use:
 
     .. prompt:: text # auto
 
@@ -76,9 +76,9 @@ If you are running a 5.12.x version or older, please check these :ref:`set of st
     Update the Drivers
     ==================
 
-    You should be able now to start OpenNebula as usual, running ``service opennebula start`` as ``root``. At this point, as ``oneadmin`` user, execute ``onehost sync`` to update the new drivers in the hosts.
+    You should now be able to start OpenNebula as usual, running ``service opennebula start`` as ``root``. At this point, as ``oneadmin`` user, execute ``onehost sync`` to update the new drivers in the Hosts.
 
-    .. note:: You can skip this step if you are not using KVM hosts, or any hosts that use remove monitoring probes.
+    .. note:: You can skip this step if you are not using KVM Hosts, or any Hosts that use remove monitoring probes.
 
 ..
 
@@ -92,22 +92,22 @@ Step 1. Check Virtual Machine Status
 
 Before proceeding, make sure you don't have any VMs in a transient state (prolog, migr, epil, save). Wait until these VMs get to a final state (running, suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide <vm_guide_2>` for more information on the VM life-cycle.
 
-Step 2. Set all Host to Offline Mode
+Step 2. Set All Hosts to Offline Mode
 ================================================================================
 
-Set all host to offline mode to stop all monitoring processes
+Set all Hosts to offline mode to stop all monitoring processes.
 
 Step 3. Stop OpenNebula
 ================================================================================
 
-Stop OpenNebula and any other related services you may have running: OneFlow, EC2, and Sunstone. Preferably use the system tools, like `systemctl` or `service` as `root` in order to stop the services.
+Stop OpenNebula and any other related services you may have running: OneFlow, EC2, and Sunstone. It's preferable to use the system tools, like `systemctl` or `service` as `root` in order to stop the services.
 
 .. warning:: Make sure that every OpenNebula process is stopped. The output of `systemctl list-units | grep opennebula` should be empty.
 
-Step 4. Backup OpenNebula Configuration
+Step 4. Back-up OpenNebula Configuration
 ================================================================================
 
-Backup the configuration files located in **/etc/one** and **/var/lib/one/remotes/etc**. You don't need to do a manual backup of your database, the ``onedb`` command will perform one automatically.
+Back-up the configuration files located in **/etc/one** and **/var/lib/one/remotes/etc**. You don't need to do a manual backup of your database; the ``onedb`` command will perform one automatically.
 
 .. prompt:: text # auto
 
@@ -135,24 +135,24 @@ Step 6. Update Configuration Files
 
 If you haven't modified any configuration files, you can skip this step and proceed to the next one.
 
-In HA setups it is necessary to replace in file ``/etc/one/monitord.conf`` the default value ``auto`` of ``MONITOR_ADDRESS`` attribute by the virtual IP address used in RAFT_LEADER_HOOK and RAFT_FOLLOWER_HOOK in ``/etc/one/oned.conf``.
+In HA setups it is necessary to replace in the file ``/etc/one/monitord.conf`` the default value ``auto`` of ``MONITOR_ADDRESS`` attributed by the virtual IP address used in RAFT_LEADER_HOOK and RAFT_FOLLOWER_HOOK in ``/etc/one/oned.conf``.
 
 Community Edition
 -----------------
 
 In order to update the configuration files with your existing customizations you'll need to:
 
-#. Compare the old and new configuration files: ``diff -ur /etc/one.YYYY-MM-DD /etc/one`` and ``diff -ur /var/lib/one/remotes/etc.YYYY-MM-DD /var/lib/one/remotes/etc``. You can use graphical diff-tools like ``meld`` to compare both directories, which are very useful in this step.
+#. Compare the old and new configuration files: ``diff -ur /etc/one.YYYY-MM-DD /etc/one`` and ``diff -ur /var/lib/one/remotes/etc.YYYY-MM-DD /var/lib/one/remotes/etc``. You can use graphical diff-tools like ``meld`` to compare both directories; they are very useful in this step.
 #. Edit the **new** files and port all the customizations from the previous version.
 
 Enterprise Edition
 ------------------
 
-If you have modified configuration files lets's use onecfg to automate the configuration file upgrades.
+If you have modified configuration files, let's use onecfg to automate the configuration file upgrades.
 
-Before upgrading OpenNebula, you need to ensure that configuration state is clean without any pending migrations from past or outdated configurations. Run ``onecfg status`` to check the configuration state.
+Before upgrading OpenNebula, you need to ensure that the configuration state is clean without any pending migrations from past or outdated configurations. Run ``onecfg status`` to check the configuration state.
 
-Clean state might look like:
+A clean state might look like this:
 
     .. prompt:: bash # auto
 
@@ -167,7 +167,7 @@ Clean state might look like:
 Unknown Configuration Version Error
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you get error message about unknown configuration version, you don't need to do anything. Configuration version will be automatically initialized during OpenNebula upgrade. Version of current configuration will be based on old OpenNebula version.
+If you get error message about an unknown configuration version, you don't need to do anything. The configuration version will be automatically initialized during the OpenNebula upgrade. The configuration of the current version will be based on the former OpenNebula version.
 
     .. prompt:: bash # auto
 
@@ -180,9 +180,9 @@ If you get error message about unknown configuration version, you don't need to 
 Configuration Metadata Outdated Error
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If the configuration tool complains about outdated metadata, you have missed to run configuration upgrade during some of OpenNebula upgrades in the past. Please note configuration must be upgraded or processed with even OpenNebula maintenance releases.
+If the configuration tool complains about outdated metadata, you have not run a configuration upgrade during some of the past OpenNebula upgrades. Please note, configuration must be upgraded or processed with even OpenNebula's maintenance releases.
 
-Following invalid state:
+The following invalid state:
 
     .. prompt:: bash # auto
 
@@ -192,7 +192,7 @@ Following invalid state:
         Config:      5.8.0
         ERROR: Configurations metadata are outdated.
 
-needs to be fixed by reinitialization of the configuration state. Any unprocessed upgrades will be lost and current state will be initialized based on your current OpenNebula version and configurations located in system directories.
+needs to be fixed by reinitialization of the configuration state. Any unprocessed upgrades will be lost and the current state will be initialized based on your current OpenNebula version and configurations located in system directories.
 
     .. prompt:: bash # auto
 
@@ -205,7 +205,7 @@ needs to be fixed by reinitialization of the configuration state. Any unprocesse
         --- Available Configuration Updates -------
         No updates available.
 
-After checking the state of configuration, in most cases running the following command without any extra parameters will suffice, as it will upgrade based on internal configuration version tracking and currently installed OpenNebula.
+After checking the state of configuration, in most cases running the following command without any extra parameters will suffice, as it will upgrade based on  internal configuration version tracking and currently installed OpenNebula.
 
 .. prompt:: text # auto
 
@@ -215,19 +215,19 @@ After checking the state of configuration, in most cases running the following c
 
 If you get conflicts when running onecfg upgrade refer to the :ref:`onecfg upgrade basic usage documentation <cfg_usage>` on how to upgrade and troubleshoot the configurations, in particular the :ref:`onecfg upgrade doc <cfg_upgrade>` and the :ref:`troubleshooting section <cfg_conflicts>`.
 
-Step 7. Upgrade the Database version
+Step 7. Upgrade the Database Version
 ================================================================================
 
 .. important::
 
-    User of the Community Edition of OpenNebula can upgrade from the previous stable version if they are running a non-commercial OpenNebula cloud. In order to access the migrator package a request needs to be made through this `online form <https://opennebula.io/get-migration>`__.
+    Users of the Community Edition of OpenNebula can upgrade from the previous stable version if they are running a non-commercial OpenNebula cloud. In order to access the migrator package a request needs to be made through this `online form <https://opennebula.io/get-migration>`__.
 
 Make sure at this point that OpenNebula is not running. If you installed from packages, the service may have been started automatically. Simply run the ``onedb upgrade -v`` command. The connection parameters are automatically retrieved from ``oned.conf``.
 
 Step 8. Check DB Consistency
 ================================================================================
 
-First, move the |version| backup file created by the upgrade command to a safe place. If you face any issues, the ``onedb`` command can restore this backup, but it won't downgrade databases to previous versions. Then execute the ``onedb fsck`` command:
+First, move the |version| backup file created by the upgrade command to a safe place. If you face any issues, the ``onedb`` command can restore this backup, but it won't downgrade databases to previous versions. Then, execute the ``onedb fsck`` command:
 
 .. code::
 
@@ -253,27 +253,27 @@ At this point OpenNebula will continue the monitoring and management of your pre
 Step 10. Restore Custom Probes
 ================================================================================
 
-If you have any custom monitoring probe, follow :ref:`these instructions <devel-im>`, to update them to new monitoring system
+If you have any custom monitoring probes, follow :ref:`these instructions <devel-im>`, to update them to the new monitoring system
 
 
 Step 11. Update the Hypervisors
 ================================================================================
 
-.. warning:: If you're using vCenter please jump to the next step.
+.. warning:: If you're using vCenter please skip to the next step.
 
-First we need to let OpenNebula know that the hypervisors can be monitored again, but we still don't want to deploy any VM on them until they are fully updated. So we will switch them to ``DISABLE`` state:
+First we need to let OpenNebula know that the hypervisors can be monitored again, but we still don't want to deploy any VMs on them until they are fully updated. Instead, we will switch them to ``DISABLE`` state:
 
 .. prompt:: text $ auto
 
    $ onehost disable <host_id>
 
-After that, update the virtualization, storage and networking drivers.  As the ``oneadmin`` user execute:
+After that, update the virtualization, storage and networking drivers.  As the ``oneadmin`` user, execute:
 
 .. prompt:: text $ auto
 
    $ onehost sync
 
-Then log into your hypervisor hosts and update the ``opennebula-node`` packages:
+Then log in to your hypervisor Hosts and update the ``opennebula-node`` packages:
 
 Ubuntu/Debian
 
@@ -300,11 +300,11 @@ CentOS
 Step 12. Enable Hosts
 ================================================================================
 
-Enable all hosts, disabled in step 2.
+Enable all Hosts, disabled in step 2.
 
-.. important:: Due to new monitoring system, the firewall of the frontend (if enabled) must allow TCP and UDP packages incoming from the hosts on port 4124.
+.. important:: Due to the new monitoring system, the firewall of the Front-end (if enabled) must allow TCP and UDP packages incoming from the Hosts on port 4124.
 
-After following all the steps, please review corresponding guide:
+After following all the steps, please review the corresponding guide:
 
 .. toctree::
    :maxdepth: 1
@@ -322,4 +322,4 @@ As a measure of caution, look for any error messages in oned.log, and check that
 Restoring the Previous Version
 ==============================
 
-If for any reason you need to restore your previous OpenNebula, simply uninstall OpenNebula |version|, and install again your previous version. After that, update the drivers if needed as in Step 11.
+If for any reason you need to restore your previous OpenNebula, simply uninstall OpenNebula |version|, and install again your previous version. After that, update the drivers if needed, as outlined in Step 11.
