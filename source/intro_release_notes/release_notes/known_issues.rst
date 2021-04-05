@@ -11,8 +11,8 @@ This page will be updated with relevant information about bugs affecting OpenNeb
 Drivers - Network
 =======================
 
-If the nic-attach fails due to libvirt bug (VM can not eject cdrom after reset) the nic appears in the VM (although without proper configuration) but it's not visible on OpenNebla VM `#5268 <http://dev.opennebula.org/issues/5268>`_
+If the nic-attach fails due to the libvirt bug (VM can not eject CD-ROM after reset) the nic appears in the VM (although without proper configuration) but it's not visible on OpenNebla VM `#5268 <http://dev.opennebula.org/issues/5268>`_
 
 High Availability
 =================
-HA server configuration synchronization by command `onezone serversync` do not work for PostgreSQL and SQLite DB backend
+HA server configuration synchronization with the command `onezone serversync` does not work for the PostgreSQL and SQLite DB Back-end
