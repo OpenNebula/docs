@@ -1219,8 +1219,6 @@ FireEdge Server.
 |sunstone_vmrc|
 
 .. |image1| image:: /images/vm_charter.png
-.. |image2| image:: /images/sunstone_vm_list.png
-.. |image3| image:: /images/sunstone_vnc.png
 .. |sunstone_virt_viewer_button| image:: /images/sunstone_virt_viewer_button.png
 .. |sunstone_rdp_connection| image:: /images/sunstone_rdp_connection.png
 .. |sunstone_rdp_button| image:: /images/sunstone_rdp_button.png
