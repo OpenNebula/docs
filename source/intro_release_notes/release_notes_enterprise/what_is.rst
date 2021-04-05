@@ -24,7 +24,7 @@ Why customers want to purchase an OpenNebula Subscription:
 
 * **Enterprise Edition** – Tested, hardened, and production-ready version of OpenNebula for enterprise use.
 * **Regular Updates** – Maintenance versions of the Enterprise Edition with bug fixes and software patches with minor enhancements.
-* **LTS Releases** – Long Term Support stable versions that are maintained and commercially supported for a long time. 
+* **LTS Releases** – Long Term Support stable versions that are maintained and commercially supported for a long time.
 * **Enterprise Tools** – Additional tools to simplify upgrades and the maintenance of production clouds
 * **Exclusive Contents** – Access to exclusive knowledge base and critical notifications.
 * **SLA-based Support** – Secure and private support under a commercial SLA.
