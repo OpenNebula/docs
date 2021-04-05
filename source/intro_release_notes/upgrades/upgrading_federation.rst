@@ -9,7 +9,7 @@ Upgrading a Federation
 
     This version of OpenNebula does not modify the federation data model. You can upgrade each zone asynchronously following the corresponding guide:
 
-    * :ref:`Follow the upgrading for single front-end deployments <upgrading_single>`
+    * :ref:`Follow the upgrading for single Front-end deployments <upgrading_single>`
     * :ref:`Follow the upgrading for high availability clusters <upgrading_ha>`
 
 
@@ -42,21 +42,21 @@ Stop OpenNebula and any other related services you may have running: OneFlow, EC
 Step 3. Upgrade Master Zone
 ================================================================================
 
-You can upgrade now the master zone:
+You can now upgrade the master zone:
 
-    * :ref:`Follow the upgrading for single front-end deployments <upgrade_single>`
+    * :ref:`Follow the upgrading for single Front-end deployments <upgrade_single>`
     * :ref:`Follow the upgrading for high availability clusters <upgrade_ha>`
 
-Step 4. Backup federated tables
+Step 4. Back-up Federated Tables
 ================================================================================
 
-Once master zone has been updated, you need to export federated tables:
+Once the master zone has been updated, you need to export federated tables:
 
 .. prompt:: bash $ auto
 
     onedb backup -v --federated
 
-Step 5. Restore federated backup in slave zones
+Step 5. Restore Federated Backup in Slave Zones
 ================================================================================
 
 The backup that has been generated needs to be restored in all slave zones:
@@ -68,9 +68,9 @@ The backup that has been generated needs to be restored in all slave zones:
 Step 6. Upgrade Slave Zones
 ================================================================================
 
-You can upgrade now the slave zones:
+You can now upgrade the slave zones:
 
-    * :ref:`Follow the upgrading for single front-end deployments <upgrade_single>`
+    * :ref:`Follow the upgrading for single Front-end deployments <upgrade_single>`
     * :ref:`Follow the upgrading for high availability clusters <upgrade_ha>`
 
-You will restart OpenNebula in each zone as part of the upgrade. Once you finish upgrading your master remove any access restriction to the API imposed in Step 1.
+You will restart OpenNebula in each zone as part of the upgrade. Once you finish upgrading your master, remove any access restriction to the API imposed in Step 1.
