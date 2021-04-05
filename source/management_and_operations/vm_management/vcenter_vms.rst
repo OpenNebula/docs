@@ -161,7 +161,7 @@ This functionality is very useful to create new VM Templates from a original VM 
 Saving a VM Template: Save As
 ================================================================================
 
-In Sunstone Cloud View  you can poweroff a VM an use the save icon to create a new OpenNebula template from this VM.
+In Sunstone Cloud View you can poweroff a VM an use the save icon to create a new OpenNebula template from this VM.
 
 .. image:: /images/vcenter_save_as_template_1.png
     :width: 55%
@@ -172,6 +172,8 @@ OpenNebula will ask if you want to create a copy of the disks, select non-persis
 Refresh the VM state with the icon next to the VM's name, you'll see the VM in OFF state when your new OpenNebula template is ready to use in the templates tab.
 
 Your new VM template will contain DISK elements that will point to the disk copies created and NIC elements that will point to the same OpenNebula virtual networks used by the VM this template is based on.
+
+This functionality enables the :ref:`VM Backup <vm_backup>` functionality in vCenter VMs.
 
 .. note:: The new OpenNebula VM Template has a :ref:`Managed Object Reference <vcenter_managed_object_reference>` to the vCenter template used to create the original VM. This implies that when a VM is deployed from the new OpenNebula template, a VM will be cloned from the original vCenter template where the old disks will be detached and the disk copies that were created previously will be attached.
 

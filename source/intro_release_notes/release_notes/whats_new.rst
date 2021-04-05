@@ -41,13 +41,14 @@ In the following list you can check the highlights of OpenNebula 6.0 (a detailed
 
 OpenNebula Core
 ================================================================================
+- Builtin :ref:`VM Backup <vm_backup>` mechanism for all supporterd hypervisors: LXC, KVM, Firecracker and vCenter/ESX.
 - Add option set cold migration mode for rescheduling. See :ref:`Scheduler configuration <schg_configuration>`.
 - Add option to create formatted datablocks. See :ref:`Image template <img_template>`.
 - Add support for document encrypted attributes, check :ref:`this <encrypted_attrs>` for more information.
 - Allow 'onevm disk-saveas' in undeployed and stopped state. See :ref:`disk-saveas <disk_save_as_action>`.
 - Terminate oned in HA in case of lost DB connection. Configured by ``ERRORS_LIMIT`` in :ref:`oned.conf <oned_conf>`.
 - Unique VM identification, allow to force uuid to VM. See :ref:`UUID in VM template <template_os_and_boot_options_section>`.
-- Enable :ref:`live CPU and memory resize <vm_guide2_resizing_a_vm>`.
+- Enable :ref:`live CPU and memory resize <vm_guide2_resizing_a_vm>`
 
 Storage
 ================================================================================
@@ -66,7 +67,7 @@ Sunstone
 - Service registration time has been added to :ref:`service templates <appflow_elasticity>`. Available in Sunstone, enabled by default in :ref:`services instances views <suns_views>`.
 - Added remove template and images when delete a service. Check form more information :ref:`here <appflow_use_cli_delete_service_template>`.
 - Add option to automatic deletion to services when all associated VMs terminated. Check more information :ref:`here <appflow_use_cli_automatic_delete>`.
-- Added VM name to :ref:`VNC Guacamole connections <requirements_guacamole_vnc_sunstone>`.
+- Masively improved options for :ref:`VM console access <remote_access_sunstone>` through Sunstone: add Gucamole support, including VNC, RDP and SSH, and added VMRC support through Sunstone.
 - Allow to attach external NIC alias. Check more information :ref:`here <template_network_section>`.
 - Added states to role actions buttons. Check for more information :ref:`here <appflow_use_cli_life_cycle>`.
 - Add EXTERNAL NIC attribute to VM IPs on Sunstone. Check more information :ref:`here <template_network_section>`.
@@ -144,6 +145,7 @@ VMware Virtualization driver
 - Assign VCENTER_VM_FOLDER automatically per user or group see :ref:`here <vm_template_definition_vcenter>`.
 - Option to avoid deleting disk not managed in OpenNebula, see :ref:`here <driver_tuning>`.
 - Fix :ref:`import networks <vcenter_import_networks>` in vCenter with special characters.
+- Support for :ref:`VMRC (VMware Remote Console) <vmrc_sunstone>` (VMware Remote Console) <>`  connectivity in Sunstone for vCenter VMs.
 - Support for vSphere 7.0, see :ref:`here <vmware_node_deployment>`.
 
 DockerHub
