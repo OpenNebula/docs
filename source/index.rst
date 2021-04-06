@@ -2,20 +2,20 @@
 OpenNebula 6.0.0 Documentation
 ================================================================================
 
-OpenNebula is an open-source cloud management platform that combines virtualization and container technologies with multi-tenancy, automatic provision and elasticity to offer on-demand applications and services on enterprise, hybrid and edge environments.
+OpenNebula is an open source cloud management platform that combines virtualization and container technologies with multi-tenancy, automatic provision and elasticity to offer on-demand applications and services on enterprise, hybrid and edge environments.
 
 +-----------------------------------------+------------------------------------------------------------------------------------------+
 |                  Guide                  |                                     Description                                          |
 +=========================================+==========================================================================================+
-| :ref:`Overview <ov>`                    | Learn the OpenNebula model, popular use cases and how to design a cloud                  |
+| :ref:`Overview <ov>`                    | Learn about the OpenNebula model, popular use cases and how to design a cloud            |
 +-----------------------------------------+------------------------------------------------------------------------------------------+
-| :ref:`Quick Start <qs>`                 | Build a learning OpenNebula installation with local and remote resources                 |
+| :ref:`Quick Start <qs>`                 | Build an OpenNebula test installation with local and remote resources                    |
 +-----------------------------------------+------------------------------------------------------------------------------------------+
 | :ref:`Management and Operations <mo>`   | How to operate and manage your cloud, including deployment of remote clusters            |
 +-----------------------------------------+------------------------------------------------------------------------------------------+
 | :ref:`Front-end Installation <ic>`      | How to install and configure the main OpenNebula services                                |
 +-----------------------------------------+------------------------------------------------------------------------------------------+
-| :ref:`Open Cluster Deployment <ocd>`    | How to install and set up customized clusters based on open-source components            |
+| :ref:`Open Cluster Deployment <ocd>`    | How to install and set up customized clusters based on open source components            |
 +-----------------------------------------+------------------------------------------------------------------------------------------+
 | :ref:`VMware Cluster Deployment <vcd>`  | How to install and set up customized clusters based on VMware                            |
 +-----------------------------------------+------------------------------------------------------------------------------------------+
