@@ -11,7 +11,8 @@ This page will be updated with relevant information about bugs affecting OpenNeb
 Drivers - Network
 =======================
 
-If the nic-attach fails due to the libvirt bug (VM can not eject CD-ROM after reset) the nic appears in the VM (although without proper configuration) but it's not visible on OpenNebla VM `#5268 <http://dev.opennebula.org/issues/5268>`_
+- If the nic-attach fails due to the libvirt bug (VM can not eject CD-ROM after reset) the nic appears in the VM (although without proper configuration) but it's not visible on OpenNebla VM `#5268 <http://dev.opennebula.org/issues/5268>`_
+- OvSwitch networking driver won't clean LXC containers ports after destroying the containers. This will make resume operation to fail. `#5319 <https://github.com/OpenNebula/one/issues/5319>`_.
 
 High Availability
 =================
