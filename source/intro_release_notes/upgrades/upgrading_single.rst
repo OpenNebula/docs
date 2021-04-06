@@ -78,7 +78,7 @@ If you are running a 5.12.x version or older, please check these :ref:`set of st
 
     You should now be able to start OpenNebula as usual, running ``service opennebula start`` as ``root``. At this point, as ``oneadmin`` user, execute ``onehost sync`` to update the new drivers in the Hosts.
 
-    .. note:: You can skip this step if you are not using KVM Hosts, or any Hosts that use remove monitoring probes.
+    .. note:: You can skip this step if you are not using KVM Hosts, or any Hosts that use remote monitoring probes.
 
 ..
 
@@ -135,7 +135,7 @@ Step 6. Update Configuration Files
 
 If you haven't modified any configuration files, you can skip this step and proceed to the next one.
 
-In HA setups it is necessary to replace in the file ``/etc/one/monitord.conf`` the default value ``auto`` of ``MONITOR_ADDRESS`` attributed by the virtual IP address used in RAFT_LEADER_HOOK and RAFT_FOLLOWER_HOOK in ``/etc/one/oned.conf``.
+In HA setups it is necessary to replace in the file ``/etc/one/monitord.conf`` the default value ``auto`` of ``MONITOR_ADDRESS`` attributed to the virtual IP address used in RAFT_LEADER_HOOK and RAFT_FOLLOWER_HOOK in ``/etc/one/oned.conf``.
 
 Community Edition
 -----------------
@@ -205,7 +205,7 @@ needs to be fixed by reinitialization of the configuration state. Any unprocesse
         --- Available Configuration Updates -------
         No updates available.
 
-After checking the state of configuration, in most cases running the following command without any extra parameters will suffice, as it will upgrade based on  internal configuration version tracking and currently installed OpenNebula.
+After checking the state of configuration, in most cases running the following command without any extra parameters will suffice, as it will upgrade the probes based on the internal configuration version tracking of the currently installed OpenNebula.
 
 .. prompt:: text # auto
 
