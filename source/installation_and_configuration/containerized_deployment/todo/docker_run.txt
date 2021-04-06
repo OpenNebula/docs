@@ -158,7 +158,7 @@ All significant directories and potential volume candidates are described in :re
 
 The last part is just the name of the image which can be qualified with registry URL or a custom name or a tag.
 
-* ``opennebula:5.13``
+* ``opennebula:6.0``
 
 More examples
 ^^^^^^^^^^^^^
