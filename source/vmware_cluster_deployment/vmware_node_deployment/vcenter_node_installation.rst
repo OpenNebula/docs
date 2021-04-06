@@ -150,8 +150,7 @@ packages to be installed and do the install.
     $ esxcli software vib install -v /tmp/fw-vnc.vib
 
 This enables VNC ports for any remote Host. You should
-limit access to the VNC only from your OpenNebula Front-end. In this
-example, we restrict access only from IP address 192.168.0.1.
+limit access to the VNC only from your OpenNebula Front-end. In this example, we restrict access from all IP addresses except 192.168.0.1
 
 .. prompt:: bash $ auto
 
@@ -200,8 +199,7 @@ to allow the community packages to be installed and proceed with the install.
     $ esxcli <connection options> software vib install -v 'https://downloads.opennebula.io/packages/opennebula-5.13.90/fw-vnc-5.13.90.vib'
 
 This enables VNC ports for any remote Host. You should
-limit access to the VNC only from your OpenNebula Front-end. In this
-example, we restrict access only from IP address 192.168.0.1.
+limit access to the VNC only from your OpenNebula Front-end. In this example, we restrict access from all IP addresses except 192.168.0.1.
 
 .. prompt:: bash $ auto
 
@@ -347,7 +345,7 @@ If the user account that is going to be used in vCenter operations is not declar
 +---------------------------------------------+---------------------------------------------+----------------------------------------------------------------------------+
 | VirtualMachine.Interact.SetCDMedia          | Configure CD media                          | Configure a different media for virtual CD-ROMs                            |
 +---------------------------------------------+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Interact.SetFloppyMedia      | Configure floppy media                      | Required to configure a different                                          |
+| VirtualMachine.Interact.SetFloppyMedia      | Configure floppy media                      | Required to configure a different floppy media                            |
 +---------------------------------------------+---------------------------------------------+----------------------------------------------------------------------------+
 | VirtualMachine.Interact.Suspend             | Suspend                                     | Required to suspend a Virtual Machine                                      |
 +---------------------------------------------+---------------------------------------------+----------------------------------------------------------------------------+
