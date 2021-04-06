@@ -18,9 +18,7 @@ Previous Steps
 Community Edition
 ------------------
 
-Users of the Community Edition of OpenNebula can upgrade from the previous stable version if they are running a non-commercial OpenNebula cloud. In order to access the migrator package a request needs to be made through this `online form <https://opennebula.io/get-migration/>`__.
-
-After you get the 'opennebula-migration-community' package, you need to install it in the OpenNebula Front-end:
+See the warning above. After you get the 'opennebula-migration-community' package, you need to install it in the OpenNebula Front-end:
 
 CentOS/RHEL
 ~~~~~~~~~~~
@@ -39,7 +37,7 @@ Debian/Ubuntu
 Enterprise Edition
 ------------------
 
-Enterprise Edition is distributed with a tool ``onecfg`` as part of the main server package (in 5.12 and earlier it was provided via the OneScape project and repository). This tool simplifies the upgrade process of configuration files and always comes in the latest version corresponding to the installed OpenNebula version.
+Enterprise Edition is distributed with a tool ``onecfg`` as part of the main server package (in 5.12 and earlier it was provided via the OneScape project and repository). This tool simplifies the upgrade process of configuration files and always comes in the latest version of OpenNebula.
 
 .. important::
 
