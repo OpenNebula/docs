@@ -1,12 +1,12 @@
 .. _whats_new:
 
 ================================================================================
-What's New in 6.0
+What's New in 6.1
 ================================================================================
 
-OpenNebula 6.0 ‘Mutara’ is the first stable release of the new OpenNebula 6 series. This release comes with a significant number of new functionalities, among which we can highlight the maturity of the new innovative edge features developed in the context of the `ONEedge <https://oneedge.io/>`__ innovation project to deploy on-demand distributed edge cloud environments based on OpenNebula. These new edge computing features enable IT organizations to deploy true hybrid and multi-cloud environments that avoid vendor lock-in, reducing operational costs, expanding service availability, and enabling new ultra-low latency applications. Organizations maintain a single control panel with centralized operations and management that abstracts cloud functionality and ensures portability across clouds. IT organizations can now automatically deploy and manage multiple Kubernetes clusters across edge locations to enable truly multi-tenant and large-scale container orchestration.
+OpenNebula 6.1 ‘Mutara’ is the first stable release of the new OpenNebula 6 series. This release comes with a significant number of new functionalities, among which we can highlight the maturity of the new innovative edge features developed in the context of the `ONEedge <https://oneedge.io/>`__ innovation project to deploy on-demand distributed edge cloud environments based on OpenNebula. These new edge computing features enable IT organizations to deploy true hybrid and multi-cloud environments that avoid vendor lock-in, reducing operational costs, expanding service availability, and enabling new ultra-low latency applications. Organizations maintain a single control panel with centralized operations and management that abstracts cloud functionality and ensures portability across clouds. IT organizations can now automatically deploy and manage multiple Kubernetes clusters across edge locations to enable truly multi-tenant and large-scale container orchestration.
 
-These new edge features in OpenNebula 6.0 include:
+These new edge features in OpenNebula 6.1 include:
 
 - A powerful distributed cloud architecture for OpenNebula that is composed of Edge Clusters that can run any workload—both virtual machines and application containers— on any resource—bare metal or virtualized— anywhere—on-premises and on a cloud provider. This hyperconverged edge cloud solution maximizes workload performance and availability, and comes with a native 3-tier storage architecture that simplifies and speeds up the deployment of containers and services across edge locations.
 - A fully-featured command line interface and a modern, slick web interface—FireEdge—to easily manage public cloud and edge providers, as well as the seamless provisioning of OpenNebula’s Edge Clusters. You can quickly expand your OpenNebula cloud on demand with third-party resources thanks to this point and click interface and create an “Edge as a Service” environment in just a few minutes!
@@ -15,19 +15,19 @@ These new edge features in OpenNebula 6.0 include:
 
 .. image:: /images/fireedge_for_rns.png
 
-Additionally, OpenNebula 6.0 ‘Mutara’ comes with the following goodies:
+Additionally, OpenNebula 6.1 ‘Mutara’ comes with the following goodies:
 
 - There have been a multitude of improvements in Sunstone: revamped VNC dialogs, asynchronous operation warnings, extra information for OneFlow services, NUMA placement for VMware VMs, etc. Additionally, a new FireEdge server is now shipped with OpenNebula, enabling new functionality in Sunstone—OpenNebula’s WebUI: auto refresh for VM and Host states, VMRC console access for VMware VMs, Guacamole VNC/SSH and RDP, and more.
 - Support for VM Backups, periodically save the data of your VMs in a remote storage location set up as a private Marketplace.
 - Several OneFlow improvements, mostly related to the life cycle management of OneFlow Services, both in the engine and the GUI.
-- Hypervisor driver improvements like vSphere 7 support and additional VM tuning parameters for KVM. OpenNebula 6.0 also features a new driver for LXC containers, easing the use of containerized apps across platforms.
+- Hypervisor driver improvements like vSphere 7 support and additional VM tuning parameters for KVM. OpenNebula 6.1 also features a new driver for LXC containers, easing the use of containerized apps across platforms.
 - Support for containerized deployment of OpenNebula Front-end.
 
-As usual, OpenNebula 6.0's codename refers to a nebula, in this case to the Mutara Nebula, an interstellar dust cloud located in the Mutara sector of the Beta Quadrant. In 2285, it was the site of the epic battle between the USS Reliant (commanded by the infamous Khan Noonien Singh) and the USS Enterprise (commanded by Captain James T. Kirk), which ended [Spoiler Alert] with the detonation of the Genesis Device and the USS Enterprise making a last-minute escape thanks to the dramatic self-sacrifice of Mr Spock—as seen in Star Trek II: The Wrath of Khan :)
+As usual, OpenNebula 6.1's codename refers to a nebula, in this case to the Mutara Nebula, an interstellar dust cloud located in the Mutara sector of the Beta Quadrant. In 2285, it was the site of the epic battle between the USS Reliant (commanded by the infamous Khan Noonien Singh) and the USS Enterprise (commanded by Captain James T. Kirk), which ended [Spoiler Alert] with the detonation of the Genesis Device and the USS Enterprise making a last-minute escape thanks to the dramatic self-sacrifice of Mr Spock—as seen in Star Trek II: The Wrath of Khan :)
 
-OpenNebula 6.0 Mutara is considered to be a stable release and as such it is available to update production environments.
+OpenNebula 6.1 Mutara is considered to be a stable release and as such it is available to update production environments.
 
-In the following list you can check the highlights of OpenNebula 6.0 (a detailed list of changes can be found `here <https://github.com/OpenNebula/one/milestone/32?closed=1>`__):
+In the following list you can check the highlights of OpenNebula 6.1 (a detailed list of changes can be found `here <https://github.com/OpenNebula/one/milestone/32?closed=1>`__):
 
 
 ..

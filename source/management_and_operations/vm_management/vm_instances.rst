@@ -289,7 +289,7 @@ You can hot-plug network interfaces to VMs in the ``RUNNING``, ``POWEROFF`` or `
 
     VM NICS
     ID NETWORK      VLAN BRIDGE   IP              MAC
-     0 net_172        no vbr0     172.16.0.201    02:00:ac:10:0
+     0 net_172        no vbr0     172.16.1.201    02:00:ac:10:0
 
     ...
 
@@ -311,9 +311,9 @@ After the operation you should see two NICs, 0 and 1:
 
     VM NICS
     ID NETWORK      VLAN BRIDGE   IP              MAC
-     0 net_172        no vbr0     172.16.0.201    02:00:ac:10:00:c9
+     0 net_172        no vbr0     172.16.1.201    02:00:ac:10:00:c9
                                   fe80::400:acff:fe10:c9
-     1 net_172        no vbr0     172.16.0.202    02:00:ac:10:00:ca
+     1 net_172        no vbr0     172.16.1.202    02:00:ac:10:00:ca
                                   fe80::400:acff:fe10:ca
     ...
 

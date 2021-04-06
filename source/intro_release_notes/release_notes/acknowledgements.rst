@@ -11,4 +11,4 @@ We’d like to acknowledge the following significant contributions:
   - Laurence Gill for the LUKS support for images
   - New UX perks for both Sunstone OneFlow Services and Sunstone VMs were funded by `Haufe Lexware <https://www.haufegroup.com/>`__  in the context of the Fund a Feature Program.
 
-Part of the new functionality in OpenNebula 6.0 was funded by the SME Instrument program of the European Union’s Horizon 2020 research and innovation, under grant agreement  `ONEedge <http://oneedge.io>`__ – A Software-defined Edge Computing Solution – 880412.
+Part of the new functionality in OpenNebula 6.1 was funded by the SME Instrument program of the European Union’s Horizon 2020 research and innovation, under grant agreement  `ONEedge <http://oneedge.io>`__ – A Software-defined Edge Computing Solution – 880412.
