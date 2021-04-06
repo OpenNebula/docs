@@ -1,7 +1,7 @@
 .. _migrate_images:
 
 =====================================
-Migrate images to/from KVM/vCenter DS
+Migrate Images to/from KVM/vCenter DS
 =====================================
 
 OpenNebula allows the management of heterogeneous environments, offering end-users a self-service portal to consume resources from both VMware-based infrastructures and KVM-based ones in a transparent way.
@@ -11,14 +11,14 @@ OpenNebula also offers functionality to automatically convert images so they can
 VMDK Image to QCOW2 Datastore
 --------------------------------------------------------------------------------
 
-We have a VMDK image within MarketPlace and we want to use it in KVM:
+We have a VMDK image within Marketplace and we want to use it in KVM:
 
-1. Go to MarketPlace and select the image, then click on the **Import into Datastore** button (with the cloud and arrow icon).
+1. Go to Marketplace and select the image, then click on the **Import into Datastore** button (with the cloud and arrow icon).
 
 .. image:: /images/market_migrate_vmdk_qcow2_1.png
     :align: center
 
-When the destination image datastore is qcow2 or raw, you **must** define the attribute ``DRIVER=qcow2`` or ``DRIVER=raw``, respectively, in order to convert the image, otherwise it will be downloaded without any change.  To do so, visit the **Templates** tab for the image, and use the edit icon button to alter the **App template** before download.
+If the destination image datastore is qcow2 or raw, you **must** define the attribute ``DRIVER=qcow2`` or ``DRIVER=raw``, respectively, in order to convert the image, otherwise it will be downloaded without any change. To do so, visit the **Templates** tab for the image and use the edit icon button to alter the **App template** before download.
 
 2. Select the destination datastore.
 
@@ -33,7 +33,7 @@ When the destination image datastore is qcow2 or raw, you **must** define the at
 QCOW2 Image to VMDK Datastore
 --------------------------------------------------------------------------------
 
-1. Go to MarketPlace and select the image in qcow2 format to be used in a vCenter cluster, then click on the **Import into Datastore** button.
+1. Go to Marketplace and select the image in qcow2 format to be used in a vCenter cluster, then click on the **Import into Datastore** button.
 
 .. image:: /images/market_migrate_qcow2_vmdk_1.png
     :align: center
@@ -47,7 +47,7 @@ QCOW2 Image to VMDK Datastore
 .. image:: /images/market_migrate_qcow2_vmdk_2.png
     :align: center
 
-3. When we download a vmdk image from the marketplace, a template is automatically created along with the image. However, we need a template with a valid vcenter reference for your cloud. We need to define an empty template in vcenter and import it into OpenNebula.
+3. When we download a VDMK image from the Marketplace, a template is automatically created along with the image. However, we need a template with a valid vCenter reference for your cloud. We need to define an empty template in vCenter and import it into OpenNebula.
 
 .. image:: /images/market_migrate_qcow2_vmdk_3.png
     :align: center
@@ -62,18 +62,18 @@ QCOW2 Image to VMDK Datastore
 .. image:: /images/market_migrate_qcow2_vmdk_5.png
     :align: center
 
-Behind the scenes
+Behind the Scenes
 --------------------------------------------------------------------------------
 
-When the image that we selected from the MarketPlace is downloaded to the frontend, and the download process is finished, it is converted with the ``qemu-img convert`` tool as follows:
+When the image that we selected from the Marketplace is downloaded to the Front-end and the download process is finished, it is converted with the ``qemu-img convert`` tool as follows:
 
 .. prompt:: bash $ auto
 
     qemu-img convert -f <original_type> -O <destination_type> <original_file> <destination_file>
 
-Then the file is sent to the destination datastore.
+The file is then sent to the destination datastore.
 
-Limitations and restrictions
+Limitations and Restrictions
 --------------------------------------------------------------------------------
 
-We have to take into account that when we convert an image from qcow2/raw to vmdk, you will most likely need to install **VMWare tools** manually so the OpenNebula contextualization process can work properly.
+We have to take into account that when we convert an image from qcow2/raw to VMDK, you will most likely need to install **VMWare tools** manually so the OpenNebula contextualization process can work properly.
