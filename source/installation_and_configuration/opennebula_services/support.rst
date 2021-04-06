@@ -1,7 +1,7 @@
 .. _support:
 
 =================
-Support Utilities
+Support Utilities (EE)
 =================
 
 .. important::
