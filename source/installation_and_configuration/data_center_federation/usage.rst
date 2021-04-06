@@ -22,7 +22,7 @@ What's happening behind the scenes is that the Sunstone server you are using is 
 CLI
 ================================================================================
 
-Users can show and switch Zones through the command line using the `onezone </doc/5.13/cli/onezone.1.html>`__ command. See following examples to understand the Zone management through the CLI.
+Users can show and switch Zones through the command line using the `onezone </doc/6.0/cli/onezone.1.html>`__ command. See following examples to understand the Zone management through the CLI.
 
 .. prompt:: bash $ auto
 
@@ -31,7 +31,7 @@ Users can show and switch Zones through the command line using the `onezone </do
     *     0 OpenNebula                http://localhost:2633/RPC2
         104 ZoneB                     http://ultron.c12g.com:2634/RPC2
 
-We can see in the above command output that the user has access to Zones **OpenNebula** and **ZoneB**, and is currently using the **OpenNebula** Zone. The active Zone can be changed by ``set`` subcommand of `onezone </doc/5.13/cli/onezone.1.html>`__:
+We can see in the above command output that the user has access to Zones **OpenNebula** and **ZoneB**, and is currently using the **OpenNebula** Zone. The active Zone can be changed by ``set`` subcommand of `onezone </doc/6.0/cli/onezone.1.html>`__:
 
 .. code-block:: none
 

@@ -19,7 +19,7 @@ You need a physical or virtual host with a recommended operating system, one of 
 
 - :ref:`dedicated IP address or relocate host SSH to non-default port <container_ssh>`
 - x86-64 Linux host with CentOS/RHEL, Debian, or Ubuntu (or compatible)
-- **Docker** version 18.06.0 (or newer)
+- **Docker** version 20.10 (or newer)
 - optionally **docker-compose** version 1.27.4 (or newer, must support specification `format 3.7 <https://docs.docker.com/compose/compose-file/>`__)
 
 **Podman**
@@ -32,15 +32,19 @@ You need a physical or virtual host with a recommended operating system, one of 
 
 .. warning::
 
-   Unsupported features:
+   **Unsupported Features**:
 
    - federated and HA deployments,
    - shared datastores (NFS, qcow2, Ceph, LVM, ...), only SSH-based available
    - migration of existing Front-end deployment installed from packages into containers,
-   - in **unprivileged mode** - Exports from the following Marketplaces - :ref:`Docker Hub <market_dh>`, :ref:`Linux Containers <market_linux_container>`, :ref:`TurnKey Linux <market_turnkey_linux>`
-   - in **unprivileged mode** - :ref:`Creating an image based on a Dockerfile <dockerfile>`
-   - in **rootless Podman** - Deployment on privileged ports (22, 80, 443)
-   - on Ubuntu/Debian in multi-container Docker deployment, the container with ``oned`` is running without :ref:`AppArmor security profile <container_troubleshooting_apparmor>`
+   - in **unprivileged mode** - Exports from the following Marketplaces - :ref:`Docker Hub <market_dh>`, :ref:`Linux Containers <market_linux_container>`, :ref:`TurnKey Linux <market_turnkey_linux>`,
+   - in **unprivileged mode** - :ref:`Creating an image based on a Dockerfile <dockerfile>`,
+   - in **rootless Podman** - Deployment on privileged ports (22, 80, 443).
+
+   **Known Issues**:
+
+   - on Ubuntu/Debian in multi-container Docker deployment, the container with ``oned`` is running without :ref:`AppArmor security profile <container_troubleshooting_apparmor>`,
+   - deployment on Docker might experience connection drops/timeouts due to the Linux Kernel issue, see the `article <https://tech.xing.com/a-reason-for-unexplained-connection-timeouts-on-kubernetes-docker-abd041cf7e02>`__.
 
 .. _container_architecture:
 
@@ -298,13 +302,13 @@ Download the image to your container runtime in two simple steps:
 
 .. prompt:: bash # auto
 
-    # docker pull enterprise.opennebula.io/opennebula:5.13.90
-    5.13: Pulling from opennebula
+    # docker pull enterprise.opennebula.io/opennebula:6.0.0
+    6.0: Pulling from opennebula
     14d5f30b982f: Pull complete
     56fd5a76ed9f: Pull complete
     Digest: sha256:abf26354b99485e7836370c3ef7249ea68ffee4bbc5e38381029f458d0be80a7
-    Status: Downloaded newer image for enterprise.opennebula.io/opennebula:5.13
-    enterprise.opennebula.io/opennebula:5.13
+    Status: Downloaded newer image for enterprise.opennebula.io/opennebula:6.0
+    enterprise.opennebula.io/opennebula:6.0
 
 Community Edition
 -----------------
@@ -313,7 +317,7 @@ OpenNebula Community Edition is a free and public version, which offers the full
 
 .. prompt:: bash # auto
 
-    # docker pull docker.io/opennebula/opennebula:5.13.90
+    # docker pull docker.io/opennebula/opennebula:6.0.0
 
 .. _container_deploy:
 
@@ -352,7 +356,7 @@ Update *username* and interactively pass *password* from your customer ``token``
 
 .. prompt:: bash # auto
 
-    # wget --user=XXXX --ask-password https://enterprise.opennebula.io/packages/opennebula-5.13.90/container/docker-compose-opennebula.tar.gz
+    # wget --user=XXXX --ask-password https://enterprise.opennebula.io/packages/opennebula-6.0.0/container/docker-compose-opennebula.tar.gz
     # tar -xvf docker-compose-opennebula.tar.gz
     # cd opennebula/
 
@@ -360,7 +364,7 @@ Update *username* and interactively pass *password* from your customer ``token``
 
 .. prompt:: bash # auto
 
-    # wget https://downloads.opennebula.io/packages/opennebula-5.13.90/container/docker-compose-opennebula.tar.gz
+    # wget https://downloads.opennebula.io/packages/opennebula-6.0.0/container/docker-compose-opennebula.tar.gz
     # tar -xvf docker-compose-opennebula.tar.gz
     # cd opennebula/
 
@@ -395,7 +399,7 @@ Create a file ``.env`` with the following example content and adapt to your envi
     OPENNEBULA_SSH_HOST=one.example.com
     ONEADMIN_PASSWORD=changeme123
 
-where 
+where
 
 - ``OPENNEBULA_HOST`` - is the hostname/IP which will be used by end-users to access the Front-end
 - ``OPENNEBULA_SSH_HOST`` - is the hostname/IP to connect to the integrated SSH server, used by hypervisor Nodes (defaults to ``OPENNEBULA_HOST``)
@@ -425,7 +429,7 @@ Into the configuration file ``.env`` created above, append the following additio
     DEPLOY_BIND_ADDR=192.168.10.3
     DEPLOY_BIND_SSH_ADDR=192.168.10.2
 
-where 
+where
 
   - ``DEPLOY_BIND_ADDR`` - is the dedicated IP address for (most) **Front-end** services
   - ``DEPLOY_BIND_SSH_ADDR`` - is the dedicated IP address for **integrated SSH** server (can be same as ``DEPLOY_BIND_ADDR``)
@@ -438,7 +442,7 @@ where
 
     DEPLOY_SSH_EXTERNAL_PORT=2222
 
-where 
+where
 
   - ``DEPLOY_SSH_EXTERNAL_PORT`` - is the port on the Host on which OpenNebula's integrated SSH server will be exposed
 
@@ -538,8 +542,8 @@ Carefully replace the following occurrences with
   - ``changeme123`` - custom initial password for OpenNebula user ``oneadmin``
   - ``$OPENNEBULA_IMAGE`` - substitute
 
-    - for **Enterprise Edition** with ``enterprise.opennebula.io/opennebula:5.13.90``
-    - for **Community Edition** with ``docker.io/opennebula/opennebula:5.13.90``
+    - for **Enterprise Edition** with ``enterprise.opennebula.io/opennebula:6.0.0``
+    - for **Community Edition** with ``docker.io/opennebula/opennebula:6.0.0``
 
 - Option :ref:`B. Relocate host SSH to different port <container_ssh_relocate>` - take and **customize** (see instructions below) one of the examples below:
 
@@ -581,8 +585,8 @@ Carefully replace the following occurrences with
   - ``changeme123`` - custom initial password for OpenNebula user ``oneadmin``
   - ``$OPENNEBULA_IMAGE`` - substitute
 
-    - for **Enterprise Edition** with ``enterprise.opennebula.io/opennebula:5.13.90``
-    - for **Community Edition** with ``docker.io/opennebula/opennebula:5.13.90``
+    - for **Enterprise Edition** with ``enterprise.opennebula.io/opennebula:6.0.0``
+    - for **Community Edition** with ``docker.io/opennebula/opennebula:6.0.0``
 
 - Option :ref:`C. Reconfigure Nodes to connect to a different port <container_ssh_nodes>` - take and **customize** (see instructions below) one of the examples below:
 
@@ -625,8 +629,8 @@ Carefully replace the following occurrences with
   - ``changeme123`` - custom initial (only) password for OpenNebula user ``oneadmin``
   - ``$OPENNEBULA_IMAGE`` - substitute
 
-    - for **Enterprise Edition** with ``enterprise.opennebula.io/opennebula:5.13.90``
-    - for **Community Edition** with ``docker.io/opennebula/opennebula:5.13.90``
+    - for **Enterprise Edition** with ``enterprise.opennebula.io/opennebula:6.0.0``
+    - for **Community Edition** with ``docker.io/opennebula/opennebula:6.0.0``
 
 B. Watch Logs (optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^

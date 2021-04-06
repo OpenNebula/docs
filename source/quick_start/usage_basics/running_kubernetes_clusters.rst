@@ -116,5 +116,44 @@ After a few seconds, you should be able to see the simple pod in RUNNING state:
    NAME                        READY   STATUS    RESTARTS   AGE
    kubetest-6bfc69d7ff-fcl22   1/1     Running   0          8m13s
 
+Step 4. Deploy an Application
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Let's deploy nginx on the cluster:
+
+.. prompt:: yaml $ auto
+
+   [root@onekube-ip-10-0-17-190 ~]# kubectl run nginx --image=nginx --port 80
+
+After a few seconds, you should be able to see the nginx pod running
+
+.. prompt:: bash $ auto
+
+    [root@onekube-ip-10-0-17-190 ~]# kubectl get pods
+    NAME    READY   STATUS    RESTARTS   AGE
+    nginx   1/1     Running   0          12s
+
+Now create a Service object with type NodePort to expose nginx:
+
+.. prompt:: bash $ auto
+
+   [root@onekube-ip-10-0-17-190 ~]# kubectl expose pod nginx --type=NodePort --name=nginx
+
+.. note:: The K8s appliance at the moment supports only the NodePort service to expose applications. The Load Balancer service will be provided in a future release of the appliance.
+
+Let's check the service:
+
+.. prompt:: bash $ auto
+
+    [root@onekube-ip-10-0-17-190 ~]# kubectl get svc
+    NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+    kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP        30m
+    nginx        NodePort    10.104.44.89   <none>        80:32303/TCP   13m
+
+You can use any public IP of the VMs of the K8s cluster to connect to the nginx application using the port allocated (32303 in our case).
+
+|nginx_install_page|
+
 Congrats! You successfully deployed a fully functional Kubernetes cluster in the edge. Have fun with your new OpenNebula cloud!
 
+.. |nginx_install_page| image:: /images/nginx_install_page.png

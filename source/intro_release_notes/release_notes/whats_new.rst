@@ -21,6 +21,7 @@ Additionally, OpenNebula 6.0 ‘Mutara’ comes with the following goodies:
 - Support for VM Backups, periodically save the data of your VMs in a remote storage location set up as a private Marketplace.
 - Several OneFlow improvements, mostly related to the life cycle management of OneFlow Services, both in the engine and the GUI.
 - Hypervisor driver improvements like vSphere 7 support and additional VM tuning parameters for KVM. OpenNebula 6.0 also features a new driver for LXC containers, easing the use of containerized apps across platforms.
+- Support for containerized deployment of OpenNebula Front-end.
 
 As usual, OpenNebula 6.0's codename refers to a nebula, in this case to the Mutara Nebula, an interstellar dust cloud located in the Mutara sector of the Beta Quadrant. In 2285, it was the site of the epic battle between the USS Reliant (commanded by the infamous Khan Noonien Singh) and the USS Enterprise (commanded by Captain James T. Kirk), which ended [Spoiler Alert] with the detonation of the Genesis Device and the USS Enterprise making a last-minute escape thanks to the dramatic self-sacrifice of Mr Spock—as seen in Star Trek II: The Wrath of Khan :)
 
@@ -125,6 +126,7 @@ Packaging
 ================================================================================
 
 - OpenNebula package names are unified across distributions, see :ref:`here <compatibility_pkg>`.
+- Container images with OpenNebula Front-end, see :ref:`here <container_overview>`.
 
 KVM
 ===
