@@ -19,7 +19,7 @@ You need a physical or virtual host with a recommended operating system, one of 
 
 - :ref:`dedicated IP address or relocate host SSH to non-default port <container_ssh>`
 - x86-64 Linux host with CentOS/RHEL, Debian, or Ubuntu (or compatible)
-- **Docker** version 18.06.0 (or newer)
+- **Docker** version 20.10 (or newer)
 - optionally **docker-compose** version 1.27.4 (or newer, must support specification `format 3.7 <https://docs.docker.com/compose/compose-file/>`__)
 
 **Podman**
@@ -32,15 +32,19 @@ You need a physical or virtual host with a recommended operating system, one of 
 
 .. warning::
 
-   Unsupported features:
+   **Unsupported Features**:
 
    - federated and HA deployments,
    - shared datastores (NFS, qcow2, Ceph, LVM, ...), only SSH-based available
    - migration of existing Front-end deployment installed from packages into containers,
-   - in **unprivileged mode** - Exports from the following Marketplaces - :ref:`Docker Hub <market_dh>`, :ref:`Linux Containers <market_linux_container>`, :ref:`TurnKey Linux <market_turnkey_linux>`
-   - in **unprivileged mode** - :ref:`Creating an image based on a Dockerfile <dockerfile>`
-   - in **rootless Podman** - Deployment on privileged ports (22, 80, 443)
-   - on Ubuntu/Debian in multi-container Docker deployment, the container with ``oned`` is running without :ref:`AppArmor security profile <container_troubleshooting_apparmor>`
+   - in **unprivileged mode** - Exports from the following Marketplaces - :ref:`Docker Hub <market_dh>`, :ref:`Linux Containers <market_linux_container>`, :ref:`TurnKey Linux <market_turnkey_linux>`,
+   - in **unprivileged mode** - :ref:`Creating an image based on a Dockerfile <dockerfile>`,
+   - in **rootless Podman** - Deployment on privileged ports (22, 80, 443).
+
+   **Known Issues**:
+
+   - on Ubuntu/Debian in multi-container Docker deployment, the container with ``oned`` is running without :ref:`AppArmor security profile <container_troubleshooting_apparmor>`,
+   - deployment on Docker might experience connection drops/timeouts due to the Linux Kernel issue, see the `article <https://tech.xing.com/a-reason-for-unexplained-connection-timeouts-on-kubernetes-docker-abd041cf7e02>`__.
 
 .. _container_architecture:
 
@@ -395,7 +399,7 @@ Create a file ``.env`` with the following example content and adapt to your envi
     OPENNEBULA_SSH_HOST=one.example.com
     ONEADMIN_PASSWORD=changeme123
 
-where 
+where
 
 - ``OPENNEBULA_HOST`` - is the hostname/IP which will be used by end-users to access the Front-end
 - ``OPENNEBULA_SSH_HOST`` - is the hostname/IP to connect to the integrated SSH server, used by hypervisor Nodes (defaults to ``OPENNEBULA_HOST``)
@@ -425,7 +429,7 @@ Into the configuration file ``.env`` created above, append the following additio
     DEPLOY_BIND_ADDR=192.168.10.3
     DEPLOY_BIND_SSH_ADDR=192.168.10.2
 
-where 
+where
 
   - ``DEPLOY_BIND_ADDR`` - is the dedicated IP address for (most) **Front-end** services
   - ``DEPLOY_BIND_SSH_ADDR`` - is the dedicated IP address for **integrated SSH** server (can be same as ``DEPLOY_BIND_ADDR``)
@@ -438,7 +442,7 @@ where
 
     DEPLOY_SSH_EXTERNAL_PORT=2222
 
-where 
+where
 
   - ``DEPLOY_SSH_EXTERNAL_PORT`` - is the port on the Host on which OpenNebula's integrated SSH server will be exposed
 
