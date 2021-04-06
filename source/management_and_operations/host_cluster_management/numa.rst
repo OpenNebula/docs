@@ -175,9 +175,9 @@ VM memory is assigned to the closet hypervisor NUMA node where the vCPUs are pin
 When using a pinning policy it is recommended to fix only the number of vCPUs by letting the scheduler pick the number of cores and threads of the virtual topology. OpenNebula will try to optimize the VM performance by selecting the threads per core according to the following:
 
 * For the ``CORE`` pin policy the number of ``THREADS`` is set to 1.
-* Prefer as close as possible to the hardware configuration of the Host and so be power of 2.
+* A hardware configuration as close as possible to that of the Host is preferred.
 * The threads per core will not exceed those of the hypervisor.
-* Prefer the configuration with the highest number of threads/core that fits in the Host.
+* The configuration with the highest number of threads/cores that fits in the Host is preferred.
 
 .. important:: When ``THREADS`` is set, OpenNebula will look for a Host that can allocate that number of threads per core; if not found the VM will remain in ``PENDING`` state. This may be required if you want the VM to run with a fixed number of threads per core.
 
