@@ -65,7 +65,7 @@ Now proceed to ``Instances --> Services`` and wait for the only Service there to
 .. |k3s_service_vm_running| image:: /images/k3s_service_vm_running.png
 
 
-Step 3. Validate the K3s cluster and Deploy an Application
+Step 4. Validate the K3s cluster and Deploy an Application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Once the service is in RUNNING state, you can start using the K3s cluster. Let's login first into the K3s server node. Go to ``Instances --> VMs`` and check the public IP of the server VM (from the dropdown, the one highlighted in bold).
