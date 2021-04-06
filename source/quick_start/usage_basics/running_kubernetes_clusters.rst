@@ -124,7 +124,7 @@ Let's deploy nginx on the cluster:
 .. prompt:: yaml $ auto
 
    [root@onekube-ip-10-0-17-190 ~]# kubectl run nginx --image=nginx --port 80
-   
+
 After a few seconds, you should be able to see the nginx pod running
 
 .. prompt:: bash $ auto
@@ -148,10 +148,12 @@ Let's check the service:
     [root@onekube-ip-10-0-17-190 ~]# kubectl get svc
     NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
     kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP        30m
-    nginx        NodePort    10.104.44.89   <none>        80:32303/TCP   13m    
+    nginx        NodePort    10.104.44.89   <none>        80:32303/TCP   13m
 
 You can use any public IP of the VMs of the K8s cluster to connect to the nginx application using the port allocated (32303 in our case).
 
 |nginx_install_page|
 
 Congrats! You successfully deployed a fully functional Kubernetes cluster in the edge. Have fun with your new OpenNebula cloud!
+
+.. |nginx_install_page| image:: /images/nginx_install_page.png
