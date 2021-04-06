@@ -24,8 +24,7 @@ Additionally, OpenNebula 6.0 ‘Mutara’ comes with the following goodies:
 
 As usual, OpenNebula 6.0's codename refers to a nebula, in this case to the Mutara Nebula, an interstellar dust cloud located in the Mutara sector of the Beta Quadrant. In 2285, it was the site of the epic battle between the USS Reliant (commanded by the infamous Khan Noonien Singh) and the USS Enterprise (commanded by Captain James T. Kirk), which ended [Spoiler Alert] with the detonation of the Genesis Device and the USS Enterprise making a last-minute escape thanks to the dramatic self-sacrifice of Mr Spock—as seen in Star Trek II: The Wrath of Khan :)
 
-This is a Release Candidate version for 6.0, aimed at testers and developers to try the new features. All the functionality is present and only bugfixes will happen between this release and the final 6.0. Please check the :ref:`known issues <known_issues>` before submitting an `issue through GitHub <https://github.com/OpenNebula/one/issues/new?template=bug_report.md>`__. Also, note that, because this is a development version, there is no migration path from the previous stable version (5.12.x) nor migration path to the final stable version (6.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/32>`__.
-
+OpenNebula 6.0 Mutara is considered to be a stable release and as such it is available to update production environments.
 
 In the following list you can check the highlights of OpenNebula 6.0 (a detailed list of changes can be found `here <https://github.com/OpenNebula/one/milestone/32?closed=1>`__):
 
@@ -79,7 +78,7 @@ Sunstone
 - Added Dockerfile support for image create :ref:`here <dockerfile>`.
 - Allow charters' configuration within service Template :ref:`here <service_charters>`.
 - Added show information of charters in service list :ref:`here <service_charters>`.
-- Added option to hide schedule actions on VM instantiate. Check more information :ref:`here <suns_views_custom>`.
+- Added option to hide scheduled actions on VM instantiate. Check more information :ref:`here <suns_views_custom>`.
 - Add new Sunstone labels normalization. Check more information :ref:`here <suns_views_labels_behavior>`.
 - Add option to change boot device when instantiating a VM Template. Check more information :ref:`here <template_os_and_boot_options_section>`.
 - Add option to set VM Backups. Check more information :ref:`here <template_os_and_boot_options_section>`.
@@ -117,10 +116,10 @@ Distributed Edge Provisioning
 
 - Provision information is stored using a JSON document. New commands have been also added in the CLI; you can check all the information :ref:`here <cluster_operations>`.
 - Provider concept has been included in OpenNebula; you can check all the information :ref:`here <provider_operations>`.
-- Provision operations has been implemented using Terraform. The same functionality is supported, but actions are triggered using Terraform.
+- Provision operations have been implemented using Terraform. The same functionality is supported, but actions are triggered using Terraform.
 - Count attribute has been addded. This allows you to create multiple identical Hosts. Check more information :ref:`here <ddc_virtual>`.
 - ERB syntax has been changed to a new syntax. Check more information :ref:`here <ddc_virtual>`.
-- Dynamic user inputs has been added. This allow you to set multiple values inside the template. Check more information :ref:`here <ddc_user_inputs>`.
+- Dynamic user inputs have been added. This allow you to set multiple values inside the template. Check more information :ref:`here <ddc_user_inputs>`.
 
 Packaging
 ================================================================================
