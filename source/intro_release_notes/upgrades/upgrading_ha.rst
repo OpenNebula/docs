@@ -9,22 +9,22 @@ Step 1. Check Virtual Machine Status
 
 Before proceeding, make sure you don't have any VMs in a transient state (prolog, migr, epil, save). Wait until these VMs get to a final state (running, suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide <vm_guide_2>` for more information on the VM life-cycle.
 
-Step 2. Set All Host to Offline Mode
+Step 2. Set All Hosts to Offline Mode
 ================================================================================
 
-Set all host to offline mode to stop all monitoring processes.
+Set all Hosts to offline mode to stop all monitoring processes.
 
 Step 3. Stop the HA Cluster
 ================================================================================
 
-You need to stop all the nodes in the cluster to upgrade them at the same time. Start from the followers and leave the leader to the end.
+You need to stop all the nodes in the cluster to upgrade them at the same time. Start with the followers and leave the leader until the end.
 
 Step 4. Upgrade the Leader
 ================================================================================
 
 Follow Steps 4 to 8 described in the :ref:`Upgrading Single Front-end Deployments <upgrade_single>` guide in the HA leader.
 
-Afterwards create a database backup to replicate the *upgraded* state to the followers:
+Afterwards, create a database backup to replicate the *upgraded* state to the followers:
 
 .. prompt:: bash $ auto
 
@@ -73,4 +73,4 @@ At this point the ``onezone show`` command should display all the followers acti
 Step 9. Update the Hypervisors
 ================================================================================
 
-Finally upgrade the hypervisors and enable them as described in Steps 11-12 in the :ref:`Upgrading Single Front-end Deployments <upgrade_single>` guide.
+Finally, upgrade the hypervisors and enable them as described in Steps 11-12 in the :ref:`Upgrading Single Front-end Deployments <upgrade_single>` guide.
