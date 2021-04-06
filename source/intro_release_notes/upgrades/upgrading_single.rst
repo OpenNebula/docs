@@ -7,12 +7,12 @@ Upgrading Single Front-end Deployments
 If you are running a 5.12.x version or older, please check these :ref:`set of steps <upgrading_from_previous_extended_steps>` (some additional ones may apply, please review them at the end of the section).
 
 ..
-    If you are upgrading from a :ref:`6.0.x <upgrade_60>` installation you only need to follow a reduced set of steps.
+    If you are upgrading from a :ref:`6.1.x <upgrade_60>` installation you only need to follow a reduced set of steps.
     .. _upgrade_60:
-    Upgrading from 6.0.x
+    Upgrading from 6.1.x
     ^^^^^^^^^^^^^^^^^^^^^
 
-    This section describes the installation procedure for systems that are already running a 6.0.x OpenNebula. The upgrade to OpenNebula |version| can be done directly following this section, you don't need to perform intermediate version upgrades. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
+    This section describes the installation procedure for systems that are already running a 6.1.x OpenNebula. The upgrade to OpenNebula |version| can be done directly following this section, you don't need to perform intermediate version upgrades. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
     When performing a minor upgrade OpenNebula adheres to the following convention to ease the process:
 
@@ -211,7 +211,7 @@ After checking the state of configuration, in most cases running the following c
 
      # onecfg upgrade
      ANY   : Backup stored in '/tmp/onescape/backups/2020-6...
-     ANY   : Configuration updated to 6.0.0
+     ANY   : Configuration updated to 6.1.80
 
 If you get conflicts when running onecfg upgrade refer to the :ref:`onecfg upgrade basic usage documentation <cfg_usage>` on how to upgrade and troubleshoot the configurations, in particular the :ref:`onecfg upgrade doc <cfg_upgrade>` and the :ref:`troubleshooting section <cfg_conflicts>`.
 

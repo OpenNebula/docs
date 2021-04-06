@@ -20,7 +20,7 @@ The recommended way to install the driver is to configure the :ref:`repositories
 - ``yum install docker-machine-opennebula``
 - ``apt-get install docker-machine-opennebula``
 
-Alternatively you can get the binary `here <https://downloads.opennebula.io/packages/opennebula-6.0.0/opennebula-docker-machine-6.0.0.tar.gz>`__.
+Alternatively you can get the binary `here <https://downloads.opennebula.io/packages/opennebula-6.1.80/opennebula-docker-machine-6.1.80.tar.gz>`__.
 
 Lastly, in the case that you already have it installed in the OpenNebula frontend (or any other host) you can instead copy the ``/usr/bin/docker-machine-driver-opennebula`` file directly from the the frontend into any directory on your desktop which is included in your ``$PATH``.
 

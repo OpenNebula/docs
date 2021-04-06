@@ -89,7 +89,7 @@ Configures the OpenNebula package repository for the particular version.
 ======================================= ========================================== ===========
 Parameter                               Default                                    Description
 ======================================= ========================================== ===========
-``opennebula_repository_version``       6.0                                        OpenNebula repository version
+``opennebula_repository_version``       6.1                                        OpenNebula repository version
 ``opennebula_repository_base``          ``https://downloads.opennebula.io/repo/``  Repository of the OpenNebula packages
                                         ``{{ opennebula_repository_version }}``
 ``opennebula_repository_gpgcheck``      yes                                        Enable GPG check for the packages

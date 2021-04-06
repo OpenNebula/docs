@@ -11,7 +11,7 @@ Download
 
 You can download the ``.jar`` file compiled using Java 1.8, the required libraries, and the javadoc packaged in a tar.gz file `following this link <http://downloads.opennebula.io/packages>`__ in the OpenNebula version you have installed.
 
-You can also consult the `javadoc online </doc/6.0/oca/java/>`__.
+You can also consult the `javadoc online </doc/6.1/oca/java/>`__.
 
 Usage
 ================================================================================

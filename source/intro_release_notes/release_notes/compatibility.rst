@@ -5,14 +5,14 @@
 Compatibility Guide
 ====================
 
-This guide is aimed at OpenNebula 6.0.x users and administrators who want to upgrade to the latest version. The following sections summarize the new features and usage changes that should be taken into account, or are prone to cause confusion. You can check the upgrade process in the :ref:`corresponding section <upgrade>`.
+This guide is aimed at OpenNebula 6.1.x users and administrators who want to upgrade to the latest version. The following sections summarize the new features and usage changes that should be taken into account, or are prone to cause confusion. You can check the upgrade process in the :ref:`corresponding section <upgrade>`.
 
 The following components have been deprecated:
 
  - ECONE server (implementing EC2Query REST interface) is no longer available.
  - Hybrid drivers for Amazon EC2 and Microsoft Azure, as well as the hybrid connection to remote OpenNebula instances, are no longer available. The preferred mechanism to grow your cloud with public cloud providers is through the :ref:`Edge Cluster Provisioning <first_edge_cluster>`.
 
-Visit the :ref:`Features list <features>` and the :ref:`What's New guide <whats_new>` for a comprehensive list of what's new in OpenNebula 6.0.
+Visit the :ref:`Features list <features>` and the :ref:`What's New guide <whats_new>` for a comprehensive list of what's new in OpenNebula 6.1.
 
 HTTP_PROXY and XMLRPC API
 =========================

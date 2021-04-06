@@ -49,7 +49,7 @@ Limited **test** deployment without Docker-in-Docker, TLS, HTTPS or volumes:
     -e SUNSTONE_HTTPS_ENABLED=no \
     -e SUNSTONE_PORT=8080 \
     -e DIND_ENABLED=no \
-    opennebula:6.0
+    opennebula:6.1
 
 .. note::
 
