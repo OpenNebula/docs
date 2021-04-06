@@ -584,7 +584,7 @@ Now that you have successfully started your OpenNebula services, you can continu
 Continue with the following guides:
 
 - :ref:`Open Cluster Deployment <open_cluster_deployment>` to provision hypervisor Nodes, storage, and Virtual Networks.
-- :ref:`VMware Node Deployment <vmware_cluster_deployment>` to add VMware vCenter Nodes.
+- :ref:`VMware Clustre Deployment <vmware_cluster_deployment>` to add VMware vCenter Nodes.
 - :ref:`Management and Operations <operations_guide>` to add Users, Groups, Images, define Virtual Machines, and a lot more ...
 
 .. |sunstone_login| image:: /images/sunstone-login.png
