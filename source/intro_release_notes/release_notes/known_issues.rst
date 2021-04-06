@@ -13,6 +13,7 @@ Drivers - Network
 
 - If the nic-attach fails due to the libvirt bug (VM can not eject CD-ROM after reset) the nic appears in the VM (although without proper configuration) but it's not visible on OpenNebla VM `#5268 <http://dev.opennebula.org/issues/5268>`_
 - OvSwitch networking driver won't clean LXC containers ports after destroying the containers. This will make resume operation to fail. `#5319 <https://github.com/OpenNebula/one/issues/5319>`_.
+- Edge Cluster Public IP: NIC_ALIAS do not support security groups. Also NIC_ALIAS on the public network can only can only be associated to a NIC on the same network.
 
 High Availability
 =================
