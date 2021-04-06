@@ -122,7 +122,7 @@ Limitations
 -----------
 
 * only the disk-saveas operation is supported for VMs in the ``POWEROFF`` state.
-* imported Wild VMs cannot be stopped, undeployed nor recover --recreated.
+* imported Wild VMs cannot be stopped, undeployed nor ``recover --recreated``.
 
 
 vCenter Import Tool
@@ -488,7 +488,7 @@ In Sunstone we have the Wild tab in the Host's information:
     :width: 70%
     :align: center
 
-VMs in running state can be imported as well as VMs defined in vCenter that are not in Power On state (this will import the VMs in OpenNebula as in the poweroff state).
+VMs in running state can be imported as well as VMs defined in vCenter that are not in Power On state (this will import the VMs in OpenNebula in the poweroff state).
 
 .. _vcenter_wild_vm_nic_disc_import:
 
@@ -619,7 +619,7 @@ Importing vCenter Images
 
 OpenNebula can create image representations of vCenter VMDK and ISO files that are present in vCenter datastores.
 
-When you import an image, OpenNebula generates a name that avoids collisions; that name contains the image name and, if there was another image with that name, a suffix. That name can be changed to a more human-friendly name once the image has been imported. This is sample name:
+When you import an image, OpenNebula generates a name that avoids collisions; that name contains the image name and, if there was another image with that name, a suffix. That name can be changed to a more human-friendly name once the image has been imported.
 
 The import tools will look for files that haven't been previously imported, checking if there's a file with the same PATH and DATASTORE_ID attributes.
 
