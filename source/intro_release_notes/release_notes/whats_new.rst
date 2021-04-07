@@ -10,7 +10,7 @@ These new edge features in OpenNebula 6.0 include:
 
 - A powerful distributed cloud architecture for OpenNebula that is composed of Edge Clusters that can run any workload—both virtual machines and application containers— on any resource—bare metal or virtualized— anywhere—on-premises and on a cloud provider. This hyperconverged edge cloud solution maximizes workload performance and availability, and comes with a native 3-tier storage architecture that simplifies and speeds up the deployment of containers and services across edge locations.
 - A fully-featured command line interface and a modern, slick web interface—FireEdge—to easily manage public cloud and edge providers, as well as the seamless provisioning of OpenNebula’s Edge Clusters. You can quickly expand your OpenNebula cloud on demand with third-party resources thanks to this point and click interface and create an “Edge as a Service” environment in just a few minutes!
-- A first set of templates and drivers to expand your OpenNebula cloud using AWS and Equinix Metal resources, creating Edge Clusters based on QEMU, KVM, and Firecracker.
+- A first set of templates and drivers to expand your OpenNebula cloud using AWS and Equinix Metal resources, creating Edge Clusters based on LXC, KVM, and Firecracker.
 - The new support for Dockerfiles and a revamped Marketplace for VM templates, which now is able to store service templates, which considerably improves user experience in the execution of complex container workflows, multi-tier services and management of CNCF-certified Kubernetes clusters on the edge.
 
 .. image:: /images/fireedge_for_rns.png
