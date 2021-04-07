@@ -8,10 +8,10 @@ Managing Virtual Machines Backup
 Requirements
 ================================================================================
 
-To be able to store the VMs backups you need to run your own MarketPlace ideally ir should be not coallocated with your datastores. You can configure two types:
+To be able to store the VMs backups you need to run your own MarketPlace ideally it should be not coallocated with your datastores. You can configure two types:
 
-* :ref:`HTTP MarketPlace<market_s3>`.
-* :ref:`S3 MarketPlace<market_http>`.
+* :ref:`HTTP MarketPlace<market_http>`.
+* :ref:`S3 MarketPlace<market_s3>`.
 
 Backup Configuration
 ================================================================================
