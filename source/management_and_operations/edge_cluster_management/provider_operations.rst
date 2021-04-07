@@ -18,6 +18,16 @@ The CLI command to manage Edge providers is ``oneprovider``. It follows the same
 
 .. warning:: Provider information is encrypted, so it can only be managed by oneadmin or oneadmin's group user.
 
+Create
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To create a provider, use the command ``oneprovider create``:
+
+.. prompt:: bash $ auto
+
+    $ oneprovider create /tmp/template.yml
+    ID: 0
+
 Check Information
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
