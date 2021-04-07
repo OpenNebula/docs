@@ -8,3 +8,4 @@ Release Notes 6.0.0 Enterprise Edition
    :maxdepth: 1
 
    What Is <what_is>
+   Resolved Issues in 6.0.1 <resolved_issues_601>
