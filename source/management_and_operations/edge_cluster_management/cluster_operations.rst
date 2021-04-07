@@ -13,7 +13,12 @@ Edge Cluster Limitations
 Creating a Cluster
 ================================================================================
 
-Check the steps :ref:`here <first_edge_cluster>`.
+Check the steps :ref:`here <first_edge_cluster>`. You can also use the command ``oneprovision create``:
+
+.. prompt:: bash $ auto
+
+    $ oneprovision create /tmp/provision.yml
+    ID: 0
 
 Managing the Edge Cluster
 ================================================================================
