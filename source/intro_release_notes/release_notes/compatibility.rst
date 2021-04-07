@@ -114,7 +114,7 @@ See the curent :ref:`list of shipped packages <packages>`.
 Sunstone SELinux Requirement
 =============================
 
-Now OCA, and therefore Sunstone, need [zmq gem](https://rubygems.org/gems/zmq), and for that you need to enable the ``httpd_execmem`` SELinux boolean.
+Now OCA, and therefore Sunstone, need `zmq gem <https://rubygems.org/gems/zmq>`__, and for that you need to enable the ``httpd_execmem`` SELinux boolean.
 
 
 Custom Datastore drivers
