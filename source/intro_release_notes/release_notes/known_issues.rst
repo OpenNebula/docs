@@ -13,6 +13,8 @@ Drivers - Storage
 
 - As `part of the improvement of sparse file management <https://github.com/OpenNebula/one/issues/5058>`_ the file system datastore drivers use fallocate. Be aware that some filesystems may not implement fallocate(2), a `fix to deal with this situation has been committed here <https://github.com/OpenNebula/one/commit/ead26711f1611653ec40f565849b9ab373745a11>`__.
 
+- The restore operation of a backup may cause the restored VM to get stuck in ``clone`` state. In this case, if the restored images are not in ``lock`` state you can simple terminate the VM and instantiate it again. A `fix that prevents this from happening is available here <https://github.com/OpenNebula/one/commit/3333b780ce6e3a757b595bd96aac6688a2a97e0f>`__.
+
 Drivers - Network
 =======================
 
