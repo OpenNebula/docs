@@ -14,3 +14,4 @@ The following issues has been solved in 6.0.1:
 - `Fix instantiate form for virtual network template in Sunstone <https://github.com/OpenNebula/one/issues/5318>`__.
 - `Fix OvSwitch VNM clean operation for LXC < 4.0 <https://github.com/OpenNebula/one/issues/5319>`__.
 - `Fix formated volatile datablock creation for LVM datastore <https://github.com/OpenNebula/one/issues/4989>`__.
+- `Fix widgets grid layout in Sunstone dashboard <https://github.com/OpenNebula/one/issues/5320>`__.
