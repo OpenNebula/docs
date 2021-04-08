@@ -9,17 +9,9 @@ A complete list of `known issues for OpenNebula is maintained here <https://gith
 This page will be updated with relevant information about bugs affecting OpenNebula, as well as possible workarounds until a patch is officially published.
 
 Drivers - Storage
-================================================================================
+======================
 
 - As `part of the improvement of sparse file management <https://github.com/OpenNebula/one/issues/5058>`_ the file system datastore drivers use fallocate. Be aware that some filesystems may not implement fallocate(2), a `fix to deal with this situation has been committed here <https://github.com/OpenNebula/one/commit/ead26711f1611653ec40f565849b9ab373745a11>`__.
-
-- The restore operation of a backup may cause the restored VM to get stuck in ``clone`` state. In this case, if the restored images are not in ``lock`` state you can simple terminate the VM and instantiate it again. A `fix that prevents this from happening is available here <https://github.com/OpenNebula/one/commit/3333b780ce6e3a757b595bd96aac6688a2a97e0f>`__.
-
-- **Ceph**, OpenNebula 6.0 uses a consistent format scheme that reduces the need of setting ``DRIVER`` and ``FORMAT`` attributes. However existing images in Ceph Datastores may have a wrong value for these attributes. If the usage of these Images fails after upgrading to OpenNebula 6.0, please update Images in Ceph datastores to have ``FORMAT`` and ``DRIVER`` set to ``raw``. If any running VM is affected by this, ``onedb update-body`` command can be used for changing the corresponding values for the VM disks.
-
-- **LVM**, the situation described above for Ceph may also affect LVM based datastores, please verify that ``FORMAT`` and ``DRIVER`` are set to ``raw``.
-
-- **BRIDGE_LIST** and File-based Datastores (``DS_MAD = fs``), if you are using this attribute, ``FORMAT`` attribute for new images may not properly set. As a workaround please update any new image created after 6.0 update or `apply this patch <https://github.com/OpenNebula/one/commit/02416dcb00ea42be4d22583bdc876a805ef87049>`_.
 
 Drivers - Network
 ================================================================================
