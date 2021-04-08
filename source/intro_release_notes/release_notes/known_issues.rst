@@ -8,6 +8,11 @@ A complete list of `known issues for OpenNebula is maintained here <https://gith
 
 This page will be updated with relevant information about bugs affecting OpenNebula, as well as possible workarounds until a patch is officially published.
 
+Drivers - Storage
+=======================
+
+- As `part of the improvement of sparse file management <https://github.com/OpenNebula/one/issues/5058>`_ the file system datastore drivers use fallocate. Be aware that some filesystems may not implement fallocate(2), a `fix to deal with this situation has been committed here <https://github.com/OpenNebula/one/commit/ead26711f1611653ec40f565849b9ab373745a11>`__.
+
 Drivers - Network
 =======================
 
