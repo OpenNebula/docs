@@ -20,3 +20,4 @@ The following issues has been solved in 5.12.9:
 - `Fix FSCK PCI network interface check <https://github.com/OpenNebula/one/issues/5269>`__.
 - `Fix history records for imported VMs in power-off <https://github.com/OpenNebula/one/issues/5302>`__.
 - `Sanitize VN drivers commands <https://github.com/OpenNebula/one/issues/5316>`__.
+- `Fix VNC connection from Sunstone under Apache & SELinux enabled <https://github.com/OpenNebula/one/issues/4392>`__.
