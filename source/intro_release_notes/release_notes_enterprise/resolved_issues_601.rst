@@ -16,3 +16,4 @@ The following issues has been solved in 6.0.1:
 - `Fix formated volatile datablock creation for LVM datastore <https://github.com/OpenNebula/one/issues/4989>`__.
 - `Fix widgets grid layout in Sunstone dashboard <https://github.com/OpenNebula/one/issues/5320>`__.
 - `Fix Virtual Network Templates addresses show AR fields from Virtual Network creation <https://github.com/OpenNebula/one/issues/5323>`__.
+- `Insert Suspend and Stop actions with Poweroff and Undeploy actions  <https://github.com/OpenNebula/one/issues/5326>`__.
