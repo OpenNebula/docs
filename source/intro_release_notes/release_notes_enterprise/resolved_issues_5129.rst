@@ -21,3 +21,4 @@ The following issues has been solved in 5.12.9:
 - `Fix history records for imported VMs in power-off <https://github.com/OpenNebula/one/issues/5302>`__.
 - `Sanitize VN drivers commands <https://github.com/OpenNebula/one/issues/5316>`__.
 - `Fix VNC connection from Sunstone under Apache & SELinux enabled <https://github.com/OpenNebula/one/issues/4392>`__.
+- `Fix Virtual Network Templates addresses show AR fields from Virtual Network creation <https://github.com/OpenNebula/one/issues/5323>`__.
