@@ -1,8 +1,8 @@
 .. _try_opennebula_on_kvm:
 
-=====================
-Try OpenNebula on KVM
-=====================
+=============================
+Try OpenNebula on KVM/LXC/FC
+=============================
 
 In this guide, we'll go through a Front-end OpenNebula environment deployment, where all the OpenNebula services needed to use, manage and run the cloud will be collocated on the single dedicated bare-metal Host. Afterwards, you can continue to the Operations Basics section to add a remote Edge Cluster to your shiny new OpenNebula cloud!
 
