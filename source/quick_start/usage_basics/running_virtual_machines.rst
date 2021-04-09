@@ -6,7 +6,7 @@ Running Virtual Machines
 
 OpenNebula Systems maintains a curated set of Virtual Machines in the `public marketplace <http://marketplace.opennebula.io>`__. We are going to use the WordPress appliance to try out our brand new cloud.
 
-.. warning:: In order to deploy VMs, you need a metal KVM Edge Cluster. You can follow the same steps of the :ref:`provisioning an edge cluster <first_edge_cluster>` guide, using "metal" edge cloud type and kvm hypervisor. If you are planning to go all the way through the quick start guide (i.e., launching a L8s cluster next), make sure you request two public IPs.
+.. warning:: In order to deploy VMs, you need a metal KVM Edge Cluster. You can follow the same steps of the :ref:`provisioning an edge cluster <first_edge_cluster>` guide, using "metal" edge cloud type and kvm hypervisor. If you are planning to go all the way through the quick start guide (i.e., launching a K8s cluster next), make sure you request two public IPs.
 
 We are going to assume the Edge Cluster naming schema "metal-kvm-aws-cluster".
 
