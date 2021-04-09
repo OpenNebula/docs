@@ -18,17 +18,7 @@ Installation
 
 First of all, you need a working MySQL server. You can either deploy one for the OpenNebula installation or reuse any existing MySQL already deployed and accessible by the Frontend.
 
-However, it should be recent enough to support the FULLTEXT indexing used by OpenNebula on the database type used, and the oneadmin user needs to be explicitly created for the permissions GRANT below to work.  For MariaDB, that means at least a late minor version of release 10.0 if you use the default InnoDB.  Specifically, the ``mysql`` in CentOS 7 (which actually installs ``mariadb``) is not a high enough version.  Packages from the ``rh-mariadb``... SCLs are OK, and you probably want to install the ``syspaths`` packages to provide the usual MySQL paths:
-
-.. prompt:: bash # auto
-
-    # yum install -y centos-release-scl-rh
-    # yum install -y rh-mariadb103-mariadb-config-syspaths rh-mariadb103-mariadb-syspaths \
-      rh-mariadb103-mariadb-server-syspaths
-
-On RHEL 7, subscribe to the ``rhel-server-rhscl-7-rpms`` repo and then install the ``rh-mariadb`` packages as above.
-
-The ``mysql`` and ``mariadb`` packages in Ubuntu 16.04+, Debian 10+, and CentOS 8 should be good enough.
+.. important:: Note that MySQL should be recent enough to support the FULLTEXT indexing used by OpenNebula to use the VM search feature. For MariaDB, that means at least a late minor version of release 10.0 if you use the default InnoDB.  If you are using CentOS 7 you may be interested in install packages from Software Collections (``centos-release-scl-rh``) and probably the ``syspaths`` variants (``rh-mariadb103-mariadb-config-syspaths``, ``rh-mariadb103-mariadb-syspaths``, and ``rh-mariadb103-mariadb-server-syspaths``) to provide the usual MySQL paths. On RHEL 7, subscribe to the ``rhel-server-rhscl-7-rpms`` repo and then install the ``rh-mariadb`` packages.
 
 Configuring MySQL
 -----------------
