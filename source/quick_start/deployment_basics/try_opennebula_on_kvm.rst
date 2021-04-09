@@ -4,7 +4,7 @@
 Try OpenNebula on KVM/LXC/FC
 =============================
 
-In this guide, we'll go through a Front-end OpenNebula environment deployment, where all the OpenNebula services needed to use, manage and run the cloud will be collocated on the single dedicated bare-metal Host. Afterwards, you can continue to the Operations Basics section to add a remote Edge Cluster to your shiny new OpenNebula cloud!
+In this guide, we'll go through a Front-end OpenNebula environment deployment, where all the OpenNebula services needed to use, manage and run the cloud will be collocated on the single dedicated bare-metal Host. Afterwards, you can continue to the Operations Basics section to add a remote Edge Cluster based on KVM, LXC or Firecracker to your shiny new OpenNebula cloud!
 
 While all the :ref:`installation and configuration <opennebula_installation>` steps can be done manually and would give you a better insight and control over what and how it is configured, we'll focus on the most straightforward approach by leveraging the miniONE tool.
 
