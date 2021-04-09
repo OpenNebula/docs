@@ -18,7 +18,7 @@ Installation
 
 First of all, you need a working MySQL server. You can either deploy one for the OpenNebula installation or reuse any existing MySQL already deployed and accessible by the Frontend.
 
-.. important:: Note that MySQL should be recent enough to support the FULLTEXT indexing used by OpenNebula to use the VM search feature. For MariaDB, that means at least a late minor version of release 10.0 if you use the default InnoDB.  If you are using CentOS 7 you may be interested in install packages from Software Collections (``centos-release-scl-rh``) and probably the ``syspaths`` variants (``rh-mariadb103-mariadb-config-syspaths``, ``rh-mariadb103-mariadb-syspaths``, and ``rh-mariadb103-mariadb-server-syspaths``) to provide the usual MySQL paths. On RHEL 7, subscribe to the ``rhel-server-rhscl-7-rpms`` repo and then install the ``rh-mariadb`` packages.
+.. important:: Note that MySQL should be recent enough to support the FULLTEXT indexing used by OpenNebula to implement the VM search feature. For MariaDB, that means at least a late minor version of release 10.0 if you use the default InnoDB.  If you are using CentOS 7 you may be interested in install packages from Software Collections (``centos-release-scl-rh``) and probably the ``syspaths`` variants (``rh-mariadb103-mariadb-config-syspaths``, ``rh-mariadb103-mariadb-syspaths``, and ``rh-mariadb103-mariadb-server-syspaths``) to provide the usual MySQL paths. On RHEL 7, subscribe to the ``rhel-server-rhscl-7-rpms`` repo and then install the ``rh-mariadb`` packages.
 
 Configuring MySQL
 -----------------
