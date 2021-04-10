@@ -4,6 +4,8 @@
 Running Containers
 ==================
 
+.. important:: This guide uses a virtual Edge Cluster and LXC as *virtualization* technology, but it **also applies** to metal Edge Clusters running either LXC or Firecraker. Finally it is also possible to run container applications in a VM form, :ref:`see here for more details <container_image_usage>`.
+
 OpenNebula comes out-of-the-box with integrations with various container Marketplaces like Docker Hub, Turnkey Linux and Linux Containers. We are going to use the nginx container from Docker Hub to try out our brand new cloud.
 
 .. warning:: We are going to use the virtual AWS Edge Cluster deployed in the Operations Basics guide in order to achieve this. We are going to assume the naming schema “aws-cluster” (which is the default if you haven't changed it).
