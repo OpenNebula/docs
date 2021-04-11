@@ -253,11 +253,13 @@ The OneProvision tool enables the deployment of Edge Clusters and their automati
 +-------------------+-------------+---------------------------------+
 | Edge Cluster Type |  Hypervisor |     Workload                    |
 +===================+=============+=================================+
-| virtual / metal   | lxc         | Containers                      |
+| virtual           | LXC         | containers                      |
 +-------------------+-------------+---------------------------------+
-| metal             | firecracker | Containers / k3s clusters       |
+| metal             | LXC         | virtual machines                |
 +-------------------+-------------+---------------------------------+
-| metal             | kvm         | Virtual Machines / k8s clusters |
+| metal             | Firecracker | containers / k3s clusters       |
++-------------------+-------------+---------------------------------+
+| metal             | KVM         | virtual machines / k8s clusters |
 +-------------------+-------------+---------------------------------+
 
 
