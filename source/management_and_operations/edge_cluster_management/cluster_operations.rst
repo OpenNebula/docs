@@ -170,6 +170,8 @@ Examples:
 
  - states
 
+.. _edge_cluster_customization:
+
 Customization of the Edge Cluster
 ================================================================================
 
@@ -183,13 +185,18 @@ Provision Elements
 
 You can create multiple elements with a single provision; check :ref:`this guide <ddc_virtual>` for more information.
 
-Adding/Removing Public IPs
+Networking
 --------------------------------------------------------------------------------
+
+.. warning:: This sections does not apply to ``onprem`` provider. If you're using ``onprem`` provider please check the :ref:`Virtual Network Management section <manage_vnets>`.
+
+Adding/Removing Public IPs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Check :ref:`this <edge_public>` to know how you can add more public IPs to an existing Edge Cluster.
 
-Adding Virtual Netwok
---------------------------------------------------------------------------------
+Adding Virtual Network
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Check :ref:`this <edge_private>` to know how you can add more private networks to an existing Edge Cluster.
 
