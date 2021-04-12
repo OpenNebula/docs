@@ -7,7 +7,7 @@ A complete list of solved issues for 6.0.1 can be found in the `project developm
 
 The following new features has been backported to 6.0.1:
 
-- `Provide nice and clear! description <https://github.com/OpenNebula/one/issues/XXX>`__.
+- `Add new onprem provider <https://github.com/OpenNebula/one/issues/5332>`__.
 
 The following issues has been solved in 6.0.1:
 
