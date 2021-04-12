@@ -19,3 +19,4 @@ The following issues has been solved in 6.0.1:
 - `Insert Suspend and Stop actions with Poweroff and Undeploy actions  <https://github.com/OpenNebula/one/issues/5326>`__.
 - `Show CLI errors always on STDERR <https://github.com/OpenNebula/one/issues/5311>`__.
 - `Fix tabs sidebar with long text in Sunstone <https://github.com/OpenNebula/one/issues/5325>`__.
+- `Do not duplicate Security Group rules <https://github.com/OpenNebula/one/issues/5324>`__.
