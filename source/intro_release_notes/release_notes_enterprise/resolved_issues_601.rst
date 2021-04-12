@@ -22,3 +22,4 @@ The following issues has been solved in 6.0.1:
 - `Show CLI errors always on STDERR <https://github.com/OpenNebula/one/issues/5311>`__.
 - `Fix tabs sidebar with long text in Sunstone <https://github.com/OpenNebula/one/issues/5325>`__.
 - `Do not duplicate Security Group rules <https://github.com/OpenNebula/one/issues/5324>`__.
+- `Packages dependency on tar <https://github.com/OpenNebula/one/issues/5329>`__.
