@@ -7,17 +7,23 @@ Provisioning an Edge Cluster
 
 In this quick start guide we are going to try different workloads. Each workload needs to be deployed in a compatible type of Edge Cluster, since not all of them are capable of running all types of workload. More information on this is available in the :ref:`platform notes <uspng>`.
 
-+--------------------------------------------------+-------------------+-------------+
-|                     Workload                     | Edge Cluster Type |  Hypervisor |
-+==================================================+===================+=============+
-| :ref:`Containers <running_containers>`           | virtual           | LXC         |
-+--------------------------------------------------+-------------------+-------------+
-| :ref:`VMs <running_virtual_machines>`            | metal             | KVM         |
-+--------------------------------------------------+-------------------+-------------+
-| :ref:`K8s cluster <running_kubernetes_clusters>` | metal             | KVM         |
-+--------------------------------------------------+-------------------+-------------+
-| :ref:`K3s cluster <running_k3s_clusters>`        | metal             | Firecracker |
-+--------------------------------------------------+-------------------+-------------+
+.. table::
+   :widths: 60,15,25
+   :align: left
+
+   +--------------------------------------------------------------------+--------------+-------------------------------------------------------+
+   | Use Case                                                           | Edge Cluster |  Hypervisor                                           |
+   +====================================================================+==============+=======================================================+
+   | :ref:`I want to run application containers...                      | virtual      | LXC                                                   |
+   | <running_containers>`                                              +--------------+-------------------------------------------------------+
+   |                                                                    | metal        | LXC, Firecracker                                      |
+   +--------------------------------------------------------------------+--------------+-------------------------------------------------------+
+   | :ref:`I want to run virtual servers... <running_virtual_machines>` | metal        | KVM, LXC                                              |
+   +--------------------------------------------------------------------+--------------+-------------------------------------------------------+
+   | I want to run a Kubernetes cluster...                              | metal        | KVM (:ref:`k8s based <running_kubernetes_clusters>`)  |
+   |                                                                    |              +-------------------------------------------------------+
+   |                                                                    |              | Firecracker (:ref:`k3s based <running_k3s_clusters>`) |
+   +--------------------------------------------------------------------+--------------+-------------------------------------------------------+
 
 In this section you can check all the steps needed to deploy an **Edge Cluster**. This involves the FireEdge OneProvision GUI and Sunstone to manage the resources created in OpenNebula.
 
