@@ -18,3 +18,4 @@ The following issues has been solved in 6.0.1:
 - `Fix Virtual Network Templates addresses show AR fields from Virtual Network creation <https://github.com/OpenNebula/one/issues/5323>`__.
 - `Insert Suspend and Stop actions with Poweroff and Undeploy actions  <https://github.com/OpenNebula/one/issues/5326>`__.
 - `Show CLI errors always on STDERR <https://github.com/OpenNebula/one/issues/5311>`__.
+- `Do not duplicate Security Group rules <https://github.com/OpenNebula/one/issues/5324>`__.
