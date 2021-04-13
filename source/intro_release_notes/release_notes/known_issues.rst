@@ -15,6 +15,8 @@ Drivers - Storage
 
 - The restore operation of a backup may cause the restored VM to get stuck in ``clone`` state. In this case, if the restored images are not in ``lock`` state you can simple terminate the VM and instantiate it again. A `fix that prevents this from happening is available here <https://github.com/OpenNebula/one/commit/3333b780ce6e3a757b595bd96aac6688a2a97e0f>`__.
 
+- **Ceph**, 6.0 uses a consistent format scheme that reduces the need of setting ``DRIVER``, ``FORMAT`` attributes. However existing images in Ceph Datastores may have a wrong ``FORMAT``. Please update Images in Ceph datastores to have ``FORMAT = raw``.
+
 Drivers - Network
 ================================================================================
 
