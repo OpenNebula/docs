@@ -17,7 +17,7 @@ How Should I Read This Chapter
 
 You should be reading this chapter as part of the :ref:`Advanced Components Guide <advanced_components>` review of the OpenNebula advanced functionality that you are interested in enabling and configuring.
 
-Within this chapter you can find a guide to configure and use the :ref:`Amazon EC2 driver <ec2g>`,  the :ref:`Azure driver <azg>` and the :ref:`OpenNebula driver<oneg>`. Additionally, there is support for IBM SoftLayer available as add-on (i.e. not contained in the OpenNebula main distribution) `here <https://github.com/OpenNebula/addon-softlayer>`__.
+Within this chapter you can find a guide to configure and use the :ref:`Amazon EC2 driver <ec2g>`,  the :ref:`Azure driver <azg>` and the :ref:`OpenNebula driver<oneg>`. Additionally, there is support for `IBM SoftLayer <https://github.com/OpenNebula/addon-softlayer>`__ and `Oracle Cloud (OCI) <https://github.com/OpenNebula/addon-oracle-cloud-infrastructure>`__ available as Community add-ons (i.e. not contained in the OpenNebula main distribution).
 
 Once the cloud architecture has been designed the next step would be to learn how to install the :ref:`OpenNebula front-end <opennebula_installation>`.
 
