@@ -16,9 +16,13 @@ On-Premise provider allows to automatically configure On-Premise infrastructure 
 Onprem Provider
 ================================================================================
 
-The ``onprem`` provider is automatically created by OpenNebula. This provider needs no prior configuration as it will retrieve the FQDNs of the host to be configured while creating the provisions.
+The ``onprem`` needs no special configuration as it will retrieve the FQDNs of the host to be configured while creating the provisions. It can be easily created by running:
 
-The ``onprem`` provider can be shown by running the command below:
+.. prompt:: bash $ auto
+
+    $ oneprovider create /usr/share/one/oneprovision/edge-clusters/onprem/providers/onprem/onprem.yml
+
+The ``onprem`` provider can also be shown by running the command below:
 
 .. prompt:: bash $ auto
 
@@ -34,7 +38,11 @@ On-Premise Edge Cluster Implementation
 
 An On-Premise Edge Cluster will configure existing On-Premise infrastructure so no new physical resources will be allocated.
 
-The network model will depend on the underlying datacenter networking infrastructure. By default the ``onprem`` provider will configure the nodes in order to be managed by OpenNebula but no Virtual Network will be created. Once the host are ready, you need to :ref:`create Virtual Networks <manage_vnets>` for your On-Premise cluster. Also you maybe interested in :ref:`customize <edge_cluster_customization>` the ``onprem`` provision to automate Virtual Network creation.
+The network model is implemented in the following way:
+
+* **Public Networking**: This is implemented as a virtual network based on ``BRIDGE`` driver, containing the range of public IPs specified while creating the provision.
+
+* **Private Networking**: this is implemented using (BGP-EVPN) and VXLAN.
 
 Operating Providers & Edge Clusters
 ================================================================================
