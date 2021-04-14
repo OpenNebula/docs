@@ -24,3 +24,4 @@ The following issues has been solved in 6.0.1:
 - `Do not duplicate Security Group rules <https://github.com/OpenNebula/one/issues/5324>`__.
 - `Packages dependency on tar <https://github.com/OpenNebula/one/issues/5329>`__.
 - `Fix Image upload not working in Sunstone <https://github.com/OpenNebula/one/issues/5322>`__.
+- `Fix onedb upgrade for PostgreSQL <https://github.com/OpenNebula/one/issues/5334>`__.
