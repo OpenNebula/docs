@@ -9,7 +9,7 @@ A complete list of `known issues for OpenNebula is maintained here <https://gith
 This page will be updated with relevant information about bugs affecting OpenNebula, as well as possible workarounds until a patch is officially published.
 
 Drivers - Storage
-=======================
+================================================================================
 
 - As `part of the improvement of sparse file management <https://github.com/OpenNebula/one/issues/5058>`_ the file system datastore drivers use fallocate. Be aware that some filesystems may not implement fallocate(2), a `fix to deal with this situation has been committed here <https://github.com/OpenNebula/one/commit/ead26711f1611653ec40f565849b9ab373745a11>`__.
 
@@ -18,12 +18,18 @@ Drivers - Storage
 - **Ceph**, 6.0 uses a consistent format scheme that reduces the need of setting ``DRIVER``, ``FORMAT`` attributes. However existing images in Ceph Datastores may have a wrong ``FORMAT``. Please update Images in Ceph datastores to have ``FORMAT = raw``.
 
 Drivers - Network
-=======================
+================================================================================
 
 - If the nic-attach fails due to the libvirt bug (VM can not eject CD-ROM after reset) the nic appears in the VM (although without proper configuration) but it's not visible on OpenNebla VM `#5268 <http://dev.opennebula.org/issues/5268>`_
 - OvSwitch networking driver won't clean LXC containers ports after destroying the containers. This will make resume operation to fail. `#5319 <https://github.com/OpenNebula/one/issues/5319>`_.
 - Edge Cluster Public IP: NIC_ALIAS do not support security groups. Also NIC_ALIAS on the public network can only can only be associated to a NIC on the same network.
 
 High Availability
-=================
+================================================================================
+
 HA server configuration synchronization with the command `onezone serversync` does not work for the PostgreSQL and SQLite DB Back-end
+
+Sunstone
+================================================================================
+
+- Remote connections to Guacamole from Sunstone have a mouse related issue, however noVNC can still be used.
