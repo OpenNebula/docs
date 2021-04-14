@@ -14,6 +14,11 @@ The following components have been deprecated:
 
 Visit the :ref:`Features list <features>` and the :ref:`What's New guide <whats_new>` for a comprehensive list of what's new in OpenNebula 6.0.
 
+CLI
+===
+
+OpenNebula 6.0.1 fixes some CLI commands that output  error messages to ``STDOUT`` instead of ``STDERR`` stream. This behavior has been fixed. The fix may interfere with your scripts if they rely on the wrong behavior.
+
 HTTP_PROXY and XMLRPC API
 =========================
 Scheduler clears the http_proxy environment variable. If your oned xml-rpc API is behind an HTTP_PROXY you need to update ``sched.conf`` and set the right value there.
