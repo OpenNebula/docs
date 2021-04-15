@@ -1116,13 +1116,15 @@ connect via browser**.
 
 |sunstone_guac_rdp|
 
-.. important:: **The RDP connection is only allowed to activate on a single NIC**. In any
-    case, the connection will only contain the IP of the first NIC with this property enabled.
-    The RDP connection will work the **same way for NIC ALIASES**.
+RDP connection is only allowed to activate on a single NIC. In an case, the connection will only contain the IP of the first NIC with this property enabled. This feature is available as well same way for NIC ALIASES**.
 
-.. note:: If the VM template has a ``PASSWORD`` and ``USERNAME`` set in the contextualization
-    section, this will be reflected in the RDP connection. You can read about them in the
-    :ref:`Virtual Machine Definition File reference section <template_context>`.
+If the VM template has a ``PASSWORD`` and ``USERNAME`` set in the contextualization section, this will be reflected in the RDP connection. You can read about them in the :ref:`Virtual Machine Definition File reference section <template_context>`.
+
+.. note:: If your Windows VM has a firewall enabled, you can set the following in the start script of the VM (in the Context section of the VM Template):
+
+    ```
+    netsh advfirewall firewall set rule group="Remotedesktop" new enable=yes
+    ```
 
 .. _requirements_guacamole_ssh_sunstone:
 

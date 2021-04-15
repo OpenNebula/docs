@@ -32,4 +32,5 @@ HA server configuration synchronization with the command `onezone serversync` do
 Sunstone
 ================================================================================
 
-- Remote connections to Guacamole from Sunstone have a mouse related issue, however noVNC can still be used.
+- Remote connections to Guacamole from Sunstone have a mouse related issue, however noVNC can still be used if needed.
+- Guacamole RDP as is currently shipped in OpenNebula does not support NLA authentication. You can follow `these instructions <https://www.parallels.com/blogs/ras/disabling-network-level-authentication/>`__ in order to disable NLA in the Windows box to use Guacamole RDP within Sunstone.
