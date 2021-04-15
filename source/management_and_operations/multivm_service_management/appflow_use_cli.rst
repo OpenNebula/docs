@@ -222,6 +222,8 @@ A service template can be cloned to produce a copy, ready to be instantiated und
 
 The ``oneflow-template clone`` (with the optional ``--recursive flag``) can be used to achieve this, as well as from the Sunstone service template tab.
 
+.. note:: If the name of the VM template + Service Template exceed 128 chars, VM template name will be cropped.
+
 Managing Services
 ================================================================================
 
