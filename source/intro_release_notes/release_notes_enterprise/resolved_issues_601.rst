@@ -28,3 +28,4 @@ The following issues has been solved in 6.0.1:
 - `Fix onedb upgrade for PostgreSQL <https://github.com/OpenNebula/one/issues/5334>`__.
 - `Fix dropdown with IPs in Sunstone Guacamole dialog <https://github.com/OpenNebula/one/issues/5337>`__.
 - `Add registration time to cloned service templates <https://github.com/OpenNebula/one/issues/5338>`__.
+- `Fix oneimage show output <https://github.com/OpenNebula/one/issues/5343>`__.
