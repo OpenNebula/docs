@@ -22,3 +22,4 @@ The following issues has been solved in 5.12.9:
 - `Sanitize VN drivers commands <https://github.com/OpenNebula/one/issues/5316>`__.
 - `Fix VNC connection from Sunstone under Apache & SELinux enabled <https://github.com/OpenNebula/one/issues/4392>`__.
 - `Fix Virtual Network Templates addresses show AR fields from Virtual Network creation <https://github.com/OpenNebula/one/issues/5323>`__.
+- `Fix Flow scaling in Sunstone cloud view <https://github.com/OpenNebula/one/issues/5231>`__.
