@@ -34,3 +34,12 @@ Sunstone
 
 - Remote connections to Guacamole from Sunstone have a mouse related issue, however noVNC can still be used if needed.
 - Guacamole RDP as is currently shipped in OpenNebula does not support NLA authentication. You can follow `these instructions <https://www.parallels.com/blogs/ras/disabling-network-level-authentication/>`__ in order to disable NLA in the Windows box to use Guacamole RDP within Sunstone.
+
+Install Linux Graphical Desktop on KVM Virtual Machines
+================================================================================
+
+OpenNebubula uses the ``cirrus`` graphical adapter for KVM Virtual Machines by default.
+It could happen that after installing a graphical desktop on a Linux VM, the Xorg window system does not load the appropriate video driver.
+You can force a VESA mode by configuring the kernel parameter ``vga=VESA_MODE`` in the GNU GRUB configuration file.
+`Here <https://en.wikipedia.org/wiki/VESA_BIOS_Extensions#Linux_video_mode_numbers/>`__ you can find the VESA mode numbers.
+For example, adding ``vga=791`` as kernel parameter will select the 16-bit 1024×768 resolution mode.
