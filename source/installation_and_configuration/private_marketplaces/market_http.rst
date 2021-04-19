@@ -36,7 +36,7 @@ These are the configuration attributes of a Marketplace template of the HTTP kin
 +-----------------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``BASE_URL``    | **YES**  | Base URL of the Marketplace HTTP endpoint.                                                                                                            |
 +-----------------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``BRIDGE_LIST`` | **NO**   | Comma-separated list of servers to access the public directory. If not defined, the public directory will be local to the Front-end.                  |
+| ``BRIDGE_LIST`` | **NO**   | Space separated list of servers to access the public directory. If not defined, the public directory will be local to the Front-end.                  |
 +-----------------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 For example, the following examples illustrate the creation of a Marketplace:
