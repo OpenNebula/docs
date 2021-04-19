@@ -30,3 +30,4 @@ The following issues has been solved in 6.0.1:
 - `Add registration time to cloned service templates <https://github.com/OpenNebula/one/issues/5338>`__.
 - `Fix oneimage show output <https://github.com/OpenNebula/one/issues/5343>`__.
 - `Crop VM template if it exceed 128 chars when cloning a service template <https://github.com/OpenNebula/one/issues/5123>`__.
+- `Fix Sunstone 2FA does not work with FireEdge enabled <https://github.com/OpenNebula/one/issues/5347>`__.
