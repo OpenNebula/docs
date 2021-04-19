@@ -17,6 +17,8 @@ Drivers - Storage
 
 - **Ceph**, OpenNebula 6.0 uses a consistent format scheme that reduces the need of setting ``DRIVER`` and ``FORMAT`` attributes. However existing images in Ceph Datastores may have a wrong value for these attributes. If the usage of these Images fails after upgrading to OpenNebula 6.0, please update Images in Ceph datastores to have ``FORMAT`` and ``DRIVER`` set to ``raw``. If any running VM is affected by this, ``onedb update-body`` command can be used for changing the corresponding values for the VM disks.
 
+- **LVM**, the situation described above for Ceph may also affect LVM based datastores, please verify that ``FORMAT`` and ``DRIVER`` are set to ``raw``.
+
 Drivers - Network
 ================================================================================
 
