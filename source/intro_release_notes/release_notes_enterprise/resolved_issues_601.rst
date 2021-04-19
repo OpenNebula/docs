@@ -31,3 +31,4 @@ The following issues has been solved in 6.0.1:
 - `Fix oneimage show output <https://github.com/OpenNebula/one/issues/5343>`__.
 - `Crop VM template if it exceed 128 chars when cloning a service template <https://github.com/OpenNebula/one/issues/5123>`__.
 - `Fix Sunstone 2FA does not work with FireEdge enabled <https://github.com/OpenNebula/one/issues/5347>`__.
+- Option to calculate showback only for running VMs, see :ref:`showback configuration <oned_conf_default_showback>`
