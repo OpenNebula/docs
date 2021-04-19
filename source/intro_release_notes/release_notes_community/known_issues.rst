@@ -43,6 +43,11 @@ As a workaround you can use the other browsers:
 - Chrome (61.0 - 67.0)
 - Firefox (59.0 - 61.0)
 
+Sunstone noVNC
+================================================================================
+
+Sunstone under Apache via Passenger and SELinux doesn't detect running noVNC proxy. One solution proposal is disable SELinux.
+
 Hooks
 ================================================================================
 
