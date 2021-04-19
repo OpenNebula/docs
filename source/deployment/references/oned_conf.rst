@@ -174,10 +174,6 @@ The following attributes define the default cost for Virtual Machines that don't
         DISK_COST   = 0
     ]
 
-    SHOWBACK_ONLY_RUNNING = "no"
-
-For showback the CPU and memory cost are counted if the resource is reserved on host. That includes also ``poweroff`` and ``suspend`` state, when the VM is uploaded to the host, the resources are reserved, but VM is not running. If you wish to count resources only for runnning VMs, set parameter ``SHOWBACK_ONLY_RUNNING = "yes"``, default is ``no``. The disk cost is always counted in ``poweroff`` and ``suspend`` state as the VM image is already uploaded to the host.
-
 .. _oned_conf_xml_rpc_server_configuration:
 
 XML-RPC Server Configuration
