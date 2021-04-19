@@ -9,14 +9,14 @@ A complete list of `known issues for OpenNebula is maintained here <https://gith
 This page will be updated with relevant information about bugs affecting OpenNebula, as well as possible workarounds until a patch is officially published.
 
 Accounting and Showback
-=======================
+================================================================================
 
 A bug that might lead to inaccurate hours in accounting and showback has been fixed. You can check all the information `here <https://github.com/OpenNebula/one/issues/1662>`_. But, old VMs won't be updated, so the bug might still be on those VMs.
 
 Sunstone Translate
-==================
+================================================================================
 
-If you are experiencing translation errors switching Suntone language, this fix might alleviate the issue. Download the following po2json.rb from the OpenNebula repository and run it for each of the languages that you are planing to use.
+If you are experiencing translation errors switching Sunstone language, this fix might alleviate the issue. Download the following po2json.rb from the OpenNebula repository and run it for each of the languages that you are planing to use.
 
 .. code-block:: bash
 
@@ -34,7 +34,7 @@ To apply the fix for a given language, adapt the following instructions for span
 Afterwards please make sure you clear your browser cache.
 
 Sunstone Browser
-================
+================================================================================
 
 Current implementation of Sunstone is not working on Internet Explorer due to new Javascript version.
 
@@ -43,17 +43,22 @@ As a workaround you can use the other browsers:
 - Chrome (61.0 - 67.0)
 - Firefox (59.0 - 61.0)
 
+Sunstone noVNC
+================================================================================
+
+Sunstone under Apache via Passenger and SELinux doesn't detect running noVNC proxy. One solution proposal is disable SELinux.
+
 Hooks
-=====
+================================================================================
 
 Potential issue with `host_error.rb` hook when receiving the host template argument from command line. You can check all the information `here <https://github.com/OpenNebula/one/issues/5101>`__
 
 OneFlow
-=======
+================================================================================
 
 Elasticity rules that apply to monitoring information do not work. This issue will be fixed on 5.12.6 and 5.12.0.4 versions.
 
 vCenter Monitoring Memory Leak
-==============================
+================================================================================
 
 Process vcenter_monitor.rb has a memory leak problem. Fix will be available in the next stable OpenNebula release. The workaround is to periodically restart the process. This can be done by performing a kill operation on the process, no need to restart the OpenNebula service.
