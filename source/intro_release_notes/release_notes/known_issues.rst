@@ -19,6 +19,8 @@ Drivers - Storage
 
 - **LVM**, the situation described above for Ceph may also affect LVM based datastores, please verify that ``FORMAT`` and ``DRIVER`` are set to ``raw``.
 
+- **BRIDGE_LIST** and File-based Datastores (``DS_MAD = fs``), if you are using this attribute, ``FORMAT`` attribute for new images may not properly set. As a workaround please update any new image created after 6.0 update or `apply this patch <https://github.com/OpenNebula/one/commit/02416dcb00ea42be4d22583bdc876a805ef87049>`_.
+
 Drivers - Network
 ================================================================================
 
