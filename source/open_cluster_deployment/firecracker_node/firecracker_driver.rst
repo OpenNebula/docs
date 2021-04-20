@@ -41,7 +41,7 @@ Storage Limitations
 
 - Firecracker only supports ``raw`` format images.
 
-- The Firecracker driver is only compatible with :ref:`Filesystem Datastores <fs_ds>`. It supports every ``TM_MAD`` supported by Filesystem Datastores except ``qcow2`` as it doesn't support ``qcow2`` images.
+- The Firecracker driver is only compatible with :ref:`NFS/NAS Datastores <nas_ds>` and :ref:`Local Storage Datastores <local_ds>`. Note that **``qcow2`` format is not supported**.
 
 - As Firecracker Jailer performs a ``chroot`` operation under the microVM location, persistent images are not supported when using ``TM_MAD=shared``. In order to use persistent images when using ``TM_MAD=shared`` the system ``TM_MAD`` must be overwritten to use ``TM_MAD=ssh`` this can be easily achieved by adding ``TM_MAD_SYSTEM=ssh`` at the microVM template. More info on how to combine different ``TM_MADs`` can be found :ref:`here <shared-ssh-mode>`.
 

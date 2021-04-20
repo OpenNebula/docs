@@ -6,9 +6,11 @@ Open Cloud Storage Setup
    :maxdepth: 2
 
    Overview <overview>
-   Filesystem Datastore <fs_ds>
+   NFS/NAS Datastore <nas_ds>
+   Local Storage Datastore <local_ds>
+   OneStor Datastore <onestor_ds>
    Ceph Datastore <ceph_ds>
-   LVM Datastore <lvm_drivers>
+   SAN Datastore <lvm_drivers>
    Raw Device Mapping Datastore <dev_ds>
    iSCSI - Libvirt Datastore <iscsi_ds>
    Kernels and Files Datastore <file_ds>

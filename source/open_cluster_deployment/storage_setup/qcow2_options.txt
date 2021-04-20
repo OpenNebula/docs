@@ -1,0 +1,9 @@
+Additional Configuration
+--------------------------------------------------------------------------------
+
+* ``QCOW2_OPTIONS``: Custom options for the ``qemu-img`` clone action. Images are created through the ``qemu-img`` command using the original image as a backing file. Custom options can be sent to ``qemu-img`` clone action through the variable ``QCOW2_OPTIONS`` in ``/etc/one/tmrc``.
+* ``DD_BLOCK_SIZE``: Block size for `dd` operations (default: 64kB) could be set in ``/var/lib/one/remotes/etc/datastore/fs/fs.conf``.
+* ``SUPPORTED_FS``: Comma-separated list with every filesystem supported for creating formatted datablocks. Can be set in ``/var/lib/one/remotes/etc/datastore/datastore.conf``.
+* ``FS_OPTS_<FS>``: Options for creating the filesystem for formatted datablocks. Can be set in ``/var/lib/one/remotes/etc/datastore/datastore.conf`` for each filesystem type.
+
+.. warning:: Before adding a new filesystem to the ``SUPPORTED_FS`` list make sure that the corresponding ``mkfs.<fs_name>`` command is available in the Front-end and hypervisor Hosts. If an unsupported FS is used by the user the default one will be used.

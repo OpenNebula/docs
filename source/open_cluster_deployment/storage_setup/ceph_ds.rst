@@ -8,57 +8,6 @@ The Ceph Datastore driver allows the use of Ceph storage for Images and disks of
 
 .. warning:: This driver requires the OpenNebula Nodes using the Ceph driver to be Ceph clients of a running Ceph cluster. More information in `Ceph documentation <https://docs.ceph.com/en/latest/>`__.
 
-Datastore Layout
-================================================================================
-
-Images are stored in a Ceph pool, named after its OpenNebula ID ``one-<IMAGE ID>``. Virtual Machine disks are stored by default in the same pool (Ceph Mode). You can also choose to export the Image rbd to the hypervisor local storage using the SSH Mode.
-
-.. important:: It is necessary to register each image only once, then it can be deployed using any mode (**ceph** or **ssh**).
-
-Ceph Mode (Default)
---------------------------------------------------------------------------------
-
-In this mode, Virtual Machines will use the same Image rbd volumes for their disks (persistent images), or a new snapshots of the image created in the form ``one-<IMAGE ID>-<VM ID>-<DISK ID>`` (non-persistent images).
-
-For example, consider a system using an Image and System Datastore backed by a Ceph pool named ``one``. The pool with one Image (ID ``0``) and two Virtual Machines ``14`` and ``15`` using this Image as virtual disk ``0`` would be similar to:
-
-.. prompt:: bash $ auto
-
-    $ rbd ls -l -p one --id libvirt
-    NAME         SIZE PARENT         FMT PROT LOCK
-    one-0      10240M                  2
-    one-0@snap 10240M                  2 yes
-    one-0-14-0 10240M one/one-0@snap   2
-    one-0-15-0 10240M one/one-0@snap   2
-
-.. note:: In this case, context disk and auxiliary files (deployment description and checkpoints) are stored locally in the Nodes.
-
-.. _ceph-ssh-mode:
-
-SSH Mode
---------------------------------------------------------------------------------
-
-In this mode, the associated rbd file for each disk is exported to a file and stored in the local file system of the hypervisor.
-
-For instance, in the previous example, if the VM ``14`` is set to be deployed in an SSH System Datastore (e.g. ``100``), the layout of the datastore in the hypervisor would be similar to:
-
-.. prompt:: bash $ auto
-
-    $ ls -l /var/lib/one/datastores/100/14
-    total 609228
-    -rw-rw-r-- 1 oneadmin oneadmin        1020 Dec 20 14:41 deployment.0
-    -rw-r--r-- 1 oneadmin oneadmin 10737418240 Dec 20 15:19 disk.0
-    -rw-rw-r-- 1 oneadmin oneadmin      372736 Dec 20 14:41 disk.1
-
-.. note:: In this case disk.0 is generated with a command similar to ``rbd export one/one-0@snap disk.0``
-
-.. warning::
-
-    In this mode there are some inherent limitations
-
-    * disk snapshots are not supported
-    * VM disk cannot be saved when located on the Front-end (undeployed or stopped VM)
-
 Ceph Cluster Setup
 ================================================================================
 
@@ -117,10 +66,10 @@ On the **Ceph Luminous** (v12.2.x and later):
 
 .. note:: For production environments it is recommended to **not collocate** Ceph services (monitor, osds) with OpenNebula Nodes or the Front-end
 
-Front-end and Node Setup
+Front-end and Hosts Setup
 ================================================================================
 
-In order to use the Ceph Cluster the Nodes need to be configured as follows:
+In order to use the Ceph Cluster the Hosts need to be configured as follows:
 
 * The Ceph client tools must be available in the machine.
 * The ``mon`` daemon must be defined in the ``ceph.conf`` for all the Nodes, so ``hostname`` and ``port`` doesn't need to be specified explicitly in any Ceph command.
@@ -132,10 +81,10 @@ In order to use the Ceph Cluster the Nodes need to be configured as follows:
 
     $ scp client.libvirt.key oneadmin@node:
 
-Node Setup
+Hosts Setup
 ================================================================================
 
-Nodes need extra steps to set-up credentials in libvirt:
+Hosts need extra steps to set-up credentials in libvirt:
 
 * Generate a secret for the Ceph user and copy it to the Nodes under oneadmin home. Write down the ``UUID`` for later use.
 
@@ -229,9 +178,9 @@ System Datastore also requires these attributes:
 +=================+===========================================================+===========+
 | ``TYPE``        | ``SYSTEM_DS``                                             | **YES**   |
 +-----------------+-----------------------------------------------------------+-----------+
-| ``TM_MAD``      | ``ceph``  to use the full Ceph mode, see above            | **YES**   |
+| ``TM_MAD``      | ``ceph``  to use the full Ceph mode, see below            | **YES**   |
 |                 +-----------------------------------------------------------+           |
-|                 | ``ssh`` to use local Host storage, SSH mode above         |           |
+|                 | ``ssh`` to use local Host storage, SSH mode below         |           |
 +-----------------+-----------------------------------------------------------+-----------+
 
 Create a System Datastore in Sunstone or through the CLI, for example:
@@ -295,7 +244,7 @@ An example of Datastore:
     > onedatastore create ds.conf
     ID: 101
 
-.. warning:: If you are going to use the ``TM_MAD_SYSTEM`` attribute with **ssh** mode, you need to have an :ref:`SSH type System Datastore <fs_ds>` configured.
+.. warning:: If you are going to use the ``TM_MAD_SYSTEM`` attribute with **ssh** mode, you need to have an :ref:`SSH type System Datastore <local_ds>` configured.
 
 Additional Configuration
 --------------------------------------------------------------------------------
@@ -319,3 +268,54 @@ When creating a VM Template you can choose to deploy the disks using the default
 * ``TM_MAD_SYSTEM="ssh"``
 
 When using Sunstone, the deployment mode needs to be set in the Storage tab.
+
+Datastore Internals
+================================================================================
+
+Images are stored in a Ceph pool, named after its OpenNebula ID ``one-<IMAGE ID>``. Virtual Machine disks are stored by default in the same pool (Ceph Mode). You can also choose to export the Image rbd to the hypervisor local storage using the SSH Mode.
+
+.. important:: It is necessary to register each image only once, then it can be deployed using any mode (**ceph** or **ssh**).
+
+Ceph Mode (Default)
+--------------------------------------------------------------------------------
+
+In this mode, Virtual Machines will use the same Image rbd volumes for their disks (persistent images), or a new snapshots of the image created in the form ``one-<IMAGE ID>-<VM ID>-<DISK ID>`` (non-persistent images).
+
+For example, consider a system using an Image and System Datastore backed by a Ceph pool named ``one``. The pool with one Image (ID ``0``) and two Virtual Machines ``14`` and ``15`` using this Image as virtual disk ``0`` would be similar to:
+
+.. prompt:: bash $ auto
+
+    $ rbd ls -l -p one --id libvirt
+    NAME         SIZE PARENT         FMT PROT LOCK
+    one-0      10240M                  2
+    one-0@snap 10240M                  2 yes
+    one-0-14-0 10240M one/one-0@snap   2
+    one-0-15-0 10240M one/one-0@snap   2
+
+.. note:: In this case, context disk and auxiliary files (deployment description and checkpoints) are stored locally in the Nodes.
+
+.. _ceph-ssh-mode:
+
+SSH Mode
+--------------------------------------------------------------------------------
+
+In this mode, the associated rbd file for each disk is exported to a file and stored in the local file system of the hypervisor.
+
+For instance, in the previous example, if the VM ``14`` is set to be deployed in an SSH System Datastore (e.g. ``100``), the layout of the datastore in the hypervisor would be similar to:
+
+.. prompt:: bash $ auto
+
+    $ ls -l /var/lib/one/datastores/100/14
+    total 609228
+    -rw-rw-r-- 1 oneadmin oneadmin        1020 Dec 20 14:41 deployment.0
+    -rw-r--r-- 1 oneadmin oneadmin 10737418240 Dec 20 15:19 disk.0
+    -rw-rw-r-- 1 oneadmin oneadmin      372736 Dec 20 14:41 disk.1
+
+.. note:: In this case disk.0 is generated with a command similar to ``rbd export one/one-0@snap disk.0``
+
+.. warning::
+
+    In this mode there are some inherent limitations
+
+    * disk snapshots are not supported
+    * VM disk cannot be saved when located on the Front-end (undeployed or stopped VM)

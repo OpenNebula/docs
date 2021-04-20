@@ -1,0 +1,24 @@
+Images are saved into the corresponding Datastore directory (``/var/lib/one/datastores/<DATASTORE ID>``). Also, for each running Virtual Machine there is a directory (named after the ``VM ID``) in the corresponding System Datastore. These directories contain the VM disks and additional files, e.g. checkpoint or snapshots.
+
+For example, a system with an Image Datastore (``1``) with three images and three Virtual Machines (VM 0 and 2 running, and VM 7 stopped) running from System Datastore ``0`` would present the following layout:
+
+.. code::
+
+    /var/lib/one/datastores
+    |-- 0/
+    |   |-- 0/
+    |   |   |-- disk.0
+    |   |   `-- disk.1
+    |   |-- 2/
+    |   |   `-- disk.0
+    |   `-- 7/
+    |       |-- checkpoint
+    |       `-- disk.0
+    `-- 1
+        |-- 05a38ae85311b9dbb4eb15a2010f11ce
+        |-- 2bbec245b382fd833be35b0b0683ed09
+        `-- d0e0df1fb8cfa88311ea54dfbcfc4b0c
+
+.. note::
+
+    The canonical path for ``/var/lib/one/datastores`` can be changed in :ref:`/etc/one/oned.conf <oned_conf>` with the ``DATASTORE_LOCATION`` configuration attribute
