@@ -20,13 +20,13 @@ Image Datastores
 ----------------
 
 There are different Image Datastores depending on how the images are stored on the underlying storage technology:
-   - :ref:`NFS/NAS <nas_ds>`
-   - :ref:`Local Storage <local_ds>`
-   - :ref:`OneStor <onestor_ds>`
-   - :ref:`Ceph <ceph_ds>`
-   - :ref:`SAN <lvm_drivers>`
-   - :ref:`Raw Device Mapping <dev_ds>`
-   - :ref:`iSCSI - Libvirt <iscsi_ds>`, to access iSCSI devices through the built-in QEMU support
+   - :ref:`NFS/NAS Datastore <nas_ds>`.
+   - :ref:`Local Storage Datastore <local_ds>`.
+   - :ref:`OneStor Datastore <onestor_ds>`.
+   - :ref:`Ceph <ceph_ds>`.
+   - :ref:`SAN <lvm_drivers>`.
+   - :ref:`Raw Device Mapping <dev_ds>`.
+   - :ref:`iSCSI - Libvirt Datastore <iscsi_ds>`, to access iSCSI devices through the built-in QEMU support.
 
 How Should I Read This Chapter
 ==============================
