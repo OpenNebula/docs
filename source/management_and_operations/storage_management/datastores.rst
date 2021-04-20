@@ -168,6 +168,9 @@ Also, there are a set of common attributes that can be used in any Datastore to 
 
 The Files & Kernels Datastore is an special datastore type to store plain files to be used as kernels, ram-disks or context files. :ref:`See here to learn how to define them <file_ds>`.
 
+.. important::
+    If you  are using ``BRIDGE_LIST`` you need to install any tool needed to access the underlying storage (e.g. Ceph ``BRIDGE_LIST`` servers need Ceph client tools), as well as generic tools like ``qemu-img``.
+
 Disable a System Datastore
 =================================================================================
 
