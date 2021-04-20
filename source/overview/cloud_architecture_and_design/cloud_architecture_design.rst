@@ -60,7 +60,7 @@ However, when using KVM, LXC or Firecracker, OpenNebula directly manages the hyp
 
 -  **Networking setup** with :ref:`802.1Q VLANs <hm-vlan>`, :ref:`ebtables <ebtables>`, :ref:`Open vSwitch <openvswitch>` or :ref:`VXLAN <vxlan>`.
 
--  **Storage setup** with :ref:`filesystem datastore <fs_ds>`, :ref:`LVM datastore <lvm_drivers>`, :ref:`Ceph <ceph_ds>`, :ref:`Dev <dev_ds>`, or :ref:`iSCSI <iscsi_ds>` datastore.
+-  **Storage setup** with :ref:`NFS/NAS datastore <nas_ds>`, :ref:`Local Storage datastore <local_ds>`, :ref:`SAN datastore <lvm_drivers>`, :ref:`Ceph <ceph_ds>`, :ref:`Dev <dev_ds>`, or :ref:`iSCSI <iscsi_ds>` datastore.
 
 -  **Host setup** with the configuration options for the :ref:`KVM hosts <kvmg>`, :ref:`LXC hosts <lxdmg>`, :ref:`Firecracker hosts <fcmg>` :ref:`Monitoring subsystem <mon>`, :ref:`Virtual Machine HA <ftguide>` or :ref:`PCI Passthrough <kvm_pci_passthrough>`.
 

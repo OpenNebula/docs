@@ -1,53 +1,27 @@
 .. _lvm_drivers:
 
 ================================================================================
-LVM Datastore
+SAN Datastore
 ================================================================================
 
-The LVM Datastore driver allows the use of LVM volumes (instead of plain files) to hold the disks of Virtual Machines. This reduces the overhead of having a filesystem in place and thus it may increase I/O performance.
-
-Datastore Layout
-================================================================================
-
-Images are stored as regular files (under the usual path: ``/var/lib/one/datastores/<id>``) in the Image Datastore, but they will be dumped into a Logical Volumes (LV) upon Virtual Machine creation. The Virtual Machines will run from Logical Volumes in the Node.
-
-|image0|
-
-This is the recommended driver to be used when a high-end SAN is available. The same LUN can be exported to all the Nodes while Virtual Machines will be able to run directly from the SAN.
-
-.. note::
-
-  The LVM datastore does **not** need CLVM configured in your cluster. The drivers refresh LVM metadata each time an image is needed on another Node.
-
-For example, consider a system with two Virtual Machines (``9`` and ``10``) using a disk, running in an LVM Datastore, with ID ``0``. The Nodes have configured a shared LUN and created a volume group named ``vg-one-0``. The layout of the Datastore would be:
-
-.. prompt:: bash # auto
-
-    # lvs
-      LV          VG       Attr       LSize Pool Origin Data%  Meta%  Move
-      lv-one-10-0 vg-one-0 -wi------- 2.20g
-      lv-one-9-0  vg-one-0 -wi------- 2.20g
-
-.. warning::
-
-  Images are stored in a shared storage in file form (e.g. NFS, GlusterFS...). The Datastore directories and mount points need to be configured as a regular shared Image Datastore, :ref:`please refer to FileSystem Datastore guide <fs_ds>`. It is a good idea to first deploy a shared Filesystem Datastore and once it is working replace the associated System Datastore with the LVM one, maintaining the shared mount point as described below.
+This storage configuration assumes that Hosts have access to storage devices (LUNs) exported by an Storage Area Network (SAN) server ussing a suitible protocol like iSCSI or Fiber Channel. The Hosts will interface the devices through the LVM abstraction layer.  Virtual Machines run from a LV (logical volume) device instead of plain files. This reduces the overhead of having a filesystem in place and thus it may increase I/O performance.
 
 Front-end Setup
 ================================================================================
 
-* The Front-end needs to have access to the Image Datastores, mounting the associated directory.
+The Front-end needs to have access to the Image Datastores, mounting the associated directory. This Image Datastore will act as an Image repository, that stores the disk images as files to save space.
 
-Node Setup
+Hosts Setup
 ================================================================================
-Nodes needs to meet the following requirements:
+Hosts needs to meet the following requirements:
 
-* LVM2 must be available on Nodes.
+* LVM2 must be available on Hosts.
 * ``lvmetad`` must be disabled. Set this parameter in ``/etc/lvm/lvm.conf``: ``use_lvmetad = 0``, and disable the ``lvm2-lvmetad.service`` if running.
 * ``oneadmin`` needs to belong to the ``disk`` group.
 * All the nodes need to have access to the same LUNs.
-* A LVM VG needs to be created in the shared LUNs for each datastore with the following name: ``vg-one-<system_ds_id>``. This just needs to be done in one Node.
+* A LVM VG needs to be created in the shared LUNs for each datastore with the following name: ``vg-one-<system_ds_id>``. This just needs to be done in one Host.
 * Virtual Machine disks are symbolic links to the block devices. However, additional VM files like checkpoints or deployment files are stored under ``/var/lib/one/datastores/<id>``. Be sure that enough local space is present.
-* All the Nodes need to have access to the images and System Datastores, mounting the associated directories.
+* All the Hosts need to have access to the images and System Datastores, mounting the associated directories.
 
 .. note:: In order to support live migration the Datastore underlying storage (i.e ``/var/lib/one/datastores/<id>`` folder) needs to be shared across the hypervisors (e.g by using NFS or similar mechanisms).
 
@@ -58,15 +32,12 @@ Nodes needs to meet the following requirements:
 OpenNebula Configuration
 ================================================================================
 
-Once the Node storage setup is ready, the OpenNebula configuration comprises two steps:
-
-* Create System Datastore
-* Create Image Datastore
+Once the Host and Front-end storage is setup, the OpenNebula configuration comprises the creation of an Image and System Datastores.
 
 Create System Datastore
 --------------------------------------------------------------------------------
 
-To create a new LVM System Datastore, you need to set following (template) parameters:
+To create a new SAN/LVM System Datastore, you need to set following (template) parameters:
 
 +-----------------+---------------------------------------------------+
 |    Attribute    |                   Description                     |
@@ -77,7 +48,7 @@ To create a new LVM System Datastore, you need to set following (template) param
 +-----------------+---------------------------------------------------+
 | ``TYPE``        | ``SYSTEM_DS``                                     |
 +-----------------+---------------------------------------------------+
-| ``BRIDGE_LIST`` | List of Nodes with access to the LV to monitor it |
+| ``BRIDGE_LIST`` | List of Hosts with access to the LV to monitor it |
 +-----------------+---------------------------------------------------+
 
 For example:
@@ -112,7 +83,7 @@ To create a new LVM Image Datastore, you need to set following (template) parame
 | ``DISK_TYPE``   | ``BLOCK``                                                                                   |
 +-----------------+---------------------------------------------------------------------------------------------+
 
-The following examples illustrate the creation of an LVM datastore using a template. In this case we will use the Host ``host01`` as one of our OpenNebula LVM-enabled Nodes.
+The following examples illustrate the creation of an LVM datastore using a template. In this case we will use the Host ``host01`` as one of our OpenNebula LVM-enabled Hosts.
 
 .. code::
 
@@ -126,9 +97,6 @@ The following examples illustrate the creation of an LVM datastore using a templ
 
     > onedatastore create ds.conf
     ID: 101
-
-.. |image0| image:: /images/fs_lvm_datastore.png
-
 
 .. _lvm_driver_conf:
 
@@ -160,12 +128,37 @@ Example:
     #  Block size for the dd commands
     DD_BLOCK_SIZE=32M
 
-Additional Configuration
---------------------------------------------------------------------------------
-
 The following attribute can be set for every Datastore type:
 
 * ``SUPPORTED_FS``: Comma-separated list with every filesystem supported for creating formatted datablocks. Can be set in ``/var/lib/one/remotes/etc/datastore/datastore.conf``.
 * ``FS_OPTS_<FS>``: Options for creating the filesystem for formatted datablocks. Can be set in ``/var/lib/one/remotes/etc/datastore/datastore.conf`` for each filesystem type.
 
-.. warning:: Before adding a new filesystem to the ``SUPPORTED_FS`` list make sure that the corresponding ``mkfs.<fs_name>`` command is available in all Nodes including Front-end and hypervisor Nodes. If an unsupported FS is used by the user the default one will be used.
+.. warning:: Before adding a new filesystem to the ``SUPPORTED_FS`` list make sure that the corresponding ``mkfs.<fs_name>`` command is available in all Hosts including Front-end and hypervisors. If an unsupported FS is used by the user the default one will be used.
+
+Datastore Internals
+================================================================================
+
+Images are stored as regular files (under the usual path: ``/var/lib/one/datastores/<id>``) in the Image Datastore, but they will be dumped into a Logical Volumes (LV) upon Virtual Machine creation. The Virtual Machines will run from Logical Volumes in the Host.
+
+|image0|
+
+This is the recommended driver to be used when a high-end SAN is available. The same LUN can be exported to all the Hosts while Virtual Machines will be able to run directly from the SAN.
+
+.. note::
+
+  The LVM datastore does **not** need CLVM configured in your cluster. The drivers refresh LVM metadata each time an image is needed on another Hosts.
+
+For example, consider a system with two Virtual Machines (``9`` and ``10``) using a disk, running in an LVM Datastore, with ID ``0``. The Hosts have configured a shared LUN and created a volume group named ``vg-one-0``. The layout of the Datastore would be:
+
+.. prompt:: bash # auto
+
+    # lvs
+      LV          VG       Attr       LSize Pool Origin Data%  Meta%  Move
+      lv-one-10-0 vg-one-0 -wi------- 2.20g
+      lv-one-9-0  vg-one-0 -wi------- 2.20g
+
+.. warning::
+
+  Images are stored in a shared storage in file form (e.g. NFS, GlusterFS...). The Datastore directories and mount points need to be configured as a regular shared Image Datastore, :ref:`please refer to NAS/NFS Datastore guide <nas_ds>`. It is a good idea to first deploy a shared Filesystem Datastore and once it is working replace the associated System Datastore with the LVM one, maintaining the shared mount point as described below.
+
+.. |image0| image:: /images/fs_lvm_datastore.png

@@ -20,62 +20,32 @@ Image Datastores
 ----------------
 
 There are different Image Datastores depending on how the images are stored on the underlying storage technology:
-
-* :ref:`Filesystem <fs_ds>`, to store images as files.
-* :ref:`Ceph <ceph_ds>`, to store images using Ceph block devices.
-* :ref:`LVM <lvm_drivers>`, to store images in LVM logical volumes.
-* :ref:`Raw Device Mapping <dev_ds>`, to directly attach existing block devices on the Nodes to the Virtual Machine.
-* :ref:`iSCSI - Libvirt Datastore <iscsi_ds>`, to access iSCSI devices through the built-in QEMU support.
-
-Disk images are transferred between the Image and System datastores by the :ref:`transfer manager <sd_tm>` (TM) drivers. These drivers are specialized pieces of software that perform low-level storage operations. The following table summarizes the available transfer modes for each datastore:
-
-+---------------+-------------------------------------------------------------------+
-|   Datastore   | Image to System (VM) Datastore disk transfers methods             |
-+===============+===================================================================+
-| Filesystem    | ``shared`` - images are exported in a shared filesystem           |
-|               +-------------------------------------------------------------------+
-|               | ``qcow2`` - like *shared* but specialized for the qcow2 format    |
-|               +-------------------------------------------------------------------+
-|               | ``ssh`` - images are copied using the SSH protocol                |
-+---------------+-------------------------------------------------------------------+
-| Ceph          | ``ceph`` - all images are exported in Ceph pools                  |
-|               +-------------------------------------------------------------------+
-|               | ``shared`` - volatile & context disks exported in a shared FS.    |
-|               +-------------------------------------------------------------------+
-|               | ``ssh`` - images are copied from Ceph to local filesystem         |
-+---------------+-------------------------------------------------------------------+
-| LVM           | ``fs_lvm`` - images exported in a shared FS but dumped to a LV    |
-+---------------+-------------------------------------------------------------------+
-| Raw Devices   | ``dev`` - images are existing block devices on the Nodes          |
-+---------------+-------------------------------------------------------------------+
-| iSCSI libvirt | ``iscsi`` - images are iSCSI targets                              |
-+---------------+-------------------------------------------------------------------+
+   - :ref:`NFS/NAS Datastore <nas_ds>`.
+   - :ref:`Local Storage Datastore <local_ds>`.
+   - :ref:`OneStor Datastore <onestor_ds>`.
+   - :ref:`Ceph <ceph_ds>`.
+   - :ref:`SAN <lvm_drivers>`.
+   - :ref:`Raw Device Mapping <dev_ds>`.
+   - :ref:`iSCSI - Libvirt Datastore <iscsi_ds>`, to access iSCSI devices through the built-in QEMU support.
 
 How Should I Read This Chapter
 ==============================
 
 Before reading this chapter make sure you are familiar with Node Deployment from :ref:`Open Cloud Deployment <vmmg>`.
 
-After that, proceed with the specific Datastore documentation you might be interested in:
-
-* :ref:`Filesystem <fs_ds>`
-* :ref:`Ceph <ceph_ds>`
-* :ref:`LVM <lvm_drivers>`
-* :ref:`Raw Device Mapping <dev_ds>`
-* :ref:`iSCSI - Libvirt Datastore <iscsi_ds>`
-* :ref:`Kernels & Files Datastore <file_ds>`
+After that, proceed with the specific Datastore documentation you might be interested in.
 
 Hypervisor Compatibility
 ========================
 
-This chapter applies to KVM, Firecracker, and LXD.
+This chapter applies to KVM, Firecracker, and LXC.
 
 .. warning::
 
    Hypervisor limitations:
 
-   - **LXD** Node only supports :ref:`Filesystem <fs_ds>` and :ref:`Ceph <ceph_ds>`
-   - **Firecracker** Node only supports :ref:`Filesystem <fs_ds>`
+   - **LXC** Node only supports :ref:`NFS/NAS <nas_ds>`, :ref:`Local Storage <local_ds>` and :ref:`Ceph <ceph_ds>` datastores
+   - **Firecracker** Node only supports :ref:`NFS/NAS <nas_ds>`, :ref:`Local Storage <local_ds>` datastores.
 
 Follow the chapter :ref:`vCenter Storage <vcenter_ds>` for a similar guide for vCenter.
 

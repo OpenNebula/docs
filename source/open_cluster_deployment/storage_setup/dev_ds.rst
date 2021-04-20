@@ -49,10 +49,10 @@ Create System Datastore
 
 The RDM Datastore can work with the following System Datastores:
 
-* Filesystem, **shared** transfer mode
-* Filesystem, **ssh** transfer mode
+* :ref:`NFS/NAS system datastore <nas_ds>`.
+* :ref:`Local storage system datastore <local_ds>`.
 
-Please refer to the :ref:`Filesystem Datastore section <fs_ds>` for more details. Note that the System Datastore is only used for volatile disks and context devices.
+Note that the System Datastore is only used for volatile disks and context devices.
 
 Create Image Datastore
 --------------------------------------------------------------------------------
