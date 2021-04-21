@@ -21,12 +21,12 @@ Image Datastores
 
 There are different Image Datastores depending on how the images are stored on the underlying storage technology:
    - :ref:`NFS/NAS Datastore <nas_ds>`.
-* :ref:`Local Storage Datastore <local_ds>`.
-* :ref:`OneStor Datastore <onestor_ds>`.
-* :ref:`Ceph <ceph_ds>`.
-* :ref:`SAN <lvm_drivers>`.
-* :ref:`Raw Device Mapping <dev_ds>`.
-* :ref:`iSCSI - Libvirt Datastore <iscsi_ds>`, to access iSCSI devices through the built-in QEMU support.
+   - :ref:`Local Storage Datastore <local_ds>`.
+   - :ref:`OneStor Datastore <onestor_ds>`.
+   - :ref:`Ceph <ceph_ds>`.
+   - :ref:`SAN <lvm_drivers>`.
+   - :ref:`Raw Device Mapping <dev_ds>`.
+   - :ref:`iSCSI - Libvirt Datastore <iscsi_ds>`, to access iSCSI devices through the built-in QEMU support.
 
 How Should I Read This Chapter
 ==============================
@@ -44,8 +44,8 @@ This chapter applies to KVM, Firecracker, and LXC.
 
    Hypervisor limitations:
 
-   - **LXC** Node only supports :ref:`NFS/NAS <nas_ds>`, `Local Storage <local_ds>` and :ref:`Ceph <ceph_ds>` datastores
-   - **Firecracker** Node only supports :ref:`NFS/NAS <nas_ds>`, `Local Storage <local_ds>` datastores.
+   - **LXC** Node only supports :ref:`NFS/NAS <nas_ds>`, :ref:`Local Storage <local_ds>` and :ref:`Ceph <ceph_ds>` datastores
+   - **Firecracker** Node only supports :ref:`NFS/NAS <nas_ds>`, :ref:`Local Storage <local_ds>` datastores.
 
 Follow the chapter :ref:`vCenter Storage <vcenter_ds>` for a similar guide for vCenter.
 
