@@ -3,6 +3,8 @@
 Resolved Issues in 5.12.0.4
 --------------------------------------------------------------------------------
 
+.. note:: We've recently released `version 6.0 'Mutara' <https://opennebula.io/opennebula-6-0-mutara-expanding-your-multi-cloud-to-the-edge>`__ so, as we announced last year, CE 5.12.0.4 comes with the open source migration packages that you will need to update your old versions to the OpenNebula Series 5 CE
+
 The following new features has been backported to 5.12.0.4:
 
 - `Add OneGate features for VNF <https://github.com/OpenNebula/one/issues/5112>`__.

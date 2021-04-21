@@ -16,5 +16,4 @@ Release Notes 5.12.9 Enterprise
    Resolved Issues in 5.12.6 <resolved_issues_5126>
    Resolved Issues in 5.12.7 <resolved_issues_5127>
    Resolved Issues in 5.12.8 <resolved_issues_5128>
-   Resolved Issues in 5.12.9 <resolved_issues_5129>
    Known Issues <known_issues>
