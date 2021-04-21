@@ -315,7 +315,7 @@ To use them you need to add the key ``inputs`` into your provision template, e.g
     inputs:
       - name: 'array_i'
         type: 'array'
-        default: 'h1,h2,h3'
+        default: 'h1;h2;h3'
       - name: 'text_i'
         type: 'text'
         default: 'This is a text'
