@@ -20,7 +20,7 @@ Image Datastores
 ----------------
 
 There are different Image Datastores depending on how the images are stored on the underlying storage technology:
-* :ref:`NFS/NAS Datastore <nas_ds>`.
+   - :ref:`NFS/NAS Datastore <nas_ds>`.
 * :ref:`Local Storage Datastore <local_ds>`.
 * :ref:`OneStor Datastore <onestor_ds>`.
 * :ref:`Ceph <ceph_ds>`.
