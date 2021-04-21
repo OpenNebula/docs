@@ -32,3 +32,4 @@ The following issues has been solved in 6.0.1:
 - `Crop VM template if it exceed 128 chars when cloning a service template <https://github.com/OpenNebula/one/issues/5123>`__.
 - `Fix Sunstone 2FA does not work with FireEdge enabled <https://github.com/OpenNebula/one/issues/5347>`__.
 - Option to calculate showback only for running VMs, see :ref:`showback configuration <oned_conf_default_showback>`
+- Security groups support also :ref:`NIC_ALIAS <vgg_vn_alias>`
