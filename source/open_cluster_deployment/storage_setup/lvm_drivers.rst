@@ -4,7 +4,7 @@
 SAN Datastore
 ================================================================================
 
-This storage configuration assumes that Hosts have access to storage devices (LUNs) exported by an Storage Area Network (SAN) server ussing a suitible protocol like iSCSI or Fiber Channel. The Hosts will interface the devices through the LVM abstraction layer.  Virtual Machines run from a LV (logical volume) device instead of plain files. This reduces the overhead of having a filesystem in place and thus it may increase I/O performance.
+This storage configuration assumes that Hosts have access to storage devices (LUNs) exported by an Storage Area Network (SAN) server using a suitable protocol like iSCSI or Fiber Channel. The Hosts will interface the devices through the LVM abstraction layer.  Virtual Machines run from a LV (logical volume) device instead of plain files. This reduces the overhead of having a filesystem in place and thus it may increase I/O performance.
 
 Front-end Setup
 ================================================================================
