@@ -9,6 +9,7 @@ The following new features has been backported to 6.0.1:
 
 - `Add remotes connections to VMs with external IP <https://github.com/OpenNebula/one/issues/5335>`__.
 - `Add button to take screenshots from Guacamole Sunstone <https://github.com/OpenNebula/one/issues/5342>`__.
+- `Add states to role vm actions buttons in Sunstone <https://github.com/OpenNebula/one/issues/5341>`__.
 
 The following issues has been solved in 6.0.1:
 
