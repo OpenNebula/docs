@@ -1,7 +1,7 @@
 .. _rn_enterprise:
 
 ================================================================================
-Release Notes 5.12.9 Enterprise
+Release Notes 5.12.10 Enterprise
 ================================================================================
 
 .. toctree::
@@ -17,4 +17,5 @@ Release Notes 5.12.9 Enterprise
    Resolved Issues in 5.12.7 <resolved_issues_5127>
    Resolved Issues in 5.12.8 <resolved_issues_5128>
    Resolved Issues in 5.12.9 <resolved_issues_5129>
+   Resolved Issues in 5.12.10 <resolved_issues_51210>
    Known Issues <known_issues>
