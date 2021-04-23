@@ -84,7 +84,18 @@ You need to modify the Wordpress VM template. Proceed to the ``Templates --> VMs
 
 |wordpress_public_network|
 
-Then proceed to the Context tab and add the following script in the Start Script section; the script will be executed during the booting process of the VM. You need also to tick the ``Add OneGate token`` option. 
+Then proceed to the Context tab and add the following script in the Start Script section; the script will be executed during the booting process of the VM. You need also to tick the ``Add OneGate token`` option.
+
+.. code:: bash
+
+    DB_IP=$(onegate service show --extended | sed -n '/db_/{n;n;p}' | cut -d ':' -f2 | tr -d ' ')
+    export WORDPRESS_DB_HOST=${DB_IP}
+    export WORDPRESS_DB_USER=wp
+    export WORDPRESS_DB_PASSWORD=wp
+    export WORDPRESS_DB_NAME=wordpress
+    cd /var/www/html
+    nohup docker-entrypoint.sh apache2-foreground >> /tmp/wordpress.log 2>&1 &
+    onegate vm update --data READY=YES
 
 |wordpress_start_script|
 
@@ -103,6 +114,15 @@ You need to modify the Wordpress VM template. Proceed to the ``Templates --> VMs
 |mariadb_public_network|
 
 Then proceed to the Context tab and add the following script in the Start Script section; the script will be executed during the booting process of the VM. You need also to tick the ``Add OneGate token`` option.
+
+.. code:: bash
+
+    export MYSQL_ROOT_PASSWORD=@mysqlroot
+    export MYSQL_DATABASE=wordpress
+    export MYSQL_USER=wp
+    export MYSQL_PASSWORD=wp
+    nohup docker-entrypoint.sh mysql >> /tmp/mysqld.log 2>&1 &
+    onegate vm update --data READY=YES
 
 |mariadb_start_script|
 
