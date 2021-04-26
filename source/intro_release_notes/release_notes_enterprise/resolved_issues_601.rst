@@ -3,6 +3,8 @@
 Resolved Issues in 6.0.1
 --------------------------------------------------------------------------------
 
+.. note:: Sunstone datatable autorefresh (ie, the state of hosts and VMs as shown in the list) has been disabled due to the performance penalty it incurs. Individual host and VM views still benefit from autorefresh.
+
 A complete list of solved issues for 6.0.1 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/47?closed=1>`__.
 
 The following new features has been backported to 6.0.1:
