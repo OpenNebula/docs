@@ -145,3 +145,23 @@ The ``RAW`` attribute allows us to add raw LXC configuration attributes to the f
       DATA = "lxc.signal.reboot = 9" ]
 
 .. note:: Each line of the ``DATA`` attribute must contain only an LXC configuration attribute and its corresponding value. If a provided attribute is already set by OpenNebula, it will be discarded and the original value will take precedence.
+
+The ``PROFILES`` attribute implements a similar behavior than `LXD profiles <https://linuxcontainers.org/lxd/advanced-guide/#profiles>`__. It allows to include extra LXC configuration to a set of containers. In order to use a profile, the corresponding LXC configuration file must be available at ``/var/lib/one/remotes/etc/vmm/lxc/profiles``. For example if we want to use the profiles ``production`` and ``extra-performance`` we need to create the corresponding files containing the extra LXC configuration attributes:
+
+.. prompt:: bash $ auto
+
+  $ ls -l /var/lib/one/remotes/etc/vmm/lxc/profiles
+  ...
+  -rw-r--r-- 1 oneadmin oneadmin 40 abr 26 12:35 extra-performance
+  -rw-r--r-- 1 oneadmin oneadmin 35 abr 26 12:35 production
+
+.. warning:: After defining the profiles, make sure ``oneadmin`` user has enough permission for reading them. Also, remember to use ``onehost sync`` command to make sure the changes are synced in the host. If the profile is not available in the host, the container will be deployed without including the corresponding profile configuration.
+
+After defining the profiles they can be used by adding the ``PROFILES`` attribute to the VM Template:
+
+.. code::
+
+  PROFILES = "extra-performance, production"
+
+Profiles, are implemented by using the LXC ``include`` configuration attribute, note that the profiles will be included in the provided order and this order might affect the final configuration of the container.
+
