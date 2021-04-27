@@ -10,6 +10,20 @@ In the public OpenNebula System Marketplace there are services available that le
 
 We are going to assume the Edge Cluster has been named "fc-metal-aws-cluster".
 
+Step 0. Prepare the Edge Cluster for Auto-discovery
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Edit ``/var/lib/one/remotes/etc/OpenNebulaNetwork.conf`` to set Linux bridges in promiscuous mode, simply add:
+
+.. code:: yaml
+    :ip_bridge_conf:
+       :promisc: on
+
+Finally propagate this configuration to the Edge Cluster hosts by executing:
+
+.. prompt:: bash $ auto
+    $ onehost sync -f
+
 Step 1. Download the OneFlow K3s Service from the Marketplace
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
