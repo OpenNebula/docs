@@ -13,17 +13,15 @@ We are going to assume the Edge Cluster has been named "fc-metal-aws-cluster".
 Step 0. Prepare the Edge Cluster for Auto-discovery
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Edit ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf`` to set Linux bridges in promiscuous mode, simply add:
+Edit ``/var/lib/one/remotes/etc/OpenNebulaNetwork.conf`` to set Linux bridges in promiscuous mode, simply add:
 
-.. code::
-
+.. code:: yaml
     :ip_bridge_conf:
        :promisc: on
 
 Finally propagate this configuration to the Edge Cluster hosts by executing:
 
 .. prompt:: bash $ auto
-
     $ onehost sync -f
 
 Step 1. Download the OneFlow K3s Service from the Marketplace
@@ -44,7 +42,7 @@ The appliance will be ready when the image in ``Storage --> Images`` (named "Ser
 
 Step 2. Import the Kernel and Update the K3s VM Template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-In order to deploy Firecracker microVMs, you need to import a kernel from the Marketplace. Go to ``Storage --> Apps`` tab, and search for kernel. Select "Kernel 4.19 x86_64 - Firecracker" and click on the icon with the cloud and the down arrow inside (two positions to the right from the green "+"). 
+In order to deploy Firecracker microVMs, you need to import a kernel from the Marketplace. Go to ``Storage --> Apps`` tab, and search for kernel. Select "Kernel 4.19 x86_64 - Firecracker" and click on the icon with the cloud and the down arrow inside (two positions to the right from the green "+").
 
 |k3s_kernel_marketplace|
 
@@ -106,14 +104,14 @@ Now deploy nginx on the cluster:
 .. prompt:: yaml $ auto
 
     root@k3s-server-0:~# k3s kubectl create deployment nginx --image=nginx
-   
+
 After a few seconds, you should be able to see the deployment
 
 .. prompt:: bash $ auto
 
     root@k3s-server-0:~# k3s kubectl get deployment
     NAME    READY   UP-TO-DATE   AVAILABLE   AGE
-    nginx   1/1     1            1           7s   
+    nginx   1/1     1            1           7s
 
 and the related pod in running state
 
