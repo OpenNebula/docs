@@ -13,7 +13,7 @@ We are going to assume the Edge Cluster has been named "fc-metal-aws-cluster".
 Step 0. Prepare the Edge Cluster for Auto-discovery
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Edit ``/var/lib/one/remotes/etc/OpenNebulaNetwork.conf`` to set Linux bridges in promiscuous mode, simply add:
+Edit ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf`` to set Linux bridges in promiscuous mode, simply add:
 
 .. code::
 
