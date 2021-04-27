@@ -11,7 +11,7 @@ The document describes the reference architecture for Basic and Advanced OpenNeb
 
 |image|
 
-.. note:: The White Paper on the True Hybrid Cloud Architecture is publicly available for download `here <https://support.opennebula.pro/hc/en-us/articles/204210319-Open-Cloud-Reference-Architecture-White-Paper>`__.
+.. note:: The White Paper on the Open Cloud Architecture is publicly available for download `here <https://support.opennebula.pro/hc/en-us/articles/204210319-Open-Cloud-Reference-Architecture-White-Paper>`__.
 
 OpenNebula provides a variety of ways for Virtual Machines and containers to access storage. It supports multiple traditional storage models including NAS, SAN, NFS, iSCSI, and Fiber Channel (FC), which allow virtualized applications to access storage resources in the same way as they would on a regular physical machine. It also supports distributed Software-Defined Storage (SDS) models like Ceph, GlusterFS, StorPool, and LinStor, that allow you to create and scale elastic pools of storage and hyperconvergence deployments. Deciding which is the right storage backend for your cloud depends on your performance, scalability, and availability requirements; your existing storage infrastructure; your budget for new hardware, licenses, and support; and your skills and the IT staff you want to dedicate to its operation. This report describes OneStor, a local direct attached storage solution enhanced with caching, replica and snapshotting mechanisms that has been specially designed for OpenNebula cloud infrastructures. OneStor brings significant benefits to any enterprise, with a clear reduction in complexity, resource consumption and operational costs. 
 
