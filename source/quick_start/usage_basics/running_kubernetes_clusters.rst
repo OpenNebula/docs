@@ -153,16 +153,11 @@ After a few seconds, you should be able to see the nginx pod running
 
 In order to access the application, we need to create a Service object that exposes the application.
 
-<<<<<<< HEAD
 NodePort Service
 ++++++++++++++++
 
 One way is to create a `NodePort Service <https://kubernetes.io/docs/concepts/services-networking/service/#nodeport>`_ that opens a specific port on all the cluster VMs, so all traffic sent to this port is forwarded to the Service:
 
-=======
-One way is to create a NodePort Service that opens a specific port on all the cluster VMs, so all traffic sent to this port is forwarded to the Service:
-
->>>>>>> 07afc480 (F #QuickStart: Update kubernetes clusters (#1770))
 .. prompt:: yaml $ auto
 
    [root@onekube-ip-10-0-17-190 ~]# kubectl expose pod nginx --type=NodePort --name=nginx
@@ -176,7 +171,6 @@ Let's check the service:
     kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP        30m
     nginx        NodePort    10.104.44.89   <none>        80:30317/TCP   13s
 
-<<<<<<< HEAD
 You can use any public IP of the VMs of the K8s cluster to connect to the nginx application using the port allocated (``30317`` in our case).
 
 |node_port_nginx_welcome_page|
@@ -191,15 +185,10 @@ External IP Service
 An alternative way to expose the Service is to use **External IPs** and expose the service directly. In this case, we can use the public IPs of the cluster VMs, or we can add also another public IP by attaching a new NIC (as a Nic Alias) to one of the cluster VMs. In the second case, first of all verify that you have public IPs available from the public network deployed on the edge; if you can then add another IP by following the steps described :ref:`here <edge_public>`
 
 In order to attach a Nic Alias to a VM, go to the ``Instances --> VMs`` tab, select one of the cluster VMs and then select the ``Network`` tab of that VM. Then you press the ``attach_nic`` green button and you can attach a Nic Alias by ticking the option ``Attach as an alias`` and selecting the public network.
-=======
+
 You can use any public IP of the VMs of the K8s cluster to connect to the nginx application using the port allocated (30317 in our case).
 
 |node_port_nginx_welcome_page|
-
-An alternative way to expose the Service is to use External IPs. In this case, we can use the public IPs of the cluster VMs, or we can add also another public IP by attaching a new NIC (as a Nic Alias) to one of the cluster VMs. In the second case, first of all verify that you have public IPs available from the public network deployed on the edge; in case you can add another IP by following the steps described :ref:`here <edge_public>`
-
-In order to attach a Nic Alias to a VM, go to the ``Instances --> VMs`` tab, select one of the cluster VMs and then select the Network tab of that VM. Then you press the ``attach_nic`` green button and you can attach a Nic Alias by ticking the option ``Attach as an alias`` and selecting the public network.
->>>>>>> 07afc480 (F #QuickStart: Update kubernetes clusters (#1770))
 
 |nic_alias_attach|
 
@@ -277,12 +266,10 @@ The advantage is that there is no one node where is this External IP bound. The 
 .. note::
 
     If the reader understands how the `Keepalived <https://www.keepalived.org/>`_ functions then this is very similar. The difference is that the provider of the LoadBalancer is not assigning the IP(s) on the cluster nodes but it just replies to the ARP requests or sends *gratuitous* ARP messages when failover needs to happen. For more info read the official documentation of the LoadBalancer which the Appliance is using: `MetalLB ARP/Layer2 <https://metallb.universe.tf/concepts/layer2/>`_.
-=======
 
 |external_ip_nginx_welcome_page|
 
 .. note:: The K8s appliance at the moment supports only the NodePort and External IPs services to expose applications. The Load Balancer service will be provided in a future release of the appliance.
->>>>>>> 07afc480 (F #QuickStart: Update kubernetes clusters (#1770))
 
 Congrats! You successfully deployed a fully functional Kubernetes cluster in the edge. Have fun with your new OpenNebula cloud!
 
