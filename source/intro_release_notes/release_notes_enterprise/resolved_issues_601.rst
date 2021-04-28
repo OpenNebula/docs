@@ -38,3 +38,4 @@ The following issues has been solved in 6.0.1:
 - Option to calculate showback only for running VMs, see :ref:`showback configuration <oned_conf_default_showback>`
 - Security groups support also :ref:`NIC_ALIAS <vgg_vn_alias>`
 - `Fix for VMRC console requires HOST MANAGE permissions <https://github.com/OpenNebula/one/issues/5361>`__.
+- `Remove IO section from VM update configuration <https://github.com/OpenNebula/one/issues/5344>`__.
