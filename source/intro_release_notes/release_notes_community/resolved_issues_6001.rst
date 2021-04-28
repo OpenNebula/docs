@@ -38,3 +38,4 @@ The following issues has been solved in 6.0.0.1:
 - Option to calculate showback only for running VMs, see :ref:`showback configuration <oned_conf_default_showback>`
 - Security groups support also :ref:`NIC_ALIAS <vgg_vn_alias>`
 - `Fix for VMRC console requires HOST MANAGE permissions <https://github.com/OpenNebula/one/issues/5361>`__.
+- `Fix for FireEdge token generation exposing using passwords to admins <https://github.com/OpenNebula/one/commit/bb0ab9ebdc8546a11686a10bbe79f6d9a856c308>`__.

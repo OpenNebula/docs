@@ -35,6 +35,7 @@ The following issues has been solved in 6.0.1:
 - `Fix oneimage show output <https://github.com/OpenNebula/one/issues/5343>`__.
 - `Crop VM template if it exceed 128 chars when cloning a service template <https://github.com/OpenNebula/one/issues/5123>`__.
 - `Fix Sunstone 2FA does not work with FireEdge enabled <https://github.com/OpenNebula/one/issues/5347>`__.
-- Option to calculate showback only for running VMs, see :ref:`showback configuration <oned_conf_default_showback>`
-- Security groups support also :ref:`NIC_ALIAS <vgg_vn_alias>`
+- Option to calculate showback only for running VMs, see :ref:`showback configuration <oned_conf_default_showback>`.
+- Security groups support also :ref:`NIC_ALIAS <vgg_vn_alias>`.
 - `Fix for VMRC console requires HOST MANAGE permissions <https://github.com/OpenNebula/one/issues/5361>`__.
+- `Fix for FireEdge token generation exposing using passwords to admins <https://github.com/OpenNebula/one/commit/bb0ab9ebdc8546a11686a10bbe79f6d9a856c308>`__.
