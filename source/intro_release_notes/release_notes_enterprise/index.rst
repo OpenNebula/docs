@@ -1,7 +1,7 @@
 .. _rn_enterprise:
 
 ================================================================================
-Release Notes 6.0.1 Enterprise Edition
+Release Notes 6.0.2 Enterprise Edition
 ================================================================================
 
 .. toctree::
@@ -9,3 +9,4 @@ Release Notes 6.0.1 Enterprise Edition
 
    What Is <what_is>
    Resolved Issues in 6.0.1 <resolved_issues_601>
+   Resolved Issues in 6.0.2 <resolved_issues_602>
