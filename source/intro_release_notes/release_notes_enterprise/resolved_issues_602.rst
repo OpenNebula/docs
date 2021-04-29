@@ -8,6 +8,7 @@ A complete list of solved issues for 6.0.2 can be found in the `project developm
 The following new features has been backported to 6.0.2:
 
 - `Add support to provision On-Premises Edge Clusters <https://github.com/OpenNebula/one/issues/5332>`__.
+- `Add support for LXC profiles <https://github.com/OpenNebula/one/issues/5333>`__.
 
 The following issues has been solved in 6.0.2:
 
