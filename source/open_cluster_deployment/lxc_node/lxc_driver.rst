@@ -146,7 +146,9 @@ The ``RAW`` attribute allows us to add raw LXC configuration attributes to the f
 
 .. note:: Each line of the ``DATA`` attribute must contain only an LXC configuration attribute and its corresponding value. If a provided attribute is already set by OpenNebula, it will be discarded and the original value will take precedence.
 
-The ``PROFILES`` attribute implements a similar behavior than `LXD profiles <https://linuxcontainers.org/lxd/advanced-guide/#profiles>`__. It allows to include extra LXC configuration to a set of containers. In order to use a profile, the corresponding LXC configuration file must be available at ``/var/lib/one/remotes/etc/vmm/lxc/profiles``. For example if we want to use the profiles ``production`` and ``extra-performance`` we need to create the corresponding files containing the extra LXC configuration attributes:
+The ``LXC_PROFILES`` attribute implements a similar behavior than `LXD profiles <https://linuxcontainers.org/lxd/advanced-guide/#profiles>`__. It allows to include pre-defined LXC configuration to a container. In order to use a profile, the corresponding LXC configuration file must be available at ``/var/lib/one/remotes/etc/vmm/lxc/profiles``. 
+
+For example, if you want to use the profiles ``production`` and ``extra-performance``, you need to create the corresponding files containing the LXC configuration attributes (using lxc config syntax):
 
 .. prompt:: bash $ auto
 
