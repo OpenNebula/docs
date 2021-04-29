@@ -48,7 +48,7 @@ For example, adding ``vga=791`` as kernel parameter will select the 16-bit 1024�
 Authentication issue
 ================================================================================
 
-Because of a Fireedge vulnerability present in OpenNebula 6.0 (which has been fixed in `OpenNebula 6.0.1 and 6.0.0.1 <https://forum.opennebula.io/t/ee-6-0-1-and-ce-6-0-0-1-available-for-download/9468>`__) login tokens were created automatically with the same value of the password. This results in an authentication problem once the token expires as ``oned`` will recognize the password as an expired token and won’t authenticate the user.
+Because of a FireEdge vulnerability present in OpenNebula 6.0 (which has been fixed in `OpenNebula 6.0.1 and 6.0.0.1 <https://forum.opennebula.io/t/ee-6-0-1-and-ce-6-0-0-1-available-for-download/9468>`__) login tokens were created automatically with the same value of the password. This results in an authentication problem once the token expires as ``oned`` will recognize the password as an expired token and won’t authenticate the user.
 
 .. important:: This issue will only affect users that have logged in Sunstone or FireEdge using OpenNebubula 6.0.0.
 
