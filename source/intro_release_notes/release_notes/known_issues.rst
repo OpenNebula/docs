@@ -45,12 +45,12 @@ You can force a VESA mode by configuring the kernel parameter ``vga=VESA_MODE`` 
 `Here <https://en.wikipedia.org/wiki/VESA_BIOS_Extensions#Linux_video_mode_numbers/>`__ you can find the VESA mode numbers.
 For example, adding ``vga=791`` as kernel parameter will select the 16-bit 1024×768 resolution mode.
 
-Aauthentication issue
+Authentication issue
 ================================================================================
 
 Because of a Fireedge vulnerability present in OpenNebula 6.0 (which has been fixed in `OpenNebula 6.0.1 and 6.0.0.1 <https://forum.opennebula.io/t/ee-6-0-1-and-ce-6-0-0-1-available-for-download/9468>`__) login tokens were created automatically with the same value of the password. This results in an authentication problem once the token expires as ``oned`` will recognize the password as an expired token and won’t authenticate the user.
 
-.. important:: This issue will only affect users that have logged in Sunstone or Fireedge using OpenNebubula 6.0.0.
+.. important:: This issue will only affect users that have logged in Sunstone or FireEdge using OpenNebubula 6.0.0.
 
 In order to recover the users ``oneuser token-delete-all`` and ``oneuser token-delete`` commands can be used for removing the token. If ``oneadmin`` user is affected by this and there's no other user belonging to ``oneadmin`` group that can remove its tokens, the corresponding record in the database has to be updated removing the token:
 
