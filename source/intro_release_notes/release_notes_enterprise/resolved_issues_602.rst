@@ -7,9 +7,12 @@ A complete list of solved issues for 6.0.2 can be found in the `project developm
 
 The following new features has been backported to 6.0.2:
 
-- `Provide nice and clear! description <https://github.com/OpenNebula/one/issues/XXX>`__.
+- `Add support to provision On-Premises Edge Clusters <https://github.com/OpenNebula/one/issues/5332>`__.
+- `Add support for LXC profiles <https://github.com/OpenNebula/one/issues/5333>`__.
 
 The following issues has been solved in 6.0.2:
 
 - `Fix oneprovision ssh key transition from .ddc to .ssh-oneprovision <https://github.com/OpenNebula/one/issues/5331>`__.
 - `Remove IO section from VM update configuration <https://github.com/OpenNebula/one/issues/5344>`__.
+- `Fix parameter validation in onevm backup <https://github.com/OpenNebula/one/issues/5349>`__.
+- `Fix elastic IP assigment on Edge Clusters on poweroff-resume cycle, initiated by monitor <https://github.com/OpenNebula/one/issues/5345>`__.
