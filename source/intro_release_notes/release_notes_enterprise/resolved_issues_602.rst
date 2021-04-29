@@ -12,3 +12,4 @@ The following new features has been backported to 6.0.2:
 The following issues has been solved in 6.0.2:
 
 - `Fix oneprovision ssh key transition from .ddc to .ssh-oneprovision <https://github.com/OpenNebula/one/issues/5331>`__.
+- `Remove IO section from VM update configuration <https://github.com/OpenNebula/one/issues/5344>`__.
