@@ -11,4 +11,4 @@ The following new features has been backported to 6.0.2:
 
 The following issues has been solved in 6.0.2:
 
-- `Provide nice and clear! description <https://github.com/OpenNebula/one/issues/XXX>`__.
+- `Fix oneprovision ssh key transition from .ddc to .ssh-oneprovision <https://github.com/OpenNebula/one/issues/5331>`__.
