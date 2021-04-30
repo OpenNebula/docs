@@ -7,16 +7,16 @@ On-Premises Edge Cluster
 Edge Cluster Types
 ================================================================================
 
-On-Premise provider allows to automatically configure On-Premise infrastructure as an Edge Cluster. You can run the following hypervisors on your On-Premises clusters:
+The On-Premises provider allows to automatically configure On-Premises infrastructure as an Edge Cluster. You can use the following hypervisors on your On-Premises bare-metal clusters:
 
-* **KVM**, runs virtual machines.
-* **Firecracker**, runs microVMs.
-* **LXC**, runs system containers.
+* **KVM** to run virtual machines.
+* **Firecracker** to run microVMs.
+* **LXC** to run system containers.
 
 On-Premises Provider
 ================================================================================
 
-The ``onprem`` needs no special configuration as it will retrieve the FQDNs of the host to be configured while creating the provisions. It can be easily created by running:
+The ``onprem`` provider needs no special configuration as it will retrieve the FQDNs of the host to be configured while creating the provisions. It can be easily created by running:
 
 .. prompt:: bash $ auto
 
@@ -31,12 +31,12 @@ The ``onprem`` provider can also be shown by running the command below:
     ID   : 0
     NAME : onprem
 
-.. note:: OpenNebula frontend node requires root access to the hosts that are going to be configured using ``onprem`` provider.
+.. note:: OpenNebula front-end node requires root access to the hosts that are going to be configured using ``onprem`` provider.
 
-On-Premise Edge Cluster Implementation
+On-Premises Edge Cluster Implementation
 ================================================================================
 
-An On-Premise Edge Cluster consists on a set of hosts with the following requirements:
+An On-Premises Edge Cluster consists of a set of hosts with the following requirements:
 
 .. list-table::
   :header-rows: 1
@@ -57,15 +57,15 @@ An On-Premise Edge Cluster consists on a set of hosts with the following require
   * - **Storage**
     - Hosts should have enough local storage mounted under ``/var/lib/one`` to store the virtual disk images of the VMs.
 
-The overall architecture of the on-premises cluster is shown below. OpenNebula will create for you the following resources:
+The overall architecture of the On-Premises cluster is shown below. OpenNebula will create for you the following resources:
 
-* Image and System datastore for the cluster. The storage is configured to use the Hosts :ref:`local storage through OneStor drivers <onestor_ds>`. On-premises clusters also include access to the default datastore, so you can easily share images across clusters.
+* Image and System datastore for the cluster. The storage is configured to use the Hosts :ref:`local storage through OneStor drivers <onestor_ds>`. On-Premises clusters also include access to the default datastore, so you can easily share images across clusters.
 * Public Network, bound to the Internet interface through a Linux Bridge.
 * Private Networking, implemented using a VXLAN overlay on the management network.
 
 |image_prem|
 
-Tutorial: Provision an On-premises Cluster
+Tutorial: Provision an On-Premises Cluster
 ================================================================================
 
 Step 1. Check your hosts
@@ -87,7 +87,7 @@ Before we start we need to prepare the hosts for our on-prem cluster. We just ne
 Step 2. Create your On-premises cluster
 --------------------------------------------------------------------------------
 
-Check that you have your on-premises provider created (if not, see above):
+Check that you have your On-Premises provider created (if not, see above):
 
 .. prompt:: bash $ auto
 
@@ -218,7 +218,7 @@ and add it into our cloud:
   ID USER     GROUP    NAME                    DATASTORE     SIZE TYPE PER STAT RVMS
    2 oneadmin oneadmin nginx_market            default      1024M OS    No rdy     0
 
-The final step will be adding a network interface to the template just created (3 in our example), by adding to it:
+The final step will be adding a network interface to the template just created (3 in our example):
 
 .. prompt:: bash $ auto
 
