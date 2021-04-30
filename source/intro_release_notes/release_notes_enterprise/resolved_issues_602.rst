@@ -16,3 +16,4 @@ The following issues has been solved in 6.0.2:
 - `Remove IO section from VM update configuration <https://github.com/OpenNebula/one/issues/5344>`__.
 - `Fix parameter validation in onevm backup <https://github.com/OpenNebula/one/issues/5349>`__.
 - `Fix elastic IP assigment on Edge Clusters on poweroff-resume cycle, initiated by monitor <https://github.com/OpenNebula/one/issues/5345>`__.
+- `Fix automatic description extra newline for vCenter imported Wild VMs <https://github.com/OpenNebula/one/issues/5366>`__.
