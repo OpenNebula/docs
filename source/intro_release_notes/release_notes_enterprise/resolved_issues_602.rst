@@ -9,6 +9,7 @@ The following new features has been backported to 6.0.2:
 
 - `Add support to provision On-Premises Edge Clusters <https://github.com/OpenNebula/one/issues/5332>`__.
 - `Add support for LXC profiles <https://github.com/OpenNebula/one/issues/5333>`__.
+- `Add support for list options in (un)lock CLI commands <https://github.com/OpenNebula/one/issues/5364>`__.
 
 The following issues has been solved in 6.0.2:
 
