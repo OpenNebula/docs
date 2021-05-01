@@ -134,7 +134,7 @@ Kernel images can build the desired kernel version, with the configuration attri
 Networking
 ================================================================================
 
-Firecracker is fully integrated with every networking driver based on linux bridge.
+Firecracker works with all OpenNebula networking drivers.
 
 As Firecracker does not manage the tap devices used for microVM networking, OpenNebula takes care of managing these devices and plugs then inside the pertinent bridge. In order to enable this functionality the following actions have to be carried out manually when networking is desired for MicroVMs.
 
