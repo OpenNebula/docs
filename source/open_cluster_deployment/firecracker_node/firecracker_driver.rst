@@ -45,11 +45,6 @@ Storage Limitations
 
 - As Firecracker Jailer performs a ``chroot`` operation under the microVM location, persistent images are not supported when using ``TM_MAD=shared``. In order to use persistent images when using ``TM_MAD=shared`` the system ``TM_MAD`` must be overwritten to use ``TM_MAD=ssh`` this can be easily achieved by adding ``TM_MAD_SYSTEM=ssh`` at the microVM template. More info on how to combine different ``TM_MADs`` can be found :ref:`here <shared-ssh-mode>`.
 
-Networking Limitations
---------------------------------------------------------------------------------
-
-Firecracker only supports networking based on Linux bridges.
-
 MicroVM Actions
 --------------------------------------------------------------------------------
 
