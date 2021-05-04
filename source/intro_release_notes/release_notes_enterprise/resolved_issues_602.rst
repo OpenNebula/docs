@@ -10,6 +10,7 @@ The following new features has been backported to 6.0.2:
 - `Add support to provision On-Premises Edge Clusters <https://github.com/OpenNebula/one/issues/5332>`__.
 - `Add support for LXC profiles <https://github.com/OpenNebula/one/issues/5333>`__.
 - `Add support for list options in (un)lock CLI commands <https://github.com/OpenNebula/one/issues/5364>`__.
+- `Add support for OpenvSwitch in Firecracker <https://github.com/OpenNebula/one/issues/5362>`__.
 
 The following issues has been solved in 6.0.2:
 
@@ -18,3 +19,4 @@ The following issues has been solved in 6.0.2:
 - `Fix parameter validation in onevm backup <https://github.com/OpenNebula/one/issues/5349>`__.
 - `Fix elastic IP assigment on Edge Clusters on poweroff-resume cycle, initiated by monitor <https://github.com/OpenNebula/one/issues/5345>`__.
 - `Fix automatic description extra newline for vCenter imported Wild VMs <https://github.com/OpenNebula/one/issues/5366>`__.
+- `Fix Services start time not showed of no registration time <https://github.com/OpenNebula/one/issues/5340>`__.
