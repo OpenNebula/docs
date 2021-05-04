@@ -7,7 +7,9 @@ A complete list of solved issues for 6.0.2 can be found in the `project developm
 
 The following new features has been backported to 6.0.2:
 
-- `Add support to provision On-Premises Edge Clusters <https://github.com/OpenNebula/one/issues/5332>`__.
+- :ref:`Add support to provision On-Premises Edge Clusters <onprem_cluster>`.
+- :ref:`Add support for DigitalOcean Edge Clusters <do_cluster>`.
+- :ref:`Add support for Google Compute Engine Edge Clusters <google_cluster>`.
 - `Add support for LXC profiles <https://github.com/OpenNebula/one/issues/5333>`__.
 - `Add support for list options in (un)lock CLI commands <https://github.com/OpenNebula/one/issues/5364>`__.
 - `Add support for OpenvSwitch in Firecracker <https://github.com/OpenNebula/one/issues/5362>`__.
