@@ -128,6 +128,7 @@ The Sunstone configuration file can be found in ``/etc/one/sunstone-server.conf`
 | ``:mode``                       | Default Sunstone views group (Default: ``mixed``)                                                   |
 +---------------------------------+-----------------------------------------------------------------------------------------------------+
 | ``:get_extended_vm_info``       | True to display extended VM information from OpenNebula (Default: ``false``)                        |
+|                                 | also show a warning of the state of asynchronous actions in Service Tab                             |
 +---------------------------------+-----------------------------------------------------------------------------------------------------+
 | ``:get_extended_vm_monitoring`` | True to display extended information from VM monitoring from OpenNebula (Default: ``false``)        |
 +---------------------------------+-----------------------------------------------------------------------------------------------------+

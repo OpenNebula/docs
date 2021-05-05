@@ -22,4 +22,5 @@ The following issues has been solved in 6.0.2:
 - `Fix elastic IP assigment on Edge Clusters on poweroff-resume cycle, initiated by monitor <https://github.com/OpenNebula/one/issues/5345>`__.
 - `Fix automatic description extra newline for vCenter imported Wild VMs <https://github.com/OpenNebula/one/issues/5366>`__.
 - `Fix Services start time not showed of no registration time <https://github.com/OpenNebula/one/issues/5340>`__.
+- `Added VM warning message not shown in Service Tab <VM warning message not shown in Service Tab>`__.
 - `Add remote connections to Cloud View <https://github.com/OpenNebula/one/issues/5363>`__.
