@@ -19,6 +19,8 @@ Drivers - Storage
 
 - **LVM**, the situation described above for Ceph may also affect LVM based datastores, please verify that ``FORMAT`` and ``DRIVER`` are set to ``raw``.
 
+- **LVM**, terminate a VM in undeployed state is broken, the result is different if persistent images are used or not. A detailed explanation can be found `here <https://github.com/OpenNebula/one/issues/5385>`__.
+
 Drivers - Network
 ================================================================================
 
