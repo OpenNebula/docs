@@ -24,3 +24,4 @@ The following issues has been solved in 6.0.2:
 - `Fix Services start time not showed of no registration time <https://github.com/OpenNebula/one/issues/5340>`__.
 - `Added VM warning message not shown in Service Tab <https://github.com/OpenNebula/one/issues/5371>`__.
 - `Add remote connections to Cloud View <https://github.com/OpenNebula/one/issues/5363>`__.
+- `Add redirect to login when session expires in FireEdge <https://github.com/OpenNebula/one/issues/5380>`__.
