@@ -25,7 +25,7 @@ In this quick start guide we use Edge Clusters to easily build a cloud infrastru
    +--------------------------------------------------------------------+--------------+-------------------------------------------------------+
    | :ref:`I want to run virtual servers... <running_virtual_machines>` | virtual      | LXC                                                   |
    | <running_containers>`                                              +--------------+-------------------------------------------------------+
-   |                                                                    | metal        | LVM, LXC                                              |
+   |                                                                    | metal        | LXC, KVM                                              |
    +--------------------------------------------------------------------+--------------+-------------------------------------------------------+
    | I want to run a Kubernetes cluster...                              | metal        | KVM (:ref:`k8s based <running_kubernetes_clusters>`)  |
    |                                                                    |              +-------------------------------------------------------+
