@@ -78,14 +78,14 @@ A standard OpenNebula Cloud Architecture consists of:
 
 An OpenNebula Cloud Infrastructure can combine multiple clusters with different configurations and technologies to better meet your needs. In general, there are two types of Cluster models that can be used with OpenNebula:
 
-* **Edge Clusters**: can be deployed on demand both on-premises and on public cloud and edge providers, with a high degree of integration and automation.
+* **Edge Clusters**: can be deployed on demand both on-premises and on public cloud and edge providers, with a high degree of integration and automation, to enable seamless hybrid cloud deployments.
 
 * **Customized Clusters**: typically these are deployed on-premises to meet specific requirements.
 
 Edge Cluster
 ============
 
-OpenNebula brings its own Edge Cluster configuration that is based on solid open source storage and networking technologies, and is a much simpler approach than those of customized cloud architectures made of more complex, general-purpose and separate infrastructure components. It can be deployed on-demand on virtual or bare-metal resources both on-premises and on your choice of public cloud or edge provider. Our Edge Clusters are **fully supported end-to-end by OpenNebula Systems**. More info on this approach can be found on our `website <https://opennebula.io/edge-cloud/>`_.
+OpenNebula brings its own Edge Cluster configuration that is based on solid open source storage and networking technologies, and is a much simpler approach than those of customized cloud architectures made of more complex, general-purpose and separate infrastructure components. It can be deployed on-demand on virtual or bare-metal resources both on-premises and on your choice of public cloud or edge providerto to enable seamless hybrid cloud deployments. Our Edge Clusters are **fully supported end-to-end by OpenNebula Systems**. More info on this approach can be found on our `website <https://opennebula.io/edge-cloud/>`_.
 
 |image5|
 
