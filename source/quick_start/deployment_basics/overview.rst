@@ -13,4 +13,4 @@ In particular, Deployment Basic will get you an OpenNebula Front-end, ready to r
 - If you are interested in OpenNebula over open source hypervisors, proceed to the :ref:`Try OpenNebula on KVM, LXC or Firecracker <try_opennebula_on_kvm>` guide.
 - If you are interested in OpenNebula over VMware hypervisors, proceed to the :ref:`Try OpenNebula on VMware <try_opennebula_on_vmware>` guide.
 
-Afterwards, you can move on to :ref:`Operations Basics <operation_basics>` to learn how to add Edge Clusters (i.e., computing nodes) and then finally to :ref:`Usage Basics <usage_basics>` to deploy your VMs, containers or multi-tier services on your new cloud!
+If you opt for minione approach (open source hypervisors), you can afterwards move on to :ref:`Operations Basics <operation_basics>` to learn how to add Edge Clusters (i.e., computing nodes) and then finally to :ref:`Usage Basics <usage_basics>` to deploy your VMs, containers or multi-tier services on your new cloud!
