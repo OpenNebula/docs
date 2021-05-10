@@ -13,6 +13,8 @@ OpenNebula over VMware is intended for companies willing to create a self-servic
 
 vOneCloud is a virtual appliance for vSphere that builds on top of your vCenter an OpenNebula cloud for development, testing or product evaluation in five minutes. In a nutshell, it is an OVA file with a configured CentOS and OpenNebula installation ready to import resources from vCenter environments. vOneCloud is free to download and use. The virtual appliance does not interfere with existing vSphere configurations, procedures and workflows. This means that you can try it and if you decide not to adopt it, you can just delete it. vOneCloud can be also used for small-size production deployments.
 
+.. note:: While you can build with OpenNebula an hybrid cloud and combine your VMware local resources with edge clusters running own your favorite cloud provider, the limited installation of OpenNebula in the vOneCloud virtual appliance does not bring the components needed to provision edge clusters. 
+
 vOneCloud ships with the following components under the hood:
 
 +-----------------------+--------------------------------------------------------------------------------------------------+
