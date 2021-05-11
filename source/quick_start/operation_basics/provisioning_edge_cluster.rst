@@ -3,7 +3,7 @@
 .. _first_edge_cluster:
 
 ============================
-Provisioning an Edge Cluster
+Provisioning an Edge Cluster 
 ============================
 
 In this section you can check all the steps needed to deploy an **Edge Cluster**. This involves the FireEdge OneProvision GUI and Sunstone to manage the resources created in OpenNebula.
