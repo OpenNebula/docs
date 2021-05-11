@@ -13,7 +13,7 @@ OpenNebula over VMware is intended for companies willing to create a self-servic
 
 vOneCloud is a virtual appliance for vSphere that builds on top of your vCenter an OpenNebula cloud for development, testing or product evaluation in five minutes. In a nutshell, it is an OVA file with a configured CentOS and OpenNebula installation ready to import resources from vCenter environments. vOneCloud is free to download and use. The virtual appliance does not interfere with existing vSphere configurations, procedures and workflows. This means that you can try it and if you decide not to adopt it, you can just delete it. vOneCloud can be also used for small-size production deployments.
 
-.. note:: While you can build with OpenNebula an hybrid cloud and combine your VMware local resources with edge clusters running own your favorite cloud provider, the limited installation of OpenNebula in the vOneCloud virtual appliance does not bring the components needed to provision edge clusters. 
+.. note:: While you can build with OpenNebula an hybrid cloud and combine your VMware local resources with edge clusters running own your favorite cloud provider, the limited installation of OpenNebula in the vOneCloud virtual appliance does not bring the components needed to provision edge clusters.
 
 vOneCloud ships with the following components under the hood:
 
@@ -303,7 +303,7 @@ After the VMs are in the running state, you can operate on their life-cycle, ass
 Step 6. Verification - Launch a VM
 ---------------------------------------------------------------
 
-Let's check out this OpenNebula installation doing what it does best: launching Virtual Machines. Go to your ``Instances -> VMs`` tab in Sunstone and click on the "+" green icon. Select the VM Template imported in the previous step (feel free to change any configuration aspect) and click on Instantiate.
+Let's check out this OpenNebula installation doing what it does best: launching Virtual Machines. Go to your ``Instances -> VMs`` tab in Sunstone and click on the "+" green icon. Select the VM Template imported in the previous step (feel free to change any configuration aspect) and click on Create.
 
 .. image:: /images/instantiate_vcenter_vm_template.png
     :align: center
