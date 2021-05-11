@@ -26,4 +26,5 @@ The following issues has been solved in 6.0.2:
 - `Add remote connections to Cloud View <https://github.com/OpenNebula/one/issues/5363>`__.
 - `Add redirect to login when session expires in FireEdge <https://github.com/OpenNebula/one/issues/5380>`__.
 - `Fix Scheduler logging to std <https://github.com/OpenNebula/one/issues/4359>`__.
+- `Silence warnings on double load of RubyGems <https://github.com/OpenNebula/one/issues/5379>`__.
 - `Add option to select vCenter template when importing an image to vCenter datastore <https://github.com/OpenNebula/one/issues/5389>`__.
