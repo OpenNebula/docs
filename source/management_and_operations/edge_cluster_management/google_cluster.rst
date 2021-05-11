@@ -4,14 +4,14 @@
 Google Edge Cluster
 ===================
 
-The **virtual** Edge Clusters use a virtual machine instance to create OpenNebula Hosts. This provision is better suited for PaaS-like workloads.
+The **virtual** Edge Clusters use a Virtual Machine instance to create OpenNebula Hosts. This provision is better suited for PaaS-like workloads.
 
-Virtual Google Edge Clusters run primarily **LXC** to execute system containers.
+Virtual Google Edge Clusters primarily run **LXC** to execute system containers.
 
 Google Providers
 ================================================================================
 
-A Google provider contains the credentials to interact with Google and also the region to deploy your Edge Clusters. OpenNebula comes with four pre-defined providers in the following regions:
+A Google provider contains the credentials to interact with Google and also the region of the provider to deploy your Edge Clusters. OpenNebula comes with four pre-defined providers in the following regions:
 
 * Belgium
 * London
@@ -81,13 +81,13 @@ Google Edge Cluster Implementation
 
 An Edge Cluster in Google creates the following resources:
 
-* **Google compute instance**: host to run virtual machines.
+* **Google compute instance**: host to run Virtual Machines.
 * **Google compute network**: it creates an isolated virtual network for all the deployed resources.
-* **Google compute firewall**: by default all the traffic is allowed, you can later setup custom Security Groups through the OpenNebula interface.
+* **Google compute firewall**: by default all the traffic is allowed but you can set up custom Security Groups through the OpenNebula interface later.
 
 The network model is implemented in the following way:
 
-* **Public Networking**: this is implemented using port forwarding between the host and the VM. Each time a network is attached to the virtual machine, ports will be forwarded from the public IP of the host where it is running.
+* **Public Networking**: this is implemented using port forwarding between the host and the VM. Each time a network is attached to the Virtual Machine, ports will be forwarded from the public IP of the host where it is running.
 * **Private Networking**: this is implemented using (BGP-EVPN) and VXLAN.
 
 |image_cluster|
@@ -100,7 +100,7 @@ In this tutorial, we are going to show you how you can access an Alpine VM runni
 Step 1: Deploy Edge Cluster
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-First you need to create a provision (see :ref:`this guide for more details<first_edge_cluster>`) and wait for it to be ready:
+First, you need to create a provision (see :ref:`this guide for more details<first_edge_cluster>`) and wait for it to be ready:
 
 .. prompt:: bash $ auto
 
@@ -108,7 +108,7 @@ First you need to create a provision (see :ref:`this guide for more details<firs
     ID NAME            CLUSTERS HOSTS NETWORKS DATASTORES         STAT
      1 google-cluster         1     1        1          2      RUNNING
 
-Step 2: Download Alpine From Marketplace
+Step 2: Download Alpine from Marketplace
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. prompt:: bash $ auto
@@ -149,9 +149,9 @@ If you check the VM template, you will see the port ranges assigned by OpenNebul
       <EXTERNAL_PORT_RANGE><![CDATA[9001:9100]]></EXTERNAL_PORT_RANGE>
       <INTERNAL_PORT_RANGE><![CDATA[1-100/9001]]></INTERNAL_PORT_RANGE>
 
-As you are using the same public networking in the cluster, these ports will never collision.
+As you are using the same public networking in the cluster, these ports will never collide.
 
-You can use the command ``onevm port-forward`` to check what port you need to connect to access services:
+You can use the command ``onevm port-forward`` to check which port you need to connect to in order to access services:
 
 .. prompt:: bash $ auto
 
