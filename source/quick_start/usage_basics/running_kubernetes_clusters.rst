@@ -76,11 +76,7 @@ We'll use the ``oneadmin`` account in your OpenNebula Front-end. Please SSH to t
 
      All set and ready to serve 8)
 
-.. note:: You can use the file in ``/etc/kubernetes/admin.conf`` to control the Kubernetes clusters from the outside. When the Kubernetes Appliance is deployed on the edge, once you copy the ``/etc/kubernetes/admin.conf`` in your system (laptop, workstation), you need to replace in the configuration file the private IP with the public IP of the master VM. Furthermore, you have to use the kubectl option ``--insecure-skip-tls-verify`` every time you perform some operation on the cluster, since the certificate is not valid for the public IP. This will be fixed in a future release of the Appliance.
-
-.. important::
-
-   Using ``--insecure-skip-tls-verify`` is of course **unacceptable** in any serious deployment and therefore in the meantime we **strongly** recommend using a SSH jump host or configuring a VPN and accessing the Kubernetes via its defined correct IP address.
+.. note:: You can use the file in ``/etc/kubernetes/admin.conf`` to control the Kubernetes clusters from the outside. When the Kubernetes Appliance is deployed on the edge, you can copy the ``/etc/kubernetes/admin.conf`` into your system (laptop, workstation) and use ``kubectl`` locally.
 
 We are going to use the root account in the master to perform a simple validation of the cluster. The first step is to check the workers are healthy. You should get a similar output to:
 

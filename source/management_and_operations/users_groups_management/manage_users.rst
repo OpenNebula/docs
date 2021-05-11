@@ -249,7 +249,7 @@ All the described functionality is available graphically using :ref:`Sunstone <s
 Change credentials for oneadmin or serveradmin
 ================================================================================
 
-In order to change the credentials of oneadmin you have to do the following in the frontend node:
+In order to change the ``oneadmin`` credentials you have to do the following in the frontend node:
 
     .. prompt:: bash # auto
 
@@ -258,4 +258,15 @@ In order to change the credentials of oneadmin you have to do the following in t
 
 .. warning:: After changing the password, please restart OpenNebula service.
 
-In order to change the credentials of ``serveradmin`` you have to :ref:`follow these steps <serveradmin_credentials>`.
+In order to change ``serveradmin`` credentials you have to do the following in the fontend :ref:`follow these steps <serveradmin_credentials>`.
+
+ .. prompt:: bash # auto
+
+        # oneuser passwd 1 --sha256 <PASSWORD>
+        # echo 'serveradmin:PASSWORD' > /var/lib/one/.one/oneflow_auth
+        # echo 'serveradmin:PASSWORD' > /var/lib/one/.one/ec2_auth
+        # echo 'serveradmin:PASSWORD' > /var/lib/one/.one/onegate_auth
+        # echo 'serveradmin:PASSWORD' > /var/lib/one/.one/occi_auth
+        # echo 'serveradmin:PASSWORD' > /var/lib/one/.one/sunstone_auth
+
+    Restart Sunstone after changing the password.

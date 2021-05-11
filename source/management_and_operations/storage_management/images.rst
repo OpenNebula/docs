@@ -147,7 +147,7 @@ Using Marketplaces
 
 OpenNebula leverages the applications created by several popular marketplaces, like DockerHub or Linuxcontainers.org. These are great places to grab a working installation of an OS/application ready to use in your Cloud. The OpenNebula project also prepares *contextualized* OS installations of popular distributions and applications, you can `check the list in the OpenNebula Marketplace <https://marketplace.opennebula.io/appliance>`_.
 
-You can find :ref:`more information on using these Martkeplaces here <marketplaces>`.
+You can find :ref:`more information on using these Marketplaces here <marketplaces>`.
 
  .. _dockerfile:
 
