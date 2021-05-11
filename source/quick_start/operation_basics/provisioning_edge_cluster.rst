@@ -1,5 +1,3 @@
-
-.. _first_edge_cluster:
 .. _first_edge_cluster:
 
 ============================
