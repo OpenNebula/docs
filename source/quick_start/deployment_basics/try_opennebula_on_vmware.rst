@@ -4,7 +4,7 @@
 Try OpenNebula on VMware
 ========================
 
-In this guide, we'll go through a Front-end OpenNebula environment deployment, where all the OpenNebula services needed to use, manage and run the cloud will bei deployed through an OVA and collocated on the single VM running on a vCenter instance. Later, we'll import some vCenter resources and launch a VM Template.
+In this guide, we'll go through a Front-end OpenNebula environment deployment, where all the OpenNebula services needed to use, manage and run the cloud will bei deployed through an OVA and collocated on the single VM running on a vCenter instance. Later, we'll import some vCenter resources and launch a VM Template. Afterwards, you can follow the Operations and Usage basics guides of this same Quick Start to launch edge clusters based on open source hypervisors.
 
 OpenNebula over VMware is intended for companies willing to create a self-service cloud environment on top of their VMware infrastructure without having to abandon their investment in VMware and retool the entire stack. In these environments, OpenNebula seamlessly integrates with existing vCenter infrastructures to leverage advanced features such as vMotion, HA or DRS. OpenNebula exposes a multi-tenant, cloud-like provisioning layer on top of vCenter, enabling you to take steps towards liberating your stack from vendor lock-in. Once you have built your cloud with OpenNebula on VMware, you can then add new resources based on open source hypervisors ⁠— like KVM — and hence use OpenNebula as a migration framework to the open cloud.
 
@@ -13,9 +13,7 @@ OpenNebula over VMware is intended for companies willing to create a self-servic
 
 vOneCloud is a virtual appliance for vSphere that builds on top of your vCenter an OpenNebula cloud for development, testing or product evaluation in five minutes. In a nutshell, it is an OVA file with a configured CentOS and OpenNebula installation ready to import resources from vCenter environments. vOneCloud is free to download and use. The virtual appliance does not interfere with existing vSphere configurations, procedures and workflows. This means that you can try it and if you decide not to adopt it, you can just delete it. vOneCloud can be also used for small-size production deployments.
 
-.. note:: While you can build with OpenNebula an hybrid cloud and combine your VMware local resources with edge clusters running own your favorite cloud provider, the limited installation of OpenNebula in the vOneCloud virtual appliance does not bring the components needed to provision edge clusters. 
-
-vOneCloud ships with the following components under the hood:
+OneCloud ships with the following components under the hood:
 
 +-----------------------+--------------------------------------------------------------------------------------------------+
 |       **CentOS**      |                                                8                                                 |
@@ -58,7 +56,7 @@ The following components need to be present in the infrastructure to implement a
 
 To enable VNC functionality, please follow these :ref:`instructions <vnc_one_esx_hosts>`.
 
-vOneCloud ships with a default of 1 vCPUs and 2 GB of RAM, and as such it has been certified for infrastructures of the following dimensions:
+vOneCloud ships with a default of 1 vCPUs and 2.5 GiB of RAM, and as such it has been certified for infrastructures of the following dimensions:
 
 - Up to 4 vCenters
 - Up to 40 ESXs managed by each vCenter
@@ -309,3 +307,5 @@ Let's check out this OpenNebula installation doing what it does best: launching 
     :align: center
 
 OK! Your VM should be up and running switfly. Check the console icon to access your VM through VMRC within Sunstone.
+
+Now you can proceed to :ref:`Operations Basics <operation_basics>` to launch an edge cluster on a public cloud provider.
