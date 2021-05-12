@@ -29,3 +29,4 @@ The following issues has been solved in 6.0.2:
 - `Fix disk persistency for 'onetemplate clone --recursive'  <https://github.com/OpenNebula/one/issues/5386>`__.
 - `Silence warnings on double load of RubyGems <https://github.com/OpenNebula/one/issues/5379>`__.
 - `Add option to select vCenter template when importing an image to vCenter datastore <https://github.com/OpenNebula/one/issues/5389>`__.
+- `Fix SYNC_STATE updates from monitor probe <https://github.com/OpenNebula/one/issues/5394>`__.
