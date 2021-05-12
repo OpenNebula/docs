@@ -203,3 +203,10 @@ MicroVMs supports remote access via VNC protocol which allows easy access to mic
     GRAPHICS=[
       LISTEN="0.0.0.0",
       TYPE="VNC" ]
+
+Troubleshooting
+================================================================================
+
+Apart from the :ref:`system logs <troubleshoot>`, Firecracker generates a microVMs log inside the `jailed` folder. This log can be found in: ``/var/lib/one/datastores/<sys_ds_id>/<vm_id>/logs.fifo``.
+
+.. note:: This log cannot be forwarded outside the VM folder, as while the Firecracker microVMs run, the Firecracker process is isolated in their VM folder to increase the security. More information on how Firecracker isolates the microVM can be found in the Firecracker `official documentation <https://github.com/firecracker-microvm/firecracker/blob/main/docs/design.md#jailer-process>`__.
