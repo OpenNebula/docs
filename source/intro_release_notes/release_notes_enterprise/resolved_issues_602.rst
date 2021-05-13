@@ -31,3 +31,4 @@ The following issues has been solved in 6.0.2:
 - `Add option to select vCenter template when importing an image to vCenter datastore <https://github.com/OpenNebula/one/issues/5389>`__.
 - `Fix SYNC_STATE updates from monitor probe <https://github.com/OpenNebula/one/issues/5394>`__.
 - `Fix for Wild VM rollback error when VM has snapshots in vCenter <https://github.com/OpenNebula/one/issues/5368>`__.
+- `Fix 'onevntemplate instantiate' for PostgreSQL <https://github.com/OpenNebula/one/issues/5400>`__.
