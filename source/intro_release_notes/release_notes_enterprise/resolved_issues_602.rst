@@ -13,6 +13,7 @@ The following new features has been backported to 6.0.2:
 - `Add support for LXC profiles <https://github.com/OpenNebula/one/issues/5333>`__.
 - `Add support for list options in (un)lock CLI commands <https://github.com/OpenNebula/one/issues/5364>`__.
 - `Add support for OpenvSwitch in Firecracker <https://github.com/OpenNebula/one/issues/5362>`__.
+- :ref:`Add support for Vultr Virtual Edge Clusters <vultr_virtual_cluster>`.
 
 The following issues has been solved in 6.0.2:
 
@@ -32,3 +33,5 @@ The following issues has been solved in 6.0.2:
 - `Fix SYNC_STATE updates from monitor probe <https://github.com/OpenNebula/one/issues/5394>`__.
 - `Fix for Wild VM rollback error when VM has snapshots in vCenter <https://github.com/OpenNebula/one/issues/5368>`__.
 - `Fix 'onevntemplate instantiate' for PostgreSQL <https://github.com/OpenNebula/one/issues/5400>`__.
+- `Fix for remote connection URLs in Cloud View <https://github.com/OpenNebula/one/issues/5403>`__.
+- `Fix for Cloud View remote connections options <https://github.com/OpenNebula/one/issues/5402>`__.
