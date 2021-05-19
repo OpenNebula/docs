@@ -8,6 +8,28 @@ The **virtual** Edge Clusters use a Virtual Machine instance to create OpenNebul
 
 Virtual Google Edge Clusters primarily run **LXC** to execute system containers.
 
+OpenNebula Configuration
+================================================================================
+
+Befor using Vultr provider in OpenNebula 6.0 you need to perform the following changes in `oned.conf`:
+
+* Add the Vultr IPAM driver, modify `IPAM_MAD` to read:
+
+.. code-block:: bash
+
+     IPAM_MAD = [
+         EXECUTABLE = "one_ipam",
+         ARGUMENTS  = "-t 1 -i dummy,aws,packet,vultr"
+     ]
+
+* Add a new inherit attribute to include Vultr IP information in VM NICs:
+
+.. code-block:: bash
+
+    INHERIT_VNET_ATTR = "VULTR_IP_ID"
+
+Restart OpenNebula for the changes to take effect.
+
 Vultr Virtual Provider
 ================================================================================
 
