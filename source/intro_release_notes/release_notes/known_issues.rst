@@ -61,3 +61,8 @@ In order to recover the users ``oneuser token-delete-all`` and ``oneuser token-d
    - Update the ``oneadmin`` body: ``UPDATE user_pool SET body = '<new_body>' WHERE oid = 0``.
 
 .. note:: It's recommended to create a DB backup before manually modifying it.
+
+vCenter 7.0 Snapshot behaviour
+=================================
+
+VMs in vCenter 7.0 exhibit a new behaviour regarding snapshots and disks attach/detach operations. When vCenter 7.0 detects that any change in the number of disks attached to a VM, it automatically cleans all the VM snapshots. OpenNebula doesn't take this into account yet, so the snapshots stated by OpenNebula, after a disk attach or disk detach, are pointing to a null vCenter reference, and as such, cannot be used. Please keep this in mind before a solution is implemented.
