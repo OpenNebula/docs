@@ -13,6 +13,7 @@ The following new features has been backported to 6.0.2:
 - `Add support for LXC profiles <https://github.com/OpenNebula/one/issues/5333>`__.
 - `Add support for list options in (un)lock CLI commands <https://github.com/OpenNebula/one/issues/5364>`__.
 - `Add support for OpenvSwitch in Firecracker <https://github.com/OpenNebula/one/issues/5362>`__.
+- :ref:`Add support for Vultr Virtual Edge Clusters <vultr_virtual_cluster>`.
 
 The following issues has been solved in 6.0.2:
 
