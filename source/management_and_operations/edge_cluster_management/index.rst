@@ -13,5 +13,6 @@ Edge Cluster Management
    DigitalOcean Cluster <do_cluster>
    Google Edge Cluster <google_cluster>
    On-Premise Edge Cluster <onprem_cluster>
+   Vultr Virtual Edge Cluster <vultr_virtual_cluster>
    Managing Providers <provider_operations>
    Edge Cluster Operations <cluster_operations>
