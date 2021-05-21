@@ -6,7 +6,7 @@ Build Dependencies
 
 This page lists the **build** dependencies for OpenNebula.
 
-* **g++** compiler (>= 4.0)
+* **g++** compiler (>= 5.0)
 * **xmlrpc-c** development libraries (>= 1.06)
 * **scons** build tool (>= 0.98)
 * **sqlite3** development libraries (if compiling with sqlite support) (>= 3.6)
