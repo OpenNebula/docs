@@ -36,3 +36,4 @@ The following issues has been solved in 6.0.2:
 - `Fix for remote connection URLs in Cloud View <https://github.com/OpenNebula/one/issues/5403>`__.
 - `Fix for Cloud View remote connections options <https://github.com/OpenNebula/one/issues/5402>`__.
 - `Fix Sunstone error when try to delete recursive service template <https://github.com/OpenNebula/one/issues/5405>`__.
+- `Fix vCenter error when adding a new network with cluster ID <https://github.com/OpenNebula/one/issues/5312>`__.
