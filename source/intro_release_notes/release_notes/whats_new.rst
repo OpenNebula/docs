@@ -49,6 +49,7 @@ OpenNebula Core
 - Terminate oned in HA in case of lost DB connection. Configured by ``ERRORS_LIMIT`` in :ref:`oned.conf <oned_conf>`.
 - Unique VM identification allows you to force a uuid to a VM. See :ref:`UUID in VM template <template_os_and_boot_options_section>`.
 - Enable :ref:`live CPU and memory resize <vm_guide2_resizing_a_vm>`
+- New :ref:`XMLRPC API for scheduled actions <onevm_api>`: ``one.vm.schedadd``, ``one.vm.schedupdate``, ``one.vm.scheddelete``. The new API reduces race condition issues while handliing scheduled actions.
 
 Storage
 ================================================================================
