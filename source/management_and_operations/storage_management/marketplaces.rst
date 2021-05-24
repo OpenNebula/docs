@@ -136,6 +136,12 @@ For example, to create a new image called ``nginx-dh`` based on the ``nginx`` im
 
 .. note:: This url format can also be used at Sunstone image creation dialog.
 
+Entrypoint
+--------------------------------------------------------------------------------
+
+When you download an application from the Dockerhub, OpenNebula will automatically inspect it to check if there is entrypoint information. This information is stored in ``/one_entrypoint.sh`` so it can be executed. All the custom variables defined by the user are taken in account when running it.
+
+.. note:: You can add it to your start script ``ohup /one_entrypoint.sh &> /dev/null &`` in order to run it.
 
 .. _market_linux_container:
 
