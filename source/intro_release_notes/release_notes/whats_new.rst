@@ -49,6 +49,7 @@ OpenNebula Core
 - Terminate oned in HA in case of lost DB connection. Configured by ``ERRORS_LIMIT`` in :ref:`oned.conf <oned_conf>`.
 - Unique VM identification allows you to force a uuid to a VM. See :ref:`UUID in VM template <template_os_and_boot_options_section>`.
 - Enable :ref:`live CPU and memory resize <vm_guide2_resizing_a_vm>`
+- Option to :ref:`disable Zone <frontend_ha_zone>`, useful for maintenance.
 
 Storage
 ================================================================================
