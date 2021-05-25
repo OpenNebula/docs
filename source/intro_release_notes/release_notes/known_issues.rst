@@ -35,7 +35,6 @@ HA server configuration synchronization with the command `onezone serversync` do
 Sunstone
 ================================================================================
 
-- Remote connections to Guacamole from Sunstone have a mouse related issue, however noVNC can still be used if needed.
 - Guacamole RDP as is currently shipped in OpenNebula does not support NLA authentication. You can follow `these instructions <https://www.parallels.com/blogs/ras/disabling-network-level-authentication/>`__ in order to disable NLA in the Windows box to use Guacamole RDP within Sunstone.
 
 Install Linux Graphical Desktop on KVM Virtual Machines
@@ -65,4 +64,4 @@ In order to recover the users ``oneuser token-delete-all`` and ``oneuser token-d
 vCenter 7.0 Snapshot behaviour
 =================================
 
-VMs in vCenter 7.0 exhibit a new behaviour regarding snapshots and disks attach/detach operations. When vCenter 7.0 detects that any change in the number of disks attached to a VM, it automatically cleans all the VM snapshots. OpenNebula doesn't take this into account yet, so the snapshots stated by OpenNebula, after a disk attach or disk detach, are pointing to a null vCenter reference, and as such, cannot be used. Please keep this in mind before a solution is implemented.
+VMs in vCenter 7.0 exhibit a new behaviour regarding snapshots and disks attach/detach operations. When vCenter 7.0 detects that any change in the number of disks attached to a VM, it automatically cleans all the VM snapshots. For this reason, OpenNebula won't allow to change the number of disks of a VM if the VM has snapshots.
