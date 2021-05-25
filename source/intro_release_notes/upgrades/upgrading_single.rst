@@ -249,7 +249,7 @@ After updating the configuration file `sunstone-server.conf`, if you didn't inst
     :private_fireedge_endpoint: http://localhost:2616
     :public_fireedge_endpoint: http://localhost:2616
 
-If you don't want to use the new feature, comment this out in order to get rid of the error.
+If you don't want to use the new feature, comment these out in order to get rid of the error.
 
 Step 7. Upgrade the Database Version
 ================================================================================
