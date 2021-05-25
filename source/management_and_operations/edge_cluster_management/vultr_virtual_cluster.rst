@@ -1,12 +1,10 @@
 .. _vultr_virtual_cluster:
 
 ==========================
-Vultr Virtual Edge Cluster
+Vultr Edge Cluster
 ==========================
 
-The **virtual** Edge Clusters use a Virtual Machine instance to create OpenNebula Hosts. This provision is better suited for PaaS-like workloads.
-
-Virtual Google Edge Clusters primarily run **LXC** to execute system containers.
+Vultr supports both virtual and metal clusters. Metal Edge Clusters are not available yet in Vultr.  Vultr **virtual** Edge Clusters use a Virtual Machine instance to create OpenNebula Hosts. This provision is better suited for PaaS-like workloads. Virtual Vultr Edge Clusters primarily run **LXC** to execute system containers.
 
 OpenNebula Configuration
 ================================================================================

@@ -17,10 +17,14 @@ In this chapter you can find a guide on how to automatically allocate and provis
 
   - :ref:`Equinix Edge Clusters <equinix_cluster>`
   - :ref:`Amazon AWS Edge Clusters <aws_cluster>`
+  - :ref:`DigitalOcean Edge Cluster <do_cluster>`
+  - :ref:`Google Edge Cluster <google_cluster>`
+  - :ref:`Vultr Edge Cluster <vultr_virtual_cluster>`
+  - :ref:`On-Premise Edge Cluster <onprem_cluster>`
 
 In this chapter you'll also learn how to :ref:`operate your clusters <cluster_operations>` and :ref:`manage providers <provider_operations>`.
 
 Hypervisor Compatibility
 ================================================================================
 
-Edge Clusters are available for all the hypervisors.
+.. include:: ../../intro_release_notes/release_notes/edge_clusters.txt
