@@ -112,6 +112,13 @@ and then continue with repository configuration:
     # echo "deb https://<token>@enterprise.opennebula.io/repo/6.0/Ubuntu/20.10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
+**Ubuntu 21.04**
+
+.. prompt:: bash # auto
+
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.0/Ubuntu/21.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # apt-get update
+
 .. note::
 
    You can point to a specific 6.0.x version by changing the occurrence of shorter version 6.0 in any of the above commands to the particular full 3 components version number (X.Y.Z). For instance, to point to version 6.0.1 on Ubuntu 18.04, use the following command instead:
@@ -256,4 +263,11 @@ First, add the repository signing GPG key on the Front-end by executing as user 
 .. prompt:: bash # auto
 
     # echo "deb https://downloads.opennebula.io/repo/6.0/Ubuntu/20.10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # apt-get update
+
+**Ubuntu 21.04**
+
+.. prompt:: bash # auto
+
+    # echo "deb https://downloads.opennebula.io/repo/6.0/Ubuntu/21.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
