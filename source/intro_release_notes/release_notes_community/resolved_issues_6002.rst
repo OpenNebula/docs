@@ -14,6 +14,7 @@ The following new features has been backported to 6.0.0.2:
 - `Add support for list options in (un)lock CLI commands <https://github.com/OpenNebula/one/issues/5364>`__.
 - `Add support for OpenvSwitch in Firecracker <https://github.com/OpenNebula/one/issues/5362>`__.
 - :ref:`Add support for Vultr Virtual Edge Clusters <vultr_virtual_cluster>`.
+- Distribution packages for Ubuntu 21.04 and Fedora 34
 
 The following issues has been solved in 6.0.0.2:
 
