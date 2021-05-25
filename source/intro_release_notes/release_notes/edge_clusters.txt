@@ -1,0 +1,57 @@
+Edge Clusters can be *virtual* or *metal* depending of the instance type used to build the cluster. Note that not all providers offer both instance types.
+
+.. list-table::
+   :widths: 50, 50, 100
+   :header-rows: 1
+
+   * - Edge/Cloud Provider
+     - Edge Cluster
+     - Hypervisor
+   * - :ref:`Equinix <equinix_cluster>`
+     - metal
+     - KVM, Firecracker and LXC
+   * - :ref:`AWS <aws_cluster>`
+     - metal
+     - KVM, Firecracker and LXC
+   * - :ref:`AWS <aws_cluster>`
+     - virtual
+     - LXC
+   * - :ref:`Google <google_cluster>`
+     - virtual
+     - LXC
+   * - :ref:`DigitalOcean <do_cluster>`
+     - virtual
+     - LXC
+   * - Vultr
+     - metal (in progress)
+     - KVM, Firecracker and LXC
+   * - :ref:`Vultr <vultr_virtual_cluster>`
+     - virtual
+     - LXC
+   * - :ref:`On-prem <onprem_cluster>`
+     - metal
+     - KVM, Firecracker and LXC
+
+
+The Edge Cluster type determines the hypervisor and workload that can be run in the cluster. The following table summarizes the Edge Cluster you need to run specific workloads:
+
+.. table::
+   :widths: 60,15,25
+   :align: left
+
+   +--------------------------------------------------------------------+--------------+-------------------------------------------------------+
+   | Use Case                                                           | Edge Cluster |  Hypervisor                                           |
+   +====================================================================+==============+=======================================================+
+   | :ref:`I want to run application containers...                      | virtual      | LXC                                                   |
+   | <running_containers>`                                              +--------------+-------------------------------------------------------+
+   |                                                                    | metal        | LXC, Firecracker                                      |
+   +--------------------------------------------------------------------+--------------+-------------------------------------------------------+
+   | :ref:`I want to run virtual servers...                             | metal        | KVM, LXC                                              |
+   | <running_virtual_machines>`                                        |              |                                                       |
+   +--------------------------------------------------------------------+--------------+-------------------------------------------------------+
+   | I want to run a Kubernetes cluster...                              | metal        | KVM (:ref:`k8s based <running_kubernetes_clusters>`)  |
+   |                                                                    |              +-------------------------------------------------------+
+   |                                                                    |              | Firecracker (:ref:`k3s based <running_k3s_clusters>`) |
+   +--------------------------------------------------------------------+--------------+-------------------------------------------------------+
+
+In the above table, *application containers* are those imported from DockerHub, LinuxContainers or TunrkeyLinux, as well as images created from DockerFiles. On the other hand *Virtual servers* use full system disk images.
