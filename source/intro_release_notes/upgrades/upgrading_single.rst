@@ -235,6 +235,22 @@ After checking the state of configuration, in most cases running the following c
 
 If you get conflicts when running onecfg upgrade refer to the :ref:`onecfg upgrade basic usage documentation <cfg_usage>` on how to upgrade and troubleshoot the configurations, in particular the :ref:`onecfg upgrade doc <cfg_upgrade>` and the :ref:`troubleshooting section <cfg_conflicts>`.
 
+FireEdge public endpoint is not working
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+After updating the configuration file `sunstone-server.conf`, if you didn't install FireEdge :ref:`FireEdge <fireedge_setup>` you might get an error like this `FireEdge public endpoint is not working, please contact your cloud administrator` in the Web GUI. By default this configuration file will have the following configuration enabled.
+
+.. code::
+
+    $ tail -n 5 /etc/one/sunstone-server.conf
+    # FireEdge
+    ################################################################################
+
+    :private_fireedge_endpoint: http://localhost:2616
+    :public_fireedge_endpoint: http://localhost:2616
+
+If you don't want to use the new feature, comment this out in order to get rid of the error.
+
 Step 7. Upgrade the Database Version
 ================================================================================
 
