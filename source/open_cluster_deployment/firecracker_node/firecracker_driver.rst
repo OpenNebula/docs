@@ -45,11 +45,6 @@ Storage Limitations
 
 - As Firecracker Jailer performs a ``chroot`` operation under the microVM location, persistent images are not supported when using ``TM_MAD=shared``. In order to use persistent images when using ``TM_MAD=shared`` the system ``TM_MAD`` must be overwritten to use ``TM_MAD=ssh`` this can be easily achieved by adding ``TM_MAD_SYSTEM=ssh`` at the microVM template. More info on how to combine different ``TM_MADs`` can be found :ref:`here <shared-ssh-mode>`.
 
-Networking Limitations
---------------------------------------------------------------------------------
-
-Firecracker only supports networking based on Linux bridges.
-
 MicroVM Actions
 --------------------------------------------------------------------------------
 
@@ -139,7 +134,7 @@ Kernel images can build the desired kernel version, with the configuration attri
 Networking
 ================================================================================
 
-Firecracker is fully integrated with every networking driver based on linux bridge.
+Firecracker works with all OpenNebula networking drivers.
 
 As Firecracker does not manage the tap devices used for microVM networking, OpenNebula takes care of managing these devices and plugs then inside the pertinent bridge. In order to enable this functionality the following actions have to be carried out manually when networking is desired for MicroVMs.
 

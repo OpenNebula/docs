@@ -36,6 +36,8 @@ All code for Ansible (tasks, roles, playbooks) is installed into ``/usr/share/on
     |   `-- update-replica
     |-- ansible.cfg.erb
     |-- aws.yml
+    |-- digitalocean.yml
+    |-- google.yml
     `-- packet.yml
 
 Description:
