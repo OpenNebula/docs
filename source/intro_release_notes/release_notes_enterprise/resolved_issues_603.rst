@@ -11,4 +11,4 @@ The following new features has been backported to 6.0.3:
 
 The following issues has been solved in 6.0.3:
 
-- `Provide nice and clear! description <https://github.com/OpenNebula/one/issues/XXX>`__.
+- `Update Charters in service <https://github.com/OpenNebula/one/issues/5355>`__.
