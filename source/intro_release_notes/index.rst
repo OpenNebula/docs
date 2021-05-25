@@ -11,6 +11,6 @@ The Release Notes provide information on new features, improvements, and fixes i
    :maxdepth: 2
 
    Release Notes 6.0 <release_notes/index>
-   Release Notes 6.0.0.2 Community <release_notes_community/index>
-   Release Notes 6.0.2 Enterprise <release_notes_enterprise/index>
+   Release Notes 6.0.0.3 Community <release_notes_community/index>
+   Release Notes 6.0.3 Enterprise <release_notes_enterprise/index>
    Upgrades <upgrades/index>

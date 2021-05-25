@@ -302,7 +302,7 @@ Download the image to your container runtime in two simple steps:
 
 .. prompt:: bash # auto
 
-    # docker pull enterprise.opennebula.io/opennebula:6.0.1
+    # docker pull enterprise.opennebula.io/opennebula:6.0
     6.0: Pulling from opennebula
     14d5f30b982f: Pull complete
     56fd5a76ed9f: Pull complete
@@ -317,7 +317,7 @@ OpenNebula Community Edition is a free and public version, which offers the full
 
 .. prompt:: bash # auto
 
-    # docker pull docker.io/opennebula/opennebula:6.0.0.1
+    # docker pull docker.io/opennebula/opennebula:6.0
 
 .. _container_deploy:
 
@@ -356,7 +356,7 @@ Update *username* and interactively pass *password* from your customer ``token``
 
 .. prompt:: bash # auto
 
-    # wget --user=XXXX --ask-password https://enterprise.opennebula.io/packages/opennebula-6.0.1/container/docker-compose-opennebula.tar.gz
+    # wget --user=XXXX --ask-password https://enterprise.opennebula.io/packages/opennebula-6.0.3/container/docker-compose-opennebula.tar.gz
     # tar -xvf docker-compose-opennebula.tar.gz
     # cd opennebula/
 
@@ -364,7 +364,7 @@ Update *username* and interactively pass *password* from your customer ``token``
 
 .. prompt:: bash # auto
 
-    # wget https://downloads.opennebula.io/packages/opennebula-6.0.0.1/container/docker-compose-opennebula.tar.gz
+    # wget https://downloads.opennebula.io/packages/opennebula-6.0.0.3/container/docker-compose-opennebula.tar.gz
     # tar -xvf docker-compose-opennebula.tar.gz
     # cd opennebula/
 
@@ -542,8 +542,8 @@ Carefully replace the following occurrences with
   - ``changeme123`` - custom initial password for OpenNebula user ``oneadmin``
   - ``$OPENNEBULA_IMAGE`` - substitute
 
-    - for **Enterprise Edition** with ``enterprise.opennebula.io/opennebula:6.0.1``
-    - for **Community Edition** with ``docker.io/opennebula/opennebula:6.0.0.1``
+    - for **Enterprise Edition** with ``enterprise.opennebula.io/opennebula:6.0``
+    - for **Community Edition** with ``docker.io/opennebula/opennebula:6.0``
 
 - Option :ref:`B. Relocate host SSH to different port <container_ssh_relocate>` - take and **customize** (see instructions below) one of the examples below:
 
@@ -585,8 +585,8 @@ Carefully replace the following occurrences with
   - ``changeme123`` - custom initial password for OpenNebula user ``oneadmin``
   - ``$OPENNEBULA_IMAGE`` - substitute
 
-    - for **Enterprise Edition** with ``enterprise.opennebula.io/opennebula:6.0.1``
-    - for **Community Edition** with ``docker.io/opennebula/opennebula:6.0.0.1``
+    - for **Enterprise Edition** with ``enterprise.opennebula.io/opennebula:6.0``
+    - for **Community Edition** with ``docker.io/opennebula/opennebula:6.0``
 
 - Option :ref:`C. Reconfigure Nodes to connect to a different port <container_ssh_nodes>` - take and **customize** (see instructions below) one of the examples below:
 
@@ -629,8 +629,8 @@ Carefully replace the following occurrences with
   - ``changeme123`` - custom initial (only) password for OpenNebula user ``oneadmin``
   - ``$OPENNEBULA_IMAGE`` - substitute
 
-    - for **Enterprise Edition** with ``enterprise.opennebula.io/opennebula:6.0.1``
-    - for **Community Edition** with ``docker.io/opennebula/opennebula:6.0.0.1``
+    - for **Enterprise Edition** with ``enterprise.opennebula.io/opennebula:6.0``
+    - for **Community Edition** with ``docker.io/opennebula/opennebula:6.0``
 
 B. Watch Logs (optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^
