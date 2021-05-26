@@ -18,6 +18,30 @@ In either mode, the Front-end needs to have access to the Image Datastores by mo
 
 The Front-end needs also to have access to the the shared LVM either directly (see the configuration requirements below) or through a Host by specifying the ``BRIDGE_LIST`` attribute in the datastore template.
 
+Befor using the SSH mode in OpenNebula 6.0 you need to perform the following changes in `oned.conf`:
+
+* Register the ``fs_lvm_ssh`` driver in the ``TM_MAD`` arguments list:
+
+.. code-block:: bash
+
+    TM_MAD = [
+        EXECUTABLE = "one_tm",
+        ARGUMENTS = "-t 15 -d dummy,lvm,shared,fs_lvm,fs_lvm_ssh,qcow2,ssh,ceph,dev,vcenter,iscsi_libvirt"
+    ]
+
+
+* Register the ``fs_lvm_ssh`` driver as a valid System Datastore driver in the ``DATASTORE_MAD`` arguments list:
+
+.. code-block:: bash
+
+    DATASTORE_MAD = [
+        EXECUTABLE = "one_datastore",
+        ARGUMENTS  = "-t 15 -d dummy,fs,lvm,ceph,dev,iscsi_libvirt,vcenter -s shared,ssh,ceph,fs_lvm,fs_lvm_ssh,qcow2,vcenter"
+    ]
+
+Restart OpenNebula for the changes to take effect.
+
+
 Hosts Setup
 ================================================================================
 
