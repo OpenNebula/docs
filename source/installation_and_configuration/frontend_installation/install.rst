@@ -28,10 +28,13 @@ Depending on the type of OpenNebula deployment, the SELinux can block some opera
 
 After the change, you have to reboot the machine.
 
+.. _setup_opennebula_repos:
+
 Step 2. Add OpenNebula Repositories
 ================================================================================
 
 Follow the :ref:`OpenNebula Repositories <repositories>` guide and add software repositories for the OpenNebula edition you are going to deploy.
+
 
 Step 3. Add 3rd Party Repositories
 ================================================================================
@@ -155,6 +158,8 @@ Install all OpenNebula Front-end components by executing the following commands 
 
     # yum -y install opennebula opennebula-sunstone opennebula-fireedge opennebula-gate opennebula-flow opennebula-provision
 
+.. _install_docker_deps_rh:
+
 **Optional**
 
 1. Install dependencies for :ref:`Docker Hub Marketplace <market_dh>`:
@@ -190,6 +195,8 @@ Install all OpenNebula Front-end components by executing the following commands 
 
     # apt-get update
     # apt-get -y install opennebula opennebula-sunstone opennebula-fireedge opennebula-gate opennebula-flow opennebula-provision
+
+.. _install_docker_deps_deb:
 
 **Optional**
 
