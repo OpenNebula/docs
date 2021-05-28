@@ -91,7 +91,7 @@ You need to configure Sunstone with the public endpoint of FireEdge so that one 
 Configure Guacamole
 -------------------
 
-FireEdge uses `Apache Guacamole <guacamole.apache.org>`__, a free and open source web application that allows you to access a remote console or desktop of the Virtual Machine anywhere using a modern web browser. It is a clientless **remote desktop gateway** which only requires Guacamole installed on a server and a web browser supporting HTML5.
+FireEdge uses `Apache Guacamole <http://guacamole.apache.org>`__, a free and open source web application that allows you to access a remote console or desktop of the Virtual Machine anywhere using a modern web browser. It is a clientless **remote desktop gateway** which only requires Guacamole installed on a server and a web browser supporting HTML5.
 
 Guacamole supports multiple connection methods such as **VNC, RDP, and SSH** and is made up of two separate parts - server and client. The Guacamole server consists of the native server-side libraries required to connect to the server and the Guacamole proxy daemon (``guacd``), which accepts the user's requests and connects to the remote desktop on their behalf.
 
