@@ -18,3 +18,4 @@ The following issues has been solved in 6.0.3:
 
 - `Fix and issue updating Charters in service <https://github.com/OpenNebula/one/issues/5355>`__.
 - `Fix undeploy actions for LVM TM driver <https://github.com/OpenNebula/one/issues/5385>`__.
+- `Fix Sunstone federated view always shows master zone in flow services <https://github.com/OpenNebula/one/issues/5395>`__.
