@@ -35,6 +35,8 @@ The LXC container needs to know how to invoke the process in the docker app. In 
 
 .. |nginx_start_script| image:: /images/nginx_start_script.png
 
+.. note:: For complex applications you can invoke their execution as well as pass custom configuration attributes usign the docker entrypoint.:ref:` See the Dockerhub marketplace guide for more details <market_dh>`
+
 Step 3. Instantiate the container
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

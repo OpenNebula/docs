@@ -334,6 +334,41 @@ When a Service fails during a deployment, undeployment or scaling operation, the
 
 In order to delete all the services in ``DONE`` state, to free some space in your database, you can use the command ``oneflow purge-done``.
 
+Adding or Removing Roles from a Running Service
+--------------------------------------------------------------------------------
+
+.. important:: Roles can be only added/removed when the service is in RUNNING state.
+
+In order to add a role to a running service you can use the command ``oneflow add-role``. You need to provide a valid JSON with the role description, for example:
+
+.. prompt:: bash $ auto
+
+    $ cat role.tmpl
+    {
+        "name": "MASTER",
+        "cardinality": 1,
+        "vm_template": 0,
+        "min_vms": 1,
+        "max_vms": 2,
+        "elasticity_policies": [],
+        "scheduled_policies": []
+    }
+    $ oneflow add-role 0 role.tmpl
+
+After adding the role, the service will go to ``DEPLOYING`` state and when the VMs are created, it will go to ``RUNNING``.
+
+.. note:: Networks and custom attributes are supported, so if the new role has some of them, they will be evaluated.
+
+.. note:: Before adding the role, the JSON is checked, to see that it follows :ref:`the schema <flow_role_schema>`.
+
+In order to remove a role from a running service you can use the command ``oneflow remove-role``, for example:
+
+.. prompt:: bash $ auto
+
+    $ oneflow remove-role 0 MASTER
+
+After removing the role, the service will go to ``UNDEPLOYING`` state and when the VMs are removed, it will go to ``RUNNING``.
+
 Managing Permissions
 ================================================================================
 

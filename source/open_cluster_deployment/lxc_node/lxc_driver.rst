@@ -25,7 +25,9 @@ Storage Limitations
 
 - Datablocks require formatting with a file system in order to be attached to a container.
 
-- Only file system images are supported.
+- Disk images must be a file system, they cannot have partition tables.
+
+- You can use LXC with NAS (file-based), SAN (lvm) or Ceph Datastores
 
 .. _lxc_unsupported_actions:
 
