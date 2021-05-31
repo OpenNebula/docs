@@ -1116,6 +1116,10 @@ connect via browser**.
 
 |sunstone_guac_rdp|
 
+RDP connection permits to **choose the screen resolution** from Sunstone interface.
+
+|sunstone_guac_rdp_interface|
+
 RDP connection is only allowed to activate on a single NIC. In an case, the connection will only contain the IP of the first NIC with this property enabled. This feature is available as well same way for NIC ALIASES**.
 
 If the VM template has a ``PASSWORD`` and ``USERNAME`` set in the contextualization section, this will be reflected in the RDP connection. You can read about them in the :ref:`Virtual Machine Definition File reference section <template_context>`.
@@ -1226,5 +1230,6 @@ FireEdge Server.
 .. |sunstone_rdp_button| image:: /images/sunstone_rdp_button.png
 .. |sunstone_guac_vnc| image:: /images/sunstone_guac_vnc.png
 .. |sunstone_guac_rdp| image:: /images/sunstone_guac_rdp.png
+.. |sunstone_guac_rdp_interface| image:: /images/sunstone_guac_rdp_interface.png
 .. |sunstone_guac_nic| image:: /images/sunstone_guac_nic.png
 .. |sunstone_vmrc| image:: /images/sunstone_vmrc.png
