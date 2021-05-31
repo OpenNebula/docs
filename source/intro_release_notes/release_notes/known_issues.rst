@@ -17,3 +17,9 @@ Drivers - Network
 High Availability
 =================
 HA server configuration synchronization with the command `onezone serversync` does not work for the PostgreSQL and SQLite DB Back-end
+
+Sunstone
+================================================================================
+
+- Remote connections to Guacamole from Sunstone have a mouse related issue, however noVNC can still be used if needed.
+- Guacamole RDP as is currently shipped in OpenNebula does not support NLA authentication. You can follow `these instructions <https://www.parallels.com/blogs/ras/disabling-network-level-authentication/>`__ in order to disable NLA in the Windows box to use Guacamole RDP within Sunstone.
