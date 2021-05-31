@@ -11,6 +11,7 @@ The following new features has been backported to 6.0.3:
 - `Add option "delete this file" to VirtViewer file <https://github.com/OpenNebula/one/issues/5393>`__.
 - :ref:`SAN Datastore (LVM) supports SSH transfer mode for disk image files <lvm_drivers>`.
 - :ref:`LXC containers can run from LVM disk images <lxcmg>`.
+- :ref:`Add support for docker entrypoints <market_dh>`.
 
 The following issues has been solved in 6.0.3:
 
