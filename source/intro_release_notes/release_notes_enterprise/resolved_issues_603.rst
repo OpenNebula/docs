@@ -12,6 +12,7 @@ The following new features has been backported to 6.0.3:
 - :ref:`SAN Datastore (LVM) supports SSH transfer mode for disk image files <lvm_drivers>`.
 - :ref:`LXC containers can run from LVM disk images <lxcmg>`.
 - :ref:`Add support for docker entrypoints <market_dh>`.
+- :ref:`Add support for MarketPlaces based on private Docker Registries <market_docker_registry>`.
 
 The following issues has been solved in 6.0.3:
 
