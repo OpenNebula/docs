@@ -23,6 +23,12 @@ HTTP_PROXY and XMLRPC API
 =========================
 Scheduler clears the http_proxy environment variable. If your oned xml-rpc API is behind an HTTP_PROXY you need to update ``sched.conf`` and set the right value there.
 
+XML-RPC API
+===========
+
+* ``one.template.delete``: when recursively deleting images, if one of the images cannot be deleted the API call will return SUCCESS if the template is deleted. Previous versions return FAILURE in this case.
+
+
 Ruby API
 ========
 
