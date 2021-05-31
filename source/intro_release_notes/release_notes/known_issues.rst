@@ -24,7 +24,7 @@ Drivers - Storage
 Drivers - Network
 ================================================================================
 
-- If the nic-attach fails due to the libvirt bug (VM can not eject CD-ROM after reset) the nic appears in the VM (although without proper configuration) but it's not visible on OpenNebla VM `#5268 <http://github.com/OpenNebula/one/issues/5268>`_
+- If the nic-attach fails due to the libvirt bug (VM can not eject CD-ROM after reset) the nic appears in the VM (although without proper configuration) but it's not visible on OpenNebula VM `#5268 <http://github.com/OpenNebula/one/issues/5268>`_
 - Edge Cluster Public IP: NIC_ALIAS on the public network can only can only be associated to a NIC on the same network.
 
 High Availability
@@ -40,7 +40,7 @@ Sunstone
 Install Linux Graphical Desktop on KVM Virtual Machines
 ================================================================================
 
-OpenNebubula uses the ``cirrus`` graphical adapter for KVM Virtual Machines by default.
+OpenNebula uses the ``cirrus`` graphical adapter for KVM Virtual Machines by default.
 It could happen that after installing a graphical desktop on a Linux VM, the Xorg window system does not load the appropriate video driver.
 You can force a VESA mode by configuring the kernel parameter ``vga=VESA_MODE`` in the GNU GRUB configuration file.
 `Here <https://en.wikipedia.org/wiki/VESA_BIOS_Extensions#Linux_video_mode_numbers/>`__ you can find the VESA mode numbers.
@@ -51,7 +51,7 @@ Authentication issue
 
 Because of a FireEdge vulnerability present in OpenNebula 6.0 (which has been fixed in `OpenNebula 6.0.1 and 6.0.0.1 <https://forum.opennebula.io/t/ee-6-0-1-and-ce-6-0-0-1-available-for-download/9468>`__) login tokens were created automatically with the same value of the password. This results in an authentication problem once the token expires as ``oned`` will recognize the password as an expired token and won’t authenticate the user.
 
-.. important:: This issue will only affect users that have logged in Sunstone or FireEdge using OpenNebubula 6.0.0.
+.. important:: This issue will only affect users that have logged in Sunstone or FireEdge using OpenNebula 6.0.0.
 
 In order to recover the users ``oneuser token-delete-all`` and ``oneuser token-delete`` commands can be used for removing the token. If ``oneadmin`` user is affected by this and there's no other user belonging to ``oneadmin`` group that can remove its tokens, the corresponding record in the database has to be updated removing the token:
 
@@ -61,7 +61,7 @@ In order to recover the users ``oneuser token-delete-all`` and ``oneuser token-d
 
 .. note:: It's recommended to create a DB backup before manually modifying it.
 
-vCenter 7.0 Snapshot behaviour
+vCenter 7.0 Snapshot behavior
 =================================
 
-VMs in vCenter 7.0 exhibit a new behaviour regarding snapshots and disks attach/detach operations. When vCenter 7.0 detects that any change in the number of disks attached to a VM, it automatically cleans all the VM snapshots. For this reason, OpenNebula won't allow to change the number of disks of a VM if the VM has snapshots.
+VMs in vCenter 7.0 exhibit a new behavior regarding snapshots and disks attach/detach operations. When vCenter 7.0 detects that any change in the number of disks attached to a VM, it automatically cleans all the VM snapshots. OpenNebula doesn't take this into account yet, so the snapshots stated by OpenNebula, after a disk attach or disk detach, are pointing to a null vCenter reference, and as such, cannot be used. Please keep this in mind before a solution is implemented.
