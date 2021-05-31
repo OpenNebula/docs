@@ -41,7 +41,7 @@ In the following list you can check the highlights of OpenNebula 6.0 (a detailed
 
 OpenNebula Core
 ================================================================================
-- Built-in :ref:`VM Backup <vm_backup>` mechanism for all supporterd hypervisors: LXC, KVM, Firecracker, and vCenter/ESX.
+- Built-in :ref:`VM Backup <vm_backup>` mechanism for all supported hypervisors: LXC, KVM, Firecracker, and vCenter/ESX.
 - Add option set cold migration mode for rescheduling. See :ref:`Scheduler configuration <schg_configuration>`.
 - Add option to create formatted datablocks. See :ref:`Image template <img_template>`.
 - Add support for document encrypted attributes. Check :ref:`this <encrypted_attrs>` for more information.
@@ -67,7 +67,7 @@ Sunstone
 - Service registration time has been added to :ref:`service templates <appflow_elasticity>`. Available in Sunstone, enabled by default in :ref:`services instances views <suns_views>`.
 - Added remove template and images when deleting a service. Check for more information :ref:`here <appflow_use_cli_delete_service_template>`.
 - Add option for automatic deletion of services when all associated VMs terminated. Check more information :ref:`here <appflow_use_cli_automatic_delete>`.
-- Massively improved options for :ref:`VM console access <remote_access_sunstone>` through Sunstone: add Gucamole support, including VNC, RDP and SSH, and added VMRC support through Sunstone.
+- Massively improved options for :ref:`VM console access <remote_access_sunstone>` through Sunstone: add Guacamole support, including VNC, RDP and SSH, and added VMRC support through Sunstone.
 - Allow the attachment of external NIC alias. Check more information :ref:`here <template_network_section>`.
 - Added states to role actions buttons. Check for more information :ref:`here <appflow_use_cli_life_cycle>`.
 - Add EXTERNAL NIC attribute to VM IPs on Sunstone. Check more information :ref:`here <template_network_section>`.
@@ -172,14 +172,14 @@ Other Issues Solved
 - `Fix minimum VMs to scale action on Sunstone <http://github.com/OpenNebula/one/issues/1019>`__.
 - `Fix service scale action in the Cloud View on Sunstone <http://github.com/OpenNebula/one/issues/5231>`__.
 - `Fix schedule actions via Sunstone unexpected behavior on VMs <https://github.com/OpenNebula/one/issues/5209>`__.
-- `Fix error when create app if OneFlow Server not runnnig <https://github.com/OpenNebula/one/issues/5227>`__.
+- `Fix error when create app if OneFlow Server not running <https://github.com/OpenNebula/one/issues/5227>`__.
 - `Fix Sunstone overrides disks when VM Template instantiates XMLRPC API call <https://github.com/OpenNebula/one/issues/5238>`__.
 - `Fix Sunstone doesn't lock and unlock VMs <https://github.com/OpenNebula/one/issues/5200>`__.
 - `Fix Sunstone doesn't delete roles on Service update <https://github.com/OpenNebula/one/issues/5254>`__.
 - `Hide remote actions buttons until vCenter VM is monitored <https://github.com/OpenNebula/one/issues/5002>`__.
 - `Fix Sunstone VM warning box blocks other VM tabs <https://github.com/OpenNebula/one/issues/5266>`__.
 - `Fix show the CPU cost calculation in VM template wizard <https://github.com/OpenNebula/one/issues/5288>`__.
-- `CLI interprete backslash escapes <https://github.com/OpenNebula/one/issues/4981>`__.
+- `CLI interpret backslash escapes <https://github.com/OpenNebula/one/issues/4981>`__.
 - `Add instantiate VMs persistent by default <https://github.com/OpenNebula/one/issues/1501>`__.
 - `Remove CLI extra columns <https://github.com/OpenNebula/one/issues/4974>`__.
 - `Improve interoperability between Datastore and Market drivers <https://github.com/OpenNebula/one/issues/1159>`__.
