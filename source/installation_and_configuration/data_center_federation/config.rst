@@ -121,6 +121,19 @@ Now you can start adding more servers to the *slave* Zone to provide it with HA 
 
 .. important:: It is important to double check that the federation is working before adding HA servers to the Zone, as you will be updating the Zone metadata which is federated information.
 
+Step 4. Show service information by Zone Sunstone (Optional)
+================================================================================
+
+To see the information of the services in the sunstone of a particular zone, it is required to do the following:
+
+- Adjust the ``:host`` field in ``/etc/one/oneflow-server.conf`` of the slave zone to allow listening for requests outside of 127.0.0.1
+
+.. note:: So that the oneflow-server listens for requests from anywhere, the host field can be set to 0.0.0.0
+
+- Update the slave zone in the master zone. Adding the ``ONEFLOW_ENDPOINT=http://<slave-zone-ip>:2474/`` field with the public address of the slave zone with the following command ``onezone update <id-slave-zone>``
+
+- restart sunstone service
+
 Importing Existing OpenNebula Zones
 ================================================================================
 
