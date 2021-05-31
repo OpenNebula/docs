@@ -7,19 +7,18 @@ Docker Registry Marketplace
 Overview
 ================================================================================
 
-This Marketplace uses a private Docker registry server to expose the images (Marketplace Appliances) uploaded to the Marketplace.
+This Marketplace uses a private Docker registry server to expose the images in it as Marketplace Appliances.
 
 Requirements
 ================================================================================
 
-The Docker registry should be deployed either in the Front-end or on a node reachable by the Front-end.
-
-The Docker registry should be deployed by the administrator before registering the MarketPlace.
+* The Docker registry should be deployed either in the Front-end or on a node reachable by the Front-end.
+* The Docker registry should be deployed by the administrator before registering the MarketPlace.
 
 Configuration
 ================================================================================
 
-These are the configuration attributes of a Marketplace template of the HTTP kind:
+The configuration attributes are described below:
 
 +-----------------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
 |    Attribute    | Required |                                                                      Description                                                                      |
@@ -33,7 +32,7 @@ These are the configuration attributes of a Marketplace template of the HTTP kin
 | ``SSL``         | **NO**   | ``true`` if the registry is behind SSL proxy.                                                                                                         |
 +-----------------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-For example, the following examples illustrate the creation of a Marketplace:
+For example, the following examples illustrate the creation of a Marketplace using a custom registry available at ``http://fronted.opennebula.org/``:
 
 .. prompt:: bash $ auto
 
