@@ -139,9 +139,9 @@ For example, to create a new image called ``nginx-dh`` based on the ``nginx`` im
 Entrypoint
 --------------------------------------------------------------------------------
 
-When you download an application from the Dockerhub, OpenNebula will automatically inspect it to check if there is entrypoint information. This information is stored in ``/one_entrypoint.sh`` so it can be executed. All the custom variables defined by the user are taken in account when running it.
+When you download an application from the Dockerhub, OpenNebula will automatically inspect it to check if there is entrypoint information. This ``ENTRYPOINT`` and/or ``CMD`` commands are placed in the ``/one_entrypoint.sh`` script so it can be executed on boot. All the environment variables are passed into the script and can be further customized by the user by adding new values through context. Simply, add the environment variable as described by the documentation of the appliance in the ``CONTEXT`` section.
 
-.. note:: You can add it to your start script ``ohup /one_entrypoint.sh &> /dev/null &`` in order to run it.
+.. note:: You **have to** trigger the entrypoint execution in the ``START_SCRIPT`` with a line similar to: ``nohup /one_entrypoint.sh &> /dev/null &``.
 
 .. _market_linux_container:
 
