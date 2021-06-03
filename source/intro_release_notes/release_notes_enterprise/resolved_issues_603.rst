@@ -21,3 +21,4 @@ The following issues has been solved in 6.0.3:
 - `Fix undeploy actions for LVM TM driver <https://github.com/OpenNebula/one/issues/5385>`__.
 - `Fix Sunstone federated view always shows master zone in flow services <https://github.com/OpenNebula/one/issues/5395>`__.
 - `Fix error message when deleting VM templates recursively <https://github.com/OpenNebula/one/issues/2053>`__.
+- `Fix RDP button not working on service role VMs datatable <https://github.com/OpenNebula/one/issues/5416>`__.
