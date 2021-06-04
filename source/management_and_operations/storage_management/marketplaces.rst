@@ -217,3 +217,8 @@ Configuration Attributes
 | ``SKIP_UNTESTED`` | Include only apps with support for context          |                 ``yes``           |
 +-------------------+-----------------------------------------------------+-----------------------------------+
 
+.. _marketplace_disable:
+
+Disable Marketplace
+================================================================================
+Marketplace can be disabled by command ``onemarket disable``. By disabling Marketplace all Appliances will be removed from OpenNebula. It doesn't effect already exported Images. After enabling the Marketplace by command ``onemarket enable``, all Aplliances from this Marketplace will be available again.
