@@ -159,7 +159,6 @@ MarketPlace
 ===========
 
 - Add support for service templates; check :ref:`this <marketapp>` for more information.
-- Add API to :ref:`disable Marketplace <marketplace_disable>`.
 
 Hooks
 =====
