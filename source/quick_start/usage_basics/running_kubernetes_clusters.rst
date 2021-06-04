@@ -13,7 +13,7 @@ We are going to assume the Edge Cluster naming schema ``metal-kvm-aws-cluster``.
 Step 1. Download the OneFlow Service from the Marketplace
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Log in to Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab and search for ``Kubernetes``. Select the ``Service Kubernetes 1.18 for OneFlow - KVM`` and click on the icon with the cloud and the down arrow inside (two positions to the right from the green ``+``).
+Log in to Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab and search for ``Kubernetes``. Select the ``Service Kubernetes 1.21 - KVM`` and click on the icon with the cloud and the down arrow inside (two positions to the right from the green ``+``).
 
 |kubernetes_marketplace|
 
@@ -31,11 +31,11 @@ Step 2. Instantiate the Kubernetes Service
 
 .. note::
 
-    You may want to adjust the VM templates before you progress further - go to ``Templates --> VMs``, click on the ``Service Kubernetes 1.18 for OneFlow - KVM-0`` and blue button ``Update`` at the top.
+    You may want to adjust the VM templates before you progress further - go to ``Templates --> VMs``, click on the ``Service Kubernetes 1.21 - KVM-0`` and blue button ``Update`` at the top.
 
     Here you can increase memory for the nodes, disk capacity, add SSH key, etc. How to modify the VM template is summarized in the short `Quick Start <https://docs.opennebula.io/appliances/service/kubernetes.html#update-vm-template>`_ for the Kubernetes Appliance.
 
-Proceed to the ``Templates --> Services`` tab and select the ``Service Kubernetes 1.18 for OneFlow - KVM`` Service Template (that should be the only one available). Click on ``+`` and then ``Instantiate``.
+Proceed to the ``Templates --> Services`` tab and select the ``Service Kubernetes 1.21 - KVM`` Service Template (that should be the only one available). Click on ``+`` and then ``Instantiate``.
 
 A required step is clicking on ``Network`` and selecting the ``metal-kvm-aws-cluster-public`` network.
 
@@ -234,19 +234,25 @@ Now you can access the application using the public IP of the Nic Alias in the b
 LoadBalancer Service
 ++++++++++++++++++++
 
-We can improve the previous setup by configuring the Appliance with a `LoadBalancer range <https://docs.opennebula.io/appliances/service/kubernetes.html#k8s-context-param>`_ context parameter (``ONEAPP_K8S_LOADBALANCER_CONFIG`` or ``ONEAPP_K8S_LOADBALANCER_RANGE``) and expose the service as a `Kubernetes type LoadBalancer <https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer>`_.
+We can improve the previous setup by configuring the Appliance with a LoadBalancer `context parameter <https://docs.opennebula.io/appliances/service/kubernetes.html#k8s-context-param>`_ for the IP range (``ONEAPP_K8S_LOADBALANCER_RANGE``) and expose the service as a `Kubernetes type LoadBalancer <https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer>`_.
 
 .. important::
 
     **The range must match the actually intended range of publishable IP addresses!**
 
-    E.g. in this scenario we could setup:
+    In this demo we have only one available address for load balancing and so our range will have only one address:
+
+    .. code::
+
+        ONEAPP_K8S_LOADBALANCER_RANGE="10.0.93.120"
+
+    This syntax is allowed for convenience (by the appliance not MetalLB!) and it could have been written alternatively as:
 
     .. code::
 
         ONEAPP_K8S_LOADBALANCER_RANGE="10.0.93.120-10.0.93.120"
 
-    Our range spans only one address because we have only one available IP address for loadbalancing.
+    Which is the correct format for ranges with more than one addresses.
 
 The setup is very similar to the previous one but when we are creating the NIC alias we will also tick the ``External`` checkbox button. This way the IP will not be actually assigned anywhere but it will be reserved for our loadbalancing usage.
 
