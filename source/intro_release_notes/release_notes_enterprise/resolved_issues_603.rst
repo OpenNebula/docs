@@ -26,3 +26,4 @@ The following issues has been solved in 6.0.3:
 - `Fix show error when setting values for optional custom attributes when instantiating a service <https://github.com/OpenNebula/one/issues/5415>`__.
 - `Fix 'save as template' button on VMs datatable <https://github.com/OpenNebula/one/issues/5417>`__.
 - `Fix add files to FILES_DS once VM is instantiated <https://github.com/OpenNebula/one/issues/5317>`__.
+- `Add option to remove and add service roles <https://github.com/OpenNebula/one/issues/4654>`__.
