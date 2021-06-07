@@ -23,4 +23,5 @@ The following issues has been solved in 6.0.3:
 - `Fix Sunstone federated view always shows master zone in flow services <https://github.com/OpenNebula/one/issues/5395>`__.
 - `Fix error message when deleting VM templates recursively <https://github.com/OpenNebula/one/issues/2053>`__.
 - `Fix RDP button not working on service role VMs datatable <https://github.com/OpenNebula/one/issues/5416>`__.
+- `Fix show error when setting values for optional custom attributes when instantiating a service <https://github.com/OpenNebula/one/issues/5415>`__.
 - `Fix 'save as template' button on VMs datatable <https://github.com/OpenNebula/one/issues/5417>`__.
