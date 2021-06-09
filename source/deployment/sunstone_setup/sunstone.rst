@@ -223,6 +223,11 @@ SPICE Console
 --------------------------------------------------------------------------------
 SPICE support in Sunstone share a similar architecture to the VNC implementation. Sunstone use a ``SPICE-HTML5`` widget in its console dialog that communicates with the proxy by using websockets.
 
+.. important:: SPICE connections when using NAT and remote-viewer won't work since noVNC proxy
+    does not offer SPICE support, and a direct connection between browser and virtualization node 
+    is needed. However the SPICE HTML5 console can use noVNC proxy to offer SPICE connectivity, 
+    please use this option as an alternative
+
 .. note:: For the correct functioning of the SPICE Web Client, we recommend defining by default some SPICE parameters in ``/etc/one/vmm_mad/vmm_exec_kvm.conf``. In this way, once modified the file and restarted OpenNebula, it will be applied to all the VMs instantiated from now on. You can also override these SPICE parameters ​​in VM Template. For more info check :ref:`Driver Defaults <kvmg_default_attributes>` section.
 
 .. _virt_viewer_sunstone:
