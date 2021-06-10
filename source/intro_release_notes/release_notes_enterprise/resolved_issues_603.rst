@@ -29,3 +29,4 @@ The following issues has been solved in 6.0.3:
 - `Add option to remove and add service roles <https://github.com/OpenNebula/one/issues/4654>`__.
 - `Add option to register DockerRegistry marketplace on Sunstone <https://github.com/OpenNebula/one/issues/5411>`__.
 - `Fix real CPU and Memory bars on Host ESX tab <https://github.com/OpenNebula/one/issues/5420>`__.
+- `Add option to disable and enable marketplaces on Sunstone <https://github.com/OpenNebula/one/issues/4510>`__.
