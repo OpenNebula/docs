@@ -145,8 +145,8 @@ Current Limitations of LXC vs LXD
 -----------------------------------
 
    - In order to improve the security, LXC will only support unprivileged containers.
-   - Any LXD feature (e.g container profiles) is not supported.
-   - LXC only supports file system images (e.g. multipart images are not supported anymore for containers).
+   - Any LXD feature is not supported. Note that profiles are supported from version 6.0.2
+   - LXC only supports file system images (e.g. complete disks with partition tables are not supported anymore for containers).
    - Support for wild container is not implemented yet.
    - Support for custom disk mountpoints is not implemented yet.
    - The current list of LXC unsupported actions can be found :ref:`here <lxc_unsupported_actions>`.
