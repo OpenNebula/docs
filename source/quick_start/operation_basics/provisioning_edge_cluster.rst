@@ -27,7 +27,7 @@ During the provision of the cluster all these resources and their corresponding 
 
 .. note:: Take into account that FireEdge will request Elastic IPs for the public IPs you request. If you receive an error message about not being able to request more IPs when creating a provision, please check the `limits of your account <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html>`__ in your zone.
 
-We'll be using the FireEdge GUI in this guide, so please make sure you can log in to it using your Front-end IP and default port 2616, as well as your oneadmin credentials.
+We'll be using the FireEdge GUI in this guide, so please make sure you can log in to it using your Front-end IP and default port 2616, as well as your oneadmin credentials. If you require to log in as a user other than oneadmin, in order to use the provision interface the user must belong to the oneadmin group, otherwise the providers won't be shown in the wizard.
 
 Step 1: Configuring AWS & Required Information
 ================================================================================
