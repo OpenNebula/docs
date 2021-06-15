@@ -83,6 +83,7 @@ We start with the first server, to perform the initial system bootstrapping.
   ZONE 0 INFORMATION
   ID                : 0
   NAME              : OpenNebula
+  STATE             : ENABLED
 
 
   ZONE SERVERS
@@ -142,6 +143,7 @@ We start with the first server, to perform the initial system bootstrapping.
   ZONE 0 INFORMATION
   ID                : 0
   NAME              : OpenNebula
+  STATE             : ENABLED
 
 
   ZONE SERVERS
@@ -208,6 +210,7 @@ Adding more servers
   ZONE 0 INFORMATION
   ID                : 0
   NAME              : OpenNebula
+  STATE             : ENABLED
 
 
   ZONE SERVERS
@@ -233,6 +236,7 @@ Adding more servers
   ZONE 0 INFORMATION
   ID                : 0
   NAME              : OpenNebula
+  STATE             : ENABLED
 
 
   ZONE SERVERS
@@ -323,6 +327,13 @@ When a *follower* is down for some time it may fall out of the recovery window, 
 .. prompt:: bash $ auto
 
   $ onezone server-reset <zone_id> <server_id_of_failed_follower>
+
+.. _frontend_ha_zone:
+
+Enable/Disable a Zone
+================================================================================
+
+During maintenance you may use ``onezone disable zone_id``. Disabled zone can still execute read only commands, but can't do any modifications to VMs, Hosts, Templates, etc. Right after ``onezone disable zone_id``, there still can be VMs in transient states, it may take some time to finish all pending operations. To enable to zone again execute ``onezone enable zone_id``.
 
 Shared data between HA nodes
 ================================================================================

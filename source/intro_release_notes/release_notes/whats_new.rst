@@ -16,6 +16,7 @@ OpenNebula 6.2 ‘XXXX’ is  ....
 
 OpenNebula Core
 ================================================================================
+- Option to :ref:`disable Zone <frontend_ha_zone>`, this new feature is useful for maintenance operations.
 - New :ref:`XMLRPC API for scheduled actions <onevm_api>`: ``one.vm.schedadd``, ``one.vm.schedupdate``, ``one.vm.scheddelete``. The new API reduces race condition issues while handliing scheduled actions.
 
 Storage
