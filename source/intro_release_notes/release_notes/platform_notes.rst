@@ -246,21 +246,7 @@ Sunstone
 Compatibility of Workloads on Certified Edge Clusters
 =====================================================
 
-Container workloads are those imported from DockerHub, LinuxContainers or TunrkeyLinux, as well as images created from DockerFiles. Virtual Machine workloads use full system disk images.
-
-The OneProvision tool enables the deployment of Edge Clusters and their automatic enrollment to OpenNebula. The following table lays out the certified configuration for each type of workload.
-
-+-------------------+-------------+---------------------------------+
-| Edge Cluster Type |  Hypervisor |     Workload                    |
-+===================+=============+=================================+
-| virtual           | LXC         | containers                      |
-+-------------------+-------------+---------------------------------+
-| metal             | LXC         | virtual machines                |
-+-------------------+-------------+---------------------------------+
-| metal             | Firecracker | containers / k3s clusters       |
-+-------------------+-------------+---------------------------------+
-| metal             | KVM         | virtual machines / k8s clusters |
-+-------------------+-------------+---------------------------------+
+.. include:: ./edge_clusters.txt
 
 
 Certified Infrastructure Scale

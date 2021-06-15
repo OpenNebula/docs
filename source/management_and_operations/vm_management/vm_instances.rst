@@ -1116,13 +1116,21 @@ connect via browser**.
 
 |sunstone_guac_rdp|
 
+RDP connection permits to **choose the screen resolution** from Sunstone interface.
+
+|sunstone_guac_rdp_interface|
+
 .. important:: **The RDP connection is only allowed to activate on a single NIC**. In any
     case, the connection will only contain the IP of the first NIC with this property enabled.
     The RDP connection will work the **same way for NIC ALIASES**.
 
-.. note:: If the VM template has a ``PASSWORD`` and ``USERNAME`` set in the contextualization
-    section, this will be reflected in the RDP connection. You can read about them in the
-    :ref:`Virtual Machine Definition File reference section <template_context>`.
+If the VM template has a ``PASSWORD`` and ``USERNAME`` set in the contextualization section, this will be reflected in the RDP connection. You can read about them in the :ref:`Virtual Machine Definition File reference section <template_context>`.
+
+.. note:: If your Windows VM has a firewall enabled, you can set the following in the start script of the VM (in the Context section of the VM Template):
+
+    ```
+    netsh advfirewall firewall set rule group="Remotedesktop" new enable=yes
+    ```
 
 .. _requirements_guacamole_ssh_sunstone:
 
@@ -1178,6 +1186,11 @@ SPICE connections are channeled only through the noVNC proxy. SPICE support in S
 a similar architecture to the VNC implementation. Sunstone use a **SPICE-HTML5** widget in
 its console dialog that communicates with the proxy by using websockets.
 
+.. important:: SPICE connections when using NAT and remote-viewer won't work since noVNC proxy
+    does not offer SPICE support, and a direct connection between browser and virtualization node 
+    is needed. However the SPICE HTML5 console can use noVNC proxy to offer SPICE connectivity, 
+    please use this option as an alternative
+
 .. note:: For the correct functioning of the SPICE Web Client, we recommend defining by default
     the SPICE parameters in ``/etc/one/vmm_mad/vmm_exec_kvm.conf``. In this way, once the file is modified and OpenNebula is restarted, it will be applied to all  the VMs instantiated from now on. You can also override these SPICE parameters in VM Template. For more info check :ref:`Driver Defaults
     <kvmg_default_attributes>` section.
@@ -1224,5 +1237,6 @@ FireEdge Server.
 .. |sunstone_rdp_button| image:: /images/sunstone_rdp_button.png
 .. |sunstone_guac_vnc| image:: /images/sunstone_guac_vnc.png
 .. |sunstone_guac_rdp| image:: /images/sunstone_guac_rdp.png
+.. |sunstone_guac_rdp_interface| image:: /images/sunstone_guac_rdp_interface.png
 .. |sunstone_guac_nic| image:: /images/sunstone_guac_nic.png
 .. |sunstone_vmrc| image:: /images/sunstone_vmrc.png

@@ -4,9 +4,7 @@
 DigitalOcean Edge Cluster
 ==========================
 
-The **virtual** Edge Clusters use a virtual machine instance to create OpenNebula Hosts. This provision is better suited for PaaS-like workloads.
-
-Virtual DigitalOcean Edge Clusters run primarily **LXC** to execute system containers.
+DigitalOcean supports **Virtual** Edge Clusters, that use a virtual machine instance to create OpenNebula Hosts. This provision is better suited for PaaS-like workloads. Virtual DigitalOcean Edge Clusters run primarily **LXC** to execute system containers.
 
 DigitalOcean Providers
 ================================================================================

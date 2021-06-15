@@ -1,11 +1,7 @@
-All the contents and materials of the site are licensed under a Creative
-Commons Attribution-ShareAlike License[1] unless otherwise noted.
+All the contents and materials of the OpenNebula Documentation site [1] are licensed under the Creative Commons Attribution-ShareAlike 4.0 International license [2] unless otherwise noted.
 
-The OpenNebula software is fully open-source software distributed and licensed
-for use under the terms of the Apache License, Version 2.0.[2]. Software from
-parts of this Web site, like the ecosystem or the addons catalogs, may be
-distributed and licensed for use under a different license. All rights, title
-and interest not expressly granted are reserved.
+OpenNebula CE is fully open-source software distributed and licensed for use under the terms of the Apache License, Version 2.0 [3]. Software from parts of this GitHub repo (e.g. some of the external contributions to our Add-ons Catalog) may be distributed and licensed for use under a different license. All rights, title and interest not expressly granted are reserved.
 
-[1] http://creativecommons.org/licenses/by-sa/3.0/
-[2] http://www.apache.org/licenses/LICENSE-2.0
+[1] https://docs.opennebula.io
+[2] https://creativecommons.org/licenses/by-sa/4.0/
+[3] http://www.apache.org/licenses/LICENSE-2.0

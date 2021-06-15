@@ -4,9 +4,7 @@
 Google Edge Cluster
 ===================
 
-The **virtual** Edge Clusters use a Virtual Machine instance to create OpenNebula Hosts. This provision is better suited for PaaS-like workloads.
-
-Virtual Google Edge Clusters primarily run **LXC** to execute system containers.
+Google supports **virtual** Edge Clusters, that use a Virtual Machine instance to create OpenNebula Hosts. This provision is better suited for PaaS-like workloads. Virtual Google Edge Clusters primarily run **LXC** to execute system containers.
 
 Google Providers
 ================================================================================
