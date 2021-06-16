@@ -13,3 +13,4 @@ The following issues has been solved in 5.12.10:
 
 - `Fix Sunstone federated view always shows master zone in flow services <https://github.com/OpenNebula/one/issues/5395>`__.
 - `Fix real CPU and Memory bars on Host ESX tab <https://github.com/OpenNebula/one/issues/5420>`__.
+- `Fix SQL error for one.vmpool.monitoring <https://github.com/OpenNebula/one/issues/5424>`__.
