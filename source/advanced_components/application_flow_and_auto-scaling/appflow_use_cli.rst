@@ -282,6 +282,8 @@ The Service will eventually change to ``DEPLOYING``. You can see information for
     LOG MESSAGES
     09/19/12 14:44 [I] New state: DEPLOYING
 
+.. warning:: Once the service has been instantiated, all the operations with the virtual machines **must** be performed using OneFlow commands or API.
+
 Life-cycle
 ----------
 

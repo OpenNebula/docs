@@ -10,18 +10,11 @@ Daemon Configuration Attributes
 ===============================
 
 -  ``MANAGER_TIMER``: Time in seconds the core uses to evaluate periodical functions. MONITORING\_INTERVAL cannot have a smaller value than MANAGER\_TIMER.
--  ``MONITORING_INTERVA_HOST``: Time in seconds between each HOST monitoring cycle.
--  ``MONITORING_INTERVAL_VM``: Time in seconds between each VM monitoring cycle.
 -  ``MONITORING_INTERVAL_DATASTORE``: Time in seconds between each DATASTORE monitoring cycle.
 -  ``MONITORING_INTERVAL_MARKET``: Time in seconds between each MARKETPLACE monitoring cycle.
 -  ``MONITORING_INTERVAL_DB_UPDATE``: Time in seconds between DB writes of VM monitoring information. -1 to disable DB updating and 0 to write every update.
 -  ``DS_MONITOR_VM_DISK``: Number of MONITORING_INTERVAL_DATASTORE intervals to monitor VM disks. 0 to disable. Only applies to fs and fs_lvm datastores.
 -  ``MONITORING_THREADS``: Maximum number of threads used to process monitor messages.
--  ``HOST_PER_INTERVAL``: Number of hosts monitored in each interval.
--  ``HOST_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring information. Use 0 to disable HOST monitoring recording.
--  ``VM_INDIVIDUAL_MONITORING``: VM monitoring information is normally obtained along with the host information. Set this TO ``"YES"`` if you use a custom monitor driver that needs to activate the VM monitoring process separately.
--  ``VM_PER_INTERVAL``: Number of VMs monitored in each interval.
--  ``VM_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring information. Use 0 to disable VM monitoring recording.
 -  ``SCRIPTS_REMOTE_DIR``: Remote path to store the monitoring and VM management script.
 -  ``PORT``: Port where ``oned`` will listen for XML-RPC calls.
 -  ``LISTEN_ADDRESS``: Host IP to listen on for XML-RPC calls (default: all IPs).
@@ -77,19 +70,11 @@ Example of this section:
 
     #MANAGER_TIMER = 15
 
-    MONITORING_INTERVAL_HOST = 180
-    MONITORING_INTERVAL_VMS  = 180
     MONITORING_INTERVAL_DATASTORE = 300
     MONITORING_INTERVAL_MARKET    = 600
 
     MONITORING_THREADS  = 50
-    #DS_MONITOR_VM_DISK              = 10
-    #HOST_PER_INTERVAL               = 15
-    #HOST_MONITORING_EXPIRATION_TIME = 43200
-
-    #VM_INDIVIDUAL_MONITORING      = "no"
-    #VM_PER_INTERVAL               = 5
-    #VM_MONITORING_EXPIRATION_TIME = 14400
+    #DS_MONITOR_VM_DISK = 10
 
     SCRIPTS_REMOTE_DIR=/var/tmp/one
 
@@ -188,6 +173,10 @@ The following attributes define the default cost for Virtual Machines that don't
         MEMORY_COST = 0,
         DISK_COST   = 0
     ]
+
+    SHOWBACK_ONLY_RUNNING = "no"
+
+For showback the CPU and memory cost are counted if the resource is reserved on host. That includes also ``poweroff`` and ``suspend`` state, when the VM is uploaded to the host, the resources are reserved, but VM is not running. If you wish to count resources only for runnning VMs, set parameter ``SHOWBACK_ONLY_RUNNING = "yes"``, default is ``no``. The disk cost is always counted in ``poweroff`` and ``suspend`` state as the VM image is already uploaded to the host.
 
 .. _oned_conf_xml_rpc_server_configuration:
 

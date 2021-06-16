@@ -9,7 +9,7 @@ Enterprise Edition
 
 OpenNebula Systems provides an OpenNebula Enterprise Edition to customers with an active support subscription. To distribute the packages of the Enterprise Edition there is a private enterprise repository only accessible by customers where all packages, including major, minor, and maintenance and releases, are stored. You only need to change your repository source once per major release and you'll be able to get every package in those series. Private repositories contain all OpenNebula released packages.
 
-To access the repository you should have received a token (user/password) used to access the new repository. You have to substitute in the following instructions the appearance of <token> with your specific token:
+To access the repository you should have received a token (user/password) used to access the new repository. You have to substitute in the following instructions the appearance of ``<token>`` with your specific token:
 
 CentOS/RHEL
 -----------
@@ -82,6 +82,13 @@ Debian/Ubuntu
     # echo "deb https://<token>@enterprise.opennebula.io/repo/5.12/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
+*Ubuntu 20.10*
+
+.. prompt:: bash # auto
+
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/5.12/Ubuntu/20.10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # apt-get update
+
 .. note::
 
    Please note that you can point to a specific 5.12.x version changing the occurrence of 5.12 in any of the above to the specific version number. For instance, to point to version 5.12.1 in Ubuntu 18.04:
@@ -91,6 +98,14 @@ Debian/Ubuntu
        Ubuntu 18.04
        # echo "deb https://<token>@enterprise.opennebula.io/repo/5.12.1/Ubuntu/18.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
        # apt-get update
+
+Since Debian 10 and Ubuntu 16.04, it's possible (and recommended) to store customer token in a separate file distinct to the repository configuration. If you choose to store the repository credentials separately, you need to avoid using ``<token>@`` part in the repository definitions above, create a new file ``/etc/apt/auth.conf.d/opennebula.conf`` with following structure and replace ``<user>`` and ``<password>`` parts with customer credentials you have received:
+
+.. code::
+
+    machine enterprise.opennebula.io
+    login <user>
+    password <password>
 
 Community Edition
 =================

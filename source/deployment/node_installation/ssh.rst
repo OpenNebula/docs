@@ -30,9 +30,9 @@ To stop, start, or restart service use following commands:
 
 .. prompt:: bash $ auto
 
-    $ sudo systemctl stop openenbula-ssh-agent.service
-    $ sudo systemctl start openenbula-ssh-agent.service
-    $ sudo systemctl restart openenbula-ssh-agent.service
+    $ sudo systemctl stop opennebula-ssh-agent.service
+    $ sudo systemctl start opennebula-ssh-agent.service
+    $ sudo systemctl restart opennebula-ssh-agent.service
 
 .. important::
 

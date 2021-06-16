@@ -87,8 +87,8 @@ and the associated guest OS view:
    node 0 size: 1023 MB
    node 0 free: 600 MB
    node distances:
-   node   0 
-     0:  10 
+   node   0
+     0:  10
 
 .. important:: When defining a custom CPU Topology you need to set the number of sockets, cores and threads, and it should match the total number of vCPUS, i.e. ``VCPU = SOCKETS * CORES * THREAD``.
 
@@ -137,9 +137,9 @@ The *in-guest* OS view is for this example:
    node 1 size: 511 MB
    node 1 free: 359 MB
    node distances:
-   node   0   1 
-     0:  10  20 
-     1:  20  10 
+   node   0   1
+     0:  10  20
+     1:  20  10
 
 Asymmetric topology
 --------------------------------------------------------------------------------
@@ -166,6 +166,7 @@ When you need to expose the NUMA topology to the guest you have to set a pinning
 * ``CORE``: each vCPU is assigned to a whole hypervisor core. No other threads in that core will be used. This policy can be useful to isolate the VM workload for security reasons.
 * ``THREAD``: each vCPU is assigned to a hypervisor CPU thread.
 * ``SHARED``: the VM is assigned a set of the hypervisor CPUS shared by all the VM vCPUs.
+* ``NONE``: the VM is not assigned to any hypervisor CPUs. The access to the resources (i.e cpu time) will be limited by the `CPU` attribute.
 
 VM memory is assigned to the closet hypervisor NUMA node where the vCPUs are pinned, trying to prioritize local memory accesses.
 

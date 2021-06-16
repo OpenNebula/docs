@@ -156,14 +156,15 @@ The User Inputs functionality provides the Template creator the possibility to d
 A user input can be one of the following types:
 
 * **text**: any text value.
-* **password**: any text value. The interface will block the input visually, but the value will be stored as plain text.
 * **text64**: will be encoded in base64 before the value is passed to the VM.
+* **password**: any text value. The interface will block the input visually, but the value will be stored as plain text.
 * **number**: any integer number.
 * **number-float**: any number.
 * **range**: any integer number within the defined min..max range.
 * **range-float**: any number within the defined min..max range.
 * **list**: the user will select from a pre-defined list of values.
 * **list-multiple**: the user will select one or more options from a predefined list of values.
+* **boolean**: can be either YES or NO.
 
 |prepare-tmpl-user-input-1|
 
@@ -172,6 +173,8 @@ These inputs will be presented to the user when the Template is instantiated. Th
 |prepare-tmpl-user-input-3|
 
 .. note:: If a VM Template with user inputs is used by a :ref:`Service Template Role <appflow_use_cli>`, the user will be also asked for these inputs when the Service is created.
+
+.. note:: You can use the flag ``--user-inputs ui1,ui2,ui3`` to use them in a non-interactive way.
 
 .. _sched_actions_templ:
 

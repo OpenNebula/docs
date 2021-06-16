@@ -25,13 +25,30 @@ There are a number of regular features that are not implemented yet:
 - LVM datastore
 - PCI Passthrough
 - swap disk type, inderectly supported through volatile disks
-
-- **offline disk resize**:
-    - not supported on multiple partition images
-    - only supported **xfs** and **ext4** filesystems
+- offline disk resize
 - **datablocks**: Datablocks created on OpenNebula will need to be formatted before being attached to a container
 - **multiple partition images**: One of the partitions must have a valid `/etc/fstab` to mount the partitions 
-- ``lxc exec $container -- login`` in a centos container doesn't outputs the login shell 
+- ``lxc exec $container -- login`` in a centos container doesn't output the login shell 
+
+.. note:: **Offline Disk Resize**
+
+    Images with a partition table, like the KVM-ready ones found in the `OpenNebula Marketplace <https://marketplace.opennebula.io/appliance>`_ are not supported. When the container is up and running, you can identify such images if they have the following layout.
+
+    .. code-block:: none
+
+        nbd0      43:0    0  256M  0 disk 
+        └─nbd0p1  43:1    0  255M  0 part /var/snap/lxd/common/lxd/storage-pools/default/containers/one-9/rootfs
+
+    **nbd0** is the virtual disk and  **nbd0p1** is the partition holding the filesystem.
+
+    resize-supported images have the following layout. You can find images like these in :ref:`the LXD marketplace <market_linux_container>`. 
+
+    .. code-block:: none
+
+        nbd1      43:32   0    1G  0 disk /var/snap/lxd/common/lxd/storage-pools/default/containers/one-10/rootfs
+
+    where the disk itslef is the filesystem. The supported filesystems for this operations are **xfs** and **ext4**.
+
 
 Configuration
 ================================================================================
@@ -168,8 +185,10 @@ The **raw** attribute offers the end user the possibility of passing by attribut
 
 .. code::
 
-      RAW = [ type = "lxd",
-              "boot.autostart": "true", "limits.processes": "10000"]
+      RAW = [ 
+          type = "lxd",
+          data = "boot.autostart": "true", "limits.processes": "10000"
+        ]
 
 Importing VMs
 -------------

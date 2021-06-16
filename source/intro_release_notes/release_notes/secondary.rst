@@ -14,7 +14,7 @@ Front-End Components
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
 |        Component        |                         Version                         |                    More information                   |
 +=========================+=========================================================+=======================================================+
-| Fedora                  | 32 (x86-64)                                             | :ref:`Front-End Installation <frontend_installation>` |
+| Fedora                  | 32 (x86-64), 33 (x86-64)                                | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
 
 KVM Nodes
@@ -23,7 +23,7 @@ KVM Nodes
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 |        Component        |                          Version                          |             More information            |
 +=========================+===========================================================+=========================================+
-| Fedora                  | 32 (x86-64)                                               | :ref:`KVM Driver <kvmg>`                |
+| Fedora                  | 32 (x86-64), 33 (x86-64)                                  | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 
 Firecracker Nodes
@@ -32,14 +32,14 @@ Firecracker Nodes
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 |        Component        |                          Version                          |             More information            |
 +=========================+===========================================================+=========================================+
-| Fedora                  | 32 (x86-64)                                               | :ref:`Firecracker Driver <fc_node>`     |
+| Fedora                  | 32 (x86-64), 33 (x86-64)                                  | :ref:`Firecracker Driver <fc_node>`     |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 
 Frontend Platform Notes
 =======================
 
-Fedora 32
----------
+Fedora 32 and 33
+----------------
 
 Docker Hub fails to import image as Docker doesn't support cgroup v2. Front-end must reconfigured to
 
@@ -53,5 +53,10 @@ Fedora 32
 ---------
 
 `Live migration <https://github.com/OpenNebula/one/issues/4695>`__ with KVM virtual machines doesn't work.
+
+Firecracker doesn't support cgroup v2, host must use kernel parameter ``systemd.unified_cgroup_hierarchy=0`` to fallback to cgroup v1.
+
+Fedora 33
+---------
 
 Firecracker doesn't support cgroup v2, host must use kernel parameter ``systemd.unified_cgroup_hierarchy=0`` to fallback to cgroup v1.

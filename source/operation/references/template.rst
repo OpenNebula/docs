@@ -554,7 +554,7 @@ The following I/O interfaces can be defined for a VM:
 |              | * **BUS**: values are ``usb``, ``ps2``                                               |     |         |         |             |
 |              |                                                                                      |     |         |         |             |
 +--------------+--------------------------------------------------------------------------------------+-----+---------+---------+-------------+
-| **GRAPHICS** | Wether the VM should export its graphical display and how, available sub-attributes: | O   | O       | O       | O           |
+| **GRAPHICS** | Whether the VM should export its graphical display and how, available sub-attributes:| O   | O       | O       | O           |
 |              |                                                                                      |     |         |         |             |
 |              +--------------------------------------------------------------------------------------+-----+---------+---------+-------------+
 |              | * **TYPE**: values: ``vnc``, ``sdl``, ``spice``                                      |     |         | O (vnc) | O (vnc)     |
@@ -569,6 +569,8 @@ The following I/O interfaces can be defined for a VM:
 |              +--------------------------------------------------------------------------------------+-----+---------+---------+-------------+
 |              | * **RANDOM_PASSWD**: if "YES", generate a random password for each VM                |     |         | O       | O           |
 +--------------+--------------------------------------------------------------------------------------+-----+---------+---------+-------------+
+
+**Note** if the GRAPHICS contains both attributes PASSWD and RANDOM_PASSWD the password will not be generated
 
 Example:
 
@@ -598,12 +600,12 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 | **VARIABLE**                      | Variables that store values related to this virtual machine or others . The name  | O                            | O       | Linux   |
 |                                   | of the variable is arbitrary (in the example, we use hostname).                   |                              |         |         |
 +-----------------------------------+-----------------------------------------------------------------------------------+------------------------------+---------+---------+
-| **FILES \***                      | space-separated list of paths to include in context device.                       | O                            | \-      | \-      |
+| **FILES \***                      | space-separated list of paths to include in context device.                       | O                            | O       | \-      |
 +-----------------------------------+-----------------------------------------------------------------------------------+------------------------------+---------+---------+
-| **FILES\_DS**                     | space-separated list of File images to include in context device. (Not supported  | O                            | \-      | \-      |
+| **FILES\_DS**                     | space-separated list of File images to include in context device. (Not supported  | O                            | O       | \-      |
 |                                   | for vCenter)                                                                      |                              |         |         |
 +-----------------------------------+-----------------------------------------------------------------------------------+------------------------------+---------+---------+
-| **INIT\_SCRIPTS**                 | If the VM uses the OpenNebula contextualization package the init.sh file is       | O                            | \-      | \-      |
+| **INIT\_SCRIPTS**                 | If the VM uses the OpenNebula contextualization package the init.sh file is       | O                            | O       | \-      |
 |                                   | executed by default. When the init script added is not called init.sh or more     |                              |         |         |
 |                                   | than one init script is added, this list contains the scripts to run and the      |                              |         |         |
 |                                   | order. Ex. "init.sh users.sh mysql.sh"                                            |                              |         |         |
@@ -1140,6 +1142,13 @@ Example:
            data = "<devices><serial type=\"pty\"><source path=\"/dev/pts/5\"/><target port=\"0\"/></serial><console type=\"pty\" tty=\"/dev/pts/5\"><source path=\"/dev/pts/5\"/><target port=\"0\"/></console></devices>"
        ]
 
+.. code::
+
+       RAW = [
+           type = "lxd",
+           data = "boot.autostart": "true", "limits.processes": "10000"
+       ]
+
 .. _emulator_override:
 
 Additionally the following can be also set for KVM
@@ -1218,23 +1227,25 @@ Valid ``types``:
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
 | Types           | Value                                                           | Description                                            |
 +=================+=================================================================+========================================================+
-| text            | <VAR>="M|text| <desc>"                                          | A string                                               |
+| text            | <VAR>="M|text| <desc>| | <default>"                             | A string                                               |
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
-| text64          | <VAR>="M|text64| <desc>"                                        | text64 will encode the user's response in Base64       |
+| text64          | <VAR>="M|text64| <desc>| | <default>"                           | text64 will encode the user's response in Base64       |
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
 | password        | <VAR>="M|password| <desc>"                                      |                                                        |
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
-| number          | <VAR>="M|number| <desc>"                                        | An integer                                             |
+| number          | <VAR>="M|number| <desc>| | <default>"                           | An integer                                             |
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
-| float           | <VAR>="M|number-float| <desc>"                                  | A float                                                |
+| float           | <VAR>="M|number-float| <desc>| | <default>"                     | A float                                                |
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
-| range           | <VAR>="M|range| <desc>|<min>..<max>||<default>|"                | A range of integers                                    |
+| range           | <VAR>="M|range| <desc>|<min>..<max>| <default>"                 | A range of integers                                    |
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
-| range (float)   | <VAR>="M|range-float| <desc>|<min>..<max>||<default>|"          | A range of floats                                      |
+| range (float)   | <VAR>="M|range-float| <desc>|<min>..<max>|<default>"            | A range of floats                                      |
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
-| list            | <VAR>="M|list| <desc>|<v1>,<v2>,<v3>||<default>|"               | A list                                                 |
+| list            | <VAR>="M|list| <desc>|<v1>,<v2>,<v3>|<default>"                 | A list                                                 |
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
-| boolean         | <VAR>="M|boolean| <desc>|<default>|"                            | Yes or not                                             |
+| list-multiple   | <VAR>="M|list-multiple| <desc>|<v1>,<v2>,<v3>|<default>|"       | A list with multiple values                            |
++-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
+| boolean         | <VAR>="M|boolean| <desc>| | <default>"                          | Yes or not                                             |
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
 
 There is the possibility of making the USER_INPUT mandatory or not. If it is mandatory, we will see a letter 'M' but if it is not mandatory a letter 'O' will appear.

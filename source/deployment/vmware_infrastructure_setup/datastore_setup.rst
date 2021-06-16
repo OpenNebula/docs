@@ -285,7 +285,6 @@ When you import a SDRS cluster using onevcenter or Sunstone:
 
 * The cluster will be imported as a SYSTEM datastore only. vSphere’s API does not provide a way to upload or create files directly into the SDRS cluster so it can’t be used as an IMAGE datastore.
 * OpenNebula detects the datastores grouped by the SDRS cluster so you can still import those datastores as both IMAGE and SYSTEM datastores.
-* Non-persistent images are not supported by a SDRS as vSphere’s API does not provide a way to create, copy or delete files to a SDRS cluster as a whole, however you can use persistent and volatile images with the VMs backed by your SDRS.
 * Linked clones over SDRS are not supported by OpenNebula, so when a VM clone is created a full clone is performed.
 
 In order to delegate the datastore selection to the SDRS cluster you must inform OpenNebula's scheduler that you want to use specifically the SYSTEM datastore representing the storage cluster. You can edit a VM template and add the following expression: ID=DATASTORE_ID to the attribute SCHED_DS_REQUIREMENTS, where DATASTORE_ID must be replaced with the numeric id assigned by OpenNebula to the datastore. Thanks to this attribute OpenNebula will always use this datastore when deploying a VM. There's an alternative if you don't want to use SCHED_DS_REQUIREMENTS if you have several SYSTEM datastores in the same OpenNebula cluster associated to the vCenter cluster, you can disable all SYSTEM datastores but the one that represents your StorageDRS cluster as the scheduler will not use disabled datastores.
