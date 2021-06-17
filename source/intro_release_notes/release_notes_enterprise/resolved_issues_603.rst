@@ -34,3 +34,4 @@ The following issues has been solved in 6.0.3:
 - `Fix SQL error for one.vmpool.monitoring <https://github.com/OpenNebula/one/issues/5424>`__.
 - `Fix advanced search for datatables on Sunstone <https://github.com/OpenNebula/one/issues/5426>`__.
 - `Fix IPv6 alias not showing on Sunstone <https://github.com/OpenNebula/one/issues/5425>`__.
+- `Fix OneProvision GUI in fedora OS <https://github.com/OpenNebula/one/issues/5419>`__.
