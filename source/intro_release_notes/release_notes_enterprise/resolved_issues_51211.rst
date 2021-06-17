@@ -11,4 +11,5 @@ The following new features has been backported to 5.12.11:
 
 The following issues has been solved in 5.12.11:
 
-- `Write some nice description here <https://github.com/OpenNebula/one/issues/XXXX>`__
+- `Fix creation of Virtual Network Templates with postgresql <https://github.com/OpenNebula/one/issues/5400>`__.
+- Fix hook listing order, now sorts by execution id.
