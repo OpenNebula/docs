@@ -33,3 +33,4 @@ The following issues has been solved in 6.0.3:
 - `Fix token cannot be updated from the cloud view <https://github.com/OpenNebula/one/issues/5122>`__.
 - `Fix SQL error for one.vmpool.monitoring <https://github.com/OpenNebula/one/issues/5424>`__.
 - `Fix advanced search for datatables on Sunstone <https://github.com/OpenNebula/one/issues/5426>`__.
+- `Fix IPv6 alias not showing on Sunstone <https://github.com/OpenNebula/one/issues/5425>`__.
