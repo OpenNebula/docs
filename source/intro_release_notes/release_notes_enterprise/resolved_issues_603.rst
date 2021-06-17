@@ -35,3 +35,4 @@ The following issues has been solved in 6.0.3:
 - `Fix advanced search for datatables on Sunstone <https://github.com/OpenNebula/one/issues/5426>`__.
 - `Fix IPv6 alias not showing on Sunstone <https://github.com/OpenNebula/one/issues/5425>`__.
 - `Fix OneProvision GUI in fedora OS <https://github.com/OpenNebula/one/issues/5419>`__.
+- `Fix resizing multiple disk in VM instantiate resulted in a single disk instance <https://github.com/OpenNebula/one/issues/5427>`__.
