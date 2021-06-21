@@ -15,3 +15,4 @@ The following issues has been solved in 5.12.10:
 - `Fix real CPU and Memory bars on Host ESX tab <https://github.com/OpenNebula/one/issues/5420>`__.
 - `Fix SQL error for one.vmpool.monitoring <https://github.com/OpenNebula/one/issues/5424>`__.
 - `Fix IPv6 shows Undefined in Sunstone <https://github.com/OpenNebula/one/issues/5425>`__.
+- `Add support to update FILES_DS attribute. <https://github.com/OpenNebula/one/issues/5317>`__.
