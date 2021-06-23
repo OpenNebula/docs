@@ -13,3 +13,4 @@ The following issues has been solved in 5.12.11:
 
 - `Fix creation of Virtual Network Templates with postgresql <https://github.com/OpenNebula/one/issues/5400>`__.
 - Fix hook listing order, now sorts by execution id.
+- `Fix schedule actions days translation <https://github.com/OpenNebula/one/issues/5436>`__.
