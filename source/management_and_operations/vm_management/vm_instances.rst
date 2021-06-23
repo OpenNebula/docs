@@ -616,8 +616,8 @@ To schedule periodic actions also use the option --schedule. However this comman
 
 The option ``--weekly``, ``--monthly`` and ``--yearly`` need the number of the days that the users wants execute the action.
 
-    - ``--weekly``: days separate with commas between 0 and 6. [0,6]
-    - ``--monthly``: days separate with commas between 1 and 31. [0,31]
+    - ``--weekly``: days separate with commas between 0 (Sunday) and 6 (Saturday). [0,6]
+    - ``--monthly``: days separate with commas between 1 and 31. [1,31]
     - ``--weekly``: days separate with commas between 0 and 365. [0,365]
 
 The option ``--hourly`` needs a number with the number of hours. [0,168] (1 week)
