@@ -141,7 +141,8 @@ IPv6 Address Range (no-SLAAC)
 +-------------------+------------------------------------------------------+-----------+
 | ``PREFIX_LENGTH`` | Length of the prefix to configure VM interfaces.     | **YES**   |
 +-------------------+------------------------------------------------------+-----------+
-| ``SIZE``          | Number of addresses in this range.                   | **YES**   |
+| ``SIZE``          | Number of addresses in this range. If not provided   | **NO**    |
+|                   | it will be computed from ``PREFIX_LENGTH``           |           |
 +-------------------+------------------------------------------------------+-----------+
 
 .. _vnet_template_ar46:
@@ -187,7 +188,8 @@ The no-SLAAC IPv6 version supports the following attributes:
 +-------------------+-----------------------------------------------------+-----------+
 | ``PREFIX_LENGTH`` | Length of the prefix to configure VM interfaces.    | **YES**   |
 +-------------------+-----------------------------------------------------+-----------+
-| ``SIZE``          | Number of addresses in this range.                  | **YES**   |
+| ``SIZE``          | Number of addresses in this range. If not provided  | **NO**    |
+|                   | it will be computed from ``PREFIX_LENGTH``          |           |
 +-------------------+-----------------------------------------------------+-----------+
 
 .. _vnet_template_eth:
