@@ -354,14 +354,3 @@ After the installation you can initialize ESLint with your own rules or use Open
   The usage of ESLint is not mandatory but we recomend our contributors to use it, to be sure that the code is standardiced.
 
 More information about `ESlint <https://eslint.org/>`__ project.
-
-.. _autorefresh:
-
-Autorefresh
-================================================================================
-
-When Sunstone is working alongside FireEdge, it's constantly receiving changes via OpenNebula's ZeroMQ server, which means no more clicks on the refresh button at the VM instances view and the Hosts view.
-
-It works in an easy way when you open the browser and get logged into Sunstone, after that will create a WebSocket with FireEdge Server, and they will exchange information about VM and Hosts and send it back to the front-end where JavaScript functions update the views when they receive new information.
-
-In order to configure the autorefresh feature you need two things, first FireEdge running and tune the parameters ":private_fireedge_endpoint", ":public_fireedge_endpoint" in :ref:`sunstone-server.conf <sunstone_sunstone_server_conf>`.
