@@ -3,6 +3,8 @@
 Resolved Issues in 6.0.3
 --------------------------------------------------------------------------------
 
+.. note:: Sunstone autorefresh has been disabled due to security concern that makes users receive data from resources that are not from them.
+
 A complete list of solved issues for 6.0.3 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/50?closed=1>`__.
 
 The following new features has been backported to 6.0.3:
@@ -37,3 +39,4 @@ The following issues has been solved in 6.0.3:
 - `Fix OneProvision GUI in fedora OS <https://github.com/OpenNebula/one/issues/5419>`__.
 - `Fix resizing multiple disk in VM instantiate resulted in a single disk instance <https://github.com/OpenNebula/one/issues/5427>`__.
 - `Fix create image on Sunstone vcenter mode <https://github.com/OpenNebula/one/issues/5432>`__.
+- `Disable Sunstone autorefresh due to a security concern <https://github.com/OpenNebula/one/issues/5427>`__.
