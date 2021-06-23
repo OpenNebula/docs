@@ -304,7 +304,7 @@ Check how to :ref:`change oneadmin password <change_credentials>` for already ru
 FireEdge
 --------
 
-OpenNebula FireEdge is a next-generation web server that delivers a GUI for remote OpenNebula clusters provisioning (OneProvision GUI) as well as additional functionality to Sunstone (autorefresh, Guacamole, and VMRC for VMware). It is installed and configured by default but can be skipped if you don't need these features.
+OpenNebula FireEdge is a next-generation web server that delivers a GUI for remote OpenNebula clusters provisioning (OneProvision GUI) as well as additional functionality to Sunstone (Guacamole, and VMRC for VMware). It is installed and configured by default but can be skipped if you don't need these features.
 
 You have to configure Sunstone with the public endpoint of FireEdge so that one service can redirect users to the other. To configure the public FireEdge endpoint in Sunstone, edit ``/etc/one/sunstone-server.conf`` and update parameter ``:public_fireedge_endpoint`` with the base URL (domain or IP-based) over which end-users will access FireEdge. For example:
 
