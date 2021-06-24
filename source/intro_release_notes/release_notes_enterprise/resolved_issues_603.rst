@@ -43,3 +43,4 @@ The following issues has been solved in 6.0.3:
 - `Fix create image on Sunstone vcenter mode <https://github.com/OpenNebula/one/issues/5432>`__.
 - `Fix schedule actions days translation <https://github.com/OpenNebula/one/issues/5436>`__.
 - `Disable Sunstone autorefresh due to a security concern <https://github.com/OpenNebula/one/issues/5427>`__.
+- `Fix PyONE strips white-spaces of VM attributes <https://github.com/OpenNebula/one/issues/5437>`__.
