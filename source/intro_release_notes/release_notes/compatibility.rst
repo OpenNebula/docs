@@ -22,8 +22,7 @@ Data Model
 XMLRPC API
 =========================
 
-- Scheduled Actions now includes a dedicated API for its management. Applications
-that manages the Scheduled Actions through the ``one.vm.update`` method needs to update to the new ``one.vm.schedadd``, ``one.vm.scheddel`` and ``one.vm.schedupdate``.
+- Scheduled Actions now includes a dedicated API for its management. Applications that manages the Scheduled Actions through the ``one.vm.update`` method needs to update to the new ``one.vm.schedadd``, ``one.vm.scheddel`` and ``one.vm.schedupdate``.
 
 Ruby API
 ========
