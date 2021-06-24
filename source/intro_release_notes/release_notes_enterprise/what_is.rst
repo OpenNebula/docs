@@ -22,7 +22,7 @@ The `OpenNebula Subscription <https://opennebula.io/subscriptions>`__ model has 
 
 Why customers want to purchase an OpenNebula Subscription:
 
- **Enterprise Edition** – Tested, hardened, and production-ready version of OpenNebula for enterprise use.
+* **Enterprise Edition** – Tested, hardened, and production-ready version of OpenNebula for enterprise use.
 * **Regular Updates** – Maintenance versions of the Enterprise Edition with bug fixes and software patches with minor enhancements.
 * **LTS Releases** – Long-Term Support and stable versions that are maintained and commercially supported for a long time.
 * **Enterprise Tools** – Additional tools to simplify upgrades and the maintenance of production clouds.
