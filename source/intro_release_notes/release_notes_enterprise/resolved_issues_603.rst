@@ -17,6 +17,7 @@ The following new features has been backported to 6.0.3:
 - :ref:`Add support for MarketPlaces based on private Docker Registries <market_docker_registry>`.
 - :ref:`Add switcher screen resolution for RDP in Sunstone <requirements_guacamole_rdp_sunstone>`.
 - :ref:`Add support to enable/disable MarketPlaces <marketplace_disable>`.
+- `Add a supported version validation to the LXD server running in the host <https://github.com/OpenNebula/one/issues/4661>__.`
 
 The following issues has been solved in 6.0.3:
 
