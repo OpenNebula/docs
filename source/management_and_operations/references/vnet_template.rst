@@ -109,6 +109,8 @@ IPv4 Address Range
 IPv6 Address Range
 --------------------------------------------------------------------------------
 
+.. important::  IPv6 Address Ranges can use SIZE up to 2^128. However note that a MAC address (48 bits)  is also assigned to each lease. MAC addresses will be reused when the number of IPv6 addresses is bigger than 2^48.
+
 +-------------------+------------------------------------------------------+-----------+
 | Attribute         | Description                                          | Mandatory |
 +===================+======================================================+===========+
@@ -141,7 +143,8 @@ IPv6 Address Range (no-SLAAC)
 +-------------------+------------------------------------------------------+-----------+
 | ``PREFIX_LENGTH`` | Length of the prefix to configure VM interfaces.     | **YES**   |
 +-------------------+------------------------------------------------------+-----------+
-| ``SIZE``          | Number of addresses in this range.                   | **YES**   |
+| ``SIZE``          | Number of addresses in this range. If not provided   | **NO**    |
+|                   | it will be computed from ``PREFIX_LENGTH``           |           |
 +-------------------+------------------------------------------------------+-----------+
 
 .. _vnet_template_ar46:
@@ -187,7 +190,8 @@ The no-SLAAC IPv6 version supports the following attributes:
 +-------------------+-----------------------------------------------------+-----------+
 | ``PREFIX_LENGTH`` | Length of the prefix to configure VM interfaces.    | **YES**   |
 +-------------------+-----------------------------------------------------+-----------+
-| ``SIZE``          | Number of addresses in this range.                  | **YES**   |
+| ``SIZE``          | Number of addresses in this range. If not provided  | **NO**    |
+|                   | it will be computed from ``PREFIX_LENGTH``          |           |
 +-------------------+-----------------------------------------------------+-----------+
 
 .. _vnet_template_eth:
