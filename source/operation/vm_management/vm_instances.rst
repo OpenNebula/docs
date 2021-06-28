@@ -425,7 +425,6 @@ You can create, delete and restore snapshots for running VMs. A snapshot will co
 
 .. warning:: **For KVM only**. Please take into consideration the following limitations:
 
-    -  The snapshots are lost if any life-cycle operation is performed, e.g. a suspend, migrate, delete request.
     -  Snapshots are only available if all the VM disks use the :ref:`qcow2 driver <img_template>`.
 
 |image4|
