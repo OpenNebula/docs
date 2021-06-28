@@ -348,7 +348,6 @@ Virtual Machine System Snapshots
 
 .. warning:: Snapshots for VMs running under the **KVM hypervisor** presents consideration the following limitations:
 
-    -  The snapshots are lost if any life-cycle operation is performed, e.g. a suspend, migrate, delete request.
     -  Snapshots are only available if all the VM disks use the :ref:`qcow2 driver <img_template>`.
 
 .. _vm_guide_2_disk_snapshots:
