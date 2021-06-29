@@ -45,3 +45,4 @@ The following issues has been solved in 6.0.3:
 - `Disable Sunstone autorefresh due to a security concern <https://github.com/OpenNebula/one/issues/5427>`__.
 - `Fix OpenNebula version shown on Sunstone <https://github.com/OpenNebula/one/issues/5428>`__.
 - `Fix IPv6 networks should not ask for size when no-SLAAC <https://github.com/OpenNebula/one/issues/2187>`__.
+- `Fix IP dropdown to show monitoring IPs <https://github.com/OpenNebula/one/issues/5438>`__.
