@@ -44,3 +44,4 @@ The following issues has been solved in 6.0.3:
 - `Fix schedule actions days translation <https://github.com/OpenNebula/one/issues/5436>`__.
 - `Disable Sunstone autorefresh due to a security concern <https://github.com/OpenNebula/one/issues/5427>`__.
 - `Fix OpenNebula version shown on Sunstone <https://github.com/OpenNebula/one/issues/5428>`__.
+- `Fix IP dropdown to show monitoring IPs <https://github.com/OpenNebula/one/issues/5438>`__.
