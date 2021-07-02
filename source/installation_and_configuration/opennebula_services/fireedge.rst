@@ -38,7 +38,7 @@ The FireEdge configuration file can be found in ``/etc/one/fireedge-server.conf`
 | ``port``                                  | ``2616``                       | Port on which the FireEdge server will listen      |
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
 | ``one_xmlrpc``                            | ``http://localhost:2633/RPC2`` | Endpoint of OpenNebula XML-RPC API this needs to   |
-|                                           |                                | match the content endpoint attribute of            |
+|                                           |                                | match the contents of **ENDPOINT** attribute of    |
 |                                           |                                | ``onezone show 0``                                 |
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
 | ``oneflow_server``                        | ``http://localhost:2472``      | Endpoint of OneFlow server                         |
