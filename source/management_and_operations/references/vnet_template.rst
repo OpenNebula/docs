@@ -109,6 +109,8 @@ IPv4 Address Range
 IPv6 Address Range
 --------------------------------------------------------------------------------
 
+.. important::  IPv6 Address Ranges can use SIZE up to 2^128. However note that a MAC address (48 bits)  is also assigned to each lease. MAC addresses will be reused when the number of IPv6 addresses is bigger than 2^48.
+
 +-------------------+------------------------------------------------------+-----------+
 | Attribute         | Description                                          | Mandatory |
 +===================+======================================================+===========+

@@ -6,10 +6,6 @@ LXD to LXC Migration
 
 This guide defines the actions required to migrate your LXD infrastructure to LXC.
 
-.. warning::
-
-   Be sure to read the current **limitations of LXC driver** in :ref:`compatibility guide <lxd_compatibility>` first!
-
 Host Migration
 =====================
 
@@ -66,4 +62,4 @@ Once the Node is ready, you can enable your Host again and start deploying LXC c
 Next Steps
 ==========
 
-Now you have your Node ready to deploy containers by using the new LXC drivers, you might be interested in understanding the :ref:`differences <lxd_compatibility>` between the old LXD driver and the new LXC. Also, you might find it useful to read the :ref:`details and limitations <lxcmg>` of the LXC driver.
+Now you have your Node ready to deploy containers by using the new LXC drivers,  you might find it useful to read the :ref:`the LXC driver documentation. <lxcmg>`

@@ -7,11 +7,11 @@ What's New in 6.1
 OpenNebula 6.2 ‘XXXX’ is  ....
 
 ..
-   Conform to the following format for new features.
-   Big/important features follow this structure
-   - **<feature title>**: <one-to-two line description>, :ref:`<link to docs>`
-   Minor features are added in a separate block in each section as:
-   - `<one-to-two line description <http://github.com/OpenNebula/one/issues/#>`__.
+  Conform to the following format for new features.
+  Big/important features follow this structure
+  - **<feature title>**: <one-to-two line description>, :ref:`<link to docs>`
+  Minor features are added in a separate block in each section as:
+  - `<one-to-two line description <http://github.com/OpenNebula/one/issues/#>`__.
 
 ..
 
