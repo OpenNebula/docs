@@ -14,4 +14,3 @@ The following new features has been backported to 6.0.0.3:
 The following issues has been solved in 6.0.0.3:
 
 - `Provide nice and clear! description <https://github.com/OpenNebula/one/issues/XXX>`__.
-
