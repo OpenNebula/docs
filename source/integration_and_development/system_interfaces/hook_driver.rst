@@ -494,7 +494,48 @@ This script prints to stdout the ID of image when it is ready to use.
 
     puts "Image #{img_id} ready to use!!"
 
-.. note:: Note that any command can be specified in ``COMMAND``, for debugging. (``COMMAND="/usr/bin/echo"``) can be very helpful.
+A Complete Example: Autostart Hooks for KVM
+--------------------------------------------------------------------------------
+
+OpenNebula creates *transient* KVM domains, i.e. they only exist while the domain is running. Therefore, the KVM autostart feature cannot be activated via *libvirt* configuration. This example shows how to implement VM autostart for the KVM hypervisor in OpenNebula using state hooks.
+
+The hooks track Hosts reboots and resume VMs allocated to the Host that includes the ``AUTOSTART=yes`` attribute in their template. This functionality is implemented by two state hooks: one for the ``HOST`` and one for the ``VM`` resource. The code for both hooks can be found in
+``/var/lib/one/remotes/hooks/autostart/`` folder.
+
+To install the hooks create a definition file for each one. The ``autostart-host.tmpl`` definition file for the Host hook will be as follows:
+
+.. code::
+
+    NAME = autostart-host
+    TYPE = state
+    COMMAND = autostart/host
+    ARGUMENTS = \$TEMPLATE
+    ARGUMENTS_STDIN = yes
+    RESOURCE = HOST
+    STATE = MONITORED
+
+Similarly for the VM hook, the ``autostart-vm.tmpl`` definition file will be as follows:
+
+.. code::
+
+    NAME = autostart-vm
+    TYPE = state
+    COMMAND = autostart/vm
+    ARGUMENTS = \$TEMPLATE
+    ARGUMENTS_STDIN = yes
+    RESOURCE = VM
+    STATE = POWEROFF
+    LCM_STATE = LCM_INIT
+    ON = CUSTOM
+
+Now you can create the hooks using these two files:
+
+.. code::
+
+    $ onehook create autostart-host.tmpl
+    $ onehook create autostart-vm.tmpl
+
+.. note:: Note that any command can be specified in ``COMMAND``, for debugging (``COMMAND="/usr/bin/echo"``) can be very helpful.
 
 .. |hook-subsystem| image:: /images/hooks-subsystem-architecture.png
 
