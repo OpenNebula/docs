@@ -19,6 +19,7 @@ The following new features has been backported to 6.0.3:
 - :ref:`Add support to enable/disable MarketPlaces <marketplace_disable>`.
 - `Add a supported version validation to the LXD server running in the host <https://github.com/OpenNebula/one/issues/4661>__.`
 - ref:`IPv6 no-SLAAC <vn_template_ar6_nslaac>` computes ``SIZE`` from ``PREFIX_LENGTH``. Max size increased from 2^32 to 2^64.
+- `Allow disabling fallocate for fs DS_MAD <https://github.com/OpenNebula/one/issues/5441>__.`
 
 The following issues has been solved in 6.0.3:
 
@@ -44,3 +45,7 @@ The following issues has been solved in 6.0.3:
 - `Fix schedule actions days translation <https://github.com/OpenNebula/one/issues/5436>`__.
 - `Disable Sunstone autorefresh due to a security concern <https://github.com/OpenNebula/one/issues/5427>`__.
 - `Fix PyONE strips white-spaces of VM attributes <https://github.com/OpenNebula/one/issues/5437>`__.
+- `Fix OpenNebula version shown on Sunstone <https://github.com/OpenNebula/one/issues/5428>`__.
+- `Fix IPv6 networks should not ask for size when no-SLAAC <https://github.com/OpenNebula/one/issues/2187>`__.
+- `Fix IP dropdown to show monitoring IPs <https://github.com/OpenNebula/one/issues/5438>`__.
+- `Fix VM log having no error information when an error ocurred <https://github.com/OpenNebula/one/commit/2a8fbbb31b467b7902ce9219e5f92daad7973ff9>`__.
