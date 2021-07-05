@@ -494,21 +494,15 @@ This script prints to stdout the ID of image when it is ready to use.
 
     puts "Image #{img_id} ready to use!!"
 
-A Complete Example: Autostart Hooks
+A Complete Example: Autostart Hooks for KVM
 --------------------------------------------------------------------------------
 
-Since OpenNebula create *transient* domains (only exist until the domain is shutdown),
-the KVM autostart feature cannot be activated via *libvirt* configuration.
-This example shows how to implement VM autostart for the KVM hypervisor in OpenNebula.
+OpenNebula creates *transient* KVM domains, i.e. they only exist while the domain is running. Therefore, the KVM autostart feature cannot be activated via *libvirt* configuration. This example shows how to implement VM autostart for the KVM hypervisor in OpenNebula using state hooks.
 
+The hooks track Hosts reboots and resume VMs allocated to the Host that includes the ``AUTOSTART=yes`` attribute in their template. This functionality is implemented by two state hooks: one for the ``HOST`` and one for the ``VM`` resource. The code for both hooks can be found in
+``/var/lib/one/remotes/hooks/autostart/`` folder.
 
-It will be necessary to create two state hooks: one for the ``HOST`` resource and
-one for the ``VM`` resource. The code for both hooks can be found in
-``/var/lib/one/remotes/hooks/autostart/host`` and ``/var/lib/one/remotes/hooks/autostart/vm``
-paths respectively. Besides, it is necessary to add an ``AUTOSTART=yes`` attribute
-to the VM to enable autostart.
-
-The ``autostart-host.tmpl`` template file will be as follows:
+To install the hooks create a definition file for each one. The ``autostart-host.tmpl`` definition file for the Host hook will be as follows:
 
 .. code::
 
@@ -520,7 +514,7 @@ The ``autostart-host.tmpl`` template file will be as follows:
     RESOURCE = HOST
     STATE = MONITORED
 
-The ``autostart-vm.tmpl`` template file will be as follows:
+Similarly for the VM hook, the ``autostart-vm.tmpl`` definition file will be as follows:
 
 .. code::
 
@@ -534,14 +528,14 @@ The ``autostart-vm.tmpl`` template file will be as follows:
     LCM_STATE = LCM_INIT
     ON = CUSTOM
 
-The hook creation will be as shown bellow:
+Now you can create the hooks using these two files:
 
 .. code::
 
     $ onehook create autostart-host.tmpl
     $ onehook create autostart-vm.tmpl
 
-.. note:: Note that any command can be specified in ``COMMAND``, for debugging. (``COMMAND="/usr/bin/echo"``) can be very helpful.
+.. note:: Note that any command can be specified in ``COMMAND``, for debugging (``COMMAND="/usr/bin/echo"``) can be very helpful.
 
 .. |hook-subsystem| image:: /images/hooks-subsystem-architecture.png
 
