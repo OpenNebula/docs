@@ -4,7 +4,7 @@
 What's New in 6.1
 ================================================================================
 
-OpenNebula 6.2 XXXX is  ....
+OpenNebula 6.2 ‘XXXX’ is  ....
 
 ..
   Conform to the following format for new features.
@@ -19,6 +19,7 @@ OpenNebula Core
 ================================================================================
 - Option to :ref:`disable Zone <frontend_ha_zone>`, this new feature is useful for maintenance operations.
 - New :ref:`XMLRPC API for scheduled actions <onevm_api>`: ``one.vm.schedadd``, ``one.vm.schedupdate``, ``one.vm.scheddelete``. The new API reduces race condition issues while handliing scheduled actions.
+- :ref:`IPv6 no-SLAAC <vn_template_ar6_nslaac>` computes ``SIZE`` from ``PREFIX_LENGTH``. Max size increased from 2^32 to 2^64.
 
 Storage
 ================================================================================
