@@ -15,3 +15,5 @@ The following issues has been solved in 5.12.11:
 - Fix hook listing order, now sorts by execution id.
 - `Fix schedule actions days translation <https://github.com/OpenNebula/one/issues/5436>`__.
 - `Fix PyONE strips white-spaces of VM attributes <https://github.com/OpenNebula/one/issues/5437>`__.
+- `Fix OpenNebula version shown on Sunstone <https://github.com/OpenNebula/one/issues/5428>`__.
+- `Fix IP dropdown to show monitoring IPs <https://github.com/OpenNebula/one/issues/5438>`__.
