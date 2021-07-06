@@ -1,6 +1,8 @@
 OpenNebula Documentation
 ========================
 
+![Make Html](https://github.com/OpenNebula/docs/actions/workflows/make_html.yml/badge.svg)
+
 This is the official repository of OpenNebula's Documentation. This
 documentation is live at:
 [http://docs.opennebula.org](http://docs.opennebula.org).
