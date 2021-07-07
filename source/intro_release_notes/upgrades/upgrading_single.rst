@@ -93,7 +93,7 @@ As a measure of caution, look for any error messages in oned.log, and check that
 Restoring the Previous Version
 ==============================
 
-If for any reason you need to restore your previous OpenNebula, simply uninstall OpenNebula |version|, and install again your previous version. After that, update the drivers if needed, as outlined in Step 11.
+If for any reason you need to restore your previous OpenNebula, simply uninstall OpenNebula |version|, and install again your previous version. After that, update the drivers if needed, as outlined in Step 12.
 
 .. _upgrading_from_previous_extended_steps:
 
@@ -131,7 +131,12 @@ Back-up the configuration files located in **/etc/one** and **/var/lib/one/remot
     # cp -ra /etc/one /etc/one.$(date +'%Y-%m-%d')
     # cp -ra /var/lib/one/remotes/etc /var/lib/one/remotes/etc.$(date +'%Y-%m-%d')
 
-Step 5. Upgrade to the New Version
+Step 5. Upgrade OpenNebula Packages Repository
+================================================================================
+
+In order to be able to retrieve the packages for the latest version, you need to update the OpenNebula packages repository. The instructions for doing this are detailed :ref:`here <repositories>`.
+
+Step 6. Upgrade to the New Version
 ================================================================================
 
 Ubuntu/Debian
@@ -169,7 +174,7 @@ CentOS/RHEL
 
     Read :ref:`this <ruby_runtime>` for more information.
 
-Step 6. Update Configuration Files
+Step 7. Update Configuration Files
 ================================================================================
 
 If you haven't modified any configuration files, you can skip this step and proceed to the next one.
@@ -270,7 +275,7 @@ After updating the configuration file `sunstone-server.conf`, if you didn't inst
 
 If you don't want to use the new feature, comment these out in order to get rid of the error.
 
-Step 7. Upgrade the Database Version
+Step 8. Upgrade the Database Version
 ================================================================================
 
 .. important::
@@ -279,7 +284,7 @@ Step 7. Upgrade the Database Version
 
 Make sure at this point that OpenNebula is not running. If you installed from packages, the service may have been started automatically. Simply run the ``onedb upgrade -v`` command. The connection parameters are automatically retrieved from ``oned.conf``.
 
-Step 8. Check DB Consistency
+Step 9. Check DB Consistency
 ================================================================================
 
 First, move the |version| backup file created by the upgrade command to a safe place. If you face any issues, the ``onedb`` command can restore this backup, but it won't downgrade databases to previous versions. Then, execute the ``onedb fsck`` command:
@@ -294,7 +299,7 @@ First, move the |version| backup file created by the upgrade command to a safe p
     Total errors found: 0
 
 
-Step 9. Start OpenNebula
+Step 10. Start OpenNebula
 ================================================================================
 
 Now you should be able to start OpenNebula as usual by running as ``root``:
@@ -305,13 +310,13 @@ Now you should be able to start OpenNebula as usual by running as ``root``:
 
 At this point OpenNebula will continue the monitoring and management of your previous Hosts and VMs.  As a measure of caution, look for any error messages in ``oned.log``, and check that all drivers are loaded successfully. You may also try some  **show** subcommand for some resources to check everything is working (e.g. ``onehost show``, or ``onevm show``).
 
-Step 10. Restore Custom Probes
+Step 11. Restore Custom Probes
 ================================================================================
 
 If you have any custom monitoring probes, follow :ref:`these instructions <devel-im>`, to update them to the new monitoring system
 
 
-Step 11. Update the Hypervisors
+Step 12. Update the Hypervisors
 ================================================================================
 
 .. warning:: If you're using vCenter please skip to the next step.
@@ -352,7 +357,7 @@ CentOS
     # systemctl restart libvirtd
 
 
-Step 12. Enable Hosts
+Step 13. Enable Hosts
 ================================================================================
 
 Enable all Hosts, disabled in step 2.
