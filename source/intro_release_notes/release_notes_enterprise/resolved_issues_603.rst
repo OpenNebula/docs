@@ -48,4 +48,5 @@ The following issues has been solved in 6.0.3:
 - `Fix OpenNebula version shown on Sunstone <https://github.com/OpenNebula/one/issues/5428>`__.
 - `Fix IPv6 networks should not ask for size when no-SLAAC <https://github.com/OpenNebula/one/issues/2187>`__.
 - `Fix IP dropdown to show monitoring IPs <https://github.com/OpenNebula/one/issues/5438>`__.
-- `Fix VM log having no error information when an error ocurred <https://github.com/OpenNebula/one/commit/2a8fbbb31b467b7902ce9219e5f92daad7973ff9>`__.
+- `Fix VM log having no error information when an error ocurred <https://github.com/OpenNebula/one/issues/5065>`__.
+- `Fix the provision of more than one edge clusters with the same DigitalOcean account <https://github.com/OpenNebula/one/issues/5453>`__.
