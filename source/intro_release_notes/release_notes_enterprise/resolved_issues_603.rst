@@ -51,3 +51,4 @@ The following issues has been solved in 6.0.3:
 - `Fix VM log having no error information when an error ocurred <https://github.com/OpenNebula/one/issues/5065>`__.
 - `Fix the provision of more than one edge clusters with the same DigitalOcean account <https://github.com/OpenNebula/one/issues/5453>`__.
 - `Fix migration failure cleanup on shared storage <https://github.com/OpenNebula/one/issues/5444>`__.
+- `Fix failure response for onevm disk-attach <https://github.com/OpenNebula/one/issues/3610>`__.
