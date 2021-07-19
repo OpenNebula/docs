@@ -81,6 +81,8 @@ The network model is implemented in the following way:
 
 |image_cluster|
 
+.. warning:: If a VPC is created in an empty region (without any VPC) it becomes the DEFAULT one, and you will not be able to delete it. We recomend to populate the regions with a default VPC, for this default VPC let DigitalOcean pick the address range (recommended option in the DO console).
+
 
 Tutorial: Provision a Google Edge Cluster
 ================================================================================
