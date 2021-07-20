@@ -17,9 +17,9 @@ The following new features has been backported to 6.0.3:
 - :ref:`Add support for MarketPlaces based on private Docker Registries <market_docker_registry>`.
 - :ref:`Add switcher screen resolution for RDP in Sunstone <requirements_guacamole_rdp_sunstone>`.
 - :ref:`Add support to enable/disable MarketPlaces <marketplace_disable>`.
-- `Add a supported version validation to the LXD server running in the host <https://github.com/OpenNebula/one/issues/4661>__.`
-- ref:`IPv6 no-SLAAC <vn_template_ar6_nslaac>` computes ``SIZE`` from ``PREFIX_LENGTH``. Max size increased from 2^32 to 2^64.
-- `Allow disabling fallocate for fs DS_MAD <https://github.com/OpenNebula/one/issues/5441>__.`
+- `Add a supported version validation to the LXD server running in the host <https://github.com/OpenNebula/one/issues/4661>`__.
+- :ref:`IPv6 no-SLAAC <vn_template_ar6_nslaac>` computes ``SIZE`` from ``PREFIX_LENGTH``. Max size increased from 2^32 to 2^64.
+- `Allow disabling fallocate for fs DS_MAD <https://github.com/OpenNebula/one/issues/5441>`__.
 
 The following issues has been solved in 6.0.3:
 
