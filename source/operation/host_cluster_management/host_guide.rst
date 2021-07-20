@@ -257,7 +257,7 @@ Hosts include the following monitoring information. You can use this variables t
 | USED_CPU   | Percentage of used CPU multiplied by the number of cores. This value is displayed                  |
 |            | as ``USED CPU (REAL)`` by the ``onehost show`` command under ``HOST SHARE`` section.               |
 +------------+----------------------------------------------------------------------------------------------------+
-| USED_MEM   | Memory used, in kilobytes. This value is displayed as ``USED MEM (REAL)``                          |
+| USED_MEMORY| Memory used, in kilobytes. This value is displayed as ``USED MEM (REAL)``                          |
 |            | by the ``onehost show`` command under ``HOST SHARE`` section.                                      |
 +------------+----------------------------------------------------------------------------------------------------+
 | USED_DISK  | Used space in megabytes in the DATASTORE LOCATION.                                                 |
@@ -265,7 +265,7 @@ Hosts include the following monitoring information. You can use this variables t
 | FREE_CPU   | Percentage of idling CPU multiplied by the number of cores. For example,                           |
 |            | if 50% of the CPU is idling in a 4 core machine the value will be 200.                             |
 +------------+----------------------------------------------------------------------------------------------------+
-| FREE_MEM   | Available memory for VMs at that moment, in kilobytes.                                             |
+| FREE_MEMORY| Available memory for VMs at that moment, in kilobytes.                                             |
 +------------+----------------------------------------------------------------------------------------------------+
 | FREE_DISK  | Free space in megabytes in the DATASTORE LOCATION                                                  |
 +------------+----------------------------------------------------------------------------------------------------+

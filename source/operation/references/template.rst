@@ -1101,9 +1101,9 @@ There are some predefined Host attributes that can be used in the requirements a
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **MEM_USAGE**   | Allocated used memory in KB. This value is the sum of all the memory requested by VMs running on the host, and is updated instantly each time a VM is deployed or undeployed.        |
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **FREE_MEM**    | Real free memory in KB, as returned by the probes. This value is updated each monitorization cycle.                                                                                  |
+| **FREE_MEMORY** | Real free memory in KB, as returned by the probes. This value is updated each monitorization cycle.                                                                                  |
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **USED_MEM**    | Real used memory in KB, as returned by the probes. USED_MEM = MAX_MEM - FREE_MEM. This value is updated each monitorization cycle.                                                   |
+| **USED_MEMORY** | Real used memory in KB, as returned by the probes. USED_MEMORY = MAX_MEM - FREE_MEMORY. This value is updated each monitorization cycle.                                             |
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **RUNNING_VMS** | Number of VMs deployed on this host.                                                                                                                                                 |
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
