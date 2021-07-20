@@ -59,6 +59,11 @@ The monitoring system has been redesigned to improve its scalability and to bett
 - Configuration of monitoring probes and parameters has been moved to its own file, you may need to adapt/migrate your custom modifications from ``oned.conf`` to ``monitord.conf``.
 - The monitoring system now may use TCP transport. You'll need to open incoming connections to port 4124 and TCP to the front-end, in addition to the UDP one.
 
+Host template values renamed:
+
+- FREE_MEM --> FREE_MEMORY
+- USED_MEM --> USED_MEMORY
+
 Accounting and Showback
 =======================
 
