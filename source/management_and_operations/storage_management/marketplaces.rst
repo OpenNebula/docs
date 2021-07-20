@@ -136,6 +136,12 @@ For example, to create a new image called ``nginx-dh`` based on the ``nginx`` im
 
 .. note:: This url format can also be used at Sunstone image creation dialog.
 
+Entrypoint
+--------------------------------------------------------------------------------
+
+When you download an application from the Dockerhub, OpenNebula will automatically inspect it to check if there is entrypoint information. This ``ENTRYPOINT`` and/or ``CMD`` commands are placed in the ``/one_entrypoint.sh`` script so it can be executed on boot. All the environment variables are passed into the script and can be further customized by the user by adding new values through context. Simply, add the environment variable as described by the documentation of the appliance in the ``CONTEXT`` section.
+
+.. note:: You **have to** trigger the entrypoint execution in the ``START_SCRIPT`` with a line similar to: ``nohup /one_entrypoint.sh &> /dev/null &``.
 
 .. _market_linux_container:
 
@@ -211,3 +217,8 @@ Configuration Attributes
 | ``SKIP_UNTESTED`` | Include only apps with support for context          |                 ``yes``           |
 +-------------------+-----------------------------------------------------+-----------------------------------+
 
+.. _marketplace_disable:
+
+Disable Marketplace
+================================================================================
+Marketplace can be disabled with ``onemarket disable``. By disabling a Marketplace all Appliances will be removed from OpenNebula, and it will be no longer monitored. Note that this process doesn't affect already exported Images. After enabling the Marketplace with ``onemarket enable``, it will be monitored again and all Aplliances from this Marketplace will show up again.

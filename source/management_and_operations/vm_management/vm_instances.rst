@@ -615,8 +615,8 @@ To schedule periodic actions also use the option --schedule. However this comman
 
 The option ``--weekly``, ``--monthly`` and ``--yearly`` need the number of the days that the users wants execute the action.
 
-    - ``--weekly``: days separate with commas between 0 and 6. [0,6]
-    - ``--monthly``: days separate with commas between 1 and 31. [0,31]
+    - ``--weekly``: days separate with commas between 0 (Sunday) and 6 (Saturday). [0,6]
+    - ``--monthly``: days separate with commas between 1 and 31. [1,31]
     - ``--weekly``: days separate with commas between 0 and 365. [0,365]
 
 The option ``--hourly`` needs a number with the number of hours. [0,168] (1 week)
@@ -1115,6 +1115,10 @@ connect via browser**.
 
 |sunstone_guac_rdp|
 
+RDP connection permits to **choose the screen resolution** from Sunstone interface.
+
+|sunstone_guac_rdp_interface|
+
 RDP connection is only allowed to activate on a single NIC. In an case, the connection will only contain the IP of the first NIC with this property enabled. This feature is available as well same way for NIC ALIASES**.
 
 If the VM template has a ``PASSWORD`` and ``USERNAME`` set in the contextualization section, this will be reflected in the RDP connection. You can read about them in the :ref:`Virtual Machine Definition File reference section <template_context>`.
@@ -1230,5 +1234,6 @@ FireEdge Server.
 .. |sunstone_rdp_button| image:: /images/sunstone_rdp_button.png
 .. |sunstone_guac_vnc| image:: /images/sunstone_guac_vnc.png
 .. |sunstone_guac_rdp| image:: /images/sunstone_guac_rdp.png
+.. |sunstone_guac_rdp_interface| image:: /images/sunstone_guac_rdp_interface.png
 .. |sunstone_guac_nic| image:: /images/sunstone_guac_nic.png
 .. |sunstone_vmrc| image:: /images/sunstone_vmrc.png
