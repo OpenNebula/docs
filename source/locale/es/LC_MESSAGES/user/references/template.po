@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenNebula 4.6\n"
@@ -1358,7 +1358,7 @@ msgstr ""
 #: ../../source/user/references/template.rst:571
 msgid ""
 "There are some predefined variables that can be used: ``NAME``, ``MAX_CPU``,"
-" ``MAX_MEM``, ``FREE_MEM``, ``FREE_CPU``, ``USED_MEM``, ``USED_CPU``, "
+" ``MAX_MEM``, ``FREE_MEMORY``, ``FREE_CPU``, ``USED_MEMORY``, ``USED_CPU``, "
 "``HYPERVISOR``"
 msgstr ""
 
