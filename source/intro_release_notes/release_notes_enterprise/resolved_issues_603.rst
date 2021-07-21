@@ -53,3 +53,4 @@ The following issues has been solved in 6.0.3:
 - `Fix migration failure cleanup on shared storage <https://github.com/OpenNebula/one/issues/5444>`__.
 - `Fix failure response for onevm disk-attach <https://github.com/OpenNebula/one/issues/3610>`__.
 - `Fix broken pipe error if script doesn't read input <https://github.com/OpenNebula/one/issues/5401>`__.
+- `Fix network issue when importing Wilds from vCenter <https://github.com/OpenNebula/one/issue/5440>`__.
