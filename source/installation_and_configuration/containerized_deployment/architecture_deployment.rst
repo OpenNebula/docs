@@ -364,7 +364,7 @@ Update *username* and interactively pass *password* from your customer ``token``
 
 .. prompt:: bash # auto
 
-    # wget https://downloads.opennebula.io/packages/opennebula-6.0.0.3/container/docker-compose-opennebula.tar.gz
+    # wget https://downloads.opennebula.io/packages/opennebula-6.0.0.2/container/docker-compose-opennebula.tar.gz
     # tar -xvf docker-compose-opennebula.tar.gz
     # cd opennebula/
 
