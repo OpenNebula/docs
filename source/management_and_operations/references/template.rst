@@ -521,10 +521,6 @@ Network Section
 +------------------------+----------------------------------------------------------------------------------------------------------+-----------------------+-----------------------+-----------------------+-----------------------+
 | ``PARENT``             | It is used only on alias, it references the NIC which is alias of.                                       | O                     | O                     | O                     | O                     |
 +------------------------+----------------------------------------------------------------------------------------------------------+-----------------------+-----------------------+-----------------------+-----------------------+
-| ``EXTERNAL``           | It is used only on alias, it indicates if the alias is external to the VM or not. If it is set to "yes"  | O                     | \-                    | \-                    | O                     |
-|                        | it will call pre, post, clean and reconfigure actions. If it set to "no" or it is empty, it will just    |                       |                       |                       |                       |
-|                        | call reconfigure action.                                                                                 |                       |                       |                       |                       |
-+------------------------+----------------------------------------------------------------------------------------------------------+-----------------------+-----------------------+-----------------------+-----------------------+
 
 .. warning:: The ``PORTS`` and ``ICMP`` attributes require the firewalling functionality to be configured. Please read the :ref:`firewall configuration guide <firewall>`.
 
@@ -701,8 +697,6 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 | ``ETHx_ALIASy_METRIC``            | ``METRIC`` value for the alias.                                                   | \-                           | \-      |
 +-----------------------------------+-----------------------------------------------------------------------------------+------------------------------+---------+
 | ``ETHx_ALIASy_DNS``               | DNS for the alias.                                                                | \-                           | \-      |
-+-----------------------------------+-----------------------------------------------------------------------------------+------------------------------+---------+
-| ``ETHx_ALIASy_EXTERNAL``          | Indicates if the alias is external to the VM or not.                              | O                            | O       |
 +-----------------------------------+-----------------------------------------------------------------------------------+------------------------------+---------+
 | ``USERNAME``                      | User to be created in the guest OS. If any password attribute is defined (see     | O                            | O       |
 |                                   | below) it will change this user (defaults to ``root``)                            |                              |         |
@@ -1097,7 +1091,6 @@ All the **default** restricted attributes to users in the oneadmin group are sum
 * ``NIC_ALIAS/VCENTER_INSTANCE_ID``
 * ``NIC_ALIAS/VCENTER_NET_REF``
 * ``NIC_ALIAS/VCENTER_PORTGROUP_TYPE``
-* ``NIC_ALIAS/EXTERNAL``
 * ``NIC_DEFAULT/MAC``
 * ``NIC_DEFAULT/VLAN_ID``
 * ``NIC_DEFAULT/BRIDGE``
