@@ -617,7 +617,7 @@ The option ``--weekly``, ``--monthly`` and ``--yearly`` need the number of the d
 
     - ``--weekly``: days separate with commas between 0 (Sunday) and 6 (Saturday). [0,6]
     - ``--monthly``: days separate with commas between 1 and 31. [1,31]
-    - ``--weekly``: days separate with commas between 0 and 365. [0,365]
+    - ``--yearly``: days separate with commas between 0 and 365. [0,365]
 
 The option ``--hourly`` needs a number with the number of hours. [0,168] (1 week)
 
