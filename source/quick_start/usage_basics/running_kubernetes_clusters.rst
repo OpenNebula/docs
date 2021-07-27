@@ -6,7 +6,7 @@ Running Kubernetes Clusters
 
 In the public OpenNebula System Marketplace there are also services available that let you deploy a multi-VM application. In this exercise we are going to import a `Kubernetes cluster service <https://marketplace.opennebula.io/appliance/07520eee-6552-11eb-85e7-98fa9bde1a93>`_ and launch a Kubernetes cluster with it.
 
-.. warning:: We need a metal KVM Edge Cluster for this. If you haven't already done so, you can follow the same steps of the :ref:`provisioning an edge cluster <first_edge_cluster>` guide, using "metal" edge cloud type and kvm hypervisor. Make sure you request two public IPs.
+.. warning:: If you want to use this App in KVM, we need a metal KVM Edge Cluster for this. If you haven't already done so, you can follow the same steps of the :ref:`provisioning an edge cluster <first_edge_cluster>` guide, using "metal" edge cloud type and kvm hypervisor. Make sure you request two public IPs. This App can also be used in vCenter. If you plan to use vCenter, we need a Cluster that meets the necessary resource requirements.
 
 We are going to assume the Edge Cluster naming schema ``metal-kvm-aws-cluster``.
 
@@ -22,6 +22,8 @@ Now you need to select a datastore. Select the ``metal-kvm-aws-cluster-Images`` 
 |metal_kvm_aws_cluster_images_datastore|
 
 The Appliance will be ready when the image in ``Storage --> Images`` switches to ``READY`` from its ``LOCKED`` state.
+
+.. warning:: In order to use a vCenter app it is necessary to attach the image to a :ref:`vCenter VM Template which was previously imported <vcenterg>`. An existing VM Template can be cloned and its disks replaced with the image from the marketplace. Once the VM Template is ready, the appliance can be instantiated.
 
 .. |kubernetes_marketplace| image:: /images/kubernetes_marketplace.png
 .. |metal_kvm_aws_cluster_images_datastore| image:: /images/metal_kvm_aws_cluster_images_datastore.png
