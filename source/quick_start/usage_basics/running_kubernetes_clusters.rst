@@ -23,7 +23,7 @@ Now you need to select a datastore. Select the ``metal-kvm-aws-cluster-Images`` 
 
 The Appliance will be ready when the image in ``Storage --> Images`` switches to ``READY`` from its ``LOCKED`` state.
 
-.. warning:: In order to use a vCenter app it is necessary to attach the image to a vCenter VM Template which was previously imported. An existing VM Template can be cloned and its disks replaced with the image from the marketplace. Once the VM Template is ready, the appliance can be instantiated.
+.. warning:: In order to use a vCenter app it is necessary to attach the image to a :ref:`vCenter VM Template which was previously imported <vcenterg>`. An existing VM Template can be cloned and its disks replaced with the image from the marketplace. Once the VM Template is ready, the appliance can be instantiated.
 
 .. |kubernetes_marketplace| image:: /images/kubernetes_marketplace.png
 .. |metal_kvm_aws_cluster_images_datastore| image:: /images/metal_kvm_aws_cluster_images_datastore.png
