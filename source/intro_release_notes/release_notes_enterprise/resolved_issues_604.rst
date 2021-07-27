@@ -14,4 +14,5 @@ The following issues has been solved in 6.0.4:
 
 - `Fix missing SG configuration for NIC Alias during a hot attach operation <https://github.com/OpenNebula/one/issues/5464>`__.
 - `Fix error when attaching a public NIC_ALIAS (elastic driver) to a VM in an edge cluster <https://github.com/OpenNebula/one/issues/5465>`__.
-- `Fix Python OCA bindings to show PCI device list <https://github.com/OpenNebula/one/issues/5466>
+- `Fix Python OCA bindings to show PCI device list <https://github.com/OpenNebula/one/issues/5466>`__.
+- `Fix advanced search for service datatable in Sunstone <https://github.com/OpenNebula/one/issues/5478>`__.
