@@ -15,6 +15,7 @@ The following issues has been solved in 6.0.4:
 - `Fix missing SG configuration for NIC Alias during a hot attach operation <https://github.com/OpenNebula/one/issues/5464>`__.
 - `Fix error when attaching a public NIC_ALIAS (elastic driver) to a VM in an edge cluster <https://github.com/OpenNebula/one/issues/5465>`__.
 - `Fix Python OCA bindings to show PCI device list <https://github.com/OpenNebula/one/issues/5466>`__.
-- `Do not allow port out of range in SG <https://github.com/OpenNebula/one/issues/5458>`__.
-- `ON onevm updateconf do not parse again CONTEXT values which are not modified <https://github.com/OpenNebula/one/issues/5273>`__.
-- `Do not allow wrong attributes for IPv6 <https://github.com/OpenNebula/one/issues/5472>`__.
+- `Fix SG to not allow ports out of range <https://github.com/OpenNebula/one/issues/5458>`__.
+- `Fix onevm updateconf to not parse again CONTEXT values which are not modified <https://github.com/OpenNebula/one/issues/5273>`__.
+- `Fix IPv6 ARs to not allow wrong attributes <https://github.com/OpenNebula/one/issues/5472>`__.
+- `Fix chown operation to not check resources already owned by user/group <https://github.com/OpenNebula/one/issues/5315>`__.
