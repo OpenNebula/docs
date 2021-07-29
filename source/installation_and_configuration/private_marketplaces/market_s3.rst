@@ -54,6 +54,8 @@ These are the configuration attributes of a Marketplace template of the S3 kind:
 +-----------------------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``READ_LENGTH``       | **NO**   | Split the file into chunks of this size in MB, **never** user a value larger than 100. Defaults to ``32`` (MB).                                                                         |
 +-----------------------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``AWS``               | **NO**   | Leave blank for Amazon AWS S3 service. If connecting to Ceph S3 or MinIO S3 it **must** be ``no``.                                                                                      |
++-----------------------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 For example, the following template illustrates the definition of a Marketplace:
 
@@ -69,6 +71,7 @@ For example, the following template illustrates the definition of a Marketplace:
     MARKET_MAD        = s3
     REGION            = "default"
     SIGNATURE_VERSION = s3
+    AWS               = no
 
 which is created by passing the following command:
 
