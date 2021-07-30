@@ -211,7 +211,7 @@ You can also use them through the CLI. When you instantiate the template using `
 
   If VM template had ``CONTEXT = [ A_CONTEXT = "$A" ]``, after service instantiation, the result are going to be ``CONTEXT = [ A_CONTEXT = "A_VALUE" ]``
 
-.. note:: In order to pass the service custom attributes to the VM  when using the CLI they need to be duplicated inside ``vm_template_contents`` section.
+In order to pass the service custom attributes to the VM  when using the CLI they need to be duplicated inside ``vm_template_contents`` section.
 
 .. _service_clone:
 
@@ -222,7 +222,9 @@ A service template can be cloned to produce a copy, ready to be instantiated und
 
 The ``oneflow-template clone`` (with the optional ``--recursive flag``) can be used to achieve this, as well as from the Sunstone service template tab.
 
-.. note:: If the name of the VM template + Service Template exceed 128 chars, VM template name will be cropped.
+If the name of the VM template + Service Template exceed 128 chars, VM template name will be cropped.
+
+.. note:: :ref:`Scheduled Actions <vm_guide2_scheduling_actions>` cannot be defined in VM Templates if they are intended to be used as part of Service Templates. Please remove them prior to instantiate a service to avoid indeterministic behaviour.
 
 Managing Services
 ================================================================================
