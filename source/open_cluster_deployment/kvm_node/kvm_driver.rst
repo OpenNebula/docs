@@ -43,6 +43,7 @@ There are some attributes required for KVM to boot a VM. You can set a suitable 
 * ``CPU_MODEL``: attribute ``MODEL``.
 * ``DISK``: attributes ``DRIVER``, ``CACHE``, ``IO``, ``DISCARD``, ``TOTAL_BYTES_SEC``, ``TOTAL_IOPS_SEC``, ``READ_BYTES_SEC``, ``WRITE_BYTES_SEC``, ``READ_IOPS_SEC``, ``WRITE_IOPS_SEC``, ``SIZE_IOPS_SEC``.
 * ``NIC``: attribute ``FILTER``, ``MODEL``.
+* ``GRAPHICS``: attributes ``TYPE``, ``LISTEN``, ``PASSWD``, ``KEYMAP``, ``RANDOM_PASSWD``. The VM instance must have at least empty ``GRAPHICS = []`` section to read these default attributes from the config file and to generate cluster unique ``PORT`` attribute.
 * ``RAW``: to add libvirt attributes to the domain XML file.
 * ``HYPERV_OPTIONS``: to enable hyperv extensions.
 * ``SPICE_OPTIONS``: to add default devices for SPICE.

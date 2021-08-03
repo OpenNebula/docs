@@ -51,6 +51,7 @@ Packaging
 
 KVM
 ===
+- Option to specify :ref:`default attribute values <kvmg_default_attributes>` for VM ``GRAPHICS`` section.
 
 VMware
 ============================
