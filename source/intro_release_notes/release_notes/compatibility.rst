@@ -57,3 +57,6 @@ Sunstone SELinux Requirement
 Drivers Virtualization
 ========================
 
+PyONE
+========================
+As Python 2 is no longer supported the system packcage python-pyone is not released any more.
