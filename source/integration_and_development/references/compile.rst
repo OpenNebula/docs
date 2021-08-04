@@ -148,7 +148,6 @@ In order to build the OpenNebula python components it is required to install pip
 Build Dependencies:
 
 - **generateds**: to generate the python OCA
-- **pdoc**: to generate the API documentation
 - **setuptools**: to generate python package
 - **wheel**: to generate the python package
 
