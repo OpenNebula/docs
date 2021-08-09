@@ -2090,6 +2090,8 @@ one.vm.unlock
 one.vmpool.info
 --------------------------------------------------------------------------------
 
+.. note:: Some attributes e.g. `TEMPLATE`, `USER_TEMPLATE` are limited in this call, see also `one.vmpool.infoextended`
+
 -  **Description**: Retrieves information for all or part of the VMs in the pool.
 -  **Parameters**
 
