@@ -38,7 +38,7 @@ OneFlow & OneGate
 
 CLI
 ================================================================================
-- :ref:`Append option <api_onevmmupdateconf>` for ``onevm updateconf``
+- :ref:`Append option <api_onevmmupdateconf>` for ``onevm updateconf``. If no option is provided the 6.0 behavior is preserved.
 
 onedb
 ================================================================================
