@@ -24,3 +24,4 @@ The following issues has been solved in 6.0.4:
 - `Fix login for LDAP users with DN's containing special characters <https://github.com/OpenNebula/one/issues/5488>`__.
 - `Fix Python OCA bindings to return Snapshots as a list instead of a dict <https://github.com/OpenNebula/one/issues/4837>`__.
 - `Fix unable to instantiate a VM containing disk with resize option <https://github.com/OpenNebula/one/issues/5481>`__.
+- `Fix wrong humanize conversion <https://github.com/OpenNebula/one/issues/5476>`__.
