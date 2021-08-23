@@ -30,4 +30,3 @@ The following issues has been solved in 6.0.4:
 - `Fix fsck to remove showback records with 0 hours and properly set running exit time`
 - `Fix typo in oneimage help text <https://github.com/OpenNebula/one/issues/5493>`__.
 - `Fix FRR installation on Edge Clusters, now version 7 is fixed <https://github.com/OpenNebula/one/issues/5491>`__.
-- `Fix scheduler messages to include more information on placement decissions <https://github.com/OpenNebula/one/issues/5489>`__.
