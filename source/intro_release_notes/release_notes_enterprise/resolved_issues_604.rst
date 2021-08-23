@@ -28,3 +28,4 @@ The following issues has been solved in 6.0.4:
 - `Fix VNC buttons not showing with languages different than English <https://github.com/OpenNebula/one/issues/5507>`__.
 - `Fix Ceph removal of images with snapshots when using Trash <https://github.com/OpenNebula/one/issues/5446>`__.
 - `Fix fsck to remove showback records with 0 hours and properly set running exit time`
+- `Fix typo in oneimage help text <https://github.com/OpenNebula/one/issues/5493>`__.
