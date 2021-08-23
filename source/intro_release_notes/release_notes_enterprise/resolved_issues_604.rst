@@ -23,6 +23,7 @@ The following issues has been solved in 6.0.4:
 - `Fix scheduler messages to provide more information when a VM can't be dispatched <https://github.com/OpenNebula/one/issues/5489>`__.
 - `Fix login for LDAP users with DN's containing special characters <https://github.com/OpenNebula/one/issues/5488>`__.
 - `Fix Python OCA bindings to return Snapshots as a list instead of a dict <https://github.com/OpenNebula/one/issues/4837>`__.
-- `Fix unable to instantiate a VM containing disk with resize option <https://github.com/OpenNebula/one/issues/5481>`__.
+- `Fix instantiation of a VM containing disk with resize option <https://github.com/OpenNebula/one/issues/5481>`__.
 - `Fix wrong humanize conversion <https://github.com/OpenNebula/one/issues/5476>`__.
 - `Fix VNC buttons not showing with languages different than English <https://github.com/OpenNebula/one/issues/5507>`__.
+- `Fix Ceph removal of images with snapshots when using Trash <https://github.com/OpenNebula/one/issues/5446>`__.
