@@ -31,3 +31,4 @@ The following issues has been solved in 6.0.4:
 - `Fix typo in oneimage help text <https://github.com/OpenNebula/one/issues/5493>`__.
 - `Fix FRR installation on Edge Clusters, now version 7 is fixed <https://github.com/OpenNebula/one/issues/5491>`__.
 - `Fix CLI output in json/yaml format to follow xsd specification for elements <https://github.com/OpenNebula/one/issues/5445>`__.
+- `Fix cloud_vm_create behavior to hide all related buttons <https://github.com/OpenNebula/one/issues/5512>`__.
