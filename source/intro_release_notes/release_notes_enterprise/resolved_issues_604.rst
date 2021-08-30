@@ -32,3 +32,4 @@ The following issues has been solved in 6.0.4:
 - `Fix FRR installation on Edge Clusters, now version 7 is fixed <https://github.com/OpenNebula/one/issues/5491>`__.
 - `Fix CLI output in json/yaml format to follow xsd specification for elements <https://github.com/OpenNebula/one/issues/5445>`__.
 - `Fix cloud_vm_create behavior to hide all related buttons <https://github.com/OpenNebula/one/issues/5512>`__.
+- `Fix memory input value on VM instantiation <https://github.com/OpenNebula/one/issues/5509>`__.
