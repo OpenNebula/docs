@@ -793,7 +793,7 @@ This functionality automatically adds scheduling actions in VM templates. To ena
 In the previous example you can see that Scheduled Actions are added to the VMs. You can tune the following values:
 
 +---------+-------------------------------------------------------------------------------------------------------+
-| time    | Time for the action in secs example: +1209600 is to weeks.                                            |
+| time    | Time for the action in secs example: +1209600 is two weeks.                                            |
 |         | The order is very important since time adds to the previous scheduled action.                         |
 +---------+-------------------------------------------------------------------------------------------------------+
 | color   | Is the color in hexadecimal since the icon will appear in the Vms table                               |
