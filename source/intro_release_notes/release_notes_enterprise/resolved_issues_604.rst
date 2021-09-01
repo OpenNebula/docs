@@ -34,3 +34,4 @@ The following issues has been solved in 6.0.4:
 - `Fix cloud_vm_create behavior to hide all related buttons <https://github.com/OpenNebula/one/issues/5512>`__.
 - `Fix memory input value on VM instantiation <https://github.com/OpenNebula/one/issues/5509>`__.
 - `Fix parsing of UUID and DOMAIN_ID from virsh tool using xmllint (KVM) <https://github.com/OpenNebula/one/issues/5442>`__.
+- `Fix a flow recover issue with scaledown operations <https://github.com/OpenNebula/one/issues/5526>` __.
