@@ -6,126 +6,148 @@ Edge Cluster Providers
 
 An Edge Cluster provider is responsible to interface with the Cloud or Edge provider to provision the Edge cluster resources including hosts, public IPs or any other abstraction required to support the cluster. Note that the specific artifacts needed depended on the features and capabilities of each provider.
 
-.. important:: THIS SECTION IS UNDERWORK
-
 Terraform Representation
 ================================================================================
 
-The first step is to develop a representation of the Edge Cluster using Terraform. OpenNebula will use the Terraform driver for the target provider to provision the Edge Cluster infrastructure.
+The first step is develop a representation of the Edge Cluster using Terraform. OpenNebula will use the Terraform driver for the target provider to provision the Edge Cluster infrastructure.
 
 Step 1. Register the Provider
 --------------------------------------------------------------------------------
 
-* Add to the list of PROVIDERS in `src/oneprovision/lib/terraform/terraform.rb <https://github.com/OpenNebula/one/blob/master/src/oneprovision/lib/terraform/terraform.rb>`__.
-* Add base class to interface the new provider. It should be located in `src/oneprovision/lib/terraform/providers/ <https://github.com/OpenNebula/one/blob/master/src/oneprovision/lib/terraform/providers>`__.
-* Require the new provider in `src/oneprovision/lib/terraform/providers.rb <https://github.com/OpenNebula/one/blob/master/src/oneprovision/lib/terraform/providers.rb>`__.
-* We need to modify the file `src/oneprovision/lib/terraform/terraform.rb <https://github.com/OpenNebula/one/blob/master/src/oneprovision/lib/terraform/terraform.rb>`__:
+Add base class to interface the new provider in `src/oneprovision/lib/terraform/providers/ <https://github.com/OpenNebula/one/blob/master/src/oneprovision/lib/terraform/providers>`__. You can check the following example located in `src/oneprovision/lib/terraform/providers/example <https://github.com/OpenNebula/one/blob/master/src/oneprovision/lib/terraform/providers/example>`__:
 
-  * Add the new class to the singleton method ``self.singleton``:
+.. prompt:: bash $ auto
 
-  .. prompt:: bash $ auto
+    require 'terraform/terraform'
 
-        when 'my_provider'
-        tf_class = MyProvider
+    # Module OneProvision
+    module OneProvision
 
-  * Add new provider keys to the method ``self.check_connection``:
+        # <<PROVIDER NAME>> Terraform Provider
+        class <<PROVIDER CLASS>> < Terraform
 
-  .. prompt:: bash $ auto
+            NAME = Terraform.append_provider(__FILE__, name)
 
-        when 'my_provider'
-        keys = MyProvider::KEY
+            # OpenNebula - Terraform equivalence
+            TYPES = {
+                :cluster   => '<<TERRAFORM RESOURCE>>',
+                :datastore => '<<TERRAFORM RESOURCE>>',
+                :host      => '<<TERRAFORM RESOURCE>>',
+                :network   => '<<TERRAFORM RESOURCE>>'
+            }
+
+            KEYS = %w[<<PROPVIDER CONNECTION INFO>>]
+
+            # Class constructor
+            #
+            # @param provider [Provider]
+            # @param state    [String] Terraform state in base64
+            # @param conf     [String] Terraform config state in base64
+            def initialize(provider, state, conf)
+                # If credentials are stored into a file, set this variable to true
+                # If not, leave it as it is
+                @file_credentials = false
+
+                super
+            end
+
+            # Get user data to add into the VM
+            #
+            # @param ssh_key [String] SSH keys to add
+            def user_data(ssh_key)
+                <<IMPLEMENT THIS METHOD IF NEEDED, IF NOT YOU CAN DELETE IT>>
+            end
+
+        end
+
+    end
 
 Step 2. Create Terraform templates for each resource
 --------------------------------------------------------------------------------
 
-Templates use `ERB <https://docs.ruby-lang.org/en/2.5.0/ERB.html>`__ template syntax.
+Templates use `ERB <https://docs.ruby-lang.org/en/2.5.0/ERB.html>`__ syntax.
 
-* Templates are located ``src/oneprovision/lib/terraform/providers/templates/``. It contains the following templates:
+.. important:: The name of the folder must be the same used for the class file created above (without .rb), e.g: if the file is called my_provider.rb, the folder should be my_provider.
 
-  * **provider.erb**: this template defines the Terraform provider, each provider needs specific information. This information is passed using the ``conn`` attribute, so inside this hash, all the information will be available. The connection information is taken from the provider stored in the OpenNebula database.
-  * **resource_x.erb**: this template defines the specific x (cluster, datastore, host, network) resource for the Terraform provider. The information needed by these templates is passed using the following attributes:
+* Templates are placed in ``src/oneprovision/lib/terraform/providers/templates/<provider_name>``:
 
-    * **obj**: it contains the OpenNebula object information in hash format.
-    * **provision**: it contains provision information passed in the provision template under the provision section.
-    * **c**: it contains information about the OpenNebula cluster.
-    * **obj['user_data']**: it is a special value that contains the user data that should be added to the hosts, it basically contains the public SSH key to access them.
+  * **provider.erb**: defines the Terraform provider, each provider needs specific information. This information can be found in ``conn`` hash attribute, e.g:
 
-In the following example you can find a detailed description of AWS templates:
+    .. prompt:: bash $ auto
 
-* **provider.erb**
-
-.. prompt:: bash $ auto
-
-    provider "aws" {
-        access_key = "<%= conn['ACCESS_KEY'] %>"
-        secret_key = "<%= conn['SECRET_KEY'] %>"
-        region     = "<%= conn['REGION'] %>"
-    }
-
-The information here depends on the Terraform provider, you will have all the needed information in ``conn`` hash.
-
-* **cluster.erb**
-
-.. prompt:: bash $ auto
-
-    resource "aws_vpc" "device_<%= obj['ID'] %>" {
-        cidr_block = "<%= provision['CIDR'] ? provision['CIDR'] : '10.0.0.0/16'%>"
-
-        tags = {
-            Name = "<%= obj['NAME'] %>_vpc"
-        }
-    }
-
-    resource "aws_subnet" "device_<%= obj['ID'] %>" {
-        vpc_id     = aws_vpc.device_<%= obj['ID'] %>.id
-        cidr_block = "<%= provision['CIDR'] ? provision['CIDR'] : '10.0.0.0/16'%>"
-
-        map_public_ip_on_launch = true
-
-        tags = {
-            Name = "<%= obj['NAME'] %>_subnet"
-        }
-    }
-
-    resource "aws_internet_gateway" "device_<%= obj['ID'] %>" {
-        vpc_id = aws_vpc.device_<%= obj['ID'] %>.id
-
-        tags = {
-            Name = "<%= obj['NAME'] %>_gateway"
-        }
-    }
-
-    resource "aws_route" "device_<%= obj['ID'] %>" {
-        route_table_id         = aws_vpc.device_<%= obj['ID'] %>.main_route_table_id
-        destination_cidr_block = "0.0.0.0/0"
-        gateway_id             = aws_internet_gateway.device_<%= obj['ID'] %>.id
-    }
-
-    resource "aws_security_group" "device_<%= obj['ID'] %>_all" {
-        name        = "allow_all"
-        description = "Allow all traffic"
-        vpc_id     = aws_vpc.device_<%= c['ID'] %>.id
-
-        ingress {
-            from_port   = 0
-            to_port     = 0
-            protocol    = "-1"
-            cidr_blocks = ["0.0.0.0/0"]
+        provider "aws" {
+            access_key = "<%= conn['ACCESS_KEY'] %>"
+            secret_key = "<%= conn['SECRET_KEY'] %>"
+            region     = "<%= conn['REGION'] %>"
         }
 
-        egress {
-            from_port   = 0
-            to_port     = 0
-            protocol    = "-1"
-            cidr_blocks = ["0.0.0.0/0"]
+    .. note:: This information depends on the Terraform provider.
+
+  * **resource_x.erb**: defines the specific x (cluster, datastore, host, network) resource for the Terraform provider. The following attributes are available:
+
+    * **obj**: contains the OpenNebula object information in hash format.
+    * **provision**: contains provision information located in the object XML under ``TEMPLATE/PROVISION``.
+    * **c**: contains information about the OpenNebula cluster. It is useful to create a realation between the object and the cluster.
+    * **obj['user_data']**: special value that contains the user data that should be added to the hosts, it basically contains the public SSH key to access them.
+
+    .. prompt:: bash $ auto
+
+        resource "aws_vpc" "device_<%= obj['ID'] %>" {
+            cidr_block = "<%= provision['CIDR'] ? provision['CIDR'] : '10.0.0.0/16'%>"
+
+            tags = {
+                Name = "<%= obj['NAME'] %>_vpc"
+            }
         }
 
-        tags = {
-            Name = "device_<%= obj['ID'] %>_all"
-        }
-    }
+        resource "aws_subnet" "device_<%= obj['ID'] %>" {
+            vpc_id     = aws_vpc.device_<%= obj['ID'] %>.id
+            cidr_block = "<%= provision['CIDR'] ? provision['CIDR'] : '10.0.0.0/16'%>"
 
-The resources created here are associated to OpenNebula cluster, so when it is deleted, they are deleted too. You can use the ``obj`` hash to access resource attributes. You can also create a relation between Terraform resources using the information stored at ``obj``. If you need to create a relation, between the object and the OpenNebula cluster, you can use the variable ``c`` which is a hash containing all the information of the OpenNebula cluster.
+            map_public_ip_on_launch = true
+
+            tags = {
+                Name = "<%= obj['NAME'] %>_subnet"
+            }
+        }
+
+        resource "aws_internet_gateway" "device_<%= obj['ID'] %>" {
+            vpc_id = aws_vpc.device_<%= obj['ID'] %>.id
+
+            tags = {
+                Name = "<%= obj['NAME'] %>_gateway"
+            }
+        }
+
+        resource "aws_route" "device_<%= obj['ID'] %>" {
+            route_table_id         = aws_vpc.device_<%= obj['ID'] %>.main_route_table_id
+            destination_cidr_block = "0.0.0.0/0"
+            gateway_id             = aws_internet_gateway.device_<%= obj['ID'] %>.id
+        }
+
+        resource "aws_security_group" "device_<%= obj['ID'] %>_all" {
+            name        = "allow_all"
+            description = "Allow all traffic"
+            vpc_id     = aws_vpc.device_<%= c['ID'] %>.id
+
+            ingress {
+                from_port   = 0
+                to_port     = 0
+                protocol    = "-1"
+                cidr_blocks = ["0.0.0.0/0"]
+            }
+
+            egress {
+                from_port   = 0
+                to_port     = 0
+                protocol    = "-1"
+                cidr_blocks = ["0.0.0.0/0"]
+            }
+
+            tags = {
+                Name = "device_<%= obj['ID'] %>_all"
+            }
+        }
 
 .. important:: All the terraform resources must be named by device_OBJ['ID'].
 
@@ -165,56 +187,20 @@ You need to modify `install.sh <https://github.com/OpenNebula/one/blob/master/sr
 Ansible Configuration
 ================================================================================
 
-Then you need to add an ansible playbook for the provisions created on the new provider. As an starting point you can use one of the existing ones.
+You need to add an ansible playbook to configure physical servers running on the provider.
 
-* They are located in `share/oneprovision/ansible <https://github.com/OpenNebula/one/blob/master/share/oneprovision/ansible>`__. You can find documentation about them :ref:`here <ddc_config_playbooks>`.
-* In order to add a new role, you need to place it in `share/oneprovision/ansible/roles <https://github.com/OpenNebula/one/blob/master/share/oneprovision/ansible/roles>`__ and then add it to the playbook you want to use it.
+.. note:: You can use existing playbooks as an example.
 
-In the following example you can find a detailed description of AWS template:
-
-The YAML describes the configuration roles that are use in AWS cluster:
-
-.. prompt:: bash $ auto
-
-    $ cat share/oneprovision/ansible/aws.yml
-    ---
-
-    - hosts: all
-      gather_facts: false
-      roles:
-        - python
-
-    - hosts: nodes
-      roles:
-        - ddc
-        - opennebula-repository
-        - { role: opennebula-node-kvm, when: oneprovision_hypervisor == 'kvm'  or oneprovision_hypervisor == 'qemu' }
-        - { role: opennebula-node-firecracker, when: oneprovision_hypervisor == 'firecracker' }
-        - { role: opennebula-node-lxc, when: oneprovision_hypervisor == 'lxc' }
-        - opennebula-ssh
-        - role: iptables
-          iptables_base_rules_services:
-            - { protocol: 'tcp', port: 22 }
-            # TCP/179 bgpd (TODO: only needed on Route Refector(s))
-            - { protocol: 'tcp', port: 179 }
-            # TCP/8742 default VXLAN port on Linux (UDP/4789 default IANA)
-            - { protocol: 'udp', port: 8472 }
-        - update-replica
-        - role: frr
-          frr_iface: 'eth0'
-          # Use /16 for the internal management network address
-          frr_prefix_length: 16
-
-Above you can find the list of roles that are going to be executed. Also, some of the roles depends on some variables, these variables come from the provision itself.
+* They are placed in `share/oneprovision/ansible <https://github.com/OpenNebula/one/blob/master/share/oneprovision/ansible>`__. You can find documentation about them :ref:`here <ddc_config_playbooks>`.
+* To add a new role, you need to place it in `share/oneprovision/ansible/roles <https://github.com/OpenNebula/one/blob/master/share/oneprovision/ansible/roles>`__.
 
 Provision Templates
 ================================================================================
 
-Finally you need to add templates for the provisions on the new provider. They are located in ``share/oneprovision/edge-clusters/<type>/provisions``. You can find documentation about them :ref:`here <ddc_template>`.
+You need to add new provider templates.
 
-In the following example you can find a detailed description of AWS template:
-
-The YAMLs describe the elements that are going to be deployed in the provision:
+* They are placed in ``share/oneprovision/edge-clusters/<type>/provisions/<provider_name>``. You can find documentation about them :ref:`here <ddc_template>`.
+* ``<provider_name>.yml`` contains the cluster definition, e.g:
 
 .. prompt:: bash $ auto
 
@@ -287,7 +273,7 @@ The YAMLs describe the elements that are going to be deployed in the provision:
 
     ...
 
-Then in the following folder you cand find specifics things about this provider:
+* Inside ``<provider_name>.d`` directory you can place specifics things about the provider, e.g:
 
 .. prompt:: bash $ auto
 
@@ -313,7 +299,7 @@ Then in the following folder you cand find specifics things about this provider:
       - name: "${provision}-system"
         type: 'system_ds'
         tm_mad: 'ssh'
-        safe_dirs: "/var/tmp /tmp"
+        safe_dirs: "/var/tmp
         replica_host: "use-first-host"
     ---
     image: 'OPENNEBULA-AWS'
@@ -379,7 +365,7 @@ Then in the following folder you cand find specifics things about this provider:
         ip_link_conf: 'nolearning='
         cluster_ids: "${cluster.0.id}"
 
-Finally, you can find a common directory for all the providers:
+* ``commond.d`` contains common information for all the providers, e.g:
 
 .. prompt:: bash $ auto
 

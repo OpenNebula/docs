@@ -41,6 +41,7 @@ Go API
 Distributed Edge Provisioning
 =============================
 
+- OneProvision is able to load providers dinamically, so all the providers in the folder ``/usr/lib/one/oneprovision/lib/terraform/providers`` are loaded.
 
 Datastore Driver Changes
 =============================
