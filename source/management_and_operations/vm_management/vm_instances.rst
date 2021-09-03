@@ -587,7 +587,7 @@ Here is an usage example:
      0 suspend     09/20 00:00            																							 -
      1 resume      09/23 14:15            																							 -
 
-These actions can be deleted or edited using the ``onevm update`` command. The time attributes use Unix time internally.
+These actions can be deleted or edited using the ``onevm delete-chart`` and ``onevm update-chart`` command. The time attributes use Unix time internally.
 
 .. prompt:: text $ auto
 
@@ -652,7 +652,7 @@ Here is an usage example:
     1 resume           09/23 00:00           Weekly 2,6        After 5 times            -
     2 snapshot-create  09/23 00:00         Each 5 hours          On 12/25/18            -
 
-These actions can be deleted or edited using the ``onevm update`` command. The time attributes use Unix time internally.
+These actions can be deleted or edited using the ``onevm delete-chart`` and ``onevm update-chart`` command. The time attributes use Unix time internally.
 
 .. prompt:: text $ auto
 
@@ -749,7 +749,7 @@ You can pass arguments to the scheduled actions using the parameter ``ARGS`` in 
 
 .. prompt:: text $ auto
 
-    $ onevm update 0
+    $ onevm update-chart 0 0
 
     SCHED_ACTION=[
         ACTION="disk-snapshot-create",
@@ -1186,8 +1186,8 @@ a similar architecture to the VNC implementation. Sunstone use a **SPICE-HTML5**
 its console dialog that communicates with the proxy by using websockets.
 
 .. important:: SPICE connections when using NAT and remote-viewer won't work since noVNC proxy
-    does not offer SPICE support, and a direct connection between browser and virtualization node 
-    is needed. However the SPICE HTML5 console can use noVNC proxy to offer SPICE connectivity, 
+    does not offer SPICE support, and a direct connection between browser and virtualization node
+    is needed. However the SPICE HTML5 console can use noVNC proxy to offer SPICE connectivity,
     please use this option as an alternative
 
 .. note:: For the correct functioning of the SPICE Web Client, we recommend defining by default
