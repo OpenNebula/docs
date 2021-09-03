@@ -28,6 +28,8 @@ Networking
 
 Sunstone
 ================================================================================
+- Support for new scheduled actions api on :ref:`Sunstone <sunstone>`.
+- Error message for failed scheduled actions in VM info view.
 
 Scheduler
 ================================================================================
