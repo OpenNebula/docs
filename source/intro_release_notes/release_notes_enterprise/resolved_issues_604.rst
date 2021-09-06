@@ -37,3 +37,4 @@ The following issues has been solved in 6.0.4:
 - `Fix a flow recover issue with scaledown operations <https://github.com/OpenNebula/one/issues/5526>`__.
 - `Add PCI devices support to GO bindings <https://github.com/OpenNebula/one/issues/5518>`__.
 - `Fix Sunstone does not use oneflow_server variable <https://github.com/OpenNebula/one/issues/5452>`__.
+- `Add Guest MTU option in VMtemplate wizard <https://github.com/OpenNebula/one/issues/5527>`__.
