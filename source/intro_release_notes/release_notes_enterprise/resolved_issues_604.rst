@@ -35,3 +35,4 @@ The following issues has been solved in 6.0.4:
 - `Fix memory input value on VM instantiation <https://github.com/OpenNebula/one/issues/5509>`__.
 - `Fix parsing of UUID and DOMAIN_ID from virsh tool using xmllint (KVM) <https://github.com/OpenNebula/one/issues/5442>`__.
 - `Fix a flow recover issue with scaledown operations <https://github.com/OpenNebula/one/issues/5526>`__.
+- `Add PCI devices support to GO bindings <https://github.com/OpenNebula/one/issues/5518>`__.
