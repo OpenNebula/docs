@@ -36,3 +36,4 @@ The following issues has been solved in 6.0.4:
 - `Fix parsing of UUID and DOMAIN_ID from virsh tool using xmllint (KVM) <https://github.com/OpenNebula/one/issues/5442>`__.
 - `Fix a flow recover issue with scaledown operations <https://github.com/OpenNebula/one/issues/5526>`__.
 - `Add PCI devices support to GO bindings <https://github.com/OpenNebula/one/issues/5518>`__.
+- `Fix Sunstone does not use oneflow_server variable <https://github.com/OpenNebula/one/issues/5452>`__.
