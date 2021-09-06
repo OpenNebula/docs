@@ -19,3 +19,4 @@ The following issues has been solved in 5.12.11:
 - `Fix IP dropdown to show monitoring IPs <https://github.com/OpenNebula/one/issues/5438>`__.
 - `Fix IP dropdown to show monitoring IPs <https://github.com/OpenNebula/one/issues/5438>`__.
 - `Fix cloud_vm_create behavior to hide all related buttons <https://github.com/OpenNebula/one/issues/5512>`__.
+- `Fix Sunstone does not use oneflow_server variable <https://github.com/OpenNebula/one/issues/5452>`__.
