@@ -16,9 +16,15 @@ Considerations & Limitations
 Security
 --------------------------------------------------------------------------------
 
-In order to ensure the security in a multitenant environment, only unprivileged containers are supported by LXC drivers.
+In order to ensure the security in a multitenant environment, by default, the containers created by the LXC driver will be unprivileged. The unprivileged containers will be deployed as ``root``. It will use ``600100001-600165537`` sub UID/GID range for mapping users/groups in order to increase security in case a malicious agent is able to escape the container.
 
-The unprivileged containers will be deployed as ``root``. It will use ``600100001-600165537`` sub UID/GID range for mapping users/groups in order to increase security in case a malicious agent is able to escape the container.
+To create a privileged container, the attribute LXC_UNPRIVILEGED needs to be added in the VM Template and its value must be TRUE. The generated container will then have the following key advanced-guide
+
+.. code::
+
+    lxc.include = '/var/tmp/one/etc/vmm/lxc/profiles/profile_privileged'
+
+That entry references a configuration file containing a lot of options for privileged containers. The admins can customize these options if require to do so.
 
 Resource usage limitations
 --------------------------
