@@ -39,3 +39,4 @@ The following issues has been solved in 6.0.4:
 - `Fix Sunstone does not use oneflow_server variable <https://github.com/OpenNebula/one/issues/5452>`__.
 - `Add Guest MTU option in VMtemplate wizard <https://github.com/OpenNebula/one/issues/5527>`__.
 - `Fix LXD container not rebootig when a NIC was attached <https://github.com/OpenNebula/one/issues/5521>`__.
+- `Add onevm SSH safer execution <https://github.com/OpenNebula/one/issues/5508>`__.
