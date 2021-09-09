@@ -35,8 +35,8 @@ The following issues has been solved in 6.0.4:
 - `Fix memory input value on VM instantiation <https://github.com/OpenNebula/one/issues/5509>`__.
 - `Fix parsing of UUID and DOMAIN_ID from virsh tool using xmllint (KVM) <https://github.com/OpenNebula/one/issues/5442>`__.
 - `Fix a flow recover issue with scaledown operations <https://github.com/OpenNebula/one/issues/5526>`__.
-- `Add PCI devices support to GO bindings <https://github.com/OpenNebula/one/issues/5518>`__.
+- `Fix GO bindings to support PCI devices <https://github.com/OpenNebula/one/issues/5518>`__.
 - `Fix Sunstone does not use oneflow_server variable <https://github.com/OpenNebula/one/issues/5452>`__.
-- `Add Guest MTU option in VMtemplate wizard <https://github.com/OpenNebula/one/issues/5527>`__.
+- `Fix VMtemplate wizard to include MTU option for guests <https://github.com/OpenNebula/one/issues/5527>`__.
 - `Fix LXD container not rebootig when a NIC was attached <https://github.com/OpenNebula/one/issues/5521>`__.
-- `Add onevm SSH safer execution <https://github.com/OpenNebula/one/issues/5508>`__.
+- `Fix onevm ssh to quote arguments when executing an ssh command <https://github.com/OpenNebula/one/issues/5508>`__.
