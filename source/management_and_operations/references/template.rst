@@ -644,6 +644,7 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 |                                   | :ref:`Contextualization packages <context_overview>`.                                           |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``NETCFG_TYPE``                   | Network configuration service inside guest VM responsible for configuring the NICs:             | Linux                        | Linux   |
+|                                   | empty (autodetects suitable service inside VM),                                                 |                              |         |
 |                                   | ``bsd`` (for FreeBSD network configuration),                                                    |                              |         |
 |                                   | ``interfaces`` (for Debian-style configuration via ``/etc/network/interfaces``),                |                              |         |
 |                                   | ``netplan`` (for Netplan, set custom Netplan renderer via ``NETCFG_NETPLAN_RENDERER``)          |                              |         |
