@@ -27,6 +27,10 @@ XMLRPC API
 Ruby API
 ========
 
+Go API
+======
+
+Network (and NIC) template attribute ``CONTEXT_FORCE_IPV4`` was deprecated in the OpenNebula as well as the constant ``ContextForceIPV4`` from Go API (GOCA).
 
 Distributed Edge Provisioning
 =============================

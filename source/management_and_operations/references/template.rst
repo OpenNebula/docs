@@ -643,6 +643,18 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 | ``NETWORK``                       | ``YES`` to fill automatically the networking parameters for each NIC, used by the               | O                            | O       |
 |                                   | :ref:`Contextualization packages <context_overview>`.                                           |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
+| ``NETCFG_TYPE``                   | Network configuration service inside guest VM responsible for configuring the NICs:             | Linux                        | Linux   |
+|                                   | ``bsd`` (for FreeBSD network configuration),                                                    |                              |         |
+|                                   | ``interfaces`` (for Debian-style configuration via ``/etc/network/interfaces``),                |                              |         |
+|                                   | ``netplan`` (for Netplan, set custom Netplan renderer via ``NETCFG_NETPLAN_RENDERER``)          |                              |         |
+|                                   | ``networkd`` (for systemd-networkd),                                                            |                              |         |
+|                                   | ``nm`` (for NetworkManager),                                                                    |                              |         |
+|                                   | ``scripts`` (for legacy Red Hat-style configuration via ``ifcfg-ethX`` files)                   |                              |         |
++-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
+| ``NETCFG_NETPLAN_RENDERER``       | Netplan renderer (effective only when ``NETCFG_TYPE=netplan``):                                 | Linux                        | Linux   |
+|                                   | empty or ``networkd`` (for systemd-networkd),                                                   |                              |         |
+|                                   | ``NetworkManager`` (for NetworkManager)                                                         |                              |         |
++-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``SET_HOSTNAME``                  | This parameter value will be the hostname of the VM.                                            | O                            | O       |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``DNS_HOSTNAME``                  | ``YES`` to set the VM hostname to the reverse dns name (from the first IP)                      | O                            | O       |
@@ -652,13 +664,31 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 |                                   | yo choose the one that configures it. For example to set the first interface to                 |                              |         |
 |                                   | configure the gateway you use ``GATEWAY_IFACE=0``.                                              |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
-| ``DNS``                           | Specific DNS server for the Virtual Machine.                                                    | Linux                        | Linux   |
+| ``DNS``                           | Specific DNS server for the Virtual Machine.                                                    | O                            | O       |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``ETHx_MAC``                      | Used to find the correct interface.                                                             | O                            | O       |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``ETHx_IP``                       | IPv4 address for the interface.                                                                 | O                            | O       |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
-| ``ETHx_IPV6``                     | IPv6 address for the interface.                                                                 | Linux                        | Linux   |
+| ``ETHx_IP6``                      | IPv6 address for the interface. Legacy ``ETHx_IPV6`` is also valid.                             | O                            | O       |
++-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
+| ``ETHx_IP6_PREFIX_LENGTH``        | IPv6 prefix length for the interface.                                                           | O                            | O       |
++-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
+| ``ETHx_IP6_ULA``                  | IPv6 unique local address for the interface                                                     | O                            | O       |
++-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
+| ``ETHx_IP6_METRIC``               | ``IP6_METRIC`` value for the IPv6 (default) route associated with this interface.               | Linux                        | Linux   |
++-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
+| ``ETHx_IP6_METHOD``               | IPv6 configuration method for the interface inside VM:                                          | Linux                        | Linux   |
+|                                   | empty or ``static`` (for static address assignment based on context variables),                 |                              |         |
+|                                   | ``auto`` (for SLAAC),                                                                           |                              |         |
+|                                   | ``dhcp`` (for SLAAC and DHCPv6),                                                                |                              |         |
+|                                   | ``disable`` (for disabling IPv6),                                                               |                              |         |
+|                                   | ``skip`` (skip NIC configuration)                                                               |                              |         |
++-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
+| ``ETHx_METHOD``                   | IPv4 configuration method for the interface inside VM:                                          | Linux                        | Linux   |
+|                                   | empty or ``static`` (for static address assignment based on context variables),                 |                              |         |
+|                                   | ``dhcp`` (for DHCPv4),                                                                          |                              |         |
+|                                   | ``skip`` (skip NIC configuration)                                                               |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``ETHx_NETWORK``                  | Network address of the interface.                                                               | O                            | O       |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
@@ -666,7 +696,7 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``ETHx_GATEWAY``                  | Default IPv4 gateway for the interface.                                                         | O                            | O       |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
-| ``ETHx_GATEWAY6``                 | Default IPv6 gateway for the interface.                                                         | Linux                        | Linux   |
+| ``ETHx_GATEWAY6``                 | Default IPv6 gateway for the interface.                                                         | O                            | O       |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``ETHx_MTU``                      | ``MTU`` value for the interface.                                                                | O                            | O       |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
@@ -684,6 +714,10 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``ETHx_ALIASy_IP6_ULA``           | IPv6 unique local address for the alias.                                                        | O                            | O       |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
+| ``ETHx_ALIASy_IP6_METHOD``        | ``IP6_METHOD`` value for the alias.                                                             | \-                           | \-      |
++-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
+| ``ETHx_ALIASy_IP6_METRIC``        | ``IP6_METRIC`` value for the alias.                                                             | \-                           | \-      |
++-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``ETHx_ALIASy_NETWORK``           | Network address of the alias.                                                                   | O                            | O       |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``ETHx_ALIASy_MASK``              | Network mask.                                                                                   | O                            | O       |
@@ -693,6 +727,8 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 | ``ETHx_ALIASy_GATEWAY6``          | Default IPv6 gateway for the alias.                                                             | \-                           | \-      |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``ETHx_ALIASy_MTU``               | ``MTU`` value for the alias.                                                                    | \-                           | \-      |
++-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
+| ``ETHx_ALIASy_METHOD``            | ``METHOD`` value for the alias.                                                                 | \-                           | \-      |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``ETHx_ALIASy_METRIC``            | ``METRIC`` value for the alias.                                                                 | \-                           | \-      |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
