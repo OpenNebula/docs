@@ -224,14 +224,19 @@ Contextualization Attributes
 +--------------------------+-------------------------------------------------------+
 | ``GATEWAY``              | Default gateway for the network.                      |
 +--------------------------+-------------------------------------------------------+
-| ``GATEWAY6``             | ``IPv6`` router for this network.                     |
+| ``GATEWAY6``             | IPv6 router for this network.                         |
 +--------------------------+-------------------------------------------------------+
 | ``DNS``                  | DNS servers, a space separated list of servers.       |
 +--------------------------+-------------------------------------------------------+
 | ``GUEST_MTU``            | Sets the ``MTU`` for the NICs in this network.        |
 +--------------------------+-------------------------------------------------------+
-| ``CONTEXT_FORCE_IPV4``   | When a vnet is IPv6 the IPv4 is not configured unless |
-|                          | this attribute is set.                                |
+| ``METRIC``               | Route metric for default IPv4 gateway.                |
++--------------------------+-------------------------------------------------------+
+| ``IP6_METRIC``           | Route metric for default IPv6 gateway.                |
++--------------------------+-------------------------------------------------------+
+| ``METHOD``               | Sets IPv4 guest conf. method for NIC in this network. |
++--------------------------+-------------------------------------------------------+
+| ``IP6_METHOD``           | Sets IPv6 guest conf. method for NIC in this network. |
 +--------------------------+-------------------------------------------------------+
 | ``SEARCH_DOMAIN``        | Default search domains for DNS resolution.            |
 +--------------------------+-------------------------------------------------------+
