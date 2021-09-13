@@ -37,6 +37,8 @@ The following issues has been solved in 6.0.4:
 - `Fix a flow recover issue with scaledown operations <https://github.com/OpenNebula/one/issues/5526>`__.
 - `Fix GO bindings to support PCI devices <https://github.com/OpenNebula/one/issues/5518>`__.
 - `Fix Sunstone does not use oneflow_server variable <https://github.com/OpenNebula/one/issues/5452>`__.
+- `Add Guest MTU option in VMtemplate wizard <https://github.com/OpenNebula/one/issues/5527>`__.
+- `Fix LXC container logging to not include redundant cleanup checks <https://github.com/OpenNebula/one/issues/5502>`__.
 - `Fix VMtemplate wizard to include MTU option for guests <https://github.com/OpenNebula/one/issues/5527>`__.
 - `Fix LXD container not rebootig when a NIC was attached <https://github.com/OpenNebula/one/issues/5521>`__.
 - `Fix onevm ssh to check whether a VM is running or not before SSH'ing into it <https://github.com/OpenNebula/one/issues/5533>`__.
