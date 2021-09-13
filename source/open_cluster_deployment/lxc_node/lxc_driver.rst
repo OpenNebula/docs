@@ -18,13 +18,29 @@ Security
 
 In order to ensure the security in a multitenant environment, by default, the containers created by the LXC driver will be unprivileged. The unprivileged containers will be deployed as ``root``. It will use ``600100001-600165537`` sub UID/GID range for mapping users/groups in order to increase security in case a malicious agent is able to escape the container.
 
-To create a privileged container, the attribute LXC_UNPRIVILEGED needs to be added in the VM Template and its value must be TRUE. The generated container will then have the following key advanced-guide
+To create a privileged container, the attribute ``LXC_UNPRIVILEGED = "yes"`` needs to be added to the VM Template. The generated container will include a file with a set of container configuration parameters for privileged containers. This file is located in the frontend at **/var/lib/one/remotes/etc/vmm/lxc/profiles/profile_privileged** (see below for its contents). You can be fine tune this file if needed (don't forget to sync the file using the command `onehost sync`).
 
 .. code::
 
-    lxc.include = '/var/tmp/one/etc/vmm/lxc/profiles/profile_privileged'
+    lxc.mount.entry = 'mqueue dev/mqueue mqueue rw,relatime,create=dir,optional 0 0'
+    lxc.cap.drop = 'sys_time sys_module sys_rawio'
+    lxc.mount.auto = 'proc:mixed'
+    lxc.mount.auto = 'sys:mixed'
+    lxc.cgroup.devices.deny = 'a'
+    lxc.cgroup.devices.allow = 'b *:* m'
+    lxc.cgroup.devices.allow = 'c *:* m'
+    lxc.cgroup.devices.allow = 'c 136:* rwm'
+    lxc.cgroup.devices.allow = 'c 1:3 rwm'
+    lxc.cgroup.devices.allow = 'c 1:5 rwm'
+    lxc.cgroup.devices.allow = 'c 1:7 rwm'
+    lxc.cgroup.devices.allow = 'c 1:8 rwm'
+    lxc.cgroup.devices.allow = 'c 1:9 rwm'
+    lxc.cgroup.devices.allow = 'c 5:0 rwm'
+    lxc.cgroup.devices.allow = 'c 5:1 rwm'
+    lxc.cgroup.devices.allow = 'c 5:2 rwm'
+    lxc.cgroup.devices.allow = 'c 10:229 rwm'
+    lxc.cgroup.devices.allow = 'c 10:200 rwm'
 
-That entry references a configuration file containing a lot of options for privileged containers. This file is located in the frontend at **/var/lib/one/remotes/etc/vmm/lxc/profiles/profile_privileged** and can be fine tuned by the admins if neccessary. In order to apply the changes to the lxc hosts, the file must be synced using the command `onehost sync`.
 
 Resource usage limitations
 --------------------------
