@@ -23,3 +23,8 @@ Sunstone
 
 - Remote connections to Guacamole from Sunstone have a mouse related issue, however noVNC can still be used if needed.
 - Guacamole RDP as is currently shipped in OpenNebula does not support NLA authentication. You can follow `these instructions <https://www.parallels.com/blogs/ras/disabling-network-level-authentication/>`__ in order to disable NLA in the Windows box to use Guacamole RDP within Sunstone.
+
+Virtual Machines Backup
+================================================================================
+
+When taking a VM backup, if the upload process fails and the app results in ERROR state, the backup will complete successfully. A detailed explanation can be found `here <https://github.com/OpenNebula/one/issues/5454>`__.
