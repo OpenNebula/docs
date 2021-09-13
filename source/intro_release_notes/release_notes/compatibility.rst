@@ -24,13 +24,19 @@ XMLRPC API
 
 - Scheduled Actions now includes a dedicated API for its management. Applications that manages the Scheduled Actions through the ``one.vm.update`` method needs to update to the new ``one.vm.schedadd``, ``one.vm.scheddel`` and ``one.vm.schedupdate``.
 
+Contextualization
+========================
+
+- Network (and NIC) template attribute ``CONTEXT_FORCE_IPV4`` was deprecated  and removed from the Context variables.
+- ``GATEWAY6`` is planned to be deprecated in a future release (OpenNebula 6.6). To prepare for this transition, the replacement ``IP6_GATEWAY`` is already generated as part of the context section.
+
 Ruby API
 ========
 
 Go API
 ======
 
-Network (and NIC) template attribute ``CONTEXT_FORCE_IPV4`` was deprecated in the OpenNebula as well as the constant ``ContextForceIPV4`` from Go API (GOCA).
+- The constant ``ContextForceIPV4`` from Go API (GOCA) in consonance with the context changes outlined above.
 
 Distributed Edge Provisioning
 =============================
