@@ -24,7 +24,7 @@ To create a privileged container, the attribute LXC_UNPRIVILEGED needs to be add
 
     lxc.include = '/var/tmp/one/etc/vmm/lxc/profiles/profile_privileged'
 
-That entry references a configuration file containing a lot of options for privileged containers. The admins can customize these options if require to do so.
+That entry references a configuration file containing a lot of options for privileged containers. This file is located in the frontend at **/var/lib/one/remotes/etc/vmm/lxc/profiles/profile_privileged** and can be fine tuned by the admins if neccessary. In order to apply the changes to the lxc hosts, the file must be synced using the command `onehost sync`.
 
 Resource usage limitations
 --------------------------
