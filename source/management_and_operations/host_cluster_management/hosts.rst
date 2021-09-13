@@ -178,6 +178,8 @@ Similarly, to take the Host offline:
 
     $ onehost offline 0
 
+.. note:: ``onehost disable`` and ``onehost offline`` do not change state of already running VMs on the host. If you need to automatically migrate running VMs use ``onehost flush``.
+
 Apart from the commands above, the ``onehost`` tool also provides some commands that allow you to easily perform common operations on a Host.
 
 You can use ``forceupdate`` subcommand to reset the monitoring process on the Host:
@@ -186,7 +188,7 @@ You can use ``forceupdate`` subcommand to reset the monitoring process on the Ho
 
     $ onehost forceupdate 0
 
-Also, the ``flush`` command will migrate all the active VMs in the specified Host to another server with enough capacity. At the same time, the specified Host will be disabled, so no more Virtual Machines are deployed in it. This command is useful to clean a Host of active VMs. The migration process can be done by a ``resched`` action or by a recover ``delete-recreate`` action; it can be configured in ``/etc/one/cli/onehost.yaml`` by setting the field ``default_actions\flush`` to ``delete-recreate`` or to ``resched``. Here is an example:
+The ``flush`` command will migrate all the active VMs in the specified Host to another server with enough capacity. At the same time, the specified Host will be disabled, so no more Virtual Machines are deployed in it. This command is useful to clean a Host of active VMs. The migration process can be done by a ``resched`` action or by a recover ``delete-recreate`` action; it can be configured in ``/etc/one/cli/onehost.yaml`` by setting the field ``default_actions\flush`` to ``delete-recreate`` or to ``resched``. Here is an example:
 
 .. prompt:: bash $ auto
 
