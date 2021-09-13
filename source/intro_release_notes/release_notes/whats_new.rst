@@ -86,6 +86,7 @@ Sunstone
 - Add option to purge services in DONE state. Check more information :ref:`here <flow_purge_done>`.
 - Add option to set IOTHREAD id on disks in Sunstone. Check more information :ref:`here <reference_vm_template_disk_section>`.
 - Connection RDP can change resolution screen in Sunstone.
+- KVM/vCenter UEFI support.
 
 Scheduler
 ================================================================================
