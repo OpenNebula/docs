@@ -85,7 +85,7 @@ Sunstone
 - Add option to format Datablocks. Check more information :ref:`here <img_template>`.
 - Add option to purge services in DONE state. Check more information :ref:`here <flow_purge_done>`.
 - Add option to set IOTHREAD id on disks in Sunstone. Check more information :ref:`here <reference_vm_template_disk_section>`.
-- Connection RDP can change resolution screen in Sunstone.
+- Connection RDP can change resolution screen in Sunstone. Check more information :ref:`here <remote_access_sunstone>`.
 
 Scheduler
 ================================================================================
