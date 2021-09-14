@@ -56,6 +56,12 @@ KVM
 ===
 - Option to specify :ref:`default attribute values <kvmg_default_attributes>` for VM ``GRAPHICS`` section.
 
+LXC
+===
+- Images with custom *user:group* offset on the filesystem will be deployed with the `correct shift <https://github.com/OpenNebula/one/issues/5501>`_.
+- `bindfs mount options <https://github.com/OpenNebula/one/issues/5500>`_  can be specified in **/var/lib/one/remotes/etc/vmm/lxc/lxcrc**.
+- `Privileged containers <https://github.com/OpenNebula/one/issues/5499>`_  can be created by adding **LXC_UNPRIVILEGED=FALSE** in the VM Template.
+
 VMware
 ============================
 
