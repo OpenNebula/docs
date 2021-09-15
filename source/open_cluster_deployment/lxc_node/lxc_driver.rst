@@ -18,7 +18,7 @@ Priviledge Containers and Security
 
 In order to ensure the security in a multitenant environment, by default, the containers created by the LXC driver will be unprivileged. The unprivileged containers will be deployed as ``root``. It will use ``600100001-600165537`` sub UID/GID range for mapping users/groups in order to increase security in case a malicious agent is able to escape the container.
 
-To create a privileged container, the attribute ``LXC_UNPRIVILEGED = "yes"`` needs to be added to the VM Template. The generated container will include a file with a set of container configuration parameters for privileged containers. This file is located in the frontend at **/var/lib/one/remotes/etc/vmm/lxc/profiles/profile_privileged** (see below for its contents). You can be fine tune this file if needed (don't forget to sync the file using the command `onehost sync`).
+To create a privileged container, the attribute ``LXC_UNPRIVILEGED = "no"`` needs to be added to the VM Template. The generated container will include a file with a set of container configuration parameters for privileged containers. This file is located in the frontend at **/var/lib/one/remotes/etc/vmm/lxc/profiles/profile_privileged** (see below for its contents). You can be fine tune this file if needed (don't forget to sync the file using the command `onehost sync`).
 
 .. code::
 
