@@ -58,9 +58,9 @@ KVM
 
 LXC
 ===
-- Images with custom *user:group* offset on the filesystem will be deployed with the `correct shift <https://github.com/OpenNebula/one/issues/5501>`_.
-- `bindfs mount options <https://github.com/OpenNebula/one/issues/5500>`_  can be specified in **/var/lib/one/remotes/etc/vmm/lxc/lxcrc**.
-- `Privileged containers <https://github.com/OpenNebula/one/issues/5499>`_  can be created by adding **LXC_UNPRIVILEGED=FALSE** in the VM Template.
+- Add support for Images with custom *user:group* offset on the filesystem. OpenNebula will `preserve the shift present in the image filesystem when creating the container <https://github.com/OpenNebula/one/issues/5501>`_.
+- `Allow admins to set custom bindfs mount options to further tune the how the container filesystems are exposed, :ref:`see the LXC driver documentation for more details <lxcmg>`.
+- Add support for privileged containers by simple label them with the attribute **LXC_UNPRIVILEGED=FALSE** in the VM Template. :ref:`See the LXC documentation for more information on how to tune this setting <lxcmg>`.
 
 VMware
 ============================
