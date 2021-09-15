@@ -13,7 +13,7 @@ OpenNebula LXC Driver requires the LXC version >= 3.0.3 to be installed on the H
 Considerations & Limitations
 ================================================================================
 
-Security
+Priviledge Containers and Security
 --------------------------------------------------------------------------------
 
 In order to ensure the security in a multitenant environment, by default, the containers created by the LXC driver will be unprivileged. The unprivileged containers will be deployed as ``root``. It will use ``600100001-600165537`` sub UID/GID range for mapping users/groups in order to increase security in case a malicious agent is able to escape the container.
@@ -114,13 +114,16 @@ LXC driver-specific configuration is available in ``/var/lib/one/remotes/etc/vmm
 |                            | will be included in the configuration of every LXC                 |
 |                            | container                                                          |
 +----------------------------+--------------------------------------------------------------------+
+| ``:bindfs_mountopts``      | Comma separated list of mount options used when shifting the       |
+|                            | uid/gid with bindfs. See <bindfs -o> command help.                 |
++----------------------------+--------------------------------------------------------------------+
 
 Storage
 ================================================================================
 
 LXC containers need a root file system image in order to boot. This image can be downloaded directly to OpenNebula from `Docker Hub <https://hub.docker.com/>`__, `Linux Containers <https://uk.images.linuxcontainers.org/>`__ and `Turnkey Linux <https://www.turnkeylinux.org/>`__ Marketplaces. Check the :ref:`Public Marketplaces <public_marketplaces>` chapter for more information.
 
-.. note:: Custom images can also be created by using common linux tools like the ``mkfs`` command for creating the file system and ``dd`` for copying an existing file system inside the new one.
+.. note:: Custom images can also be created by using common linux tools like the ``mkfs`` command for creating the file system and ``dd`` for copying an existing file system inside the new one. Also OpenNebula will preserve any custom id map present on the filesystem.
 
 Networking
 ================================================================================
