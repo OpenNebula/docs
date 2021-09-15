@@ -13,7 +13,7 @@ OpenNebula LXC Driver requires the LXC version >= 3.0.3 to be installed on the H
 Considerations & Limitations
 ================================================================================
 
-Priviledge Containers and Security
+Privileged Containers and Security
 --------------------------------------------------------------------------------
 
 In order to ensure the security in a multitenant environment, by default, the containers created by the LXC driver will be unprivileged. The unprivileged containers will be deployed as ``root``. It will use ``600100001-600165537`` sub UID/GID range for mapping users/groups in order to increase security in case a malicious agent is able to escape the container.
