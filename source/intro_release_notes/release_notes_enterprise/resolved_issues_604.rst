@@ -46,3 +46,4 @@ The following issues has been solved in 6.0.4:
 - `Fix oneflow and oneflow-template commands to remove XML option <https://github.com/OpenNebula/one/issues/5475>`__.
 - `Fix piped and prematurely closed CLI output displays Ruby broken pipe <https://github.com/OpenNebula/one/issues/5455>`__.
 - `Fix onevm ssh doesn't respect CONTEXT/USERNAME <https://github.com/OpenNebula/one/issues/5447>`__.
+- `Fix attach nic operation for OVS-DPDK NICs <https://github.com/OpenNebula/one/issues/5249>`__.
