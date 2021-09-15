@@ -47,3 +47,4 @@ The following issues has been solved in 6.0.4:
 - `Fix piped and prematurely closed CLI output displays Ruby broken pipe <https://github.com/OpenNebula/one/issues/5455>`__.
 - `Fix onevm ssh doesn't respect CONTEXT/USERNAME <https://github.com/OpenNebula/one/issues/5447>`__.
 - `Fix attach nic operation for OVS-DPDK NICs <https://github.com/OpenNebula/one/issues/5249>`__.
+- `Fix VNTemplate AR update <https://github.com/OpenNebula/one/issues/5525>`__.
