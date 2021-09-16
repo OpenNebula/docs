@@ -849,3 +849,5 @@ Some aspects of the driver's behavior can be configured in */var/lib/one/remotes
 * **memory_dumps**: Create snapshots with memory dumps. Default: **true**.
 
 * **keep_non_persistent_disks**: Detach non-persistent disks from VMs on VM terminate but avoid deleting them afterwards. Default: **false**.
+
+* **keep_mac_on_imported**: Avoid change MAC from imported Wild. Default: **false**.
