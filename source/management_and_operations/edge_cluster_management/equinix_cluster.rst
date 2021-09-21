@@ -37,22 +37,22 @@ To add a new provider you need to write the previous data in YAML template:
 .. prompt:: bash $ auto
 
     $ cat provider.yaml
-    name: 'packet-amsterdam'
+    name: 'equinix-amsterdam'
 
     description: 'Edge cluster in Equinix Amsterdam'
-    provider: 'packet'
+    provider: 'equinix'
 
     connection:
-      token: 'Packet token'
-      project: 'Packet project'
+      token: 'Equinix token'
+      project: 'Equinix project'
       facility: 'ams1'
 
     inputs:
-      - name: 'packet_os'
+      - name: 'equinix_os'
         type: 'list'
         options:
           - 'centos_8'
-      - name: 'packet_plan'
+      - name: 'equinix_plan'
         type: 'list'
         options:
           - 'baremetal_0'
@@ -64,7 +64,7 @@ Then you just need to use the command ``oneprovider create``:
    $ oneprovider create provider.yaml
    ID: 0
 
-The providers' templates are located in ``/usr/share/one/oneprovision/edge-clusters/<type>/providers/packet``. You just need to enter valid credentials.
+The providers' templates are located in ``/usr/share/one/oneprovision/edge-clusters/<type>/providers/equinix``. You just need to enter valid credentials.
 
 How to Customize an Existing Provider
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -37,8 +37,8 @@ All code for Ansible (tasks, roles, playbooks) is installed into ``/usr/share/on
     |-- ansible.cfg.erb
     |-- aws.yml
     |-- digitalocean.yml
-    |-- google.yml
-    `-- packet.yml
+    |-- equinix.yml
+    `-- google.yml
 
 Description:
 
@@ -53,7 +53,7 @@ The detailed description of all roles and their configuration parameters is in t
 Playbooks
 =========
 
-Playbooks are extensive descriptions of the configuration process (what and how is installed and configured on the physical host). Each configuration description prepares a physical host from the initial to the final ready-to-use state. Each description can configure the host in a completely different way (e.g. KVM host with private networking, KVM host with shared NFS filesystem, or KVM host supporting Packet elastic IPs, etc.). :ref:`Configuration parameters <ddc_provision_template_configuration>` are only small tunables to the configuration process driven by the playbooks.
+Playbooks are extensive descriptions of the configuration process (what and how is installed and configured on the physical host). Each configuration description prepares a physical host from the initial to the final ready-to-use state. Each description can configure the host in a completely different way (e.g. KVM host with private networking, KVM host with shared NFS filesystem, or KVM host supporting Equinix elastic IPs, etc.). :ref:`Configuration parameters <ddc_provision_template_configuration>` are only small tunables to the configuration process driven by the playbooks.
 
 Before the deployment, a user must choose from the available playbooks to apply on the host(s).
 

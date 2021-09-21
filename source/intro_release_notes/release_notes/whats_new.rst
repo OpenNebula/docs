@@ -48,6 +48,7 @@ onedb
 Distributed Edge Provisioning
 ================================================================================
 
+- Packet provider has been renamed to :ref:`Equinix<equinix_cluster>`.
 
 Packaging
 ================================================================================
