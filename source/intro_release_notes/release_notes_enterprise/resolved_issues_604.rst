@@ -49,3 +49,4 @@ The following issues has been solved in 6.0.4:
 - `Fix attach nic operation for OVS-DPDK NICs <https://github.com/OpenNebula/one/issues/5249>`__.
 - `Fix VNTemplate AR update <https://github.com/OpenNebula/one/issues/5525>`__.
 - `Fix an Issue where LXC wouldn't remove the network interface from the open vSwitch bridge after powering off the Container <https://github.com/OpenNebula/one/issues/3058>`__.
+- `Fix zendesk login with special characters <https://github.com/OpenNebula/one/issues/5546>`__.
