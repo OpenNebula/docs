@@ -47,7 +47,7 @@ onedb
 
 Distributed Edge Provisioning
 ================================================================================
-
+- Packet provider has been renamed to :ref:`Equinix<equinix_cluster>`.
 - Ability to dynamically load providers into OneProvision. Check :ref:`this <devel-provider>` to see how to add a new provider.
 
 Packaging
