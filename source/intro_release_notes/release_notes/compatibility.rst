@@ -82,11 +82,13 @@ Provision drivers have been changed by Terraform, so the following commands are 
 Datastore Driver Changes
 =============================
 
-   - Now, the CP datastore action also needs to return the format of the file copied (e.g raw or qcow2). This way, when a file is uploaded by the user, the format of the file is automatically retrieved, avoiding user mistakes.
+- Now, the CP datastore action also needs to return the format of the file copied (e.g raw or qcow2). This way, when a file is uploaded by the user, the format of the file is automatically retrieved, avoiding user mistakes.
 
-   - The ``DRIVER`` and ``FSTYPE`` attributes are deprecated and they won't be taken into account any more.
+- The ``DRIVER`` and ``FSTYPE`` attributes are deprecated and they won't be taken into account any more.
 
 .. note:: The ``DRIVER`` attribute will be set automatically for each disk.
+
+- The ``shared`` and ``qcow2`` transfer manager drivers have been merged to reduce the potential duplication of images and management operations. It should be transparent in most cases. However if you are using ``qcow2`` images in a ``shared`` datastore the underlying operations may change after the upgrade.
 
 .. _compatibility_kvm:
 
