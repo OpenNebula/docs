@@ -115,8 +115,8 @@ where the meaning of each option is described below:
 +=======================+=======================================================+
 | ``<image>``           | DockerHub image name.                                 |
 +-----------------------+-------------------------------------------------------+
-| ``<image_size>``      | Resulting image size. (It must be greater than actual |
-|                       | image size)                                           |
+| ``<image_size>``      | Resulting image size in MB. (It must be greater       |
+|                       | than actual image size)                               |
 +-----------------------+-------------------------------------------------------+
 | ``<fs_type>``         | Filesystem type (ext4, ext3, ext2 or xfs)             |
 +-----------------------+-------------------------------------------------------+
