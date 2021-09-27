@@ -16,14 +16,15 @@ Requirements
 * Supported vSphere version (check :ref:`Platform Notes <vcenter_nodes_platform_notes>`).
 * vCenter user for OpenNebula, the hassle-free approach is to declare this oneadmin user as an administrator. Otherwise, a table with the permissions required is found at the :ref:`end of this guide <vcenter_permissions_requirement>`.
 * If virtual standard switches are used, check that those switches exist in every ESX Host belonging to the same ESX cluster. Conversely, if you use distributed virtual switches, check that ESX Hosts have been added to switches.
-* We recommend using FireEdge to enable VMRC. However, you can also use :ref:`VNC to access your vCenter VMs <vnc_one_esx_hosts>`. :VNC functionality requires that the Front-end has network connectivity to all the ESX Hosts.
+* We recommend using FireEdge to enable VMRC. However, you can also use :ref:`VNC to access your vCenter VMs <vnc_one_esx_hosts>`. VNC functionality requires that the Front-end has network connectivity to all the ESX Hosts.
 * Although optional, the ESX cluster should have DRS enabled. OpenNebula does not schedule to the granularity of ESX Hosts, so DRS is needed to select the actual ESX Host within the cluster.
+* OpenNebula uses port 443 to communicate with vCenter instances. Port 443 is the default port used by vCenter, so unless you're filtering that port, or you've configured a different port to listen for connections from the vSphere Web Client, OpenNebula will be able to connect with the right credentials.
 
 It's worth highlighting that OpenNebula will not modify any vCenter configuration with some exceptions: the creation of virtual switches and port groups if the vcenter network driver is used, and the creation of images for VMDK and/or ISO files.
 
 For security reasons, you may define different users to access different ESX clusters. A different user can be defined in OpenNebula per ESX cluster, which is encapsulated in OpenNebula as an OpenNebula Host.
 
-.. warning:: OpenNebula uses port 443 to communicate with vCenter instances. Port 443 is the default port used by vCenter, so unless you're filtering that port, or you've configured a different port to listen for connections from the vSphere Web Client, OpenNebula will be able to connect with the right credentials.
+.. warning:: If using a federation of two or more OpenNebula instances, please make sure that you have :ref:`oneadmin endpoint <cli_federation_usage>` pointing to the local zone, otherwise monitoring subsystem and CLI tools like onevcenter may malfunction.
 
 Configuration
 ================================================================================

@@ -19,6 +19,8 @@ What's happening behind the scenes is that the Sunstone server you are using is 
 
 .. warning:: Uploading Virtual Machine Images over Sunstone works only for the main Zone to which the particular Sunstone instance belongs, not with other Zones users can switch to.
 
+.. _cli_federation_usage:
+
 CLI
 ================================================================================
 
