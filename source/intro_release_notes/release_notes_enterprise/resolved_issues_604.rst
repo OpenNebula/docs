@@ -52,3 +52,4 @@ The following issues has been solved in 6.0.4:
 - `Fix zendesk login with special characters <https://github.com/OpenNebula/one/issues/5546>`__.
 - `Fix Sunstone deletes disks attributes when perform an image change <https://github.com/OpenNebula/one/issues/5543>`__.
 - `Hide VNC button in cloud view <https://github.com/OpenNebula/one/issues/5547>`__.
+- `Fix for resources with several labels <https://github.com/OpenNebula/one/issues/5557>`__.
