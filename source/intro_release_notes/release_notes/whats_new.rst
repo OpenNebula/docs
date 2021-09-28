@@ -76,3 +76,4 @@ Hooks
 
 Other Issues Solved
 ================================================================================
+- `Hide VNC button in cloud view <https://github.com/OpenNebula/one/issues/5547>`__.
