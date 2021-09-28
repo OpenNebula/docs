@@ -51,3 +51,4 @@ The following issues has been solved in 6.0.4:
 - `Fix an Issue where LXC wouldn't remove the network interface from the open vSwitch bridge after powering off the Container <https://github.com/OpenNebula/one/issues/3058>`__.
 - `Fix zendesk login with special characters <https://github.com/OpenNebula/one/issues/5546>`__.
 - `Fix Sunstone deletes disks attributes when perform an image change <https://github.com/OpenNebula/one/issues/5543>`__.
+- `Hide VNC button in cloud view <https://github.com/OpenNebula/one/issues/5547>`__.
