@@ -81,3 +81,4 @@ Hooks
 Other Issues Solved
 ================================================================================
 - `Hide VNC button in cloud view <https://github.com/OpenNebula/one/issues/5547>`__.
+- `Fix for resources with several labels <https://github.com/OpenNebula/one/issues/5557>`__.
