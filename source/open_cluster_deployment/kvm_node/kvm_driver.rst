@@ -47,6 +47,7 @@ There are some attributes required for KVM to boot a VM. You can set a suitable 
 * ``RAW``: to add libvirt attributes to the domain XML file.
 * ``HYPERV_OPTIONS``: to enable hyperv extensions.
 * ``SPICE_OPTIONS``: to add default devices for SPICE.
+* ``OVMF_UEFIS``: to add allowed file paths for Open Virtual Machine Firmware.
 
 .. warning:: These values are only used during VM creation; for other actions like nic or disk attach/detach the default values must be set in ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc``. For more info check :ref:`Files and Parameters <kvmg_files_and_parameters>` section.
 
@@ -197,6 +198,26 @@ For disks you can also use SCSI bus (``sd``) and it will use the virtio-scsi con
     FEATURES = [
         VIRTIO_SCSI_QUEUES = 4
     ]
+
+Firmware
+~~~~~~~~
+The ``OS/FIRMWARE`` attribute can be defined to load a specific firmare interface
+for virtual machines.
+The allowed values are:
+
+* ``BIOS``: use Basic Input/Output System (BIOS).
+* ``<UEFI_PATH>``: one the valid paths to a Unified Extensible Firmware Interface
+  (UEFI) blob defined in ``OVMF_UEFIS`` (See :ref:`Driver Defaults <kvmg_default_attributes>`).
+
+The ``OS/FIRMWARE_SECURE`` attribute can be used to configure *Secure Boot*. If
+this attribute is not defined, no Secure Boot is used by default.
+The allowed values are:
+
+* ``true``: use Secure Boot.
+* ``false``: do not use Secure Boot.
+
+.. warning:: If Secure Boot is enabled, the attribute ``OS/MACHINE`` must be set
+             to ``q35``.
 
 
 Additional Attributes
