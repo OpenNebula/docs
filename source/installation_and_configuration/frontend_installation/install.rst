@@ -83,10 +83,6 @@ Not all OpenNebula dependencies are in base distribution repositories. On select
 Step 3. Installing the Software
 ================================================================================
 
-.. important::
-
-   A few main packages were renamed in OpenNebula 6.0, see :ref:`Compatibility Guide <compatibility_pkg>`.
-
 Available packages for OpenNebula clients, the Front-end and hypervisor Nodes:
 
 +------------------------------------------+---------------------------------------------------------------------------------------------------------------+
