@@ -12,6 +12,12 @@ Features:
 
 - **OneProvision GUI**, to manage deployments of fully operational Clusters on remote Edge Cloud providers. See :ref:`Provisioning an Edge Cluster <first_edge_cluster>`.
 - **VMRC and Guacamole Proxy** for Sunstone to remotely access the VMs (incl., VNC, RDP, and SSH).
+- **New Sunstone (Beta)**, new iteration of Sunstone written in React/Redux. Accessible through the following URL:
+
+.. code::
+
+    http://<OPENNEBULA-FRONTEND>:2616/fireedge/provision/dashboard
+
 
 .. warning:: FireEdge currently doesn't support :ref:`federated environments <federation>`. It can interact only with a local OpenNebula instance (even if it's federated), but can't interact with remote, federated OpenNebula instances.
 

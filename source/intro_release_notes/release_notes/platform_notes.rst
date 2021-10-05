@@ -21,9 +21,9 @@ Front-End Components
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 | CentOS                   | 7, 8                                                   | :ref:`Front-End Installation <frontend_installation>` |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-| Ubuntu Server            | 18.04 (LTS), 20.04 (LTS)                               | :ref:`Front-End Installation <frontend_installation>` |
+| Ubuntu Server            | 18.04 (LTS), 20.04 (LTS), 21.04                        | :ref:`Front-End Installation <frontend_installation>` |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-| Debian                   | 9, 10                                                  | :ref:`Front-End Installation <frontend_installation>` |
+| Debian                   | 10                                                     | :ref:`Front-End Installation <frontend_installation>` |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 | MariaDB or MySQL         | Version included in the Linux distribution             | :ref:`MySQL Setup <mysql>`                            |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
@@ -77,9 +77,9 @@ KVM Nodes
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
 | CentOS                   | 7, 8                                                    | :ref:`KVM Driver <kvmg>`                |
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
-| Ubuntu Server            | 18.04 (LTS), 20.04 (LTS), 20.10                         | :ref:`KVM Driver <kvmg>`                |
+| Ubuntu Server            | 18.04 (LTS), 20.04 (LTS), 21.04                         | :ref:`KVM Driver <kvmg>`                |
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
-| Debian                   | 9, 10                                                   | :ref:`KVM Driver <kvmg>`                |
+| Debian                   | 10                                                      | :ref:`KVM Driver <kvmg>`                |
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
 | KVM/Libvirt              | Support for version included in the Linux distribution. | :ref:`KVM Node Installation <kvm_node>` |
 |                          | For CentOS/RHEL the packages from ``qemu-ev`` are used. |                                         |
@@ -91,9 +91,9 @@ LXC Nodes
 +---------------+--------------------------------------------------------+-----------------------------------------+
 |   Component   |                        Version                         |             More information            |
 +===============+========================================================+=========================================+
-| Ubuntu Server | 18.04 (LTS), 20.04 (LTS), 20.10                        | :ref:`LXC Driver <lxcmg>`               |
+| Ubuntu Server | 18.04 (LTS), 20.04 (LTS), 21.04                        | :ref:`LXC Driver <lxcmg>`               |
 +---------------+--------------------------------------------------------+-----------------------------------------+
-| Debian        | 9, 10                                                  | :ref:`LXC Driver <lxcmg>`               |
+| Debian        | 10                                                     | :ref:`LXC Driver <lxcmg>`               |
 +---------------+--------------------------------------------------------+-----------------------------------------+
 | CentOS        | 8                                                      | :ref:`LXC Driver <lxcmg>`               |
 +---------------+--------------------------------------------------------+-----------------------------------------+
@@ -110,9 +110,9 @@ Firecracker Nodes
 +--------------------------+-------------------------------------------------+----------------------------------+
 | CentOS                   | 7, 8                                            | :ref:`Firecracker Driver <fcmg>` |
 +--------------------------+-------------------------------------------------+----------------------------------+
-| Ubuntu Server            | 18.04 (LTS), 20.04 (LTS), 20.10                 | :ref:`Firecracker Driver <fcmg>` |
+| Ubuntu Server            | 18.04 (LTS), 20.04 (LTS), 21.04                 | :ref:`Firecracker Driver <fcmg>` |
 +--------------------------+-------------------------------------------------+----------------------------------+
-| Debian                   | 9, 10                                           | :ref:`Firecracker Driver <fcmg>` |
+| Debian                   | 10                                              | :ref:`Firecracker Driver <fcmg>` |
 +--------------------------+-------------------------------------------------+----------------------------------+
 | KVM/Firecracker          | Support for KVM version included in the Linux   | :ref:`Firecracker Node           |
 |                          | distribution.                                   | Installation <fc_node>`          |
@@ -279,11 +279,6 @@ Ubuntu 20.04
 --------------------------------------------------------------------------------
 
 When using Apache to serve Sunstone, it's required to grant read permissions to the user running ``httpd`` in ``/var/lib/one``.
-
-Debian 9
---------------------------------------------------------------------------------
-
-Guacamole does not come with RDP support due to the lack of availability of libfreerdp2 in Debian 9. Hence, this functionality won't be present if the Front-end runs in this platform.
 
 
 Nodes Platform Notes
