@@ -88,6 +88,8 @@ You need to configure Sunstone with the public endpoint of FireEdge so that one 
         #:private_fireedge_endpoint: http://localhost:2616
         #:public_fireedge_endpoint: http://localhost:2616
 
+.. warning:: FireEdge currently doesn't support :ref:`X.509 Authentication <x509_auth>`.
+
 .. _fireedge_conf_guacamole:
 
 Configure Guacamole
