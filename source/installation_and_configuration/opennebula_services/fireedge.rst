@@ -16,7 +16,7 @@ Features:
 
 .. code::
 
-    http://<OPENNEBULA-FRONTEND>:2616/fireedge/provision/dashboard
+    http://<OPENNEBULA-FRONTEND>:2616/fireedge/sunstone
 
 
 .. warning:: FireEdge currently doesn't support :ref:`federated environments <federation>`. It can interact only with a local OpenNebula instance (even if it's federated), but can't interact with remote, federated OpenNebula instances.
