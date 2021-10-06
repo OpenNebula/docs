@@ -6,7 +6,7 @@ What's New in 6.2
 
 OpenNebula 6.2 'Red Square' is the second stable release of the OpenNebula 6 series. This release aims to extend the functionality introduced in OpenNebula 6.0 as well as presenting a Beta version of the new Sunstone interface, built using React/Redux and delivered by the FireEdge server. The current Sunstone interface is still the recommended and default web interface, and has received its share of attention, with support for the new scheduled actions API and several bug fixes.
 
-The new Sunstone interface is being built using two main design principles. First one focus on usability and user experience, we want to deliver an interface that is intuitive for both administrators and users of the cloud, without giving up on the richness that OpenNebula can offer feature-wise. So that's one tradeoff we are carefully balancing. The second design principle focuses on performance, taking into account large scale infrastructures, but avoiding trimming functionality like powerful search capabilities. This is the second dimension we are handling with care. With 6.2 'Red Square' the new Sunstone debuts, we are aiming for the next LTS release (6.4) to provide a fully functional interface. 6.4 will be the last OpenNebula release featuring Sunstone as we all know it today. That will be some heartfelt farewell.
+The new Sunstone interface is being built using two main design principles. First, one focus on usability and user experience, we want to deliver an interface that is intuitive for both administrators and users of the cloud, without giving up on the richness that OpenNebula can offer feature-wise. So that's one tradeoff we are carefully balancing. The second design principle focuses on performance, taking into account large scale infrastructures, but avoiding trimming functionality like powerful search capabilities. This is the second dimension we are handling with care. With 6.2 'Red Square' the new Sunstone debuts, we are aiming for the next LTS release (6.4) to provide a fully functional interface. 6.4 will be the last OpenNebula release featuring Sunstone as we all know it today. That will be some heartfelt farewell.
 
 We'd love to get your feedback on this. Please check the :ref:`FireEdge configuration guide <fireedge_setup>` for minimal instructions on how to access the web interface, and `let us know <mailto:"contact@opennebula.io?subject=My Feedback on Sunstone Beta">`__ your thoughts! As all great things, new Sunstone comes in two flavours.
 
@@ -16,10 +16,10 @@ We'd love to get your feedback on this. Please check the :ref:`FireEdge configur
 
 This new version comes with new goodies across the whole stack:
 
-  * New scheduled actions API that reduces race conditions. This includes support and display in current Sunstone
+  * New scheduled actions API that reduce race conditions. This includes support and display in current Sunstone.
   * Ability to load on demand new provider drivers into OneProvision. This will help foster a dynamic provider ecosystem in OpenNebula!
   * Support for cleanup parameter in OneProvision GUI. No more chasing forgotten VMs around!
-  * Several improvements in the LXC drivers
+  * Several improvements in the LXC drivers.
 
 
 ..
@@ -31,9 +31,9 @@ This new version comes with new goodies across the whole stack:
 
 ..
 
-As usual, OpenNebula 6.2 codename refers to a nebula, in this case to the Red Square Nebula, Square Nebula is a celestial object located in the area of the sky occupied by star MWC 922 in the constellation Serpens. It is notable for its square shape, which according to Sydney University astrophysicist Peter Tuthill, makes it one of the most nearly discrete-symmetrical celestial objects ever imaged. The splendor of the symmetry is what we are looking forward in the new Sunstone, reborn from the kindle lit by FireEdge.
+As usual, the OpenNebula 6.2 codename refers to a nebula, in this case to the Red Square Nebula, which is a celestial object located in the area of the sky occupied by star MWC 922 in the constellation Serpens. It is notable for its square shape, which according to Sydney University astrophysicist Peter Tuthill, makes it one of the most nearly discrete-symmetrical celestial objects ever imaged. The splendor of the symmetry is what we are looking forward to in the new Sunstone, reborn from the candle lit by FireEdge.
 
-The OpenNebula team is now transitioning to “bug-fixing mode”. Note that this is a first beta release aimed at testers and developers to try the new features, and we welcome you to send feedback for the final release. Please check the :ref:`known issues <known_issues>` before submitting `a issue through GitHub <https://github.com/OpenNebula/one/issues/new?template=bug_report.md>`__. Also note that being a beta, there is no migration path from the previous stable version (6.0.x) nor migration path to the final stable version (6.2.0). A list of `open issues can be found in the GitHub development portal <https://github.com/OpenNebula/one/milestone/45>`__.
+The OpenNebula team is now transitioning to “bug-fixing mode”. Note that this is a first beta release aimed at testers and developers to try the new features, and we welcome you to send feedback for the final release. Please check the :ref:`known issues <known_issues>` before submitting `an issue through GitHub <https://github.com/OpenNebula/one/issues/new?template=bug_report.md>`__. Also note that being a beta, there is no migration path from the previous stable version (6.0.x) nor migration path to the final stable version (6.2.0). A list of `open issues can be found in the GitHub development portal <https://github.com/OpenNebula/one/milestone/45>`__.
 
 In the following list you can check the highlights of OpenNebula 6.2 (a detailed list of changes can be found `here <https://github.com/OpenNebula/one/milestone/45?closed=1>`__):
 
@@ -78,7 +78,7 @@ Other Issues Solved
 Features Backported to 6.0.x
 ============================
 
-Additionally, a lot of new functionality is present that has not been already in OpenNebula 6.0.0, although they debuted in subsequent maintenance releases of the 6.0.x series:
+Additionally, a lot of new functionality is present that was not in OpenNebula 6.0.0, although they debuted in subsequent maintenance releases of the 6.0.x series:
 
 - `Add remotes connections to VMs with external IP <https://github.com/OpenNebula/one/issues/5335>`__.
 - `Add button to take screenshots from Guacamole Sunstone <https://github.com/OpenNebula/one/issues/5342>`__.
