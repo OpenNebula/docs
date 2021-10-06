@@ -252,6 +252,8 @@ Adding more servers
 
   It may be that the **TERM**/**INDEX**/**COMMIT** does not match (as above). This is not important right now; it will sync automatically when the database is changed.
 
+* **Follower**: Ensure the new node have the exact same configuration than the **Leader** node. In order to do this :ref:`onezone serversync <server_sync_ha>` can be used to fetch the configuration from the Leader node.
+
 Repeat this section to add new servers. Make sure that you only add servers when the cluster is in a healthy state. That means there is 1 *leader* and the rest are in *follower* state. If there is one server in error state, fix it before proceeding.
 
 Checking Cluster Health
@@ -376,6 +378,8 @@ Compatibility with the earlier HA
 In OpenNebula <= 5.2, HA was configured using a classic active-passive approach, using Pacemaker and Corosync. While this still works for OpenNebula > 5.2, it is not the recommended way to set up a cluster. However, it is fine if you want to continue using that HA method if you're coming from earlier versions.
 
 This is documented here: `Front-end HA Setup <http://docs.opennebula.io/5.2/advanced_components/ha/frontend_ha_setup.html>`_.
+
+.. _server_sync_ha:
 
 Synchronize configuration files across servers
 ================================================================================
