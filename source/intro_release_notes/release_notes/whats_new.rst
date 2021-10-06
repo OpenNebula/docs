@@ -4,23 +4,21 @@
 What's New in 6.2
 ================================================================================
 
-OpenNebula 6.2 'Red Square' is the second stable release of the OpenNebula 6 series. This release aims to extend the functionality introduced in OpenNebula 6.0 as well as presenting a Beta version of the new Sunstone interface, built using React/Redux and delivered by the FireEdge server. The current Sunstone interface is still the recommended and default web interface, and has received its share of attention, with support for the new scheduled actions API and several bug fixes.
+OpenNebula 6.2 'Red Square' is the second stable release of the OpenNebula 6 series. This release aims to extend the functionality introduced in OpenNebula 6.0 as well as presenting a Beta version of the new Sunstone interface, built using React/Redux and delivered by the FireEdge server. The current Sunstone interface is still the recommended and default web interface, and has received its share of attention, with support for the new scheduled actions API and several bug fixes. Another important aspect to highlight in 6.2 is the improvement of its edge capabilities to efficiently deploy workloads closer to where data is produced and consumed. Workload portability is here the key word, and where OpenNebula excels in this space.
 
-The new Sunstone interface is being built using two main design principles. First, one focus on usability and user experience, we want to deliver an interface that is intuitive for both administrators and users of the cloud, without giving up on the richness that OpenNebula can offer feature-wise. So that's one tradeoff we are carefully balancing. The second design principle focuses on performance, taking into account large scale infrastructures, but avoiding trimming functionality like powerful search capabilities. This is the second dimension we are handling with care. With 6.2 'Red Square' the new Sunstone debuts, we are aiming for the next LTS release (6.4) to provide a fully functional interface. 6.4 will be the last OpenNebula release featuring Sunstone as we all know it today. That will be some heartfelt farewell.
+The new Sunstone interface is being built using two main design principles. First, one focus on usability and user experience, we want to deliver an interface that is intuitive for both administrators and users of the cloud, without giving up on the richness that OpenNebula can offer feature-wise. So that's one tradeoff we are carefully balancing. The second design principle focuses on performance, taking into account large scale infrastructures, but avoiding trimming functionality like powerful search capabilities. This is the second dimension we are handling with care. With 6.2 'Red Square' the new Sunstone debuts, we are aiming for the next LTS release (6.4) to provide a fully functional interface. 6.4 will be the last OpenNebula release featuring Sunstone as we all know it today. That will be some heartfelt farewell. We'd love to get your feedback on this. Please check the :ref:`FireEdge configuration guide <fireedge_setup>` for minimal instructions on how to access the web interface, and `let us know <mailto:"contact@opennebula.io?subject=My Feedback on Sunstone Beta">`__ your thoughts!
 
-We'd love to get your feedback on this. Please check the :ref:`FireEdge configuration guide <fireedge_setup>` for minimal instructions on how to access the web interface, and `let us know <mailto:"contact@opennebula.io?subject=My Feedback on Sunstone Beta">`__ your thoughts! As all great things, new Sunstone comes in two flavours.
+Starting from this release we've added an important capability to the OneProvision set of tools. The OneProvision component -and its web interface delivererd by FireEdge, the OneProvision GUI- is now capable to add new provider drivers on demand. That is, there is no need to synchronize OpenNebula releases with the availability of a new set of drivers to allow the extension of the OpenNebula managed cloud using resources for new public cloud providers. This is very significant because we think it is fundamental to foster a dynamic provider ecosystem that will enable end users to better decide and chose where to deploy their workloads and optimize metrics such as cost and performance. We are excited about the future that lies ahead of the infrastructure as a service field!
+
 
 .. image:: /images/new_sunstone_teaser.png
     :align: center
 
-
 This new version comes with new goodies across the whole stack:
 
-  * New scheduled actions API that reduce race conditions. This includes support and display in current Sunstone.
-  * Ability to load on demand new provider drivers into OneProvision. This will help foster a dynamic provider ecosystem in OpenNebula!
+  * New scheduled actions API that reduces race conditions. This includes support and display in current Sunstone.
   * Support for cleanup parameter in OneProvision GUI. No more chasing forgotten VMs around!
   * Several improvements in the LXC drivers.
-
 
 ..
   Conform to the following format for new features.
@@ -34,6 +32,8 @@ This new version comes with new goodies across the whole stack:
 As usual, the OpenNebula 6.2 codename refers to a nebula, in this case to the Red Square Nebula, which is a celestial object located in the area of the sky occupied by star MWC 922 in the constellation Serpens. It is notable for its square shape, which according to Sydney University astrophysicist Peter Tuthill, makes it one of the most nearly discrete-symmetrical celestial objects ever imaged. The splendor of the symmetry is what we are looking forward to in the new Sunstone, reborn from the candle lit by FireEdge.
 
 The OpenNebula team is now transitioning to “bug-fixing mode”. Note that this is a first beta release aimed at testers and developers to try the new features, and we welcome you to send feedback for the final release. Please check the :ref:`known issues <known_issues>` before submitting `an issue through GitHub <https://github.com/OpenNebula/one/issues/new?template=bug_report.md>`__. Also note that being a beta, there is no migration path from the previous stable version (6.0.x) nor migration path to the final stable version (6.2.0). A list of `open issues can be found in the GitHub development portal <https://github.com/OpenNebula/one/milestone/45>`__.
+
+We'd like to thank the people that supports the project, OpenNebula is what it is thanks to its community. Besides the usual :ref:`acknowledgements <acknowledgements>`, we'd like to highlight the support through the ONEedge EU funding project to improve OpenNebula edge capabilities.
 
 In the following list you can check the highlights of OpenNebula 6.2 (a detailed list of changes can be found `here <https://github.com/OpenNebula/one/milestone/45?closed=1>`__):
 
