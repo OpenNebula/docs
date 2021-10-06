@@ -41,6 +41,7 @@ OpenNebula Core
 ================================================================================
 - Option to :ref:`disable Zone <frontend_ha_zone>`, this new feature is useful for maintenance operations.
 - New :ref:`XMLRPC API for scheduled actions <onevm_api>`: ``one.vm.schedadd``, ``one.vm.schedupdate``, ``one.vm.scheddelete``. The new API reduces race condition issues while handling scheduled actions.
+- New virt. network attributes :ref:`METHOD and IP6_METHOD <vnet_template_context>` propagated to the :ref:`VM context <template_context>` to select the method used to configure the IP addresses on particular NICs inside the guest VMs (e.g., static, DHCP).
 
 Sunstone
 ================================================================================
