@@ -15,27 +15,6 @@ Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://o
 Previous Steps
 ==============
 
-Community Edition
-------------------
-
-User of the Community Edition of OpenNebula can upgrade from the previous stable version if they are running a non-commercial OpenNebula cloud. In order to access the migrator package a request needs to be made through this `online form <https://opennebula.io/get-migration/>`__.
-
-After you get the 'opennebula-migration-community' package, you need to install it in the OpenNebula front-end:
-
-CentOS/RHEL
-~~~~~~~~~~~
-
-.. prompt:: bash # auto
-
-		# rpm -i opennebula-migration-community*.rpm
-
-Debian/Ubuntu
-~~~~~~~~~~~~~
-
-.. prompt:: bash # auto
-
-		# dpkg -i opennebula-migration-community*.deb
-
 Enterprise Edition
 ------------------
 
