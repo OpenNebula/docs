@@ -15,25 +15,6 @@ Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://o
 Previous Steps
 ==============
 
-Community Edition
-------------------
-
-See the warning above. After you get the 'opennebula-migration-community' package, you need to install it in the OpenNebula Front-end:
-
-CentOS/RHEL
-~~~~~~~~~~~
-
-.. prompt:: bash # auto
-
-		# rpm -i opennebula-migration-community*.rpm
-
-Debian/Ubuntu
-~~~~~~~~~~~~~
-
-.. prompt:: bash # auto
-
-		# dpkg -i opennebula-migration-community*.deb
-
 Enterprise Edition
 ------------------
 
