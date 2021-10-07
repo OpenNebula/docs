@@ -136,6 +136,7 @@ The administrator has the ability to force a recovery action from Sunstone or fr
 * ``--retry``: To retry the previously failed action. It can be used, for instance, if a VM is in ``boot_failure`` because the hypervisor crashed. The administrator can tell OpenNebula to retry the boot after the hypervisor is started again.
 * ``--retry --interactive``: In some scenarios where the failure was caused by an error in the Transfer Manager actions, each action can be rerun and debugged until it works. Once the commands are successful, a ``success`` should be sent. See the specific section below for more details.
 * ``--delete``: No recovery action possible, delete the VM. This is equivalent to the deprecated OpenNebula < 5.0 command: ``onevm delete``.
+* ``--delete-db``: No recover action possible, delete the VM from the DB. It does not trigger any action on the hypervisor.
 * ``--recreate``: No recovery action possible, delete and recreate the VM. This is equivalent to the deprecated OpenNebula < 5.0 command: ``onevm delete --recreate``.
 
 Note also that OpenNebula will try to automatically recover some failure situations using the monitor information. A specific example is that a VM in the ``boot_failure`` state will become ``running`` if the monitoring reports that the VM was found running in the hypervisor.
