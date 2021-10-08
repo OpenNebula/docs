@@ -152,25 +152,6 @@ CentOS/RHEL
 
     # yum upgrade opennebula opennebula-sunstone opennebula-gate opennebula-flow opennebula-provision python-pyone python3-pyone
 
-Community Edition
-------------------
-
-There is an additoinal step if you are upgrading OpenNebula CE. After you get the `opennebula-migration-community package <https://opennebula.io/get-migration>`__, you need to install it in the OpenNebula Front-end.
-
-CentOS/RHEL
-~~~~~~~~~~~
-
-.. prompt:: bash # auto
-
-		# rpm -i opennebula-migration-community*.rpm
-
-Debian/Ubuntu
-~~~~~~~~~~~~~
-
-.. prompt:: bash # auto
-
-		# dpkg -i opennebula-migration-community*.deb
-
 .. important::
 
     When **upgrading** an existing deployment which could be running OpenNebula older than 5.10.0 anytime in the past, you might need to upgrade also required Ruby dependencies with script ``install_gems`` if you are not yet using the shipped Ruby gems (i.e., when symbolic link ``/usr/share/one/gems`` doesn't exist on your Front-end)!
@@ -192,6 +173,25 @@ Debian/Ubuntu
         Execution continues in 15 seconds ...
 
     Read :ref:`this <ruby_runtime>` for more information.
+
+Community Edition
+------------------
+
+There is an additoinal step if you are upgrading OpenNebula CE. After you get the `opennebula-migration-community package <https://opennebula.io/get-migration>`__, you need to install it in the OpenNebula Front-end.
+
+CentOS/RHEL
+~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+		# rpm -i opennebula-migration-community*.rpm
+
+Debian/Ubuntu
+~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+		# dpkg -i opennebula-migration-community*.deb
 
 Step 7. Update Configuration Files
 ================================================================================
