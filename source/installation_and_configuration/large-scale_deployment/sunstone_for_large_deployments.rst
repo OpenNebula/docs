@@ -26,6 +26,16 @@ The Sunstone server is implemented as a Rack server. This makes it suitable to r
 
   - **nginx**: enable ``underscores_in_headers on;`` and ``proxy_pass_request_headers on;``
 
+**Disable opennebula-sunstone system service**
+
+The ``opennebula-sunstone`` system service must be stopped and disabled when
+Sunstone is deployed in a web server.
+
+.. prompt:: bash # auto
+
+    # systemctl stop opennebula-sunstone
+    # systemctl disable opennebula-sunstone
+
 **Memcached**
 
 Sunstone needs to store user sessions so it doesn't ask for user/password for every action. By default Sunstone is configured to use memory sessions meaning that the sessions are stored in the process memory. Thin and webrick web servers do not spawn new processes but new threads, and all of them have access to that session pool. When using more than one process for the Sunstone server, there must be a service that stores the session information and can be accessed by all the processes. OpenNebula is using the ``memcached`` server for this purpose. It comes with most distributions and its default configuration should be OK.

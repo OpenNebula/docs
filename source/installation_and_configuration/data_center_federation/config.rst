@@ -12,6 +12,8 @@ In this document, each configuration step starts with **Master** or **Slave** to
 
 .. important:: *Master* and *slave* servers need to talk to each other through their XML-RPC API. You may need to update the ``LISTEN_ADDRESS``, and or ``PORT`` in :ref:`/etc/one/oned.conf <oned_conf>`, or any firewall rule blocking this communication. Note that by default this traffic is not secure, so if you are using public links you need to secure the communication.
 
+.. important:: When using a HA environment, every change at any configuration file included in the steps below should be applied to every HA cluster node.
+
 .. important:: The federation can be set-up with MySQL/MariaDB or SQLite backends, but you can't mix them across Zones. MySQL/MariaDB is recommended for production deployments.
 
 .. important:: FireEdge is a next-generation GUI, which is not fully supported in federation environments yet. Please connect only to the zone you which to operate with FireEdge directly, as it doesn't allow to switch zones. Also take into account that the FireEdge functionality enabled in Sunstone won't be present if you switch to a remote zone in Sunstone.
