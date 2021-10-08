@@ -54,3 +54,5 @@ The following issues has been solved in 6.0.4:
 - `Hide VNC button in cloud view <https://github.com/OpenNebula/one/issues/5547>`__.
 - `Fix for resources with several labels <https://github.com/OpenNebula/one/issues/5557>`__.
 - `Fix error management in onedb live operations <https://github.com/OpenNebula/one/issues/5569>`__.
+- `Fix slow transition from host DISABLED->MONITORED <https://github.com/OpenNebula/one/issues/5558>`__.
+
