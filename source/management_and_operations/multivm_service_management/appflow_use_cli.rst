@@ -480,6 +480,8 @@ Role
 
 .. note:: If you change the value of min_vms the OneFlow server will adjust the cardinality automatically. Also, if you add or edit elasticity rules they will be automatically evaluated.
 
+.. note:: You can use the flag ``--append`` to append new information to the service.
+
 Advanced Usage
 ================================================================================
 
