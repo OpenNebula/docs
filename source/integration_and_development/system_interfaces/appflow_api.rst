@@ -1268,3 +1268,122 @@ Remove a role from a running service
         }
       }
     }'
+
+Update a service
+--------------------------------------------------------------------------------
+
++--------------+---------------------+-----------------------------------------------------------+----------------+
+| Method       | URL                 | Meaning / Entity Body                                     | Response       |
++==============+=====================+===========================================================+================+
+| **PUT**      | ``/service/<id>``   | **Update** the ``SERVICE`` resource identified by <id>.   | **200 OK**:    |
++--------------+---------------------+-----------------------------------------------------------+----------------+
+
+Append can be used to append information to the service, in this case the request body must include the following information:
+
+* ``append``: set to ``true``.
+* ``template``: JSON representation of the template to append.
+
+.. code::
+
+    curl http://127.0.0.1:2474/service/4 -u 'oneadmin:password' -v -X PUT --data '{
+      "name":"web-application",
+      "deployment":"straight",
+      "roles":[
+        {
+          "name":"frontend",
+          "cardinality":"1",
+          "vm_template":"0",
+          "shutdown_action":"shutdown-hard",
+          "min_vms":"1",
+          "max_vms":"4",
+          "cooldown":"30",
+          "elasticity_policies":[
+            {
+              "type":"PERCENTAGE_CHANGE",
+              "adjust":"20",
+              "min_adjust_step":"1",
+              "expression":"CUSTOM_ATT>40",
+              "period":"3",
+              "period_number":"30",
+              "cooldown":"30"
+            }
+          ],
+          "scheduled_policies":[
+            {
+              "type":"CHANGE",
+              "adjust":"4",
+              "recurrence":"0 2 1-10 * * "
+            }
+          ]
+        },
+        {
+          "name":"worker",
+          "cardinality":"2",
+          "vm_template":"0",
+          "shutdown_action":"shutdown",
+          "parents":[
+            "frontend"
+          ],
+          "min_vms":"2",
+          "max_vms":"10",
+          "cooldown":"240",
+          "elasticity_policies":[
+            {
+              "type":"CHANGE",
+              "adjust":"5",
+              "expression":"ATT=3",
+              "period":"5",
+              "period_number":"60",
+              "cooldown":"240"
+            }
+          ],
+          "scheduled_policies":[
+          ]
+        }
+      ],
+      "shutdown_action":"shutdown"
+    }'
+
+.. code::
+
+    > PUT /service/4 HTTP/1.1
+    > Authorization: Basic b25lYWRtaW46b3Blbm5lYnVsYQ==
+    > User-Agent: curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.14.0.0 zlib/1.2.3 libidn/1.18 libssh2/1.4.2
+    > Host: 127.0.0.1:2474
+    > Accept: */*
+    > Content-Length: 1219
+    > Content-Type: application/x-www-form-urlencoded
+    > Expect: 100-continue
+    >
+    * Done waiting for 100-continue
+    < HTTP/1.1 200 OK
+    < Content-Type: text/html;charset=utf-8
+    < X-XSS-Protection: 1; mode=block
+    < Content-Length: 1995
+    < X-Frame-Options: sameorigin
+    < Connection: keep-alive
+    < Server: thin 1.2.8 codename Black Keys
+    <
+    {
+      "DOCUMENT": {
+        "TEMPLATE": {
+          "BODY": {
+            "deployment": "straight",
+            "name": "web-application",
+            "roles": [
+              {
+                "scheduled_policies": [
+                  {
+                    "adjust": 4,
+                    "type": "CHANGE",
+                    "recurrence": "0 2 1-10 * * "
+                  }
+                ],
+                "vm_template": 0,
+                "name": "frontend",
+                "min_vms": 1,
+                "max_vms": 4,
+                "cardinality": 1,
+                "cooldown": 30,
+                "shutdown_action": "shutdown-hard",
+                ...
