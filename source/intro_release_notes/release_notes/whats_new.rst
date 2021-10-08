@@ -74,6 +74,7 @@ Other Issues Solved
 ================================================================================
 - `Hide VNC button in cloud view <https://github.com/OpenNebula/one/issues/5547>`__.
 - `Fix for resources with several labels <https://github.com/OpenNebula/one/issues/5557>`__.
+- `Fix error management in onedb live operations <https://github.com/OpenNebula/one/issues/5569>`__.
 
 Features Backported to 6.0.x
 ============================
