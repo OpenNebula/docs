@@ -56,3 +56,5 @@ The following issues has been solved in 6.0.4:
 - `Fix error management in onedb live operations <https://github.com/OpenNebula/one/issues/5569>`__.
 - `Fix slow transition from host DISABLED->MONITORED <https://github.com/OpenNebula/one/issues/5558>`__.
 - `Fix labels on services <https://github.com/OpenNebula/one/issues/5456>`__.
+- `Fix IP spoofing for IPv6 floating IPs in Virtual Routers <https://github.com/OpenNebula/one/issues/5079>`__.
+
