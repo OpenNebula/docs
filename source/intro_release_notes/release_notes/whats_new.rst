@@ -77,6 +77,7 @@ Other Issues Solved
 - `Fix for resources with several labels <https://github.com/OpenNebula/one/issues/5557>`__.
 - `Fix slow transition from host DISABLED->MONITORED <https://github.com/OpenNebula/one/issues/5558>`__.
 - `Fix error management in onedb live operations <https://github.com/OpenNebula/one/issues/5569>`__.
+- `Fix labels on services <https://github.com/OpenNebula/one/issues/5456>`__.
 
 Features Backported to 6.0.x
 ============================
