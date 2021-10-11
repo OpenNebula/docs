@@ -686,17 +686,18 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``ETHx_IP6_METRIC``               | ``IP6_METRIC`` value for the IPv6 (default) route associated with this interface.               | Linux                        | Linux   |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
-| ``ETHx_IP6_METHOD``               | IPv6 configuration method for the interface inside VM:                                          | Linux                        | Linux   |
-|                                   | empty or ``static`` (for static address assignment based on context variables),                 |                              |         |
+| ``ETHx_IP6_METHOD``               | IPv6 configuration method for the interface inside VM:                                          | O                            | O       |
+|                                   | ``static`` (for static address assignment based on context variables),                          |                              |         |
 |                                   | ``auto`` (for SLAAC),                                                                           |                              |         |
 |                                   | ``dhcp`` (for SLAAC and DHCPv6),                                                                |                              |         |
 |                                   | ``disable`` (for disabling IPv6),                                                               |                              |         |
-|                                   | ``skip`` (skip NIC configuration)                                                               |                              |         |
+|                                   | ``skip`` (skip IPv6 NIC configuration),                                                         |                              |         |
+|                                   | empty defaults to content of ``ETHx_METHOD`` set for IPv4                                       |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
-| ``ETHx_METHOD``                   | IPv4 configuration method for the interface inside VM:                                          | Linux                        | Linux   |
+| ``ETHx_METHOD``                   | IPv4 configuration method for the interface inside VM:                                          | O                            | O       |
 |                                   | empty or ``static`` (for static address assignment based on context variables),                 |                              |         |
 |                                   | ``dhcp`` (for DHCPv4),                                                                          |                              |         |
-|                                   | ``skip`` (skip NIC configuration)                                                               |                              |         |
+|                                   | ``skip`` (skip IPv4 NIC configuration)                                                          |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``ETHx_NETWORK``                  | Network address of the interface.                                                               | O                            | O       |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
