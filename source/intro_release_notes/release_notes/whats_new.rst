@@ -47,6 +47,7 @@ Sunstone
 ================================================================================
 - Support for new scheduled actions api on :ref:`Sunstone <sunstone>`.
 - Error message for failed :ref:`scheduled actions <vm_guide2_scheduling_actions>` in VM info view.
+- `Better security parameters for Sunstone systemd unit file <https://github.com/OpenNebula/one/issues/555>`__.
 
 FireEdge
 ================================================================================
@@ -78,6 +79,7 @@ Other Issues Solved
 - `Fix slow transition from host DISABLED->MONITORED <https://github.com/OpenNebula/one/issues/5558>`__.
 - `Fix error management in onedb live operations <https://github.com/OpenNebula/one/issues/5569>`__.
 - `Fix labels on services <https://github.com/OpenNebula/one/issues/5456>`__.
+- `Fix IP spoofing for IPv6 floating IPs in Virtual Routers <https://github.com/OpenNebula/one/issues/5079>`__.
 
 Features Backported to 6.0.x
 ============================
