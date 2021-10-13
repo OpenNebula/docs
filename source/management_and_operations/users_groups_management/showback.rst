@@ -43,7 +43,9 @@ The monthly cost of each VM is calculated as the sum of:
 * ``MEMORY_COST`` * ``MEMORY`` * ``HOURS``
 * ``DISK_COST`` * ``DISK_SIZE`` * ``HOURS``
 
-The number of hours is calculated as the total number of hours that a VM has been ``running``. This accounts for every VM state that keeps Host resources secured, like ``poweroff`` or ``suspended`` but not in ``stopped`` or ``undeploy``.
+The number of hours is calculated as the total number of hours that a VM has been ``active``. This accounts for every VM state that keeps Host resources secured, like ``poweroff`` or ``suspended`` but not in ``stopped`` or ``undeploy``.
+
+Optionally you can compute CPU and MEMORY cost only for VMs in ``running`` state, see ``SHOWBACK_ONLY_RUNNING`` in :ref:`oned.conf file <oned_conf_default_showback>`
 
 If the time range includes the current month, OpenNebula will calculate the cost up to today's date. It is up to the administrators to leave the current month out of the showback records, to update it daily, or hourly. In any case, it is important to re-calculate it when the month ends. This operation can be easily automated by a cron job.
 
