@@ -45,6 +45,7 @@ You need a physical or virtual host with a recommended operating system, one of 
 
    - on Ubuntu/Debian in multi-container Docker deployment, the container with ``oned`` is running without :ref:`AppArmor security profile <container_troubleshooting_apparmor>`,
    - deployment on Docker might experience connection drops/timeouts due to the Linux Kernel issue, see the `article <https://tech.xing.com/a-reason-for-unexplained-connection-timeouts-on-kubernetes-docker-abd041cf7e02>`__.
+   - container images creation might fail for LXC/D as it uses loop devices. More information can be found `here <https://github.com/OpenNebula/one/issues/4124>`__.
 
 .. _container_architecture:
 
