@@ -407,8 +407,20 @@ The virtualization drivers are used to create, control and monitor VMs on the ho
    - ``disk-detach``
    - ``nic-attach``
    - ``nic-detach``
-   - ``snap-create``
-   - ``snap-delete``
+   - ``disk-snapshot-create``
+   - ``disk-snapshot-delete``
+   - ``disk-snapshot-rename``
+   - ``disk-snapshot-revert``
+   - ``disk-resize``
+   - ``disk-saveas``
+   - ``resize``
+   - ``update``
+   - ``updateconf``
+   - ``snapshot-create``
+   - ``snapshot-delete``
+   - ``snapshot-revert``
+   - ``recover``
+   - ``retry``
 
 There are some non-mandatory attributes:
 

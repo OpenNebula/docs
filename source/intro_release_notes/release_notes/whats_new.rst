@@ -80,6 +80,7 @@ Other Issues Solved
 - `Fix error management in onedb live operations <https://github.com/OpenNebula/one/issues/5569>`__.
 - `Fix labels on services <https://github.com/OpenNebula/one/issues/5456>`__.
 - `Fix IP spoofing for IPv6 floating IPs in Virtual Routers <https://github.com/OpenNebula/one/issues/5079>`__.
+- `Fix and extend actions covered by the IMPORTED_VMS_ACTIONS <https://github.com/OpenNebula/one/issues/4193>`__.
 
 Features Backported to 6.0.x
 ============================
