@@ -88,8 +88,20 @@ Each driver can define a list of supported actions for :ref:`imported VMs <impor
 - disk-detach
 - nic-attach
 - nic-detach
-- snap-create
-- snap-delete
+- disk-snapshot-create
+- disk-snapshot-delete
+- disk-snapshot-rename
+- disk-snapshot-revert
+- disk-resize
+- disk-saveas
+- resize
+- update
+- updateconf
+- snapshot-create
+- snapshot-delete
+- snapshot-revert
+- recover
+- retry
 
 These supported action are specified in the :ref:`oned.conf file <oned_conf>`, ``imported_vms_actions`` variable:
 
