@@ -59,3 +59,4 @@ The following issues has been solved in 6.0.4:
 - `Fix IP spoofing for IPv6 floating IPs in Virtual Routers <https://github.com/OpenNebula/one/issues/5079>`__.
 - `Fix onegroup list output when using xml format <https://github.com/OpenNebula/one/issues/5571>`__.
 - `Fix Sunstone recommended time for schedule actions <https://github.com/OpenNebula/one/issues/5572>`__.
+- `Fix dependency error for onezone command <https://github.com/OpenNebula/one/issues/5567>`__.
