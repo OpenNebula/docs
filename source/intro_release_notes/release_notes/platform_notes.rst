@@ -279,6 +279,11 @@ Ubuntu 20.04
 
 When using Apache to serve Sunstone, it's required to grant read permissions to the user running ``httpd`` in ``/var/lib/one``.
 
+Debian 11
+--------------------------------------------------------------------------------
+
+There is currently no support for `Phusion Passenger on Debian 11 <https://oss-binaries.phusionpassenger.com/apt/passenger/dists/>`__, so it is currently not possible to deploy :ref:`Sunstone in a Apache/Passenger configuration <suns_advance_web_proxy>`.
+
 
 Nodes Platform Notes
 ================================================================================
