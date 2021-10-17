@@ -56,6 +56,7 @@ FireEdge
 CLI
 ================================================================================
 - :ref:`Append option <api_onevmmupdateconf>` for ``onevm updateconf``. If no option is provided the 6.0 behavior is preserved.
+- `Show running hours for oneshowback calculate <https://github.com/OpenNebula/one/issues/5561>`__.
 
 Distributed Edge Provisioning
 ================================================================================
@@ -81,6 +82,7 @@ Other Issues Solved
 - `Fix labels on services <https://github.com/OpenNebula/one/issues/5456>`__.
 - `Fix IP spoofing for IPv6 floating IPs in Virtual Routers <https://github.com/OpenNebula/one/issues/5079>`__.
 - `Fix and extend actions covered by the IMPORTED_VMS_ACTIONS <https://github.com/OpenNebula/one/issues/4193>`__.
+- `Fix error message when onevm chown fails for quota limitations <https://github.com/OpenNebula/one/issues/5575>`__.
 
 Features Backported to 6.0.x
 ============================
