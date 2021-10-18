@@ -83,6 +83,7 @@ Other Issues Solved
 - `Fix IP spoofing for IPv6 floating IPs in Virtual Routers <https://github.com/OpenNebula/one/issues/5079>`__.
 - `Fix and extend actions covered by the IMPORTED_VMS_ACTIONS <https://github.com/OpenNebula/one/issues/4193>`__.
 - `Fix error message when onevm chown fails for quota limitations <https://github.com/OpenNebula/one/issues/5575>`__.
+- `Fix dependency error for onezone command <https://github.com/OpenNebula/one/issues/5567>`__.
 
 Features Backported to 6.0.x
 ============================
