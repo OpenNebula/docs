@@ -511,6 +511,20 @@ You will need to configure a new virtual host in nginx. Depending on the operati
                     proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
                     proxy_set_header        X-Forwarded-Proto $scheme;
             }
+
+            location /fireedge {
+                    proxy_pass http://fire-edge/fireedge;
+                    proxy_redirect off;
+                    log_not_found off;
+                    proxy_buffering off;
+                    proxy_http_version 1.1;
+                    proxy_set_header Upgrade $http_upgrade;
+                    proxy_set_header Connection "upgrade";
+                    proxy_set_header X-Real-IP $remote_addr;
+                    proxy_set_header Host $http_host;
+                    proxy_set_header X-Forwarded-FOR $proxy_add_x_forwarded_for;
+                    access_log off;
+            }
     }
 
 The IP address and port number used in ``upstream`` must be the ones the server Sunstone is running on. On typical installations the nginx master process is run as user root so you don't need to modify the HTTPS port.
