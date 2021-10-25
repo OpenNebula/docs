@@ -70,6 +70,10 @@ Once the server is initialized, it creates the file ``/var/lib/one/.one/fireedge
 
 In HA environments, this file fireedge_key needs to be copied from the first leader to the followers. Optionally, in order to have the provision logs available in all the HA nodes, ``/var/lib/one/fireedge`` need to be shared between nodes.
 
+.. _fireedge_ssl_without_nginx:
+
+If you need to execute the fireedge with SSL Certificate, in the following path: ``/usr/lib/one/fireedge`` you must create a folder called ``cert`` and inside place the files ``cert.pem`` and ``key.pem``, after restarting the fireedge service.
+
 .. _fireedge_configuration_for_sunstone:
 
 Configure Sunstone
