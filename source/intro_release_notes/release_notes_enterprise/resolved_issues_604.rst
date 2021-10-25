@@ -61,3 +61,4 @@ The following issues has been solved in 6.0.4:
 - `Fix Sunstone recommended time for schedule actions <https://github.com/OpenNebula/one/issues/5572>`__.
 - `Fix dependency error for onezone command <https://github.com/OpenNebula/one/issues/5567>`__.
 - `Fix Sunstone misbehave with service user inputs <https://github.com/OpenNebula/one/issues/5578>`__.
+- `Fix Fireedge support x.509 certificates <https://github.com/OpenNebula/one/issues/5589>`__.
