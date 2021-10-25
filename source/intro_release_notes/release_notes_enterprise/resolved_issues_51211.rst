@@ -23,3 +23,4 @@ The following issues has been solved in 5.12.11:
 - `Fix zendesk login with special characters <https://github.com/OpenNebula/one/issues/5546>`__.
 - `Fix Sunstone deletes disks attributes when perform an image change <https://github.com/OpenNebula/one/issues/5543>`__.
 - `Fix Sunstone recommended time for schedule actions <https://github.com/OpenNebula/one/issues/5572>`__.
+- `Fix Sunstone misbehave with service user inputs <https://github.com/OpenNebula/one/issues/5578>`__.
