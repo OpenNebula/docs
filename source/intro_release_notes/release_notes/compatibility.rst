@@ -38,3 +38,7 @@ Distributed Edge Provisioning
 PyONE
 ========================
 As Python 2 is no longer supported the system packcage python-pyone is not released any more.
+
+FireEdge
+========================
+Separate the configuration files by application: ``provision-server.conf``, ``sunstone-server.conf`` and the global configuration of the server is kept in ``firedge-server.conf``
