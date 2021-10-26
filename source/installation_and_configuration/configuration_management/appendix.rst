@@ -26,6 +26,11 @@ Name                                                               Type
 ``/etc/one/ec2query_templates/*.erb``                              Plain file (or XML)
 ``/etc/one/econe.conf``                                            YAML
 ``/etc/one/fireedge-server.conf``                                  YAML
+``/etc/one/fireedge/provision/providers.d/*.yaml``                 YAML
+``/etc/one/fireedge/provision/provision-server.conf``              YAML
+``/etc/one/fireedge/sunstone/*/*.yaml``                            YAML
+``/etc/one/fireedge/sunstone/sunstone-server.conf``                YAML
+``/etc/one/fireedge/sunstone/sunstone-views.yaml``                 YAML
 ``/etc/one/hm/hmrc``                                               Shell
 ``/etc/one/monitord.conf``                                         oned.conf-like
 ``/etc/one/oned.conf``                                             oned.conf-like
@@ -62,6 +67,7 @@ Name                                                               Type
 ``/var/lib/one/remotes/etc/vmm/firecracker/firecrackerrc``         YAML
 ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc``                         Shell
 ``/var/lib/one/remotes/etc/vmm/lxc/lxcrc``                         YAML
+``/var/lib/one/remotes/etc/vmm/lxc/profiles/*``                    Plain file (or XML)
 ``/var/lib/one/remotes/etc/vmm/lxd/lxdrc``                         YAML
 ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterrc``                 YAML
 ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``            YAML
