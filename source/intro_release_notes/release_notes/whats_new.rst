@@ -84,6 +84,7 @@ Other Issues Solved
 - `Fix and extend actions covered by the IMPORTED_VMS_ACTIONS <https://github.com/OpenNebula/one/issues/4193>`__.
 - `Fix error message when onevm chown fails for quota limitations <https://github.com/OpenNebula/one/issues/5575>`__.
 - `Fix dependency error for onezone command <https://github.com/OpenNebula/one/issues/5567>`__.
+- `Fix AltGr key on VMRC <https://github.com/OpenNebula/one/issues/5590>`__.
 
 Features Backported to 6.0.x
 ============================
