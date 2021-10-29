@@ -130,17 +130,17 @@ Linux Contextualization Packages
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
 | Alpine Linux                 | 3.10, 3.11, 3.12, 3.13, 3.14                            | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
-| ALT Linux                    | p9, Sisyphus                                            | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| ALT Linux                    | p9, p10, Sisyphus                                       | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
 | Amazon Linux                 | 2                                                       | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
 | CentOS                       | 7, 8, 8 Stream                                          | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
-| Debian                       | 8, 9, 10                                                | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| Debian                       | 8, 9, 10, 11                                            | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
 | Devuan                       | 2                                                       | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
-| Fedora                       | 32, 33                                                  | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| Fedora                       | 32, 33, 34                                              | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
 | FreeBSD                      | 11, 12, 13                                              | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
@@ -152,7 +152,7 @@ Linux Contextualization Packages
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
 | Rocky Linux                  | 8                                                       | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
-| Ubuntu                       | 14.04, 16.04, 18.04, 20.04, 20.10, 21.04                | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| Ubuntu                       | 14.04, 16.04, 18.04, 20.04, 20.10, 21.04, 21.10         | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
 
 Windows Contextualization Packages
