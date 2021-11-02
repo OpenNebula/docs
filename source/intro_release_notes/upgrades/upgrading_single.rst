@@ -211,62 +211,24 @@ In order to update the configuration files with your existing customizations you
 Enterprise Edition
 ------------------
 
-If you have modified configuration files, let's use onecfg to automate the configuration file upgrades.
+If you have modified configuration files, let's use ``onecfg`` to automate the configuration file upgrades.
 
-Before upgrading OpenNebula, you need to ensure that the configuration state is clean without any pending migrations from past or outdated configurations. Run ``onecfg status`` to check the configuration state.
+After updating the packages, ``onecfg status`` command should show that there's a new configuration available:
 
-A clean state might look like this:
+.. prompt:: text # auto
 
-    .. prompt:: bash # auto
+    # onecfg status
+    --- Versions -----------------
+    OpenNebula: 6.2.0
+    Config:     6.0.3
 
-        # onecfg status
-        --- Versions ------------------------------
-        OpenNebula:  5.8.5
-        Config:      5.8.0
+    --- Backup to Process ---------------------
+    Snapshot:    /var/lib/one/backups/config/backup
+    (will be used as one-shot source for next update)
 
-        --- Available Configuration Updates -------
-        No updates available.
-
-Unknown Configuration Version Error
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If you get error message about an unknown configuration version, you don't need to do anything. The configuration version will be automatically initialized during the OpenNebula upgrade. The configuration of the current version will be based on the former OpenNebula version.
-
-    .. prompt:: bash # auto
-
-        # onecfg status
-        --- Versions ------------------------------
-        OpenNebula:  5.8.5
-        Config:      unknown
-        ERROR: Unknown config version
-
-Configuration Metadata Outdated Error
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If the configuration tool complains about outdated metadata, you have not run a configuration upgrade during some of the past OpenNebula upgrades. Please note, configuration must be upgraded or processed with even OpenNebula's maintenance releases.
-
-The following invalid state:
-
-    .. prompt:: bash # auto
-
-        # onecfg status
-        --- Versions ------------------------------
-        OpenNebula:  5.8.5
-        Config:      5.8.0
-        ERROR: Configurations metadata are outdated.
-
-needs to be fixed by reinitialization of the configuration state. Any unprocessed upgrades will be lost and the current state will be initialized based on your current OpenNebula version and configurations located in system directories.
-
-    .. prompt:: bash # auto
-
-        # onecfg init --force
-        # onecfg status
-        --- Versions ------------------------------
-        OpenNebula:  5.8.5
-        Config:      5.8.5
-
-        --- Available Configuration Updates -------
-        No updates available.
+    --- Available updates --------
+    New config: 6.2.0
+    - from 6.0.0 to 6.2.0 (YAML,Ruby)
 
 After checking the state of configuration, in most cases running the following command without any extra parameters will suffice, as it will upgrade the probes based on the internal configuration version tracking of the currently installed OpenNebula.
 
@@ -274,7 +236,7 @@ After checking the state of configuration, in most cases running the following c
 
      # onecfg upgrade
      ANY   : Backup stored in '/tmp/onescape/backups/2020-6...
-     ANY   : Configuration updated to 6.1.90
+     ANY   : Configuration updated to 6.2.0
 
 If you get conflicts when running onecfg upgrade refer to the :ref:`onecfg upgrade basic usage documentation <cfg_usage>` on how to upgrade and troubleshoot the configurations, in particular the :ref:`onecfg upgrade doc <cfg_upgrade>` and the :ref:`troubleshooting section <cfg_conflicts>`.
 
@@ -295,6 +257,7 @@ After updating the configuration file `sunstone-server.conf`, if you didn't inst
 If you don't want to use the new feature, comment these out in order to get rid of the error.
 
 Step 8. Upgrade the Database Version
+================================================================================
 
 .. important::
 
@@ -357,22 +320,17 @@ Ubuntu/Debian
 
 .. prompt:: text # auto
 
-    # apt-get install --only-upgrade opennebula-node-kvm
-    # service libvirtd restart # debian
-    # service libvirt-bin restart # ubuntu
-
-If upgrading the LXD drivers on Ubuntu
-
-.. prompt:: text # auto
-
-    # apt-get install --only-upgrade opennebula-node-lxd
+    # apt-get install --only-upgrade opennebula-node-<hypervisor>
 
 CentOS
 
 .. prompt:: text # auto
 
-    # yum upgrade opennebula-node-kvm
-    # systemctl restart libvirtd
+    # yum upgrade opennebula-node-<hypervisor>
+
+.. note:: Note that the ``<hypervisor>`` tag should be replaced by the name of the corresponding hypervisor (i.e ``kvm``, ``lxc`` or ``firecracker``).
+
+.. important::  For KVM hypervisor it's necessary to restart also the libvirt service
 
 
 Step 13. Enable Hosts
