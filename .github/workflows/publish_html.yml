@@ -1,0 +1,66 @@
+name: Publish HTML
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+# ------------------------------------------------------------------------------
+# Install requirements needed to compile docs and publish them
+# ------------------------------------------------------------------------------
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Set up Ruby ${{ matrix.ruby-version }}
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install sphinx sphinx_rtd_theme sphinx-prompt pyyaml
+          gem install yaml open3
+
+# ------------------------------------------------------------------------------
+# Get useful information
+#
+#   - current branch: needed by the publish script
+# ------------------------------------------------------------------------------
+      - name: Get current branch name
+        id: get_branch
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+
+# ------------------------------------------------------------------------------
+# Setup SSH keys
+# ------------------------------------------------------------------------------
+      - name: Setup SSH keys
+        shell: bash
+        run: |
+          echo "$SSH_PRIVATE_KEY" > /tmp/id_rsa
+          echo "$SSH_PUBLIC_KEY" > /tmp/id_rsa.pub
+          sudo chmod 600 /tmp/id_rsa
+          sudo chmod 644 /tmp/id_rsa.pub
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
+
+# ------------------------------------------------------------------------------
+# Install requirements needed to compile docs and publish them
+# ------------------------------------------------------------------------------
+      - name: Compile and publish documentation
+        id: build_publish_docs
+        shell: bash
+        env:
+          HOST: ${{ secrets.HOST }}
+          HOST_PATH: ${{ secrets.HOST_PATH }}
+        run: ruby ./publish/publish.rb ${{ steps.get_branch.outputs.branch }}
