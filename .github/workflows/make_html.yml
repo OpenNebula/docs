@@ -1,6 +1,6 @@
 name: Make html
 
-on: [push]
+on: [pull_request]
 
 jobs:
   build:
