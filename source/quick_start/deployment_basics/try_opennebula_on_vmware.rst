@@ -107,14 +107,12 @@ Select the name, folder, and a compute resource where you want vOneCloud to be d
 
 Select the network. You will need to choose a network that has access to the ESX hosts.
 
-Review the settings selection and click finish. Wait for the Virtual Machine to appear in the cluster.
+Review the settings selection and click finish. Wait for the Virtual Machine Template to appear in the cluster.
 
 .. image:: /images/vOneCloud-download-deploy-007.png
     :align: center
 
-After importing the vOneCloud OVA and before powering it on, the vOneCloud Virtual Machine can be edited to, for instance, add a new network interface, increase the amount of RAM, the available CPUs for performance, etc.
-
-Now you can power on the Virtual Machine.
+After importing the vOneCloud OVA it needs to be cloned into a Virtual Machine. Before powering it on, the vOneCloud Virtual Machine can be edited to, for instance, add a new network interface, increase the amount of RAM, the available CPUs for performance, etc. Now you can power on the Virtual Machine.
 
 .. _download_and_deploy_control_console:
 
