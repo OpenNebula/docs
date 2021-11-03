@@ -257,7 +257,7 @@ A single instance of OpenNebula (i.e., a single ``oned`` process) has been stres
 
 However, there are several OpenNebula users managing significantly higher numbers of hypervisors (to the order of two thousand) with a single instance. This largely depends, as mentioned, on the storage, networking, and also monitoring configuration.
 
-Frontend Platform Notes
+Front-End Platform Notes
 ================================================================================
 
 The following applies to all Front-Ends:
