@@ -17,7 +17,7 @@ Data Model
 XMLRPC API
 =========================
 
-- Scheduled Actions now includes a dedicated API for its management. Applications that manages the Scheduled Actions through the ``one.vm.update`` method needs to update to the new ``one.vm.schedadd``, ``one.vm.scheddel`` and ``one.vm.schedupdate``.
+- Scheduled Actions now includes a dedicated API for its management. Applications that manage the Scheduled Actions through the ``one.vm.update`` method need to update to the new ``one.vm.schedadd``, ``one.vm.scheddel`` and ``one.vm.schedupdate``.
 
 Contextualization
 ========================
@@ -33,7 +33,7 @@ Go API
 Distributed Edge Provisioning
 =============================
 
-- OneProvision is able to load providers dinamically, so all the providers in the folder ``/usr/lib/one/oneprovision/lib/terraform/providers`` are loaded.
+- OneProvision is able to load providers dynamically, so all the providers in the folder ``/usr/lib/one/oneprovision/lib/terraform/providers`` are loaded.
 
 PyONE
 ========================
