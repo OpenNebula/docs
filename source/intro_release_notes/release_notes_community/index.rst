@@ -1,10 +1,11 @@
 .. _rnce:
 
 ================================================================================
-Release Notes 6.2.0 Community
+Release Notes 6.2.0.1 Community
 ================================================================================
 
 .. toctree::
    :maxdepth: 1
 
    What Is <what_is>
+   Resolved Issues in 6.2.0.1 <resolved_issues_6201>
