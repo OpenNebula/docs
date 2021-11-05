@@ -11,3 +11,4 @@ The following new features has been backported to 6.2.1:
 The following issues has been solved in 6.2.1:
 
 - `Sunstone Server Uses Plain-Text Form Based Authentication <https://github.com/OpenNebula/one/issues/5595>`__.
+- `Fireedge X-XSS-Protection HTTP Header missing on port 2616 <https://github.com/OpenNebula/one/issues/5598>`__.
