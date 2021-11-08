@@ -34,7 +34,7 @@ To add the OpenNebula enterprise repository, execute the following as user ``roo
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Enterprise Edition
-    baseurl=https://<token>@enterprise.opennebula.io/repo/6.1/CentOS/7/$basearch
+    baseurl=https://<token>@enterprise.opennebula.io/repo/6.2/CentOS/7/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo.key
     gpgcheck=1
@@ -49,7 +49,7 @@ To add the OpenNebula enterprise repository, execute the following as user ``roo
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Enterprise Edition
-    baseurl=https://<token>@enterprise.opennebula.io/repo/6.1/CentOS/8/$basearch
+    baseurl=https://<token>@enterprise.opennebula.io/repo/6.2/CentOS/8/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo.key
     gpgcheck=1
@@ -77,48 +77,48 @@ First, add the repository signing GPG key on the Front-end by executing as user 
 
 and then continue with repository configuration:
 
-**Debian 9**
-
-.. prompt:: bash # auto
-
-    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.1/Debian/9 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
-    # apt-get update
-
 **Debian 10**
 
 .. prompt:: bash # auto
 
-    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.1/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.2/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # apt-get update
+
+**Debian 11**
+
+.. prompt:: bash # auto
+
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.2/Debian/11 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Ubuntu 18.04**
 
 .. prompt:: bash # auto
 
-    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.1/Ubuntu/18.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.2/Ubuntu/18.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Ubuntu 20.04**
 
 .. prompt:: bash # auto
 
-    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.1/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.2/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Ubuntu 20.10**
 
 .. prompt:: bash # auto
 
-    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.1/Ubuntu/20.10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.2/Ubuntu/20.10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 .. note::
 
-   You can point to a specific 6.1.x version by changing the occurrence of shorter version 6.1 in any of the above commands to the particular full 3 components version number (X.Y.Z). For instance, to point to version 6.1.1 on Ubuntu 18.04, use the following command instead:
+   You can point to a specific 6.2.x version by changing the occurrence of shorter version 6.2 in any of the above commands to the particular full 3 components version number (X.Y.Z). For instance, to point to version 6.2.1 on Ubuntu 18.04, use the following command instead:
 
     .. prompt:: bash # auto
 
-       # echo "deb https://<token>@enterprise.opennebula.io/repo/5./Ubuntu/18.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+       # echo "deb https://<token>@enterprise.opennebula.io/repo/6.2.1/Ubuntu/18.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
        # apt-get update
 
 Following Debian 10 and Ubuntu 16.04, it's now possible (and recommended) to store a customer token in a separate file to the repository configuration. If you choose to store the repository credentials separately, you need to avoid using the ``<token>@`` part in the repository definitions above. You should create a new file ``/etc/apt/auth.conf.d/opennebula.conf`` with the following structure and replace the ``<user>`` and ``<password>`` parts with the customer credentials you have received:
@@ -148,7 +148,7 @@ To add OpenNebula repository, execute the following as user ``root``:
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Community Edition
-    baseurl=https://downloads.opennebula.io/repo/6.1/CentOS/7/$basearch
+    baseurl=https://downloads.opennebula.io/repo/6.2/CentOS/7/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo.key
     gpgcheck=1
@@ -163,7 +163,7 @@ To add OpenNebula repository, execute the following as user ``root``:
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Community Edition
-    baseurl=https://downloads.opennebula.io/repo/6.1/CentOS/8/$basearch
+    baseurl=https://downloads.opennebula.io/repo/6.2/CentOS/8/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo.key
     gpgcheck=1
@@ -180,7 +180,7 @@ To add OpenNebula repository, execute the following as user ``root``:
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Community Edition
-    baseurl=https://downloads.opennebula.io/repo/6.1/Fedora/32/$basearch
+    baseurl=https://downloads.opennebula.io/repo/6.2/Fedora/32/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo.key
     gpgcheck=1
@@ -197,7 +197,7 @@ To add OpenNebula repository, execute the following as user ``root``:
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Community Edition
-    baseurl=https://downloads.opennebula.io/repo/6.1/Fedora/33/$basearch
+    baseurl=https://downloads.opennebula.io/repo/6.2/Fedora/33/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo.key
     gpgcheck=1
@@ -223,37 +223,38 @@ First, add the repository signing GPG key on the Front-end by executing as user 
 
     # wget -q -O- https://downloads.opennebula.io/repo/repo.key | apt-key add -
 
-**Debian 9**
-
-.. prompt:: bash # auto
-
-    # echo "deb https://downloads.opennebula.io/repo/6.1/Debian/9 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
-    # apt-get update
-
 **Debian 10**
 
 .. prompt:: bash # auto
 
-    # echo "deb https://downloads.opennebula.io/repo/6.1/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://downloads.opennebula.io/repo/6.2/Debian/11 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
+
+**Debian 11**
+
+.. prompt:: bash # auto
+
+    # echo "deb https://downloads.opennebula.io/repo/6.2/Debian/11 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # apt-get update
+
 
 **Ubuntu 18.04**
 
 .. prompt:: bash # auto
 
-    # echo "deb https://downloads.opennebula.io/repo/6.1/Ubuntu/18.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://downloads.opennebula.io/repo/6.2/Ubuntu/18.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Ubuntu 20.04**
 
 .. prompt:: bash # auto
 
-    # echo "deb https://downloads.opennebula.io/repo/6.1/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://downloads.opennebula.io/repo/6.2/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Ubuntu 20.10**
 
 .. prompt:: bash # auto
 
-    # echo "deb https://downloads.opennebula.io/repo/6.1/Ubuntu/20.10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://downloads.opennebula.io/repo/6.2/Ubuntu/20.10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
