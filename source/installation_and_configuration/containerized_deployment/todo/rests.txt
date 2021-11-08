@@ -9,7 +9,7 @@ Once is OpenNebula image downloaded and in the local filesystem it will not auto
 
 .. prompt:: bash $ auto
 
-    $ docker pull https://docker.opennebula.io/opennebula:6.1 # TODO
+    $ docker pull https://docker.opennebula.io/opennebula:6.3 # TODO
 
 After this command the local version of the image with the same name and tag will be updated.
 
@@ -38,11 +38,11 @@ TODO
 
 .. todo::
 
-    The functionality of the OpenNebula container is controlled via :ref:`image parameters <reference_params>`. Their complete list is embedded in the image itself and can be extracted with a simple shell one-liner (in this case the image is named ``opennebula:6.1``):
+    The functionality of the OpenNebula container is controlled via :ref:`image parameters <reference_params>`. Their complete list is embedded in the image itself and can be extracted with a simple shell one-liner (in this case the image is named ``opennebula:6.3``):
 
     .. prompt:: bash # auto
 
-        # docker image inspect -f '{{ index .Config.Labels "org.label-schema.docker.params"}}' opennebula:6.1 | sed 's/, /\n/g'
+        # docker image inspect -f '{{ index .Config.Labels "org.label-schema.docker.params"}}' opennebula:6.3 | sed 's/, /\n/g'
 
 +------------------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------+
 | File                   | Customizable | Description                                                                                                                                |
@@ -92,4 +92,3 @@ TODO
     ``SUNSTONE_PORT`` and ``SUNSTONE_TLS_PORT`` must be aligned with the Sunstone's published ports (8080, 4443). This applies to ``ONEGATE_PORT`` (15030) too.
 
     Similar situation is also with the ``SUNSTONE_VNC_PORT`` (30001) and ``MONITORD_PORT`` (14124) - but pay attention to the both sides of publish port argument (both sides must be set).
-

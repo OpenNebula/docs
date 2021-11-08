@@ -92,7 +92,7 @@ or delete it and start a new one:
 .. prompt:: bash # auto
 
     # docker rm opennebula
-    # docker run ... --name opennebula opennebula:6.1
+    # docker run ... --name opennebula opennebula:6.3
 
 .. _container_troubleshooting_podman:
 
@@ -265,20 +265,20 @@ List the local container images:
 
    # docker images
    REPOSITORY          TAG                      IMAGE ID            CREATED             SIZE
-   opennebula          6.1                      039a43d7b277        7 hours ago         2.05GB
+   opennebula          6.3                      039a43d7b277        7 hours ago         2.05GB
    centos              8                        300e315adb2f        6 weeks ago         209MB
 
 Add a custom tag to the pulled OpenNebula image:
 
 .. prompt:: bash # auto
 
-    # docker tag opennebula/opennebula:6.1 opennebula:custom
+    # docker tag opennebula/opennebula:6.3 opennebula:custom
 
 Delete the local image based by name and tag:
 
 .. prompt:: bash # auto
 
-    # docker image rm opennebula/opennebula:6.1
+    # docker image rm opennebula/opennebula:6.3
 
 Delete the local image based by a digest:
 
@@ -588,7 +588,7 @@ Deployment Parameters (only multi-container)
 | ``DEPLOY_OPENNEBULA_IMAGE_NAME``      | ``opennebula/opennebula`` **OR**         | all                       | OpenNebula image name - the actual default value will depend on the CE/EE version of the image.                          |
 |                                       | ``enterprise.opennebula.io/opennebula``  |                           |                                                                                                                          |
 +---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``DEPLOY_OPENNEBULA_IMAGE_TAG``       | ``6.1``                                  | all                       | OpenNebula image tag.                                                                                                    |
+| ``DEPLOY_OPENNEBULA_IMAGE_TAG``       | ``6.3``                                  | all                       | OpenNebula image tag.                                                                                                    |
 +---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
 | ``DEPLOY_APPARMOR_PROFILE``           | ``unconfined``                           | ``opennebula-oned``       | Modifies the `AppArmor profile <https://docs.docker.com/engine/security/apparmor/>`_ - disables it by default.           |
 +---------------------------------------+------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------+
