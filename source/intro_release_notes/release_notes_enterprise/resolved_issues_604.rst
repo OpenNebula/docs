@@ -63,3 +63,4 @@ The following issues has been solved in 6.0.4:
 - `Fix qcow2 mappper in LXC/LXD drivers to avoid locked NBD devices under load  <https://github.com/OpenNebula/one/issues/5582>`__.
 - `Fix Sunstone misbehave with service user inputs <https://github.com/OpenNebula/one/issues/5578>`__.
 - `Fix Fireedge support x.509 certificates <https://github.com/OpenNebula/one/issues/5589>`__.
+- `Avoid failures in case of LXD timeouts <https://github.com/OpenNebula/one/issues/5580>`__.
