@@ -27,14 +27,14 @@ The driver takes some parameters, described here:
 
 These are the actions valid in the -l parameter:
 
--  attach\_disk
--  attach\_nic
+-  attachdisk
+-  attachnic
 -  cancel
 -  deploy
--  detach\_disk
--  detach\_nic
+-  detachdisk
+-  detachnic
 -  migrate
--  migrate\_local
+-  migratelocal
 -  poll
 -  reboot
 -  reset
@@ -42,9 +42,9 @@ These are the actions valid in the -l parameter:
 -  restore
 -  save
 -  shutdown
--  snapshot\_create
--  snapshot\_delete
--  snapshot\_revert
+-  snapshotcreate
+-  snapshotdelete
+-  snapshotrevert
 
 You can also provide an alternative script name for local execution, by default the script is called the same as the action, in this fashion ``action=script_name``. As an example:
 
