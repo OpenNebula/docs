@@ -86,6 +86,18 @@ Additionally, you need to enable the drivers that ``onemonitord`` will use to in
 | ``-w``    | Timeout in seconds to execute external commands (e.g. ssh connections)             |
 +-----------+------------------------------------------------------------------------------------+
 
+Configure Probes
+----------------
+To fine tune monitoring probes you can adjust parameters in ``/var/lib/one/remotes/etc/im/<hypervisor>-probe.d/probe_db.conf``. The following parameters can be tuned:
+
++-------------------+----------------------------------------------------------------------------+
+| Parameter         | Description                                                                |
++===================+============================================================================+
+| ``obsolete``      | [minutes] VM status entries older than this will be deleted                |
++-------------------+----------------------------------------------------------------------------+
+| ``times_missing`` | Number of monitor cycles a VM is missing to consider it definitely lost    |
++-------------------+----------------------------------------------------------------------------+
+
 Configure OpenNebula
 --------------------
 
