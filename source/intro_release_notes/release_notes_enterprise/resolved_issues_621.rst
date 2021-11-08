@@ -14,3 +14,5 @@ The following issues has been solved in 6.2.1:
 
 - `Sunstone Server Uses Plain-Text Form Based Authentication <https://github.com/OpenNebula/one/issues/5595>`__.
 - `Fireedge X-XSS-Protection HTTP Header missing on port 2616 <https://github.com/OpenNebula/one/issues/5598>`__.
+- `Fix qcow2 mappper in LXC/LXD drivers to avoid locked NBD devices under load  <https://github.com/OpenNebula/one/issues/5582>`__.
+- `Fix failures in case of LXD timeouts <https://github.com/OpenNebula/one/issues/5580>`__.
