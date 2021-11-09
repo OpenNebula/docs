@@ -304,12 +304,12 @@ Download the image to your container runtime in two simple steps:
 .. prompt:: bash # auto
 
     # docker pull enterprise.opennebula.io/opennebula:6.3.80
-    6.1: Pulling from opennebula
+    6.3: Pulling from opennebula
     14d5f30b982f: Pull complete
     56fd5a76ed9f: Pull complete
     Digest: sha256:abf26354b99485e7836370c3ef7249ea68ffee4bbc5e38381029f458d0be80a7
-    Status: Downloaded newer image for enterprise.opennebula.io/opennebula:6.1
-    enterprise.opennebula.io/opennebula:6.1
+    Status: Downloaded newer image for enterprise.opennebula.io/opennebula:6.3
+    enterprise.opennebula.io/opennebula:6.3
 
 Community Edition
 -----------------
