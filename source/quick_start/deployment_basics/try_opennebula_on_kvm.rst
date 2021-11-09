@@ -98,7 +98,7 @@ Be patient, it should take only a few minutes to get the Host prepared. The main
 .. code::
 
     ### Report
-    OpenNebula 6.1 was installed
+    OpenNebula 6.2 was installed
     Sunstone is running on:
       http://3.121.76.103/
     FireEdge is running on:
