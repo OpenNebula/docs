@@ -21,6 +21,8 @@ Drivers - Storage
 
 - **LVM**, terminate a VM in undeployed state is broken, the result is different if persistent images are used or not. A detailed explanation can be found `here <https://github.com/OpenNebula/one/issues/5385>`__.
 
+- **LVM**, VM removing might fail because of an error defining a lock name if ``ZERO_LVM_ON_DELETE`` is not set. This issue have been already fixed in the `development branch <https://github.com/OpenNebula/one/commit/00a61d74a5f7339c79fadc708c8f89abaf5025d8>`__.
+
 Drivers - Network
 ================================================================================
 
