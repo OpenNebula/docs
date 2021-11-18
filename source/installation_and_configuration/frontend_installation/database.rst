@@ -87,7 +87,7 @@ Before you run OpenNebula for the first time in the next section :ref:`Front-end
 
 .. code::
 
-    # Sample configuration for PostgreSQL
+    # Sample configuration for MySQL
     DB = [ BACKEND = "mysql",
            SERVER  = "localhost",
            PORT    = 0,
