@@ -14,6 +14,10 @@ Drivers - Network
 - If the nic-attach fails due to the libvirt bug (VM can not eject CD-ROM after reset) the nic appears in the VM (although without proper configuration) but it's not visible on OpenNebula VM `#5268 <http://github.com/OpenNebula/one/issues/5268>`_
 - Edge Cluster Public IP: NIC_ALIAS on the public network can only can only be associated to a NIC on the same network.
 
+Drivers - Storage
+================================================================================
+- **LVM**, VM removing might fail because of an error defining a lock name if ``ZERO_LVM_ON_DELETE`` is not set. This issue have been already fixed in the `development branch <https://github.com/OpenNebula/one/commit/00a61d74a5f7339c79fadc708c8f89abaf5025d8>`__.
+
 High Availability
 ================================================================================
 
