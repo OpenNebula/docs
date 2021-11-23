@@ -18,3 +18,4 @@ The following issues has been solved in 6.2.1:
 - `Fix failures in case of LXD timeouts <https://github.com/OpenNebula/one/issues/5580>`__.
 - `Fix provision type selector on OneProvision GUI when go back to first step <https://github.com/OpenNebula/one/issues/5608>`__.
 - `Fix install One CLI Tools on Mac OS <https://github.com/OpenNebula/one/issues/5483>`__.
+- `Fix monitoring sync_state sometimes set wrong VM state <https://github.com/OpenNebula/one/issues/5581>`__.
