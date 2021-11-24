@@ -32,7 +32,10 @@ Available options are:
 +--------------------------------+----------------------------------------------------------------------------------------------------+
 |           Option               |                                          Description                                               |
 +================================+====================================================================================================+
-| :tmpdir                        | Uploaded images will be temporally stored in this folder before being copied to OpenNebula         |
+| ``:tmpdir``                    | Directory for the temporary storage of uploaded images before copying to OpenNebula                |
+|                                | (Default: ``/var/tmp``). If you are planning to use a directory mounted through NFS, please don't  |
+|                                | use the root but rather create a subfolder inside and point this variable to it (for instance,     |
+|                                | ``/var/tmp/images``).                                                                              |
 +--------------------------------+----------------------------------------------------------------------------------------------------+
 | :one\_xmlrpc                   | OpenNebula daemon host and port                                                                    |
 +--------------------------------+----------------------------------------------------------------------------------------------------+
