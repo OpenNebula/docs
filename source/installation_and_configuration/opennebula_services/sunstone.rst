@@ -23,7 +23,10 @@ The Sunstone configuration file can be found in ``/etc/one/sunstone-server.conf`
 +=================================+=====================================================================================================+
 | **Server Configuration**                                                                                                              |
 +---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:tmpdir``                     | Directory to temporarily store uploaded images before copying to OpenNebula (Default: ``/var/tmp``) |
+| ``:tmpdir``                     | Directory for the temporary storage of uploaded images before copying to OpenNebula                 |
+|                                 | (Default: ``/var/tmp``). If you are planning to use a directory mounted through NFS, please don't   |
+|                                 | use the root but rather create a subfolder inside and point this variable to it (for instance,      |
+|                                 | ``/var/tmp/images``).                                                                               |
 +---------------------------------+-----------------------------------------------------------------------------------------------------+
 | ``:one_xmlrpc``                 | Endpoint of OpenNebula XML-RPC API (Default: ``http://localhost:2633/RPC2``)                        |
 +---------------------------------+-----------------------------------------------------------------------------------------------------+
