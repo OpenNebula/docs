@@ -77,6 +77,8 @@ For example, you can define an *Open vSwitch Network* with the following templat
     VLAN_ID = 50          # Optional
     ...
 
+.. warning:: Currently, if IP Spoofing enabled, only one NIC per VM for the same Open vSwith network can be attached.
+
 Multiple VLANs (VLAN trunking)
 ------------------------------
 
