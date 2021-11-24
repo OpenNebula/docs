@@ -786,6 +786,8 @@ These attributes are encrypted and decrypted by the OpenNebula core. The support
 - ``HOST_ENCRYPTED_ATTR``
 - ``VM_ENCRYPTED_ATTR``: these attributes apply also to the user template.
 - ``VNET_ENCRYPTED_ATTR``: these attributes apply also to address ranges which belong to the virtual network.
+- ``USER_ENCRYPTED_ATTR``
+- ``IMAGE_ENCRYPTED_ATTR``
 
 Sample configuration:
 
