@@ -522,6 +522,7 @@ After a VM has been imported, it can be removed from OpenNebula and imported aga
 - opennebula.vm.running
 - opennebula.vm.id
 - opennebula.disk.*
+- remotedisplay
 
 The following procedure is useful if the VM has been changed in vCenter and OpenNebula needs to "rescan" its disks and NICs:
 
