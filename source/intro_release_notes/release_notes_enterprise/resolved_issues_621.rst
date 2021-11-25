@@ -10,6 +10,7 @@ The following new features has been backported to 6.2.1:
 
 - `Add support to filter providers by provision type <https://github.com/OpenNebula/one/issues/5604>`__.
 - `Add encrypted attributes to User template <https://github.com/OpenNebula/one/issues/5431>`__.
+- `Add encryption to guacamole SSH private key and passphrase <https://github.com/OpenNebula/one/issues/5241>`__.
 
 The following issues has been solved in 6.2.1:
 
@@ -18,8 +19,8 @@ The following issues has been solved in 6.2.1:
 - `Fix qcow2 mappper in LXC/LXD drivers to avoid locked NBD devices under load  <https://github.com/OpenNebula/one/issues/5582>`__.
 - `Fix failures in case of LXD timeouts <https://github.com/OpenNebula/one/issues/5580>`__.
 - `Fix provision type selector on OneProvision GUI when go back to first step <https://github.com/OpenNebula/one/issues/5608>`__.
+- `Fix unreliable VM encrypted attribute <https://github.com/OpenNebula/one/issues/5559>`__.
 - `Fix install One CLI Tools on Mac OS <https://github.com/OpenNebula/one/issues/5483>`__.
 - `Fix monitoring sync_state sometimes set wrong VM state <https://github.com/OpenNebula/one/issues/5581>`__.
 - `Fix Sunstone Cloud View service role scaling <https://github.com/OpenNebula/one/issues/5605>`__.
-- `Add encryption to guacamole SSH private key and passphrase <https://github.com/OpenNebula/one/issues/5241>`__.
 - `Fix LXD qcow2 mapper failing with extra disks <https://github.com/OpenNebula/one-ee/pull/1613>`__.
