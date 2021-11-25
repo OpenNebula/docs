@@ -295,6 +295,7 @@ After updating the configuration file `sunstone-server.conf`, if you didn't inst
 If you don't want to use the new feature, comment these out in order to get rid of the error.
 
 Step 8. Upgrade the Database Version
+================================================================================
 
 .. important::
 
