@@ -24,3 +24,4 @@ The following issues has been solved in 5.12.11:
 - `Fix Sunstone deletes disks attributes when perform an image change <https://github.com/OpenNebula/one/issues/5543>`__.
 - `Fix Sunstone recommended time for schedule actions <https://github.com/OpenNebula/one/issues/5572>`__.
 - `Fix Sunstone misbehave with service user inputs <https://github.com/OpenNebula/one/issues/5578>`__.
+- `Fix missing STDERR on LXD nic tap parsing <https://github.com/OpenNebula/one/issues/5652>`__.
