@@ -25,3 +25,4 @@ The following issues has been solved in 6.2.1:
 - `Fix Sunstone Cloud View service role scaling <https://github.com/OpenNebula/one/issues/5605>`__.
 - `Fix LXD qcow2 mapper failing with extra disks <https://github.com/OpenNebula/one-ee/pull/1613>`__.
 - `Fix missing STDERR on LXD nic tap parsing <https://github.com/OpenNebula/one/issues/5652>`__.
+- `Fix VMs monitored as POWEROFF instead of UNKNOWN just before a crash <https://github.com/OpenNebula/one/issues/5564>`__.
