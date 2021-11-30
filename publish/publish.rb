@@ -12,6 +12,8 @@ require 'yaml'
 #
 # @param cmd [String] Command to run
 def run(cmd)
+    puts cmd
+
     rtn = nil
 
     Open3.popen3(cmd) do |_, o, e, t|
