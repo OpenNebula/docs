@@ -9,12 +9,12 @@ PyONE is an implementation of OpenNebula XML-RPC bindings in Python. It has been
 API Documentation
 ================================================================================
 
-You can consult the `doc online </doc/6.0/oca/python/>`__, but as long as the code is generated it is not much useful, the main source of the documentation is still the :ref:`XML-RPC doc <api>`
+As long as the code is generated, the main source of the documentation is still the :ref:`XML-RPC doc <api>`
 
 Download and installation
 ================================================================================
 
-You can either use the system package ``python-pyone`` / ``python3-pyone`` or install it using ``pip install pyone``.
+You can either use the system package ``python3-pyone`` or install it using ``pip install pyone``.
 
 
 Usage

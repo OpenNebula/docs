@@ -361,6 +361,10 @@ If the nic ``NAME`` is empty, it will be generated automatically in the form ``N
 
 .. important:: Any attribute supported by a NIC attribute can be also used in an alias except for ``NETWORK_MODE``. A ``NIC_ALIAS`` network cannot be automatically selected.
 
+.. important:: The :ref:`Security Groups<security_groups>` and IP/MAC spoofing
+	       filters from the NIC network will be applied to the NIC_ALIAS.
+	       Those ones belonging to the NIC_ALIAS network won't apply.
+
 Configuring the Virtual Machine Network
 --------------------------------------------------------------------------------
 

@@ -167,3 +167,7 @@ LXD to LXC Migration Strategy
 From OpenNebula 6.0, LXD drivers will be deprecated but they will still be supported. The aim of this is to provide our users a period of time to define their migration strategy during which they can run both kinds of containers.
 
 Specific information on how to carry out the migration can be found in the :ref:`LXD to LXC Migration guide <lxd_to_lxc>`.
+
+PyONE
+========================
+As Python 2 is no longer supported the system packcage python-pyone is not released any more.
