@@ -69,18 +69,6 @@ error(run("ssh #{ssh_op} #{host} 'mkdir #{branch_build_path}'"))
 
 error(run("tar -C 'build/html' --mode='a+r' -cf - . | " \
           "ssh #{ssh_op} #{host} 'tar -C '#{branch_build_path}' -xvf -'"))
-
-# switch symlink to current transferred build
-old_symlink_target = error(
-    run(
-        "ssh #{ssh_op} #{host} " \
-        "'readlink #{branch_symlink_path} 2>/dev/null || true'"
-    )
-)
-
-# TODO: remove this
-exit 0
-
 error(
     run(
         "ssh #{ssh_op} #{host} " \
