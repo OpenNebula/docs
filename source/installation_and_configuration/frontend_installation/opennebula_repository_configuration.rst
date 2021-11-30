@@ -171,39 +171,6 @@ To add OpenNebula repository, execute the following as user ``root``:
     EOT
     # yum makecache
 
-**Fedora 32**
-
-.. important:: This is a :ref:`Secondary Platform <secondary>` not recommended for production environments!
-
-.. prompt:: bash # auto
-
-    # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
-    [opennebula]
-    name=OpenNebula Community Edition
-    baseurl=https://downloads.opennebula.io/repo/6.2/Fedora/32/$basearch
-    enabled=1
-    gpgkey=https://downloads.opennebula.io/repo/repo.key
-    gpgcheck=1
-    repo_gpgcheck=1
-    EOT
-    # yum makecache
-
-**Fedora 33**
-
-.. important:: This is a :ref:`Secondary Platform <secondary>` not recommended for production environments!
-
-.. prompt:: bash # auto
-
-    # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
-    [opennebula]
-    name=OpenNebula Community Edition
-    baseurl=https://downloads.opennebula.io/repo/6.2/Fedora/33/$basearch
-    enabled=1
-    gpgkey=https://downloads.opennebula.io/repo/repo.key
-    gpgcheck=1
-    repo_gpgcheck=1
-    EOT
-    # yum makecache
 
 Debian/Ubuntu
 -------------
@@ -227,7 +194,7 @@ First, add the repository signing GPG key on the Front-end by executing as user 
 
 .. prompt:: bash # auto
 
-    # echo "deb https://downloads.opennebula.io/repo/6.2/Debian/11 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://downloads.opennebula.io/repo/6.2/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Debian 11**
@@ -250,11 +217,4 @@ First, add the repository signing GPG key on the Front-end by executing as user 
 .. prompt:: bash # auto
 
     # echo "deb https://downloads.opennebula.io/repo/6.2/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
-    # apt-get update
-
-**Ubuntu 20.10**
-
-.. prompt:: bash # auto
-
-    # echo "deb https://downloads.opennebula.io/repo/6.2/Ubuntu/20.10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
