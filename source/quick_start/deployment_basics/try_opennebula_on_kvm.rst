@@ -30,7 +30,7 @@ You'll need a server to try out OpenNebula. The provided Host should have a fres
 - public IP address (FE-PublicIP)
 - privileged user access (`root`)
 - openssh-server package installed
-- operating system: CentOS 7 or 8, Debian 9 or 10, Ubuntu 18.04 or 20.04
+- operating system: CentOS 7 or 8, Debian 10 or 11, Ubuntu 18.04 or 20.04
 - open ports: 22 (SSH), 80 (Sunstone), 2616 (FireEdge), 5030 (OneGate).
 
 If you don't have a server available with the above characteristics, we recommend using a the Amazon EC2 service to obtain a VM to act as the OpenNebula Front-end. A tested combination is the following (but is by no means the only one possible):
