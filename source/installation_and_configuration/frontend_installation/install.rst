@@ -69,7 +69,7 @@ Not all OpenNebula dependencies are in base distribution repositories. On select
 
     # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 
-**Debian 9, Ubuntu 18.04**
+**Debian, Ubuntu**
 
 .. prompt:: bash # auto
 
@@ -112,9 +112,9 @@ Available packages for OpenNebula clients, the Front-end and hypervisor Nodes:
 +------------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **opennebula-node-firecracker**          | Base setup for Firecracker hypervisor Node                                                                    |
 +------------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **opennebula-node-lxc**                  | Base setup for LXC hypervisor Node (*not on CentOS/RHEL 7 and Debian 9*)                                      |
+| **opennebula-node-lxc**                  | Base setup for LXC hypervisor Node (*not on CentOS/RHEL 7*)                                                   |
 +------------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **opennebula-node-lxd**                  | Base setup for LXD hypervisor Node (*only on Ubuntu and Debian 10*)                                           |
+| **opennebula-node-lxd**                  | Base setup for LXD hypervisor Node (*only on Ubuntu and Debian*)                                              |
 +------------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **opennebula-lxd-snap**                  | Meta-package to install LXD snap (*only on Ubuntu 18.04*)                                                     |
 +------------------------------------------+---------------------------------------------------------------------------------------------------------------+
