@@ -154,7 +154,7 @@ You can find :ref:`more information on using these Marketplaces here <marketplac
 Using a Dockerfile
 --------------------------------------------------------------------------------
 
-You can you to create Images using your own dockerfiles. The ``PATH`` in this case has the following format:
+You can create Images using your own dockerfiles. The ``PATH`` in this case has the following format:
 
 .. code::
 
