@@ -15,8 +15,8 @@ def run(cmd)
     rtn = nil
 
     Open3.popen3(cmd) do |_, o, e, t|
-        out_reader = Thread.new { o.read }
-        err_reader = Thread.new { e.read }
+        out_reader = Thread.new { streamer(o) }
+        err_reader = Thread.new { streamer(e) }
 
         rtn = [out_reader.value, err_reader.value, t.value]
     end
@@ -34,6 +34,26 @@ def error(rc)
 
     exit(-1)
 end
+
+# Print lines until empty
+#
+# @param str [String]  Line to print
+def streamer(str)
+    full = ''
+
+    str.each do |l|
+        next if l.empty? || l == "\n"
+
+        full << l
+
+        print l
+
+        $stdout.flush
+    end
+
+    full
+end
+
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
