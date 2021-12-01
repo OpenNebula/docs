@@ -221,6 +221,10 @@ Marketplace with vCenter Datastores
 
 The vCenter datastores are compatible with OpenNebula HTTP and S3 Marketplaces. A generic VM Template imported in OpenNebula is necessary: add the ID of the imported OpenNebula VM Template in ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterrc`` in the default_template setting. More information about OpenNebula Marketplaces can be found :ref:`here <private_marketplace_overview>`.
 
+.. important::
+
+    The vCenter VM Template used when downloading an image from a Marketplace needs to be empty (i.e without any disk or NIC attached).
+
 Tuning and Extending
 --------------------
 
