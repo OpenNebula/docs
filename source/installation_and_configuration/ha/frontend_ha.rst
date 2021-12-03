@@ -258,6 +258,8 @@ Adding more servers
 
 * **Follower**: Ensure the new node have the exact same configuration than the **Leader** node. In order to do this :ref:`onezone serversync <server_sync_ha>` can be used to fetch the configuration from the Leader node.
 
+.. note:: If you are using FireEdge you need to restart this service in the **Follower** ``systemctl restart opennebula-fireedge``.
+
 Repeat this section to add new servers. Make sure that you only add servers when the cluster is in a healthy state. That means there is 1 *leader* and the rest are in *follower* state. If there is one server in error state, fix it before proceeding.
 
 Checking Cluster Health
