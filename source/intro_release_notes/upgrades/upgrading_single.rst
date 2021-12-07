@@ -114,6 +114,8 @@ Step 2. Set All Hosts to Offline Mode
 
 Set all Hosts to offline mode to stop all monitoring processes.
 
+If you are upgrading from version 6.2+. Use ``onezone disable <zone_id>`` to make sure that no operation changing OpenNebula state are executed.
+
 Step 3. Stop OpenNebula
 ================================================================================
 
@@ -335,6 +337,8 @@ CentOS
 
 Step 13. Enable Hosts
 ================================================================================
+
+If you are upgrading from version 6.2+. Use ``onezone enable <zone_id>`` to make OpenNebula fully functional.
 
 Enable all Hosts, disabled in step 2.
 
