@@ -11,6 +11,7 @@ The following new features has been backported to 6.2.1:
 - `Add support to filter providers by provision type <https://github.com/OpenNebula/one/issues/5604>`__.
 - `Add encrypted attributes to User template <https://github.com/OpenNebula/one/issues/5431>`__.
 - `Add encryption to guacamole SSH private key and passphrase <https://github.com/OpenNebula/one/issues/5241>`__.
+- `LXD Marketplace App VMTemplate has more customization <https://github.com/OpenNebula/one/issues/3667>`__.
 
 The following issues has been solved in 6.2.1:
 
