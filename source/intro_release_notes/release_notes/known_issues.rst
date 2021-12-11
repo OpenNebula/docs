@@ -23,6 +23,22 @@ Drivers - Storage
 
 - **LVM**, VM removing might fail because of an error defining a lock name if ``ZERO_LVM_ON_DELETE`` is not set. This issue have been already fixed in the `development branch <https://github.com/OpenNebula/one/commit/00a61d74a5f7339c79fadc708c8f89abaf5025d8>`__.
 
+Drivers - Virtualization
+=========================
+
+LXD
+---
+
+If the poweroff operation takes too long, the monitoring drivers may report the VM status before the VM drivers operates. A VM Log example follows
+
+.. code-block:: log
+
+     Thu Dec  2 15:01:29 2021 [Z0][VM][I]: New LCM state is RUNNING
+     Thu Dec  2 15:01:35 2021 [Z0][VM][I]: New LCM state is SHUTDOWN
+     Thu Dec  2 15:02:05 2021 [Z0][LCM][I]: VM reported SHUTDOWN by the drivers
+
+In order to avoid that, increase the ``times_missing`` value in ``/var/lib/one/remotes/etc/im/lxd-probes.d/probe_db.conf`` and run ``onehost sync --force``. More information `here <https://github.com/OpenNebula/one/issues/5581>`_.
+
 Drivers - Network
 ================================================================================
 
