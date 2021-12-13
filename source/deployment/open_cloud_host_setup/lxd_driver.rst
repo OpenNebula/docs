@@ -281,5 +281,13 @@ Troubleshooting
 - The oneadmin user has his ``$HOME`` in a non ``/home/$USER`` location. This prevents the oneadmin account from properly using the LXD CLI due to a snap limitation. You can use sudo to use other account to run lxd commands.
 - The command parameter in the VNC configuration dictates which command will appear in noVNC when entering a container. Having ``/bin/bash`` will skip the user login and gain root access on the container.
 - If you experience `reboot issues <https://github.com/OpenNebula/one/issues/3189>`_ you can apply a network hook patch by copying the file ``/usr/share/one/examples/network_hooks/99-lxd_clean.rb`` to ``/var/lib/one/remotes/vnm/<network_driver>/clean.d`` and issuing ``onehost sync --force``. This have to be done for all network drivers used in your cloud.
+- If the poweroff operation takes too long, the monitoring drivers may report the VM status before the VM drivers operates. A VM Log example follows
 
+  .. code-block:: log
+
+        Thu Dec  2 15:01:29 2021 [Z0][VM][I]: New LCM state is RUNNING
+        Thu Dec  2 15:01:35 2021 [Z0][VM][I]: New LCM state is SHUTDOWN
+        Thu Dec  2 15:02:05 2021 [Z0][LCM][I]: VM reported SHUTDOWN by the drivers
+
+In order to avoid that, increase the ``times_missing`` value in ``/var/lib/one/remotes/etc/im/lxd-probes.d/probe_db.conf`` and run ``onehost sync --force``. More information `here <https://github.com/OpenNebula/one/issues/5581>`_.
 .. |image1| image:: /images/vncterm_command.png
