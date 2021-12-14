@@ -29,3 +29,4 @@ The following issues has been solved in 6.2.1:
 - `Fix VMs monitored as POWEROFF instead of UNKNOWN just before a crash <https://github.com/OpenNebula/one/issues/5564>`__.
 - `Fix VMTemplate lock and unlock <https://github.com/OpenNebula/one/issues/5651>`__.
 - `Fix hide SSH configuration when hiden by yaml <https://github.com/OpenNebula/one/issues/5650>`__.
+- `Fix vCenter 6 and 7 back-compatibility issue <https://github.com/OpenNebula/one/issues/5662>`__.
