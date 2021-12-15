@@ -18,168 +18,169 @@ The Sunstone configuration file can be found in ``/etc/one/sunstone-server.conf`
 
     After a configuration change, the Sunstone server must be :ref:`restarted <sunstone_conf_service>` to take effect.
 
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-|          Parameter              |                                          Description                                                |
-+=================================+=====================================================================================================+
-| **Server Configuration**                                                                                                              |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:tmpdir``                     | Directory for the temporary storage of uploaded images before copying to OpenNebula                 |
-|                                 | (Default: ``/var/tmp``). If you are planning to use a directory mounted through NFS, please don't   |
-|                                 | use the root but rather create a subfolder inside and point this variable to it (for instance,      |
-|                                 | ``/var/tmp/images``).                                                                               |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:one_xmlrpc``                 | Endpoint of OpenNebula XML-RPC API (Default: ``http://localhost:2633/RPC2``)                        |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:one_xmlrpc_timeout``         | Timeout (in seconds) for XML-RPC calls from Sunstone.                                               |
-|                                 | See :ref:`Shell Environment variables <manage_users>`.                                              |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:subscriber_endpoint``        | Endpoint for ZeroMQ subscriptions (Default: ``tcp://localhost:2101``)                               |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:host``                       | Hostname/IP where server will listen (Default: ``0.0.0.0``)                                         |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:port``                       | Port where server will listen (Default: ``9869``)                                                   |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:sessions``                   | Method of keeping user sessions. It can be ``memory``, ``memcache`` or ``memcache-dalli``.          |
-|                                 | For servers that spawn more processes (e.g., Passenger or Unicorn) ``memcache`` must be used.       |
-|                                 | (Default: ``memory``)                                                                               |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:memcache_host``              | Hostname/IP of memcached server (only for memcached-based sessions) (Default: ``localhost``)        |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:memcache_port``              | Port of memcached server (only for memcached-based sessions) (Default: ``11211``)                   |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:memcache_namespace``         | Memcached namespace to store sessions, useful when memcached is used by other services              |
-|                                 | (Default: ``opennebula.sunstone``)                                                                  |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:env``                        | Execution environment for Sunstone. With ``dev``, instead of pulling the minified JS all the        |
-|                                 | files will be pulled (``app/main.js``). Check the :ref:`Building from Source <compile>` guide       |
-|                                 | for details on how to run Sunstone in development. With ``prod``, the minified JS                   |
-|                                 | will be used (``dist/main.js``) (Default: ``prod``)                                                 |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:max_upload_file_size``       | Maximum permitted size of uploaded images (in bytes). Leave commented for unlimited size            |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| **Logging**                                                                                                                           |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:debug_level``                | Logging level. Values: ``0`` for ERROR level, ``1`` for WARNING level, ``2`` for INFO level,        |
-|                                 | ``3`` for DEBUG level. (Default: ``3``)                                                             |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| **Proxy**                                                                                                                             |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:proxy``                      | Proxy server for HTTP traffic                                                                       |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:no_proxy``                   | Patterns for IP addresses or domain names that shouldn’t use the proxy                              |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| **Authentication**                                                                                                                    |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:auth``                       | Authentication driver for incoming requests. Possible values are ``sunstone``,                      |
-|                                 | ``opennebula``, ``remote`` and ``x509``. Check :ref:`authentication methods <authentication>`       |
-|                                 | for more info. (Default: ``opennebula``)                                                            |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:core_auth``                  | Authentication driver to communicate with OpenNebula Daemon. Possible values are ``x509``           |
-|                                 | or ``cipher``. See :ref:`Cloud Server Authentication <cloud_auth>`. (Default: ``cipher``)           |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:two_factor_auth_issuer``     | Two Factor Authentication Issuer Label (Default: ``opennebula``)                                    |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| **WebAuthn**                                                                                                                          |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:webauthn_origin``            |                                                                                                     |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:webauthn_rpname``            | Relying Party name for display purposes (Default: ``OpenNebula Cloud``)                             |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:webauthn_timeout``           | Time (in ms) the browser should wait for any interaction with user (Default: ``60000``)             |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:webauthn_rpid``              | Optional differing Relying Party ID                                                                 |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:webauthn_algorithms``        | List of supported cryptographic algorithms. Options: ``ES256``, ``ES384``, ``ES512``, ``PS256``,    |
-|                                 | ``PS384``, ``PS512``, ``RS256``, ``RS384``, ``RS512``, ``RS1``. (Default: ``[ES256, PS256, RS256]``)|
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| **Upgrades Checks**                                                                                                                   |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:remote_version``             | URL to check for latest releases (Default: ``http://downloads.opennebula.org/latest``)              |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| **UI Settings**                                                                                                                       |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:vnc_proxy_port``             | Base port for the noVNC proxy. Can be prefixed with an address on which the sever will              |
-|                                 | be listening (ex: 127.0.0.1:29876). (Default: ``28767``)                                            |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:vnc_proxy_support_wss``      | Values ``yes``, ``no``, ``only``. If enabled, the proxy will be set up with a certificate and       |
-|                                 | a key to use secure websockets. If set to ``only`` the proxy will only accept encrypted             |
-|                                 | connections, otherwise it will accept both encrypted or unencrypted ones. (Default: ``no``)         |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:vnc_proxy_cert``             | Full path to certificate file for WSS connections.                                                  |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:vnc_proxy_key``              | Full path to key file. Not necessary if key is included in certificate.                             |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:vnc_proxy_ipv6``             | Enable IPv6 for noVNC - ``true`` or ``false`` (Default: ``false``)                                  |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:vnc_client_port``            | Port where the noVNC JS client will connect.                                                        |
-|                                 | If not set, will use the port section of ``:vnc_proxy_port``                                        |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:vnc_request_password``       | Request VNC password for external windows, ``true`` or ``false`` (Default: ``false``)               |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:allow_vnc_federation``       | Display VNC icons in federation, ``yes`` or ``no`` (Default: ``no``)                                |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:session_expire_time``        | Login Session Length in seconds (Default: ``3600``, 1 hour)                                         |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:keep_me_logged``             | Enable option *'Keep me logged in'* in Sunstone login (Default: ``true``)    n                      |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:lang``                       | Default language for the Sunstone interface. This is the default language that will                 |
-|                                 | be used if user has not defined a variable ``LANG`` with a different valid value in                 |
-|                                 | user template                                                                                       |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:table_order``                | Default table order. Resources get ordered by ID in ``asc`` or ``desc`` order. (Default: ``desc``)  |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:mode``                       | Default Sunstone views group (Default: ``mixed``)                                                   |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:get_extended_vm_info``       | True to display extended VM information from OpenNebula (Default: ``false``)                        |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:get_extended_vm_monitoring`` | True to display extended information from VM monitoring from OpenNebula (Default: ``false``)        |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:paginate``                   | Array for paginate, the first position is for internal use. The second is used to put               |
-|                                 | names to each value.                                                                                |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:leases``                     | Displays button and clock icon in table of VM                                                       |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:threshold_min``              | Minimum percentage value for green color on thresholds                                              |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:threshold_low``              | Minimum percentage value for orange color on thresholds                                             |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:threshold_high``             | Minimum percentage value for red color on thresholds                                                |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:support_fs``                 | List of filesystems to offer when creating new Image                                                |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| **Official Support**                                                                                                                  |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:token_remote_support``       | Customer token to contact support from Sunstone                                                     |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| **Marketplace**                                                                                                                       |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:marketplace_username``       | Username credential to connect to the Marketplace                                                   |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:marketplace_password``       | Password to connect to the Marketplace                                                              |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:marketplace_url``            | Endpoint to connect to the Marketplace. If commented, a 503 ``service unavailable``                 |
-|                                 | error will be returned to clients. (Default: ``http://marketplace.opennebula.io/``)                 |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| **OneFlow**                                                                                                                           |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:oneflow_server``             | Endpoint to connect to the OneFlow server (Default: ``http://localhost:2474/``)                     |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| **Routes**                                                                                                                            |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:routes``                     | List of Ruby files containing custom routes to be loaded.                                           |
-|                                 | Check :ref:`server plugins <sunstone_dev>` for more information.                                    |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| **FireEdge**                                                                                                                          |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:private_fireedge_endpoint``  | Base URL (hostname/IP-based) where the FireEdge server is running.                                  |
-|                                 | This endpoint must be **reachable by Sunstone server**.                                             |
-|                                 | (Default: ``http://localhost:2616``)                                                                |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-| ``:public_fireedge_endpoint``   | Base URL (hostname/IP-based) where the FireEdge server is running.                                  |
-|                                 | This endpoint must be **reachable by end-users**!                                                   |
-|                                 | (Default: ``http://localhost:2616``)                                                                |
-+---------------------------------+-----------------------------------------------------------------------------------------------------+
-
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+|          Parameter                |                                          Description                                                |
++===================================+=====================================================================================================+
+| **Server Configuration**                                                                                                                |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:tmpdir``                       | Directory for the temporary storage of uploaded images before copying to OpenNebula                 |
+|                                   | (Default: ``/var/tmp``). If you are planning to use a directory mounted through NFS, please don't   |
+|                                   | use the root but rather create a subfolder inside and point this variable to it (for instance,      |
+|                                   | ``/var/tmp/images``).                                                                               |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:one_xmlrpc``                   | Endpoint of OpenNebula XML-RPC API (Default: ``http://localhost:2633/RPC2``)                        |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:one_xmlrpc_timeout``           | Timeout (in seconds) for XML-RPC calls from Sunstone.                                               |
+|                                   | See :ref:`Shell Environment variables <manage_users>`.                                              |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:subscriber_endpoint``          | Endpoint for ZeroMQ subscriptions (Default: ``tcp://localhost:2101``)                               |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:host``                         | Hostname/IP where server will listen (Default: ``0.0.0.0``)                                         |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:port``                         | Port where server will listen (Default: ``9869``)                                                   |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:sessions``                     | Method of keeping user sessions. It can be ``memory``, ``memcache`` or ``memcache-dalli``.          |
+|                                   | For servers that spawn more processes (e.g., Passenger or Unicorn) ``memcache`` must be used.       |
+|                                   | (Default: ``memory``)                                                                               |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:memcache_host``                | Hostname/IP of memcached server (only for memcached-based sessions) (Default: ``localhost``)        |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:memcache_port``                | Port of memcached server (only for memcached-based sessions) (Default: ``11211``)                   |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:memcache_namespace``           | Memcached namespace to store sessions, useful when memcached is used by other services              |
+|                                   | (Default: ``opennebula.sunstone``)                                                                  |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:env``                          | Execution environment for Sunstone. With ``dev``, instead of pulling the minified JS all the        |
+|                                   | files will be pulled (``app/main.js``). Check the :ref:`Building from Source <compile>` guide       |
+|                                   | for details on how to run Sunstone in development. With ``prod``, the minified JS                   |
+|                                   | will be used (``dist/main.js``) (Default: ``prod``)                                                 |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:max_upload_file_size``         | Maximum permitted size of uploaded images (in bytes). Leave commented for unlimited size            |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| **Logging**                                                                                                                             |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:debug_level``                  | Logging level. Values: ``0`` for ERROR level, ``1`` for WARNING level, ``2`` for INFO level,        |
+|                                   | ``3`` for DEBUG level. (Default: ``3``)                                                             |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| **Proxy**                                                                                                                               |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:proxy``                        | Proxy server for HTTP traffic                                                                       |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:no_proxy``                     | Patterns for IP addresses or domain names that shouldn’t use the proxy                              |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| **Authentication**                                                                                                                      |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:auth``                         | Authentication driver for incoming requests. Possible values are ``sunstone``,                      |
+|                                   | ``opennebula``, ``remote`` and ``x509``. Check :ref:`authentication methods <authentication>`       |
+|                                   | for more info. (Default: ``opennebula``)                                                            |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:core_auth``                    | Authentication driver to communicate with OpenNebula Daemon. Possible values are ``x509``           |
+|                                   | or ``cipher``. See :ref:`Cloud Server Authentication <cloud_auth>`. (Default: ``cipher``)           |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:two_factor_auth_issuer``       | Two Factor Authentication Issuer Label (Default: ``opennebula``)                                    |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| **WebAuthn**                                                                                                                            |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:webauthn_origin``              |                                                                                                     |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:webauthn_rpname``              | Relying Party name for display purposes (Default: ``OpenNebula Cloud``)                             |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:webauthn_timeout``             | Time (in ms) the browser should wait for any interaction with user (Default: ``60000``)             |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:webauthn_rpid``                | Optional differing Relying Party ID                                                                 |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:webauthn_algorithms``          | List of supported cryptographic algorithms. Options: ``ES256``, ``ES384``, ``ES512``, ``PS256``,    |
+|                                   | ``PS384``, ``PS512``, ``RS256``, ``RS384``, ``RS512``, ``RS1``. (Default: ``[ES256, PS256, RS256]``)|
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| **Upgrades Checks**                                                                                                                     |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:remote_version``               | URL to check for latest releases (Default: ``http://downloads.opennebula.org/latest``)              |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| **UI Settings**                                                                                                                         |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:vnc_proxy_port``               | Base port for the noVNC proxy. Can be prefixed with an address on which the sever will              |
+|                                   | be listening (ex: 127.0.0.1:29876). (Default: ``28767``)                                            |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:vnc_proxy_support_wss``        | Values ``yes``, ``no``, ``only``. If enabled, the proxy will be set up with a certificate and       |
+|                                   | a key to use secure websockets. If set to ``only`` the proxy will only accept encrypted             |
+|                                   | connections, otherwise it will accept both encrypted or unencrypted ones. (Default: ``no``)         |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:vnc_proxy_cert``               | Full path to certificate file for WSS connections.                                                  |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:vnc_proxy_key``                | Full path to key file. Not necessary if key is included in certificate.                             |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:vnc_proxy_ipv6``               | Enable IPv6 for noVNC - ``true`` or ``false`` (Default: ``false``)                                  |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:vnc_client_port``              | Port where the noVNC JS client will connect.                                                        |
+|                                   | If not set, will use the port section of ``:vnc_proxy_port``                                        |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:vnc_request_password``         | Request VNC password for external windows, ``true`` or ``false`` (Default: ``false``)               |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:allow_vnc_federation``         | Display VNC icons in federation, ``yes`` or ``no`` (Default: ``no``)                                |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:session_expire_time``          | Login Session Length in seconds (Default: ``3600``, 1 hour)                                         |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:keep_me_logged``               | Enable option *'Keep me logged in'* in Sunstone login (Default: ``true``)    n                      |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:lang``                         | Default language for the Sunstone interface. This is the default language that will                 |
+|                                   | be used if user has not defined a variable ``LANG`` with a different valid value in                 |
+|                                   | user template                                                                                       |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:table_order``                  | Default table order. Resources get ordered by ID in ``asc`` or ``desc`` order. (Default: ``desc``)  |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:mode``                         | Default Sunstone views group (Default: ``mixed``)                                                   |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:get_extended_vm_info``         | True to display extended VM information from OpenNebula (Default: ``false``)                        |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:get_extended_vm_monitoring``   | True to display extended information from VM monitoring from OpenNebula (Default: ``false``)        |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:paginate``                     | Array for paginate, the first position is for internal use. The second is used to put               |
+|                                   | names to each value.                                                                                |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:leases``                       | Displays button and clock icon in table of VM                                                       |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:disable_guacamole_info_header``|  Disable de information sending via URL to Guacamole console                                        |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:threshold_min``                | Minimum percentage value for green color on thresholds                                              |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:threshold_low``                | Minimum percentage value for orange color on thresholds                                             |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:threshold_high``               | Minimum percentage value for red color on thresholds                                                |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:support_fs``                   | List of filesystems to offer when creating new Image                                                |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| **Official Support**                                                                                                                    |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:token_remote_support``         | Customer token to contact support from Sunstone                                                     |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| **Marketplace**                                                                                                                         |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:marketplace_username``         | Username credential to connect to the Marketplace                                                   |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:marketplace_password``         | Password to connect to the Marketplace                                                              |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:marketplace_url``              | Endpoint to connect to the Marketplace. If commented, a 503 ``service unavailable``                 |
+|                                   | error will be returned to clients. (Default: ``http://marketplace.opennebula.io/``)                 |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| **OneFlow**                                                                                                                             |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:oneflow_server``               | Endpoint to connect to the OneFlow server (Default: ``http://localhost:2474/``)                     |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| **Routes**                                                                                                                              |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:routes``                       | List of Ruby files containing custom routes to be loaded.                                           |
+|                                   | Check :ref:`server plugins <sunstone_dev>` for more information.                                    |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| **FireEdge**                                                                                                                            |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:private_fireedge_endpoint``    | Base URL (hostname/IP-based) where the FireEdge server is running.                                  |
+|                                   | This endpoint must be **reachable by Sunstone server**.                                             |
+|                                   | (Default: ``http://localhost:2616``)                                                                |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:public_fireedge_endpoint``     | Base URL (hostname/IP-based) where the FireEdge server is running.                                  |
+|                                   | This endpoint must be **reachable by end-users**!                                                   |
+|                                   | (Default: ``http://localhost:2616``)                                                                |
++-----------------------------------+-----------------------------------------------------------------------------------------------------+
 .. _sunstone_in_ha:
 
 In order to properly use Sunstone with FireEdge in HA environments and have the Guacamole functionality available, all Sunstone servers need to access ``/var/lib/one/.one/fireedge_key``.
