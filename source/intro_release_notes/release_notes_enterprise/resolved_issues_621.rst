@@ -31,3 +31,4 @@ The following issues has been solved in 6.2.1:
 - `Fix hide SSH configuration when hiden by yaml <https://github.com/OpenNebula/one/issues/5650>`__.
 - `Fix vCenter 6 and 7 back-compatibility issue <https://github.com/OpenNebula/one/issues/5662>`__.
 - `Fix Sunstone tooltips <https://github.com/OpenNebula/one/issues/5534>`__.
+- `Disable sensitive information in guacamole <https://github.com/OpenNebula/one/issues/5672>`__.
