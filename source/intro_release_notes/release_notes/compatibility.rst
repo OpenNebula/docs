@@ -12,6 +12,8 @@ Visit the :ref:`Features list <features>` and the :ref:`What's New guide <whats_
 Data Model
 =========================
 
+- Virtual Machine. VM now includes ``SNAPSHOT/SYSTEM_DISK_SIZE`` to count system DS disk usage occupied by VM snapshot. The size is used to count ``SYSTEM_DISK_SIZE`` quota. This attributes applies only for newly created VM snapshots.
+
 XMLRPC API
 =========================
 
