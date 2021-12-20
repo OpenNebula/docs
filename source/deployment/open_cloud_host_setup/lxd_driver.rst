@@ -8,13 +8,13 @@ LXD Driver
 
 Requirements
 ============
-The LXD driver support using LXD through snap packages, if there is a snap installed, it will detect it and use that installation path. 
+The LXD driver support using LXD through snap packages, if there is a snap installed, it will detect it and use that installation path.
 
 The host needs to be an Ubuntu system > 1604 or Debian > 10.
 
 Considerations & Limitations
 ================================================================================
-The guest OS will share the Linux kernel with the virtualization node, so you won't be able to launch any non-Linux OS. 
+The guest OS will share the Linux kernel with the virtualization node, so you won't be able to launch any non-Linux OS.
 
 There are a number of regular features that are not implemented yet:
 
@@ -27,8 +27,8 @@ There are a number of regular features that are not implemented yet:
 - swap disk type, inderectly supported through volatile disks
 - offline disk resize
 - **datablocks**: Datablocks created on OpenNebula will need to be formatted before being attached to a container
-- **multiple partition images**: One of the partitions must have a valid `/etc/fstab` to mount the partitions 
-- ``lxc exec $container -- login`` in a centos container doesn't output the login shell 
+- **multiple partition images**: One of the partitions must have a valid `/etc/fstab` to mount the partitions
+- ``lxc exec $container -- login`` in a centos container doesn't output the login shell
 
 .. note:: **Offline Disk Resize**
 
@@ -36,12 +36,12 @@ There are a number of regular features that are not implemented yet:
 
     .. code-block:: none
 
-        nbd0      43:0    0  256M  0 disk 
+        nbd0      43:0    0  256M  0 disk
         └─nbd0p1  43:1    0  255M  0 part /var/snap/lxd/common/lxd/storage-pools/default/containers/one-9/rootfs
 
     **nbd0** is the virtual disk and  **nbd0p1** is the partition holding the filesystem.
 
-    resize-supported images have the following layout. You can find images like these in :ref:`the LXD marketplace <market_linux_container>`. 
+    resize-supported images have the following layout. You can find images like these in :ref:`the LXD marketplace <market_linux_container>`.
 
     .. code-block:: none
 
@@ -75,7 +75,7 @@ There are some interaction options between LXD and OpenNebula configured in ``/v
     # OpenNebula Configuration Options
     ################################################################################
     #
-    # Default path for the datastores. This only need to be change if the 
+    # Default path for the datastores. This only need to be change if the
     # corresponding value in oned.conf has been modified.
     :datastore_location: /var/lib/one/datastores
 
@@ -185,7 +185,7 @@ The **raw** attribute offers the end user the possibility of passing by attribut
 
 .. code::
 
-      RAW = [ 
+      RAW = [
           type = "lxd",
           data = "boot.autostart": "true", "limits.processes": "10000"
         ]
@@ -218,8 +218,8 @@ Create your own image
 ~~~~~~~~~~~~~~~~~~~~~
 Basically you create a file, map it into a block device, format the device and create a partition, dump data into it and voilá, you have an image.
 
-We will create a container using the LXD CLI and dump it into a block device in order to use it later in OpenNebula datastores. It could be a good time to 
-`contextualize <kvm_contextualization>`  the container, the procedure is the same as KVM. 
+We will create a container using the LXD CLI and dump it into a block device in order to use it later in OpenNebula datastores. It could be a good time to
+`contextualize <kvm_contextualization>`  the container, the procedure is the same as KVM.
 
 .. prompt:: bash # auto
 
@@ -232,12 +232,12 @@ We will create a container using the LXD CLI and dump it into a block device in 
     # umount $block
     # losetup -d $block
 
-Now the image is ready to be used, you can also use ``qemu-img`` to convert the image format. Note that you can use any linux standard filesystem / partition layout as a base image for the contianer. This enables you to easily import images from raw lxc, root partitions from KVM images or proxmox templates. 
+Now the image is ready to be used, you can also use ``qemu-img`` to convert the image format. Note that you can use any linux standard filesystem / partition layout as a base image for the contianer. This enables you to easily import images from raw lxc, root partitions from KVM images or proxmox templates.
 
 Use a linuxcontainers.org Marketplace
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Every regular LXD setup comes by default with a public image server read access in order to pull container images from. 
+Every regular LXD setup comes by default with a public image server read access in order to pull container images from.
 
 .. prompt:: bash # auto
 
@@ -254,7 +254,7 @@ Every regular LXD setup comes by default with a public image server read access 
     | ubuntu-daily    | https://cloud-images.ubuntu.com/daily    | simplestreams |           | YES    | YES    |
     +-----------------+------------------------------------------+---------------+-----------+--------+--------+
 
-OpenNebula can leverage the existing **images** server by using it as a backend for a :ref:`Marketplace <market_linux_container>`.. 
+OpenNebula can leverage the existing **images** server by using it as a backend for a :ref:`Marketplace <market_linux_container>`..
 
 Use a KVM disk image
 ~~~~~~~~~~~~~~~~~~~~
@@ -274,7 +274,7 @@ The mapper basically is a ruby class with two methods defined, a ``do_map`` meth
     disk.raw       -> map -> /dev/loop0
     one/one-7-54-0 -> map -> /dev/nbd0
 
-However things can get tricky when dealing with images with a partition table, you can check the code of the mapper devices `here <https://github.com/OpenNebula/one/blob/master/src/vmm_mad/remotes/lib/lxd/mapper/>`_.
+However things can get tricky when dealing with images with a partition table, you can check the code of the mapper devices `here <https://github.com/OpenNebula/one/blob/master/src/vmm_mad/remotes/lib/lxd/mapper/>`__.
 
 Troubleshooting
 ==================
@@ -283,11 +283,12 @@ Troubleshooting
 - If you experience `reboot issues <https://github.com/OpenNebula/one/issues/3189>`_ you can apply a network hook patch by copying the file ``/usr/share/one/examples/network_hooks/99-lxd_clean.rb`` to ``/var/lib/one/remotes/vnm/<network_driver>/clean.d`` and issuing ``onehost sync --force``. This have to be done for all network drivers used in your cloud.
 - If the poweroff operation takes too long, the monitoring drivers may report the VM status before the VM drivers operates. A VM Log example follows
 
-  .. code-block:: log
+  .. code-block:: bash
 
         Thu Dec  2 15:01:29 2021 [Z0][VM][I]: New LCM state is RUNNING
         Thu Dec  2 15:01:35 2021 [Z0][VM][I]: New LCM state is SHUTDOWN
         Thu Dec  2 15:02:05 2021 [Z0][LCM][I]: VM reported SHUTDOWN by the drivers
 
-In order to avoid that, increase the ``times_missing`` value in ``/var/lib/one/remotes/etc/im/lxd-probes.d/probe_db.conf`` and run ``onehost sync --force``. More information `here <https://github.com/OpenNebula/one/issues/5581>`_.
+In order to avoid that, increase the ``times_missing`` value in ``/var/lib/one/remotes/etc/im/lxd-probes.d/probe_db.conf`` and run ``onehost sync --force``. More information `here <https://github.com/OpenNebula/one/issues/5581>`__.
+
 .. |image1| image:: /images/vncterm_command.png
