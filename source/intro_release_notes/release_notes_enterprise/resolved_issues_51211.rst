@@ -23,3 +23,4 @@ The following issues has been solved in 5.12.11:
 - `Fix missing STDERR on LXD nic tap parsing <https://github.com/OpenNebula/one/issues/5652>`__.
 - `Fix VMs monitored as POWEROFF instead of UNKNOWN just before a crash <https://github.com/OpenNebula/one/issues/5564>`__.
 - `Fix hide SSH configuration when hiden by yaml <https://github.com/OpenNebula/one/issues/5650>`__.
+- `Fix MySQL reconnect <https://github.com/OpenNebula/one/issues/5196>`__.
