@@ -19,4 +19,5 @@ Release Notes 5.12.11 Enterprise
    Resolved Issues in 5.12.9 <resolved_issues_5129>
    Resolved Issues in 5.12.10 <resolved_issues_51210>
    Resolved Issues in 5.12.11 <resolved_issues_51211>
+   Resolved Issues in 5.12.12 <resolved_issues_51212>
    Known Issues <known_issues>
