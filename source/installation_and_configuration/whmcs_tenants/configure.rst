@@ -4,7 +4,13 @@
 WHMCS Tenants Module Install/Update
 ===================================
 
-The install and update process are essentially identical. The Module files can be found in */usr/share/one/whmcs*. You will just need to copy the files in this directory to the main WHMCS directory on the server hosting WHMCS. When updating the module just copy the files on top of the existing files and overwrite them.
+The install and update process are essentially identical. The Module files can be found in */usr/share/one/whmcs*. You will just need to copy the *src/modules* directory to the main WHMCS directory on the server hosting WHMCS. When updating the module just copy the files on top of the existing files and overwrite them. An example command for copying the files:
+
+.. code-block:: bash
+
+    cp -rf /usr/share/one/whmcs/src/modules /path/to/web/root/whmcs/.
+
+
 
 .. note:: Make sure you download the updated files from the one-ee-tools repository before doing either an install or an update.
 
