@@ -32,3 +32,4 @@ The following issues has been solved in 6.2.1:
 - `Fix vCenter 6 and 7 back-compatibility issue <https://github.com/OpenNebula/one/issues/5662>`__.
 - `Fix Sunstone tooltips <https://github.com/OpenNebula/one/issues/5534>`__.
 - `Disable sensitive information in guacamole <https://github.com/OpenNebula/one/issues/5672>`__.
+- `Fix names with "|" char cannot be imported from vCenter <https://github.com/OpenNebula/one/issues/5370>`__.
