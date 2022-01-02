@@ -22,3 +22,4 @@ The following issues has been solved in 6.2.1:
 - `Fix monitoring sync_state sometimes set wrong VM state <https://github.com/OpenNebula/one/issues/5581>`__.
 - `Fix Sunstone Cloud View service role scaling <https://github.com/OpenNebula/one/issues/5605>`__.
 - `Add encryption to guacamole SSH private key and passphrase <https://github.com/OpenNebula/one/issues/5241>`__.
+- `Show only datastores within the imported cluster <https://github.com/OpenNebula/one/issues/5563>`__.
