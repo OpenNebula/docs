@@ -49,6 +49,7 @@ Sunstone
 - Error message for failed :ref:`scheduled actions <vm_guide2_scheduling_actions>` in VM info view.
 - `Better security parameters for Sunstone systemd unit file <https://github.com/OpenNebula/one/issues/555>`__.
 - Add running hours to :ref:`showback table <showback>`
+- Allow :ref:`charters <vm_charter>` time modification 
 
 FireEdge
 ================================================================================
