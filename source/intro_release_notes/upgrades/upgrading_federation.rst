@@ -34,6 +34,8 @@ Check that federation is in sync and all zones are at the same index (FED_INDEX)
 
 It is a good idea to prevent any API access to the master zone during this step (e.g. by filtering out access to API).
 
+If you are upgrading from version 6.2+. Instead of filtering the API, you may use ``onezone disable <zone_id>`` to disable all zones. So no operation changing OpenNebula state are executed.
+
 Step 2. Stop All Zones
 ================================================================================
 
@@ -74,3 +76,5 @@ You can now upgrade the slave zones:
     * :ref:`Follow the upgrading for high availability clusters <upgrade_ha>`
 
 You will restart OpenNebula in each zone as part of the upgrade. Once you finish upgrading your master, remove any access restriction to the API imposed in Step 1.
+
+If you are upgrading from version 6.2+. Use ``onezone enable <zone_id>`` to enable all zones and make OpenNebula fully functional.

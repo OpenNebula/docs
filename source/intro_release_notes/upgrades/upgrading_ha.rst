@@ -14,6 +14,8 @@ Step 2. Set All Hosts to Offline Mode
 
 Set all Hosts to offline mode to stop all monitoring processes.
 
+If you are upgrading from version 6.2+. Use ``onezone disable <zone_id>`` to make sure that no operation changing OpenNebula state are executed.
+
 Step 3. Stop the HA Cluster
 ================================================================================
 
@@ -74,3 +76,5 @@ Step 9. Update the Hypervisors
 ================================================================================
 
 Finally, upgrade the hypervisors and enable them as described in Steps 11-12 in the :ref:`Upgrading Single Front-end Deployments <upgrade_single>` guide.
+
+If you are upgrading from version 6.2+. Use ``onezone enable <zone_id>`` to make OpenNebula fully functional.
