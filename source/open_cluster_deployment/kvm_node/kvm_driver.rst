@@ -248,6 +248,7 @@ If you need to resize the capacity of the VM in ``RUNNING`` state, you have to s
 | ``MEMORY_SLOTS`` | Optional slots for hotplugging memory. Limits the number of hotplug operations. Defaults to 8.  | **NO**    |
 +------------------+-------------------------------------------------------------------------------------------------+-----------+
 
+.. note:: Live Memory resize needs QEMU version 2.4. Live VCPU resize needs QEMU version 2.7.
 
 Disk/NIC Hotplugging
 --------------------
