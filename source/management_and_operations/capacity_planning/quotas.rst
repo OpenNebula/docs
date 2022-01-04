@@ -40,7 +40,7 @@ The attribute name is ``DATASTORE``.
 +---------------------+---------------------------------------------------------------+
 | SIZE                | Maximum size in MB that can be used in the datastore          |
 +---------------------+---------------------------------------------------------------+
-| IMAGE               | Maximum number of images that can be created in the datastore |
+| IMAGES              | Maximum number of images that can be created in the datastore |
 +---------------------+---------------------------------------------------------------+
 
 Compute Quotas.
