@@ -11,6 +11,7 @@ The following new features has been backported to 6.2.1:
 - `Add support to filter providers by provision type <https://github.com/OpenNebula/one/issues/5604>`__.
 - `Add encrypted attributes to User template <https://github.com/OpenNebula/one/issues/5431>`__.
 - `Add encryption to guacamole SSH private key and passphrase <https://github.com/OpenNebula/one/issues/5241>`__.
+- `LXD Marketplace App VMTemplate has more customization <https://github.com/OpenNebula/one/issues/3667>`__.
 
 The following issues has been solved in 6.2.1:
 
@@ -23,8 +24,15 @@ The following issues has been solved in 6.2.1:
 - `Fix install One CLI Tools on Mac OS <https://github.com/OpenNebula/one/issues/5483>`__.
 - `Fix monitoring sync_state sometimes set wrong VM state <https://github.com/OpenNebula/one/issues/5581>`__.
 - `Fix Sunstone Cloud View service role scaling <https://github.com/OpenNebula/one/issues/5605>`__.
+- `Fix guacamole to encrypt SSH private key and passphrase <https://github.com/OpenNebula/one/issues/5241>`__.
+- `Show only datastores within the imported cluster <https://github.com/OpenNebula/one/issues/5563>`__.
 - `Fix LXD qcow2 mapper failing with extra disks <https://github.com/OpenNebula/one-ee/pull/1613>`__.
 - `Fix missing STDERR on LXD nic tap parsing <https://github.com/OpenNebula/one/issues/5652>`__.
 - `Fix VMs monitored as POWEROFF instead of UNKNOWN just before a crash <https://github.com/OpenNebula/one/issues/5564>`__.
 - `Fix VMTemplate lock and unlock <https://github.com/OpenNebula/one/issues/5651>`__.
 - `Fix scheduler to execute only first (by time) scheduled action in one scheduler cycle <https://github.com/OpenNebula/one/issues/629>`__.
+- `Fix hide SSH configuration when hiden by yaml <https://github.com/OpenNebula/one/issues/5650>`__.
+- `Fix vCenter 6 and 7 back-compatibility issue <https://github.com/OpenNebula/one/issues/5662>`__.
+- `Fix Sunstone tooltips <https://github.com/OpenNebula/one/issues/5534>`__.
+- `Fix guacamole to not show sensitive information <https://github.com/OpenNebula/one/issues/5672>`__.
+- `Fix names with "|" char cannot be imported from vCenter <https://github.com/OpenNebula/one/issues/5370>`__.

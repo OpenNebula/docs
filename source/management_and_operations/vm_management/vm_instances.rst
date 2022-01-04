@@ -1212,9 +1212,7 @@ To use this option, you will only have to enable any of two protocols in the VM.
 Configure VM for VMRC
 ---------------------
 
-.. important::
-
-    VMRC connections are available only when a reachable FireEdge server is found.
+.. important:: VMRC connections are available only when a reachable FireEdge server is found.
 
 *VMware Remote Console* provides console access and client device connection to VMs on a remote host.
 
@@ -1223,6 +1221,9 @@ allocated on vCenter every time you click on the VMRC button.
 
 To use this option, you will only have to enable VNC / VMRC connections to your VMs and start the
 FireEdge Server.
+
+.. note:: To change the keyboard distribution in the VMRC connection, you need to change the
+    keyboard layout in the running operating system.
 
 |sunstone_vmrc|
 
