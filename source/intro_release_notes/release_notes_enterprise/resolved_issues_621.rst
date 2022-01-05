@@ -36,3 +36,4 @@ The following issues has been solved in 6.2.1:
 - `Fix Sunstone tooltips <https://github.com/OpenNebula/one/issues/5534>`__.
 - `Fix guacamole to not show sensitive information <https://github.com/OpenNebula/one/issues/5672>`__.
 - `Fix names with "|" char cannot be imported from vCenter <https://github.com/OpenNebula/one/issues/5370>`__.
+- `Fix warning message in sunstone when adding an scheduled action <https://github.com/OpenNebula/one/issues/5679>`__.
