@@ -75,7 +75,7 @@ The default scheduling policies for hosts, datastores and virtual networks are d
 |      4 | :ref:`Fixed <sched_conf_fixed>`: Hosts will be ranked according to the PRIORITY attribute found in the Host or Cluster template            |
 +--------+--------------------------------------------------------------------------------------------------------------------------------------------+
 
-* ``DEFAULT_DS_SCHED``: Definition of the default storage scheduling algorithm.
+* ``DEFAULT_DS_SCHED``: Definition of the default storage scheduling algorithm. Storage policies works only for shared datastores.
 
   * ``RANK``: Arithmetic expression to rank suitable **datastores** based on their attributes.
   * ``POLICY``: A predefined policy, it can be set to:
