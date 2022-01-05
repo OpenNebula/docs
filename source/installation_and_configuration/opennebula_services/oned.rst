@@ -298,6 +298,8 @@ Here you can configure the default values for the Datastores and Image templates
 
 - ``DEFAULT_IMAGE_PERSISTENT_NEW``: Control the default value for the ``PERSISTENT`` attribute on image creation (``oneimage create``). By default images are not persistent if this is not set.
 
+- ``VM_SNAPSHOT_FACTOR``: Snapshot size is usually much smaller than original disk size. This attribute controls how much disk size should be counted for the VM snapshot. Value should be in range [0,1]. Default value for backward compatibility is 0.
+
 More information on the image repository can be found in the :ref:`Managing Virtual Machine Images guide <images>`.
 
 Sample configuration:
