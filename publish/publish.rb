@@ -75,3 +75,14 @@ error(
         "'ln -nsf #{branch_dir}.#{date_time} #{branch_symlink_path}'"
     )
 )
+
+rc = run("ssh #{ssh_op} #{host} 'ls #{host_path} | grep #{branch_dir}. | sort'")
+
+error(rc)
+
+builds = rc[0].split
+builds = builds[0..-3] # Keep two latest ones
+
+builds.each do |build|
+    run("ssh #{ssh_op} #{host} rm -rf #{host_path}/#{build}")
+end
