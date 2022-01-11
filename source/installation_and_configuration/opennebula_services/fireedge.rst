@@ -100,7 +100,7 @@ If you need to execute the fireedge with SSL Certificate, in the following path:
 .. note::
 
     The new Sunstone is working in progress, this means that the configuration files needed to proper functionality are also in progress.
-    Therefore, in versions 6.2.1 and later, `theses configuration files <https://github.com/OpenNebula/one/tree/master/src/fireedge/etc/sunstone>`__ need to be replaced by those located in ``/etc/one/fireedge/sunstone/``.
+    Therefore, in versions 6.2.1 and later, theses configuration files need to be replaced by those located in ``/etc/one/fireedge/sunstone/``. Download it `here <https://downgit.github.io/#/home?url=https://github.com/OpenNebula/one/tree/2d251749a0c04f5ea5a65a81af468a134d6ea8e9/src/fireedge/etc/sunstone>`__.
 
 .. _fireedge_configuration_for_sunstone:
 
