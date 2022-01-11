@@ -615,7 +615,7 @@ Example:
 Context Section
 ================================================================================
 
-.. note:: The hypervisor column states that the attribute is **O**\ ptional, **M**\ andatory, or ``-`` not supported for that hypervisor.
+.. note:: The hypervisor column states that the attribute is **O**\ ptional, **M**\ andatory, ``-`` not supported for that hypervisor or OS name where it is mandatory.
 
 Context information is passed to the Virtual Machine via an ISO mounted as a partition. This information can be defined in the VM template in the optional section called Context, with the following attributes:
 
