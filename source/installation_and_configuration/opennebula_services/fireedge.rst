@@ -17,6 +17,10 @@ Features:
 .. code::
 
     http://<OPENNEBULA-FRONTEND>:2616/fireedge/sunstone
+    
+.. note::
+
+    The new Sunstone is work in progress, and its configuration files are in constant change. In versions 6.2.1 and later, configuration files in ``/etc/one/fireedge/sunstone/`` need to be replaced by the ones that can be downloaded `here <https://downgit.github.io/#/home?url=https://github.com/OpenNebula/one/tree/2d251749a0c04f5ea5a65a81af468a134d6ea8e9/src/fireedge/etc/sunstone>`__.
 
 
 .. warning:: FireEdge currently doesn't support :ref:`federated environments <federation>`. It can interact only with a local OpenNebula instance (even if it's federated), but can't interact with remote, federated OpenNebula instances.
@@ -97,10 +101,7 @@ In HA environments, this file fireedge_key needs to be copied from the first lea
 
 If you need to execute the fireedge with SSL Certificate, in the following path: ``/usr/lib/one/fireedge`` you must create a folder called ``cert`` and inside place the files ``cert.pem`` and ``key.pem``, after restarting the fireedge service.
 
-.. note::
 
-    The new Sunstone is working in progress, this means that the configuration files needed to proper functionality are also in progress.
-    Therefore, in versions 6.2.1 and later, theses configuration files need to be replaced by those located in ``/etc/one/fireedge/sunstone/``. Download it `here <https://downgit.github.io/#/home?url=https://github.com/OpenNebula/one/tree/2d251749a0c04f5ea5a65a81af468a134d6ea8e9/src/fireedge/etc/sunstone>`__.
 
 .. _fireedge_configuration_for_sunstone:
 
