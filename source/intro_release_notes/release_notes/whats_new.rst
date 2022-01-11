@@ -50,6 +50,7 @@ Sunstone
 - `Better security parameters for Sunstone systemd unit file <https://github.com/OpenNebula/one/issues/555>`__.
 - Add running hours to :ref:`showback table <showback>`
 - Allow :ref:`charters <vm_charter>` time modification 
+- Add support for IP configuration methods in :ref:`vnets <vnet_template_context>` and :ref:`VM template <template_context>`.
 
 FireEdge
 ================================================================================
