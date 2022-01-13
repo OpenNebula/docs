@@ -55,11 +55,23 @@ Copy the database backup of the leader to each follower and restore it:
 
 Synchronize the configuration files to the followers:
 
+.. note::
+
+  Before copying, gather the SERVER_ID from your /etc/one/oned.cfg files on each follower, then replace those values after.
+
 .. prompt:: bash $ auto
 
   $ rsync -r /etc/one root@<follower_ip>:/etc
 
   $ rsync -r /var/lib/one/remotes/etc root@<follower_ip>:/var/lib/one/remotes
+
+On each of the followers, ensure these folders are owned by the oneadmin user:
+
+.. prompt:: hash $ auto
+
+  $ chown -R oneadmin:oneadmin /etc/one
+
+  $ chown -R oneadmin:oneadmin /var/lib/one/remotes/etc
 
 
 Step 7. Start OpenNebula in the Leader and Followers
