@@ -39,4 +39,5 @@ The following issues has been solved in 6.2.1:
 - `Fix warning message in sunstone when adding an scheduled action <https://github.com/OpenNebula/one/issues/5679>`__.
 - `Fix issue in vCenter VNETs with dpg does not set clusters correctly <https://github.com/OpenNebula/one/issues/5545>`__.
 - `Fix issue when import template as copy <https://github.com/OpenNebula/one/issues/5660>`__.
+- `Fix Sunstone does not allow to create scheduled action <https://github.com/OpenNebula/one/issues/5693>`__.
 - `Fix Sunstone doesn't display VMs when clicking a role in a service <https://github.com/OpenNebula/one/issues/5691>`__.
