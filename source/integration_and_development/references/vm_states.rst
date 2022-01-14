@@ -11,7 +11,11 @@ The simplified life-cycle is explained in the :ref:`Managing Virtual Machines gu
 List of States
 ================================================================================
 
-In OpenNebula a Virtual Machine has 2 variables to define its state: ``STATE`` and ``LCM_STATE``. The ``LCM_STATE`` is only relevant when the ``STATE`` is ``ACTIVE``. Both states can be seen from the CLI (``onevm show``) and from Sunstone (Info panel for the VM). 
+In OpenNebula a Virtual Machine has 2 variables to define its state: ``STATE`` and ``LCM_STATE``. The ``LCM_STATE`` is only relevant when the ``STATE`` is ``ACTIVE``. Both states can be seen from the CLI (``onevm show``) and from Sunstone (Info panel for the VM).
+
+.. note::
+
+    ``LCM_INIT`` state is used as ``LCM_STATE`` when the VM is in a state different than ``ACTIVE``.
 
 +----+-----------------+----+---------------------------------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | #  |      State      | #  |            LCM State            | Short State Alias |                                                                                                                                                    Meaning                                                                                                                                                    |
