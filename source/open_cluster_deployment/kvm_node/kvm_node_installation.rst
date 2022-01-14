@@ -69,12 +69,23 @@ Execute the following commands to install the OpenNebula KVM Node package and re
 
 For further configuration check the specific :ref:`guide <kvmg>`.
 
-.. _kvm_selinux:
+.. _kvm_os_security:
 
-Step 3. Disable SELinux on CentOS/RHEL (Optional)
+Step 3. Host OS Security Configuration (Optional)
 =================================================
 
+.. warning::
+
+    If you are performing an upgrade skip this and the next steps and go back to the upgrade document.
+
+Disable SELinux on CentOS/RHEL
+------------------------------------------
+
 .. include:: ../common_node/selinux.txt
+
+Disable AppArmor on Ubuntu/Debian
+------------------------------------------
+.. include:: ../common_node/apparmor.txt
 
 .. _kvm_ssh:
 
