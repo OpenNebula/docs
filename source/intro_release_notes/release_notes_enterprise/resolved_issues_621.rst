@@ -41,3 +41,5 @@ The following issues has been solved in 6.2.1:
 - `Fix issue when import template as copy <https://github.com/OpenNebula/one/issues/5660>`__.
 - `Fix Sunstone does not allow to create scheduled action <https://github.com/OpenNebula/one/issues/5693>`__.
 - `Fix Sunstone doesn't display VMs when clicking a role in a service <https://github.com/OpenNebula/one/issues/5691>`__.
+- `Fix Marketplace app service template import for unprivileged users <https://github.com/OpenNebula/one/commit/2e92c43a6ac87910016530b86dcacc249ca79be4>`__.
+- `Fix race condition between iptables and ipsets when cleaning VM network <https://github.com/OpenNebula/one/commit/1bd9a83659edd518476a2ad34f0bdc7c3caffc9e>`__.
