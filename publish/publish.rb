@@ -81,6 +81,9 @@ rc = run("ssh #{ssh_op} #{host} 'ls #{host_path} | grep #{branch_dir}. | sort'")
 error(rc)
 
 builds = rc[0].split
+
+exit(0) if builds.length <= 3
+
 builds = builds[0..-3] # Keep two latest ones
 
 builds.each do |build|
