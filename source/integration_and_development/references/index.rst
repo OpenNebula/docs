@@ -9,6 +9,7 @@ References
    Building from Source Code <compile>
    Build Dependencies <build_deps>
    Sunstone Development <sunstone_dev>
+   React Sunstone Development <react_sunstone_dev>
    Cloud Servers Authentication <cloud_auth>
    Virtual Machine States Reference <vm_states>
    Image States Reference <img_states>
