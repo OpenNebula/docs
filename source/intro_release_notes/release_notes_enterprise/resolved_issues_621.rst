@@ -44,3 +44,4 @@ The following issues has been solved in 6.2.1:
 - `Fix Marketplace app service template import for unprivileged users <https://github.com/OpenNebula/one/commit/2e92c43a6ac87910016530b86dcacc249ca79be4>`__.
 - `Fix race condition between iptables and ipsets when cleaning VM network <https://github.com/OpenNebula/one/commit/1bd9a83659edd518476a2ad34f0bdc7c3caffc9e>`__.
 - `Fix FT VM migration for the fs_lvm_ssh driver <https://github.com/OpenNebula/one/issues/5699>`__.
+- `Fix Image templates after a disk save_as operation by removing SAVE_AS_HOT attribute <https://github.com/OpenNebula/one/issues/5699>`__.
