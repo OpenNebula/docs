@@ -4,16 +4,33 @@
 React Sunstone Development (Beta)
 ================================================================================
 
-## TODO: introduction
+OpenNebula FireEdge server provides a **next-generation web-management interface**. It is able to deliver several applications accessible through the following URLs:
 
-.. note:: All path from repository code are located in ``src/fireedge``.
+- Provision GUI: `http://<OPENNEBULA-FRONTEND>:2616/fireedge/provision`__
+- Sunstone GUI: `http://<OPENNEBULA-FRONTEND>:2616/fireedge/sunstone`__
+
+This second Sunstone incarnation is written in `React <https://reactjs.org/>`__ / `Redux <https://redux.js.org/>`__ and `Material-UI <https://mui.com/>`__ is used for the styles and layout of the web.
+
+If you want to do development work over Sunstone, you need to install OpenNebula from source code. For this, you will need :ref:`build dependencies <build_deps>`, `git <https://git-scm.com/>`__, `nodeJS <https://nodejs.org/en/>`__ and `npm <https://docs.npmjs.com/downloading-and-installing-node-js-and-npm>`__.
+
+Once the environment has been prepared, you need to clone `one repository <https://github.com/OpenNebula/one>`__ and follow the steps :ref:`to compile the OpenNebula software <compile>`.
+
+Then move to FireEdge directory (``src/fireedge``) and run:
+
+.. code::
+
+  npm i         # Install dependencies from package.json
+  npm run       # List the available scripts
+  npm run dev   # Start the development server. By default on http://localhost:2616/fireedge
+
+You can read more about this in the :ref:`FireEdge configuration guide <fireedge_install_configuration>`.
 
 Adding New Tabs
 ================================================================================
 
-OpenNebula resources are grouped into pools and can be managed from the interface through resource tab (or route). Where we can operate over one or more resources, filter by attributes or get detailed information about individual resource.
+OpenNebula resources are grouped into pools and can be managed from the interface through resource tab (or route) where we can operate over one or more resources, filter by attributes or get detailed information about individual resource.
 
-For this reason, a configuration file has been created for each resource. These are  located in ``etc/sunstone``.
+For this reason, a configuration file has been created for each tab, located in ``etc/sunstone``.
 
 To develop a new tab, it's necessary to understand the structure of the configuration files:
 
