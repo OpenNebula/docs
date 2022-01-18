@@ -11,7 +11,11 @@ React Sunstone Development (Beta)
 Adding New Tabs
 ================================================================================
 
-It's necessary to understand the structure of the files located in ``etc/sunstone``:
+OpenNebula resources are grouped into pools and can be managed from the interface through resource tab (or route). Where we can operate over one or more resources, filter by attributes or get detailed information about individual resource.
+
+For this reason, a configuration file has been created for each resource. These are  located in ``etc/sunstone``.
+
+To develop a new tab, it's necessary to understand the structure of the configuration files:
 
 - **Resource**: related information about resources.
 - **Actions**: buttons to operate over the resources.
@@ -22,6 +26,8 @@ It's necessary to understand the structure of the files located in ``etc/sunston
 
 Resource
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Through each tab in sidebar you can control and manage one of OpenNebula resource pool. All tabs should have a folder in the containers directory ``src/client/containers`` and enable the route in ``src/client/apps/sunstone/routesOne.js``.
 
 +------------------------------------+--------------------------------------------------------------------------------------------------+
 |               Property             |                                     Description                                                  |
@@ -50,7 +56,7 @@ All actions are defined in the resource constants, e.g.: for VM Templates are lo
 Filter
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This includes the list of criteria to filter each resources catalogue.
+This includes the list of criteria to filter each OpenNebula resource pool.
 
 To add one, first it's necessary implement the filter in table columns. E.g.:
 
