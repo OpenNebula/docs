@@ -4,7 +4,27 @@
 React Sunstone Development (Beta)
 ================================================================================
 
-## TODO: introduction
+Now, the OpenNebula FireEdge server provides a **next-generation web-management interface** and is made up of several applications. Accessible through the following URL:
+- Provision GUI: `http://<OPENNEBULA-FRONTEND>:2616/fireedge/provision`__
+- Sunstone GUI: `http://<OPENNEBULA-FRONTEND>:2616/fireedge/sunstone`__
+
+This new iteration of Sunstone is written in `React <https://reactjs.org/>`__ / `Redux <https://redux.js.org/>`__ and `Material-UI <https://mui.com/>`__ is used for the styles and layout of the web.
+
+If you want to do development work over Sunstone, all you have to do is install OpenNebula from source code.
+
+For this, you will need :ref:`build dependencies <build_deps>`, `git <https://git-scm.com/>`__, `nodeJS <https://nodejs.org/en/>`__ and `npm <https://docs.npmjs.com/downloading-and-installing-node-js-and-npm>`__.
+
+Once the environment has been prepared, you need to clone `one repository <https://github.com/OpenNebula/one>`__ and follow the steps :ref:`to compile the OpenNebula software <compile>`.
+
+Then move to FireEdge directory and run:
+
+.. code::
+
+  npm i         # Install dependencies from package.json
+  npm run       # List the available scripts
+  npm run dev   # Start the development server. By default on http://localhost:2616/fireedge
+
+Can read more about :ref:`FireEdge configuration <fireedge_install_configuration>`.
 
 .. note:: All path from repository code are located in ``src/fireedge``.
 
