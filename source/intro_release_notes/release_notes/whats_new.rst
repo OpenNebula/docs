@@ -27,6 +27,7 @@ FireEdge
 
 CLI
 ================================================================================
+- New commands to :ref:`attach/detach Security Group <vm_guide2_sg_hotplugging>` to Virtual Machine
 
 Distributed Edge Provisioning
 ================================================================================
