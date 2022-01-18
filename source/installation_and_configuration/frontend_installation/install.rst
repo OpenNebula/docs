@@ -69,7 +69,7 @@ Not all OpenNebula dependencies are in base distribution repositories. On select
 
     # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 
-**Debian, Ubuntu**
+**Debian, Ubuntu 18.04**
 
 .. prompt:: bash # auto
 
