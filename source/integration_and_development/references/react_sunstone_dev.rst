@@ -23,7 +23,7 @@ Then move to FireEdge directory (``src/fireedge``) and run:
   npm run       # List the available scripts
   npm run dev   # Start the development server. By default on http://localhost:2616/fireedge
 
-Can read more about :ref:`FireEdge configuration <fireedge_install_configuration>`.
+You can read more about this in the :ref:`FireEdge configuration guide <fireedge_install_configuration>`.
 
 Adding New Tabs
 ================================================================================
