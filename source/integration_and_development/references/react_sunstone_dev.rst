@@ -34,14 +34,42 @@ Unlike the current, ruby-based Sunstone, it's the behavior of requests in parall
 
 Queries to get the pool resource from OpenNebula are greatly optimized, which ensures a swift response of the interface. If a large amount of certain types of resources are present (for example VMs or Hosts), a performance strategy that consists of making queries with intervals is implemented. Thus, the representation of the first interval list of resources is faster and the rest of the queries are kept in the background.
 
+Sunstone Configuration Files
+================================================================================
+
+Through the configuration files we can define view types and assign them to different groups. Then, we differentiate between the master and view files.
+
+Master File
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This file orchestrates the views according to the users's primary group and it's located in ``etc/sunstone/sunstone-view.yaml``.
+
+In the following example, all groups have access to the user view and ``oneadmin`` to the admin view also:
+
+.. code-block:: yaml
+
+  # etc/sunstone/sunstone-view.yaml
+  groups:
+    oneadmin:
+      - admin
+      - user
+  default:
+    - user
+
+
+View Directory And Tab Files
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The view directory contains the route or tab files. These tab files, with yaml extension, describe the behavior of each resource list within the application: VMs, Networks, Hosts, etc.
+
+The tab files are located in ``etc/sunstone/<view_name>/<resource_tab>``.
+
 Adding New Tabs
 ================================================================================
 
 OpenNebula resources are grouped into pools and can be managed from the interface through resource tab (or route) where we can operate over one or more resources, filter by attributes or get detailed information about individual resource.
 
-For this reason, a configuration file has been created for each tab, located in ``etc/sunstone``.
-
-To develop a new tab, it's necessary to understand the structure of the configuration files:
+To develop a new tab, it's necessary to understand the structure of the configuration tab files:
 
 - **Resource**: related information about resources.
 - **Actions**: buttons to operate over the resources.
@@ -52,6 +80,8 @@ To develop a new tab, it's necessary to understand the structure of the configur
 
 Resource
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Using the view files as a starting point, the interface generates the available routes and defines them in a menu.
 
 Through each tab in sidebar you can control and manage one of OpenNebula resource pool. All tabs should have a folder in the containers directory ``src/client/containers`` and enable the route in ``src/client/apps/sunstone/routesOne.js``.
 
