@@ -25,6 +25,15 @@ Then move to FireEdge directory (``src/fireedge``) and run:
 
 You can read more about this in the :ref:`FireEdge configuration guide <fireedge_install_configuration>`.
 
+Frontend Architecture
+================================================================================
+
+An important part of managing OpenNebula through an interface is the use of forms and lists of resources. For this reason, we decided to extract some of this logic in configuration files.
+
+Unlike the current, ruby-based Sunstone, it's the behavior of requests in parallel which allows the use of the interface with greater flexibility and fluidity.
+
+Queries to get the pool resource from OpenNebula are greatly optimized, which ensures a swift response of the interface. If a large amount of certain types of resources are present (for example VMs or Hosts), a performance strategy that consists of making queries with intervals is implemented. Thus, the representation of the first interval list of resources is faster and the rest of the queries are kept in the background.
+
 Adding New Tabs
 ================================================================================
 
