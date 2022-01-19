@@ -25,6 +25,26 @@ Then move to FireEdge directory (``src/fireedge``) and run:
 
 You can read more about this in the :ref:`FireEdge configuration guide <fireedge_install_configuration>`.
 
+FireEdge API
+================================================================================
+
+OpenNebula FireEdge API is a RESTfull service to communicate with other OpenNebula services.
+
+Among others, it includes the OpenNebula Cloud API Specification for JS. It been designed as a wrapper for the :ref:`XML-RPC methods <api>`, with some basic helpers to return the data in JSON formats. This means that you should be familiar with the XML-RPC API and the JSON formats returned by the OpenNebula core.
+
+Authentication & Authorization
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User authentication is done via XMLRPC using the OpenNebula authorization module. If the username and password matches with the serveradmin data, the user's request will be granted, the session data will be saved in a global variable (cache-nodejs), and a JSON Web Token (JWT) will be generated that must be sent in the authorization header of the HTTP request.
+
+.. prompt:: bash $ auto
+
+    $ curl -X POST -H "Content-Type: application/json" \
+    $ -d '{"user": "username", "token": "password"}' \
+    $ http://fireedge.server/fireedge/api/auth
+
+.. note:: The JWT lifetime can be configured in the fireedge_server.conf configuration file.
+
 Frontend Architecture
 ================================================================================
 
