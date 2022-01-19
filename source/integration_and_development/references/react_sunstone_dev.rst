@@ -28,7 +28,7 @@ You can read more about this in the :ref:`FireEdge configuration guide <fireedge
 FireEdge API
 ================================================================================
 
-OpenNebula FireEdge API is a RESTfull service to communicate with other OpenNebula services.
+OpenNebula FireEdge API is a RESTful service to communicate with other OpenNebula services.
 
 Among others, it includes the OpenNebula Cloud API Specification for JS. It been designed as a wrapper for the :ref:`XML-RPC methods <api>`, with some basic helpers to return the data in JSON formats. This means that you should be familiar with the XML-RPC API and the JSON formats returned by the OpenNebula core.
 
@@ -97,31 +97,31 @@ OneFlow
 | **DELETE**   | ``/fireedge/api/service_template/delete/<id>``                | **Delete** the service template identified by <id>.                    |
 +--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
 
-+--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
-| Method       | URL                                                           | Meaning / Entity Body                                                                               |
-+==============+===============================================================+=====================================================================================================+
-| **GET**      | ``/fireedge/api/service/list/``                               | **List** the service collection.                                                                    |
-+--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
-| **GET**      | ``/fireedge/api/service/list/<id>``                           | **Show** the service identified by <id>.                                                            |
-+--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
-| **POST**     | ``/fireedge/api/service/create``                              | **Create** a new service.                                                                           |
-+--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
-| **PUT**      | ``/fireedge/api/service/update/<id>``                         | **Update** the service identified by <id>.                                                          |
-+--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
-| **DELETE**   | ``/fireedge/api/service/delete/<id>``                         | **Delete** the service identified by <id>.                                                          |
-+--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
-| **POST**     | ``/fireedge/api/service/action/<id>``                         | **Perform** an action on the service identified by <id>.                                            |
-+--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
-| **POST**     | ``/fireedge/api/service/scale/<id>``                          | **Perform** an scale on the service identified by <id>.                                             |
-+--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
-| **POST**     | ``/fireedge/api/service/role-action/<role_id>/<id>``          | **Perform** an action on all the VMs belonging to the role to the service identified both by <id>.  |
-+--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
-| **POST**     | ``/fireedge/api/service/sched_action/<id>``                   | **Create** a new schedule action on the service identified by <id>.                                 |
-+--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
-| **PUT**      | ``/fireedge/api/service/sched_action/<id>/<sched_action_id>`` | **Update** the schedule action on the service identified both by <id>.                              |
-+--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
-| **DELETE**   | ``/fireedge/api/service/sched_action/<id>/<sched_action_id>`` | **Delete** the schedule action on the service identified both by <id>.                              |
-+--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
++--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
+| Method       | URL                                                           | Meaning / Entity Body                                                  |
++==============+===============================================================+========================================================================+
+| **GET**      | ``/fireedge/api/service/list/``                               | **List** the service collection.                                       |
++--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
+| **GET**      | ``/fireedge/api/service/list/<id>``                           | **Show** the service identified by <id>.                               |
++--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
+| **POST**     | ``/fireedge/api/service/create``                              | **Create** a new service.                                              |
++--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
+| **PUT**      | ``/fireedge/api/service/update/<id>``                         | **Update** the service identified by <id>.                             |
++--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
+| **DELETE**   | ``/fireedge/api/service/delete/<id>``                         | **Delete** the service identified by <id>.                             |
++--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
+| **POST**     | ``/fireedge/api/service/action/<id>``                         | **Perform** an action on the service identified by <id>.               |
++--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
+| **POST**     | ``/fireedge/api/service/scale/<id>``                          | **Perform** an scale on the service identified by <id>.                |
++--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
+| **POST**     | ``/fireedge/api/service/role-action/<role_id>/<id>``          | **Change** role to the service identified both by <id>.                |
++--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
+| **POST**     | ``/fireedge/api/service/sched_action/<id>``                   | **Create** a new schedule action on the service identified by <id>.    |
++--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
+| **PUT**      | ``/fireedge/api/service/sched_action/<id>/<sched_action_id>`` | **Update** the schedule action on the service identified both by <id>. |
++--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
+| **DELETE**   | ``/fireedge/api/service/sched_action/<id>/<sched_action_id>`` | **Delete** the schedule action on the service identified both by <id>. |
++--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
 
 Frontend Architecture
 ================================================================================
@@ -212,7 +212,7 @@ Filter
 
 This includes the list of criteria to filter each OpenNebula resource pool.
 
-To add one, first it's necessary implement the filter in table columns. E.g.:
+To add one, first it's necessary to implement the filter in the table columns. E.g.:
 
 .. code-block:: javascript
 
