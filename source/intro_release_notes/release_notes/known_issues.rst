@@ -29,6 +29,11 @@ Drivers - Network
 - If the nic-attach fails due to the libvirt bug (VM can not eject CD-ROM after reset) the nic appears in the VM (although without proper configuration) but it's not visible on OpenNebula VM `#5268 <http://github.com/OpenNebula/one/issues/5268>`_
 - Edge Cluster Public IP: NIC_ALIAS on the public network can only can only be associated to a NIC on the same network.
 
+Drivers - Storage
+================================================================================
+
+- For TM=qcow2 drivers, If the VM is undeployed and resumed on a different datastore, it may fail to access its own disk(s) because the qcow2 symlink is create with wrong absolute path `#5702 <http://github.com/OpenNebula/one/issues/5702>``
+
 High Availability
 ================================================================================
 
