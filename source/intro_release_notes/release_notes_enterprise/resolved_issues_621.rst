@@ -46,4 +46,5 @@ The following issues has been solved in 6.2.1:
 - `Fix FT VM migration for the fs_lvm_ssh driver <https://github.com/OpenNebula/one/issues/5699>`__.
 - `Fix Image templates after a disk save_as operation by removing SAVE_AS_HOT attribute <https://github.com/OpenNebula/one/issues/5699>`__.
 - `Fix IPs from GUEST_IP_ADDRESSES attribute were not showing in VMs datatable <https://github.com/OpenNebula/one/issues/5701>`__.
-- `Fix Sunstone was not showing disk cache and size when selecting LXC <https://github.com/OpenNebula/one/issues/5641>`__.
+- `Fix Sunstone not showing disk cache and size when selecting LXC <https://github.com/OpenNebula/one/issues/5641>`__.
+- `Improve RESTfulness of FireEdge API <https://github.com/OpenNebula/one/issues/5703>`__.
