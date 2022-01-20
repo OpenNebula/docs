@@ -69,15 +69,15 @@ File
 +--------------+--------------------------------------+--------------------------------------------------------+
 | Method       | URL                                  | Meaning / Entity Body                                  |
 +==============+======================================+========================================================+
-| **GET**      | ``/fireedge/api/files/list``         | **List** the files collection.                         |
+| **GET**      | ``/fireedge/api/files``              | **List** the files collection.                         |
 +--------------+--------------------------------------+--------------------------------------------------------+
-| **GET**      | ``/fireedge/api/files/list/<id>``    | **Show** the file identified by <id>.                  |
+| **GET**      | ``/fireedge/api/files/<id>``         | **Show** the file identified by <id>.                  |
 +--------------+--------------------------------------+--------------------------------------------------------+
 | **POST**     | ``/fireedge/api/files``              | **Create** a new file.                                 |
 +--------------+--------------------------------------+--------------------------------------------------------+
-| **PUT**      | ``/fireedge/api/files/update/<id>``  | **Update** the file identified by <id>.                |
+| **PUT**      | ``/fireedge/api/files/<id>``         | **Update** the file identified by <id>.                |
 +--------------+--------------------------------------+--------------------------------------------------------+
-| **DELETE**   | ``/fireedge/api/files/delete/<id>``  | **Delete** the file identified by <id>.                |
+| **DELETE**   | ``/fireedge/api/files/<id>``         | **Delete** the file identified by <id>.                |
 +--------------+--------------------------------------+--------------------------------------------------------+
 
 OneFlow
@@ -86,41 +86,41 @@ OneFlow
 +--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
 | Method       | URL                                                           | Meaning / Entity Body                                                  |
 +==============+===============================================================+========================================================================+
-| **GET**      | ``/fireedge/api/service_template/list``                       | **List** the service template collection.                              |
+| **GET**      | ``/fireedge/api/service_template``                            | **List** the service template collection.                              |
 +--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
-| **GET**      | ``/fireedge/api/service_template/list/<id>``                  | **Show** the service template identified by <id>.                      |
+| **GET**      | ``/fireedge/api/service_template/<id>``                       | **Show** the service template identified by <id>.                      |
 +--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
-| **POST**     | ``/fireedge/api/service_template/create``                     | **Create** a new service template.                                     |
+| **POST**     | ``/fireedge/api/service_template``                            | **Create** a new service template.                                     |
 +--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
-| **PUT**      | ``/fireedge/api/service_template/update/<id>``                | **Update** the service template identified by <id>.                    |
+| **PUT**      | ``/fireedge/api/service_template/<id>``                       | **Update** the service template identified by <id>.                    |
 +--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
-| **DELETE**   | ``/fireedge/api/service_template/delete/<id>``                | **Delete** the service template identified by <id>.                    |
+| **DELETE**   | ``/fireedge/api/service_template/<id>``                       | **Delete** the service template identified by <id>.                    |
 +--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
 
 +--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
 | Method       | URL                                                           | Meaning / Entity Body                                                                               |
 +==============+===============================================================+=====================================================================================================+
-| **GET**      | ``/fireedge/api/service/list``                                | **List** the service collection.                                                                    |
+| **GET**      | ``/fireedge/api/service``                                     | **List** the service collection.                                                                    |
 +--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
-| **GET**      | ``/fireedge/api/service/list/<id>``                           | **Show** the service identified by <id>.                                                            |
+| **GET**      | ``/fireedge/api/service/<id>``                                | **Show** the service identified by <id>.                                                            |
 +--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
-| **POST**     | ``/fireedge/api/service/create``                              | **Create** a new service.                                                                           |
+| **POST**     | ``/fireedge/api/service``                                     | **Create** a new service.                                                                           |
 +--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
-| **PUT**      | ``/fireedge/api/service/update/<id>``                         | **Update** the service identified by <id>.                                                          |
+| **PUT**      | ``/fireedge/api/service/<id>``                                | **Update** the service identified by <id>.                                                          |
 +--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
-| **DELETE**   | ``/fireedge/api/service/delete/<id>``                         | **Delete** the service identified by <id>.                                                          |
+| **DELETE**   | ``/fireedge/api/service/<id>``                                | **Delete** the service identified by <id>.                                                          |
 +--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
 | **POST**     | ``/fireedge/api/service/action/<id>``                         | **Perform** an action on the service identified by <id>.                                            |
 +--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
 | **POST**     | ``/fireedge/api/service/scale/<id>``                          | **Perform** an scale on the service identified by <id>.                                             |
 +--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
-| **POST**     | ``/fireedge/api/service/role-action/<role_id>/<id>``          | **Perform** an action on all the VMs belonging to the role to the service identified both by <id>.  |
+| **POST**     | ``/fireedge/api/service/role_action/<role_id>/<id>``          | **Perform** an action on all the VMs belonging to the role to the service identified both by <id>.  |
 +--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
 | **POST**     | ``/fireedge/api/service/sched_action/<id>``                   | **Create** a new schedule action on the service identified by <id>.                                 |
 +--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
-| **PUT**      | ``/fireedge/api/service/sched_action/<id>/<sched_action_id>`` | **Update** the schedule action on the service identified both by <id>.                              |
+| **PUT**      | ``/fireedge/api/service/sched_action/<sched_action_id>/<id>`` | **Update** the schedule action on the service identified both by <id>.                              |
 +--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
-| **DELETE**   | ``/fireedge/api/service/sched_action/<id>/<sched_action_id>`` | **Delete** the schedule action on the service identified both by <id>.                              |
+| **DELETE**   | ``/fireedge/api/service/sched_action/<sched_action_id>/<id>`` | **Delete** the schedule action on the service identified both by <id>.                              |
 +--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
 
 Sunstone
@@ -140,9 +140,9 @@ vCenter
 +--------------+---------------------------------------------+---------------------------------------------------+
 | Method       | URL                                         | Meaning / Entity Body                             |
 +==============+=============================================+===================================================+
-| **GET**      | ``/fireedge/api/vcenter/list``              | .                                                 |
+| **GET**      | ``/fireedge/api/vcenter``                   | .                                                 |
 +--------------+---------------------------------------------+---------------------------------------------------+
-| **GET**      | ``/fireedge/api/vcenter/list/<id>``         | .                                                 |
+| **GET**      | ``/fireedge/api/vcenter/<id>``              | .                                                 |
 +--------------+---------------------------------------------+---------------------------------------------------+
 | **GET**      | ``/fireedge/api/vcenter/listall``           | .                                                 |
 +--------------+---------------------------------------------+---------------------------------------------------+
@@ -163,15 +163,15 @@ Zendesk
 +==============+=============================================+====================================================+
 | **POST**     | ``/fireedge/api/zendesk/login``             | Authenticate user by credentials.                  |
 +--------------+---------------------------------------------+----------------------------------------------------+
-| **GET**      | ``/fireedge/api/zendesk/list``              | **List** the tickets collection.                   |
+| **GET**      | ``/fireedge/api/zendesk``                   | **List** the tickets collection.                   |
 +--------------+---------------------------------------------+----------------------------------------------------+
-| **GET**      | ``/fireedge/api/zendesk/list/<id>``         | **Show** the ticket identified by <id>.            |
+| **GET**      | ``/fireedge/api/zendesk/<id>``              | **Show** the ticket identified by <id>.            |
 +--------------+---------------------------------------------+----------------------------------------------------+
 | **GET**      | ``/fireedge/api/zendesk/comments/<id>``     | **List** the ticket's comments identified by <id>. |
 +--------------+---------------------------------------------+----------------------------------------------------+
-| **POST**     | ``/fireedge/api/zendesk/create``            | **Create** a new ticket.                           |
+| **POST**     | ``/fireedge/api/zendesk``                   | **Create** a new ticket.                           |
 +--------------+---------------------------------------------+----------------------------------------------------+
-| **PUT**      | ``/fireedge/api/zendesk/update/<id>``       | **Update** the ticket identified by <id>.          |
+| **PUT**      | ``/fireedge/api/zendesk/<id>``              | **Update** the ticket identified by <id>.          |
 +--------------+---------------------------------------------+----------------------------------------------------+
 
 
