@@ -48,3 +48,4 @@ The following issues has been solved in 6.2.1:
 - `Fix IPs from GUEST_IP_ADDRESSES attribute were not showing in VMs datatable <https://github.com/OpenNebula/one/issues/5701>`__.
 - `Fix Sunstone not showing disk cache and size when selecting LXC <https://github.com/OpenNebula/one/issues/5641>`__.
 - `Improve RESTfulness of FireEdge API <https://github.com/OpenNebula/one/issues/5703>`__.
+- `Fix Sunstone deletes attributes that were not changed when showback disabled <https://github.com/OpenNebula/one/issues/5696>`__.
