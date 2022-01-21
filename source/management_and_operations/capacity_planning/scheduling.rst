@@ -126,8 +126,8 @@ Scheduling Virtual Networks
 
 You can also let the scheduler pick the Virtual Networks the VM NICs will be attached to. The OpenNebula scheduler will look for a suitable Virtual Network in the Cluster for those NICs with ``NETWORK_MODE = "auto"``. The selection process uses also the above matchmaking algorithm based on:
 
-  - ``SCHED_DS_REQUIREMENTS``, A boolean expression to select Virtual Networks (evaluates to true) to attach the NIC.
-  - ``SCHED_DS_RANK``, Arithmetic expression to sort the suitable Virtual Networks for this NIC.
+  - ``SCHED_REQUIREMENTS``, A boolean expression to select Virtual Networks (evaluates to true) to attach the NIC.
+  - ``SCHED_RANK``, Arithmetic expression to sort the suitable Virtual Networks for this NIC.
 
 Note that this attributes are set by NIC. For example a VM may include:
 
