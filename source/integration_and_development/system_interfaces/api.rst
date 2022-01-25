@@ -1709,7 +1709,7 @@ one.vm.detachnic
 one.vm.attachsg
 --------------------------------------------------------------------------------
 
--  **Description**: Attaches a Security Group to network interface of Virtual Machine. If the Virtual Machine is running, apply the Security Group rules to corresponding driver.
+-  **Description**: Attaches a Security Group to network interface of Virtual Machine. If the Virtual Machine is running it updates the associated rules.
 -  **Parameters**
 
 +------+------------+--------------------------------------------------------------------------------------------------------+
