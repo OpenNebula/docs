@@ -323,6 +323,23 @@ You can also detach a NIC by its ID. If you want to detach interface 1 (MAC ``02
 
     $ onevm nic-detach 2 1
 
+.. _vm_guide2_sg_hotplugging:
+
+Security Group Hot-plugging
+--------------------------------------------------------------------------------
+
+You can live attach or detach security groups to VMs. Simply specify the VM, network interface and security group to attach, for example:
+
+.. prompt:: text $ auto
+
+    $ onevm sg-attach centos-server 0 101
+
+Similary to detach a security group execute:.
+
+.. prompt:: text $ auto
+
+    $ onevm sg-detach centos-server 0 101
+
 .. _vm_guide2_snapshotting:
 
 Virtual Machine System Snapshots

@@ -19,6 +19,10 @@ OpenNebula Core
 ================================================================================
 - VM snaphots size are highly overestimated. Count snapshot size only as fraction of original disk size. :ref:`See settings in oned.conf <oned_conf_datastores>`.
 
+Networking
+================================================================================
+- Security Groups can be added or removed from a VM network interface, if the VM is running it updates the associated rules.
+
 Sunstone
 ================================================================================
 
@@ -27,6 +31,7 @@ FireEdge
 
 CLI
 ================================================================================
+- New commands to :ref:`attach/detach Security Group <vm_guide2_sg_hotplugging>` to Virtual Machine
 
 Distributed Edge Provisioning
 ================================================================================
