@@ -485,6 +485,11 @@ You will need to configure a new virtual host in nginx. Depending on the operati
             server 127.0.0.1:9869;
     }
 
+    #### OpenNebula FireEdge upstream
+    upstream fire-edge {
+            server 127.0.0.1:2616
+    }
+
     #### cloudserver.org HTTP virtual host
     server {
             listen 80;
