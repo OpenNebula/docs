@@ -50,3 +50,4 @@ The following issues has been solved in 6.2.1:
 - `Improve RESTfulness of FireEdge API <https://github.com/OpenNebula/one/issues/5703>`__.
 - `Fix Sunstone deletes attributes that were not changed when showback disabled <https://github.com/OpenNebula/one/issues/5696>`__.
 - `Fix Sunstone shouldn't show not available option for remote console access <https://github.com/OpenNebula/one/issues/5707>`__.
+- `Fix segfault on quota rollback in VM instantiate <https://github.com/OpenNebula/one/issues/5712>`__.
