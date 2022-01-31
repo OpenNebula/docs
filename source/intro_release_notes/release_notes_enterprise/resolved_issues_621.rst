@@ -52,3 +52,4 @@ The following issues has been solved in 6.2.1:
 - `Fix Sunstone shouldn't show not available option for remote console access <https://github.com/OpenNebula/one/issues/5707>`__.
 - `Fix NaN problem from services from older versions doesn't have registration time and start time <https://github.com/OpenNebula/one/issues/5707>`__.
 - `Fix 'onevm updateconf --append' should update Context attributes <https://github.com/OpenNebula/one/issues/5716>`__.
+- `Fix segfault on quota rollback in VM instantiate <https://github.com/OpenNebula/one/issues/5712>`__.
