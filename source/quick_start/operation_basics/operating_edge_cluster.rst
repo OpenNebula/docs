@@ -62,21 +62,6 @@ A virtual network in OpenNebula basically resembles the physical network in the 
 
 |image_public_net|
 
-If you want to add more IPs to the network, you need to follow these steps:
-
-* Click on the virtual network.
-* Go to address ranges tab.
-* Click on the ``+ address range`` button.
-* Fill the information according to the following screenshot:
-
-|image_add_ar|
-
-.. note:: You should put your valid provision ID.
-
-.. important:: You can only request 1 IP per address range.
-
-Check :ref:`this link <net_guide>` to read more about virtual network management.
-
 .. _edge_private:
 
 Virtual Networks: Private

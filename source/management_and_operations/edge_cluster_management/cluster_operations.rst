@@ -129,6 +129,43 @@ Examples:
     2018-11-27 12:43:31 INFO  : Checking working SSH connection
     2018-11-27 12:43:34 INFO  : Configuring hosts
 
+Adding more hosts
+--------------------------------------------------------------------------------
+
+.. note:: You can only add more hosts to a provision in RUNNING state.
+
+The ``host add`` will deploy and configure new hosts in the provision.
+
+Parameters:
+
++-----------------------+-----------------------------------------------+-----------+---------+
+| Parameter             | Description                                   | Mandatory | Default |
++=======================+===============================================+===========+=========+
+| ``provision ID``      | Valid provision ID                            | **YES**   | NA      |
++-----------------------+-----------------------------------------------+-----------+---------+
+| ``--amount amount``   | Number of hosts to add                        | NO        | 1       |
++-----------------------+-----------------------------------------------+-----------+---------+
+| ``--hostnames h1,h2`` | Hostnames to add, used in onpremise provision | NO        | NA      |
++-----------------------+-----------------------------------------------+-----------+---------+
+
+Examples:
+
+.. prompt::
+
+    $ oneprovision host add 0 -d
+    2018-11-27 12:43:31 INFO  : Deploying
+    2018-11-27 12:43:31 INFO  : Monitoring hosts
+    2018-11-27 12:43:31 INFO  : Checking working SSH connection
+    2018-11-27 12:43:34 INFO  : Configuring hosts
+
+.. prompt::
+
+    $ oneprovision host add 0 -d --hostnames '10.0.0.110,10.0.0.111'
+    2018-11-27 12:43:31 INFO  : Deploying
+    2018-11-27 12:43:31 INFO  : Monitoring hosts
+    2018-11-27 12:43:31 INFO  : Checking working SSH connection
+    2018-11-27 12:43:34 INFO  : Configuring hosts
+
 Deleting
 --------------------------------------------------------------------------------
 
@@ -193,7 +230,29 @@ Networking
 Adding/Removing Public IPs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Check :ref:`this <edge_public>` to know how you can add more public IPs to an existing Edge Cluster.
+.. note:: You can only add more IPs to a provision in RUNNING state.
+
+.. note:: You can only add more IPs to elastic networks
+
+The ``ip add`` will request the new IP in the remote provider.
+
+Parameters:
+
++-----------------------+----------------------+-----------+---------+
+| Parameter             | Description          | Mandatory | Default |
++=======================+======================+===========+=========+
+| ``provision ID``      | Valid provision ID   | **YES**   | NA      |
++-----------------------+----------------------+-----------+---------+
+| ``--amount amount``   | Number of IPS to add | NO        | 1       |
++-----------------------+----------------------+-----------+---------+
+
+Examples:
+
+.. prompt::
+
+    $ oneprovision ip add 0
+
+Check :ref:`this <edge_public>` to know more about public networking.
 
 Adding Virtual Network
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
