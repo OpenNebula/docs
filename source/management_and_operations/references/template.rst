@@ -167,7 +167,7 @@ The OS system is defined with the ``OS`` vector attribute. The following sub-att
 | ``SD_DISK_BUS``     | bus for disks with **sd** prefix, either ``scsi`` or ``sata``,     | O                | \-      | \-      | \-          |
 |                     | if attribute is missing, libvirt chooses itself.                   |                  |         |         |             |
 +---------------------+--------------------------------------------------------------------+------------------+---------+---------+-------------+
-| ``UUID``            | unique ID of the VM. It's referenced as machine ID inside the VM.  | O                | \-      | \-      | \-          |
+| ``UUID``            | unique ID of the VM. It's referenced as machine ID inside the VM.  | O                | O       | \-      | \-          |
 |                     | Could be used to force ID for licensing purposes.                  |                  |         |         |             |
 +---------------------+--------------------------------------------------------------------+------------------+---------+---------+-------------+
 | ``FIRMWARE``        | firmware type or firmare path.                                     | O                | O       | \-      | \-          |
