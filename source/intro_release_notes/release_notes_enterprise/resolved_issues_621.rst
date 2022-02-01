@@ -55,3 +55,4 @@ The following issues has been solved in 6.2.1:
 - `Fix NaN problem from services from older versions doesn't have registration time and start time <https://github.com/OpenNebula/one/issues/5707>`__.
 - `Fix 'onevm updateconf --append' should update Context attributes <https://github.com/OpenNebula/one/issues/5716>`__.
 - `Fix segfault on quota rollback in VM instantiate <https://github.com/OpenNebula/one/issues/5712>`__.
+- `Fix update conf in running VMs on Cloud view <https://github.com/OpenNebula/one/issues/5176>`__.
