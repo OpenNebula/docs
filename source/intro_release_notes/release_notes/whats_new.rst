@@ -41,6 +41,7 @@ KVM
 
 LXC
 ===
+- `Mount options for Storage Interfaces <https://github.com/OpenNebula/one/issues/5429>`__.
 
 Other Issues Solved
 ================================================================================
@@ -50,4 +51,3 @@ Features Backported to 6.2.x
 ============================
 
 Additionally, a lot of new functionality is present that was not in OpenNebula 6.2.0, although they debuted in subsequent maintenance releases of the 6.2.x series:
-

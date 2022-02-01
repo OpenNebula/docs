@@ -114,8 +114,22 @@ LXC driver-specific configuration is available in ``/var/lib/one/remotes/etc/vmm
 |                            | will be included in the configuration of every LXC                 |
 |                            | container                                                          |
 +----------------------------+--------------------------------------------------------------------+
-| ``:bindfs_mountopts``      | Comma separated list of mount options used when shifting the       |
-|                            | uid/gid with bindfs. See <bindfs -o> command help.                 |
+
+Mount options configuration section also in lxcrc
+
++----------------------------+--------------------------------------------------------------------+
+| ``:bindfs``                | Comma separated list of mount options used when shifting the       |
+|                            | uid/gid with bindfs. See <bindfs -o> command help                  |
++----------------------------+--------------------------------------------------------------------+
+| ``:dev_<fs>``              | Mount options for disk devices (in the host). Options are set per  |
+|                            | fs type (e.g. dev_xfs, dev_ext3...)                                |
++----------------------------+--------------------------------------------------------------------+
+| ``:disk``                  | Mount options for data DISK in the contianer (lxc.mount.entry)     |
++----------------------------+--------------------------------------------------------------------+
+| ``:rootfs``                | Mount options for root fs in the container (lxc.rootfs.options)    |
++----------------------------+--------------------------------------------------------------------+
+| ``:mountpoint``            | Default Path to mount data disk in the container. This can be      |
+|                            | set per DISK using the TARGET attribute                            |
 +----------------------------+--------------------------------------------------------------------+
 
 Storage
