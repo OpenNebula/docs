@@ -57,3 +57,4 @@ The following issues has been solved in 6.2.1:
 - `Fix segfault on quota rollback in VM instantiate <https://github.com/OpenNebula/one/issues/5712>`__.
 - `Fix update conf in running VMs on Cloud view <https://github.com/OpenNebula/one/issues/5176>`__.
 - `Fix mapping information of system.config <https://github.com/OpenNebula/one/issues/5698>`__.
+- `Fix VM instantiate with datastore in Cloud View <https://github.com/OpenNebula/one/issues/5721>`__.
