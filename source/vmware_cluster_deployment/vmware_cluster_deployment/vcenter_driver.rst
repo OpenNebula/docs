@@ -637,24 +637,29 @@ This is an easy way to check the available vCenter datastores:
 
 .. prompt:: bash $ auto
 
-	onedatastore list | grep -E 'img.*vcenter'
+	$ onedatastore list | grep -E 'img.*vcenter'
 
 	 100 datastore2(IM       924G 100%  102               1 img  vcenter vcenter on
 	 102 datastore1(IM       924G 88%   -                 0 img  vcenter vcenter on
 	 106 nfs(IMG)            4.5T 39%   100,102          24 img  vcenter vcenter on
 
-
-Here's an example showing how a VMDK file can be imported using the command-line interface.
-In this case we're going to use datastore1 (102) and host 0:
+Now, we can get the images stored in a vCenter datastore which the following command:
 
 .. prompt:: bash $ auto
 
-	onevcenter list -o images -h 0 -d 106
-	# vCenter: vcenter.vcenter65-1
+    $ onevcenter list -o images -h 0 -d 102
 
 	IMID REF                                 PATH
   	   0 one-21                              one_223304/21/one-21.vmdk
 	   1 Core-current.iso.iso                one_223304/22/Core-current.iso.iso
+
+Finnaly, here's an example showing how a VMDK file can be imported using the command-line interface.
+In this case we're going to import the image with reference "one-21" using datastore1 (102) and host 0:
+
+.. prompt:: bash $ auto
+
+    $ onevcenter import "one-21" -o images -h 0 -d 102
+    ID: 53
 
 Once the image has been imported, it will report the OpenNebula image ID.
 
