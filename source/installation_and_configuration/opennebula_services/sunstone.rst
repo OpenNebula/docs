@@ -336,7 +336,6 @@ The VM Templates can have an image logo to identify the guest OS. Edit ``/etc/on
     - { 'name': "Alpine Linux",    'path': "images/logos/alpine.png"}
     - { 'name': "ALT",             'path': "images/logos/alt.png"}
     - { 'name': "Arch Linux",      'path': "images/logos/arch.png"}
-    - { 'name': "CentOS",          'path': "images/logos/centos.png"}
     - { 'name': "Debian",          'path': "images/logos/debian.png"}
     - { 'name': "Fedora",          'path': "images/logos/fedora.png"}
     - { 'name': "FreeBSD",         'path': "images/logos/freebsd.png"}

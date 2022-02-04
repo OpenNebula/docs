@@ -17,7 +17,7 @@ This page describes how to install a complete OpenNebula Front-end from binary p
 
 Proceed with the following steps to get the fully-featured OpenNebula Front-end up.
 
-Step 1. Disable SELinux on CentOS/RHEL (Optional)
+Step 1. Disable SELinux on AlmaLinux/RHEL (Optional)
 ================================================================================
 
 Depending on the type of OpenNebula deployment, the SELinux can block some operations initiated by the OpenNebula Front-end, which results in a failure of the particular operation.  It's **not recommended to disable** the SELinux in production environments as it degrades the security of your server, but instead to investigate and work around each individual problem based on the `SELinux User's and Administrator's Guide <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/>`__. The administrator might disable the SELinux to temporarily work around the problem or on non-production deployments by changing the following line in ``/etc/selinux/config``:
@@ -41,14 +41,7 @@ Step 3. Add 3rd Party Repositories
 
 Not all OpenNebula dependencies are in base distribution repositories. On selected platforms below you need to enable 3rd party repositories by running the following commands under privileged user (``root``):
 
-**CentOS 7**
-
-.. prompt:: bash # auto
-
-    # yum -y install epel-release
-    # yum -y install centos-release-scl-rh
-
-**CentOS 8**
+**AlmaLinux 8 (6.2.1 EE only)**
 
 .. prompt:: bash # auto
 
@@ -112,7 +105,7 @@ Available packages for OpenNebula clients, the Front-end and hypervisor Nodes:
 +------------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **opennebula-node-firecracker**          | Base setup for Firecracker hypervisor Node                                                                    |
 +------------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **opennebula-node-lxc**                  | Base setup for LXC hypervisor Node (*not on CentOS/RHEL 7*)                                                   |
+| **opennebula-node-lxc**                  | Base setup for LXC hypervisor Node (*not on RHEL 7*)                                                          |
 +------------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **opennebula-node-lxd**                  | Base setup for LXD hypervisor Node (*only on Ubuntu and Debian*)                                              |
 +------------------------------------------+---------------------------------------------------------------------------------------------------------------+
@@ -137,14 +130,14 @@ Available packages for OpenNebula clients, the Front-end and hypervisor Nodes:
 | **docker-machine-opennebula**            | OpenNebula driver for Docker Machine                                                                          |
 +------------------------------------------+---------------------------------------------------------------------------------------------------------------+
 
-There are also packages with debugging symbols for some platforms, e.g. ``openenbula-debuginfo`` on CentOS/RHEL and ``opennebula-dbgsym`` on Debian/Ubuntu. Other architecture-specific components might come with similarly named packages, please query your packaging database if necessary.
+There are also packages with debugging symbols for some platforms, e.g. ``openenbula-debuginfo`` on AlmaLinux/RHEL and ``opennebula-dbgsym`` on Debian/Ubuntu. Other architecture-specific components might come with similarly named packages, please query your packaging database if necessary.
 
 .. note::
 
-   There are a few differences in package names among distributions. Those with varying package names contain mostly integration libraries and since they are for general use on installation Hosts, their names are left to follow the distribution conventions. Above, you can find the CentOS/RHEL/Fedora specific packages prefixed with "*rpm:*" and Debian/Ubuntu specific packages prefixed with "*deb:*".
+   There are a few differences in package names among distributions. Those with varying package names contain mostly integration libraries and since they are for general use on installation Hosts, their names are left to follow the distribution conventions. Above, you can find the AlmaLinux/RHEL specific packages prefixed with "*rpm:*" and Debian/Ubuntu specific packages prefixed with "*deb:*".
 
-CentOS / RHEL / Fedora
-----------------------
+AlmaLinux / RHEL
+----------------
 
 Install all OpenNebula Front-end components by executing the following commands under a privileged user:
 
@@ -158,7 +151,7 @@ Install all OpenNebula Front-end components by executing the following commands 
 
 1. Install dependencies for :ref:`Docker Hub Marketplace <market_dh>`:
 
-- install Docker following the official documentation for `CentOS <https://docs.docker.com/engine/install/centos/>`_ or `Fedora <https://docs.docker.com/engine/install/fedora/>`_
+- install Docker following the official documentation `<https://docs.docker.com/engine/install/>`
 - add user ``oneadmin`` into group ``docker``:
 
 .. prompt:: bash # auto

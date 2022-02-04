@@ -27,7 +27,7 @@ Front-End Components
 | MariaDB or MySQL         | Version included in the Linux distribution             | :ref:`MySQL Setup <mysql>`                            |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 | PostgreSQL               | 9.5+, Version included in the Linux distribution       | :ref:`PostgreSQL Setup <postgresql>`                  |
-|                          | (except RHEL/CentOS 7)                                 |                                                       |
+|                          | (except RHEL 7)                                        |                                                       |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 | SQLite                   | Version included in the Linux distribution             | Default DB, no configuration needed                   |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
@@ -52,7 +52,7 @@ KVM Nodes
 | Debian                   | 10, 11                                                  | :ref:`KVM Driver <kvmg>`                |
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
 | KVM/Libvirt              | Support for version included in the Linux distribution. | :ref:`KVM Node Installation <kvm_node>` |
-|                          | For CentOS/RHEL the packages from ``qemu-ev`` are used. |                                         |
+|                          | For RHEL the packages from ``qemu-ev`` are used.        |                                         |
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
 
 LXC Nodes
