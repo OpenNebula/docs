@@ -58,4 +58,3 @@ The following issues has been solved in 6.2.1:
 - `Fix update conf in running VMs on Cloud view <https://github.com/OpenNebula/one/issues/5176>`__.
 - `Fix mapping information of system.config <https://github.com/OpenNebula/one/issues/5698>`__.
 - `Fix VM instantiate with datastore in Cloud View <https://github.com/OpenNebula/one/issues/5721>`__.
-- `Fix absolute disk symlink in QCOW2 storage driver <https://github.com/OpenNebula/one/issues/5702>`__.
