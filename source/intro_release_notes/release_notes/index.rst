@@ -9,7 +9,6 @@ Release Notes 6.2.0
 
    What's New <whats_new>
    Platform Notes <platform_notes>
-   Secondary Platforms <secondary>
    Compatibility Guide <compatibility>
    Known Issues <known_issues>
    Acknowledgements <acknowledgements>
