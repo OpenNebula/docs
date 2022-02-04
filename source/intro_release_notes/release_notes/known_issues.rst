@@ -17,7 +17,7 @@ Drivers - Network
 Drivers - Storage
 ================================================================================
 
-- For TM=qcow2 drivers, If the VM is undeployed and resumed on a different datastore, it may fail to access its own disk(s) because the qcow2 symlink is create with wrong absolute path `#5702 <http://github.com/OpenNebula/one/issues/5702>``
+- For TM=qcow2 drivers, If the VM is undeployed and resumed on a different datastore, it may fail to access its own disk(s) because the qcow2 symlink is create with wrong absolute path `#5702 <http://github.com/OpenNebula/one/issues/5702>`_
 
 High Availability
 ================================================================================
