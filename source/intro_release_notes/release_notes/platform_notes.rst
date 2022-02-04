@@ -8,6 +8,8 @@ This page will show you the specific considerations when using an OpenNebula clo
 
 This is the list of the individual platform components that have been through the complete `OpenNebula Quality Assurance and Certification Process <https://github.com/OpenNebula/one/wiki/Quality-Assurance>`__.
 
+.. note:: Since release 6.2.1 CentOS is no longer supported, instead AlmaLinux is supported distribution.
+
 Certified Components Version
 ================================================================================
 
@@ -19,7 +21,7 @@ Front-End Components
 +==========================+========================================================+=======================================================+
 | Red Hat Enterprise Linux | 7, 8                                                   | :ref:`Front-End Installation <frontend_installation>` |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-| CentOS                   | 7, 8                                                   | :ref:`Front-End Installation <frontend_installation>` |
+| AlmaLinux                | 8                                                      | :ref:`Front-End Installation <frontend_installation>` |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 | Ubuntu Server            | 18.04 (LTS), 20.04 (LTS)                               | :ref:`Front-End Installation <frontend_installation>` |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
@@ -28,7 +30,7 @@ Front-End Components
 | MariaDB or MySQL         | Version included in the Linux distribution             | :ref:`MySQL Setup <mysql>`                            |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 | PostgreSQL               | 9.5+, Version included in the Linux distribution       | :ref:`PostgreSQL Setup <postgresql>`                  |
-|                          | (except RHEL/CentOS 7)                                 |                                                       |
+|                          | (except RHEL 7)                                        |                                                       |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 | SQLite                   | Version included in the Linux distribution             | Default DB, no configuration needed                   |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
@@ -43,7 +45,7 @@ Containerized Front-End Components
 +--------------------------+--------------------------------------------------------+---------------------------------------------------------+
 |        Component         |                        Version                         |                    More information                     |
 +==========================+========================================================+=========================================================+
-| Podman                   | 2.0, 2.2 (on RHEL/CentOS 8)                            | :ref:`Containerized Deployment <container_deployment>`  |
+| Podman                   | 2.0, 2.2 (on RHEL/AlmaLinux 8                          | :ref:`Containerized Deployment <container_deployment>`  |
 +--------------------------+--------------------------------------------------------+---------------------------------------------------------+
 | Podman Compose           | 0.1.7-2.git20201120                                    | :ref:`Containerized Deployment <container_deployment>`  |
 +--------------------------+--------------------------------------------------------+---------------------------------------------------------+
@@ -75,14 +77,15 @@ KVM Nodes
 +==========================+=========================================================+=========================================+
 | Red Hat Enterprise Linux | 7, 8                                                    | :ref:`KVM Driver <kvmg>`                |
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
-| CentOS                   | 7, 8                                                    | :ref:`KVM Driver <kvmg>`                |
+| AlmaLinux                | 8                                                       | :ref:`KVM Driver <kvmg>`                |
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
 | Ubuntu Server            | 18.04 (LTS), 20.04 (LTS)                                | :ref:`KVM Driver <kvmg>`                |
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
 | Debian                   | 10, 11                                                  | :ref:`KVM Driver <kvmg>`                |
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
 | KVM/Libvirt              | Support for version included in the Linux distribution. | :ref:`KVM Node Installation <kvm_node>` |
-|                          | For CentOS/RHEL the packages from ``qemu-ev`` are used. |                                         |
+|                          | For RHEL/AlmaLinux the packages from ``qemu-ev`` are    |                                         |
+|                          | used.                                                   |                                         |
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
 
 LXC Nodes
@@ -95,7 +98,7 @@ LXC Nodes
 +---------------+--------------------------------------------------------+-----------------------------------------+
 | Debian        | 10, 11                                                 | :ref:`LXC Driver <lxcmg>`               |
 +---------------+--------------------------------------------------------+-----------------------------------------+
-| CentOS        | 8                                                      | :ref:`LXC Driver <lxcmg>`               |
+| AlmaLinux     | 8                                                      | :ref:`LXC Driver <lxcmg>`               |
 +---------------+--------------------------------------------------------+-----------------------------------------+
 | LXC           | Support for version included in the Linux distribution | :ref:`LXC Node Installation <lxc_node>` |
 +---------------+--------------------------------------------------------+-----------------------------------------+
@@ -108,7 +111,7 @@ Firecracker Nodes
 +==========================+=================================================+==================================+
 | Red Hat Enterprise Linux | 7, 8                                            | :ref:`Firecracker Driver <fcmg>` |
 +--------------------------+-------------------------------------------------+----------------------------------+
-| CentOS                   | 7, 8                                            | :ref:`Firecracker Driver <fcmg>` |
+| AlmaLinux                | 8                                               | :ref:`Firecracker Driver <fcmg>` |
 +--------------------------+-------------------------------------------------+----------------------------------+
 | Ubuntu Server            | 18.04 (LTS), 20.04 (LTS)                        | :ref:`Firecracker Driver <fcmg>` |
 +--------------------------+-------------------------------------------------+----------------------------------+
@@ -134,7 +137,7 @@ Linux Contextualization Packages
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
 | Amazon Linux                 | 2                                                       | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
-| CentOS                       | 7, 8, 8 Stream                                          | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| CentOS                       | 8 Stream                                                | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
 | Debian                       | 8, 9, 10, 11                                            | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
@@ -265,7 +268,7 @@ The following applies to all Front-Ends:
 * XML-RPC tuning parameters (``MAX_CONN``, ``MAX_CONN_BACKLOG``, ``KEEPALIVE_TIMEOUT``, ``KEEPALIVE_MAX_CONN`` and ``TIMEOUT``) are only available with packages distributed by us, as they are compiled with a newer xmlrpc-c library.
 * Only **Ruby versions >= 2.0 are supported**.
 
-CentOS 7.0
+RHEL 7.0
 --------------------------------------------------------------------------------
 
 When using Apache to serve Sunstone, it is required that you disable or comment the ``PrivateTMP=yes`` directive in ``/usr/lib/systemd/system/httpd.service``.
@@ -299,7 +302,7 @@ The following items apply to all distributions:
 
     DISK = [ driver = "qcow2", cache = "writethrough" ]
 
-CentOS/RedHat 7 Platform Notes
+RedHat 7 Platform Notes
 --------------------------------------------------------------------------------
 
 Ruby Dependencies
@@ -307,17 +310,6 @@ Ruby Dependencies
 
 In order to install Ruby dependencies on RHEL, the Server Optional channel needs to be enabled. Please refer to `RedHat documentation <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/>`__ to enable the channel.
 
-Alternatively, use CentOS 7 repositories to install Ruby dependencies.
-
-Libvirt Version
-~~~~~~~~~~~~~~~
-
-The libvirt/QEMU packages used in the testing infrastructure are the ones in the ``qemu-ev`` repository. To add this repository on CentOS, you can install the following packages:
-
-.. prompt:: bash # auto
-
-    # yum install centos-release-qemu-ev
-    # yum install qemu-kvm-ev
 
 Disable PolicyKit for Libvirt
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -336,7 +328,7 @@ It is recommended that you disable PolicyKit for Libvirt:
   ...
 
 
-CentOS/RedHat 8 Platform Notes
+RedHat/AlmaLinux 8 Platform Notes
 --------------------------------------------------------------------------------
 
 Disable PolicyKit for Libvirt
