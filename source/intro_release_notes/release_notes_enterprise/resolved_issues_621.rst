@@ -8,6 +8,7 @@ A complete list of solved issues for 6.2.1 can be found in the `project developm
 
 The following new features has been backported to 6.2.1:
 
+- :ref:`Exclusively for the Enterprise Edition, a WHMCS module has bee nadded that allows the creation and management of OpenNebula users and groups with quotas <whmcs_tenants>`.
 - `Add support to filter providers by provision type <https://github.com/OpenNebula/one/issues/5604>`__.
 - `Add encrypted attributes to User template <https://github.com/OpenNebula/one/issues/5431>`__.
 - `Add encryption to guacamole SSH private key and passphrase <https://github.com/OpenNebula/one/issues/5241>`__.
