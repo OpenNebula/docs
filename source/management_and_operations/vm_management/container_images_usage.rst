@@ -26,16 +26,18 @@ In order to deploy a Firecracker MicroVM using one of the images mentioned above
 
 Once the image is in ready state, the only thing left to boot the MicroVM is to add the kernel image to the VM template.
 
-Using Container Images with KVM
+Using Container Images with Qemu+KVM
 ================================================================================
 
-In order to deploy KVM VMs using container images OpenNebula use the PVH entry point which allows to deploy VMs from an uncompressed kernel images with minimal firmware involvement. PVH entry point is a new feature for qemu+kvm which have the following requirements:
+In order to deploy KVM VMs using container images, the PVH entry point can be used to deploy VMs from an uncompressed kernel images with minimal firmware involvement. PVH entry point is a new feature for qemu+kvm which have the following requirements:
 
 - QEMU >= 4.0
 - Linux kernel >= 4.21
 - `CONFIG_PVH` enabled for the guest kernel.
 
 If the requirements are fulfilled, the only thing needed to boot the container image as a VM is to add the kernel image to the VM template and set the root device (e.g ``vda``).
+
+.. important:: The kernel used for this must be properly configured to use PVH entrypoint and must also contains any configuration required by the services executed within. The recommended way of running container images with KVM is using Firecracker VMM.
 
 Getting Kernel Images
 ================================================================================
