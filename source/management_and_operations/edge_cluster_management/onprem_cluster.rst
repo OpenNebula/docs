@@ -78,7 +78,7 @@ Before we start we need to prepare the hosts for our on-prem cluster. We just ne
     $ ssh root@host01 cat /etc/centos-release
     Warning: Permanently added 'host01,10.4.4.100' (ECDSA) to the list of known hosts.
     CentOS Linux release 8.3.2011
-    
+
 
     $  ssh root@host02 cat /etc/centos-release
     Warning: Permanently added 'host02,10.4.4.101' (ECDSA) to the list of known hosts.
@@ -229,10 +229,10 @@ The final step will be adding a network interface to the template just created (
 Now we can create the VM from this template:
 
 .. prompt:: bash $ auto
-    
+
     $ onetemplate instantiate 3
     VM ID:10
-    
+
     $ onevm show 10
     VIRTUAL MACHINE 10 INFORMATION
     ID                  : 10

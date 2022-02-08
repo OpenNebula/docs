@@ -148,7 +148,7 @@ Ubuntu/Debian
     # apt-get update
     # apt-get install --only-upgrade opennebula opennebula-sunstone opennebula-gate opennebula-flow opennebula-provision python3-pyone
 
-CentOS/RHEL
+RHEL
 
 .. prompt:: text # auto
 
@@ -181,7 +181,7 @@ Community Edition
 
 There is an additoinal step if you are upgrading OpenNebula CE. After you get the `opennebula-migration-community package <https://opennebula.io/get-migration>`__, you need to install it in the OpenNebula Front-end.
 
-CentOS/RHEL
+RHEL
 ~~~~~~~~~~~
 
 .. prompt:: bash # auto
@@ -324,7 +324,7 @@ Ubuntu/Debian
 
     # apt-get install --only-upgrade opennebula-node-<hypervisor>
 
-CentOS
+RHEL
 
 .. prompt:: text # auto
 
