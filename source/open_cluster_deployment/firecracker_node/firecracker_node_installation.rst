@@ -17,8 +17,8 @@ Step 1. Add OpenNebula Repositories
 Step 2. Installing the Software
 ===============================
 
-Installing on CentOS/RHEL
--------------------------
+Installing on AlmaLinux/RHEL
+----------------------------
 
 .. include:: ../common_node/epel.txt
 
@@ -45,8 +45,8 @@ Execute the following commands to install the OpenNebula Firecracker Node packag
 
 For further configuration check the specific :ref:`guide <fcmg>`.
 
-Step 3. Disable SELinux on CentOS/RHEL (Optional)
-=================================================
+Step 3. Disable SELinux on AlmaLinux/RHEL (Optional)
+====================================================
 
 .. include:: ../common_node/selinux.txt
 

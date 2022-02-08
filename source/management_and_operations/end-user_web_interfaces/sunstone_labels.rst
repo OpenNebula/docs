@@ -20,7 +20,7 @@ This filter is **also available in the cloud view** inside the virtual machine c
 
 |labels_cloud|
 
-To create a **label hierarchy**, use slash character: ``/``. For example, you could have the labels ``Linux/Ubuntu`` and ``Linux/Centos``.
+To create a **label hierarchy**, use slash character: ``/``. For example, you could have the labels ``Linux/Ubuntu`` and ``Linux/RedHat``.
 
 .. _suns_views_labels_behavior:
 
@@ -80,7 +80,7 @@ You can separate them per groups of users or introduce them into the default sec
     labels_groups:
         oneadmin:
             - Linux/Ubuntu
-            - Linux/Centos
+            - Linux/RedHat
         default:
             - default
 
