@@ -6,14 +6,6 @@ Resolved Issues in 6.2.1
 
 A complete list of solved issues for 6.2.1 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/47?closed=1>`__.
 
-With CentOS having reached its end of life date, OpenNebula 6.2.1 introduces the following adaptations:
-
-- CentOS packages are no longer build.
-- There is a new repository for AlmaLinux 8. Any distribution compatible with RedHat Enterprise Linux 8 should be able to use this repository (E.g. RockyLinux).
-- RedHat Enterprise Linux 7 and 8 are fully supported, specific repositories has been created for these two distributions.
-
-:ref:`Please refer to the installation guide <frontend_installation>` to update your repository files as needed.
-
 The following new features has been backported to 6.2.1:
 
 - :ref:`Exclusively for the Enterprise Edition, a WHMCS module has bee nadded that allows the creation and management of OpenNebula users and groups with quotas <whmcs_tenants>`.
