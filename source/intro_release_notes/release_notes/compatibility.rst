@@ -34,6 +34,7 @@ Distributed Edge Provisioning
 =============================
 
 - OneProvision is able to load providers dynamically, so all the providers in the folder ``/usr/lib/one/oneprovision/lib/terraform/providers`` are loaded.
+- RHEL 7 does not support Equnix for edge clusters provisioning from OpenNebula version 6.2.1
 
 PyONE
 ========================
