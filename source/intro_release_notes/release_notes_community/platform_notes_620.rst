@@ -1,7 +1,7 @@
 .. _uspng:
 
 ================================================================================
-Platform Notes
+Platform Notes 6.2.0
 ================================================================================
 
 This page will show you the specific considerations when using an OpenNebula cloud, according to the different supported platforms.
@@ -247,7 +247,7 @@ Sunstone
 Compatibility of Workloads on Certified Edge Clusters
 =====================================================
 
-.. include:: ./edge_clusters.txt
+.. include:: ../release_notes/edge_clusters.txt
 
 
 Certified Infrastructure Scale

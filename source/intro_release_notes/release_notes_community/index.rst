@@ -8,3 +8,4 @@ Release Notes 6.2.0 Community
    :maxdepth: 1
 
    What Is <what_is>
+   Platform Notes 6.2.0 <platform_notes_620>
