@@ -69,14 +69,14 @@ You have to download them to a directory that we will later refer. For our examp
 
     $ mkdir packages
     $ cd packages
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.0/one-context-6.2.0-1.el6.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.0/one-context-6.2.0-1.el7.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.0/one-context-6.2.0-1.el8.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.0/one-context-6.2.0-1.suse.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.0/one-context-6.2.0-alt1.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.0/one-context_6.2.0-1.deb
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.0/one-context-6.2.0-r1.apk
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.0/one-context-6.2.0_1.txz
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.1/one-context-6.2.1-1.el6.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.1/one-context-6.2.1-1.el7.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.1/one-context-6.2.1-1.el8.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.1/one-context-6.2.1-1.suse.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.1/one-context-6.2.1-alt1.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.1/one-context_6.2.1-1.deb
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.1/one-context-6.2.1-r1.apk
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.1/one-context-6.2.1_1.txz
     $ cd ..
 
 Step 4. Create a CDROM Image with Context Packages

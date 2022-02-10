@@ -16,8 +16,7 @@ Drivers - Network
 
 Drivers - Storage
 ================================================================================
-
-- For TM=qcow2 drivers, If the VM is undeployed and resumed on a different datastore, it may fail to access its own disk(s) because the qcow2 symlink is create with wrong absolute path `#5702 <http://github.com/OpenNebula/one/issues/5702>`_
+- **LVM**, VM removing might fail because of an error defining a lock name if ``ZERO_LVM_ON_DELETE`` is not set. This issue have been already fixed in the `development branch <https://github.com/OpenNebula/one/commit/00a61d74a5f7339c79fadc708c8f89abaf5025d8>`__.
 
 High Availability
 ================================================================================

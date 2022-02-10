@@ -54,7 +54,7 @@ Install
 
 First of all, you need a working MySQL or MariaDB server. You can either deploy one for the OpenNebula installation following the guides for your operating system or reuse an existing one accessible via the Front-end. We assume you have a working MySQL/MariaDB server installed.
 
-.. note:: MySQL should be recent enough to support the FULLTEXT indexing used by OpenNebula to implement the VM search feature. For MariaDB, that means at least a late minor version of release 10.0 if you use the default InnoDB.  If you are using CentOS 7 you may be interested in install packages from Software Collections (``centos-release-scl-rh``) and probably the ``syspaths`` variants (``rh-mariadb103-mariadb-config-syspaths``, ``rh-mariadb103-mariadb-syspaths``, and ``rh-mariadb103-mariadb-server-syspaths``) to provide the usual MySQL paths. On RHEL 7, subscribe to the ``rhel-server-rhscl-7-rpms`` repo and then install the ``rh-mariadb`` packages.
+.. note:: MySQL should be recent enough to support the FULLTEXT indexing used by OpenNebula to implement the VM search feature. For MariaDB, that means at least a late minor version of release 10.0 if you use the default InnoDB.
 
 Configure
 ---------
@@ -119,7 +119,7 @@ The **PostgreSQL** Back-end is an alternative to SQLite and MySQL/MariaDB Back-e
 
 Features:
 
-* Required **PostgreSQL 9.5 or newer** (WARNING: base RHEL/CentOS 7 contains unsupported PostgreSQL 9.2!)
+* Required **PostgreSQL 9.5 or newer** (WARNING: base RHEL 7 contains unsupported PostgreSQL 9.2!)
 * No migrator for existing deployments from SQLite or MySQL/MariaDB
 * No full-text search support
 

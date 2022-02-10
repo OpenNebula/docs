@@ -22,19 +22,19 @@ OpenNebula Systems provides an OpenNebula Enterprise Edition to customers with a
 
     You should have received the customer access token (username and password) to access these repositories. You have to substitute the appearance of ``<token>`` with your customer specific token in all instructions below.
 
-CentOS/RHEL
------------
+RHEL/AlmaLinux
+--------------
 
 To add the OpenNebula enterprise repository, execute the following as user ``root``:
 
-**CentOS/RHEL 7**
+**RHEL 7**
 
 .. prompt:: bash # auto
 
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Enterprise Edition
-    baseurl=https://<token>@enterprise.opennebula.io/repo/6.2/CentOS/7/$basearch
+    baseurl=https://<token>@enterprise.opennebula.io/repo/6.2/RedHat/7/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo.key
     gpgcheck=1
@@ -42,14 +42,29 @@ To add the OpenNebula enterprise repository, execute the following as user ``roo
     EOT
     # yum makecache fast
 
-**CentOS/RHEL 8**
+**RHEL 8**
 
 .. prompt:: bash # auto
 
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Enterprise Edition
-    baseurl=https://<token>@enterprise.opennebula.io/repo/6.2/CentOS/8/$basearch
+    baseurl=https://<token>@enterprise.opennebula.io/repo/6.2/RedHat/8/$basearch
+    enabled=1
+    gpgkey=https://downloads.opennebula.io/repo/repo.key
+    gpgcheck=1
+    repo_gpgcheck=1
+    EOT
+    # yum makecache
+
+**AlmaLinux 8**
+
+.. prompt:: bash # auto
+
+    # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
+    [opennebula]
+    name=OpenNebula Enterprise Edition
+    baseurl=https://<token>@enterprise.opennebula.io/repo/6.2/AlmaLinux/8/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo.key
     gpgcheck=1
@@ -136,7 +151,7 @@ Community Edition
 
 The community edition of OpenNebula offers the full functionality of the Cloud Management Platform. You can configure the community repositories as follows:
 
-CentOS/RHEL/Fedora
+CentOS/RHEL
 ------------------
 
 To add OpenNebula repository, execute the following as user ``root``:

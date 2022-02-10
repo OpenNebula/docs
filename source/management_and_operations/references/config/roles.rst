@@ -93,7 +93,7 @@ Parameter                               Default                                 
 ``opennebula_repository_base``          ``https://downloads.opennebula.io/repo/``  Repository of the OpenNebula packages
                                         ``{{ opennebula_repository_version }}``
 ``opennebula_repository_gpgcheck``      yes                                        Enable GPG check for the packages
-``opennebula_repository_repo_gpgcheck`` yes                                        Enable GPG check for the repos (RHEL/CentOS only)
+``opennebula_repository_repo_gpgcheck`` yes                                        Enable GPG check for the repos (RHEL/AlmaLinux only)
 ======================================= ========================================== ===========
 
 Role opennebula-ssh

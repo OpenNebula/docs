@@ -112,7 +112,7 @@ Debian 10
 * **ruby**
 * **scons**
 
-CentOS 8
+AlmaLinux 8
 ================================================================================
 
 * **gcc-c++**
@@ -138,29 +138,6 @@ CentOS 8
 * **sqlite-devel**
 * **systemd-devel**
 * **xmlrpc-c-devel**
-
-CentOS 7
-================================================================================
-
-* **gcc-c++**
-* **gnutls-devel**
-* **java-1.7.0-openjdk-devel**
-* **libcurl-devel**
-* **libjpeg-turbo-devel**
-* **libvncserver-devel**
-* **libxml2-devel**
-* **mysql-devel**
-* **openssh**
-* **openssl-devel**
-* **postgresql-devel**
-* **pkgconfig**
-* **ruby**
-* **scons**
-* **sqlite-devel**
-* **systemd-devel**
-* **xmlrpc-c**
-* **xmlrpc-c-devel**
-* **ws-commons-util**
 
 Arch
 ================================================================================

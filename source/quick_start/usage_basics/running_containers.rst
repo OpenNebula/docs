@@ -82,7 +82,7 @@ Now you need to select a datastore. Taking into account we are only going to run
 
 The appliance will be ready when the image in ``Storage --> Images`` (called "wordpress") switches to READY from its LOCKED state.
 
-You need to modify the Wordpress VM template. Proceed to the ``Templates --> VMs`` tab and select the Wordpress VM template. Click on update, proceed to the Network tab and select the aws-cluster-public network. 
+You need to modify the Wordpress VM template. Proceed to the ``Templates --> VMs`` tab and select the Wordpress VM template. Click on update, proceed to the Network tab and select the aws-cluster-public network.
 
 |wordpress_public_network|
 
@@ -109,9 +109,9 @@ Now you need to select a datastore. Taking into account we are only going to run
 
 |aws_cluster_images_datastore_mariadb|
 
-The appliance will be ready when the image in ``Storage --> Images`` (called "mariadb") switches to READY from its LOCKED state. 
+The appliance will be ready when the image in ``Storage --> Images`` (called "mariadb") switches to READY from its LOCKED state.
 
-You need to modify the Wordpress VM template. Proceed to the ``Templates --> VMs`` tab and select the Wordpress VM template. Click on update, proceed to the Network tab and select the aws-cluster-public network. 
+You need to modify the Wordpress VM template. Proceed to the ``Templates --> VMs`` tab and select the Wordpress VM template. Click on update, proceed to the Network tab and select the aws-cluster-public network.
 
 |mariadb_public_network|
 
@@ -134,7 +134,7 @@ Write "wordpress" as the name of the service and in the section ``Advanced servi
 
 |wordpress_service_template_create|
 
-Then, you need to add two roles to the service: one role for DB and one for Wordpress. Go to the ``Roles`` section of the template, write db in the ``Role name`` input text and select the MariaDB VM template previously created. 
+Then, you need to add two roles to the service: one role for DB and one for Wordpress. Go to the ``Roles`` section of the template, write db in the ``Role name`` input text and select the MariaDB VM template previously created.
 
 |mariadb_oneflow_role|
 
@@ -142,7 +142,7 @@ Then click on the + sign close to ``Roles`` to create a new role. Write wordpres
 
 |wordpress_oneflow_role|
 
-Once you have finished, click the green ``Create`` button. 
+Once you have finished, click the green ``Create`` button.
 
 Now go to the ``Instances --> Services`` tab, click on the green + sign and create a new service selecting the oneflow service template named Wordpress.
 
