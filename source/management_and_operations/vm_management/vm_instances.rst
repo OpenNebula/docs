@@ -340,6 +340,16 @@ Similary to detach a security group execute:.
 
     $ onevm sg-detach centos-server 0 101
 
+On Sunstone, you can attach and detach security groups to a NIC on a running or power off VM going to the network tab.
+
+|sunstone_sg_main_view|
+
+To attach a new security group, you need to click on the shield on the NIC row. A dialog will be displayed where you can find all the security groups that do not belong to the selected network.
+
+|sunstone_sg_attach|
+
+To detach the security group, you must click on the X next to the security group. A confirm dialog will be displayed to ensure that you want to detach the security group.
+
 .. _vm_guide2_snapshotting:
 
 Virtual Machine System Snapshots
@@ -1253,3 +1263,5 @@ FireEdge Server.
 .. |sunstone_guac_rdp_interface| image:: /images/sunstone_guac_rdp_interface.png
 .. |sunstone_guac_nic| image:: /images/sunstone_guac_nic.png
 .. |sunstone_vmrc| image:: /images/sunstone_vmrc.png
+.. |sunstone_sg_main_view| image:: /images/sunstone_sg_main_view.png
+.. |sunstone_sg_attach| image:: /images/sunstone_sg_attach.png
