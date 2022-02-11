@@ -6,9 +6,9 @@ Resolved Issues in 6.2.1
 
 A complete list of solved issues for 6.2.1 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/47?closed=1>`__.
 
-With CentOS having reached its end of life date, OpenNebula 6.2.1 introduces the following adaptations:
+With CentOS 8 being discontinued in favor of CentOS 8 Stream, OpenNebula 6.2.1 introduces the following adaptations:
 
-- CentOS packages are no longer build.
+- CentOS packages are no longer build. We suggest migrating the OS to either RHEL or Alma Linux.
 - There is a new repository for AlmaLinux 8. Any distribution compatible with RedHat Enterprise Linux 8 should be able to use this repository (E.g. RockyLinux).
 - RedHat Enterprise Linux 7 and 8 are fully supported, specific repositories has been created for these two distributions.
 
