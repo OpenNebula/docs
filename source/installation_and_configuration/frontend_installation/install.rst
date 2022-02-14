@@ -41,6 +41,13 @@ Step 3. Add 3rd Party Repositories
 
 Not all OpenNebula dependencies are in base distribution repositories. On selected platforms below you need to enable 3rd party repositories by running the following commands under privileged user (``root``):
 
+**CentOS 7**
+
+.. prompt:: bash # auto
+
+    # yum -y install epel-release
+    # yum -y install centos-release-scl-rh
+
 **AlmaLinux 8 (6.2.1 EE only)**
 
 .. prompt:: bash # auto
