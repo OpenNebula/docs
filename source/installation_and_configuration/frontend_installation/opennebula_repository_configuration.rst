@@ -22,8 +22,8 @@ OpenNebula Systems provides an OpenNebula Enterprise Edition to customers with a
 
     You should have received the customer access token (username and password) to access these repositories. You have to substitute the appearance of ``<token>`` with your customer specific token in all instructions below.
 
-RHEL/AlmaLinux
---------------
+AlmaLinux/CentOS 7/ RHEL
+------------------------
 
 To add the OpenNebula enterprise repository, execute the following as user ``root``:
 
