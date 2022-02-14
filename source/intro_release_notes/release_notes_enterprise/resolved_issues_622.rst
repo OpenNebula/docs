@@ -10,3 +10,5 @@ The following new features has been backported to 6.2.2:
 
 
 The following issues has been solved in 6.2.2:
+
+- `Fix Sunstone does not use remote host for memcache-dalli <https://github.com/OpenNebula/one/issues/5156>`__.
