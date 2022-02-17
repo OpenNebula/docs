@@ -61,6 +61,10 @@ The OneGate configuration file can be found in ``/etc/one/onegate-server.conf`` 
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``:debug_level``              | Logging level. Values: ``0`` for ERROR level, ``1`` for WARNING level, ``2`` for INFO level, ``3`` for DEBUG level                                                      |
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:expire_delta``             | Default interval for timestamps. Tokens will be generated using the same timestamp for this interval of time. THIS VALUE CANNOT BE LOWER THAN EXPIRE_MARGIN.            |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:expire_margin``            | Tokens will be generated if time > EXPIRE_TIME - EXPIRE_MARGIN                                                                                                          |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 In the default configuration, the OneGate server will only listen to requests coming from ``localhost``. Because the OneGate needs to be accessible remotely from the Virtual Machines, you need to change ``:host`` parameter in ``/etc/one/onegate-server.conf`` to a public IP of your Front-end host or to ``0.0.0.0`` (to work on all IP addresses configured on host).
 
