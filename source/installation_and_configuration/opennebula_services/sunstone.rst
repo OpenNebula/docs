@@ -147,6 +147,10 @@ The Sunstone configuration file can be found in ``/etc/one/sunstone-server.conf`
 +---------------------------------+-----------------------------------------------------------------------------------------------------+
 | ``:support_fs``                 | List of filesystems to offer when creating new Image                                                |
 +---------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:expire_delta``               | Default interval for timestamps. THIS VALUE CANNOT BE LOWER THAN EXPIRE_MARGIN.                     |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
+| ``:expire_margin``              | Tokens will be generated if time > EXPIRE_TIME - EXPIRE_MARGIN                                      |
++---------------------------------+-----------------------------------------------------------------------------------------------------+
 | **Official Support**                                                                                                                  |
 +---------------------------------+-----------------------------------------------------------------------------------------------------+
 | ``:token_remote_support``       | Customer token to contact support from Sunstone                                                     |
