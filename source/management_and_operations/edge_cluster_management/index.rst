@@ -12,7 +12,7 @@ Edge Cluster Management
    AWS Edge Cluster <aws_cluster>
    DigitalOcean Edge Cluster <do_cluster>
    Google Edge Cluster <google_cluster>
-   Vultr Edge Cluster <vultr_virtual_cluster>
+   Vultr Edge Cluster <vultr_cluster>
    On-Premise Edge Cluster <onprem_cluster>
    Managing Providers <provider_operations>
    Edge Cluster Operations <cluster_operations>
