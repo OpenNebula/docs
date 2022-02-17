@@ -66,6 +66,10 @@ The OneFlow configuration file can be found in ``/etc/one/oneflow-server.conf`` 
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``:debug_level``          | Logging level. Values: ``0`` for ERROR level, ``1`` for WARNING level, ``2`` for INFO level, ``3`` for DEBUG level                                                      |
 +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:expire_delta``         | Default interval for timestamps. Tokens will be generated using the same timestamp for this interval of time. THIS VALUE CANNOT BE LOWER THAN EXPIRE_MARGIN.            |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``:expire_margin``        | Tokens will be generated if time > EXPIRE_TIME - EXPIRE_MARGIN                                                                                                          |
++---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 In the default configuration, the OneFlow server will only listen to requests coming from ``localhost`` (which is enough to control OneFlow over Sunstone running on the same host). If you want to control OneFlow over API/CLI remotely, you need to change ``:host`` parameter in ``/etc/one/oneflow-server.conf`` to a public IP of your Front-end host or to ``0.0.0.0`` (to work on all IP addresses configured on Host).
 
