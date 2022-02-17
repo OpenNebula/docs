@@ -25,7 +25,7 @@ Edge Clusters can be *virtual* or *metal* depending of the instance type used to
    * - Vultr
      - metal (in progress)
      - KVM, Firecracker and LXC
-   * - :ref:`Vultr <vultr_virtual_cluster>`
+   * - :ref:`Vultr <vultr_cluster>`
      - virtual
      - LXC
    * - :ref:`On-prem <onprem_cluster>`
