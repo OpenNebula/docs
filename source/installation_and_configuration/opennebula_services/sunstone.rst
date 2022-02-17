@@ -370,6 +370,8 @@ You can add your logo to the login and main screens by updating the ``logo:`` at
 - The login screen is defined in the ``/etc/one/sunstone-views.yaml``.
 - The logo of the main UI screen is defined for each view in :ref:`the view yaml file <suns_views>`.
 
+The logo image must be copied to ``/usr/lib/one/sunstone/public/images/``.
+
 You can also change the color threshold values in the ``/etc/one/sunstone-server.conf``.
 
 - The green color starts in ``:threshold_min:``
