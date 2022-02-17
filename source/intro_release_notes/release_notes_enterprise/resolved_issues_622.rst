@@ -15,5 +15,6 @@ The following issues has been solved in 6.2.2:
 - `Fix Sunstone does not use remote host for memcache-dalli <https://github.com/OpenNebula/one/issues/5156>`__.
 - `Clean VCPU_MAX and MEMORY_MAX when disabling hot resize <https://github.com/OpenNebula/one/issues/5451>`__.
 - `Fix Sunstone login cookie expire time <https://github.com/OpenNebula/one/issues/5730>`__.
+- `Fix OneFlow CLI is broken when using username and password <https://github.com/OpenNebula/one/issues/5413>`__.
 - `Fix --as_gid and --as_uid arguments are not available for onevm create command <https://github.com/OpenNebula/one/issues/4969>`__.
 - `Fix Services in WARNING state do not go back to RUNNING when the VMs are DONE <https://github.com/OpenNebula/one/issues/5532>`__.
