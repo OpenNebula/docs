@@ -18,4 +18,5 @@ The following issues has been solved in 6.2.2:
 - `Fix OneFlow CLI is broken when using username and password <https://github.com/OpenNebula/one/issues/5413>`__.
 - `Fix --as_gid and --as_uid arguments are not available for onevm create command <https://github.com/OpenNebula/one/issues/4969>`__.
 - `Fix Services in WARNING state do not go back to RUNNING when the VMs are DONE <https://github.com/OpenNebula/one/issues/5532>`__.
+- `Fix OneFlow CLI utility is not aware of the current zone <https://github.com/OpenNebula/one/issues/5396>`__.
 - `Fix vCenter disk mapping could lead to VM disk deletion <https://github.com/OpenNebula/one/issues/5740>`__.
