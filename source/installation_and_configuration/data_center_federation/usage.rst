@@ -46,3 +46,33 @@ We can see in the above command output that the user has access to Zones **OpenN
     *   104 ZoneB                     http://ultron.c12g.com:2634/RPC2
 
 All the subsequent CLI commands executed would connect to the OpenNebula listening at ``http://zoneb.opennebula.front-end.server:2633/RPC2``.
+
+OneFlow
+================================================================================
+
+In order to be able to switch your OneFlow endpoint, first of all you need to add it to each zone with ``onezone update`` command:
+
+.. prompt:: bash $ auto
+
+    $ onezone show 0
+    ZONE 0 INFORMATION
+    ID                : 0
+    NAME              : OpenNebula
+    STATE             : ENABLED
+
+
+    ZONE TEMPLATE
+    ENDPOINT="http://192.168.150.1:2633/RPC2"
+    ONEFLOW_ENDPOINT="http://192.168.150.1:2474"
+
+As you can see there is a variable ``ONEFLOW_ENDPOINT``.
+
+.. note:: The IP and the PORT should be the ones configured in ``/etc/one/oneflow-server.conf``.
+
+Then you can switch the zone by using the command ``onezone set``:
+
+.. prompt:: bash $ auto
+
+    $ onezone set 0
+    Endpoint changed to "http://192.168.150.1:2633/RPC2" in /var/lib/one/.one/one_endpoint
+    OneFlow Endpoint changed to "http://192.168.150.1:2474" in /var/lib/one/.one/oneflow_endpoint

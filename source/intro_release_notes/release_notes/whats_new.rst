@@ -104,7 +104,7 @@ Additionally, a lot of new functionality is present that was not in OpenNebula 6
 - `Add support for LXC profiles <https://github.com/OpenNebula/one/issues/5333>`__.
 - `Add support for list options in (un)lock CLI commands <https://github.com/OpenNebula/one/issues/5364>`__.
 - `Add support for OpenvSwitch in Firecracker <https://github.com/OpenNebula/one/issues/5362>`__.
-- :ref:`Add support for Vultr Virtual Edge Clusters <vultr_virtual_cluster>`.
+- :ref:`Add support for Vultr Virtual Edge Clusters <vultr_cluster>`.
 - `Add support for adding/removing roles from running service <https://github.com/OpenNebula/one/issues/4654>`__.
 - `Add option "delete this file" to VirtViewer file <https://github.com/OpenNebula/one/issues/5393>`__.
 - :ref:`SAN Datastore (LVM) supports SSH transfer mode for disk image files <lvm_drivers>`.
