@@ -57,6 +57,8 @@ Another thing you have to take into account is the user under which the server w
 
 .. prompt:: bash # auto
 
+    # chmod a+x /var
+    # chmod a+x /var/lib
     # chmod a+x /var/lib/one
     # chmod a+x /var/lib/one/.one
     # chmod a+x /var/lib/one/sunstone
