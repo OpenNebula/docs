@@ -125,6 +125,8 @@ Limitations
 * imported Wild VMs cannot be stopped, undeployed nor ``recover --recreated``.
 
 
+.. _vcenter_import_tool:
+
 vCenter Import Tool
 --------------------------------------------------------------------------------
 

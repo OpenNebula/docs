@@ -51,6 +51,7 @@ Sunstone
 - Add running hours to :ref:`showback table <showback>`
 - Allow :ref:`charters <vm_charter>` time modification 
 - Add support for IP configuration methods in :ref:`vnets <vnet_template_context>` and :ref:`VM template <template_context>`.
+- Allow to order and filter vCenter imports when using the :ref:`vCenter Import Tool <vcenter_import_tool>`
 
 FireEdge
 ================================================================================
