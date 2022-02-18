@@ -42,3 +42,8 @@ As Python 2 is no longer supported the system packcage python-pyone is not relea
 FireEdge
 ========================
 Separate the configuration files by application: ``provision-server.conf``, ``sunstone-server.conf`` and the global configuration of the server is kept in ``firedge-server.conf``
+
+vCenter
+========================
+
+OpenNebula ``.vmx`` metadata is now mandatory (it was optional before for retro compatibility). If a VM doesn't have these metadata the recommended procedure is to reimport it to ensure this attributes are properly added.
