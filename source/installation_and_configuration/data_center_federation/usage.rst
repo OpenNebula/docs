@@ -50,7 +50,7 @@ All the subsequent CLI commands executed would connect to the OpenNebula listeni
 OneFlow
 ================================================================================
 
-In order to be able to switch your OneFlow endpoint, first of all you need to add it to each zone with ``onezone update`` command:
+If you are using OneFlow in the federation, you need to configure the enpoint for each zone. First update each zone with ``onezone update`` command:
 
 .. prompt:: bash $ auto
 
@@ -65,7 +65,7 @@ In order to be able to switch your OneFlow endpoint, first of all you need to ad
     ENDPOINT="http://192.168.150.1:2633/RPC2"
     ONEFLOW_ENDPOINT="http://192.168.150.1:2474"
 
-As you can see there is a variable ``ONEFLOW_ENDPOINT``.
+The new variable ``ONEFLOW_ENDPOINT`` should point to the IP where OneFlow is configured to listen.
 
 .. note:: The IP and the PORT should be the ones configured in ``/etc/one/oneflow-server.conf``.
 
