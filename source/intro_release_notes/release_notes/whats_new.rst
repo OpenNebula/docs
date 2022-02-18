@@ -46,6 +46,7 @@ LXC
 Other Issues Solved
 ================================================================================
 - `Snapshot space are not taken into account for system DS quota <https://github.com/OpenNebula/one/issues/5524>`__.
+- `Fix object permissions when running "onedb fsck" <https://github.com/OpenNebula/one/issues/5202>`__.
 
 Features Backported to 6.2.x
 ============================
