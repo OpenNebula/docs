@@ -2,6 +2,8 @@
 versions:
 - - "Stable"
   - http://docs.opennebula.io/stable
+- - "LTS"
+  - http://docs.opennebula.io/lts
 - - "Devel"
   - http://docs.opennebula.io/devel
 - - "6.0"
