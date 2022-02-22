@@ -9,6 +9,7 @@ A complete list of solved issues for 6.2.2 can be found in the `project developm
 The following new features has been backported to 6.2.2:
 
 - `Make EXPIRE_DELTA and EXPIRE_MARGIN configurable for CloudAuth <https://github.com/OpenNebula/one/issues/5046>`__.
+- `Support new CentOS variants on LXD Marketplace <https://github.com/OpenNebula/one/issues/3178>`__.
 
 The following issues has been solved in 6.2.2:
 
