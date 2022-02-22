@@ -39,6 +39,10 @@ Distributed Edge Provisioning
 KVM
 ===
 
+Marketplace
+===========
+- `Support new CentOS variants on LXD Marketplace <https://github.com/OpenNebula/one/issues/3178>`__.
+
 LXC
 ===
 - `Mount options for Storage Interfaces <https://github.com/OpenNebula/one/issues/5429>`__.
