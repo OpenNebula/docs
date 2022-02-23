@@ -21,3 +21,4 @@ The following issues has been solved in 6.2.2:
 - `Fix Services in WARNING state do not go back to RUNNING when the VMs are DONE <https://github.com/OpenNebula/one/issues/5532>`__.
 - `Fix OneFlow CLI utility is not aware of the current zone <https://github.com/OpenNebula/one/issues/5396>`__.
 - `Fix vCenter disk mapping could lead to VM disk deletion <https://github.com/OpenNebula/one/issues/5740>`__.
+- `Allow to order and filter vCenter imports when using the vCenter Import Tool <https://github.com/OpenNebula/one/issues/5735>`__.
