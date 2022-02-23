@@ -124,6 +124,7 @@ Limitations
 * only the disk-saveas operation is supported for VMs in the ``POWEROFF`` state.
 * imported Wild VMs cannot be stopped, undeployed nor ``recover --recreated``.
 
+.. _vcenter_import_tool:
 
 vCenter Import Tool
 --------------------------------------------------------------------------------
