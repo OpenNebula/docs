@@ -13,3 +13,4 @@ The following issues has been solved in 5.12.12:
 - `Fix Sunstone does not use remote host for memcache-dalli <https://github.com/OpenNebula/one/issues/5156>`__.
 - `Fix Sunstone login cookie expire time <https://github.com/OpenNebula/one/issues/5730>`__.
 - `Fix VMs list after render virtual network leases in Sunstone <https://github.com/OpenNebula/one/issues/5747>`__.
+- `Fix import only resources from local zone in Sunstone <https://github.com/OpenNebula/one/issues/5736>`__.
