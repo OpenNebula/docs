@@ -24,4 +24,5 @@ The following issues has been solved in 6.2.2:
 - `Allow to order and filter vCenter imports when using the vCenter Import Tool <https://github.com/OpenNebula/one/issues/5735>`__.
 - `Fix VMs list after render virtual network leases in Sunstone <https://github.com/OpenNebula/one/issues/5747>`__.
 - `Show scheduler error message on Sunstone <https://github.com/OpenNebula/one/issues/5744>`__.
+- `Add download in MarketApp <https://github.com/OpenNebula/one/issues/5625>`__.
 - `Present error information in Sunstone <https://github.com/OpenNebula/one/issues/5745>`__.
