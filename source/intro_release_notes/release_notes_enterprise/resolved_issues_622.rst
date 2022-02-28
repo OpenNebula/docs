@@ -25,4 +25,5 @@ The following issues has been solved in 6.2.2:
 - `Fix OneFlow CLI utility is not aware of the current zone <https://github.com/OpenNebula/one/issues/5396>`__.
 - `Fix vCenter disk mapping could lead to VM disk deletion <https://github.com/OpenNebula/one/issues/5740>`__.
 - `Fix VMs list after render virtual network leases in Sunstone <https://github.com/OpenNebula/one/issues/5747>`__.
+- `Fix import only resources from local zone in Sunstone <https://github.com/OpenNebula/one/issues/5736>`__.
 - `Fix HA recovery hooks for Ceph and SAN (LVM) datastores <https://github.com/OpenNebula/one/issues/5653>`__.
