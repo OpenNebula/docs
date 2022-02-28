@@ -12,7 +12,7 @@ The following new features has been backported to 6.2.2:
 - `Support new CentOS variants on LXC Marketplace <https://github.com/OpenNebula/one/issues/3178>`__.
 - `Allow to order and filter vCenter imports when using the vCenter Import Tool <https://github.com/OpenNebula/one/issues/5735>`__.
 - `Show scheduler error message on Sunstone <https://github.com/OpenNebula/one/issues/5744>`__.
-- `Add error condition to Sunstone list views<https://github.com/OpenNebula/one/issues/5745>`__.
+- `Add error condition to Sunstone list views <https://github.com/OpenNebula/one/issues/5745>`__.
 
 The following issues has been solved in 6.2.2:
 
