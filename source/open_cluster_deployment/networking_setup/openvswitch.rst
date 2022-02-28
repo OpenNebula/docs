@@ -228,3 +228,23 @@ And the associated port in the bridge using the qemu vhost interface:
                 type: dpdkvhostuserclient
                 options: {vhost-server-path="/var/lib/one//datastores/0/10/one-10-0"}
 
+Using Q-in-Q for Open vSwitch  Networks
+-----------------------------------
+
+Q-in-Q is an amendment to the IEEE 802.1Q specification that provides the capability for multiple VLAN tags to be inserted into a single Ethernet frame.
+Using Q-in-Q (aka C-VLAN) (from customer VLAN) tunneling allows to create Layer 2 Ethernet connection between customers cloud infrastructure in OpenNebula cluster and with other customer clouds or hardware sites, or use a single service VLAN to bundle different customer VLANs.
+
+For support QinQ in Open vSwitch network add CVLANS variable as list of VLAN ID's to your VM NIC settings:
+
+.. code::
+
+    NIC=[
+      CVLANS="1,2,3,4,5,10-12",
+    ]
+
+As result after VM creation you can check cvlans variable on Open vSwitch port
+
+.. code::
+
+    ovs-vsctl get port <port_id> cvlans
+        [1, 2, 3, 4, 5, 10, 11, 12]
