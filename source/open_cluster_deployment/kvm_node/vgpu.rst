@@ -3,39 +3,22 @@
 NVIDIA vGPU support
 ================================================================================
 
-This guide describes how to configure the hypervisor in order to use NVIDIA vGPU features.
+This section describes how to configure the hypervisor in order to use NVIDIA vGPU features.
 
 BIOS
 --------------------------------------------------------------------------------
 
-.. warning:: The following steps have been performed in a Supermicro server using AMD processor, the changes may differ if using different stuff.
-
-The goal of the settings are:
+You need to check that the following settings are enabled in your BIOS configuration:
 
 - Enable SR-IOV
 - Enable IOMMU
 
-In order to do that, you need to reboot your server and enter into BIOS setup:
-
-- Advanced >> CPU configuration >> SVM Mode >> Enabled
-- Advanced >> PCIe/PCI/PnP Configuration >> SR-IOV Support >> Enabled
-- Advanced >> NB Configuration >> ACS Enable >> Enabled
-- Advanced >> NB Configuration >> IOMMU >> Enabled
-- Advanced >> ACPI settings >> PCI AER Support >> Enabled
-
-Save the settings and boot your server again.
+Note that the specific menu options where you need to activate these features depends on the motherboard manufacturer.
 
 NVIDIA Drivers
 --------------------------------------------------------------------------------
 
-NVIDIA drivers are proprietary, so you need to request them. You can pay or use the evaluation ones, both of them can be requested here. We will provide instructions about how to install it on Ubuntu 20.04 server, but in other distributions it should be very similar.
-
-- Download the drivers from the official site.
-- Copy those drivers to the server you want to install them on.
-- Run the command ``apt install ./nvidia-vgpu-ubuntu-510_510.47.03_amd64.deb``
-- Reboot your server.
-
-Verifying the Installation
+The NVIDIA drivers are proprietary, so you will probably need to download them separately. Please check the documentation for your Linux distribution. Once you have installed and rebooted your server you should be able to access the GPU information as follows:
 
 .. prompt:: bash $ auto
 
@@ -64,7 +47,7 @@ Verifying the Installation
     |  No running processes found                                                 |
     +-----------------------------------------------------------------------------+
 
-Creating an NVIDIA vGPU
+Enable the NVIDIA vGPU
 --------------------------------------------------------------------------------
 
 .. warning:: The following steps assume that your graphic card supports SR-IOV, if not, please refer to official NVIDIA documentation in order to activate vGPU.
@@ -77,14 +60,12 @@ Finding the PCI
     $ lspci | grep NVIDIA
     41:00.0 3D controller: NVIDIA Corporation Device 2236 (rev a1)
 
-In our case the address is ``41:00.0``, we need to transform this to transformed-bdf format, the PCI device BDF of the GPU with the colon and the period replaced with underscores, in our case: ``41_00_0``. With this, we can obtain the PCI name:
+In this example the address is ``41:00.0``. Then, we need to convert this to transformed-bdf format by replacing the colon and period with underscores, in our case: ``41_00_0``. Now, we can obtain the PCI name, and the full information about the NVIDIA GPU (e.g. max number of virtual functions):
 
 .. prompt:: bash $ auto
 
     $ virsh nodedev-list --cap pci | grep 41_00_0
     pci_0000_41_00_0
-
-Finally, we can get the full information about the PCI:
 
 .. prompt:: bash $ auto
 
@@ -120,7 +101,7 @@ Finally, we can get the full information about the PCI:
 Enabling Virtual Functions
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-.. important:: This step needs to be performed every time you reboot your server.
+.. important:: You may need to perform this operation every time you reboot your server.
 
 .. prompt:: bash $ auto
 
@@ -128,9 +109,7 @@ Enabling Virtual Functions
     $ /usr/lib/nvidia/sriov-manage -e 00:41:0000.0
     Enabling VFs on 00:41:0000.0
 
-If you get an error while doing this operation, please double check that all the BIOS steps have been correctly performed.
-
-If everything goes well, you should get something similar to this:
+If you get an error while doing this operation, please double check that all the BIOS steps have been correctly performed. If everything goes well, you should get something similar to this:
 
 .. prompt:: bash $ auto
 
@@ -138,43 +117,15 @@ If everything goes well, you should get something similar to this:
     lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn0 -> ../0000:41:00.4
     lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn1 -> ../0000:41:00.5
     lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn10 -> ../0000:41:01.6
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn11 -> ../0000:41:01.7
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn12 -> ../0000:41:02.0
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn13 -> ../0000:41:02.1
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn14 -> ../0000:41:02.2
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn15 -> ../0000:41:02.3
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn16 -> ../0000:41:02.4
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn17 -> ../0000:41:02.5
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn18 -> ../0000:41:02.6
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn19 -> ../0000:41:02.7
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn2 -> ../0000:41:00.6
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn20 -> ../0000:41:03.0
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn21 -> ../0000:41:03.1
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn22 -> ../0000:41:03.2
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn23 -> ../0000:41:03.3
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn24 -> ../0000:41:03.4
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn25 -> ../0000:41:03.5
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn26 -> ../0000:41:03.6
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn27 -> ../0000:41:03.7
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn28 -> ../0000:41:04.0
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn29 -> ../0000:41:04.1
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn3 -> ../0000:41:00.7
+    ...
     lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn30 -> ../0000:41:04.2
     lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn31 -> ../0000:41:04.3
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn4 -> ../0000:41:01.0
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn5 -> ../0000:41:01.1
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn6 -> ../0000:41:01.2
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn7 -> ../0000:41:01.3
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn8 -> ../0000:41:01.4
-    lrwxrwxrwx 1 root root           0 Feb  9 10:37 virtfn9 -> ../0000:41:01.5
 
-.. note:: The number of virtual functions will depend on the parameter <capability type='virt_functions' maxCount='32'/>.
 
 Configuring QEMU
 --------------------------------------------------------------------------------
 
-Add the following udev rule:
-
+Finally, add the following udev rule:
 
 .. prompt:: bash $ auto
 
