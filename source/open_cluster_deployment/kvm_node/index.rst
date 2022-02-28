@@ -11,3 +11,4 @@ KVM Node Deployment
    KVM Node Installation <kvm_node_installation>
    KVM Driver <kvm_driver>
    PCI Passthrough <pci_passthrough>
+   NVIDIA vGPU <vgpu>
