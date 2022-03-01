@@ -216,14 +216,24 @@ There's an alternative if you don't want to use SCHED_DS_REQUIREMENTS if you hav
 .. image:: /images/vcenter_datastore_storage_drs.png
     :align: center
 
+.. _vcenter_market:
+
 Marketplace with vCenter Datastores
 -----------------------------------
 
-The vCenter datastores are compatible with OpenNebula HTTP and S3 Marketplaces. A generic VM Template imported in OpenNebula is necessary: add the ID of the imported OpenNebula VM Template in ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterrc`` in the default_template setting. More information about OpenNebula Marketplaces can be found :ref:`here <private_marketplace_overview>`.
+The vCenter datastores are compatible with OpenNebula HTTP and S3 Marketplaces. More information about OpenNebula Marketplaces can be found :ref:`here <private_marketplace_overview>`.
 
-.. important::
+.. note:: You can use a VM Template imported in OpenNebula: add the ID of the imported OpenNebula VM Template in ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterrc`` in the default_template setting.
 
-    The vCenter VM Template used when downloading an image from a Marketplace needs to be empty (i.e without any disk or NIC attached).
+The process of exporting an application from the marketplace is the following:
+
+- If you specify a VM Template ID in the CLI arguments or in Sunstone, that will be used.
+- If a default is defined in ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterrc``, that will be used.
+- If no VM Template ID is provided and the datastore contains ``VCENTER_TEMPLATE_REF``, that will be used.
+- Otherwise, a new VM template will be created and added to the datastore template.
+
+- If the datastore contains ``VCENTER_TEMPLATE_REF``, this will be used to create the OpenNebula template.
+- If not, a simple template with 128MB of RAM and 1CPU will be created in vCenter automatically and used after to create the OpenNebula template.
 
 Tuning and Extending
 --------------------
