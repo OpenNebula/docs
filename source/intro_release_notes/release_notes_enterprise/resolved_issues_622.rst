@@ -13,6 +13,7 @@ The following new features has been backported to 6.2.2:
 - `Allow to order and filter vCenter imports when using the vCenter Import Tool <https://github.com/OpenNebula/one/issues/5735>`__.
 - `Show scheduler error message on Sunstone <https://github.com/OpenNebula/one/issues/5744>`__.
 - `Add error condition to Sunstone list views <https://github.com/OpenNebula/one/issues/5745>`__.
+- `Better live memory resize for KVM <https://github.com/OpenNebula/one/issues/5753>`__. **Note**: You need to do a power cycle for those VMs you want to resize its memory after the upgrade.
 
 The following issues has been solved in 6.2.2:
 
@@ -27,4 +28,3 @@ The following issues has been solved in 6.2.2:
 - `Fix VMs list after render virtual network leases in Sunstone <https://github.com/OpenNebula/one/issues/5747>`__.
 - `Fix import only resources from local zone in Sunstone <https://github.com/OpenNebula/one/issues/5736>`__.
 - `Fix HA recovery hooks for Ceph and SAN (LVM) datastores <https://github.com/OpenNebula/one/issues/5653>`__.
-- `Better live memory resize for KVM <https://github.com/OpenNebula/one/issues/5753>`__.
