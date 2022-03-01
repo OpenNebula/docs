@@ -14,6 +14,9 @@ The following new features has been backported to 6.2.2:
 - `Show scheduler error message on Sunstone <https://github.com/OpenNebula/one/issues/5744>`__.
 - `Add error condition to Sunstone list views <https://github.com/OpenNebula/one/issues/5745>`__.
 - `Better live memory resize for KVM <https://github.com/OpenNebula/one/issues/5753>`__. **Note**: You need to do a power cycle for those VMs you want to resize its memory after the upgrade.
+- :ref:`Add Q-in-Q support for Open vSwtich driver <openvswitch_qinq>`.
+- :ref:`Add MTU support for Open vSwtich driver <openvswitch>`.
+- `Filter Datastores and Networks by Host on VM instantiation <https://github.com/OpenNebula/one/issues/5743>`__.
 
 The following issues has been solved in 6.2.2:
 
