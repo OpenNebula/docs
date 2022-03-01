@@ -227,6 +227,11 @@ The vCenter datastores are compatible with OpenNebula HTTP and S3 Marketplaces. 
 
 The process of exporting an application from the marketplace is the following:
 
+- If you specify a VM Template ID in the CLI arguments or in Sunstone, that will be used.
+- If a default is defined in ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterrc``, that will be used.
+- If no VM Template ID is provided and the datastore contains ``VCENTER_TEMPLATE_REF``, that will be used.
+- Otherwise, a new VM template will be created and added to the datastore template.
+
 - If the datastore contains ``VCENTER_TEMPLATE_REF``, this will be used to create the OpenNebula template.
 - If not, a simple template with 128MB of RAM and 1CPU will be created in vCenter automatically and used after to create the OpenNebula template.
 
