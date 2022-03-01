@@ -66,6 +66,8 @@ To create an Open vSwitch network, include the following information:
 +-----------------------+------------------------------------------------------------------------------------+-------------------------------+
 | ``AUTOMATIC_VLAN_ID`` | Ignored if ``VLAN_ID`` defined. Set to ``YES`` to automatically assign ``VLAN_ID`` | NO                            |
 +-----------------------+------------------------------------------------------------------------------------+-------------------------------+
+| ``MTU``               | The MTU for the Open vSwitch port                                                  | NO                            |
++-----------------------+------------------------------------------------------------------------------------+-------------------------------+
 
 For example, you can define an *Open vSwitch Network* with the following template:
 
@@ -228,3 +230,82 @@ And the associated port in the bridge using the qemu vhost interface:
                 type: dpdkvhostuserclient
                 options: {vhost-server-path="/var/lib/one//datastores/0/10/one-10-0"}
 
+.. _openvswitch_qinq:
+
+Using Open vSwitch with Q-in-Q
+================================================================================
+
+Q-in-Q is an amendment to the IEEE 802.1Q specification that provides the capability for multiple VLAN tags to be inserted into a single Ethernet frame. Using Q-in-Q (aka C-VLAN, customer VLAN) tunneling allows to create Layer 2 Ethernet connection between customers cloud infrastructure and OpenNebula VMs, or use a single service VLAN to bundle different customer VLANs.
+
+OpenNebula Configuration
+------------------------
+
+There is no configuration specific for this use case, just consider the general options specified above.
+
+Defining a Q-in-Q Open vSwitch Network
+----------------------------------------
+
+To create a network you need to include the following information:
+
++-----------------------------+-------------------------------------------------------------------------+------------------------------------------------+
+| Attribute                   | Value                                                                   | Mandatory                                      |
++=============================+=========================================================================+================================================+
+| ``VN_MAD``                  | Set ``ovswitch``                                                        |  **YES**                                       |
++-----------------------------+-------------------------------------------------------------------------+------------------------------------------------+
+| ``PHYDEV``                  | Name of the physical network device that will be attached to the bridge.|  **YES**                                       |
++-----------------------------+-------------------------------------------------------------------------+------------------------------------------------+
+| ``BRIDGE``                  | Name of the Open vSwitch bridge to use                                  |  NO                                            |
++-----------------------------+-------------------------------------------------------------------------+------------------------------------------------+
+| ``VLAN_ID``                 | The service 802.1Q VLAN ID. If not defined the VLAN ID tag              |  NO                                            |
+|                             | will be generated if AUTOMATIC_VLAN_ID is set to YES.                   |                                                |
++-----------------------------+-------------------------------------------------------------------------+------------------------------------------------+
+| ``AUTOMATIC_VLAN_ID``       | Ignored if ``VLAN_ID`` defined. Set to ``YES`` to automatically         |  NO                                            |
+|                             | assign ``VLAN_ID``                                                      |                                                |
++-----------------------------+-------------------------------------------------------------------------+------------------------------------------------+
+| ``CVLANS``                  | Customer VLAN IDs, as a comma separated list (ranges supported)         |  **YES**                                       |
++-----------------------------+-------------------------------------------------------------------------+------------------------------------------------+
+| ``QINQ_TYPE``               | Tag Protocol Identifier (TPID) for the service VLAN tag. Use ``802.1ad``|  NO                                            |
+|                             | for TPID 0x88a8 or ``802.1q`` for TPID 0x8100                           |                                                |
++-----------------------------+-------------------------------------------------------------------------+------------------------------------------------+
+| ``MTU``                     | The MTU for the Open vSwitch port                                       |  NO                                            |
++-----------------------------+-------------------------------------------------------------------------+------------------------------------------------+
+
+For example, you can define an *Open vSwitch - QinQ Network* with the following template:
+
+.. code::
+
+    NAME     = "qinq_net"
+    VN_MAD   = "ovswitch"
+    PHYDEV   = eth0
+    VLAN_ID  = 50                 # Service VLAN ID
+    CVLANS   = "101,103,110-113"  # Customer VLAN ID list
+
+In this example, the driver will assign and create an Open vSwitch bridge and will attach the interface ``eth0`` it. When a virtual machine is instantiated, its bridge ports will be tagged with 802.1Q VLAN ID ``50`` and service VLAN IDs ``101,103,110,111,112,113``. The configuration of the port should be similar to the that of following example that shows the second (``NIC_ID=1``) interface port ``one-1-5`` for VM 5:
+
+.. code::
+
+    # ovs-vsctl list Port one-5-1
+
+    _uuid               : 791b84a9-2705-4cf9-94b4-43b39b98fe62
+    bond_active_slave   : []
+    bond_downdelay      : 0
+    bond_fake_iface     : false
+    bond_mode           : []
+    bond_updelay        : 0
+    cvlans              : [101, 103, 110, 111, 112, 113]
+    external_ids        : {}
+    fake_bridge         : false
+    interfaces          : [6da7ff07-51ec-40e9-97cd-c74a36e2c267]
+    lacp                : []
+    mac                 : []
+    name                : one-5-1
+    other_config        : {qinq-ethtype="802.1q"}
+    protected           : false
+    qos                 : []
+    rstp_statistics     : {}
+    rstp_status         : {}
+    statistics          : {}
+    status              : {}
+    tag                 : 100
+    trunks              : []
+    vlan_mode           : dot1q-tunnel
