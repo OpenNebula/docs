@@ -13,6 +13,8 @@ The following new features has been backported to 6.2.2:
 - `Allow to order and filter vCenter imports when using the vCenter Import Tool <https://github.com/OpenNebula/one/issues/5735>`__.
 - `Show scheduler error message on Sunstone <https://github.com/OpenNebula/one/issues/5744>`__.
 - `Add error condition to Sunstone list views <https://github.com/OpenNebula/one/issues/5745>`__.
+- :ref:`Add Q-in-Q support for Open vSwtich driver <openvswitch_qinq>`.
+- :ref:`Add MTU support for Open vSwtich driver <openvswitch>`.
 - `Filter Datastores and Networks by Host on VM instantiation <https://github.com/OpenNebula/one/issues/5743>`__.
 
 The following issues has been solved in 6.2.2:
