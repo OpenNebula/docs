@@ -27,3 +27,4 @@ The following issues has been solved in 6.2.2:
 - `Fix VMs list after render virtual network leases in Sunstone <https://github.com/OpenNebula/one/issues/5747>`__.
 - `Fix import only resources from local zone in Sunstone <https://github.com/OpenNebula/one/issues/5736>`__.
 - `Fix HA recovery hooks for Ceph and SAN (LVM) datastores <https://github.com/OpenNebula/one/issues/5653>`__.
+- `Better live memory resize for KVM <https://github.com/OpenNebula/one/issues/5753>`__.
