@@ -24,6 +24,10 @@ Networking
 ================================================================================
 - Security Groups can be added or removed from a VM network interface, if the VM is running it updates the associated rules.
 
+vCenter Driver
+================================================================================
+- Configuration flag for :ref:`image persistency<driver_tuning>` of imported Wild VMs or VM Templates.
+
 Sunstone
 ================================================================================
 
