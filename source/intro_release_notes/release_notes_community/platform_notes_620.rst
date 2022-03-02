@@ -274,6 +274,11 @@ There is an automatic job that removes all data from ``/var/tmp/``. In order to 
 
 There is a bug in libvirt that prevents the use of the save/restore mechanism if ``cpu_model`` is set to ``'host-passthrough'`` via ``RAW``. The `work around if needed is described in this issue <http://dev.opennebula.org/issues/4204>`__.
 
+Ubuntu 18.04
+--------------------------------------------------------------------------------
+
+In order to automatically convert images to ``vmdk`` (when downloading an application from a marketplace into a vCenter datastore or cloning images across different datastore types) OpenNebula requires ``qemu-img version 4.2.1``. Installing this version in Ubuntu 18.04 is not trivial, so we recommend and upgrade to Ubuntu 20.04 if you need to make use of this functionality.
+
 Ubuntu 20.04
 --------------------------------------------------------------------------------
 
