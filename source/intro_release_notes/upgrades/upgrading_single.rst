@@ -54,6 +54,8 @@ For Debian/Ubuntu use:
     # apt-get update
     # apt-get install --only-upgrade opennebula
 
+.. note:: If Sunstone is running as an Apache Phusion Passenger app, please check the :ref:`filesystem permissions <sunstone_fs_permissions>`.
+
 Step 3 Upgrade Hypervisors to the New Version
 ================================================================================
 

@@ -51,6 +51,8 @@ If you want to use noVNC you need to have it running. You can start this service
     # systemctl enable opennebula-novnc
     # systemctl start  opennebula-novnc
 
+.. _sunstone_fs_permissions:
+
 **Filesystem Permissions**
 
 Another thing you have to take into account is the user under which the server will run. The installation sets the permissions for the ``oneadmin`` user and group, and files like the Sunstone configuration and credentials cannot be read by other users.
