@@ -277,7 +277,7 @@ There is a bug in libvirt that prevents the use of the save/restore mechanism if
 Ubuntu 18.04
 --------------------------------------------------------------------------------
 
-When downloading an application from a marketplace into a vCenter datastore, in order to automatically convert it to ``vmdk``, you need to have ``qemu-img version 4.2.1``. Having this version is not trivial, so we recommend you to upgrade to Ubuntu 20.04.
+In order to automatically convert images to ``vmdk`` (when downloading an application from a marketplace into a vCenter datastore or cloning images across different datastore types) OpenNebula requires ``qemu-img version 4.2.1``. Installing this version in Ubuntu 18.04 is not trivial, so we recommend and upgrade to Ubuntu 20.04 if you need to make use of this functionality.
 
 Ubuntu 20.04
 --------------------------------------------------------------------------------
