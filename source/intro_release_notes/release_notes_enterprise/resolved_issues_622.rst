@@ -33,3 +33,4 @@ The following issues has been solved in 6.2.2:
 - `Fix import only resources from local zone in Sunstone <https://github.com/OpenNebula/one/issues/5736>`__.
 - `Fix HA recovery hooks for Ceph and SAN (LVM) datastores <https://github.com/OpenNebula/one/issues/5653>`__.
 - `Fix vSphere 7.0 erases snapshots on disk change <https://github.com/OpenNebula/one/issues/5409>`__.
+- `Fix OneFlow Services perform action in Sunstone <https://github.com/OpenNebula/one/issues/5758>`__.
