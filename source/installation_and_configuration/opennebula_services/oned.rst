@@ -47,6 +47,7 @@ The OpenNebula Daemon configuration file can be found in ``/etc/one/oned.conf`` 
 -  ``LOG``: Configure the logging system
 
    -  ``SYSTEM``: Can be either ``file`` (default), ``syslog`` or ``std``
+   -  ``USE_VMS_LOCATION``: Defines if store VM logs in VMS_LOCATION (``/var/lib/one/vms/<VMID>/vm.log``).
    -  ``DEBUG_LEVEL``: Sets the verbosity of the log messages. Possible values are:
 
 +----------------+---------------+
@@ -71,7 +72,8 @@ Example of this section:
 
     LOG = [
       SYSTEM      = "file",
-      DEBUG_LEVEL = 3
+      DEBUG_LEVEL = 3,
+      USE_VMS_LOCATION = "NO"
     ]
 
     #MANAGER_TIMER = 15

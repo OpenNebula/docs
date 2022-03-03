@@ -18,7 +18,7 @@ OpenNebula 6.4 XXX is ...
 OpenNebula Core
 ================================================================================
 - VM snaphots size are highly overestimated. Count snapshot size only as fraction of original disk size. :ref:`See settings in oned.conf <oned_conf_datastores>`.
-- NVIDIA vGPU support has been added to KVM driver, :ref:`check this <kvm_vgpu>` for more information.
+- VM logs can be generated in the VM folder (``/var/lib/one/vms/<VMID>/``). This make it easier to keep VM.logs in sync in multi-master installations, :ref:`see more details here <frontend_ha_shared>`.
 
 Networking
 ================================================================================
@@ -43,6 +43,7 @@ Distributed Edge Provisioning
 
 KVM
 ===
+- NVIDIA vGPU support has been added to KVM driver, :ref:`check this <kvm_vgpu>` for more information.
 
 LXC
 ===

@@ -339,12 +339,14 @@ Enable/Disable a Zone
 
 During maintenance you may use ``onezone disable zone_id``. Disabled zone can still execute read only commands, but can't do any modifications to VMs, Hosts, Templates, etc. Right after ``onezone disable zone_id``, there still can be VMs in transient states, it may take some time to finish all pending operations. To enable to zone again execute ``onezone enable zone_id``.
 
+.. _frontend_ha_shared:
+
 Shared data between HA nodes
 ================================================================================
 
 HA deployment requires the filesystem view of most datastores (by default in ``/var/lib/one/datastores/``) to be the same on all frontends. It is necessary to set up a shared filesystem over the datastore directories. This document doesn't cover configuration and deployment of the shared filesystem; it is left completely up to the cloud administrator.
 
-OpenNebula stores virtual machine logs inside ``/var/log/one/`` as files named ``${VMID}.log``. It is not recommended to share the whole log directory between the Front-ends as there are also other OpenNebula logs which would be randomly overwritten. It is up to the cloud administrator to periodically back-up the virtual machine logs on the cluster *leader*, and in case of fail-over to restore from the backup of a new *leader* (e.g. as part of the raft hook).
+OpenNebula stores virtual machine logs inside ``/var/log/one/`` as files named ``${VMID}.log``. It is not recommended to share the whole log directory between the Front-ends as there are also other OpenNebula logs which would be randomly overwritten. It is up to the cloud administrator to periodically back-up the virtual machine logs on the cluster *leader*, and in case of fail-over to restore from the backup of a new *leader* (e.g. as part of the raft hook). You can use the ``USE_VMS_LOCATION`` option in ``oned.conf`` to generate the log files in ``/var/lib/one/vms/${VMID}/vm.log``, this could simplify the synchronization process across servers.
 
 Optionally, if you are planning to use the FireEdge OneProvision GUI, in order to have all provision logs available in all HA nodes (hence, available on leader change), all nodes need to share the same ``/var/lib/one/fireedge`` folder.
 
