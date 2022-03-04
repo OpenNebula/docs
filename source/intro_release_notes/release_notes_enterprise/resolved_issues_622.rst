@@ -18,6 +18,7 @@ The following new features has been backported to 6.2.2:
 - :ref:`Add MTU support for Open vSwtich driver <openvswitch>`.
 - `Filter Datastores and Networks by Host on VM instantiation <https://github.com/OpenNebula/one/issues/5743>`__.
 - :ref:`Automatically create VM template in Vcenter when exporting an app from marketplace <vcenter_market>`.
+- `Improve capacity range feedback in Sunstone <https://github.com/OpenNebula/one/issues/5757>`__.
 
 The following issues has been solved in 6.2.2:
 
