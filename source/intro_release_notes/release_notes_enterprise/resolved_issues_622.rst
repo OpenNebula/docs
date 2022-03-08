@@ -37,3 +37,4 @@ The following issues has been solved in 6.2.2:
 - `Fix vSphere 7.0 erases snapshots on disk change <https://github.com/OpenNebula/one/issues/5409>`__.
 - `Fix OneFlow Services perform action in Sunstone <https://github.com/OpenNebula/one/issues/5758>`__.
 - `Fix disk size not showing correctly in Sunstone <https://github.com/OpenNebula/one/issues/5560>`__.
+- `Fix scheduler message that contains double quotes <https://github.com/OpenNebula/one/issues/5762>`__.
