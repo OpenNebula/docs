@@ -34,7 +34,7 @@ To add the OpenNebula enterprise repository, execute the following as user ``roo
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Enterprise Edition
-    baseurl=https://<token>@enterprise.opennebula.io/repo/6.0/CentOS/7/$basearch
+    baseurl=https://<token>@enterprise.opennebula.io/repo/6.2/CentOS/7/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo.key
     gpgcheck=1
