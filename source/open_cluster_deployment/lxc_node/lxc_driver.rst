@@ -56,8 +56,6 @@ Storage Limitations
 
 - Disk images must be a file system, they cannot have partition tables.
 
-- You can use LXC with NAS (file-based), SAN (lvm) or Ceph Datastores
-
 .. _lxc_unsupported_actions:
 
 Container Actions
@@ -121,7 +119,7 @@ LXC driver-specific configuration is available in ``/var/lib/one/remotes/etc/vmm
 Storage
 ================================================================================
 
-LXC containers need a root file system image in order to boot. This image can be downloaded directly to OpenNebula from `Docker Hub <https://hub.docker.com/>`__, `Linux Containers <https://uk.images.linuxcontainers.org/>`__ and `Turnkey Linux <https://www.turnkeylinux.org/>`__ Marketplaces. Check the :ref:`Public Marketplaces <public_marketplaces>` chapter for more information.
+LXC containers need a root file system image in order to boot. This image can be downloaded directly to OpenNebula from `Docker Hub <https://hub.docker.com/>`__, `Linux Containers <https://uk.images.linuxcontainers.org/>`__ and `Turnkey Linux <https://www.turnkeylinux.org/>`__ Marketplaces. Check the :ref:`Public Marketplaces <public_marketplaces>` chapter for more information. You can use LXC with NAS (file-based), SAN (lvm) or Ceph Datastores.
 
 .. note:: Custom images can also be created by using common linux tools like the ``mkfs`` command for creating the file system and ``dd`` for copying an existing file system inside the new one. Also OpenNebula will preserve any custom id map present on the filesystem.
 
