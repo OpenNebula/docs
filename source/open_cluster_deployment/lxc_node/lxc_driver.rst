@@ -8,7 +8,8 @@ LXC Driver
 Requirements
 ============
 
-OpenNebula LXC Driver requires the LXC version >= 3.0.3 to be installed on the Host.
+- LXC version >= 3.0.3 installed on the host.
+- cgroup version 1 and 2 hosts are supported.
 
 Considerations & Limitations
 ================================================================================
@@ -44,10 +45,8 @@ To create a privileged container, the attribute ``LXC_UNPRIVILEGED = "no"`` need
 
 Resource usage limitations
 --------------------------
-Not implemented features:
 
-- VCPU/Cores/Threads limitation
-- Pinning
+In order to assign VCPU limitations on LXC VMs, it is required to use :ref:`NUMA <numa>` on the VM Template definition. LXC doesn't support automatic core assignment, thus this task is delegated to the OpenNebula scheduler.
 
 Storage Limitations
 --------------------------------------------------------------------------------
@@ -153,6 +152,8 @@ Container Templates can be defined by using the same attributes described in :re
       NETWORK="vnet",
       NETWORK_UNAME="oneadmin",
       SECURITY_GROUPS="0" ]
+
+The LXC driver will create a swap limitation equal to the amount of memory definded in the VM Template. The attribute ``LXC_SWAP`` can be used to declare extra swap for the container.
 
 Remote Access
 -----------------------
