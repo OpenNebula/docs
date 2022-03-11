@@ -24,6 +24,7 @@ The following new features has been backported to 6.2.2:
 - `Support for cgroup2 on the LXC Driver <https://github.com/OpenNebula/one/issues/5599>`__.
 - `Support for CPU Pinning using NUMA Topology on the LXC Driver <https://github.com/OpenNebula/one/issues/5506>`__.
 - `Memory management improvements similar to LXD defaults on the LXC driver <https://github.com/OpenNebula/one/issues/5621>`__.
+- :ref:`Default VM_PREFIX for vCenter VMs can be now be nulified with the empty string <vcenter_vm_prefix>`.
 
 The following issues has been solved in 6.2.2:
 
