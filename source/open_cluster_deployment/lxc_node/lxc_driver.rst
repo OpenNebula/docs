@@ -8,7 +8,8 @@ LXC Driver
 Requirements
 ============
 
-OpenNebula LXC Driver requires the LXC version >= 3.0.3 to be installed on the Host.
+- LXC version >= 3.0.3 installed on the host.
+- cgroup version 1 or 2 hosts are required to implement resource control operations (e.g. CPU pinning, memory or swap limitations).
 
 Considerations & Limitations
 ================================================================================
@@ -42,21 +43,17 @@ To create a privileged container, the attribute ``LXC_UNPRIVILEGED = "no"`` need
     lxc.cgroup.devices.allow = 'c 10:200 rwm'
 
 
-Resource usage limitations
+CPU and NUMA Pinning
 --------------------------
-Not implemented features:
 
-- VCPU/Cores/Threads limitation
-- Pinning
+You can pin containers to host CPUs and NUMA nodes simply by adding a ``TOPOLOGY`` attribute to the VM Template, :ref:`see the use Virtual Topology and CPU Pinning guide <numa>`
 
-Storage Limitations
+Supported Storage Formats
 --------------------------------------------------------------------------------
 
 - Datablocks require formatting with a file system in order to be attached to a container.
 
 - Disk images must be a file system, they cannot have partition tables.
-
-- You can use LXC with NAS (file-based), SAN (lvm) or Ceph Datastores
 
 .. _lxc_unsupported_actions:
 
@@ -135,7 +132,7 @@ Mount options configuration section also in lxcrc
 Storage
 ================================================================================
 
-LXC containers need a root file system image in order to boot. This image can be downloaded directly to OpenNebula from `Docker Hub <https://hub.docker.com/>`__, `Linux Containers <https://uk.images.linuxcontainers.org/>`__ and `Turnkey Linux <https://www.turnkeylinux.org/>`__ Marketplaces. Check the :ref:`Public Marketplaces <public_marketplaces>` chapter for more information.
+LXC containers need a root file system image in order to boot. This image can be downloaded directly to OpenNebula from `Docker Hub <https://hub.docker.com/>`__, `Linux Containers <https://uk.images.linuxcontainers.org/>`__ and `Turnkey Linux <https://www.turnkeylinux.org/>`__ Marketplaces. Check the :ref:`Public Marketplaces <public_marketplaces>` chapter for more information. You can use LXC with NAS (file-based), SAN (lvm) or Ceph Datastores.
 
 .. note:: Custom images can also be created by using common linux tools like the ``mkfs`` command for creating the file system and ``dd`` for copying an existing file system inside the new one. Also OpenNebula will preserve any custom id map present on the filesystem.
 
@@ -169,6 +166,8 @@ Container Templates can be defined by using the same attributes described in :re
       NETWORK="vnet",
       NETWORK_UNAME="oneadmin",
       SECURITY_GROUPS="0" ]
+
+The LXC driver will create a swap limitation equal to the amount of memory definded in the VM Template. The attribute ``LXC_SWAP`` can be used to declare extra swap for the container.
 
 Remote Access
 -----------------------
