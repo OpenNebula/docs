@@ -20,6 +20,7 @@ The following new features has been backported to 6.2.2:
 - :ref:`Automatically create VM template in Vcenter when exporting an app from marketplace <vcenter_market>`.
 - `Improve capacity range feedback in Sunstone <https://github.com/OpenNebula/one/issues/5757>`__.
 - :ref:`Set VM IP not registered by ONE when importing a vCenter VM <vcenter_import_ip>`.
+- `VM pool list documents include ERROR and scheduler messages so they can be added to list views (e.g. Sunstone) <https://github.com/OpenNebula/one/issues/5761>`__.
 
 The following issues has been solved in 6.2.2:
 
@@ -36,3 +37,5 @@ The following issues has been solved in 6.2.2:
 - `Fix HA recovery hooks for Ceph and SAN (LVM) datastores <https://github.com/OpenNebula/one/issues/5653>`__.
 - `Fix vSphere 7.0 erases snapshots on disk change <https://github.com/OpenNebula/one/issues/5409>`__.
 - `Fix OneFlow Services perform action in Sunstone <https://github.com/OpenNebula/one/issues/5758>`__.
+- `Fix disk size not showing correctly in Sunstone <https://github.com/OpenNebula/one/issues/5560>`__.
+- `Fix scheduler message that contains double quotes <https://github.com/OpenNebula/one/issues/5762>`__.
