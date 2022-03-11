@@ -19,6 +19,7 @@ The following new features has been backported to 6.2.2:
 - `Filter Datastores and Networks by Host on VM instantiation <https://github.com/OpenNebula/one/issues/5743>`__.
 - :ref:`Automatically create VM template in Vcenter when exporting an app from marketplace <vcenter_market>`.
 - `Improve capacity range feedback in Sunstone <https://github.com/OpenNebula/one/issues/5757>`__.
+- :ref:`Set VM IP not registered by ONE when importing a vCenter VM <vcenter_import_ip>`.
 - `VM pool list documents include ERROR and scheduler messages so they can be added to list views (e.g. Sunstone) <https://github.com/OpenNebula/one/issues/5761>`__.
 
 The following issues has been solved in 6.2.2:
