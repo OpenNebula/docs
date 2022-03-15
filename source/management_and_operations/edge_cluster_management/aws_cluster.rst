@@ -67,7 +67,7 @@ The providers' templates are located in ``/usr/share/one/oneprovision/edge-clust
 AMI ID Change
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-It can happen that the AMI ID chabnges when there is a new release of the operating system. If this happens you will get an error like:
+It can happen that the AMI ID changes when there is a new release of the operating system. If this happens you will get an error like:
 
 .. prompt:: bash $ auto
 
