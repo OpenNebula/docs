@@ -62,6 +62,22 @@ Then you just need to use the command ``oneprovider create``:
 
 The providers' templates are located in ``/usr/share/one/oneprovision/edge-clusters/<type>/providers/aws``. You just need to enter valid credentials.
 
+.. _ami_change:
+
+AMI ID Change
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+It can happen that the AMI ID chabnges when there is a new release of the operating system. If this happens you will get an error like:
+
+.. prompt:: bash $ auto
+
+    The image id '[ami-04505e74c0741db8d]' does not exist
+
+You can check the new AMI ID `here <https://cloud-images.ubuntu.com/locator/ec2/>`__. And then, there are two possible situations:
+
+- You have already created a provider: you need to perform ``oneprovider update`` in order to change the value.
+- You haven't created the provider yet: you need to edit the specific file at ``/usr/share/one/oneprovision/edge-clusters/<metal|metal>/providers/aws``.
+
 How to Customize an Existing Provider
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
