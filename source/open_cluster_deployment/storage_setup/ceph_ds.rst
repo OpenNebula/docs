@@ -130,6 +130,11 @@ You can read more information about this in the Ceph guide `Using libvirt with C
 
 .. _ceph_ds_templates:
 
+LXC Hosts
+---------
+
+The ``rbd-nbd`` utility must be installed on LXC hosts. Check the :ref:`LXC Node Installation <lxc_node>`.
+
 OpenNebula Configuration
 ================================================================================
 
