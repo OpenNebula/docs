@@ -44,3 +44,4 @@ The following issues has been solved in 6.2.2:
 - `Fix disk size not showing correctly in Sunstone <https://github.com/OpenNebula/one/issues/5560>`__.
 - `Fix scheduler message that contains double quotes <https://github.com/OpenNebula/one/issues/5762>`__.
 - `Fix access to the OneProvision GUI by non-oneadmin's group users <https://github.com/OpenNebula/one/issues/5695>`__.
+- `Fix disk size sliders on Sunstone <https://github.com/OpenNebula/one/issues/5771>`__.
