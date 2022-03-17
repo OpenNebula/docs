@@ -23,6 +23,7 @@ OpenNebula Core
 Networking
 ================================================================================
 - Security Groups can be added or removed from a VM network interface, if the VM is running it updates the associated rules.
+- Virtual Network now contains :ref:`state <vnet_state>`. Creating and deleting VN calls :ref:`new network driver actions<devel-nm>` ``vnet_create`` and ``vnet_delete``. See also the :ref:`compatibility guide <compatibility>`.
 
 vCenter Driver
 ================================================================================
@@ -37,6 +38,7 @@ FireEdge
 CLI
 ================================================================================
 - New commands to :ref:`attach/detach Security Group <vm_guide2_sg_hotplugging>` to Virtual Machine
+- New command :ref:`onevnet recover <api_vn_recover>` to recover Virtual Network from locked or error state.
 
 Distributed Edge Provisioning
 ================================================================================

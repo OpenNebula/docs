@@ -114,6 +114,25 @@ This file will create a IPv4 network using VLAN tagging, the VLAN ID in this cas
 
 :ref:`See here for more examples <vnet_template_example>`
 
+.. _vnet_state:
+
+States and Life-cycle
+=====================
+
+The Virtual Network will be moving through different states to represent the actions you perform and their status. The following table summarizes the Virtual Network states and their meaning:
+
++------------+-------------+------------------------+-------------------------------------------------------------------------------------------------------------------+
+| State      | Short state | OpenNebula State Names |                                                  Meaning                                                          |
++============+=============+========================+===================================================================================================================+
+| Ready      | ``rdy``     | ``READY``              | Virtual Network is ready to be used                                                                               |
++------------+-------------+------------------------+-------------------------------------------------------------------------------------------------------------------+
+| Locked     | ``lock``    | ``LOCK_CREATE``        | Virtual Network is being created/deleted. Driver operation is in progress.                                        |
+|            |             +------------------------+                                                                                                                   +
+|            |             | ``LOCK_DELETE``        |                                                                                                                   |
++------------+-------------+------------------------+-------------------------------------------------------------------------------------------------------------------+
+| Error      | ``err``     | ``ERROR``              | Error state, an operation failed. See the Virtual Network information with ``onevnet show`` for an error message. |
++------------+-------------+------------------------+-------------------------------------------------------------------------------------------------------------------+
+
 .. _add_and_delete_vnet:
 
 Adding and Deleting Virtual Networks
@@ -148,9 +167,9 @@ To list the virtual networks in the system use ``onevnet list``:
 .. code::
 
    $ onevnet list
-   ID USER         GROUP        NAME            CLUSTER    BRIDGE   LEASES
-    0 admin        oneadmin     Private         0,100      onebr.10      0
-    1 admin        oneadmin     Public          0,101      vbr0          0
+   ID USER      GROUP       NAME        CLUSTER    BRIDGE    STATE  LEASES
+    0 admin     oneadmin    Private     0,100      onebr.10  rdy         0
+    1 admin     oneadmin    Public      0,101      vbr0      rdy         0
 
 In the output above, ``USER`` is the owner of the network and ``LEASES`` the number of addresses assigned to a virtual machine or reserved.
 
@@ -166,6 +185,7 @@ You can check the details of a Virtual Network with the ``onevnet show`` command
     GROUP          : oneadmin
     CLUSTERS       : 0
     BRIDGE         : onebr4
+    STATE          : READY
     VN_MAD         : 802.1Q
     PHYSICAL DEVICE: eth0
     VLAN ID        : 6
