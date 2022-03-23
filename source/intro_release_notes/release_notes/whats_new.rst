@@ -30,6 +30,7 @@ vCenter Driver
 
 Sunstone
 ================================================================================
+- Add option to hide VM naming on instantiation in :ref:`Sunstone Views <suns_views>`.
 
 FireEdge
 ================================================================================
