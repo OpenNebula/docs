@@ -234,7 +234,11 @@ Note that if you delete an OpenNebula Host representing a vCenter cluster and th
 
 In that case, you should specify the correct cluster from the Cluster drop-down menu or remove the OpenNebula cluster so OpenNebula can create the cluster again automatically when the vCenter cluster is imported.
 
-You can define ``VM_PREFIX`` attribute within the Host template. This attribute means that when you instantiate a VM in this Host, the names of all VMs will begin with ``VM_PREFIX``.
+.. _vcenter_vm_prefix:
+
+You can define ``VM_PREFIX`` attribute within the Host template so the names of all VMs instantiated on that host will begin with ``VM_PREFIX`` in vCenter. This value defaults to "one-<VID>" (where VID is the ID of the VM) if ``VM_PREFIX`` is not present. It can be set to an empty value to avoid having a prefix on the VM names.
+
+Additionally, this attribute can be overriden on the USER_TEMPLATE of the VM by setting an attribute on the same name (``VM_PREFIX``). The USER_TEMPLATE of the VM can also contain a ``VM_SUFFIX`` attribute to be automatically added to the VM name. Both ``VM_PREFIX`` and ``VM_SUFFIX`` can contain the ``$i`` which will be automatically substituted by the VM ID.
 
 .. _vcenter_import_resources:
 
@@ -541,6 +545,16 @@ The following procedure is useful if the VM has been changed in vCenter and Open
     $ onevm recover --delete-db <vmid>
 
 * Re-import VM: on the Host's next monitoring cycle you will find this VM under **Wilds** tab and it can be safely imported.
+
+.. _vcenter_import_ip:
+
+If you want to set specific IPv4/6 when importing the VM, you can use the parameters ``--ipv4`` and ``--ipv6``, giving a list of IP addresses separated by commas.
+
+.. prompt:: bash $ auto
+
+    $ onehost importvm <host> <vm> --ipv4 ip1,ip2
+
+.. important:: You need to provide the IPs depending on your interfaces order, as they are going to be assigned in that order.
 
 .. _vcenter_import_networks:
 

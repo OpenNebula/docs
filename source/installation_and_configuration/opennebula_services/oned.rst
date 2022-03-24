@@ -858,6 +858,8 @@ Sample configuration:
     INHERIT_VNET_ATTR       = "FILTER_MAC_SPOOFING"
     INHERIT_VNET_ATTR       = "MTU"
     INHERIT_VNET_ATTR       = "METRIC"
+    INHERIT_VNET_ATTR       = "CVLANS"
+    INHERIT_VNET_ATTR       = "QINQ_TYPE"
 
 .. _oned_conf_onegate:
 
