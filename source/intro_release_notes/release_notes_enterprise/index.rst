@@ -8,7 +8,7 @@ Release Notes 6.2.2 Enterprise Edition
    :maxdepth: 1
 
    What is OpenNebula EE<what_is>
-   Platform Notes 6.2.1 <platform_notes_621>
-   Compatibility Guide 6.2.1 <compatibility_621>
+   Platform Notes <platform_notes_ee>
+   Compatibility Guide <compatibility_ee>
    Resolved Issues in 6.2.1 <resolved_issues_621>
    Resolved Issues in 6.2.2 <resolved_issues_622>

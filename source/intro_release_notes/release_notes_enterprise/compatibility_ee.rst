@@ -1,10 +1,10 @@
 .. _compatibility_621:
 
-=========================
-Compatibility Guide 6.2.1
-=========================
+===================
+Compatibility Guide
+===================
 
-If you are coming from a version previous to 6.2.1, you will need to read also the :ref:`6.2.1 compatibility guide <compatibility>`.
+If you are coming from a version previous to 6.2.0 you will need to read also the :ref:`6.2.0 compatibility guide <compatibility>`.
 
 Packaging and Platform Support
 ==============================
