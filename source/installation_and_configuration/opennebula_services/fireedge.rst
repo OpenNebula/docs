@@ -165,10 +165,9 @@ To enable or disable automatic start on host boot, execute one of:
     # systemctl enable  opennebula-fireedge
     # systemctl disable opennebula-fireedge
 
-Server **logs** are located in ``/var/log/one`` in the following files:
+Server **logs** are located in ``/var/log/one`` in the following file:
 
-- ``/var/log/one/fireedge.log`` - operational log,
-- ``/var/log/one/fireedge.error`` - log of errors/exceptions.
+- ``/var/log/one/fireedge.log`` - operational, errors and exceptions log
 
 Other logs are also available in Journald. Use the following command to show them:
 
