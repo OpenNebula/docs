@@ -55,6 +55,7 @@ Other Issues Solved
 - `Snapshot space are not taken into account for system DS quota <https://github.com/OpenNebula/one/issues/5524>`__.
 - `Fix [packages] oneflow depends on opennebula <https://github.com/OpenNebula/one/issues/5391>`__.
 - `Fix object permissions when running "onedb fsck" <https://github.com/OpenNebula/one/issues/5202>`__.
+- `Fix Golang client to handle escape characters in templates <https://github.com/OpenNebula  /one/issues/5785>`__.
 
 Features Backported to 6.2.x
 ============================
