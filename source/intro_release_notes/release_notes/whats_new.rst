@@ -38,6 +38,7 @@ FireEdge
 CLI
 ================================================================================
 - New commands to :ref:`attach/detach Security Group <vm_guide2_sg_hotplugging>` to Virtual Machine
+- `Oneflow allows updating templates without specifying immutable attributes <https://github.com/OpenNebula/one/issues/5759>`__.
 
 Distributed Edge Provisioning
 ================================================================================
