@@ -55,13 +55,13 @@ The following issues has been solved in 6.2.1:
 - `Fix Marketplace app service template import for unprivileged users <https://github.com/OpenNebula/one/commit/2e92c43a6ac87910016530b86dcacc249ca79be4>`__.
 - `Fix race condition between iptables and ipsets when cleaning VM network <https://github.com/OpenNebula/one/commit/1bd9a83659edd518476a2ad34f0bdc7c3caffc9e>`__.
 - `Fix FT VM migration for the fs_lvm_ssh driver <https://github.com/OpenNebula/one/issues/5699>`__.
-- `Fix Image templates after a disk save_as operation by removing SAVE_AS_HOT attribute <https://github.com/OpenNebula/one/issues/5699>`__.
+- `Fix Image templates after a disk save_as operation by removing SAVE_AS_HOT attribute <https://github.com/OpenNebula/one/issues/5697>`__.
 - `Fix IPs from GUEST_IP_ADDRESSES attribute were not showing in VMs datatable <https://github.com/OpenNebula/one/issues/5701>`__.
 - `Fix Sunstone not showing disk cache and size when selecting LXC <https://github.com/OpenNebula/one/issues/5641>`__.
 - `Improve RESTfulness of FireEdge API <https://github.com/OpenNebula/one/issues/5703>`__.
 - `Fix Sunstone deletes attributes that were not changed when showback disabled <https://github.com/OpenNebula/one/issues/5696>`__.
 - `Fix Sunstone shouldn't show not available option for remote console access <https://github.com/OpenNebula/one/issues/5707>`__.
-- `Fix NaN problem from services from older versions doesn't have registration time and start time <https://github.com/OpenNebula/one/issues/5707>`__.
+- `Fix NaN problem from services from older versions doesn't have registration time and start time <https://github.com/OpenNebula/one/issues/5714>`__.
 - `Fix 'onevm updateconf --append' should update Context attributes <https://github.com/OpenNebula/one/issues/5716>`__.
 - `Fix segfault on quota rollback in VM instantiate <https://github.com/OpenNebula/one/issues/5712>`__.
 - `Fix update conf in running VMs on Cloud view <https://github.com/OpenNebula/one/issues/5176>`__.

@@ -46,4 +46,4 @@ When taking a VM backup, if the upload process fails and the app results in ERRO
 Disk Save As Operation
 ================================================================================
 
-When a VM disk is saved as a new image, the template of the new image includes a ``SAVE_AS_HOT`` attribute that may break the deployment of new VMs using the disk. Please remove manually this attribute after the save as operation. The associated GitHub issue can be found here <https://github.com/OpenNebula/one/issues/5697>`__.
+When a VM disk is saved as a new image, the template of the new image includes a ``SAVE_AS_HOT`` attribute that may break the deployment of new VMs using the disk. Please remove manually this attribute after the save as operation. The associated GitHub issue can be found `here <https://github.com/OpenNebula/one/issues/5697>`__.
