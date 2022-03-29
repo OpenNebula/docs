@@ -34,6 +34,7 @@ Sunstone
 
 FireEdge
 ================================================================================
+- `Add Single Sing on URL for React Sunstone <https://github.com/OpenNebula/one/issues/5779>`__.
 
 CLI
 ================================================================================
