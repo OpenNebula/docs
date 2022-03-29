@@ -26,6 +26,7 @@ OpenNebula Core
 ================================================================================
 - VM snaphots size were highly overestimated. Count snapshot size only as fraction of original disk size. :ref:`See settings in oned.conf <oned_conf_datastores>`.
 - VM logs can be generated in the VM folder (``/var/lib/one/vms/<VMID>/``). This make it easier to keep VM.logs in sync in multi-master installations, :ref:`see more details here <frontend_ha_shared>`.
+- `Download process is more robust including retry options for http protocol <https://github.com/OpenNebula/one/issues/5773>`__.
 
 Networking
 ================================================================================
@@ -62,7 +63,7 @@ LXC
 
 Other Issues Solved
 ================================================================================
-- `Snapshot space are not taken into account for system DS quota <https://github.com/OpenNebula/one/issues/5524>`__.
+- `Fix the system DS quota to take into account the Snapshot space <https://github.com/OpenNebula/one/issues/5524>`__.
 - `Fix [packages] oneflow depends on opennebula <https://github.com/OpenNebula/one/issues/5391>`__.
 - `Fix object permissions when running "onedb fsck" <https://github.com/OpenNebula/one/issues/5202>`__.
 - `Fix Golang client to handle escape characters in templates <https://github.com/OpenNebula/one/issues/5785>`__.
