@@ -1,10 +1,17 @@
 .. _whats_new:
 
 ================================================================================
-What's New in 6.2
+What's New in 6.4
 ================================================================================
 
-OpenNebula 6.4 XXX is ...
+OpenNebula 6.4 'Archeon' is the third stable release of the OpenNebula 6 series. This release presents a functional new Sunstone interface for VM and VM Template management, with a similar coverage in terms of functionality as the Cloud View of the still present current Sunstone interface. We want to encourage cloud admins to keep using the ruby-based Sunstone interface (port 9869), but favour the new Sunstone incarnation served by FireEdge in port 2616 for end users. The OpenNebula development team worked hard to streamline the functionality offered in the VM and VM Template tabs, and more UX improvements are on the way!
+
+Nvidia GPU support ....
+
+This release introduces network states
+
+Ceph HCI
+
 
 ..
   Conform to the following format for new features.
@@ -17,7 +24,7 @@ OpenNebula 6.4 XXX is ...
 
 OpenNebula Core
 ================================================================================
-- VM snaphots size are highly overestimated. Count snapshot size only as fraction of original disk size. :ref:`See settings in oned.conf <oned_conf_datastores>`.
+- VM snaphots size were highly overestimated. Count snapshot size only as fraction of original disk size. :ref:`See settings in oned.conf <oned_conf_datastores>`.
 - VM logs can be generated in the VM folder (``/var/lib/one/vms/<VMID>/``). This make it easier to keep VM.logs in sync in multi-master installations, :ref:`see more details here <frontend_ha_shared>`.
 
 Networking
@@ -26,15 +33,16 @@ Networking
 
 vCenter Driver
 ================================================================================
-- Configuration flag for :ref:`image persistency<driver_tuning>` of imported Wild VMs or VM Templates.
+- Configuration flag for :ref:`image persistency <driver_tuning>` of imported Wild VMs or VM Templates.
+- New driver wide :ref:`configuration option <driver_tuning>` to set the VMDK format to either Sparse or regular.
 
-Sunstone
+Ruby Sunstone
 ================================================================================
 - Add option to hide VM naming on instantiation in :ref:`Sunstone Views <suns_views>`.
 
-FireEdge
+React Sunstone
 ================================================================================
-- `Add Single Sing on URL for React Sunstone <https://github.com/OpenNebula/one/issues/5779>`__.
+- `Add Single Sign on URL for React Sunstone <https://github.com/OpenNebula/one/issues/5779>`__.
 
 CLI
 ================================================================================
@@ -65,3 +73,28 @@ Features Backported to 6.2.x
 ============================
 
 Additionally, a lot of new functionality is present that was not in OpenNebula 6.2.0, although they debuted in subsequent maintenance releases of the 6.2.x series:
+
+- :ref:`Exclusively for the Enterprise Edition, a WHMCS module has bee nadded that allows the creation and management of OpenNebula users and groups with quotas <whmcs_tenants>`.
+- `Add support to filter providers by provision type <https://github.com/OpenNebula/one/issues/5604>`__.
+- `Add encrypted attributes to User template <https://github.com/OpenNebula/one/issues/5431>`__.
+- `Add encryption to guacamole SSH private key and passphrase <https://github.com/OpenNebula/one/issues/5241>`__.
+- `LXD Marketplace App VMTemplate has more customization <https://github.com/OpenNebula/one/issues/3667>`__.
+- `Add new hosts to existing OpenNebula Edge Clusters <https://github.com/OpenNebula/one/issues/5593>`__.
+- `Simple method to add/remove public IPs from OpenNebula Edge Clusters <https://github.com/OpenNebula/one/issues/5593>`__.
+- `Make EXPIRE_DELTA and EXPIRE_MARGIN configurable for CloudAuth <https://github.com/OpenNebula/one/issues/5046>`__.
+- `Support new CentOS variants on LXC Marketplace <https://github.com/OpenNebula/one/issues/3178>`__.
+- `Allow to order and filter vCenter imports when using the vCenter Import Tool <https://github.com/OpenNebula/one/issues/5735>`__.
+- `Show scheduler error message on Sunstone <https://github.com/OpenNebula/one/issues/5744>`__.
+- `Add error condition to Sunstone list views <https://github.com/OpenNebula/one/issues/5745>`__.
+- `Better live memory resize for KVM <https://github.com/OpenNebula/one/issues/5753>`__. **Note**: You need to do a power cycle for those VMs you want to resize its memory after the upgrade.
+- :ref:`Add Q-in-Q support for Open vSwtich driver <openvswitch_qinq>`.
+- :ref:`Add MTU support for Open vSwtich driver <openvswitch>`.
+- `Filter Datastores and Networks by Host on VM instantiation <https://github.com/OpenNebula/one/issues/5743>`__.
+- :ref:`Automatically create VM template in Vcenter when exporting an app from marketplace <vcenter_market>`.
+- `Improve capacity range feedback in Sunstone <https://github.com/OpenNebula/one/issues/5757>`__.
+- :ref:`Set VM IP not registered by ONE when importing a vCenter VM <vcenter_import_ip>`.
+- `VM pool list documents include ERROR and scheduler messages so they can be added to list views (e.g. Sunstone) <https://github.com/OpenNebula/one/issues/5761>`__.
+- `Support for cgroup2 on the LXC Driver <https://github.com/OpenNebula/one/issues/5599>`__.
+- `Support for CPU Pinning using NUMA Topology on the LXC Driver <https://github.com/OpenNebula/one/issues/5506>`__.
+- `Memory management improvements similar to LXD defaults on the LXC driver <https://github.com/OpenNebula/one/issues/5621>`__.
+- :ref:`Default VM_PREFIX for vCenter VMs can be now be nulified with the empty string <vcenter_vm_prefix>`.

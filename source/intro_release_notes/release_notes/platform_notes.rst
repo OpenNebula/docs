@@ -1,7 +1,7 @@
 .. _uspng:
 
 ================================================================================
-Platform Notes
+Platform Notes 6.2.0
 ================================================================================
 
 This page will show you the specific considerations when using an OpenNebula cloud, according to the different supported platforms.
@@ -60,7 +60,7 @@ vCenter Nodes
 +-----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 | Component |                Version                |                                                            More information                                                            |
 +===========+=======================================+========================================================================================================================================+
-| vCenter   | 6.5/6.7/7.0, managing ESX 6.5/6.7/7.0 | :ref:`vCenter Node Installation <vcenter_node>`                                                                                        |
+| vCenter   | 7.0.x, managing ESX 7.0.x             | :ref:`vCenter Node Installation <vcenter_node>`                                                                                        |
 +-----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 | NSX-T     | 2.4.1+                                | `VMware compatiblity <https://www.vmware.com/resources/compatibility/sim/interop_matrix.php>`__. :ref:`NSX Documentation <nsx_setup>`. |
 +-----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
@@ -247,7 +247,7 @@ Sunstone
 Compatibility of Workloads on Certified Edge Clusters
 =====================================================
 
-.. include:: ./edge_clusters.txt
+.. include:: ../release_notes/edge_clusters.txt
 
 
 Certified Infrastructure Scale
@@ -257,7 +257,7 @@ A single instance of OpenNebula (i.e., a single ``oned`` process) has been stres
 
 However, there are several OpenNebula users managing significantly higher numbers of hypervisors (to the order of two thousand) with a single instance. This largely depends, as mentioned, on the storage, networking, and also monitoring configuration.
 
-Frontend Platform Notes
+Front-End Platform Notes
 ================================================================================
 
 The following applies to all Front-Ends:
