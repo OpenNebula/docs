@@ -875,3 +875,5 @@ Some aspects of the driver's behavior can be configured in */var/lib/one/remotes
 * **wild_vm_persistent_images**: Wild VM disks imported as persistent (true) or non-persistent (false) images. Default: **true**.
 
 * **vm_template_persistent_images**: VM Template disks imported as persistent (true) or non-persistent (false) images. Default: **false**.
+
+* **sparse_images**: Sets the VMDK image subformat to sparse (true) or flat (false) for ESXi compatibility. Default: **false**.
