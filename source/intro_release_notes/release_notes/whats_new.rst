@@ -6,11 +6,13 @@ What's New in 6.4
 
 OpenNebula 6.4 'Archeon' is the third stable release of the OpenNebula 6 series. This release presents a functional new Sunstone interface for VM and VM Template management, with a similar coverage in terms of functionality as the Cloud View of the still present current Sunstone interface. We want to encourage cloud admins to keep using the ruby-based Sunstone interface (port 9869), but favour the new Sunstone incarnation served by FireEdge in port 2616 for end users. The OpenNebula development team worked hard to streamline the functionality offered in the VM and VM Template tabs, and more UX improvements are on the way!
 
-Nvidia GPU support ....
+This release also includes the notion of network states. Your virtual networks now have states that will let you perform custom actions upon creation and destruction of the object; allowing a better integration with your datacenter network backbone. The state change events can be tied to the execution of hooks to further tune the behavior to your needs. There are two components that benefit from this change: OpenNebula flow, can now synchronize the creation of virtual networks and service VMs; and vCenter networking that now integrates seamlessly without the need of activating any hook.
 
-This release introduces network states
+Another exicting addition to 'Archeon' is the ability to automatically create and configure edge clusters based on Ceph Datastores. These clusters can be created either on-prem (just minimal OS and SSH access required) or remotely on AWS. Also for edge clusters, you can dynamically add more hosts in case your need more capacity.
 
-Ceph HCI
+There are also minor addition to the supported hypervisor family, for example the SR-IOV support for the NVIDIA GPU cards; the addition to fine-grain resource control for LXC or .... <vCenter>
+
+OpenNebula 6.4 is named after the Archeon Nebula from the StarWars universe, a beautiful nebula where stars are born and a popular smuggling route... 
 
 
 ..
