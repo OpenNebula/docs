@@ -12,8 +12,12 @@ Another exicting addition to 'Archeon' is the ability to automatically create an
 
 There are also minor addition to the supported hypervisor family, for example the SR-IOV support for the NVIDIA GPU cards; the addition to fine-grain resource control for LXC or .... <vCenter>
 
-OpenNebula 6.4 is named after the Archeon Nebula from the StarWars universe, a beautiful nebula where stars are born and a popular smuggling route... 
+OpenNebula 6.4 is named after the Archeon Nebula from the StarWars universe, a beautiful nebula where stars are born and a popular smuggling route...
 
+
+The OpenNebula team is now transitioning to “bug-fixing mode”. Note that this is a first beta release aimed at testers and developers to try the new features, and we welcome you to send feedback for the final release. Please check the :ref:`known issues <known_issues>` before `submitting an issue through GitHub <https://github.com/OpenNebula/one/issues/new?template=bug_report.md>`__. Also note that being a beta, there is no migration path from the previous stable version (6.2.x) nor migration path to the final stable version (6.4.0). A list of `open issues can be found in the GitHub development portal <https://github.com/OpenNebula/one/milestone/53>`.
+
+We'd like to thank the people that supports the project, OpenNebula is what it is thanks to its community. Besides the usual :ref:`acknowledgements <acknowledgements>`, we'd like to highlight the support through the ONEedge EU funding project to improve OpenNebula edge capabilities.
 
 ..
   Conform to the following format for new features.
@@ -38,6 +42,10 @@ vCenter Driver
 ================================================================================
 - Configuration flag for :ref:`image persistency <driver_tuning>` of imported Wild VMs or VM Templates.
 - New driver wide :ref:`configuration option <driver_tuning>` to set the VMDK format to either Sparse or regular.
+- `Allow to order and filter vCenter imports when using the vCenter Import Tool <https://github.com/OpenNebula/one/issues/5735>`__.
+- (*) :ref:`Automatically create VM template in Vcenter when exporting an app from marketplace <vcenter_market>`.
+- (*) :ref:`Set VM IP not registered by ONE when importing a vCenter VM <vcenter_import_ip>`.
+- (*) :ref:`Default VM_PREFIX for vCenter VMs can be now be nulified with the empty string <vcenter_vm_prefix>`.
 
 Ruby Sunstone
 ================================================================================
@@ -86,18 +94,16 @@ Additionally, a lot of new functionality is present that was not in OpenNebula 6
 - `Simple method to add/remove public IPs from OpenNebula Edge Clusters <https://github.com/OpenNebula/one/issues/5593>`__.
 - `Make EXPIRE_DELTA and EXPIRE_MARGIN configurable for CloudAuth <https://github.com/OpenNebula/one/issues/5046>`__.
 - `Support new CentOS variants on LXC Marketplace <https://github.com/OpenNebula/one/issues/3178>`__.
-- `Allow to order and filter vCenter imports when using the vCenter Import Tool <https://github.com/OpenNebula/one/issues/5735>`__.
 - `Show scheduler error message on Sunstone <https://github.com/OpenNebula/one/issues/5744>`__.
 - `Add error condition to Sunstone list views <https://github.com/OpenNebula/one/issues/5745>`__.
 - `Better live memory resize for KVM <https://github.com/OpenNebula/one/issues/5753>`__. **Note**: You need to do a power cycle for those VMs you want to resize its memory after the upgrade.
 - :ref:`Add Q-in-Q support for Open vSwtich driver <openvswitch_qinq>`.
 - :ref:`Add MTU support for Open vSwtich driver <openvswitch>`.
 - `Filter Datastores and Networks by Host on VM instantiation <https://github.com/OpenNebula/one/issues/5743>`__.
-- :ref:`Automatically create VM template in Vcenter when exporting an app from marketplace <vcenter_market>`.
 - `Improve capacity range feedback in Sunstone <https://github.com/OpenNebula/one/issues/5757>`__.
-- :ref:`Set VM IP not registered by ONE when importing a vCenter VM <vcenter_import_ip>`.
 - `VM pool list documents include ERROR and scheduler messages so they can be added to list views (e.g. Sunstone) <https://github.com/OpenNebula/one/issues/5761>`__.
 - `Support for cgroup2 on the LXC Driver <https://github.com/OpenNebula/one/issues/5599>`__.
 - `Support for CPU Pinning using NUMA Topology on the LXC Driver <https://github.com/OpenNebula/one/issues/5506>`__.
 - `Memory management improvements similar to LXD defaults on the LXC driver <https://github.com/OpenNebula/one/issues/5621>`__.
-- :ref:`Default VM_PREFIX for vCenter VMs can be now be nulified with the empty string <vcenter_vm_prefix>`.
+
+(*) This functionality is present also in previous EE maintenance versions of the 6.2.x series.
