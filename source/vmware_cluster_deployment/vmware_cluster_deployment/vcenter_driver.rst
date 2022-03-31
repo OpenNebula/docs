@@ -736,7 +736,7 @@ Usage (CLI)
 Migrating a VM Between Datastores
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. important:: When migrating a VM from datastore, the images will remain in the original OpenNebula datastore, so if you try to delete it, you won't be able because images are still there.
+.. important:: When migrating a VM (including Wild VMs, which import their disks as persistent images) between datastores, the VM related images will remain in the original OpenNebula datastore, so they will be copied back when the VM is terminated. This will prevent deleting the original datastore since OpenNebula will still use it as the image datastore for the VM related images.
 
 On a VM migration, the target datastore can be changed. Disks belonging to the VM will be migrated to the target datastore. This is useful for rebalancing resources usage among datastores.
 
