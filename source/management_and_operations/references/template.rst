@@ -1236,7 +1236,7 @@ Valid ``types``:
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
 | boolean         | <VAR>="M|boolean| <desc>| | <default>"                          | Yes or not                                             |
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
-| fixed           | <VAR>="M|boolean| <desc>| | <value>"                            | A fixed value, cannot be changed.                      |
+| fixed           | <VAR>="M|fixed| <desc>| | <value>"                            | A fixed value, cannot be changed.                      |
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
 
 There is the possibility of making the USER_INPUT mandatory or not. If it is mandatory, we will see a letter 'M' but if it is not mandatory a letter 'O' will appear.
