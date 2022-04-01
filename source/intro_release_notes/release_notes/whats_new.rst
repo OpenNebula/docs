@@ -4,16 +4,19 @@
 What's New in 6.4
 ================================================================================
 
-OpenNebula 6.4 'Archeon' is the third stable release of the OpenNebula 6 series. This release presents a functional new Sunstone interface for VM and VM Template management, with a similar coverage in terms of functionality as the Cloud View of the still present current Sunstone interface. We want to encourage cloud admins to keep using the ruby-based Sunstone interface (port 9869), but favour the new Sunstone incarnation served by FireEdge in port 2616 for end users. The OpenNebula development team worked hard to streamline the functionality offered in the VM and VM Template tabs, and more UX improvements are on the way!
+OpenNebula 6.4 'Archeon' is the third stable release of the OpenNebula 6 series. This release presents a functional new Sunstone interface for VM and VM Template management, with a similar coverage in terms of functionality as the Cloud View of the still present current Sunstone interface. We want to encourage cloud admins to keep using the ruby-based Sunstone interface (port 9869), but favour the new Sunstone incarnation served by FireEdge in port 2616 for end users. The OpenNebula development team worked hard to streamline the functionality offered in the VM and VM Template tabs, and more UX improvements are on the way! The ruby-based interface also recieved it's share of
+
+.. image:: /images/react_sunstone_console_teaser.png
+    :align: center
+
 
 This release also includes the notion of network states. Your virtual networks now have states that will let you perform custom actions upon creation and destruction of the object; allowing a better integration with your datacenter network backbone. The state change events can be tied to the execution of hooks to further tune the behavior to your needs. There are two components that benefit from this change: OpenNebula flow, can now synchronize the creation of virtual networks and service VMs; and vCenter networking that now integrates seamlessly without the need of activating any hook.
 
-Another exicting addition to 'Archeon' is the ability to automatically create and configure edge clusters based on Ceph Datastores. These clusters can be created either on-prem (just minimal OS and SSH access required) or remotely on AWS. Also for edge clusters, you can dynamically add more hosts in case your need more capacity.
+Another exciting addition to 'Archeon' is the ability to automatically create and configure edge clusters based on Ceph Datastores. These clusters can be created either on-prem (just minimal OS and SSH access required) or remotely on AWS. Also for edge clusters, you can dynamically add more hosts in case your need more capacity.
 
-There are also minor addition to the supported hypervisor family, for example the SR-IOV support for the NVIDIA GPU cards; the addition to fine-grain resource control for LXC or .... <vCenter>
+There are also minor addition to the supported hypervisor family, for example the SR-IOV support for the NVIDIA GPU cards; the addition to fine-grain resource control for LXC or the autmatic VM Template creation in vCenter.
 
-OpenNebula 6.4 is named after the Archeon Nebula from the StarWars universe, a beautiful nebula where stars are born and a popular smuggling route...
-
+OpenNebula 6.4 is named after the `Archeon Nebula <https://starwars.fandom.com/wiki/Archeon_Nebula>`__ from the Star Wars universe, a beautiful nebula where stars are born and a popular smuggling route is available to traverse the continuum towards the Edge :)
 
 The OpenNebula team is now transitioning to “bug-fixing mode”. Note that this is a first beta release aimed at testers and developers to try the new features, and we welcome you to send feedback for the final release. Please check the :ref:`known issues <known_issues>` before `submitting an issue through GitHub <https://github.com/OpenNebula/one/issues/new?template=bug_report.md>`__. Also note that being a beta, there is no migration path from the previous stable version (6.2.x) nor migration path to the final stable version (6.4.0). A list of `open issues can be found in the GitHub development portal <https://github.com/OpenNebula/one/milestone/53>`.
 
@@ -50,6 +53,9 @@ vCenter Driver
 Ruby Sunstone
 ================================================================================
 - Add option to hide VM naming on instantiation in :ref:`Sunstone Views <suns_views>`.
+- (*) `VM pool list documents include ERROR and scheduler messages so they can be added to list views (e.g. Sunstone) <https://github.com/OpenNebula/one/issues/5761>`__.
+- (*) `Show scheduler error message on Sunstone <https://github.com/OpenNebula/one/issues/5744>`__.
+- (*) `Add error condition to Sunstone list views <https://github.com/OpenNebula/one/issues/5745>`__.
 
 React Sunstone
 ================================================================================
@@ -95,14 +101,11 @@ Additionally, a lot of new functionality is present that was not in OpenNebula 6
 - `Simple method to add/remove public IPs from OpenNebula Edge Clusters <https://github.com/OpenNebula/one/issues/5593>`__.
 - `Make EXPIRE_DELTA and EXPIRE_MARGIN configurable for CloudAuth <https://github.com/OpenNebula/one/issues/5046>`__.
 - `Support new CentOS variants on LXC Marketplace <https://github.com/OpenNebula/one/issues/3178>`__.
-- `Show scheduler error message on Sunstone <https://github.com/OpenNebula/one/issues/5744>`__.
-- `Add error condition to Sunstone list views <https://github.com/OpenNebula/one/issues/5745>`__.
 - `Better live memory resize for KVM <https://github.com/OpenNebula/one/issues/5753>`__. **Note**: You need to do a power cycle for those VMs you want to resize its memory after the upgrade.
 - :ref:`Add Q-in-Q support for Open vSwtich driver <openvswitch_qinq>`.
 - :ref:`Add MTU support for Open vSwtich driver <openvswitch>`.
 - `Filter Datastores and Networks by Host on VM instantiation <https://github.com/OpenNebula/one/issues/5743>`__.
 - `Improve capacity range feedback in Sunstone <https://github.com/OpenNebula/one/issues/5757>`__.
-- `VM pool list documents include ERROR and scheduler messages so they can be added to list views (e.g. Sunstone) <https://github.com/OpenNebula/one/issues/5761>`__.
 - `Support for cgroup2 on the LXC Driver <https://github.com/OpenNebula/one/issues/5599>`__.
 - `Support for CPU Pinning using NUMA Topology on the LXC Driver <https://github.com/OpenNebula/one/issues/5506>`__.
 - `Memory management improvements similar to LXD defaults on the LXC driver <https://github.com/OpenNebula/one/issues/5621>`__.
