@@ -44,6 +44,8 @@ CLI
 Distributed Edge Provisioning
 ================================================================================
 
+- Virtual drivers has been disabled by default, check their specific section to know how to enable them.
+
 KVM
 ===
 - NVIDIA vGPU support has been added to KVM driver, :ref:`check this <kvm_vgpu>` for more information.

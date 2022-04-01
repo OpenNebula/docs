@@ -24,7 +24,15 @@ Go API
 ======
 
 Distributed Edge Provisioning
-=============================
+================================================================================
+
+The following providers has been disabled by default:
+
+- DigitalOcean
+- Google
+- Vultr (Metal & virrtual)
+
+If you want to use them, please check their specific documentation section.
 
 PyONE
 ========================

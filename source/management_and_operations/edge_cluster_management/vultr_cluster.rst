@@ -4,6 +4,8 @@
 Vultr Edge Cluster
 ==========================
 
+.. include:: activate_virtual.txt
+
 Vultr supports both virtual and metal clusters. Vultr **metal** use a bare-metal host to create OpenNebula Hosts. This provision is better for **KVM** & **Firecracker**. Vultr **virtual** Edge Clusters use a Virtual Machine instance to create OpenNebula Hosts. This provision is better suited for PaaS-like workloads. Virtual Vultr Edge Clusters primarily run **LXC** to execute system containers.
 
 Vultr Provider
