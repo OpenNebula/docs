@@ -53,7 +53,8 @@ Ruby Sunstone
 
 React Sunstone
 ================================================================================
-- `Add Single Sign on URL for React Sunstone <https://github.com/OpenNebula/one/issues/5779>`__.
+- `Add Single Sign on URL <https://github.com/OpenNebula/one/issues/5779>`__.
+- `Use localStorage for session management <https://github.com/OpenNebula/one-ee/pull/1898>`__.
 
 CLI
 ================================================================================
