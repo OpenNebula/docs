@@ -36,3 +36,5 @@ vCenter
 ========================
 
 This version introduces a `change in the deploy ID used to identify vCenter VMs <https://github.com/OpenNebula/one/issues/5689>`__. Its purpose is to avoid the collision of the Managed Object References in different vCenter instances, since their uniqueness is not guaranteed. Due to its sensitivity, we recommend first backing up the database and configuration files so you can :ref:`restore your previous version if needed <restoring_version>`.
+
+Also worth noting that Debian front-ends are no longer certified over VMware. We advise OpenNebula users maanging vCenter based infrastructures with Debian front-ends to switch to any of the other :ref:`supported platforms <uspng>`.
