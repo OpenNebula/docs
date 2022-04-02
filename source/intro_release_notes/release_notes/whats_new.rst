@@ -9,7 +9,6 @@ OpenNebula 6.4 'Archeon' is the third stable release of the OpenNebula 6 series.
 .. image:: /images/react_sunstone_console_teaser.png
     :align: center
 
-
 This release also includes the notion of network states. Your virtual networks now have states that will let you perform custom actions upon creation and destruction of the object; allowing a better integration with your datacenter network backbone. The state change events can be tied to the execution of hooks to further tune the behavior to your needs. There are two components that benefit from this change: OpenNebula flow, can now synchronize the creation of virtual networks and service VMs; and vCenter networking that now integrates seamlessly without the need of activating any hook.
 
 Another exciting addition to 'Archeon' is the ability to automatically create and configure edge clusters based on Ceph Datastores. These clusters can be created either on-prem (just minimal OS and SSH access required) or remotely on AWS. Also for edge clusters, you can dynamically add more hosts in case your need more capacity.
@@ -36,10 +35,13 @@ OpenNebula Core
 - VM snaphots size were highly overestimated. Count snapshot size only as fraction of original disk size. :ref:`See settings in oned.conf <oned_conf_datastores>`.
 - VM logs can be generated in the VM folder (``/var/lib/one/vms/<VMID>/``). This make it easier to keep VM.logs in sync in multi-master installations, :ref:`see more details here <frontend_ha_shared>`.
 - `Download process is more robust including retry options for http protocol <https://github.com/OpenNebula/one/issues/5773>`__.
+- (*) `Add encrypted attributes to User template <https://github.com/OpenNebula/one/issues/5431>`__.
 
 Networking
 ================================================================================
 - Security Groups can be added or removed from a VM network interface, if the VM is running it updates the associated rules.
+- (*) :ref:`Add Q-in-Q support for Open vSwtich driver <openvswitch_qinq>`.
+- (*) :ref:`Add MTU support for Open vSwtich driver <openvswitch>`.
 
 vCenter Driver
 ================================================================================
@@ -69,15 +71,23 @@ CLI
 
 Distributed Edge Provisioning
 ================================================================================
+- (*) `Simple method to add/remove public IPs from OpenNebula Edge Clusters <https://github.com/OpenNebula/one/issues/5593>`__.
+- (*) `Add new hosts to existing OpenNebula Edge Clusters <https://github.com/OpenNebula/one/issues/5593>`__.
+- (*) `Add support to filter providers by provision type <https://github.com/OpenNebula/one/issues/5604>`__.
 
 KVM
 ===
 - NVIDIA vGPU support has been added to KVM driver, :ref:`check this <kvm_vgpu>` for more information.
 - VM resource assignment supports cgroups version 1 and 2
+- (*) `Better live memory resize for KVM <https://github.com/OpenNebula/one/issues/5753>`__. **Note**: You need to do a power cycle for those VMs you want to resize its memory after the upgrade.
 
 LXC
 ===
 - `Mount options for Storage Interfaces <https://github.com/OpenNebula/one/issues/5429>`__.
+- (*) `Memory management improvements similar to LXD defaults on the LXC driver <https://github.com/OpenNebula/one/issues/5621>`__.
+- (*) `Support for CPU Pinning using NUMA Topology on the LXC Driver <https://github.com/OpenNebula/one/issues/5506>`__.
+- (*) `Support for cgroup2 on the LXC Driver <https://github.com/OpenNebula/one/issues/5599>`__.
+- (*) `Support new CentOS variants on LXC Marketplace <https://github.com/OpenNebula/one/issues/3178>`__.
 
 Other Issues Solved
 ================================================================================
@@ -94,21 +104,10 @@ Features Backported to 6.2.x
 Additionally, a lot of new functionality is present that was not in OpenNebula 6.2.0, although they debuted in subsequent maintenance releases of the 6.2.x series:
 
 - :ref:`Exclusively for the Enterprise Edition, a WHMCS module has bee nadded that allows the creation and management of OpenNebula users and groups with quotas <whmcs_tenants>`.
-- `Add support to filter providers by provision type <https://github.com/OpenNebula/one/issues/5604>`__.
-- `Add encrypted attributes to User template <https://github.com/OpenNebula/one/issues/5431>`__.
 - `Add encryption to guacamole SSH private key and passphrase <https://github.com/OpenNebula/one/issues/5241>`__.
 - `LXD Marketplace App VMTemplate has more customization <https://github.com/OpenNebula/one/issues/3667>`__.
-- `Add new hosts to existing OpenNebula Edge Clusters <https://github.com/OpenNebula/one/issues/5593>`__.
-- `Simple method to add/remove public IPs from OpenNebula Edge Clusters <https://github.com/OpenNebula/one/issues/5593>`__.
 - `Make EXPIRE_DELTA and EXPIRE_MARGIN configurable for CloudAuth <https://github.com/OpenNebula/one/issues/5046>`__.
-- `Support new CentOS variants on LXC Marketplace <https://github.com/OpenNebula/one/issues/3178>`__.
-- `Better live memory resize for KVM <https://github.com/OpenNebula/one/issues/5753>`__. **Note**: You need to do a power cycle for those VMs you want to resize its memory after the upgrade.
-- :ref:`Add Q-in-Q support for Open vSwtich driver <openvswitch_qinq>`.
-- :ref:`Add MTU support for Open vSwtich driver <openvswitch>`.
 - `Filter Datastores and Networks by Host on VM instantiation <https://github.com/OpenNebula/one/issues/5743>`__.
 - `Improve capacity range feedback in Sunstone <https://github.com/OpenNebula/one/issues/5757>`__.
-- `Support for cgroup2 on the LXC Driver <https://github.com/OpenNebula/one/issues/5599>`__.
-- `Support for CPU Pinning using NUMA Topology on the LXC Driver <https://github.com/OpenNebula/one/issues/5506>`__.
-- `Memory management improvements similar to LXD defaults on the LXC driver <https://github.com/OpenNebula/one/issues/5621>`__.
 
 (*) This functionality is present also in previous EE maintenance versions of the 6.2.x series.
