@@ -73,6 +73,7 @@ Distributed Edge Provisioning
 KVM
 ===
 - NVIDIA vGPU support has been added to KVM driver, :ref:`check this <kvm_vgpu>` for more information.
+- VM resource assignment supports cgroups version 1 and 2
 
 LXC
 ===

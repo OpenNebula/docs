@@ -104,7 +104,9 @@ Optionally, you can set a timeout for the VM Shutdown operation. This feature is
 Working with cgroups (Optional)
 --------------------------------------------------------------------------------
 
-Optionally, you can set-up cgroups to control resources on your Hosts. The `libvirt cgroups documentation <https://libvirt.org/cgroups.html>`__ describes all the cases and the way the cgroups are managed by libvirt/KVM.
+Optionally, you can set-up cgroups to control resources on your Hosts. By default KVM VMs will be placed in the ``machine.slice``, the resources assigned in this slice can be adjusted for each hypervisor. The `libvirt cgroups documentation <https://libvirt.org/cgroups.html>`__ describes all the cases and the way the cgroups are managed by libvirt/KVM.
+
+OpenNebula will compute the ``shares`` attribute of the Libvirt domain using the ``CPU`` parameter and the base share value, which depends on the cgroups version of the hypervisor. For example, a VM with ``CPU=2`` will get a cgroup value of ``cpu.shares = 2048`` (or ``cpu.weight=200`` for cgroups version 2),  twice the default value. Note that if you have a mix of cgroups version 1 and 2 hosts you may have inconsistent resource distribution if you life-migrate a VM across different versions.
 
 .. _kvmg_memory_cleanup:
 
