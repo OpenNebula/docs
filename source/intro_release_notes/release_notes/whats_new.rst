@@ -99,6 +99,7 @@ Other Issues Solved
 - `Fix Golang client to handle escape characters in templates <https://github.com/OpenNebula/one/issues/5785>`__.
 - `Fix LDAP driver to support password with spaces <https://github.com/OpenNebula/one/issues/5487>`__.
 - `Fix migration from sqlite to mysql databases <https://github.com/OpenNebula/one/issues/5783>`__.
+- `Fix VNC port clean up during 'onevm recover --recreate' <https://github.com/OpenNebula/one/issues/5796>`__.
 
 Features Backported to 6.2.x
 ============================
