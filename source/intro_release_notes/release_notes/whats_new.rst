@@ -4,7 +4,7 @@
 What's New in 6.4
 ================================================================================
 
-OpenNebula 6.4 'Archeon' is the third stable release of the OpenNebula 6 series. This release presents a functional new Sunstone interface for VM and VM Template management, with a similar coverage in terms of functionality as the Cloud View of the still present current Sunstone interface. We want to encourage cloud admins to keep using the ruby-based Sunstone interface (port 9869), but favour the new Sunstone incarnation served by FireEdge in port 2616 for end users. The OpenNebula development team worked hard to streamline the functionality offered in the VM and VM Template tabs, and more UX improvements are on the way! The ruby-based interface also recieved it's share of
+OpenNebula 6.4 'Archeon' is the third stable release of the OpenNebula 6 series. This release presents a functional new Sunstone interface for VM and VM Template management, with a similar coverage in terms of functionality as the Cloud View of the still present current Sunstone interface. We want to encourage cloud admins to keep using the ruby-based Sunstone interface (port 9869), but favour the new Sunstone incarnation served by FireEdge in port 2616 for end users. The OpenNebula development team worked hard to streamline the functionality offered in the VM and VM Template tabs, and more UX improvements are on the way! The ruby-based interface also recieved its share of love, adding all the new functionality that OpenNebula exposes now.
 
 .. image:: /images/react_sunstone_console_teaser.png
     :align: center
@@ -13,7 +13,7 @@ This release also includes the notion of network states. Your virtual networks n
 
 Another exciting addition to 'Archeon' is the ability to automatically create and configure edge clusters based on Ceph Datastores. These clusters can be created either on-prem (just minimal OS and SSH access required) or remotely on AWS. Also for edge clusters, you can dynamically add more hosts in case your need more capacity.
 
-There are also minor addition to the supported hypervisor family, for example the SR-IOV support for the NVIDIA GPU cards; the addition to fine-grain resource control for LXC or the autmatic VM Template creation in vCenter.
+There are also minor addition to the supported hypervisor family, for example the SR-IOV support for the NVIDIA GPU cards; the addition to fine-grain resource control for LXC or the automatic VM Template creation in vCenter.
 
 OpenNebula 6.4 is named after the `Archeon Nebula <https://starwars.fandom.com/wiki/Archeon_Nebula>`__ from the Star Wars universe, a beautiful nebula where stars are born and a popular smuggling route is available to traverse the continuum towards the Edge :)
 
