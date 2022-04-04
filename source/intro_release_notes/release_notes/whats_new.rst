@@ -4,7 +4,7 @@
 What's New in 6.4
 ================================================================================
 
-OpenNebula 6.4 'Archeon' is the third stable release of the OpenNebula 6 series. This release presents a functional new Sunstone interface for VM and VM Template management, with a similar coverage in terms of functionality as the Cloud View of the still present current Sunstone interface. We want to encourage cloud admins to keep using the ruby-based Sunstone interface (port 9869), but favour the new Sunstone incarnation served by FireEdge in port 2616 for end users. The OpenNebula development team worked hard to streamline the functionality offered in the VM and VM Template tabs, and more UX improvements are on the way! The ruby-based interface also recieved its share of love, adding all the new functionality that OpenNebula exposes now.
+OpenNebula 6.4 'Archeon' is the third stable release of the OpenNebula 6 series. This release presents a functional new Sunstone interface for VM and VM Template management, with a similar coverage in terms of functionality as the Cloud View of the still present current Sunstone interface. We want to encourage cloud admins to keep using the ruby-based Sunstone interface (port 9869), but favour the new Sunstone incarnation served by FireEdge in port 2616 for end users. The OpenNebula development team worked hard to streamline the functionality offered in the VM and VM Template tabs, and more UX improvements are on the way! The ruby-based interface also recieved its share of love, adding all the new functionality that OpenNebula exposes in this new versoin.
 
 .. image:: /images/react_sunstone_console_teaser.png
     :align: center
@@ -51,6 +51,7 @@ vCenter Driver
 - (*) :ref:`Automatically create VM template in Vcenter when exporting an app from marketplace <vcenter_market>`.
 - (*) :ref:`Set VM IP not registered by ONE when importing a vCenter VM <vcenter_import_ip>`.
 - (*) :ref:`Default VM_PREFIX for vCenter VMs can be now be nulified with the empty string <vcenter_vm_prefix>`.
+- (*) `Filter Datastores and Networks by Host on VM instantiation <https://github.com/OpenNebula/one/issues/5743>`__.
 
 Ruby Sunstone
 ================================================================================
@@ -58,6 +59,7 @@ Ruby Sunstone
 - (*) `VM pool list documents include ERROR and scheduler messages so they can be added to list views (e.g. Sunstone) <https://github.com/OpenNebula/one/issues/5761>`__.
 - (*) `Show scheduler error message on Sunstone <https://github.com/OpenNebula/one/issues/5744>`__.
 - (*) `Add error condition to Sunstone list views <https://github.com/OpenNebula/one/issues/5745>`__.
+- (*) `Improve capacity range feedback in Sunstone <https://github.com/OpenNebula/one/issues/5757>`__.
 
 React Sunstone
 ================================================================================
@@ -103,11 +105,8 @@ Features Backported to 6.2.x
 
 Additionally, a lot of new functionality is present that was not in OpenNebula 6.2.0, although they debuted in subsequent maintenance releases of the 6.2.x series:
 
-- :ref:`Exclusively for the Enterprise Edition, a WHMCS module has bee nadded that allows the creation and management of OpenNebula users and groups with quotas <whmcs_tenants>`.
 - `Add encryption to guacamole SSH private key and passphrase <https://github.com/OpenNebula/one/issues/5241>`__.
 - `LXD Marketplace App VMTemplate has more customization <https://github.com/OpenNebula/one/issues/3667>`__.
 - `Make EXPIRE_DELTA and EXPIRE_MARGIN configurable for CloudAuth <https://github.com/OpenNebula/one/issues/5046>`__.
-- `Filter Datastores and Networks by Host on VM instantiation <https://github.com/OpenNebula/one/issues/5743>`__.
-- `Improve capacity range feedback in Sunstone <https://github.com/OpenNebula/one/issues/5757>`__.
 
 (*) This functionality is present also in previous EE maintenance versions of the 6.2.x series.
