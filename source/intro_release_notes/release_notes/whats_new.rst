@@ -70,6 +70,7 @@ CLI
 ================================================================================
 - New commands to :ref:`attach/detach Security Group <vm_guide2_sg_hotplugging>` to Virtual Machine
 - `Oneflow allows updating templates without specifying immutable attributes <https://github.com/OpenNebula/one/issues/5759>`__.
+- `Oneflow allows instantiation of OneFlow service with all VMs on hold <https://github.com/OpenNebula/one/issues/1765>`__
 
 Distributed Edge Provisioning
 ================================================================================
