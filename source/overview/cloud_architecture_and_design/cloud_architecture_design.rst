@@ -9,9 +9,9 @@ In order to get familiar with OpenNebula, or if you want to try an Edge, Hybrid 
 Step 1. Install the Front-end
 =================================================
 
-The first step is the installation of OpenNebula in the cloud Front-end. This :ref:`installation process <frontend_installation>` based on operating system packages for the most widely used Linux distributions is the same for any underlying hypervisor or deployment model. Alternatively, you can deploy the complete OpenNebula Front-end from the :ref:`official container image <container_overview>` on Docker or Podman. Container installation is in Technology Preview and only supported for testing and development.
+The first step is the installation of OpenNebula in the cloud Front-end. This :ref:`installation process <frontend_installation>` based on operating system packages for the most widely used Linux distributions is the same for any underlying hypervisor or deployment model.
 
-Don't forget to read the section about :ref:`Large-scale Deployment <large_scale_deployment_overview>` if you're planning a system with a very large number of hypervisors. The general recommendation is to have no more than 2,500 servers and 10,000 VMs managed by a single instance. Better performance and higher scalability can be achieved with specific tuning of other components like the DB. In any case, to grow the size of your cloud beyond these limits, you can horizontally scale your cloud by adding new OpenNebula zones within a federated deployment. The largest OpenNebula deployment consists of 16 data centers and 300,000 cores.  
+Don't forget to read the section about :ref:`Large-scale Deployment <large_scale_deployment_overview>` if you're planning a system with a very large number of hypervisors. The general recommendation is to have no more than 2,500 servers and 10,000 VMs managed by a single instance. Better performance and higher scalability can be achieved with specific tuning of other components like the DB. In any case, to grow the size of your cloud beyond these limits, you can horizontally scale your cloud by adding new OpenNebula zones within a federated deployment. The largest OpenNebula deployment consists of 16 data centers and 300,000 cores.
 
 Optionally you can set up a :ref:`high available cluster <frontend_ha_setup>` for OpenNebula to reduce downtime of core OpenNebula services, and :ref:`configure a MySQL/MariaDB backend <mysql>` as an alternative to the default Sqlite Back-end if you are planning a large-scale infrastructure. :ref:`PostgreSQL <postgresql_setup>` is also supported but for evaluation only (Technology Preview).
 
@@ -22,7 +22,7 @@ Besides connecting your cloud to the public :ref:`OpenNebula Marketplace and oth
 Step 2. Deploy Edge Clusters
 =================================================
 
-OpenNebula brings its own :ref:`Edge Cluster configuration that is based on solid open source storage and networking technologies <true_hybrid_cloud_reference_architecture>`, and is a much simpler approach than those of customized cloud architectures made of more complex, general-purpose and separate infrastructure components. :ref:`OpenNebula automates the deployment of Edge Clusters on-demand on virtual or bare-metal resources both on-premises and on your choice of public cloud or edge provider<try_hybrid_overview>`. 
+OpenNebula brings its own :ref:`Edge Cluster configuration that is based on solid open source storage and networking technologies <true_hybrid_cloud_reference_architecture>`, and is a much simpler approach than those of customized cloud architectures made of more complex, general-purpose and separate infrastructure components. :ref:`OpenNebula automates the deployment of Edge Clusters on-demand on virtual or bare-metal resources both on-premises and on your choice of public cloud or edge provider<try_hybrid_overview>`.
 
 Step 3. Set up Customized Clusters On-premises
 =================================================
@@ -135,4 +135,3 @@ Because no two clouds are the same, OpenNebula provides many different interface
 
 .. |OpenNebula Cloud Architecture| image:: /images/new_overview_integrators.png
   :width: 70%
-
