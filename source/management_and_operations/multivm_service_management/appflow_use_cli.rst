@@ -276,6 +276,8 @@ This table describes the Service states:
 +==========================+============================================================================================+
 | ``PENDING``              | The Service starts in this state, and will stay in it until the LCM decides to deploy it.  |
 +--------------------------+--------------------------------------------------------------------------------------------+
+| ``HOLD``                 | All roles are in hold state.                                                      |
++--------------------------+--------------------------------------------------------------------------------------------+
 | ``DEPLOYING``            | Some Roles are being deployed.                                                             |
 +--------------------------+--------------------------------------------------------------------------------------------+
 | ``RUNNING``              | All Roles are deployed successfully.                                                       |
@@ -301,6 +303,8 @@ Each Role has an individual state, described in the following table:
 | Role State               | Meaning                                                                                   |
 +==========================+===========================================================================================+
 | ``PENDING``              | The Role is waiting to be deployed.                                                       |
++--------------------------+-------------------------------------------------------------------------------------------+
+| ``HOLD``                 | The VMs are ``HOLD`` and will not be scheduled until them are released.                   |
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``DEPLOYING``            | The VMs are being created, and will be monitored until all of them are ``RUNNING``.       |
 +--------------------------+-------------------------------------------------------------------------------------------+
@@ -335,6 +339,47 @@ When a Service fails during a deployment, undeployment or scaling operation, the
 .. _flow_purge_done:
 
 In order to delete all the services in ``DONE`` state, to free some space in your database, you can use the command ``oneflow purge-done``.
+
+Instantiation of roles with VMs on hold
+--------------------------------------------------------------------------------
+
+VMs of a Service can be instances on hold with the ``on_hold`` parameter set to true in the Service Template.
+
+.. code-block:: javascript
+
+    {
+      "name": "my_service",
+      "deployment": "straight",
+      "on_hold": true|false,
+      "roles": [
+        {
+          ...
+        }
+      ]
+    }
+
+This option can also be set at the Role level, where only one specific Role is instantiated in ``HOLD``, instead of the whole service. Please see the following example:
+
+.. code-block:: javascript
+
+    {
+      "name": "my_service",
+      "deployment": "straight",
+      "roles": [
+        {
+          "name": "frontend",
+          "vm_template": 0,
+          "on_hold": true|false
+        },
+        ...
+      ]
+    }
+
+Once you want to release the Roles, you can use the ``oneflow release`` command to release the Service:
+
+.. prompt:: bash $ auto
+
+    $ oneflow release <SERVICE_ID>
 
 Adding or Removing Roles from a Running Service
 --------------------------------------------------------------------------------
