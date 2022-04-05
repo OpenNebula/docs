@@ -54,7 +54,7 @@ vCenter Nodes
 +-----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 
 .. note::
-   Debian front-ends are not certified to manage VMware infrastructures with OpenNebula
+   Debian front-ends are not certified to manage VMware infrastructures with OpenNebula.
 
 KVM Nodes
 --------------------------------------------------------------------------------
