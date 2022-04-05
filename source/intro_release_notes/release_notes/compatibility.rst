@@ -12,7 +12,7 @@ Visit the :ref:`Features list <features>` and the :ref:`What's New guide <whats_
 Data Model
 =========================
 
-- Virtual Machine. VM now includes SNAPSHOT/SYSTEM_DISK_SIZE to count system DS disk usage occupied by VM snapshot. The size is used to count SYSTEM_DISK_SIZE quota. This attributes applies only for newly created VM snapshots.
+- Virtual Machine. VM now includes SNAPSHOT/SYSTEM_DISK_SIZE to count system DS disk usage occupied by VM snapshot. The size is used to count SYSTEM_DISK_SIZE quota. This attribute applies only for newly created VM snapshots.
 
 - Virtual Networks. VNet now includes state, this is automatically managed by the upgrade process. However if you have any custom integration that create a network and afterwards create VMs in the network you may need some synchronization (even for dummy creation/delete actions).
 
@@ -26,4 +26,4 @@ vCenter
 
 This version introduces a `change in the deploy ID used to identify vCenter VMs <https://github.com/OpenNebula/one/issues/5689>`__. Its purpose is to avoid the collision of the Managed Object References in different vCenter instances, since their uniqueness is not guaranteed. Due to its sensitivity, we recommend first backing up the database and configuration files so you can :ref:`restore your previous version if needed <restoring_version>`.
 
-Also worth noting that Debian front-ends are no longer certified over VMware. We advise OpenNebula users maanging vCenter based infrastructures with Debian front-ends to switch to any of the other :ref:`supported platforms <uspng>`.
+Also worth noting that Debian front-ends are no longer certified over VMware. We advise OpenNebula users managing vCenter-based infrastructures with Debian front-ends to switch to any of the other :ref:`supported platforms <uspng>`.
