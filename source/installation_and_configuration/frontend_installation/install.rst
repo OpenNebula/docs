@@ -11,10 +11,6 @@ This page describes how to install a complete OpenNebula Front-end from binary p
 
     Running Front-end inside an LXD container is limited! Integrations with selected public marketplaces (Docker Hub, LXC, TurnKey Linux) and building images from custom Dockerfiles won't be available, as they require mounting of block devices. This feature is usually not available in the LXD containers.
 
-.. note::
-
-    Except for using installable packages for the supported operating systems, an alternative way to deploy the complete OpenNebula Front-end is using container runtimes Docker/Podman. Check the :ref:`Containerized Deployment <container_index>` guide to learn more. Please note, the containerized deployment is a **Technology Preview** and not recommended for production environments yet!
-
 Proceed with the following steps to get the fully-featured OpenNebula Front-end up.
 
 Step 1. Disable SELinux on AlmaLinux/CentOS7/RHEL (Optional)

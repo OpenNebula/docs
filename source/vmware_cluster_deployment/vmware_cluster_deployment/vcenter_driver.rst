@@ -546,6 +546,16 @@ The following procedure is useful if the VM has been changed in vCenter and Open
 
 * Re-import VM: on the Host's next monitoring cycle you will find this VM under **Wilds** tab and it can be safely imported.
 
+.. _vcenter_import_ip:
+
+If you want to set specific IPv4/6 when importing the VM, you can use the parameters ``--ipv4`` and ``--ipv6``, giving a list of IP addresses separated by commas.
+
+.. prompt:: bash $ auto
+
+    $ onehost importvm <host> <vm> --ipv4 ip1,ip2
+
+.. important:: You need to provide the IPs depending on your interfaces order, as they are going to be assigned in that order.
+
 .. _vcenter_import_networks:
 
 Importing vCenter Networks
@@ -865,3 +875,5 @@ Some aspects of the driver's behavior can be configured in */var/lib/one/remotes
 * **wild_vm_persistent_images**: Wild VM disks imported as persistent (true) or non-persistent (false) images. Default: **true**.
 
 * **vm_template_persistent_images**: VM Template disks imported as persistent (true) or non-persistent (false) images. Default: **false**.
+
+* **sparse_images**: Sets the VMDK image subformat to sparse (true) or flat (false) for ESXi compatibility. Default: **false**.
