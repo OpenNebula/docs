@@ -15,11 +15,11 @@ This new release is also going to include the notion of **network states**, whic
 
 There are also a number of additions to the supported hypervisor family, like the new SR-IOV support for the **NVIDIA GPU** cards and the addition of fine-grain resource control to the **LXC** driver. The integration with **vCenter** has also been improved, including the support for filtering and ordering those resources to be imported, the automatic VM Template creation for marketplace appliances, and the ability to set a default prefix for VM names, among others. Performance-wise, the vCenter driver is now more robust in large scale deployments, optimizing memory usage.
 
-OpenNebula 6.4 is named after the `Archeon Nebula <https://starwars.fandom.com/wiki/Archeon_Nebula>`__, located in the Lothal sector of the Outer Rim Territories—a beautiful nebula where stars are born and which provides a popular hyperscape route for smugglers traversing the continuum towards the edge of the Star Wars universe :)
+OpenNebula 6.4 is named after the `Archeon Nebula <https://starwars.fandom.com/wiki/Archeon_Nebula>`__, located in the Lothal sector of the Outer Rim Territories—a beautiful body of interstellar clouds where stars are born and which provides a popular hyperscape route for smugglers traversing the continuum towards the edge of the Star Wars universe :)
 
 The OpenNebula team is now transitioning to “bug-fixing mode”. Note that this is a first beta release aimed at testers and developers to try the new features, and we welcome you to send feedback for the final release. Please check the :ref:`known issues <known_issues>` before `submitting an issue through GitHub <https://github.com/OpenNebula/one/issues/new?template=bug_report.md>`__. Also note that being a beta, there is no migration path from the previous stable version (6.2.x) nor migration path to the final stable version (6.4.0). A list of `open issues can be found in the GitHub development portal <https://github.com/OpenNebula/one/milestone/53>`__.
 
-We'd like to thank the people that supports the project, OpenNebula is what it is thanks to its community. BApart from the usuaal :ref:`acknowledgements <acknowledgements>`, we'd like to highlight the support through the EU-funded H2020 project ONEedge.
+We’d like to thank all the people that support the project, OpenNebula is what it is thanks to its community. Apart from the usual :ref:`acknowledgements <acknowledgements>`, we’d like to highlight the support we’ve received through the EU-funded H2020 project **ONEedge**.
 
 ..
   Conform to the following format for new features.
