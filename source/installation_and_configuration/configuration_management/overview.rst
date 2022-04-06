@@ -24,7 +24,7 @@ How Should I Read This Chapter
 
 In this chapter, you'll find all the information about how to manage your configuration files. Although this knowledge is not so important for new installations, it's essential for the OpenNebula upgrades that might happen in the near future.
 
-First, get familiar with the :ref:`Basic Usage <cfg_usage>` of the tool ``onecfg``. Move on to the :ref:`Diff Format <cfg_diff_formats>`, which describes the custom changes you already have or you want to apply. Then get familiar with how configuration upgrade automation fits into the :ref:`OpenNebula Upgrade Workflow <cfg_workflow>` and how to :ref:`Troubleshoot <cfg_conflicts>` potential conflicts.
+First, get familiar with the :ref:`Basic Usage <cfg_usage>` of the tool ``onecfg``. Move on to the :ref:`Diff Format <cfg_diff_formats>`, which describes the custom changes you already have or you want to apply. Then get familiar with how configuration upgrade automation fits into the :ref:`OpenNebula Upgrade Workflow <start_here>` and how to :ref:`Troubleshoot <cfg_conflicts>` potential conflicts.
 
 The :ref:`Appendix <cfg_files>` presents list of supported configuration files and their types.
 

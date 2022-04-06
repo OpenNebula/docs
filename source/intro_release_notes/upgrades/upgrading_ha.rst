@@ -39,7 +39,9 @@ Afterwards, create a database backup to replicate the *upgraded* state to the fo
 Step 5. Upgrade OpenNebula in the Followers
 ================================================================================
 
-Follow Steps 4 to 8 described in the :ref:`Upgrading Single Front-end Deployments <upgrade_single>` guide in the HA followers.
+Follow Steps 4 to 7 described in the :ref:`Upgrading Single Front-end Deployments <upgrade_single>` guide in the HA followers.
+
+.. note:: Step 8 is **only required** in the leader as the leader backup will be restored into the followers in the next step.
 
 Step 6. Replicate Database and Configuration
 ================================================================================
