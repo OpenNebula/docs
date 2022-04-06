@@ -18,8 +18,19 @@ Data Model
 
 KVM
 ========================
-
 Cgroups version is obtained by the monitor probes. The ``shares`` assigned to each VM is computed based on this version and the ``CPU`` parameter. If you are using cgroups version 2 hosts, after you upgrade the new VMs will use a base priority of ``100``. This may lead to inconsistent resource distribution between new and old VMs, it is recommend to reboot existing VMs to use the new values.
+
+
+Distributed Edge Provisioning
+================================================================================
+
+The following providers has been disabled by default:
+
+- DigitalOcean
+- Google
+- Vultr (Metal & virrtual)
+
+If you want to use them, please check their specific documentation section.
 
 vCenter
 ========================

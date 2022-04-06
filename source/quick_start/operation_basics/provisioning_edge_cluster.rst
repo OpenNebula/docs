@@ -7,7 +7,7 @@ Provisioning an Edge Cluster
 
 In this section you can check all the steps needed to deploy an **Edge Cluster**. This involves the FireEdge OneProvision GUI and Sunstone to manage the resources created in OpenNebula.
 
-.. note:: We'll be creating a virtual Edge Cluster with LXC hypervisor, suitable for deploying containers. If you're planning to go all the way and to also try the deployment of VMs and K8s cluster, we recommend using a metal Edge Cluster deployment with a KVM hypervisor.
+.. note:: We'll be creating a metal Edge Cluster with LXC hypervisor, suitable for deploying containers. If you're planning to go all the way and to also try the deployment of VMs and K8s cluster, we recommend using a metal Edge Cluster deployment with a KVM hypervisor.
 
 An Edge Cluster is a group of resources in OpenNebula and the corresponding resources in AWS. OpenNebula provides a specification of the cluster ready to be created.
 
@@ -51,7 +51,7 @@ First, to **create a provider**, go to provider list view:
 
 |image_provider_list_empty|
 
-Then, **click the plus button** and fill in the form. We will be using the virtual Edge Cluster type with the LXC hypervisor.
+Then, **click the plus button** and fill in the form. We will be using the metal Edge Cluster type with the LXC hypervisor.
 
 |image_provider_create_step1|
 
@@ -61,7 +61,7 @@ Then, **click the plus button** and fill in the form. We will be using the virtu
 
 You now have a **new provider**.
 
-Step 3: Provision a Virtual Edge Cluster
+Step 3: Provision a Metal Edge Cluster
 ================================================================================
 
 The user needs to provide the following inputs to create the provision:
@@ -77,7 +77,7 @@ The user needs to provide the following inputs to create the provision:
 +-----------------------+------------------------------------------------------------------+
 | ``AWS instance type`` | AWS instance type to deploy.                                     |
 +-----------------------+------------------------------------------------------------------+
-| ``Hypervisor``        | Hypervisor to install ``lxc`` (just for virtual servers)         |
+| ``Hypervisor``        | Hypervisor to install ``lxc``.                                   |
 +-----------------------+------------------------------------------------------------------+
 
 Now let's go to **create a provision** and follow the same steps:

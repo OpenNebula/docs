@@ -77,6 +77,8 @@ Distributed Edge Provisioning
 - (*) `Add new hosts to existing OpenNebula Edge Clusters <https://github.com/OpenNebula/one/issues/5593>`__.
 - (*) `Add support to filter providers by provision type <https://github.com/OpenNebula/one/issues/5604>`__.
 
+- Cloud providers based on virtual instances has been disabled by default, check their specific section to know how to enable them.
+
 KVM
 ===
 - NVIDIA vGPU support has been added to KVM driver, :ref:`check this <kvm_vgpu>` for more information.
