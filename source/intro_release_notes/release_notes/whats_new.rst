@@ -44,7 +44,7 @@ CLI
 Distributed Edge Provisioning
 ================================================================================
 
-- Virtual drivers has been disabled by default, check their specific section to know how to enable them.
+- Cloud providers based on virtual instances has been disabled by default, check their specific section to know how to enable them.
 
 KVM
 ===
