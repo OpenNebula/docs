@@ -100,6 +100,7 @@ Other Issues Solved
 - `Fix LDAP driver to support password with spaces <https://github.com/OpenNebula/one/issues/5487>`__.
 - `Fix migration from sqlite to mysql databases <https://github.com/OpenNebula/one/issues/5783>`__.
 - `Fix onemarketapp export error when having user inputs <https://github.com/OpenNebula/one/issues/5794>`__.
+- `Fix VMs monitored multiple times when datastore drivers are changed from ssh <https://github.com/OpenNebula/one/issues/5765>`__.
 
 Features Backported to 6.2.x
 ============================
