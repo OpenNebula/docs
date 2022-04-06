@@ -134,7 +134,15 @@ Storage
 
 LXC containers need a root file system image in order to boot. This image can be downloaded directly to OpenNebula from `Docker Hub <https://hub.docker.com/>`__, `Linux Containers <https://uk.images.linuxcontainers.org/>`__ and `Turnkey Linux <https://www.turnkeylinux.org/>`__ Marketplaces. Check the :ref:`Public Marketplaces <public_marketplaces>` chapter for more information. You can use LXC with NAS (file-based), SAN (lvm) or Ceph Datastores.
 
+When using XFS images it is recommended to use images with a block size of 4K, as it is the default block size for mounting the file system. Otherwise is possible to get an error like the one below:
+
+.. code-block::
+
+  Mon Apr  4 22:20:25 2022 [Z0][VMM][I]: mount: /var/lib/one/datastores/0/30/mapper/disk.1: mount(2) system call failed: Function not implemented.
+
+
 .. note:: Custom images can also be created by using common linux tools like the ``mkfs`` command for creating the file system and ``dd`` for copying an existing file system inside the new one. Also OpenNebula will preserve any custom id map present on the filesystem.
+
 
 Networking
 ================================================================================
