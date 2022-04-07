@@ -35,6 +35,7 @@ OpenNebula Core
 - VM snaphots size were highly overestimated. Count snapshot size only as fraction of original disk size. :ref:`See settings in oned.conf <oned_conf_datastores>`.
 - VM logs can be generated in the VM folder (``/var/lib/one/vms/<VMID>/``). This make it easier to keep VM.logs in sync in multi-master installations, :ref:`see more details here <frontend_ha_shared>`.
 - `Download process is more robust including retry options for http protocol <https://github.com/OpenNebula/one/issues/5773>`__.
+- `All marketplaces except 'OpenNebula Public' are initialized as disabled <https://github.com/OpenNebula/one/issues/5791>`__.
 - (*) `Add encrypted attributes to User template <https://github.com/OpenNebula/one/issues/5431>`__.
 
 Networking
