@@ -231,4 +231,4 @@ Configuration Attributes
 
 Disable Marketplace
 ================================================================================
-Marketplace can be disabled with ``onemarket disable``. By disabling a Marketplace all Appliances will be removed from OpenNebula, and it will be no longer monitored. Note that this process doesn't affect already exported Images. After enabling the Marketplace with ``onemarket enable``, it will be monitored again and all Aplliances from this Marketplace will show up again.
+Marketplace can be disabled with ``onemarket disable``. By disabling a Marketplace all Appliances will be removed from OpenNebula, and it will be no longer monitored. Note that this process doesn't affect already exported Images. After enabling the Marketplace with ``onemarket enable``, it will be monitored again and all Aplliances from this Marketplace will show up again. Finally, Marketplaces can be created disabled by adding ``STATE=DISABLED`` to the template file.
