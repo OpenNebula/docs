@@ -1,11 +1,11 @@
 .. _upgrade_58:
 
-=================================
+================================================================================
 Additional Steps for 5.8.x
-=================================
+================================================================================
 
 Upgrade OpenNebula to the latest version
-============================================
+================================================================================
 
 Upgrade your environment using the guide that better adapts to your setup from the ones listed :ref:`here <start_here>`. Once your environment is upgraded, please follow the sections below.
 
@@ -14,7 +14,7 @@ Update ServerAdmin password to SHA256
 
 Since 5.10 passwords and tokens are generated using SHA256. OpenNebula will update the DB automatically for your regular users (including oneadmin). However, you need to do the update for serveradmin manually. You can do so, with:
 
-.. prompt:: text # auto
+.. prompt:: bash $ auto
 
     $ oneuser passwd --sha256 serveradmin `cat /var/lib/one/.one/sunstone_auth|cut -f2 -d':'`
 
@@ -27,18 +27,22 @@ Hooks are no longer defined in ``oned.conf``. You need to recreate any hook you 
 
 RAFT/HA Hooks
 --------------------------------------------------------------------------------
+
 HA Hooks keep working as they did in previous versions. For design reasons, these are the only hooks which need to be defined in ``oned.conf`` and cannot be managed via the API or CLI. You should preserve your previous configuration in ``oned.conf``.
 
 Fault Tolerance Hooks
 --------------------------------------------------------------------------------
+
 In order to migrate fault tolerance hooks, just follow the steps defined in :ref:`Fault Tolerance guide <ftguide>`.
 
 vCenter Hooks
 --------------------------------------------------------------------------------
+
 The vCenter Hooks, used for creating virtual networks, will be created automatically when needed.
 
 Custom Hooks
 --------------------------------------------------------------------------------
+
 Custom Hooks migration strongly depends on your use case for the hook. Below there is a list of examples which represent the most common use cases.
 
 - Create/Remove hooks. Corresponds to the legacy ``ON=CREATE`` and ``ON=REMOVE`` hooks
@@ -54,7 +58,6 @@ These hooks are now triggered by an API hook on the corresponding create/delete 
        arguments = "$ID $TEMPLATE"]
 
 Now, since OpenNebula 5.12, you need to create the following hook template:
-
 
 .. code::
 

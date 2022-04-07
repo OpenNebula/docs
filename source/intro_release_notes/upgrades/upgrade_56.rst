@@ -1,20 +1,20 @@
 .. _upgrade_56:
 
-=================================
+================================================================================
 Additional Steps for 5.6.x
-=================================
+================================================================================
 
 Upgrade OpenNebula to the latest version
-============================================
+================================================================================
 
 Upgrade your environment using the guide that better adapts to your setup from the ones listed :ref:`here <start_here>`. Once your environment is upgraded, please follow the sections below.
 
 Update ServerAdmin password to SHA256
-=====================================
+================================================================================
 
 Since 5.10 passwords and tokens are generated using SHA256. OpenNebula will update the DB automatically for your regular users (including oneadmin). However, you need to do the update for serveradmin manually. You can do so, with:
 
-.. prompt:: text # auto
+.. prompt:: bash $ auto
 
     $ oneuser passwd --sha256 serveradmin `cat /var/lib/one/.one/sunstone_auth|cut -f2 -d':'`
 
@@ -109,7 +109,7 @@ Note that you may need to adapt the arguments of your hook, as ``$ID`` is not cu
 .. note:: Note that, in both examples, ``ARGUMENTS_STDIN=yes`` can be used for passing the parameters via STDIN instead of command line argument.
 
 Known Issues
-============
+================================================================================
 
 If the MySQL database password contains special characters, such as ``@`` or ``#``, the onedb command will fail to connect to it.
 
@@ -122,7 +122,7 @@ The workaround is to temporarily change the oneadmin's password to an ASCII stri
     mysql> SET PASSWORD = PASSWORD('newpass');
 
 Bug recovering
-================
+================================================================================
 
 If Ceph datastores were used with OpenNebula <= 5.6.2 and any VM have been reverted to a snapshot, it's needed to follow the next steps for recovering snapshot tree consistency:
 
