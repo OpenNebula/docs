@@ -10,13 +10,19 @@ The OpenNebula FireEdge server provides a **next-generation web-management inter
 
 Features:
 
-- **OneProvision GUI**, to manage deployments of fully operational Clusters on remote Edge Cloud providers. See :ref:`Provisioning an Edge Cluster <first_edge_cluster>`.
 - **VMRC and Guacamole Proxy** for Sunstone to remotely access the VMs (incl., VNC, RDP, and SSH).
-- **New Sunstone (Beta)**, new iteration of Sunstone written in React/Redux. Accessible through the following URL:
+- **OneProvision GUI**, to manage deployments of fully operational Clusters on remote Edge Cloud providers. See :ref:`Provisioning an Edge Cluster <first_edge_cluster>`. Accesible from the following URL:
 
 .. code::
 
-    http://<OPENNEBULA-FRONTEND>:2616/fireedge/sunstone
+    http://<OPENNEBULA-FRONTEND>:2616/fireedge/provision
+
+
+- **FireEdge Sunstone**, new iteration of Sunstone written in React/Redux. Accessible through the following URL:
+
+.. code::
+
+    http://<OPENNEBULA-FRONTEND>:2616
 
 
 .. warning:: FireEdge currently doesn't support :ref:`federated environments <federation>`. It can interact only with a local OpenNebula instance (even if it's federated), but can't interact with remote, federated OpenNebula instances.
@@ -70,7 +76,7 @@ The FireEdge server configuration file can be found in ``/etc/one/fireedge-serve
 | ``oneprovision_optional_create_command``  |                                | Optional param. for ``oneprovision create`` cmd.   |
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
 
-**New Sunstone (Beta)**
+**FireEdge Sunstone**
 
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
 | Parameter                                 | Default Value                  | Description                                        |
@@ -99,14 +105,15 @@ If you need to execute the fireedge with SSL Certificate, in the following path:
 
 .. _fireedge_configuration_for_sunstone:
 
-Configure Sunstone
-------------------
+Configure Sunstone for VMRC and Guacamole
+-----------------------------------------
+
 
 .. note::
 
     After a configuration change, the Sunstone server must be :ref:`restarted <sunstone_conf_service>` to take effect.
 
-You need to configure Sunstone with the public endpoint of FireEdge so that one service can redirect users to the other. To configure the public FireEdge endpoint in Sunstone, edit ``/etc/one/sunstone-server.conf`` and update the ``:public_fireedge_endpoint`` with the base URL (domain or IP-based) over which end-users can access the service. For example:
+In order for Sunstone (not FireEdge Sunstone, but rather the current Sunstone, with full admin functionality) to allow VMRC and Guacamole VNC/RDP/SSH access, you need to configure Sunstone with the public endpoint of FireEdge so that one service can redirect users to the other. To configure the public FireEdge endpoint in Sunstone, edit ``/etc/one/sunstone-server.conf`` and update the ``:public_fireedge_endpoint`` with the base URL (domain or IP-based) over which end-users can access the service. For example:
 
 .. code::
 
