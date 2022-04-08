@@ -22,7 +22,7 @@ Enterprise Edition is distributed with a tool ``onecfg`` as part of the main ser
 
     **For each OpenNebula upgrade (even between minor versions, e.g. 5.10.2 and 5.10.3), configuration files must be processed via 'onecfg upgrade'**. If you skip the configuration upgrade step for an OpenNebula upgrade, the tool will lose the current version state and you'll have to handle the files upgrade manually and :ref:`reinitialize <cfg_init>` the configuration version management state.
 
-    .. prompt:: bash $ auto
+    .. prompt::
 
         $ onecfg upgrade
         FATAL : FAILED - Configuration can't be processed as it looks outdated!
