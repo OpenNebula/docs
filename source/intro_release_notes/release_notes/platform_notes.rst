@@ -1,7 +1,7 @@
 .. _uspng:
 
 ================================================================================
-Platform Notes 6.2.0
+Platform Notes 6.3.80
 ================================================================================
 
 This page will show you the specific considerations when using an OpenNebula cloud, according to the different supported platforms.
@@ -55,8 +55,7 @@ vCenter Nodes
 | NSX-V     | 6.4.5+                                | `VMware compatiblity <https://www.vmware.com/resources/compatibility/sim/interop_matrix.php>`__. :ref:`NSX Documentation <nsx_setup>`  |
 +-----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 
-.. note::
-   Debian front-ends are not certified to manage VMware infrastructures with OpenNebula.
+.. note:: Debian front-ends are not certified to manage VMware infrastructures with OpenNebula.
 
 KVM Nodes
 --------------------------------------------------------------------------------
@@ -244,7 +243,6 @@ Compatibility of Workloads on Certified Edge Clusters
 
 .. include:: ../release_notes/edge_clusters.txt
 
-
 Certified Infrastructure Scale
 ================================================================================
 
@@ -284,15 +282,12 @@ Debian 11
 
 There is currently no support for `Phusion Passenger on Debian 11 <https://oss-binaries.phusionpassenger.com/apt/passenger/dists/>`__, so it is currently not possible to deploy :ref:`Sunstone in a Apache/Passenger configuration <suns_advance_web_proxy>`.
 
-
 Nodes Platform Notes
 ================================================================================
 
 The following items apply to all distributions:
 
-* Since OpenNebula 4.14 there is a new monitoring probe that gets
-  information about PCI devices. By default it retrieves all the PCI
-  devices in a Host. To limit the PCI devices for which it gets info and appear in ``onehost show``, refer to :ref:`kvm_pci_passthrough`.
+* Since OpenNebula 4.14 there is a new monitoring probe that gets information about PCI devices. By default it retrieves all the PCI devices in a Host. To limit the PCI devices for which it gets info and appear in ``onehost show``, refer to :ref:`kvm_pci_passthrough`.
 * When using qcow2 storage drivers you can make sure that the data is written to disk when doing snapshots by setting the ``cache`` parameter to ``writethrough``. This change will make writes slower than other cache modes but safer. To do this edit the file ``/etc/one/vmm_exec/vmm_exec_kvm.conf`` and change the line for ``DISK``:
 
 .. code::
@@ -303,14 +298,14 @@ CentOS/RedHat 7 Platform Notes
 --------------------------------------------------------------------------------
 
 Ruby Dependencies
-~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In order to install Ruby dependencies on RHEL, the Server Optional channel needs to be enabled. Please refer to `RedHat documentation <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/>`__ to enable the channel.
 
 Alternatively, use CentOS 7 repositories to install Ruby dependencies.
 
 Libvirt Version
-~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The libvirt/QEMU packages used in the testing infrastructure are the ones in the ``qemu-ev`` repository. To add this repository on CentOS, you can install the following packages:
 
@@ -320,46 +315,44 @@ The libvirt/QEMU packages used in the testing infrastructure are the ones in the
     # yum install qemu-kvm-ev
 
 Disable PolicyKit for Libvirt
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 It is recommended that you disable PolicyKit for Libvirt:
 
-.. prompt:: bash # auto
+.. prompt:: bash $ auto
 
-  $ cat /etc/libvirt/libvirtd.conf
-  ...
-  auth_unix_ro = "none"
-  auth_unix_rw = "none"
-  unix_sock_group = "oneadmin"
-  unix_sock_ro_perms = "0770"
-  unix_sock_rw_perms = "0770"
-  ...
-
+    $ cat /etc/libvirt/libvirtd.conf
+    ...
+    auth_unix_ro = "none"
+    auth_unix_rw = "none"
+    unix_sock_group = "oneadmin"
+    unix_sock_ro_perms = "0770"
+    unix_sock_rw_perms = "0770"
+    ...
 
 CentOS/RedHat 8 Platform Notes
 --------------------------------------------------------------------------------
 
 Disable PolicyKit for Libvirt
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 It is recommended that you disable PolicyKit for Libvirt:
 
-.. prompt:: bash # auto
+.. prompt:: bash $ auto
 
-  $ cat /etc/libvirt/libvirtd.conf
-  ...
-  auth_unix_ro = "none"
-  auth_unix_rw = "none"
-  unix_sock_group = "oneadmin"
-  unix_sock_ro_perms = "0770"
-  unix_sock_rw_perms = "0770"
-  ...
-
+    $ cat /etc/libvirt/libvirtd.conf
+    ...
+    auth_unix_ro = "none"
+    auth_unix_rw = "none"
+    unix_sock_group = "oneadmin"
+    unix_sock_ro_perms = "0770"
+    unix_sock_rw_perms = "0770"
+    ...
 
 vCenter 7.0 Platform Notes
 --------------------------------------------------------------------------------
 
 Problem with Boot Order
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Currently in vCenter 7.0 changing the boot order is only supported in Virtual Machines at deployment time.
