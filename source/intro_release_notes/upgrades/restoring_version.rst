@@ -1,8 +1,8 @@
 .. _restoring_version:
 
-==============================
+================================================================================
 Restoring Previous Version
-==============================
+================================================================================
 
 If for any reason you need to restore your previous OpenNebula, follow these steps:
 

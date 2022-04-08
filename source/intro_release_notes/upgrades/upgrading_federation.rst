@@ -18,15 +18,14 @@ Upgrading a Federation
 
 This version of OpenNebula introduces some changes in the federation data model. You need to coordinate the upgrade across zones and upgrade them at the same time.
 
-
 Step 1. Check Federation Status
 ================================================================================
 
 Check that federation is in sync and all zones are at the same index (FED_INDEX):
 
-.. prompt:: text # auto
+.. prompt:: bash $ auto
 
-    # onezone list
+    $ onezone list
     C   ID NAME                                         ENDPOINT                                      FED_INDEX
        101 S-US-CA                                      http://192.168.150.3:2633/RPC2                715438
        100 S-EU-GE                                      http://192.168.150.2:2633/RPC2                715438
@@ -34,12 +33,16 @@ Check that federation is in sync and all zones are at the same index (FED_INDEX)
 
 It is a good idea to prevent any API access to the master zone during this step (e.g. by filtering out access to API).
 
-If you are upgrading from version 6.2+. Instead of filtering the API, you may use ``onezone disable <zone_id>`` to disable all zones. So no operation changing OpenNebula state are executed.
+.. note:: If you are upgrading from version 6.2+ you can use ``onezone disable <zone_id>``.
 
 Step 2. Stop All Zones
 ================================================================================
 
-Stop OpenNebula and any other related services you may have running: OneFlow, EC2, and Sunstone, **in all zones**. Preferably use the system tools, like `systemctl` or `service` as `root` in order to stop the services.
+Stop OpenNebula and any other related services you may have running: OneFlow, OneGate, Sunstone & FireEdge. It's preferable to use the system tools, like ``systemctl`` or ``service`` as ``root`` in order to stop the services.
+
+.. important:: If you are running Sunstone behind Apache/Nginx, please stop this service instead of Sunstone one.
+
+.. warning:: Make sure that every OpenNebula process is stopped. The output of ``systemctl list-units | grep opennebula`` should be empty.
 
 Step 3. Upgrade Master Zone
 ================================================================================
@@ -56,7 +59,7 @@ Once the master zone has been updated, you need to export federated tables:
 
 .. prompt:: bash $ auto
 
-    onedb backup -v --federated
+    $ onedb backup -v --federated
 
 Step 5. Restore Federated Backup in Slave Zones
 ================================================================================
@@ -65,7 +68,8 @@ The backup that has been generated needs to be restored in all slave zones:
 
 .. prompt:: bash $ auto
 
-    onedb restore <backup_file> -v --federated
+    $ scp <backup_file> <slave_ip>:/tmp
+    $ onedb restore <backup_file> -v --federated
 
 Step 6. Upgrade Slave Zones
 ================================================================================
@@ -77,4 +81,4 @@ You can now upgrade the slave zones:
 
 You will restart OpenNebula in each zone as part of the upgrade. Once you finish upgrading your master, remove any access restriction to the API imposed in Step 1.
 
-If you are upgrading from version 6.2+. Use ``onezone enable <zone_id>`` to enable all zones and make OpenNebula fully functional.
+.. note:: If you are upgrading from version 6.2+ you can use ``onezone enable <zone_id>``.
