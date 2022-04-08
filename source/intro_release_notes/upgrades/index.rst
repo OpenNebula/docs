@@ -9,6 +9,7 @@ Upgrades
 
    Overview <overview>
    Start Here <start_here>
+   Upgrading From 6.2 <upgrading_minor>
    Upgrading Single Front-End <upgrading_single>
    Upgrading High Availability Clusters <upgrading_ha>
    Upgrading Federated Instances <upgrading_federation>
