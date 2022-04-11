@@ -136,7 +136,7 @@ LXC containers need a root file system image in order to boot. This image can be
 
 When using XFS images it is recommended to use images with a block size of 4K, as it is the default block size for mounting the file system. Otherwise is possible to get an error like the one below:
 
-.. code-block::
+.. code-block:: none
 
   Mon Apr  4 22:20:25 2022 [Z0][VMM][I]: mount: /var/lib/one/datastores/0/30/mapper/disk.1: mount(2) system call failed: Function not implemented.
 
