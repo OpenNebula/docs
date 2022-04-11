@@ -53,6 +53,7 @@ vCenter Driver
 - (*) :ref:`Set VM IP not registered by ONE when importing a vCenter VM <vcenter_import_ip>`.
 - (*) :ref:`Default VM_PREFIX for vCenter VMs can be now be nulified with the empty string <vcenter_vm_prefix>`.
 - (*) `Filter Datastores and Networks by Host on VM instantiation <https://github.com/OpenNebula/one/issues/5743>`__.
+- (*) `vCenter monitoring improvement in HA setups <https://github.com/OpenNebula/one/issues/5645>`__.
 
 Ruby Sunstone
 ================================================================================
