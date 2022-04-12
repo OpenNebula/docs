@@ -217,8 +217,8 @@ Sunstone settings can be also configured on user-level through the user template
 | ``DEFAULT_ZONE_ENDPOINT``     | Default zone at Sunstone login. Defaults to the local zone.            |
 +-------------------------------+------------------------------------------------------------------------+
 
-.. _fireedge_sunstone:
-.. _fireedge_sunstone_configuration:
+.. _fireedge_and_sunstone:
+.. _fireedge_and_sunstone_configuration:
 
 Configure FireEdge
 ------------------
