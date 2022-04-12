@@ -231,9 +231,6 @@ Sunstone
     **Chrome**: chrome://flags -> #touch-events: disabled.
     **Firefox**: about:config -> dom.w3c_touch_events: disabled.
 
-    Internet Explorer is **not** supported with the Compatibility Mode enabled, since it emulates IE7, which is not supported.
-
-
 .. note:: Generally, for all Linux platforms, it is worth noting that Ruby gems should be used from packages shipped with OpenNebula or installed with the :ref:`install_gems <ruby_runtime>` utility. Avoid using Ruby gem versions shipped with your platform.
 
 .. _edge_cluster_provision_workloads_compatibility:
