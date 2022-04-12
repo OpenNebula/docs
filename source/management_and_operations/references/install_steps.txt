@@ -7,63 +7,63 @@ RHEL 6.x (CentOS 6.x)
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.1/one-context-6.2.1-1.el6.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.0/one-context-6.2.0-1.el6.noarch.rpm
 
 RHEL 7.x (CentOS/Oracle Linux 7.x)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.1/one-context-6.2.1-1.el7.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.0/one-context-6.2.0-1.el7.noarch.rpm
 
 RHEL 8.x (CentOS/AlmaLinux/Oracle Linux 8.x) and Fedora 29+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.1/one-context-6.2.1-1.el8.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.0/one-context-6.2.0-1.el8.noarch.rpm
 
 Debian/Ubuntu/Devuan
 ~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.1/one-context_6.0.0-1.deb
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.0/one-context_6.2.0-1.deb
 
 OpenSUSE 15 and Tumbleweed
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.1/one-context-6.2.1-1.suse.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.0/one-context-6.2.0-1.suse.noarch.rpm
 
 ALT Linux p9, Sisyphus
 ~~~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.1/one-context-6.2.1-alt1.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.0/one-context-6.2.0-alt1.noarch.rpm
 
 Alpine Linux
 ~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.1/one-context-6.2.1-r1.apk
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.0/one-context-6.2.0-r1.apk
 
 FreeBSD 11, 12
 ~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.1/one-context-6.2.1_1.txz
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.2.0/one-context-6.2.0_1.txz
 
 Windows
 ~~~~~~~
 
 Download the MSI package into ``C:\``:
 
-* https://github.com/OpenNebula/addon-context-windows/releases/download/v6.2.1/one-context-6.2.1.msi
+* https://github.com/OpenNebula/addon-context-windows/releases/download/v6.2.0/one-context-6.2.0.msi
 
 Or execute this command in powershell:
 
