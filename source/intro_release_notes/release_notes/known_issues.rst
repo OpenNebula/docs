@@ -38,3 +38,8 @@ Virtual Machines Backup
 ================================================================================
 
 When taking a VM backup, if the upload process fails and the app results in ERROR state, the backup will complete successfully. A detailed explanation can be found `here <https://github.com/OpenNebula/one/issues/5454>`__.
+
+LXC Storage interface
+=====================
+
+XFS formatted disk images are incompatible with the ``fs_lvm`` driver. The image `fails to be mounted <https://github.com/OpenNebula/one/issues/5802>`_ on the host.
