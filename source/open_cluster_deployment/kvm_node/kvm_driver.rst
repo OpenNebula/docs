@@ -321,41 +321,6 @@ Tuning & Extending
 Multiple Actions per Host
 --------------------------------------------------------------------------------
 
-.. warning:: This feature is experimental. Some modifications to the code must be made before this is a recommended setup.
-
-By default the drivers use a unix socket to communicate with the libvirt daemon. This method can only be safely used by one process at a time. To make sure this happens, the drivers are configured to send only one action per Host at a time. For example, there will be only one deployment done per Host at a given time.
-
-This limitation can be solved by configuring libvirt to accept TCP connections and OpenNebula to use this communication method.
-
-Libvirt Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Here we describe how to configure libvirtd to accept unencrypted and unauthenticated TCP connections in a CentOS 7 machine. For other setup check your distribution and libvirt documentation.
-
-Change the file ``/etc/libvirt/libvirtd.conf`` in each of the hypervisors and make sure that these parameters are set and have the following values:
-
-.. code::
-
-    listen_tls = 0
-    listen_tcp = 1
-    tcp_port = "16509"
-    auth_tcp = "none"
-
-You will also need to modify ``/etc/sysconfig/libvirtd`` and uncomment this line:
-
-.. code::
-
-    LIBVIRTD_ARGS="--listen"
-
-After modifying these files the libvirt daemon must be restarted:
-
-.. prompt:: bash $ auto
-
-    $ sudo systemctl restart libvirtd
-
-OpenNebula Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 The VMM driver must be configured so it allows more than one action to be executed per Host. This can be done adding the parameter ``-p`` to the driver executable. This is done in ``/etc/one/oned.conf`` in the VM_MAD configuration section:
 
 .. code::
@@ -367,12 +332,6 @@ The VMM driver must be configured so it allows more than one action to be execut
         DEFAULT    = "vmm_exec/vmm_exec_kvm.conf",
         TYPE       = "kvm" ]
 
-Change the file ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc`` to set a TCP endpoint for libvirt communication:
-
-.. code::
-
-    export LIBVIRT_URI=qemu+tcp://localhost/system
-
 The scheduler configuration should also be changed to let it deploy more than one VM per Host. The file is located at ``/etc/one/sched.conf`` and the value to change is ``MAX_HOST`` For example, to let the scheduler submit 10 VMs per Host use this line:
 
 .. code::
@@ -383,8 +342,8 @@ After this update the remote files in the nodes and restart OpenNebula:
 
 .. prompt:: bash $ auto
 
-    $ onehost sync --force
     $ sudo systemctl restart opennebula
+    $ sudo systemctl restart opennebula-scheduler
 
 .. _kvmg_files_and_parameters:
 
