@@ -150,7 +150,7 @@ Parameters:
 
 Examples:
 
-.. prompt::
+.. prompt:: bash $ auto
 
     $ oneprovision host add 0 -d
     2018-11-27 12:43:31 INFO  : Deploying
@@ -158,7 +158,7 @@ Examples:
     2018-11-27 12:43:31 INFO  : Checking working SSH connection
     2018-11-27 12:43:34 INFO  : Configuring hosts
 
-.. prompt::
+.. prompt:: bash $ auto
 
     $ oneprovision host add 0 -d --hostnames '10.0.0.110,10.0.0.111'
     2018-11-27 12:43:31 INFO  : Deploying
@@ -248,7 +248,7 @@ Parameters:
 
 Examples:
 
-.. prompt::
+.. prompt:: bash $ auto
 
     $ oneprovision ip add 0
 

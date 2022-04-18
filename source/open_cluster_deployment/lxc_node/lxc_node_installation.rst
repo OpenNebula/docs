@@ -23,27 +23,29 @@ Installing on AlmaLinux/RHEL
 .. include:: ../common_node/epel.txt
 
 Install OpenNebula LXC Node Package
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------------
 
 Execute the following commands to install the OpenNebula LXC Node package:
+
+
+Installing on AlmaLinux/RHEL
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 .. prompt:: bash # auto
 
     # yum -y install opennebula-node-lxc
 
-For further configuration, check the specific :ref:`guide <lxcmg>`.
-
 Installing on Debian/Ubuntu
----------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Execute the following commands to install the OpenNebula LXC Node package:
 
 .. prompt:: bash $ auto
 
     # apt-get update
     # apt-get -y install opennebula-node-lxc
 
-For further configuration check the specific :ref:`guide <lxcmg>`.
+Install the suggested package ``rbd-nbd`` if the Ceph Datastore is going to be used by the LXC hosts. For further configuration check the specific :ref:`guide <lxcmg>`.
 
 Step 3. Disable SELinux on AlmaLinux/RHEL (Optional)
 ====================================================

@@ -35,7 +35,7 @@ Below the resources you can determine if the User should be automatically setup 
 
 .. note:: For more information about managing VDCs refer to the :ref:`Managing VDCs <manage_vdcs>` page.
 
-Inside of the **Upgrades** tab you can also select which packages will be available for the **Upgrade/Downgrade** action.  You will need to create more products for this list to populate.
+The **Upgrades** tab can also be a useful feature to make use of.  If you create multiple products with different resource quotas, you can select the products here which your users can upgrade to.  You can select multiple products by holding the Shift or Ctrl key.
 
 Managing Orders
 ---------------
@@ -45,9 +45,11 @@ To view the orders waiting to be accepted navigate to **Orders** -> **Pending Or
 .. image:: /images/whmcs_tenants_accept_order.png
     :align: center
 
-If your product is configured to be setup after manually accepting the order, you will need to accept the order created before any changes are made in OpenNebula.
+If your product is configured to be setup after manually accepting the order, you will need to accept the order created before any changes are made in OpenNebula. This is also true for package upgrades your users might request.
 
 Once orders are setup there is a User, Group, and ACL created corresponding to the Service in WHMCS. Then, the Quota will be created for the Group linked to this Order. On the service page for the customer, they will have a Login link.
+
+.. note:: If there are issues when upgrading products, the user and group may need to be recreated. Any existing VMs can be assigned to the admin user temporarily while this is done. This will be fixed in a future release.
 
 Checking Metrics
 ----------------

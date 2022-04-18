@@ -11,6 +11,5 @@ Configuration Management (EE)
    Overview <overview>
    Basic Usage <usage>
    Diff Formats <diff_formats>
-   OpenNebula Upgrade Workflow <workflow>
    Troubleshooting <conflicts>
    Appendix - List of Configurations <appendix>

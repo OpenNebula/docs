@@ -12,7 +12,13 @@ A Marketplace Application is a generic app resource that can be:
 
 In this guide you will learn to create and manage Marketplace Applications.
 
-.. important:: In order to use a **vCenter app** it is necessary to attach the image to a vCenter VM Template which was previously imported.  An existing VM Template can be cloned and its disks replaced with the image from the marketplace. Once the VM Template is ready, the appliance can be instantiated.
+Exporting Applications into vCenter Datastore
+================================================================================
+
+When using a vCenter datastore there are two ways of export an application into the marketplace:
+
+- You can import an existing VM template from your vCenter and then select it when exporting the application. This will create a clone from your template and replace the disks by the ones downloaded.
+- If you don't select any existing VM template, OpenNebula will automatically create a new one in vCenter and use it. This template will be reused when you export a new application.
 
 
 Listing and Properties

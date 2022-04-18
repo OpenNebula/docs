@@ -10,4 +10,5 @@ Virtual Machine Management
    Virtual Machine Instances <vm_instances>
    Virtual Machine Backup <vm_backup>
    Using Container Images <container_images_usage>
+   Using FireEdge Sunstone <fireedge_sunstone>
    vCenter Virtual Machines <vcenter_vms>
