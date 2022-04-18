@@ -14,6 +14,11 @@ Drivers - Network
 - If the nic-attach fails due to the libvirt bug (VM can not eject CD-ROM after reset) the nic appears in the VM (although without proper configuration) but it's not visible on OpenNebula VM `#5268 <http://github.com/OpenNebula/one/issues/5268>`_
 - Edge Cluster Public IP: NIC_ALIAS on the public network can only can only be associated to a NIC on the same network.
 
+Drivers - Storage
+================================================================================
+
+- **LXC**, XFS formatted disk images are incompatible with the ``fs_lvm`` driver. The image `fails to be mounted <https://github.com/OpenNebula/one/issues/5802>`_ on the host.
+
 High Availability
 ================================================================================
 
@@ -39,7 +44,3 @@ Virtual Machines Backup
 
 When taking a VM backup, if the upload process fails and the app results in ERROR state, the backup will complete successfully. A detailed explanation can be found `here <https://github.com/OpenNebula/one/issues/5454>`__.
 
-LXC Storage interface
-=====================
-
-XFS formatted disk images are incompatible with the ``fs_lvm`` driver. The image `fails to be mounted <https://github.com/OpenNebula/one/issues/5802>`_ on the host.
