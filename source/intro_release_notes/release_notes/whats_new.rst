@@ -41,6 +41,7 @@ OpenNebula Core
 Networking
 ================================================================================
 - Security Groups can be added or removed from a VM network interface, if the VM is running it updates the associated rules.
+- Virtual Network now contains :ref:`state <vnet_state>`. Creating and deleting VN calls :ref:`new network driver actions<devel-nm>` ``vnet_create`` and ``vnet_delete``. See also the :ref:`compatibility guide <compatibility>`.
 - (*) :ref:`Add Q-in-Q support for Open vSwtich driver <openvswitch_qinq>`.
 - (*) :ref:`Add MTU support for Open vSwtich driver <openvswitch>`.
 
@@ -71,6 +72,7 @@ React Sunstone
 CLI
 ================================================================================
 - New commands to :ref:`attach/detach Security Group <vm_guide2_sg_hotplugging>` to Virtual Machine
+- New command :ref:`onevnet recover <api_vn_recover>` to recover Virtual Network from locked or error state.
 - `Oneflow allows updating templates without specifying immutable attributes <https://github.com/OpenNebula/one/issues/5759>`__.
 
 Distributed Edge Provisioning

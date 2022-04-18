@@ -180,8 +180,8 @@ And similarly for the networks. You'll have a public network and a network templ
 .. prompt:: bash $ auto
 
     $ onevnet list
-  ID USER     GROUP    NAME                        CLUSTERS   BRIDGE          LEASES
-   4 oneadmin oneadmin onprem-cluster-public       102        onebr4               0
+  ID USER     GROUP    NAME                      CLUSTERS   BRIDGE   STATE    LEASES
+   4 oneadmin oneadmin onprem-cluster-public     102        onebr4   rdy           0
 
     $ onevntemplate list
   ID USER     GROUP    NAME                                                  REGTIME
