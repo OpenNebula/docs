@@ -32,7 +32,7 @@ To add the OpenNebula enterprise repository, execute the following as user ``roo
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Enterprise Edition
-    baseurl=https://<token>@enterprise.opennebula.io/repo/6.3.80/CentOS/7/$basearch
+    baseurl=https://<token>@enterprise.opennebula.io/repo/6.3.85/CentOS/7/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo.key
     gpgcheck=1
@@ -47,7 +47,7 @@ To add the OpenNebula enterprise repository, execute the following as user ``roo
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Enterprise Edition
-    baseurl=https://<token>@enterprise.opennebula.io/repo/6.3.80/RedHat/7/$basearch
+    baseurl=https://<token>@enterprise.opennebula.io/repo/6.3.85/RedHat/7/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo.key
     gpgcheck=1
@@ -62,7 +62,7 @@ To add the OpenNebula enterprise repository, execute the following as user ``roo
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Enterprise Edition
-    baseurl=https://<token>@enterprise.opennebula.io/repo/6.3.80/RedHat/8/$basearch
+    baseurl=https://<token>@enterprise.opennebula.io/repo/6.3.85/RedHat/8/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo.key
     gpgcheck=1
@@ -77,7 +77,7 @@ To add the OpenNebula enterprise repository, execute the following as user ``roo
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Enterprise Edition
-    baseurl=https://<token>@enterprise.opennebula.io/repo/6.3.80/AlmaLinux/8/$basearch
+    baseurl=https://<token>@enterprise.opennebula.io/repo/6.3.85/AlmaLinux/8/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo.key
     gpgcheck=1
@@ -109,28 +109,28 @@ and then continue with repository configuration:
 
 .. prompt:: bash # auto
 
-    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.3.80/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.3.85/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Debian 11**
 
 .. prompt:: bash # auto
 
-    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.3.80/Debian/11 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.3.85/Debian/11 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Ubuntu 18.04**
 
 .. prompt:: bash # auto
 
-    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.3.80/Ubuntu/18.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.3.85/Ubuntu/18.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Ubuntu 20.04**
 
 .. prompt:: bash # auto
 
-    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.3.80/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.3.85/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 .. note::
@@ -199,7 +199,7 @@ To add OpenNebula repository, execute the following as user ``root``:
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Enterprise Edition
-    baseurl=https://downloads.opennebula.io/repo/6.3.80/AlmaLinux/8/$basearch
+    baseurl=https://downloads.opennebula.io/repo/6.3.85/AlmaLinux/8/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo.key
     gpgcheck=1
