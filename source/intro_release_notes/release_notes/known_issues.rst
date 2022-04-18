@@ -17,6 +17,7 @@ Drivers - Network
 Drivers - Storage
 ================================================================================
 - **LVM**, VM removing might fail because of an error defining a lock name if ``ZERO_LVM_ON_DELETE`` is not set. This issue have been already fixed in the `development branch <https://github.com/OpenNebula/one/commit/00a61d74a5f7339c79fadc708c8f89abaf5025d8>`__.
+- **LXC**, XFS formatted disk images are incompatible with the ``fs_lvm`` driver. The image `fails to be mounted <https://github.com/OpenNebula/one/issues/5802>`_ on the host.
 
 High Availability
 ================================================================================
@@ -42,6 +43,7 @@ Virtual Machines Backup
 ================================================================================
 
 When taking a VM backup, if the upload process fails and the app results in ERROR state, the backup will complete successfully. A detailed explanation can be found `here <https://github.com/OpenNebula/one/issues/5454>`__.
+
 
 Disk Save As Operation
 ================================================================================
