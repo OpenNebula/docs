@@ -97,8 +97,8 @@ Once the Virtual Network Template has been creted, change the permissions to mak
     $ onevntemplate instantiate 0 --user user --name private
       VN ID: 1
     $ onevnet list
-      ID USER            GROUP        NAME                CLUSTERS   BRIDGE   LEASES
-      1  user            users        private             0          virbr0        0
+      ID USER          GROUP        NAME            CLUSTERS   BRIDGE  STATE  LEASES
+      1  user          users        private         0          virbr0  rdy         0
 
 The network is now ready, users can create VMs and attach their interfaces to the newly created Virtual Network. Simply adding ``NIC = [ NETWORK = private ]`` or selecting it through Sunstone.
 

@@ -39,9 +39,9 @@ As a result a new VNET has been created:
 .. code::
 
     $ onevnet list
-    ID USER         GROUP        NAME            CLUSTER    BRIDGE   LEASES
-     0 admin        oneadmin     Private         -          vbr1         10
-     7 helen        users        MyVNET          -          vbr1          0
+    ID USER       GROUP        NAME        CLUSTER    BRIDGE  STATE  LEASES
+     0 admin      oneadmin     Private     -          vbr1    rdy        10
+     7 helen      users        MyVNET      -          vbr1    rdy         0
 
 Note that Private shows 10 address leases in use, those reserved by ``MyVNET``. Also note that both networks share the same configuration, e.g. ``BRIDGE``.
 

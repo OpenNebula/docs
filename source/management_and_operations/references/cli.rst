@@ -35,6 +35,8 @@ CLI
 * `onevntemplate </doc/6.3/cli/onevntemplate.1.html>`__: manages OpenNebula networks templates.
 * `onevrouter </doc/6.3/cli/onevrouter.1.html>`__: manages OpenNebula Virtual Routers.
 * `onezone </doc/6.3/cli/onezone.1.html>`__: manages OpenNebula zones.
+* `oneirb </doc/6.3/cli/oneirb.1.html>`__: opens an irb session.
+* `onelog </doc/6.3/cli/onelog.1.html>`__: access to OpenNebula services log files.
 
 The output of these commands can be customized by modifying the configuration files that can be found in ``/etc/one/cli/``. They also can be customized on a per-user basis, in this case the configuration files should be placed in ``$HOME/.one/cli``.
 
