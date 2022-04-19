@@ -358,7 +358,7 @@ VMs of a Service can be instances on hold with the ``on_hold`` parameter set to 
       ]
     }
 
-This option can also be set at the Role level, where only one specific Role is instantiated in ``HOLD``, instead of the whole service. Please see the following example:
+This option can also be set at the Role level, where only one specific Role is instantiated in ``HOLD``, instead of the whole service. For example:
 
 .. code-block:: javascript
 
