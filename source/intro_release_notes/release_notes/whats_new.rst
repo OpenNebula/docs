@@ -74,6 +74,7 @@ CLI
 - New commands to :ref:`attach/detach Security Group <vm_guide2_sg_hotplugging>` to Virtual Machine
 - New command :ref:`onevnet recover <api_vn_recover>` to recover Virtual Network from locked or error state.
 - `Oneflow allows updating templates without specifying immutable attributes <https://github.com/OpenNebula/one/issues/5759>`__.
+- New commands ``oneirb`` and ``onelog``, also a new sub-command ``vnc`` added to ``onevm``.
 
 Distributed Edge Provisioning
 ================================================================================
