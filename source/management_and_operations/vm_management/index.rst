@@ -12,3 +12,4 @@ Virtual Machine Management
    Using Container Images <container_images_usage>
    Using FireEdge Sunstone <fireedge_sunstone>
    vCenter Virtual Machines <vcenter_vms>
+   onevmdump (TP) <onevmdump>
