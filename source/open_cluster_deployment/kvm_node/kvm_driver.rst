@@ -321,7 +321,7 @@ Tuning & Extending
 Multiple Actions per Host
 --------------------------------------------------------------------------------
 
-The VMM driver must be configured so it allows more than one action to be executed per Host. This can be done adding the parameter ``-p`` to the driver executable. This is done in ``/etc/one/oned.conf`` in the VM_MAD configuration section:
+By default the VMM driver is configured to allow more than one action to be executed per Host. Make sure the parameter ``-p`` is added to the driver executable. This is done in ``/etc/one/oned.conf`` in the VM_MAD configuration section:
 
 .. code::
 
@@ -332,17 +332,22 @@ The VMM driver must be configured so it allows more than one action to be execut
         DEFAULT    = "vmm_exec/vmm_exec_kvm.conf",
         TYPE       = "kvm" ]
 
-The scheduler configuration should also be changed to let it deploy more than one VM per Host. The file is located at ``/etc/one/sched.conf`` and the value to change is ``MAX_HOST`` For example, to let the scheduler submit 10 VMs per Host use this line:
+Restart the main OpenNebula service if changes were made to the mentioned file:
+
+.. prompt:: bash $ auto
+
+    $ sudo systemctl restart opennebula
+
+The scheduler configuration should be changed to let it deploy more than one VM per Host. The file is located at ``/etc/one/sched.conf`` and the value to change is ``MAX_HOST`` For example, to let the scheduler submit 10 VMs per Host use this line:
 
 .. code::
 
     MAX_HOST = 10
 
-After this update the remote files in the nodes and restart OpenNebula:
+Restart the scheduler service for this change to take effect:
 
 .. prompt:: bash $ auto
 
-    $ sudo systemctl restart opennebula
     $ sudo systemctl restart opennebula-scheduler
 
 .. _kvmg_files_and_parameters:
