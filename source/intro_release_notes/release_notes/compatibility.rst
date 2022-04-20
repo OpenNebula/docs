@@ -20,7 +20,8 @@ There are four new states in services. Now after ``PENDING`` the service goes to
 
 KVM
 ========================
-Cgroups version is obtained by the monitor probes. The ``shares`` assigned to each VM is computed based on this version and the ``CPU`` parameter. If you are using cgroups version 2 hosts, after you upgrade the new VMs will use a base priority of ``100``. This may lead to inconsistent resource distribution between new and old VMs, it is recommend to reboot existing VMs to use the new values.
+- Cgroups version is obtained by the monitor probes. The ``shares`` assigned to each VM is computed based on this version and the ``CPU`` parameter. If you are using cgroups version 2 hosts, after you upgrade the new VMs will use a base priority of ``100``. This may lead to inconsistent resource distribution between new and old VMs, it is recommend to reboot existing VMs to use the new values.
+- Now by default, the KVM driver executes  :ref:`multiple actions per host <kvm_multiple_actions>`.
 
 Distributed Edge Provisioning
 ================================================================================
