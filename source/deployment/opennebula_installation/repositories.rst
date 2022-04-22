@@ -29,30 +29,8 @@ CentOS/RHEL
     EOT
     # yum makecache fast
 
-*CentOS/RHEL 8*
-
-.. prompt:: bash # auto
-
-    # cat << EOT > /etc/yum.repos.d/opennebula.repo
-      [opennebula]
-      name=opennebula
-      baseurl=https://<token>@enterprise.opennebula.io/repo/5.12/CentOS/8/x86_64
-      enabled=1
-      gpgkey=https://downloads.opennebula.io/repo/repo.key
-      gpgcheck=1
-      #repo_gpgcheck=1
-    EOT
-    # yum makecache fast
-
 Debian/Ubuntu
 -------------
-
-*Debian 9*
-
-.. prompt:: bash # auto
-
-    # echo "deb https://<token>@enterprise.opennebula.io/repo/5.12/Debian/9 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
-    # apt-get update
 
 *Debian 10*
 
@@ -61,11 +39,12 @@ Debian/Ubuntu
     # echo "deb https://<token>@enterprise.opennebula.io/repo/5.12/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
-*Ubuntu 16.04*
+
+*Debian 11*
 
 .. prompt:: bash # auto
 
-    # echo "deb https://<token>@enterprise.opennebula.io/repo/5.12/Ubuntu/16.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/5.12/Debian/11 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 *Ubuntu 18.04*
@@ -131,20 +110,6 @@ To add OpenNebula repository execute the following as root:
     repo_gpgcheck=1
     EOT
 
-**CentOS/RHEL 8**
-
-.. prompt:: bash # auto
-
-    # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
-    [opennebula]
-    name=OpenNebula
-    baseurl=https://downloads.opennebula.io/repo/5.12/CentOS/8/$basearch
-    enabled=1
-    gpgkey=https://downloads.opennebula.io/repo/repo.key
-    gpgcheck=1
-    repo_gpgcheck=1
-    EOT
-
 **Fedora 32**
 
 .. important:: This is a :ref:`Secondary Platform <secondary>` not recommended for production evironments!
@@ -170,23 +135,18 @@ To add OpenNebula repository on Debian/Ubuntu execute as root:
 
     # wget -q -O- https://downloads.opennebula.io/repo/repo.key | apt-key add -
 
-**Debian 9**
-
-.. prompt:: bash # auto
-
-    # echo "deb https://downloads.opennebula.io/repo/5.12/Debian/9 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
-
 **Debian 10**
 
 .. prompt:: bash # auto
 
     # echo "deb https://downloads.opennebula.io/repo/5.12/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
 
-**Ubuntu 16.04**
+
+**Debian 11**
 
 .. prompt:: bash # auto
 
-    # echo "deb https://downloads.opennebula.io/repo/5.12/Ubuntu/16.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://downloads.opennebula.io/repo/5.12/Debian/11 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
 
 **Ubuntu 18.04**
 
