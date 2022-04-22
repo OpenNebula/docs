@@ -185,7 +185,7 @@ Open Cloud Storage Infrastructure
 +-----------+--------------------------------------------+-------------------------------------+
 | LVM2      | Version included in the Linux distribution | :ref:`LVM Drivers <lvm_drivers>`    |
 +-----------+--------------------------------------------+-------------------------------------+
-| Ceph      | Nautulus v14.2.x, Octopus 15.2.x           | :ref:`The Ceph Datastore <ceph_ds>` |
+| Ceph      | Octopus 15.2.x                             | :ref:`The Ceph Datastore <ceph_ds>` |
 |           | Pacific v16.2.x                            |                                     |
 +-----------+--------------------------------------------+-------------------------------------+
 
