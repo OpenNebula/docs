@@ -1,13 +1,13 @@
 .. _react_sunstone_dev:
 
 ================================================================================
-React Sunstone Development (Beta)
+FireEdge Sunstone Development
 ================================================================================
 
 OpenNebula FireEdge server provides a **next-generation web-management interface**. It is able to deliver several applications accessible through the following URLs:
 
-- Provision GUI: `<http://\<OPENNEBULA-FRONTEND\>:2616/fireedge/provision>`__
-- Sunstone GUI: `<http://\<OPENNEBULA-FRONTEND\>:2616/fireedge/sunstone>`__
+- Provision GUI: ``<http://<OPENNEBULA-FRONTEND>:2616/fireedge/provision>``
+- Sunstone GUI: ``<http://<OPENNEBULA-FRONTEND>:2616/fireedge/sunstone>`` (automatically redirected from ``<http://<OPENNEBULA-FRONTEND>:2616/``)
 
 This second Sunstone incarnation is written in `React <https://reactjs.org/>`__ / `Redux <https://redux.js.org/>`__ and `Material-UI <https://mui.com/>`__ is used for the styles and layout of the web.
 

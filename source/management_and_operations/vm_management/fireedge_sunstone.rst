@@ -1,6 +1,5 @@
 .. _fireedge_sunstone:
 
-
 ================================================================================
 Using FireEdge Sunstone
 ================================================================================
@@ -8,9 +7,7 @@ Using FireEdge Sunstone
 Overview
 ================================================================================
 
-While exploring the universe, the OpenNebula team produced a combination of two nebulas denominated **FireEdge Sunstone**, where administrators and users will be able to manage resources, such as VMs and VM Templates.
-
-Included in the FireEdge server and designed to provide a better user experience than the Ruby Sunstone, this new experience came to stay.
+**FireEdge Sunstone** is the new state-of-the-art web interface, fully featured for VM and VM Template management for end users. This interface is delivered by the :ref:`FireEdge server <fireedge_setup>`, and it is its main interface, meaning that it will redirect to Sunstone when contacted in the ``http://<OPENNEBULA-FRONTEND>:2616/`` address.
 
 
 Configuration
@@ -23,7 +20,7 @@ Usage
 
 This completely fresh user experience is available by accessing ``http://<OPENNEBULA-FRONTEND>:2616``.
 
-On it, users will find on the left menu the available tabs to manage resources, as described in the following subsections: 
+Users will find on the left menu the available tabs to manage resources, as described in the following subsections.
 
 VMs Tab
 --------------------------------------------------------------------------------
@@ -54,7 +51,7 @@ On the Marketplace Apps tab, users will be able to download images and create te
 Views
 ================================================================================
 
-Using the OpenNebula FireEdge Sunstone Views you will be able to provide a simplified UI aimed at end-users of an OpenNebula cloud. The OpenNebula FireEdge Sunstone Views are fully customizable, so you can easily enable or disable specific information tabs or action buttons. :ref:`You can define multiple views for different user groups <fireedge_sunstone_new_view>`. You can define multiple views for different user groups. Each view defines a set of UI components, so each user just accesses and views the relevant parts of the cloud for her role. Default views:
+Using the FireEdge Sunstone Views you will be able to provide a simplified UI aimed at end-users of an OpenNebula cloud. FireEdge Sunstone Views are fully customizable, so you can easily enable or disable specific information tabs or action buttons. :ref:`You can define multiple views for different user groups <fireedge_sunstone_new_view>`. You can define multiple views for different user groups. Each view defines a set of UI components, so each user just accesses and views the relevant parts of the cloud for her role. Default views:
 
 - :ref:`Admin View <fireedge_sunstone_admin_view>`.
 - :ref:`User View <fireedge_sunstone_user_view>`.
@@ -119,26 +116,22 @@ The views definitions are placed in the "/etc/one/fireedge/sunstone/" directory.
     |-- sunstone-views.yaml           <--- the FireEdge Sunstone views main configuration
     `-- user/
         |-- vm-tab.yaml               <--- the VM tab configuration file
-        `-- vm-template-tab.yaml      <--- the VM Template tab 
+        `-- vm-template-tab.yaml      <--- the VM Template tab
     ...
 
-The easiest way to create a custom view is to copy the ``admin`` or ``user`` folder and modify its content as needed. After that, add the new view into ``sunstone-view.yaml``.
+The easiest way to create a custom view is to copy the ``admin`` or ``user`` folder and modify its content as needed. After that, add the new view into ``/etc/one/fireedge/sunstone/sunstone-views.yaml``.
 
 View Customization
 --------------------------------------------------------------------------------
-On FireEdge Sunstone each view is defined by a folder that has the YAML files for the configured tabs.
-The content for those files is divided into sections that are described in the followings sections.
+On FireEdge Sunstone each view is defined by a folder that has the YAML files for the configured tabs. The content for those files is divided into sections that are described in the followings sections.
 
-.. note:: The attributes can be modified only if they come in the YAML file by default. 
+In the following tables, the description field contains the expected behavior when is set to ``true``.
 
-.. note:: If an attribute is not present, it has the same behavior as when it is set to false.
-
-.. note:: In the following tables, the description field contains the expected behavior when is set to ``true``.
+.. note:: The attributes can be modified only if they come in the YAML file by default. If an attribute is not present, it has the same behavior as when it is set to false.
 
 Actions
 -------
-The attributes described here indicate which buttons are visible to operate over the resources.
-The following atributes must be nested in an ``actions`` tag.
+The attributes described here indicate which buttons are visible to operate over the resources. The following atributes must be nested in an ``actions`` tag.
 
 +-------------------------+-----------------------------------------------------------------------------+
 | Attribute               | Description                                                                 |
@@ -231,8 +224,7 @@ The following atributes must be nested in an ``actions`` tag.
 
 Filters
 -------
-The attributes described here indicate which filters are visible to select resources.
-The following atributes must be nested in an ``filters`` tag.
+The attributes described here indicate which filters are visible to select resources. The following atributes must be nested in an ``filters`` tag.
 
 +---------------------------+---------------------------------------------------------------------------+
 | Attribute                 | Description                                                               |
