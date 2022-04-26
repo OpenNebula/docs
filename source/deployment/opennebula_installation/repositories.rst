@@ -64,14 +64,14 @@ To add OpenNebula enterprise repository execute the following as root:
 Debian/Ubuntu
 -------------
 
-*Debian 10*
+**Debian 10**
 
 .. prompt:: bash # auto
 
     # echo "deb https://<token>@enterprise.opennebula.io/repo/5.12/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
-*Debian 11*
+**Debian 11**
 
 .. prompt:: bash # auto
 
