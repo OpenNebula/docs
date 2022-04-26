@@ -1,7 +1,7 @@
 .. _rn_enterprise:
 
 ================================================================================
-Release Notes 5.12.12 Enterprise
+Release Notes 5.12.13 Enterprise
 ================================================================================
 
 .. toctree::
@@ -20,4 +20,5 @@ Release Notes 5.12.12 Enterprise
    Resolved Issues in 5.12.10 <resolved_issues_51210>
    Resolved Issues in 5.12.11 <resolved_issues_51211>
    Resolved Issues in 5.12.12 <resolved_issues_51212>
+   Resolved Issues in 5.12.13 <resolved_issues_51213>
    Known Issues <known_issues>
