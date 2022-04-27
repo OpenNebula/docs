@@ -8,7 +8,19 @@ Newly provisioned physical resources are mostly running only a base operating sy
 
 .. note::
 
-    Tool ``oneprovision`` has a seamless integration with `Ansible <https://www.ansible.com/>`__ (which needs to be already installed on the system). It's not necessary to be familiar with Ansible unless you need to make changes deep inside the configuration process.
+    Tool ``oneprovision`` has a seamless integration with `Ansible <https://www.ansible.com/>`__ . It's not necessary to be familiar with Ansible unless you need to make changes deep inside the configuration process.
+
+=============
+Requirements
+=============
+
+Following needs to be installed on the OpenNebula frontend
+
+* **Ansible**: between versions 2.8 and 2.10
+* **Terraform**: if external Cloud providers are used
+* **Git**: for deployments with Ceph (to install ceph-ansible)
+* **Ansible-galaxy**: for deployments with Ceph (to install requirements)
+
 
 As we use Ansible for host configuration, we'll share its terminology in this section.
 
@@ -23,22 +35,33 @@ All code for Ansible (tasks, roles, playbooks) is installed into ``/usr/share/on
 .. code::
 
     /usr/share/one/oneprovision/ansible
-    |-- roles
-    |   |-- ddc
-    |   |-- ffr
-    |   |-- iptables
-    |   |-- opennebula-node-firecracker
-    |   |-- opennebula-node-kvm
-    |   |-- opennebula-node-lxc
-    |   |-- opennebula-repository
-    |   |-- opennebula-ssh
-    |   |-- python
-    |   `-- update-replica
-    |-- ansible.cfg.erb
-    |-- aws.yml
-    |-- digitalocean.yml
-    |-- equinix.yml
-    `-- google.yml
+    ├── roles
+    │   ├── ceph-opennebula-facts
+    │   ├── ceph-opennebula-mon
+    │   ├── ceph-opennebula-osd
+    │   ├── ceph-slice
+    │   ├── ddc
+    │   ├── frr
+    │   ├── iptables
+    │   ├── opennebula-node-firecracker
+    │   ├── opennebula-node-kvm
+    │   ├── opennebula-node-lxc
+    │   ├── opennebula-repository
+    │   └── opennebula-ssh
+    ├── ceph-6.0
+    │   └── plugins
+    ├── ceph_hci
+    │   ├── group_vars.yml.erb
+    │   └── site.yml
+    ├── ansible.cfg.erb
+    ├── aws.yml
+    ├── digitalocean.yml
+    ├── equinix.yml
+    ├── google.yml
+    ├── hci-requirements.yml
+    ├── onprem.yml
+    ├── vultr_metal.yml
+    └── vultr.yml
 
 Description:
 
@@ -63,7 +86,7 @@ You can use multiple playbooks at once, you just need to add a list in your prov
 
     ---
     playbook:
-      - default
+      - onprem
       - mycustom
 
 .. note::
@@ -96,13 +119,27 @@ All parameters are covered in the :ref:`Configuration Roles <ddc_config_roles>`.
 Configuration Steps
 --------------------------------------------------------------------------------
 
+Main Playbook
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The roles and tasks are applied during the configuration in the following order:
 
-1. **python**: check and install Python required for Ansible.
-2. **ddc**: general asserts and cleanups,
-3. **opennebula-repository**: set up the OpenNebula package repository.
-4. **opennebula-node-<X>**: install OpenNebula node KVM, LXC or Firecracker.
-5. **opennebula-ssh**: deploy local SSH keys for the remote oneadmin.
-6. **iptables**: create basic iptables rules.
-7. **update-replica**: prepare replica storage.
-8. **frr**: configure FRR.
+1. **ddc**: general asserts and cleanups,
+2. **opennebula-repository**: set up the OpenNebula package repository.
+3. **opennebula-node-<X>**: install OpenNebula node KVM, LXC or Firecracker.
+4. **opennebula-ssh**: deploy local SSH keys for the remote oneadmin.
+5. **iptables**: create basic iptables rules.
+6. **frr**: configure FRR.
+
+
+Ceph Playbook
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For cluster with Ceph there is an additional playbook ``ceph_hci/site.yml``
+
+This playbook is reduced version of stock `playbook <https://github.com/ceph/ceph-ansible/blob/master/site.yml.sample>_` with several additions:
+
+1. **stackhpc.systemd_networkd**: role to configure Ceph network interface for AWS
+2. **ceph-opennebula-facts**: to gather OpenNebula Ceph facts
+3. **ceph-opennebula-mon**: to create OpenNebula Ceph pools
+4. **ceph-opennebula-osd**: creates OpenNebula Ceph directories, configure libvirt

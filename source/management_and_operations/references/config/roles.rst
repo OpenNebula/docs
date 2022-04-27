@@ -10,6 +10,47 @@ Roles
 
 The following roles are shipped with the OpenNebula ``provision`` tool and installed into ``/usr/share/one/oneprovision/ansible/roles/``.
 
+Role ceph-opennebula-facts
+--------------------------------------------------------------------------------
+
+This role is used to make ``ceph_oneadmin_key`` and ``ceph_oneadmin_keyring``
+facts accessible for used on ceph-opennebula-osd
+
+No parameters.
+
+
+Role ceph-opennebula-mon
+--------------------------------------------------------------------------------
+Creates OpenNebula Ceph pools
+
+================================= ========================================= ========================================================================================
+Parameter                         Default                                   Description
+================================= ========================================= ========================================================================================
+``ceph_opennebula_mon_pools``     ``{ name: one, pg_num: 128 }}``           Ceph pools definition
+
+``ceph_opennebula_mon_tunables``  default                                   `Crush tunables <https://docs.ceph.com/en/latest/rados/operations/crush-map/#tunables>`_
+================================= ========================================= ========================================================================================
+
+
+Role ceph-opennebula-osd
+--------------------------------------------------------------------------------
+Creates rbd client directories, configures libvirts secrets, disables
+Docker if installed by ceph-ansible.
+
+========================================= ============================== ===========
+Parameter                                 Default                        Description
+========================================= ============================== ===========
+``ceph_opennebula_osd_libvirt_enabled``   true                           Enables libvirt configuraion (not used for LXC)
+========================================= ============================== ===========
+
+
+Role ceph-slice
+--------------------------------------------------------------------------------
+Creates systemd ceph.slice which encapsulates all Ceph services so they can
+be later isolated from machine.slice to manage host resources.
+
+No parameters.
+
 Role ddc
 --------------------------------------------------------------------------------
 
@@ -18,6 +59,25 @@ Role ddc
 This is a set of internal clean-up and check tasks. E.g. check if the target host operating system is supported, or network configuration cleanups.
 
 No parameters.
+
+Role frr
+--------------------------------------------------------------------------------
+Installs FRR (https://frrouting.org/) and configured BGP EVPN extensions for VXLAN networks
+
+To use this role you need to install netaddr Python library on the frontend, e.g.: pip install netaddr
+
+================================= ======================================== ===========
+Parameter                         Default                                  Description
+================================= ======================================== ===========
+``frr_frrver``                    frr-7                                    frr-stable will be the latest official stable release
+``frr_rr_num``                    1                                        Number of route reflectors in the cluster
+``frr_iface``                     ``{{ ansible_default_ipv4.interface }}`` Network interface name to route VXLAN traffic
+``frr_as``                        65000                                    The AS number used for BGP
+``frr_prefix_length``             16                                       Prefix length for the BGP network
+``frr_zebra``                     false                                    Configure Zebra
+``frr_ipcalc``                    false                                    Install and configure with ipcalc
+``frr_net_mask``                  20                                       Default netmask for ipcalc
+================================= ======================================== ===========
 
 Role iptables
 --------------------------------------------------------------------------------
@@ -112,20 +172,3 @@ Parameter                                      Default              Description
 ``opennebula_ssh_deploy_local``                True                 Deploy local oneadmin's SSH key to remote host
 ============================================== ==================== ===========
 
-Role python
---------------------------------------------------------------------------------
-
-.. !!! Description and parameters needs to be IN SYNC WITH THE ROLE CONTENT !!!
-
-Installs python2 for Debian and Ubuntu.
-
-No parameters.
-
-Role update-replica
---------------------------------------------------------------------------------
-
-.. !!! Description and parameters needs to be IN SYNC WITH THE ROLE CONTENT !!!
-
-Configures replica host.
-
-No parameters.
