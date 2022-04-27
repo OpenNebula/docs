@@ -6,7 +6,7 @@ What's New in 6.4
 
 **OpenNebula 6.4 ‘Archeon’** is the third stable release of the OpenNebula 6 series. The most exciting addition to ‘Archeon’ is the ability to automatically deploy and manage HCI Clusters based on **Ceph**—the powerful open source software-defined storage solution. This new native **hyperconverged infrastructure** architecture can be **deployed on-premises** (just minimal OS and SSH access is required) and also on **AWS bare-metal resources**, which gives your hybrid OpenNebula Cloud great flexibility. And, of course, you can dynamically add more hosts to your cloud whenever you need, as well as seamlessly repatriate your workloads from AWS at any time.
 
-This Beta 2 comes already with a fully-functional **new Sunstone interface** for managing VM templates and instances, with a similar coverage in terms of features as the traditional Cloud View present in the earlier version of Sunstone, save for the OneFlow integration. If you are a cloud admin, please keep using the ruby-based Sunstone interface (port 9869) but encourage your end-users to migrate to the new Sunstone portal served in port 2616. Our development team has worked hard to streamline the functionality offered in the VM and VM Template tabs, and **more UX improvements** are on the way, so stay tuned! The old, ruby-based interface also received its share of love, adding all the functionality that OpenNebula incorporates in this new version 6.4.
+This Release Candidate comes already with a fully-functional **new Sunstone interface** (:ref:`FireEdge Sunstone <fireedge_sunstone>`) for managing VM templates and instances, with a similar coverage in terms of features as the traditional Cloud View present in the earlier version of Sunstone, save for the OneFlow integration. If you are a cloud admin, please keep using the ruby-based Sunstone interface (port 9869) but encourage your end-users to migrate to the new Sunstone portal served in port 2616. Our development team has worked hard to streamline the functionality offered in the VM and VM Template tabs, and **more UX improvements** are on the way, so stay tuned! The old, ruby-based interface also received its share of love, adding all the functionality that OpenNebula incorporates in this new version 6.4.
 
 .. image:: /images/oneprovision_hci_teaser.png
     :align: center
@@ -17,7 +17,7 @@ There are also a number of additions to the supported hypervisor family, like th
 
 OpenNebula 6.4 is named after the `Archeon Nebula <https://starwars.fandom.com/wiki/Archeon_Nebula>`__, located in the Lothal sector of the Outer Rim Territories—a beautiful body of interstellar clouds where stars are born and which provides a popular hyperscape route for smugglers traversing the continuum towards the edge of the Star Wars universe :)
 
-The OpenNebula team is now transitioning to “bug-fixing mode”. Note that this is a second beta release aimed at testers and developers to try the new features, and we welcome you to send feedback for the final release. Please check the :ref:`known issues <known_issues>` before `submitting an issue through GitHub <https://github.com/OpenNebula/one/issues/new?template=bug_report.md>`__. Also note that being a beta, there is no migration path from the previous stable version (6.2.x) nor migration path to the final stable version (6.4.0). A list of `open issues can be found in the GitHub development portal <https://github.com/OpenNebula/one/milestone/53>`__.
+This is a Release Candidate version for 6.4, aimed at testers and developers to try the new features. All the functionality is present and only bug fixes will happen between this release and final 6.4. Please check the :ref:`known issues <known_issues>` before `submitting an issue through GitHub <https://github.com/OpenNebula/one/issues/new?template=bug_report.md>`__. Also note that being a development version, there is no migration path from the previous stable version (6.2.x) nor migration path to the final stable version (6.4.0). A list of `open issues can be found in the GitHub development portal <https://github.com/OpenNebula/one/milestone/53>`__.
 
 We’d like to thank all the people that support the project, OpenNebula is what it is thanks to its community. Apart from the usual :ref:`acknowledgements <acknowledgements>`, we’d like to highlight the support we’ve received through the EU-funded H2020 project **ONEedge**.
 
@@ -32,8 +32,8 @@ We’d like to thank all the people that support the project, OpenNebula is what
 
 OpenNebula Core
 ================================================================================
-- VM snaphots size were highly overestimated. Count snapshot size only as fraction of original disk size. :ref:`See settings in oned.conf <oned_conf_datastores>`.
-- VM logs can be generated in the VM folder (``/var/lib/one/vms/<VMID>/``). This make it easier to keep VM.logs in sync in multi-master installations, :ref:`see more details here <frontend_ha_shared>`.
+- VM snapshots size were highly overestimated. Count snapshot size only as a fraction of original disk size. :ref:`See settings in oned.conf <oned_conf_datastores>`.
+- VM logs can be generated in the VM folder (``/var/lib/one/vms/<VMID>/``). This makes it easier to keep VM.logs in sync in multi-master installations :ref:`see more details here <frontend_ha_shared>`.
 - `Download process is more robust including retry options for http protocol <https://github.com/OpenNebula/one/issues/5773>`__.
 - `All marketplaces except 'OpenNebula Public' are initialized as disabled <https://github.com/OpenNebula/one/issues/5791>`__.
 - (*) `Add encrypted attributes to User template <https://github.com/OpenNebula/one/issues/5431>`__.
@@ -42,17 +42,17 @@ Networking
 ================================================================================
 - Security Groups can be added or removed from a VM network interface, if the VM is running it updates the associated rules.
 - Virtual Network now contains :ref:`state <vnet_state>`. Creating and deleting VN calls :ref:`new network driver actions<devel-nm>` ``vnet_create`` and ``vnet_delete``. See also the :ref:`compatibility guide <compatibility>`.
-- (*) :ref:`Add Q-in-Q support for Open vSwtich driver <openvswitch_qinq>`.
-- (*) :ref:`Add MTU support for Open vSwtich driver <openvswitch>`.
+- (*) :ref:`Add Q-in-Q support for Open vSwitch driver <openvswitch_qinq>`.
+- (*) :ref:`Add MTU support for Open vSwitch driver <openvswitch>`.
 
 vCenter Driver
 ================================================================================
-- Configuration flag for :ref:`image persistency <driver_tuning>` of imported Wild VMs or VM Templates.
+- Configuration flag for :ref:`image persistence <driver_tuning>` of imported Wild VMs or VM Templates.
 - New driver wide :ref:`configuration option <driver_tuning>` to set the VMDK format to either Sparse or regular.
 - `Allow to order and filter vCenter imports when using the vCenter Import Tool <https://github.com/OpenNebula/one/issues/5735>`__.
 - (*) :ref:`Automatically create VM template in Vcenter when exporting an app from marketplace <vcenter_market>`.
 - (*) :ref:`Set VM IP not registered by ONE when importing a vCenter VM <vcenter_import_ip>`.
-- (*) :ref:`Default VM_PREFIX for vCenter VMs can be now be nulified with the empty string <vcenter_vm_prefix>`.
+- (*) :ref:`Default VM_PREFIX for vCenter VMs can now be nullified with the empty string <vcenter_vm_prefix>`.
 - (*) `Filter Datastores and Networks by Host on VM instantiation <https://github.com/OpenNebula/one/issues/5743>`__.
 - (*) `vCenter monitoring improvement in HA setups <https://github.com/OpenNebula/one/issues/5645>`__.
 
@@ -64,10 +64,11 @@ Ruby Sunstone
 - (*) `Add error condition to Sunstone list views <https://github.com/OpenNebula/one/issues/5745>`__.
 - (*) `Improve capacity range feedback in Sunstone <https://github.com/OpenNebula/one/issues/5757>`__.
 
-React Sunstone
+FireEdge Sunstone
 ================================================================================
 - `Add Single Sign on URL <https://github.com/OpenNebula/one/issues/5779>`__.
 - `Use localStorage for session management <https://github.com/OpenNebula/one-ee/pull/1898>`__.
+- :ref:`Fully functional VM and VM Template tabs, including console (Guacamole VNC/RDP/SSH and VMRC) access to running VMs <fireedge_sunstone>`.
 
 OneFlow - Service Management
 ================================================================================
@@ -86,7 +87,7 @@ Distributed Edge Provisioning
 - (*) `Add new hosts to existing OpenNebula Edge Clusters <https://github.com/OpenNebula/one/issues/5593>`__.
 - (*) `Add support to filter providers by provision type <https://github.com/OpenNebula/one/issues/5604>`__.
 
-- Cloud providers based on virtual instances has been disabled by default, check their specific section to know how to enable them.
+- Cloud providers based on virtual instances have been disabled by default, check their specific section to know how to enable them.
 
 KVM
 ===
