@@ -43,8 +43,6 @@ Next, you need to choose the region where you want to deploy the resources. All 
 Step 2: Create an AWS provider
 ================================================================================
 
-.. important:: The AMI ID can change, please check :ref:`this <ami_change>`.
-
 To deploy a complete edge provision with oneprovision from GUI, you first need to add a remote provider using the connection parameters above and choosing the location you wish to deploy those resources
 
 First, to **create a provider**, go to provider list view:
