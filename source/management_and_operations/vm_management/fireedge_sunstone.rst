@@ -224,7 +224,7 @@ The attributes described here indicate which buttons are visible to operate over
 
 Filters
 -------
-The attributes described here indicate which filters are visible to select resources. The following atributes must be nested in an ``filters`` tag.
+The attributes described here indicate which filters are visible to select resources. The following atributes must be nested in a ``filters`` tag.
 
 +---------------------------+---------------------------------------------------------------------------+
 | Attribute                 | Description                                                               |
@@ -241,7 +241,96 @@ The attributes described here indicate which filters are visible to select resou
 Info Tabs
 ---------
 
-The attributes described here indicate the available actions on each info tab on the resource.
+The attributes described here indicate the available actions on each info tab on the resource. The following attributes must be nested in an ``info-tabs`` and the corresporesponding tab.
+
++--------------------------+-----------------------------------------------------------------------------+
+| Attribute                | Description                                                                 |
++==========================+=============================================================================+
+| ``enabled``              | This tab will be showed in the resource info.                               |
++--------------------------+-----------------------------------------------------------------------------+
+| ``information_panel``    | Describes the behavior for the ``information`` panel in the resource        |
+|                          | info tab.                                                                   |
++--------------------------+-----------------------------------------------------------------------------+
+| ``permissions_panel``    | Describes the behavior for the ``permissions`` panel in the resource        |
+|                          | info tab.                                                                   |
++--------------------------+-----------------------------------------------------------------------------+
+| ``ownership_panel``      | Describes the behavior for the ``ownership`` panel in the resource          |
+|                          | info tab.                                                                   |
++--------------------------+-----------------------------------------------------------------------------+
+| ``vcenter_panel``        | Describes the behavior for the ``vCenter`` panel in the resource info tab.  |
++--------------------------+-----------------------------------------------------------------------------+
+| ``lxc_panel``            | Describes the behavior for the ``LXC`` panel in the resource info tab.      |
++--------------------------+-----------------------------------------------------------------------------+
+| ``monitoring_panel``     | Describes the behavior for the ``monitoring`` panel in the resource         |
+|                          | info tab.                                                                   |
++--------------------------+-----------------------------------------------------------------------------+
+| ``attributes_panel``     | Describes the behavior for the ``attributes`` panel in the resource         |
+|                          | info tab.                                                                   |
++--------------------------+-----------------------------------------------------------------------------+
+| ``actions``              | Describes a list of available actions on this tab that can be disabled.     |
++--------------------------+-----------------------------------------------------------------------------+
+
+The available actions in the info tabs are described in the folowing table.
+
++--------------------------+-----------------------------------------------------------------------------+
+| Attribute                | Description                                                                 |
++==========================+=============================================================================+
+| ``rename``               | Users will be able to rename the resource.                                  |
++--------------------------+-----------------------------------------------------------------------------+
+| ``chmod``                | Users will be able to change the resource permissions.                      |
++--------------------------+-----------------------------------------------------------------------------+
+| ``chown``                | Users will be able to change the resource owner.                            |
++--------------------------+-----------------------------------------------------------------------------+
+| ``chgrp``                | Users will be able to change the resource group.                            |
++--------------------------+-----------------------------------------------------------------------------+
+| ``copy``                 | Users will be able to copy the information available in that panel.         |
++--------------------------+-----------------------------------------------------------------------------+
+| ``add``                  | Users will be able to add information to that panel.                        |
++--------------------------+-----------------------------------------------------------------------------+
+| ``edit``                 | Users will be able to edit the information available in that panel.         |
++--------------------------+-----------------------------------------------------------------------------+
+| ``delete``               | Users will be able to delete the information available in that panel.       |
++--------------------------+-----------------------------------------------------------------------------+
+| ``resize_capacity``      | Users will be able to perform capacity resize.                              |
++--------------------------+-----------------------------------------------------------------------------+
+| ``attach_disk``          | Users will be able to attach disks.                                         |
++--------------------------+-----------------------------------------------------------------------------+
+| ``detach_disk``          | Users will be able to detach disks.                                         |
++--------------------------+-----------------------------------------------------------------------------+
+| ``snapshot_disk_create`` | Users will be able to create disk snapshots.                                |
++--------------------------+-----------------------------------------------------------------------------+
+| ``snapshot_disk_rename`` | Users will be able to rename disk snapshots.                                |
++--------------------------+-----------------------------------------------------------------------------+
+| ``snapshot_disk_revert`` | Users will be able to revert disk snapshots.                                |
++--------------------------+-----------------------------------------------------------------------------+
+| ``snapshot_disk_delete`` | Users will be able to delete disk snapshots.                                |
++--------------------------+-----------------------------------------------------------------------------+
+| ``resize_disk``          | Users will be able to perform disk resize.                                  |
++--------------------------+-----------------------------------------------------------------------------+
+| ``disk_saveas``          | Users will be able to save disks as an image.                               |
++--------------------------+-----------------------------------------------------------------------------+
+| ``attach_nic``           | Users will be able to attach nics.                                          |
++--------------------------+-----------------------------------------------------------------------------+
+| ``detach_nic``           | Users will be able to detach nics.                                          |
++--------------------------+-----------------------------------------------------------------------------+
+| ``attach_secgroup``      | Users will be able to attach security groups to nics.                       |
++--------------------------+-----------------------------------------------------------------------------+
+| ``detach_secgroup``      | Users will be able to detach security groups to nics.                       |
++--------------------------+-----------------------------------------------------------------------------+
+| ``snapshot_create``      | Users will be able to create snapshots.                                     |
++--------------------------+-----------------------------------------------------------------------------+
+| ``snapshot_revert``      | Users will be able to revert snapshots.                                     |
++--------------------------+-----------------------------------------------------------------------------+
+| ``snapshot_delete``      | Users will be able to delete snapshots.                                     |
++--------------------------+-----------------------------------------------------------------------------+
+| ``sched_action_create``  | Users will be able to create scheduled actions.                             |
++--------------------------+-----------------------------------------------------------------------------+
+| ``sched_action_update``  | Users will be able to update scheduled actions.                             |
++--------------------------+-----------------------------------------------------------------------------+
+| ``sched_action_delete``  | Users will be able to delete scheduled actions.                             |
++--------------------------+-----------------------------------------------------------------------------+
+| ``charter_create``       | Users will be able to create charters.                                      |
++--------------------------+-----------------------------------------------------------------------------+
 
 Dialogs
 -------

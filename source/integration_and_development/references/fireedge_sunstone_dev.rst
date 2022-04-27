@@ -1,4 +1,4 @@
-.. _react_sunstone_dev:
+.. _fireedge_sunstone_dev:
 
 ================================================================================
 FireEdge Sunstone Development
