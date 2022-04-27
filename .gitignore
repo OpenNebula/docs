@@ -7,3 +7,5 @@ source/toc.html
 .DS_Store
 .vscode/
 source/_build/
+*.bkp
+*.dtmp
