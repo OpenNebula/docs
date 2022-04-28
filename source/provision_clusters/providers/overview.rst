@@ -2,27 +2,24 @@
 Overview
 ================================================================================
 
-Edge Clusters provide you with the tools needed to dynamically grow your cloud infrastructure with physical or virtual resources running on remote cloud providers. Edge Clusters support two main use cases:
-
-* **Edge Cloud Computing**, to transition from centralized clouds to distributed edge-like cloud environments. You will be able to grow your on-premises cloud with resources at edge data center locations to meet the latency, bandwidth or data regulation needs of your workload.
-* **Hybrid Cloud Computing**, to address peaks of demand and need for extra computing power by dynamically growing your underlying physical infrastructure.
-
+A Provider represents a Cloud where resources (hosts, networks or storage) are allocated to implement a Provision. Usually a Provider includes a zone or region in the target Cloud and an account that will be used to create the resources needed.
 
 How Should I Read This Chapter
 ==============================
 
-In this chapter you can find a guide on how to automatically allocate and provision Edge Clusters on bare-metal and virtual instances on cloud providers:
+In this chapter you can find a guide on how to create Providers based on the supported Clouds. The following Cloud providers are enabled by default after installing OpenNebula:
+  - :ref:`Equinix Provider <equinix_provider>`
+  - :ref:`Amazon AWS Provider <aws_provider>`
+  - :ref:`On-Premise Provider <onprem_provider>`
 
-  - :ref:`Equinix Edge Clusters <equinix_cluster>`
-  - :ref:`Amazon AWS Edge Clusters <aws_cluster>`
-  - :ref:`DigitalOcean Edge Cluster <do_cluster>`
-  - :ref:`Google Edge Cluster <google_cluster>`
-  - :ref:`Vultr Edge Cluster <vultr_cluster>`
-  - :ref:`On-Premise Edge Cluster <onprem_cluster>`
+Note, the on-premise provider is a convenient abstraction to represent your own resources on your datacenter.
 
-In this chapter you'll also learn how to :ref:`operate your clusters <cluster_operations>` and :ref:`manage providers <provider_operations>`.
+The following Clouds are also supported but you need to enable them before use:
+  - :ref:`DigitalOcean Provider <do_provider>`
+  - :ref:`Google Compute Engine Provider <google_provider>`
+  - :ref:`Vultr Provider <vultr_provider>`
 
 Hypervisor Compatibility
 ================================================================================
 
-.. include:: ../../intro_release_notes/release_notes/edge_clusters.txt
+Provisions are compatible with the KVM and LXC hypervisors.

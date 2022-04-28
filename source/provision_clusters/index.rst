@@ -1,10 +1,13 @@
 .. _try_hybrid_overview:
 
 ================================================================================
-Provision Clusters
+OpenNebula Provisions
 ================================================================================
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor nibh nec elementum vulputate. Proin varius accumsan nulla, vitae placerat lorem gravida a. Duis eleifend lectus tristique orci dapibus, dapibus aliquet lectus facilisis. Cras et ornare odio. Fusce vehicula quam ac dignissim lobortis. Fusce pulvinar vitae magna nec posuere. Cras blandit elementum leo et vestibulum. Sed at ligula augue. Quisque commodo vitae ipsum vel auctor. Mauris nec odio tincidunt, congue tellus ut, consectetur tellus. Ut at felis arcu. Nullam efficitur lacus dui. In ultrices fringilla lectus.
+OpenNebula Provisions is a tool to dynamically grow your cloud infrastructure with physical or virtual resources running on remote cloud providers. Provisions are used to support two main use cases:
+
+* **Edge Cloud Computing**, to transition from centralized clouds to distributed edge-like cloud environments. You will be able to grow your on-premises cloud with resources at edge data center locations to meet the latency, bandwidth or data regulation needs of your workload.
+* **Hybrid Cloud Computing**, to address peaks of demand and need for extra computing power by dynamically growing your underlying physical infrastructure.
 
 .. toctree::
    :maxdepth: 2
