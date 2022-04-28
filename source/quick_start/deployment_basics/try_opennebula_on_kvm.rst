@@ -1,10 +1,10 @@
 .. _try_opennebula_on_kvm:
 
-=============================
-Try OpenNebula on KVM/LXC/FC
-=============================
+=========================
+Try OpenNebula on KVM/LXC
+=========================
 
-In this guide, we'll go through a Front-end OpenNebula environment deployment, where all the OpenNebula services needed to use, manage and run the cloud will be collocated on the single dedicated bare-metal Host. Afterwards, you can continue to the Operations Basics section to add a remote Edge Cluster based on KVM, LXC or Firecracker to your shiny new OpenNebula cloud!
+In this guide, we'll go through a Front-end OpenNebula environment deployment, where all the OpenNebula services needed to use, manage and run the cloud will be collocated on a single dedicated bare-metal Host. Afterwards, you can continue to the Operations Basics section to add a remote Edge Cluster based on KVM or LXC to your shiny new OpenNebula cloud!
 
 While all the :ref:`installation and configuration <opennebula_installation>` steps can be done manually and would give you a better insight and control over what and how it is configured, we'll focus on the most straightforward approach by leveraging the miniONE tool.
 
@@ -30,7 +30,7 @@ You'll need a server to try out OpenNebula. The provided Host should have a fres
 - public IP address (FE-PublicIP)
 - privileged user access (`root`)
 - openssh-server package installed
-- operating system: CentOS 7 or 8, Debian 10 or 11, Ubuntu 18.04 or 20.04
+- operating system: CentOS 7, AlmaLinux 8, Debian 10 or 11, Ubuntu 18.04 or 20.04
 - open ports: 22 (SSH), 80 (Sunstone), 2616 (FireEdge), 5030 (OneGate).
 
 If you don't have a server available with the above characteristics, we recommend using a the Amazon EC2 service to obtain a VM to act as the OpenNebula Front-end. A tested combination is the following (but is by no means the only one possible):
@@ -38,7 +38,7 @@ If you don't have a server available with the above characteristics, we recommen
 - Frankfurt region
 - Ubuntu Server 20.04 LTS (HVM), SSD Volume Type - ami-0767046d1677be5a0
 - t2.small
-- 40 GB hard disk (you need to edit the Storage tab before launching the instance; by default it comes with just 8GB)
+- 100 GB hard disk (you need to edit the Storage tab before launching the instance; by default it comes with just 8GB. It can be lower -40GB- if you are not planning to test the K8s appliance)
 - before launching the instance, please open the ports defined above by editing the Security Groups as per the picture. This can also happen after launching the instance following `this guide <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html>`__.
 
 |aws_security_groups|
@@ -79,7 +79,7 @@ or
 Deploy
 ======
 
-Various command line parameters passed to the miniONE tool can customize the deployment process, e.g. the required OpenNebula version or initial passwords. You can get a list of available switches by running:
+Various command line parameters passed to the miniONE tool can customize the deployment process, e.g. the required OpenNebula version or initial passwords. You can get a list of available flags by running:
 
 .. prompt:: bash # auto
 
@@ -98,7 +98,7 @@ Be patient, it should take only a few minutes to get the Host prepared. The main
 .. code::
 
     ### Report
-    OpenNebula 6.3 was installed
+    OpenNebula 6.4 was installed
     Sunstone is running on:
       http://3.121.76.103/
     FireEdge is running on:

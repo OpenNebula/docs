@@ -4,7 +4,7 @@
 Running Kubernetes Clusters
 ============================
 
-In the public OpenNebula System Marketplace there are also services available that let you deploy a multi-VM application. In this exercise we are going to import a `Kubernetes cluster service <https://marketplace.opennebula.io/appliance/07520eee-6552-11eb-85e7-98fa9bde1a93>`_ and launch a Kubernetes cluster with it.
+In the public OpenNebula System Marketplace there are also services available that let you deploy a multi-VM application. In this exercise we are going to import a `Kubernetes cluster service <http://marketplace.opennebula.io/appliance/9b06e6e8-8c40-4a5c-b218-27c749db6a1a>`_ and launch a Kubernetes cluster with it.
 
 .. warning:: If you want to use this App in KVM, we need a metal KVM Edge Cluster for this. If you haven't already done so, you can follow the same steps of the :ref:`provisioning an edge cluster <first_edge_cluster>` guide, using "metal" edge cloud type and kvm hypervisor. Make sure you request two public IPs. This App can also be used in vCenter. If you plan to use vCenter, we need a Cluster that meets the necessary resource requirements.
 
@@ -13,7 +13,7 @@ We are going to assume the Edge Cluster naming schema ``metal-kvm-aws-cluster``.
 Step 1. Download the OneFlow Service from the Marketplace
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Log in to Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab and search for ``Kubernetes``. Select the ``Service Kubernetes 1.21 - KVM`` and click on the icon with the cloud and the down arrow inside (two positions to the right from the green ``+``).
+Log in to Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab and search for ``Kubernetes``. Select the ``Service Kubernetes 1.23`` and click on the icon with the cloud and the down arrow inside (two positions to the right from the green ``+``).
 
 |kubernetes_marketplace|
 
@@ -23,8 +23,6 @@ Now you need to select a datastore. Select the ``metal-kvm-aws-cluster-Images`` 
 
 The Appliance will be ready when the image in ``Storage --> Images`` switches to ``READY`` from its ``LOCKED`` state.
 
-.. warning:: In order to use a vCenter app it is necessary to attach the image to a :ref:`vCenter VM Template which was previously imported <vcenterg>`. An existing VM Template can be cloned and its disks replaced with the image from the marketplace. Once the VM Template is ready, the appliance can be instantiated.
-
 .. |kubernetes_marketplace| image:: /images/kubernetes_marketplace.png
 .. |metal_kvm_aws_cluster_images_datastore| image:: /images/metal_kvm_aws_cluster_images_datastore.png
 
@@ -33,11 +31,11 @@ Step 2. Instantiate the Kubernetes Service
 
 .. note::
 
-    You may want to adjust the VM templates before you progress further - go to ``Templates --> VMs``, click on the ``Service Kubernetes 1.21 - KVM-0`` and blue button ``Update`` at the top.
+    You may want to adjust the VM templates before you progress further - go to ``Templates --> VMs``, click on the ``Service Kubernetes 1.23`` and blue button ``Update`` at the top.
 
     Here you can increase memory for the nodes, disk capacity, add SSH key, etc. How to modify the VM template is summarized in the short `Quick Start <https://docs.opennebula.io/appliances/service/kubernetes.html#update-vm-template>`_ for the Kubernetes Appliance.
 
-Proceed to the ``Templates --> Services`` tab and select the ``Service Kubernetes 1.21 - KVM`` Service Template (that should be the only one available). Click on ``+`` and then ``Instantiate``.
+Proceed to the ``Templates --> Services`` tab and select the ``Service Kubernetes 1.23`` Service Template (that should be the only one available). Click on ``+`` and then ``Instantiate``.
 
 A required step is clicking on ``Network`` and selecting the ``metal-kvm-aws-cluster-public`` network.
 
@@ -57,7 +55,7 @@ Now proceed to ``Instances --> Services`` and wait for the only Service there to
 
     After the OneFlow service is deployed you can also **scale up** the worker nodes - the template will start only one - to add more follow onto the tab ``Roles``, click on ``worker`` and green button ``Scale``.
 
-.. note:: Even though Sunstone shows the VNC console button, VNC access to Containers or VMs running in Edge Clusters has been deemed insecure and as such OpenNebula filters this traffic. This means that the VNC access won't work for VMs running in Edge Clusters.
+.. note:: Even though Sunstone shows the VNC console button, VNC access to VMs running in Edge Clusters has been deemed insecure and as such OpenNebula filters this traffic. This means that the VNC access won't work for VMs running in Edge Clusters.
 
 .. |select_metal_aws_cluster_public_network| image:: /images/select_metal_aws_cluster_public_network.png
 .. |configure_kubernetes_cluster| image:: /images/configure_kubernetes_cluster.png

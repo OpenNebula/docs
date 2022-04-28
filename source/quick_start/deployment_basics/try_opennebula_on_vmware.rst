@@ -16,13 +16,13 @@ vOneCloud is a virtual appliance for vSphere that builds on top of your vCenter 
 vOneCloud ships with the following components under the hood:
 
 +-----------------------+--------------------------------------------------------------------------------------------------+
-|       **CentOS**      |                                                8                                                 |
+|       **AlmaLinux**   |                                                8                                                 |
 +-----------------------+--------------------------------------------------------------------------------------------------+
 | **OpenNebula**        | |release| (:ref:`release notes <rnguide>`)                                                       |
 +-----------------------+--------------------------------------------------------------------------------------------------+
-| **MariaDB**           | Default version shipped in CentOS 8                                                              |
+| **MariaDB**           | Default version shipped in AlmaLinux 8                                                           |
 +-----------------------+--------------------------------------------------------------------------------------------------+
-| **Phusion Passenger** | Default version shipped in EPEL 8 (used to run Sunstone)                                         |
+| **Phusion Passenger** | Default version shipped in AlmaLinux 8 (used to run Sunstone)                                    |
 +-----------------------+--------------------------------------------------------------------------------------------------+
 
 .. _control_console:
@@ -51,10 +51,10 @@ The following components need to be present in the infrastructure to implement a
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Guest OS                              | VMware tools are needed in the guestOS to enable several features (contextualization and networking feedback). Please install `VMware Tools (for Windows) <https://docs.vmware.com/en/VMware-Tools/index.html>`__ or `Open Virtual Machine Tools <https://github.com/vmware/open-vm-tools>`__ (for \*nix) in the guestOS. |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IE (>= 9), Firefox (> 3.5) and Chrome | Other browsers, including Safari, are **not** supported and may not work well. Note that IE11 is NOT supported with compatibility mode enabled.                                                                                                                                                                           |
+| Firefox (> 3.5) and Chrome            | Other browsers, including Safari, are **not** supported and may not work well.                                                                                                                                                                                                                                            |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-vOneCloud ships with a default of 1 vCPUs and 2.5 GiB of RAM, and as such it has been certified for infrastructures of the following dimensions:
+vOneCloud ships with a default of 1 vCPUs and 4 GiB of RAM, and as such it has been certified for infrastructures of the following dimensions:
 
 - Up to 4 vCenters
 - Up to 40 ESXs managed by each vCenter
@@ -87,7 +87,7 @@ Download and Deploy
 
 vOneCloud can be downloaded by completing the form `here <https://opennebula.io/get-vonecloud>`__.
 
-The OVA file can be imported into an existing vCenter infrastructure. It is based on `CentOS 8 <http://www.centos.org/>`__ and has VMware tools enabled.
+The OVA file can be imported into an existing vCenter infrastructure. It is based on `AlmaLinux 8 <https://almalinux.org/>`__ with VMware tools enabled.
 
 Follow the next steps to deploy a fully functional OpenNebula cloud.
 
