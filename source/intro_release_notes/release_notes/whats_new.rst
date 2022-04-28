@@ -50,6 +50,7 @@ vCenter Driver
 - Configuration flag for :ref:`image persistence <driver_tuning>` of imported Wild VMs or VM Templates.
 - New driver wide :ref:`configuration option <driver_tuning>` to set the VMDK format to either Sparse or regular.
 - `Allow to order and filter vCenter imports when using the vCenter Import Tool <https://github.com/OpenNebula/one/issues/5735>`__.
+- :ref:`New network drivers to create/delete vnets, instead of relying on the hook subsystem <devel-nm>`.
 - (*) :ref:`Automatically create VM template in Vcenter when exporting an app from marketplace <vcenter_market>`.
 - (*) :ref:`Set VM IP not registered by ONE when importing a vCenter VM <vcenter_import_ip>`.
 - (*) :ref:`Default VM_PREFIX for vCenter VMs can now be nullified with the empty string <vcenter_vm_prefix>`.

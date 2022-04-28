@@ -30,13 +30,13 @@ The following providers has been disabled by default:
 
 - DigitalOcean
 - Google
-- Vultr (Metal & virrtual)
+- Vultr (Metal & virtual)
 
 If you want to use them, please check their specific documentation section.
 
 vCenter
 ========================
 
-This version introduces a `change in the deploy ID used to identify vCenter VMs <https://github.com/OpenNebula/one/issues/5689>`__. Its purpose is to avoid the collision of the Managed Object References in different vCenter instances, since their uniqueness is not guaranteed. Due to its sensitivity, we recommend first backing up the database and configuration files so you can :ref:`restore your previous version if needed <restoring_version>`.
-
-Also worth noting that Debian front-ends are no longer certified over VMware. We advise OpenNebula users managing vCenter-based infrastructures with Debian front-ends to switch to any of the other :ref:`supported platforms <uspng>`.
+- This version introduces a `change in the deploy ID used to identify vCenter VMs <https://github.com/OpenNebula/one/issues/5689>`__. Its purpose is to avoid the collision of the Managed Object References in different vCenter instances, since their uniqueness is not guaranteed. Due to its sensitivity, we recommend first backing up the database and configuration files so you can :ref:`restore your previous version if needed <restoring_version>`.
+- Debian front-ends are no longer certified over VMware. We advise OpenNebula users managing vCenter-based infrastructures with Debian front-ends to switch to any of the other :ref:`supported platforms <uspng>`.
+- OpenNebula now creates and deletes Virtual Networks in vCenter using the :ref:`new OpenNebula networking drivers <devel-nm>`, the previous hooks for vnet creation/deletion will be automatically deregistered by the migrators.
