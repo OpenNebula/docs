@@ -10,8 +10,6 @@ You can run the following hypervisors in the cluster:
 * **Firecracker**, runs micro VMs. This hypervisor can be only used with metal clusters.
 * **LXC**, runs system containers.
 
-.. include:: aws_provider.txt
-
 AWS Edge Cluster Implementation
 ================================================================================
 

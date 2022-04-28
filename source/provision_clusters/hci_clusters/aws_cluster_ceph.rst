@@ -9,8 +9,6 @@ You can run the following hypervisors in the cluster:
 * **KVM**, runs virtual machines. This hypervisor can be only used with metal clusters.
 * **LXC**, runs system containers.
 
-.. include:: aws_provider.txt
-
 AWS Edge Cluster Implementation
 ================================================================================
 

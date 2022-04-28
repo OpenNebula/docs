@@ -1,7 +1,7 @@
-.. _onprem_cluster_ceph:
+.. _onprem_cluster:
 
 ================================================================================
-On-Premises Edge Cluster with Ceph
+On-Premises Edge Cluster
 ================================================================================
 
 Edge Cluster Types
@@ -10,14 +10,13 @@ Edge Cluster Types
 The On-Premises provider allows to automatically configure On-Premises infrastructure as an Edge Cluster. You can use the following hypervisors on your On-Premises bare-metal clusters:
 
 * **KVM** to run virtual machines.
+* **Firecracker** to run microVMs.
 * **LXC** to run system containers.
-
-.. include:: onprem_provider.txt
 
 On-Premises Edge Cluster Implementation
 ================================================================================
 
-An On-Premises Edge Cluster with Ceph consists of a set of hosts with the following requirements:
+An On-Premises Edge Cluster consists of a set of hosts with the following requirements:
 
 .. list-table::
   :header-rows: 1
@@ -35,18 +34,16 @@ An On-Premises Edge Cluster with Ceph consists of a set of hosts with the follow
     - Separated interface connected to the Internet. VMs will access the Internet through this network. Do not configure any IP address for this interface.
   * -
     - Your network should allow inbound connections to ports 22 (TCP), 179 (TCP) and 8472 (UDP) on the management network. The Internet/Public network should not restrict any access. You can later set Security Groups for your VMs.
-  * -
-    - It's recomended to use also sperate network interfaces for Ceph
   * - **Storage**
-    - Hosts should have at least one separate disk for Ceph datastore
+    - Hosts should have enough local storage mounted under ``/var/lib/one`` to store the virtual disk images of the VMs.
 
 The overall architecture of the On-Premises cluster is shown below. OpenNebula will create for you the following resources:
 
-* Image and System datastore for the cluster. The storage is configured to use the Hosts :ref:`Ceph storage <ceph_ds>`.
+* Image and System datastore for the cluster. The storage is configured to use the Hosts :ref:`local storage through OneStor drivers <onestor_ds>`. On-Premises clusters also include access to the default datastore, so you can easily share images across clusters.
 * Public Network, bound to the Internet interface through a Linux Bridge.
 * Private Networking, implemented using a VXLAN overlay on the management network.
 
-|image_prem_ceph|
+|image_prem|
 
 Tutorial: Provision an On-Premises Cluster
 ================================================================================
@@ -54,11 +51,23 @@ Tutorial: Provision an On-Premises Cluster
 Step 1. Check your hosts
 --------------------------------------------------------------------------------
 
-Before we start we need to prepare the hosts for our on-prem cluster. We just need a vanilla installation of Ubuntu Focal with root passwordless SSH access. In this tutorial we'll use ``host01``, ``host02`` and ``host03``.
+Before we start we need to prepare the hosts for our on-prem cluster. We just need a vanilla installation of Ubuntu Focal with root passwordless SSH access. In this tutorial we'll use ``host01`` and ``host02``.
 
 .. prompt:: bash $ auto
 
     $ ssh root@host01 cat /etc/lsb-release
+    Warning: Permanently added 'host01,10.4.4.100' (ECDSA) to the list of known hosts.
+    $ cat /etc/lsb-release
+    DISTRIB_ID=Ubuntu
+    DISTRIB_RELEASE=20.04
+    DISTRIB_CODENAME=focal
+    DISTRIB_DESCRIPTION="Ubuntu 20.04.3 LTS"
+
+
+
+    $  ssh root@host02 cat /etc/lsb-release
+    Warning: Permanently added 'host02,10.4.4.101' (ECDSA) to the list of known hosts.
+    $ cat /etc/lsb-release
     DISTRIB_ID=Ubuntu
     DISTRIB_RELEASE=20.04
     DISTRIB_CODENAME=focal
@@ -78,42 +87,28 @@ Check that you have your On-Premises provider created (if not, see above):
 
 Now we can create our On-Premises Edge Cluster, grab the following attributes for your setup:
 
-
 .. list-table::
   :header-rows: 1
-  :widths: 35 200 500
+  :widths: 35 70
 
   * - Attribute
     - Content
-    - Explanation
-  * - Ceph hostnames
-    - host01;host02;host02
-    - includes full Ceph OSD + MON + MGR installation, the *recomended number of this type is 3* or 5
-  * - Ceph OSD hostnames
-    - (could be empty)
-    - includes Ceph OSD (no MON), so this expands the datastore size
-  * - Ceph client hostnames
-    - (could be empty)
-    - includes Ceph client only, acts solely as a hypervisor
+  * - Hostnames
+    - host01;host02
   * - Hypervisor
     - LXC
-    - other possibility is KVM
   * - Public Network Interface
     - eth1
-    -
   * - Public IP block
     - 172.16.0.2, and the next 10 consecutive addresses
-    -
   * - Private Network Interface
     - eth0
-    -
-
 
 The command, using a verbose output mode, looks like:
 
 .. prompt:: bash $ auto
 
-    $ oneprovision create -Dd --provider onprem /usr/share/one/oneprovision/edge-clusters/onprem/provisions/onprem-hci.yml
+    $ oneprovision create -Dd --provider onprem /usr/share/one/oneprovision/edge-clusters/onprem/provisions/onprem.yml
 
     2021-04-28 18:04:45 DEBUG : Executing command: `create`
     2021-04-28 18:04:45 DEBUG : Command options: debug [verbose, true] [provider, onprem] [sync, true]
@@ -122,20 +117,15 @@ The command, using a verbose output mode, looks like:
 
         0  kvm
         1  lxc
+        2  firecracker
 
     Please select the option (default=): lxc
 
     Physical device to be used for private networking.
     Text `private_phydev` (default=): eth0
 
-    Semicolon separated list of FQDNs or IP addresses of the Ceph full hosts to be added to the cluster (osd + mon)
-    Array `hosts_names` (default=): host01;host02;host03
-
-    Semicolon separated list of FQDNs or IP addresses of the Ceph osd hosts to be added to the cluster (osd only)
-    Array `ceph_osd_hosts_names` (default=):
-
-    Semicolon separated list of FQDNs or IP addresses of the non-Ceph hosts to be added to the cluster (ceph client)
-    Array `client_hosts_names` (default=):
+    Comma separated list of FQDNs or IP addresses of the hosts to be added to the cluster
+    Array `hosts_names` (default=): host01;host02
 
     Physical device to be used for public networking.
     Text `public_phydev` (default=): eth1
@@ -146,10 +136,18 @@ The command, using a verbose output mode, looks like:
     Number of public IPs to get
     Text `number_public_ips` (default=1): 10
 
-    Semicolon separated list of block devices for Ceph OSD
-    Array `ceph_device` (default=/dev/sdb): /dev/sdb
-
     2021-04-28 18:05:15 INFO  : Creating provision objects
+    ...
+    2021-04-28 18:05:17 DEBUG : Generating Ansible configurations into /tmp/d20210428-3894-z6wb1x
+    2021-04-28 18:05:17 DEBUG : Creating /tmp/d20210428-3894-z6wb1x/inventory:
+    [nodes]
+    host01
+    host02
+
+    [targets]
+    host01 ansible_connection=ssh ansible_ssh_private_key_file=/var/lib/one/.ssh-oneprovision/id_rsa ansible_user=root ansible_port=22
+    host02 ansible_connection=ssh ansible_ssh_private_key_file=/var/lib/one/.ssh-oneprovision/id_rsa ansible_user=root ansible_port=22
+
     ...
 
     Provision successfully created
@@ -158,25 +156,14 @@ The command, using a verbose output mode, looks like:
 Step 3. Quick tour on your new cluster
 --------------------------------------------------------------------------------
 
-Let's first check the hosts are up and running, in our simple case:
+Let's first check  the hosts are up and running, in our simple case:
 
 .. prompt:: bash $ auto
 
     $ onehost list
   ID NAME                  CLUSTER    TVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
-   5 host03                onprem-clu   0       0 / 200 (0%)     0K / 3.8G (0%) on
    4 host02                onprem-clu   0       0 / 200 (0%)     0K / 3.8G (0%) on
    3 host01                onprem-clu   0       0 / 200 (0%)     0K / 3.8G (0%) on
-
-Let's review relevant datastores:
-
-.. prompt:: bash $ auto
-
-    $ onedatastore list
-      ID NAME                         SIZE  AVA CLUSTERS IMAGES TYPE DS      TM      STAT
-     101 onprem-hci-cluster-system    28.3G 100% 100           0 sys  -       ceph    on
-     100 onprem-hci-cluster-image     28.3G 100% 100           1 img  ceph    ceph    on
-
 
 And similarly for the networks. You'll have a public network and a network template to create as many private networks as you need:
 
@@ -184,11 +171,11 @@ And similarly for the networks. You'll have a public network and a network templ
 
     $ onevnet list
   ID USER     GROUP    NAME                      CLUSTERS   BRIDGE   STATE    LEASES
-   4 oneadmin oneadmin onprem-hci-cluster-public     102        onebr4   rdy           0
+   4 oneadmin oneadmin onprem-cluster-public     102        onebr4   rdy           0
 
     $ onevntemplate list
   ID USER     GROUP    NAME                                                  REGTIME
-   0 oneadmin oneadmin onprem-hci-cluster-private                         04/28 18:08:38
+   0 oneadmin oneadmin onprem-cluster-private                         04/28 18:08:38
 
 For example let's create a 192.168.0.100/26 network from the private network template:
 
@@ -261,98 +248,11 @@ Now we can create the VM from this template:
 
     VM NICS
      ID NETWORK              BRIDGE       IP              MAC               PCI_ID
-      0 onprem-hci-cluster-publi onebr4       172.16.0.2      02:00:ac:10:00:02
+      0 onprem-cluster-publi onebr4       172.16.0.2      02:00:ac:10:00:02
 
 If you connect through SSH to the VM, the setup screen for the appliance should welcome you:
 
 |image_mysql|
-
-Advanced: Manually provision an On-Premises Cluster
-================================================================================
-
-Should the default provision template be limiting for the setup it could be modified manually.
-
-The main provision template is located at ``/usr/share/one/oneprovision/edge-clusters/onprem/provisions/onprem-hci.yml``
-
-.. prompt:: yaml $ auto
-
-    name: 'onprem-hci-cluster'
-
-    description: 'On-premises hyper-convergent Ceph cluster'
-
-    extends:
-        - onprem.d/defaults.yml
-        - onprem.d/resources.yml
-        - onprem.d/hosts-hci.yml
-        - onprem.d/datastores-hci.yml
-        - onprem.d/fireedge.yml
-        - onprem.d/inputs-hci.yml
-        - onprem.d/networks.yml
-    ...
-
-Most of the parts should be self-explanatory, the important parts are at first,
-the ``ceph_vars`` which values goes as Ansible group_vars to all ceph hosts.
-
-.. prompt:: yaml $ auto
-
-    ceph_vars:
-      ceph_hci: true
-      devices: "${input.ceph_device}"
-      monitor_interface: "${input.ceph_monitor_interface}"
-      public_network: "${input.ceph_public_network}"
-
-Other important part which could be adjusted are hosts. So, instead of creating the hosts
-based on the values from inputs (ceph_full_hosts_names, ceph_osd_hosts_names).
-You can defined them on your own in file ``/usr/share/one/oneprovision/edge-clusters/onprem/provisions/onprem.d/hosts-hci.yml``
-
-An example of such a definition is following. See that in this example you can define
-different devices (OSD devices) or dedicated_devices per hosts. For more details about
-the OSD configuration follow `OSD Scernarios <https://docs.ceph.com/projects/ceph-ansible/en/latest/osds/scenarios.html>`__
-
-.. prompt:: yaml $ auto
-
-    hosts:
-
-      - im_mad: "lxc"
-        vm_mad: "lxc"
-        provision:
-          hostname: "ceph01-host.localdomain"
-          ceph_group: "osd,mon"
-          devices:
-            - "/dev/sdb"
-            - "/dev/sdc"
-          dedicated_devices:
-            - "/dev/nvme1n1"
-          ceph_monitor_interface: "enp4s0"
-
-      - im_mad: "lxc"
-        vm_mad: "lxc"
-        provision:
-          hostname: "ceph02-host.localdomain"
-          ceph_group: "osd,mon"
-          devices:
-            - "/dev/sdc"
-          dedicated_devices:
-            - "/dev/nvme1n1"
-          ceph_monitor_interface: "enp4s0"
-
-      - im_mad: "lxc"
-        vm_mad: "lxc"
-        provision:
-          hostname: "ceph03-host.localdomain"
-          ceph_group: "osd,mon"
-            - "/dev/sdb"
-          dedicated_devices:
-            - "/dev/nvme1n1"
-          ceph_monitor_interface: "enp4s0"
-
-      - im_mad: "lxc"
-        vm_mad: "lxc"
-        provision:
-          hostname: "host04.localdomain"
-          ceph_group: "clients"
-
-
 
 Operating Providers & Edge Clusters
 ================================================================================
@@ -364,6 +264,6 @@ You can also manage On-Premise Clusters using the OneProvision FireEdge GUI.
 |image_fireedge|
 
 .. |image_fireedge| image:: /images/oneprovision_fireedge.png
-.. |image_prem_ceph| image:: /images/onprem-cluster-ceph.png
+.. |image_prem| image:: /images/onprem-cluster.png
 .. |image_mysql| image:: /images/onprem-nginx.png
 
