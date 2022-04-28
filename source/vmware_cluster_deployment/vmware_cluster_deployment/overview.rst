@@ -15,7 +15,7 @@ You should be reading this chapter after performing the :ref:`frontend installat
 
 This chapter is organized in the :ref:`vCenter Node Installation <vcenter_node>`, which lays out the required vCenter/ESX configuration, and :ref:`vCenter Driver Section <vcenterg>`, which introduces the vCenter integration approach from the point of view of OpenNebula and describes how to import, create and use VM Templates, resource pools, limitations, and so on.
 
-After this section, you can proceed to the :ref:Storage <vmware_storage_setup>` and then :ref:`Networking <vmware_networking_setup>` sections to learn and configure these aspects of your cloud.
+After this section, you can proceed to the :ref:`Storage <vmware_storage_setup>` and then :ref:`Networking <vmware_networking_setup>` sections to learn and configure these aspects of your cloud.
 
 Hypervisor Compatibility
 ================================================================================

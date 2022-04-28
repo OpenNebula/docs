@@ -44,52 +44,28 @@ Creating Port Groups from OpenNebula
 
 OpenNebula can create a vCenter network from a virtual network template if the vCenter network driver is used.
 
-This is the workflow when OpenNebula needs to create a vCenter network:
-
 1. Create a new OpenNebula virtual network template. Add the :ref:`required attributes <vcenter_network_attributes>` to the template including the OpenNebula's host ID which represents the vCenter cluster where the network elements will be created.
-2. When the virtual network is created, a hook will create the network elements required on each ESX host that are members of the specified vCenter cluster.
+2. When the virtual network is created, the OpenNebula networking vCenter drivers will create the network elements required on each ESX host that are members of the specified vCenter cluster.
 3. The virtual network will be automatically assigned to the OpenNebula cluster which includes the vCenter cluster represented as an OpenNebula host.
-4. The hooks works asynchronously so you may have to refresh the Virtual Network information until you find the VCENTER_NET_STATE attribute. If it completes the actions successfully that attribute will be set to READY and hence you can use it from VMs and templates. If the hook fails VCENTER_NET_STATE will be set to ERROR and the VCENTER_NET_ERROR attribute will offer more information.
+4. The OpenNebula networking vCenter drivers work asynchronously so you may have to refresh the Virtual Network informationi. The virtual network will be in LOCKED while the driver create the needed resources in vCenter. It will go to READY state if the drivers succeed, or to FAILED otherwise, in which case a ERROR attribute will be added to the VM metadata with information on the failure.
 
-Hooks information
---------------------------------------------------------------------------------
-
-As soon as the first vCenter cluster is created, two hooks are registered in OpenNebula to deal with network creation and deletion.
-
-- vcenter_net_create
-- vcenter_net_delete
-
-These hooks are the scripts responsible of creating the vCenter network elements and deleting them when the OpenNebula Virtual Network template is deleted.
-
-The creation hook performs the following actions for each ESX host found in the cluster assigned to the template if a standard port group has been chosen:
+The networking vCenter drivers perform the following actions for each ESX host found in the cluster assigned to the template if a standard port group has been chosen:
 
 * If the port group does not exist, it will create it.
 * If the port group or switch name exist, they won't be updated ignoring new attributes to protect you from unexpected changes that may break your connectivity.
 
-The **creation** hook performs the following actions if a distributed port group has been chosen:
+Whereas if a distributed port group has been chosen:
 
 * OpenNebula creates the distributed switch if it doesn't exist. If the switch exists, it's not updated ignoring any attribute you've set.
 * OpenNebula creates the distributed port group if it doesn't exist in the datacenter associated with the vCenter cluster. If the distributed port group already exists **it won't be updated** to protect you from unexpected changes.
 * For each ESX host found in the cluster assigned to the template, it adds the ESX host to the distributed switch.
 
-Creation hook is asynchronous which means that you'll have to check if the VCENTER_NET_STATE attribute has been set. Once the hook finishes you'll find the VCENTER_NET_STATE either with the READY value or the ERROR value. If an error was found you can check what was wrong.
+On virtual network deletion, the following actions are taken
 
-The **removal** hook performs the following actions:
-
-* OpenNebula contacts with the vCenter server.
+* OpenNebula contacts the vCenter server where the virtual network has been created previously.
 * For each ESX host found in the vCenter cluster assigned to the template, it tries to remove both the port group and the switch. If the switch has no more port groups left then the switch will be removed too.
 
-In this case the hook is also asynchronous. If you want to know if it suceeded or failed you can run the following command:
-
-.. code::
-
-    grep EXECUTE /var/log/one/oned.log | grep vcenter_net_delete
-
-If the script failed, you can check the lines before EXECUTE FAILURE in the /var/log/one/oned.log to get more information on the failure. If the removal hook fails you may have to check your vCenter server and delete those resources that could not be deleted automatically.
-
 .. warning:: If a port group or switch is in use e.g a VM is running and have a NIC attached to that port group the remove operation will fail so please ensure that you have no VMs or templates using that port group before trying to remove the Virtual Network representation.
-
-Check the :ref:`vCenter driver guide <vcenter_hooks>` for more information on how to operate the vCenter virtual network hooks.
 
 .. _vcenter_network_attributes:
 
@@ -215,7 +191,7 @@ Limitations
 
 **Virtual Network Update is not supported.** If you update a Virtual Network definition, OpenNebula won't update the attributes in existing port groups or switches so you should remove the virtual network and create a new one with the new attributes.
 
-**Security groups.** Security Groups are not supported by the vSphere Switch mode.
+**Security groups.** Security Groups are not supported by the vSphere Switch mode. :ref:`NSX is needed for this functionality <nsx_setup>`.
 
 **Network alias.** It is possible to use network interface alias with vCenter, however if you attach an alias when the vm is running the action will take action on the next reboot (OpenNebula deploy). If you do not want to reboot the machine you can manually execute the next command on the machine prompt:
 

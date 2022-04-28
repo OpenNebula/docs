@@ -58,7 +58,7 @@ As a virtualization driver, the vCenter driver accepts a series of parameters th
 
 See the :ref:`Virtual Machine drivers reference <devel-vmm>` for more information about these parameters, and how to customize and extend the OpenNebula virtualization drivers. Also, check the specific :ref:`vCenter driver reference <vcenter_driver>` that details how OpenNebula maps and keeps track of vCenter resources.
 
-Additionally, certain behavior of the vCenter driver can be configured in ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterrc``. Check the file to learn what parameters can be changed.
+Additionally, certain behavior of the vCenter driver can be configured in ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterrc``. Check the file to learn what parameters can be changed. An explanation of each option can be found :ref:`here <driver_tuning>`.
 
 vCenter Datastore Drivers
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -138,7 +138,7 @@ vCenter clusters, VM templates, networks, datastores, and VMDK files located in 
 
 * Using the Import button in Sunstone.
 
-.. warning:: The image import operation may take a long time. If you use the Sunstone client and receive a "Cannot contact server: is it running and reachable?" the 30-second Sunstone timeout may have been reached. In this case, either configure Sunstone to live behind Apache/NGINX or use the CLI tool instead.
+.. warning:: The image import operation may take a long time. If you use the Sunstone client and receive a "Cannot contact server: is it running and reachable?" the 30-second Sunstone timeout may have been reached. In this case, either :ref:`configure Sunstone to run behind Apache/NGINX <suns_advance>` or use the CLI tool instead.
 
 
 The following vCenter resources can be easily imported into OpenNebula:
@@ -692,7 +692,7 @@ Select the images you want to import and click on the Import button. The ID of t
 
 .. _vcenterc_image:
 
-When an image is created using the import tool, the VCENTER_IMPORTED attribute is set to YES automatically. This attribute prevents OpenNebula from deleting the file from the vCenter datastore when the image is deleted from OpenNebula, so it can be used to prevent a virtual hard disk being removed accidentally from a vCenter template. This default behavior can be changed in ``/var/lib/one/etc/remotes/vmm/vcenter/vcenterc`` by setting DELETE_IMAGES to Yes.
+When an image is created using the import tool, the VCENTER_IMPORTED attribute is set to YES automatically. This attribute prevents OpenNebula from deleting the file from the vCenter datastore when the image is deleted from OpenNebula, so it can be used to prevent a virtual hard disk being removed accidentally from a vCenter template. This default behavior can be changed in ``/var/lib/one/etc/remotes/vmm/vcenter/vcenterrc`` by setting DELETE_IMAGES to Yes.
 
 .. _vcenter_migrate:
 
@@ -764,88 +764,6 @@ Usage (CLI)
     $ onevm migrate --live "<VM name>" <destination host id> <destination datastore id>
 
 .. _vcenter_hooks:
-
-vCenter Hooks
--------------
-
-OpenNebula has two hooks to manage networks in vCenter and :ref:`NSX <nsx_setup>`.
-
-+----------------------+--------------------------------------------------------+
-| Hook Name            | Hook Description                                       |
-+======================+========================================================+
-| vcenter_net_create   | Allows you to create / import vCenter and NSX networks |
-+----------------------+--------------------------------------------------------+
-| vcenter_net_delete   | Allows you to delete vCenter and NSX networks          |
-+----------------------+--------------------------------------------------------+
-
-These hooks should be created automatically when you add a vCenter cluster. If accidentially deleted, they can be created again manually.
-
-Go to `Create vCenter Hooks`_ and follow the steps to create a new hook.
-
-.. note:: Detailed information about how hooks work is available :ref:`here <hooks>`.
-
-
-List vCenter Hooks
-~~~~~~~~~~~~~~~~~~
-
-Type the following command to list registered hooks:
-
-.. prompt:: bash $ auto
-
-    $ onehook list
-
-The output of the command should be something like this:
-
-.. image:: /images/nsx_hook_list.png
-
-
-Create vCenter Hooks
-~~~~~~~~~~~~~~~~~~~~~
-
-The following command can be used to create a new hook:
-
-.. prompt:: bash $ auto
-
-    $ onehook create <template_file>
-
-where template file is the name of the file that contains the hook template information.
-
-The hook template for network creation is:
-
-.. prompt:: bash $ auto
-
-    NAME = vcenter_net_create
-    TYPE = api
-    COMMAND = vcenter/create_vcenter_net.rb
-    CALL = "one.vn.allocate"
-    ARGUMENTS = "$API"
-    ARGUMENTS_STDIN = yes
-
-The latest version <https://raw.githubusercontent.com/OpenNebula/one/master/share/hooks/vcenter/templates/create_vcenter_net.tmpl>`__
-
-.. _vcenter_net_delete_template:
-
-The hook template for network deletion is:
-
-.. prompt:: bash $ auto
-
-    NAME = vcenter_net_delete
-    TYPE = api
-    COMMAND = vcenter/delete_vcenter_net.rb
-    CALL = "one.vn.delete"
-    ARGUMENTS = "$API"
-    ARGUMENTS_STDIN = yes
-
-The latest version of the hook delete template can be found `here <https://raw.githubusercontent.com/OpenNebula/one/master/share/hooks/vcenter/templates/delete_vcenter_net.tmpl>`__
-
-Delete vCenter Hooks
-~~~~~~~~~~~~~~~~~~~~
-
-A hook can be deleted if its ID is known. The ID can be retrieved using onehook list and then deleted using the following command:
-
-.. prompt:: bash $ auto
-
-    $ onehook delete <hook_id>
 
 .. _driver_tuning:
 
