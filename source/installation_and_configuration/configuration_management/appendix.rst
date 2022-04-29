@@ -26,6 +26,7 @@ Name                                                               Type
 ``/etc/one/ec2query_templates/*.erb``                              Plain file (or XML)
 ``/etc/one/econe.conf``                                            YAML
 ``/etc/one/fireedge-server.conf``                                  YAML
+``/etc/one/fireedge/provision/providers.d-extra/*.yaml``           YAML
 ``/etc/one/fireedge/provision/providers.d/*.yaml``                 YAML
 ``/etc/one/fireedge/provision/provision-server.conf``              YAML
 ``/etc/one/fireedge/sunstone/*/*.yaml``                            YAML
