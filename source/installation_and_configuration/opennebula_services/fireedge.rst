@@ -70,6 +70,8 @@ The FireEdge server configuration file can be found in ``/etc/one/fireedge-serve
 
 **OneProvision GUI**
 
+|oneprovision_dashboard|
+
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
 | Parameter                                 | Default Value                  | Description                                        |
 +===========================================+================================+====================================================+
@@ -81,6 +83,8 @@ The FireEdge server configuration file can be found in ``/etc/one/fireedge-serve
 .. _fireedge_sunstone_configuration:
 
 **FireEdge Sunstone**
+
+|fireedge_sunstone_dashboard|
 
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
 | Parameter                                 | Default Value                  | Description                                        |
@@ -199,3 +203,7 @@ A common issue when launching FireEdge is an occupied port:
     Error: listen EADDRINUSE: address already in use 0.0.0.0:2616
 
 If another service is using the port, you can change FireEdge configuration (``/etc/one/fireedge-server.conf``) to use another host/port. Remember to also adjust the FireEdge endpoints in Sunstone configuration (``/etc/one/sunstone-server.conf``) as well.
+
+
+.. |oneprovision_dashboard| image:: /images/oneprovision_dashboard.png
+.. |fireedge_sunstone_dashboard| image:: /images/fireedge_sunstone_dashboard.png
