@@ -15,6 +15,8 @@ Configuration
 
 To configure FireEdge Sunstone, there are several options to consider, and they are described in the :ref:`FireEdge Configuration <fireedge_setup>` guide.
 
+.. _fireedge_sunstone_usage:
+
 Usage
 ================================================================================
 
@@ -47,6 +49,8 @@ Marketplace Tab
 On the Marketplace Apps tab, users will be able to download images and create templates or download them locally on their computer.
 
 |fireedge_sunstone_marketapps_tab|
+
+.. _fireedge_sunstone_views:
 
 Views
 ================================================================================
@@ -121,6 +125,8 @@ The views definitions are placed in the "/etc/one/fireedge/sunstone/" directory.
 
 The easiest way to create a custom view is to copy the ``admin`` or ``user`` folder and modify its content as needed. After that, add the new view into ``/etc/one/fireedge/sunstone/sunstone-views.yaml``.
 
+.. _fireedge_sunstone_view_customization:
+
 View Customization
 --------------------------------------------------------------------------------
 On FireEdge Sunstone each view is defined by a folder that has the YAML files for the configured tabs. The content for those files is divided into sections that are described in the followings sections.
@@ -128,6 +134,8 @@ On FireEdge Sunstone each view is defined by a folder that has the YAML files fo
 In the following tables, the description field contains the expected behavior when is set to ``true``.
 
 .. note:: The attributes can be modified only if they come in the YAML file by default. If an attribute is not present, it has the same behavior as when it is set to false.
+
+.. _fireedge_sunstone_actions_customization:
 
 Actions
 -------
@@ -224,6 +232,8 @@ The attributes described here indicate which buttons are visible to operate over
 | ``vnc``                 | Users will be able to establish a VNC connection.                           |
 +-------------------------+-----------------------------------------------------------------------------+
 
+.. _fireedge_sunstone_filters_customization:
+
 Filters
 -------
 The attributes described here indicate which filters are visible to select resources. The following atributes must be nested in a ``filters`` tag.
@@ -253,6 +263,8 @@ The attributes described here indicate which filters are visible to select resou
 +---------------------------+---------------------------------------------------------------------------+
 | ``zone``                  | Filtering by the resource zone will be enabled.                           |
 +---------------------------+---------------------------------------------------------------------------+
+
+.. _fireedge_sunstone_infotabs_customization:
 
 Info Tabs
 ---------
@@ -347,6 +359,8 @@ The available actions in the info tabs are described in the folowing table.
 +--------------------------+-----------------------------------------------------------------------------+
 | ``snapshot_revert``      | Users will be able to revert snapshots.                                     |
 +--------------------------+-----------------------------------------------------------------------------+
+
+.. _fireedge_sunstone_dialogs_customization:
 
 Dialogs
 -------

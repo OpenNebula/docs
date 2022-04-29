@@ -66,6 +66,8 @@ The FireEdge server configuration file can be found in ``/etc/one/fireedge-serve
 | ``langs``                                 |                                | List of server localizations                       |
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
 
+.. _oneprovision_configuration:
+
 **OneProvision GUI**
 
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
@@ -75,6 +77,8 @@ The FireEdge server configuration file can be found in ``/etc/one/fireedge-serve
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
 | ``oneprovision_optional_create_command``  |                                | Optional param. for ``oneprovision create`` cmd.   |
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
+
+.. _fireedge_sunstone_configuration:
 
 **FireEdge Sunstone**
 
