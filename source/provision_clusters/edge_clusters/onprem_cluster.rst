@@ -7,16 +7,12 @@ On-Premises Edge Cluster
 Edge Cluster Types
 ================================================================================
 
-The On-Premises provider allows to automatically configure On-Premises infrastructure as an Edge Cluster. You can use the following hypervisors on your On-Premises bare-metal clusters:
-
-* **KVM** to run virtual machines.
-* **Firecracker** to run microVMs.
-* **LXC** to run system containers.
+On-Premises edge clusters use bare-metal servers in your datacenter. Metal provisions can run the **LXC** or **KVM** hypervisors.
 
 On-Premises Edge Cluster Implementation
 ================================================================================
 
-An On-Premises Edge Cluster consists of a set of hosts with the following requirements:
+An On-Premises Edge Cluster consists of a set of servers with the following requirements:
 
 .. list-table::
   :header-rows: 1
@@ -37,13 +33,18 @@ An On-Premises Edge Cluster consists of a set of hosts with the following requir
   * - **Storage**
     - Hosts should have enough local storage mounted under ``/var/lib/one`` to store the virtual disk images of the VMs.
 
-The overall architecture of the On-Premises cluster is shown below. OpenNebula will create for you the following resources:
+The overall architecture of the On-Premises cluster is shown below.
+
+|image_prem|
+
+OpenNebula resources
+================================================================================
+
+The following resources, associated to each Edge Cluster, will be created in OpenNebula:
 
 * Image and System datastore for the cluster. The storage is configured to use the Hosts :ref:`local storage through OneStor drivers <onestor_ds>`. On-Premises clusters also include access to the default datastore, so you can easily share images across clusters.
 * Public Network, bound to the Internet interface through a Linux Bridge.
 * Private Networking, implemented using a VXLAN overlay on the management network.
-
-|image_prem|
 
 Tutorial: Provision an On-Premises Cluster
 ================================================================================
@@ -62,8 +63,6 @@ Before we start we need to prepare the hosts for our on-prem cluster. We just ne
     DISTRIB_RELEASE=20.04
     DISTRIB_CODENAME=focal
     DISTRIB_DESCRIPTION="Ubuntu 20.04.3 LTS"
-
-
 
     $  ssh root@host02 cat /etc/lsb-release
     Warning: Permanently added 'host02,10.4.4.101' (ECDSA) to the list of known hosts.
@@ -117,7 +116,6 @@ The command, using a verbose output mode, looks like:
 
         0  kvm
         1  lxc
-        2  firecracker
 
     Please select the option (default=): lxc
 

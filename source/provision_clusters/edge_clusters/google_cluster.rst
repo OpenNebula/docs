@@ -4,9 +4,14 @@
 Google Edge Cluster
 ===================
 
-.. include:: activate_virtual.txt
+Edge Cluster Types
+================================================================================
 
-Google supports **virtual** Edge Clusters, that use a Virtual Machine instance to create OpenNebula Hosts. This provision is better suited for PaaS-like workloads. Virtual Google Edge Clusters primarily run **LXC** to execute system containers.
+Google supports **Virtual** Edge Clusters, that use a virtual machine instance to create OpenNebula Hosts. Virtual provisions can run the **LXC** or **KVM** hypervisors.
+
+.. important::
+
+    Google is not enabled by default, please refer to the :ref:`Vultr provider guide <google_provider>` to enable it.
 
 Google Edge Cluster Implementation
 ================================================================================
@@ -23,6 +28,17 @@ The network model is implemented in the following way:
 * **Private Networking**: this is implemented using (BGP-EVPN) and VXLAN.
 
 |image_cluster|
+
+OpenNebula resources
+================================================================================
+
+The following resources, associated to each Edge Cluster, will be created in OpenNebula:
+
+1. Cluster - containing all other resources
+2. Hosts - for each GCE instance
+3. Datastores - image and system datastores with SSH transfer manager using first instance as a replica
+4. Virtual network - for public networking
+5. Virtual network template - for private networking
 
 Tutorial: Provision a Google Edge Cluster
 ================================================================================

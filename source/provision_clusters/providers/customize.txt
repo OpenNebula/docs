@@ -1,0 +1,4 @@
+How to Customize an Existing Provider
+================================================================================
+
+The provider information is stored in the OpenNebula database and can be updated just like any other resource. In this case, you need to use the command ``oneprovider update``. It will open an editor so you can edit all the information there. You can also use the OneProvision FireEdge GUI to update all the information.

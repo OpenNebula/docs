@@ -1,18 +1,10 @@
 .. _onprem_cluster_ceph:
 
 ================================================================================
-On-Premises Edge Cluster with Ceph
+On-Premises HCI Cluster
 ================================================================================
 
-Edge Cluster Types
-================================================================================
-
-The On-Premises provider allows to automatically configure On-Premises infrastructure as an Edge Cluster. You can use the following hypervisors on your On-Premises bare-metal clusters:
-
-* **KVM** to run virtual machines.
-* **LXC** to run system containers.
-
-On-Premises Edge Cluster Implementation
+On-Premises HCI Implementation
 ================================================================================
 
 An On-Premises Edge Cluster with Ceph consists of a set of hosts with the following requirements:
@@ -46,6 +38,49 @@ The overall architecture of the On-Premises cluster is shown below. OpenNebula w
 
 |image_prem_ceph|
 
+On-Premises HCI Definition
+================================================================================
+
+To create a HCI Cluster on-premises you need to input the following information:
+
+.. list-table::
+    :header-rows: 1
+    :widths: 35 35 200
+
+    * - Input Name
+      - Example
+      - Description
+    * - **ceph_full_hosts_names**
+      - host01;host02;host02
+      - Hosts to run hypervisor, osd and mon ceph daemons (semicolon list of FQDNs or IPs)
+    * - **ceph_osd_hosts_names**
+      - (can be empty)
+      - Hosts to run hypervisor and osd daemons (semicolon list of FQDNs or IPs)
+    * - **client_hosts_names**
+      - (can be empty)
+      - Hosts to run hypervisor and ceph client (semicolon list of FQDNs or IPs)
+    * - **ceph_device**
+      - /dev/sdb
+      - Block devices for Ceph OSD (semicolon separated list)
+    * - **ceph_monitor_interface**
+      - eth0
+      - Physical device to be used for Ceph
+    * - **ceph_public_network**
+      - (can be empty)
+      - Ceph public network in CIDR notation
+    * - **private_phydev**
+      - eth1
+      - Physical device to be used for private networking.
+    * - **public_phydev**
+      - eth0
+      - Physical device to be used for public networking.
+    * - **first_public_ip**
+      - 172.16.0.2
+      - First public IP for the public IPs address range.
+    * - **number_public_ips**
+      - 10
+      - Number of public IPs to get from AWS for VMs
+
 Tutorial: Provision an On-Premises Cluster
 ================================================================================
 
@@ -62,7 +97,6 @@ Before we start we need to prepare the hosts for our on-prem cluster. We just ne
     DISTRIB_CODENAME=focal
     DISTRIB_DESCRIPTION="Ubuntu 20.04.3 LTS"
 
-
 Step 2. Create your On-premises cluster
 --------------------------------------------------------------------------------
 
@@ -74,40 +108,7 @@ Check that you have your On-Premises provider created (if not, see above):
       ID NAME                                                                    REGTIME
        0 onprem                                                           04/28 11:31:34
 
-Now we can create our On-Premises Edge Cluster, grab the following attributes for your setup:
-
-
-.. list-table::
-  :header-rows: 1
-  :widths: 35 200 500
-
-  * - Attribute
-    - Content
-    - Explanation
-  * - Ceph hostnames
-    - host01;host02;host02
-    - includes full Ceph OSD + MON + MGR installation, the *recomended number of this type is 3* or 5
-  * - Ceph OSD hostnames
-    - (could be empty)
-    - includes Ceph OSD (no MON), so this expands the datastore size
-  * - Ceph client hostnames
-    - (could be empty)
-    - includes Ceph client only, acts solely as a hypervisor
-  * - Hypervisor
-    - LXC
-    - other possibility is KVM
-  * - Public Network Interface
-    - eth1
-    -
-  * - Public IP block
-    - 172.16.0.2, and the next 10 consecutive addresses
-    -
-  * - Private Network Interface
-    - eth0
-    -
-
-
-The command, using a verbose output mode, looks like:
+Now we can create our On-Premises Edge Cluster, grab the attributes for the inputs described above. The command, using a verbose output mode, looks like:
 
 .. prompt:: bash $ auto
 
@@ -265,12 +266,10 @@ If you connect through SSH to the VM, the setup screen for the appliance should 
 
 |image_mysql|
 
-Advanced: Manually provision an On-Premises Cluster
+Advanced: Customize the HCI Cluster
 ================================================================================
 
-Should the default provision template be limiting for the setup it could be modified manually.
-
-The main provision template is located at ``/usr/share/one/oneprovision/edge-clusters/onprem/provisions/onprem-hci.yml``
+You can easily customize the provision of the HCI Cluster to better fit your setup. The main provision template is located at ``/usr/share/one/oneprovision/edge-clusters/onprem/provisions/onprem-hci.yml``
 
 .. prompt:: yaml $ auto
 
@@ -299,13 +298,9 @@ the ``ceph_vars`` which values goes as Ansible group_vars to all ceph hosts.
       monitor_interface: "${input.ceph_monitor_interface}"
       public_network: "${input.ceph_public_network}"
 
-Other important part which could be adjusted are hosts. So, instead of creating the hosts
-based on the values from inputs (ceph_full_hosts_names, ceph_osd_hosts_names).
-You can defined them on your own in file ``/usr/share/one/oneprovision/edge-clusters/onprem/provisions/onprem.d/hosts-hci.yml``
+Other important part which could be adjusted are hosts. So, instead of creating the hosts based on the values from inputs (ceph_full_hosts_names, ceph_osd_hosts_names). You can defined them on your own in file ``/usr/share/one/oneprovision/edge-clusters/onprem/provisions/onprem.d/hosts-hci.yml``
 
-An example of such a definition is following. See that in this example you can define
-different devices (OSD devices) or dedicated_devices per hosts. For more details about
-the OSD configuration follow `OSD Scernarios <https://docs.ceph.com/projects/ceph-ansible/en/latest/osds/scenarios.html>`__
+An example of such a definition is following. See that in this example you can define different devices (OSD devices) or dedicated_devices per hosts. For more details about the OSD configuration follow `OSD Scernarios <https://docs.ceph.com/projects/ceph-ansible/en/latest/osds/scenarios.html>`__
 
 .. prompt:: yaml $ auto
 

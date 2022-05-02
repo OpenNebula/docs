@@ -4,9 +4,17 @@
 Vultr Edge Cluster
 ==========================
 
-.. include:: activate_virtual.txt
+Edge Cluster Types
+================================================================================
 
-Vultr supports both virtual and metal clusters. Vultr **metal** use a bare-metal host to create OpenNebula Hosts. This provision is better for **KVM** & **Firecracker**. Vultr **virtual** Edge Clusters use a Virtual Machine instance to create OpenNebula Hosts. This provision is better suited for PaaS-like workloads. Virtual Vultr Edge Clusters primarily run **LXC** to execute system containers.
+Vultr supports two provision types:
+
+* **Metal**,  uses baremetal instances to create OpenNebula Hosts, providing the best performance and highest capacity. Metal provisions can run **LXC** or **KVM** hypervisors.
+* **Virtual**, uses a virtual machine instance to create OpenNebula Hosts. This provision is better suited for PaaS like workloads. Virtual provisions can run **LXC** or **QEMU** hypervisors.
+
+.. important::
+
+    Vultr is not enabled by default, please refer to the :ref:`Vultr provider guide <vultr_provider>` to enable it.
 
 Vultr Edge Cluster Implementation
 ================================================================================
@@ -17,10 +25,21 @@ An Edge Cluster in Vultr creates the following resources:
 
 The network model is implemented in the following way:
 
-* **Public Networking**: this is implemeted using elastic IPs from Vultr and the IPAM driver from OpenNebula. When the virtual network is created in OpenNebula, the elastic IPs are requested from Vultr. Then, inside the Host, IP forwarding rules are applied so the VM can communicate over the public IP assigned by Vultr.
+* **Public Networking**: this is implemented using elastic IPs from Vultr and the IPAM driver from OpenNebula. When the virtual network is created in OpenNebula, the elastic IPs are requested from Vultr. Then, inside the Host, IP forwarding rules are applied so the VM can communicate over the public IP assigned by Vultr.
 * **Private Networking**: this is implemented using (BGP-EVPN) and VXLAN.
 
 |image_cluster|
+
+OpenNebula resources
+================================================================================
+
+The following resources, associated to each Edge Cluster, will be created in OpenNebula:
+
+1. Cluster - containing all other resources
+2. Hosts - for each Vultr instance or server
+3. Datastores - image and system datastores with SSH transfer manager using first instance as a replica
+4. Virtual network - for public networking
+5. Virtual network template - for private networking
 
 Operating Providers & Edge Clusters
 ================================================================================

@@ -4,9 +4,14 @@
 DigitalOcean Edge Cluster
 ==========================
 
-.. include:: activate_virtual.txt
+Edge Cluster Types
+================================================================================
 
-DigitalOcean supports **Virtual** Edge Clusters, that use a virtual machine instance to create OpenNebula Hosts. This provision is better suited for PaaS-like workloads. Virtual DigitalOcean Edge Clusters run primarily **LXC** to execute system containers.
+DigitalOcean supports **Virtual** Edge Clusters, that use a virtual machine instance to create OpenNebula Hosts. Virtual provisions can run the **LXC** or **KVM** hypervisors.
+
+.. important::
+
+    DigitalOcean is not enabled by default, please refer to the :ref:`Vultr provider guide <do_provider>` to enable it.
 
 DigitalOcean Edge Cluster Implementation
 ================================================================================
@@ -26,10 +31,16 @@ The network model is implemented in the following way:
 
 .. warning:: If a VPC is created in an empty region (without any VPC) it becomes the DEFAULT one, and you will not be able to delete it. We recomend to populate the regions with a default VPC, for this default VPC let DigitalOcean pick the address range (recommended option in the DO console).
 
-
-Tutorial: Provision a Google Edge Cluster
+OpenNebula resources
 ================================================================================
 
+The following resources, associated to each Edge Cluster, will be created in OpenNebula:
+
+1. Cluster - containing all other resources
+2. Hosts - for each DigitalOcean droplet
+3. Datastores - image and system datastores with SSH transfer manager using first instance as a replica
+4. Virtual network - for public networking
+5. Virtual network template - for private networking
 
 Tutorial: Provision a Digital Ocean Edge Cluster
 ================================================================================

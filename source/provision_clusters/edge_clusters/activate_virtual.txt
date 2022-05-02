@@ -1,9 +1,0 @@
-Activate the Provider
-================================================================================
-
-By default this provider is disabled, in order to be able to use it, you need to perform the following commands:
-
-.. prompt:: bash $ auto
-
-    ln -s /usr/share/one/oneprovision/edge-clusters-extra/virtual /usr/share/one/oneprovision/edge-clusters
-    sudo ln -s /etc/one/fireedge/provision/providers.d-extra/<PROVIDER> /etc/one/fireedge/provision/providers.d

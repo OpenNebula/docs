@@ -19,6 +19,12 @@ In order to define a Vultr provider, you need the following information:
 
 .. include:: activate_virtual.txt
 
+* Finally enable the metal provisions for Vultr:
+
+.. prompt:: bash $ auto
+
+    sudo ln -s /usr/share/one/oneprovision/edge-clusters-extra/metal/provisions/vultr.* /usr/share/one/oneprovision/edge-clusters/metal/provisions/
+
 How to Create a Vultr Provider
 ================================================================================
 
@@ -34,26 +40,23 @@ Virtual:
     description: 'Edge cluster in Vultr Amsterdam'
     provider: 'vultr_virtual'
 
-    plain:
-      image: 'VULTR'
-      location_key: 'region'
-      provision_type: 'virtual'
-
     connection:
       key: 'Vultr key'
       region: 'ams'
 
     inputs:
-      - name: 'vultr_os'
-        type: 'list'
-        options:
-          - '387'
-      - name: 'vultr_plan'
-        type: 'list'
-        options:
-          - 'vc2-1c-1gb'
-          - 'vc2-1c-2gb'
-          - 'vc2-1c-4gb'
+       - name: 'vultr_os'
+         type: 'list'
+         default: '387'
+         options:
+           - '387'
+       - name: 'vultr_plan'
+         type: 'list'
+         default: 'vc2-1c-1gb'
+         options:
+           - 'vc2-1c-1gb'
+           - 'vc2-1c-2gb'
+           - 'vc2-1c-4gb'
 
 Metal:
 
@@ -66,20 +69,20 @@ Metal:
     provider: 'vultr_metal'
 
     connection:
-    key: 'Vultr key'
-    region: 'ams'
+      key: 'Vultr key'
+      region: 'ams'
 
     inputs:
-      - name: 'vultr_os'
-        type: 'list'
-        default: '387'
-        options:
-          - '387'
-      - name: 'vultr_plan'
-        type: 'list'
-        default: 'vbm-4c-32gb'
-        options:
-          - 'vbm-4c-32gb'
+       - name: 'vultr_os'
+         type: 'list'
+         default: '387'
+         options:
+           - '387'
+       - name: 'vultr_plan'
+         type: 'list'
+         default: 'vbm-4c-32gb'
+         options:
+           - 'vbm-4c-32gb'
 
 Then you just need to use the command ``oneprovider create``:
 
@@ -88,7 +91,7 @@ Then you just need to use the command ``oneprovider create``:
    $ oneprovider create provider.yaml
    ID: 0
 
-The providers' templates are located in ``/usr/share/one/oneprovision/edge-clusters/virtual/providers/vultr``. You just need to enter valid credentials.
+The providers templates for metal and virtual Provisions are located in ``/usr/share/one/oneprovision/edge-clusters/metal/providers/vultr`` and ``/usr/share/one/oneprovision/edge-clusters/virtual/providers/vultr``, respectively. You just need to enter valid credentials.
 
 .. include:: customize.txt
 

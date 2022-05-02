@@ -1,0 +1,16 @@
+Activate the Provider
+================================================================================
+
+By default this provider and its associated provisions are disabled. To use it you need first to execute the following commands in the OpenNebula front-end:
+
+* First enable the provider
+
+.. prompt:: bash $ auto
+
+    sudo ln -s /etc/one/fireedge/provision/providers.d-extra/<PROVIDER> /etc/one/fireedge/provision/providers.d
+
+* Then enable the virtual provisions, note that you only need to do this once for any provider:
+
+.. prompt:: bash $ auto
+
+    sudo ln -s /usr/share/one/oneprovision/edge-clusters-extra/virtual /usr/share/one/oneprovision/edge-clusters

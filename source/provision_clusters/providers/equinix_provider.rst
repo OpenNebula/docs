@@ -52,6 +52,6 @@ Then you just need to use the command ``oneprovider create``:
    $ oneprovider create provider.yaml
    ID: 0
 
-The providers' templates are located in ``/usr/share/one/oneprovision/edge-clusters/<type>/providers/equinix``. You just need to enter valid credentials.
+The providers' templates are located in ``/usr/share/one/oneprovision/edge-clusters/metal/providers/equinix``. You just need to enter valid credentials.
 
 .. include:: customize.txt

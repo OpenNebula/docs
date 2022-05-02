@@ -4,11 +4,23 @@
 AWS Edge Cluster
 ================
 
-You can run the following hypervisors in the cluster:
+Edge Cluster Types
+================================================================================
 
-* **KVM**, runs virtual machines. This hypervisor can be only used with metal clusters.
-* **Firecracker**, runs micro VMs. This hypervisor can be only used with metal clusters.
-* **LXC**, runs system containers.
+The AWS edge clusters supports two provision types:
+
+* **Metal**,  uses baremetal instances to create OpenNebula Hosts, providing the best performance and highest capacity. Metal provisions can run **LXC** or **KVM** hypervisors.
+* **Virtual**, uses a virtual machine instance to create OpenNebula Hosts. This provision is better suited for PaaS like workloads. Virtual provisions can run **LXC** or **QEMU** hypervisors.
+
+.. important::
+
+    Virtual provisions are not enabled by default, to enable them execute the following command:
+
+    .. prompt:: bash $ auto
+
+        sudo ln -s /usr/share/one/oneprovision/edge-clusters-extra/virtual /usr/share/one/oneprovision/edge-clusters
+
+    Note that you only need to do this once for any virtual provider.
 
 AWS Edge Cluster Implementation
 ================================================================================
@@ -30,11 +42,12 @@ The network model is implemented in the following way:
 
 OpenNebula resources
 ================================================================================
-In OpenNebula there are following resources created
+
+The following resources, associated to each Edge Cluster, will be created in OpenNebula:
 
 1. Cluster - containing all other resources
 2. Hosts - for each AWS instance
-3. Datastores - image + system datastores with SSH transfer manager using first instance as a replica
+3. Datastores - image and system datastores with SSH transfer manager using first instance as a replica
 4. Virtual network - for public networking
 5. Virtual network template - for private networking
 
