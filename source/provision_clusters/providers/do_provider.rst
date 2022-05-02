@@ -4,7 +4,7 @@
 DigitalOcean Providers
 ================================================================================
 
-A DigitalOcean provider contains the credentials to interact with DigitalOcean service and also the region to deploy your Edge Clusters. OpenNebula comes with four pre-defined providers in the following regions:
+A DigitalOcean provider contains the credentials to interact with DigitalOcean service and also the region to deploy your Provisions. OpenNebula comes with four pre-defined providers in the following regions:
 
 * Amsterdam
 * London
@@ -16,6 +16,8 @@ In order to define a DigitalOcean provider, you need the following information:
 
 * **Credentials**: to authenticate with DigitalOcean service. You need to provide ``token``, check `this guide for more details <https://www.digitalocean.com/community/tutorials/how-to-use-oauth-authentication-with-digitalocean-as-a-user-or-developer>`__.
 * **Region**: this is the location in the world where the resources are going to be deployed. All the available regions are `listed here <https://docs.digitalocean.com/products/platform/availability-matrix/>`__.
+
+.. include:: activate_virtual.txt
 
 How to Add a New DigitalOcean Provider
 ================================================================================
@@ -55,8 +57,4 @@ Then you just need to use the command ``oneprovider create``:
 
 The providers' templates are located in ``/usr/share/one/oneprovision/edge-clusters/virtual/providers/digitalocean``. You just need to enter valid connection ``token``.
 
-How to Customize an Existing Provider
-================================================================================
-
-The provider information is stored in the OpenNebula database and it can be updated just like any other resource. In this case, you need to use the command ``oneprovider update``. It will open an editor so you can edit all the information there.
-
+.. include:: customize.txt

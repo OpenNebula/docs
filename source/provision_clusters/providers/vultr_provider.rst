@@ -4,7 +4,7 @@
 Vultr Provider
 ==========================
 
-A Vultr provider contains the credentials to interact with Vultr and also the location to deploy your Edge Clusters. OpenNebula comes with four pre-defined providers in the following regions:
+A Vultr provider contains the credentials to interact with Vultr and also the location to deploy your Provisions. OpenNebula comes with four pre-defined providers in the following regions:
 
 * Amsterdam
 * London
@@ -17,7 +17,9 @@ In order to define a Vultr provider, you need the following information:
 * **Region**: this is the location in the world where the resources are going to be deployed. All the available `regions are listed here <https://www.vultr.com/features/datacenter-locations/>`__.
 * **Plans and OS**: these define the capacity of the resources that are going to be deployed and the operating system that is going to be installed on them.
 
-How to Create an Vultr Provider
+.. include:: activate_virtual.txt
+
+How to Create a Vultr Provider
 ================================================================================
 
 To add a new provider you need to write the previous data in YAML template:
@@ -88,9 +90,5 @@ Then you just need to use the command ``oneprovider create``:
 
 The providers' templates are located in ``/usr/share/one/oneprovision/edge-clusters/virtual/providers/vultr``. You just need to enter valid credentials.
 
-How to Customize an Existing Provider
-================================================================================
-
-The provider information is stored in the OpenNebula database and can be updated just like any other resource. In this case, you need to use the command ``oneprovider update``. It will open an editor so you can edit all the information there. You can also use the OneProvision FireEdge GUI to update all the information.
-
+.. include:: customize.txt
 
