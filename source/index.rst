@@ -31,10 +31,10 @@ OpenNebula is an open source cloud management platform that combines virtualizat
 
    Overview <overview/index>
    Quick Start <quick_start/index>
-   OpenNebula Provisions <provision_clusters/index>
    Management and Operations <management_and_operations/index>
    Installation and Configuration <installation_and_configuration/index>
    Open Cluster Deployment <open_cluster_deployment/index>
+   Automatic Open Cluster Deployment <provision_clusters/index>
    VMware Cluster Deployment <vmware_cluster_deployment/index>
    Integration and Development <integration_and_development/index>
    Release Notes <intro_release_notes/index>

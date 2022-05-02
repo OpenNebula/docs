@@ -1,7 +1,7 @@
 .. _try_hybrid_overview:
 
 ================================================================================
-OpenNebula Provisions
+Automatic Open Cluster Deployment
 ================================================================================
 
 OpenNebula Provisions is a tool to dynamically grow your cloud infrastructure with physical or virtual resources running on remote cloud providers. Provisions are used to support two main use cases:
