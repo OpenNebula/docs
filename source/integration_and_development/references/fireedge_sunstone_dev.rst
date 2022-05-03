@@ -17,11 +17,11 @@ Once the environment has been prepared, you need to clone `one repository <https
 
 Then move to FireEdge directory (``src/fireedge``) and run:
 
-.. code::
+.. prompt:: bash $ auto
 
-  npm i         # Install dependencies from package.json
-  npm run       # List the available scripts
-  npm run dev   # Start the development server. By default on http://localhost:2616/fireedge
+    $ npm i         # Install dependencies from package.json
+    $ npm run       # List the available scripts
+    $ npm run dev   # Start the development server. By default on http://localhost:2616/fireedge
 
 You can read more about this in the :ref:`FireEdge configuration guide <fireedge_install_configuration>`.
 
@@ -129,9 +129,9 @@ Sunstone
 +--------------+---------------------------------------+---------------------------------------------------------+
 | Method       | URL                                   | Meaning / Entity Body                                   |
 +==============+=======================================+=========================================================+
-| **GET**      | ``/fireedge/api/sunstone/views``      | **Get** the sunstone view.                              |
+| **GET**      | ``/fireedge/api/sunstone/views``      | **Get** the Sunstone view.                              |
 +--------------+---------------------------------------+---------------------------------------------------------+
-| **GET**      | ``/fireedge/api/sunstone/config``     | **Get** the sunstone config.                            |
+| **GET**      | ``/fireedge/api/sunstone/config``     | **Get** the Sunstone config.                            |
 +--------------+---------------------------------------+---------------------------------------------------------+
 
 vCenter
@@ -192,7 +192,7 @@ Through the configuration files we can define view types and assign them to diff
 Master File
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This file orchestrates the views according to the users's primary group and it's located in ``etc/sunstone/sunstone-view.yaml``.
+This file orchestrates the views according to the user's primary group and it's located in ``etc/sunstone/sunstone-view.yaml``.
 
 In the following example, all groups have access to the user view and ``oneadmin`` to the admin view also:
 
@@ -210,7 +210,7 @@ In the following example, all groups have access to the user view and ``oneadmin
 View Directory And Tab Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The view directory contains the route or tab files. These tab files, with yaml extension, describe the behavior of each resource list within the application: VMs, Networks, Hosts, etc.
+The view directory contains the route or tab files. These tab files, with YAML extension, describe the behavior of each resource list within the application: VMs, Networks, Hosts, etc.
 
 The tab files are located in ``etc/sunstone/<view_name>/<resource_tab>``.
 

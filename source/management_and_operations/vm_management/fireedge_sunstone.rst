@@ -9,7 +9,6 @@ Overview
 
 **FireEdge Sunstone** is the new state-of-the-art web interface, fully featured for VM and VM Template management for end users. This interface is delivered by the :ref:`FireEdge server <fireedge_setup>`, and it is its main interface, meaning that it will redirect to Sunstone when contacted in the ``http://<OPENNEBULA-FRONTEND>:2616/`` address.
 
-
 Configuration
 ================================================================================
 
@@ -20,33 +19,28 @@ To configure FireEdge Sunstone, there are several options to consider, and they 
 Usage
 ================================================================================
 
-This completely fresh user experience is available by accessing ``http://<OPENNEBULA-FRONTEND>:2616``.
-
-Users will find on the left menu the available tabs to manage resources, as described in the following subsections.
+This completely fresh user experience is available by accessing ``http://<OPENNEBULA-FRONTEND>:2616``. Users will find on the left menu the available tabs to manage resources, as described in the following subsections.
 
 VMs Tab
 --------------------------------------------------------------------------------
 
-On the VMs tab, users will find all their Virtual Machines, allowing them to instantiate VMs and manage them individually by adding attributes and performing operations like changing permissions, attaching disks, attaching networks, taking snapshots, adding scheduled action, and allowing the remote console connections, and more.
+Users will find all their Virtual Machines, allowing you to instantiate and manage them individually by adding attributes and performing operations like changing permissions, attaching disks, attaching networks, taking snapshots, adding scheduled actions, remote console connections and more.
 
-On the other hand, some actions can be done through multiple VMs such as: suspend, stop, power-off, reboot, resume, undeploy, and more.
+On the other hand, some actions can be done through multiple VMs such as: ``suspend``, ``stop``, ``power-off``, ``reboot``, ``resume``, ``undeploy`` and more.
 
 |fireedge_sunstone_vms_tab|
 
 VM Template Tab
 --------------------------------------------------------------------------------
 
-On the VM Templates tab, users will find their Templates, allowing them to update, clone, and instantiate them.
-
-Also, the user will be able to manage the permissions, share and unshare, lock and unlock them, and more.
-
+Users will find their Templates, allowing them to update, clone, and instantiate them. Also, the user will be able to manage the permissions, share and unshare, lock and unlock them, and more.
 
 |fireedge_sunstone_templates_tab|
 
 Marketplace Tab
 --------------------------------------------------------------------------------
 
-On the Marketplace Apps tab, users will be able to download images and create templates or download them locally on their computer.
+Users will be able to download images and create templates from it or download them locally on their computer.
 
 |fireedge_sunstone_marketapps_tab|
 
@@ -68,7 +62,8 @@ Default Views
 .. _fireedge_sunstone_admin_view:
 
 Admin View
-----------
+--------------------------------------------------------------------------------
+
 This view provides complete control of the Virtual Machines, Templates, and Marketplace apps. Details can be configured in ``/etc/one/fireedge/sunstone/admin/`` directory.
 
 |fireedge_sunstone_admin_view|
@@ -76,28 +71,26 @@ This view provides complete control of the Virtual Machines, Templates, and Mark
 .. _fireedge_sunstone_user_view:
 
 User View
----------
+--------------------------------------------------------------------------------
+
 Based on the Admin View. It is an advanced user view intended for users with fewer privileges than an admin user, allowing them to manage Virtual Machines and Templates. Users will not be able to manage or retrieve the hosts and clusters of the cloud. Details can be configured in the ``/etc/one/fireedge/sunstone/user/`` directory.
 
 |fireedge_sunstone_user_view|
 
 Usage
------
+--------------------------------------------------------------------------------
+
 Sunstone users can change their current view from the top-right dropdown menu:
 
 |fireedge_sunstone_change_view_dropdown|
 
 They can also configure several options from the settings tab:
 
-- Schema: Change the FireEdge Sunstone Theme to dark, light, or to match with the system.
-- Language: Select the language that they want to use for the UI.
-- Be able to disable the dashboard animations.
+- **Schema (default = System)**: change the FireEdge Sunstone Theme to dark, light or to match with the system.
+- **Language (default = English US)**: select the language that they want to use for the UI.
+- Disable the dashboard animations, by default they are enabled.
 
-All those settings are saved in the user template. If not defined, defaults values are:
-
-- Schema: System.
-- Language: English US.
-- Animations enabled.
+All those settings are saved in the user template.
 
 |fireedge_sunstone_settings|
 
@@ -106,7 +99,7 @@ All those settings are saved in the user template. If not defined, defaults valu
 Defining a New View
 --------------------------------------------------------------------------------
 
-The views definitions are placed in the "/etc/one/fireedge/sunstone/" directory. Each view is defined by a folder (named as the view) with the needed configuration files inside.
+The views definitions are placed in ``/etc/one/fireedge/sunstone/`` directory. Each view is defined by a folder (named as the view) with the needed configuration files inside.
 
 .. code::
 
@@ -129,6 +122,7 @@ The easiest way to create a custom view is to copy the ``admin`` or ``user`` fol
 
 View Customization
 --------------------------------------------------------------------------------
+
 On FireEdge Sunstone each view is defined by a folder that has the YAML files for the configured tabs. The content for those files is divided into sections that are described in the followings sections.
 
 In the following tables, the description field contains the expected behavior when is set to ``true``.
@@ -138,8 +132,9 @@ In the following tables, the description field contains the expected behavior wh
 .. _fireedge_sunstone_actions_customization:
 
 Actions
--------
-The attributes described here indicate which buttons are visible to operate over the resources. The following atributes must be nested in an ``actions`` tag.
+--------------------------------------------------------------------------------
+
+The attributes described here indicate which buttons are visible to operate over the resources. The following attributes must be nested in an ``actions`` tag.
 
 +-------------------------+-----------------------------------------------------------------------------+
 | Attribute               | Description                                                                 |
@@ -171,17 +166,17 @@ The attributes described here indicate which buttons are visible to operate over
 +-------------------------+-----------------------------------------------------------------------------+
 | ``lock``                | Users will be able to lock the resource.                                    |
 +-------------------------+-----------------------------------------------------------------------------+
-| ``migrate``             | Users will be able to migrate a Virtual Machine to a diferent host and      |
+| ``migrate``             | Users will be able to migrate a Virtual Machine to a different host and     |
 |                         | datastore.                                                                  |
 +-------------------------+-----------------------------------------------------------------------------+
-| ``migrate_live``        | Users will be able to live migrate a Virtual Machine to a diferent host and |
-|                         | datastore.                                                                  |
+| ``migrate_live``        | Users will be able to live migrate a Virtual Machine to a different host    |
+|                         | and datastore.                                                              |
 +-------------------------+-----------------------------------------------------------------------------+
-| ``migrate_poff``        | Users will be able to migrate a Virtual Machine in poweroff to a diferent   |
+| ``migrate_poff``        | Users will be able to migrate a Virtual Machine in poweroff to a different  |
 |                         | host and datastore.                                                         |
 +-------------------------+-----------------------------------------------------------------------------+
 | ``migrate_poff_hard``   | Users will be able to migrate a Virtual Machine in poweroff (hard way) to a |
-|                         | diferent host and datastore.                                                |
+|                         | different host and datastore.                                               |
 +-------------------------+-----------------------------------------------------------------------------+
 | ``poweroff``            | Users will be able to poweroff Virtual Machines.                            |
 +-------------------------+-----------------------------------------------------------------------------+
@@ -235,8 +230,9 @@ The attributes described here indicate which buttons are visible to operate over
 .. _fireedge_sunstone_filters_customization:
 
 Filters
--------
-The attributes described here indicate which filters are visible to select resources. The following atributes must be nested in a ``filters`` tag.
+--------------------------------------------------------------------------------
+
+The attributes described here indicate which filters are visible to select resources. The following attributes must be nested in a ``filters`` tag.
 
 +---------------------------+---------------------------------------------------------------------------+
 | Attribute                 | Description                                                               |
@@ -267,9 +263,9 @@ The attributes described here indicate which filters are visible to select resou
 .. _fireedge_sunstone_infotabs_customization:
 
 Info Tabs
----------
+--------------------------------------------------------------------------------
 
-The attributes described here indicate the available actions on each info tab on the resource. The following attributes must be nested in an ``info-tabs`` and the corresporesponding tab.
+The attributes described here indicate the available actions on each info tab on the resource. The following attributes must be nested in an ``info-tabs`` and the corresponding tab.
 
 +--------------------------+-----------------------------------------------------------------------------+
 | Attribute                | Description                                                                 |
@@ -298,7 +294,7 @@ The attributes described here indicate the available actions on each info tab on
 | ``vcenter_panel``        | Describes the behavior for the ``vCenter`` panel in the resource info tab.  |
 +--------------------------+-----------------------------------------------------------------------------+
 
-The available actions in the info tabs are described in the folowing table.
+The available actions in the info tabs are described in the following table.
 
 +--------------------------+-----------------------------------------------------------------------------+
 | Action                   | Description                                                                 |
@@ -307,9 +303,9 @@ The available actions in the info tabs are described in the folowing table.
 +--------------------------+-----------------------------------------------------------------------------+
 | ``attach_disk``          | Users will be able to attach disks.                                         |
 +--------------------------+-----------------------------------------------------------------------------+
-| ``attach_nic``           | Users will be able to attach nics.                                          |
+| ``attach_nic``           | Users will be able to attach NICs.                                          |
 +--------------------------+-----------------------------------------------------------------------------+
-| ``attach_secgroup``      | Users will be able to attach security groups to nics.                       |
+| ``attach_secgroup``      | Users will be able to attach security groups to NICs.                       |
 +--------------------------+-----------------------------------------------------------------------------+
 | ``charter_create``       | Users will be able to create charters.                                      |
 +--------------------------+-----------------------------------------------------------------------------+
@@ -325,9 +321,9 @@ The available actions in the info tabs are described in the folowing table.
 +--------------------------+-----------------------------------------------------------------------------+
 | ``detach_disk``          | Users will be able to detach disks.                                         |
 +--------------------------+-----------------------------------------------------------------------------+
-| ``detach_nic``           | Users will be able to detach nics.                                          |
+| ``detach_nic``           | Users will be able to detach NICs.                                          |
 +--------------------------+-----------------------------------------------------------------------------+
-| ``detach_secgroup``      | Users will be able to detach security groups to nics.                       |
+| ``detach_secgroup``      | Users will be able to detach security groups to NICs.                       |
 +--------------------------+-----------------------------------------------------------------------------+
 | ``disk_saveas``          | Users will be able to save disks as an image.                               |
 +--------------------------+-----------------------------------------------------------------------------+
@@ -363,7 +359,7 @@ The available actions in the info tabs are described in the folowing table.
 .. _fireedge_sunstone_dialogs_customization:
 
 Dialogs
--------
+--------------------------------------------------------------------------------
 
 The attributes described here indicate the available actions on each dialog on the resource.
 
