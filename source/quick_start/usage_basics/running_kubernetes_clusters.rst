@@ -21,7 +21,7 @@ Now you need to select a datastore. Select the ``metal-kvm-aws-cluster-Images`` 
 
 |metal_kvm_aws_cluster_images_datastore|
 
-The Appliance will be ready when the image in ``Storage --> Images`` switches to ``READY`` from its ``LOCKED`` state.
+The Appliance will be ready when the image in ``Storage --> Images`` switches to ``READY`` from its ``LOCKED`` state. This process may take significant amount of time based on the networking resources available in your infrastructure (Kubernetes 1.23 amounts to a total of 120GB).
 
 .. |kubernetes_marketplace| image:: /images/kubernetes_marketplace.png
 .. |metal_kvm_aws_cluster_images_datastore| image:: /images/metal_kvm_aws_cluster_images_datastore.png
