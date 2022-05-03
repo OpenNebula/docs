@@ -1,6 +1,6 @@
 Edge Clusters can be *virtual* or *metal* depending of the instance type used to build the cluster. Note that not all providers offer both instance types.
 
-.. important:: Providers based on virtual instances have been disabled by default.
+.. important:: Providers based on *virtual* instances have been disabled by default.
 
 .. list-table::
    :widths: 50, 50, 100
