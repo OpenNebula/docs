@@ -115,6 +115,7 @@ Other Issues Solved
 - `Fix VNC port clean up during 'onevm recover --recreate' <https://github.com/OpenNebula/one/issues/5796>`__.
 - `Fix onemarketapp export error when having user inputs <https://github.com/OpenNebula/one/issues/5794>`__.
 - `Fix VMs monitored multiple times when datastore drivers are changed from ssh <https://github.com/OpenNebula/one/issues/5765>`__.
+- `Fix XFS formatting on empty datablocks <https://github.com/OpenNebula/one/issues/5810>`__.
 
 Features Backported to 6.2.x
 ============================
