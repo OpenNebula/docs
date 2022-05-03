@@ -116,6 +116,7 @@ Other Issues Solved
 - `Fix onemarketapp export error when having user inputs <https://github.com/OpenNebula/one/issues/5794>`__.
 - `Fix VMs monitored multiple times when datastore drivers are changed from ssh <https://github.com/OpenNebula/one/issues/5765>`__.
 - `Fix XFS formatting on empty datablocks <https://github.com/OpenNebula/one/issues/5810>`__.
+- `Fix Importing a OneFlow template from marketplace into vCenter fails <https://github.com/OpenNebula/one/issues/5812>`__.
 
 Features Backported to 6.2.x
 ============================
