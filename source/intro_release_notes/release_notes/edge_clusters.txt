@@ -32,7 +32,5 @@ The Edge Cluster type determines the hypervisor and workload that can be run in 
    | :ref:`I want to run virtual servers...                             | metal        | KVM, LXC                                                  |
    | <running_virtual_machines>`                                        |              |                                                           |
    +--------------------------------------------------------------------+--------------+-----------------------------------------------------------+
-   | I want to run a Kubernetes cluster...                              | metal        | KVM, LXC (:ref:`k8s based <running_kubernetes_clusters>`) |
+   | I want to run a Kubernetes cluster...                              | metal        | KVM                                                       |
    +--------------------------------------------------------------------+--------------+-----------------------------------------------------------+
-
-In the above table, *application containers* are those imported from DockerHub, LinuxContainers or TunrkeyLinux, as well as images created from DockerFiles. On the other hand *Virtual servers* use full system disk images.
