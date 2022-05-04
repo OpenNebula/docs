@@ -17,13 +17,21 @@ In order to define a Vultr provider, you need the following information:
 * **Region**: this is the location in the world where the resources are going to be deployed. All the available `regions are listed here <https://www.vultr.com/features/datacenter-locations/>`__.
 * **Plans and OS**: these define the capacity of the resources that are going to be deployed and the operating system that is going to be installed on them.
 
+.. warning:: Please note even though Vultr support multiple OSs, the automation tools are tailored to works with ``Ubuntu 20.04``. If you use another OS, please be aware that it might required some adjustments, and things might not work as expected. Avoid using a different OS in production environment unless you've properly tested it before.
+
+..
+  Replace variables from activate_virtual.txt
+
+.. |PROVIDER| replace:: vultr_virtual.yaml
+
 .. include:: activate_virtual.txt
 
-* Finally enable the metal provisions for Vultr:
+..
+  Replace variables from activate_virtual.txt
 
-.. prompt:: bash $ auto
+.. |PROVIDER_METAL| replace:: vultr.*
 
-    sudo ln -s /usr/share/one/oneprovision/edge-clusters-extra/metal/provisions/vultr.* /usr/share/one/oneprovision/edge-clusters/metal/provisions/
+.. include:: activate_metal.txt
 
 How to Create a Vultr Provider
 ================================================================================
@@ -38,25 +46,24 @@ Virtual:
     name: 'vultr-amsterdam'
 
     description: 'Edge cluster in Vultr Amsterdam'
-    provider: 'vultr_virtual'
+    provider: 'vultr_metal'
 
     connection:
       key: 'Vultr key'
       region: 'ams'
 
     inputs:
-       - name: 'vultr_os'
-         type: 'list'
-         default: '387'
-         options:
-           - '387'
-       - name: 'vultr_plan'
-         type: 'list'
-         default: 'vc2-1c-1gb'
-         options:
-           - 'vc2-1c-1gb'
-           - 'vc2-1c-2gb'
-           - 'vc2-1c-4gb'
+      - name: 'vultr_os'
+        type: 'list'
+        default: '387'
+        options:
+          - '387'
+      - name: 'vultr_plan'
+        type: 'list'
+        default: 'vbm-4c-32gb'
+        options:
+          - 'vbm-4c-32gb'
+
 
 Metal:
 
@@ -73,16 +80,16 @@ Metal:
       region: 'ams'
 
     inputs:
-       - name: 'vultr_os'
-         type: 'list'
-         default: '387'
-         options:
-           - '387'
-       - name: 'vultr_plan'
-         type: 'list'
-         default: 'vbm-4c-32gb'
-         options:
-           - 'vbm-4c-32gb'
+      - name: 'vultr_os'
+        type: 'list'
+        default: '387'
+        options:
+          - '387'
+      - name: 'vultr_plan'
+        type: 'list'
+        default: 'vbm-4c-32gb'
+        options:
+          - 'vbm-4c-32gb'
 
 Then you just need to use the command ``oneprovider create``:
 

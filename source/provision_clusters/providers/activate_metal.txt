@@ -1,0 +1,11 @@
+..
+   Replace the |PROVIDER| variable in every file which includes this one. https://docutils.sourceforge.io/docs/ref/rst/directives.html#replacement-text
+
+Activate the Provider (Metal)
+================================================================================
+
+By default this provider and its associated provisions are disabled. To use it you need first to execute the following commands in the OpenNebula front-end as ``root`` user:
+
+.. parsed-literal::
+
+    ln -s /usr/share/one/oneprovision/edge-clusters-extra/metal/provisions/\ |PROVIDER_METAL|\  /usr/share/one/oneprovision/edge-clusters/metal/provisions/
