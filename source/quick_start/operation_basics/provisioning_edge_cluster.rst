@@ -14,7 +14,7 @@ An Edge Cluster is a group of resources in OpenNebula and the corresponding reso
 The following resources are created in OpenNebula when a new Edge Cluster is deployed:
 
 * **Cluster**: one cluster containing all the resources is created with each provision. There is a one-to-one relationship between the provision and the cluster, so each provision can only have **one** cluster.
-* **Datastore**: each provision deploys two datastores, the system and the image. This is based on :ref:`OneStor datatores <onestor_ds>` in the case of Edge Clusters (and in Ceph in the case of HCI Clusters.
+* **Datastore**: each provision deploys two datastores, the system and the image. This is based on :ref:`OneStor datatores <onestor_ds>` in the case of Edge Clusters (and in Ceph in the case of HCI Clusters).
 * **Host**: the user can deploy as many as he or she wants. They will be used to run VMs.
 * **Virtual Network**: for private networking there is a network template ready to be instantiated with the parameters the user needs. There is also one public network that uses the elastic drivers to pre-allocate IPs, so VMs have public connectivity.
 
