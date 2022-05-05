@@ -89,6 +89,9 @@ They can also configure several options from the settings tab:
 - **Schema (default = System)**: change the FireEdge Sunstone Theme to dark, light or to match with the system.
 - **Language (default = English US)**: select the language that they want to use for the UI.
 - Disable the dashboard animations, by default they are enabled.
+- **SSH Public key**: allows the user to specify a public SSH key that they can use on the VMs.
+- **SSH Private key**: allows the user to specify a private SSH key that they can use when establishing connections with their VMs.
+- **SSH Private key passphrase**: if the private SSH key is encrypted, the user must specify the password.
 
 All those settings are saved in the user template.
 
