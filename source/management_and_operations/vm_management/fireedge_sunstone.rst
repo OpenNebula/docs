@@ -19,7 +19,33 @@ To configure FireEdge Sunstone, there are several options to consider, and they 
 Usage
 ================================================================================
 
-This completely fresh user experience is available by accessing ``http://<OPENNEBULA-FRONTEND>:2616``. Users will find on the left menu the available tabs to manage resources, as described in the following subsections.
+This completely fresh user experience is available by accessing ``http://<OPENNEBULA-FRONTEND>:2616``. On the left menu the users can find the available tabs to manage resources, as described in the tabs section.
+
+Sunstone users can change their current view from the top-right dropdown menu:
+
+|fireedge_sunstone_change_view_dropdown|
+
+They can also configure several options from the settings tab:
+
+- **Schema (default = System)**: change the FireEdge Sunstone Theme to dark, light or matching with the system.
+- **Language (default = English US)**: select the language that they want to use for the UI.
+- Disable the dashboard animations. By default they are enabled.
+- **SSH Public key**: allows the user to specify a public SSH key that they can use on the VMs.
+- **SSH Private key**: allows the user to specify a private SSH key that they can use when establishing connections with their VMs.
+- **SSH Private key passphrase**: if the private SSH key is encrypted, the user must specify the password.
+
+All those settings are saved in the user template.
+
+|fireedge_sunstone_settings|
+
+.. _fireedge_sunstone_tabs:
+
+Tabs
+================================================================================
+
+The available tabs for FireEdge Sunstone are described in the following subsections.
+
+.. _fireedge_sunstone_vms_tab:
 
 VMs Tab
 --------------------------------------------------------------------------------
@@ -30,6 +56,8 @@ On the other hand, some actions can be done through multiple VMs such as: ``susp
 
 |fireedge_sunstone_vms_tab|
 
+.. _fireedge_sunstone_templates_tab:
+
 VM Template Tab
 --------------------------------------------------------------------------------
 
@@ -37,7 +65,9 @@ Users will find their Templates, allowing them to update, clone, and instantiate
 
 |fireedge_sunstone_templates_tab|
 
-Marketplace Tab
+.. _fireedge_sunstone_marketplace_apps_tab:
+
+Marketplace Apps Tab
 --------------------------------------------------------------------------------
 
 Users will be able to download images and create templates from it or download them locally on their computer.
@@ -76,26 +106,6 @@ User View
 Based on the Admin View. It is an advanced user view intended for users with fewer privileges than an admin user, allowing them to manage Virtual Machines and Templates. Users will not be able to manage or retrieve the hosts and clusters of the cloud. Details can be configured in the ``/etc/one/fireedge/sunstone/user/`` directory.
 
 |fireedge_sunstone_user_view|
-
-Usage
---------------------------------------------------------------------------------
-
-Sunstone users can change their current view from the top-right dropdown menu:
-
-|fireedge_sunstone_change_view_dropdown|
-
-They can also configure several options from the settings tab:
-
-- **Schema (default = System)**: change the FireEdge Sunstone Theme to dark, light or to match with the system.
-- **Language (default = English US)**: select the language that they want to use for the UI.
-- Disable the dashboard animations, by default they are enabled.
-- **SSH Public key**: allows the user to specify a public SSH key that they can use on the VMs.
-- **SSH Private key**: allows the user to specify a private SSH key that they can use when establishing connections with their VMs.
-- **SSH Private key passphrase**: if the private SSH key is encrypted, the user must specify the password.
-
-All those settings are saved in the user template.
-
-|fireedge_sunstone_settings|
 
 .. _fireedge_sunstone_new_view:
 
