@@ -13,8 +13,8 @@ OpenNebula Provisions is a tool to dynamically grow your cloud infrastructure wi
 .. toctree::
    :maxdepth: 2
 
-   Providers <providers/index>
-   Edge Clusters <edge_clusters/index>
-   HCI Clusters <hci_clusters/index>
+   Edge and Cloud Providers <providers/index>
+   Edge Cluster Provisions <edge_clusters/index>
+   HCI Cluster Provisions <hci_clusters/index>
    Operations <operations/index>
    References <references/index>
