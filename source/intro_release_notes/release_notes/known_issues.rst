@@ -44,3 +44,11 @@ Virtual Machines Backup
 
 When taking a VM backup, if the upload process fails and the app results in ERROR state, the backup will complete successfully. A detailed explanation can be found `here <https://github.com/OpenNebula/one/issues/5454>`__.
 
+Warning when Exporting an App from the Marketplace Using CLI
+================================================================================
+
+When exporting an application from the marketplace using the CLI the following warning can be seen:
+
+.. prompt:: bash $ auto
+
+    /usr/lib/one/ruby/opennebula/xml_element.rb:124: warning: Passing a Node as the second parameter to Node.new is deprecated. Please pass a Document instead, or prefer an alternative constructor like Node#add_child. This will become an error in a future release of Nokogiri.
