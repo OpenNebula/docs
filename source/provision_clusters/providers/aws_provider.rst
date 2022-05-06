@@ -11,8 +11,6 @@ An AWS provider contains the credentials to interact with Amazon and also the re
 * North Virginia (US)
 * North California (US)
 
-TODO: How to enable more zones? Why only these ones?
-
 In order to define an AWS provider, you need the following information:
 
 * **Credentials**: these are used to interact with the remote provider. You need to provide ``access_key`` and ``secret_key``. You can follow `this guide <https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html>`__.
@@ -62,6 +60,6 @@ Then you just need to use the command ``oneprovider create``:
    $ oneprovider create provider.yaml
    ID: 0
 
-The providers' templates are located in ``/usr/share/one/oneprovision/edge-clusters/<type>/providers/aws``. You just need to enter valid credentials.
+The providers' templates are located in ``/usr/share/one/oneprovision/edge-clusters/<type>/providers/aws``. You just need to enter valid credentials, or input any other additional zone.
 
 .. include:: customize.txt
