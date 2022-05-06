@@ -12,6 +12,6 @@ By default this provider and its associated provisions are disabled. To use it y
     ln -s /usr/share/one/oneprovision/edge-clusters-extra/virtual /usr/share/one/oneprovision/edge-clusters
 
 
-The commands above will first enable the specific provider and later enable the virtual provisions.
+The commands above will enable the specific provider and enable the virtual provisions, respectively.
 
-.. note:: The second command is only required the first time you enable a virtual provider. After that the link should exists when activating any other virtual provider.
+.. note:: The second command is only required the first time you enable a virtual provider.
