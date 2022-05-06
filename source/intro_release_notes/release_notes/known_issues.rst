@@ -52,3 +52,5 @@ When exporting an application from the marketplace using the CLI the following w
 .. prompt:: bash $ auto
 
     /usr/lib/one/ruby/opennebula/xml_element.rb:124: warning: Passing a Node as the second parameter to Node.new is deprecated. Please pass a Document instead, or prefer an alternative constructor like Node#add_child. This will become an error in a future release of Nokogiri.
+    
+This is harmless and can be discarded, it will be addressed in future releases.
