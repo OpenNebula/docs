@@ -100,7 +100,7 @@ Before we start we need to prepare the hosts for our on-prem cluster. We just ne
 Step 2. Create your On-premises cluster
 --------------------------------------------------------------------------------
 
-Check that you have your On-Premises provider created (if not, see above):
+Check that you have your On-Premises provider created (if not, the instruction for creating it can be found :ref:`here <onprem_provider>`):
 
 .. prompt:: bash $ auto
 
@@ -112,47 +112,50 @@ Now we can create our On-Premises Edge Cluster, grab the attributes for the inpu
 
 .. prompt:: bash $ auto
 
-    $ oneprovision create -Dd --provider onprem /usr/share/one/oneprovision/edge-clusters/onprem/provisions/onprem-hci.yml
+    $ oneprovision create -Dd --provider onprem /usr/share/one/oneprovision/edge-clusters/metal/provisions/onprem-hci.yml
+      2022-05-05 09:01:08 DEBUG : Executing command: `create`
+      2022-05-05 09:01:08 DEBUG : Command options: debug [verbose, true] [provider, onprem] [sync, true]
+      ID: 2
 
-    2021-04-28 18:04:45 DEBUG : Executing command: `create`
-    2021-04-28 18:04:45 DEBUG : Command options: debug [verbose, true] [provider, onprem] [sync, true]
-    ID: 4
-    Virtualization technology for the cluster hosts
+      Virtualization technology for the cluster hosts
 
-        0  kvm
-        1  lxc
+          -  kvm
+          -  lxc
 
-    Please select the option (default=): lxc
+      Please select the option (default=): kvm
 
-    Physical device to be used for private networking.
-    Text `private_phydev` (default=): eth0
+      Physical device to be used for private networking.
+      Text `private_phydev` (default=): eth1
 
-    Semicolon separated list of FQDNs or IP addresses of the Ceph full hosts to be added to the cluster (osd + mon)
-    Array `hosts_names` (default=): host01;host02;host03
+      Hosts to run hypervisor, osd and mon ceph daemons (semicolon list of FQDNs or IPs)
+      Array `ceph_full_hosts_names` (default=): host01;host02;host03
 
-    Semicolon separated list of FQDNs or IP addresses of the Ceph osd hosts to be added to the cluster (osd only)
-    Array `ceph_osd_hosts_names` (default=):
+      Hosts to run hypervisor and osd daemons (semicolon list of FQDNs or IPs)
+      Array `ceph_osd_hosts_names` (default=):
 
-    Semicolon separated list of FQDNs or IP addresses of the non-Ceph hosts to be added to the cluster (ceph client)
-    Array `client_hosts_names` (default=):
+      Hosts to run hypervisor and ceph client (semicolon list of FQDNs or IPs)
+      Array `client_hosts_names` (default=):
 
-    Physical device to be used for public networking.
-    Text `public_phydev` (default=): eth1
+      Physical device to be used for public networking.
+      Text `public_phydev` (default=): eth0
 
-    First public IP for the public IPs address range.
-    Text `first_public_ip` (default=): 172.16.0.2
+      First public IP for the public IPs address range.
+      Text `first_public_ip` (default=): 172.20.0.51
 
-    Number of public IPs to get
-    Text `number_public_ips` (default=1): 10
+      Number of public IPs to get
+      Text `number_public_ips` (default=1): 5
 
-    Semicolon separated list of block devices for Ceph OSD
-    Array `ceph_device` (default=/dev/sdb): /dev/sdb
+      Block devices for Ceph OSD (semicolon separated list)
+      Array `ceph_device` (default=/dev/sdb): /dev/sdb
 
-    2021-04-28 18:05:15 INFO  : Creating provision objects
-    ...
+      Physical device to be used for Ceph.
+      Text `ceph_monitor_interface` (default=eth0): eth1
 
-    Provision successfully created
-    ID: 4
+      Ceph public network in CIDR notation
+      Text `ceph_public_network` (default=):
+      ...
+      Provision successfully created
+      ID: 4
 
 Step 3. Quick tour on your new cluster
 --------------------------------------------------------------------------------

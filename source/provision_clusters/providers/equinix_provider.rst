@@ -11,11 +11,15 @@ An Equinix provider contains the credentials to interact with Equinix and also t
 * Tokyo
 * California (US)
 
+TODO: How to enable more zones? Why only these ones?
+
 In order to define an Equinix provider, you need the following information:
 
 * **Credentials**: these are used to interact with the remote provider. You need to provide ``token`` and ``project``. You can follow `this guide <https://metal.equinix.com/developers/api/>`__ to get this data.
 * **Facility**: this is the location in the world where the resources are going to be deployed. All the available `facilities are listed here <https://www.equinix.com/data-centers/>`__.
 * **Plans and OS**: these define the capacity of the resources that are going to be deployed and the operating system that is going to be installed on them.
+
+.. warning:: Please note even though Equinix support multiple OSs, the automation tools are tailored to works with ``Ubuntu 20.04``. If you use another OS, please be aware that it might required some adjustments, and things might not work as expected. Avoid using a different OS in production environment unless you've properly tested it before.
 
 How to Create an Equinix Provider
 ================================================================================
@@ -38,12 +42,17 @@ To add a new provider you need to write the previous data in YAML template:
     inputs:
       - name: 'equinix_os'
         type: 'list'
+        default: 'ubuntu_20_04'
         options:
-          - 'centos_8'
+          - 'ubuntu_20_04'
       - name: 'equinix_plan'
         type: 'list'
+        default: 't1.small'
         options:
-          - 'baremetal_0'
+          - 't1.small'
+          - 'c1.small'
+          - 'm1.xlarge'
+
 
 Then you just need to use the command ``oneprovider create``:
 
