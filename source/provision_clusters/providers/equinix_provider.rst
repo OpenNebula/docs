@@ -11,8 +11,6 @@ An Equinix provider contains the credentials to interact with Equinix and also t
 * Tokyo
 * California (US)
 
-TODO: How to enable more zones? Why only these ones?
-
 In order to define an Equinix provider, you need the following information:
 
 * **Credentials**: these are used to interact with the remote provider. You need to provide ``token`` and ``project``. You can follow `this guide <https://metal.equinix.com/developers/api/>`__ to get this data.
