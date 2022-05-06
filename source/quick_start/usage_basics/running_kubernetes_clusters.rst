@@ -17,7 +17,7 @@ Log in to Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab and search fo
 
 |kubernetes_marketplace|
 
-Now you need to select a datastore. Select the ``metal-kvm-aws-cluster-Images`` Datastore.
+Now you need to select a datastore. Select the ``metal-kvm-aws-cluster-image`` Datastore.
 
 |metal_kvm_aws_cluster_images_datastore|
 
@@ -26,7 +26,22 @@ The Appliance will be ready when the image in ``Storage --> Images`` switches to
 .. |kubernetes_marketplace| image:: /images/kubernetes_marketplace.png
 .. |metal_kvm_aws_cluster_images_datastore| image:: /images/metal_kvm_aws_cluster_images_datastore.png
 
-Step 2. Instantiate the Kubernetes Service
+Step 2. Instantiate private network
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+If you are trying the Kubernets Service on the provisioned AWS cluster you need to instantiate the virtual private network first and assign a range to it. To do so, go to the ``Network --> Network Templates`` and open a ``metal-aws-edge-cluster-private`` Virtual Network Template.
+
+We need to first put name, e.g. ``aws-private`` and then add address range, click ``+ Address Range`` and put some private IPv4 range, e.g. ``172.20.0.1``, for size we can put ``100``.
+
+Last thing you need to add to the network is DNS server, click the ``Context`` under Network configuration and put some common DNS server, e.g. ``8.8.8.8``.
+
+|kubernetes-qs-create-ar|
+
+Now you are ready to start the Kubernetes Service.
+
+.. |kubernetes-qs-create-ar| image:: /images/kubernetes-qs-create-ar.png
+
+
+Step 3. Instantiate the Kubernetes Service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. note::
@@ -37,9 +52,16 @@ Step 2. Instantiate the Kubernetes Service
 
 Proceed to the ``Templates --> Services`` tab and select the ``Service Kubernetes 1.23`` Service Template (that should be the only one available). Click on ``+`` and then ``Instantiate``.
 
-A required step is clicking on ``Network`` and selecting the ``metal-kvm-aws-cluster-public`` network.
+A required step is clicking on ``Network`` and selecting the ``metal-kvm-aws-cluster-public`` network for public network.
 
-|select_metal_aws_cluster_public_network|
+And for private network we will use the ``aws-private`` we instantiated before.
+
+
+|kubernetes-qs-pick-networks|
+
+Also, we need to specify some VIPs from the private subnet, put e.g.: ``172.20.0.10`` and ``172.20.0.20``
+
+|kubernetes-qs-pick-vips|
 
 Feel free to set any `contextualization parameters <https://docs.opennebula.io/appliances/service/kubernetes.html#k8s-context-param>`_ (shown in the picture below) to configure the Kubernetes cluster. You will most likely want to setup IP range for the `Kubernetes LoadBalancer <https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer>`_ - that can be done either by providing the complete config in ``ONEAPP_K8S_LOADBALANCER_CONFIG`` (it's a `configmap for MetalLB <https://metallb.universe.tf/configuration/#layer-2-configuration>`_) or set one in ``ONEAPP_K8S_LOADBALANCER_RANGE`` (e.g.: ``10.0.0.0-10.255.255.255``). More info on the topic can be found in the `LoadBalancer Service section <https://docs.opennebula.io/appliances/service/kubernetes.html#loadbalancer-service>`_ of the Kubernetes Appliance documentation.
 
@@ -57,13 +79,16 @@ Now proceed to ``Instances --> Services`` and wait for the only Service there to
 
 .. note:: Even though Sunstone shows the VNC console button, VNC access to VMs running in Edge Clusters has been deemed insecure and as such OpenNebula filters this traffic. This means that the VNC access won't work for VMs running in Edge Clusters.
 
-.. |select_metal_aws_cluster_public_network| image:: /images/select_metal_aws_cluster_public_network.png
+.. |kubernetes-qs-pick-networks| image:: /images/kubernetes-qs-pick-networks.png
+.. |kubernetes-qs-pick-vips| image:: /images/kubernetes-qs-pick-vips.png
 .. |configure_kubernetes_cluster| image:: /images/configure_kubernetes_cluster.png
 
-Step 3. Validate the Kubernetes cluster
+Step 4. Validate the Kubernetes cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Once the service is in ``RUNNING`` state, you can start using the Kubernetes cluster. Let's first log in to the Kubernetes cluster master. Go to ``Instances --> VMs`` and check the public IP (from the dropdown, the one highlighted in bold).
+Once the service is in ``RUNNING`` state, you can start using the Kubernetes cluster. Let's first log in to the Kubernetes cluster VNF. Go to ``Instances --> VMs`` and check the public IP (from the dropdown, the one highlighted in bold).
+
+From here you can reach other VMs from the cluster on their private IP. In our case Kubernets master has IP address ``172.20.0.2``. With the ssh-agent runnign you should be able to connect to it.
 
 We'll use the ``oneadmin`` account in your OpenNebula Front-end. Please SSH to the Front-end first, and from there, as oneadmin, you should SSH in to the Kubernetes cluster master as ``root``. You should be greeted with the following message:
 
@@ -82,10 +107,12 @@ We are going to use the root account in the master to perform a simple validatio
 
 .. prompt:: yaml $ auto
 
-    [root@onekube-ip-10-0-17-190 ~]# kubectl get nodes
-    NAME                                  STATUS   ROLES    AGE   VERSION
-    onekube-ip-10-0-109-134.localdomain   Ready    <none>   27m   v1.18.10
-    onekube-ip-10-0-17-190.localdomain    Ready    master   29m   v1.18.10
+    root@onekube-ip-172-20-0-2:~# kubectl get nodes
+    NAME                    STATUS   ROLES                  AGE     VERSION
+    onekube-ip-172-20-0-2   Ready    control-plane,master   7m30s   v1.23.6
+    onekube-ip-172-20-0-3   Ready    <none>                 4m33s   v1.23.6
+    onekube-ip-172-20-0-4   Ready    <none>                 2m39s   v1.23.6
+
 
 Now create a file ``kubetest_1pod.yaml`` with the following contents:
 
@@ -126,11 +153,11 @@ After a few seconds, you should be able to see the simple pod in RUNNING state:
 
 .. prompt:: yaml $ auto
 
-   [root@onekube-ip-10-0-17-190 ~]# kubectl get pod
-   NAME                        READY   STATUS    RESTARTS   AGE
-   kubetest-6bfc69d7ff-fcl22   1/1     Running   0          8m13s
+    root@onekube-ip-172-20-0-2:~# kubectl get pod
+    NAME                        READY   STATUS    RESTARTS   AGE
+    kubetest-7655fb5bdb-ztblz   1/1     Running   0          69s
 
-Step 4. Deploy an Application
+Step 5. Deploy an Application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Let's deploy nginx on the cluster:
