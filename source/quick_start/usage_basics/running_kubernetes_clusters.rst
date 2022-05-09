@@ -8,7 +8,7 @@ In the public OpenNebula System Marketplace there are also services available th
 
 .. note ::
 
-    Please ensure that the frontend you deployed has a publicly accessible IP address so the deployed services can report to the OneGate server. See `OneGate Configuration <onegate>` for more details
+    Please ensure that the frontend you deployed has a publicly accessible IP address so the deployed services can report to the OneGate server. See :ref:`OneGate Configuration <onegate_conf>` for more details
 
 .. warning:: If you want to use this App in KVM, we need a metal KVM Edge Cluster for this. If you haven't already done so, you can follow the same steps of the :ref:`provisioning an edge cluster <first_edge_cluster>` guide, using "metal" edge cloud type and kvm hypervisor. Make sure you request two public IPs. This App can also be used in vCenter. If you plan to use vCenter, we need a Cluster that meets the necessary resource requirements.
 
