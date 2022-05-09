@@ -34,7 +34,7 @@ sys.path.append(os.path.abspath('ext'))
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = ['sphinx.ext.todo','versions','sphinx-prompt']
 
-todo_include_todos = True
+todo_include_todos = False
 
 site_conf = yaml.safe_load(open('site_conf.yml').read())
 
