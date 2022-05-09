@@ -48,8 +48,6 @@ Step 3. Instantiate the Kubernetes Service
 
     You may want to adjust the VM templates before you progress further - go to ``Templates --> VMs``, click on the ``Service Kubernetes 1.23`` and blue button ``Update`` at the top.
 
-    Here you can increase memory for the nodes, disk capacity, add SSH key, etc. How to modify the VM template is summarized in the short `Quick Start <https://docs.opennebula.io/appliances/service/kubernetes.html#update-vm-template>`_ for the Kubernetes Appliance.
-
 Proceed to the ``Templates --> Services`` tab and select the ``Service Kubernetes 1.23`` Service Template (that should be the only one available). Click on ``+`` and then ``Instantiate``.
 
 A required step is clicking on ``Network`` and selecting the ``metal-kvm-aws-cluster-public`` network for public network.
@@ -63,13 +61,7 @@ Also, we need to specify some VIPs from the private subnet, put e.g.: ``172.20.0
 
 |kubernetes-qs-pick-vips|
 
-Feel free to set any `contextualization parameters <https://docs.opennebula.io/appliances/service/kubernetes.html#k8s-context-param>`_ (shown in the picture below) to configure the Kubernetes cluster. You will most likely want to setup IP range for the `Kubernetes LoadBalancer <https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer>`_ - that can be done either by providing the complete config in ``ONEAPP_K8S_LOADBALANCER_CONFIG`` (it's a `configmap for MetalLB <https://metallb.universe.tf/configuration/#layer-2-configuration>`_) or set one in ``ONEAPP_K8S_LOADBALANCER_RANGE`` (e.g.: ``10.0.0.0-10.255.255.255``). More info on the topic can be found in the `LoadBalancer Service section <https://docs.opennebula.io/appliances/service/kubernetes.html#loadbalancer-service>`_ of the Kubernetes Appliance documentation.
-
-.. note::
-
-    Master related context parameters apply to the role **master** which is on the left. No need to setup or change anything for the **worker** on the right.
-
-|configure_kubernetes_cluster|
+You will most likely want to setup IP range for the `Kubernetes LoadBalancer <https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer>`_ - that can be done either by providing the complete config in ``ONEAPP_K8S_LOADBALANCER_CONFIG`` (it's a `configmap for MetalLB <https://metallb.universe.tf/configuration/#layer-2-configuration>`_) or set one in ``ONEAPP_K8S_LOADBALANCER_RANGE`` (e.g.: ``10.0.0.0-10.255.255.255``).
 
 Now proceed to ``Instances --> Services`` and wait for the only Service there to get into a ``RUNNING`` state. You can also check the VMs being deployed in ``Instances --> VMs``.
 
@@ -81,7 +73,6 @@ Now proceed to ``Instances --> Services`` and wait for the only Service there to
 
 .. |kubernetes-qs-pick-networks| image:: /images/kubernetes-qs-pick-networks.png
 .. |kubernetes-qs-pick-vips| image:: /images/kubernetes-qs-pick-vips.png
-.. |configure_kubernetes_cluster| image:: /images/configure_kubernetes_cluster.png
 
 Step 4. Validate the Kubernetes cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -157,7 +148,77 @@ After a few seconds, you should be able to see the simple pod in RUNNING state:
     NAME                        READY   STATUS    RESTARTS   AGE
     kubetest-7655fb5bdb-ztblz   1/1     Running   0          69s
 
-Step 5. Deploy an Application
+Step 5. Connect to Kubernetes API via SSH tunnel
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+By default Kubernetes API Server's extra SANs are set to **localhost,127.0.0.1** which allows to access Kubernetes API via SSH tunnels.
+
+To create a SSH tunnel through a VNF node you need to allow ``AllowTcpForwarding yes`` and (optionally) ``AllowAgentForwarding yes`` inside the **/etc/ssh/sshd_config** file on VNF nodes:
+
+.. prompt:: text [vnf]# auto
+
+    [vnf]# gawk -i inplace -f- /etc/ssh/sshd_config <<'EOF'
+    BEGIN { update = "AllowTcpForwarding yes" }
+    /^#*AllowTcpForwarding / { $0 = update; found = 1 }
+    { print }
+    END { if (!found) print update >>FILENAME }
+    EOF
+
+.. prompt:: text [vnf]# auto
+
+    [vnf]# gawk -i inplace -f- /etc/ssh/sshd_config <<'EOF'
+    BEGIN { update = "AllowAgentForwarding yes" }
+    /^#*AllowAgentForwarding / { $0 = update; found = 1 }
+    { print }
+    END { if (!found) print update >>FILENAME }
+    EOF
+
+After successful config update reload the sshd service:
+
+.. prompt:: text [vnf]# auto
+
+    [vnf]# rc-service sshd reload
+    * Reloading sshd ... [ ok ]
+
+We recommend using the ``ProxyCommand`` SSH feature, for example:
+
+To download the **/etc/kubernetes/admin.conf** (kubeconfig) file:
+
+.. prompt:: text [remote]$ auto
+
+    [remote]$ mkdir -p ~/.kube/
+    [remote]$ scp -o ProxyCommand='ssh -A root@1.2.3.4 -W %h:%p' root@172.20.0.2:/etc/kubernetes/admin.conf ~/.kube/config
+
+Where ``1.2.3.4`` is a **public** address of a VNF node, ``172.20.0.2`` is a **private** address of a master node (inside internal VNET).
+
+To create SSH tunnel, forward ``6443`` port and query cluster nodes:
+
+.. prompt:: text [remote]$ auto
+
+    [remote]$ ssh -o ProxyCommand='ssh -A root@1.2.3.4 -W %h:%p' -L 6443:localhost:6443 root@172.20.0.2
+
+..and then in another terminal:
+
+.. prompt:: text [remote]$ auto
+
+    [remote]$ kubectl get nodes
+    NAME                    STATUS   ROLES                  AGE     VERSION
+    onekube-ip-172-20-0-2   Ready    control-plane,master   13m     v1.23.6
+    onekube-ip-172-20-0-3   Ready    <none>                 11m     v1.23.6
+    onekube-ip-172-20-0-4   Ready    <none>                 11m     v1.23.6
+
+.. important::
+
+    You must make sure that the cluster endpoint inside the kubeconfig file (**~/.kube/config**) points to **localhost**, for example:
+
+    .. prompt:: text [remote]$ auto
+
+        gawk -i inplace -f- ~/.kube/config <<'EOF'
+        /^    server: / { $0 = "    server: https://localhost:6443" }
+        { print }
+        EOF
+
+Step 6. Deploy an Application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Let's deploy nginx on the cluster:
@@ -256,7 +317,7 @@ Now you can access the application using the public IP of the Nic Alias in the b
 LoadBalancer Service
 ++++++++++++++++++++
 
-We can improve the previous setup by configuring the Appliance with a LoadBalancer `context parameter <https://docs.opennebula.io/appliances/service/kubernetes.html#k8s-context-param>`_ for the IP range (``ONEAPP_K8S_LOADBALANCER_RANGE``) and expose the service as a `Kubernetes type LoadBalancer <https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer>`_.
+We can improve the previous setup by configuring the Appliance with a LoadBalancer context parameter for the IP range (``ONEAPP_K8S_LOADBALANCER_RANGE``) and expose the service as a `Kubernetes type LoadBalancer <https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer>`_.
 
 .. important::
 
