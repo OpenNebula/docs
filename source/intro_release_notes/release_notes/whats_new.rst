@@ -117,7 +117,6 @@ Other Issues Solved
 - `Fix VMs monitored multiple times when datastore drivers are changed from ssh <https://github.com/OpenNebula/one/issues/5765>`__.
 - `Fix XFS formatting on empty datablocks <https://github.com/OpenNebula/one/issues/5810>`__.
 - `Fix Importing a OneFlow template from marketplace into vCenter fails <https://github.com/OpenNebula/one/issues/5812>`__.
-- `Make log output configurable for all services <https://github.com/OpenNebula/one/issues/1149>`__.
 
 Features Backported to 6.2.x
 ============================
