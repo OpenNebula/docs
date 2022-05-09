@@ -667,11 +667,6 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``DNS_HOSTNAME``                  | ``YES`` to set the VM hostname to the reverse dns name (from the first IP)                      | O                            | O       |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
-| ``GATEWAY_IFACE``                 | This variable can be set to the interface number you want to configure the                      | Linux                        | Linux   |
-|                                   | gateway. It is useful when several networks have GATEWAY parameter and you want                 |                              |         |
-|                                   | yo choose the one that configures it. For example to set the first interface to                 |                              |         |
-|                                   | configure the gateway you use ``GATEWAY_IFACE=0``.                                              |                              |         |
-+-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``DNS``                           | Specific DNS server for the Virtual Machine.                                                    | O                            | O       |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``ETHx_MAC``                      | Used to find the correct interface.                                                             | O                            | O       |
@@ -772,6 +767,9 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 | ``GROW_FS``                       | Mountpoints on Linux (e.g.: ``/mnt/disk /data``) or drive letters on Windows (e.g.: ``X: Y:``)  | O                            | O       |
 |                                   | of all the extra filesystems which should be extended. The rootfs ``/`` on Linux or disk ``C:`` |                              |         |
 |                                   | on Windows is implied (automatically added) if ``GROW_ROOTFS`` is left empty or set to ``YES``. |                              |         |
++-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
+| ``IGNORE_SWAP``                   | If set to ``YES`` then ``one-contexd`` service will skip auto-mounting of any found swap        | Linux                        | Linux   |
+|                                   | devices (this does **not** affect swap defined in ``/etc/fstab``).                              |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``RECREATE_RUN``                  | If set to ``YES``, missing directories and files persisted in the image in                      | Linux                        | Linux   |
 |                                   | ``/run`` (or ``/var/run``) are restored and copied to the ephemeral ``/run``                    |                              |         |

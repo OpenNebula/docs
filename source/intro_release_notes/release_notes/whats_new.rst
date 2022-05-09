@@ -128,3 +128,11 @@ Additionally, a lot of new functionality is present that was not in OpenNebula 6
 - `Make EXPIRE_DELTA and EXPIRE_MARGIN configurable for CloudAuth <https://github.com/OpenNebula/one/issues/5046>`__.
 
 (*) This functionality is present also in previous EE maintenance versions of the 6.2.x series.
+
+Contextualization
+=================
+
+- `Add weak dependency support to context package <https://github.com/OpenNebula/addon-context-linux/pull/255>`_
+- `Fix growing fs on international locales <https://github.com/OpenNebula/addon-context-linux/issues/251>`_
+- `Improve locale handling <https://github.com/OpenNebula/addon-context-linux/pull/261>`_
+- `Add 'IGNORE_SWAP' context param to ignore any found swap devices <https://github.com/OpenNebula/addon-context-linux/issues/260>`_
