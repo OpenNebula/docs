@@ -1,5 +1,6 @@
 mapping:
-  master: '6.3'
+  master: '6.99'
+  one-6.4: '6.4'
   one-6.2: '6.2'
   one-6.0: '6.0'
   one-5.12: '5.12'
