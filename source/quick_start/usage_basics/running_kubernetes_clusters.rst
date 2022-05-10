@@ -6,6 +6,10 @@ Running Kubernetes Clusters
 
 In the public OpenNebula System Marketplace there are also services available that let you deploy a multi-VM application. In this exercise we are going to import a `Kubernetes cluster service <http://marketplace.opennebula.io/appliance/9b06e6e8-8c40-4a5c-b218-27c749db6a1a>`_ and launch a Kubernetes cluster with it.
 
+.. note ::
+
+    Please ensure that the frontend you deployed has a publicly accessible IP address so the deployed services can report to the OneGate server. See :ref:`OneGate Configuration <onegate_conf>` for more details
+
 .. warning:: If you want to use this App in KVM, we need a metal KVM Edge Cluster for this. If you haven't already done so, you can follow the same steps of the :ref:`provisioning an edge cluster <first_edge_cluster>` guide, using "metal" edge cloud type and kvm hypervisor. Make sure you request two public IPs. This App can also be used in vCenter. If you plan to use vCenter, we need a Cluster that meets the necessary resource requirements.
 
 We are going to assume the Edge Cluster naming schema ``metal-kvm-aws-cluster``.
@@ -48,8 +52,6 @@ Step 3. Instantiate the Kubernetes Service
 
     You may want to adjust the VM templates before you progress further - go to ``Templates --> VMs``, click on the ``Service Kubernetes 1.23`` and blue button ``Update`` at the top.
 
-    Here you can increase memory for the nodes, disk capacity, add SSH key, etc. How to modify the VM template is summarized in the short `Quick Start <https://docs.opennebula.io/appliances/service/kubernetes.html#update-vm-template>`_ for the Kubernetes Appliance.
-
 Proceed to the ``Templates --> Services`` tab and select the ``Service Kubernetes 1.23`` Service Template (that should be the only one available). Click on ``+`` and then ``Instantiate``.
 
 A required step is clicking on ``Network`` and selecting the ``metal-kvm-aws-cluster-public`` network for public network.
@@ -63,13 +65,7 @@ Also, we need to specify some VIPs from the private subnet, put e.g.: ``172.20.0
 
 |kubernetes-qs-pick-vips|
 
-Feel free to set any `contextualization parameters <https://docs.opennebula.io/appliances/service/kubernetes.html#k8s-context-param>`_ (shown in the picture below) to configure the Kubernetes cluster. You will most likely want to setup IP range for the `Kubernetes LoadBalancer <https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer>`_ - that can be done either by providing the complete config in ``ONEAPP_K8S_LOADBALANCER_CONFIG`` (it's a `configmap for MetalLB <https://metallb.universe.tf/configuration/#layer-2-configuration>`_) or set one in ``ONEAPP_K8S_LOADBALANCER_RANGE`` (e.g.: ``10.0.0.0-10.255.255.255``). More info on the topic can be found in the `LoadBalancer Service section <https://docs.opennebula.io/appliances/service/kubernetes.html#loadbalancer-service>`_ of the Kubernetes Appliance documentation.
-
-.. note::
-
-    Master related context parameters apply to the role **master** which is on the left. No need to setup or change anything for the **worker** on the right.
-
-|configure_kubernetes_cluster|
+You will most likely want to setup IP range for the `Kubernetes LoadBalancer <https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer>`_ - that can be done either by providing the complete config in ``ONEAPP_K8S_LOADBALANCER_CONFIG`` (it's a `configmap for MetalLB <https://metallb.universe.tf/configuration/#layer-2-configuration>`_) or set one in ``ONEAPP_K8S_LOADBALANCER_RANGE`` (e.g.: ``10.0.0.0-10.255.255.255``).
 
 Now proceed to ``Instances --> Services`` and wait for the only Service there to get into a ``RUNNING`` state. You can also check the VMs being deployed in ``Instances --> VMs``.
 
@@ -81,7 +77,6 @@ Now proceed to ``Instances --> Services`` and wait for the only Service there to
 
 .. |kubernetes-qs-pick-networks| image:: /images/kubernetes-qs-pick-networks.png
 .. |kubernetes-qs-pick-vips| image:: /images/kubernetes-qs-pick-vips.png
-.. |configure_kubernetes_cluster| image:: /images/configure_kubernetes_cluster.png
 
 Step 4. Validate the Kubernetes cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -157,7 +152,54 @@ After a few seconds, you should be able to see the simple pod in RUNNING state:
     NAME                        READY   STATUS    RESTARTS   AGE
     kubetest-7655fb5bdb-ztblz   1/1     Running   0          69s
 
-Step 5. Deploy an Application
+Step 5. Connect to Kubernetes API via SSH tunnel
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+By default Kubernetes API Server's extra SANs are set to **localhost,127.0.0.1** which allows to access Kubernetes API via SSH tunnels.
+
+.. note::
+
+    We recommend using the ``ProxyCommand`` SSH feature, for example:
+
+To download the **/etc/kubernetes/admin.conf** (kubeconfig) file:
+
+.. prompt:: text [remote]$ auto
+
+    [remote]$ mkdir -p ~/.kube/
+    [remote]$ scp -o ProxyCommand='ssh -A root@1.2.3.4 -W %h:%p' root@172.20.0.2:/etc/kubernetes/admin.conf ~/.kube/config
+
+.. note::
+
+    The ``1.2.3.4`` is a **public** address of a VNF node, ``172.20.0.2`` is a **private** address of a master node (inside internal VNET).
+
+To create SSH tunnel, forward ``6443`` port and query cluster nodes:
+
+.. prompt:: text [remote]$ auto
+
+    [remote]$ ssh -o ProxyCommand='ssh -A root@1.2.3.4 -W %h:%p' -L 6443:localhost:6443 root@172.20.0.2
+
+..and then in another terminal:
+
+.. prompt:: text [remote]$ auto
+
+    [remote]$ kubectl get nodes
+    NAME                    STATUS   ROLES                  AGE     VERSION
+    onekube-ip-172-20-0-2   Ready    control-plane,master   13m     v1.23.6
+    onekube-ip-172-20-0-3   Ready    <none>                 11m     v1.23.6
+    onekube-ip-172-20-0-4   Ready    <none>                 11m     v1.23.6
+
+.. important::
+
+    You must make sure that the cluster endpoint inside the kubeconfig file (**~/.kube/config**) points to **localhost**, for example:
+
+    .. prompt:: text [remote]$ auto
+
+        gawk -i inplace -f- ~/.kube/config <<'EOF'
+        /^    server: / { $0 = "    server: https://localhost:6443" }
+        { print }
+        EOF
+
+Step 6. Deploy an Application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Let's deploy nginx on the cluster:
@@ -256,7 +298,7 @@ Now you can access the application using the public IP of the Nic Alias in the b
 LoadBalancer Service
 ++++++++++++++++++++
 
-We can improve the previous setup by configuring the Appliance with a LoadBalancer `context parameter <https://docs.opennebula.io/appliances/service/kubernetes.html#k8s-context-param>`_ for the IP range (``ONEAPP_K8S_LOADBALANCER_RANGE``) and expose the service as a `Kubernetes type LoadBalancer <https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer>`_.
+We can improve the previous setup by configuring the Appliance with a LoadBalancer context parameter for the IP range (``ONEAPP_K8S_LOADBALANCER_RANGE``) and expose the service as a `Kubernetes type LoadBalancer <https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer>`_.
 
 .. important::
 

@@ -54,7 +54,7 @@ The following components need to be present in the infrastructure to implement a
 | Firefox (> 3.5) and Chrome            | Other browsers, including Safari, are **not** supported and may not work well.                                                                                                                                                                                                                                            |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-vOneCloud ships with a default of 1 vCPUs and 4 GiB of RAM, and as such it has been certified for infrastructures of the following dimensions:
+vOneCloud ships with a default of 2 vCPUs and 16 GiB of RAM, and as such it has been certified for infrastructures of the following dimensions:
 
 - Up to 4 vCenters
 - Up to 40 ESXs managed by each vCenter
