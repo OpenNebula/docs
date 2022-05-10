@@ -62,3 +62,14 @@ Then you just need to use the command ``oneprovider create``:
 The providers' templates are located in ``/usr/share/one/oneprovision/edge-clusters/metal/providers/equinix``. You just need to enter valid credentials.
 
 .. include:: customize.txt
+
+Insufficient capacity on Equinix Metal
+================================================================================
+
+Sometimes there may not be enough hardware available at a given Equinix Metal facility for a given machine type, in which case the following error is shown:
+
+.. prompt::
+
+    The facility ams1 has no provisionable c3.small.x86 servers matching your criteria
+
+In this case, either select a different node type or Equinix Metal provider. You can check the current capacity status on the Equinix Metal API .
