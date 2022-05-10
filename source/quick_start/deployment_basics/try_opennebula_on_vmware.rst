@@ -11,7 +11,7 @@ OpenNebula over VMware is intended for companies willing to create a self-servic
 .. image:: /images/vonecloud_logo.png
     :align: center
 
-vOneCloud is a virtual appliance for vSphere that builds on top of your vCenter an OpenNebula cloud for development, testing or product evaluation in five minutes. In a nutshell, it is an OVA file with a configured CentOS and OpenNebula installation ready to import resources from vCenter environments. vOneCloud is free to download and use. The virtual appliance does not interfere with existing vSphere configurations, procedures and workflows. This means that you can try it and if you decide not to adopt it, you can just delete it. vOneCloud can be also used for small-size production deployments.
+vOneCloud is a virtual appliance for vSphere that builds on top of your vCenter an OpenNebula cloud for development, testing or product evaluation in five minutes. In a nutshell, it is an OVA file with a configured AlmaLinux and OpenNebula installation ready to import resources from vCenter environments. vOneCloud is free to download and use. The virtual appliance does not interfere with existing vSphere configurations, procedures and workflows. This means that you can try it and if you decide not to adopt it, you can just delete it. vOneCloud can be also used for small-size production deployments.
 
 vOneCloud ships with the following components under the hood:
 
@@ -36,7 +36,11 @@ Requirements
 
 It is advised to manage one vCenter through one OpenNebula only (i.e., do not manage the same vCenter from two different OpenNebulas). If you do, VMs from both servers will clash and produce errors.
 
-The following components need to be present in the infrastructure to implement a cloud infrastructure run by OpenNebula:
+.. note ::
+
+     In order to follow the :ref:`Running Kubernetes Clusters <running_kubernetes_clusters>` with your vOneCloud instance, you will need a publicly accessible IP address so the deployed services can report to the OneGate server. See :ref:`OneGate Configuration <onegate_conf>` for more details.
+
+The following components can be managed by the OpenNebula running in the vOneCloud appliance:
 
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |             **Component**             |                                                                                                                                                      **Observations**                                                                                                                                                     |
@@ -54,14 +58,14 @@ The following components need to be present in the infrastructure to implement a
 | Firefox (> 3.5) and Chrome            | Other browsers, including Safari, are **not** supported and may not work well.                                                                                                                                                                                                                                            |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-vOneCloud ships with a default of 2 vCPUs and 16 GiB of RAM, and as such it has been certified for infrastructures of the following dimensions:
+vOneCloud ships with a default of 2 vCPUs, 16 GiB of RAM and 100GB of disk size, and as such it has been certified for infrastructures of the following dimensions:
 
 - Up to 4 vCenters
 - Up to 40 ESXs managed by each vCenter
 - Up to 1.000 VMs in total, each vCenter managing up to 250 VMs
 - Up to 100 users, the limit being 10 users accessing the system simultaneously
 
-Take into account that vOneCloud is shipped for evaluation purposes. For infrastructures exceeding the aforementioned limits we recommend an installation of OpenNebula from scratch on a bare-metal server, using the vCenter drivers.
+Take into account that vOneCloud is shipped for evaluation purposes. For infrastructures exceeding the aforementioned limits we recommend an installation of OpenNebula from scratch on a bare-metal server, using the vCenter drivers. In particular, if you want to deploy a Kubernetes cluster on your VMware infrastructure using OpenNebula you will need to increase the size of the vOneCloud disk from 100GB to at least 200GB.
 
 .. _accounts:
 
