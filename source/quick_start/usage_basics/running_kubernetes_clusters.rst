@@ -32,11 +32,11 @@ The Appliance will be ready when the image in ``Storage --> Images`` switches to
 
 Step 2. Instantiate private network
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-If you are trying the Kubernets Service on the provisioned AWS cluster you need to instantiate the virtual private network first and assign a range to it. To do so, go to the ``Network --> Network Templates`` and open a ``metal-aws-edge-cluster-private`` Virtual Network Template.
+During the AWS Edge Cluster provisioning a private private network template was created, we need to instantiate it first and assign a range to it. To do so, go to the ``Network --> Network Templates``, open the ``metal-aws-edge-cluster-private`` Virtual Network Template and click on the instantiate button.
 
-We need to first put name, e.g. ``aws-private`` and then add address range, click ``+ Address Range`` and put some private IPv4 range, e.g. ``172.20.0.1``, for size we can put ``100``.
+We need to first put the name, e.g. ``aws-private`` and then add an address range, click ``+ Address Range`` and put a private IPv4 range, e.g. ``172.20.0.1``, for size we can put ``100``.
 
-Last thing you need to add to the network is DNS server, click the ``Context`` under Network configuration and put some common DNS server, e.g. ``8.8.8.8``.
+Last thing you need to add to the network is a DNS server, click the ``Context`` tab under Network configuration and put a DNS server, e.g. ``8.8.8.8``.
 
 |kubernetes-qs-create-ar|
 
@@ -52,7 +52,7 @@ Step 3. Instantiate the Kubernetes Service
 
     You may want to adjust the VM templates before you progress further - go to ``Templates --> VMs``, click on the ``Service Kubernetes 1.23`` and blue button ``Update`` at the top.
 
-Proceed to the ``Templates --> Services`` tab and select the ``Service Kubernetes 1.23`` Service Template (that should be the only one available). Click on ``+`` and then ``Instantiate``.
+Proceed to the ``Templates --> Services`` tab and select the ``Service Kubernetes 1.23`` Service Template. Click on ``+`` and then ``Instantiate``.
 
 A required step is clicking on ``Network`` and selecting the ``metal-kvm-aws-cluster-public`` network for public network.
 
@@ -67,7 +67,7 @@ Also, we need to specify some VIPs from the private subnet, put e.g.: ``172.20.0
 
 You will most likely want to setup IP range for the `Kubernetes LoadBalancer <https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer>`_ - that can be done either by providing the complete config in ``ONEAPP_K8S_LOADBALANCER_CONFIG`` (it's a `configmap for MetalLB <https://metallb.universe.tf/configuration/#layer-2-configuration>`_) or set one in ``ONEAPP_K8S_LOADBALANCER_RANGE`` (e.g.: ``10.0.0.0-10.255.255.255``).
 
-Now proceed to ``Instances --> Services`` and wait for the only Service there to get into a ``RUNNING`` state. You can also check the VMs being deployed in ``Instances --> VMs``.
+Now click on the instantiate button, go to ``Instances --> Services`` and wait for the new Service to get into ``RUNNING`` state. You can also check the VMs being deployed in ``Instances --> VMs``.
 
 .. note::
 
@@ -178,16 +178,6 @@ To create SSH tunnel, forward ``6443`` port and query cluster nodes:
 
     [remote]$ ssh -o ProxyCommand='ssh -A root@1.2.3.4 -W %h:%p' -L 6443:localhost:6443 root@172.20.0.2
 
-..and then in another terminal:
-
-.. prompt:: text [remote]$ auto
-
-    [remote]$ kubectl get nodes
-    NAME                    STATUS   ROLES                  AGE     VERSION
-    onekube-ip-172-20-0-2   Ready    control-plane,master   13m     v1.23.6
-    onekube-ip-172-20-0-3   Ready    <none>                 11m     v1.23.6
-    onekube-ip-172-20-0-4   Ready    <none>                 11m     v1.23.6
-
 .. important::
 
     You must make sure that the cluster endpoint inside the kubeconfig file (**~/.kube/config**) points to **localhost**, for example:
@@ -198,6 +188,16 @@ To create SSH tunnel, forward ``6443`` port and query cluster nodes:
         /^    server: / { $0 = "    server: https://localhost:6443" }
         { print }
         EOF
+
+and then in another terminal:
+
+.. prompt:: text [remote]$ auto
+
+    [remote]$ kubectl get nodes
+    NAME                    STATUS   ROLES                  AGE     VERSION
+    onekube-ip-172-20-0-2   Ready    control-plane,master   13m     v1.23.6
+    onekube-ip-172-20-0-3   Ready    <none>                 11m     v1.23.6
+    onekube-ip-172-20-0-4   Ready    <none>                 11m     v1.23.6
 
 Step 6. Deploy an Application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
