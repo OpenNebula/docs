@@ -29,7 +29,8 @@ In order to define a Vultr provider, you need the following information:
 ..
   Replace variables from activate_virtual.txt
 
-.. |PROVIDER_METAL| replace:: vultr.*
+.. |PROVISION_METAL| replace:: vultr.*
+.. |PROVIDER_METAL| replace:: vultr
 
 .. include:: activate_metal.txt
 
