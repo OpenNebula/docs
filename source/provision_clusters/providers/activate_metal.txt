@@ -8,4 +8,5 @@ By default this provider and its associated provisions are disabled. To use it y
 
 .. parsed-literal::
 
-    ln -s /usr/share/one/oneprovision/edge-clusters-extra/metal/provisions/\ |PROVIDER_METAL|\  /usr/share/one/oneprovision/edge-clusters/metal/provisions/
+    ln -s /usr/share/one/oneprovision/edge-clusters-extra/metal/provisions/\ |PROVISION_METAL|\  /usr/share/one/oneprovision/edge-clusters/metal/provisions/
+    ln -s /usr/share/one/oneprovision/edge-clusters-extra/metal/providers/\ |PROVIDER_METAL|\ /usr/share/one/oneprovision/edge-clusters/metal/providers/\ |PROVIDER_METAL|\
