@@ -42,7 +42,7 @@ No changes are needed. The default OpenNebula configuration already uses SQLite.
 .. _mysql:
 .. _mysql_setup:
 
-MySQL Setup
+MySQL/MariaDB Setup
 ===========
 
 The **MySQL/MariaDB** Back-end is an alternative to the default SQLite Back-end. It's recommended for heavy or production workloads and is fully featured for the best performance. In this guide and in the rest of the documentation and configuration files we refer to this database as MySQL. However, OpenNebula can use either MySQL or MariaDB.
