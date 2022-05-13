@@ -1,20 +1,20 @@
 .. _database_maintenance:
 
-====================
+================================================================================
 Database Maintenance
-====================
+================================================================================
 
 OpenNebula persists the state of the cloud into the selected :ref:`SQL database <database_setup>`. The database should be monitored and tuned for the best performance by cloud administrators following the best practices of the particular database product. In this guide, we provide a few tips on how to optimize database for OpenNebula and thoroughly describe OpenNebula's database maintenance tool ``onedb``, which simplifies the most common database operations - backups and restores, version upgrades, or consistency checks.
 
 .. _mysql_maintenance:
 
 Optimize Database
-=================
+================================================================================
 
 Depending on the environment, you should consider periodically executing the following tasks for an optimal database performance:
 
 MySQL/MariaDB FTS Index
------------------------
+--------------------------------------------------------------------------------
 
 To be able to search for VMs by different attributes, the OpenNebula database leverages `full-text search indexes <https://dev.mysql.com/doc/refman/5.6/en/innodb-fulltext-index.html>`__ (FTS). The size of this index can grow fast, depending on the cloud load. To free some space, periodically recreate FTS indexes by executing the following SQL commands:
 
@@ -24,14 +24,14 @@ To be able to search for VMs by different attributes, the OpenNebula database le
    ALTER TABLE vm_pool ADD FULLTEXT INDEX ftidx (search_token);
 
 Cleanup Old Content
--------------------
+--------------------------------------------------------------------------------
 
 When Virtual Machines are terminated (changed into a ``DONE`` state), OpenNebula just changes their state in database but keeps the information in the database in case it's required in the future (e.g., to generate accounting reports). To reduce the size of the VM table, it is recommended to periodically delete the information about already terminated Virtual Machines if no longer needed with :ref:`onedb purge-done <onedb_purge_done>` (tool is available below).
 
 .. _onedb:
 
 OpenNebula Database Maintenance Tool
-====================================
+================================================================================
 
 This section describes the OpenNebula database maintenance command-line tool ``onedb``. It can be used to get information from an OpenNebula database, backup and restore, upgrade to new versions of an OpenNebula database, clean up unused content, or fix inconsistency problems.
 
@@ -45,10 +45,11 @@ Available subcommands (visit the :ref:`manual page <cli>` for full reference):
 - :ref:`restore <onedb_restore>` - Restores database from backup
 - :ref:`purge-history <onedb_purge_history>` - Cleans up history records in VM metadata
 - :ref:`purge-done <onedb_purge_done>` - Cleans database of unused content
-- :ref:`change-body <onedb_change_body>` - Allows to update OpenNebula objects in database
+- :ref:`change-body <onedb_change_body>` - Allows to change OpenNebula objects body in database
+- :ref:`update-body <onedb_update_body>` - Allows to update OpenNebula objects body in database
 - :ref:`sqlite2mysql <onedb_sqlite2mysql>` - Migration tool from SQLite to MySQL/MariaDB
 
-The command ``onedb`` works with all supported database backends - SQLite, MySQL/MariaDB, or PostgreSQL. The database type and connection parameters are automatically taken from OpenNebula Daemon configuration (:ref:`/etc/one/oned.conf <oned_conf>`), but can be overriden on the command line with the following example parameters:
+The command ``onedb`` works with all supported database backends - SQLite, MySQL/MariaDB, or PostgreSQL. The database type and connection parameters are automatically taken from OpenNebula Daemon configuration (:ref:`/etc/one/oned.conf <oned_conf>`), but can be overwritten on the command line with the following example parameters:
 
 **Automatic Connection Parameters**
 
@@ -87,7 +88,7 @@ The command ``onedb`` works with all supported database backends - SQLite, MySQL
 .. _onedb_version:
 
 onedb version
--------------
+--------------------------------------------------------------------------------
 
 Prints the current database schema version, e.g.:
 
@@ -125,7 +126,7 @@ Command exits with different return codes based on the state of database:
 .. _onedb_history:
 
 onedb history
--------------
+--------------------------------------------------------------------------------
 
 Every database upgrade is internally logged into the table. You can use the ``history`` command to show the upgrade history, e.g.:
 
@@ -150,7 +151,7 @@ Every database upgrade is internally logged into the table. You can use the ``hi
 .. _onedb_fsck:
 
 onedb fsck
-----------
+--------------------------------------------------------------------------------
 
 Checks the consistency of OpenNebula objects inside the database and fixes any problems it finds. For example, if the machine where OpenNebula is running crashes or loses connectivity to the database, you may have the wrong number of VMs running in a Host or incorrect usage quotas for some users.
 
@@ -176,7 +177,7 @@ Checks the consistency of OpenNebula objects inside the database and fixes any p
     Total errors found: 12
 
 Repairing VM History End-time
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If ``onedb fsck`` shows the following error message:
 
@@ -238,7 +239,7 @@ it means that when using accounting or showback, the etime (end-time) of that hi
 .. _onedb_upgrade:
 
 onedb upgrade
--------------
+--------------------------------------------------------------------------------
 
 Upgrades database to the new OpenNebula version. This process is fully documented in the :ref:`upgrade guides <upgrade>`.
 
@@ -246,7 +247,7 @@ Upgrades database to the new OpenNebula version. This process is fully documente
 .. _onedb_backup:
 
 onedb backup
-------------
+--------------------------------------------------------------------------------
 
 Dumps OpenNebula database into a file, e.g.:
 
@@ -260,7 +261,7 @@ Dumps OpenNebula database into a file, e.g.:
 .. _onedb_restore:
 
 onedb restore
--------------
+--------------------------------------------------------------------------------
 
 Restores OpenNebula database from a provided :ref:`backup <onedb_backup>` file. Please note that only backups **from the same Back-end can be restored**, e.g. you can't back-up SQLite database and then restore to a MySQL. E.g.,
 
@@ -273,7 +274,7 @@ Restores OpenNebula database from a provided :ref:`backup <onedb_backup>` file. 
 .. _onedb_purge_history:
 
 onedb purge-history
--------------------
+--------------------------------------------------------------------------------
 
 .. warning::
 
@@ -289,7 +290,7 @@ Deletes all but the last two history records from the metadata of Virtual Machin
 .. _onedb_purge_done:
 
 onedb purge-done
-----------------
+--------------------------------------------------------------------------------
 
 .. warning::
 
@@ -305,7 +306,7 @@ Deletes information from the database with already terminated Virtual Machines (
 .. _onedb_change_body:
 
 onedb change-body
------------------
+--------------------------------------------------------------------------------
 
 .. warning::
 
@@ -341,11 +342,27 @@ Examples:
 
     $ onedb change-body vm --expr LCM_STATE=8 '/VM/TEMPLATE/DISK/CACHE' --delete
 
+.. _onedb_update_body:
+
+onedb update-body
+--------------------------------------------------------------------------------
+
+.. warning::
+
+    The operation is done while OpenNebula is running. Make a **database backup** before executing!
+
+This command allows you to update the body content of OpenNebula objects in a database. Supported object types are ``vm``, ``host``, ``vnet``, ``image``, ``cluster``, ``document``, ``group``, ``marketplace``, ``marketplaceapp``, ``secgroup``, ``template``, ``vrouter`` or ``zone``.
+
+You can filter the objects to update using one of the options:
+
+* ``--id``: object ID. Example: ``156``
+
+You can use the parameter ``--file`` to pass the object XML directly.
 
 .. _onedb_sqlite2mysql:
 
 onedb sqlite2mysql
-------------------
+--------------------------------------------------------------------------------
 
 This command migrates from an SQLite database to a MySQL database. Follow the steps:
 
