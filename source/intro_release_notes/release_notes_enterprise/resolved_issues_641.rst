@@ -13,3 +13,4 @@ The following new features has been backported to 6.4.1:
 The following issues has been solved in 6.4.1:
 
 - `Make log output configurable for all services <https://github.com/OpenNebula/one/issues/1149>`__.
+- `Fix provision docuemnt get's broken after: onedb udpate document <https://github.com/OpenNebula/one/issues/5742>`__.
