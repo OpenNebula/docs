@@ -1,8 +1,8 @@
 .. _aws_cluster:
 
-================
+================================================================================
 AWS Edge Cluster
-================
+================================================================================
 
 Edge Cluster Types
 ================================================================================
@@ -19,6 +19,7 @@ The AWS edge clusters supports two provision types:
     .. prompt:: bash $ auto
 
         sudo ln -s /usr/share/one/oneprovision/edge-clusters-extra/virtual /usr/share/one/oneprovision/edge-clusters
+        # Edit /etc/one/fireedge/provision/providers.d/aws.yaml and uncomment virtual
 
     Note that you only need to do this once for any virtual provider.
 
