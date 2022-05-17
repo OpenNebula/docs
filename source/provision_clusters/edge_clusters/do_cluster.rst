@@ -1,8 +1,8 @@
 .. _do_cluster:
 
-==========================
+================================================================================
 DigitalOcean Edge Cluster
-==========================
+================================================================================
 
 Edge Cluster Types
 ================================================================================
@@ -11,7 +11,7 @@ DigitalOcean supports **Virtual** Edge Clusters, that use a virtual machine inst
 
 .. important::
 
-    DigitalOcean is not enabled by default, please refer to the :ref:`Vultr provider guide <do_provider>` to enable it.
+    DigitalOcean is not enabled by default, please refer to the :ref:`DigitalOcean provider guide <do_provider>` to enable it.
 
 DigitalOcean Edge Cluster Implementation
 ================================================================================

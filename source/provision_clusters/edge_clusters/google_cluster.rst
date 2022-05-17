@@ -1,8 +1,8 @@
 .. _google_cluster:
 
-===================
+================================================================================
 Google Edge Cluster
-===================
+================================================================================
 
 Edge Cluster Types
 ================================================================================
@@ -11,7 +11,7 @@ Google supports **Virtual** Edge Clusters, that use a virtual machine instance t
 
 .. important::
 
-    Google is not enabled by default, please refer to the :ref:`Vultr provider guide <google_provider>` to enable it.
+    Google is not enabled by default, please refer to the :ref:`Google provider guide <google_provider>` to enable it.
 
 Google Edge Cluster Implementation
 ================================================================================
