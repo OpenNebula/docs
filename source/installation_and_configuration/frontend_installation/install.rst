@@ -44,7 +44,7 @@ Not all OpenNebula dependencies are in base distribution repositories. On select
     # yum -y install epel-release
     # yum -y install centos-release-scl-rh
 
-**AlmaLinux 8 (6.4.0 EE only)**
+**AlmaLinux 8**
 
 .. prompt:: bash # auto
 
