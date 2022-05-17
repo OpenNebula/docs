@@ -37,8 +37,6 @@ Front-End Components
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 | Ruby Gems                | Versions installed by packages or install_gems utility | :ref:`front-end installation <ruby_runtime>`          |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-| Corosync+Pacemaker       | Version included in the Linux distribution             | :ref:`Front-end HA Setup <oneha>`                     |
-+--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 
 .. _vcenter_nodes_platform_notes:
 
