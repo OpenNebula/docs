@@ -47,12 +47,16 @@ vCenter Nodes
 +-----------+-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 | Component |                    Version                    |                                                            More information                                                            |
 +===========+===============================================+========================================================================================================================================+
-| vCenter   | 6.0/6.5/6,7/7.0, managing ESX 6.0/6.5/6.7/7.0 | :ref:`vCenter Node Installation <vcenter_node>`                                                                                        |
+| vCenter   | 6.0/6.5/6.7 managing ESX 6.0/6.5/6.7          | :ref:`vCenter Node Installation <vcenter_node>`                                                                                        |
 +-----------+-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 | NSX-T     | 2.4.1+                                        | `VMware compatiblity <https://www.vmware.com/resources/compatibility/sim/interop_matrix.php>`__. :ref:`NSX Documentation <nsx_setup>`. |
 +-----------+-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 | NSX-V     | 6.4.5+                                        | `VMware compatiblity <https://www.vmware.com/resources/compatibility/sim/interop_matrix.php>`__. :ref:`NSX Documentation <nsx_setup>`  |
 +-----------+-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+
+.. note::
+
+   `vSphere 7.0 dropped VNC support <https://docs.vmware.com/en/VMware-vSphere/7.0/rn/vsphere-esxi-vcenter-server-70-release-notes.html>`__, therefore we recommend updating to OpenNebula 6 series which allows console access to VMs via VMRC. All other operations will work on vSphere 7.0 with OpenNebula 5.12.
 
 KVM Nodes
 --------------------------------------------------------------------------------
