@@ -9,6 +9,7 @@ A complete list of solved issues for 6.4.1 can be found in the `project developm
 The following new features has been backported to 6.4.1:
 
 - `onedb update-body from a text/xml file from stdin <https://github.com/OpenNebula/one/issues/4959>`__.
+- `CLI chmod commands with g/u/o + permissions <https://github.com/OpenNebula/one/issues/5356>`__.
 - `Use "%i" in custom attributes and improve auto-increment in VM name <https://github.com/OpenNebula/one/issues/2287>`__.
 
 The following issues has been solved in 6.4.1:
