@@ -28,6 +28,7 @@ Sunstone
 ================================================================================
 
 - Guacamole RDP as is currently shipped in OpenNebula does not support NLA authentication. You can follow `these instructions <https://www.parallels.com/blogs/ras/disabling-network-level-authentication/>`__ in order to disable NLA in the Windows box to use Guacamole RDP within Sunstone.
+- When hidding the VM name setting on instantiate form, Sunstone does not continue with the instantintiation process. To be able to instantiate templates please set `VM.instantiate_name` to `true` in the corresponding YAML file.
 
 Install Linux Graphical Desktop on KVM Virtual Machines
 ================================================================================
