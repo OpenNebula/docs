@@ -8,7 +8,7 @@ In a small installation with a few Hosts you can use OpenNebula without giving m
 
 |image|
 
-.. note:: The White Paper of the True Hybrid Cloud Architecture is publicly available for download `here <https://support.opennebula.pro/hc/en-us/articles/360018778938-Cloud-Provisioning-Models-and-User-Roles>`__.
+.. note:: The White Paper of the Cloud Provisioning Models and User Roles is publicly available for download `here <https://support.opennebula.pro/hc/en-us/articles/360018778938-Cloud-Provisioning-Models-and-User-Roles>`__.
 
 .. |image| image:: /images/overview_vdc.png
   :width: 70%
