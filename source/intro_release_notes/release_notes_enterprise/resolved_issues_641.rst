@@ -18,3 +18,4 @@ The following issues has been solved in 6.4.1:
 - `Fix provision docuemnt get's broken after: onedb udpate document <https://github.com/OpenNebula/one/issues/5742>`__.
 - `Fix VM instantiation when VM name input is hidden <https://github.com/OpenNebula/one/issues/5826>`__.
 - `Fix HCI deployment after upgrade of v6.0 stable branch to ansible-core 2.10 <https://github.com/OpenNebula/one/issues/5840>`__.
+- `Fix onelog tool <https://github.com/OpenNebula/one/issues/5843>`__.
