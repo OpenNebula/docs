@@ -1,8 +1,8 @@
 .. _aws_cluster_ceph:
 
-===============
+================================================================================
 AWS HCI Cluster
-===============
+================================================================================
 
 AWS HCI Cluster Implementation
 ================================================================================
@@ -10,9 +10,9 @@ AWS HCI Cluster Implementation
 HCI Cluster Nodes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The HCI cluster consits of three different type of servers:
+The HCI cluster consists of three different type of servers:
 
-* **Full nodes**, run Ceph OSD and Monitor daemons as well as the selected hypervisor. In order to get a fault tolerant cluster a number of 3 nodes of this type is recommened.
+* **Full nodes**, run Ceph OSD and Monitor daemons as well as the selected hypervisor. In order to get a fault tolerant cluster a number of 3 nodes of this type is recommended.
 * **OSD nodes**, run Ceph OSD daemon and the selected hypervisor.
 * **Hypervisor-only nodes**, run the selected hypervisor and the Ceph client tools.
 
@@ -96,6 +96,7 @@ Additionally you can fine tune some of the defaults by manually editing the prov
 
 OpenNebula resources
 ================================================================================
+
 In OpenNebula there are following resources created
 
 1. Cluster - containing all other resources
