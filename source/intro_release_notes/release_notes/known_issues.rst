@@ -61,3 +61,10 @@ Contextualization
 
 - ``GROW_ROOTFS`` and ``GROW_FS`` will not extend btrfs filesystems
 - ``onesysprep`` does not support Debian 12 yet
+
+FireEdge
+=================
+
+- When creating an onprem provision the second step (``Provider``) shows and empty list instead of the ``onprem`` provider. In order to workaround the issue just click on the next button at the top right corner.
+
+- When deploying an HCI onprem provision it will fails because of the Ansible version used. In order to workaround the issue you need to fix the value of ``CEPH_ANSIBLE_BRANCH`` to ``v6.0.26`` at ``/usr/lib/one/oneprovision/lib/provision/ansible.rb`` file in the Front-end node.
