@@ -48,6 +48,7 @@ Available subcommands (visit the :ref:`manual page <cli>` for full reference):
 - :ref:`purge-history <onedb_purge_history>` - Cleans up history records in VM metadata
 - :ref:`purge-done <onedb_purge_done>` - Cleans database of unused content
 - :ref:`change-body <onedb_change_body>` - Allows to update OpenNebula objects in database
+- :ref:`update-body <onedb_update_body>` - Allows to update OpenNebula objects body in database
 - :ref:`sqlite2mysql <onedb_sqlite2mysql>` - Migration tool from SQLite to MySQL/MariaDB
 
 The command ``onedb`` works with all supported database backends - SQLite, MySQL/MariaDB, or PostgreSQL. The database type and connection parameters are automatically taken from OpenNebula Daemon configuration (:ref:`/etc/one/oned.conf <oned_conf>`), but can be overwrite on the command line with the following example parameters:
@@ -342,6 +343,22 @@ Examples:
 
     $ onedb change-body vm --expr LCM_STATE=8 '/VM/TEMPLATE/DISK/CACHE' --delete
 
+.. _onedb_update_body:
+
+onedb update-body
+--------------------------------------------------------------------------------
+
+.. warning::
+
+    The operation is done while OpenNebula is running. Make a **database backup** before executing!
+
+    This command allows you to update the body content of OpenNebula objects in a database. Supported object types are ``vm``, ``host``, ``vnet``, ``image``, ``cluster``, ``document``, ``group``, ``marketplace``, ``marketplaceapp``, ``secgroup``, ``template``, ``vrouter`` or ``zone``.
+
+    You can filter the objects to update using one of the options:
+
+    * ``--id``: object ID. Example: ``156``
+
+    You can use the parameter ``--file`` to pass the object XML directly.
 
 .. _onedb_sqlite2mysql:
 
