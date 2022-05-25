@@ -33,6 +33,8 @@ When Virtual Machines are terminated (changed into a ``DONE`` state), OpenNebula
 OpenNebula Database Maintenance Tool
 ================================================================================
 
+.. important:: All the commands should be run with OpenNebula stopped, except the ones that has a warning in this documentation saying that it is executed with OpenNebula running.
+
 This section describes the OpenNebula database maintenance command-line tool ``onedb``. It can be used to get information from an OpenNebula database, backup and restore, upgrade to new versions of an OpenNebula database, clean up unused content, or fix inconsistency problems.
 
 Available subcommands (visit the :ref:`manual page <cli>` for full reference):
@@ -243,7 +245,6 @@ onedb upgrade
 
 Upgrades database to the new OpenNebula version. This process is fully documented in the :ref:`upgrade guides <upgrade>`.
 
-
 .. _onedb_backup:
 
 onedb backup
@@ -367,7 +368,7 @@ onedb sqlite2mysql
 This command migrates from an SQLite database to a MySQL database. Follow the steps:
 
 * Stop OpenNebula
-* Reconfigure database in :ref:`/etc/one/oned.conf <oned_conf>` to use MySQL instead of SQLite
+* Reconfigure database in :ref:`/etc/one/oned.conf <oned_conf>` to use MySQL instead of SQLite.
 * Bootstrap the MySQL Database by running ``oned -i``
 * Migrate the Database: ``onedb sqlite2mysql -s <SQLITE_PATH> -u <MYSQL_USER> -p <MYSQL_PASS> -d <MYSQL_DB>``
-* Start OpenNebula
+* Start OpenNebula.
