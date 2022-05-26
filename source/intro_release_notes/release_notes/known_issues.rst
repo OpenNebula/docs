@@ -59,7 +59,7 @@ Contextualization
 =================
 
 - ``GROW_ROOTFS`` and ``GROW_FS`` will not extend btrfs filesystems
-- ``onesysprep`` does not support Debian 12 yet
+- Debian 12 (pre-release) has issue with ``systemd-networkd-wait-online`` which timeouts and delays contextualization
 
 FireEdge
 =================
