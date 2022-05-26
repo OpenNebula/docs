@@ -818,7 +818,7 @@ The values referred to by ``VARIABLE`` can be defined :
 
 .. code::
 
-          dns = "$NETWORK[DNS, NETWORK_ID=3]"
+          DNS = "$NETWORK[DNS, NETWORK_ID=3]"
 
 .. note:: The network MUST be in used by any of the NICs defined in the template. The vnet\_attribute can be ``TEMPLATE`` to include the whole vnet template in XML (base64 encoded).
 
@@ -861,13 +861,13 @@ Example:
 .. code::
 
     CONTEXT = [
-      HOSTNAME   = "MAINHOST",
-      IP_PRIVATE = "$NIC[IP]",
-      DNS        = "$NETWORK[DNS, NAME=\"Public\"]",
-      IP_GEN     = "10.0.0.$VMID",
-      FILES      = "/service/init.sh /service/certificates /service/service.conf",
-      FILES_DS   = "$FILE[IMAGE_ID=34] $FILE[IMAGE=\"kernel\"]",
-      TARGET     = "sdc"
+      SET_HOSTNAME = "MAINHOST",
+      IP_PRIVATE   = "$NIC[IP]",
+      DNS          = "$NETWORK[DNS, NAME=\"Public\"]",
+      IP_GEN       = "10.0.0.$VMID",
+      FILES        = "/service/init.sh /service/certificates /service/service.conf",
+      FILES_DS     = "$FILE[IMAGE_ID=34] $FILE[IMAGE=\"kernel\"]",
+      TARGET       = "sdc"
     ]
 
 .. _template_placement_section:
