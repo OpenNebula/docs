@@ -12,3 +12,4 @@ Release Notes 6.2.2 Enterprise Edition
    Compatibility Guide <compatibility_ee>
    Resolved Issues in 6.2.1 <resolved_issues_621>
    Resolved Issues in 6.2.2 <resolved_issues_622>
+   Resolved Issues in 6.2.3 <resolved_issues_623>
