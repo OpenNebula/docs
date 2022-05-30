@@ -21,3 +21,4 @@ The following issues has been solved in 6.4.1:
 - `Fix HCI deployment after upgrade of v6.0 stable branch to ansible-core 2.10 <https://github.com/OpenNebula/one/issues/5840>`__.
 - `Fix onelog missing validations <https://github.com/OpenNebula/one/issues/5843>`__.
 - `Fix KVM wilds are not correctly retrieved <https://github.com/OpenNebula/one/issues/5846>`__.
+- `Show descriptive error on Sunstone when click on remote connections <https://github.com/OpenNebula/one/issues/5851>`__.
