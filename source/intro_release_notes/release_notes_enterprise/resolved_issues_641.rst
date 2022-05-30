@@ -11,6 +11,7 @@ The following new features has been backported to 6.4.1:
 - `onedb update-body from a text/xml file from stdin <https://github.com/OpenNebula/one/issues/4959>`__.
 - `CLI chmod commands with g/u/o + permissions <https://github.com/OpenNebula/one/issues/5356>`__.
 - `Use "%i" in custom attributes and improve auto-increment in VM name <https://github.com/OpenNebula/one/issues/2287>`__.
+- `Extend onelog with object logs <https://github.com/OpenNebula/one/issues/5844>`__.
 
 The following issues has been solved in 6.4.1:
 
@@ -19,3 +20,4 @@ The following issues has been solved in 6.4.1:
 - `Fix VM instantiation when VM name input is hidden <https://github.com/OpenNebula/one/issues/5826>`__.
 - `Fix HCI deployment after upgrade of v6.0 stable branch to ansible-core 2.10 <https://github.com/OpenNebula/one/issues/5840>`__.
 - `Fix onelog missing validations <https://github.com/OpenNebula/one/issues/5843>`__.
+- `Fix KVM wilds are not correctly retrieved <https://github.com/OpenNebula/one/issues/5846>`__.
