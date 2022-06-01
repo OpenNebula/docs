@@ -16,9 +16,10 @@ The following new features has been backported to 6.4.1:
 The following issues has been solved in 6.4.1:
 
 - `Make log output configurable for all services <https://github.com/OpenNebula/one/issues/1149>`__.
-- `Fix provision docuemnt get's broken after: onedb udpate document <https://github.com/OpenNebula/one/issues/5742>`__.
+- `Fix provision document get's broken after: onedb udpate document <https://github.com/OpenNebula/one/issues/5742>`__.
 - `Fix VM instantiation when VM name input is hidden <https://github.com/OpenNebula/one/issues/5826>`__.
 - `Fix HCI deployment after upgrade of v6.0 stable branch to ansible-core 2.10 <https://github.com/OpenNebula/one/issues/5840>`__.
 - `Fix onelog missing validations <https://github.com/OpenNebula/one/issues/5843>`__.
 - `Fix KVM wilds are not correctly retrieved <https://github.com/OpenNebula/one/issues/5846>`__.
 - `Show descriptive error on Sunstone when click on remote connections <https://github.com/OpenNebula/one/issues/5851>`__.
+- `Fix quota rollback if command 'onevm snapshot-create' fails <https://github.com/OpenNebula/one/issues/5852>`__.
