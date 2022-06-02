@@ -1,8 +1,8 @@
 .. _appflow_use_cli:
 
-===========================
+================================================================================
 OneFlow Services Management
-===========================
+================================================================================
 
 OneFlow allows users and administrators to define, execute and manage multi-tiered applications, which we call **Services**, composed of interconnected Virtual Machines with deployment dependencies between them. Each group of Virtual Machines is deployed and managed as a single entity and is completely integrated with the advanced :ref:`OpenNebula user and group management <auth_overview>`.
 
@@ -622,6 +622,26 @@ Service Charters
 This functionality automatically adds scheduling actions in VM when the service is instantiated, for more information of this, please check the :ref:`VM Charter <vm_charter>`
 
 |image1|
+
+.. _service_global:
+
+Service Global Parameters
+--------------------------------------------------------------------------------
+
+You can define attributes that refer to a parent's attribute, for example, the parent can push an attribute trough OneGate and its children can use it on their template.
+
+In order to do this, you need to use the following syntax: ``${<PARENT_ROLE_NAME>.<XPATH>}``:
+
+- **Parent Role Name**: is the parent role that will have the attribute, it's important to note that the name **must** be exactly the same as the parent role one.
+- **XPATH**: XPATH expression to find the value, it must be separated by ``.``, for example: if the XPATH is ``TEMPLATE/CONTEXT/TEST``, the expression should be ``${<PARENT_ROLE_NAME>.template.context.test}``.
+
+These expressions can be placed inside ``vm_template_contents`` attribute, which is the final information that will have the VM, for example:
+
+.. prompt:: bash $ auto
+
+    vm_template_contents": "DB_NAME=${DATABASE.template.context.db_name}
+
+.. important:: This will only work when using STRAIGHT strategy and when there is a parent relationship. So the attributes **must** be in the children not in the parent.
 
 Service Template Reference
 ================================================================================
