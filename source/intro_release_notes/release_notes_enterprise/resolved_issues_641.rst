@@ -23,3 +23,4 @@ The following issues has been solved in 6.4.1:
 - `Fix KVM wilds are not correctly retrieved <https://github.com/OpenNebula/one/issues/5846>`__.
 - `Show descriptive error on Sunstone when click on remote connections <https://github.com/OpenNebula/one/issues/5851>`__.
 - `Fix quota rollback if command 'onevm snapshot-create' fails <https://github.com/OpenNebula/one/issues/5852>`__.
+- `Fix double VM_POOL element in onevm list -x <https://github.com/OpenNebula/one/issues/5858>`__.
