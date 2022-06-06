@@ -12,6 +12,7 @@ The following new features has been backported to 6.4.1:
 - `CLI chmod commands with g/u/o + permissions <https://github.com/OpenNebula/one/issues/5356>`__.
 - `Use "%i" in custom attributes and improve auto-increment in VM name <https://github.com/OpenNebula/one/issues/2287>`__.
 - `Extend onelog with object logs <https://github.com/OpenNebula/one/issues/5844>`__.
+- `Add Update VM Configuration form to FireEdge Sunstone <https://github.com/OpenNebula/one/issues/5836>`__.
 
 The following issues has been solved in 6.4.1:
 
