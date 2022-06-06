@@ -25,3 +25,4 @@ The following issues has been solved in 6.4.1:
 - `Fix quota rollback if command 'onevm snapshot-create' fails <https://github.com/OpenNebula/one/issues/5852>`__.
 - `Fix double VM_POOL element in onevm list -x <https://github.com/OpenNebula/one/issues/5858>`__.
 - `Fix bug in send_to_monitor function <https://github.com/OpenNebula/one/issues/5855>`__.
+- `Fix OneProvision GUI when provisions fields are empty <https://github.com/OpenNebula/one/issues/5840>`__.
