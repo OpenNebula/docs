@@ -66,6 +66,8 @@ LXC
 Other Issues Solved
 ================================================================================
 
+- `Fix oned.conf debug levels only covers 0-3, but oned has 0-5 levels <https://github.com/OpenNebula/one/issues/5820>`__.
+
 Features Backported to 6.4.x
 ================================================================================
 
