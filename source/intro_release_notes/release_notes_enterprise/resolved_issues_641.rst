@@ -30,3 +30,4 @@ The following issues has been solved in 6.4.1:
 - `Get hypervisor from VM history instead HYPERVISOR attribute for VM migration <https://github.com/OpenNebula/one/issues/5854>`__.
 - `Fix OneProvision GUI when provisions fields are empty <https://github.com/OpenNebula/one/issues/5840>`__.
 - `Fix Dependency error in oneflow-template <https://github.com/OpenNebula/one/issues/5769>`__.
+- `Fix command oneprovision host ssh fails <https://github.com/OpenNebula/one/issues/5815>`__.
