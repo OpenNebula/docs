@@ -31,3 +31,4 @@ The following issues has been solved in 6.4.1:
 - `Fix OneProvision GUI when provisions fields are empty <https://github.com/OpenNebula/one/issues/5840>`__.
 - `Fix Dependency error in oneflow-template <https://github.com/OpenNebula/one/issues/5769>`__.
 - `Fix command oneprovision host ssh fails <https://github.com/OpenNebula/one/issues/5815>`__.
+- `Fix VM Template in Sunstone when setting memory cost in GB <https://github.com/OpenNebula/one/issues/5873>`__.
