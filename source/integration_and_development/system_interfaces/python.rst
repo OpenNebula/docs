@@ -178,7 +178,3 @@ Terminate it
 .. code:: python
 
    one.vm.action('terminate', 0)
-
-Credits
-================================================================================
-Python bindings were ported to upstream from stand-alone PyONE addon made by *Rafael del Valle* `PyONE <https://github.com/OpenNebula/addon-pyone>`__
