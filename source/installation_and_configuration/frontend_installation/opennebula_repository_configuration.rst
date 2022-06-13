@@ -184,7 +184,7 @@ To add OpenNebula repository, execute the following as user ``root``:
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Community Edition
-    baseurl=https://downloads.opennebula.io/repo/6.2/CentOS/8/$basearch
+    baseurl=https://downloads.opennebula.io/repo/6.4.0/RedHat/8/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo.key
     gpgcheck=1
