@@ -73,3 +73,8 @@ OneProvision Equinix Provider
 ================================================================================
 
 Due to changes in the facilities names in Equinix, you need to manually update the provider files ``share/oneprovision/edge-clusters/metal/providers/equinix``. As a reference, you can use the `following change <https://github.com/OpenNebula/one/commit/e6077ff4a4e97bb7a30df1feb4d83de34ea7de6d>`__ to update your files.
+
+OneFlow
+================================================================================
+
+Some services may stuck in transient states (``DEPLOYING``, ``SCALING`` or ``UNDEPLOYING``), this is due to expiration of the serveradmin token. There is already an `issue opened <https://github.com/OpenNebula/one/issues/5814>`__ to fix it.
