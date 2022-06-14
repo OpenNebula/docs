@@ -22,11 +22,13 @@ An On-Premises Edge Cluster with Ceph consists of a set of hosts with the follow
   * - **Networking**
     - Configured management interface. The OpenNebula front-end can reach the hosts through this network.
   * -
-    - Separated interface connected to the Internet. VMs will access the Internet through this network. Do not configure any IP address for this interface.
+    - Separated interface connected to the Internet. **VMs will access the Internet** through this network. Do not configure any IP address for this interface.
   * -
     - Your network should allow inbound connections to ports 22 (TCP), 179 (TCP) and 8472 (UDP) on the management network. The Internet/Public network should not restrict any access. You can later set Security Groups for your VMs.
   * -
     - It's recomended to use also sperate network interfaces for Ceph
+  * -
+    - The nodes needs access to Internet (at least while oneprovision runs), to be able to install the dependencies.
   * - **Storage**
     - Hosts should have at least one separate disk for Ceph datastore
 
