@@ -4,11 +4,12 @@
 Start Here
 ================================================================================
 
-This guide describes the upgrade procedure for systems that are already running a 5.12.x OpenNebula Enterprise Edition or older. The upgrade to OpenNebula |version| can be done directly by following this section; you don't need to perform intermediate version upgrades. The upgrade will preserve all current users, Hosts, resources and configurations, for both SQLite and MySQL/MariaDB Back-ends.
+This guide describes the upgrade procedure for systems that are already running an OpenNebula Enterprise Edition 5.12.x or older. The upgrade to OpenNebula EE |version| can be done directly by following this section; you don't need to perform intermediate version upgrades (for CE deployments, please see the Important Note below). The upgrade will preserve all current users, hosts, resources, and configurations, for both SQLite and MySQL/MariaDB back-ends.
 
 Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what's new in OpenNebula |version|.
 
-.. important:: Users of the Community Edition of OpenNebula can upgrade from the previous stable version if they are running a non-commercial OpenNebula cloud. In order to access the migrator package a request needs to be made through this `online form <https://opennebula.io/get-migration>`__.
+.. important:: Users of the Community Edition of OpenNebula can upgrade to the latest version only if they are running a non-commercial deployment, but they will need to upgrade first to the previous stable version. In order to access the latest migrator package, a request needs to be submitted through this `online form <https://opennebula.io/get-migration>`__.
+
 
 Previous Steps
 ================================================================================
