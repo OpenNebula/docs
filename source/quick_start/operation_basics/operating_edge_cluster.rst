@@ -67,16 +67,12 @@ A virtual network in OpenNebula basically resembles the physical network in the 
 Virtual Networks: Private
 ================================================================================
 
-A virtual network template contains all the physical information about the network as defined by the administrator. Users need to provide only the logical attributes when instantiating it, like the IP or the number of address ranges.
-
 The network uses driver VLXAN - BGP EVPN:
 
 |image_private_net|
 
-In order to instantiate it, you need to follow these steps:
+In order to use it, you need to follow these steps:
 
-* Click on the virtual network template.
-* Click on the ``instantiate`` button.
 * Click on the ``+ address range`` to add all the address ranges you need.
 
 Check :ref:`this link <vn_templates>` to get a complete picture of virtual network templates management.

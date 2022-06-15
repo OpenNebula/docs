@@ -58,6 +58,8 @@ CLI
 Distributed Edge Provisioning
 ================================================================================
 
+- Provision information has been added to the cluster template. Also the virtual objects have been removed, check more `here <https://github.com/OpenNebula/one/issues/5879>`__.
+
 KVM
 ================================================================================
 
