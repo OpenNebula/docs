@@ -50,6 +50,7 @@ OneFlow - Service Management
 ================================================================================
 
 - Global parameters for all the VMs in a service, chech :ref:`this <service_global>` fore more information.
+- OneFlow resilient to oned timeouts, a retry method has been implemented in case authentication error, check more `here <https://github.com/OpenNebula/one/issues/5814>`__.
 
 CLI
 ================================================================================
