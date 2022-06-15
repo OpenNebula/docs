@@ -482,7 +482,7 @@ You will need to configure a new virtual host in nginx. Depending on the operati
 
 -  A sample ``cloudserver.org`` virtual host is presented next:
 
-.. code-block:: none
+.. code-block::
 
     #### OpenNebula Sunstone upstream
     upstream sunstone  {
@@ -491,7 +491,7 @@ You will need to configure a new virtual host in nginx. Depending on the operati
 
     #### OpenNebula FireEdge upstream
     upstream fire-edge {
-            server 127.0.0.1:2616
+            server 127.0.0.1:2616;
     }
 
     #### cloudserver.org HTTP virtual host
@@ -515,10 +515,22 @@ You will need to configure a new virtual host in nginx. Depending on the operati
 
             ### Proxy requests to upstream
             location / {
+                    if ($args ~* "host=.+&port=.+&token=.+&encrypt=.*") {
+                        rewrite ^/$ /websockify/ last;
+                    }
                     proxy_pass              http://sunstone;
                     proxy_set_header        X-Real-IP $remote_addr;
                     proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
                     proxy_set_header        X-Forwarded-Proto $scheme;
+            }
+
+            location /websockify {
+                    proxy_http_version 1.1;
+                    proxy_pass https://websocketproxy;
+                    proxy_set_header Upgrade $http_upgrade;
+                    proxy_set_header Connection "upgrade";
+                    proxy_read_timeout 61s;
+                    proxy_buffering off;
             }
 
             location /fireedge {
