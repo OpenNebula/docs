@@ -68,6 +68,7 @@ Other Issues Solved
 ================================================================================
 
 - `Fix oned.conf debug levels only covers 0-3, but oned has 0-5 levels <https://github.com/OpenNebula/one/issues/5820>`__.
+- `Fix OpenNebula (oned) sometimes fails to remove lock file on exit and refuses to start  <https://github.com/OpenNebula/one/issues/5189>`__.
 
 Features Backported to 6.4.x
 ================================================================================
