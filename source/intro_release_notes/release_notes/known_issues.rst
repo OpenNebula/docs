@@ -11,7 +11,6 @@ This page will be updated with relevant information about bugs affecting OpenNeb
 Drivers - Network
 ================================================================================
 
-- If the nic-attach fails due to the libvirt bug (VM can not eject CD-ROM after reset) the nic appears in the VM (although without proper configuration) but it's not visible on OpenNebula VM `#5268 <http://github.com/OpenNebula/one/issues/5268>`_
 - Edge Cluster Public IP: NIC_ALIAS on the public network can only can only be associated to a NIC on the same network.
 
 Drivers - Storage
