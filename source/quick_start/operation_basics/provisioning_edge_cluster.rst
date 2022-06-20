@@ -7,7 +7,7 @@ Provisioning an Edge Cluster
 
 In this section you can check all the steps needed to deploy an **Edge Cluster**. This involves the FireEdge OneProvision GUI and Sunstone to manage the resources created in OpenNebula. Each new provision in the OneProvision GUI creates a new OpenNebula cluster.
 
-.. note:: We'll be creating a metal Edge Cluster with KVM hypervisor, suitable for deploying both Virtual Machines and K8s clusters.
+.. important:: This guide assumes that you have deployed the OpenNebula front-end following the :ref:`Deployment Basics guide <deployment_basics>`. Here we'll be creating a metal Edge Cluster with KVM hypervisor, suitable for deploying both Virtual Machines and K8s clusters in the following :ref:`Usage Basics section <usage_basics>`.
 
 An Edge Cluster is a group of resources in OpenNebula and the corresponding resources in AWS, that are suitable to be run in edge locations with a minimal footprint. OpenNebula provides a specification of the cluster ready to be created.
 
@@ -77,6 +77,8 @@ The user needs to provide the following inputs to create the provision:
 +-----------------------+------------------------------------------------------------------+
 | ``Hypervisor``        | Hypervisor to install ``kvm``.                                   |
 +-----------------------+------------------------------------------------------------------+
+
+.. important:: Make sure you request at least two public IPs to correctly complete the :ref:`Usage Basics <usage_basics>` part of the Quick Start guide which follows this one.
 
 Now let's go to **create a provision** and follow the same steps:
 
