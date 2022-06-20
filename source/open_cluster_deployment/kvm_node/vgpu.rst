@@ -129,7 +129,7 @@ Finally, add the following udev rule:
 
 .. prompt:: bash $ auto
 
-    $ echo 'SUBSYSTEM=="vfio", GROUP="kvm", MODE="0666"' > /etc/udev/rules.d//etc/udev/rules.d
+    $ echo 'SUBSYSTEM=="vfio", GROUP="kvm", MODE="0666"' > /etc/udev/rules.d/opennebula-vfio.rules
 
     # Reload udev rules:
     $ udevadm control --reload-rules && udevadm trigger
@@ -140,3 +140,5 @@ Using the vGPU
 --------------------------------------------------------------------------------
 
 Once everything is set up, you can follow :ref:`these steps <pci_config>`.
+
+.. important:: In version 6.4 you can not select the vGPU profile, the first one is automatically choosen.
