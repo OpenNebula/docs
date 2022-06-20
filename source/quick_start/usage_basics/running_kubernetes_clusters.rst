@@ -6,11 +6,7 @@ Running Kubernetes Clusters
 
 In the public OpenNebula System Marketplace there are also services available that let you deploy a multi-VM application. In this exercise we are going to import a `Kubernetes cluster service <http://marketplace.opennebula.io/appliance/9b06e6e8-8c40-4a5c-b218-27c749db6a1a>`_ and launch a Kubernetes cluster with it.
 
-.. note ::
-
-    Please ensure that the frontend you deployed has a publicly accessible IP address so the deployed services can report to the OneGate server. See :ref:`OneGate Configuration <onegate_conf>` for more details
-
-.. warning:: If you want to use this App in KVM, we need a metal KVM Edge Cluster for this. If you haven't already done so, you can follow the same steps of the :ref:`provisioning an edge cluster <first_edge_cluster>` guide, using "metal" edge cloud type and kvm hypervisor. Make sure you request two public IPs. This App can also be used in vCenter. If you plan to use vCenter, we need a Cluster that meets the necessary resource requirements.
+.. important:: This guide assumes that you have deployed the OpenNebula front-end following the :ref:`Deployment Basics guide <deployment_basics>` and a metal Edge Cluster with KVM hypervisor following the :ref:`Provisining an Edge Cluster <first_edge_cluster>` guide. This ensures that your OpenNebula front-end has a publicly accessible IP address so the deployed services can report to the OneGate server (see :ref:`OneGate Configuration <onegate_conf>` for more details).
 
 We are going to assume the Edge Cluster naming schema ``metal-kvm-aws-cluster``.
 
@@ -36,14 +32,13 @@ During the AWS Edge Cluster provisioning a private private network template was 
 
 We need to first put the name, e.g. ``aws-private`` and then add an address range, click ``+ Address Range`` and put a private IPv4 range, e.g. ``172.20.0.1``, for size we can put ``100``.
 
-Last thing you need to add to the network is a DNS server, click the ``Context`` tab under Network configuration and put a DNS server, e.g. ``8.8.8.8``.
+Last thing you need to add to the network is a DNS server, click the ``Context`` tab under Network configuration and put a DNS server, e.g. ``8.8.8.8`` or ``1.1.1.1``.
 
 |kubernetes-qs-create-ar|
 
 Now you are ready to start the Kubernetes Service.
 
 .. |kubernetes-qs-create-ar| image:: /images/kubernetes-qs-create-ar.png
-
 
 Step 3. Instantiate the Kubernetes Service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -58,14 +53,34 @@ A required step is clicking on ``Network`` and selecting the ``metal-kvm-aws-clu
 
 And for private network we will use the ``aws-private`` we instantiated before.
 
-
 |kubernetes-qs-pick-networks|
 
-Also, we need to specify some VIPs from the private subnet, put e.g.: ``172.20.0.10`` and ``172.20.0.20``
+Also, we need to specify some VIPs from the private subnet, put e.g.: ``172.20.0.253`` and ``172.20.0.254``
 
 |kubernetes-qs-pick-vips|
 
-You will most likely want to setup IP range for the `Kubernetes LoadBalancer <https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer>`_ - that can be done either by providing the complete config in ``ONEAPP_K8S_LOADBALANCER_CONFIG`` (it's a `configmap for MetalLB <https://metallb.universe.tf/configuration/#layer-2-configuration>`_) or set one in ``ONEAPP_K8S_LOADBALANCER_RANGE`` (e.g.: ``10.0.0.0-10.255.255.255``).
+.. note::
+
+    This is specific to AWS deployments. In an on-prem scenario the ``Control Plane Endpoint VIP`` should be IP address taken from a **public** VNET.
+
+You will most likely want to add a custom domain to Kubernetes SANs, so the ``kubectl`` command could be used from "outside" of the cluster.
+
+|kubernetes-qs-add-sans|
+
+You can either use a public DNS server or local ``/etc/hosts`` file, for example:
+
+.. prompt:: text $ auto
+
+   127.0.0.1 localhost
+   1.2.3.4 k8s.yourdomain.it
+
+.. note::
+
+   The **public** IP address (AWS elastic IP) should be taken from OpenNebula after the VNF instance is successfully provisioned.
+
+.. important::
+
+    To make the kubeconfig file work with custom SANs you will need to modify the ``clusters[0].cluster.server`` variable inside the YAML payload, for example: ``server: https://k8s.yourdomain.it:6443``.
 
 Now click on the instantiate button, go to ``Instances --> Services`` and wait for the new Service to get into ``RUNNING`` state. You can also check the VMs being deployed in ``Instances --> VMs``.
 
@@ -77,6 +92,7 @@ Now click on the instantiate button, go to ``Instances --> Services`` and wait f
 
 .. |kubernetes-qs-pick-networks| image:: /images/kubernetes-qs-pick-networks.png
 .. |kubernetes-qs-pick-vips| image:: /images/kubernetes-qs-pick-vips.png
+.. |kubernetes-qs-add-sans| image:: /images/kubernetes-qs-add-sans.png
 
 Step 4. Validate the Kubernetes cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -104,10 +120,9 @@ We are going to use the root account in the master to perform a simple validatio
 
     root@onekube-ip-172-20-0-2:~# kubectl get nodes
     NAME                    STATUS   ROLES                  AGE     VERSION
-    onekube-ip-172-20-0-2   Ready    control-plane,master   7m30s   v1.23.6
-    onekube-ip-172-20-0-3   Ready    <none>                 4m33s   v1.23.6
-    onekube-ip-172-20-0-4   Ready    <none>                 2m39s   v1.23.6
-
+    onekube-ip-172-20-0-2   Ready    control-plane,master   7m30s   v1.23.7
+    onekube-ip-172-20-0-3   Ready    <none>                 4m33s   v1.23.7
+    onekube-ip-172-20-0-4   Ready    <none>                 2m39s   v1.23.7
 
 Now create a file ``kubetest_1pod.yaml`` with the following contents:
 
@@ -137,7 +152,6 @@ Now create a file ``kubetest_1pod.yaml`` with the following contents:
            - name: http
              containerPort: 8080
 
-
 Now it's time to apply it in Kubernetes:
 
 .. prompt:: yaml $ auto
@@ -152,8 +166,8 @@ After a few seconds, you should be able to see the simple pod in RUNNING state:
     NAME                        READY   STATUS    RESTARTS   AGE
     kubetest-7655fb5bdb-ztblz   1/1     Running   0          69s
 
-Step 5. Connect to Kubernetes API via SSH tunnel
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Step 5. Connect to Kubernetes API via SSH tunnel (optional)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 By default Kubernetes API Server's extra SANs are set to **localhost,127.0.0.1** which allows to access Kubernetes API via SSH tunnels.
 
@@ -195,148 +209,77 @@ and then in another terminal:
 
     [remote]$ kubectl get nodes
     NAME                    STATUS   ROLES                  AGE     VERSION
-    onekube-ip-172-20-0-2   Ready    control-plane,master   13m     v1.23.6
-    onekube-ip-172-20-0-3   Ready    <none>                 11m     v1.23.6
-    onekube-ip-172-20-0-4   Ready    <none>                 11m     v1.23.6
+    onekube-ip-172-20-0-2   Ready    control-plane,master   13m     v1.23.7
+    onekube-ip-172-20-0-3   Ready    <none>                 11m     v1.23.7
+    onekube-ip-172-20-0-4   Ready    <none>                 11m     v1.23.7
 
 Step 6. Deploy an Application
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Let's deploy nginx on the cluster:
 
 .. prompt:: yaml $ auto
 
-   [root@onekube-ip-10-0-17-190 ~]# kubectl run nginx --image=nginx --port 80
+   $ kubectl run nginx --image=nginx --port 80
 
 After a few seconds, you should be able to see the nginx pod running
 
 .. prompt:: yaml $ auto
 
-    [root@onekube-ip-10-0-17-190 ~]# kubectl get pods
+    $ kubectl get pods
     NAME    READY   STATUS    RESTARTS   AGE
     nginx   1/1     Running   0          12s
 
-In order to access the application, we need to create a Service object that exposes the application.
+In order to access the application, we need to create a Service and IngressRoute objects that expose the application.
 
-NodePort Service
-++++++++++++++++
-
-One way is to create a `NodePort Service <https://kubernetes.io/docs/concepts/services-networking/service/#nodeport>`_ that opens a specific port on all the cluster VMs, so all traffic sent to this port is forwarded to the Service:
-
-.. prompt:: yaml $ auto
-
-   [root@onekube-ip-10-0-17-190 ~]# kubectl expose pod nginx --type=NodePort --name=nginx
-
-Let's check the service:
-
-.. prompt:: yaml $ auto
-
-    [root@onekube-ip-10-0-17-190 ~]# kubectl get svc
-    NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
-    kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP        30m
-    nginx        NodePort    10.104.44.89   <none>        80:30317/TCP   13s
-
-You can use any public IP of the VMs of the K8s cluster to connect to the nginx application using the port allocated (``30317`` in our case).
-
-|node_port_nginx_welcome_page|
-
-External IP Service
+External IP Ingress
 +++++++++++++++++++
 
-.. warning::
-
-    When this kind of service is used then losing the node where the External IP is bound will also drop the access to the service! There is a better approach with LoadBalancer type of service described in the next section.
-
-An alternative way to expose the Service is to use **External IPs** and expose the service directly. In this case, we can use the public IPs of the cluster VMs, or we can add also another public IP by attaching a new NIC (as a Nic Alias) to one of the cluster VMs. In the second case, first of all verify that you have public IPs available from the public network deployed on the edge; if you can then add another IP by following the steps described :ref:`here <edge_public>`
-
-In order to attach a Nic Alias to a VM, go to the ``Instances --> VMs`` tab, select one of the cluster VMs and then select the ``Network`` tab of that VM. Then you press the ``attach_nic`` green button and you can attach a Nic Alias by ticking the option ``Attach as an alias`` and selecting the public network.
-
-|nic_alias_attach|
-
-Check the private IP of the Nic Alias
-
-|nic_alias_attached|
-
-and create the yaml file (service.yaml) using the private IP of the Nic Alias as in the following:
+Create a ``expose-nginx.yaml`` file with the following contents:
 
 .. prompt:: yaml $ auto
 
-  apiVersion: v1
-  kind: Service
-  metadata:
-    name: nginx
-  spec:
-    selector:
-      app: nginx
-    ports:
-      - name: http
-        protocol: TCP
-        port: 80
-        targetPort: 80
-    externalIPs:
-      - 10.0.93.120
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: nginx
+    spec:
+      selector:
+        run: nginx
+      ports:
+        - name: http
+          protocol: TCP
+          port: 80
+          targetPort: 80
+    ---
+    apiVersion: traefik.containo.us/v1alpha1
+    kind: IngressRoute
+    metadata:
+      name: nginx
+    spec:
+      entryPoints: [web]
+      routes:
+        - kind: Rule
+          match: Path(`/`)
+          services:
+            - kind: Service
+              name: nginx
+              port: 80
+              scheme: http
 
-then you can deploy the service using
+Apply the manifest using ``kubectl``:
 
-.. prompt:: yaml $ auto
+.. prompt:: text $ auto
 
-  [root@onekube-ip-10-0-17-190 ~]# kubectl apply -f service.yaml
+    $ kubectl apply -f expose-nginx.yaml
+    service/nginx created
+    ingressroute.traefik.containo.us/nginx created
 
-and you can check the service using
-
-.. prompt:: yaml $ auto
-
-  [root@onekube-ip-10-0-17-190 ~]# kubectl get svc
-  NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
-  kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP   30m
-  nginx        ClusterIP   10.99.198.56   10.0.93.120   80/TCP    8s
-
-Now you can access the application using the public IP of the Nic Alias in the browser:
+Access the VNF node public IP in you browser using plain HTTP:
 
 |external_ip_nginx_welcome_page|
 
-LoadBalancer Service
-++++++++++++++++++++
-
-We can improve the previous setup by configuring the Appliance with a LoadBalancer context parameter for the IP range (``ONEAPP_K8S_LOADBALANCER_RANGE``) and expose the service as a `Kubernetes type LoadBalancer <https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer>`_.
-
-.. important::
-
-    **The range must match the actually intended range of publishable IP addresses!**
-
-    In this demo we have only one available address for load balancing and so our range will have only one address:
-
-    .. code::
-
-        ONEAPP_K8S_LOADBALANCER_RANGE="10.0.93.120"
-
-    This syntax is allowed for convenience (by the appliance not MetalLB!) and it could have been written alternatively as:
-
-    .. code::
-
-        ONEAPP_K8S_LOADBALANCER_RANGE="10.0.93.120-10.0.93.120"
-
-    Which is the correct format for ranges with more than one addresses.
-
-The setup is very similar to the previous one but when we are creating the NIC alias we will also tick the ``External`` checkbox button. This way the IP will not be actually assigned anywhere but it will be reserved for our loadbalancing usage.
-
-The effect can be achieved with this command:
-
-.. prompt:: yaml $ auto
-
-   [root@onekube-ip-10-0-17-190 ~]# kubectl expose pod nginx --type=LoadBalancer --name=nginx --load-balancer-ip=10.0.93.120
-
-
-The advantage is that there is no one node where is this External IP bound. The whole Kubernetes cluster *owns* it and when the node - which is actually responding to this IP - fails then the IP will *flow* accross the cluster to the next healthy node thanks to the LoadBalancer service.
-
-.. note::
-
-    If the reader understands how the `Keepalived <https://www.keepalived.org/>`_ functions then this is very similar. The difference is that the provider of the LoadBalancer is not assigning the IP(s) on the cluster nodes but it just replies to the ARP requests or sends *gratuitous* ARP messages when failover needs to happen. For more info read the official documentation of the LoadBalancer which the Appliance is using: `MetalLB ARP/Layer2 <https://metallb.universe.tf/concepts/layer2/>`_.
-
 Congrats! You successfully deployed a fully functional Kubernetes cluster in the edge. Have fun with your new OpenNebula cloud!
 
-.. |nginx_install_page| image:: /images/nginx_install_page.png
-.. |node_port_nginx_welcome_page| image:: /images/node_port_nginx_welcome_page.png
 .. |external_ip_nginx_welcome_page| image:: /images/external_ip_nginx_welcome_page.png
-.. |nic_alias_attach| image:: /images/nic_alias_attach.png
-.. |nic_alias_attached| image:: /images/nic_alias_attached.png
