@@ -78,3 +78,8 @@ OneFlow
 ================================================================================
 
 Some services may stuck in transient states (``DEPLOYING``, ``SCALING`` or ``UNDEPLOYING``), this is due to expiration of the serveradmin token. There is already an `issue opened <https://github.com/OpenNebula/one/issues/5814>`__ to fix it.
+
+KVM - Live Memory Resize
+================================================================================
+
+For live memory resize user needs to specify ``MAX_MEMORY``, the available memory for the VM is in ``MEMORY`` attribute. But VM running Windows shows in Task Manager available physical memory as ``MAX_MEMORY`` although it can use only ``MEMORY``, this value is not visible in the Task Manager. Because of this it shows a high percentage of memory used. To double check the real available memory for the VM user should use command ``virsh dominfo <id>`` on the host.
