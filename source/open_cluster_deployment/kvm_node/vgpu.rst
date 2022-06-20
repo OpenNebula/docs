@@ -141,4 +141,4 @@ Using the vGPU
 
 Once everything is set up, you can follow :ref:`these steps <pci_config>`.
 
-.. important:: You can not select the vGPU profile, the first one is automatically choosen. There is an `issue <https://github.com/OpenNebula/one/issues/5885>`__ opened to add this feature.
+.. important:: In version 6.4 you can not select the vGPU profile, the first one is automatically choosen.
