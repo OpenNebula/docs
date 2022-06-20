@@ -32,4 +32,5 @@ The following issues has been solved in 6.4.1:
 - `Fix Dependency error in oneflow-template <https://github.com/OpenNebula/one/issues/5769>`__.
 - `Fix command oneprovision host ssh fails <https://github.com/OpenNebula/one/issues/5815>`__.
 - `Fix VM Template in Sunstone when setting memory cost in GB <https://github.com/OpenNebula/one/issues/5873>`__.
+- `Fix quotas in case onevm action (create, resize, ...) fails, fix quotas after onevm snapshot operations. Fix quotas in onedb fsck. <https://github.com/OpenNebula/one/issues/5867>`__.
 - `Fix KVM nic-attach errror <https://github.com/OpenNebula/one/issues/5268>`__.
