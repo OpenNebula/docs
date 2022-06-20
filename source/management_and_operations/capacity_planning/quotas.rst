@@ -38,7 +38,8 @@ The attribute name is ``DATASTORE``.
 +=====================+===============================================================+
 | ID                  | ID of the Datastore to set the quota for                      |
 +---------------------+---------------------------------------------------------------+
-| SIZE                | Maximum size in MB that can be used in the datastore          |
+| SIZE                | Maximum size in MB that can be used in the datastore.         |
+|                     | It includes size of images and their snapshots.               |
 +---------------------+---------------------------------------------------------------+
 | IMAGES              | Maximum number of images that can be created in the datastore |
 +---------------------+---------------------------------------------------------------+
@@ -63,8 +64,13 @@ The attribute name is ``VM``
 +------------------+------------------------------------------------------------------------------+
 | RUNNING CPU      | Maximum CPU capacity that can be running by user/group VMs                   |
 +------------------+------------------------------------------------------------------------------+
-| SYSTEM_DISK_SIZE | Maximum size (in MB) of system disks that can be requested by user/group VMs |
+| SYSTEM_DISK_SIZE | Maximum size (in MB) of system disks that can be requested by user/group VMs.|
+|                  | It includes size of volatile and non-persistent disks (including disk        |
+|                  | snapshots) and VM snapshots (reduced by                                      |
+|                  | :ref:`VM_SNAPSHOT_FACTOR <oned_conf_datastores>`).                           |
 +------------------+------------------------------------------------------------------------------+
+
+The actual size accounted on the system and image datastores depends on the storage driver used. The behavior of the driver is described by the ``CLONE_TARGET`` and ``LN_TARGET`` attributes, see :ref:`Transfer Driver configuration <oned_conf_transfer_driver>`
 
 .. important:: Running quotas will be increased or decreased depending on the state of the Virtual Machine. The states in which the machine is counted as "Running" are ``ACTIVE`` , ``HOLD``, ``PENDING`` and ``CLONING``.
 
