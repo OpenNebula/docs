@@ -215,6 +215,13 @@ Other logs are also available in Journald. Use the following command to show the
 
     $ journalctl -u opennebula-fireedge.service
 
+**OneProvision GUI Logs**
+
+FireEdge OneProvision GUI app also creates logs for provisions created with it. These logs are saved in two phases, while the provisions are created, the logs are stored in ``/var/lib/one/fireedge/provision/<user_id>/tmp/``, once they are created the logs are moved to ``/var/lib/one/fireedge/provision/<user_id>/<provision_id>/stdouterr.log``.
+
+.. note::
+	The OneProvision GUI logs get rotated automatically when the log size gets over 100kb and perform any action to the provision.
+
 Troubleshooting
 ================================================================================
 
