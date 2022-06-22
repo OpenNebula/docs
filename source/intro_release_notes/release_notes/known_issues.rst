@@ -11,7 +11,6 @@ This page will be updated with relevant information about bugs affecting OpenNeb
 Drivers - Network
 ================================================================================
 
-- If the nic-attach fails due to the libvirt bug (VM can not eject CD-ROM after reset) the nic appears in the VM (although without proper configuration) but it's not visible on OpenNebula VM `#5268 <http://github.com/OpenNebula/one/issues/5268>`_
 - Edge Cluster Public IP: NIC_ALIAS on the public network can only can only be associated to a NIC on the same network.
 
 Drivers - Storage
@@ -77,3 +76,8 @@ OneFlow
 ================================================================================
 
 Some services may stuck in transient states (``DEPLOYING``, ``SCALING`` or ``UNDEPLOYING``), this is due to expiration of the serveradmin token. There is already an `issue opened <https://github.com/OpenNebula/one/issues/5814>`__ to fix it.
+
+KVM - Live Memory Resize
+================================================================================
+
+For live memory resize user needs to specify ``MAX_MEMORY``, the available memory for the VM is in ``MEMORY`` attribute. But VM running Windows shows in Task Manager available physical memory as ``MAX_MEMORY`` although it can use only ``MEMORY``, this value is not visible in the Task Manager. Because of this it shows a high percentage of memory used. To double check the real available memory for the VM user should use command ``virsh dominfo <id>`` on the host.

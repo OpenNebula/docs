@@ -129,7 +129,7 @@ Finally, add the following udev rule:
 
 .. prompt:: bash $ auto
 
-    $ echo 'SUBSYSTEM=="vfio", GROUP="kvm", MODE="0666"' > /etc/udev/rules.d//etc/udev/rules.d
+    $ echo 'SUBSYSTEM=="vfio", GROUP="kvm", MODE="0666"' > /etc/udev/rules.d/opennebula-vfio.rules
 
     # Reload udev rules:
     $ udevadm control --reload-rules && udevadm trigger
