@@ -153,7 +153,7 @@ Searching for VM Instances
 
 You can search for VM instances by using the ``--search`` option of the ``onevm list`` command. This is specially useful on large environments with many VMs. The filter must be in a ``VM.KEY=VALUE`` format and will return all the VMs which fit the filter.
 
-Since version 7.0, the searching is performed using JSON on the whole body instead of a set of search tokens. You can use the MySQL JSON path without the leading ``$.``, information about the path structure can be found in the [MySQL Documentation](https://dev.mysql.com/doc/refman/5.7/en/json.html#json-path-syntax) or [MariaDB Documentation](https://mariadb.com/kb/en/jsonpath-expressions/).  Currently, the value is wrapped in ``%`` for the query, so it will match if it contains the value provided.
+Searching is performed using JSON on the whole body of the VM. You can use the MySQL JSON path without the leading ``$.``, information about the path structure can be found in the [MySQL Documentation](https://dev.mysql.com/doc/refman/5.7/en/json.html#json-path-syntax) or [MariaDB Documentation](https://mariadb.com/kb/en/jsonpath-expressions/).  Currently, the value is wrapped in ``%`` for the query, so it will match if it contains the value provided.
 
 For example, for searching a VM with a specific MAC address:
 
