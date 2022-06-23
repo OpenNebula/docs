@@ -16,6 +16,7 @@ The following new features has been backported to 6.4.1:
 - `Add JSON format to oneprovision subcommands <https://github.com/OpenNebula/one/issues/5883>`__.
 - `Select vGPU profile <https://github.com/OpenNebula/one/issues/5885>`__.
 - `OneFlow resilient to oned timeouts <https://github.com/OpenNebula/one/issues/5814>`__.
+- `Add resource labels to FireEdge Sunstone <https://github.com/OpenNebula/one/issues/5862>`__.
 
 The following issues has been solved in 6.4.1:
 
