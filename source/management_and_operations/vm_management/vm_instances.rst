@@ -151,37 +151,26 @@ and details about it can be obtained with ``show``:
 Searching for VM Instances
 --------------------------------------------------------------------------------
 
-You can search for VM instances by using the ``--search`` option of the ``onevm list`` command. This is specially useful on large environments with many VMs. The filter must be in a ``KEY=VALUE`` format and will return all the VMs which fit the filter.
+You can search for VM instances by using the ``--search`` option of the ``onevm list`` command. This is specially useful on large environments with many VMs. The filter must be in a ``VM.KEY=VALUE`` format and will return all the VMs which fit the filter.
 
-The KEY must be in the VM template section or be one of the following:
-
-    - UNAME
-    - GNAME
-    - NAME
-    - LAST_POLL
-    - PREV_STATE
-    - PREV_LCM_STATE
-    - RESCHED
-    - STIME
-    - ETIME
-    - DEPLOY_ID
+Since version 7.0, the searching is performed using JSON on the whole body instead of a set of search tokens. You can use the MySQL JSON path without the leading ``$.``, information about the path structure can be found in the [MySQL Documentation](https://dev.mysql.com/doc/refman/5.7/en/json.html#json-path-syntax) or [MariaDB Documentation](https://mariadb.com/kb/en/jsonpath-expressions/).  Currently, the value is wrapped in ``%`` for the query, so it will match if it contains the value provided.
 
 For example, for searching a VM with a specific MAC address:
 
 .. prompt:: text $ auto
 
-    $onevm list --search MAC=02:00:0c:00:4c:dd
+    $onevm list --search 'VM.TEMPLATE.NIC[*].MAC=02:00:0c:00:4c:dd'
      ID    USER     GROUP    NAME    STAT UCPU UMEM HOST TIME
      21005 oneadmin oneadmin test-vm pend    0   0K      1d 23h11
 
-Equivalently if there are more than one VM instance that matches the result they will be shown. For example, VMs with a given NAME:
+Equivalently if there are more than one VM instance that matches the result they will be shown. For example, VMs NAME containing a pattern:
 
 .. prompt:: text $ auto
 
-    $onevm list --search NAME=test-vm
-     ID    USER     GROUP    NAME    STAT UCPU UMEM HOST TIME
-     21005 oneadmin oneadmin test-vm pend    0   0K       1d 23h13
-     2100  oneadmin oneadmin test-vm pend    0   0K      12d 17h59
+    $onevm list --search 'VM.NAME=test-vm'
+     ID    USER     GROUP    NAME     STAT UCPU UMEM HOST TIME
+     21005 oneadmin oneadmin test-vm  pend    0   0K       1d 23h13
+     2100  oneadmin oneadmin test-vm2 pend    0   0K      12d 17h59
 
 .. warning:: This feature is only available for **MySQL** backend with a version higher or equal than **5.6**.
 
