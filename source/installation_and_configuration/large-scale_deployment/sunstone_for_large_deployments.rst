@@ -172,7 +172,7 @@ If FireEdge is installed and running on the same machine and expected to be used
       </Location>
     </VirtualHost>
 
-In Sunstone configuration (:ref:`/etc/one/sunstone-server.conf <sunstone_conf>`), set the public FireEdge endpoint in option ``:public_fireedge_endpoint``. E.g.,
+In Sunstone configuration (:ref:`/etc/one/sunstone-server.conf <sunstone_conf>`), set the public FireEdge endpoint in option ``:public_fireedge_endpoint``, to the public endpoint that correctly redirects to fireedge (in the example, all URLs with the /fireedge handle). E.g.,
 
 .. code::
 
