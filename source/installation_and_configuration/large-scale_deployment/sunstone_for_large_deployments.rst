@@ -176,7 +176,7 @@ In Sunstone configuration (:ref:`/etc/one/sunstone-server.conf <sunstone_conf>`)
 
 .. code::
 
-    :public_fireedge_endpoint: http://one.example.one
+    :public_fireedge_endpoint: http://one.example.one/fireedge
 
 .. _suns_advance_apache_tls_proxy:
 
