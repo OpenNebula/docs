@@ -8,23 +8,23 @@ In the public OpenNebula System Marketplace there are also services available th
 
 .. important:: This guide assumes that you have deployed the OpenNebula front-end following the :ref:`Deployment Basics guide <deployment_basics>` and a metal Edge Cluster with KVM hypervisor following the :ref:`Provisining an Edge Cluster <first_edge_cluster>` guide. This ensures that your OpenNebula front-end has a publicly accessible IP address so the deployed services can report to the OneGate server (see :ref:`OneGate Configuration <onegate_conf>` for more details).
 
-We are going to assume the Edge Cluster naming schema ``metal-kvm-aws-cluster``.
+We are going to assume the Edge Cluster naming schema ``metal-aws-edge-cluster``.
 
 Step 1. Download the OneFlow Service from the Marketplace
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Log in to Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab and search for ``Kubernetes``. Select the ``Service Kubernetes 1.23`` and click on the icon with the cloud and the down arrow inside (two positions to the right from the green ``+``).
+Log in to Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab and search for ``OneKE``. Select the ``Service OneKE 1.24 CE`` and click on the icon with the cloud and the down arrow inside (two positions to the right from the green ``+``).
 
-|kubernetes_marketplace|
+|kubernetes-qs-marketplace|
 
-Now you need to select a datastore. Select the ``metal-kvm-aws-cluster-image`` Datastore.
+Now you need to select a datastore. Select the ``metal-aws-edge-cluster-image`` Datastore.
 
-|metal_kvm_aws_cluster_images_datastore|
+|kubernetes-qs-marketplace-datastore|
 
 The Appliance will be ready when the image in ``Storage --> Images`` switches to ``READY`` from its ``LOCKED`` state. This process may take significant amount of time based on the networking resources available in your infrastructure (Kubernetes 1.23 amounts to a total of 120GB).
 
-.. |kubernetes_marketplace| image:: /images/kubernetes_marketplace.png
-.. |metal_kvm_aws_cluster_images_datastore| image:: /images/metal_kvm_aws_cluster_images_datastore.png
+.. |kubernetes-qs-marketplace|           image:: /images/kubernetes-qs-marketplace.png
+.. |kubernetes-qs-marketplace-datastore| image:: /images/kubernetes-qs-marketplace-datastore.png
 
 Step 2. Instantiate private network
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -45,11 +45,11 @@ Step 3. Instantiate the Kubernetes Service
 
 .. note::
 
-    You may want to adjust the VM templates before you progress further - go to ``Templates --> VMs``, click on the ``Service Kubernetes 1.23`` and blue button ``Update`` at the top.
+    You may want to adjust the VM templates before you progress further - go to ``Templates --> VMs``, click on the ``Service OneKE 1.24 CE`` and blue button ``Update`` at the top.
 
-Proceed to the ``Templates --> Services`` tab and select the ``Service Kubernetes 1.23`` Service Template. Click on ``+`` and then ``Instantiate``.
+Proceed to the ``Templates --> Services`` tab and select the ``Service OneKE 1.24 CE`` Service Template. Click on ``+`` and then ``Instantiate``.
 
-A required step is clicking on ``Network`` and selecting the ``metal-kvm-aws-cluster-public`` network for public network.
+A required step is clicking on ``Network`` and selecting the ``metal-aws-edge-cluster-public`` network for public network.
 
 And for private network we will use the ``aws-private`` we instantiated before.
 
@@ -119,10 +119,10 @@ We are going to use the root account in the master to perform a simple validatio
 .. prompt:: yaml $ auto
 
     root@onekube-ip-172-20-0-2:~# kubectl get nodes
-    NAME                    STATUS   ROLES                  AGE     VERSION
-    onekube-ip-172-20-0-2   Ready    control-plane,master   7m30s   v1.23.7
-    onekube-ip-172-20-0-3   Ready    <none>                 4m33s   v1.23.7
-    onekube-ip-172-20-0-4   Ready    <none>                 2m39s   v1.23.7
+    NAME                    STATUS   ROLES                       AGE   VERSION
+    onekube-ip-172-20-0-2   Ready    control-plane,etcd,master   13m   v1.24.1+rke2r2
+    onekube-ip-172-20-0-3   Ready    <none>                      10m   v1.24.1+rke2r2
+    onekube-ip-172-20-0-4   Ready    <none>                      10m   v1.24.1+rke2r2
 
 Now create a file ``kubetest_1pod.yaml`` with the following contents:
 
@@ -208,10 +208,10 @@ and then in another terminal:
 .. prompt:: text [remote]$ auto
 
     [remote]$ kubectl get nodes
-    NAME                    STATUS   ROLES                  AGE     VERSION
-    onekube-ip-172-20-0-2   Ready    control-plane,master   13m     v1.23.7
-    onekube-ip-172-20-0-3   Ready    <none>                 11m     v1.23.7
-    onekube-ip-172-20-0-4   Ready    <none>                 11m     v1.23.7
+    NAME                    STATUS   ROLES                       AGE   VERSION
+    onekube-ip-172-20-0-2   Ready    control-plane,etcd,master   15m   v1.24.1+rke2r2
+    onekube-ip-172-20-0-3   Ready    <none>                      13m   v1.24.1+rke2r2
+    onekube-ip-172-20-0-4   Ready    <none>                      12m   v1.24.1+rke2r2
 
 Step 6. Deploy an Application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
