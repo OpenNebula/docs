@@ -45,3 +45,4 @@ The following issues has been solved in 6.4.1:
 - `Fix KVM nic-attach errror <https://github.com/OpenNebula/one/issues/5268>`__.
 - `Fix HCI provisions to conform new version of Ceph ansible module <https://github.com/OpenNebula/one/issues/5876>`__.
 - `Fix error to create Marketplace App from VM Template with volatile disks <https://github.com/OpenNebula/one/issues/5887>`__.
+- `Fix error when use the externalToken with an expired JWT <https://github.com/OpenNebula/one/issues/5889>`__.
