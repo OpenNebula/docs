@@ -73,6 +73,8 @@ To create a new SAN/LVM System Datastore, you need to set following (template) p
 |                 | **NOT** needed if the Front-end is configured to  |
 |                 | access the LVs.                                   |
 +-----------------+---------------------------------------------------+
+| ``DISK_TYPE``   | ``BLOCK`` (used for volatile disks)               |
++-----------------+---------------------------------------------------+
 
 For example:
 
@@ -83,6 +85,7 @@ For example:
     TM_MAD = fs_lvm_ssh
     TYPE   = SYSTEM_DS
     BRIDGE_LIST = "node1.kvm.lvm node2.kvm.lvm"
+    DISK_TYPE = BLOCK
 
     > onedatastore create ds.conf
     ID: 100
