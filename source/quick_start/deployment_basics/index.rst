@@ -8,5 +8,5 @@ Deployment Basics
    :maxdepth: 2
 
    Overview <overview>
-   Try OpenNebula on KVM/LXC <try_opennebula_on_kvm>
-   Try OpenNebula on VMware <try_opennebula_on_vmware>
+   Try OpenNebula Front-end on AWS <try_opennebula_on_kvm>
+   Try OpenNebula Front-end on VMware <try_opennebula_on_vmware>
