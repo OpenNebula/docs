@@ -48,4 +48,6 @@ The following issues has been solved in 6.4.1:
 - `Fix error to create Marketplace App from VM Template with volatile disks <https://github.com/OpenNebula/one/issues/5887>`__.
 - `Fix error when use the externalToken with an expired JWT <https://github.com/OpenNebula/one/issues/5889>`__.
 - `Fix error of zombie VMs due to wrong VNC port assignment <https://github.com/OpenNebula/one/issues/5834>`__.
+- `Fix issues with OneProvision card images <https://github.com/OpenNebula/one/issues/5780>`__.
+- `Fix issues with OneProvision logs <https://github.com/OpenNebula/one/issues/5780>`__.
 - `Fix error with lock/unlock action on Sunstone <https://github.com/OpenNebula/one/issues/5891>`__.
