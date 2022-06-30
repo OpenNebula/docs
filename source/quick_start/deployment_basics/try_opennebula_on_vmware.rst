@@ -1,8 +1,8 @@
 .. _try_opennebula_on_vmware:
 
-========================
-Try OpenNebula on VMware
-========================
+==================================
+Try OpenNebula Front-end on VMware
+==================================
 
 In this guide, we'll go through a Front-end OpenNebula environment deployment, where all the OpenNebula services needed to use, manage and run the cloud will be deployed through an OVA and collocated on the single VM running on a vCenter instance. Later, we'll import some vCenter resources and launch a VM Template. Afterwards, you can follow the Operations and Usage basics guides of this same Quick Start to launch edge clusters based on open source hypervisors.
 
