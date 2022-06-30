@@ -283,3 +283,33 @@ Access the VNF node public IP in you browser using plain HTTP:
 Congrats! You successfully deployed a fully functional Kubernetes cluster in the edge. Have fun with your new OpenNebula cloud!
 
 .. |external_ip_nginx_welcome_page| image:: /images/external_ip_nginx_welcome_page.png
+
+Known Issues
+~~~~~~~~~~~~
+
+OneFlow service is stuck in DEPLOYING
++++++++++++++++++++++++++++++++++++++
+
+Any major failure can result in OneFlow services to lock up, that can happen when **any** of the VMs belonging
+to the service does not commit ``READY=YES`` to OneGate in time. You can recognize this by inspecting
+the ``/var/log/one/oneflow.log`` file on your OpenNebula frontend machine, just look for:
+
+.. code-block:: text
+
+    [E]: [LCM] [one.document.info] User couldn't be authenticated, aborting call.
+
+This means that provisioning of your OneFlow service already took too much time and it's not possible to
+recover such a broken instance, it must be recreated.
+
+.. important::
+
+    But before you recreate it, please make sure your environment
+    has good connection to the public Internet and in general its performance is not impaired.
+
+It's a known issue in AWS edge clusters that the ``REPLICA_HOST`` defined for the system datastores may cause
+QCOW2 image corruption, which causes VMs to start but they never boot correctly, which in turn silently causes
+OneFlow services to lock up.
+
+If you're experiencing such behavior and strangely truncated OS disks
+(go ``Instances`` -> ``VMs`` -> pick a VM -> ``Storage`` -> look at ``vda`` -> ``Size``, if the size is very small like 20MiB it may be truncated),
+then please consider removing the ``REPLICA_HOST`` parameter from your cluster's system datastore or at least retry the deployment.
