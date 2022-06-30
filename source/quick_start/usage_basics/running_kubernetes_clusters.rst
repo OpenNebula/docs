@@ -6,9 +6,9 @@ Running Kubernetes Clusters
 
 In the public OpenNebula System Marketplace there are also services available that let you deploy a multi-VM application. In this exercise we are going to import a `Kubernetes cluster service <http://marketplace.opennebula.io/appliance/9b06e6e8-8c40-4a5c-b218-27c749db6a1a>`_ and launch a Kubernetes cluster with it.
 
-.. important:: This guide assumes that you have deployed the OpenNebula front-end following the :ref:`Deployment Basics guide <deployment_basics>` and a metal Edge Cluster with KVM hypervisor following the :ref:`Provisining an Edge Cluster <first_edge_cluster>` guide. This ensures that your OpenNebula front-end has a publicly accessible IP address so the deployed services can report to the OneGate server (see :ref:`OneGate Configuration <onegate_conf>` for more details).
+This guide assumes that you have deployed the OpenNebula front-end following the :ref:`Deployment Basics guide <deployment_basics>` and a metal Edge Cluster with KVM hypervisor following the :ref:`Provisining an Edge Cluster <first_edge_cluster>` guide. This ensures that your OpenNebula front-end has a publicly accessible IP address so the deployed services can report to the OneGate server (see :ref:`OneGate Configuration <onegate_conf>` for more details). We are going to assume the Edge Cluster naming schema ``metal-aws-edge-cluster``.
 
-We are going to assume the Edge Cluster naming schema ``metal-aws-edge-cluster``.
+.. important:: It's a known issue in AWS edge clusters that the ``REPLICA_HOST`` defined for the system datastores may cause QCOW2 image corruption, which causes VMs to boot correctly. To avoid this sporadic failure, remove the ``REPLICA_HOST`` parameter from your cluster's system datastore (go to Storage -> Datastore, select the aws-cluster* system datastore -most likely ID 101 if you started the QS guide from scratch- and delete the ``REPLICA_HOST`` parameter from the Attributes section).
 
 Step 1. Download the OneFlow Service from the Marketplace
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -305,11 +305,3 @@ recover such a broken instance, it must be recreated.
 
     But before you recreate it, please make sure your environment
     has good connection to the public Internet and in general its performance is not impaired.
-
-It's a known issue in AWS edge clusters that the ``REPLICA_HOST`` defined for the system datastores may cause
-QCOW2 image corruption, which causes VMs to start but they never boot correctly, which in turn silently causes
-OneFlow services to lock up.
-
-If you're experiencing such behavior and strangely truncated OS disks
-(go ``Instances`` -> ``VMs`` -> pick a VM -> ``Storage`` -> look at ``vda`` -> ``Size``, if the size is very small like 20MiB it may be truncated),
-then please consider removing the ``REPLICA_HOST`` parameter from your cluster's system datastore or at least retry the deployment.
