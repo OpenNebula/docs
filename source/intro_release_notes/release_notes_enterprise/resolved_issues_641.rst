@@ -17,6 +17,7 @@ The following new features has been backported to 6.4.1:
 - `Select vGPU profile <https://github.com/OpenNebula/one/issues/5885>`__.
 - `OneFlow resilient to oned timeouts <https://github.com/OpenNebula/one/issues/5814>`__.
 - `Add resource labels to FireEdge Sunstone <https://github.com/OpenNebula/one/issues/5862>`__.
+- `Add Lock/Unlock, Enable/Disable, Change owner/group and delete on storage App tab <https://github.com/OpenNebula/one/issues/5877>`__.
 
 The following issues has been solved in 6.4.1:
 
@@ -49,3 +50,4 @@ The following issues has been solved in 6.4.1:
 - `Fix error of zombie VMs due to wrong VNC port assignment <https://github.com/OpenNebula/one/issues/5834>`__.
 - `Fix issues with OneProvision card images <https://github.com/OpenNebula/one/issues/5780>`__.
 - `Fix issues with OneProvision logs <https://github.com/OpenNebula/one/issues/5780>`__.
+- `Fix error with lock/unlock action on Sunstone <https://github.com/OpenNebula/one/issues/5891>`__.
