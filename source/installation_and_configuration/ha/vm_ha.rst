@@ -55,6 +55,23 @@ More information on hooks :ref:`here <hooks>`.
 
 .. warning:: Note that spurious network errors may lead to a VM being started twice on different hosts and possibly clashing on shared resources. The previous script needs to fence the error host to prevent split brain VMs. You may use any fencing mechanism for the host and invoke it within the error hook.
 
-.. important:: In order to enable fencing you need to implement file ``/var/lib/one/remotes/hooks/ft/fence_host.sh``
+Enabling Fencing
+================================================================================
+
+In order to enable fencing you need to implement file ``/var/lib/one/remotes/hooks/ft/fence_host.sh``:
+
+- Update your hosts using ``onehost update <HOST_ID>`` and add there the attribute ``FENCE_IP`` with the fencing device IP.
+- Update the above script and add ``USERNAME`` and ``PASSWORD`` of your fencing device.
+- Remove the line ``echo ""Fence host not configured, please edit ft/fence_host.sh"" && exit 1`` from above script.
+- Depending on your hardware provider, you will need to use a differnt tool to control the ILO, so please check your hardware manual, for example:
+
+.. prompt:: bash $ auto
+
+    while [ "$RETRIES" -gt 0 ]
+    do
+        fence_ilo5 -P --ip=$FENCE_IP --password="${PASSWORD}" --username="${USERNAME}" --action="${ACTION}" && exit 0
+        RETRIES=$((RETRIES-1))
+        sleep $SLEEP_TIME
+    done
 
 Continue with :ref:`Troubleshooting <ftguide_virtual_machine_failures>` guide to understand how to **recover failed VMs**.
