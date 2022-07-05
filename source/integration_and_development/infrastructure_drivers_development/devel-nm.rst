@@ -9,7 +9,7 @@ This component is in charge of configuring the network in the hypervisors. The p
 Driver Configuration and Description
 ================================================================================
 
-To enable a new network manager driver, the first requirement is to make a new directory with the name of the driver in ``/var/lib/one/remotes/vnm/remotes/<name>`` with these files:
+To enable a new network manager driver, the first requirement is to make a new directory with the name of the driver in ``/var/lib/one/remotes/vnm/<name>`` with these files:
 
 -  **pre**: This driver should perform all the network related actions required before the Virtual Machine starts in a host.
 
