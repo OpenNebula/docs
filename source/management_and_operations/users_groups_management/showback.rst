@@ -49,6 +49,8 @@ Optionally you can compute CPU and MEMORY cost only for VMs in ``running`` state
 
 If the time range includes the current month, OpenNebula will calculate the cost up to today's date. It is up to the administrators to leave the current month out of the showback records, to update it daily, or hourly. In any case, it is important to re-calculate it when the month ends. This operation can be easily automated by a cron job.
 
+.. note:: There is a timer in the front-end opennebula-showback.timer that calculates automatically the showback every hour, you can check the status by running ``systemctl status opennebula-showback.timer``.
+
 The ``oneshowback`` command can only be executed by the oneadmin user.
 
 Some examples:
