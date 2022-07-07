@@ -21,7 +21,7 @@ Now you need to select a datastore. Select the ``metal-aws-edge-cluster-image`` 
 
 |kubernetes-qs-marketplace-datastore|
 
-The Appliance will be ready when the image in ``Storage --> Images`` switches to ``READY`` from its ``LOCKED`` state. This process may take significant amount of time based on the networking resources available in your infrastructure (Kubernetes 1.23 amounts to a total of 120GB).
+The Appliance will be ready when the image in ``Storage --> Images`` switches to ``READY`` from its ``LOCKED`` state. This process may take significant amount of time based on the networking resources available in your infrastructure (Kubernetes 1.24 amounts to a total of 120GB).
 
 .. |kubernetes-qs-marketplace|           image:: /images/kubernetes-qs-marketplace.png
 .. |kubernetes-qs-marketplace-datastore| image:: /images/kubernetes-qs-marketplace-datastore.png
@@ -94,79 +94,7 @@ Now click on the instantiate button, go to ``Instances --> Services`` and wait f
 .. |kubernetes-qs-pick-vips| image:: /images/kubernetes-qs-pick-vips.png
 .. |kubernetes-qs-add-sans| image:: /images/kubernetes-qs-add-sans.png
 
-Step 4. Validate the Kubernetes cluster
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Once the service is in ``RUNNING`` state, you can start using the Kubernetes cluster. Let's first log in to the Kubernetes cluster VNF. Go to ``Instances --> VMs`` and check the public IP (from the dropdown, the one highlighted in bold).
-
-From here you can reach other VMs from the cluster on their private IP. In our case Kubernets master has IP address ``172.20.0.2``. With the ssh-agent runnign you should be able to connect to it.
-
-We'll use the ``oneadmin`` account in your OpenNebula Front-end. Please SSH to the Front-end first, and from there, as oneadmin, you should SSH in to the Kubernetes cluster master as ``root``. You should be greeted with the following message:
-
-.. prompt:: bash $ auto
-
-        ___   _ __    ___
-       / _ \ | '_ \  / _ \   OpenNebula Service Appliance
-      | (_) || | | ||  __/
-       \___/ |_| |_| \___|
-
-     All set and ready to serve 8)
-
-.. note:: You can use the file in ``/etc/kubernetes/admin.conf`` to control the Kubernetes clusters from the outside. When the Kubernetes Appliance is deployed on the edge, you can copy the ``/etc/kubernetes/admin.conf`` into your system (laptop, workstation) and use ``kubectl`` locally.
-
-We are going to use the root account in the master to perform a simple validation of the cluster. The first step is to check the workers are healthy. You should get a similar output to:
-
-.. prompt:: yaml $ auto
-
-    root@onekube-ip-172-20-0-2:~# kubectl get nodes
-    NAME                    STATUS   ROLES                       AGE   VERSION
-    onekube-ip-172-20-0-2   Ready    control-plane,etcd,master   13m   v1.24.1+rke2r2
-    onekube-ip-172-20-0-3   Ready    <none>                      10m   v1.24.1+rke2r2
-    onekube-ip-172-20-0-4   Ready    <none>                      10m   v1.24.1+rke2r2
-
-Now create a file ``kubetest_1pod.yaml`` with the following contents:
-
-.. prompt:: yaml $ auto
-
-   kind: Deployment
-   apiVersion: apps/v1
-   metadata:
-     name: kubetest
-   spec:
-     replicas: 1
-     selector:
-       matchLabels:
-         app: kubetest_pod
-     template:
-       metadata:
-         labels:
-           app: kubetest_pod
-       spec:
-         containers:
-         - name: simple-http
-           image: python:2.7
-           imagePullPolicy: IfNotPresent
-           command: ["/bin/bash"]
-           args: ["-c", "echo \"ONEKUBE TEST OK: Hello from $(hostname)\" > index.html; python -m SimpleHTTPServer 8080"]
-           ports:
-           - name: http
-             containerPort: 8080
-
-Now it's time to apply it in Kubernetes:
-
-.. prompt:: yaml $ auto
-
-   kubectl apply -f kubetest_1pod.yaml
-
-After a few seconds, you should be able to see the simple pod in RUNNING state:
-
-.. prompt:: yaml $ auto
-
-    root@onekube-ip-172-20-0-2:~# kubectl get pod
-    NAME                        READY   STATUS    RESTARTS   AGE
-    kubetest-7655fb5bdb-ztblz   1/1     Running   0          69s
-
-Step 5. Connect to Kubernetes API via SSH tunnel (optional)
+Step 4. Connect to Kubernetes API via SSH tunnel (optional)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 By default Kubernetes API Server's extra SANs are set to **localhost,127.0.0.1** which allows to access Kubernetes API via SSH tunnels.
@@ -175,12 +103,12 @@ By default Kubernetes API Server's extra SANs are set to **localhost,127.0.0.1**
 
     We recommend using the ``ProxyCommand`` SSH feature, for example:
 
-To download the **/etc/kubernetes/admin.conf** (kubeconfig) file:
+To download the **/etc/rancher/rke2/rke2.yaml** (kubeconfig) file:
 
 .. prompt:: text [remote]$ auto
 
     [remote]$ mkdir -p ~/.kube/
-    [remote]$ scp -o ProxyCommand='ssh -A root@1.2.3.4 -W %h:%p' root@172.20.0.2:/etc/kubernetes/admin.conf ~/.kube/config
+    [remote]$ scp -o ProxyCommand='ssh -A root@1.2.3.4 -W %h:%p' root@172.20.0.2:/etc/rancher/rke2/rke2.yaml ~/.kube/config
 
 .. note::
 
@@ -213,7 +141,7 @@ and then in another terminal:
     onekube-ip-172-20-0-3   Ready    <none>                      13m   v1.24.1+rke2r2
     onekube-ip-172-20-0-4   Ready    <none>                      12m   v1.24.1+rke2r2
 
-Step 6. Deploy an Application
+Step 5. Deploy an Application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Let's deploy nginx on the cluster:
