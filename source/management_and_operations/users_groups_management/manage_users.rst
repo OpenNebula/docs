@@ -264,9 +264,7 @@ In order to change ``serveradmin`` credentials you have to do the following in t
 
         # oneuser passwd 1 --sha256 <PASSWORD>
         # echo 'serveradmin:PASSWORD' > /var/lib/one/.one/oneflow_auth
-        # echo 'serveradmin:PASSWORD' > /var/lib/one/.one/ec2_auth
         # echo 'serveradmin:PASSWORD' > /var/lib/one/.one/onegate_auth
-        # echo 'serveradmin:PASSWORD' > /var/lib/one/.one/occi_auth
         # echo 'serveradmin:PASSWORD' > /var/lib/one/.one/sunstone_auth
 
     Restart Sunstone after changing the password.
