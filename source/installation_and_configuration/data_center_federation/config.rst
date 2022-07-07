@@ -89,6 +89,7 @@ Step 2. Adding a New Federation Slave Zone
 .. prompt:: bash $ auto
 
     $ ls -1 /var/lib/one/.one
+    ec2_auth
     one_auth
     oneflow_auth
     onegate_auth

@@ -45,6 +45,7 @@ You must update the configuration files in ``/var/lib/one/.one`` if you change t
 .. prompt:: bash $ auto
 
     $ ls -1 /var/lib/one/.one
+    ec2_auth
     sunstone_auth
 
     $ cat /var/lib/one/.one/sunstone_auth
