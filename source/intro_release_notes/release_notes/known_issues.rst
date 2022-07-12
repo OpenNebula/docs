@@ -58,24 +58,7 @@ Contextualization
 =================
 
 - ``GROW_ROOTFS`` and ``GROW_FS`` will not extend btrfs filesystems
-- Debian 12 (pre-release) has issue with ``systemd-networkd-wait-online`` which timeouts and delays contextualization
-
-FireEdge
-=================
-
-- When creating an onprem provision the second step (``Provider``) shows and empty list instead of the ``onprem`` provider. In order to workaround the issue just click on the next button at the top right corner.
-
-- When deploying an HCI onprem provision it will fails because of the Ansible version used. In order to workaround the issue you need to fix the value of ``CEPH_ANSIBLE_BRANCH`` to ``v6.0.26`` at ``/usr/lib/one/oneprovision/lib/provision/ansible.rb`` file in the Front-end node.
-
-OneProvision Equinix Provider
-================================================================================
-
-Due to changes in the facilities names in Equinix, you need to manually update the provider files ``share/oneprovision/edge-clusters/metal/providers/equinix``. As a reference, you can use the `following change <https://github.com/OpenNebula/one/commit/e6077ff4a4e97bb7a30df1feb4d83de34ea7de6d>`__ to update your files.
-
-OneFlow
-================================================================================
-
-Some services may stuck in transient states (``DEPLOYING``, ``SCALING`` or ``UNDEPLOYING``), this is due to expiration of the serveradmin token. There is already an `issue opened <https://github.com/OpenNebula/one/issues/5814>`__ to fix it.
+- Debian 12 (pre-release) has an issue with ``systemd-networkd-wait-online`` which timeouts and delays contextualization
 
 KVM - Live Memory Resize
 ================================================================================
