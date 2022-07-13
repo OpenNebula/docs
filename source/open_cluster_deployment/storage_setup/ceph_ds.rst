@@ -187,6 +187,8 @@ System Datastore also requires these attributes:
 |                 +-----------------------------------------------------------+           |
 |                 | ``ssh`` to use local Host storage, SSH mode below         |           |
 +-----------------+-----------------------------------------------------------+-----------+
+| ``DISK_TYPE``   | ``RBD`` (used for volatile disks)                         | **NO**    |
++-----------------+-----------------------------------------------------------+-----------+
 
 Create a System Datastore in Sunstone or through the CLI, for example:
 
@@ -196,6 +198,7 @@ Create a System Datastore in Sunstone or through the CLI, for example:
     NAME    = ceph_system
     TM_MAD  = ceph
     TYPE    = SYSTEM_DS
+    DISK_TYPE = RBD
 
     POOL_NAME   = one
     CEPH_HOST   = "host1 host2:port2"
