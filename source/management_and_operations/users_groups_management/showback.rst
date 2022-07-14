@@ -133,7 +133,7 @@ To integrate the showback reports with external tools, you can get the CLI outpu
     2015,10,4265,433749.03
     2015,11,4258,34248600
 
-Developers interacting with OpenNebula using the Ruby bindings can use the `VirtualMachinePool.showback method <http://docs.opennebula.io/doc/6.3/oca/ruby/OpenNebula/VirtualMachinePool.html#showback-instance_method>`__ to retrieve showback information filtering and ordering by multiple parameters.
+Developers interacting with OpenNebula using the Ruby bindings can use the `VirtualMachinePool.showback method <http://docs.opennebula.io/doc/6.4/oca/ruby/OpenNebula/VirtualMachinePool.html#showback-instance_method>`__ to retrieve showback information filtering and ordering by multiple parameters.
 
 .. |showback_template_wizard| image:: /images/showback_template_wizard.png
 .. |showback_instantiate| image:: /images/showback_instantiate.png
