@@ -12,4 +12,4 @@ The following new features has been backported to 6.4.2:
 
 The following issues has been solved in 6.4.2:
 
-- `XXXX <https://github.com/OpenNebula/one/issues/YYYY>`__.
+- `Fix oneflow not using CLI arguments credentials when instantiating service templates <https://github.com/OpenNebula/one/issues/5912>`__.
