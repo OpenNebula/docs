@@ -149,7 +149,7 @@ Configures the OpenNebula package repository for the particular version.
 ======================================= ========================================== ===========
 Parameter                               Default                                    Description
 ======================================= ========================================== ===========
-``opennebula_repository_version``       6.3                                        OpenNebula repository version
+``opennebula_repository_version``       6.4                                        OpenNebula repository version
 ``opennebula_repository_base``          ``https://downloads.opennebula.io/repo/``  Repository of the OpenNebula packages
                                         ``{{ opennebula_repository_version }}``
 ``opennebula_repository_gpgcheck``      yes                                        Enable GPG check for the packages
@@ -171,4 +171,3 @@ Parameter                                      Default              Description
 ``opennebula_ssh_sshd_permitrootlogin``        ``without-password`` SSH server option for PermitRootLogin
 ``opennebula_ssh_deploy_local``                True                 Deploy local oneadmin's SSH key to remote host
 ============================================== ==================== ===========
-
