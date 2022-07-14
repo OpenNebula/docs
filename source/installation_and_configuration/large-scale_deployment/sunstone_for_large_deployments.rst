@@ -482,7 +482,7 @@ You will need to configure a new virtual host in nginx. Depending on the operati
 
 -  A sample ``cloudserver.org`` virtual host is presented next:
 
-.. code-block::
+.. code-block::bash
 
     #### OpenNebula Sunstone upstream
     upstream sunstone  {
