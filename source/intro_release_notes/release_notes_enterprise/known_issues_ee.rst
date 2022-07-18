@@ -1,4 +1,4 @@
-.. _known_issues:
+.. _known_issues_ee:
 
 ================================================================================
 Known Issues
@@ -65,3 +65,8 @@ KVM - Live Memory Resize
 ================================================================================
 
 For live memory resize user needs to specify ``MAX_MEMORY``, the available memory for the VM is in ``MEMORY`` attribute. But VM running Windows shows in Task Manager available physical memory as ``MAX_MEMORY`` although it can use only ``MEMORY``, this value is not visible in the Task Manager. Because of this it shows a high percentage of memory used. To double check the real available memory for the VM user should use command ``virsh dominfo <id>`` on the host.
+
+Bug in Bump Version
+===================
+
+The OCA (OpenNebula Cloud API) was mistakingly left umbumped in 6.4.1, so some components like the CLI and Sunstone report 6.4.0 instead. This is purely a cosmetic issue that will be solved in upcoming releases. To ensure your upgrade went through smoothly please verify that ``oned -v``` returns the correct 6.4.1 version.

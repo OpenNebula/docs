@@ -11,5 +11,4 @@ Release Notes 6.4
    Platform Notes <platform_notes>
    Secondary Platforms <secondary>
    Compatibility Guide <compatibility>
-   Known Issues <known_issues>
    Acknowledgements <acknowledgements>
