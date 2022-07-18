@@ -97,7 +97,13 @@ Let's see some examples:
 Setting Default Permissions with umask
 --------------------------------------
 
-The default permissions given to newly created resources can be set:
+The default permissions given to newly created resources are:
+
+- 666 for regular users
+- 660 for regular users if ``ENABLE_OTHER_PERMISSIONS`` attribute is set to ``NO`` in ``/etc/one/oned.conf``
+- 777 for oneadmin user and group
+
+These permissions are reduced by the UMASK, which can be set:
 
 -  Globally, with the **DEFAULT\_UMASK** attribute in :ref:`oned.conf <oned_conf>`
 -  Individually for each User, using the :ref:`oneuser umask command <cli>`.
