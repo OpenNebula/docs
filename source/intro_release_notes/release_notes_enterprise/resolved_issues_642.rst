@@ -8,7 +8,7 @@ A complete list of solved issues for 6.4.2 can be found in the `project developm
 
 The following new features has been backported to 6.4.2:
 
-- `XXXX <https://github.com/OpenNebula/one/issues/YYYY>`__.
+- `Sunstone React Virtual Network Tab <https://github.com/OpenNebula/one/issues/5832>`__.
 
 The following issues has been solved in 6.4.2:
 
