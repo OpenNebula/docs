@@ -44,6 +44,8 @@ The OpenNebula Daemon configuration file can be found in ``/etc/one/oned.conf`` 
 
 -  ``VM_SUBMIT_ON_HOLD``: Forces VMs to be created on hold state instead of pending. Values: ``YES`` or ``NO``.
 -  ``API_LIST_ORDER``: Sets order (by ID) of elements in list API calls (e.g. ``onevm list``). Values: ``ASC`` (ascending order) or ``DESC`` (descending order).
+-  ``CONTEXT_RESTRICTED_DIRS``: List of space separated directories, which can't be used in ``CONTEXT/FILES`` attribute.
+-  ``CONTEXT_SAFE_DIRS``: List of space separated directories, which allows use of subdirectories from ``CONTEXT_RESTRICTED_DIRS``.
 -  ``LOG``: Configure the logging system
 
    -  ``SYSTEM``: Can be either ``file`` (default), ``syslog`` or ``std``
@@ -61,6 +63,8 @@ The OpenNebula Daemon configuration file can be found in ``/etc/one/oned.conf`` 
 +----------------+---------------+
 | ``3``          | **DEBUG**     |
 +----------------+---------------+
+
+Add CONTEXT_RESTRICTED_DIRS and CONTEXT_SAFE_DIRS here
 
 Example of this section:
 
