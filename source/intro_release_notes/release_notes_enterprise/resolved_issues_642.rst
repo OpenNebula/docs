@@ -14,4 +14,5 @@ The following issues has been solved in 6.4.2:
 
 - `Fix error when instantiating a VM Template the user attributes were not shown <https://github.com/OpenNebula/one/issues/5918>`__.
 - `Fix oneflow not using CLI arguments credentials when instantiating service templates <https://github.com/OpenNebula/one/issues/5912>`__.
-- `onedb fsck removes network quotas without ID <https://github.com/OpenNebula/one/issues/5935>`__
+- `Fix onedb fsck to not remove network quotas without ID <https://github.com/OpenNebula/one/issues/5935>`__
+- `Fix updateconf API call to honor value of VALIDATE attribute <https://github.com/OpenNebula/one/issues/5936>`__
