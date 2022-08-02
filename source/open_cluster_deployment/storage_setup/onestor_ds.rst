@@ -140,7 +140,8 @@ Additionally, the following attributes can be tuned in configuration files ``/va
 Recovery Snapshots
 ================================================================================
 
-.. important:: Recovery Snapshots are only availabe for KVM and qcow2 Image formats
+.. important:: * Recovery Snapshots are only availabe for KVM and qcow2 Image formats
+               * As the recovery snapshot are created by the monitoring client and not by a driver action, it requires password-less ssh connection from the hypervisors to the ``REPLICA_HOST``. Which means that also private ssh key of oneadmin user needs to be distributed on the nodes.
 
 Additionally, in replica mode you can enable recovery snapshots for particular VM disks. You can do it by adding the option ``RECOVERY_SNAPSHOT_FREQ`` to ``DISK`` in the VM template.
 
