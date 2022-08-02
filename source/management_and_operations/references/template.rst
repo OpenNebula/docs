@@ -625,9 +625,10 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 | ``VARIABLE``                      | Variables that store values related to this virtual machine or others . The name                | O                            | O       |
 |                                   | of the variable is arbitrary (in the example, we use hostname).                                 |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
-| ``FILES \*``                      | space-separated list of paths to include in context device.                                     | O                            | O       |
+| ``FILES``                         | Space-separated list of paths to include in context device. The location of the files are       | O                            | O       |
+|                                   | restricted by the ``CONTEXT_RESTRICTED_DIRS`` in :ref:`oned.conf <oned_conf>`                   |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
-| ``FILES_DS``                      | space-separated list of File images to include in context device. (Not supported                | O                            | O       |
+| ``FILES_DS``                      | Space-separated list of File images to include in context device. (Not supported                | O                            | O       |
 |                                   | for vCenter)                                                                                    |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``INIT_SCRIPTS``                  | If the VM uses the OpenNebula contextualization package the init.sh file is                     | O                            | O       |
