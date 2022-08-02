@@ -33,6 +33,7 @@ We’d like to thank all the people that support the project, OpenNebula is what
 
 OpenNebula Core
 ================================================================================
+- For security reason restrict paths in ``CONTEXT/FILES`` by ``CONTEXT_RESTRICTED_DIRS`` (with exceptions in ``CONTEXT_SAFE_DIRS``) configured in :ref:`oned.conf <oned_conf>`
 
 Networking
 ================================================================================
