@@ -18,6 +18,7 @@ Drivers - Storage
 ================================================================================
 - **LVM**, VM removing might fail because of an error defining a lock name if ``ZERO_LVM_ON_DELETE`` is not set. This issue have been already fixed in the `development branch <https://github.com/OpenNebula/one/commit/00a61d74a5f7339c79fadc708c8f89abaf5025d8>`__.
 - **LXC**, XFS formatted disk images are incompatible with the ``fs_lvm`` driver. The image `fails to be mounted <https://github.com/OpenNebula/one/issues/5802>`_ on the host.
+- **OneStor**, recovery snapshots are no longer created after VM live migrate `5922 <https://github.com/OpenNebula/one/issues/5922>`_.
 
 High Availability
 ================================================================================
