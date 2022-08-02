@@ -27,6 +27,10 @@ These resource limites correlate to the :ref:`Quota <quota_auth>` for the Group 
  * RAM
  * CPU cores
  * Supporting Multiple VDCs
+ * Datastore Images
+ * Datastore Size
+ * NETRX
+ * NETTX
 
 Below the resources you can determine if the User should be automatically setup or if the system should wait for the Administrator to Accept the order.
 
