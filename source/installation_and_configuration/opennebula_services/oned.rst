@@ -64,8 +64,6 @@ The OpenNebula Daemon configuration file can be found in ``/etc/one/oned.conf`` 
 | ``3``          | **DEBUG**     |
 +----------------+---------------+
 
-Add CONTEXT_RESTRICTED_DIRS and CONTEXT_SAFE_DIRS here
-
 Example of this section:
 
 .. code-block:: bash
