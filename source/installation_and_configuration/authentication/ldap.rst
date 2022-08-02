@@ -232,7 +232,7 @@ LDAP Auth drivers are able to connect to Active Directory. You will need:
 
 You will need to change the following values in the configuration file (``/etc/one/auth/ldap_auth.conf``):
 
--  ``:user``: the Active Directory user with read permissions in the users tree plus the domain. For example for user **Administrator** at domain **win.opennebula.org** you specify it as ``Administrator@win.opennebula.org``
+-  ``:user``: the Active Directory user with read permissions in the users tree plus the domain. For example for user **Administrator** at domain **win.opennebula.org** you specify it as ``Administrator@win.opennebula.org``. Usually it's a ``userPrincipalName:`` field of the user entry.
 -  ``:password``: password of this user
 -  ``:host``: hostname or IP of the Domain Controller
 -  ``:base``: base DN to search for users. You need to decompose the full domain name and use each part as a DN component. For example, for ``win.opennebula.org`` you will get the base DN: DN=win,DN=opennebula,DN=org
