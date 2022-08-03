@@ -1,0 +1,11 @@
+Instantiate
+-----------
+
+To run the virtual machine with the preinstalled service, follow these steps:
+
+- open your OpenNebula Sunstone, login
+- go to **Templates → VMs** tab
+- select the template
+- click on **Instantiate** button on top
+
+You should now provide the **VM name**, update the sizing (CPU, memory, disk) or add the network interface with a routable IP address.

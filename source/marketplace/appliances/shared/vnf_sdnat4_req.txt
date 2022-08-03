@@ -1,0 +1,42 @@
+.. important::
+
+   This function requires
+
+   - appliance to be running over :ref:`Virtual Router <vnf_tutorial_vrouter>` (VR) interface,
+   - **OpenNebula 5.12.6** or newer,
+   - `OneGate <https://docs.opennebula.io/stable/management_and_operations/multivm_service_management/onegate_usage.html>`_ service
+
+     - properly **configured** (see below) and **running** on front-end server,
+     - **enabled** `usage of OneGate <https://docs.opennebula.io/stable/management_and_operations/multivm_service_management/onegate_usage.html#setup-the-vm-template>`_ in the VR template,
+     - **reachable from the VR** instance over the attached NICs.
+
+   *All requirements must be fulfilled, otherwise, the VNF won't be able to query the state and create/update the Virtual Networks Mapping rules.*
+
+   **Only in OpenNebula 5.12:** As the functionality depends on new OneGate features available since OpenNebula 5.12.6, they might not be enabled yet in your OneGate server configuration if it's still running 5.12.x version. Please ensure your OneGate server configuration file ``/etc/one/onegate-server.conf`` has the following relevant parts, add and restart the service after update (by running ``systemctl restart opennebula-gate``):
+
+    .. code::
+
+        :permissions:
+          :vm:
+            :show: true
+            :show_by_id: true
+            :update: true
+            :update_by_id: true
+            :action_by_id: true
+          :service:
+            :show: true
+            :change_cardinality: true
+          :vrouter:                          # <--- NEW in 5.12.6+
+            :show: true                      # <--- NEW in 5.12.6+
+          :vnet:                             # <--- NEW in 5.12.6+
+            :show_by_id: true                # <--- NEW in 5.12.6+
+
+        :vnet_template_attributes:           # <--- NEW in 5.12.6+
+          - NETWORK_ADDRESS                  # <--- NEW in 5.12.6+
+          - NETWORK_MASK                     # <--- NEW in 5.12.6+
+          - GATEWAY                          # <--- NEW in 5.12.6+
+          - GATEWAY6                         # <--- NEW in 5.12.6+
+          - DNS                              # <--- NEW in 5.12.6+
+          - GUEST_MTU                        # <--- NEW in 5.12.6+
+          - CONTEXT_FORCE_IPV4               # <--- NEW in 5.12.6+
+          - SEARCH_DOMAIN                    # <--- NEW in 5.12.6+

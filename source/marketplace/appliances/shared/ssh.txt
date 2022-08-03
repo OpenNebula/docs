@@ -1,0 +1,20 @@
+Create SSH Key
+~~~~~~~~~~~~~~
+
+If you don't have any SSH key pair, you can create it by running:
+
+.. prompt:: text $ auto
+
+    $ ssh-keygen -f ~/.ssh/one
+
+Find the private key in ``~/.ssh/one`` and the matching public key in ``~/.ssh/one.pub``. Print the generated SSH public key by:
+
+.. prompt:: text $ auto
+
+    $ cat ~/.ssh/one.pub
+
+Copy and paste the whole content of the public key into the proper form area in the OpenNebula (SSH public key).
+
+.. important::
+
+    Handle your SSH keys with care! Anyone who can access your SSH private key can also log into your virtual machines!

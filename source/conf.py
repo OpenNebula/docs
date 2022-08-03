@@ -32,7 +32,7 @@ sys.path.append(os.path.abspath('ext'))
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.todo','versions','sphinx-prompt']
+extensions = ['sphinx.ext.graphviz', 'sphinx.ext.todo','versions','sphinx-prompt']
 
 todo_include_todos = False
 

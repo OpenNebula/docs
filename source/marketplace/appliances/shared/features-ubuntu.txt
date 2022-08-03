@@ -1,0 +1,6 @@
+Features
+========
+
+* Deployed in 3 stages (:ref:`install <one_service_stage_install>`, :ref:`configure <one_service_stage_configure>`, :ref:`bootstrap <one_service_stage_bootstrap>`). More general :ref:`information <one_service_appliance>`.
+* Based on the Ubuntu 20.04 LTS Linux distribution (for x86-64).
+* No default login (local or SSH) password - must be provided via `contextualization <https://docs.opennebula.io/stable/management_and_operations/references/kvm_contextualization.html#user-credentials>`_.
