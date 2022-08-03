@@ -1,0 +1,12 @@
+Import Appliance
+----------------
+
+Steps:
+
+- open your OpenNebula Sunstone, login
+- go to **Storage → Apps** tab
+- select the appliance and click on import (the "cloud") button
+
+|image-download|
+
+To import the appliance over CLI, follow the OpenNebula `Management and Operations Guide <https://docs.opennebula.io/stable/management_and_operations/storage_management/marketapps.html>`__.
