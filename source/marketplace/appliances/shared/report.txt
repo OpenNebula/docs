@@ -1,0 +1,6 @@
+Report
+------
+
+When the virtual machine and services are ready to use, the :ref:`report file <one_service_logs>` is created with important information about the configured services.
+
+Log into your VM and check, e.g.:

@@ -1,0 +1,34 @@
+Update VM template
+------------------
+
+Initial template for the VM has minimal memory and CPU sizing, also any network configuration is missing. If you plan to use the template more often, it's good to update it for your requirements. Go through the following steps:
+
+- open your OpenNebula Sunstone, login
+- go to **Templates → VMs** tab
+- select your new template
+- click on **Update** button on top
+
+On the first screen, you can customize the sizing and other parameters to better fit your needs.
+
+SSH keys
+~~~~~~~~
+
+To be able to remotely login the VM over SSH, you have to
+
+1. configure the SSH public key for your `OpenNebula user <https://docs.opennebula.io/stable/management_and_operations/references/kvm_contextualization.html#user-credentials>`_ or
+2. put the SSH public key into the VM template in **Context** tab:
+
+|image-ssh-context|
+
+.. include:: shared/ssh.txt
+
+Password
+~~~~~~~~
+
+Password login is only allowed for access over VNC (the appliance has disabled remote login with just password).
+
+It can be set in **Custom vars** tab:
+
+|image-custom-vars-password|
+
+When you are done with updates, click on the green **Update** button to persist the changes.

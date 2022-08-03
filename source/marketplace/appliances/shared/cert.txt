@@ -1,0 +1,19 @@
+Self-signed SSL certificate
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the non-production or development purposes, you can generate your own dedicated SSL certificate following way:
+
+.. prompt:: text $ auto
+
+    $ mkdir mycerts
+    $ cd mycerts
+    $ openssl req -x509 -nodes -newkey rsa:2048 -keyout key.pem -out certificate.pem -days 365 -batch
+
+Get the content of files:
+
+- ``key.pem`` for contextualization param ``ONEAPP_SSL_PRIVKEY``
+- ``certificate.pem`` for param ``ONEAPP_SSL_CERT``
+
+.. important::
+
+    The self-signed certificates are impractical for a production environment! For the serious use, you should get SSL certificates from the trusted certificate authority or use the `Let's Encrypt <https://letsencrypt.org>`_.
