@@ -134,7 +134,7 @@ These are OpenNebula’s system interfaces:
 
 * **XML-RPC API**: This is the primary interface for OpenNebula, through which you can control and manage any OpenNebula resource, including VMs, Virtual Networks, Images, Users, Hosts, and Clusters.
 
-* **OpenNebula Cloud API**: The OCA provides a simplified and convenient way to interface with the OpenNebula core XML-RPC API, including support for Ruby, Java, Goland, and Python.
+* **OpenNebula Cloud API**: The OCA provides a simplified and convenient way to interface with the OpenNebula core XML-RPC API, including support for Ruby, Java, Golang, and Python.
 
 * **OpenNebula OneFlow API**: This is a RESTful service to create, control and monitor services composed of interconnected Virtual Machines with deployment dependencies between them.
 
