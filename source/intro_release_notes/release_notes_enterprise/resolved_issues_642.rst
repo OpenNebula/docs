@@ -19,3 +19,4 @@ The following issues has been solved in 6.4.2:
 - `Fix updateconf API call to honor value of VALIDATE attribute <https://github.com/OpenNebula/one/issues/5936>`__
 - `Extended quota support in WHMCS Tenants Module to include disk, network, and running resources <https://github.com/OpenNebula/one/issues/5863>`__.
 - `Fix client cancellation in WHMCS Tenants module <https://github.com/OpenNebula/one/issues/5865>`__.
+- `Fix parsing of authentication drivers (LDAP) messages for admin groups <https://github.com/OpenNebula/one/issues/5946>`__.
