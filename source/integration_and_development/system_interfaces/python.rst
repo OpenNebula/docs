@@ -25,7 +25,7 @@ You need to configure your XML-RPC Server endpoint and credentials when instanti
 .. code:: python
 
   import pyone
-  one = pyone.OneServer("http://one:2633/RPC2", session="oneadmin:onepass" )
+  one = pyone.OneServer("http://one:2633/RPC2", session="oneadmin:onepass")
 
 If you are connecting to a test platform with a self signed certificate you can disable
 certificate verification as:
@@ -34,7 +34,7 @@ certificate verification as:
 
   import pyone
   import ssl
-  one = pyone.OneServer("http://one:2633/RPC2", session="oneadmin:onepass", context=ssl._create_unverified_context() )
+  one = pyone.OneServer("https://one:8443/RPC2", session="oneadmin:onepass", https_verify=False)
 
 It is also possible to modify the default connection timeout, but note that the setting will modify the TCP socket default timeout of your Python VM, ensure that the chosen timeout is suitable to any other connections running in your project.
 
