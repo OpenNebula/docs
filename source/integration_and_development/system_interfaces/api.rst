@@ -73,7 +73,7 @@ Authorization Requests Reference
 
 OpenNebula features a CLI that wraps the XML-RPC requests. For each XML-RPC request, the session token is authenticated, and after that the Request Manager generates an authorization request that can include more than one operation. The following tables document these requests from the different CLI commands.
 
-.. note:: Commands market by * are asynchronous. The success response for these commands means that all preconditions passed and the action started. To check the action result you need to inspect the resource.
+.. note:: Commands with marked with * are asynchronous. The success response for these commands means that all preconditions passed and the action started. To check the action result you need to inspect the resource or its state.
 
 .. _onevm_api:
 
