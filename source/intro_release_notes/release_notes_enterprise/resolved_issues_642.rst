@@ -21,3 +21,4 @@ The following issues has been solved in 6.4.2:
 - `Fix client cancellation in WHMCS Tenants module <https://github.com/OpenNebula/one/issues/5865>`__.
 - `Fix parsing of authentication drivers (LDAP) messages for admin groups <https://github.com/OpenNebula/one/issues/5946>`__.
 - `Fix image usage counter in case VM uses the same image multiple times <https://github.com/OpenNebula/one/issues/937>`__.
+- `Fix onegate authentication on Ubuntu 22.04 <https://github.com/OpenNebula/one/issues/5954>`__.
