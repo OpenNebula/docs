@@ -515,7 +515,7 @@ You will need to configure a new virtual host in nginx. Depending on the operati
 
             ### Proxy requests to upstream
             location / {
-                    if ($args ~* "host=.+&port=.+&token=.+&encrypt=.*") {
+                    if ($args ~* password=.+&encrypt=.+&token=.+&info=.*) {
                         rewrite ^/$ /websockify/ last;
                     }
                     proxy_pass              http://sunstone;
