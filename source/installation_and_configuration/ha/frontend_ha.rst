@@ -26,7 +26,7 @@ To preserve a consistent view of the system across servers, modifications to the
 
 Whenever the system is modified (e.g. a new VM is added to the system), the *leader* updates the log and replicates the entry in a majority of *followers* before actually writing it to the database. The latency of DB operations is thus increased, but the system state is safely replicated and the cluster can continue its operation in case of node failure.
 
-In OpenNebula, read-only operations can be performed through any oned server in the cluster; this means that reads can be arbitrarily stale but generally within the round-trip time of the network.
+In OpenNebula, read-only operations can be performed through any oned server in the cluster and write operations issued to the follower nodes are forwarded to the leader node. This means that reads can be arbitrarily stale but generally within the round-trip time of the network.
 
 Requirements and Architecture
 ================================================================================
