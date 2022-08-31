@@ -57,7 +57,7 @@ In order to use the CLI, you need to install the required dependencies. Make sur
     # On Centos
     yum install opennebula opennebula-flow opennebula-provision
  
-Create the authentication file one_auth with the admin credentials you will use (replace ``password`` with your admin password).
+Create the authentication file one_auth with the admin credentials (replace ``password`` with your admin password).
 
 .. code:: bash
 
@@ -69,7 +69,7 @@ You should have the following environment variables set, you may want to place t
 
 .. code:: bash
 
-    ONE_XMLRPC=http://poc.opennebula.cloud:2633/RPC2
+    ONE_XMLRPC=http://poc.opennebula.cloud/xmlrpc
     ONE_FLOW_URL=http://poc.opennebula.cloud:2474
 
 
