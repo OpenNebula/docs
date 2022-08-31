@@ -28,13 +28,13 @@ For all the different options to run Rancher on a single Docker Host, you can ch
 
 For production environments, it is recommended to install Rancher in a high-availability configuration. Rancher can be installed on a Kubernetes Single Node or on a multiple-node Kubernetes Clusters using `Helm <https://helm.sh>`_.
 
-Within OpenNebula you can deploy Kubernetes Clusters by instantiating the :ref:`OpenNebula Kubernetes Appliance <running_kubernetes_clusters>` or by instantiating the :ref:`OpenNebula K3s Appliance <running_k3s_clusters>`.
+Within OpenNebula you can deploy Kubernetes Clusters by instantiating the :ref:`OpenNebula Kubernetes Appliance <running_kubernetes_clusters>` or by instantiating the OpenNebula K3s Appliance.
 
 Once you setup a Kubernetes cluster within OpenNebula you can follow the documentation to `install Rancher on a Kubernetes Cluster <https://rancher.com/docs/rancher/v2.x/en/installation/k8s-install/helm-rancher/>`_ by using Helm.
 
 **Adding OpenNebula Provider to Rancher**
 
-Once Rancher is up and running, you can connect to it and bring up the Rancher UI. 
+Once Rancher is up and running, you can connect to it and bring up the Rancher UI.
 
 |rancher_drivers|
 
@@ -42,7 +42,7 @@ To add OpenNebula as a provider to Rancher, we need to add the OpenNebula docker
 
 |rancher_node_drivers|
 
-A Linux binary of the OpenNebula machine driver is available at https://downloads.opennebula.io/packages/opennebula-6.3.80/opennebula-docker-machine-6.3.80.tar.gz
+A Linux binary of the OpenNebula machine driver is available at https://downloads.opennebula.io/packages/opennebula-6.99.80/opennebula-docker-machine-6.99.80.tar.gz
 
 |add_opennebula_rancher_node_driver|
 
@@ -77,4 +77,3 @@ Once the cluster has been provisioned, you can deploy containers on it using Ran
 .. |add_opennebula_rancher_node_template| image:: /images/add_opennebula_rancher_node_template.png
 .. |added_opennebula_rancher_node_template| image:: /images/added_opennebula_rancher_node_templates.png
 .. |add_opennebula_rancher_cluster| image:: /images/add_opennebula_rancher_cluster.png
-

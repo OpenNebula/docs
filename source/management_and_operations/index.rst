@@ -12,7 +12,6 @@ The Management and Operations Guide provides complete information about how to o
 .. toctree::
    :maxdepth: 2
 
-   Edge Cluster <edge_cluster_management/index>
    Host and Clusters <host_cluster_management/index>
    Storage <storage_management/index>
    Virtual Networks <network_management/index>

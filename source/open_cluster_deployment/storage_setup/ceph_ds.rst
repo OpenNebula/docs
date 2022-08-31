@@ -130,6 +130,11 @@ You can read more information about this in the Ceph guide `Using libvirt with C
 
 .. _ceph_ds_templates:
 
+LXC Hosts
+---------
+
+The ``rbd-nbd`` utility must be installed on LXC hosts. Check the :ref:`LXC Node Installation <lxc_node>`.
+
 OpenNebula Configuration
 ================================================================================
 
@@ -182,6 +187,8 @@ System Datastore also requires these attributes:
 |                 +-----------------------------------------------------------+           |
 |                 | ``ssh`` to use local Host storage, SSH mode below         |           |
 +-----------------+-----------------------------------------------------------+-----------+
+| ``DISK_TYPE``   | ``RBD`` (used for volatile disks)                         | **NO**    |
++-----------------+-----------------------------------------------------------+-----------+
 
 Create a System Datastore in Sunstone or through the CLI, for example:
 
@@ -191,6 +198,7 @@ Create a System Datastore in Sunstone or through the CLI, for example:
     NAME    = ceph_system
     TM_MAD  = ceph
     TYPE    = SYSTEM_DS
+    DISK_TYPE = RBD
 
     POOL_NAME   = one
     CEPH_HOST   = "host1 host2:port2"

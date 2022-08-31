@@ -104,7 +104,9 @@ Optionally, you can set a timeout for the VM Shutdown operation. This feature is
 Working with cgroups (Optional)
 --------------------------------------------------------------------------------
 
-Optionally, you can set-up cgroups to control resources on your Hosts. The `libvirt cgroups documentation <https://libvirt.org/cgroups.html>`__ describes all the cases and the way the cgroups are managed by libvirt/KVM.
+Optionally, you can set-up cgroups to control resources on your Hosts. By default KVM VMs will be placed in the ``machine.slice``, the resources assigned in this slice can be adjusted for each hypervisor. The `libvirt cgroups documentation <https://libvirt.org/cgroups.html>`__ describes all the cases and the way the cgroups are managed by libvirt/KVM.
+
+OpenNebula will compute the ``shares`` attribute of the Libvirt domain using the ``CPU`` parameter and the base share value, which depends on the cgroups version of the hypervisor. For example, a VM with ``CPU=2`` will get a cgroup value of ``cpu.shares = 2048`` (or ``cpu.weight=200`` for cgroups version 2),  twice the default value. Note that if you have a mix of cgroups version 1 and 2 hosts you may have inconsistent resource distribution if you life-migrate a VM across different versions.
 
 .. _kvmg_memory_cleanup:
 
@@ -267,8 +269,6 @@ If you need to resize the capacity of the VM in ``RUNNING`` state, you have to s
 +------------------+-------------------------------------------------------------------------------------------------+-----------+
 | ``MEMORY_MAX``   | Maximum memory which can be hotplugged.                                                         | **NO**    |
 +------------------+-------------------------------------------------------------------------------------------------+-----------+
-| ``MEMORY_SLOTS`` | Optional slots for hotplugging memory. Limits the number of hotplug operations. Defaults to 8.  | **NO**    |
-+------------------+-------------------------------------------------------------------------------------------------+-----------+
 
 .. note:: Live Memory resize needs QEMU version 2.4. Live VCPU resize needs QEMU version 2.7.
 
@@ -321,42 +321,7 @@ Tuning & Extending
 Multiple Actions per Host
 --------------------------------------------------------------------------------
 
-.. warning:: This feature is experimental. Some modifications to the code must be made before this is a recommended setup.
-
-By default the drivers use a unix socket to communicate with the libvirt daemon. This method can only be safely used by one process at a time. To make sure this happens, the drivers are configured to send only one action per Host at a time. For example, there will be only one deployment done per Host at a given time.
-
-This limitation can be solved by configuring libvirt to accept TCP connections and OpenNebula to use this communication method.
-
-Libvirt Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Here we describe how to configure libvirtd to accept unencrypted and unauthenticated TCP connections in a CentOS 7 machine. For other setup check your distribution and libvirt documentation.
-
-Change the file ``/etc/libvirt/libvirtd.conf`` in each of the hypervisors and make sure that these parameters are set and have the following values:
-
-.. code::
-
-    listen_tls = 0
-    listen_tcp = 1
-    tcp_port = "16509"
-    auth_tcp = "none"
-
-You will also need to modify ``/etc/sysconfig/libvirtd`` and uncomment this line:
-
-.. code::
-
-    LIBVIRTD_ARGS="--listen"
-
-After modifying these files the libvirt daemon must be restarted:
-
-.. prompt:: bash $ auto
-
-    $ sudo systemctl restart libvirtd
-
-OpenNebula Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The VMM driver must be configured so it allows more than one action to be executed per Host. This can be done adding the parameter ``-p`` to the driver executable. This is done in ``/etc/one/oned.conf`` in the VM_MAD configuration section:
+By default the VMM driver is configured to allow more than one action to be executed per Host. Make sure the parameter ``-p`` is added to the driver executable. This is done in ``/etc/one/oned.conf`` in the VM_MAD configuration section:
 
 .. code::
 
@@ -367,24 +332,23 @@ The VMM driver must be configured so it allows more than one action to be execut
         DEFAULT    = "vmm_exec/vmm_exec_kvm.conf",
         TYPE       = "kvm" ]
 
-Change the file ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc`` to set a TCP endpoint for libvirt communication:
+Restart the main OpenNebula service if changes were made to the mentioned file:
 
-.. code::
+.. prompt:: bash $ auto
 
-    export LIBVIRT_URI=qemu+tcp://localhost/system
+    $ sudo systemctl restart opennebula
 
-The scheduler configuration should also be changed to let it deploy more than one VM per Host. The file is located at ``/etc/one/sched.conf`` and the value to change is ``MAX_HOST`` For example, to let the scheduler submit 10 VMs per Host use this line:
+The scheduler configuration should be changed to let it deploy more than one VM per Host. The file is located at ``/etc/one/sched.conf`` and the value to change is ``MAX_HOST`` For example, to let the scheduler submit 10 VMs per Host use this line:
 
 .. code::
 
     MAX_HOST = 10
 
-After this update the remote files in the nodes and restart OpenNebula:
+Restart the scheduler service for this change to take effect:
 
 .. prompt:: bash $ auto
 
-    $ onehost sync --force
-    $ sudo systemctl restart opennebula
+    $ sudo systemctl restart opennebula-scheduler
 
 .. _kvmg_files_and_parameters:
 

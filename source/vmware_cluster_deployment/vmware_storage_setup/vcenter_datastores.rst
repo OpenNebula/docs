@@ -8,7 +8,7 @@ vCenter datastores contain VMDK files and other file types. These datastores can
 * An images datastore stores VMDK and ISO files that act as golden images from which VM disks are copied. These vCenter datastore files are represented as OpenNebula images stored in this datastore.
 * A system datastore stores disks belonging to running Virtual Machines, copied or cloned from the images datastore.
 
-vCenter datstores are imported as both images and system datastore. If we have a vCenter datastore called ``nfs``, when we import the vCenter datastore into OpenNebula, two OpenNebula datastores will be created, one as an images datastore (adding (IMG) to its name) and another as a system datastore (adding (SYS) to its name), pointing to the same vCenter datastores.
+vCenter datastores are imported as both images and system datastore. If we have a vCenter datastore called ``nfs``, when we import the vCenter datastore into OpenNebula, two OpenNebula datastores will be created, one as an images datastore (adding (IMG) to its name) and another as a system datastore (adding (SYS) to its name), pointing to the same vCenter datastores.
 
 .. important:: If the vCenter instance features a read-only datastore, please be aware that you should disable the system (SYS) representation of the datastore after importing it to avoid OpenNebula trying to deploy VMs in it.
 
@@ -132,7 +132,6 @@ Click on the Create button to start the file uploading process.
 
 While the image is uploaded the status will be LOCKED; you can refresh the Images tab later to check if the status is READY to use or ERROR.
 
-
 .. _vcenter_create_datablock:
 
 Create empty datablocks
@@ -145,7 +144,7 @@ You can easily create empty VMDK datablocks directly in vCenter datastores from 
 * Choose the image datastore where you want OpenNebula to create the empty datablock.
 * Select Empty disk image.
 * Specify the size in MB of the datablock.
-* Select the disk type (optional). You have a full list of disk types in the VCENTER_DISK_TYPE attribute description explained in the :ref:`Operations guide <vcenter_images_operations>`-
+* Select the disk type (optional). You have a full list of disk types in the VCENTER_DISK_TYPE attribute description explained in the :ref:`Operations guide <vcenter_images_operations>`.
 * Select the bus adapter (optional). You have a full list of controller types in the VCENTER_ADAPTER_TYPE attribute description explained in the :ref:`Operations guide <vcenter_images_operations>`.
 
 .. image:: ../../images/vcenter_vmdk_create_sunstone_1.png
@@ -216,14 +215,24 @@ There's an alternative if you don't want to use SCHED_DS_REQUIREMENTS if you hav
 .. image:: /images/vcenter_datastore_storage_drs.png
     :align: center
 
+.. _vcenter_market:
+
 Marketplace with vCenter Datastores
 -----------------------------------
 
-The vCenter datastores are compatible with OpenNebula HTTP and S3 Marketplaces. A generic VM Template imported in OpenNebula is necessary: add the ID of the imported OpenNebula VM Template in ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterrc`` in the default_template setting. More information about OpenNebula Marketplaces can be found :ref:`here <private_marketplace_overview>`.
+The vCenter datastores are compatible with OpenNebula HTTP and S3 Marketplaces. More information about OpenNebula Marketplaces can be found :ref:`here <private_marketplace_overview>`.
 
-.. important::
+.. note:: You can use a VM Template imported in OpenNebula: add the ID of the imported OpenNebula VM Template in ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterrc`` in the default_template setting.
 
-    The vCenter VM Template used when downloading an image from a Marketplace needs to be empty (i.e without any disk or NIC attached).
+The process of exporting an application from the marketplace is the following:
+
+- If you specify a VM Template ID in the CLI arguments or in Sunstone, that will be used.
+- If a default is defined in ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterrc``, that will be used.
+- If no VM Template ID is provided and the datastore contains ``VCENTER_TEMPLATE_REF``, that will be used.
+- Otherwise, a new VM template will be created and added to the datastore template.
+
+- If the datastore contains ``VCENTER_TEMPLATE_REF``, this will be used to create the OpenNebula template.
+- If not, a simple template with 128MB of RAM and 1CPU will be created in vCenter automatically and used after to create the OpenNebula template.
 
 Tuning and Extending
 --------------------

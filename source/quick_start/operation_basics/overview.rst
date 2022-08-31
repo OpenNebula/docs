@@ -4,7 +4,7 @@
 Overview
 ========
 
-OpenNebula provides the tools and methods needed to dynamically grow your cloud infrastructure with Edge Clusters built with virtual and physical resources running on remote cloud providers. You are able to grow your private cloud with resources at cloud and edge data center locations and enable true hyrbid and multi-cloud environments to meet latency, bandwidth, or data regulation needs of your workload.
+OpenNebula provides the tools needed to dynamically grow your cloud infrastructure with Edge (lightweight) or HCI (based on Ceph) Clusters built with virtual and physical resources running on remote cloud providers, based on the KVM or LXC hypervisors. You are able to grow your private cloud with resources at cloud and edge data center locations and enable true hyrbid and multi-cloud environments to meet latency, bandwidth, or data regulation needs of your workload.
 
 .. image:: /images/edge_cluster_overview.png
     :width: 50%

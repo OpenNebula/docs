@@ -1,8 +1,8 @@
 .. _appflow_use_cli:
 
-===========================
+================================================================================
 OneFlow Services Management
-===========================
+================================================================================
 
 OneFlow allows users and administrators to define, execute and manage multi-tiered applications, which we call **Services**, composed of interconnected Virtual Machines with deployment dependencies between them. Each group of Virtual Machines is deployed and managed as a single entity and is completely integrated with the advanced :ref:`OpenNebula user and group management <auth_overview>`.
 
@@ -253,7 +253,7 @@ To list the available Services, use ``oneflow list/top``:
 
 |image3|
 
-The Service will eventually change to ``DEPLOYING``. You can see information for each Role using ``oneflow show``.
+The Service will eventually change to ``DEPLOYING_NETS``. You can see information for each Role using ``oneflow show``.
 
 .. _appflow_use_cli_life_cycle:
 
@@ -271,29 +271,39 @@ Regardless of the strategy used, the Service will be ``RUNNING`` when all of the
 
 This table describes the Service states:
 
-+--------------------------+--------------------------------------------------------------------------------------------+
-| Service State            | Meaning                                                                                    |
-+==========================+============================================================================================+
-| ``PENDING``              | The Service starts in this state, and will stay in it until the LCM decides to deploy it.  |
-+--------------------------+--------------------------------------------------------------------------------------------+
-| ``DEPLOYING``            | Some Roles are being deployed.                                                             |
-+--------------------------+--------------------------------------------------------------------------------------------+
-| ``RUNNING``              | All Roles are deployed successfully.                                                       |
-+--------------------------+--------------------------------------------------------------------------------------------+
-| ``WARNING``              | A VM was found in a failure state.                                                         |
-+--------------------------+--------------------------------------------------------------------------------------------+
-| ``SCALING``              | A Role is scaling up or down.                                                              |
-+--------------------------+--------------------------------------------------------------------------------------------+
-| ``COOLDOWN``             | A Role is in the cooldown period after a scaling operation.                                |
-+--------------------------+--------------------------------------------------------------------------------------------+
-| ``UNDEPLOYING``          | Some Roles are being undeployed.                                                           |
-+--------------------------+--------------------------------------------------------------------------------------------+
-| ``FAILED_DEPLOYING``     | An error occurred while deploying the Service.                                             |
-+--------------------------+--------------------------------------------------------------------------------------------+
-| ``FAILED_UNDEPLOYING``   | An error occurred while undeploying the Service.                                           |
-+--------------------------+--------------------------------------------------------------------------------------------+
-| ``FAILED_SCALING``       | An error occurred while scaling the Service.                                               |
-+--------------------------+--------------------------------------------------------------------------------------------+
++-----------------------------+--------------------------------------------------------------------------------------------+
+| Service State               | Meaning                                                                                    |
++=============================+============================================================================================+
+| ``PENDING``                 | The Service starts in this state, and will stay in it until the LCM decides to deploy it.  |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| ``HOLD``                    | All roles are in hold state.                                                               |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| ``DEPLOYING``               | Some Roles are being deployed.                                                             |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| ``DEPLOYING_NETS``          | Service networks are being deployed, they are in ``LOCK`` state.                           |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| ``RUNNING``                 | All Roles are deployed successfully.                                                       |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| ``WARNING``                 | A VM was found in a failure state.                                                         |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| ``SCALING``                 | A Role is scaling up or down.                                                              |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| ``COOLDOWN``                | A Role is in the cooldown period after a scaling operation.                                |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| ``UNDEPLOYING``             | Some Roles are being undeployed.                                                           |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| ``UNDEPLOYING_NETS``        | Service networks are being undeployed, they are in ``LOCK`` state.                         |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| ``FAILED_DEPLOYING``        | An error occurred while deploying the Service.                                             |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| ``FAILED_DEPLOYING_NETS``   | An error occurred while deploying the Service networks.                                    |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| ``FAILED_UNDEPLOYING``      | An error occurred while undeploying the Service.                                           |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| ``FAILED_UNDEPLOYING_NETS`` | An error occurred while undeploying the Service networks.                                  |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| ``FAILED_SCALING``          | An error occurred while scaling the Service.                                               |
++-----------------------------+--------------------------------------------------------------------------------------------+
 
 Each Role has an individual state, described in the following table:
 
@@ -301,6 +311,8 @@ Each Role has an individual state, described in the following table:
 | Role State               | Meaning                                                                                   |
 +==========================+===========================================================================================+
 | ``PENDING``              | The Role is waiting to be deployed.                                                       |
++--------------------------+-------------------------------------------------------------------------------------------+
+| ``HOLD``                 | The VMs are ``HOLD`` and will not be scheduled until them are released.                   |
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``DEPLOYING``            | The VMs are being created, and will be monitored until all of them are ``RUNNING``.       |
 +--------------------------+-------------------------------------------------------------------------------------------+
@@ -335,6 +347,47 @@ When a Service fails during a deployment, undeployment or scaling operation, the
 .. _flow_purge_done:
 
 In order to delete all the services in ``DONE`` state, to free some space in your database, you can use the command ``oneflow purge-done``.
+
+Instantiation of roles with VMs on hold
+--------------------------------------------------------------------------------
+
+VMs of a Service can be instances on hold with the ``on_hold`` parameter set to true in the Service Template.
+
+.. code-block:: javascript
+
+    {
+      "name": "my_service",
+      "deployment": "straight",
+      "on_hold": true|false,
+      "roles": [
+        {
+          ...
+        }
+      ]
+    }
+
+This option can also be set at the Role level, where only one specific Role is instantiated in ``HOLD``, instead of the whole service. For example:
+
+.. code-block:: javascript
+
+    {
+      "name": "my_service",
+      "deployment": "straight",
+      "roles": [
+        {
+          "name": "frontend",
+          "vm_template": 0,
+          "on_hold": true|false
+        },
+        ...
+      ]
+    }
+
+Once you want to release the Roles, you can use the ``oneflow release`` command to release the Service:
+
+.. prompt:: bash $ auto
+
+    $ oneflow release <SERVICE_ID>
 
 Adding or Removing Roles from a Running Service
 --------------------------------------------------------------------------------
@@ -569,6 +622,26 @@ Service Charters
 This functionality automatically adds scheduling actions in VM when the service is instantiated, for more information of this, please check the :ref:`VM Charter <vm_charter>`
 
 |image1|
+
+.. _service_global:
+
+Service Global Parameters
+--------------------------------------------------------------------------------
+
+You can define attributes that refer to a parent's attribute, for example, the parent can push an attribute trough OneGate and its children can use it on their template.
+
+In order to do this, you need to use the following syntax: ``${<PARENT_ROLE_NAME>.<XPATH>}``:
+
+- **Parent Role Name**: is the parent role that will have the attribute, it's important to note that the name **must** be exactly the same as the parent role one.
+- **XPATH**: XPATH expression to find the value, it must be separated by ``.``, for example: if the XPATH is ``TEMPLATE/CONTEXT/TEST``, the expression should be ``${<PARENT_ROLE_NAME>.template.context.test}``.
+
+These expressions can be placed inside ``vm_template_contents`` attribute, which is the final information that will have the VM, for example:
+
+.. prompt:: bash $ auto
+
+    vm_template_contents": "DB_NAME=${DATABASE.template.context.db_name}
+
+.. important:: This will only work when using STRAIGHT strategy and when there is a parent relationship. So the attributes **must** be in the children not in the parent.
 
 Service Template Reference
 ================================================================================

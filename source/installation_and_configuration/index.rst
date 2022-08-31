@@ -19,7 +19,5 @@ The Installation and Configuration Guide provides instructions on how to carry o
    Data Center Federation <data_center_federation/index>
    OpenNebula Services <opennebula_services/index>
    Authentication Configuration <authentication/index>
-   Private Marketplaces <private_marketplaces/index>
    Configuration Management (EE) <configuration_management/index>
-   Containerized Deployment (TP) <containerized_deployment/index>
    WHMCS Install and Usage (EE) <whmcs_tenants/index>

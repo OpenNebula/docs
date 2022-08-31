@@ -58,7 +58,7 @@ As a virtualization driver, the vCenter driver accepts a series of parameters th
 
 See the :ref:`Virtual Machine drivers reference <devel-vmm>` for more information about these parameters, and how to customize and extend the OpenNebula virtualization drivers. Also, check the specific :ref:`vCenter driver reference <vcenter_driver>` that details how OpenNebula maps and keeps track of vCenter resources.
 
-Additionally, certain behavior of the vCenter driver can be configured in ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterrc``. Check the file to learn what parameters can be changed.
+Additionally, certain behavior of the vCenter driver can be configured in ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterrc``. Check the file to learn what parameters can be changed. An explanation of each option can be found :ref:`here <driver_tuning>`.
 
 vCenter Datastore Drivers
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -138,7 +138,7 @@ vCenter clusters, VM templates, networks, datastores, and VMDK files located in 
 
 * Using the Import button in Sunstone.
 
-.. warning:: The image import operation may take a long time. If you use the Sunstone client and receive a "Cannot contact server: is it running and reachable?" the 30-second Sunstone timeout may have been reached. In this case, either configure Sunstone to live behind Apache/NGINX or use the CLI tool instead.
+.. warning:: The image import operation may take a long time. If you use the Sunstone client and receive a "Cannot contact server: is it running and reachable?" the 30-second Sunstone timeout may have been reached. In this case, either :ref:`configure Sunstone to run behind Apache/NGINX <suns_advance>` or use the CLI tool instead.
 
 
 The following vCenter resources can be easily imported into OpenNebula:
@@ -234,7 +234,11 @@ Note that if you delete an OpenNebula Host representing a vCenter cluster and th
 
 In that case, you should specify the correct cluster from the Cluster drop-down menu or remove the OpenNebula cluster so OpenNebula can create the cluster again automatically when the vCenter cluster is imported.
 
-You can define ``VM_PREFIX`` attribute within the Host template. This attribute means that when you instantiate a VM in this Host, the names of all VMs will begin with ``VM_PREFIX``.
+.. _vcenter_vm_prefix:
+
+You can define ``VM_PREFIX`` attribute within the Host template so the names of all VMs instantiated on that host will begin with ``VM_PREFIX`` in vCenter. This value defaults to "one-<VID>" (where VID is the ID of the VM) if ``VM_PREFIX`` is not present. It can be set to an empty value to avoid having a prefix on the VM names.
+
+Additionally, this attribute can be overriden on the USER_TEMPLATE of the VM by setting an attribute on the same name (``VM_PREFIX``). The USER_TEMPLATE of the VM can also contain a ``VM_SUFFIX`` attribute to be automatically added to the VM name. Both ``VM_PREFIX`` and ``VM_SUFFIX`` can contain the ``$i`` which will be automatically substituted by the VM ID.
 
 .. _vcenter_import_resources:
 
@@ -542,6 +546,16 @@ The following procedure is useful if the VM has been changed in vCenter and Open
 
 * Re-import VM: on the Host's next monitoring cycle you will find this VM under **Wilds** tab and it can be safely imported.
 
+.. _vcenter_import_ip:
+
+If you want to set specific IPv4/6 when importing the VM, you can use the parameters ``--ipv4`` and ``--ipv6``, giving a list of IP addresses separated by commas.
+
+.. prompt:: bash $ auto
+
+    $ onehost importvm <host> <vm> --ipv4 ip1,ip2
+
+.. important:: You need to provide the IPs depending on your interfaces order, as they are going to be assigned in that order.
+
 .. _vcenter_import_networks:
 
 Importing vCenter Networks
@@ -678,7 +692,7 @@ Select the images you want to import and click on the Import button. The ID of t
 
 .. _vcenterc_image:
 
-When an image is created using the import tool, the VCENTER_IMPORTED attribute is set to YES automatically. This attribute prevents OpenNebula from deleting the file from the vCenter datastore when the image is deleted from OpenNebula, so it can be used to prevent a virtual hard disk being removed accidentally from a vCenter template. This default behavior can be changed in ``/var/lib/one/etc/remotes/vmm/vcenter/vcenterc`` by setting DELETE_IMAGES to Yes.
+When an image is created using the import tool, the VCENTER_IMPORTED attribute is set to YES automatically. This attribute prevents OpenNebula from deleting the file from the vCenter datastore when the image is deleted from OpenNebula, so it can be used to prevent a virtual hard disk being removed accidentally from a vCenter template. This default behavior can be changed in ``/var/lib/one/etc/remotes/vmm/vcenter/vcenterrc`` by setting DELETE_IMAGES to Yes.
 
 .. _vcenter_migrate:
 
@@ -751,88 +765,6 @@ Usage (CLI)
 
 .. _vcenter_hooks:
 
-vCenter Hooks
--------------
-
-OpenNebula has two hooks to manage networks in vCenter and :ref:`NSX <nsx_setup>`.
-
-+----------------------+--------------------------------------------------------+
-| Hook Name            | Hook Description                                       |
-+======================+========================================================+
-| vcenter_net_create   | Allows you to create / import vCenter and NSX networks |
-+----------------------+--------------------------------------------------------+
-| vcenter_net_delete   | Allows you to delete vCenter and NSX networks          |
-+----------------------+--------------------------------------------------------+
-
-These hooks should be created automatically when you add a vCenter cluster. If accidentially deleted, they can be created again manually.
-
-Go to `Create vCenter Hooks`_ and follow the steps to create a new hook.
-
-.. note:: Detailed information about how hooks work is available :ref:`here <hooks>`.
-
-
-List vCenter Hooks
-~~~~~~~~~~~~~~~~~~
-
-Type the following command to list registered hooks:
-
-.. prompt:: bash $ auto
-
-    $ onehook list
-
-The output of the command should be something like this:
-
-.. image:: /images/nsx_hook_list.png
-
-
-Create vCenter Hooks
-~~~~~~~~~~~~~~~~~~~~~
-
-The following command can be used to create a new hook:
-
-.. prompt:: bash $ auto
-
-    $ onehook create <template_file>
-
-where template file is the name of the file that contains the hook template information.
-
-The hook template for network creation is:
-
-.. prompt:: bash $ auto
-
-    NAME = vcenter_net_create
-    TYPE = api
-    COMMAND = vcenter/create_vcenter_net.rb
-    CALL = "one.vn.allocate"
-    ARGUMENTS = "$API"
-    ARGUMENTS_STDIN = yes
-
-The latest version <https://raw.githubusercontent.com/OpenNebula/one/master/share/hooks/vcenter/templates/create_vcenter_net.tmpl>`__
-
-.. _vcenter_net_delete_template:
-
-The hook template for network deletion is:
-
-.. prompt:: bash $ auto
-
-    NAME = vcenter_net_delete
-    TYPE = api
-    COMMAND = vcenter/delete_vcenter_net.rb
-    CALL = "one.vn.delete"
-    ARGUMENTS = "$API"
-    ARGUMENTS_STDIN = yes
-
-The latest version of the hook delete template can be found `here <https://raw.githubusercontent.com/OpenNebula/one/master/share/hooks/vcenter/templates/delete_vcenter_net.tmpl>`__
-
-Delete vCenter Hooks
-~~~~~~~~~~~~~~~~~~~~
-
-A hook can be deleted if its ID is known. The ID can be retrieved using onehook list and then deleted using the following command:
-
-.. prompt:: bash $ auto
-
-    $ onehook delete <hook_id>
-
 .. _driver_tuning:
 
 Driver tuning
@@ -857,3 +789,9 @@ Some aspects of the driver's behavior can be configured in */var/lib/one/remotes
 * **keep_non_persistent_disks**: Detach non-persistent disks from VMs on VM terminate but avoid deleting them afterwards. Default: **false**.
 
 * **keep_mac_on_imported**: Avoid change MAC from imported Wild. Default: **false**.
+
+* **wild_vm_persistent_images**: Wild VM disks imported as persistent (true) or non-persistent (false) images. Default: **true**.
+
+* **vm_template_persistent_images**: VM Template disks imported as persistent (true) or non-persistent (false) images. Default: **false**.
+
+* **sparse_images**: Sets the VMDK image subformat to sparse (true) or flat (false) for ESXi compatibility. Default: **false**.

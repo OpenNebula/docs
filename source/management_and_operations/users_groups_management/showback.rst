@@ -47,7 +47,9 @@ The number of hours is calculated as the total number of hours that a VM has bee
 
 Optionally you can compute CPU and MEMORY cost only for VMs in ``running`` state, see ``SHOWBACK_ONLY_RUNNING`` in :ref:`oned.conf file <oned_conf_default_showback>`
 
-If the time range includes the current month, OpenNebula will calculate the cost up to today's date. It is up to the administrators to leave the current month out of the showback records, to update it daily, or hourly. In any case, it is important to re-calculate it when the month ends. This operation can be easily automated by a cron job.
+If the time range includes the current month, OpenNebula will calculate the cost up to today's date.
+
+.. note:: There is a timer in the front-end opennebula-showback.timer that calculates automatically the showback every day, you can check the status by running ``systemctl status opennebula-showback.timer``.
 
 The ``oneshowback`` command can only be executed by the oneadmin user.
 
@@ -131,7 +133,7 @@ To integrate the showback reports with external tools, you can get the CLI outpu
     2015,10,4265,433749.03
     2015,11,4258,34248600
 
-Developers interacting with OpenNebula using the Ruby bindings can use the `VirtualMachinePool.showback method <http://docs.opennebula.io/doc/6.3/oca/ruby/OpenNebula/VirtualMachinePool.html#showback-instance_method>`__ to retrieve showback information filtering and ordering by multiple parameters.
+Developers interacting with OpenNebula using the Ruby bindings can use the `VirtualMachinePool.showback method <http://docs.opennebula.io/doc/6.4/oca/ruby/OpenNebula/VirtualMachinePool.html#showback-instance_method>`__ to retrieve showback information filtering and ordering by multiple parameters.
 
 .. |showback_template_wizard| image:: /images/showback_template_wizard.png
 .. |showback_instantiate| image:: /images/showback_instantiate.png

@@ -1,10 +1,10 @@
 .. _rnce:
 
 ================================================================================
-Release Notes 6.3.80 Community
+Release Notes 6.99.80 Community
 ================================================================================
 
 .. toctree::
    :maxdepth: 1
 
-   What Is <what_is>
+   What is OpenNebula CE<what_is>

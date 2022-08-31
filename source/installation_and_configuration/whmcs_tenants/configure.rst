@@ -4,15 +4,15 @@
 WHMCS Tenants Module Install/Update
 ===================================
 
-The install and update process are essentially identical. The Module files can be found in */usr/share/one/whmcs*. You will just need to copy the *src/modules* directory to the main WHMCS directory on the server hosting WHMCS. When updating the module just copy the files on top of the existing files and overwrite them. An example command for copying the files:
+The install and update process are essentially identical. The Module files can be found in */usr/share/one/whmcs* after you have installed the *opennebula-whmcs-tenants* package via your package manager. You will just need to merge the *modules* directory to the main WHMCS directory on the server hosting WHMCS. When updating the module just copy the files on top of the existing files and overwrite them. An example command for copying the files:
 
 .. code-block:: bash
 
-    cp -rf /usr/share/one/whmcs/src/modules /path/to/web/root/whmcs/.
+    cp -rf /usr/share/one/whmcs/modules /path/to/web/root/whmcs/.
 
 
 
-.. note:: Make sure you download the updated files from the one-ee-tools repository before doing either an install or an update.
+.. note:: Make sure you download the updated package from the EE repository before doing either an install or an update.
 
 ==================================
 WHMCS Tenants Module Configuration
@@ -31,7 +31,9 @@ To configure your WHMCS Tenants Module, first log in to your WHMCS admin area an
 .. image:: /images/whmcs_tenants_add_server.png
     :align: center
 
-Fill in a **Name** and the **Hostname** for your OpenNebula Server. Under the **Server Details** section select **OpenNebula Tenants** as the Module and fill in the **Username** and **Password** with a user in the *oneadmin* group in your OpenNebula installation.
+Fill in the **Hostname** for your OpenNebula Server. Under the **Server Details** section select **OpenNebula Tenants** as the Module and fill in the **Username** and **Password** with a user in the *oneadmin* group in your OpenNebula installation.
+
+Now click the button on top labelled **Go to Advanced Mode**.  This will open a larger form, so fill in a Name for the server and scroll down to the bottom to verify that the port and SSL settings are correct. By default, the XML-RPC traffic is not encrypted with SSL so you may need to disable that unelss you've `set up SSL for XML-RPC <https://support.opennebula.pro/hc/en-us/articles/5101146829585>`__.
 
 Once these are filled out, click the **Test Connection** button to verify the module can authenticate with your OpenNebula server.
 

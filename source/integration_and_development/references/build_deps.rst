@@ -32,6 +32,7 @@ Ubuntu 20.04
 * **libsystemd-dev**
 * **libws-commons-util-java**
 * **libxml2-dev**
+* **libxmlrpc-c++8-dev**
 * **libxslt1-dev**
 * **libcurl4-openssl-dev**
 * **libcurl4**

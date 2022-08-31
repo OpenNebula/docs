@@ -1,8 +1,8 @@
 .. _support:
 
-======================
+================================================================================
 Support Utilities (EE)
-======================
+================================================================================
 
 .. important::
 
@@ -23,19 +23,21 @@ There are two specialized tools contained in the OpenNebula server package:
 .. _support_bundle:
 
 Generate Support Bundle
-=======================
+================================================================================
 
-If there are no special requirements, the support diagnostic bundle can be generated just by running ``onesupport`` **on the Front-end** without any extra parameters. The command must be running under **privileged user** (directly by ``root`` or via ``sudo``). For example:
+.. important:: If you have a vCenter infra, in order to gather more information about vCenter, you need to use ``sudo onesupport`` instead of ``onegather``, for more information please check ``sudo onesupport --help``.
+
+If there are no special requirements, the support diagnostic bundle can be generated just by running ``onegather`` **on the Front-end** without any extra parameters. The command must be running under **privileged user** (directly by ``root`` or via ``sudo``). For example:
 
 .. prompt:: bash $ auto
 
-    $ sudo onesupport
+    $ sudo onegather
 
 The command generates a diagnostic bundle archive and puts it into ``/tmp/``. The precise file location is shown at the end of the terminal output, e.g.:
 
 .. prompt:: bash # auto
 
-    Diagnostic archive: /tmp/onesupport.HNpsTCQSb.tar.xz
+    Bundle ZIP: /tmp/d20220429-22314-1382f6c.zip
 
 Please **attach this file to the support ticket**.
 
@@ -45,24 +47,13 @@ Please **attach this file to the support ticket**.
 
     .. prompt:: bash $ auto
 
-        $ sudo onesupport frontend nodb
+        $ sudo onegather --group fe --no-db
 
 The tool prints all actions, based on which you can decide if you want to provide such a bundle to the support team. Here's an example of a full output:
 
 .. code-block:: bash
 
-    $ sudo onesupport
-        ___  _ __   ___
-       / _ \| '_ \ / _ \
-      | (_) | | | |  __/     OpenNebula Support Tool
-       \___/|_| |_|\___|
-
-     ------------------------------------------------------
-     Group: all
-     - with conf: true
-     - with logs: true
-     - with DB:   true
-
+    $ sudo onegather
     Get OS distribution
     Get current user
     Get user "oneadmin"
@@ -88,21 +79,9 @@ The tool prints all actions, based on which you can decide if you want to provid
     Get OpenNebula configuration
     Get OpenNebula remotes
     Dump OpenNebula objects
-      - hosts
-      - vnets
-      - datastores
-      - clusters
-      - images
-      - templates
-      - ACLs
-      - VDCs
-      - OneFlow templates
     Dump OpenNebula instance objects
-      - VMs
-      - OneFlow instances
     Get web server configuration
     Inspecting the OpenNebula hosts
-      - KVM host localhost (oneadmin with oneadmin's key)
     [localhost] Get OS distribution
     [localhost] Get current user
     [localhost] Get user "oneadmin"
@@ -125,28 +104,24 @@ The tool prints all actions, based on which you can decide if you want to provid
     [localhost] Get libvirt configuration
     [localhost] Get system logs
 
-    Diagnostic archive: /tmp/onesupport.HNpsTCQSb.tar.xz
+    ** Results **
+    -> Bundle: /tmp/d20220428-2468-zlxnpl
+    -> Bundle ZIP: /tmp/d20220428-2468-zlxnpl.zip
 
 Advanced Usage
---------------
+--------------------------------------------------------------------------------
 
-The purpose of the ``onesupport`` tool is to gather as much information as possible about the environment so that OpenNebula's customer care can give more accurate and faster responses. The usage is very simple and there are only a few configuration options. There are brief descriptions of all of them available via argument ``--help``.
+The purpose of the ``onegather`` tool is to gather as much information as possible about the environment so that OpenNebula's customer care can give more accurate and faster responses. The usage is very simple and there are only a few configuration options. There are brief descriptions of all of them available via argument ``--help``.
 
 .. prompt:: bash $ auto
 
-    $ sudo onesupport --help
-    onesupport [host types] [dump types]
-
-    Host types:
-      all           ... start on frontend and inspect all hosts (default)
-      frontend      ... gather only frontend specific data
-      host          ... gather only KVM host specific data
-
-    Dump types:
-      nodb, db      ... (don't) dump database (ONE)
-      noconf, conf  ... (don't) dump configuration (ONE, libvirt, Apache/NGINX)
-      nologs, logs  ... (don't) dump logs (ONE and system logs)
-
+    $ sudo onegather --help
+    Usage: onegather [options]
+        -v, --vm=VM                      Get information about specific VM
+        -g, --group=GROUP                Group to process
+            --no-confg                   Do not get configuration files
+            --no-db                      Do not get database
+            --no-logs                    Do not get log files
 
 There are two types of arguments to specify:
 
@@ -154,102 +129,99 @@ There are two types of arguments to specify:
 - *dump type*
 
 Host Types
-^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 What data is gathered depends mainly on the type of host we are running the tool on. Each *host type* gets the same common data (operating system, hardware, memory, installed software packages, system services, mounts, logs etc.) and differs only in data specific to the type.
 
 Available options are:
 
-+---------------+--------------------------------------------------------------------------------+
-| Option        | Main Subject                                                                   |
-+===============+================================================================================+
-| ``frontend``  | OpenNebula Front-end services configuration and state, database                |
-|               | dump, various entities (e.g., VMs).                                            |
-+---------------+--------------------------------------------------------------------------------+
-| ``host``      | Hypervisor services (libvirt, KVM) and network configuration.                  |
-+---------------+--------------------------------------------------------------------------------+
-| ``all``       | Combination of ``frontend`` mode and ``host`` mode.                            |
-|               | It starts with Front-end specific data and connects to each virtualization     |
-|               | host to get Host-specific data. This mode is the **default**.                  |
-+---------------+--------------------------------------------------------------------------------+
++----------+--------------------------------------------------------------------------------+
+| Option   | Main Subject                                                                   |
++==========+================================================================================+
+| ``fe``   | OpenNebula Front-end services configuration and state, database                |
+|          | dump, various entities (e.g., VMs).                                            |
++----------+--------------------------------------------------------------------------------+
+| ``host`` | Hypervisor services (libvirt, KVM) and network configuration.                  |
++----------+--------------------------------------------------------------------------------+
+| ``all``  | Combination of ``frontend`` mode and ``host`` mode.                            |
+|          | It starts with Front-end specific data and connects to each virtualization     |
+|          | host to get Host-specific data. This mode is the **default**.                  |
++----------+--------------------------------------------------------------------------------+
 
 Examples
-~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Simple run gathers all information (runs are equivalent):
 
 .. prompt:: bash $ auto
 
-    $ sudo onesupport
-    $ sudo onesupport all
+    $ sudo onegather
+    $ sudo onegather -g all
 
 Get only Front-end specific data (must run on Front-end):
 
 .. prompt:: bash $ auto
 
-    $ sudo onesupport frontend
+    $ sudo onegather -g fe
 
 Get only host-specific data (must run on hypervizor Node):
 
 .. prompt:: bash $ auto
 
-    $ sudo onesupport host
+    $ sudo onegather -g host
 
 Dump Types
-^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The level of detail contained in the gathered data can be adjusted by *dump type* parameters. The following types are supported:
 
-+----------------------+-------------------------------------------------------------------------+
-| Option               | Description                                                             |
-+======================+=========================================================================+
-| ``db``, ``nodb``     | Enable/disable database dumps.                                          |
-+----------------------+-------------------------------------------------------------------------+
-| ``conf``, ``noconf`` | Enable/disable bundling of configuration files.                         |
-+----------------------+-------------------------------------------------------------------------+
-| ``logs``, ``nologs`` | Enable/disable bundling of logs.                                        |
-+----------------------+-------------------------------------------------------------------------+
++-------------+------------------------------------------+
+| Option      | Description                              |
++=============+==========================================+
+| ``no-db``   | Disable database dumps.                  |
++-------------+------------------------------------------+
+| ``no-conf`` | Disable bundling of configuration files. |
++-------------+------------------------------------------+
+| ``no-logs`` | Disable bundling of logs.                |
++-------------+------------------------------------------+
 
-All dump types are enabled by default (``db conf logs``), but can be selectively disabled with negative options ``nodb``, ``noconf`` and/or ``nologs``.
+All dump types are enabled by default (``db conf logs``), but can be selectively disabled with negative options ``no-db``, ``no-conf`` and/or ``no-logs``.
 
 .. important::
 
-    If positive dump types (``db``, ``conf``, ``logs``) are used on the command line, only the specified types are gathered and no other ones.
-
-    If negative dump types (``nodb``, ``noconf``, ``nologs``) are used, these types are excluded from the support bundle. All the remaining types are included.
+    If negative dump types (``no-db``, ``no-conf``, ``no-logs``) are used, these types are excluded from the support bundle. All the remaining types are included.
 
 Examples
-~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A simple run gathers all information (these runs are equivalent):
 
 .. prompt:: bash $ auto
 
-    $ sudo onesupport
-    $ sudo onesupport db conf logs
+    $ sudo onegather
 
 Get support bundle without any database dumps and logs:
 
 .. prompt:: bash $ auto
 
-    $ sudo onesupport nodb nologs
+    $ sudo onegather --no-db --no-logs
 
 Get support bundle with database dump, but no logs and configurations:
 
 .. prompt:: bash $ auto
 
-    $ sudo onesupport db
+    $ sudo onegather --no-conf --no-logs
 
 Dump types and host types parameters can be combined
 
 .. prompt:: bash $ auto
 
-    $ sudo onesupport frontend nodb
+    $ sudo onegather -g fe --no-db
 
 .. _support_vcenter:
 
 Scan vCenter Permissions
-========================
+================================================================================
 
 When you are using OpenNebula cloud to manage vCenter infrastructure, it might also be necessary to know details about the permissions configuration inside vCenter. This is **automatically retrieved during the support bundle preparation** but can be scanned separately at any time (e.g., in case the automatic run fails).
 

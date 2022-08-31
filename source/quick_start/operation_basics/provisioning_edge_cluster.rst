@@ -5,16 +5,16 @@
 Provisioning an Edge Cluster
 ============================
 
-In this section you can check all the steps needed to deploy an **Edge Cluster**. This involves the FireEdge OneProvision GUI and Sunstone to manage the resources created in OpenNebula.
+In this section you can check all the steps needed to deploy an **Edge Cluster**. This involves the FireEdge OneProvision GUI and Sunstone to manage the resources created in OpenNebula. Each new provision in the OneProvision GUI creates a new OpenNebula cluster.
 
-.. note:: We'll be creating a virtual Edge Cluster with LXC hypervisor, suitable for deploying containers. If you're planning to go all the way and to also try the deployment of VMs and K8s cluster, we recommend using a metal Edge Cluster deployment with a KVM hypervisor.
+.. important:: This guide assumes that you have deployed the OpenNebula front-end following the :ref:`Deployment Basics guide <deployment_basics>`. Here we'll be creating a metal Edge Cluster with KVM hypervisor, suitable for deploying both Virtual Machines and K8s clusters in the following :ref:`Usage Basics section <usage_basics>`.
 
-An Edge Cluster is a group of resources in OpenNebula and the corresponding resources in AWS. OpenNebula provides a specification of the cluster ready to be created.
+An Edge Cluster is a group of resources in OpenNebula and the corresponding resources in AWS, that are suitable to be run in edge locations with a minimal footprint. OpenNebula provides a specification of the cluster ready to be created.
 
-The following resources are created in OpenNebula:
+The following resources are created in OpenNebula when a new Edge Cluster is deployed:
 
 * **Cluster**: one cluster containing all the resources is created with each provision. There is a one-to-one relationship between the provision and the cluster, so each provision can only have **one** cluster.
-* **Datastore**: each provision deploys two datastores, the system and the image.
+* **Datastore**: each provision deploys two datastores, the system and the image. This is based on :ref:`OneStor datatores <onestor_ds>` in the case of Edge Clusters (and in Ceph in the case of HCI Clusters).
 * **Host**: the user can deploy as many as he or she wants. They will be used to run VMs.
 * **Virtual Network**: for private networking there is a network template ready to be instantiated with the parameters the user needs. There is also one public network that uses the elastic drivers to pre-allocate IPs, so VMs have public connectivity.
 
@@ -49,7 +49,7 @@ First, to **create a provider**, go to provider list view:
 
 |image_provider_list_empty|
 
-Then, **click the plus button** and fill in the form. We will be using the virtual Edge Cluster type with the LXC hypervisor.
+Then, **click the plus button** and fill in the form. We will be using the metal Edge Cluster type with the KVM hypervisor.
 
 |image_provider_create_step1|
 
@@ -59,7 +59,7 @@ Then, **click the plus button** and fill in the form. We will be using the virtu
 
 You now have a **new provider**.
 
-Step 3: Provision a Virtual Edge Cluster
+Step 3: Provision a Metal Edge Cluster
 ================================================================================
 
 The user needs to provide the following inputs to create the provision:
@@ -75,8 +75,10 @@ The user needs to provide the following inputs to create the provision:
 +-----------------------+------------------------------------------------------------------+
 | ``AWS instance type`` | AWS instance type to deploy.                                     |
 +-----------------------+------------------------------------------------------------------+
-| ``Hypervisor``        | Hypervisor to install ``lxc`` (just for virtual servers)         |
+| ``Hypervisor``        | Hypervisor to install ``kvm``.                                   |
 +-----------------------+------------------------------------------------------------------+
+
+.. important:: Make sure you request at least two public IPs to correctly complete the :ref:`Usage Basics <usage_basics>` part of the Quick Start guide which follows this one.
 
 Now let's go to **create a provision** and follow the same steps:
 

@@ -1,10 +1,10 @@
 .. _rn_enterprise:
 
 ================================================================================
-Release Notes 6.3.80 Enterprise Edition
+Release Notes 6.99.80 Enterprise Edition
 ================================================================================
 
 .. toctree::
    :maxdepth: 1
 
-   What Is <what_is>
+   What is OpenNebula EE<what_is>

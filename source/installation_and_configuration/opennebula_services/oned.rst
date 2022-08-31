@@ -44,9 +44,12 @@ The OpenNebula Daemon configuration file can be found in ``/etc/one/oned.conf`` 
 
 -  ``VM_SUBMIT_ON_HOLD``: Forces VMs to be created on hold state instead of pending. Values: ``YES`` or ``NO``.
 -  ``API_LIST_ORDER``: Sets order (by ID) of elements in list API calls (e.g. ``onevm list``). Values: ``ASC`` (ascending order) or ``DESC`` (descending order).
+-  ``CONTEXT_RESTRICTED_DIRS``: List of space separated directories, which can't be used in ``CONTEXT/FILES`` attribute.
+-  ``CONTEXT_SAFE_DIRS``: List of space separated directories, which allows use of subdirectories from ``CONTEXT_RESTRICTED_DIRS``.
 -  ``LOG``: Configure the logging system
 
    -  ``SYSTEM``: Can be either ``file`` (default), ``syslog`` or ``std``
+   -  ``USE_VMS_LOCATION``: Defines if store VM logs in VMS_LOCATION (``/var/lib/one/vms/<VMID>/vm.log``).
    -  ``DEBUG_LEVEL``: Sets the verbosity of the log messages. Possible values are:
 
 +----------------+---------------+
@@ -71,7 +74,8 @@ Example of this section:
 
     LOG = [
       SYSTEM      = "file",
-      DEBUG_LEVEL = 3
+      DEBUG_LEVEL = 3,
+      USE_VMS_LOCATION = "NO"
     ]
 
     #MANAGER_TIMER = 15
@@ -860,6 +864,8 @@ Sample configuration:
     INHERIT_VNET_ATTR       = "FILTER_MAC_SPOOFING"
     INHERIT_VNET_ATTR       = "MTU"
     INHERIT_VNET_ATTR       = "METRIC"
+    INHERIT_VNET_ATTR       = "CVLANS"
+    INHERIT_VNET_ATTR       = "QINQ_TYPE"
 
 .. _oned_conf_onegate:
 

@@ -51,6 +51,8 @@ If you want to use noVNC you need to have it running. You can start this service
     # systemctl enable opennebula-novnc
     # systemctl start  opennebula-novnc
 
+.. _sunstone_fs_permissions:
+
 **Filesystem Permissions**
 
 Another thing you have to take into account is the user under which the server will run. The installation sets the permissions for the ``oneadmin`` user and group, and files like the Sunstone configuration and credentials cannot be read by other users.
@@ -170,11 +172,11 @@ If FireEdge is installed and running on the same machine and expected to be used
       </Location>
     </VirtualHost>
 
-In Sunstone configuration (:ref:`/etc/one/sunstone-server.conf <sunstone_conf>`), set the public FireEdge endpoint in option ``:public_fireedge_endpoint``. E.g.,
+In Sunstone configuration (:ref:`/etc/one/sunstone-server.conf <sunstone_conf>`), set the public FireEdge endpoint in option ``:public_fireedge_endpoint``, to the public endpoint that correctly redirects to fireedge (in the example, all URLs with the /fireedge handle). E.g.,
 
 .. code::
 
-    :public_fireedge_endpoint: http://one.example.one
+    :public_fireedge_endpoint: http://one.example.one/fireedge
 
 .. _suns_advance_apache_tls_proxy:
 
@@ -480,7 +482,7 @@ You will need to configure a new virtual host in nginx. Depending on the operati
 
 -  A sample ``cloudserver.org`` virtual host is presented next:
 
-.. code-block:: none
+.. code-block::bash
 
     #### OpenNebula Sunstone upstream
     upstream sunstone  {
@@ -489,7 +491,7 @@ You will need to configure a new virtual host in nginx. Depending on the operati
 
     #### OpenNebula FireEdge upstream
     upstream fire-edge {
-            server 127.0.0.1:2616
+            server 127.0.0.1:2616;
     }
 
     #### cloudserver.org HTTP virtual host
@@ -513,10 +515,22 @@ You will need to configure a new virtual host in nginx. Depending on the operati
 
             ### Proxy requests to upstream
             location / {
+                    if ($args ~* password=.+&encrypt=.+&token=.+&info=.*) {
+                        rewrite ^/$ /websockify/ last;
+                    }
                     proxy_pass              http://sunstone;
                     proxy_set_header        X-Real-IP $remote_addr;
                     proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
                     proxy_set_header        X-Forwarded-Proto $scheme;
+            }
+
+            location /websockify {
+                    proxy_http_version 1.1;
+                    proxy_pass https://websocketproxy;
+                    proxy_set_header Upgrade $http_upgrade;
+                    proxy_set_header Connection "upgrade";
+                    proxy_read_timeout 61s;
+                    proxy_buffering off;
             }
 
             location /fireedge {

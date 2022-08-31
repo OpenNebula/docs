@@ -73,6 +73,8 @@ Authorization Requests Reference
 
 OpenNebula features a CLI that wraps the XML-RPC requests. For each XML-RPC request, the session token is authenticated, and after that the Request Manager generates an authorization request that can include more than one operation. The following tables document these requests from the different CLI commands.
 
+.. note:: Commands with marked with * are asynchronous. The success response for these commands means that all preconditions passed and the action started. To check the action result you need to inspect the resource or its state.
+
 .. _onevm_api:
 
 onevm
@@ -81,69 +83,69 @@ onevm
 +----------------------+---------------------------+-------------------+
 |    onevm command     |     XML-RPC Method        |   Auth. Request   |
 +======================+===========================+===================+
-| deploy               | one.vm.deploy             | VM:ADMIN          |
+| deploy*              | one.vm.deploy             | VM:ADMIN          |
 |                      |                           |                   |
 |                      |                           | HOST:MANAGE       |
 +----------------------+---------------------------+-------------------+
-| boot                 | one.vm.action             | VM:MANAGE         |
+| undeploy*            | one.vm.action             | VM:MANAGE         |
 |                      |                           |                   |
-| terminate            |                           |                   |
+| terminate*           |                           |                   |
 |                      |                           |                   |
-| suspend              |                           |                   |
+| suspend*             |                           |                   |
 |                      |                           |                   |
 | hold                 |                           |                   |
 |                      |                           |                   |
-| stop                 |                           |                   |
+| stop*                |                           |                   |
 |                      |                           |                   |
 | resume               |                           |                   |
 |                      |                           |                   |
 | release              |                           |                   |
 |                      |                           |                   |
-| poweroff             |                           |                   |
+| poweroff*            |                           |                   |
 |                      |                           |                   |
-| reboot               |                           |                   |
+| reboot*              |                           |                   |
 +----------------------+---------------------------+-------------------+
 | resched              | one.vm.action             | VM:ADMIN          |
 |                      |                           |                   |
 | unresched            |                           |                   |
 +----------------------+---------------------------+-------------------+
-| migrate              | one.vm.migrate            | VM:ADMIN          |
+| migrate*             | one.vm.migrate            | VM:ADMIN          |
 |                      |                           |                   |
 |                      |                           | HOST:MANAGE       |
 +----------------------+---------------------------+-------------------+
-| disk-saveas          | one.vm.disksaveas         | VM:MANAGE         |
+| disk-saveas*         | one.vm.disksaveas         | VM:MANAGE         |
 |                      |                           |                   |
 |                      |                           | IMAGE:CREATE      |
 +----------------------+---------------------------+-------------------+
-| disk-snapshot-create | one.vm.disksnapshotcreate | VM:MANAGE         |
+| disk-snapshot-create*| one.vm.disksnapshotcreate | VM:MANAGE         |
 |                      |                           |                   |
 |                      |                           | IMAGE:MANAGE      |
 +----------------------+---------------------------+-------------------+
-| disk-snapshot-delete | one.vm.disksnapshotdelete | VM:MANAGE         |
+| disk-snapshot-delete*| one.vm.disksnapshotdelete | VM:MANAGE         |
 |                      |                           |                   |
 |                      |                           | IMAGE:MANAGE      |
 +----------------------+---------------------------+-------------------+
-| disk-snapshot-revert | one.vm.disksnapshotrevert | VM:MANAGE         |
+| disk-snapshot-revert*| one.vm.disksnapshotrevert | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
 | disk-snapshot-rename | one.vm.disksnapshotrename | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
-| disk-attach          | one.vm.attach             | VM:MANAGE         |
+| disk-attach*         | one.vm.attach             | VM:MANAGE         |
 |                      |                           |                   |
 |                      |                           | IMAGE:USE         |
 +----------------------+---------------------------+-------------------+
-| disk-detach          | one.vm.detach             | VM:MANAGE         |
+| disk-detach*         | one.vm.detach             | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
-| disk-resize          | one.vm.diskresize         | VM:MANAGE         |
+| disk-resize*         | one.vm.diskresize         | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
-| nic-attach           | one.vm.attachnic          | VM:MANAGE         |
+| nic-attach*          | one.vm.attachnic          | VM:MANAGE         |
 |                      |                           |                   |
 |                      |                           | NET:USE           |
 +----------------------+---------------------------+-------------------+
-| nic-detach           | one.vm.detachnic          | VM:MANAGE         |
+| nic-detach*          | one.vm.detachnic          | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
-| sg-attach            | one.vm.attachsg           | VM:MANAGE         |
+| sg-attach*           | one.vm.attachsg           | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
-| sg-detach            | one.vm.detachsg           | VM:MANAGE         |
+| sg-detach*           | one.vm.detachsg           | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
 | create               | one.vm.allocate           | VM:CREATE         |
 |                      |                           |                   |
@@ -163,19 +165,19 @@ onevm
 +----------------------+---------------------------+-------------------+
 | rename               | one.vm.rename             | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
-| snapshot-create      | one.vm.snapshotcreate     | VM:MANAGE         |
+| snapshot-create*     | one.vm.snapshotcreate     | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
-| snapshot-delete      | one.vm.snapshotdelete     | VM:MANAGE         |
+| snapshot-delete*     | one.vm.snapshotdelete     | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
-| snapshot-revert      | one.vm.snapshotrevert     | VM:MANAGE         |
+| snapshot-revert*     | one.vm.snapshotrevert     | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
-| resize               | one.vm.resize             | VM:MANAGE         |
+| resize*              | one.vm.resize             | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
 | update               | one.vm.update             | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
-| recover              | one.vm.recover            | VM:ADMIN          |
+| recover*             | one.vm.recover            | VM:ADMIN          |
 +----------------------+---------------------------+-------------------+
-| save                 | -- (ruby method)          | VM:MANAGE         |
+| save*                | -- (ruby method)          | VM:MANAGE         |
 |                      |                           |                   |
 |                      |                           | IMAGE:CREATE      |
 |                      |                           |                   |
@@ -457,7 +459,7 @@ onevnet
 |                 |                  |                    |
 |                 |                  | [CLUSTER:ADMIN]    |
 +-----------------+------------------+--------------------+
-| delete          | one.vn.delete    | NET:MANAGE         |
+| delete*         | one.vn.delete    | NET:MANAGE         |
 +-----------------+------------------+--------------------+
 | show            | one.vn.info      | NET:USE            |
 +-----------------+------------------+--------------------+
@@ -476,6 +478,8 @@ onevnet
 | lock            | one.vn.lock      | NET:MANAGE         |
 +-----------------+------------------+--------------------+
 | unlock          | one.vn.unlock    | NET:MANAGE         |
++-----------------+------------------+--------------------+
+| recover         | one.vn.recover   | NET:MANAGE         |
 +-----------------+------------------+--------------------+
 
 oneuser
@@ -574,11 +578,11 @@ oneimage
 +------------------+---------------------------+------------------------+
 | chtype           | one.image.chtype          | IMAGE:MANAGE           |
 +------------------+---------------------------+------------------------+
-| snapshot-delete  | one.image.snapshotdelete  | IMAGE:MANAGE           |
+| snapshot-delete* | one.image.snapshotdelete  | IMAGE:MANAGE           |
 +------------------+---------------------------+------------------------+
-| snapshot-revert  | one.image.snapshotrevert  | IMAGE:MANAGE           |
+| snapshot-revert* | one.image.snapshotrevert  | IMAGE:MANAGE           |
 +------------------+---------------------------+------------------------+
-| snapshot-flatten | one.image.snapshotflatten | IMAGE:MANAGE           |
+| snapshot-flatten*| one.image.snapshotflatten | IMAGE:MANAGE           |
 +------------------+---------------------------+------------------------+
 | update           | one.image.update          | IMAGE:MANAGE           |
 +------------------+---------------------------+------------------------+
@@ -586,13 +590,13 @@ oneimage
 |                  |                           |                        |
 |                  |                           | DATASTORE:USE          |
 +------------------+---------------------------+------------------------+
-| clone            | one.image.clone           | IMAGE:CREATE           |
+| clone*           | one.image.clone           | IMAGE:CREATE           |
 |                  |                           |                        |
 |                  |                           | IMAGE:USE              |
 |                  |                           |                        |
 |                  |                           | DATASTORE:USE          |
 +------------------+---------------------------+------------------------+
-| delete           | one.image.delete          | IMAGE:MANAGE           |
+| delete*          | one.image.delete          | IMAGE:MANAGE           |
 +------------------+---------------------------+------------------------+
 | show             | one.image.info            | IMAGE:USE              |
 +------------------+---------------------------+------------------------+
@@ -657,7 +661,7 @@ onemarketapp
 |                      |                        |                                 |
 |                      |                        | MARKETPLACE:USE                 |
 +----------------------+------------------------+---------------------------------+
-| export               | -- (ruby method)       | MARKETPLACEAPP:USE              |
+| export*              | -- (ruby method)       | MARKETPLACEAPP:USE              |
 |                      |                        |                                 |
 |                      |                        | IMAGE:CREATE                    |
 |                      |                        |                                 |
@@ -665,7 +669,7 @@ onemarketapp
 |                      |                        |                                 |
 |                      |                        | [TEMPLATE:CREATE]               |
 +----------------------+------------------------+---------------------------------+
-| download             | -- (ruby method)       | MARKETPLACEAPP:USE              |
+| download*            | -- (ruby method)       | MARKETPLACEAPP:USE              |
 +----------------------+------------------------+---------------------------------+
 | enable               | one.marketapp.enable   | MARKETPLACEAPP:MANAGE           |
 |                      |                        |                                 |
@@ -3611,6 +3615,32 @@ one.vn.unlock
 +------+-----------+--------------------------------------------------------------------------------------------------------+
 | OUT  | Int       | ID of the Object that caused the error.                                                                |
 +------+-----------+--------------------------------------------------------------------------------------------------------+
+
+.. _api_vn_recover:
+
+one.vn.recover
+--------------------------------------------------------------------------------
+
+-  **Description**: Recovers a stuck Virtual Network which is waiting for a driver operation. The recovery may be done by failing or succeeding the pending operation. You need to manually check the VN status, to decide if the operation was successful or not.
+-  **Parameters**
+
++------+------------+--------------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                       Description                                                      |
++======+============+========================================================================================================+
+| IN   | String     | The session string.                                                                                    |
++------+------------+--------------------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                                         |
++------+------------+--------------------------------------------------------------------------------------------------------+
+| IN   | Int        | Recover operation: success (1), failure (0), retry (2), delete (3)                                     |
++------+------------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                            |
++------+------------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                                                    |
++------+------------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                            |
++------+------------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Int        | ID of the Virtual Network that caused the error.                                                       |
++------+------------+--------------------------------------------------------------------------------------------------------+
 
 one.vnpool.info
 --------------------------------------------------------------------------------

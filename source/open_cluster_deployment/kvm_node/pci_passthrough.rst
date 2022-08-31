@@ -140,6 +140,8 @@ In our example our cards have the groups 45, 46, 58 and 59 so we add this config
         "/dev/vfio/59"
     ]
 
+.. _pci_config:
+
 Driver Configuration
 --------------------
 

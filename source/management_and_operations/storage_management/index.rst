@@ -10,5 +10,3 @@ Storage Management
    Overview <overview>
    Datastores <datastores>
    Images <images>
-   Marketplaces <marketplaces>
-   Marketplace Applications <marketapps>

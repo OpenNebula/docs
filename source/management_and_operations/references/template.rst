@@ -625,9 +625,10 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 | ``VARIABLE``                      | Variables that store values related to this virtual machine or others . The name                | O                            | O       |
 |                                   | of the variable is arbitrary (in the example, we use hostname).                                 |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
-| ``FILES \*``                      | space-separated list of paths to include in context device.                                     | O                            | O       |
+| ``FILES``                         | Space-separated list of paths to include in context device. The location of the files are       | O                            | O       |
+|                                   | restricted by the ``CONTEXT_RESTRICTED_DIRS`` in :ref:`oned.conf <oned_conf>`                   |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
-| ``FILES_DS``                      | space-separated list of File images to include in context device. (Not supported                | O                            | O       |
+| ``FILES_DS``                      | Space-separated list of File images to include in context device. (Not supported                | O                            | O       |
 |                                   | for vCenter)                                                                                    |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``INIT_SCRIPTS``                  | If the VM uses the OpenNebula contextualization package the init.sh file is                     | O                            | O       |
@@ -666,11 +667,6 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 | ``SET_HOSTNAME``                  | This parameter value will be the hostname of the VM.                                            | O                            | O       |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``DNS_HOSTNAME``                  | ``YES`` to set the VM hostname to the reverse dns name (from the first IP)                      | O                            | O       |
-+-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
-| ``GATEWAY_IFACE``                 | This variable can be set to the interface number you want to configure the                      | Linux                        | Linux   |
-|                                   | gateway. It is useful when several networks have GATEWAY parameter and you want                 |                              |         |
-|                                   | yo choose the one that configures it. For example to set the first interface to                 |                              |         |
-|                                   | configure the gateway you use ``GATEWAY_IFACE=0``.                                              |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``DNS``                           | Specific DNS server for the Virtual Machine.                                                    | O                            | O       |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
@@ -773,6 +769,9 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 |                                   | of all the extra filesystems which should be extended. The rootfs ``/`` on Linux or disk ``C:`` |                              |         |
 |                                   | on Windows is implied (automatically added) if ``GROW_ROOTFS`` is left empty or set to ``YES``. |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
+| ``IGNORE_SWAP``                   | If set to ``YES`` then ``one-contexd`` service will skip auto-mounting of any found swap        | Linux                        | Linux   |
+|                                   | devices (this does **not** affect swap defined in ``/etc/fstab``).                              |                              |         |
++-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``RECREATE_RUN``                  | If set to ``YES``, missing directories and files persisted in the image in                      | Linux                        | Linux   |
 |                                   | ``/run`` (or ``/var/run``) are restored and copied to the ephemeral ``/run``                    |                              |         |
 |                                   | (or ``/var/run``) of the VM instance.                                                           |                              |         |
@@ -820,7 +819,7 @@ The values referred to by ``VARIABLE`` can be defined :
 
 .. code::
 
-          dns = "$NETWORK[DNS, NETWORK_ID=3]"
+          DNS = "$NETWORK[DNS, NETWORK_ID=3]"
 
 .. note:: The network MUST be in used by any of the NICs defined in the template. The vnet\_attribute can be ``TEMPLATE`` to include the whole vnet template in XML (base64 encoded).
 
@@ -863,13 +862,13 @@ Example:
 .. code::
 
     CONTEXT = [
-      HOSTNAME   = "MAINHOST",
-      IP_PRIVATE = "$NIC[IP]",
-      DNS        = "$NETWORK[DNS, NAME=\"Public\"]",
-      IP_GEN     = "10.0.0.$VMID",
-      FILES      = "/service/init.sh /service/certificates /service/service.conf",
-      FILES_DS   = "$FILE[IMAGE_ID=34] $FILE[IMAGE=\"kernel\"]",
-      TARGET     = "sdc"
+      SET_HOSTNAME = "MAINHOST",
+      IP_PRIVATE   = "$NIC[IP]",
+      DNS          = "$NETWORK[DNS, NAME=\"Public\"]",
+      IP_GEN       = "10.0.0.$VMID",
+      FILES        = "/service/init.sh /service/certificates /service/service.conf",
+      FILES_DS     = "$FILE[IMAGE_ID=34] $FILE[IMAGE=\"kernel\"]",
+      TARGET       = "sdc"
     ]
 
 .. _template_placement_section:
@@ -1236,7 +1235,7 @@ Valid ``types``:
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
 | boolean         | <VAR>="M|boolean| <desc>| | <default>"                          | Yes or not                                             |
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
-| fixed           | <VAR>="M|boolean| <desc>| | <value>"                            | A fixed value, cannot be changed.                      |
+| fixed           | <VAR>="M|fixed| <desc>| | <value>"                              | A fixed value, cannot be changed.                      |
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
 
 There is the possibility of making the USER_INPUT mandatory or not. If it is mandatory, we will see a letter 'M' but if it is not mandatory a letter 'O' will appear.

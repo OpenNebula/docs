@@ -1,0 +1,4 @@
+Site Address
+------------
+
+The service listens on the address (or, IP resolved name) defined in ``ONEAPP_SITE_HOSTNAME``. If no parameter is provided, it tries to use the first routable address of the virtual machine. If there are only loopback address(es), it fallbacks to ``localhost``, but at that point, the service will function only from within the virtual machine. It's good practice to assign a proper IP address to your virtual machine and also this address as a value of ``ONEAPP_SITE_HOSTNAME``.

@@ -9,7 +9,7 @@ This page contains the OpenNebula Cloud API Specification for Ruby. It has been 
 API Documentation
 ================================================================================
 
-You can consult the `doc online </doc/6.3/oca/ruby/>`__.
+You can consult the `doc online </doc/6.4/oca/ruby/>`__.
 
 Usage
 ================================================================================
@@ -83,6 +83,7 @@ This is a small code snippet. As you can see, the code flow would be as follows:
     # Required libraries
     ############################################################################
     require 'opennebula'
+    include OpenNebula
 
     # OpenNebula credentials
     CREDENTIALS = "oneuser:onepass"
@@ -147,6 +148,7 @@ Code Sample: Create a new Virtual Network
     # Required libraries
     ############################################################################
     require 'opennebula'
+    include OpenNebula
 
     # OpenNebula credentials
     CREDENTIALS = "oneuser:onepass"

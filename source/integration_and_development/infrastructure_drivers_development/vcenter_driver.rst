@@ -31,7 +31,7 @@ OpenNebula stores the moref in attributes inside templates definitions. These ar
 * ``VCENTER_DS_REF``. Contains a datastore moref.
 * ``VCENTER_DC_REF``. Contains a datacenter moref.
 * ``VCENTER_TEMPLATE_REF``. Contains a VM template moref.
-* ``DEPLOY_ID``. When a VM is instantiated or imported, it will contain the VM's moref.
+* ``DEPLOY_ID``. When a VM is instantiated or imported, it will contain the VM's moref, plus the vCenter UUID (moref_vcuuid, ex vm-567_805af9ee-2267-4f8a-91f5-67a98051eebc).
 
 The Managed Object Reference is a unique identifier in a specific vCenter instance, so we could find two resources with the same moref in two different vCenter servers. That's why a vCenter Instance UUID is used together with the moref to uniquely identify a resource. An instance uuid has a pattern like this 805af9ee-2267-4f8a-91f5-67a98051eebc.
 
@@ -94,7 +94,6 @@ In VMware there are two types of cloning operations:
 * The Linked Clone. A linked clone is a copy of a template that shares virtual disks with the parent template in an ongoing manner. This conserves disk space, and allows multiple virtual machines to use the same software installation.
 
 When the **onevcenter** tool is used to import a vCenter template, as explained later, you'll be able to specify if you want to use linked clones when the template is imported. Note that if you want to use linked clones, OpenNebula has to create delta disks on top of the virtual disks that are attached to the template. This operation will modify the template so you may prefer that OpenNebula creates a copy of the template and modify that template instead, the onevcenter tool will allow you to choose what you prefer to do.
-
 
 Sunstone does not allow you to specify if you want to use Linked Clones as the operations involved are heavy enough to keep them out of the GUI.
 

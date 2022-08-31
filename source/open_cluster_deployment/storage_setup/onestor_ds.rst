@@ -96,7 +96,7 @@ To create a new Image Datastore, you need to set the following (template) parame
 | ``CONVERT``   |  ``yes`` (default) or ``no``. Change Image format to ``DRIVER`` |
 +---------------+-----------------------------------------------------------------+
 
-For example, the following illustrates the creation of a Local Datastore: 
+For example, the following illustrates the creation of a Local Datastore:
 
 .. prompt:: text $ auto
 
@@ -111,6 +111,13 @@ For example, the following illustrates the creation of a Local Datastore:
 Also note that there are additional attributes that can be set. Check the :ref:`datastore template attributes <datastore_common>`.
 
 .. include:: qcow2_options.txt
+
+
+REPLICA_HOST vs. REPLICA_STORAGE_IP
+--------------------------------------------------------------------------------
+
+OneStor was originally designed for Edge clusters where the hosts are typically reached on their public IPs. However, for copying the image between the hosts (replica -> hypervisor) it might be useful to use a local IP address from the private network. Therefore, in the host template of the replica host, it’s possible to define REPLICA_STORAGE_IP which will be used instead the REPLICA_HOST in that case.
+
 
 Additionally, the following attributes can be tuned in configuration files ``/var/lib/one/remotes/etc/tm/ssh/sshrc``:
 
@@ -133,7 +140,8 @@ Additionally, the following attributes can be tuned in configuration files ``/va
 Recovery Snapshots
 ================================================================================
 
-.. important:: Recovery Snapshots are only availabe for KVM and qcow2 Image formats
+.. important:: * Recovery Snapshots are only availabe for KVM and qcow2 Image formats
+               * As the recovery snapshot are created by the monitoring client and not by a driver action, it requires password-less ssh connection from the hypervisors to the ``REPLICA_HOST``. Which means that also private ssh key of oneadmin user needs to be distributed on the nodes.
 
 Additionally, in replica mode you can enable recovery snapshots for particular VM disks. You can do it by adding the option ``RECOVERY_SNAPSHOT_FREQ`` to ``DISK`` in the VM template.
 
