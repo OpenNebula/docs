@@ -1,6 +1,6 @@
-=============================
-ONE Kubernetes Engine (OneKE)
-=============================
+====================================
+OpenNebula Kubernetes Engine (OneKE)
+====================================
 
 OneKE is a minimal `hyperconverged <https://en.wikipedia.org/wiki/Hyper-converged_infrastructure>`_ Kubernetes platform that comes with OpenNebula out of the box.
 
@@ -99,8 +99,8 @@ A specific version of OneKE/CE consists of:
 OneFlow Service
 ----------------
 
-OneKE Virtual Appliance is implemented as a OneFlow Service. OneFlow allows you to define, execute, and manage multi-tiered applications, so called Services, composed of interconnected Virtual Machines with deployment dependencies between them. 
-Each group of Virtual Machines is deployed and managed as a single entity (called role). 
+OneKE Virtual Appliance is implemented as a OneFlow Service. OneFlow allows you to define, execute, and manage multi-tiered applications, so called Services, composed of interconnected Virtual Machines with deployment dependencies between them.
+Each group of Virtual Machines is deployed and managed as a single entity (called role).
 
 .. note::
 
@@ -108,7 +108,7 @@ Each group of Virtual Machines is deployed and managed as a single entity (calle
 
 OneKE Service has four different **Roles**:
 
-- **VNF**: Load Balancer for Control-Plane and Ingress Traffic 
+- **VNF**: Load Balancer for Control-Plane and Ingress Traffic
 - **Master**: Control-Plane nodes
 - **Worker**: Nodes to run application workloads
 - **Storage**: Dedicated storage nodes for Persistent Volume replicas
@@ -620,10 +620,10 @@ Parameter                            Mandatory    Default                 Stage 
     This will allow for VNF instances to correctly synchronize using VRRP protocol.
 
 
-High-Availability 
+High-Availability
 -----------------
 
-By default, OneKE Virtual Appliance is preconfigured to work as a non-Highly-Available K8s cluster, since OneFlow Service Templates deploys each service role as a single VM. Kubernetes High-Availability is about setting up a Kubernetes cluster, along with its components, in such a way that there is no single point of failure. To achieve high-availability, the following OneKE components should be scaled up: VNF (at least 2 VMs), master (at least 3 VMs) and storage (at least 2 VMs). 
+By default, OneKE Virtual Appliance is preconfigured to work as a non-Highly-Available K8s cluster, since OneFlow Service Templates deploys each service role as a single VM. Kubernetes High-Availability is about setting up a Kubernetes cluster, along with its components, in such a way that there is no single point of failure. To achieve high-availability, the following OneKE components should be scaled up: VNF (at least 2 VMs), master (at least 3 VMs) and storage (at least 2 VMs).
 
 OneKE HA setup can be achieved by modifying the OneFlow Service Template before creating the cluster or by scaling up each role after the cluster creation.
 
@@ -926,7 +926,7 @@ and then run ``kubectl`` in another terminal:
 Usage Example
 -------------
 
-Create a Longhorn PVC 
+Create a Longhorn PVC
 ^^^^^^^^^^^^^^^^^^^^^
 
 To create a 4 GiB persistent volume apply the following manifest using ``kubectl``:

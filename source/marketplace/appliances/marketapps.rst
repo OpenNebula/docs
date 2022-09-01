@@ -1,30 +1,21 @@
  .. _marketapp:
 
 ================================================================================
-MarketPlace Applications
+Managing MarketPlace Appliances
 ================================================================================
 
-A Marketplace Application is a generic app resource that can be:
+A Marketplace Appliance is a generic resource (an entry on the marketplaceapp pool) that can be of any of the following three different types:
 
-* a single Image, optionally including a VM template.
-* A VM template referring to one or more images,
-* a multi-VM service composed of one or more templates associated with images.
+* *Image*, a single Image, optionally including a VM template.
+* *VM*, a VM template referring to one or more images.
+* *Service*, a multi-VM service composed of one or more templates associated with images.
 
-In this guide you will learn to create and manage Marketplace Applications.
+This guide introduces the process to create and manage Marketplace Appliances.
 
-Exporting Applications into vCenter Datastore
+Exploring Marketplace Appliances
 ================================================================================
 
-When using a vCenter datastore there are two ways of export an application into the marketplace:
-
-- You can import an existing VM template from your vCenter and then select it when exporting the application. This will create a clone from your template and replace the disks by the ones downloaded.
-- If you don't select any existing VM template, OpenNebula will automatically create a new one in vCenter and use it. This template will be reused when you export a new application.
-
-
-Listing and Properties
-================================================================================
-
-You can list the Marketplace Applications with ``onemartketapp list`` command. OpenNebula pre-configures some public Marketplaces so in a standard installation you should see some apps already:
+You can list the Marketplace Appliances (apps) with ``onemartketapp list`` command. OpenNebula pre-configures some public Marketplaces so in a standard installation you should see some apps already:
 
 .. prompt:: bash $ auto
 
@@ -38,7 +29,7 @@ You can list the Marketplace Applications with ``onemartketapp list`` command. O
        1 asp - LXD                         1.0    5G  rdy  img 11/23/18 TurnKey Li    0
        0 ansible_16.0 - LXD                1.0    5G  rdy  img 08/28/20 TurnKey Li    0
 
-To get more details of an Application use the ``show`` option, for example:
+To get more details of an Appliance use the ``show`` option, for example:
 
 .. prompt:: bash $ auto
 
@@ -83,12 +74,12 @@ To get more details of an Application use the ``show`` option, for example:
     VERSION="1.18.10-5.12.0.2-1.20201106.2"
     VMTEMPLATE64="Q09OVEVYVCA9IFsgTkV...2x1c3RlcikiXQo="
 
-Create a New Marketplace Application
+Create a New Marketplace Appliance
 ================================================================================
 
-.. important:: You can only create new Marketplace Applications on **Private Marketplaces**
+.. important:: You can only create new Marketplace Appliances on **Private Marketplaces**
 
-A Marketplace Application can be created (or imported into) a Marketplace out of an existing Image, Virtual Machine, Virtual Machine Template or Multi-VM Service Template. The following table list the command to use for each case:
+A Marketplace Appliance can be created in (or imported into) a Marketplace out of an existing Image, Virtual Machine, Virtual Machine Template or Multi-VM Service Template. The following table list the command to use for each case:
 
 +--------------------------+------------------------------------------+--------------------------------------------------------------------------------------------------+
 | Object                   | Command                                  | Description                                                                                      |
@@ -184,35 +175,35 @@ and for VM templates:
 
 .. warning:: To avoid clashing names, if no name is specified, a hash is added at the end of the main object name. Sub objects like disks or VM templates in case of Service Template, have always the hash.
 
-Marketplace Application Attributes
+Marketplace Appliance Attributes
 --------------------------------------------------------------------------------
 
-You can update several attributes of a Marketplace Application with the ``onemarketapp update`` command. For your reference the table below summarizes them:
+You can update several attributes of a Marketplace Appliance with the ``onemarketapp update`` command. For your reference the table below summarizes them:
 
 +--------------------+--------------------------------------------------------------------------------------------------+
 |     Attribute      | Description                                                                                      |
 +====================+==================================================================================================+
-| ``NAME``           | Of the Application                                                                               |
+| ``NAME``           | Name of the Appliance                                                                            |
 +--------------------+--------------------------------------------------------------------------------------------------+
 | ``ORIGIN_ID``      | The ID of the source image. -1 if not defined.                                                   |
 +--------------------+--------------------------------------------------------------------------------------------------+
 | ``TYPE``           | ``IMAGE``, ``VMTEMPLATE``, ``SERVICE_TEMPLATE``.                                                 |
 +--------------------+--------------------------------------------------------------------------------------------------+
-| ``DESCRIPTION``    |  Text description of the Marketplace Application.                                                |
+| ``DESCRIPTION``    |  Text description of the Marketplace Appliance.                                                  |
 +--------------------+--------------------------------------------------------------------------------------------------+
 | ``PUBLISHER``      |  If not provided, the username will be used.                                                     |
 +--------------------+--------------------------------------------------------------------------------------------------+
-| ``VERSION``        |  A string indicating the Marketplace Application version.                                        |
+| ``VERSION``        |  A string indicating the Marketplace Appliance version.                                          |
 +--------------------+--------------------------------------------------------------------------------------------------+
 | ``VMTEMPLATE64``   |  Creates this template (encoded in base64) pointing to the base image.                           |
 +--------------------+--------------------------------------------------------------------------------------------------+
 | ``APPTEMPLATE64``  |  This is the associated template (encoded in base64) that will be added to the registered object.|
 +--------------------+--------------------------------------------------------------------------------------------------+
 
-Downloading a Marketplace Application into your Cloud or Desktop
+Downloading a Marketplace Appliance into your Cloud or Desktop
 ================================================================================
 
-The command that exports (downloads) the Marketplace Application is ``onemarketapp export`` which will return the ID of the new Image **and** the ID of the new associated template. If no template has been defined, it will return `-1`. For example:
+The command that exports (downloads) the Marketplace Appliance is ``onemarketapp export`` which will return the ID of the new Image **and** the ID of the new associated template. If no template has been defined, it will return `-1`. For example:
 
 .. prompt:: bash $ auto
 
@@ -225,7 +216,7 @@ The command that exports (downloads) the Marketplace Application is ``onemarketa
 
 .. _marketapp_download:
 
-You can also download a Marketplace Application to a standalone file in your desktop:
+You can also download an app to a standalone file in your desktop:
 
 .. code::
 
@@ -239,7 +230,7 @@ You can also download a Marketplace Application to a standalone file in your des
 Additional Commands
 ================================================================================
 
-Like any other OpenNebula Resource, Marketplace Applications respond to the base actions, namely:
+Like any other OpenNebula Resource, Marketplace Appliances respond to the base actions, namely:
 
 * delete
 * update
@@ -251,10 +242,18 @@ Like any other OpenNebula Resource, Marketplace Applications respond to the base
 
 Please take a look at the CLI reference to see how to use these actions. These options are also available in Sunstone.
 
-Using Sunstone to Manage Marketplace Applications
+Using Sunstone to Manage Marketplace Appliances
 ================================================================================
-You can also import and export Marketplace Applications using :ref:`Sunstone <sunstone>`. Select the Storage > MarketApps tab, and there, you will be able see the available Applications in a user friendly way.
+You can also import and export Marketplace Appliances using :ref:`Sunstone <sunstone>`. Select the Storage > MarketApps tab, and there, you will be able see the available Appliances in a user friendly way.
 
 .. image:: /images/show_marketplaceapp.png
     :width: 90%
     :align: center
+
+Exporting Appliances into vCenter Datastore
+================================================================================
+
+When using a vCenter datastore there are two ways of export an app into the marketplace:
+
+- You can import an existing VM template from your vCenter and then select it when exporting the app. This will create a clone from your template and replace the disks by the ones downloaded.
+- If you don't select any existing VM template, OpenNebula will automatically create a new one in vCenter and use it. This template will be reused when you export a new app.

@@ -14,7 +14,9 @@ To create issues to report changes and requests, please use the [OpenNebula main
 Building
 --------
 
-Install dependencies: ``pip install sphinx sphinx_rtd_theme sphinx-prompt pyyaml``.
+`Graphviz <https://graphviz.org/>` is needed to compile the documentation.
+
+Also the following Python dependencies: ``pip install sphinx sphinx_rtd_theme sphinx-prompt pyyaml``.
 
 Build the documentation by running ``make html``.
 [More information](http://sphinx-doc.org/).
