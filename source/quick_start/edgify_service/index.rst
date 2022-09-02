@@ -1,11 +1,11 @@
-.. _hosted_service:
+.. _edgify_service:
 
 ================================================================================
-Hosted Service
+Edgify Service
 ================================================================================
 
 .. toctree::
    :maxdepth: 2
 
    Overview <overview>
-   Hosted Service Guide <hosted_service_guide>
+   Edgify Service Guide <edgify_service_guide>
