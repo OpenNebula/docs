@@ -12,5 +12,6 @@ In particular, Deployment Basic will get you an OpenNebula Front-end, ready to r
 
 - :ref:`Try OpenNebula Front-end on AWS <try_opennebula_on_kvm>` guide.
 - :ref:`Try OpenNebula Front-end on VMware <try_opennebula_on_vmware>` guide.
+- :ref:`Try OpenNebula Hosted Front-end  <try_opennebula_hosted>` guide.
 
 Afterwards, you can move on to :ref:`Operations Basics <operation_basics>` to learn how to add Edge Clusters (i.e., computing nodes) and then finally to :ref:`Usage Basics <usage_basics>` to deploy your VMs, containers or multi-tier services on your new cloud!

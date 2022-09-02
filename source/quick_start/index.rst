@@ -13,4 +13,3 @@ The Quick Start Guide provides an example of a learning, development or OpenNebu
    Deployment Basics <deployment_basics/index>
    Operation Basics <operation_basics/index>
    Usage Basics <usage_basics/index>
-   Edgify Service <edgify_service/index>

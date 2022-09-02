@@ -1,14 +1,14 @@
-.. _edgify_service_guide:
+.. _try_opennebula_hosted:
 
-=====================
-Edgify Service Guide
-=====================
+===============================
+Try OpenNebula Hosted Front-end 
+===============================
 
 This guide will walk you through the steps to request, setup and manage an OpenNebula Hosted Environment, to provision new resources and to create an environment for your cloud and edge computing needs.
 
-The OpenNebula Hosted Service allows users to try OpenNebula on **KVM** for the execution of virtual machines and Kubernetes clusters.
+The OpenNebula Hosted service allows users to try OpenNebula on **KVM** for the execution of virtual machines and Kubernetes clusters.
 
-OpenNebula hosted service provides two tools to create and manage resources and clusters:
+OpenNebula Hosted service provides two tools to create and manage resources and clusters:
 
   - **Sunstone**, a web-based UI that can be used by both administrators and end users to manage in one central and uniform point all the resources 
   - **FireEdge**, a web-based UI that is used to provision OpenNebula Clusters on public cloud using different providers (AWS, Equinix) and on-premise resources. 
@@ -41,7 +41,7 @@ First you need to login to Sunstone.
 
 |sunstone_login|
 
-Once you login with the credentials that you have received in your email, for security reasons change your password that you have received by email. To change the password you have to go to Setting Tab. 
+Once you login with the credentials that you have received in your email, for security reasons change your password that you have received by email. To change the password you have to go to ``Settings`` Tab. 
  
 |sunstone_change_password|
  
@@ -84,9 +84,6 @@ In order to provision new clusters within your cloud environment, you have to co
 You can provision KVM clusters on different public cloud providers (AWS and Equinix) or using on-premise resources.
 
 You can follow this :ref:`guide <first_edge_cluster>` to provision your first edge cluster on AWS.
-
-FireEdge can be used to provision on-premises resources by using the on-premise driver. OpenNebula requires *root access to the hosts* that are going to be configured using the on-premise provider. You need to configure the hosts with root **passwordless SSH** access by adding the ssh public key received by email in the ``authorized_keys`` of the hosts.
-Please look at the following :ref:`guide <onprem_cluster>` for more information.
 
 Once you create  a cluster, you can manage it using the Sunstone GUI (https://poc.opennebula.cloud). Please follow this :ref:`guide <operating_edge_cluster>` that explains how to operate an Edge Cluster.
 
