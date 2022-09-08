@@ -22,3 +22,4 @@ The following issues has been solved in 6.4.2:
 - `Fix parsing of authentication drivers (LDAP) messages for admin groups <https://github.com/OpenNebula/one/issues/5946>`__.
 - `Fix image usage counter in case VM uses the same image multiple times <https://github.com/OpenNebula/one/issues/937>`__.
 - `Fix host monitoring to only report virtual CPU models actually supported by the hypervisor <https://github.com/OpenNebula/one/issues/5869>`__.
+- `Fix Datastore DRIVER attribute is not respected when cloning an existing image into a different Datastore <https://github.com/OpenNebula/one/issues/5933>`__.
