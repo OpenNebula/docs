@@ -23,3 +23,4 @@ The following issues has been solved in 6.4.2:
 - `Fix image usage counter in case VM uses the same image multiple times <https://github.com/OpenNebula/one/issues/937>`__.
 - `Fix host monitoring to only report virtual CPU models actually supported by the hypervisor <https://github.com/OpenNebula/one/issues/5869>`__.
 - `Fix cloned images to preserve the original DRIVER attribute <https://github.com/OpenNebula/one/issues/5933>`__.
+- `Removed logrotate on service restart, added maximum log size for rotation <https://github.com/OpenNebula/one/issues/5328>`__.
