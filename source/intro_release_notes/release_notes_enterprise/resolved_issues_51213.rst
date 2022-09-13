@@ -8,3 +8,4 @@ A complete list of solved issues for 5.12.13 can be found in the `project develo
 The following issues has been solved in 5.12.13:
 
 - `Add missing dependencies for opennebula gem <https://github.com/OpenNebula/one/issues/5919>`__.
+- `Removed logrotate on service restart, added maximum log size for rotation <https://github.com/OpenNebula/one/issues/5328>`__.
