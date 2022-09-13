@@ -25,3 +25,4 @@ The following issues has been solved in 6.4.2:
 - `Fix cloned images to preserve the original DRIVER attribute <https://github.com/OpenNebula/one/issues/5933>`__.
 - `Removed logrotate on service restart, added maximum log size for rotation <https://github.com/OpenNebula/one/issues/5328>`__.
 - `Fix domfsthaw timeout error for live disk snapshot for Ceph datastores <https://github.com/OpenNebula/one/issues/5927>`__.
+- `Fix encoding in java binding <https://github.com/OpenNebula/one/issues/5243>`__.
