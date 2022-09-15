@@ -107,7 +107,7 @@ The command, using a verbose output mode, looks like:
 
 .. prompt:: bash $ auto
 
-    $ oneprovision create -Dd --provider onprem /usr/share/one/oneprovision/edge-clusters/onprem/provisions/onprem.yml
+    $ oneprovision create -Dd --provider onprem /usr/share/one/oneprovision/edge-clusters/metal/provisions/onprem.yml
 
     2021-04-28 18:04:45 DEBUG : Executing command: `create`
     2021-04-28 18:04:45 DEBUG : Command options: debug [verbose, true] [provider, onprem] [sync, true]
@@ -264,4 +264,3 @@ You can also manage On-Premise Clusters using the OneProvision FireEdge GUI.
 .. |image_fireedge| image:: /images/oneprovision_fireedge.png
 .. |image_prem| image:: /images/onprem-cluster.png
 .. |image_mysql| image:: /images/onprem-nginx.png
-
