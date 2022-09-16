@@ -21,6 +21,7 @@ The following issues has been solved in 6.4.2:
 - `Fix client cancellation in WHMCS Tenants module <https://github.com/OpenNebula/one/issues/5865>`__.
 - `Fix parsing of authentication drivers (LDAP) messages for admin groups <https://github.com/OpenNebula/one/issues/5946>`__.
 - `Fix image usage counter in case VM uses the same image multiple times <https://github.com/OpenNebula/one/issues/937>`__.
+- `Fix conflict in VNC port after onevm undeploy fails <https://github.com/OpenNebula/one/issues/5960>`__.
 - `Fix host monitoring to only report virtual CPU models actually supported by the hypervisor <https://github.com/OpenNebula/one/issues/5869>`__.
 - `Fix cloned images to preserve the original DRIVER attribute <https://github.com/OpenNebula/one/issues/5933>`__.
 - `Removed logrotate on service restart, added maximum log size for rotation <https://github.com/OpenNebula/one/issues/5328>`__.
