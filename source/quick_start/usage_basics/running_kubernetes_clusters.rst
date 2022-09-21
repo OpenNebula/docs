@@ -76,7 +76,7 @@ You can either use a public DNS server or local ``/etc/hosts`` file, for example
 
 .. note::
 
-   The **public** IP address (AWS elastic IP) should be taken from OpenNebula after the VNF instance is successfully provisioned.
+   The **public** IP address (AWS elastic IP) should be consulted in OpenNebula after the VNF instance is successfully provisioned. Go to ``Instances --> VMs`` and check the IP column to see what IP has OpenNebula assigned the VNF instance.
 
 .. important::
 
