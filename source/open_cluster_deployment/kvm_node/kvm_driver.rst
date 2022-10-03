@@ -267,7 +267,9 @@ If you need to resize the capacity of the VM in ``RUNNING`` state, you have to s
 +==================+=================================================================================================+===========+
 | ``VCPU_MAX``     | Maximum number of VCPUs which can be hotplugged.                                                | **NO**    |
 +------------------+-------------------------------------------------------------------------------------------------+-----------+
-| ``MEMORY_MAX``   | Maximum memory which can be hotplugged.                                                         | **NO**    |
+| ``MEMORY_MAX``   | Maximum memory allocated for the VM. The actual value of memory available for the VM will be    |           |
+|                  | controlled by the `currentMemory <https://libvirt.org/formatdomain.html#memory-allocation>`__   |           |
+|                  | attribute using the memory ballooning interface.                                                | **NO**    |
 +------------------+-------------------------------------------------------------------------------------------------+-----------+
 
 .. note:: Live Memory resize needs QEMU version 2.4. Live VCPU resize needs QEMU version 2.7.
