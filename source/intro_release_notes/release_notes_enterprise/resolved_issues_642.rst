@@ -29,4 +29,5 @@ The following issues has been solved in 6.4.2:
 - `Fix encoding in java binding <https://github.com/OpenNebula/one/issues/5243>`__.
 - `Fix default scope for goca to gather all visible objects rather than just those owned by the user <https://github.com/OpenNebula/terraform-provider-opennebula/issues/331>`__.
 - `Fix OneFlow token life-time management, this will prevent tokens from expiring while performing flow operations <https://github.com/OpenNebula/one/issues/5814>`__.
+- `Fix Sunstone ignores volatile disks on VM Template instantiate <https://github.com/OpenNebula/one/issues/5970>`__.
 
