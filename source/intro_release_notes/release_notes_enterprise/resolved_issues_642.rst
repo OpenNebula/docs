@@ -31,4 +31,5 @@ The following issues has been solved in 6.4.2:
 - `Fix OneFlow token life-time management, this will prevent tokens from expiring while performing flow operations <https://github.com/OpenNebula/one/issues/5814>`__.
 - `Fix VMRC connection when user has interrogation sign in their password <https://github.com/OpenNebula/one/issues/5981>`__.
 - `Fix ruby sunstone routes that colide when using apache2 <https://github.com/OpenNebula/one/issues/5981>`__.
+- `Fix Sunstone ignores volatile disks on VM Template instantiate <https://github.com/OpenNebula/one/issues/5970>`__.
 
