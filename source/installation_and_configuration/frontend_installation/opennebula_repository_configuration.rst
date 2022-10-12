@@ -20,6 +20,10 @@ OpenNebula Systems provides an OpenNebula Enterprise Edition to customers with a
 
 .. important:: You should have received the customer access token (username and password) to access these repositories. You have to substitute the appearance of ``<token>`` with your customer specific token in all instructions below.
 
+.. important:: Since 6.4.2 we rolled out new packages GPG signing key which means also public repository key is new. Pay attention to the difference in the key URL:
+  |br| • for 6.4.1 and older use `repo.key <https://downloads.opennebula.io/repo/repo.key>`__
+  |br| • for 6.4.2 and later use `repo2.key <https://downloads.opennebula.io/repo/repo2.key>`__
+
 AlmaLinux/CentOS 7/RHEL
 --------------------------------------------------------------------------------
 
@@ -34,52 +38,37 @@ To add the OpenNebula enterprise repository, execute the following as user ``roo
     name=OpenNebula Enterprise Edition
     baseurl=https://<token>@enterprise.opennebula.io/repo/6.4/CentOS/7/$basearch
     enabled=1
-    gpgkey=https://downloads.opennebula.io/repo/repo.key
+    gpgkey=https://downloads.opennebula.io/repo/repo2.key
     gpgcheck=1
     repo_gpgcheck=1
     EOT
     # yum makecache fast
 
-**RHEL 7**
+**RHEL 7/8/9**
 
 .. prompt:: bash # auto
 
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Enterprise Edition
-    baseurl=https://<token>@enterprise.opennebula.io/repo/6.4/RedHat/7/$basearch
+    baseurl=https://<token>@enterprise.opennebula.io/repo/6.4/RedHat/$releasever/$basearch
     enabled=1
-    gpgkey=https://downloads.opennebula.io/repo/repo.key
-    gpgcheck=1
-    repo_gpgcheck=1
-    EOT
-    # yum makecache fast
-
-**RHEL 8**
-
-.. prompt:: bash # auto
-
-    # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
-    [opennebula]
-    name=OpenNebula Enterprise Edition
-    baseurl=https://<token>@enterprise.opennebula.io/repo/6.4/RedHat/8/$basearch
-    enabled=1
-    gpgkey=https://downloads.opennebula.io/repo/repo.key
+    gpgkey=https://downloads.opennebula.io/repo/repo2.key
     gpgcheck=1
     repo_gpgcheck=1
     EOT
     # yum makecache
 
-**AlmaLinux 8**
+**AlmaLinux 8/9**
 
 .. prompt:: bash # auto
 
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Enterprise Edition
-    baseurl=https://<token>@enterprise.opennebula.io/repo/6.4/AlmaLinux/8/$basearch
+    baseurl=https://<token>@enterprise.opennebula.io/repo/6.4/AlmaLinux/$releasever/$basearch
     enabled=1
-    gpgkey=https://downloads.opennebula.io/repo/repo.key
+    gpgkey=https://downloads.opennebula.io/repo/repo2.key
     gpgcheck=1
     repo_gpgcheck=1
     EOT
@@ -101,7 +90,7 @@ First, add the repository signing GPG key on the Front-end by executing as user 
 
 .. prompt:: bash # auto
 
-    # wget -q -O- https://downloads.opennebula.io/repo/repo.key | apt-key add -
+    # wget -q -O- https://downloads.opennebula.io/repo/repo2.key | apt-key add -
 
 and then continue with repository configuration:
 
@@ -131,6 +120,13 @@ and then continue with repository configuration:
 .. prompt:: bash # auto
 
     # echo "deb https://<token>@enterprise.opennebula.io/repo/6.4/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # apt-get update
+
+**Ubuntu 22.04**
+
+.. prompt:: bash # auto
+
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.4/Ubuntu/22.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 .. note::
@@ -184,7 +180,7 @@ To add OpenNebula repository, execute the following as user ``root``:
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Community Edition
-    baseurl=https://downloads.opennebula.io/repo/6.4/RedHat/8/$basearch
+    baseurl=https://downloads.opennebula.io/repo/6.4/RedHat/$releasever/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo.key
     gpgcheck=1
@@ -199,7 +195,7 @@ To add OpenNebula repository, execute the following as user ``root``:
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Enterprise Edition
-    baseurl=https://downloads.opennebula.io/repo/6.4/AlmaLinux/8/$basearch
+    baseurl=https://downloads.opennebula.io/repo/6.4/AlmaLinux/$releasever/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo.key
     gpgcheck=1
@@ -254,3 +250,14 @@ First, add the repository signing GPG key on the Front-end by executing as user 
 
     # echo "deb https://downloads.opennebula.io/repo/6.4/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
+
+**Ubuntu 22.04**
+
+.. prompt:: bash # auto
+
+    # echo "deb https://downloads.opennebula.io/repo/6.4/Ubuntu/22.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # apt-get update
+
+.. |br| raw:: html
+
+  <br/>
