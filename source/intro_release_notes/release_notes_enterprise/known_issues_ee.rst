@@ -28,6 +28,9 @@ Sunstone
 
 - Guacamole RDP as is currently shipped in OpenNebula does not support NLA authentication. You can follow `these instructions <https://www.parallels.com/blogs/ras/disabling-network-level-authentication/>`__ in order to disable NLA in the Windows box to use Guacamole RDP within Sunstone.
 - When hidding the VM name setting on instantiate form, Sunstone does not continue with the instantintiation process. To be able to instantiate templates please set `VM.instantiate_name` to `true` in the corresponding YAML file.
+- When creating a new group sunstone on Alma9 will throw an error and won't create the group. As a workaround groups can be created via CLI.
+- Adding charters to a service template on Alma9 will duplicate the scheduled actions.
+- When creating a new support ticket via Sunstone, users won't see the new ticket on the table however, it was created successfully.
 
 Install Linux Graphical Desktop on KVM Virtual Machines
 ================================================================================
