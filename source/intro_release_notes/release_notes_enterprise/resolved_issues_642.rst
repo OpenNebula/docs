@@ -32,4 +32,4 @@ The following issues has been solved in 6.4.2:
 - `Fix VMRC connection when user has interrogation sign in their password <https://github.com/OpenNebula/one/issues/5981>`__.
 - `Fix ruby sunstone routes that colide when using apache2 <https://github.com/OpenNebula/one/issues/5981>`__.
 - `Fix Sunstone ignores volatile disks on VM Template instantiate <https://github.com/OpenNebula/one/issues/5970>`__.
-
+- `Fix monitor drivers to work with nvidia GPU full PCI passthrough and SRIOV devices <https://github.com/OpenNebula/one/issues/5968>`__.
