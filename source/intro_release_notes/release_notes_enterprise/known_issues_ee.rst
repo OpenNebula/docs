@@ -66,6 +66,11 @@ KVM - Live Memory Resize
 
 For live memory resize user needs to specify ``MAX_MEMORY``, the available memory for the VM is in ``MEMORY`` attribute. But VM running Windows shows in Task Manager available physical memory as ``MAX_MEMORY`` although it can use only ``MEMORY``, this value is not visible in the Task Manager. Because of this it shows a high percentage of memory used. To double check the real available memory for the VM user should use command ``virsh dominfo <id>`` on the host.
 
+KVM - Redefine Snapshot
+================================================================================
+
+Depending on the number of snapshots and their IDs, the driver might fail redefining the snapshots (e.g after resuming or migrating the VM). More information can be found `here <https://github.com/OpenNebula/one/issues/5991>`__.
+
 Bug in Bump Version
 ===================
 
