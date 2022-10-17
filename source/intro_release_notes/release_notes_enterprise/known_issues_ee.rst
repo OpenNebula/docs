@@ -4,7 +4,8 @@
 Known Issues
 ================================================================================
 
-A complete list of `known issues for OpenNebula is maintained here <https://github.com/OpenNebula/one/issues?q=is%3Aopen+is%3Aissue+label%3A%22Type%3A+Bug%22+label%3A%22Status%3A+Accepted%22>`__.
+.. important:: Since 6.4.2 we rolled out new packages GPG signing key which means also public repository key is new.
+               Pay attention to the difference in the key URL.  More details in :ref:`repositories configuration <repositories>`
 
 This page will be updated with relevant information about bugs affecting OpenNebula, as well as possible workarounds until a patch is officially published.
 
@@ -28,6 +29,9 @@ Sunstone
 
 - Guacamole RDP as is currently shipped in OpenNebula does not support NLA authentication. You can follow `these instructions <https://www.parallels.com/blogs/ras/disabling-network-level-authentication/>`__ in order to disable NLA in the Windows box to use Guacamole RDP within Sunstone.
 - When hidding the VM name setting on instantiate form, Sunstone does not continue with the instantintiation process. To be able to instantiate templates please set `VM.instantiate_name` to `true` in the corresponding YAML file.
+- When creating a new group sunstone on Alma9 will throw an error and won't create the group. As a workaround groups can be created via CLI.
+- Adding charters to a service template on Alma9 will duplicate the scheduled actions.
+- When creating a new support ticket via Sunstone, users won't see the new ticket on the table however, it was created successfully.
 
 Install Linux Graphical Desktop on KVM Virtual Machines
 ================================================================================
@@ -65,8 +69,3 @@ KVM - Live Memory Resize
 ================================================================================
 
 For live memory resize user needs to specify ``MAX_MEMORY``, the available memory for the VM is in ``MEMORY`` attribute. But VM running Windows shows in Task Manager available physical memory as ``MAX_MEMORY`` although it can use only ``MEMORY``, this value is not visible in the Task Manager. Because of this it shows a high percentage of memory used. To double check the real available memory for the VM user should use command ``virsh dominfo <id>`` on the host.
-
-Bug in Bump Version
-===================
-
-The OCA (OpenNebula Cloud API) was mistakingly left umbumped in 6.4.1, so some components like the CLI and Sunstone report 6.4.0 instead. This is purely a cosmetic issue that will be solved in upcoming releases. To ensure your upgrade went through smoothly please verify that ``oned -v``` returns the correct 6.4.1 version.
