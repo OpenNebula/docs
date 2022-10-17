@@ -494,6 +494,8 @@ This script prints to stdout the ID of image when it is ready to use.
 
     puts "Image #{img_id} ready to use!!"
 
+.. _hook_manager_autostart:
+
 A Complete Example: Autostart Hooks for KVM
 --------------------------------------------------------------------------------
 
