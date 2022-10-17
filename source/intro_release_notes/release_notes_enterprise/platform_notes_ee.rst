@@ -272,6 +272,12 @@ Ubuntu 20.04
 
 When using Apache to serve Sunstone, it's required to grant read permissions to the user running ``httpd`` in ``/var/lib/one``.
 
+
+Ubuntu 22.04
+--------------------------------------------------------------------------------
+
+Ubuntu 22.04 ships with ruby3 by default, which deprecates URI.escape method, used by the rbvmomi gem. This implies that `vCenter upload/download functionality is broken in Ubuntu 22.04 <https://github.com/OpenNebula/one/issues/5996>`__.
+
 Debian 11
 --------------------------------------------------------------------------------
 
