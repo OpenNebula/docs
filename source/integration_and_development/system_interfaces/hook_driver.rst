@@ -494,12 +494,15 @@ This script prints to stdout the ID of image when it is ready to use.
 
     puts "Image #{img_id} ready to use!!"
 
+
+.. _hook_manager_autostart:
+
 A Complete Example: Autostart Hooks for KVM
 --------------------------------------------------------------------------------
 
 OpenNebula creates *transient* KVM domains, i.e. they only exist while the domain is running. Therefore, the KVM autostart feature cannot be activated via *libvirt* configuration. This example shows how to implement VM autostart for the KVM hypervisor in OpenNebula using state hooks.
 
-The hooks track Hosts reboots and resume VMs allocated to the Host that includes the ``AUTOSTART=yes`` attribute in their template. This functionality is implemented by two state hooks: one for the ``HOST`` and one for the ``VM`` resource. The code for both hooks can be found in
+The hooks track Hosts reboots and resume VMs allocated to the Host that includes the ``AUTOSTART`` attribute in their template. If ``AUTOSTART=yes`` the VM will be automatically restarted if it was running before the host was rebooted, if ``AUTOSTART=always`` the VM will be automatically restarted always regardless its previous state. This functionality is implemented by two state hooks: one for the ``HOST`` and one for the ``VM`` resource. The code for both hooks can be found in
 ``/var/lib/one/remotes/hooks/autostart/`` folder.
 
 To install the hooks create a definition file for each one. The ``autostart-host.tmpl`` definition file for the Host hook will be as follows:
