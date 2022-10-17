@@ -1,7 +1,7 @@
 .. _try_opennebula_hosted:
 
 ===============================
-Try OpenNebula Hosted Front-end 
+Try OpenNebula Hosted Front-end
 ===============================
 
 This guide will walk you through the steps to request, setup and manage an OpenNebula Hosted Environment, to provision new resources and to create an environment for your cloud and edge computing needs.
@@ -10,8 +10,8 @@ The OpenNebula Hosted service allows corporate users to try OpenNebula on **KVM*
 
 OpenNebula Hosted service provides two tools to create and manage resources and clusters:
 
-  - **Sunstone**, a web-based UI that can be used by both administrators and end users to manage in one central and uniform point all the resources 
-  - **FireEdge**, a web-based UI that is used to provision OpenNebula Clusters on public cloud using different providers (AWS, Equinix) and on-premise resources. 
+  - **Sunstone**, a web-based UI that can be used by both administrators and end users to manage in one central and uniform point all the resources
+  - **FireEdge**, a web-based UI that is used to provision OpenNebula Clusters on public cloud using different providers (AWS, Equinix) and on-premise resources.
 
 .. note::
 
@@ -24,40 +24,40 @@ OpenNebula Hosted service provides two tools to create and manage resources and 
 Request a PoC
 =============
 
-In order to request a PoC, you have to fill the following `form <https://opennebula.io/request-a-hosted-poc-with-opennebula>`_. 
+In order to request a PoC, you have to fill the following `form <https://opennebula.io/request-a-hosted-poc-with-opennebula>`_.
 
 Once you fill the form, you will receive an email containing information on how to connect to **Sunstone** and **FireEdge** to manage your cloud environment and provision resources for running your workloads (Virtual Machines and/or Kubernetes Clusters).
 
 .. note::
-    
-    When filling up the form, you have to choose a name for the subdomain. 
-    
+
+    When filling up the form, you have to choose a name for the subdomain.
+
     For the rest of the guide we assume that the name of the subdomain is *poc* (i.e. the OpenNebula hosted environment will be available at ``poc.opennebula.cloud``). You have to replace *poc* with your *subdomain* in the guide.
 
 First Setup
 ============
 
-First you need to login to Sunstone. 
+First you need to login to Sunstone.
 
 |sunstone_login|
 
-Once you login with the credentials that you have received in your email, for security reasons change your password that you have received by email. To change the password you have to go to ``Settings`` Tab. 
- 
+Once you login with the credentials that you have received in your email, for security reasons change your password that you have received by email. To change the password you have to go to ``Settings`` Tab.
+
 |sunstone_change_password|
- 
+
 You should also add your public SSH key in order to be able to connect to the resources that will be created in your cloud environment.
 
-As an alternative to using the GUIs, you can use the :ref:`OpenNebula Command Line Interface (CLI) <cli>`. 
+As an alternative to using the GUIs, you can use the :ref:`OpenNebula Command Line Interface (CLI) <cli>`.
 
 In order to use the CLI, you need to install the required dependencies. Make sure you are using the :ref:`OpenNebula repositories <repositories>`, then proceed to install:
- 
+
 .. prompt:: yaml $ auto
 
     # On Debian/Ubuntu
     apt install opennebula-tools opennebula-flow opennebula-provision
     # On Centos
     yum install opennebula opennebula-flow opennebula-provision
- 
+
 Create the authentication file one_auth with the admin credentials (replace ``password`` with your password).
 
 .. code:: bash
