@@ -33,6 +33,11 @@ Sunstone
 - Adding charters to a service template on Alma9 will duplicate the scheduled actions.
 - When creating a new support ticket via Sunstone, users won't see the new ticket on the table however, it was created successfully.
 
+FireEdge
+================================================================================
+
+- When trying to use the copy button functionality on M1 Macs the user interface won't be able to copy the text in the clipboard, as a workaround please select and copy the text.
+
 Install Linux Graphical Desktop on KVM Virtual Machines
 ================================================================================
 
