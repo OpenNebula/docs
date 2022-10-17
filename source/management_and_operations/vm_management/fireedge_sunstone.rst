@@ -408,6 +408,83 @@ The attributes described here indicate the available actions on each dialog on t
 | ``vm_group``             | VM groups section will be displayed.                                        |
 +--------------------------+-----------------------------------------------------------------------------+
 
+.. _fireedge_sunstone_remote_connections:
+
+Remote connections
+================================================================================
+
+.. _fireedge_sunstone_vnc:
+
+OpenNebula VNC remote connection.
+--------------------------------------------------------------------------------
+
+Sunstone allows direct connections to VMs using VNC. It admits parameters such as configuring the host and port for remote connections, configuring the keyboard layout (needed for qemu KVM hosts), and setting a connection password.
+
+To set these VNC connection configurations, we must go to the VM template configuration and click on create or update an existing one.
+
+|fireedge_sunstone_templates_tab|
+
+After clicking on update, go to the "Advanced options" step and click on Input/Output.
+
+Here you have to select under the "Graphics" section VNC the ``KEYMAP`` to the current layout you are using.
+
+|fireedge_sunstone_io|
+
+Now save the changes, instantiate the VM, connect through VNC and configure the keyboard layout. In this case, we will use the localectl command to perform this change:
+
+.. code-block:: bash
+
+    $localectl set-keymap es
+
+
+Now it is all set! We can start using our VNC remote connection with our keyboard.
+
+.. note::
+
+    To have the correct layout on your Virtual Machine, you must set the same keymap inside the Virtual Machine as the ``KEYMAP`` attribute configured in the OpenNebula VM graphics section, and it must be the same as your keyboard layout.
+
+.. _fireedge_sunstone_rdp:
+
+OpenNebula RDP remote connection.
+--------------------------------------------------------------------------------
+
+Sunstone also admits direct connections using RDP. To set specific RDP connection configurations, we must go to the VM template tab and click on create or update an existing one.
+
+|fireedge_sunstone_templates_tab|
+
+After clicking on update, go to the "Advanced options" step and click on Network.
+
+|fireedge_sunstone_network|
+
+Now click on attach nic or update an existing one, go to the "Advanced options" step, and enable the RDP connection.
+
+|fireedge_sunstone_rdp|
+
+Here you will see all the available configurations for RDP mentioned above. Select the ones that apply and then click on the "Finish" button.
+
+Now, save the changes, instantiate the VM template and connect through RDP.
+
+.. _fireedge_sunstone_ssh:
+
+OpenNebula SSH remote connection.
+--------------------------------------------------------------------------------
+
+Sunstone also allows direct connections using SSH. To enable these connections, you must follow the following steps:
+
+Go to the VM template tab and click on create or update an existing one.
+
+|fireedge_sunstone_templates_tab|
+
+After clicking on update, go to the "Advanced options" step and click on Network.
+
+|fireedge_sunstone_network|
+
+Now click on attach nic or update an existing one, go to the "Advanced options" step, and enable the SSH connection.
+
+|fireedge_sunstone_ssh|
+
+Click on the "Finish" button, save the changes, instantiate the VM template and connect through SSH.
+
 .. |fireedge_sunstone_admin_view| image:: /images/fireedge_sunstone_admin_view.png
 .. |fireedge_sunstone_change_view_dropdown| image:: /images/fireedge_sunstone_change_view_dropdown.png
 .. |fireedge_sunstone_settings| image:: /images/fireedge_sunstone_settings.png
@@ -415,3 +492,8 @@ The attributes described here indicate the available actions on each dialog on t
 .. |fireedge_sunstone_vms_tab| image:: /images/fireedge_sunstone_vms_tab.png
 .. |fireedge_sunstone_templates_tab| image:: /images/fireedge_sunstone_templates_tab.png
 .. |fireedge_sunstone_marketapps_tab| image:: /images/fireedge_sunstone_marketapps_tab.png
+.. |fireedge_sunstone_template| image:: /images/fireedge_sunstone_templates.png
+.. |fireedge_sunstone_io| image:: /images/fireedge_sunstone_io.png
+.. |fireedge_sunstone_network| image:: /images/fireedge_sunstone_network.png
+.. |fireedge_sunstone_rdp| image:: /images/fireedge_sunstone_rdp.png
+.. |fireedge_sunstone_ssh| image:: /images/fireedge_sunstone_ssh.png

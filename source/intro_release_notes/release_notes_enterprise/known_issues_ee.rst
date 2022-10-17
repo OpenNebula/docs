@@ -4,7 +4,8 @@
 Known Issues
 ================================================================================
 
-A complete list of `known issues for OpenNebula is maintained here <https://github.com/OpenNebula/one/issues?q=is%3Aopen+is%3Aissue+label%3A%22Type%3A+Bug%22+label%3A%22Status%3A+Accepted%22>`__.
+.. important:: Since 6.4.2 we rolled out new packages GPG signing key which means also public repository key is new.
+               Pay attention to the difference in the key URL.  More details in :ref:`repositories configuration <repositories>`
 
 This page will be updated with relevant information about bugs affecting OpenNebula, as well as possible workarounds until a patch is officially published.
 
@@ -28,6 +29,14 @@ Sunstone
 
 - Guacamole RDP as is currently shipped in OpenNebula does not support NLA authentication. You can follow `these instructions <https://www.parallels.com/blogs/ras/disabling-network-level-authentication/>`__ in order to disable NLA in the Windows box to use Guacamole RDP within Sunstone.
 - When hidding the VM name setting on instantiate form, Sunstone does not continue with the instantintiation process. To be able to instantiate templates please set `VM.instantiate_name` to `true` in the corresponding YAML file.
+- When creating a new group sunstone on Alma9 will throw an error and won't create the group. As a workaround groups can be created via CLI.
+- Adding charters to a service template on Alma9 will duplicate the scheduled actions.
+- When creating a new support ticket via Sunstone, users won't see the new ticket on the table however, it was created successfully.
+
+FireEdge
+================================================================================
+
+- When trying to use the copy button functionality on M1 Macs the user interface won't be able to copy the text in the clipboard, as a workaround please select and copy the text.
 
 Install Linux Graphical Desktop on KVM Virtual Machines
 ================================================================================

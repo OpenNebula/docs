@@ -1,4 +1,4 @@
-.. _uspng:
+.. _uspng_ce:
 
 ================================================================================
 Platform Notes 6.4
@@ -38,7 +38,7 @@ Front-End Components
 | Ruby Gems                | Versions installed by packages or install_gems utility | :ref:`front-end installation <ruby_runtime>`          |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 
-.. _vcenter_nodes_platform_notes:
+.. _vcenter_nodes_platform_notes_ce:
 
 vCenter Nodes
 --------------------------------------------------------------------------------
@@ -110,7 +110,7 @@ Firecracker Nodes
 |                          | included in the Linux distribution.             | Installation <fc_node>`          |
 +--------------------------+-------------------------------------------------+----------------------------------+
 
-.. _context_supported_platforms:
+.. _context_supported_platforms_ce:
 
 Linux Contextualization Packages
 ---------------------------------------------------------------------------------
@@ -231,7 +231,7 @@ Sunstone
 
 .. note:: Generally, for all Linux platforms, it is worth noting that Ruby gems should be used from packages shipped with OpenNebula or installed with the :ref:`install_gems <ruby_runtime>` utility. Avoid using Ruby gem versions shipped with your platform.
 
-.. _edge_cluster_provision_workloads_compatibility:
+.. _edge_cluster_provision_workloads_compatibility_ce:
 
 Compatibility of Workloads on Certified Edge Clusters
 =====================================================
