@@ -12,6 +12,11 @@ If you are upgrading from a 6.4.x installation you only need to follow a reduced
 
 .. important:: If you haven't done so, please enable the :ref:`OpenNebula and needed 3rd party repositories <setup_opennebula_repos>` before attempting the upgrade process. If you want to use Docker related functionality of OpenNebula and/or OpenNebula Edge Clusters provisioning you'll need to follow :ref:`this for RedHat <install_docker_deps_rh>` or :ref:`this for Debian <install_docker_deps_deb>` distributions.
 
+.. important:: Since 6.4.2 we rolled out new packages GPG signing key which means also public repository key is new. Pay attention to the difference in the key URL:
+  |br| • for 6.4.1 and older use `repo.key <https://downloads.opennebula.io/repo/repo.key>`__
+  |br| • for 6.4.2 and later use `repo2.key <https://downloads.opennebula.io/repo/repo2.key>`__
+
+
 .. _upgrade_64:
 
 Upgrading from 6.4.x
@@ -382,3 +387,7 @@ Restoring the Previous Version
 ================================================================================
 
 If for any reason you need to restore your previous OpenNebula, simply uninstall OpenNebula |version|, and install again your previous version. After that, update the drivers if needed, as outlined in Step 12.
+
+.. |br| raw:: html
+
+  <br/>
