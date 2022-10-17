@@ -54,7 +54,7 @@ vOneCloud ships with a default of 2 vCPUs, 16 GiB of RAM and 100GB of disk size,
 - Up to 1.000 VMs in total
 - Up to 100 users, the limit being 10 users accessing the system simultaneously
 
-Take into account that vOneCloud is shipped for evaluation purposes. 
+Take into account that vOneCloud is shipped for evaluation purposes.
 
 .. _accounts:
 
@@ -154,10 +154,10 @@ As the last step, you need to configure a public-facing address that will be use
 .. image:: /images/control-console-fe-endpoint.png
     :align: center
 
-Step 3. Enjoy the Out-of-the-Box Features
+Step 3. Check access to the Sunstone GUI
 --------------------------------------------------------------------------------
 
-After opening the Sunstone interface (``http://<appliance_ip>`` with oneadmin credentials), you are now ready to enjoy the out-of-the-box features of OpenNebula!
+After opening the Sunstone interface (``http://<appliance_ip>`` with oneadmin credentials), you are now ready to add computing clusters to OpenNebula and start launching your first Virtual Machines!
 
 .. image:: /images/sunstone-main.png
     :align: center
@@ -167,4 +167,7 @@ If Sunstone greets you with an error while connecting to the public FireEdge end
 .. image:: /images/sunstone-fe-error.png
     :align: center
 
+Next Steps
+==========
 
+We recommend following the :ref:`Operations Guide <operation_basics>` from Quick Start after finishing this guide to add computing power to your shiny new OpenNebula cloud.
