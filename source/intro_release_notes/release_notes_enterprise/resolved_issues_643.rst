@@ -13,3 +13,4 @@ The following new features has been backported to 6.4.3:
 The following issues has been solved in 6.4.3:
 
 - `Fix an error that prevents migrating a VM when it has more than 10 defined snapshots <https://github.com/OpenNebula/one/issues/5991>`__.
+- `Fix RETIME after onevm recover <https://github.com/OpenNebula/one/issues/5950>`__.
