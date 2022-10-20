@@ -74,15 +74,15 @@ You can either use a public DNS server or local ``/etc/hosts`` file, for example
    127.0.0.1 localhost
    1.2.3.4 k8s.yourdomain.it
 
-.. note::
-
-   The **public** IP address (AWS elastic IP) should be consulted in OpenNebula after the VNF instance is successfully provisioned. Go to ``Instances --> VMs`` and check the IP column to see what IP has OpenNebula assigned the VNF instance.
-
 .. important::
 
     To make the kubeconfig file work with custom SANs you will need to modify the ``clusters[0].cluster.server`` variable inside the YAML payload, for example: ``server: https://k8s.yourdomain.it:6443``.
 
 Now click on the instantiate button, go to ``Instances --> Services`` and wait for the new Service to get into ``RUNNING`` state. You can also check the VMs being deployed in ``Instances --> VMs``.
+
+.. note::
+
+   The **public** IP address (AWS elastic IP) should be consulted in OpenNebula after the VNF instance is successfully provisioned. Go to ``Instances --> VMs`` and check the IP column to see what IP has OpenNebula assigned the VNF instance.
 
 .. note::
 
