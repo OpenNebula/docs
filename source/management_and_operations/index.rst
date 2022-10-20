@@ -16,8 +16,10 @@ The Management and Operations Guide provides complete information about how to o
    Storage <storage_management/index>
    Virtual Networks <network_management/index>
    Virtual Machines <vm_management/index>
+   Virtual Machine Backups <backups/index>
    End-User Web Interfaces <end-user_web_interfaces/index>
    Multi-VM Service <multivm_service_management/index>
    Users and Groups <users_groups_management/index>
    Capacity Planning <capacity_planning/index>
+   Monitoring and Alerting (EE) <monitor_alert/index>
    References <references/index>
