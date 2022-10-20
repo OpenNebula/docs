@@ -94,57 +94,41 @@ Now click on the instantiate button, go to ``Instances --> Services`` and wait f
 .. |kubernetes-qs-pick-vips| image:: /images/kubernetes-qs-pick-vips.png
 .. |kubernetes-qs-add-sans| image:: /images/kubernetes-qs-add-sans.png
 
-Step 4. Connect to Kubernetes API via SSH tunnel (optional)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Step 4. Deploy an Application
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-By default Kubernetes API Server's extra SANs are set to **localhost,127.0.0.1** which allows to access Kubernetes API via SSH tunnels.
+Connect to the master Kubernetes node:
 
-.. note::
+.. prompt:: text $ auto
 
-    We recommend using the ``ProxyCommand`` SSH feature, for example:
+    $ ssh -A -J root@1.2.3.4 root@172.20.0.2
 
-To download the **/etc/rancher/rke2/rke2.yaml** (kubeconfig) file:
-
-.. prompt:: text [remote]$ auto
-
-    [remote]$ mkdir -p ~/.kube/
-    [remote]$ scp -o ProxyCommand='ssh -A root@1.2.3.4 -W %h:%p' root@172.20.0.2:/etc/rancher/rke2/rke2.yaml ~/.kube/config
-
-.. note::
-
-    The ``1.2.3.4`` is a **public** address of a VNF node, ``172.20.0.2`` is a **private** address of a master node (inside internal VNET).
-
-To create SSH tunnel, forward ``6443`` port and query cluster nodes:
-
-.. prompt:: text [remote]$ auto
-
-    [remote]$ ssh -o ProxyCommand='ssh -A root@1.2.3.4 -W %h:%p' -L 6443:localhost:6443 root@172.20.0.2
+where ``1.2.3.4`` should be the **public** address (AWS elastic IP) of a VNF node.
 
 .. important::
 
-    You must make sure that the cluster endpoint inside the kubeconfig file (**~/.kube/config**) points to **localhost**, for example:
+    If you don't use ``ssh-agent`` then the ``-A`` flag makes no difference to you (it can be skipped).
+    In such case, you need to copy your **private** ssh key (used to connect to VNF) into the VNF node itself
+    at the location ``~/.ssh/id_rsa`` and make sure file permissions are correct, i.e. ``0600`` (or ``u=rw,go=``).
+    For example:
 
-    .. prompt:: text [remote]$ auto
+    .. prompt:: text $ auto
 
-        gawk -i inplace -f- ~/.kube/config <<'EOF'
-        /^    server: / { $0 = "    server: https://localhost:6443" }
-        { print }
-        EOF
+        $ ssh root@1.2.3.4 install -m u=rwx,go= -d /root/.ssh/ # make sure ~/.ssh/ exists
+        $ scp ~/.ssh/id_rsa root@1.2.3.4:/root/.ssh/           # copy the key
+        $ ssh root@1.2.3.4 chmod u=rw,go= /root/.ssh/id_rsa    # make sure the key is secured
 
-and then in another terminal:
+Check if ``kubectl`` is working:
 
-.. prompt:: text [remote]$ auto
+.. prompt:: text $ auto
 
-    [remote]$ kubectl get nodes
+    $ kubectl get nodes
     NAME                    STATUS   ROLES                       AGE   VERSION
     onekube-ip-172-20-0-2   Ready    control-plane,etcd,master   15m   v1.24.1+rke2r2
     onekube-ip-172-20-0-3   Ready    <none>                      13m   v1.24.1+rke2r2
     onekube-ip-172-20-0-4   Ready    <none>                      12m   v1.24.1+rke2r2
 
-Step 5. Deploy an Application
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Let's deploy nginx on the cluster:
+Deploy nginx on the cluster:
 
 .. prompt:: yaml $ auto
 
