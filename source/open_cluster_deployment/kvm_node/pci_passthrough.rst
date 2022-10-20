@@ -276,7 +276,7 @@ In Sunstone the information is displayed in the **PCI** tab:
 
 |image1|
 
-To add a PCI device to a template, select the **Other** tab:
+To add a PCI device to a template, select the **Input/Output** tab:
 
 |image2|
 
