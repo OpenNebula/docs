@@ -8,6 +8,7 @@ OpenNebula Exporter
 ================================================================================
 
 .. list-table::
+    :widths: auto
     :header-rows: 1
 
     * - Name
@@ -84,6 +85,7 @@ Libvirt Exporter
 ================================================================================
 
 .. list-table::
+    :widths: auto
     :header-rows: 1
 
     * - Name
