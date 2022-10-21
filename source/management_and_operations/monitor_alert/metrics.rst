@@ -62,6 +62,9 @@ OpenNebula Exporter
     * - opennebula_vm_state
       - VM state 0:init 1:pending 2:hold 3:active 4:stopped 5:suspended 6:done 8:poweroff 9:undeployed 10:clonning
       - gauge
+    * - opennebula_vm_lcm_state
+      - VM LCM state, only relevant for state 3 (active)
+      - gauge
     * - opennebula_vm_mem_total_bytes
       - Total memory capacity
       - gauge
@@ -79,6 +82,21 @@ OpenNebula Exporter
       - gauge
     * - opennebula_vm_nics
       - Total number of network interfaces
+      - gauge
+    * - opennebula_oned_state
+      - OpenNebula oned service state 0:down 1:up
+      - gauge
+    * - opennebula_scheduler_state
+      - OpenNebula scheduler service state 0:down 1:up
+      - gauge
+    * - opennebula_flow_state
+      - OpenNebula Flow service state 0:down 1:up
+      - gauge
+    * - opennebula_hem_state
+      - OpenNebula hook manager service state 0:down 1:up
+      - gauge
+    * - opennebula_gate_state
+      - OpenNebula Gate service state 0:down 1:up
       - gauge
 
 Libvirt Exporter
