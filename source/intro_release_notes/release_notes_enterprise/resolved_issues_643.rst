@@ -16,3 +16,4 @@ The following issues has been solved in 6.4.3:
 - `Fix RETIME after onevm recover <https://github.com/OpenNebula/one/issues/5950>`__.
 - `Fix when a very long label is added, the text is incomplete <https://github.com/OpenNebula/one/issues/5998>`__.
 - `Fix min/max vms data type overwrite on update <https://github.com/OpenNebula/one/issues/5983>`__.
+- `Fix charter icon in services list not being updated <https://github.com/OpenNebula/one/issues/6007>`__.
