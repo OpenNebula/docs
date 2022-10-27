@@ -32,6 +32,7 @@ Sunstone
 - When creating a new group sunstone on Alma9 will throw an error and won't create the group. As a workaround groups can be created via CLI.
 - Adding charters to a service template on Alma9 will duplicate the scheduled actions.
 - When creating a new support ticket via Sunstone, users won't see the new ticket on the table however, it was created successfully.
+- Creating a VM with SPICE graphics, on Alma9, will cause the VM to stay on FAILED state.
 
 FireEdge
 ================================================================================
