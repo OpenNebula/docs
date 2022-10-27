@@ -225,4 +225,135 @@ If you already have an existing Prometheus installation, you just need to adapt 
 Using Prometheus with OpenNebula in HA
 ================================================================================
 
-.. TODO
+You can refer to :ref:`OpenNebula Front-end HA <frontend_ha_setup>` to learn more about HA mode in OpenNebula.
+
+Let's assume your existing OpenNebula instance consists of three front-ends and two KVM hosts:
+
+.. prompt:: bash # auto
+
+   # onezone show 0
+   ZONE 0 INFORMATION
+   ID                : 0
+   NAME              : OpenNebula
+   STATE             : ENABLED
+
+   ZONE SERVERS
+   ID NAME            ENDPOINT
+    0 Node-1          http://192.168.150.1:2633/RPC2
+    1 Node-2          http://192.168.150.2:2633/RPC2
+    2 Node-3          http://192.168.150.3:2633/RPC2
+
+   HA & FEDERATION SYNC STATUS
+   ID NAME            STATE      TERM       INDEX      COMMIT     VOTE  FED_INDEX
+    0 Node-1          follower   26         13719      13719      2     -1
+    1 Node-2          follower   26         13719      13719      -1    -1
+    2 Node-3          leader     26         13719      13719      2     -1
+
+   ZONE TEMPLATE
+   ENDPOINT="http://localhost:2633/RPC2"
+
+.. prompt:: bash # auto
+
+   # onehost list
+   ID NAME                CLUSTER  TVM   ALLOCATED_CPU      ALLOCATED_MEM  STAT
+   1 kvm-ha-xqhnt-5.test  default    2  20 / 100 (20%)  192M / 1.4G (13%)  on
+   0 kvm-ha-xqhnt-4.test  default    1  10 / 100 (10%)   96M / 1.4G (6%)   on
+
+Executing the `/usr/share/one/prometheus/patch_datasources.rb` script on the "first" (192.168.150.1) front-end
+should produce the following prometheus configuration:
+
+.. code-block:: yaml
+
+   ---
+   global:
+     scrape_interval: 15s
+     evaluation_interval: 15s
+
+   alerting:
+     alertmanagers:
+     - static_configs:
+       - targets:
+         - 192.168.150.2:9093
+         - 192.168.150.3:9093
+         - 192.168.150.1:9093
+
+   rule_files:
+   - rules.yml
+
+   scrape_configs:
+   - job_name: prometheus
+     static_configs:
+     - targets:
+       - localhost:9090
+   - job_name: opennebula_exporter
+     static_configs:
+     - targets:
+       - 192.168.150.1:9925
+   - job_name: node_exporter
+     static_configs:
+     - targets:
+       - 192.168.150.2:9100
+       - 192.168.150.3:9100
+       - 192.168.150.1:9100
+     - targets:
+       - kvm-ha-xqhnt-5.test:9100
+       labels:
+         one_host_id: '1'
+     - targets:
+       - kvm-ha-xqhnt-4.test:9100
+       labels:
+         one_host_id: '0'
+   - job_name: libvirt_exporter
+     static_configs:
+     - targets:
+       - kvm-ha-xqhnt-5.test:9926
+       labels:
+         one_host_id: '1'
+     - targets:
+       - kvm-ha-xqhnt-4.test:9926
+       labels:
+         one_host_id: '0'
+
+You can spot that all front-ends and all hosts are included in various scrape jobs.
+You can also see configuration for alerting
+
+.. code-block:: yaml
+
+   alerting:
+     alertmanagers:
+     - static_configs:
+       - targets:
+         - 192.168.150.2:9093
+         - 192.168.150.3:9093
+         - 192.168.150.1:9093
+
+which points to **all** alertmanager instances that are supposed to be configured
+in `HA mode <https://prometheus.io/docs/alerting/latest/alertmanager/#high-availability>`_ as well
+(to deduplicate alert notifications).
+
+.. important::
+
+   Services **opennebula-prometheus**, **opennebula-alertmanager**, **opennebula-node-exporter**
+   and **opennebula-exporter** should be configured, enabled and started on **all** front-end machines.
+
+To configure each alertmanager as a cluster peer, you need to override (or modify) the `opennebula-alertmanager` systemd service.
+For example on the "second" front-end:
+
+.. prompt:: bash # auto
+
+   # mkdir -p /etc/systemd/system/opennebula-alertmanager.service.d/
+   # cat >/etc/systemd/system/opennebula-alertmanager.service.d/override.conf <<'EOF'
+   [Service]
+   ExecStart=
+   ExecStart=/usr/bin/alertmanager \
+             --config.file=/etc/one/alertmanager/alertmanager.yml \
+             --storage.path=/var/lib/alertmanager/data/ \
+             --cluster.peer=192.168.150.1:9094 \
+             --cluster.peer=192.168.150.3:9094
+   EOF
+   # systemctl restart opennebula-alertmanager.service
+
+.. note::
+
+   You can create the `opennebula-alertmanager.service.d/override.conf` file yourself
+   or automatically with ``systemctl edit opennebula-alertmanager.service``.
