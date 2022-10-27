@@ -16,11 +16,16 @@ Step 2. Install Front-end Packages [Front-end]
 
 In your OpenNebula front-end, install the Prometheus package. This package includes:
 
-  - The OpenNebula exporter.
   - The `Prometheus monitoring system binary <https://github.com/prometheus/prometheus>`_.
   - The `Prometheus Alertmanager binary <https://github.com/prometheus/alertmanager>`_.
 
-Prometheus and Alertmanager are free software and they are re-distributed for your convinience under the terms of the Apache License 2.0, as described in the `Prometheus <https://github.com/prometheus/prometheus/blob/main/LICENSE>`_ and `Alertmanger <https://github.com/prometheus/alertmanager/blob/main/LICENSE>`_ licenses respectively.
+You should also install the Prometheus-KVM package that includes metric exporters. This package includes:
+
+  - The OpenNebula exporter.
+  - The OpenNebula Libvirt exporter (unused in Front-ends).
+  - The `Prometheus Node exporter binary <https://github.com/prometheus/node_exporter/blob/master/LICENSE>`_.
+
+Prometheus, Alertmanager Node Exporter are free software and they are re-distributed for your convinience under the terms of the Apache License 2.0, as described in the `Prometheus <https://github.com/prometheus/prometheus/blob/main/LICENSE>`_, `Alertmanager <https://github.com/prometheus/alertmanager/blob/main/LICENSE>`_ and `Node exporter <https://github.com/prometheus/node_exporter/blob/master/LICENSE>`_ licenses respectively.
 
 Note that you will be able to use any existing installation of both systems after the installation.
 
@@ -28,21 +33,22 @@ Note that you will be able to use any existing installation of both systems afte
 
 .. prompt:: bash # auto
 
-    # yum -y install opennebula-prometheus
+    # yum -y install opennebula-prometheus opennebula-prometheus-kvm
 
 **Deb based distributions (Ubuntu, Debian)**
 
 .. prompt:: bash # auto
 
-   # apt install opennebula-prometheus
+   # apt -y install opennebula-prometheus opennebula-prometheus-kvm
 
 Step 3. Install Hosts Packages [Hosts]
 ================================================================================
 
-In your hosts you need to install the Prometheus exporters, this package includes:
+In your hosts you need to install the Prometheus-KVM, this package includes:
 
-  - The OpenNebula Libvirt exporter
-  - The `Prometheus official node exporter <https://github.com/prometheus/node_exporter/blob/master/LICENSE>`_.
+  - The OpenNebula exporter (unused in Hosts).
+  - The OpenNebula Libvirt exporter.
+  - The `Prometheus Node exporter binary <https://github.com/prometheus/node_exporter/blob/master/LICENSE>`_.
 
 Prometheus Node exporter is free software and re-distributed in this package for your convinience under the terms of the Apache License 2.0, as described in the `Node exporter license <https://github.com/prometheus/node_exporter/blob/master/LICENSE>`_.
 
@@ -58,7 +64,7 @@ Note that you will be able to use any existing installation of the node exporter
 
 .. prompt:: bash # auto
 
-   # apt install opennebula-prometheus-kvm
+   # apt -y install opennebula-prometheus-kvm
 
 Step 4. Configure Prometheus [Front-end]
 ================================================================================
@@ -72,7 +78,7 @@ The OpenNebula Prometheus package comes with a simple script that automatically 
     1 kvm-ssh-uimw3-2.test          default      0       0 / 100 (0%)     0K / 1.2G (0%) on
     0 kvm-ssh-uimw3-1.test          default      0       0 / 100 (0%)     0K / 1.2G (0%) on
 
-Now, we will generate the prometheus configuration in ``/etc/one/prometheus/prometheus.yml``, as ``root`` execute:
+Now, we will generate the prometheus configuration in ``/etc/one/prometheus/prometheus.yml``, as ``root`` (or ``oneadmin``) execute:
 
 .. prompt:: bash # auto
 
@@ -84,49 +90,51 @@ This command connects to your cloud as oneadmin to gather the relevant informati
 
    # cat /etc/one/prometheus/prometheus.yml
 
-    ---
-    global:
-      scrape_interval: 15s
-      evaluation_interval: 15s
+   ---
+   global:
+     scrape_interval: 15s
+     evaluation_interval: 15s
 
-    alerting:
-      alertmanagers:
-      - static_configs:
-        - targets:
-          - localhost:9093
+   alerting:
+     alertmanagers:
+     - static_configs:
+       - targets:
+         - 127.0.0.1:9093
 
-    rule_files:
-    - rules.yml
+   rule_files:
+   - rules.yml
 
-    scrape_configs:
-    - job_name: prometheus
-      static_configs:
-      - targets:
-        - localhost:9090
-    - job_name: opennebula_exporter
-      static_configs:
-      - targets:
-        - localhost:9925
-    - job_name: node_exporter
-      static_configs:
-      - targets:
-        - kvm-ssh-uimw3-2.test:9100
-        labels:
-          one_host_id: '1'
-      - targets:
-        - kvm-ssh-uimw3-1.test:9100
-        labels:
-          one_host_id: '0'
-    - job_name: libvirt_exporter
-      static_configs:
-      - targets:
-        - kvm-ssh-uimw3-2.test:9926
-        labels:
-          one_host_id: '1'
-      - targets:
-        - kvm-ssh-uimw3-1.test:9926
-        labels:
-          one_host_id: '0'
+   scrape_configs:
+   - job_name: prometheus
+     static_configs:
+     - targets:
+       - 127.0.0.1:9090
+   - job_name: opennebula_exporter
+     static_configs:
+     - targets:
+       - 127.0.0.1:9925
+   - job_name: node_exporter
+     static_configs:
+     - targets:
+       - 127.0.0.1:9100
+     - targets:
+       - kvm-ssh-uimw3-2.test:9100
+       labels:
+         one_host_id: '1'
+     - targets:
+       - kvm-ssh-uimw3-1.test:9100
+       labels:
+         one_host_id: '0'
+   - job_name: libvirt_exporter
+     static_configs:
+     - targets:
+       - kvm-ssh-uimw3-2.test:9926
+       labels:
+         one_host_id: '1'
+     - targets:
+       - kvm-ssh-uimw3-1.test:9926
+       labels:
+         one_host_id: '0'
 
 You can adjust scrape intervals or other configuration attributes in this file.
 
@@ -143,32 +151,33 @@ Once you are happy with the options, start and enable prometheus:
 
    # systemctl enable --now opennebula-prometheus.service
 
-Finally, we need to start and enable the Opennebula exporter:
+Finally, we need to start and enable both exporters:
 
 .. prompt:: bash # auto
 
-   # systemctl enable --now opennebula-exporter.service
+   # systemctl enable --now opennebula-exporter.service opennebula-node-exporter.service
 
-If everything went ok, you should be able to check that prometheus and exporer are running:
-
-.. prompt:: bash # auto
-
-   # ss -tapn | grep 'LISTEN.*\(9925\|9090\)'
-   LISTEN    0      100          0.0.0.0:9925       0.0.0.0:*     users:(("ruby",pid=88049,fd=7))
-   LISTEN    0      4096               *:9090             *:*     users:(("prometheus",pid=87517,fd=7))
-
-and the exporter is providing the monitor metrics:
+If everything went ok, you should be able to check that prometheus and both exporers are running:
 
 .. prompt:: bash # auto
 
-   # curl http://localhost:9925/metrics
-     # TYPE opennebula_host_total gauge
-     # HELP opennebula_host_total Total number of hosts defined in OpenNebula
-     opennebula_host_total 2.0
-     # TYPE opennebula_host_state gauge
-     # HELP opennebula_host_state Host state 0:init 2:monitored 3:error 4:disabled 8:offline
-     opennebula_host_state{one_host_id="1"} 2.0
-     opennebula_host_state{one_host_id="0"} 2.0
+   # ss -tapn | grep 'LISTEN.*\(9925\|9100\|9090\)'
+   LISTEN    0      100          0.0.0.0:9925       0.0.0.0:*     users:(("ruby",pid=32402,fd=7))
+   LISTEN    0      4096               *:9090             *:*     users:(("prometheus",pid=35494,fd=7))
+   LISTEN    0      4096               *:9100             *:*     users:(("node_exporter",pid=32507,fd=3))
+
+and the opennebula-exporter is providing the monitor metrics:
+
+.. prompt:: bash $ auto
+
+   $ curl http://localhost:9925/metrics
+   # TYPE opennebula_host_total gauge
+   # HELP opennebula_host_total Total number of hosts defined in OpenNebula
+   opennebula_host_total 2.0
+   # TYPE opennebula_host_state gauge
+   # HELP opennebula_host_state Host state 0:init 2:monitored 3:error 4:disabled 8:offline
+   opennebula_host_state{one_host_id="1"} 2.0
+   opennebula_host_state{one_host_id="0"} 2.0
 
 Step 6. Start Node and Libvirt Exporters [Host]
 ================================================================================
@@ -177,30 +186,28 @@ Now we need to enable and start the node and libvirt exporters. Simply, using th
 
 .. prompt:: bash # auto
 
-   # systemctl enable --now opennebula-libvirt-exporter
-   # systemctl enable --now opennebula-node-exporter
+   # systemctl enable --now opennebula-libvirt-exporter.service opennebula-node-exporter.service
 
 As we did previsouly, let's verify exporters are listening in the targets ports:
 
 .. prompt:: bash # auto
 
-    # ss -tapn | grep 'LISTEN.*\(9926\|9100\)'
-    LISTEN    0      100                 0.0.0.0:9926              0.0.0.0:*     users:(("ruby",pid=38851,fd=7))
-    LISTEN    0      4096                      *:9100                    *:*     users:(("node_exporter",pid=38884,fd=3))
+   # ss -tapn | grep 'LISTEN.*\(9926\|9100\)'
+   LISTEN    0      100          0.0.0.0:9926       0.0.0.0:*     users:(("ruby",pid=38851,fd=7))
+   LISTEN    0      4096               *:9100             *:*     users:(("node_exporter",pid=38884,fd=3))
 
 You should be able also to retrive some metrics:
 
-.. prompt:: bash # auto
+.. prompt:: bash $ auto
 
-   # curl localhost:9926/metrics
-     # TYPE opennebula_libvirt_requests_total counter
-     # HELP opennebula_libvirt_requests_total The total number of HTTP requests handled by the Rack application.
-     opennebula_libvirt_requests_total{code="200",method="get",path="/metrics"} 18.0
-     ...
-
-     # TYPE opennebula_libvirt_daemon_up gauge
-     # HELP opennebula_libvirt_daemon_up State of the libvirt daemon 0:down 1:up
-     opennebula_libvirt_daemon_up 1.0
+   $ curl localhost:9926/metrics
+   # TYPE opennebula_libvirt_requests_total counter
+   # HELP opennebula_libvirt_requests_total The total number of HTTP requests handled by the Rack application.
+   opennebula_libvirt_requests_total{code="200",method="get",path="/metrics"} 18.0
+   ...
+   # TYPE opennebula_libvirt_daemon_up gauge
+   # HELP opennebula_libvirt_daemon_up State of the libvirt daemon 0:down 1:up
+   opennebula_libvirt_daemon_up 1.0
 
 .. _monitor_alert_existing:
 

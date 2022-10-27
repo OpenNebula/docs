@@ -12,16 +12,15 @@ This guide assumes you have already and up and running Grafana service. If you d
   - `Download and Installation <https://grafana.com/grafana/download>`_.
   - `Add a new Prometheus Data sources <https://grafana.com/blog/2022/01/26/video-how-to-set-up-a-prometheus-data-source-in-grafana/>`_.
 
-.. note:: Prometheus is listening in the standard port (9090) as described in the installation guide
-
+.. note:: Prometheus is listening in the standard port (9090) as described in the installation guide.
 
 Grafana Dashboards
 ================================================================================
 
 We provide three dashboard templates that can be customized to your needs:
-  - Dashboard to visualize Virtual Machine information `/etc/one/grafana/dashboards/vms.json`.
-  - Dashboard to visualize Host information `/etc/one/grafana/dashboards/hosts.json`.
-  - Dashboard to visualize the overall status of the OpenNebula cloud `/etc/one/grafana/dashboards/opennebula.json`.
+  - Dashboard to visualize Virtual Machine information `/usr/share/one/grafana/dashboards/vms.json`.
+  - Dashboard to visualize Host information `/usr/share/one/grafana/dashboards/hosts.json`.
+  - Dashboard to visualize the overall status of the OpenNebula cloud `/usr/share/one/grafana/dashboards/opennebula.json`.
 
 You can easily import these dashboards by copying the contents of these files in the Dashboards > + Import form.
 
