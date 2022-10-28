@@ -80,8 +80,3 @@ KVM - Redefine Snapshot
 ================================================================================
 
 Depending on the number of snapshots and their IDs, the driver might fail redefining the snapshots (e.g after resuming or migrating the VM). More information can be found `here <https://github.com/OpenNebula/one/issues/5991>`__.
-
-Bug in Bump Version
-===================
-
-The OCA (OpenNebula Cloud API) was mistakingly left umbumped in 6.4.1, so some components like the CLI and Sunstone report 6.4.0 instead. This is purely a cosmetic issue that will be solved in upcoming releases. To ensure your upgrade went through smoothly please verify that ``oned -v``` returns the correct 6.4.1 version.
