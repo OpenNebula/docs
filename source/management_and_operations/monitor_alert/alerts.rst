@@ -1,7 +1,7 @@
 .. _monitor_alert_alarms:
 
 ================================================================================
-Alert Manger
+Alert Manager
 ================================================================================
 
 Installation and Configuration
@@ -126,4 +126,9 @@ Group: OpenNebulaServices
 Setting up Alarms for OpenNebula in HA
 ================================================================================
 
-.. TODO
+.. important::
+
+   To avoid duplicated / multiplicated alert notifications you should configure **all** your alertmanager instances to run in HA mode,
+   then point **all** your prometheus instances to them.
+
+Please refer to the :ref:`Using Prometheus with OpenNebula in HA <monitor_alert_ha>` section for details.
