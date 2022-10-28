@@ -251,13 +251,6 @@ First, add the repository signing GPG key on the Front-end by executing as user 
     # echo "deb https://downloads.opennebula.io/repo/6.4/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
-**Ubuntu 22.04**
-
-.. prompt:: bash # auto
-
-    # echo "deb https://downloads.opennebula.io/repo/6.4/Ubuntu/22.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
-    # apt-get update
-
 .. |br| raw:: html
 
   <br/>
