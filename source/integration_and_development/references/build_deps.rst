@@ -37,6 +37,7 @@ Ubuntu 20.04
 * **libcurl4-openssl-dev**
 * **libcurl4**
 * **libvncserver-dev**
+* **libzmq3-dev**
 * **postgresql-server-dev-all**
 * **python3-setuptools**
 * **ruby**
