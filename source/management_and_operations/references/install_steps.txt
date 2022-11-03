@@ -54,10 +54,6 @@ FreeBSD 11, 12
 Windows
 ~~~~~~~
 
-.. note::
-
-    There were no changes between ``6.2`` and ``6.4`` in Windows contextualization - use the ``6.2`` version.
-
 Download the MSI package into ``C:\``:
 
 * https://github.com/OpenNebula/addon-context-windows/releases/download/v6.2.0/one-context-6.2.0.msi
