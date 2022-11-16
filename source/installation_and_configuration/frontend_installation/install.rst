@@ -37,42 +37,12 @@ Step 3. Add 3rd Party Repositories
 
 Not all OpenNebula dependencies are in base distribution repositories. On selected platforms below you need to enable 3rd party repositories by running the following commands under privileged user (``root``):
 
-**CentOS 7**
-
-.. prompt:: bash # auto
-
-    # yum -y install epel-release
-    # yum -y install centos-release-scl-rh
-
-**AlmaLinux 8 (6.2.1 EE only)**
-
-.. prompt:: bash # auto
-
-    # yum -y install epel-release
-
-**RHEL 7**
-
-.. prompt:: bash # auto
-
-    # subscription-manager repos --enable rhel-7-server-optional-rpms
-    # subscription-manager repos --enable rhel-7-server-extras-rpms
-    # subscription-manager repos --enable rhel-server-rhscl-7-rpms
-    # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 **RHEL 8**
 
 .. prompt:: bash # auto
 
     # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-
-**Ubuntu 18.04**
-
-.. prompt:: bash # auto
-
-   # wget -q -O- https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
-   # source /etc/os-release
-   # echo "deb https://deb.nodesource.com/node_12.x ${VERSION_CODENAME} main" >/etc/apt/sources.list.d/nodesource.list
-   # apt-get update
 
 .. _packages:
 

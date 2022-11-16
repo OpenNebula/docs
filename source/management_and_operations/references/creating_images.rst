@@ -21,7 +21,7 @@ Step 1. Install Libguestfs
 
 The package is available in most distributions. Here are the commands to do it in some of them.
 
-RHEL/CentOS
+RHEL
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. prompt:: bash # auto
@@ -48,9 +48,8 @@ This package is available in `aur repository <https://aur.archlinux.org/packages
 Step 2. Download the Image
 --------------------------------------------------------------------------------
 
-You can find the images for distributions in these links. We are going to use the ones from CentOS but the others are here for reference:
+You can find the images for distributions in these links. We are going to use the ones from RHEL but the others are here for reference:
 
-* **CentOS**: https://cloud.centos.org/centos/
 * **Debian**: https://cdimage.debian.org/cdimage/openstack/
 * **Ubuntu**: https://cloud-images.ubuntu.com/
 * **Amazon Linux**: https://cdn.amazonlinux.com/os-images/latest/kvm/
@@ -60,7 +59,7 @@ Step 3. Download Context Packages
 --------------------------------------------------------------------------------
 
 The context packages can be downloaded from the `release section of the project <https://github.com/OpenNebula/addon-context-linux/releases>`__.
-Make sure you download the version you need. For example, for CentOS 8, download the corresponding `rpm` package (``one-context-<VERSION>.el8.noarch.rpm``).
+Make sure you download the version you need. For example, for RHEL 8, download the corresponding `rpm` package (``one-context-<VERSION>.el8.noarch.rpm``).
 Do not download the packages marked with `ec2` as they are specific for EC2 images.
 
 You have to download them to a directory that we will later refer. For our example, we'll call it ``packages``.

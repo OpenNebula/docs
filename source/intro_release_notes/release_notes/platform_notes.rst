@@ -17,13 +17,11 @@ Front-End Components
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 |        Component         |                        Version                         |                    More information                   |
 +==========================+========================================================+=======================================================+
-| Red Hat Enterprise Linux | 7, 8                                                   | :ref:`Front-End Installation <frontend_installation>` |
+| Red Hat Enterprise Linux | 8, 9                                                   | :ref:`Front-End Installation <frontend_installation>` |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-| CentOS                   | 7                                                      | :ref:`Front-End Installation <frontend_installation>` |
+| AlmaLinux                | 8, 9                                                   | :ref:`Front-End Installation <frontend_installation>` |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-| AlmaLinux                | 8                                                      | :ref:`Front-End Installation <frontend_installation>` |
-+--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-| Ubuntu Server            | 18.04 (LTS), 20.04 (LTS)                               | :ref:`Front-End Installation <frontend_installation>` |
+| Ubuntu Server            | 20.04 (LTS), 22.04 (LTS)                               | :ref:`Front-End Installation <frontend_installation>` |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 | Debian                   | 10, 11                                                 | :ref:`Front-End Installation <frontend_installation>`.|
 |                          |                                                        | Not certified to manage VMware infrastructures        |
@@ -31,7 +29,6 @@ Front-End Components
 | MariaDB or MySQL         | Version included in the Linux distribution             | :ref:`MySQL Setup <mysql>`                            |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 | PostgreSQL               | 9.5+, Version included in the Linux distribution       | :ref:`PostgreSQL Setup <postgresql>`                  |
-|                          | (except RHEL/CentOS 7)                                 |                                                       |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 | SQLite                   | Version included in the Linux distribution             | Default DB, no configuration needed                   |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
@@ -61,18 +58,16 @@ KVM Nodes
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
 |        Component         |                         Version                         |             More information            |
 +==========================+=========================================================+=========================================+
-| Red Hat Enterprise Linux | 7, 8                                                    | :ref:`KVM Driver <kvmg>`                |
+| Red Hat Enterprise Linux | 8, 9                                                    | :ref:`KVM Driver <kvmg>`                |
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
-| CentOS                   | 7                                                       | :ref:`KVM Driver <kvmg>`                |
+| AlmaLinux                | 8, 9                                                    | :ref:`KVM Driver <kvmg>`                |
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
-| AlmaLinux                | 8                                                       | :ref:`KVM Driver <kvmg>`                |
-+--------------------------+---------------------------------------------------------+-----------------------------------------+
-| Ubuntu Server            | 18.04 (LTS), 20.04 (LTS)                                | :ref:`KVM Driver <kvmg>`                |
+| Ubuntu Server            | 20.04 (LTS), 22.04 (LTS)                                | :ref:`KVM Driver <kvmg>`                |
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
 | Debian                   | 10, 11                                                  | :ref:`KVM Driver <kvmg>`                |
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
 | KVM/Libvirt              | Support for version included in the Linux distribution. | :ref:`KVM Node Installation <kvm_node>` |
-|                          | For CentOS/RHEL the packages from ``qemu-ev`` are used. |                                         |
+|                          | For RHEL the packages from ``qemu-ev`` are used.        |                                         |
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
 
 LXC Nodes
@@ -81,11 +76,11 @@ LXC Nodes
 +---------------+--------------------------------------------------------+-----------------------------------------+
 |   Component   |                        Version                         |             More information            |
 +===============+========================================================+=========================================+
-| Ubuntu Server | 18.04 (LTS), 20.04 (LTS)                               | :ref:`LXC Driver <lxcmg>`               |
+| Ubuntu Server | 20.04 (LTS), 22.04 (LTS)                               | :ref:`LXC Driver <lxcmg>`               |
 +---------------+--------------------------------------------------------+-----------------------------------------+
 | Debian        | 10, 11                                                 | :ref:`LXC Driver <lxcmg>`               |
 +---------------+--------------------------------------------------------+-----------------------------------------+
-| AlmaLinux     | 8                                                      | :ref:`LXC Driver <lxcmg>`               |
+| AlmaLinux     | 8, 9                                                   | :ref:`LXC Driver <lxcmg>`               |
 +---------------+--------------------------------------------------------+-----------------------------------------+
 | LXC           | Support for version included in the Linux distribution | :ref:`LXC Node Installation <lxc_node>` |
 +---------------+--------------------------------------------------------+-----------------------------------------+
@@ -96,13 +91,11 @@ Firecracker Nodes
 +--------------------------+-------------------------------------------------+----------------------------------+
 |        Component         |                     Version                     |         More information         |
 +==========================+=================================================+==================================+
-| Red Hat Enterprise Linux | 7, 8                                            | :ref:`Firecracker Driver <fcmg>` |
+| Red Hat Enterprise Linux | 8, 9                                            | :ref:`Firecracker Driver <fcmg>` |
 +--------------------------+-------------------------------------------------+----------------------------------+
-| CentOS                   | 7                                               | :ref:`Firecracker Driver <fcmg>` |
+| AlmaLinux                | 8, 9                                            | :ref:`Firecracker Driver <fcmg>` |
 +--------------------------+-------------------------------------------------+----------------------------------+
-| AlmaLinux                | 8                                               | :ref:`Firecracker Driver <fcmg>` |
-+--------------------------+-------------------------------------------------+----------------------------------+
-| Ubuntu Server            | 18.04 (LTS), 20.04 (LTS)                        | :ref:`Firecracker Driver <fcmg>` |
+| Ubuntu Server            | 20.04 (LTS), 22.04 (LTS)                        | :ref:`Firecracker Driver <fcmg>` |
 +--------------------------+-------------------------------------------------+----------------------------------+
 | Debian                   | 10, 11                                          | :ref:`Firecracker Driver <fcmg>` |
 +--------------------------+-------------------------------------------------+----------------------------------+
@@ -253,20 +246,6 @@ The following applies to all Front-Ends:
 * XML-RPC tuning parameters (``MAX_CONN``, ``MAX_CONN_BACKLOG``, ``KEEPALIVE_TIMEOUT``, ``KEEPALIVE_MAX_CONN`` and ``TIMEOUT``) are only available with packages distributed by us, as they are compiled with a newer xmlrpc-c library.
 * Only **Ruby versions >= 2.0 are supported**.
 
-CentOS 7.0
---------------------------------------------------------------------------------
-
-When using Apache to serve Sunstone, it is required that you disable or comment the ``PrivateTMP=yes`` directive in ``/usr/lib/systemd/system/httpd.service``.
-
-There is an automatic job that removes all data from ``/var/tmp/``. In order to disable this, please edit the ``/usr/lib/tmpfiles.d/tmp.conf`` and remove the line that removes ``/var/tmp``.
-
-There is a bug in libvirt that prevents the use of the save/restore mechanism if ``cpu_model`` is set to ``'host-passthrough'`` via ``RAW``. The `work around if needed is described in this issue <http://dev.opennebula.org/issues/4204>`__.
-
-Ubuntu 18.04
---------------------------------------------------------------------------------
-
-In order to automatically convert images to ``vmdk`` (when downloading an application from a marketplace into a vCenter datastore or cloning images across different datastore types) OpenNebula requires ``qemu-img version 4.2.1``. Installing this version in Ubuntu 18.04 is not trivial, so we recommend and upgrade to Ubuntu 20.04 if you need to make use of this functionality.
-
 Ubuntu 20.04
 --------------------------------------------------------------------------------
 
@@ -289,43 +268,7 @@ The following items apply to all distributions:
 
     DISK = [ driver = "qcow2", cache = "writethrough" ]
 
-CentOS/RedHat 7 Platform Notes
---------------------------------------------------------------------------------
-
-Ruby Dependencies
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-In order to install Ruby dependencies on RHEL, the Server Optional channel needs to be enabled. Please refer to `RedHat documentation <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/>`__ to enable the channel.
-
-Alternatively, use CentOS 7 repositories to install Ruby dependencies.
-
-Libvirt Version
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The libvirt/QEMU packages used in the testing infrastructure are the ones in the ``qemu-ev`` repository. To add this repository on CentOS, you can install the following packages:
-
-.. prompt:: bash # auto
-
-    # yum install centos-release-qemu-ev
-    # yum install qemu-kvm-ev
-
-Disable PolicyKit for Libvirt
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-It is recommended that you disable PolicyKit for Libvirt:
-
-.. prompt:: bash $ auto
-
-    $ cat /etc/libvirt/libvirtd.conf
-    ...
-    auth_unix_ro = "none"
-    auth_unix_rw = "none"
-    unix_sock_group = "oneadmin"
-    unix_sock_ro_perms = "0770"
-    unix_sock_rw_perms = "0770"
-    ...
-
-CentOS/RedHat 8 Platform Notes
+RedHat 8 Platform Notes
 --------------------------------------------------------------------------------
 
 Disable PolicyKit for Libvirt
