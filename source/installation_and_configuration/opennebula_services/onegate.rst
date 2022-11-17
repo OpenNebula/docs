@@ -120,10 +120,10 @@ Advanced Setup
 Example: Use OneGate/Proxy to Improve Security
 ----------------------------------------------
 
-Since the release 6.6, OpenNebula provides transparent TCP-proxy for the OneGate traffic. It's been designed to drop
-the requirement for guest VMs to directly connect to the service. Up to this point, in cloud environments
-like :ref:`OneProvision/AWS <first_edge_cluster>`, the OneGate service had to be exposed on a public IP address.
-Please take a look at the example diagram below:
+In addition to the OneGate itself, OpenNebula provides transparent TCP-proxy for the OneGate's network traffic.
+It's been designed to drop the requirement for guest VMs to be directly connecting to the service. Up to this point,
+in cloud environments like :ref:`OneProvision/AWS <first_edge_cluster>`, the OneGate service had to be exposed
+on a public IP address. Please take a look at the example diagram below:
 
 .. graphviz::
 
@@ -226,7 +226,7 @@ Please take a look at the example diagram below:
 
 In this altered OneGate architecture, each hypervisor Node runs a process, which listens for connections on a dedicated
 `IPv4 Link-Local Address <https://www.rfc-editor.org/rfc/rfc3927>`_.
-After a guest VM connects to the proxy, the proxy connects back to OneGate and transparently forwards all protocol traffic
+After a guest VM connects to the proxy, the proxy connects back to OneGate and transparently forwards all the protocol traffic
 both ways. Because a guest VM no longer needs to be connecting directly, it's now easy to setup a VPN/TLS tunnel between
 hypervisor Nodes and the OpenNebula Front-end machines. It should allow for OneGate communication to be conveyed through securely,
 and without the need for exposing OneGate on a public IP address.
@@ -247,12 +247,12 @@ You should be able to verify, that the proxy is running with the default config:
 
 .. note::
 
-    You can adjust proxy settings by editing the ``/etc/one/onegate-proxy.conf`` file on your hosts. In the general
+    You can adjust proxy settings by editing the ``/etc/one/onegate-proxy.conf`` file on your Hosts. In the general
     case however, it should be safe just to use defaults.
 
 .. important::
 
-    The ``:onegate_addr`` attribute is configured automatically in the ``/var/tmp/one/etc/onegate-proxy.conf`` during
+    The ``:onegate_addr`` attribute is configured automatically in the ``/var/tmp/one/etc/onegate-proxy.conf`` file during
     the ``onehost sync -f`` operation. That allows for an easy reconfiguration in the case of a larger (many Hosts)
     OpenNebula environment. YAML config files ``/etc/one/onegate-proxy.conf`` and ``/var/tmp/one/etc/onegate-proxy.conf``
     are read and merged together (in this order) when the proxy service starts.
@@ -275,10 +275,10 @@ file and then execute the ``onehost sync -f`` operation as **oneadmin**:
 .. note::
 
     As a consequence of the ``onehost sync -f`` operation, the proxy service will be automatically restarted
-    and reconfigured on every hypervisor host.
+    and reconfigured on every hypervisor Node.
 
 To change the value of the ``ONEGATE_ENDPOINT`` context attribute for each guest VM, edit the ``/etc/one/oned.conf`` file
-on your front-end machines. For the purpose of using the proxy, just specify an IP address from the ``169.254.0.0/16``
+on your Front-end machines. For the purpose of using the proxy, just specify an IP address from the ``169.254.0.0/16``
 subnet (by default it's ``169.254.16.9``) and then restart the ``opennebula`` service:
 
 .. prompt:: bash # auto
