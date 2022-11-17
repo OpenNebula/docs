@@ -18,3 +18,4 @@ The following issues has been solved in 6.4.3:
 - `Fix min/max vms data type overwrite on update <https://github.com/OpenNebula/one/issues/5983>`__.
 - `Fix charter icon in services list not being updated <https://github.com/OpenNebula/one/issues/6007>`__.
 - `Fix group creation on Alma9 <https://github.com/OpenNebula/one/issues/5993>`__.
+- `Fix Sunstone advanced serach with special characters <https://github.com/OpenNebula/one/issues/6021>`__.
