@@ -13,7 +13,7 @@ This page describes how to install a complete OpenNebula Front-end from binary p
 
 Proceed with the following steps to get the fully-featured OpenNebula Front-end up.
 
-Step 1. Disable SELinux on AlmaLinux/RHEL (Optional)
+Step 1. Disable SELinux on AlmaLinux/CentOS7/RHEL (Optional)
 ================================================================================
 
 Depending on the type of OpenNebula deployment, the SELinux can block some operations initiated by the OpenNebula Front-end, which results in a failure of the particular operation.  It's **not recommended to disable** the SELinux in production environments as it degrades the security of your server, but instead to investigate and work around each individual problem based on the `SELinux User's and Administrator's Guide <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/>`__. The administrator might disable the SELinux to temporarily work around the problem or on non-production deployments by changing the following line in ``/etc/selinux/config``:
@@ -36,6 +36,13 @@ Step 3. Add 3rd Party Repositories
 ================================================================================
 
 Not all OpenNebula dependencies are in base distribution repositories. On selected platforms below you need to enable 3rd party repositories by running the following commands under privileged user (``root``):
+
+**CentOS 7**
+
+.. prompt:: bash # auto
+
+    # yum -y install epel-release
+    # yum -y install centos-release-scl-rh
 
 **AlmaLinux 8, 9**
 
@@ -61,6 +68,15 @@ Not all OpenNebula dependencies are in base distribution repositories. On select
 .. prompt:: bash # auto
 
     # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+
+**Ubuntu 18.04**
+
+.. prompt:: bash # auto
+
+   # wget -q -O- https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
+   # source /etc/os-release
+   # echo "deb https://deb.nodesource.com/node_12.x ${VERSION_CODENAME} main" >/etc/apt/sources.list.d/nodesource.list
+   # apt-get update
 
 .. _packages:
 
@@ -127,7 +143,7 @@ There are also packages with debugging symbols for some platforms, e.g. ``openen
 
    There are a few differences in package names among distributions. Those with varying package names contain mostly integration libraries and since they are for general use on installation Hosts, their names are left to follow the distribution conventions. Above, you can find the AlmaLinux/RHEL specific packages prefixed with "*rpm:*" and Debian/Ubuntu specific packages prefixed with "*deb:*".
 
-AlmaLinux / RHEL
+AlmaLinux / CentOS7 / RHEL
 --------------------------
 
 Install all OpenNebula Front-end components by executing the following commands under a privileged user:
