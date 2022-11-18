@@ -19,3 +19,4 @@ The following issues has been solved in 6.4.3:
 - `Fix charter icon in services list not being updated <https://github.com/OpenNebula/one/issues/6007>`__.
 - `Fix group creation on Alma9 <https://github.com/OpenNebula/one/issues/5993>`__.
 - `Fix Sunstone advanced serach with special characters <https://github.com/OpenNebula/one/issues/6021>`__.
+- `Fix for vCenter upload/download functionality broken in ruby3 <https://github.com/OpenNebula/one/issues/5996>`__.
