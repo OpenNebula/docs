@@ -25,35 +25,36 @@ AlmaLinux/RHEL
 
 To add the OpenNebula enterprise repository, execute the following as user ``root``:
 
-**RHEL 8**
+**RHEL 8, 9**
 
 .. prompt:: bash # auto
 
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Enterprise Edition
-    baseurl=https://<token>@enterprise.opennebula.io/repo/6.5.80/RedHat/8/$basearch
+    baseurl=https://<token>@enterprise.opennebula.io/repo/6.5.80/RedHat/$releasever/$basearch
     enabled=1
-    gpgkey=https://downloads.opennebula.io/repo/repo.key
+    gpgkey=https://downloads.opennebula.io/repo/repo2.key
     gpgcheck=1
     repo_gpgcheck=1
     EOT
     # yum makecache
 
-**AlmaLinux 8**
+**AlmaLinux 8, 9**
 
 .. prompt:: bash # auto
 
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Enterprise Edition
-    baseurl=https://<token>@enterprise.opennebula.io/repo/6.5.80/AlmaLinux/8/$basearch
+    baseurl=https://<token>@enterprise.opennebula.io/repo/6.5.80/AlmaLinux/$releasever/$basearch
     enabled=1
-    gpgkey=https://downloads.opennebula.io/repo/repo.key
+    gpgkey=https://downloads.opennebula.io/repo/repo2.key
     gpgcheck=1
     repo_gpgcheck=1
     EOT
     # yum makecache
+
 
 Debian/Ubuntu
 --------------------------------------------------------------------------------
@@ -71,7 +72,7 @@ First, add the repository signing GPG key on the Front-end by executing as user 
 
 .. prompt:: bash # auto
 
-    # wget -q -O- https://downloads.opennebula.io/repo/repo.key | apt-key add -
+    # wget -q -O- https://downloads.opennebula.io/repo/repo2.key | apt-key add -
 
 and then continue with repository configuration:
 
@@ -103,6 +104,13 @@ and then continue with repository configuration:
     # echo "deb https://<token>@enterprise.opennebula.io/repo/6.5.80/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
+**Ubuntu 22.04**
+
+.. prompt:: bash # auto
+
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.5.80/Ubuntu/22.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # apt-get update
+
 .. note::
 
    You can point to a specific 6.2.x version by changing the occurrence of shorter version 6.2 in any of the above commands to the particular full 3 components version number (X.Y.Z). For instance, to point to version 6.2.1 on Ubuntu 18.04, use the following command instead:
@@ -127,51 +135,36 @@ Community Edition
 
 The community edition of OpenNebula offers the full functionality of the Cloud Management Platform. You can configure the community repositories as follows:
 
-AlmaLinux/CentOS 7/RHEL
+AlmaLinux/RHEL
 --------------------------------------------------------------------------------
 
 To add OpenNebula repository, execute the following as user ``root``:
 
-**CentOS/RHEL 7**
+**RHEL 8, 9**
 
 .. prompt:: bash # auto
 
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Community Edition
-    baseurl=https://downloads.opennebula.io/repo/6.2/CentOS/7/$basearch
+    baseurl=https://downloads.opennebula.io/repo/6.5.80/RedHat/$releasever/$basearch
     enabled=1
-    gpgkey=https://downloads.opennebula.io/repo/repo.key
-    gpgcheck=1
-    repo_gpgcheck=1
-    EOT
-    # yum makecache fast
-
-**RHEL 8**
-
-.. prompt:: bash # auto
-
-    # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
-    [opennebula]
-    name=OpenNebula Community Edition
-    baseurl=https://downloads.opennebula.io/repo/6.4.0/RedHat/8/$basearch
-    enabled=1
-    gpgkey=https://downloads.opennebula.io/repo/repo.key
+    gpgkey=https://downloads.opennebula.io/repo/repo2.key
     gpgcheck=1
     repo_gpgcheck=1
     EOT
     # yum makecache
 
-**AlmaLinux 8**
+**AlmaLinux 8, 9**
 
 .. prompt:: bash # auto
 
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Enterprise Edition
-    baseurl=https://downloads.opennebula.io/repo/6.5.80/AlmaLinux/8/$basearch
+    baseurl=https://downloads.opennebula.io/repo/6.5.80/AlmaLinux/$releasever/$basearch
     enabled=1
-    gpgkey=https://downloads.opennebula.io/repo/repo.key
+    gpgkey=https://downloads.opennebula.io/repo/repo2.key
     gpgcheck=1
     repo_gpgcheck=1
     EOT
@@ -194,20 +187,20 @@ First, add the repository signing GPG key on the Front-end by executing as user 
 
 .. prompt:: bash # auto
 
-    # wget -q -O- https://downloads.opennebula.io/repo/repo.key | apt-key add -
+    # wget -q -O- https://downloads.opennebula.io/repo/repo2.key | apt-key add -
 
 **Debian 10**
 
 .. prompt:: bash # auto
 
-    # echo "deb https://downloads.opennebula.io/repo/6.2/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://downloads.opennebula.io/repo/6.5.80/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Debian 11**
 
 .. prompt:: bash # auto
 
-    # echo "deb https://downloads.opennebula.io/repo/6.2/Debian/11 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://downloads.opennebula.io/repo/6.5.80/Debian/11 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 
@@ -215,12 +208,19 @@ First, add the repository signing GPG key on the Front-end by executing as user 
 
 .. prompt:: bash # auto
 
-    # echo "deb https://downloads.opennebula.io/repo/6.2/Ubuntu/18.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://downloads.opennebula.io/repo/6.5.80/Ubuntu/18.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Ubuntu 20.04**
 
 .. prompt:: bash # auto
 
-    # echo "deb https://downloads.opennebula.io/repo/6.2/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://downloads.opennebula.io/repo/6.5.80/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # apt-get update
+
+**Ubuntu 22.04**
+
+.. prompt:: bash # auto
+
+    # echo "deb https://downloads.opennebula.io/repo/6.5.80/Ubuntu/22.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
