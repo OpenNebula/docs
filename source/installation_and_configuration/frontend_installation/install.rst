@@ -44,7 +44,7 @@ Not all OpenNebula dependencies are in base distribution repositories. On select
     # yum -y install epel-release
     # yum -y install centos-release-scl-rh
 
-**AlmaLinux 8**
+**AlmaLinux 8, 9**
 
 .. prompt:: bash # auto
 
@@ -60,10 +60,14 @@ Not all OpenNebula dependencies are in base distribution repositories. On select
     # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 **RHEL 8**
-
 .. prompt:: bash # auto
 
     # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+
+**RHEL 9**
+.. prompt:: bash # auto
+
+    # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
 
 **Ubuntu 18.04**
 
