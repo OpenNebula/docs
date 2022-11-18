@@ -43,34 +43,7 @@ Ubuntu 20.04
 * **ruby**
 * **scons**
 
-Ubuntu 18.04
-================================================================================
-
-* **bash-completion**
-* **bison**
-* **debhelper (>= 7.0.50~)**
-* **default-jdk**
-* **flex**
-* **javahelper (>= 0.32)**
-* **kpartx**
-* **libmysql++-dev**
-* **libsqlite3-dev**
-* **libssl-dev**
-* **libsystemd-dev**
-* **libws-commons-util-java**
-* **libxml2-dev**
-* **libxmlrpc3-client-java**
-* **libxmlrpc3-common-java**
-* **libxmlrpc-c++8-dev**
-* **libxslt1-dev**
-* **libcurl4-openssl-dev**
-* **libcurl4**
-* **libvncserver-dev**
-* **postgresql-server-dev-all**
-* **ruby**
-* **scons**
-
-Debian 11
+Debian 10
 ================================================================================
 
 * **bison**
@@ -92,7 +65,7 @@ Debian 11
 * **ruby**
 * **scons**
 
-Debian 10
+Debian 11
 ================================================================================
 
 * **bison**
