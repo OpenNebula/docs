@@ -115,6 +115,233 @@ Other logs are also available in Journald. Use the following command to show:
 Advanced Setup
 ==============
 
+.. _onegate_proxy_conf:
+
+Example: Use OneGate/Proxy to Improve Security
+----------------------------------------------
+
+In addition to the OneGate itself, OpenNebula provides transparent TCP-proxy for the OneGate's network traffic.
+It's been designed to drop the requirement for guest VMs to be directly connecting to the service. Up to this point,
+in cloud environments like :ref:`OneProvision/AWS <first_edge_cluster>`, the OneGate service had to be exposed
+on a public IP address. Please take a look at the example diagram below:
+
+.. graphviz::
+
+    digraph {
+      graph [splines=true rankdir=LR ranksep=0.7 bgcolor=transparent];
+      edge [dir=both color=blue arrowsize=0.6];
+      node [shape=plaintext fontsize="11em"];
+
+      { rank=same;
+        F1 [label=<
+          <TABLE STYLE="ROUNDED" BGCOLOR="lightgray" BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+            <TR><TD>ONE / 1 (follower)</TD></TR>
+            <HR/>
+            <TR><TD BGCOLOR="white">eth1: 192.168.150.1</TD></TR>
+          </TABLE>
+        >];
+        F2 [label=<
+          <TABLE STYLE="ROUNDED" BGCOLOR="lightgray" BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+            <TR><TD>ONE / 2 (leader)</TD></TR>
+            <HR/>
+            <TR><TD BGCOLOR="white">opennebula-gate<BR/>192.168.150.86:5030</TD></TR>
+            <HR/>
+            <TR><TD PORT="eth1" BGCOLOR="white">eth1:<BR/>192.168.150.2<BR/>192.168.150.86 (VIP)</TD></TR>
+          </TABLE>
+        >];
+        F3 [label=<
+          <TABLE STYLE="ROUNDED" BGCOLOR="lightgray" BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+            <TR><TD>ONE / 3 (follower)</TD></TR>
+            <HR/>
+            <TR><TD BGCOLOR="white">eth1: 192.168.150.3</TD></TR>
+          </TABLE>
+        >];
+      }
+
+      { rank=same;
+        H1 [label=<
+          <TABLE STYLE="ROUNDED" BGCOLOR="lightgray" BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+            <TR><TD>ONE-Host / 1</TD></TR>
+            <HR/>
+            <TR><TD BGCOLOR="white">opennebula-gate-proxy<BR/>169.254.16.9:5030</TD></TR>
+            <HR/>
+            <TR><TD BGCOLOR="white">lo:<BR/>127.0.0.1<BR/>169.254.16.9</TD></TR>
+            <HR/>
+            <TR><TD BGCOLOR="white"><FONT COLOR="blue">⇅ (forwarding)</FONT></TD></TR>
+            <HR/>
+            <TR><TD PORT="br0" BGCOLOR="white">br0: 192.168.150.4</TD></TR>
+          </TABLE>
+        >];
+        H2 [label=<
+          <TABLE STYLE="ROUNDED" BGCOLOR="lightgray" BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+            <TR><TD>ONE-Host / 2</TD></TR>
+            <HR/>
+            <TR><TD BGCOLOR="white">opennebula-gate-proxy<BR/>169.254.16.9:5030</TD></TR>
+            <HR/>
+            <TR><TD BGCOLOR="white">lo:<BR/>127.0.0.1<BR/>169.254.16.9</TD></TR>
+            <HR/>
+            <TR><TD BGCOLOR="white"><FONT COLOR="blue">⇅ (forwarding)</FONT></TD></TR>
+            <HR/>
+            <TR><TD PORT="br0" BGCOLOR="white">br0: 192.168.150.5</TD></TR>
+          </TABLE>
+        >];
+      }
+
+      { rank=same;
+        G1 [label=<
+          <TABLE STYLE="ROUNDED" BGCOLOR="lightgray" BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+            <TR><TD>VM-Guest / 1</TD></TR>
+            <HR/>
+            <TR><TD BGCOLOR="white">ONEGATE_ENDPOINT=<BR/>http://169.254.16.9:5030</TD></TR>
+            <HR/>
+            <TR><TD BGCOLOR="white">static route:<BR/>169.254.16.9/32 dev eth0</TD></TR>
+            <HR/>
+            <TR><TD PORT="eth0" BGCOLOR="white">eth0: 192.168.150.100</TD></TR>
+          </TABLE>
+        >];
+        G2 [label=<
+          <TABLE STYLE="ROUNDED" BGCOLOR="lightgray" BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+            <TR><TD>VM-Guest / 2</TD></TR>
+            <HR/>
+            <TR><TD BGCOLOR="white">ONEGATE_ENDPOINT=<BR/>http://169.254.16.9:5030</TD></TR>
+            <HR/>
+            <TR><TD BGCOLOR="white">static route:<BR/>169.254.16.9/32 dev eth0</TD></TR>
+            <HR/>
+            <TR><TD PORT="eth0" BGCOLOR="white">eth0: 192.168.150.101</TD></TR>
+          </TABLE>
+        >];
+      }
+
+      F1:s -> F2:n [style=dotted arrowhead=none];
+      F2:s -> F3:n [style=dotted arrowhead=none];
+
+      F2:eth1:e -> H1:br0:w;
+      F2:eth1:e -> H2:br0:w;
+
+      H1:br0:e -> G1:eth0:w;
+      H2:br0:e -> G2:eth0:w;
+    }
+
+|
+
+In this altered OneGate architecture, each hypervisor Node runs a process, which listens for connections on a dedicated
+`IPv4 Link-Local Address <https://www.rfc-editor.org/rfc/rfc3927>`_.
+After a guest VM connects to the proxy, the proxy connects back to OneGate and transparently forwards all the protocol traffic
+both ways. Because a guest VM no longer needs to be connecting directly, it's now easy to setup a VPN/TLS tunnel between
+hypervisor Nodes and the OpenNebula Front-end machines. It should allow for OneGate communication to be conveyed through securely,
+and without the need for exposing OneGate on a public IP address.
+
+Each of the OpenNebula DEB/RPM node packages: ``opennebula-node-kvm``, ``opennebula-node-lxc`` and ``opennebula-node-firecracker``
+contains the ``opennebula-gate-proxy`` systemd service. To enable and start it on your Hosts, execute as **root**:
+
+.. prompt:: bash # auto
+
+    # systemctl enable opennebula-gate-proxy.service --now
+
+You should be able to verify, that the proxy is running with the default config:
+
+.. prompt:: bash # auto
+
+    # ss -tlnp | grep :5030
+    LISTEN 0      4096    169.254.16.9:5030      0.0.0.0:*    users:(("ruby",pid=9422,fd=8))
+
+.. note::
+
+    You can adjust proxy settings by editing the ``/etc/one/onegate-proxy.conf`` file on your Hosts. In the general
+    case however, it should be safe just to use defaults.
+
+.. important::
+
+    The ``:onegate_addr`` attribute is configured automatically in the ``/var/tmp/one/etc/onegate-proxy.conf`` file during
+    the ``onehost sync -f`` operation. That allows for an easy reconfiguration in the case of a larger (many Hosts)
+    OpenNebula environment. YAML config files ``/etc/one/onegate-proxy.conf`` and ``/var/tmp/one/etc/onegate-proxy.conf``
+    are read and merged together (in this order) when the proxy service starts.
+
+To change the value of the ``:onegate_addr`` attribute, edit the ``/var/lib/one/remotes/etc/onegate-proxy.conf``
+file and then execute the ``onehost sync -f`` operation as **oneadmin**:
+
+.. prompt:: bash $ auto
+
+    $ gawk -i inplace -f- /var/lib/one/remotes/etc/onegate-proxy.conf <<'EOF'
+    BEGIN { update = ":onegate_addr: '192.168.150.86'" }
+    /^#*:onegate_addr:/ { $0 = update; found=1 }
+    { print }
+    END { if (!found) print update >>FILENAME }
+    EOF
+    $ onehost sync -f
+    ...
+    All hosts updated successfully.
+
+.. note::
+
+    As a consequence of the ``onehost sync -f`` operation, the proxy service will be automatically restarted
+    and reconfigured on every hypervisor Node.
+
+To change the value of the ``ONEGATE_ENDPOINT`` context attribute for each guest VM, edit the ``/etc/one/oned.conf`` file
+on your Front-end machines. For the purpose of using the proxy, just specify an IP address from the ``169.254.0.0/16``
+subnet (by default it's ``169.254.16.9``) and then restart the ``opennebula`` service:
+
+.. prompt:: bash # auto
+
+    # gawk -i inplace -f- /etc/one/oned.conf <<'EOF'
+    BEGIN { update = "ONEGATE_ENDPOINT = \"http://169.254.16.9:5030\"" }
+    /^#*ONEGATE_ENDPOINT[^=]*=/ { $0 = update; found=1 }
+    { print }
+    END { if (!found) print update >>FILENAME }
+    EOF
+    # systemctl restart opennebula.service
+
+And, last but not least, it's required from guest VMs to setup this static route:
+
+.. prompt:: bash # auto
+
+    # ip route replace 169.254.16.9/32 via eth0
+
+Perhaps one of the easiest ways to achieve it, is to alter a VM template by adding a :ref:`start script <template_context>`:
+
+.. prompt:: bash # auto
+
+    # (export EDITOR="gawk -i inplace '$(cat)'" && onetemplate update alpine) <<'EOF'
+    BEGIN { update = "START_SCRIPT=\"ip route replace 169.254.16.9/32 dev eth0\"" }
+    /^CONTEXT[^=]*=/ { $0 = "CONTEXT=[" update "," }
+    { print }
+    EOF
+    # onetemplate instantiate alpine
+    VM ID: 0
+
+Finally, by examining the newly created guest VM, you can confirm if OneGate is reachable:
+
+.. prompt:: bash # auto
+
+    # grep -e ONEGATE_ENDPOINT -e START_SCRIPT /var/run/one-context/one_env
+    export ONEGATE_ENDPOINT="http://169.254.16.9:5030"
+    export START_SCRIPT="ip route replace 169.254.16.9/32 dev eth0"
+    # ip route show to 169.254.16.9
+    169.254.16.9 dev eth0 scope link
+    # onegate vm show --json
+    {
+      "VM": {
+        "NAME": "alpine-0",
+        "ID": "0",
+        "STATE": "3",
+        "LCM_STATE": "3",
+        "USER_TEMPLATE": {
+          "ARCH": "x86_64"
+        },
+        "TEMPLATE": {
+          "NIC": [
+            {
+              "IP": "192.168.150.100",
+              "MAC": "02:00:c0:a8:96:64",
+              "NAME": "NIC0",
+              "NETWORK": "public"
+            }
+          ],
+          "NIC_ALIAS": []
+        }
+      }
+    }
+
 Example: Deployment Behind TLS Proxy
 ------------------------------------
 
