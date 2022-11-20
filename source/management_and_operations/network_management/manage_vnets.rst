@@ -132,6 +132,8 @@ The Virtual Network will be moving through different states to represent the act
 +------------+-------------+------------------------+-------------------------------------------------------------------------------------------------------------------+
 | Error      | ``err``     | ``ERROR``              | Error state, an operation failed. See the Virtual Network information with ``onevnet show`` for an error message. |
 +------------+-------------+------------------------+-------------------------------------------------------------------------------------------------------------------+
+| Failure    | ``fail``    | ``UPDATE_FAILURE``     | Virtual Network update fails to update some Virtual Machine NICs. ``ERROR_VMS`` contains list of failed VMs       |
++------------+-------------+------------------------+-------------------------------------------------------------------------------------------------------------------+
 
 .. _add_and_delete_vnet:
 
@@ -230,6 +232,8 @@ Virtual Network Tips
 
 * Orphan Virtual Networks (i.e Virtual Networks not referenced by any template) can be shown with ``onevnet orphans`` command.
 
+.. _vnet_update:
+
 Updating a Virtual Network
 ================================================================================
 
@@ -241,7 +245,13 @@ After creating a Virtual Network, you can use the ``onevnet update`` command to 
 
 * Any custom tag.
 
-Also the name of the Virtual Network can be changed with ``onevnet rename`` command.
+The name of the Virtual Network can be changed with ``onevnet rename`` command.
+
+The update will trigger driver action to update the network for all running Virtual Machine NICs. The particular status of the VM update can be seen in Virtual Network attributes, where the ``UPDATED_VMS``, ``UPDATING_VMS``, ``OUTDATED_VMS`` and ``ERROR_VMS`` lists of VM ids are stored. For Virtual Network with lot of leases it may take some time to propagete all changes. In case of driver action failure, the Virtual Network will switch to ``UPDATE_FAILURE`` state.
+
+In case of ``UPDATE_FAILURE`` states user may use ``onevnet recover --retry`` to re-launch the driver actions for failed VMs. Or manually fix the network and call ``onevnet recover --success``.
+
+Use :ref:`onevm nic-update <nic_update>` to update network only for one Virtual Machine.
 
 .. _manage_address_ranges:
 
@@ -391,6 +401,15 @@ Configuring the Virtual Machine Network
 Hypervisors will set the MAC address for the NIC of the Virtual Machines, but not the IP address. The IP configuration inside the guest is performed by the contextualization process, check the :ref:`contextualization guide <context_overview>` to learn how to prepare your Virtual Machines to automatically configure the network
 
 .. note:: Alternatively a custom external service can configure the Virtual Machine network (e.g. your own DHCP server in a separate virtual machine)
+
+Recovering the Virtual Network
+--------------------------------------------------------------------------------
+
+In case the Virtual Network is not in ``READY`` state, use ``onevnet recover`` to fix the Virtual Network. The command accepts the following flags:
+ * ``--failure`` Driver action doesn't completed succesfully, move the Virtual Network to ``ERROR`` state.
+ * ``--success`` User manually fixed the issue, move the Virtual Network to ``READY`` state.
+ * ``--delete`` The Virtual Network can't be fixed, delete it.
+ * ``--retry`` Retry the last driver action. Allowed only in ``UPDATE_FAILURE`` state
 
 Using Sunstone to Manage Virtual Networks
 ================================================================================
