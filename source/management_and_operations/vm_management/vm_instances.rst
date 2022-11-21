@@ -317,7 +317,7 @@ You can also detach a NIC by its ID. If you want to detach interface 1 (MAC ``02
 NIC update
 --------------------------------------------------------------------------------
 
-Some NIC attributes can be updated by the command ``onevm nic-update``. If the Virtual Machine is running the action triggers driver action to update the network parameters.
+Some NIC attributes can be updated by the command ``onevm nic-update``. If the Virtual Machine is running the action triggers the driver action to update the network parameters.
 
 .. prompt:: text $ auto
 
@@ -328,8 +328,6 @@ Some NIC attributes can be updated by the command ``onevm nic-update``. If the V
     ]
 
     $ onevm nic-update 0 0 update_nic.txt
-
-Be carefull, updating some attributes only for one VM for Virtual Network with more leases may break network for other VMs. If you need to update network for all Virtual Machines sharing the same Virtual Network, use :ref:`onevnet update <vnet_update>`.
 
 .. _vm_guide2_sg_hotplugging:
 
