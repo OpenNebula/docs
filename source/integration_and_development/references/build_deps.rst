@@ -108,50 +108,6 @@ Ubuntu 20.04
 * **ruby-dev**
 * **unzip**
 
-Ubuntu 18.04
-================================================================================
-
-* **bash-completion**
-* **bison**
-* **debhelper (>= 7.0.50~)**
-* **default-jdk**
-* **dh-systemd (>= 1.5)**
-* **flex**
-* **freerdp2-dev**
-* **javahelper (>= 0.32)**
-* **libaugeas-dev**
-* **libcairo2-dev**
-* **libcurl4**
-* **libcurl4-openssl-dev**
-* **libmysql++-dev**
-* **libmysqlclient-dev**
-* **libossp-uuid-dev**
-* **libpango1.0-dev**
-* **libpulse-dev**
-* **libsqlite3-dev**
-* **libssh2-1-dev**
-* **libssl-dev**
-* **libsystemd-dev**
-* **libtool**
-* **libvncserver-dev**
-* **libvorbis-dev**
-* **libwebp-dev**
-* **libws-commons-util-java**
-* **libxml2-dev**
-* **libxmlrpc3-client-java**
-* **libxmlrpc3-common-java**
-* **libxslt1-dev**
-* **libzmq3-dev**
-* **libzmq5**
-* **nodejs (>= 12)**
-* **npm**
-* **postgresql-server-dev-all**
-* **python3**
-* **python3-setuptools**
-* **rake**
-* **ruby-dev**
-* **unzip**
-
 Debian 11
 ================================================================================
 
