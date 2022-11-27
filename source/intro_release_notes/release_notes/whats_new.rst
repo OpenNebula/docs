@@ -63,6 +63,7 @@ OneGate
 
 CLI
 ================================================================================
+- `Better Image delete operation <https://github.com/OpenNebula/one/issues/5925>`__. New ``--force`` flag for image delete. Use the flag in case of error from driver or to delete locked image.
 
 Distributed Edge Provisioning
 ================================================================================
