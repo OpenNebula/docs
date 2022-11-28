@@ -38,8 +38,10 @@ OpenNebula Core
 Networking
 ================================================================================
 - **Network Update**: :ref:`Virtual Network Update <vnet_update>` updates all Virtual Machine NICs using this network. If the VM is running it triggers driver action to update the network layer. In case of failure the Virtual Network switches to ``UPDATE_FAILURE`` state.
-- `New CLI command 'onevm nic-update' to live update Virtual Machine NIC <https://github.com/OpenNebula/one/issues/5529>`__.
 
+Storage
+================================================================================
+- `Errors while deleting an image are now properly flag so admins can better react to this errors <https://github.com/OpenNebula/one/issues/5925>`__. A new ``force`` parameter has been added to the API call to delete images in ``ERROR`` state.
 
 vCenter Driver
 ================================================================================
@@ -52,25 +54,26 @@ FireEdge Sunstone
 
 OneFlow - Service Management
 ================================================================================
-
 - Global parameters for all the VMs in a service, check :ref:`this <service_global>` fore more information.
 - OneFlow resilient to oned timeouts, a retry method has been implemented in case authentication error, check more `here <https://github.com/OpenNebula/one/issues/5814>`__.
 
 OneGate
 ================================================================================
-
 - Introducing the OneGate/Proxy service to help with overcomming known security issues, for a short deployment guide, please check :ref:`here <onegate_proxy_conf>`.
 
 CLI
 ================================================================================
+- `New CLI command 'onevm nic-update' to live update Virtual Machine NIC <https://github.com/OpenNebula/one/issues/5529>`__.
+- `New ``--force`` flag for image delete. Use the flag in case of error from driver or to delete locked image <https://github.com/OpenNebula/one/issues/5925>`__.
+
 
 Distributed Edge Provisioning
 ================================================================================
 
 KVM
 ================================================================================
+- `Update operation for virtual NIC to allow changing QoS attributes without the need ot detach/attach cycle. The operation can be performed while the VM is running <https://github.com/OpenNebula/one/issues/5529>`__.
 - `Memory resize can be made in two ways <https://github.com/OpenNebula/one/issues/5753>`__: ``BALLOONING`` to increase/decrease the memory balloon, or ``HOTPLUG`` to add/remove memory modules to the virtual machine.
-
 - Simplified network management for Open vSwitch networks with DPDK. Bridges with DPDK and non DPDK datapaths can coexist in a hypervisor. The bridge type (``BRIDGE_TYPE``) for the network is used to pass configuration attributes to bridge creation, no need to modify any additional configuration file.
 
 LXC
