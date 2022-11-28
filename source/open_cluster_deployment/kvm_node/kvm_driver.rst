@@ -262,15 +262,23 @@ Live Resize VCPU and Memory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 If you need to resize the capacity of the VM in ``RUNNING`` state, you have to set-up some extra attributes to the VM template. These attributes must be set before the VM is started.
 
-+------------------+-------------------------------------------------------------------------------------------------+-----------+
-| Attribute        | Description                                                                                     | Mandatory |
-+==================+=================================================================================================+===========+
-| ``VCPU_MAX``     | Maximum number of VCPUs which can be hotplugged.                                                | **NO**    |
-+------------------+-------------------------------------------------------------------------------------------------+-----------+
-| ``MEMORY_MAX``   | Maximum memory allocated for the VM. The actual value of memory available for the VM will be    |           |
-|                  | controlled by the `currentMemory <https://libvirt.org/formatdomain.html#memory-allocation>`__   |           |
-|                  | attribute using the memory ballooning interface.                                                | **NO**    |
-+------------------+-------------------------------------------------------------------------------------------------+-----------+
++------------------------+--------------------------------------------------------------------------------------------------+-----------+
+| Attribute              | Description                                                                                      | Mandatory |
++========================+==================================================================================================+===========+
+| ``VCPU_MAX``           | Maximum number of VCPUs which can be hotplugged.                                                 | **NO**    |
++------------------------+--------------------------------------------------------------------------------------------------+-----------+
+| ``MEMORY_RESIZE_MODE`` | ``HOTPLUG`` - default. Internally this use ``virsh attach-device`` to add more memory. To remove | **NO**    |
+|                        | memory you have to remove the exact amount which was previously added. Prefer offline removing.  |           |
+|                        +--------------------------------------------------------------------------------------------------+           |
+|                        | ``BALLOONING`` - Internally this use ``virsh setmem`` to add more memory. The new memory size    |           |
+|                        | is only recomendation for the VM, the actual memory usage may be different.                      |           |
+|                        | The target VM displays ``MEMORY_MAX`` as available memory.                                       |           |
++------------------------+--------------------------------------------------------------------------------------------------+-----------+
+| ``MEMORY_MAX``         | Maximum memory allocated for the VM.                                                             | **NO**    |
++------------------------+--------------------------------------------------------------------------------------------------+-----------+
+| ``MEMORY_SLOTS``       | Valid only for ``HOTPLUG``. How many memory slots can be used to add add memory. It implies      | **NO**    |
+|                        | how many times the memory can be added.                                                          |           |
++------------------------+--------------------------------------------------------------------------------------------------+-----------+
 
 .. note:: Live Memory resize needs QEMU version 2.4. Live VCPU resize needs QEMU version 2.7.
 
