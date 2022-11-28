@@ -61,7 +61,7 @@ Distributed Edge Provisioning
 
 KVM
 ================================================================================
-- `Two options for live memory resize <https://github.com/OpenNebula/one/issues/5753>`__.
+- `Memory resize can be made in two ways <https://github.com/OpenNebula/one/issues/5753>`__: ``BALLOONING`` to increase/decrease the memory balloon, or ``HOTPLUG`` to add/remove memory modules to the virtual machine.
 
 LXC
 ================================================================================
