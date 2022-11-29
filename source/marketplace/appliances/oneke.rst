@@ -39,7 +39,7 @@ Components
 Requirements
 ------------
 
-* OpenNebula 6.2 - 6.4
+* OpenNebula 6.2+
 * `OneFlow <https://docs.opennebula.io/stable/management_and_operations/multivm_service_management/overview.html>`_ and \
   `OneGate <https://docs.opennebula.io/stable/management_and_operations/multivm_service_management/onegate_usage.html>`_ \
   for multi-node orchestration.
