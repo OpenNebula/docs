@@ -4,16 +4,16 @@
 What's New in 6.6
 ================================================================================
 
-**OpenNebula 6.6 ‘Electra’** is the fourth stable release of the OpenNebula 6 series. This new release comes packed with new functionality, mostly oriented to aid day2 operations on production deployments of OpenNebula. There are two significant campaigns we would like to highlight in this regard. 'Electra' comes with an exciting integration with `Prometheus <https://prometheus.io/>`__, that includes packaging of a pre configured Prometheus instance with metrics tailored for the optimal observability of an OpenNebula cloud. This integration also includes Prometheus Alert Manager with predefined alarms that can be enabled to react to issues with OpenNebula operations. And last but not least, a set of 3 (lush!) dashboards for `Grafana <https://grafana.com>`__, the open observability platform.
+**OpenNebula 6.6 ‘Electra’** is the fourth stable release of the OpenNebula 6 series. This new release comes packed with new functionality, mostly oriented to aid day-2 operations on production deployments of OpenNebula. There are two significant campaigns we would like to highlight in this regard. 'Electra' comes with an exciting integration with `Prometheus <https://prometheus.io/>`__, that includes packaging of a pre-configured Prometheus instance with metrics tailored for the optimal observability of an OpenNebula cloud. This integration also includes Prometheus Alert Manager with predefined alarms that can be enabled to react to issues with OpenNebula operations. And last but not least, a set of 3 (lush!) dashboards for `Grafana <https://grafana.com>`__, the open observability platform.
 
 .. image:: /images/release_66_pic.jpg
     :align: center
 
-The second addition to OpenNebula is a fully revamped Backup solution, based on datastore backends instead of private marketplace as the previous solution offered, and a new type of image to represent datastores. This allows to implement tier based backup policies, levarage access control and quota systems, as well sa support for different storage and backup technologies. In OpenNebula 6.6 it is possible to perform incremental backups based on two provided backup drivers, restic (which includes features like compression, bandwitdht limit, concurrent connections to a backend, among others) and rsync. This functionality is exposed through the OpenNebula API, the CLI and also Sunstone.
+The second addition to OpenNebula is a fully revamped Backup solution, based on datastore backends instead of private marketplace as the previous solution offered, and a new type of image to represent datastores. This allows you to implement tier-based backup policies, levarage access control and quota systems, as well as support for different storage and backup technologies. In OpenNebula 6.6 it is possible to perform incremental backups based on two provided backup drivers, restic (which includes features like compression, bandwidth limit, concurrent connections to a backend, among others) and rsync. This functionality is exposed through the OpenNebula API, the CLI and also Sunstone.
 
-This new release includes a revamped network model for OneGate, that allows for transparent communication of Virtual Machines guest OS with the OpenNebula front-end. No need to make sure that your front-end can communicate with every virtual network in order to use this powerful functionality! Push your application metrics to OpenNebula and define elasticity rules to react to demand changes, automatically. Also worth mentioning is the new abilitu to update virtual networks, applying automatically the changes to all running Virtual Machines with network interfaces attached to said virtual networks. No more reattaaching NICs or relaunching VMs to change a network parameter, very useful (or so we think).
+This new release includes a revamped network model for OneGate, that allows for transparent communication of Virtual Machines guest OS with the OpenNebula front-end. No need to make sure that your front-end can communicate with every virtual network in order to use this powerful functionality! Push your application metrics to OpenNebula and define elasticity rules to react to demand changes automatically. Also worth mentioning is the new ability to update virtual networks, applying automatically the changes to all running Virtual Machines with network interfaces attached to said virtual networks. No more reattaching NICs or relaunching VMs to change a network parameter, very useful (or so we think).
 
-There are also a series of improvements in the PCI Passthrough functionality, oriented to squeeze the optimal performance out of your iron: improved integartion with libvirt/QEMU (only activate the relevant virtual function on attach), predicatble PCI addresses, configration of Virtual Functions through IP link, support for attach and detach NIC with PCI attriutes, and many others. Of course, with API, CLI and Sunstone support. And speaking of Sunstone, the team at OpenNebula is giving their all to add functionality to the new Sunstone interface served by FireEdge, new functionality includes management of Hosts, Virtual Networks, Security Groups, Images, Files, Backups and Marketplace Apps.
+There is also a series of improvements in the PCI Passthrough functionality, oriented to squeeze the optimal performance out of your iron: improved integration with libvirt/QEMU (only activate the relevant virtual function on attach), predictable PCI addresses, configration of Virtual Functions through IP link, support for attach and detach NIC with PCI attriutes, and many others. Of course, with API, CLI and Sunstone support. And speaking of Sunstone, the team at OpenNebula is giving their all to add functionality to the new Sunstone interface served by FireEdge, new functionality includes management of Hosts, Virtual Networks, Security Groups, Images, Files, Backups and Marketplace Apps.
 
 OpenNebula 6.6 is named after the `Electra Nebula <https://astronomy.com/-/media/Files/PDF/web%20extras/2014/02/ImagingVanDenBerghObjects.pdf>`__, is the reflection nebula / dust cloud (coded "vdB 20") associated with the Electra star (Taurus constellation -> Pleiades cluster).
 
@@ -53,13 +53,13 @@ FireEdge Sunstone
 ================================================================================
 
 - New tabs related to end user functionality: Hosts, Virtual Networks, Security Groups, Images, Files, Backups and Marketplace Apps.
-- Improvements and completenes of VM and VM Templates tabs and dialogs.
+- Improvements and completeness of VM and VM Templates tabs and dialogs.
 - Better error reporting, Virtual Machines display errors coming from drivers, and are marked for inspection.
 - Support for labeling in all resources, with a dedicated section in Settings for better management.
 
 OneFlow - Service Management
 ================================================================================
-- Global parameters for all the VMs in a service, check :ref:`this <service_global>` fore more information.
+- Global parameters for all the VMs in a service, check :ref:`this <service_global>` for more information.
 - OneFlow resilient to oned timeouts, a retry method has been implemented in case authentication error, check more `here <https://github.com/OpenNebula/one/issues/5814>`__.
 
 OneGate
@@ -77,7 +77,7 @@ Prometheus & Grafana (EE)
 Backups
 =======
 
-New backup system targetting datastores with a driver plugin approach for background transfer:
+New backup system targeting datastores with a driver plugin approach for background transfer:
 
 - rsync
 - restic (EE)
@@ -87,7 +87,7 @@ Distributed Edge Provisioning
 
 KVM
 ================================================================================
-- `Update operation for virtual NIC to allow changing QoS attributes without the need ot detach/attach cycle. The operation can be performed while the VM is running <https://github.com/OpenNebula/one/issues/5529>`__.
+- `Update operation for virtual NIC to allow changing QoS attributes without the need to detach/attach cycle. The operation can be performed while the VM is running <https://github.com/OpenNebula/one/issues/5529>`__.
 - `Memory resize can be made in two ways <https://github.com/OpenNebula/one/issues/5753>`__: ``BALLOONING`` to increase/decrease the memory balloon, or ``HOTPLUG`` to add/remove memory modules to the virtual machine.
 - Simplified network management for Open vSwitch networks with DPDK. Bridges with DPDK and non DPDK datapaths can coexist in a hypervisor. The bridge type (``BRIDGE_TYPE``) for the network is used to pass configuration attributes to bridge creation, no need to modify any additional configuration file.
 
