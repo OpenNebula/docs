@@ -6,7 +6,6 @@ What's New in 6.6
 
 **OpenNebula 6.6 ‘Electra’** is the fourth stable release of the OpenNebula 6 series. This new release comes packed with new functionality, mostly oriented to aid day2 operations on production deployments of OpenNebula. There are two significant campaigns we would like to highlight in this regard. 'Electra' comes with an exciting integration with `Prometheus <https://prometheus.io/>`__, that includes packaging of a pre configured Prometheus instance with metrics tailored for the optimal observability of an OpenNebula cloud. This integration also includes Prometheus Alert Manager with predefined alarms that can be enabled to react to issues with OpenNebula operations. And last but not least, a set of 3 (lush!) dashboards for `Grafana <https://grafana.com>`__, the open observability platform.
 
-
 .. image:: /images/release_66_pic.jpg
     :align: center
 
@@ -35,6 +34,7 @@ We’d like to thank all the people that support the project, OpenNebula is what
 OpenNebula Core
 ================================================================================
 - For security reason restrict paths in ``CONTEXT/FILES`` by ``CONTEXT_RESTRICTED_DIRS`` (with exceptions in ``CONTEXT_SAFE_DIRS``) configured in :ref:`oned.conf <oned_conf>`
+- PCI Passthrough
 
 Networking
 ================================================================================
@@ -71,6 +71,16 @@ CLI
 - `New CLI command 'onevm nic-update' to live update Virtual Machine NIC <https://github.com/OpenNebula/one/issues/5529>`__.
 - `New --force flag for image delete. Use the flag in case of error from driver or to delete locked image <https://github.com/OpenNebula/one/issues/5925>`__.
 
+Prometheus & Grafana (EE)
+=========================
+
+Backups
+=======
+
+New backup system targetting datastores with a driver plugin approach for background transfer:
+
+- rsync
+- restic (EE)
 
 Distributed Edge Provisioning
 ================================================================================
@@ -84,6 +94,9 @@ KVM
 LXC
 ================================================================================
 
+Contextualization
+================================================================================
+
 Other Issues Solved
 ================================================================================
 
@@ -95,5 +108,15 @@ Other Issues Solved
 Features Backported to 6.4.x
 ================================================================================
 
-Contextualization
-================================================================================
+Additionally, the following functionality is present that was not in OpenNebula 6.4.0, although they debuted in subsequent maintenance releases of the 6.4.x series:
+
+- `onedb update-body from a text/xml file from stdin <https://github.com/OpenNebula/one/issues/4959>`__.
+- `CLI chmod commands with g/u/o + permissions <https://github.com/OpenNebula/one/issues/5356>`__.
+- `Use "%i" in custom attributes and improve auto-increment in VM name <https://github.com/OpenNebula/one/issues/2287>`__.
+- `Extend onelog with object logs <https://github.com/OpenNebula/one/issues/5844>`__.
+- `Add Update VM Configuration form to FireEdge Sunstone <https://github.com/OpenNebula/one/issues/5836>`__.
+- `Add JSON format to oneprovision subcommands <https://github.com/OpenNebula/one/issues/5883>`__.
+- `Select vGPU profile <https://github.com/OpenNebula/one/issues/5885>`__.
+- `OneFlow resilient to oned timeouts <https://github.com/OpenNebula/one/issues/5814>`__.
+- `Add resource labels to FireEdge Sunstone <https://github.com/OpenNebula/one/issues/5862>`__.
+- `Add Lock/Unlock, Enable/Disable, Change owner/group and delete on storage App tab <https://github.com/OpenNebula/one/issues/5877>`__.
