@@ -136,8 +136,6 @@ Reference: Restic Datastore Attributes
 | ``RESTIC_CONNECTIONS`` | Number of concurrent connections (default 5). For high-latency backends this number can be increased.        |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
 
-.. |restic_create| image:: /images/restic_create.png
+.. |restic_create| image:: /images/backup_restic_create.png
     :width: 700
     :align: middle
-
-

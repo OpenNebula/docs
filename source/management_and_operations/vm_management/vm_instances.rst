@@ -773,6 +773,8 @@ The following table summarizes the actions that can be scheduled. Note that some
 +--------------------------+------------------+
 | ``disk-snapshot-delete`` | disk ID, snap ID |
 +--------------------------+------------------+
+| ``backup``               | datastore ID     |
++--------------------------+------------------+
 
 You can pass arguments to the scheduled actions using the parameter ``ARGS`` in the action definition. For example:
 
