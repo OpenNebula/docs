@@ -1,26 +1,27 @@
 .. _whats_new:
 
 ================================================================================
-What's New in 7.0
+What's New in 6.6
 ================================================================================
 
-**OpenNebula 6.4 ‘Archeon’** is the third stable release of the OpenNebula 6 series. The most exciting addition to ‘Archeon’ is the ability to automatically deploy and manage HCI Clusters based on **Ceph**—the powerful open source software-defined storage solution. This new native **hyperconverged infrastructure** architecture can be **deployed on-premises** (just minimal OS and SSH access is required) and also on **AWS bare-metal resources**, which gives your hybrid OpenNebula Cloud great flexibility. And, of course, you can dynamically add more hosts to your cloud whenever you need to, as well as seamlessly repatriate your workloads from AWS at any time.
+**OpenNebula 6.6 ‘Electra’** is the fourth stable release of the OpenNebula 6 series. This new release comes packed with new functionality, mostly oriented to aid day2 operations on production deployments of OpenNebula. There are two significant campaigns we would like to highlight in this regard. 'Electra' comes with an exciting integration with `Prometheus <https://prometheus.io/>`__, that includes packaging of a pre configured Prometheus instance with metrics tailored for the optimal observability of an OpenNebula cloud. This integration also includes Prometheus Alert Manager with predefined alarms that can be enabled to react to issues with OpenNebula operations. And last but not least, a set of 3 (lush!) dashboards for `Grafana <https://grafana.com>`__, the open observability platform.
 
-This release already comes with a fully-functional **new Sunstone interface** (:ref:`FireEdge Sunstone <fireedge_sunstone>`) for managing VM templates and instances, with a similar coverage in terms of features as the traditional Cloud View present in the earlier version of Sunstone, save for the OneFlow integration. If you are a cloud admin, please keep using the ruby-based Sunstone interface (port 9869) but encourage your end-users to migrate to the new Sunstone portal served in port 2616. Our development team has worked hard to streamline the functionality offered in the VM and VM Template tabs, and **more UX improvements** are on the way, so stay tuned! The old, ruby-based interface also received its share of love, adding all the functionality that OpenNebula incorporates in this new version 6.4.
 
-.. image:: /images/fireedge_sunstone_teaser.png
+.. image:: /images/release_66_pic.jpg
     :align: center
 
+The second addition to OpenNebula is a fully revamped Backup solution, based on datastore backends instead of private marketplace as the previous solution offered, and a new type of image to represent datastores. This allows to implement tier based backup policies, levarage access control and quota systems, as well sa support for different storage and backup technologies. In OpenNebula 6.6 it is possible to perform incremental backups based on two provided backup drivers, restic (which includes features like compression, bandwitdht limit, concurrent connections to a backend, among others) and rsync. This functionality is exposed through the OpenNebula API, the CLI and also Sunstone.
 
-This new release also includes the notion of **network states**. Your virtual networks will have states that will allow you to perform custom actions upon creation and destruction of instances, offering a **better integration with your datacenter** networking infrastructure. Events changing the state of your virtual networks can be tied to the execution of hooks to further tune the behavior of your cloud. There are two components that benefit from this change: **OneFlow** can now synchronize the creation of virtual networks and service VMs, while **vCenter** networking does not require any longer the activation of a hook.
+This new release includes a revamped network model for OneGate, that allows for transparent communication of Virtual Machines guest OS with the OpenNebula front-end. No need to make sure that your front-end can communicate with every virtual network in order to use this powerful functionality! Push your application metrics to OpenNebula and define elasticity rules to react to demand changes, automatically. Also worth mentioning is the new abilitu to update virtual networks, applying automatically the changes to all running Virtual Machines with network interfaces attached to said virtual networks. No more reattaaching NICs or relaunching VMs to change a network parameter, very useful (or so we think).
 
-There are also a number of additions to the supported hypervisor family, like the new SR-IOV support for the **NVIDIA GPU** cards and the addition of fine-grain resource control to the **LXC** driver. The integration with **vCenter** has also been improved, including the support for filtering and ordering those resources to be imported, the automatic VM Template creation for marketplace appliances, and the ability to set a default prefix for VM names, among others. Performance-wise, the vCenter driver is now more robust in large scale deployments, optimizing memory usage.
+There are also a series of improvements in the PCI Passthrough functionality, oriented to squeeze the optimal performance out of your iron: improved integartion with libvirt/QEMU (only activate the relevant virtual function on attach), predicatble PCI addresses, configration of Virtual Functions through IP link, support for attach and detach NIC with PCI attriutes, and many others. Of course, with API, CLI and Sunstone support. And speaking of Sunstone, the team at OpenNebula is giving their all to add functionality to the new Sunstone interface served by FireEdge, new functionality includes management of Hosts, Virtual Networks, Security Groups, Images, Files, Backups and Marketplace Apps.
 
-OpenNebula 6.4 is named after the `Archeon Nebula <https://www.starwars.com/databank/archeon-nebula>`__, located in the Lothal sector of the Outer Rim Territories—a beautiful body of interstellar clouds where stars are born and which provides a popular hyperscape route for smugglers traversing the continuum towards the edge of the Star Wars universe :)
+OpenNebula 6.6 is named after the `Electra Nebula <https://astronomy.com/-/media/Files/PDF/web%20extras/2014/02/ImagingVanDenBerghObjects.pdf>`__, is the reflection nebula / dust cloud (coded "vdB 20") associated with the Electra star (Taurus constellation -> Pleiades cluster).
 
-OpenNebula 6.4 ‘Archeon’ is considered to be a stable release and as such it is available to update production environments.
+This is the first beta version for 6.6, aimed at testers and developers to try the new features. All the functionality is present and only bug fixes will happen between this release and final 6.6. Please check the :ref:`known issues <known_issues>` before submitting an issue through GitHub. Also note that being a development version, there is no migration path from the previous stable version (6.4.x) nor migration path to the final stable version (6.6.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/55>`__.
 
-We’d like to thank all the people that support the project, OpenNebula is what it is thanks to its community. Apart from the usual :ref:`acknowledgements <acknowledgements>`, we’d like to highlight the support we’ve received through the EU-funded H2020 project **ONEedge**.
+We’d like to thank all the people that support the project, OpenNebula is what it is thanks to its community! Please keep rocking.
+
 
 ..
   Conform to the following format for new features.
@@ -43,14 +44,18 @@ Storage
 ================================================================================
 - `Errors while deleting an image are now properly flag so admins can better react to this errors <https://github.com/OpenNebula/one/issues/5925>`__. A new ``force`` parameter has been added to the API call to delete images in ``ERROR`` state.
 
-vCenter Driver
-================================================================================
-
 Ruby Sunstone
 ================================================================================
 
+Ruby Sunstone is on maintenance mode, however it has been extended to support the new functionality.
+
 FireEdge Sunstone
 ================================================================================
+
+- New tabs related to end user functionality: Hosts, Virtual Networks, Security Groups, Images, Files, Backups and Marketplace Apps.
+- Improvements and completenes of VM and VM Templates tabs and dialogs.
+- Better error reporting, Virtual Machines display errors coming from drivers, and are marked for inspection.
+- Support for labeling in all resources, with a dedicated section in Settings for better management.
 
 OneFlow - Service Management
 ================================================================================
@@ -64,7 +69,7 @@ OneGate
 CLI
 ================================================================================
 - `New CLI command 'onevm nic-update' to live update Virtual Machine NIC <https://github.com/OpenNebula/one/issues/5529>`__.
-- `New ``--force`` flag for image delete. Use the flag in case of error from driver or to delete locked image <https://github.com/OpenNebula/one/issues/5925>`__.
+- `New --force flag for image delete. Use the flag in case of error from driver or to delete locked image <https://github.com/OpenNebula/one/issues/5925>`__.
 
 
 Distributed Edge Provisioning
