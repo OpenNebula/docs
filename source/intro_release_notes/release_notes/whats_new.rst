@@ -34,11 +34,13 @@ We’d like to thank all the people that support the project, OpenNebula is what
 OpenNebula Core
 ================================================================================
 - For security reason restrict paths in ``CONTEXT/FILES`` by ``CONTEXT_RESTRICTED_DIRS`` (with exceptions in ``CONTEXT_SAFE_DIRS``) configured in :ref:`oned.conf <oned_conf>`
-- PCI Passthrough
+- :ref:`PCI Passthrough devices can be selected by its address <pci_usage>` to support use cases that requires specific devices to be passed to the virtual machine. This by-passes the PCI scheduler of OpenNebula.
 
 Networking
 ================================================================================
 - :ref:`Virtual Network Update <vnet_update>` updates all Virtual Machine NICs using this network. If the VM is running it triggers driver action to update the network layer. In case of failure the Virtual Network switches to ``UPDATE_FAILURE`` state.
+- :ref:`Attach and detach operations (live and poweroff) <vm_guide2_nic_hotplugging>` for NIC attributes using PCI passthrough or SR-IOV interfaces.
+- :ref:`SR-IOV devices configure some attributes <pci_usage>` in particular ``VLAN_ID``, ``MAC``, ``SPOOFCHK`` and ``TRUST`` are supported.
 
 Storage
 ================================================================================

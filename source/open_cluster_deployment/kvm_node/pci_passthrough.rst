@@ -217,10 +217,15 @@ Example:
       - 'Ethernet'
       - 'Audio Controller'
 
+.. _pci_usage:
+
 Usage
 -----
 
-The basic workflow is to inspect the Host information, either in the CLI or in Sunstone, to find out the available PCI devices and to add the desired device to the template. PCI devices can be added by specifying ``VENDOR``, ``DEVICE`` and ``CLASS``, or simply ``CLASS``. Note that OpenNebula will only deploy the VM in a Host with the available PCI device. If no Hosts match, an error message will appear in the Scheduler log.
+The basic workflow is to inspect the Host information, either in the CLI or in Sunstone, to find out the available PCI devices and to add the desired device to the template. PCI devices can be added by specifying ``VENDOR``, ``DEVICE`` and ``CLASS``, or simply ``CLASS``. Alternatively, you can select and specific device by its address with (``SHORT_ADDRESS``).
+
+
+Note that OpenNebula will only deploy the VM in a Host with the available PCI device. If no Hosts match, an error message will appear in the Scheduler log.
 
 CLI
 ~~~
@@ -269,6 +274,14 @@ The device can also be specified without all the type values. For example, to ge
 
 More than one ``PCI`` options can be added to attach more than one PCI device to the VM.
 
+In some scenarios it maybe useful to select and specific device, in this case simply input the address of the device you are interested in:
+
+.. code::
+
+    PCI = [
+      SHORT_ADDRESS = "00:03.0"
+    ]
+
 Sunstone
 ~~~~~~~~
 
@@ -285,7 +298,12 @@ Usage as Network Interfaces
 
 It is possible use a PCI device as an NIC interface directly in OpenNebula. In order to do so you will need to follow the configuration steps mentioned in this guide, namely changing the device driver.
 
-When defining a Network that will be used for PCI passthrough nics, please use either the ``dummy`` network driver or the ``802.1Q`` if you are using VLAN. In any case, type any random value into the ``BRIDGE`` field, and it will be ignored. For ``802.1Q`` you can also leave ``PHYDEV`` blank.
+For SR-IOV interfaces you can configure some parameters, in particular the following attributes can be defined for a SR-IOV interface:
+
+  - ``MAC``
+  - ``VLAN_ID``
+  - ``SPOOFCHK``
+  - ``TRUST``
 
 The :ref:`context packages <context_overview>` support the configuration of the following attributes:
 
@@ -309,15 +327,23 @@ This is an example of the PCI section of an interface that will be treated as a 
       TYPE = "NIC",
       CLASS = "0200",
       DEVICE = "10d3",
-      VENDOR = "8086" ]
+      VENDOR = "8086",
+      TRUST  = "yes"
+    ]
 
 
-Note that the order of appearence of the ``PCI`` elements and ``NIC`` elements in the template is relevant. They will be mapped to NICs in the order they appear, regardless of whether or not they're NICs of PCIs.
+Note that the order of appearance of the ``PCI`` elements and ``NIC`` elements in the template is relevant. They will be mapped to NICs in the order they appear, regardless of whether or not they're NICs of PCIs.
 
 Sunstone
 ~~~~~~~~
 
-In the Network tab, under advanced options check the **PCI Passthrough** option and fill in the PCI address. Use the rest of the dialog as usual by selecting a network from the table.
+In the Network tab, under advanced options the hardware profile of the interface can be of three types:
+
+- "Emulated" it includes the hardware model emulated by Qemu.
+- "PCI - Automatic" OpenNebula hardware scheduler will pick the best PCI device for the NIC.
+- "PCI - Manual" user can specify the PCI device by its short-address as shown in host information.
+
+Use the rest of the dialog as usual by selecting a network from the table.
 
 |image3|
 

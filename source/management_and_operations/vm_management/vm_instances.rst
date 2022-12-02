@@ -306,6 +306,14 @@ After the operation you should see two NICs, 0 and 1:
                                   fe80::400:acff:fe10:ca
     ...
 
+It is possible to attach (and live-attach) PCI and SR-IOV interfaces. Simply select the device by its address, id, vendor or class.
+
+.. prompt:: text $ auto
+
+    $ onevm nic-attach 2 --network net_172 onevm nic-attach 2 --network net_172 --pci '00:06.1'
+
+**Important**, predictable PCI addresses for guests will be only generated if PCI bus 1 is present in the virtual machine as PCI bridges cannot be hotplugged.
+
 You can also detach a NIC by its ID. If you want to detach interface 1 (MAC ``02:00:ac:10:00:ca``), execute:
 
 .. prompt:: text $ auto
@@ -317,7 +325,7 @@ You can also detach a NIC by its ID. If you want to detach interface 1 (MAC ``02
 NIC update
 --------------------------------------------------------------------------------
 
-Some NIC attributes can be updated by the command ``onevm nic-update``. If the Virtual Machine is running the action triggers the driver action to update the network parameters.
+Qos attributes can be updated by the command ``onevm nic-update``. If the Virtual Machine is running the action triggers the driver action to live-update the network parameters.
 
 .. prompt:: text $ auto
 
