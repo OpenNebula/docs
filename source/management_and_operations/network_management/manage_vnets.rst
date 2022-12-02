@@ -237,21 +237,56 @@ Virtual Network Tips
 Updating a Virtual Network
 ================================================================================
 
-After creating a Virtual Network, you can use the ``onevnet update`` command to update the following attributes:
+After creating a Virtual Network, you can use the ``onevnet update`` command to update its attributes. The name of the Virtual Network can be changed with ``onevnet rename`` command.
 
-* Any attribute corresponding to the context or description.
+The update operation will trigger driver action to live update the network configuration for all virtual machines with leases in the virtual network. The attributes that can be live-updated depends on the driver configured for the Virtual Network, see the following table:
 
-* Physical network configuration attributes, e.g. ``PHYDEV`` or ``VLAN_ID``.
++-------------------+------------------------+
+| Network Driver    | Live-update Attributes |
++===================+========================+
+| OpenvSwitch       | - VLAN_ID              |
+| OpenvSwitch VXLAN | - PHYDEV               |
+|                   | - MTU                  |
+|                   | - VLAN_TAGGED_ID       |
+|                   | - CVLANS               |
+|                   | - QINQ_TYPE            |
+|                   | - INBOUND_AVG_BW       |
+|                   | - INBOUND_PEAK_BW      |
+|                   | - INBOUND_PEAK_KB      |
+|                   | - OUTBOUND_AVG_BW      |
+|                   | - OUTBOUND_PEAK_BW     |
++-------------------+------------------------+
+| bridge            | - PHYDEV               |
++-------------------+------------------------+
+| fw                | - PHYDEV               |
+|                   | - INBOUND_AVG_BW       |
+|                   | - INBOUND_PEAK_BW      |
+|                   | - INBOUND_PEAK_KB      |
+|                   | - OUTBOUND_AVG_BW      |
+|                   | - OUTBOUND_PEAK_BW     |
++-------------------+------------------------+
+| 802.1Q            | - PHYDEV               |
+| vxlan             | - VLAN_ID              |
+|                   | - MTU                  |
+|                   | - INBOUND_AVG_BW       |
+|                   | - INBOUND_PEAK_BW      |
+|                   | - INBOUND_PEAK_KB      |
+|                   | - OUTBOUND_AVG_BW      |
+|                   | - OUTBOUND_PEAK_BW     |
++-------------------+------------------------+
 
-* Any custom tag.
+ .. important:: QoS attribues (INBOUND and OUTBOUND) can be updated for single VMs with :ref:`onevm nic-update <nic_update>`.
 
-The name of the Virtual Network can be changed with ``onevnet rename`` command.
+As the network is updated for each VM and host, you can check the progress of the update in Virtual Network details:
 
-The update will trigger driver action to update the network for all running Virtual Machine NICs. The particular status of the VM update can be seen in Virtual Network attributes, where the ``UPDATED_VMS``, ``UPDATING_VMS``, ``OUTDATED_VMS`` and ``ERROR_VMS`` lists of VM ids are stored. For Virtual Network with lot of leases it may take some time to propagete all changes. In case of driver action failure, the Virtual Network will switch to ``UPDATE_FAILURE`` state.
+  - ``UPDATED_VMS``, list of VM IDs already updated.
+  - ``UPDATING_VMS``, list of VM IDs that are being updated (driver action in execution).
+  - ``OUTDATED_VMS``, list of VM IDs with outdated virtual network configuration.
+  - ``ERROR_VMS`` lists of VM IDs where the update operation failed.
 
-In case of ``UPDATE_FAILURE`` states user may use ``onevnet recover --retry`` to re-launch the driver actions for failed VMs. Or manually fix the network and call ``onevnet recover --success``.
+In case of driver action failure, the Virtual Network will switch to ``UPDATE_FAILURE`` state. In that case you can use ``onevnet recover --retry`` to re-launch the driver actions for failed VMs. Or manually fix the network and call ``onevnet recover --success``.
 
-Use :ref:`onevm nic-update <nic_update>` to update network only for one Virtual Machine.
+.. note:: Please consider that for Virtual Networks with lot of leases it may take some time to propagate changes to all host and VMs.
 
 .. _manage_address_ranges:
 

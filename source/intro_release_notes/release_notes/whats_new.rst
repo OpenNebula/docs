@@ -38,7 +38,7 @@ OpenNebula Core
 
 Networking
 ================================================================================
-- **Network Update**: :ref:`Virtual Network Update <vnet_update>` updates all Virtual Machine NICs using this network. If the VM is running it triggers driver action to update the network layer. In case of failure the Virtual Network switches to ``UPDATE_FAILURE`` state.
+- :ref:`Virtual Network Update <vnet_update>` updates all Virtual Machine NICs using this network. If the VM is running it triggers driver action to update the network layer. In case of failure the Virtual Network switches to ``UPDATE_FAILURE`` state.
 
 Storage
 ================================================================================
