@@ -489,7 +489,10 @@ Sample configuration:
         ARGUMENTS = "-t 15 -d dummy,lvm,shared,fs_lvm,qcow2,ssh,ceph,dev,vcenter,iscsi_libvirt"
     ]
 
-The configuration for each driver is defined in the ``TM_MAD_CONF`` section. These values are used when creating a new datastore and should not be modified since they define the datastore behavior.
+The configuration for each driver is defined in the ``TM_MAD_CONF`` section.
+
+.. important::
+   These values define the datastore behaviour and thus should not be modified. They are used when creating a new datastore of given type and also when developing new drivers.
 
 -  ``NAME``: name of the transfer driver, listed in the ``-d`` option of the ``TM_MAD`` section
 -  ``LN_TARGET``: determines how persistent images will be cloned when a new VM is instantiated:

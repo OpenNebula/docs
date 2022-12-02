@@ -35,20 +35,6 @@ Execute the following commands to install the OpenNebula KVM Node package and re
 
 For further configuration, check the specific :ref:`guide <kvmg>`.
 
-Optional: Newer QEMU/KVM (only RHEL 7)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. note::
-
-    You may benefit from using the more recent and feature-rich enterprise QEMU/KVM release. The differences between the base (``qemu-kvm``) and enterprise (``qemu-kvm-rhev`` on RHEL or ``qemu-kvm-ev`` on CentOS) packages are described on the `Red Hat Customer Portal <https://access.redhat.com/solutions/629513>`__.
-
-    On **RHEL 7**, you need a paid subscription to the Red Hat Virtualization (RHV) or Red Hat OpenStack (RHOS) products license only for the Red Hat Enterprise. Linux isn't enough! You have to check the RHV `Installation Guide <https://access.redhat.com/documentation/en-us/red_hat_virtualization/>`__ for your licensed version. Usually, the following commands should enable and install the enterprise packages:
-
-    .. prompt:: bash # auto
-
-        # subscription-manager repos --enable rhel-7-server-rhv-4-mgmt-agent-rpms
-        # yum -y install qemu-kvm-rhev
-
 Installing on Debian/Ubuntu
 ---------------------------
 
