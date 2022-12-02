@@ -4,7 +4,7 @@
 Installation and Configuration
 ================================================================================
 
-This page describes how to install the OpenNebula Prometheus integration packages available in the Enterprise Edition software repositories <repositories>.
+This page describes how to install the OpenNebula Prometheus integration packages available in the :ref:`Enterprise Edition software repositories <repositories>`.
 
 Step 1. OpenNebula Repositories [Front-end, Hosts]
 ================================================================================

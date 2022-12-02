@@ -42,9 +42,19 @@ Networking
 - :ref:`Attach and detach operations (live and poweroff) <vm_guide2_nic_hotplugging>` for NIC attributes using PCI passthrough or SR-IOV interfaces.
 - :ref:`SR-IOV devices configure some attributes <pci_usage>` in particular ``VLAN_ID``, ``MAC``, ``SPOOFCHK`` and ``TRUST`` are supported.
 
-Storage
+Storage & Backups
 ================================================================================
 - `Errors while deleting an image are now properly flag so admins can better react to this errors <https://github.com/OpenNebula/one/issues/5925>`__. A new ``force`` parameter has been added to the API call to delete images in ``ERROR`` state.
+- Complete overhaul of :ref:`the backup system <vm_backups_overview>` including:
+
+    + Design based on the Datastore and Image abstractions
+    + Live backup operations
+    + Full and incremental backups
+    + Support for quotas
+    + Backup scheduling and resource control of backup operations
+    + One-shot backups
+    + Improved restore operation based
+    + Multiple storage drivers for different backup technologies: :ref:`Restic (EE) <vm_backups_restic>` and :ref:`rync <vm_backups_rsync>`
 
 Ruby Sunstone
 ================================================================================
@@ -75,18 +85,14 @@ CLI
 - `VMs in DONE state can be updated with 'onedb change-body' command <https://github.com/OpenNebula/one/issues/5975>`__.
 
 Prometheus & Grafana (EE)
-=========================
-
-Backups
-=======
-
-New backup system targeting datastores with a driver plugin approach for background transfer:
-
-- rsync
-- restic (EE)
-
-Distributed Edge Provisioning
 ================================================================================
+
+OpenNebula features an out-of-the-box integration with :ref:`Prometheus monitoring and alerting toolkit <monitor_alert_overview>` that includes:
+
+  - A Libvirt Exporter, that provides information about VM (KVM domains) running on an OpenNebula host.
+  - An OpenNebula Exporter, that provides basic information about the overall OpenNebula cloud.
+  - :ref:`Alert rules sample files based on the provided metrics <monitor_alert_alarms>`
+  - :ref:`Grafana <monitor_alert_grafana>` dashboards to visualize VM, Host and OpenNebula information in a convenient way.
 
 KVM
 ================================================================================
