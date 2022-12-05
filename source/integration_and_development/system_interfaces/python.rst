@@ -178,3 +178,9 @@ Terminate it
 .. code:: python
 
    one.vm.action('terminate', 0)
+
+
+Credits
+=======
+
+Python bindings were ported to upstream from stand-alone PyONE addon made by *Rafael del Valle* `PyONE <https://pypi.org/project/pyone/1.0.5/>`__.
