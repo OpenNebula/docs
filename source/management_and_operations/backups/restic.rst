@@ -135,6 +135,8 @@ Reference: Restic Datastore Attributes
 +------------------------+--------------------------------------------------------------------------------------------------------------+
 | ``RESTIC_CONNECTIONS`` | Number of concurrent connections (default 5). For high-latency backends this number can be increased.        |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_MAXPROC``     | Sets ``GOMAXPROCS`` for restic to limit the OS threads that execute user-level Go code simultaneously.       |
++------------------------+--------------------------------------------------------------------------------------------------------------+
 
 .. |restic_create| image:: /images/backup_restic_create.png
     :width: 700
