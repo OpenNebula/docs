@@ -54,7 +54,7 @@ Storage & Backups
     + Backup scheduling and resource control of backup operations
     + One-shot backups
     + Improved restore operation based
-    + Multiple storage drivers for different backup technologies: :ref:`Restic (EE) <vm_backups_restic>` and :ref:`rync <vm_backups_rsync>`
+    + Multiple storage drivers for different backup technologies: :ref:`Restic (EE) <vm_backups_restic>` and :ref:`rsync <vm_backups_rsync>`
 
 Ruby Sunstone
 ================================================================================
