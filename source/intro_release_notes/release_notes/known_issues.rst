@@ -66,3 +66,8 @@ Contextualization
 
 - ``GROW_ROOTFS`` and ``GROW_FS`` will not extend btrfs filesystems
 - ``onesysprep`` does not support Debian 12 yet
+
+OneProvision
+=============
+
+- In this first beta, OneProvision will deploy edge clusters based on 6.4.0.
