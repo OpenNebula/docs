@@ -23,4 +23,5 @@ The following issues has been solved in 6.4.3:
 - `Fix VM and VNET drivers so they do not evaluate execution quotes through STDIN <https://github.com/OpenNebula/one/pull/6011>`__.
 - `Fix oneflow-server default endpoint on Sunstone <https://github.com/OpenNebula/one/issues/6026>`__.
 - `Fix support tab to show new tickets <https://github.com/OpenNebula/one/issues/5995>`__.
+- `Fix vnet creation when changing the network mode to vCenter and then changing it again <https://github.com/OpenNebula/one/issues/5996>`__.
 - `Fix filter by label on FireEdge Sunstone <https://github.com/OpenNebula/one/issues/5999>`__.
