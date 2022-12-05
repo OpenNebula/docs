@@ -68,14 +68,14 @@ You have to download them to a directory that we will later refer. For our examp
 
     $ mkdir packages
     $ cd packages
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.5.80/one-context-6.5.80-1.el6.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.5.80/one-context-6.5.80-1.el7.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.5.80/one-context-6.5.80-1.el8.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.5.80/one-context-6.5.80-1.suse.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.5.80/one-context-6.5.80-alt1.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.5.80/one-context_6.5.80-1.deb
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.5.80/one-context-6.5.80-r1.apk
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.5.80/one-context-6.5.80_1.txz
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.5.90/one-context-6.5.90-1.el6.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.5.90/one-context-6.5.90-1.el7.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.5.90/one-context-6.5.90-1.el8.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.5.90/one-context-6.5.90-1.suse.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.5.90/one-context-6.5.90-alt1.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.5.90/one-context_6.5.90-1.deb
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.5.90/one-context-6.5.90-r1.apk
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.5.90/one-context-6.5.90_1.txz
     $ cd ..
 
 Step 4. Create a CDROM Image with Context Packages
