@@ -245,17 +245,11 @@ You should be able to verify, that the proxy is running with the default config:
     # ss -tlnp | grep :5030
     LISTEN 0      4096    169.254.16.9:5030      0.0.0.0:*    users:(("ruby",pid=9422,fd=8))
 
-.. note::
-
-    You can adjust proxy settings by editing the ``/etc/one/onegate-proxy.conf`` file on your Hosts. In the general
-    case however, it should be safe just to use defaults.
-
 .. important::
 
     The ``:onegate_addr`` attribute is configured automatically in the ``/var/tmp/one/etc/onegate-proxy.conf`` file during
     the ``onehost sync -f`` operation. That allows for an easy reconfiguration in the case of a larger (many Hosts)
-    OpenNebula environment. YAML config files ``/etc/one/onegate-proxy.conf`` and ``/var/tmp/one/etc/onegate-proxy.conf``
-    are read and merged together (in this order) when the proxy service starts.
+    OpenNebula environment.
 
 To change the value of the ``:onegate_addr`` attribute, edit the ``/var/lib/one/remotes/etc/onegate-proxy.conf``
 file and then execute the ``onehost sync -f`` operation as **oneadmin**:
