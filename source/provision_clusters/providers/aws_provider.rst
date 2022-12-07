@@ -32,6 +32,9 @@ To add a new provider you need a YAML template file with the following informati
     description: 'Edge cluster in AWS Frankfurt'
     provider: 'aws'
 
+    plain:
+       provision_type: 'metal'
+
     connection:
        access_key: 'AWS access key'
        secret_key: 'AWS secret key'
