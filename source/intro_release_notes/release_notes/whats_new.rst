@@ -116,6 +116,7 @@ Other Issues Solved
 - `Fix NETRX and NETTX for accounting <https://github.com/OpenNebula/one/issues/5640>`__.
 - `Fix lograte could last long due to compression <https://github.com/OpenNebula/one/issues/5328>`__.
 - `Fix overwriting logs <https://github.com/OpenNebula/one/issues/6034>`__.
+- `Fix oned termination process if initialization fails <https://github.com/OpenNebula/one/issues/5801>`__.
 
 Features Backported to 6.4.x
 ================================================================================
