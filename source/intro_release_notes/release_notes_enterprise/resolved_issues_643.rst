@@ -26,4 +26,5 @@ The following issues has been solved in 6.4.3:
 - `Fix vnet creation when changing the network mode to vCenter and then changing it again <https://github.com/OpenNebula/one/issues/5996>`__.
 - `Fix filter by label on FireEdge Sunstone <https://github.com/OpenNebula/one/issues/5999>`__.
 - `Fix LDAP driver to work with Ruby 2.0 <https://github.com/OpenNebula/one/commit/33552502055e9893fa3e1bf5c86062d7e14390f0>`__.
- `Fix regex in the fix_dir_slashes function for bash datastore/transfer manager drivers <https://github.com/OpenNebula/one/issues/5668>`__.
+- `Fix regex in the fix_dir_slashes function for bash datastore/transfer manager drivers <https://github.com/OpenNebula/one/issues/5668>`__.
+- `Fix oned termination process if initialization fails <https://github.com/OpenNebula/one/issues/5801>`__.
