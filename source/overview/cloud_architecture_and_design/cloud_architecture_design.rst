@@ -58,7 +58,7 @@ Now you should have an OpenNebula cloud up and running with at least one virtual
 
 However, when using KVM, LXC or Firecracker, OpenNebula directly manages the hypervisor, networking and storage platforms, and you may need additional configuration:
 
--  **Networking setup** with :ref:`802.1Q VLANs <hm-vlan>`, :ref:`ebtables <ebtables>`, :ref:`Open vSwitch <openvswitch>` or :ref:`VXLAN <vxlan>`.
+-  **Networking setup** with :ref:`802.1Q VLANs <hm-vlan>`, :ref:`Open vSwitch <openvswitch>` or :ref:`VXLAN <vxlan>`.
 
 -  **Storage setup** with :ref:`NFS/NAS datastore <nas_ds>`, :ref:`Local Storage datastore <local_ds>`, :ref:`SAN datastore <lvm_drivers>`, :ref:`Ceph <ceph_ds>`, :ref:`Dev <dev_ds>`, or :ref:`iSCSI <iscsi_ds>` datastore.
 

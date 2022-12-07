@@ -157,8 +157,6 @@ Open Cloud Networking Infrastructure
 +------------------------------+--------------------------------------------+-----------------------------------+
 |         Component            |                  Version                   |          More information         |
 +==============================+============================================+===================================+
-| ebtables                     | Version included in the Linux distribution | :ref:`Ebtables <ebtables>`        |
-+------------------------------+--------------------------------------------+-----------------------------------+
 | 8021q kernel module          | Version included in the Linux distribution | :ref:`802.1Q VLAN <hm-vlan>`      |
 +------------------------------+--------------------------------------------+-----------------------------------+
 | Open vSwitch                 | Version included in the Linux distribution | :ref:`Open vSwitch <openvswitch>` |
