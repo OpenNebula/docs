@@ -13,8 +13,6 @@ Requirements
 --------------------------------------------------------------------------------
 * The OpenNebula node packages are installed. See the :ref:`KVM node <kvm_node>`, the :ref:`LXC node <lxc_node>` and the :ref:`Firecracker node <fc_node>` installation sections for more details.
 
-* By default, network isolation is provided through ``ebtables``. This package needs to be installed on nodes.
-
 Configuration
 --------------------------------------------------------------------------------
 * No additional configuration is needed. If ``BRIDGE`` configured in the Virtual Network does not exist, a new Linux bridge will be created when the VM is instantiated.

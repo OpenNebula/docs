@@ -23,7 +23,6 @@ It defines the **underlying networking infrastructure** that will support the Vi
 | ``NAME``               | Name of the Virtual Network.                     | String   | **YES**                          | All      |
 +------------------------+--------------------------------------------------+----------+----------------------------------+----------+
 | ``VN_MAD``             | The network driver to implement the network.     | 802.1Q   | **YES**                          | All      |
-|                        |                                                  | ebtables |                                  |          |
 |                        |                                                  | fw       |                                  |          |
 |                        |                                                  | ovswitch |                                  |          |
 |                        |                                                  | vxlan    |                                  |          |
@@ -31,10 +30,9 @@ It defines the **underlying networking infrastructure** that will support the Vi
 |                        |                                                  | dummy    |                                  |          |
 +------------------------+--------------------------------------------------+----------+----------------------------------+----------+
 | ``BRIDGE``             | Device to attach the virtual machines to,        | String   | ``YES`` for dummy, ovswitch,     | dummy    |
-|                        | depending on the network driver it may refer to  |          | ebtables, fw and vcenter         | 802.1Q   |
+|                        | depending on the network driver it may refer to  |          | fw and vcenter                   | 802.1Q   |
 |                        | different technologies or require host setups.   |          |                                  | vxlan    |
 |                        |                                                  |          |                                  | ovswitch |
-|                        |                                                  |          |                                  | ebtables |
 |                        |                                                  |          |                                  | fw       |
 |                        |                                                  |          |                                  | vcenter  |
 +------------------------+--------------------------------------------------+----------+----------------------------------+----------+
