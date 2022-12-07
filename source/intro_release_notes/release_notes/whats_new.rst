@@ -115,6 +115,7 @@ Other Issues Solved
 - `Fix VM and VNET drivers so they do not evaluate execution quotes through STDIN <https://github.com/OpenNebula/one/pull/6011>`__.
 - `Fix LDAP driver to work with Ruby 2.0 <https://github.com/OpenNebula/one/commit/33552502055e9893fa3e1bf5c86062d7e14390f0>`__.
 - `Fix regex in the fix_dir_slashes function for bash datastore/transfer manager drivers <https://github.com/OpenNebula/one/issues/5668>`__.
+- `Fix oned termination process if initialization fails <https://github.com/OpenNebula/one/issues/5801>`__.
 
 Features Backported to 6.4.x
 ================================================================================
