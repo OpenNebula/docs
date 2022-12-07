@@ -50,6 +50,16 @@ A new user can be easily created by running the ``oneuser create`` command or by
         username = [" ", ":", "\t", "\n", "\v", "\f", "\r"]
         password = [" ", "\t", "\n", "\v", "\f", "\r"]
 
+Some auth drivers does not require password (ldap) in this case user could be created without it.
+
+.. prompt:: bash $ auto
+
+    $ oneuser create --driver ldap <user_name>
+    ID: 4
+
+
+When user is bing created with different auth driver which does not require password
+
 The user types  listed above are mainly defined by the group to which the user belongs to. So probably after creating the user you may want to modify the groups of it. In order to do so ``oneuser chgrp`` can be used:
 
 .. prompt:: bash $ auto
