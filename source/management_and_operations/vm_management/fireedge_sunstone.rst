@@ -14,77 +14,81 @@ Configuration
 
 To configure FireEdge Sunstone, there are several options to consider, and they are described in the :ref:`FireEdge Configuration <fireedge_setup>` guide.
 
-.. _fireedge_sunstone_usage:
-
 Usage
 ================================================================================
 
-This completely fresh user experience is available by accessing ``http://<OPENNEBULA-FRONTEND>:2616``. On the left menu the users can find the available tabs to manage resources, as described in the tabs section.
+This completely fresh user experience is available by accessing ``http://<OPENNEBULA-FRONTEND>:2616``. On the left menu, the users can find the available tabs to manage resources, as described in the tabs section.
 
 Sunstone users can change their current view from the top-right dropdown menu:
 
 |fireedge_sunstone_change_view_dropdown|
 
-They can also configure several options from the settings tab:
+They can also configure several options from the :ref:`settings tab <fireedge_sunstone_settings_tab>`.
+
+Sections
+================================================================================
+
+The available FireEdge Sunstone sections and their tabs are described in the following subsections. All the tabs described below can be deactivated in the :ref:`FireEdge Sunstone views <fireedge_sunstone_views>`
+
+Instances
+--------------------------------------------------------------------------------
+
+- **VMs Tab**: Users can see all their Virtual Machines, and perform managing actions such as changing permissions, attaching disks, attaching networks, taking snapshots, adding scheduled actions, remote console connections, and more. From this tab, users can also instantiate a new Virtual Machine. Some VM actions can be through multiple VMs, such as: ``suspend``, ``stop``, ``power-off``, ``reboot``, ``resume``, ``undeploy`` and more.
+
+Templates
+--------------------------------------------------------------------------------
+
+- **VM Template Tab**: Users can see all their Templates, and perform updates and clones. From this tab, user can also instantiate a Virtual Machine. Also, the user can perform some managing operations over the templates, such as: change permissions, share and unshare, lock and unlock, and more.
+
+Storage
+--------------------------------------------------------------------------------
+
+- **Images Tab**: Users can see all their ``OS``, ``CDROM``, and ``DATABLOCK`` images. Also, the users can perform some managing actions, such as changing permissions, locking and unlocking, and more. From this tab, users can instantiate a new Image of one of the types described before.
+- **Files Tab**: Users can see all their ``KERNEL``, ``RAMDISK``, and ``CONTEXT`` images. Also, the users can perform some managing actions, such as changing permissions, enabling and disabling, and more. From this tab, users can instantiate a new Image of one of the types described before.
+- **Backups Tab**: Users can see all their ``BACKUP`` images. Also, the users can perform some managing actions, such as changing permissions and restoring.
+- **Marketplace Apps Tab**: Users can see all the apps from their active marketplaces, download and create templates from them, or download them locally on their computers.
+
+Networks
+--------------------------------------------------------------------------------
+
+- **Virtual Networks Tab**: Users can see all their Virtual Networks, and perform managing operations such as updating, reserving, changing permissions, and more. Also, users can create a new Virtual Network from this tab.
+- **Security Groups Tab**: Users can see all their Security Groups, and perform managing operations such as updating, cloning, committing, changing permissions, and more. Also, users can create a new Security Group from this tab.
+
+Infrastructure
+--------------------------------------------------------------------------------
+
+- **Hosts Tab**: Users can see all their Hosts, and perform managing operations such as enabling, disabling, and more. Also, users can create a new Host from this tab.
+
+.. _fireedge_sunstone_settings_tab:
+
+Settings
+--------------------------------------------------------------------------------
+
+From this section, users can define multiple configuration options for themselves, that willl be saved inside the user template, such as:
 
 - **Schema (default = System)**: change the FireEdge Sunstone Theme to dark, light or matching with the system.
 - **Language (default = English US)**: select the language that they want to use for the UI.
 - Disable the dashboard animations. By default they are enabled.
+- **Labels**: allows the user to manage their labels.
 - **SSH Public key**: allows the user to specify a public SSH key that they can use on the VMs.
 - **SSH Private key**: allows the user to specify a private SSH key that they can use when establishing connections with their VMs.
 - **SSH Private key passphrase**: if the private SSH key is encrypted, the user must specify the password.
 
-All those settings are saved in the user template.
+.. note:: All the configurations set in this section will be in the user template.
 
 |fireedge_sunstone_settings|
-
-.. _fireedge_sunstone_tabs:
-
-Tabs
-================================================================================
-
-The available tabs for FireEdge Sunstone are described in the following subsections.
-
-.. _fireedge_sunstone_vms_tab:
-
-VMs Tab
---------------------------------------------------------------------------------
-
-Users will find all their Virtual Machines, allowing you to instantiate and manage them individually by adding attributes and performing operations like changing permissions, attaching disks, attaching networks, taking snapshots, adding scheduled actions, remote console connections and more.
-
-On the other hand, some actions can be done through multiple VMs such as: ``suspend``, ``stop``, ``power-off``, ``reboot``, ``resume``, ``undeploy`` and more.
-
-|fireedge_sunstone_vms_tab|
-
-.. _fireedge_sunstone_templates_tab:
-
-VM Template Tab
---------------------------------------------------------------------------------
-
-Users will find their Templates, allowing them to update, clone, and instantiate them. Also, the user will be able to manage the permissions, share and unshare, lock and unlock them, and more.
-
-|fireedge_sunstone_templates_tab|
-
-.. _fireedge_sunstone_marketplace_apps_tab:
-
-Marketplace Apps Tab
---------------------------------------------------------------------------------
-
-Users will be able to download images and create templates from it or download them locally on their computer.
-
-|fireedge_sunstone_marketapps_tab|
 
 .. _fireedge_sunstone_views:
 
 Views
 ================================================================================
 
-Using the FireEdge Sunstone Views you will be able to provide a simplified UI aimed at end-users of an OpenNebula cloud. FireEdge Sunstone Views are fully customizable, so you can easily enable or disable specific information tabs or action buttons. :ref:`You can define multiple views for different user groups <fireedge_sunstone_new_view>`. You can define multiple views for different user groups. Each view defines a set of UI components, so each user just accesses and views the relevant parts of the cloud for her role. Default views:
+Using the FireEdge Sunstone views, you can provide a simplified UI aimed at end-users of an OpenNebula cloud. FireEdge Sunstone Views are fully customizable, so you can easily enable or disable specific information tabs or action buttons. :ref:`You can define multiple views for different user groups <fireedge_sunstone_new_view>`. Each view defines a set of UI components, so each user accesses and views the relevant parts of the cloud for their role. Default views:
 
 - :ref:`Admin View <fireedge_sunstone_admin_view>`.
 - :ref:`User View <fireedge_sunstone_user_view>`.
 
-Each view is in an individual directory, ``admin`` and ``user`` that OpenNebula proposes by default as described in the next section.
+Each view is in an individual directory, ``admin`` and ``user`` that OpenNebula proposes by default, as described in the next section.
 
 Default Views
 --------------------------------------------------------------------------------
@@ -94,7 +98,7 @@ Default Views
 Admin View
 --------------------------------------------------------------------------------
 
-This view provides complete control of the Virtual Machines, Templates, and Marketplace apps. Details can be configured in ``/etc/one/fireedge/sunstone/admin/`` directory.
+This view provides complete control of the Virtual Machines, Templates, and Marketplace apps. Details can be configured in the ``/etc/one/fireedge/sunstone/admin/`` directory.
 
 |fireedge_sunstone_admin_view|
 
@@ -112,37 +116,40 @@ Based on the Admin View. It is an advanced user view intended for users with few
 Defining a New View
 --------------------------------------------------------------------------------
 
-The views definitions are placed in ``/etc/one/fireedge/sunstone/`` directory. Each view is defined by a folder (named as the view) with the needed configuration files inside.
+The views definitions are placed in the ``/etc/one/fireedge/sunstone/`` directory. Each view is defined by a folder (named as the view) with the needed configuration files inside.
 
 .. code::
 
     /etc/one/fireedge/sunstone/
     ...
     |-- admin/
+    |   |-- backup-tab.yaml           <--- the Backup tab configuration file
+    |   |-- file-tab.yaml             <--- the File tab configuration file
+    |   |-- host-tab.yaml             <--- the Host tab configuration file
+    |   |-- image-tab.yaml            <--- the Image tab configuration file
     |   |-- marketplace-app-tab.yaml  <--- the Marketplace App tab configuration file
+    |   |-- sec-group-tab.yaml        <--- the Security Group tab configuration file
     |   |-- vm-tab.yaml               <--- the VM tab configuration file
-    |   `-- vm-template-tab.yaml      <--- the VM Template tab configuration file
+    |   |-- vm-template-tab.yaml      <--- the VM Template tab configuration file
+    |   `-- vnet-tab.yaml             <--- the Virtual Network tab configuration file
     |-- sunstone-server.conf
     |-- sunstone-views.yaml           <--- the FireEdge Sunstone views main configuration
     `-- user/
+        ...
         |-- vm-tab.yaml               <--- the VM tab configuration file
-        `-- vm-template-tab.yaml      <--- the VM Template tab
+        `-- vm-template-tab.yaml      <--- the VM Template tab configuration file
     ...
 
 The easiest way to create a custom view is to copy the ``admin`` or ``user`` folder and modify its content as needed. After that, add the new view into ``/etc/one/fireedge/sunstone/sunstone-views.yaml``.
 
-.. _fireedge_sunstone_view_customization:
-
 View Customization
 --------------------------------------------------------------------------------
 
-On FireEdge Sunstone each view is defined by a folder that has the YAML files for the configured tabs. The content for those files is divided into sections that are described in the followings sections.
+On FireEdge Sunstone each view is defined by a folder that has the YAML files for the configured tabs. The content for those files is divided into sections that are described in the following sections.
 
 In the following tables, the description field contains the expected behavior when is set to ``true``.
 
 .. note:: The attributes can be modified only if they come in the YAML file by default. If an attribute is not present, it has the same behavior as when it is set to false.
-
-.. _fireedge_sunstone_actions_customization:
 
 Actions
 --------------------------------------------------------------------------------
@@ -152,30 +159,42 @@ The attributes described here indicate which buttons are visible to operate over
 +-------------------------+-----------------------------------------------------------------------------+
 | Attribute               | Description                                                                 |
 +=========================+=============================================================================+
+| ``backup``              | Users will be able to create a Virtual Machine backup.                      |
++-------------------------+-----------------------------------------------------------------------------+
+| ``change_cluster``      | Users will be able to change the resource cluster.                          |
++-------------------------+-----------------------------------------------------------------------------+
 | ``chgrp``               | Users will be able to change the resource group.                            |
 +-------------------------+-----------------------------------------------------------------------------+
 | ``chown``               | Users will be able to change the resource owner.                            |
 +-------------------------+-----------------------------------------------------------------------------+
-| ``clone``               | Users will be able to clone VM Templates.                                   |
+| ``clone``               | Users will be able to clone the resource.                                   |
 +-------------------------+-----------------------------------------------------------------------------+
-| ``create_app_dialog``   | Users will be able to create a new marketplace app from a VM Template.      |
+| ``commit``              | Users will be able to commit the security group changes.                    |
++-------------------------+-----------------------------------------------------------------------------+
+| ``create_app_dialog``   | Users will be able to create a new marketplace app from the resource.       |
 +-------------------------+-----------------------------------------------------------------------------+
 | ``create_dialog``       | Users will be able to create a new resource.                                |
 +-------------------------+-----------------------------------------------------------------------------+
-| ``delete``              | Users will be able to delete Virtual Machines.                              |
+| ``delete``              | Users will be able to delete the resource.                                  |
 +-------------------------+-----------------------------------------------------------------------------+
 | ``deploy``              | Users will be able to manually deploy Virtual Machines.                     |
++-------------------------+-----------------------------------------------------------------------------+
+| ``disable``             | Users will be able to disable the resource.                                 |
++-------------------------+-----------------------------------------------------------------------------+
+| ``dockerfile_dialog``   | Users will be able to create an image from dockerfile.                      |
 +-------------------------+-----------------------------------------------------------------------------+
 | ``download``            | Users will be able to download apps from the marketplace into their         |
 |                         | computers.                                                                  |
 +-------------------------+-----------------------------------------------------------------------------+
 | ``edit_labels``         | Users will be able to edit the resource labels.                             |
 +-------------------------+-----------------------------------------------------------------------------+
+| ``enable``              | Users will be able to enable the resource.                                  |
++-------------------------+-----------------------------------------------------------------------------+
 | ``export``              | Users will be able to export apps from the marketplace into a datastore.    |
 +-------------------------+-----------------------------------------------------------------------------+
 | ``hold``                | Users will be able to set to hold Virtual Machines.                         |
 +-------------------------+-----------------------------------------------------------------------------+
-| ``instantiate_dialog``  | Users will be able to instantiate a VM Template.                            |
+| ``instantiate_dialog``  | Users will be able to instantiate the resouce.                              |
 +-------------------------+-----------------------------------------------------------------------------+
 | ``lock``                | Users will be able to lock the resource.                                    |
 +-------------------------+-----------------------------------------------------------------------------+
@@ -190,6 +209,12 @@ The attributes described here indicate which buttons are visible to operate over
 +-------------------------+-----------------------------------------------------------------------------+
 | ``migrate_poff_hard``   | Users will be able to migrate a Virtual Machine in poweroff (hard way) to a |
 |                         | different host and datastore.                                               |
++-------------------------+-----------------------------------------------------------------------------+
+| ``nonpersistent``       | Users will be able to set an image as non-persistent.                       |
++-------------------------+-----------------------------------------------------------------------------+
+| ``offline``             | Users will be able to set a host as offline.                                |
++-------------------------+-----------------------------------------------------------------------------+
+| ``persistent``          | Users will be able to set an image as persistent.                           |
 +-------------------------+-----------------------------------------------------------------------------+
 | ``poweroff``            | Users will be able to poweroff Virtual Machines.                            |
 +-------------------------+-----------------------------------------------------------------------------+
@@ -206,6 +231,10 @@ The attributes described here indicate which buttons are visible to operate over
 | ``release``             | Users will be able to release Virtual Machines.                             |
 +-------------------------+-----------------------------------------------------------------------------+
 | ``resched``             | Users will be able to reschedule Virtual Machines.                          |
++-------------------------+-----------------------------------------------------------------------------+
+| ``reserve_dialog``      | Users will be able to reserve addresses from a Virtual Network.             |
++-------------------------+-----------------------------------------------------------------------------+
+| ``restore``             | Users will be able to restore a backup image.                               |
 +-------------------------+-----------------------------------------------------------------------------+
 | ``resume``              | Users will be able to resume Virtual Machines.                              |
 +-------------------------+-----------------------------------------------------------------------------+
@@ -229,7 +258,7 @@ The attributes described here indicate which buttons are visible to operate over
 +-------------------------+-----------------------------------------------------------------------------+
 | ``unlock``              | Users will be able to unlock the resource.                                  |
 +-------------------------+-----------------------------------------------------------------------------+
-| ``update_dialog``       | Users will be able to update VM Templates.                                  |
+| ``update_dialog``       | Users will be able to update the resource.                                  |
 +-------------------------+-----------------------------------------------------------------------------+
 | ``unresched``           | Users will be able to un-reschedule Virtual Machines.                       |
 +-------------------------+-----------------------------------------------------------------------------+
@@ -239,8 +268,6 @@ The attributes described here indicate which buttons are visible to operate over
 +-------------------------+-----------------------------------------------------------------------------+
 | ``vnc``                 | Users will be able to establish a VNC connection.                           |
 +-------------------------+-----------------------------------------------------------------------------+
-
-.. _fireedge_sunstone_filters_customization:
 
 Filters
 --------------------------------------------------------------------------------
@@ -268,12 +295,12 @@ The attributes described here indicate which filters are visible to select resou
 +---------------------------+---------------------------------------------------------------------------+
 | ``type``                  | Filtering by the resource type will be enabled.                           |
 +---------------------------+---------------------------------------------------------------------------+
+| ``vn_mad``                | Filtering by the Virtual Network driver will be enabled.                  |
++---------------------------+---------------------------------------------------------------------------+
 | ``vrouter``               | Filtering based on if the resource is for vRouters will be enabled.       |
 +---------------------------+---------------------------------------------------------------------------+
 | ``zone``                  | Filtering by the resource zone will be enabled.                           |
 +---------------------------+---------------------------------------------------------------------------+
-
-.. _fireedge_sunstone_infotabs_customization:
 
 Info Tabs
 --------------------------------------------------------------------------------
@@ -288,6 +315,8 @@ The attributes described here indicate the available actions on each info tab on
 | ``attributes_panel``     | Describes the behavior for the ``attributes`` panel in the resource         |
 |                          | info tab.                                                                   |
 +--------------------------+-----------------------------------------------------------------------------+
+| ``capacity_panel``       | Describes the behavior for the ``capacity`` panel in the resource info tab. |
++--------------------------+-----------------------------------------------------------------------------+
 | ``enabled``              | This tab will be showed in the resource info.                               |
 +--------------------------+-----------------------------------------------------------------------------+
 | ``information_panel``    | Describes the behavior for the ``information`` panel in the resource        |
@@ -298,11 +327,17 @@ The attributes described here indicate the available actions on each info tab on
 | ``monitoring_panel``     | Describes the behavior for the ``monitoring`` panel in the resource         |
 |                          | info tab.                                                                   |
 +--------------------------+-----------------------------------------------------------------------------+
+| ``nsx_panel``            | Describes the behavior for the ``NSX`` panel in the resource info tab.      |
++--------------------------+-----------------------------------------------------------------------------+
 | ``ownership_panel``      | Describes the behavior for the ``ownership`` panel in the resource          |
 |                          | info tab.                                                                   |
 +--------------------------+-----------------------------------------------------------------------------+
 | ``permissions_panel``    | Describes the behavior for the ``permissions`` panel in the resource        |
 |                          | info tab.                                                                   |
++--------------------------+-----------------------------------------------------------------------------+
+| ``qos_panel``            | Describes the behavior for the ``QoS`` panel in the resource info tab.      |
++--------------------------+-----------------------------------------------------------------------------+
+| ``rules_panel``          | Describes the behavior for the ``rules`` panel in the resource info tab.    |
 +--------------------------+-----------------------------------------------------------------------------+
 | ``vcenter_panel``        | Describes the behavior for the ``vCenter`` panel in the resource info tab.  |
 +--------------------------+-----------------------------------------------------------------------------+
@@ -313,6 +348,10 @@ The available actions in the info tabs are described in the following table.
 | Action                   | Description                                                                 |
 +==========================+=============================================================================+
 | ``add``                  | Users will be able to add information to that panel.                        |
++--------------------------+-----------------------------------------------------------------------------+
+| ``add_ar``               | Users will be able to add an address range.                                 |
++--------------------------+-----------------------------------------------------------------------------+
+| ``add_secgroup``         | Users will be able to add a security group.                                 |
 +--------------------------+-----------------------------------------------------------------------------+
 | ``attach_disk``          | Users will be able to attach disks.                                         |
 +--------------------------+-----------------------------------------------------------------------------+
@@ -332,6 +371,10 @@ The available actions in the info tabs are described in the following table.
 +--------------------------+-----------------------------------------------------------------------------+
 | ``delete``               | Users will be able to delete the information available in that panel.       |
 +--------------------------+-----------------------------------------------------------------------------+
+| ``delete_ar``            | Users will be able to delete an address range.                              |
++--------------------------+-----------------------------------------------------------------------------+
+| ``delete_secgroup``      | Users will be able to delete a security group.                              |
++--------------------------+-----------------------------------------------------------------------------+
 | ``detach_disk``          | Users will be able to detach disks.                                         |
 +--------------------------+-----------------------------------------------------------------------------+
 | ``detach_nic``           | Users will be able to detach NICs.                                          |
@@ -341,6 +384,10 @@ The available actions in the info tabs are described in the following table.
 | ``disk_saveas``          | Users will be able to save disks as an image.                               |
 +--------------------------+-----------------------------------------------------------------------------+
 | ``edit``                 | Users will be able to edit the information available in that panel.         |
++--------------------------+-----------------------------------------------------------------------------+
+| ``hold_lease``           | Users will be able to hold a lease.                                         |
++--------------------------+-----------------------------------------------------------------------------+
+| ``release_lease``        | Users will be able to release a lease.                                      |
 +--------------------------+-----------------------------------------------------------------------------+
 | ``rename``               | Users will be able to rename the resource.                                  |
 +--------------------------+-----------------------------------------------------------------------------+
@@ -368,6 +415,25 @@ The available actions in the info tabs are described in the following table.
 +--------------------------+-----------------------------------------------------------------------------+
 | ``snapshot_revert``      | Users will be able to revert snapshots.                                     |
 +--------------------------+-----------------------------------------------------------------------------+
+| ``update_ar``            | Users will be able to update an address range.                              |
++--------------------------+-----------------------------------------------------------------------------+
+| ``update_configuration`` | Users will be able to update the configurations.                            |
++--------------------------+-----------------------------------------------------------------------------+
+| ``update_nic``           | Users will be able to update the NICs.                                      |
++--------------------------+-----------------------------------------------------------------------------+
+
+Features
+--------------------------------------------------------------------------------
+
+The attributes described here indicate which features are used for the resources. The following attributes must be nested in a ``features`` tag.
+
++---------------------------+---------------------------------------------------------------------------+
+| Attribute                 | Description                                                               |
++===========================+===========================================================================+
+| ``hide_cpu``              | Users won't be able to change the CPU settings.                           |
++---------------------------+---------------------------------------------------------------------------+
+| ``cpu_factor``            | Users won't be able to scale the CPU.                                     |
++---------------------------+---------------------------------------------------------------------------+
 
 .. _fireedge_sunstone_dialogs_customization:
 
@@ -379,6 +445,8 @@ The attributes described here indicate the available actions on each dialog on t
 +--------------------------+-----------------------------------------------------------------------------+
 | Attribute                | Description                                                                 |
 +==========================+=============================================================================+
+| ``backup``               | Backup section will be displayed.                                           |
++--------------------------+-----------------------------------------------------------------------------+
 | ``booting``              | Booting section will be displayed.                                          |
 +--------------------------+-----------------------------------------------------------------------------+
 | ``capacity``             | Capacity section will be displayed.                                         |
@@ -408,92 +476,51 @@ The attributes described here indicate the available actions on each dialog on t
 | ``vm_group``             | VM groups section will be displayed.                                        |
 +--------------------------+-----------------------------------------------------------------------------+
 
-.. _fireedge_sunstone_remote_connections:
-
 Remote connections
 ================================================================================
-
-.. _fireedge_sunstone_vnc:
 
 OpenNebula VNC remote connection.
 --------------------------------------------------------------------------------
 
 Sunstone allows direct connections to VMs using VNC. It admits parameters such as configuring the host and port for remote connections, configuring the keyboard layout (needed for qemu KVM hosts), and setting a connection password.
 
-To set these VNC connection configurations, we must go to the VM template configuration and click on create or update an existing one.
+To set these VNC connection configurations, we must:
 
-|fireedge_sunstone_templates_tab|
-
-After clicking on update, go to the "Advanced options" step and click on Input/Output.
-
-Here you have to select under the "Graphics" section VNC the ``KEYMAP`` to the current layout you are using.
-
-|fireedge_sunstone_io|
-
-Now save the changes, instantiate the VM, connect through VNC and configure the keyboard layout. In this case, we will use the localectl command to perform this change:
-
-.. code-block:: bash
-
-    $localectl set-keymap es
-
-
-Now it is all set! We can start using our VNC remote connection with our keyboard.
+1. Go to the VM template configuration and click on create or update an existing one.
+2. Go to the "Advanced options" step and click on Input/Output.
+3. Under the "Graphics" section, you can see all the VNC configurations.
 
 .. note::
 
     To have the correct layout on your Virtual Machine, you must set the same keymap inside the Virtual Machine as the ``KEYMAP`` attribute configured in the OpenNebula VM graphics section, and it must be the same as your keyboard layout.
 
-.. _fireedge_sunstone_rdp:
-
 OpenNebula RDP remote connection.
 --------------------------------------------------------------------------------
 
-Sunstone also admits direct connections using RDP. To set specific RDP connection configurations, we must go to the VM template tab and click on create or update an existing one.
+Sunstone also admits direct connections using RDP. This kind of connection is bound to a network interface, meaning that to enable it, you must follow the following steps:
 
-|fireedge_sunstone_templates_tab|
+1. Go to the VM template tab and click on create or update an existing one.
+2. Go to the "Advanced options" step.
+3. Click on "Network".
+4. Click on attach nic or update an existing one.
+5. Go to the "Advanced options" step, and enable the RDP connection and all the desired configuration parameters for the connection.
 
-After clicking on update, go to the "Advanced options" step and click on Network.
-
-|fireedge_sunstone_network|
-
-Now click on attach nic or update an existing one, go to the "Advanced options" step, and enable the RDP connection.
-
-|fireedge_sunstone_rdp|
-
-Here you will see all the available configurations for RDP mentioned above. Select the ones that apply and then click on the "Finish" button.
-
-Now, save the changes, instantiate the VM template and connect through RDP.
-
-.. _fireedge_sunstone_ssh:
+.. note:: To enable them on a running VM, you must follow steps 3 to 5 once you click the VM you want to have it.
 
 OpenNebula SSH remote connection.
 --------------------------------------------------------------------------------
 
-Sunstone also allows direct connections using SSH. To enable these connections, you must follow the following steps:
+Sunstone also allows direct connections using SSH. This kind of connection is bound to a network interface, meaning that to enable it, you must follow the following steps:
 
-Go to the VM template tab and click on create or update an existing one.
+1. Go to the VM template tab and click on create or update an existing one.
+2. Go to the "Advanced options" step.
+3. Click on "Network".
+4. Click on attach nic or update an existing one.
+5. Go to the "Advanced options" step, and enable the SSH connection.
 
-|fireedge_sunstone_templates_tab|
-
-After clicking on update, go to the "Advanced options" step and click on Network.
-
-|fireedge_sunstone_network|
-
-Now click on attach nic or update an existing one, go to the "Advanced options" step, and enable the SSH connection.
-
-|fireedge_sunstone_ssh|
-
-Click on the "Finish" button, save the changes, instantiate the VM template and connect through SSH.
+.. note:: To enable them on a running VM, you must follow steps 3 to 5 once you click the VM you want to have it.
 
 .. |fireedge_sunstone_admin_view| image:: /images/fireedge_sunstone_admin_view.png
 .. |fireedge_sunstone_change_view_dropdown| image:: /images/fireedge_sunstone_change_view_dropdown.png
 .. |fireedge_sunstone_settings| image:: /images/fireedge_sunstone_settings.png
 .. |fireedge_sunstone_user_view| image:: /images/fireedge_sunstone_user_view.png
-.. |fireedge_sunstone_vms_tab| image:: /images/fireedge_sunstone_vms_tab.png
-.. |fireedge_sunstone_templates_tab| image:: /images/fireedge_sunstone_templates_tab.png
-.. |fireedge_sunstone_marketapps_tab| image:: /images/fireedge_sunstone_marketapps_tab.png
-.. |fireedge_sunstone_template| image:: /images/fireedge_sunstone_templates.png
-.. |fireedge_sunstone_io| image:: /images/fireedge_sunstone_io.png
-.. |fireedge_sunstone_network| image:: /images/fireedge_sunstone_network.png
-.. |fireedge_sunstone_rdp| image:: /images/fireedge_sunstone_rdp.png
-.. |fireedge_sunstone_ssh| image:: /images/fireedge_sunstone_ssh.png
