@@ -113,6 +113,7 @@ Other Issues Solved
 - `Fix OpenNebula (oned) sometimes fails to remove lock file on exit and refuses to start  <https://github.com/OpenNebula/one/issues/5189>`__.
 - `Fix onedb fsck does not detect discrepancy between UID / GID in database for resources (XML) <https://github.com/OpenNebula/one/issues/1165>`__.
 - `Fix VM and VNET drivers so they do not evaluate execution quotes through STDIN <https://github.com/OpenNebula/one/pull/6011>`__.
+- `Fix arguments parsing for onemonitord <https://github.com/OpenNebula/one/issues/5728>`__.
 
 Features Backported to 6.4.x
 ================================================================================
