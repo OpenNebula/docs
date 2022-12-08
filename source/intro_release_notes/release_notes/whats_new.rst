@@ -114,6 +114,7 @@ Other Issues Solved
 - `Fix OpenNebula (oned) sometimes fails to remove lock file on exit and refuses to start  <https://github.com/OpenNebula/one/issues/5189>`__.
 - `Fix onedb fsck does not detect discrepancy between UID / GID in database for resources (XML) <https://github.com/OpenNebula/one/issues/1165>`__.
 - `Fix VM and VNET drivers so they do not evaluate execution quotes through STDIN <https://github.com/OpenNebula/one/pull/6011>`__.
+- `Fix arguments parsing for onemonitord <https://github.com/OpenNebula/one/issues/5728>`__.
 - `Fix LDAP driver to work with Ruby 2.0 <https://github.com/OpenNebula/one/commit/33552502055e9893fa3e1bf5c86062d7e14390f0>`__.
 - `Fix regex in the fix_dir_slashes function for bash datastore/transfer manager drivers <https://github.com/OpenNebula/one/issues/5668>`__.
 - `Fix oned termination process if initialization fails <https://github.com/OpenNebula/one/issues/5801>`__.
