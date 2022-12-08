@@ -119,6 +119,7 @@ Other Issues Solved
 - `Fix regex in the fix_dir_slashes function for bash datastore/transfer manager drivers <https://github.com/OpenNebula/one/issues/5668>`__.
 - `Fix oned termination process if initialization fails <https://github.com/OpenNebula/one/issues/5801>`__.
 - `Fix for LDAP user without password <https://github.com/OpenNebula/one/issues/5676>`__.
+- `Fix ceph clone operation <https://github.com/OpenNebula/one/commit/af5044f2676b4bfda0845dc9873db2b87bb15b72>`__.
 
 Features Backported to 6.4.x
 ================================================================================
