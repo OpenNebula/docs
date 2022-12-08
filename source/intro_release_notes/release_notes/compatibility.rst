@@ -18,3 +18,12 @@ Visit the :ref:`Features list <features>` and the :ref:`What's New guide <whats_
 Storage & Images
 ========================
 - When an error occurs while deleting an they image are now moved to ERROR state, instead of just logging the error and blindly removing it from the database. To recover from this failure the delete operation can be retried or you can pass a ``force`` option to remove the image from the database.
+
+Network
+========================
+- When you update a network it may trigger update operations in the hypervisors to sync the VM configuration with the changes in the network (e.g. update VLAN_ID). Previous versions did not make any change on running VMs.
+- Ebtables option has been removed from the configuration files and interface. Drivers are still present but deprecated and will be removed from the distribution in a future release.
+
+Virtual Machines
+========================
+- Context attribute ``GATEWAY6`` is no longer generated, just the ``IP6_GATEWAY`` is added. This attribute was not used by context packages since version 6.4.0

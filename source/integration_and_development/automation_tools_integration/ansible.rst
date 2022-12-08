@@ -12,7 +12,7 @@ For the module usage, please follow the official Ansible documentation:
     * `one_image.py <https://docs.ansible.com/ansible/latest/collections/community/general/one_image_module.html>`__
     * `one_service.py <https://docs.ansible.com/ansible/latest/collections/community/general/one_service_module.html>`__
     * `one_vm.py <https://docs.ansible.com/ansible/latest/collections/community/general/one_vm_module.html>`__
-    * one_template.py -- `not released yet <https://github.com/ansible-collections/community.general/blob/main/plugins/modules/cloud/opennebula/one_template.py>`__
+    * `one_template.py <https://docs.ansible.com/ansible/latest/collections/community/general/one_template_module.html>`__
 
 Dependencies
 ================================================================================

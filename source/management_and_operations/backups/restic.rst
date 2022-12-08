@@ -112,6 +112,29 @@ After some time, the datastore should be monitored:
 
 That's it, we are all set to make VM backups!
 
+Repository Maintenance and Troubleshooting
+================================================================================
+
+Repository Pruning
+--------------------------------------------------------------------------------
+
+Data not referenced by any snapshot needs to be deleted by running the ``prune`` command in the repository. This operation depending on the data to process can be very a demanding and it even locks the repository.
+
+OpenNebula will not automatically trigger this operation, you **need to plan** your pruning so it does not interfere with any scheduled backup.
+
+Repository is locked
+--------------------------------------------------------------------------------
+
+During the operation of the VM backups it may happen that the repository is left in a locked state. You should see an error similar to:
+
+
+.. prompt:: bash $ auto
+
+    unable to create lock in backend: repository is already locked exclusively by PID 111971 on ubuntu2204-kvm-qcow2-6-5-yci34-0 by oneadmin (UID 9869, GID 9869)
+    lock was created at 2022-11-28 17:33:51 (55.876852076s ago)
+    storage ID 1448874c
+
+To recover from this error, check there are no ongoing operations and execute ``restic unlock --remove-all`` for the repository.
 
 Reference: Restic Datastore Attributes
 ================================================================================
