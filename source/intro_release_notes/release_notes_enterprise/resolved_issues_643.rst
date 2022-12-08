@@ -29,3 +29,4 @@ The following issues has been solved in 6.4.3:
 - `Fix regex in the fix_dir_slashes function for bash datastore/transfer manager drivers <https://github.com/OpenNebula/one/issues/5668>`__.
 - `Fix oned termination process if initialization fails <https://github.com/OpenNebula/one/issues/5801>`__.
 - `Fix arguments parsing for onemonitord <https://github.com/OpenNebula/one/issues/5728>`__.
+- `Fix ceph clone operation <https://github.com/OpenNebula/one/commit/af5044f2676b4bfda0845dc9873db2b87bb15b72>`__.
