@@ -39,6 +39,9 @@ To add a new provider you need a YAML template file with the following informati
     description: 'Virtual Edge Cluster in Google Belgium (europe-west1-b)'
     provider: 'google'
 
+    plain:
+       provision_type: 'metal'
+
     connection:
       credentials: 'JSON credentials file'
       project: 'Google Cloud Platform project ID'

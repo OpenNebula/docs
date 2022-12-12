@@ -37,6 +37,9 @@ To add a new provider you need a YAML template file with the following informati
     description: 'Virtual Edge Cluster in DigitalOcean datacenter in New York City (NYC3)'
     provider: 'digitalocean'
 
+    plain:
+       provision_type: 'metal'
+
     connection:
       token: 'DigitalOcean token'
       region: 'nyc3'
