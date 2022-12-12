@@ -27,3 +27,7 @@ Network
 Virtual Machines
 ========================
 - Context attribute ``GATEWAY6`` is no longer generated, just the ``IP6_GATEWAY`` is added. This attribute was not used by context packages since version 6.4.0
+
+Logging
+========================
+Previously OpenNebula was opening log files while truncating their previous content and relying on the logrotate to take care of the rotation before the service start. This behavior could potentially lead to missing logs in case logrotate failed. To avoid this, since version 6.6 OpenNebula opens the logs in ``append`` mode and lograte is suppsed to rotate the logs and truncate it. Also, in the older versions compression of the old log files was done during the logrotate which could eventually prolong service start. Since 6.6 old log compression is done via an additional systemd ``ExecPreStart`` section in the background.

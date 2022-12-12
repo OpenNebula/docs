@@ -121,6 +121,8 @@ Other Issues Solved
 - `Fix for LDAP user without password <https://github.com/OpenNebula/one/issues/5676>`__.
 - `Fix ceph clone operation <https://github.com/OpenNebula/one/commit/af5044f2676b4bfda0845dc9873db2b87bb15b72>`__.
 - `Fix NETRX and NETTX for accounting <https://github.com/OpenNebula/one/issues/5640>`__.
+- `Fix lograte could last long due to compression <https://github.com/OpenNebula/one/issues/5328>`__.
+- `Fix overwriting logs <https://github.com/OpenNebula/one/issues/6034>`__.
 
 Features Backported to 6.4.x
 ================================================================================
