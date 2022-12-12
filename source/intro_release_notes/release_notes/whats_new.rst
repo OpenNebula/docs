@@ -17,7 +17,7 @@ There is also a series of improvements in the PCI Passthrough functionality, ori
 
 OpenNebula 6.6 is named after the `Electra Nebula <https://astronomy.com/-/media/Files/PDF/web%20extras/2014/02/ImagingVanDenBerghObjects.pdf>`__, is the reflection nebula / dust cloud (coded "vdB 20") associated with the Electra star (Taurus constellation -> Pleiades cluster).
 
-This is the first beta version for 6.6, aimed at testers and developers to try the new features. All the functionality is present and only bug fixes will happen between this release and final 6.6. Please check the :ref:`known issues <known_issues>` before submitting an issue through GitHub. Also note that being a development version, there is no migration path from the previous stable version (6.4.x) nor migration path to the final stable version (6.6.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/55>`__.
+This is the release candidate (RC) for 6.6, aimed at testers and developers to try the new features. All the functionality is present and only bug fixes will happen between this release and final 6.6. Please check the :ref:`known issues <known_issues>` before submitting an issue through GitHub. Also note that being a development version, there is no migration path from the previous stable version (6.4.x) nor migration path to the final stable version (6.6.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/55>`__.
 
 We’d like to thank all the people that support the project, OpenNebula is what it is thanks to its community! Please keep rocking.
 
@@ -100,12 +100,6 @@ KVM
 - `Update operation for virtual NIC to allow changing QoS attributes without the need to detach/attach cycle. The operation can be performed while the VM is running <https://github.com/OpenNebula/one/issues/5529>`__.
 - `Memory resize can be made in two ways <https://github.com/OpenNebula/one/issues/5753>`__: ``BALLOONING`` to increase/decrease the memory balloon, or ``HOTPLUG`` to add/remove memory modules to the virtual machine.
 - Simplified network management for Open vSwitch networks with DPDK. Bridges with DPDK and non DPDK datapaths can coexist in a hypervisor. The bridge type (``BRIDGE_TYPE``) for the network is used to pass configuration attributes to bridge creation, no need to modify any additional configuration file.
-
-LXC
-================================================================================
-
-Contextualization
-================================================================================
 
 Other Issues Solved
 ================================================================================
