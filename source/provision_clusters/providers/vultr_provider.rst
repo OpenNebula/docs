@@ -49,6 +49,9 @@ Virtual:
     description: 'Edge cluster in Vultr Amsterdam'
     provider: 'vultr_metal'
 
+    plain:
+       provision_type: 'metal'
+
     connection:
       key: 'Vultr key'
       region: 'ams'
@@ -75,6 +78,9 @@ Metal:
 
     description: 'Edge cluster in Vultr Amsterdam'
     provider: 'vultr_metal'
+
+    plain:
+       provision_type: 'metal'
 
     connection:
       key: 'Vultr key'
