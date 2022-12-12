@@ -32,6 +32,9 @@ To add a new provider you need to write the previous data in YAML template:
     description: 'Edge cluster in Equinix Amsterdam'
     provider: 'equinix'
 
+    plain:
+       provision_type: 'metal'
+
     connection:
       token: 'Equinix token'
       project: 'Equinix project'
