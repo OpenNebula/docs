@@ -30,3 +30,4 @@ The following issues has been solved in 6.4.3:
 - `Fix oned termination process if initialization fails <https://github.com/OpenNebula/one/issues/5801>`__.
 - `Fix arguments parsing for onemonitord <https://github.com/OpenNebula/one/issues/5728>`__.
 - `Fix ceph clone operation <https://github.com/OpenNebula/one/commit/af5044f2676b4bfda0845dc9873db2b87bb15b72>`__.
+- `Fix NETRX and NETTX for accounting <https://github.com/OpenNebula/one/issues/5640>`__.
