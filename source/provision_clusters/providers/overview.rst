@@ -15,12 +15,6 @@ In this chapter you can find a guide on how to create Providers based on the sup
 
 Note, the on-premise provider is a convenient abstraction to represent your own resources on your datacenter.
 
-The following Clouds are also supported but you need to enable them before use:
-
-  - :ref:`DigitalOcean Provider <do_provider>`
-  - :ref:`Google Compute Engine Provider <google_provider>`
-  - :ref:`Vultr Provider <vultr_provider>`
-
 Hypervisor Compatibility
 ================================================================================
 

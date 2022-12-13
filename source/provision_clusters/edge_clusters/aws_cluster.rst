@@ -7,21 +7,7 @@ AWS Edge Cluster
 Edge Cluster Types
 ================================================================================
 
-The AWS edge clusters supports two provision types:
-
-* **Metal**,  uses baremetal instances to create OpenNebula Hosts, providing the best performance and highest capacity. Metal provisions can run **LXC** or **KVM** hypervisors.
-* **Virtual**, uses a virtual machine instance to create OpenNebula Hosts. This provision is better suited for PaaS like workloads. Virtual provisions can run **LXC** or **QEMU** hypervisors.
-
-.. important::
-
-    Virtual provisions are not enabled by default, to enable them execute the following command:
-
-    .. prompt:: bash $ auto
-
-        sudo ln -s /usr/share/one/oneprovision/edge-clusters-extra/virtual /usr/share/one/oneprovision/edge-clusters
-        # Edit /etc/one/fireedge/provision/providers.d/aws.yaml and uncomment virtual
-
-    Note that you only need to do this once for any virtual provider.
+The AWS **metal** edge clusters uses baremetal instances to create OpenNebula Hosts, providing the best performance and highest capacity. These edge clusters can run **LXC** or **KVM** hypervisors.
 
 AWS Edge Cluster Implementation
 ================================================================================
@@ -58,6 +44,21 @@ Operating Providers & Edge Clusters
 Refer to the :ref:`cluster operation guide <cluster_operations>` to check all the operations needed to create, manage, and delete an Edge Cluster. Refer to the :ref:`providers guide <provider_operations>` to check all of the operations related to providers.
 
 You can also manage AWS Cluster using OneProvision FireEdge GUI.
+
+Virtual Provisions
+================================================================================
+
+All the above clusters make use of AWS metal instances. Virtual provisions are not enabled by default, to enable them execute the following command:
+
+.. prompt:: bash $ auto
+
+    sudo ln -s /usr/share/one/oneprovision/edge-clusters-extra/virtual /usr/share/one/oneprovision/edge-clusters
+    # Edit /etc/one/fireedge/provision/providers.d/aws.yaml and uncomment virtual
+
+Note that you only need to do this once for any virtual provider.
+º2dd
+
+
 
 |image_fireedge|
 
