@@ -165,6 +165,8 @@ Also, there are a set of common attributes that can be used in any Datastore to 
 +------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
 | ``COMPATIBLE_SYS_DS``        | Only for Image Datastores. Set the System Datastores that can be used with an Image Datastore, e.g. "0,100"                      |
 +------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| ``CONTEXT_DISK_TYPE``        | Specifies the disk type used for context devices (``BLOCK`` or ``FILE``). If not specified, ``FILE`` is used by default.         |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
 
 The Files & Kernels Datastore is an special datastore type to store plain files to be used as kernels, ram-disks or context files. :ref:`See here to learn how to define them <file_ds>`.
 
