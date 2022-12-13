@@ -238,6 +238,8 @@ The schedule actions are in contol of the scheduler. You can tune the number of 
 | ``MAX_BACKUPS_HOST`` | Max number of backups per host                                                               |
 +----------------------+----------------------------------------------------------------------------------------------+
 
+.. _vm_backups_restore:
+
 Restoring Backups
 ================================================================================
 
@@ -276,6 +278,53 @@ The API call returns the IDs of the images (2, in the example) and the ID of the
     PERSISTENT     : No
     SOURCE         : /var/lib/one//datastores/1/d7784b595d33b757bb2593661346c51c
     PATH           : restic://100/0:25f4b298,1:6968545c//var/lib/one/datastores/0/0/backup/disk.0
+
+The complete list of attributes removed from a template described in the table below:
+
+.. list-table:: VM Template attributes removed upon restore
+   :widths: 20, 70
+   :header-rows: 1
+
+   * - Attribute
+     - Subattribute
+   * - ``DISK``
+     - ``ALLOW_ORPHANS``, ``CLONE``, ``CLONE_TARGET``, ``CLUSTER_ID``, ``DATASTORE``, ``DATASTORE_ID``
+   * -
+     - ``DEV_PREFIX``, ``DISK_SNAPSHOT_TOTAL_SIZE``, ``DISK_TYPE``, ``DRIVER``, ``IMAGE``, ``IMAGE_ID``
+   * -
+     - ``IMAGE_STATE``, ``IMAGE_UID``, ``IMAGE_UNAME``, ``LN_TARGET``, ``OPENNEBULA_MANAGED``
+   * -
+     - ``ORIGINAL_SIZE``, ``PERSISTENT``, ``READONLY``, ``SAVE``, ``SIZE``, ``SOURCE``, ``TARGET``, ``TM_MAD``, ``TYPE``, ``FORMAT``
+   * - ``NIC``
+     - ``AR_ID``, ``BRIDGE``, ``BRIDGE_TYPE``, ``CLUSTER_ID``, ``NAME``, ``NETWORK_ID``, ``NIC_ID``
+   * -
+     - ``TARGET``, ``VLAN_ID``, ``VN_MAD``, ``MAC``, ``VLAN_TAGGED_ID``, ``PHYDEV``
+   * - ``GRAPHICS``
+     - ``PORT``
+   * - ``CONTEXT``
+     - ``DISK_ID``, ``ETH[0-9]*``, ``PCI[0-9]*``
+   * - ``NUMA_NODE``
+     - ``CPUS``, ``MEMORY_NODE_ID``, ``NODE_ID``
+   * - ``PCI``
+     - ``ADDRESS``, ``BUS``, ``DOMAIN``, ``FUNCTION``, ``NUMA_NODE``, ``PCI_ID``, ``SLOT``, ``VM_ADDRESS``
+   * -
+     - ``VM_BUS``, ``VM_DOMAIN``, ``VM_FUNCTION``, ``VM_SLOT``
+   * - ``AUTOMATIC_DS_REQUIREMENTS``
+     -
+   * - ``AUTOMATIC_NIC_REQUIREMENTS``
+     -
+   * - ``AUTOMATIC_REQUIREMENTS``
+     -
+   * - ``VMID``
+     -
+   * - ``TEMPLATE_ID``
+     -
+   * - ``TM_MAD_SYSTEM``
+     -
+   * - ``SECURITY_GROUP_RULE``
+     -
+   * - ``ERROR``
+     -
 
 Advanced Configurations
 ================================================================================
