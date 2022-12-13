@@ -7,7 +7,7 @@ On-Premises Edge Cluster
 Edge Cluster Types
 ================================================================================
 
-On-Premises edge clusters use bare-metal servers in your datacenter. Metal provisions can run the **LXC** or **KVM** hypervisors.
+On-Premises **metal** edge clusters use bare-metal servers in your datacenter. Metal provisions can run the **LXC** or **KVM** hypervisors.
 
 On-Premises Edge Cluster Implementation
 ================================================================================

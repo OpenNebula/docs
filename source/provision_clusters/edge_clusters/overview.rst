@@ -18,12 +18,6 @@ In this chapter you can find a guide on how to automatically provision Edge Clus
   - :ref:`Amazon AWS Edge Clusters <aws_cluster>`
   - :ref:`On-Premise Edge Cluster <onprem_cluster>`
 
-The following Edge Clusters are also supported but you need to enable them before use:
-
-  - :ref:`DigitalOcean Edge Cluster <do_cluster>`
-  - :ref:`Google Edge Cluster <google_cluster>`
-  - :ref:`Vultr Edge Cluster <vultr_cluster>`
-
 Hypervisor Compatibility
 ================================================================================
 
