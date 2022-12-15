@@ -151,18 +151,177 @@ In this example, the driver will check for the existence of bridge ``ovsvxbr0.10
 Open vSwitch with DPDK
 ================================================================================
 
-This section describes how to use a DPDK datapath with the Open vSwitch drivers. When using the DPDK backend, the OpenNebula drivers will automatically configure the bridges and ports accordingly.
-
 .. warning:: This section is only relevant for KVM guests.
 
-Requirements & Limitations
---------------------------------------------------------------------------------
+This section describes how to use a DPDK datapath with the Open vSwitch drivers. When using the DPDK backend, the OpenNebula drivers will automatically configure the bridges and ports accordingly.
 
 Please consider the following when using the DPDK datapath for Open vSwitch:
 
 * An Open vSwitch version compiled with DPDK support is required.
 * The VMs need to use the virtio interface for its NICs.
-* Although not needed to make it work, you'd probably be interested in configuring NUMA pinning and hugepages in your Hosts. See :ref:`here <numa>`.
+* Hugepages needs to be configured in the Hosts
+* VMs needs to use be configured to use NUMA pinning and hugepages. See :ref:`here <numa>`.
+
+Host Configuration
+--------------------------------------------------------------------------------
+
+.. note:: This section will use an Ubuntu22.04 server to show working configurations. You may need to adapt them to other Linux distributions.
+
+Setup Hugepages and iommu
+********************************************************************************
+
+Hugepages are virtual memory pages of a size greater than the 4K default. Increasing the size of the page reduces the number of pages in the system and hence the entries needed in the TLB to perform virtual address translations.
+
+The size of virtual pages supported by the system can be check from the CPU flags:
+
+* ``pse`` for 2M
+* ``pdpe1g`` for 1G
+
+For 64-bit applications it is recommended to use 1G. Note that on NUMA systems, the pages reserved are divided equally between sockets.
+
+For example to configure default page size of 1G and 250 hugepages at boot time:
+
+.. code:: bash
+
+    # vim /etc/default/grub
+    ...
+    GRUB_CMDLINE_LINUX_DEFAULT="intel_iommu=on default_hugepagesz=1G hugepagesz=1G hugepages=250"
+
+    # update-grub
+
+After rebooting the system mount the hugepage folder so application can access them:
+
+.. code:: bash
+
+    # mkdir /mnt/hugepages1G
+
+    # vim /etc/fstab
+    ...
+    nodev	/mnt/hugepages1G hugetlbfs pagesize=1GB 0 0
+
+    # mount /mnt/hugepages1G
+
+Now check hugepages are allocted to NUMA nodes, for example (or with ``numastat -m``):
+
+.. code:: bash
+
+    # mkdir /mnt/hugepages1G# cat /sys/devices/system/node/node*/meminfo  | grep -i '\<huge'
+    Node 0 HugePages_Total:   125
+    Node 0 HugePages_Free:    125
+    Node 0 HugePages_Surp:      0
+    Node 1 HugePages_Total:   125
+    Node 1 HugePages_Free:    125
+    Node 1 HugePages_Surp:      0
+
+And finally iommu should be also enabled:
+
+.. code:: bash
+
+    # grep -i dmar dmesg
+    [    0.010651] kernel: ACPI: DMAR 0x000000007BAFE000 0000F0 (v01 DELL   PE_SC3   00000001 DELL 00000001)
+    [    0.010695] kernel: ACPI: Reserving DMAR table memory at [mem 0x7bafe000-0x7bafe0ef]
+    [    1.837579] kernel: DMAR: IOMMU enabled
+
+Install OVS with DPDK support
+********************************************************************************
+
+We just need to install the dpdk version of the package and update alternatives accordingly:
+
+.. code:: bash
+
+    # apt install openvswitch-switch-dpdk
+
+    # update-alternatives --set ovs-vswitchd /usr/lib/openvswitch-switch-dpdk/ovs-vswitchd-dpdk
+
+Now, restart openvswitch service and check dpdk is enabled:
+
+.. code:: bash
+
+    # systemctl restart openvswitch-switch.service
+
+    # grep DPDK openvswitch/ovs-vswitchd.log
+    2022-11-24T12:30:24.500Z|00041|dpdk|ERR|DPDK not supported in this copy of Open vSwitch.
+    2022-11-24T12:33:02.905Z|00007|dpdk|INFO|Using DPDK 21.11.2
+    2022-11-24T12:33:02.905Z|00008|dpdk|INFO|DPDK Enabled - initializing...
+    2022-11-24T12:33:02.905Z|00012|dpdk|INFO|Per port memory for DPDK devices disabled.
+    2022-11-24T12:33:02.914Z|00016|dpdk|INFO|EAL: Detected shared linkage of DPDK
+    2022-11-24T12:33:04.303Z|00032|dpdk|INFO|DPDK Enabled - initialized
+
+    # ovs-vsctl get Open_vSwitch . dpdk_initialized
+    true
+
+Configure Open vSwitch
+********************************************************************************
+
+Next step is to tune the execution parameters of the polling mode drivers (PMD) threads by pinning them into specific CPUs and assigning some hugepages.
+
+To specify the CPU cores we need to set a binary mask, where each bit represents a CPU core by its ID. For example ``0xF0`` is ``11110000``, bits 4,5,6,7 are set to 1 so CPU cores 4,5,6,7 would be use for PMDs. Usually, it is recommended to allocate same number of cores across NUMA nodes.
+
+For example to set cores 0,28,1,29 and 2G of hugepages per NUMA node, execute the following commands:
+
+.. code:: bash
+
+    # ovs-vsctl set Open_vSwitch . other_config:pmd-cpu-mask=0x30000003
+    # ovs-vsctl set Open_vSwitch . other_config:dpdk-socket-mem="2048,2048"
+    # ovs-vsctl set Open_vSwitch . other_config:dpdk-hugepage-dir="/mnt/hugepages1G"
+
+    # systemctl restart openvswitch-switch.service
+
+
+Configure Open vSwitch Bridge
+********************************************************************************
+
+OpenNebula does not support adding and configuring DPDK physical devices. Binding cards to vfio-pci driver needs to be configured before using the DPDK network in OpenNebula. Usually, Open vSwitch setups only requires one bridge so these steps can be easily automated during the host installation.
+
+In this example, we'll be creating a bond with to cards (each one attached to a different NUMA node). Let's first trace the cards with the ``dpdk-debind.py`` tool, and then bind the cards to the vfio-pci driver.
+
+.. code:: bash
+
+    # dpdk-devbind.py --status
+    ...
+    Network devices using kernel driver
+    ===================================
+    0000:01:00.1 'Ethernet Controller X710 for 10GbE SFP+ 1572' if=eno2 drv=i40e unused=vfio-pci
+    0000:83:00.1 'Ethernet Controller X710 for 10GbE SFP+ 1572' if=enp131s0f1 drv=i40e unused=vfio-pci
+
+    # dpdk-devbind.py --bind=vfio-pci enp131s0f1
+
+    # dpdk-devbind.py --bind=vfio-pci eno2
+
+    # dpdk-devbind.py --status
+    ...
+    Network devices using DPDK-compatible driver
+    ============================================
+    0000:01:00.1 'Ethernet Controller X710 for 10GbE SFP+ 1572' drv=vfio-pci unused=i40e
+    0000:83:00.1 'Ethernet Controller X710 for 10GbE SFP+ 1572' drv=vfio-pci unused=i40e
+
+Now we can add the cards to an Open vSwitch port, or in this example create a bond port with both:
+
+.. code:: bash
+
+    # ovs-vsctl add-br onebr.dpdk -- set bridge onebr.dpdk datapath_type=netdev
+
+    # ovs-vsctl add-bond onebr.dpdk bond1 x710_1 x710_83 \
+        -- set Interface x710_1 type=dpdk options:dpdk-devargs=0000:01:00.1 \
+        -- set Interface x710_83 type=dpdk options:dpdk-devargs=0000:83:00.1
+
+    # ovs-vsctl show
+       Bridge onebr.dpdk
+            datapath_type: netdev
+            Port onebr.dpdk
+                Interface onebr.dpdk
+                    type: internal
+            Port bond1
+                Interface x710_83
+                    type: dpdk
+                    options: {dpdk-devargs="0000:83:00.1"}
+                Interface x710_1
+                    type: dpdk
+                    options: {dpdk-devargs="0000:01:00.1"}
+        ovs_version: "2.17.2"
+
+We are all set now, the bridge ``onebr.dpdk`` is ready to be used by OpenNebula.
+
 
 OpenNebula Configuration
 --------------------------------------------------------------------------------
@@ -170,13 +329,51 @@ OpenNebula Configuration
 There are no special configuration on the OpenNebula server. Note that the sockets used by the vhost interface are created in the VM directory (``/var/lib/one/datastores/<ds_id>/<vm_id>``) and named after the switch port.
 
 Using DPDK in your Virtual Networks
------------------------------------
+********************************************************************************
 
 There are no additional changes, simply:
 
 * Create your networks using the ``ovswitch`` driver, :ref:`see above <openvswitch>`.
 * Change configuration of the ``BRIDGE_TYPE`` of the network to ``openvswitch_dpdk`` using either the CLI command ``onevnet update`` or Sunstone.
-* Make sure that the NIC model is set to ``virtio``. This setting can be added as a default in ``/etc/one/vmm_exec/vmm_exec_kvm.conf``.
+
+An example of a Virtual Network template for the previous configuration could be:
+
+.. code:: bash
+
+    NAME = "DPDK_VSBC_HA2"
+    BRIDGE = "onebr.dpdk"
+    BRIDGE_TYPE = "openvswitch_dpdk"
+    SECURITY_GROUPS = "0"
+    VLAN_ID = "1402"
+    VN_MAD = "ovswitch"
+
+    # note there is no PHYDEV, after creation it will show PHYDEV = ""
+
+Using DPDK in your Virtual Machines
+********************************************************************************
+
+The following settings needs to be enabled:
+
+    * Make sure that the NIC model is set to ``virtio``. This setting can be added as a default in ``/etc/one/vmm_exec/vmm_exec_kvm.conf``.
+    * In order to use the vhost-user interface in libvirt hugepages needs to be enabled. OVS reads/write network packages from/to the memory (hugepages) of the guest. The memory access mode **MUST** be shared, and the VM **MUST** configure huge pages.
+
+An example of a Virtual Machine template for the previous configuration could be:
+
+.. code:: bash
+
+    NAME   = "DPDK_VM"
+    MEMORY = "4096"
+
+    NIC = [ NETWORK = "DPDK_VSBC_HA2" ]
+
+    TOPOLOGY = [
+       CORES = "2",
+       HUGEPAGE_SIZE = "1024",
+       MEMORY_ACCESS = "shared",
+       PIN_POLICY    = "THREAD",
+       SOCKETS = "1",
+       THREADS = "2"
+    ]
 
 You can verify that the VMs are using the vhost interface by looking at their domain definition in the Host. You should see something like:
 
@@ -202,11 +399,14 @@ And the associated port in the bridge using the qemu vhost interface:
 
 .. code:: bash
 
-    Bridge br0
+    Bridge onebr.dpdk
+        datapath_type: netdev
         Port "one-10-0"
+            tag: 1420
             Interface "one-10-0"
                 type: dpdkvhostuserclient
                 options: {vhost-server-path="/var/lib/one//datastores/0/10/one-10-0"}
+    ...
 
 .. _openvswitch_qinq:
 
