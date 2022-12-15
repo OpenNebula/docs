@@ -14,13 +14,12 @@ First, a server should be configured to recieve and store these backup files.  T
 Perform the following steps:
 
 * Create a user on the rsync server with permissions to access the datastore directory (default: `/var/lib/one/datastores/<ds_id>`)
-* Copy the private and public SSH keys from the front-end oneadmin user to the nodes' oneadmin user
-* Copy the public SSH key also to the `RSYNC_USER`'s `~/.ssh/authorized_keys` file
+* Copy the public SSH keys from each node to the `RSYNC_USER`'s `~/.ssh/authorized_keys` file on the `RSYNC_HOST`
 * Verify that the front-end and ALL hosts can SSH to the `RSYNC_HOST` as the `RSYNC_USER` without a password.
 * Create the folder `/var/lib/one/datastores` on the rsync server, and change ownership to the `RSYNC_USER`.
 * (Optional) Mount a storage volume to `/var/lib/one/datastores`, or to the Datastore ID directory under that.
 
-Step 1. First step
+Step 1. Create OpenNebula Datastore
 ================================================================================
 
 Once the rsync server is prepared to recieve backup files from all of the nodes, we just need to create a datastore detailing the user and host:
