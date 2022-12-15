@@ -9,7 +9,7 @@ What's New in 6.6
 .. image:: /images/release_66_pic.jpg
     :align: center
 
-The second addition to OpenNebula is a fully revamped Backup solution, based on datastore backends instead of private marketplace as the previous solution offered, and a new type of image to represent datastores. This allows you to implement tier-based backup policies, levarage access control and quota systems, as well as support for different storage and backup technologies. In OpenNebula 6.6 it is possible to perform incremental backups based on two provided backup drivers, restic (which includes features like compression, bandwidth limit, concurrent connections to a backend, among others) and rsync. This functionality is exposed through the OpenNebula API, the CLI and also Sunstone.
+The second addition to this version of OpenNebula is a fully revamped Backup solution, based on datastore backends instead of private marketplace as the previous solution offered, and a new type of image to represent datastores. This allows you to implement tier-based backup policies, leverage access control and quota systems, as well as support for different storage and backup technologies. In OpenNebula 6.6 it is possible to perform incremental backups based on two provided backup drivers, restic (which includes features like compression, bandwidth limit, concurrent connections to a backend, among others) and rsync. This functionality is exposed through the OpenNebula API, the CLI and also Sunstone.
 
 This new release includes a revamped network model for OneGate, that allows for transparent communication of Virtual Machines guest OS with the OpenNebula front-end. No need to make sure that your front-end can communicate with every virtual network in order to use this powerful functionality! Push your application metrics to OpenNebula and define elasticity rules to react to demand changes automatically. Also worth mentioning is the new ability to update virtual networks, applying automatically the changes to all running Virtual Machines with network interfaces attached to said virtual networks. No more reattaching NICs or relaunching VMs to change a network parameter, very useful (or so we think).
 
@@ -36,7 +36,6 @@ OpenNebula Core
 - For security reason restrict paths in ``CONTEXT/FILES`` by ``CONTEXT_RESTRICTED_DIRS`` (with exceptions in ``CONTEXT_SAFE_DIRS``) configured in :ref:`oned.conf <oned_conf>`
 - :ref:`PCI Passthrough devices can be selected by its address <pci_usage>` to support use cases that requires specific devices to be passed to the virtual machine. This by-passes the PCI scheduler of OpenNebula.
 - `Enforce VNC password length up to 8 symbols, since the VNC password can never be more than 8 characters long in libvirt <https://github.com/OpenNebula/one/issues/5842>`__.
-- `Support for block context devices <https://github.com/OpenNebula/one/issues/5681>`__. System Datastore can include ``CONTEXT_DISK_TYPE`` to specify the type (``FILE`` or ``BLOCK``) of the context CD's.
 
 Networking
 ================================================================================
@@ -113,11 +112,10 @@ Other Issues Solved
 - `Fix LDAP driver to work with Ruby 2.0 <https://github.com/OpenNebula/one/commit/33552502055e9893fa3e1bf5c86062d7e14390f0>`__.
 - `Fix regex in the fix_dir_slashes function for bash datastore/transfer manager drivers <https://github.com/OpenNebula/one/issues/5668>`__.
 - `Fix for LDAP user without password <https://github.com/OpenNebula/one/issues/5676>`__.
+- `Fix ceph clone operation <https://github.com/OpenNebula/one/commit/af5044f2676b4bfda0845dc9873db2b87bb15b72>`__.
 - `Fix NETRX and NETTX for accounting <https://github.com/OpenNebula/one/issues/5640>`__.
 - `Fix lograte could last long due to compression <https://github.com/OpenNebula/one/issues/5328>`__.
 - `Fix overwriting logs <https://github.com/OpenNebula/one/issues/6034>`__.
-- `Fix oned termination process if initialization fails <https://github.com/OpenNebula/one/issues/5801>`__.
-- `Fix ceph clone operation <https://github.com/OpenNebula/one/commit/af5044f2676b4bfda0845dc9873db2b87bb15b72>`__.
 
 Features Backported to 6.4.x
 ================================================================================
