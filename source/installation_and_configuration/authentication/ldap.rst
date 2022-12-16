@@ -9,7 +9,7 @@ The LDAP Authentication allows users to have the same credentials as in LDAP, ef
 Requirements
 ============
 
-You need to have your own LDAP server in the infrastucture. OpenNebula doesn't contain or configure any LDAP server, it only connects to an existing one. Also, it doesn't create, delete or modify any entry in the LDAP server it connects to. The only requirement is the ability to connect to an already running LDAP server, perform a successful **ldapbind** operation, and have a user able to perform searches of users. Therefore no special attributes or values are required in the LDIF entry of the authenticating user.
+You need to have your own LDAP server in the infrastructure. OpenNebula doesn't contain or configure any LDAP server, it only connects to an existing one. Also, it doesn't create, delete or modify any entry in the LDAP server it connects to. The only requirement is the ability to connect to an already running LDAP server, perform a successful **ldapbind** operation, and have a user able to perform searches of users. Therefore no special attributes or values are required in the LDIF entry of the authenticating user.
 
 Configuration
 =============
@@ -158,10 +158,10 @@ The structure is a hash where any key different to ``:order`` will contain the c
 |                            | when using LDAP. Make sure you configure        |
 |                            | ``user_group_field`` and ``group_field``        |
 +----------------------------+-------------------------------------------------+
-| ``:group_admin_group_dn:`` | Extention for group mapping.                    |
-|                            | DN of a group. If user is member of that group  |
-|                            | in LDAP, this user will be a group admin of all |
-|                            | mapped LDAP groups in ONE.                      |
+| ``:group_admin_group_dn:`` | Extension for group mapping.                    |
+|                            | DN of a group. If a user is a member of that    |
+|                            | group in LDAP, this user will be a group admin  |
+|                            | of all mapped LDAP groups in ONE.               |
 |                            |                                                 |
 |                            | Automatic assignment of group admins can be     |
 |                            | disabled by changing                            |
@@ -193,7 +193,7 @@ where
 -  ``<user_dn>`` the DN of the user in the LDAP service
 -  ``ldap_password`` is the password of the user in the LDAP service
 
-Alternatively a user can generate an authentication token using the ``oneuser login`` command, so there is no need to keep the LDAP password in a plain file. Simply input the LDAP password when requested. More information on the management of login tokens and the ``$ONE_AUTH`` file can be found in :ref:`Managing Users Guide<manage_users>`.
+Alternatively a user can generate an authentication token using the ``oneuser login`` command, so there is no need to keep the LDAP password in a plain file. Simply input the LDAP password when requested. More information on the management of login tokens and the ``$ONE_AUTH`` file can be found in the :ref:`Managing Users Guide<manage_users>`.
 
 Update Existing Users to LDAP
 -----------------------------
@@ -282,7 +282,7 @@ and in the OpenNebula group template you can define two mappings, one for each s
 Group Admin. Mapping
 --------------------
 
-Each group in OpenNebula can have its :ref:`admins <manage_groups_permissions>` that have administrative privileges for the group. Also this attribute could be controlled by the LDAP driver. For this purpose there is an option: ``:group_admin_group_dn:``. This needs be set to a LDAP DN of a group. If a user is a member of that group in LDAP, this user will be a group admin of all mapped LDAP groups in ONE.
+Each group in OpenNebula can have its :ref:`admins <manage_groups_permissions>` that have administrative privileges for the group. Also this attribute could be controlled by the LDAP driver. For this purpose there is an option: ``:group_admin_group_dn:``. This needs to be set to a LDAP DN of a group. If a user is a member of that group in LDAP, this user will be a group admin of all mapped LDAP groups in ONE.
 
 
 Enabling LDAP auth in Sunstone
@@ -305,9 +305,9 @@ To automatically encode credentials as explained in the :ref:`DN's with special 
 Multiple LDAP servers: Order vs. Regex Match
 ============================================
 
-Before we explained how a user can be searched within the multiple LDAP serves that are given in the ``:order`` section in the config file.
+Before we explained how a user can be searched within the multiple LDAP servers that are given in the ``:order`` section in the config file.
 
-There is an another, mutually exclusive, option for searching users in multiple LDAP servers. This option tries to match the login with the regular expression which corresponds to the LDAP server.
+There is another, mutually exclusive, option for searching users in multiple LDAP servers. This option tries to match the login with the regular expression which corresponds to the LDAP server.
 
 Example
 -------
@@ -316,7 +316,7 @@ Let's say that there are two sub-organizations, `A` and `B`, within your company
 * Organization A, using LDAP server: ``ldap-a.example.com`` and logins look like ``joe@a.example.com``
 * Organization B, using LDAP server: ``ldap-b.example.com`` and logins look like ``carl@b.example.com``
 
-And you want users whose login ends with ``a.example.com`` to be searched in ``ldap-a.example.com`` and the same for users from sub-org ``B``. What you need to do is to replace the ``:order`` section in the ldap confing with the following setup:
+And you want users whose login ends with ``a.example.com`` to be searched in ``ldap-a.example.com`` and the same for users from sub-org ``B``. What you need to do is to replace the ``:order`` section in the ldap config with the following setup:
 
 .. code-block:: yaml
 
