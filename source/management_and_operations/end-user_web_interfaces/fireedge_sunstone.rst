@@ -7,7 +7,9 @@ Using FireEdge Sunstone
 Overview
 ================================================================================
 
-**FireEdge Sunstone** is the new state-of-the-art web interface, fully featured for VM and VM Template management for end users. This interface is delivered by the :ref:`FireEdge server <fireedge_setup>`, and it is its main interface, meaning that it will redirect to Sunstone when contacted in the ``http://<OPENNEBULA-FRONTEND>:2616/`` address.
+**FireEdge Sunstone** is the new generation OpenNebula web interface, fully featured for VM and VM Template management and with other :ref:`sections <fireedge_sections>` ready covering most functionality for end users.
+
+This interface is delivered by the :ref:`FireEdge server <fireedge_setup>`, and it is its main interface, meaning that it will redirect to Sunstone when contacted in the ``http://<OPENNEBULA-FRONTEND>:2616/`` address.
 
 Configuration
 ================================================================================
@@ -17,13 +19,15 @@ To configure FireEdge Sunstone, there are several options to consider, and they 
 Usage
 ================================================================================
 
-This completely fresh user experience is available by accessing ``http://<OPENNEBULA-FRONTEND>:2616``. On the left menu, the users can find the available tabs to manage resources, as described in the tabs section.
+This completely fresh user experience is available by accessing ``http://<OPENNEBULA-FRONTEND>:2616``. On the left menu, the users can find the available tabs to manage resources, as described in the :ref:`Sections <fireedge_setup>` part of this guide.
 
 Sunstone users can change their current view from the top-right dropdown menu:
 
 |fireedge_sunstone_change_view_dropdown|
 
 They can also configure several options from the :ref:`settings tab <fireedge_sunstone_settings_tab>`.
+
+.. _fireedge_sections:
 
 Sections
 ================================================================================

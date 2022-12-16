@@ -9,5 +9,4 @@ Virtual Machine Management
    Virtual Machine Templates <vm_templates>
    Virtual Machine Instances <vm_instances>
    Using Container Images <container_images_usage>
-   Using FireEdge Sunstone <fireedge_sunstone>
    vCenter Virtual Machines <vcenter_vms>
