@@ -36,7 +36,7 @@ OpenNebula Core
 - For security reason restrict paths in ``CONTEXT/FILES`` by ``CONTEXT_RESTRICTED_DIRS`` (with exceptions in ``CONTEXT_SAFE_DIRS``) configured in :ref:`oned.conf <oned_conf>`
 - :ref:`PCI Passthrough devices can be selected by its address <pci_usage>` to support use cases that requires specific devices to be passed to the Virtual Machine. This bypasses the PCI scheduler of OpenNebula.
 - `Enforce VNC password length up to 8 symbols, since the VNC password can never be more than 8 characters long in libvirt <https://github.com/OpenNebula/one/issues/5842>`__.
-- `Support for block context devices <https://github.com/OpenNebula/one/issues/5681>`__. System Datastore can include ``CONTEXT_DISK_TYPE`` to specify the type (``FILE`` or ``BLOCK``) of the context CD's.
+- `Support for block context devices <https://github.com/OpenNebula/one/issues/5681>`__. System Datastore can include ``CONTEXT_DISK_TYPE`` to specify the type (``FILE`` or ``BLOCK``) of the context CDs.
 
 Networking
 ================================================================================
