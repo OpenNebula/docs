@@ -55,7 +55,7 @@ Storage & Backups
     + Support for quotas
     + Backup scheduling and resource control of backup operations
     + One-shot backups
-    + Improved restore operation based
+    + Improved restore operation
     + Multiple storage drivers for different backup technologies: :ref:`Restic (EE) <vm_backups_restic>` and :ref:`rsync <vm_backups_rsync>`
 
 Ruby Sunstone
@@ -83,7 +83,7 @@ OneGate
 CLI
 ================================================================================
 - `New CLI command 'onevm nic-update' to live update Virtual Machine NIC <https://github.com/OpenNebula/one/issues/5529>`__.
-- `New --force flag for image delete. Use the flag in case of error from driver or to delete locked image <https://github.com/OpenNebula/one/issues/5925>`__.
+- `New --force flag for image delete. Use the flag in case of driver error or to delete locked image <https://github.com/OpenNebula/one/issues/5925>`__.
 - `VMs in DONE state can be updated with 'onedb change-body' command <https://github.com/OpenNebula/one/issues/5975>`__.
 
 Prometheus & Grafana (EE)
