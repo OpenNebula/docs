@@ -17,10 +17,9 @@ There is also a series of improvements in the PCI Passthrough functionality, ori
 
 OpenNebula 6.6 is named after the `Electra Nebula <https://astronomy.com/-/media/Files/PDF/web%20extras/2014/02/ImagingVanDenBerghObjects.pdf>`__, which is the reflection nebula / dust cloud (coded "vdB 20") associated with the Electra star (Taurus constellation -> Pleiades cluster).
 
-This is the release candidate (RC) for 6.6, aimed at encouraging testers and developers to try the new features. All the functionality is present and only bug fixes will happen between this release and the final 6.6. Please check the :ref:`known issues <known_issues>` before submitting an issue through GitHub. Also note that, as this is a development version, there is no migration path from the previous stable version (6.4.x) nor migration path to the final stable version (6.6.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/55>`__.
+OpenNebula 6.6 'Electra' is considered to be a stable release and as such it is available to update production environments.
 
-We’d like to thank all the people that support the project, OpenNebula is what it is thanks to its community! Please keep rocking.
-
+We’d like to thank all the :ref:`people that support the project <acknowledgements>`, OpenNebula is what it is thanks to its community! Please keep rocking.
 
 ..
   Conform to the following format for new features.
