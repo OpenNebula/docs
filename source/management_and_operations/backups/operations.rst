@@ -14,8 +14,6 @@ OpenNebula supports two backup types:
 - **Full**, each backup contains a full copy of the VM disks. Libvirt version >= 5.5 is required.
 - **Incremental**, each backup contains only the changes since the last backup. Libvirt version >= 7.7 is required.
 
-.. important:: Incremental backups are only available for KVM and qcow2 disks.
-
 The Backup Process
 --------------------------------------------------------------------------------
 VM backups can be taken live or while the VM is powered-off, the operation comprises three steps:
@@ -24,10 +22,14 @@ VM backups can be taken live or while the VM is powered-off, the operation compr
 - *Backup*: Full disk copies (or increments) are uploaded to the backup server. In this step, OpenNebula will use the specific datastore drivers for the backup system.
 - *Post-backup*: Cleans any temporal file in the hypervisor.
 
-.. important:: live backups are only available for KVM
-
 .. note:: In order to save space in the backup system, disk backups are stored always in Qcow2 format.
 
+Limitations
+============
+- Incremental backups are only available for KVM and qcow2 disks
+- Live backups are only supported for KVM
+- Attaching a disk to a VM that had an incremental backup previosly made will yield an error on the next backup
+- Incremental backups on VMs with disk snapshots is not supported
 
 Preparing VMs for Backups
 ================================================================================
@@ -53,7 +55,7 @@ You can configure backups in the VM Template, so every VM created will have a pr
       KEEP_LAST = "4",
       MODE = "INCREMENT" ]
 
-Equivalently, you can use Suntone, simply go to the Backup tab:
+Equivalently, you can use Sunstone, simply go to the Backup tab:
 
 |template_cfg|
 
@@ -97,7 +99,7 @@ You should be able to see the configuration of the VM by showing its information
    LAST_INCREMENT_ID="-1"
    MODE="INCREMENT"
 
-Equivalently you can use Suntone, simply go to the VM and the Conf tab:
+Equivalently you can use Sunstone, simply go to the VM and the Conf tab:
 
 |vm_cfg|
 
@@ -207,7 +209,7 @@ After the backup is complete you should see: the backup information in the VM de
       0  -1 F 172M      12/01 13:36:56 25f4b298
       1   0 I 0M        12/01 14:22:46 6968545c
 
-The ``SOURCE`` attribute in the backup images (and increments) is an opaque reference to the backup in the backup system used by the datastore. For restic this correspond to the snaphost ID, for example:
+The ``SOURCE`` attribute in the backup images (and increments) is an opaque reference to the backup in the backup system used by the datastore. For restic this correspond to the snapshot ID, for example:
 
 .. prompt:: bash $ auto
 
@@ -224,7 +226,7 @@ The ``SOURCE`` attribute in the backup images (and increments) is an opaque refe
 Scheduling Backups
 --------------------------------------------------------------------------------
 
-You can program periodic backups :ref:`through the schedule actions interface <schedule_actions>`. Note that in this case, you have to pass the target datastore ID as argument of the action. You can create a periodic backup with the ``--schedule`` option in the CLI, or through Sunsonte in the Schedule Action tab:
+You can program periodic backups :ref:`through the schedule actions interface <schedule_actions>`. Note that in this case, you have to pass the target datastore ID as argument of the action. You can create a periodic backup with the ``--schedule`` option in the CLI, or through Sunstone in the Schedule Action tab:
 
 |vm_schedule|
 
@@ -233,7 +235,7 @@ You can program periodic backups :ref:`through the schedule actions interface <s
 Reference: Scheduler Backup Attributes
 --------------------------------------------------------------------------------
 
-The schedule actions are in contol of the scheduler. You can tune the number of concurrent backup operations with the following parameters in ``/etc/one/sched.conf``
+The schedule actions are in control of the scheduler. You can tune the number of concurrent backup operations with the following parameters in ``/etc/one/sched.conf``
 
 +----------------------+----------------------------------------------------------------------------------------------+
 | Attribute            | Description                                                                                  |
@@ -291,7 +293,7 @@ The complete list of attributes removed from a template described in the table b
    :header-rows: 1
 
    * - Attribute
-     - Subattribute
+     - Sub-attribute
    * - ``DISK``
      - ``ALLOW_ORPHANS``, ``CLONE``, ``CLONE_TARGET``, ``CLUSTER_ID``, ``DATASTORE``, ``DATASTORE_ID``
    * -

@@ -78,7 +78,7 @@ Write down the datastore ID (100) in our case, we'll need it in the next step. Y
 Step 2. [Front-end] Setup a Restic repository
 ================================================================================
 
-Now it is time to boostrap the restic repo. For convenience we'll set a couple of environment variables, **be sure to use the IP of the server and the datastore ID of the backup datastore**. In our example we will use 192.168.1.8 and 100, respectively:
+Now it is time to bootstrap the restic repo. For convenience we'll set a couple of environment variables, **be sure to use the IP of the server and the datastore ID of the backup datastore**. In our example we will use 192.168.1.8 and 100, respectively:
 
 .. prompt:: bash $ auto
 

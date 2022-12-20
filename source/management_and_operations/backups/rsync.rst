@@ -9,7 +9,7 @@ RSync is an open source file transfer utility that is included with most distrib
 Step 0. Setup the backup server
 ================================================================================
 
-First, a server should be configured to recieve and store these backup files.  The rsync backup server can be any server which is accessible from the oneadmin user on the hosts.  This user on the nodes should have their key placed on the rsync server under the user specified in the rsync backup datastore configuration ( `~/.ssh/authorized_keys` by default ).
+First, a server should be configured to receive and store these backup files.  The rsync backup server can be any server which is accessible from the oneadmin user on the hosts.  This user on the nodes should have their key placed on the rsync server under the user specified in the rsync backup datastore configuration ( `~/.ssh/authorized_keys` by default ).
 
 Perform the following steps:
 
@@ -22,7 +22,7 @@ Perform the following steps:
 Step 1. Create OpenNebula Datastore
 ================================================================================
 
-Once the rsync server is prepared to recieve backup files from all of the nodes, we just need to create a datastore detailing the user and host:
+Once the rsync server is prepared to receive backup files from all of the nodes, we just need to create a datastore detailing the user and host:
 
 .. prompt:: bash $ auto
 
