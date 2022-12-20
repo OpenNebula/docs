@@ -6,6 +6,8 @@ versions:
   - http://docs.opennebula.io/6.4
 - - "Devel"
   - http://docs.opennebula.io/devel
+- - "6.6"
+  - http://docs.opennebula.io/6.6
 - - "6.4"
   - http://docs.opennebula.io/6.4
 - - "6.2"
