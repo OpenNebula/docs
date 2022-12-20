@@ -282,8 +282,6 @@ To add one, first it's necessary to implement the filter in the table columns. E
     filter: 'includesValue',
   }
 
-.. todo:: Labels aren't supported yet.
-
 Information Tabs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -359,7 +357,7 @@ See some examples:
 
 SSO (Single sign-on)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-With this function you can enter the FireEdge from the browser without logging in. For this you need to send in the URL the externalToken parameter with the JWT of the user. 
+With this function you can enter the FireEdge from the browser without logging in. For this you need to send in the URL the externalToken parameter with the JWT of the user.
 
 For example:
 
@@ -377,4 +375,4 @@ For example:
         $ -d '{ "user": "username", "token": "password" }' \
         $ http://{fireedge}/fireedge/api/auth
 
-       {"id":200,"message":"OK","data":{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIwIiwiYXVkIjoic2VydmVyYWRtaW46b25lYWRtaW4iLCJqdGkiOiJ2SU85ME91VUU5b1RNaXRRVytLYmNqRXZlS252Qnc5c2Ura1pPNlVRdmRjPSIsImlhdCI6MTY1MDI3NTQzMC45MzcsImV4cCI6MTY1MDI4NjIzMH0.AqJGLbCNG470PbjoI4yLqvKNOl1FR4Ui6YlK6pSZddQ","id":"0"}}  
+       {"id":200,"message":"OK","data":{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIwIiwiYXVkIjoic2VydmVyYWRtaW46b25lYWRtaW4iLCJqdGkiOiJ2SU85ME91VUU5b1RNaXRRVytLYmNqRXZlS252Qnc5c2Ura1pPNlVRdmRjPSIsImlhdCI6MTY1MDI3NTQzMC45MzcsImV4cCI6MTY1MDI4NjIzMH0.AqJGLbCNG470PbjoI4yLqvKNOl1FR4Ui6YlK6pSZddQ","id":"0"}}
