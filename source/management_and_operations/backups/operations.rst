@@ -11,18 +11,23 @@ Backup Types
 --------------------------------------------------------------------------------
 OpenNebula supports two backup types:
 
-- **Full**, each backup contains a full copy of the VM disks.
-- **Incremental**, each backup contains only the changes since the last backup. **Important**: Incremental backups are only available for KVM and Qcow2 disks.
+- **Full**, each backup contains a full copy of the VM disks. Libvirt version >= 5.5 is required.
+- **Incremental**, each backup contains only the changes since the last backup. Libvirt version >= 7.7 is required.
+
+.. important:: Incremental backups are only available for KVM and qcow2 disks.
 
 The Backup Process
 --------------------------------------------------------------------------------
-VM backups can be taken live (only for KVM virtual machines) or while the VM is powered-off, the operation comprises three steps:
+VM backups can be taken live or while the VM is powered-off, the operation comprises three steps:
 
 - *Pre-backup*: Disks (or increments) are prepared for backup. When the VM is running the filesystems of the guest are frozen (see below) and temporal disks are created so the VM can continue its normal operation. Note: backups are taken at the same time for all the VM disks (qcow2/raw images) to guarantee **crash consistent backups**.
 - *Backup*: Full disk copies (or increments) are uploaded to the backup server. In this step, OpenNebula will use the specific datastore drivers for the backup system.
 - *Post-backup*: Cleans any temporal file in the hypervisor.
 
-**Note**: In order to save space in the backup system, disk backups are stored always in Qcow2 format.
+.. important:: live backups are only available for KVM
+
+.. note:: In order to save space in the backup system, disk backups are stored always in Qcow2 format.
+
 
 Preparing VMs for Backups
 ================================================================================

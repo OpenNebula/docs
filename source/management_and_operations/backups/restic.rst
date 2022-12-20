@@ -8,7 +8,7 @@ Backup Datastore: Restic (EE)
 
 If you are using the enterprise edition (EE) of OpenNebula, the right version of restic has been already downloaded and installed in your system as a dependency. In this guide we will use the following terminology (introduce by restic):
 
-- *Repository*: This is the storage volume where the disk images backups will be stored. Restic creates an specific interal structure to store the backups efficiently. The restic driver access to the repository through the sftp. protocol.
+- *Repository*: This is the storage volume where the disk images backups will be stored. Restic creates an specific interval structure to store the backups efficiently. The restic driver access to the repository through the sftp. protocol.
 
 - *Snapshot*: It represents a backup and it is referenced by an unique hash (e.g. ``eda52f34``). Each snapshot stores a VM backup and includes all of its disks and the metadata description of the VM at the time you make the backup.
 
