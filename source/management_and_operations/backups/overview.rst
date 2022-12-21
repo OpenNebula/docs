@@ -15,9 +15,9 @@ How Should I Read This Chapter
 
 Before reading this chapter, you should have already installed your :ref:`Frontend <frontend_installation>`, the :ref:`KVM Hosts <kvm_node>` and have an OpenNebula cloud up and running with at least one virtualization node.
 
-This Chapter is structured as follows: 
+This Chapter is structured as follows:
 
-  - First, you will learn how to setup a datastore to save your VM backups, :ref:`for the restic backend <vm_backups_restic>` and :ref:`for the rsync datastore <vm_backups_rsync>`. 
+  - First, you will learn how to setup a datastore to save your VM backups, :ref:`for the restic backend <vm_backups_restic>` and :ref:`for the rsync datastore <vm_backups_rsync>`.
   - And then, you will find out :ref:`how to perform and schedule VM backups, as well as to restore them<vm_backups_operations>`.
 
 Hypervisor & Storage Compatibility
@@ -47,4 +47,4 @@ Performing a VM backup may require some support from the hypervisor or the disk 
 |  vCenter   | vCenter                | Not supported                       |
 +------------+------------------------+------+-----------+------+-----------+
 
-\ :sup:`*` Means any datastored based on files with the given format, i.e. NFS/SAN or SSH
+\ :sup:`*` Means any datastore based on files with the given format, i.e. NFS/SAN or SSH
