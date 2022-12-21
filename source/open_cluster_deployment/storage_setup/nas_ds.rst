@@ -39,17 +39,19 @@ Create System Datastore
 
 To create a new System Datastore, you need to set following (template) parameters:
 
-+---------------+-------------------------------------------------+
-|   Attribute   |                   Description                   |
-+===============+=================================================+
-| ``NAME``      | Name of datastore                               |
-+---------------+-------------------------------------------------+
-| ``TYPE``      | ``SYSTEM_DS``                                   |
-+---------------+-------------------------------------------------+
-| ``TM_MAD``    | ``shared`` for shared transfer mode             |
-|               +-------------------------------------------------+
-|               | ``qcow2`` for qcow2 transfer mode               |
-+---------------+-------------------------------------------------+
++-----------------+------------------------------------------------------+
+|   Attribute     |                   Description                        |
++=================+======================================================+
+| ``NAME``        | Name of datastore                                    |
++-----------------+------------------------------------------------------+
+| ``TYPE``        | ``SYSTEM_DS``                                        |
++-----------------+------------------------------------------------------+
+| ``TM_MAD``      | ``shared`` for shared transfer mode                  |
+|                 +------------------------------------------------------+
+|                 | ``qcow2`` for qcow2 transfer mode                    |
++-----------------+------------------------------------------------------+
+| ``BRIDGE_LIST`` | Space separeted list of hosts with system DS mounted |
++-----------------+------------------------------------------------------+
 
 This can be done either in Sunstone or through the CLI; for example, to create a System Datastore using the shared mode simply enter:
 
