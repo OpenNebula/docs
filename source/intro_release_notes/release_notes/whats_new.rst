@@ -14,16 +14,7 @@ Prometheus
 .. image:: /images/release_66_pic.jpg
     :align: center
 
-Backups
-=========
-
 The second addition to this version of OpenNebula is a fully revamped Backup solution, now based on datastore Back-ends instead of private marketplace as offered by the previous solution, and a new type of image to represent datastores. This allows you to implement tier-based backup policies, leverage access control and quota systems, as well as support for different storage and backup technologies. In OpenNebula 6.6 it is possible to perform incremental backups based on two provided backup drivers: `restic <https://github.com/restic/restic>`__  (which includes features like compression, bandwidth limit, concurrent connections to a backend, among others) and `rsync <https://linux.die.net/man/1/rsync>`__ . This functionality is exposed through the OpenNebula API, the CLI, and also Sunstone.
-
-.. image:: /images/backups_fireedge_VM.png
-    :align: center
-
-More Features
-==============
 
 This new release includes a revamped network model for OneGate that allows for transparent communication of Virtual Machines guest OS with the OpenNebula Front-end. No need to make sure that your Front-end can communicate with every virtual network in order to use this powerful functionality! Push your application metrics to OpenNebula and define elasticity rules to react to demand changes automatically. Also worth mentioning is the new ability to update virtual networks, automatically applying the changes to all running Virtual Machines with network interfaces attached to said virtual networks. No more reattaching NICs or relaunching VMs to change a network parameter — very useful, we think.
 

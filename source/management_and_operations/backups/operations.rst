@@ -30,6 +30,7 @@ Limitations
 - Live backups are only supported for KVM
 - Attaching a disk to a VM that had an incremental backup previosly made will yield an error on the next backup
 - Incremental backups on VMs with disk snapshots is not supported
+- A reset operation `--reset` is required to recreate a new incremental chain
 
 Preparing VMs for Backups
 ================================================================================
