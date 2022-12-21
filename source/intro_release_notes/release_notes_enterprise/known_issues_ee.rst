@@ -80,3 +80,9 @@ KVM - Redefine Snapshot
 ================================================================================
 
 Depending on the number of snapshots and their IDs, the driver might fail redefining the snapshots (e.g after resuming or migrating the VM). More information can be found `here <https://github.com/OpenNebula/one/issues/5991>`__.
+
+
+WHMCS - Client Users
+================================================================================
+
+When the first client is created in WHMCS and purchases a product, following actions will fail due to targeting ID 0 (oneadmin).  Further client accounts past the first one will work as expected.
