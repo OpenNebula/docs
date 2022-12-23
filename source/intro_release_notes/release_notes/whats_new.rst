@@ -20,7 +20,7 @@ This new release includes a revamped network model for OneGate that allows for t
 
 There is also a series of improvements in the PCI Passthrough functionality, oriented to squeeze the optimal performance out of your iron: improved integration with libvirt/QEMU (only activate the relevant virtual function on attach), predictable PCI addresses, configuration of Virtual Functions through IP link, support for attach and detach NIC with PCI attributes, and many others. Of course, it comes with API, CLI, and Sunstone support. And speaking of Sunstone, the team at OpenNebula is giving their all to add functionality to the new Sunstone interface served by FireEdge, including management of Hosts, Virtual Networks, Security Groups, Images, Files, Backups, and Marketplace Apps.
 
-OpenNebula 6.6 is named after the `Electra Nebula <https://astronomy.com/-/media/Files/PDF/web%20extras/2014/02/ImagingVanDenBerghObjects.pdf>`__, which is the reflection nebula / dust cloud (coded "vdB 20") associated with the Electra star (Taurus constellation -> Pleiades cluster).
+OpenNebula 6.6 is named after the `Electra Nebula <https://astronomy.com/-/media/Files/PDF/web%20extras/2014/02/ImagingVanDenBerghObjects.pdf>`__, the reflection dust cloud (coded “vdB 20”) associated with the Electra star, a blue-white giant star in the constellation of Taurus and the third-brightest star in the Pleiades cluster.
 
 OpenNebula 6.6 'Electra' is considered to be a stable release and as such it is available to update production environments.
 
