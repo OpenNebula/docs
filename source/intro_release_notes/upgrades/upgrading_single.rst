@@ -155,7 +155,7 @@ RHEL
 
 .. prompt:: bash $ auto
 
-    $ yum upgrade opennebula opennebula-sunstone opennebula-gate opennebula-flow opennebula-provision pennebula-fireedge python3-pyone
+    $ yum upgrade opennebula opennebula-sunstone opennebula-gate opennebula-flow opennebula-provision opennebula-fireedge python3-pyone
 
 .. important::
 
