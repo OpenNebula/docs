@@ -136,22 +136,22 @@ Locking Resources
 
 OpenNebula can lock actions on a resource to prevent not intended operations, e.g.  to not accidentally delete a VM. By default OpenNebula will lock all operations, but you can provide a fine grain lock by specifying the access level required by the action:
 
-* **USE/ALL**: locks all possible actions.
-* **MANAGE**: locks manage and admin actions.
-* **ADMIN**: locks admin actions.
+    - **USE**: locks all possible actions. You can use **ALL** as an equivalent keyword.
+    - **MANAGE**: locks manage and admin actions.
+    - **ADMIN**: locks admin actions.
 
 The following resources can be locked:
 
--  ``VM``
--  ``NET``
--  ``IMAGE``
--  ``TEMPLATE``
--  ``DOCUMENT``
--  ``VROUTER``
--  ``MARKETPLACEAPP``
--  ``HOOK``
--  ``VMGROUP``
--  ``VNTEMPLATE``
+    - ``VM``
+    - ``NET``
+    - ``IMAGE``
+    - ``TEMPLATE``
+    - ``DOCUMENT``
+    - ``VROUTER``
+    - ``MARKETPLACEAPP``
+    - ``HOOK``
+    - ``VMGROUP``
+    - ``VNTEMPLATE``
 
 Example:
 
