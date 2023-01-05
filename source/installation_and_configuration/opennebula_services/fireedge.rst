@@ -61,6 +61,15 @@ The FireEdge server configuration file can be found in ``/etc/one/fireedge-serve
 | ``session_remember_expiration``           | ``3600``                       | JWT expiration time when using remember check box  |
 |                                           |                                | (minutes)                                          |
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``default_zone``                          |                                | Shows the default resources of that zone           |
+|                                           |                                |                                                    |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``default_zone/id``                       | ``0``                          | Id of the zone to which this fireedge belongs      |
+|                                           |                                |                                                    |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``default_zone/name``                     | ``OpenNebula``                 | Name of the zone to which this fireedge belongs    |
+|                                           |                                |                                                    |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
 | ``minimun_opennebula_expiration``         | ``30``                         | Minimum time to reuse previously generated JWTs    |
 |                                           |                                | (minutes)                                          |
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
