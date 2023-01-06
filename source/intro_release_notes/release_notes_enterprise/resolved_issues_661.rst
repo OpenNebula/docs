@@ -12,4 +12,5 @@ The following issues has been solved in 6.6.1:
 
 - `Fix disk RECOVERY_SNAPSHOT_FREQ on template instantiation on Ruby Sunstone <https://github.com/OpenNebula/one/issues/6067>`__.
 - `Fix case sentive on FireEdge endpoints <https://github.com/OpenNebula/one/issues/6051>`__.
-- `Added schedule actions improvements <https://github.com/OpenNebula/one/issues/5974>`__.
+- `Fix multiple minor issues in Sunstone schedule actions forms <https://github.com/OpenNebula/one/issues/5974>`__.
+- `Fix rsync backup driver to make use of RSYNC_USER value defined in the datastore template <https://github.com/OpenNebula/one/issues/6073>`__.
