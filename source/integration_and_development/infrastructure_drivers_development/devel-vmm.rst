@@ -193,7 +193,7 @@ VMM actions, they are the same as the names of the scripts:
 
    -  Response
 
-      -  Success: Deploy id, ex: one-303
+      -  Success: Deploy id, ex: one-303 (for KVM ex: 46206009-0676-44f9-aaf7-3b4813430943 )
       -  Failure: Error message
 
 -  **detach\_disk**: Detaches a DISK from a VM
@@ -226,7 +226,7 @@ VMM actions, they are the same as the names of the scripts:
 
    -  Arguments:
 
-      -  **DOMAIN**: Domain name: one-286
+      -  **DOMAIN**: Domain name: one-286 ( for KVM **DEPLOY_ID**: Deploy id: 46206009-0676-44f9-aaf7-3b4813430943 )
       -  **DESTINATION\_HOST**: Host where to migrate the VM
 
    -  Response
