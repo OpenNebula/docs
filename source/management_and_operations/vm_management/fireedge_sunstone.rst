@@ -9,6 +9,8 @@ Overview
 
 **FireEdge Sunstone** is the new state-of-the-art web interface, fully featured for VM and VM Template management for end users. This interface is delivered by the :ref:`FireEdge server <fireedge_setup>`, and it is its main interface, meaning that it will redirect to Sunstone when contacted in the ``http://<OPENNEBULA-FRONTEND>:2616/`` address.
 
+.. warning:: FireEdge Sunstone is fully functional for VM and VM Template management, but it lacks all the functionality of the traditional Ruby Sunstone. FireEdge Sunstone is still in BETA stage.
+
 Configuration
 ================================================================================
 
