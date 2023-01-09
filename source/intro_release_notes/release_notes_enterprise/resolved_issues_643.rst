@@ -27,7 +27,10 @@ The following issues has been solved in 6.4.3:
 - `Fix filter by label on FireEdge Sunstone <https://github.com/OpenNebula/one/issues/5999>`__.
 - `Fix LDAP driver to work with Ruby 2.0 <https://github.com/OpenNebula/one/commit/33552502055e9893fa3e1bf5c86062d7e14390f0>`__.
 - `Fix regex in the fix_dir_slashes function for bash datastore/transfer manager drivers <https://github.com/OpenNebula/one/issues/5668>`__.
-- `Fix oned termination process if initialization fails <https://github.com/OpenNebula/one/issues/5801>`__.
 - `Fix arguments parsing for onemonitord <https://github.com/OpenNebula/one/issues/5728>`__.
 - `Fix ceph clone operation <https://github.com/OpenNebula/one/commit/af5044f2676b4bfda0845dc9873db2b87bb15b72>`__.
 - `Fix NETRX and NETTX for accounting <https://github.com/OpenNebula/one/issues/5640>`__.
+- `Fix locked resource by admin can be overriden by user lock. Fix lock --all flag <https://github.com/OpenNebula/one/issues/6022>`__.
+- `Fix 'onetemplate instantiate' the persistent flag is not correctly handled <https://github.com/OpenNebula/one/issues/5916>`__.
+- `Enable/disable host resets monitoring timers <https://github.com/OpenNebula/one/issues/6039>`__.
+- `Fix monitoring of NUMA usage <https://github.com/OpenNebula/one/issues/6027>`__.
