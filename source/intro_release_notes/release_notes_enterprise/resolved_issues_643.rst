@@ -32,5 +32,6 @@ The following issues has been solved in 6.4.3:
 - `Fix NETRX and NETTX for accounting <https://github.com/OpenNebula/one/issues/5640>`__.
 - `Fix locked resource by admin can be overriden by user lock. Fix lock --all flag <https://github.com/OpenNebula/one/issues/6022>`__.
 - `Fix 'onetemplate instantiate' the persistent flag is not correctly handled <https://github.com/OpenNebula/one/issues/5916>`__.
-- `Enable/disable host resets monitoring timers <https://github.com/OpenNebula/one/issues/6039>`__.
-- `Fix monitoring of NUMA usage <https://github.com/OpenNebula/one/issues/6027>`__.
+- `Fix Enable/disable host actio to reset monitoring timers <https://github.com/OpenNebula/one/issues/6039>`__.
+- `Fix monitoring of NUMA node memory and hugepages usage <https://github.com/OpenNebula/one/issues/6027>`__.
+- `Fix AR removing on virtual network template <https://github.com/OpenNebula/one/issues/6061>`__.

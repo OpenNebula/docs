@@ -61,6 +61,8 @@ Once the master zone has been updated, you need to export federated tables:
 
     $ onedb backup -v --federated
 
+.. important:: If you are running MySQL or PostgreSQL you will need to supply connection parameters such as ``--user`` and ``--password``, and ``--host`` if the database is not on localhost. Please refer to :ref:`the CLI Reference<cli>` for further information.
+
 Step 5. Restore Federated Backup in Slave Zones
 ================================================================================
 
