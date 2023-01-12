@@ -18,6 +18,7 @@ Drivers - Storage
 
 - **LXC**, XFS formatted disk images are incompatible with the ``fs_lvm`` driver. The image `fails to be mounted <https://github.com/OpenNebula/one/issues/5802>`_ on the host.
 - **OneStor**, recovery snapshots are no longer created after VM live migrate `5922 <https://github.com/OpenNebula/one/issues/5922>`_.
+- **OneStor** does not work on AlmaLinux8 due to missing qcow2 type definition required by newer qemu-img command.
 
 High Availability
 ================================================================================
