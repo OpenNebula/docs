@@ -8,6 +8,8 @@ If you are upgrading from a :ref:`5.12.x <upgrade_512>` installation you only ne
 
 .. _upgrade_512:
 
+.. important:: Since 5.12.13 we used new packages GPG signing key which means also public repository key is new. Pay attention to the difference in the key URL, it is: `repo2.key <https://downloads.opennebula.io/repo/repo2.key>`__
+
 Upgrading from 5.12.x
 ^^^^^^^^^^^^^^^^^^^^^
 
