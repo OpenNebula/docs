@@ -23,7 +23,7 @@ CentOS/RHEL
       name=opennebula
       baseurl=https://<token>@enterprise.opennebula.io/repo/5.12/CentOS/7/x86_64
       enabled=1
-      gpgkey=https://downloads.opennebula.io/repo/repo.key
+      gpgkey=https://downloads.opennebula.io/repo/repo2.key
       gpgcheck=1
       #repo_gpgcheck=1
     EOT
@@ -31,6 +31,15 @@ CentOS/RHEL
 
 Debian/Ubuntu
 -------------
+
+First, add the repository signing GPG key on the Front-end by executing as user ``root``:
+
+.. prompt:: bash # auto
+
+    # wget -q -O- https://downloads.opennebula.io/repo/repo2.key | apt-key add -
+
+and then continue with repository configuration:
+
 
 *Debian 10*
 
