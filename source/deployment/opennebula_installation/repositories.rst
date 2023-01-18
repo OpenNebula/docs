@@ -33,7 +33,7 @@ To add OpenNebula enterprise repository execute the following as root:
 
 **RHEL 8**
 
-.. prompt:: bash # auto
+.. prompt:: bash # auto
 
    cat << "EOT" > /etc/yum.repos.d/opennebula.repo
    [opennebula]
