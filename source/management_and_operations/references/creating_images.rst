@@ -50,6 +50,7 @@ Step 2. Download the Image
 
 You can find the images for distributions in these links. We are going to use the ones from RHEL but the others are here for reference:
 
+* **AlmaLinux**: https://repo.almalinux.org/almalinux/
 * **Debian**: https://cdimage.debian.org/cdimage/openstack/
 * **Ubuntu**: https://cloud-images.ubuntu.com/
 * **Amazon Linux**: https://cdn.amazonlinux.com/os-images/latest/kvm/
@@ -97,30 +98,6 @@ It will be executed in a *chroot* jail of the image root filesystem.
 
 Here are some versions of the script for several distributions. The script name will be ``script.sh``.
 
-CentOS 6
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-    mkdir /tmp/mount
-    mount LABEL=PACKAGES /tmp/mount
-
-    yum install -y epel-release
-
-    # Remove NetworkManager
-    yum remove -y NetworkManager
-
-    # Upgrade util-linux
-    yum upgrade -y util-linux
-
-    # Install OpenNebula context package
-    yum install -y /tmp/mount/one-context*el6*rpm
-
-    # Take out the serial console from kernel configuration
-    # (it can freeze during the boot process).
-    sed -i --follow-symlinks '/^serial/d' /etc/grub.conf
-    sed -i --follow-symlinks 's/console=ttyS[^ "]*//g' /etc/grub.conf
-
 CentOS 7
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -141,7 +118,7 @@ CentOS 7
     # (it can freeze during the boot process).
     sed -i --follow-symlinks 's/console=ttyS[^ "]*//g' /etc/default/grub /etc/grub2.cfg
 
-CentOS 8
+AlmaLinux 8/9
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
@@ -149,10 +126,7 @@ CentOS 8
     mkdir /tmp/mount
     mount LABEL=PACKAGES /tmp/mount
 
-    yum install -y epel-release
-
-    # Remove NetworkManager
-    yum remove -y NetworkManager
+    dnf install -y epel-release
 
     # Install OpenNebula context package
     yum install -y /tmp/mount/one-context*el8*rpm
@@ -162,7 +136,7 @@ CentOS 8
     # (it can freeze during the boot process).
     sed -i --follow-symlinks 's/console=ttyS[^ "]*//g' /etc/default/grub /etc/grub2.cfg
 
-Debian 8
+Debian, Ubuntu
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
@@ -182,54 +156,8 @@ Debian 8
 
     # Take out serial console from kernel configuration
     # (it can freeze during the boot process).
-    sed -i 's/console=ttyS[^ "]*//' /extlinux.conf /boot/extlinux/extlinux.conf
+    sed -i 's/console=ttyS[^ "]*//' /etc/default/grub /etc/default/grub /etc/grub2.cfg
 
-
-Debian 9
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-    # mount cdrom with packages
-    mkdir /tmp/mount
-    mount LABEL=PACKAGES /tmp/mount
-
-    apt-key update
-    apt-get update
-
-    # Remove cloud-init
-    apt-get purge -y cloud-init
-
-    # Install OpenNebula context package
-    dpkg -i /tmp/mount/one-context*deb || apt-get install -fy
-
-    # Take out serial console from kernel configuration
-    # (it can freeze during the boot process).
-    sed -i 's/console=ttyS[^ "]*//' /etc/default/grub /boot/grub/grub.cfg
-    sed -i 's/earlyprintk=ttyS[^ "]*//' /etc/default/grub /boot/grub/grub.cfg
-
-
-Ubuntu
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-    # mount cdrom with packages
-    mkdir /tmp/mount
-    mount LABEL=PACKAGES /tmp/mount
-
-    apt-key update
-    apt-get update
-
-    # Remove cloud-init
-    apt-get remove -y cloud-init
-
-    # Install OpenNebula context package
-    dpkg -i /tmp/mount/one-context*deb || apt-get install -fy
-
-    # Take out serial console from kernel configuration
-    # (it can freeze during the boot process).
-    sed -i 's/console=ttyS[^ "]*//g' /etc/default/grub /boot/grub/grub.cfg
 
 
 Create an Overlay Image
