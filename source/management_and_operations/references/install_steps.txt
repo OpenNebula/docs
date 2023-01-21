@@ -17,7 +17,7 @@ RHEL 8.x (CentOS/AlmaLinux/RockyLinux/Oracle Linux 8.x)
     # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.5.90/one-context-6.5.90-1.el8.noarch.rpm
 
 RHEL 9.x (AlmaLinux/RockyLinux/Oracle Linux 9.x) and Fedora 36,37
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
@@ -38,7 +38,7 @@ OpenSUSE 15 and Tumbleweed
     # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.5.90/one-context-6.5.90-1.suse.noarch.rpm
 
 ALT Linux p9, p10, Sisyphus
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
