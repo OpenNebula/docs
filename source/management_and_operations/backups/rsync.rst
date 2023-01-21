@@ -76,7 +76,7 @@ Reference: rsync Datastore Attributes
 +------------------------+--------------------------------------------------------------------------------------------------------------+
 | ``RSYNC_MAX_WIOPS``    | Run backups in a systemd slice, limiting the max number of write iops                                        |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
-| ``RSYNC_CPU_QUOTA``    | Run backups in a systemd slice with a given cpu quota (percentage). Use > 100% for using several CPUs        |
+| ``RSYNC_CPU_QUOTA``    | Run backups in a systemd slice with a given cpu quota (percentage). Use > 100 for using several CPUs         |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
 
 .. |rsync_create| image:: /images/backup_rsync_create.png

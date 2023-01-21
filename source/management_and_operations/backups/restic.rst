@@ -158,7 +158,7 @@ Reference: Restic Datastore Attributes
 +------------------------+--------------------------------------------------------------------------------------------------------------+
 | ``RESTIC_MAX_WIOPS``   | Run backups in a systemd slice, limiting the max number of write iops                                        |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
-| ``RESTIC_CPU_QUOTA``   | Run backups in a systemd slice with a given cpu quota (percentage). Use > 100% for using several CPUs        |
+| ``RESTIC_CPU_QUOTA``   | Run backups in a systemd slice with a given cpu quota (percentage). Use > 100 for using several CPUs         |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
 | ``RESTIC_BWLIMIT``     | Limit restic upload/download bandwidth                                                                       |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
