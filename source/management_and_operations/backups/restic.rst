@@ -136,6 +136,8 @@ During the operation of the VM backups it may happen that the repository is left
 
 To recover from this error, check there are no ongoing operations and execute ``restic unlock --remove-all`` for the repository.
 
+.. include:: io_limit.rst
+
 Reference: Restic Datastore Attributes
 ================================================================================
 
@@ -148,9 +150,15 @@ Reference: Restic Datastore Attributes
 +------------------------+--------------------------------------------------------------------------------------------------------------+
 | ``RESTIC_PASSWORD``    | Password to access the restic repository                                                                     |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
-| ``RESTIC_IONICE``      | Run restic under a given ionice priority (best-effort, class 2). Value: 0 (high) - 7 (low)                   |
+| ``RESTIC_IONICE``      | Run backups under a given ionice priority (best-effort, class 2). Value: 0 (high) - 7 (low)                  |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
-| ``RESTIC_NICE``        | Run restic under a given nice. Value: -19 (high) to 19 (low)                                                 |
+| ``RESTIC_NICE``        | Run backups under a given nice. Value: -19 (high) to 19 (low)                                                |
++------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_MAX_RIOPS``   | Run backups in a systemd slice, limiting the max number of read iops                                         |
++------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_MAX_WIOPS``   | Run backups in a systemd slice, limiting the max number of write iops                                        |
++------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_CPU_QUOTA``   | Run backups in a systemd slice with a given cpu quota (percentage). Use > 100% for using several CPUs        |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
 | ``RESTIC_BWLIMIT``     | Limit restic upload/download bandwidth                                                                       |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
