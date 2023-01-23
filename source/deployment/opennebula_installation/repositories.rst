@@ -29,6 +29,22 @@ CentOS/RHEL
     EOT
     # yum makecache fast
 
+
+*AlmaLinux/RHEL 8*
+
+.. prompt:: bash # auto
+
+    # cat << EOT > /etc/yum.repos.d/opennebula.repo
+      [opennebula]
+      name=opennebula
+      baseurl=https://<token>@enterprise.opennebula.io/repo/5.12/AlmaLinux/8/x86_64
+      enabled=1
+      gpgkey=https://downloads.opennebula.io/repo/repo2.key
+      gpgcheck=1
+      #repo_gpgcheck=1
+    EOT
+    # yum makecache fast
+
 Debian/Ubuntu
 -------------
 
@@ -68,13 +84,6 @@ and then continue with repository configuration:
 .. prompt:: bash # auto
 
     # echo "deb https://<token>@enterprise.opennebula.io/repo/5.12/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
-    # apt-get update
-
-*Ubuntu 20.10*
-
-.. prompt:: bash # auto
-
-    # echo "deb https://<token>@enterprise.opennebula.io/repo/5.12/Ubuntu/20.10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 .. note::
