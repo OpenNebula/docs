@@ -638,8 +638,9 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 |                                   | than one init script is added, this list contains the scripts to run and the                    |                              |         |
 |                                   | order. Ex. "init.sh users.sh mysql.sh"                                                          |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
-| ``START_SCRIPT``                  | Text of the script executed when the machine starts up. It can contain shebang in               | O                            | O       |
-|                                   | case it is not shell script. For example ``START_SCRIPT="yum upgrade"``.                        |                              |         |
+| ``START_SCRIPT``                  | Text of the script executed when the machine boots. It can contain shebang in case it is not    | O                            | O       |
+|                                   | a shell script. For example ``START_SCRIPT="yum upgrade"`` or                                   |                              |         |
+|                                   | ``START_SCRIPT="choco upgrade all"`` for Bash and PowerShell respectively                       |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``START_SCRIPT_BASE64``           | The same as ``START_SCRIPT`` but encoded in Base64.                                             | O                            | O       |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
