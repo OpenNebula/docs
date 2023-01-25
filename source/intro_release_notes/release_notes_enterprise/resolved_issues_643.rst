@@ -35,3 +35,4 @@ The following issues has been solved in 6.4.3:
 - `Fix Enable/disable host actio to reset monitoring timers <https://github.com/OpenNebula/one/issues/6039>`__.
 - `Fix monitoring of NUMA node memory and hugepages usage <https://github.com/OpenNebula/one/issues/6027>`__.
 - `Fix AR removing on virtual network template <https://github.com/OpenNebula/one/issues/6061>`__.
+- `Fix typo in FireEdge sunstone Topology functionality <https://github.com/OpenNebula/one/issues/6094>`__.
