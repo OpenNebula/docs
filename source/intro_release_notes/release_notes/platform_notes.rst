@@ -287,3 +287,8 @@ Problem with Boot Order
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Currently in vCenter 7.0 changing the boot order is only supported in Virtual Machines at deployment time.
+
+Debian 10 and Ubuntu 18 Upgrade
+--------------------------------------------------------------------------------
+
+When upgrading your nodes from Debian 10 or Ubuntu 18 you may need to update the opennebula sudoers file because of the */usr merge* feature implemented for Debian11/Ubuntu20. You can `find more information and a recommended work around in this issue  <https://github.com/OpenNebula/one/issues/6090>`__.
