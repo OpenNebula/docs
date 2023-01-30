@@ -38,4 +38,4 @@ The following issues has been solved in 6.4.3:
 - `Fix typo in FireEdge sunstone Topology functionality <https://github.com/OpenNebula/one/issues/6094>`__.
 - `Fix trim of VNC/SPICE password <https://github.com/OpenNebula/one/issues/6085>`__.
 - `Fix creating SWAP with CEPH datastore <https://github.com/OpenNebula/one/issues/6090>`__.
-
+- `Add support to HTTPS proxy <https://github.com/OpenNebula/one/issues/6100>`__.
