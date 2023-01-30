@@ -37,4 +37,5 @@ The following issues has been solved in 6.4.3:
 - `Fix AR removing on virtual network template <https://github.com/OpenNebula/one/issues/6061>`__.
 - `Fix typo in FireEdge sunstone Topology functionality <https://github.com/OpenNebula/one/issues/6094>`__.
 - `Fix trim of VNC/SPICE password <https://github.com/OpenNebula/one/issues/6085>`__.
+- `Fix creating SWAP with CEPH datastore <https://github.com/OpenNebula/one/issues/6090>`__.
 
