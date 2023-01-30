@@ -162,6 +162,12 @@ Action scripts for generic image datastores:
    -  ``vmid`` is the id of the VM
    -  ``dsid`` is the target datastore
 
+-  **failmigrate**: It is executed after a failure in the livemigration operation. Note that **save the postmigrate script from the system datastore will be used**. This action should revert any operation made by the premigrate script, for example removing any file transferred to the destination as it will not be used. The default operation does not perform any action and should be adjust accordingly to the custom premigrate operation.
+
+   - Base64 encoded VM XML is sent via stdin.
+   -  **ARGUMENTS**: ``source_host dst_host remote_system_dir vmid dsid``
+   -  see ``premigrate`` description.
+
 -  **postmigrate**: It is executed after a livemigration operation. Note that **only the postmigrate script from the system datastore will be used**. Any customization must be done for the postmigrate script of the system datastore, although you will probably add operations for other backends than that used by the system datastore. Base64 encoded VM XML is sent via stdin.
 
    - Base64 encoded VM XML is sent via stdin.
