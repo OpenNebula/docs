@@ -24,3 +24,4 @@ The following issues has been solved in 6.6.1:
 - `Fix FS freeze value when QEMU Agent is selected on backup <https://github.com/OpenNebula/one/issues/6086>`__.
 - `Fix trim of VNC/SPICE password <https://github.com/OpenNebula/one/issues/6085>`__.
 - `Fix creating SWAP with CEPH datastore <https://github.com/OpenNebula/one/issues/6090>`__.
+- `Fix permissions for 'onevm disk-resize', fix error code for 'onevm create-chart' <https://github.com/OpenNebula/one/issues/6068>`__.
