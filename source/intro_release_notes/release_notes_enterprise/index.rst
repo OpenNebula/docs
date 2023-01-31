@@ -1,7 +1,7 @@
 .. _rn_enterprise:
 
 ================================================================================
-Release Notes 6.4.2 Enterprise Edition
+Release Notes 6.4.3 Enterprise Edition
 ================================================================================
 
 .. toctree::
@@ -13,3 +13,4 @@ Release Notes 6.4.2 Enterprise Edition
    New Repo Key <new_repo_key>
    Resolved Issues in 6.4.1 <resolved_issues_641>
    Resolved Issues in 6.4.2 <resolved_issues_642>
+   Resolved Issues in 6.4.3 <resolved_issues_643>

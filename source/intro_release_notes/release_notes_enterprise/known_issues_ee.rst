@@ -81,8 +81,12 @@ KVM - Redefine Snapshot
 
 Depending on the number of snapshots and their IDs, the driver might fail redefining the snapshots (e.g after resuming or migrating the VM). More information can be found `here <https://github.com/OpenNebula/one/issues/5991>`__.
 
-
 WHMCS - Client Users
 ================================================================================
 
 When the first client is created in WHMCS and purchases a product, following actions will fail due to targeting ID 0 (oneadmin).  Further client accounts past the first one will work as expected.
+
+NUMA Free Hugepages
+================================================================================
+
+After upgrading to 6.4.3, the host xml may contain ``HOST_SHARE/NUMA_NODES/NODE/HUGEPAGE/FREE`` attributes always set to ``0``. This attribute shouldn't be there. Xml-linter will show unexpected attribute. The real value of free hugepages is stored in ``MONITORING/NUMA_NODE/HUGEPAGE/FREE``, this value is presented by ``onehost show`` command and sunstone.

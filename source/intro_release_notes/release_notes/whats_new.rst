@@ -118,6 +118,7 @@ Other Issues Solved
 - `Fix VMs monitored multiple times when datastore drivers are changed from ssh <https://github.com/OpenNebula/one/issues/5765>`__.
 - `Fix XFS formatting on empty datablocks <https://github.com/OpenNebula/one/issues/5810>`__.
 - `Fix Importing a OneFlow template from marketplace into vCenter fails <https://github.com/OpenNebula/one/issues/5812>`__.
+- `Fix LDAP driver to work with Ruby 2.0 <https://github.com/OpenNebula/one/commit/33552502055e9893fa3e1bf5c86062d7e14390f0>`__.
 
 Features Backported to 6.2.x
 ============================
