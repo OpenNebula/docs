@@ -9,6 +9,7 @@ A complete list of solved issues for 6.6.1 can be found in the `project developm
 The following new features has been backported to 6.6.1:
 
 - Restic and Rsync drivers allows to limit CPU and I/O resources consumed by the backup operations. See :ref:`the restic <vm_backups_restic>` and :ref:`the rsync <vm_backups_rsync>` documentation for more information.
+- `Add support for nested group in LDAP <https://github.com/OpenNebula/one/issues/5952>`__.
 
 The following issues has been solved in 6.6.1:
 
