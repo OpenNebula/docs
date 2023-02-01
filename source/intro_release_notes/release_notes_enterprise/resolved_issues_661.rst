@@ -9,6 +9,7 @@ A complete list of solved issues for 6.6.1 can be found in the `project developm
 The following new features has been backported to 6.6.1:
 
 - Restic and Rsync drivers allows to limit CPU and I/O resources consumed by the backup operations. See :ref:`the restic <vm_backups_restic>` and :ref:`the rsync <vm_backups_rsync>` documentation for more information.
+- `Add support for nested group in LDAP <https://github.com/OpenNebula/one/issues/5952>`__.
 
 The following issues has been solved in 6.6.1:
 
@@ -26,4 +27,3 @@ The following issues has been solved in 6.6.1:
 - `Fix creating SWAP with CEPH datastore <https://github.com/OpenNebula/one/issues/6090>`__.
 - `Fix CLI commands to not fail when config (/etc/one/cli/*.yaml) does not exist <https://github.com/OpenNebula/one/issues/5913>`__.
 - `Fix permissions for 'onevm disk-resize', fix error code for 'onevm create-chart' <https://github.com/OpenNebula/one/issues/6068>`__.
-- `Add support for nested group in LDAP <https://github.com/OpenNebula/one/issues/5952>`__.
