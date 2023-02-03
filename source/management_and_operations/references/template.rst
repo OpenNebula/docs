@@ -759,6 +759,8 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 |                                   | ``USERNAME`` is not set.                                                                        |                              |         |
 |                                   | Requires OpenSSH server installed on Windows, user automatically detected. ``USERNAME`` ignored.|                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
+| ``WINADMIN``                      | Set to ``NO`` to treat the Windows user as standard user for setting ``SSH_PUBLIC_KEY``         | Windows                      | Windows |
++-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``SECURETTY``                     | If set to ``NO`` it will disable securetty validation on PAM. If set to ``YES``                 | Linux                        | Linux   |
 |                                   | it will restore system defaults. Defaults: LXC -> ``YES``, KVM -> ``NO``.                       |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
