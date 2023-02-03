@@ -638,8 +638,9 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 |                                   | than one init script is added, this list contains the scripts to run and the                    |                              |         |
 |                                   | order. Ex. "init.sh users.sh mysql.sh"                                                          |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
-| ``START_SCRIPT``                  | Text of the script executed when the machine starts up. It can contain shebang in               | O                            | O       |
-|                                   | case it is not shell script. For example ``START_SCRIPT="yum upgrade"``.                        |                              |         |
+| ``START_SCRIPT``                  | Text of the script executed when the machine boots. It can contain shebang in case it is not    | O                            | O       |
+|                                   | a shell script. For example ``START_SCRIPT="yum upgrade"`` or                                   |                              |         |
+|                                   | ``START_SCRIPT="choco upgrade all"`` for Bash and PowerShell respectively                       |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``START_SCRIPT_BASE64``           | The same as ``START_SCRIPT`` but encoded in Base64.                                             | O                            | O       |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
@@ -741,8 +742,8 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``ETHx_ALIASy_DNS``               | DNS for the alias.                                                                              | \-                           | \-      |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
-| ``USERNAME``                      | User to be created in the guest OS. If any password attribute is defined (see                   | O                            | O       |
-|                                   | below) it will change this user (defaults to ``root``)                                          |                              |         |
+| ``USERNAME``                      | User to be created in the guest OS. If any password or SSH_PUBLIC_KEY attribute is defined      | Linux                        | Linux   |
+|                                   | (see below) it will change this user (defaults to ``root``).                                    |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``CRYPTED_PASSWORD_BASE64``       | Crypted password encoded in base64. To be set for the user ``USERNAME``.                        | Linux                        | Linux   |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
@@ -754,8 +755,9 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 | ``PASSWORD``                      | Password to be set for the user ``USERNAME``. This parameter is not recommended,                | O                            | O       |
 |                                   | use ``PASSWORD_BASE64`` instead.                                                                |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
-| ``SSH_PUBLIC_KEY``                | Key to be added to ``USERNAME`` ``authorized_keys`` file or ``root`` in case                    | Linux                        | Linux   |
+| ``SSH_PUBLIC_KEY``                | Key to be added to ``USERNAME`` ``authorized_keys`` file or ``root`` in case                    | O                            | O       |
 |                                   | ``USERNAME`` is not set.                                                                        |                              |         |
+|                                   | Requires OpenSSH server installed on Windows, user automatically detected. ``USERNAME`` ignored.|                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``SECURETTY``                     | If set to ``NO`` it will disable securetty validation on PAM. If set to ``YES``                 | Linux                        | Linux   |
 |                                   | it will restore system defaults. Defaults: LXC -> ``YES``, KVM -> ``NO``.                       |                              |         |
