@@ -29,6 +29,11 @@ During the provision of the cluster all these resources and their corresponding 
 
 We'll be using the FireEdge GUI in this guide, so please make sure you can log in to it using your Front-end IP and default port 2616, as well as your oneadmin credentials. If you require to log in as a user other than oneadmin, in order to use the provision interface the user must belong to the oneadmin group, otherwise the providers won't be shown in the wizard.
 
+.. prompt:: bash $ auto
+
+   https://<FRONT-END IP>:2616/fireedge/provision
+
+
 Step 1: Configuring AWS & Required Information
 ================================================================================
 
