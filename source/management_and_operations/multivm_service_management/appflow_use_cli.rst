@@ -189,13 +189,43 @@ Using Custom Attributes
 
 You can use some custom attributes in service template to pass them to the virtual machine context section. This custom attributes are key-value format and can be mandatory or optional.
 
+From Sunstone, you can view these custom attributes as fields to be filled when the service is going to be instantiated:
+
 |oneflow-templates-attrs|
 
-You can also use them through the CLI. When you instantiate the template using ``oneflow-template instantiate <ID> <file>``
+You can also use them through the CLI. When you instantiate the template using ``oneflow-template instantiate <ID> <file>``. 
 
-.. code::
+Custom attributes can be defined at two different levels:
 
-    {"custom_attrs_values":{"A":"A_VALUE", "B":"B_VALUE"}
+- **Service level**: custom attributes are applied to all roles in the service. You can define custom attributes at the service level as follows:
+
+  .. code::
+
+      {"custom_attrs_values":{"A":"A_VALUE", "B":"B_VALUE"}
+
+
+- **Role level**: custom attributes are applied to a single role within the service. Custom attributes can be combined at role and service level, where custom role attributes will take precedence. Below you can see an example of a service with two different roles and custom attributes at service and role level:
+
+  .. code::
+
+      {
+        "custom_attrs_values": {
+          "A": "A_VALUE",
+          "B": "B_VALUE"
+        },
+        "roles": [
+          {
+            "name": "role_1"
+          },
+          {
+            "name": "role_2",
+            "custom_attrs_values": {
+              "B": "B_VALUE_2",
+              "C": "C_VALUE"
+            }
+          }
+        ]
+      }
 
 .. note:: Custom attributes will be applied to all roles inside ``vm_template_contents`` section. When custom attributes coexist with user inputs of VM template, **custom attributes are preferred** to contextualization.
 
