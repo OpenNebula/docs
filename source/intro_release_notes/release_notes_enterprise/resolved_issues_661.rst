@@ -10,6 +10,7 @@ The following new features has been backported to 6.6.1:
 
 - Restic and Rsync drivers allows to limit CPU and I/O resources consumed by the backup operations. See :ref:`the restic <vm_backups_restic>` and :ref:`the rsync <vm_backups_rsync>` documentation for more information.
 - `Add support for nested group in LDAP <https://github.com/OpenNebula/one/issues/5952>`__.
+- OneFlow Services support custom attributes for specific roles. See the :ref:`Using Custom Attributes in the Oneflow Service Management guide <appflow_use_cli>`
 
 The following issues has been solved in 6.6.1:
 
