@@ -123,6 +123,7 @@ Other Issues Solved
 - `Fix overwriting logs <https://github.com/OpenNebula/one/issues/6034>`__.
 - `Fix oned termination process if initialization fails <https://github.com/OpenNebula/one/issues/5801>`__.
 - `Fix ceph clone operation <https://github.com/OpenNebula/one/commit/af5044f2676b4bfda0845dc9873db2b87bb15b72>`__.
+- `Fix dict to xml conversion in PyONE by replacing dicttoxml by dict2xml <https://github.com/OpenNebula/one/issues/6064>`__.
 
 Features Backported to 6.4.x
 ================================================================================
