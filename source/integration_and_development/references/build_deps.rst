@@ -25,10 +25,9 @@ Ubuntu 22.04
 * **debhelper (>= 7.0.50~)**
 * **default-jdk**
 * **libws-commons-util-java**
-* **libxmlrpc3-client-java**
-* **libxmlrpc3-common-java**
 * **flex**
 * **freerdp2-dev**
+* **grunt**
 * **javahelper (>= 0.32)**
 * **libaugeas-dev**
 * **libcairo2-dev**
@@ -49,6 +48,7 @@ Ubuntu 22.04
 * **libvorbis-dev**
 * **libwebp-dev**
 * **libxml2-dev**
+* **libxmlrpc-c++8-dev**
 * **libxslt1-dev**
 * **libzmq3-dev**
 * **libzmq5**
