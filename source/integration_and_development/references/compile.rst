@@ -23,7 +23,15 @@ Follow these simple steps to install the OpenNebula software:
 
        $ scons [OPTION=VALUE]
 
-   the argument expression [OPTION=VALUE] is used to set non-default values for :
+.. note::
+
+    scons can parallelize the build with the `-j NUM_THREADS` parameter. For instance, to compile the with 4 parallel processes execute
+    
+    .. code::
+
+        $ scons -j 4 [OPTION=VALUE]
+
+The argument expression [OPTION=VALUE] is used to set non-default values for :
 
 +----------------+--------------------------------------------------------+
 | OPTION         | VALUE                                                  |
