@@ -33,3 +33,4 @@ The following issues has been solved in 6.6.1:
 - `Fix local characters for 'onedb upgrade' <https://github.com/OpenNebula/one/issues/6113>`__.
 - `Fix filtered attributes for backup restoration (DEV_PREFIX, OS/UUID) <https://github.com/OpenNebula/one/issues/6044>`__.
 - `Fix filtering MAC attribute only when no_ip is used <https://github.com/OpenNebula/one/issues/6048>`__.
+- `Fix marketplace image download with wrong user from FireEdge Sunstone <https://github.com/OpenNebula/one/issues/6048>`__.
