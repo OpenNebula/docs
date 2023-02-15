@@ -12,7 +12,7 @@ Backup Types
 OpenNebula supports two backup types:
 
 - **Full**, each backup contains a full copy of the VM disks. Libvirt version >= 5.5 is required.
-- **Incremental**, each backup contains only the changes since the last backup. Libvirt version >= 7.7 is required.
+- **Incremental**, each backup contains only the changes since the last backup. Incremental backups track changes by creating checkpoints (disk block dirty-bitmaps) using QEMU/Libvirt. Libvirt version >= 7.7 is required.
 
 The Backup Process
 --------------------------------------------------------------------------------
@@ -113,7 +113,7 @@ Reference: Backup Configuration Attributes
 +---------------------------+--------------------------------------------------------------------------------------------------------------+
 | ``FS_FREEZE``             | Operation to freeze guest FS: ``NONE`` do nothing, ``AGENT`` use guest agent, ``SUSPEND`` suspend the domain |
 +---------------------------+--------------------------------------------------------------------------------------------------------------+
-| ``KEEP_LAST``             | Only keep the last N backups for the VM                                                                      |
+| ``KEEP_LAST``             | Only keep the last N backups (full backups or increments) for the VM                                         |
 +---------------------------+--------------------------------------------------------------------------------------------------------------+
 | ``MODE``                  | Backup type ``FULL`` or ``INCREMENT``                                                                        |
 +---------------------------+--------------------------------------------------------------------------------------------------------------+
@@ -259,6 +259,8 @@ When you restore the backup you may choose to:
 
 - Not keep the NIC addressing (i.e. IPs, or MAC)
 - Not keep any NIC definition
+- In the case of incremental backups you can choose which increment to restore (or last by default)
+- Finally, you can pick a base name for the VM Templates and disk Images that will be created
 
 After you restore the VM, we recommend to review the restored template to fine-tune any additional parameter. The following example shows the recovering procedure:
 
