@@ -11,6 +11,10 @@ The following new features has been backported to 6.6.1:
 - Restic and Rsync drivers allows to limit CPU and I/O resources consumed by the backup operations. See :ref:`the restic <vm_backups_restic>` and :ref:`the rsync <vm_backups_rsync>` documentation for more information.
 - `Add support for nested group in LDAP <https://github.com/OpenNebula/one/issues/5952>`__.
 - OneFlow Services support custom attributes for specific roles. See the :ref:`Using Custom Attributes in the Oneflow Service Management guide <appflow_use_cli>`
+- `Restore incremental backups from an specific incremnt in the chain <https://github.com/OpenNebula/one/issues/6074>`__.
+- `Automatically prune restic repositories <https://github.com/OpenNebula/one/issues/6062>`__.
+- `Specify the base name of disk images and VM templates created when restoring a backup <https://github.com/OpenNebula/one/issues/6059>`__.
+- `Retention policy for incremental backups <https://github.com/OpenNebula/one/issues/6029>`__.
 
 The following issues has been solved in 6.6.1:
 
