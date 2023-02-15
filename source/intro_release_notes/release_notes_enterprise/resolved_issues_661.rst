@@ -3,7 +3,6 @@
 Resolved Issues in 6.6.1
 --------------------------------------------------------------------------------
 
-
 A complete list of solved issues for 6.6.1 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/64?closed=1>`__.
 
 The following new features has been backported to 6.6.1:
@@ -38,3 +37,13 @@ The following issues has been solved in 6.6.1:
 - `Fix filtered attributes for backup restoration (DEV_PREFIX, OS/UUID) <https://github.com/OpenNebula/one/issues/6044>`__.
 - `Fix filtering MAC attribute only when no_ip is used <https://github.com/OpenNebula/one/issues/6048>`__.
 - `Fix marketplace image download with wrong user from FireEdge Sunstone <https://github.com/OpenNebula/one/issues/6048>`__.
+
+Upgrading from OpenNebula 6.6.0 (Restic users only)
+--------------------------------------------------------------------------------
+
+Some of the new features of the backup module require a re-structure of the internal restic repositories. After upgrading you will need to:
+
+- Create a new restic repository :ref:`as described in the restic guide (now the process is simpler) <vm_backups_restic>`.
+- For VMs using incremental backups, create a new chain in the new backup datastore with the ``reset`` option.
+- Update any scheduled backup action to point to the new backup datastore.
+
