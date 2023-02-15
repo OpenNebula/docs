@@ -53,4 +53,7 @@ Features Backported to 6.6.x
 
 Additionally, the following functionalities are present that were not in OpenNebula 6.6.0, although they debuted in subsequent maintenance releases of the 6.6.x series:
 
-- `Feature 1 <https://github.com/OpenNebula/one/issues/1234>`__.
+- `Restore incremental backups from an specific incremnt in the chain <https://github.com/OpenNebula/one/issues/6074>`__.
+- `Automatically prune restic repositories <https://github.com/OpenNebula/one/issues/6062>`__.
+- `Specify the base name of disk images and VM templates created when restoring a backup <https://github.com/OpenNebula/one/issues/6059>`__.
+- `Retention policy for incremental backups <https://github.com/OpenNebula/one/issues/6029>`__.
