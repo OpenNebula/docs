@@ -38,6 +38,7 @@ The following issues has been solved in 6.6.1:
 - `Fix filtering MAC attribute only when no_ip is used <https://github.com/OpenNebula/one/issues/6048>`__.
 - `Fix marketplace image download with wrong user from FireEdge Sunstone <https://github.com/OpenNebula/one/issues/6048>`__.
 - `Remove duplicated records in machine type and CPU model inputs <https://github.com/OpenNebula/one/issues/6135>`__.
+- `Fix Sunstone backup dialog never shows up after deleting backups <https://github.com/OpenNebula/one/issues/6088>`__.
 
 Upgrading from OpenNebula 6.6.0 (Restic users only)
 --------------------------------------------------------------------------------
