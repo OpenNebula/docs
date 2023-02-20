@@ -14,3 +14,4 @@ The following issues has been solved in 6.4.4:
 - `Fix permissions for 'onevm disk-resize', fix error code for 'onevm create-chart' <https://github.com/OpenNebula/one/issues/6068>`__.
 - `Fix IPv6 was not being displayed on FireEdge Sunstone <https://github.com/OpenNebula/one/issues/6106>`__.
 - `Fix local characters for 'onedb upgrade' <https://github.com/OpenNebula/one/issues/6113>`__.
+- `Fix Sunstone VM error when adding schedule action leases <https://github.com/OpenNebula/one/issues/6144>`__.
