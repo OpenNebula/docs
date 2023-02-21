@@ -140,6 +140,8 @@ Reference: Restic Datastore Attributes
 +------------------------+--------------------------------------------------------------------------------------------------------------+
 | ``RESTIC_MAXPROC``     | Sets ``GOMAXPROCS`` for restic to limit the OS threads that execute user-level Go code simultaneously.       |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_SPARSIFY``    | Runs ``virt-sparsify`` on flatten backups to reduce backup size. It requires ``libguestfs`` package.         |
++------------------------+--------------------------------------------------------------------------------------------------------------+
 
 .. |restic_create| image:: /images/backup_restic_create.png
     :width: 700
