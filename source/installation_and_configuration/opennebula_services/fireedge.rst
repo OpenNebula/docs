@@ -75,6 +75,9 @@ The FireEdge server configuration file can be found in ``/etc/one/fireedge-serve
 | ``default_zone/name``                     | ``OpenNebula``                 | Name of the zone to which this fireedge belongs    |
 |                                           |                                |                                                    |
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``default_zone/endpoint``                 | ``http://localhost:2633/RPC2`` | XML-RPC url of the zone to which this fireedge     |
+|                                           |                                | belongs                                            |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
 | ``minimun_opennebula_expiration``         | ``30``                         | Minimum time to reuse previously generated JWTs    |
 |                                           |                                | (minutes)                                          |
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
