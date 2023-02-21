@@ -78,6 +78,8 @@ Reference: rsync Datastore Attributes
 +------------------------+--------------------------------------------------------------------------------------------------------------+
 | ``RSYNC_CPU_QUOTA``    | Run backups in a systemd slice with a given cpu quota (percentage). Use > 100 for using several CPUs         |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RSYNC_SPARSIFY``     | Runs ``virt-sparsify`` on flatten backups to reduce backup size. It requires ``libguestfs`` package.         |
++------------------------+--------------------------------------------------------------------------------------------------------------+
 
 .. |rsync_create| image:: /images/backup_rsync_create.png
     :width: 700
