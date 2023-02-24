@@ -8,6 +8,21 @@ A complete list of `known issues for OpenNebula is maintained here <https://gith
 
 This page will be updated with relevant information about bugs affecting OpenNebula, as well as possible workarounds until a patch is officially published.
 
+Upgrading from 5.12.13
+======================
+
+When upgrading the configuration from version 5.12.13 the ``onecfg upgrade`` fails. To avoid this you need to revert config change delivered by the package by running following command:
+
+
+.. prompt:: bash # auto
+
+    sed -i 's/Copyright 2002-2023/Copyright 2002-2020/' \
+        /var/lib/one/backups/config/*v5.12.13/etc/one/az_driver.default \
+        /var/lib/one/backups/config/*v5.12.13/etc/one/ec2_driver.default
+
+After that the ``onecfg upgrade`` should work again correctly.
+
+
 Accounting and Showback
 =======================
 
