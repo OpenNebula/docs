@@ -15,3 +15,4 @@ The following issues has been solved in 6.4.4:
 - `Fix IPv6 was not being displayed on FireEdge Sunstone <https://github.com/OpenNebula/one/issues/6106>`__.
 - `Fix local characters for 'onedb upgrade' <https://github.com/OpenNebula/one/issues/6113>`__.
 - `Fix Sunstone VM error when adding schedule action leases <https://github.com/OpenNebula/one/issues/6144>`__.
+- `Fix Sunstone error when updating a template that always set deploy mode to "Default" <https://github.com/OpenNebula/one/issues/6015>`__.
