@@ -278,6 +278,20 @@ After checking the state of configuration, in most cases running the following c
 
 If you get conflicts when running onecfg upgrade refer to the :ref:`onecfg upgrade basic usage documentation <cfg_usage>` on how to upgrade and troubleshoot the configurations, in particular the :ref:`onecfg upgrade doc <cfg_upgrade>` and the :ref:`troubleshooting section <cfg_conflicts>`.
 
+
+.. important::
+
+    When upgrading the configuration from version 5.12.13 the ``onecfg upgrade`` fails. To avoid this you need to revert config change delivered by the package by running following command:
+
+
+    .. prompt:: bash # auto
+
+        sed -i 's/Copyright 2002-2023/Copyright 2002-2020/' \
+            /var/lib/one/backups/config/*v5.12.13/etc/one/az_driver.default \
+            /var/lib/one/backups/config/*v5.12.13/etc/one/ec2_driver.default
+
+    After that the ``onecfg upgrade`` should work again correctly.
+
 FireEdge public endpoint is not working
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
