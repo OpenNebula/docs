@@ -15,6 +15,7 @@ The following new features has been backported to 6.6.1:
 - `Specify the base name of disk images and VM templates created when restoring a backup <https://github.com/OpenNebula/one/issues/6059>`__.
 - `Retention policy for incremental backups <https://github.com/OpenNebula/one/issues/6029>`__.
 - `Cluster provisions haven upgraded to use Ubuntu22.04 and Ceph Quincy versions <https://github.com/OpenNebula/one/issues/6116>`__.
+- `OneStor was fixed to support persistent images <https://github.com/OpenNebula/one/issues/6147>`__.
 
 The following issues has been solved in 6.6.1:
 
