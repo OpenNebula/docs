@@ -29,15 +29,17 @@ Generate Support Bundle
 
 If there are no special requirements, the support diagnostic bundle can be generated just by running ``onegather`` **on the Front-end** without any extra parameters. The command must be running under **privileged user** (directly by ``root`` or via ``sudo``). For example:
 
+.. important:: If you are running your Front-end in a federation, OneGather will prompt you in the result section to run it on all other nodes. 
+
 .. prompt:: bash $ auto
 
-    $ sudo onegather
+    $ sudo onegather --with-db
 
 The command generates a diagnostic bundle archive and puts it into ``/tmp/``. The precise file location is shown at the end of the terminal output, e.g.:
 
 .. prompt:: bash # auto
 
-    Bundle ZIP: /tmp/d20220429-22314-1382f6c.zip
+    Bundle TAR: /tmp/d20230224-3237009-1t5au19.tar.xz
 
 Please **attach this file to the support ticket**.
 
@@ -47,66 +49,56 @@ Please **attach this file to the support ticket**.
 
     .. prompt:: bash $ auto
 
-        $ sudo onegather --group fe --no-db
+        $ sudo onegather --fe-only
 
 The tool prints all actions, based on which you can decide if you want to provide such a bundle to the support team. Here's an example of a full output:
 
 .. code-block:: bash
 
-    $ sudo onegather
+    $ sudo onegather --fe-only
     Get OS distribution
-    Get current user
-    Get user "oneadmin"
-    Get installed packages
     Get kernel version
+    Get installed packages
     Get security settings
-    Get memory/swap
-    Get Ruby version and Gems
-    Get CPU information
+    Get SELinux configuration
+    Get AppArmor configuration
     Get system services
+    Get CPU information
+    Get memory/swap
+    Get disk space for FE and nodes
+    Get ENV vars
+    Get list of open ports
+    Get current user
     Get process list
     Get kernel runtime parameters (sysctl)
-    Get mounts
+    Get list of mounts
+    Get list of block devices
+    Get physical volumes list
+    Get volume group list
+    Get logical volumes list
+    Get Federation configuration
+    Get OneProvision GUI Logs
+    Get VM Templates
+    Get user "oneadmin"
+    Get Ruby version and Gems
     Detect web server
     Get OpenNebula version
-    Get OpenNebula running processes
-    Detect changes in OpenNebula packages
-    Get OpenNebula database information
-    Get OpenNebula hosts
     Get OpenNebula logs
     Get system logs
-    Dump OpenNebula database
     Get OpenNebula configuration
     Get OpenNebula remotes
+    Get OneProvision GUI Logs
     Dump OpenNebula objects
-    Dump OpenNebula instance objects
-    Get web server configuration
-    Inspecting the OpenNebula hosts
-    [localhost] Get OS distribution
-    [localhost] Get current user
-    [localhost] Get user "oneadmin"
-    [localhost] Get installed packages
-    [localhost] Get kernel version
-    [localhost] Get security settings
-    [localhost] Get memory/swap
-    [localhost] Get Ruby version and Gems
-    [localhost] Get CPU information
-    [localhost] Get system services
-    [localhost] Get process list
-    [localhost] Get kernel runtime parameters (sysctl)
-    [localhost] Get mounts
-    [localhost] Get IP/bridge runtime config.
-    [localhost] Get firewall config
-    [localhost] Get Open vSwitch runtime config.
-    [localhost] Detect libvirt
-    [localhost] Get libvirt domains list
-    [localhost] Get libvirt domains XML and screenshots
-    [localhost] Get libvirt configuration
-    [localhost] Get system logs
+
+    Tar bundle
 
     ** Results **
-    -> Bundle: /tmp/d20220428-2468-zlxnpl
-    -> Bundle ZIP: /tmp/d20220428-2468-zlxnpl.zip
+    -> Bundle: /tmp/d20230224-3237009-1t5au19
+    -> Bundle TAR: /tmp/d20230224-3237009-1t5au19.tar.xz
+    -> Bundle size is: 0.91 MB
+    -> NOTICE: Bundle can be safely uploaded to Zendesk.
+    -> NOTICE: Front-end is in STANDALONE mode.
+
 
 Advanced Usage
 --------------------------------------------------------------------------------
@@ -120,8 +112,9 @@ The purpose of the ``onegather`` tool is to gather as much information as possib
         -v, --vm=VM                      Get information about specific VM
         -g, --group=GROUP                Group to process
             --no-confg                   Do not get configuration files
-            --no-db                      Do not get database
+            --with-db                    Include database
             --no-logs                    Do not get log files
+            --fe-only                    Get information from the Front-end only.
 
 There are two types of arguments to specify:
 
@@ -155,20 +148,20 @@ Simple run gathers all information (runs are equivalent):
 
 .. prompt:: bash $ auto
 
-    $ sudo onegather
-    $ sudo onegather -g all
+    $ sudo onegather --with-db
+    $ sudo onegather -g all --with-db
 
 Get only Front-end specific data (must run on Front-end):
 
 .. prompt:: bash $ auto
 
-    $ sudo onegather -g fe
+    $ sudo onegather --fe-only --with-db
 
-Get only host-specific data (must run on hypervizor Node):
+Get only host-specific data (must run on hypervisor Node):
 
 .. prompt:: bash $ auto
 
-    $ sudo onegather -g host
+    $ sudo onegather -g host --with-db
 
 Dump Types
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -178,7 +171,7 @@ The level of detail contained in the gathered data can be adjusted by *dump type
 +-------------+------------------------------------------+
 | Option      | Description                              |
 +=============+==========================================+
-| ``no-db``   | Disable database dumps.                  |
+| ``with-db`` | Enable database dumps.                   |
 +-------------+------------------------------------------+
 | ``no-conf`` | Disable bundling of configuration files. |
 +-------------+------------------------------------------+
@@ -198,25 +191,25 @@ A simple run gathers all information (these runs are equivalent):
 
 .. prompt:: bash $ auto
 
-    $ sudo onegather
+    $ sudo onegather --with-db
 
 Get support bundle without any database dumps and logs:
 
 .. prompt:: bash $ auto
 
-    $ sudo onegather --no-db --no-logs
+    $ sudo onegather --no-logs
 
 Get support bundle with database dump, but no logs and configurations:
 
 .. prompt:: bash $ auto
 
-    $ sudo onegather --no-conf --no-logs
+    $ sudo onegather --with-db --no-conf --no-logs
 
 Dump types and host types parameters can be combined
 
 .. prompt:: bash $ auto
 
-    $ sudo onegather -g fe --no-db
+    $ sudo onegather --fe-only --with-db
 
 .. _support_vcenter:
 
