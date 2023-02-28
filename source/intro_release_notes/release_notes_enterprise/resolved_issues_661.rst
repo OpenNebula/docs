@@ -42,6 +42,7 @@ The following issues has been solved in 6.6.1:
 - `Remove duplicated records in machine type and CPU model inputs <https://github.com/OpenNebula/one/issues/6135>`__.
 - `Fix Sunstone backup dialog never shows up after deleting backups <https://github.com/OpenNebula/one/issues/6088>`__.
 - `Fix Sunstone VM error when adding schedule action leases <https://github.com/OpenNebula/one/issues/6144>`__.
+- `Fix catch error when XMLRPC is wrongly configured <https://github.com/OpenNebula/one/issues/6089>`__.
 
 Upgrading from OpenNebula 6.6.0 (Restic users only)
 --------------------------------------------------------------------------------
