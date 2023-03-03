@@ -13,3 +13,4 @@ Release Notes 6.6.1
    Compatibility Guide <compatibility>
    Known Issues <known_issues>
    Acknowledgements <acknowledgements>
+   Resolved Issues in 6.6.1 <resolved_issues_661>
