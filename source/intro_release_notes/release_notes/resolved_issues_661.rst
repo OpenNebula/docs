@@ -45,6 +45,7 @@ The following issues has been solved in 6.6.1:
 - `Fix Update the image name when it is selected in a template disk <https://github.com/OpenNebula/one/issues/6125>`__.
 - `Fix catch error when XMLRPC is wrongly configured <https://github.com/OpenNebula/one/issues/6089>`__.
 - `Fix one.vm.migrate call in Golang Cloud API (GOCA) <https://github.com/OpenNebula/one/issues/6108>`__.
+- `Fix undeploy/stop actions leaving VMs defined in vCenter <https://github.com/OpenNebula/one/issues/5990>`__.
 
 Upgrading from OpenNebula 6.6.0 (Restic users only)
 --------------------------------------------------------------------------------
@@ -54,4 +55,3 @@ Some of the new features of the backup module require a re-structure of the inte
 - Create a new restic repository :ref:`as described in the restic guide (now the process is simpler) <vm_backups_restic>`.
 - For VMs using incremental backups, create a new chain in the new backup datastore with the ``reset`` option.
 - Update any scheduled backup action to point to the new backup datastore.
-
