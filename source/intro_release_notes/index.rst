@@ -10,7 +10,7 @@ The Release Notes provide information on new features, improvements, and fixes i
 .. toctree::
    :maxdepth: 2
 
-   Release Notes 6.6.1 <release_notes/index>
+   Release Notes 6.6 <release_notes/index>
    Release Notes 6.6.1 Community <release_notes_community/index>
    Release Notes 6.6.1 Enterprise <release_notes_enterprise/index>
    Upgrades <upgrades/index>
