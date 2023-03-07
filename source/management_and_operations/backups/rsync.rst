@@ -49,6 +49,11 @@ Once these things are set up and it has been verified that all the hosts can acc
 
 |rsync_create|
 
+Other Configurations
+================================================================================
+
+.. include:: io_limit.rst
+
 Reference: rsync Datastore Attributes
 ================================================================================
 
@@ -62,6 +67,18 @@ Reference: rsync Datastore Attributes
 | ``RSYNC_ARGS``         | Command line arguments for `rsync` command (Default: `-az`)                                                  |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
 | ``RSYNC_TMP_DIR``      | Temporary Directory used for rebasing incremental images (Default: `/var/tmp`)                               |
++------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RSYNC_IONICE``       | Run backups under a given ionice priority (best-effort, class 2). Value: 0 (high) - 7 (low)                  |
++------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RSYNC_NICE``         | Run backups under a given nice. Value: -19 (high) to 19 (low)                                                |
++------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RSYNC_MAX_RIOPS``    | Run backups in a systemd slice, limiting the max number of read iops                                         |
++------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RSYNC_MAX_WIOPS``    | Run backups in a systemd slice, limiting the max number of write iops                                        |
++------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RSYNC_CPU_QUOTA``    | Run backups in a systemd slice with a given cpu quota (percentage). Use > 100 for using several CPUs         |
++------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RSYNC_SPARSIFY``     | Runs ``virt-sparsify`` on flatten backups to reduce backup size. It requires ``libguestfs`` package.         |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
 
 .. |rsync_create| image:: /images/backup_rsync_create.png

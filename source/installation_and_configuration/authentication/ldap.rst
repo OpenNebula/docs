@@ -135,6 +135,14 @@ The structure is a hash where any key different to ``:order`` will contain the c
 +----------------------------+-------------------------------------------------+
 | ``:user_field``            | Field in LDAP that holds the username           |
 +----------------------------+-------------------------------------------------+
+| ``:group_field``           | Field name for group membership, by default it  |
+|                            | is ``member``'.                                 |
+|                            | It's possilbe to add a matching rule to the     |
+|                            | group_filed. Such as                            |
+|                            | ``member:1.2.840.113556.1.4.1941``, this will   |
+|                            | allow authentization by the group membership    |
+|                            | (``:group``) to work for nested groups.         |
++----------------------------+-------------------------------------------------+
 | ``:mapping_generate``      | Automatically generate a mapping file. It can   |
 |                            | be disabled in case it needs to be done         |
 |                            | manually                                        |

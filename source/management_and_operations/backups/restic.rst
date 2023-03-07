@@ -8,11 +8,11 @@ Backup Datastore: Restic (EE)
 
 If you are using the enterprise edition (EE) of OpenNebula, the right version of restic has been already downloaded and installed in your system as a dependency. In this guide we will use the following terminology (introduce by restic):
 
-- *Repository*: This is the storage volume where the disk images backups will be stored. Restic creates an specific interval structure to store the backups efficiently. The restic driver access to the repository through the sftp. protocol.
+- *Repository*: This is the storage volume where the disk images backups will be stored. Restic creates an specific interval structure to store the backups efficiently. The restic driver access to the repository through the sftp. protocol. OpenNebula will create a separate restic repository for each VM or backup job.
 
 - *Snapshot*: It represents a backup and it is referenced by an unique hash (e.g. ``eda52f34``). Each snapshot stores a VM backup and includes all of its disks and the metadata description of the VM at the time you make the backup.
 
-- *Backup Server*: A host that will store the VM backups and the restic repository.
+- *Backup Server*: A host that will store the VM backups and the restic repositories.
 
 Step 0. [Backup Server] Setup the backup server
 ================================================================================
@@ -46,7 +46,6 @@ The following example showcases this setup using a dedicated 1.5T volume for bac
     $ ls -ld /var/lib/one/datastores/
     drwxrwxr-x 2 oneadmin oneadmin 4096 Sep  3 12:04 /var/lib/one/datastores/
 
-
 Step 1. [Front-end] Create a Restic Datastore
 ================================================================================
 
@@ -71,33 +70,9 @@ Now that we have the backup server prepared, let's create an OpenNebula backup d
     $ onedatastore create ds_restic.txt
     ID: 100
 
-Write down the datastore ID (100) in our case, we'll need it in the next step. You can also create the DS through Sunstone like any other datastore:
+You can also create the DS through Sunstone like any other datastore:
 
 |restic_create|
-
-Step 2. [Front-end] Setup a Restic repository
-================================================================================
-
-Now it is time to bootstrap the restic repo. For convenience we'll set a couple of environment variables, **be sure to use the IP of the server and the datastore ID of the backup datastore**. In our example we will use 192.168.1.8 and 100, respectively:
-
-.. prompt:: bash $ auto
-
-   $ export RESTIC_REPOSITORY="sftp:oneadmin@192.168.1.8:/var/lib/one/datastores/100"
-   $ export RESTIC_PASSWORD="opennebula"
-   $ alias restic="/var/lib/one/remotes/datastore/restic/restic"
-   $ restic init
-    created restic repository d5b1499cbb at sftp:oneadmin@192.168.1.8:/var/lib/one/datastores/100
-
-    Please note that knowledge of your password is required to access
-    the repository. Losing your password means that your data is
-    irrecoverably lost.
-
-In the **backup server**, you should be able to look at the structure that restic has created for the repo:
-
-.. prompt:: bash $ auto
-
-   $ ls /var/lib/one/datastores/100
-   config	data  index  keys  locks  snapshots
 
 After some time, the datastore should be monitored:
 
@@ -118,15 +93,12 @@ Repository Maintenance and Troubleshooting
 Repository Pruning
 --------------------------------------------------------------------------------
 
-Data not referenced by any snapshot needs to be deleted by running the ``prune`` command in the repository. This operation depending on the data to process can be very a demanding and it even locks the repository.
-
-OpenNebula will not automatically trigger this operation, you **need to plan** your pruning so it does not interfere with any scheduled backup.
+Data not referenced by any snapshot needs to be deleted by running the ``prune`` command in the repository. This operation is executed by OpenNebula whenever an image backup is deleted, either because an explicit removal or to conform the retention policy set.
 
 Repository is locked
 --------------------------------------------------------------------------------
 
-During the operation of the VM backups it may happen that the repository is left in a locked state. You should see an error similar to:
-
+During the operation of the VM backups you could rarely find that the repository is left in a locked state. You should see an error similar to:
 
 .. prompt:: bash $ auto
 
@@ -135,6 +107,8 @@ During the operation of the VM backups it may happen that the repository is left
     storage ID 1448874c
 
 To recover from this error, check there are no ongoing operations and execute ``restic unlock --remove-all`` for the repository.
+
+.. include:: io_limit.rst
 
 Reference: Restic Datastore Attributes
 ================================================================================
@@ -148,9 +122,15 @@ Reference: Restic Datastore Attributes
 +------------------------+--------------------------------------------------------------------------------------------------------------+
 | ``RESTIC_PASSWORD``    | Password to access the restic repository                                                                     |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
-| ``RESTIC_IONICE``      | Run restic under a given ionice priority (best-effort, class 2). Value: 0 (high) - 7 (low)                   |
+| ``RESTIC_IONICE``      | Run backups under a given ionice priority (best-effort, class 2). Value: 0 (high) - 7 (low)                  |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
-| ``RESTIC_NICE``        | Run restic under a given nice. Value: -19 (high) to 19 (low)                                                 |
+| ``RESTIC_NICE``        | Run backups under a given nice. Value: -19 (high) to 19 (low)                                                |
++------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_MAX_RIOPS``   | Run backups in a systemd slice, limiting the max number of read iops                                         |
++------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_MAX_WIOPS``   | Run backups in a systemd slice, limiting the max number of write iops                                        |
++------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_CPU_QUOTA``   | Run backups in a systemd slice with a given cpu quota (percentage). Use > 100 for using several CPUs         |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
 | ``RESTIC_BWLIMIT``     | Limit restic upload/download bandwidth                                                                       |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
@@ -159,6 +139,8 @@ Reference: Restic Datastore Attributes
 | ``RESTIC_CONNECTIONS`` | Number of concurrent connections (default 5). For high-latency backends this number can be increased.        |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
 | ``RESTIC_MAXPROC``     | Sets ``GOMAXPROCS`` for restic to limit the OS threads that execute user-level Go code simultaneously.       |
++------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_SPARSIFY``    | Runs ``virt-sparsify`` on flatten backups to reduce backup size. It requires ``libguestfs`` package.         |
 +------------------------+--------------------------------------------------------------------------------------------------------------+
 
 .. |restic_create| image:: /images/backup_restic_create.png
