@@ -80,4 +80,4 @@ When the first client is created in WHMCS and purchases a product, following act
 NUMA Free Hugepages
 ================================================================================
 
-After upgrading to 6.6.1, the host xml may contain ``HOST_SHARE/NUMA_NODES/NODE/HUGEPAGE/FREE`` attributes always set to ``0``. This attribute shouldn't be there. Xml-linter will show unexpected attribute. The real value of free hugepages is stored in ``MONITORING/NUMA_NODE/HUGEPAGE/FREE``, this value is presented by ``onehost show`` command and sunstone.
+After upgrading to 6.6.2, the host xml may contain ``HOST_SHARE/NUMA_NODES/NODE/HUGEPAGE/FREE`` attributes always set to ``0``. This attribute shouldn't be there. Xml-linter will show unexpected attribute. The real value of free hugepages is stored in ``MONITORING/NUMA_NODE/HUGEPAGE/FREE``, this value is presented by ``onehost show`` command and sunstone.
