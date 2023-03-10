@@ -20,7 +20,7 @@ The recommended way to install the driver is to configure the :ref:`repositories
 - ``yum install docker-machine-opennebula``
 - ``apt-get install docker-machine-opennebula``
 
-Alternatively you can get the binary `here <https://downloads.opennebula.io/packages/opennebula-6.5.90/opennebula-docker-machine-6.5.90.tar.gz>`__.
+Alternatively you can get the binary `here <https://downloads.opennebula.io/packages/opennebula-6.6.0/opennebula-docker-machine-6.6.0.tar.gz>`__.
 
 Lastly, in the case that you already have it installed in the OpenNebula frontend (or any other host) you can instead copy the ``/usr/bin/docker-machine-driver-opennebula`` file directly from the the frontend into any directory on your desktop which is included in your ``$PATH``.
 
@@ -55,7 +55,7 @@ To start your first Docker host you just need to use the ``docker-machine create
 
     #docker-machine create --driver opennebula --opennebula-template-id $TEMPLATE_ID $VM_NAME
 
-This command creates a VM in OpenNebula using $TEMPLATE_ID as the template and $VM_NAME as the VM name. 
+This command creates a VM in OpenNebula using $TEMPLATE_ID as the template and $VM_NAME as the VM name.
 
 If you want to create a VM without using a template (only for KVM) you can take a look at "Not Using a Template" section from :ref:`Docker Machine Driver References <docker_machine_driver_reference>`.
 
