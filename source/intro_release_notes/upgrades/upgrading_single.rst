@@ -10,10 +10,6 @@ Upgrading Single Front-end Deployments
 
 .. important:: If you haven't done so, please enable the :ref:`OpenNebula and needed 3rd party repositories <setup_opennebula_repos>` before attempting the upgrade process. If you want to use Docker related functionality of OpenNebula and/or OpenNebula Edge Clusters provisioning you'll need to follow :ref:`this for RedHat <install_docker_deps_rh>` or :ref:`this for Debian <install_docker_deps_deb>` distributions.
 
-.. important:: Since 6.4.2 we rolled out new packages GPG signing key which means also public repository key is new. Pay attention to the difference in the key URL:
-  |br| • for 6.4.1 and older use `repo.key <https://downloads.opennebula.io/repo/repo.key>`__
-  |br| • for 6.4.2 and later use `repo2.key <https://downloads.opennebula.io/repo/repo2.key>`__
-
 Upgrading from 5.6.x+
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
