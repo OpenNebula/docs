@@ -42,7 +42,7 @@ To add OpenNebula as a provider to Rancher, we need to add the OpenNebula docker
 
 |rancher_node_drivers|
 
-A Linux binary of the OpenNebula machine driver is available at https://downloads.opennebula.io/packages/opennebula-6.5.90/opennebula-docker-machine-6.5.90.tar.gz
+A Linux binary of the OpenNebula machine driver is available at https://downloads.opennebula.io/packages/opennebula-6.6.0/opennebula-docker-machine-6.6.0.tar.gz
 
 |add_opennebula_rancher_node_driver|
 

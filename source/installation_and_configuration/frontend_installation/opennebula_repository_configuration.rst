@@ -28,11 +28,12 @@ To add the OpenNebula enterprise repository, execute the following as user ``roo
 **RHEL 8, 9**
 
 .. prompt:: bash # auto
+   :substitutions:
 
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Enterprise Edition
-    baseurl=https://<token>@enterprise.opennebula.io/repo/6.5.90/RedHat/$releasever/$basearch
+    baseurl=https://<token>@enterprise.opennebula.io/repo/|release|/RedHat/$releasever/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo2.key
     gpgcheck=1
@@ -47,7 +48,7 @@ To add the OpenNebula enterprise repository, execute the following as user ``roo
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Enterprise Edition
-    baseurl=https://<token>@enterprise.opennebula.io/repo/6.5.90/AlmaLinux/$releasever/$basearch
+    baseurl=https://<token>@enterprise.opennebula.io/repo/|release|/AlmaLinux/$releasever/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo2.key
     gpgcheck=1
@@ -79,29 +80,33 @@ and then continue with repository configuration:
 **Debian 10**
 
 .. prompt:: bash # auto
+   :substitutions:
 
-    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.5.90/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/|release|/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Debian 11**
 
 .. prompt:: bash # auto
+   :substitutions:
 
-    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.5.90/Debian/11 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/|release|/Debian/11 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Ubuntu 20.04**
 
 .. prompt:: bash # auto
+   :substitutions:
 
-    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.5.90/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/|release|/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Ubuntu 22.04**
 
 .. prompt:: bash # auto
+   :substitutions:
 
-    # echo "deb https://<token>@enterprise.opennebula.io/repo/6.5.90/Ubuntu/22.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/|release|/Ubuntu/22.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 .. note::
@@ -136,11 +141,12 @@ To add OpenNebula repository, execute the following as user ``root``:
 **RHEL 8, 9**
 
 .. prompt:: bash # auto
+   :substitutions:
 
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Community Edition
-    baseurl=https://downloads.opennebula.io/repo/6.5.90/RedHat/$releasever/$basearch
+    baseurl=https://downloads.opennebula.io/repo/|release|/RedHat/$releasever/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo2.key
     gpgcheck=1
@@ -151,11 +157,12 @@ To add OpenNebula repository, execute the following as user ``root``:
 **AlmaLinux 8, 9**
 
 .. prompt:: bash # auto
+   :substitutions:
 
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Enterprise Edition
-    baseurl=https://downloads.opennebula.io/repo/6.5.90/AlmaLinux/$releasever/$basearch
+    baseurl=https://downloads.opennebula.io/repo/|release|/AlmaLinux/$releasever/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo2.key
     gpgcheck=1
@@ -185,27 +192,31 @@ First, add the repository signing GPG key on the Front-end by executing as user 
 **Debian 10**
 
 .. prompt:: bash # auto
+   :substitutions:
 
-    # echo "deb https://downloads.opennebula.io/repo/6.5.90/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://downloads.opennebula.io/repo/|release|/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Debian 11**
 
 .. prompt:: bash # auto
+   :substitutions:
 
-    # echo "deb https://downloads.opennebula.io/repo/6.5.90/Debian/11 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://downloads.opennebula.io/repo/|release|/Debian/11 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Ubuntu 20.04**
 
 .. prompt:: bash # auto
+   :substitutions:
 
-    # echo "deb https://downloads.opennebula.io/repo/6.5.90/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://downloads.opennebula.io/repo/|release|/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Ubuntu 22.04**
 
 .. prompt:: bash # auto
+   :substitutions:
 
-    # echo "deb https://downloads.opennebula.io/repo/6.5.90/Ubuntu/22.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://downloads.opennebula.io/repo/|release|/Ubuntu/22.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
