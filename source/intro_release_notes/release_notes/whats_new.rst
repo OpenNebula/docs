@@ -17,7 +17,7 @@ Networking
 
 Storage & Backups
 ================================================================================
-- `Feature 1 <https://github.com/OpenNebula/one/issues/1234>`__.
+- `Graceful stop of ongoing backup operations <https://github.com/OpenNebula/one/issues/6030>`__.
 
 Ruby Sunstone
 ================================================================================
