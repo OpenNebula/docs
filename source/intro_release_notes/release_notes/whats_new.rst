@@ -17,7 +17,7 @@ Networking
 
 Storage & Backups
 ================================================================================
-- `Graceful stop of ongoing backup operations <https://github.com/OpenNebula/one/issues/6030>`__.
+- `Feature 1 <https://github.com/OpenNebula/one/issues/1234>`__.
 
 Ruby Sunstone
 ================================================================================
@@ -57,3 +57,4 @@ Additionally, the following functionalities are present that were not in OpenNeb
 - `Automatically prune restic repositories <https://github.com/OpenNebula/one/issues/6062>`__.
 - `Specify the base name of disk images and VM templates created when restoring a backup <https://github.com/OpenNebula/one/issues/6059>`__.
 - `Retention policy for incremental backups <https://github.com/OpenNebula/one/issues/6029>`__.
+- `Graceful stop of ongoing backup operations <https://github.com/OpenNebula/one/issues/6030>`__.
