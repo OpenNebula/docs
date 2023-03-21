@@ -84,6 +84,17 @@ The FireEdge server configuration file can be found in ``/etc/one/fireedge-serve
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
 | ``guacd/host``                            | ``localhost``                  | Connection hostname/IP of guacd server             |
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``auth``                                  | ``opennebula``                 | Authentication driver for incoming requests:       |
+|                                           |                                | **opennebula** the authentication will be done by  |
+|                                           |                                | the opennebula core using the driver defined for   |
+|                                           |                                | user. **remote** performs the login based on a     |
+|                                           |                                | Kerberos X-Auth-Username header provided by        |
+|                                           |                                | authentication backend                             |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``auth_redirect``                         |                                | This configuration is for the login button         |
+|                                           |                                | redirect. The available options are: "**/**",      |
+|                                           |                                | "**.**" or a "**URL**"                             |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
 
 .. note:: JWT is acronime of JSON Web Token
 
