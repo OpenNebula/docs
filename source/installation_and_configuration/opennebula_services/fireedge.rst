@@ -87,7 +87,7 @@ The FireEdge server configuration file can be found in ``/etc/one/fireedge-serve
 | ``auth``                                  | ``opennebula``                 | Authentication driver for incoming requests:       |
 |                                           |                                | **opennebula** the authentication will be done by  |
 |                                           |                                | the opennebula core using the driver defined for   |
-|                                           |                                | user. **remote** performs the login based on a     |
+|                                           |                                | the user. **remote** performs the login based on a |
 |                                           |                                | Kerberos X-Auth-Username header provided by        |
 |                                           |                                | authentication backend                             |
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
