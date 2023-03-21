@@ -248,7 +248,7 @@ The schedule actions are in control of the scheduler. You can tune the number of
 Cancel Backup
 --------------------------------------------------------------------------------
 
-You can cancel ongoing backup operation using the ``onevm backup-cancel``. The command will try to gracefully terminate backup operation. If the command succeeds the VM will return to running (or poweroff) state. Not all stages of the backup operation can be canceled. There may be some files left on the datastore after this operation.
+You can cancel ongoing backup operation using the ``onevm backup-cancel``. The command will try to gracefully terminate backup operation. If the command succeeds the VM will return to running (or poweroff) state. Note that not all stages of the backup operation can be canceled and some files may be left on the VM folder in the system datastore. These files will be cleaned up in during a subsequent backup.
 
 If the backup operation is not running, but the VM stays in the backup state, use command ``onevm recover`` to return VM back to running state.
 
