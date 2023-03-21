@@ -154,7 +154,7 @@ To add OpenNebula repository, execute the following as user ``root``:
 
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
-    name=OpenNebula Enterprise Edition
+    name=OpenNebula Community Edition
     baseurl=https://downloads.opennebula.io/repo/6.6.2/AlmaLinux/$releasever/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo2.key
