@@ -11,13 +11,14 @@ Clusters group together Hosts, datastores and virtual networks that are configur
 
 Clusters should contain homogeneous resources. Note that some operations like live migrations are restricted to Hosts in the same cluster.
 
-The requirements for live migrating VMs between hosts of the same cluster are that no differences occur in the following CPU related areas of the hypervisors:
+The requirements for live migrating VMs between hosts of the same cluster are that no differences occur in the following areas of the hypervisors:
 
 * CPU model
 * Firmware settings
 * Microcode version
 * BIOS version
 * BIOS settings
+* Libvirt version
 * QEMU version
 * Kernel version
 
