@@ -4,7 +4,7 @@
 Fireedge Authentication
 =======================
 
-By default Fireedge works with the default ``core`` authentication method (user and password) although you can configure any authentication mechanism supported by OpenNebula. In this section you will learn how to enable other authentication.
+By default, Fireedge works with the default ``core`` authentication method (user and password) although you can configure any authentication mechanism supported by OpenNebula. In this section, you will learn how to enable other authentication.
 
 * **Web client and Fireedge server**. Authentication is based on the credentials stored in the OpenNebula database for the user. Depending on the type of these credentials the authentication method can be: ``remote`` and ``opennebula``
 
