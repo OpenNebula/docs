@@ -61,7 +61,7 @@ You can get an additional authentication level by using a two-factor authenticat
 
 |fireedge_2fa_auth|
 
-.. important:: To activate this option it is necessary to go to :ref:`Sunstone <suns_auth>`
+.. important:: This option needs to be activated per user, and it is necessary to use legacy Sunstone to perform this activation  :ref:`link <suns_auth>`
 
 .. |fireedge_remote_login| image:: /images/fireedge_login_remote.png
 .. |fireedge_2fa_auth| image:: /images/fireedge_login_2fa.png
