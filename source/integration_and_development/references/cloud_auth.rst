@@ -147,4 +147,4 @@ Two Factor Authentication
 -------------------------
 
 To use 2FA in Sunstone see the following :ref:`link <2f_auth>`
-To use 2FA in FireEdge see the following :ref:`Link <2f_auth_fireedge>`
+To use 2FA in FireEdge see the following :ref:`link <2f_auth_fireedge>`
