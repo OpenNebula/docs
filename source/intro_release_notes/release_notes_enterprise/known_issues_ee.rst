@@ -84,3 +84,21 @@ NUMA Free Hugepages
 ================================================================================
 
 After upgrading to 6.4.4, the host xml may contain ``HOST_SHARE/NUMA_NODES/NODE/HUGEPAGE/FREE`` attributes always set to ``0``. This attribute shouldn't be there. Xml-linter will show unexpected attribute. The real value of free hugepages is stored in ``MONITORING/NUMA_NODE/HUGEPAGE/FREE``, this value is presented by ``onehost show`` command and sunstone.
+
+Datastore Drivers - ``Argument list too long``
+================================================================================
+
+Datastore driver actions take the information from the command line arguments. When the number of images in a datastore is big, it can exceed the argument size limit. Drivers has been updated to take arguments through stdin. This needs to be configured in oned by adding ``-i`` to the ``M̀ARKET_MAD`` and ``DATASTORE_MAD`` arguments:
+
+.. prompt:: bash $ auto
+
+    MARKET_MAD = [
+        EXECUTABLE = "one_market",
+        ARGUMENTS  = "-i -t 15 -m http,s3,one,linuxcontainers,turnkeylinux,dockerhub,docker_registry"
+    ]
+
+    DATASTORE_MAD = [
+        EXECUTABLE = "one_datastore",
+        ARGUMENTS  = "-i -t 15 -d dummy,fs,lvm,ceph,dev,iscsi_libvirt,vcenter,restic,rsync -s shared,ssh,ceph,fs_lvm,fs_lvm_ssh,qcow2,vcenter"
+    ]
+
