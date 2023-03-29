@@ -13,4 +13,4 @@ The following issues has been solved in 6.6.2:
 
 - `Fix default scheduler NIC policies <https://github.com/OpenNebula/one/issues/6149>`__.
 - `Fix error when disabling the FireEdge configuration attributes in sunstone-server.conf <https://github.com/OpenNebula/one/issues/6163>`__.
-
+- `Fix datastore driver actions error: argument list too long <https://github.com/OpenNebula/one/issues/6162>`__.
