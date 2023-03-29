@@ -16,7 +16,7 @@ Visit the :ref:`Features list <features>` and the :ref:`What's New guide <whats_
     - The migrator has been updated to make these changes automatically with the ``onedb upgrade`` tool. When tested on a database containing just over 150,000 VM entries, the upgrade took roughly 4100 seconds using an HDD and about 3500 seconds using a ramdisk.
 
 Configuration Files Headers
-===========================
+================================================================================
 
 In order to avoid breaking compatibility with older versions of OpenNebula headers have been removed from all the configuration files. This change will be taken care transparently by the onecfg tool, but it will show in manual diffs with older versions of the configuration files.
 
@@ -37,3 +37,9 @@ In order to avoid breaking compatibility with older versions of OpenNebula heade
   /* See the License for the specific language governing permissions and        */
   /* limitations under the License.                                             */
   /* -------------------------------------------------------------------------- */
+
+
+Datastore Drivers Arguments
+================================================================================
+
+Datastore driver actions take the information from stdin to prevent a ``Argument list too long`` error when there is a large number of images in a datastore. All configuration and driver files has been updated and no special action needs to be performed. However if you have develop your own datastore drivers those should be updated accordingly.

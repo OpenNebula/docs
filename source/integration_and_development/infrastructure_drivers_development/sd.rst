@@ -16,66 +16,76 @@ Located under ``/var/lib/one/remotes/datastore/<ds_mad>``
 
 -  **cp**: copies/dumps the image to the datastore
 
-   -  **ARGUMENTS**: ``datastore_image_dump image_id``
+   -  **ARGUMENTS**: ``image_id``
+   -  **STDIN**: ``datastore_image_dump``
    -  **RETURNS**: ``image_source image_format``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`.
    -  ``image_source`` is the image source which will be later sent to the transfer manager
 
 -  **mkfs**: creates a new empty image in the datastore
 
-   -  **ARGUMENTS**: ``datastore_image_dump image_id``
+   -  **ARGUMENTS**: ``image_id``
+   -  **STDIN**: ``datastore_image_dump``
    -  **RETURNS**: ``image_source``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`.
    -  ``image_source`` is the image source which will be later sent to the transfer manager.
 
 -  **rm**: removes an image from the datastore
 
-   -  **ARGUMENTS**: ``datastore_image_dump image_id``
+   -  **ARGUMENTS**: ``image_id``
+   -  **STDIN**: ``datastore_image_dump``
    -  **RETURNS**: ``-``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`.
 
 -  **stat**: returns the size of an image in Mb
 
-   -  **ARGUMENTS**: ``datastore_image_dump image_id``
+   -  **ARGUMENTS**: ``image_id``
+   -  **STDIN**: ``datastore_image_dump``
    -  **RETURNS**: ``size``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`.
    -  ``size`` the size of the image in Mb.
 
 -  **clone**: clones an image.
 
-   -  **ARGUMENTS**: ``datastore_action_dump image_id``
+   -  **ARGUMENTS**: ``image_id``
+   -  **STDIN**: ``datastore_image_dump``
    -  **RETURNS**: ``source``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`.
    -  ``source`` the new ``source`` for the image.
 
 -  **monitor**: monitors a datastore
 
-   -  **ARGUMENTS**: ``datastore_action_dump image_id``
+   -  **ARGUMENTS**: ``image_id``
+   -  **STDIN**: ``datastore_image_dump``
    -  **RETURNS**: ``monitor data``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`.
    -  ``monitor data`` The monitoring information of the datastore, namely “USED\_MB=...\\nTOTAL\_MB=...\\nFREE\_MB=...” which are respectively the used size of the datastore in MB, the total capacity of the datastore in MB and the available space in the datastore in MB.
 
 -  **snap_delete**: Deletes a snapshot of a persistent image.
 
-   -  **ARGUMENTS**: ``datastore_action_dump image_id``
+   -  **ARGUMENTS**: ``image_id``
+   -  **STDIN**: ``datastore_image_dump``
    -  **RETURNS**: ``-``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`. This dump, in addition to the elements in the example, contains a ROOT element: ``TARGET_SNAPSHOT``, with the ID of the snapshot.
 
 -  **snap_flatten**: Flattens a snapshot. The operation results in an image without snapshots, with the contents of the selected snapshot.
 
-   -  **ARGUMENTS**: ``datastore_action_dump image_id``
+   -  **ARGUMENTS**: ``image_id``
+   -  **STDIN**: ``datastore_image_dump``
    -  **RETURNS**: ``-``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`. This dump, in addition to the elements in the example, contains a ROOT element: ``TARGET_SNAPSHOT``, with the ID of the snapshot.
 
 -  **snap_revert**: Overwrites the contents of the image by the selected snapshot (discarding any unsaved changes).
 
-   -  **ARGUMENTS**: ``datastore_action_dump image_id``
+   -  **ARGUMENTS**: ``image_id``
+   -  **STDIN**: ``datastore_image_dump``
    -  **RETURNS**: ``-``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`. This dump, in addition to the elements in the example, contains a ROOT element: ``TARGET_SNAPSHOT``, with the ID of the snapshot.
 
 -  **export**: Generates an XML file required to export an image from a datastore. This script represents only the first part of the export process, it only generates metadata (an xml). The information returned by this script is then fed to ``downloader.sh`` which completes the export process.
 
-   -  **ARGUMENTS**: ``datastore_action_dump image_id``
+   -  **ARGUMENTS**: ``image_id``
+   -  **STDIN**: ``datastore_image_dump``
    -  **RETURNS**: ``export_xml``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`. This dump, in addition to the elements in the example, contains a ROOT element: ``TARGET_SNAPSHOT``, with the ID of the snapshot.
    - ``export_xml``: The XML response should follow :ref:`this <sd_export>` structure. The variables that appear within are the following:
@@ -103,7 +113,7 @@ The backup datastore drivers are responsible to store the generate ``backup`` fo
    -  ``deploy_id`` ID of the VM in the hypervisor
    -  ``vm_id`` is the id of the VM
    -  ``ds_id`` is the target datastore (the system datastore).
-   -  ``datastore_action_dump image_id`` as STDIN. See a decoded :ref:`example <sd_dump>`.
+   -  **STDIN**: ``datastore_action_dump`` See a decoded :ref:`example <sd_dump>`.
    -  **RETURNS**: ``backup_id size_mb``
    -  ``backup_id`` driver reference for the backup.
    -  ``size_mb`` size that the backup takes
@@ -273,7 +283,8 @@ Action scripts needed when the TM is used for the system datastore:
 
 -  **monitor**: monitors a **shared** system datastore. Sends ``monitor VMs data`` to Monitor Daemon. Non-shared system datastores are monitored through ``monitor_ds`` script.
 
-   -  **ARGUMENTS**: ``datastore_action_dump image_id``
+   -  **ARGUMENTS**: ``image_id``
+   -  **STDIN**: ``datastore_image_dump``
    -  **RETURNS**: ``monitor data``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`.
    -  ``monitor data`` The monitoring information of the datastore, namely “USED\_MB=...\\nTOTAL\_MB=...\\nFREE\_MB=...” which are respectively the used size of the datastore in MB, the total capacity of the datastore in MB and the available space in the datastore in MB.
