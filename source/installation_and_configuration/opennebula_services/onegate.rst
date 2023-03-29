@@ -289,7 +289,7 @@ And, last but not least, it's required from guest VMs to setup this static route
 
 .. prompt:: bash # auto
 
-    # ip route replace 169.254.16.9/32 via eth0
+    # ip route replace 169.254.16.9/32 dev eth0
 
 Perhaps one of the easiest ways to achieve it, is to alter a VM template by adding a :ref:`start script <template_context>`:
 
