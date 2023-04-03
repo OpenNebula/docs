@@ -51,7 +51,7 @@ OneFlow Commands
 OneGate Commands
 ================================================================================
 
-* `onegate </doc/6.4/cli/oneflow.1.html>`__: OneGate Service management.
+* `onegate </doc/6.4/cli/onegate.1.html>`__: OneGate Service management.
 
 .. _cli_shell:
 
