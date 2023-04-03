@@ -9,34 +9,34 @@ OpenNebula provides a set commands to interact with the system:
 CLI
 ================================================================================
 
-* `oneacct </doc/6.3/cli/oneacct.1.html>`__: gets accounting data from OpenNebula.
-* `oneacl </doc/6.3/cli/oneacl.1.html>`__: manages OpenNebula ACLs.
-* `onecfg </doc/6.3/cli/onecfg.1.html>`__: manages OpenNebula configuration files upgrade.
-* `onecluster </doc/6.3/cli/onecluster.1.html>`__: manages OpenNebula clusters.
-* `onedatastore </doc/6.3/cli/onedatastore.1.html>`__: manages OpenNebula datastores.
-* `onedb </doc/6.3/cli/onedb.1.html>`__: OpenNebula database migration tool.
-* `onegroup </doc/6.3/cli/onegroup.1.html>`__: manages OpenNebula groups.
-* `onehook </doc/6.3/cli/onehook.1.html>`__: manages OpenNebula hooks.
-* `onehost </doc/6.3/cli/onehost.1.html>`__: manages OpenNebula hosts.
-* `oneimage </doc/6.3/cli/oneimage.1.html>`__: manages OpenNebula images.
-* `onemarket </doc/6.3/cli/onemarket.1.html>`__: manages internal and external marketplaces.
-* `onemarketapp </doc/6.3/cli/onemarketapp.1.html>`__: manages appliances from marketplaces.
-* `oneprovider </doc/6.3/cli/oneprovider.1.html>`__: mnanages OpenNebula providers.
-* `oneprovision </doc/6.3/cli/oneprovision.1.html>`__: mnanages OpenNebula provisions.
-* `onesecgroup </doc/6.3/cli/onesecgroup.1.html>`__: manages OpenNebula security groups.
-* `oneshowback </doc/6.3/cli/oneshowback.1.html>`__: OpenNebula Showback tool.
-* `onetemplate </doc/6.3/cli/onetemplate.1.html>`__: manages OpenNebula templates.
-* `oneuser </doc/6.3/cli/oneuser.1.html>`__: manages OpenNebula users.
-* `onevcenter </doc/6.3/cli/onevcenter.1.html>`__: handles vCenter resource import.
-* `onevdc </doc/6.3/cli/onevdc.1.html>`__: manages OpenNebula Virtual DataCenters.
-* `onevm </doc/6.3/cli/onevm.1.html>`__: manages OpenNebula virtual machines.
-* `onevmgroup </doc/6.3/cli/onevmgroup.1.html>`__: manages OpenNebula VMGroups.
-* `onevnet </doc/6.3/cli/onevnet.1.html>`__: manages OpenNebula networks.
-* `onevntemplate </doc/6.3/cli/onevntemplate.1.html>`__: manages OpenNebula networks templates.
-* `onevrouter </doc/6.3/cli/onevrouter.1.html>`__: manages OpenNebula Virtual Routers.
-* `onezone </doc/6.3/cli/onezone.1.html>`__: manages OpenNebula zones.
-* `oneirb </doc/6.3/cli/oneirb.1.html>`__: opens an irb session.
-* `onelog </doc/6.3/cli/onelog.1.html>`__: access to OpenNebula services log files.
+* `oneacct </doc/6.6/cli/oneacct.1.html>`__: gets accounting data from OpenNebula.
+* `oneacl </doc/6.6/cli/oneacl.1.html>`__: manages OpenNebula ACLs.
+* `onecfg </doc/6.6/cli/onecfg.1.html>`__: manages OpenNebula configuration files upgrade.
+* `onecluster </doc/6.6/cli/onecluster.1.html>`__: manages OpenNebula clusters.
+* `onedatastore </doc/6.6/cli/onedatastore.1.html>`__: manages OpenNebula datastores.
+* `onedb </doc/6.6/cli/onedb.1.html>`__: OpenNebula database migration tool.
+* `onegroup </doc/6.6/cli/onegroup.1.html>`__: manages OpenNebula groups.
+* `onehook </doc/6.6/cli/onehook.1.html>`__: manages OpenNebula hooks.
+* `onehost </doc/6.6/cli/onehost.1.html>`__: manages OpenNebula hosts.
+* `oneimage </doc/6.6/cli/oneimage.1.html>`__: manages OpenNebula images.
+* `onemarket </doc/6.6/cli/onemarket.1.html>`__: manages internal and external marketplaces.
+* `onemarketapp </doc/6.6/cli/onemarketapp.1.html>`__: manages appliances from marketplaces.
+* `oneprovider </doc/6.6/cli/oneprovider.1.html>`__: mnanages OpenNebula providers.
+* `oneprovision </doc/6.6/cli/oneprovision.1.html>`__: mnanages OpenNebula provisions.
+* `onesecgroup </doc/6.6/cli/onesecgroup.1.html>`__: manages OpenNebula security groups.
+* `oneshowback </doc/6.6/cli/oneshowback.1.html>`__: OpenNebula Showback tool.
+* `onetemplate </doc/6.6/cli/onetemplate.1.html>`__: manages OpenNebula templates.
+* `oneuser </doc/6.6/cli/oneuser.1.html>`__: manages OpenNebula users.
+* `onevcenter </doc/6.6/cli/onevcenter.1.html>`__: handles vCenter resource import.
+* `onevdc </doc/6.6/cli/onevdc.1.html>`__: manages OpenNebula Virtual DataCenters.
+* `onevm </doc/6.6/cli/onevm.1.html>`__: manages OpenNebula virtual machines.
+* `onevmgroup </doc/6.6/cli/onevmgroup.1.html>`__: manages OpenNebula VMGroups.
+* `onevnet </doc/6.6/cli/onevnet.1.html>`__: manages OpenNebula networks.
+* `onevntemplate </doc/6.6/cli/onevntemplate.1.html>`__: manages OpenNebula networks templates.
+* `onevrouter </doc/6.6/cli/onevrouter.1.html>`__: manages OpenNebula Virtual Routers.
+* `onezone </doc/6.6/cli/onezone.1.html>`__: manages OpenNebula zones.
+* `oneirb </doc/6.6/cli/oneirb.1.html>`__: opens an irb session.
+* `onelog </doc/6.6/cli/onelog.1.html>`__: access to OpenNebula services log files.
 
 The output of these commands can be customized by modifying the configuration files that can be found in ``/etc/one/cli/``. They also can be customized on a per-user basis, in this case the configuration files should be placed in ``$HOME/.one/cli``.
 
@@ -45,13 +45,13 @@ List operation for each command will open a ``less`` session for a better user e
 OneFlow Commands
 ================================================================================
 
-* `oneflow </doc/6.3/cli/oneflow.1.html>`__: OneFlow Service management.
-* `oneflow-template </doc/6.3/cli/oneflow-template.1.html>`__: OneFlow Service Template management.
+* `oneflow </doc/6.6/cli/oneflow.1.html>`__: OneFlow Service management.
+* `oneflow-template </doc/6.6/cli/oneflow-template.1.html>`__: OneFlow Service Template management.
 
 OneGate Commands
 ================================================================================
 
-* `onegate </doc/6.3/cli/oneflow.1.html>`__: OneGate Service management.
+* `onegate </doc/6.6/cli/onegate.1.html>`__: OneGate Service management.
 
 .. _cli_shell:
 
