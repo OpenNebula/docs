@@ -252,6 +252,20 @@ The following applies to all Front-Ends:
 
 * XML-RPC tuning parameters (``MAX_CONN``, ``MAX_CONN_BACKLOG``, ``KEEPALIVE_TIMEOUT``, ``KEEPALIVE_MAX_CONN`` and ``TIMEOUT``) are only available with packages distributed by us, as they are compiled with a newer xmlrpc-c library.
 * Only **Ruby versions >= 2.0 are supported**.
+* Most Linux distributions using a kernel 5.X (i.e. Debian 11) mount cgroups v2 via systemd natively. If you have hosts with a previous version of the distribution mounting cgroups via fstab or in v1 compatibility mode (i.e. Debian 10) and their libvirt version is <5.5, during the migration of VMs from older hosts to new ones you can experience errors like
+
+.. code::
+
+    WWW MMM DD hh:mm:ss yyyy: MIGRATE: error: Unable to write to '/sys/fs/cgroup/machine.slice/machine-qemu/..../cpu.weight': Numerical result out of range Could not migrate VM_UID to HOST ExitCode: 1
+
+This happens in every single VM migration from a host with the previous OS version to a host with the new one.
+
+To solve this, there are 2 options: Delete the VM and recreate it scheduled in a host with the new OS version or mount cgroups in v1 compatibility mode in the nodes with the new OS version. To do this
+
+    1. Edit the bootloader default options (normally under ``/etc/defaults/grub.conf``)
+    2. Modify the default commandline for the nodes (usually ``GRUB_CMDLINE_LINUX="..."``) and add the option ``systemd.unified_cgroup_hierarchy=0``
+    3. Recreate the grub configuration file (in most cases executing a ``grub-mkconfig -o /boot/grub/grub.cfg``)
+    4. Reboot the host. The change will be persistent if the kernel is updated
 
 CentOS 7.0
 --------------------------------------------------------------------------------
@@ -303,7 +317,9 @@ The following items apply to all distributions:
 CentOS/RedHat 7 Platform Notes
 --------------------------------------------------------------------------------
 
-Ruby Dependencies
+RAdded details in case that some hosts in a cluster have incompatibility about the version of cgroups mounted
+
+uby Dependencies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In order to install Ruby dependencies on RHEL, the Server Optional channel needs to be enabled. Please refer to `RedHat documentation <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/>`__ to enable the channel.
