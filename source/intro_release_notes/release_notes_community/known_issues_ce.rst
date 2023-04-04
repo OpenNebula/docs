@@ -67,3 +67,17 @@ KVM - Live Memory Resize
 ================================================================================
 
 For live memory resize user needs to specify ``MAX_MEMORY``, the available memory for the VM is in ``MEMORY`` attribute. But VM running Windows shows in Task Manager available physical memory as ``MAX_MEMORY`` although it can use only ``MEMORY``, this value is not visible in the Task Manager. Because of this it shows a high percentage of memory used. To double check the real available memory for the VM user should use command ``virsh dominfo <id>`` on the host.
+
+Market proxy settings
+================================================================================
+
+- The option ``--proxy`` in the ``MARKET_MAD`` may not be working correctly. To solve it, execute ``systemctl edit opennebula`` and add the following entries:
+
+.. prompt:: bash $ auto
+
+  [Service]
+  Environment="http_proxy=http://proxy_server"
+  Environment="https_proxy=http://proxy_server"
+  Environment="no_proxy=domain1,domain2"
+
+Where ``proxy_server`` is the proxy server to be used and ``no_proxy`` is a list of the domains or IP ranges that must not be accessed via proxy by opennebula. After that, reload systemd service configuration with ``systemctl daemon-reload`` and restart opennebula with a ``systemctl restart opennebula``
