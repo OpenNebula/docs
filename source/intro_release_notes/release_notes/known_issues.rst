@@ -81,3 +81,17 @@ NUMA Free Hugepages
 ================================================================================
 
 After upgrading to 6.6.1, the host xml may contain ``HOST_SHARE/NUMA_NODES/NODE/HUGEPAGE/FREE`` attributes always set to ``0``. This attribute shouldn't be there. Xml-linter will show unexpected attribute. The real value of free hugepages is stored in ``MONITORING/NUMA_NODE/HUGEPAGE/FREE``, this value is presented by ``onehost show`` command and sunstone.
+
+Market proxy settings
+================================================================================
+
+- The option ``--proxy`` in the ``MARKET_MAD`` may not be working correctly. To solve it, execute ``systemctl edit opennebula`` and add the following entries:
+
+.. prompt:: bash $ auto
+
+  [Service]
+  Environment="http_proxy=http://proxy_server"
+  Environment="https_proxy=http://proxy_server"
+  Environment="no_proxy=domain1,domain2"
+
+Where ``proxy_server`` is the proxy server to be used and ``no_proxy`` is a list of the domains or IP ranges that must not be accessed via proxy by opennebula. After that, reload systemd service configuration with ``systemctl daemon-reload`` and restart opennebula with a ``systemctl restart opennebula``
