@@ -95,3 +95,18 @@ Datastore driver actions take the information from the command line arguments. W
     ]
 
 Note: Passing arguments through command line will be deprecated in the next minor release (6.8)
+
+
+Market proxy settings
+================================================================================
+
+- The option ``--proxy`` in the ``MARKET_MAD`` may not be working correctly. To solve it, execute ``systemctl edit opennebula`` and add the following entries:
+
+.. prompt:: bash $ auto
+
+  [Service]
+  Environment="http_proxy=http://proxy_server"
+  Environment="https_proxy=http://proxy_server"
+  Environment="no_proxy=domain1,domain2"
+
+Where ``proxy_server`` is the proxy server to be used and ``no_proxy`` is a list of the domains or IP ranges that must not be accessed via proxy by opennebula. After that, reload systemd service configuration with ``systemctl daemon-reload`` and restart opennebula with a ``systemctl restart opennebula``
