@@ -296,6 +296,15 @@ It is recommended that you disable PolicyKit for Libvirt:
     unix_sock_rw_perms = "0770"
     ...
 
+AlmaLinux 9 Platform Notes
+--------------------------------------------------------------------------------
+
+Disable Libvirtd's SystemD Socket Activation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+OpenNebula currently works only with the legacy ``livirtd.service``. You should disable libvirt's modular daemons and systemd socket activation for the ``libvirtd.service``.
+You can take a look at `this <https://github.com/OpenNebula/one/issues/6143>`__ bug report, for a detailed workaround procedure.
+
 vCenter 7.0 Platform Notes
 --------------------------------------------------------------------------------
 
