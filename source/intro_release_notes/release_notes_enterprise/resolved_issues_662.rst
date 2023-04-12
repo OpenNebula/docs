@@ -8,6 +8,7 @@ A complete list of solved issues for 6.6.2 can be found in the `project developm
 The following new features has been backported to 6.6.2:
 
 - `Graceful stop of ongoing backup operations <https://github.com/OpenNebula/one/issues/6030>`__.
+- `Add support Centos 8 Stream, Amazon Linux and Opensuse <https://github.com/OpenNebula/one/issues/3178>`__.
 
 The following issues has been solved in 6.6.2:
 
