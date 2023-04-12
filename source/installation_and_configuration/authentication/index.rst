@@ -12,3 +12,4 @@ Authentication Configuration
    X.509 Authentication <x509>
    LDAP Authentication <ldap>
    Sunstone Authentication <sunstone>
+   FireEdge Authentication <fireedge>

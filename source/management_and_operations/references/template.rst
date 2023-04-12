@@ -651,6 +651,9 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 | ``TOKEN``                         | ``YES`` to create a token.txt file for :ref:`OneGate monitorization                             | O                            | O       |
 |                                   | <onegate_usage>`.                                                                               |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
+| ``ONEGATE_ENDPOINT``              | OpenNebula will automatically add this variable if ``TOKEN`` is ``YES``.                        | O                            | O       |
+|                                   | Defaults to ``http://169.254.16.9:5030``. Value loaded from ``/etc/one/oned.conf``              |                              |         |
++-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``NETWORK``                       | ``YES`` to fill automatically the networking parameters for each NIC, used by the               | O                            | O       |
 |                                   | :ref:`Contextualization packages <context_overview>`.                                           |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
