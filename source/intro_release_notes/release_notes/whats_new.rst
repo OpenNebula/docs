@@ -59,3 +59,5 @@ Additionally, the following functionalities are present that were not in OpenNeb
 - `Retention policy for incremental backups <https://github.com/OpenNebula/one/issues/6029>`__.
 - `Graceful stop of ongoing backup operations <https://github.com/OpenNebula/one/issues/6030>`__.
 - `FireEdge Sunstone datastores tab <https://github.com/OpenNebula/one/issues/6095>`__.
+- `Add support Centos 8 Stream, Amazon Linux and Opensuse for LXD marketplace <https://github.com/OpenNebula/one/issues/3178>`__.
+
