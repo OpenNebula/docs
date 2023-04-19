@@ -25,4 +25,3 @@ Hypervisor Compatibility
 All the Sections of this Chapter applies to both KVM and vCenter hypervisors.
 
 .. |image0| image:: /images/overview_architecture.png
-   :scale: 75 %
