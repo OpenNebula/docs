@@ -41,6 +41,7 @@ We are defining a host hook, named ``host_error``, that will execute the script 
 |                     | This can be:                                                                                       |         |
 |                     |                                                                                                    |         |
 |                     | - ``-m`` migrate VMs to another host. Only for images on shared storage (NFS, Ceph, ...)           |         |
+|                     |    This option skips VMs deployed on local datastores, so they can be started after host recovery. |         |
 |                     | - ``-r`` delete and recreate VMs running in the host. Their **state will be lost**!                |         |
 |                     | - ``-d`` delete VMs running in the host.                                                           |         |
 +---------------------+----------------------------------------------------------------------------------------------------+---------+
