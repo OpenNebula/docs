@@ -160,10 +160,29 @@ For some applications you may need an asymmetric NUMA configuration, i.e. not di
 
 .. important:: OpenNebula will also check that the total MEMORY in all the nodes matches that set in the VM.
 
+NUMA Node Affinity
+================================================================================
+
+You can improve the performance of some VM workloads by manually pinning its virtual CPUs to a given NUMA node, and thus preventing the VM virtual CPUs processes from migrating across NUMA nodes. Note that as opposed to the CPU pinning described in the next section, the host CPUs are **NOT** reserved for the VM for exclusive access.
+
+To set the affinity simply add the node id to the topology:
+
+.. code::
+
+   MEMORY = 1024
+   VCPU = 4
+   CPU  = 1
+
+   TOPOLOGY = [ NODE_AFFINITY = 1 ]
+
+.. important:: It is recommended to use homogeneous cluster configurations (same number of nodes, cores and threads per core) to allow the live-migration of VMs with NUMA node affinity.
+
+.. important:: NUMA node affinity cannot be used together with the PIN_POLICY attribute.
+
 CPU and NUMA Pinning
 ================================================================================
 
-When you need to expose the NUMA topology to the guest, you have to set a pinning policy to map each virtual NUMA node's resources (memory and vCPUs) onto the hypervisor nodes. OpenNebula can work with four different policies:
+When you need predictable performance for your VMs, you have to set a pinning policy to map each virtual NUMA node's resources (memory and vCPUs) onto the hypervisor nodes. OpenNebula can work with four different policies:
 
 * ``CORE``: each vCPU is assigned to a whole hypervisor core. No other threads in that core will be used. This policy can be useful to isolate the VM workload for security reasons.
 * ``THREAD``: each vCPU is assigned to a hypervisor CPU thread.
@@ -215,6 +234,8 @@ Summary of Virtual Topology Attributes
 + TOPOLOGY attribute | Meaning                                                             |
 +====================+=====================================================================+
 | PIN_POLICY         | vCPU pinning preference: ``CORE``, ``THREAD``, ``SHARED``, ``NONE`` |
++--------------------+---------------------------------------------------------------------+
+| NODE_AFFINITY      | Pin virtual CPUs to the given NUMA node in the host                 |
 +--------------------+---------------------------------------------------------------------+
 | SOCKETS            | Number of sockets or NUMA nodes                                     |
 +--------------------+---------------------------------------------------------------------+
