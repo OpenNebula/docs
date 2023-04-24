@@ -163,7 +163,7 @@ For some applications you may need an asymmetric NUMA configuration, i.e. not di
 NUMA Node Affinity
 ================================================================================
 
-You can improve the performance of some VM workloads by manually pinning its virtual CPUs to a given NUMA node, and thus preventing the VM virtual CPUs processes from migrating across NUMA nodes. Note that as opposed to the CPU pinning described in the next section, the host CPUs are **NOT** reserved for the VM for exclusive access.
+You can improve the performance of some VM workloads by manually pinning its virtual CPUs and memory to a given NUMA node, and thus preventing the VM virtual CPUs processes from migrating across NUMA nodes. Note that as opposed to the CPU pinning described in the next section, the host CPUs are **NOT** reserved for the VM for exclusive access.
 
 To set the affinity simply add the node id to the topology:
 
