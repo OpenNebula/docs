@@ -60,4 +60,4 @@ Additionally, the following functionalities are present that were not in OpenNeb
 - `Graceful stop of ongoing backup operations <https://github.com/OpenNebula/one/issues/6030>`__.
 - `FireEdge Sunstone datastores tab <https://github.com/OpenNebula/one/issues/6095>`__.
 - `Add support Centos 8 Stream, Amazon Linux and Opensuse for LXD marketplace <https://github.com/OpenNebula/one/issues/3178>`__.
-- `Add ability to pin the virtual CPUs of a VM to a specific NUMA node <https://github.com/OpenNebula/one/issues/5966>`__.
+- `Add ability to pin the virtual CPUs and memory of a VM to a specific NUMA node <https://github.com/OpenNebula/one/issues/5966>`__.
