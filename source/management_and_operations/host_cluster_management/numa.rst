@@ -223,9 +223,25 @@ To enable the use of hugepages for the memory allocation of the VM just add the 
 
 .. code::
 
-	TOPOLOGY = [ HUGEPAGE_SIZE = 2 ]
+	TOPOLOGY = [ PIN_POLICY = thread, SOCKETS = 2, HUGEPAGE_SIZE = 2 ]
 
 OpenNebula will look for a Host with enough free pages of the requested size to allocate the VM. The resources of each virtual node will be placed as close as possible to the node providing the hugepages.
+
+You can also use hugepages with NUMA affinity (see section above). In this case OpenNebula will check that the selected node has enough free hugepages for the VM. For example (2M hugepages):
+
+.. code::
+
+	TOPOLOGY = [ NODE_AFFINITY = 0, HUGEPAGE_SIZE = 2 ]
+
+Finally, you can use hugepages and let OpenNebula look for a NUMA node to allocate the VM. In this case CPU affinity will be also set to the selected NUMA node. For example:
+
+.. code::
+
+	TOPOLOGY = [ HUGEPAGE_SIZE = 2 ]
+
+
+.. important:: When no pin policy or NUMA node affinity is set, OpenNebula will pick the node with a higher number of free hugepages, to try balancing the load.
+
 
 Summary of Virtual Topology Attributes
 ================================================================================
@@ -313,7 +329,7 @@ Let's define a VM with two NUMA nodes using 2M hugepages, four vCPUs and 1G of m
    TOPOLOGY = [
      HUGEPAGE_SIZE = "2",
      MEMORY_ACCESS = "shared",
-     NUMA_NODES    = "2",
+     SOCKETS       = "2",
      PIN_POLICY    = "THREAD" ]
 
    DISK = [ IMAGE="CentOS7" ]
