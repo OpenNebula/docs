@@ -92,6 +92,12 @@ First, add the repository signing GPG key on the Front-end by executing as user 
 
     # wget -q -O- https://downloads.opennebula.io/repo/repo2.key | apt-key add -
 
+.. important:: If you are using Ubuntu 22.04, ``apt-key`` to add signing GPG keys is about to be deprecated. Execute the following:
+
+    .. prompt:: bash # auto
+    
+       # wget -q -O- https://downloads.opennebula.io/repo/repo2.key | gpg --dearmor > /etc/apt/trusted.gpg.d/opennebula.gpg
+
 and then continue with repository configuration:
 
 **Debian 10**
