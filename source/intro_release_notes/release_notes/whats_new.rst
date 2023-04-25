@@ -17,7 +17,7 @@ Networking
 
 Storage & Backups
 ================================================================================
-- `Feature 1 <https://github.com/OpenNebula/one/issues/1234>`__.
+- `Shared datastore allows qcow2 backing link in CLONE action to be configurable  <https://github.com/OpenNebula/one/issues/6098>`__.
 
 Ruby Sunstone
 ================================================================================
