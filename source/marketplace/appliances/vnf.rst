@@ -342,6 +342,7 @@ Parameter                             Default        Description
 Parameter                             Default        Description
 ===================================== ============== ===========
 ``ONEAPP_VROUTER_ETHx_VIP<0-9>``      (empty)        Extra floating IPv4 (VIPs) for ethX
+``VROUTER_KEEPALIVED_NOTIFY_SCRIPT``  (empty)        `Notification script <https://www.redhat.com/sysadmin/advanced-keepalived#notify-scripts>`_  path
 ===================================== ============== ===========
 
 .. note::
