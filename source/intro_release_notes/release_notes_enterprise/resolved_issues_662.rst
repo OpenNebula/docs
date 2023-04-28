@@ -21,3 +21,4 @@ The following issues has been solved in 6.6.2:
 - `Improve VM HA hook script host_error.rb to skip VMs deployed on local datastores <https://github.com/OpenNebula/one/issues/6099>`__.
 - `Fix disk_type and source for block CD <https://github.com/OpenNebula/one/issues/6140>`__.
 - `Fix Address Range IP6_END value <https://github.com/OpenNebula/one/issues/6156>`__.
+- `Fix restore dialog to properly set restore options <https://github.com/OpenNebula/one/issues/6187>`__.
