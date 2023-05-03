@@ -170,7 +170,7 @@ For example, for searching a VM with a specific MAC address:
 
 .. prompt:: text $ auto
 
-    $onevm list --search MAC=02:00:0c:00:4c:dd
+    $ onevm list --search MAC=02:00:0c:00:4c:dd
      ID    USER     GROUP    NAME    STAT UCPU UMEM HOST TIME
      21005 oneadmin oneadmin test-vm pend    0   0K      1d 23h11
 
@@ -178,7 +178,7 @@ Equivalently if there are more than one VM instance that matches the result they
 
 .. prompt:: text $ auto
 
-    $onevm list --search NAME=test-vm
+    $ onevm list --search NAME=test-vm
      ID    USER     GROUP    NAME    STAT UCPU UMEM HOST TIME
      21005 oneadmin oneadmin test-vm pend    0   0K       1d 23h13
      2100  oneadmin oneadmin test-vm pend    0   0K      12d 17h59
@@ -876,7 +876,7 @@ Custom attributes can be added to a VM to store metadata related to this specifi
     ~
     ~
 
-    $onevm show 0
+    $ onevm show 0
     ...
 
     VIRTUAL MACHINE TEMPLATE
