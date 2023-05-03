@@ -19,6 +19,7 @@ The following issues has been solved in 6.6.2:
 - `Fix error when disabling the FireEdge configuration attributes in sunstone-server.conf <https://github.com/OpenNebula/one/issues/6163>`__.
 - `Fix datastore driver actions error: argument list too long <https://github.com/OpenNebula/one/issues/6162>`__.
 - `Fix termination time for scheduled actions with repeat times <https://github.com/OpenNebula/one/issues/6181>`__.
+- `Fix LinuxContainers marketplace monitoring <https://github.com/OpenNebula/one/issues/6184>`__.
 - `Improve VM HA hook script host_error.rb to skip VMs deployed on local datastores <https://github.com/OpenNebula/one/issues/6099>`__.
 - `Fix disk_type and source for block CD <https://github.com/OpenNebula/one/issues/6140>`__.
 - `Fix Address Range IP6_END value <https://github.com/OpenNebula/one/issues/6156>`__.
