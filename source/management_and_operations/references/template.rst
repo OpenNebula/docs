@@ -748,8 +748,8 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``ETHx_ALIASy_DNS``               | DNS for the alias.                                                                              | \-                           | \-      |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
-| ``USERNAME``                      | User to be created in the guest OS. If any password attribute is defined (see                   | O                            | O       |
-|                                   | below) it will change this user (defaults to ``root``)                                          |                              |         |
+| ``USERNAME``                      | User to be created in the guest OS. If any password or SSH_PUBLIC_KEY attribute is defined      | Linux                        | Linux   |
+|                                   | (see below) it will change this user (defaults to ``root``).                                    |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``CRYPTED_PASSWORD_BASE64``       | Crypted password encoded in base64. To be set for the user ``USERNAME``.                        | Linux                        | Linux   |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
@@ -761,8 +761,11 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 | ``PASSWORD``                      | Password to be set for the user ``USERNAME``. This parameter is not recommended,                | O                            | O       |
 |                                   | use ``PASSWORD_BASE64`` instead.                                                                |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
-| ``SSH_PUBLIC_KEY``                | Key to be added to ``USERNAME`` ``authorized_keys`` file or ``root`` in case                    | Linux                        | Linux   |
+| ``SSH_PUBLIC_KEY``                | Key to be added to ``USERNAME`` ``authorized_keys`` file or ``root`` in case                    | O                            | O       |
 |                                   | ``USERNAME`` is not set.                                                                        |                              |         |
+|                                   | Requires OpenSSH server installed on Windows, user automatically detected. ``USERNAME`` ignored.|                              |         |
++-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
+| ``WINADMIN``                      | Set to ``NO`` to treat the Windows user as standard user for setting ``SSH_PUBLIC_KEY``         | Windows                      | Windows |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``SECURETTY``                     | If set to ``NO`` it will disable securetty validation on PAM. If set to ``YES``                 | Linux                        | Linux   |
 |                                   | it will restore system defaults. Defaults: LXC -> ``YES``, KVM -> ``NO``.                       |                              |         |
