@@ -26,6 +26,11 @@ Main Features
     http://<OPENNEBULA-FRONTEND>:2616
 
 
+.. note::
+
+    We are continually expanding the feature set of FireEdge Sunstone, and hence its configuration files are in constant change. In versions 6.6.2 and later, configuration files in ``/etc/one/fireedge/sunstone/`` can be replaced by the ones that can be downloaded `here <https://downgit.github.io/#/home?url=https://github.com/OpenNebula/one/tree/3376afdaf0e49aa78e07e812330460a4a66223d7/src/fireedge/etc/sunstone>`__ in order to activate the latest features.
+
+
 .. warning:: FireEdge currently doesn't support :ref:`federated environments <federation>`. It can interact only with a local OpenNebula instance (even if it's federated), but can't interact with remote, federated OpenNebula instances.
 
 .. _fireedge_install_configuration:
@@ -61,6 +66,18 @@ The FireEdge server configuration file can be found in ``/etc/one/fireedge-serve
 | ``session_remember_expiration``           | ``3600``                       | JWT expiration time when using remember check box  |
 |                                           |                                | (minutes)                                          |
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``default_zone``                          |                                | Shows the default resources of that zone           |
+|                                           |                                |                                                    |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``default_zone/id``                       | ``0``                          | Id of the zone to which this fireedge belongs      |
+|                                           |                                |                                                    |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``default_zone/name``                     | ``OpenNebula``                 | Name of the zone to which this fireedge belongs    |
+|                                           |                                |                                                    |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``default_zone/endpoint``                 | ``http://localhost:2633/RPC2`` | XML-RPC url of the zone to which this fireedge     |
+|                                           |                                | belongs                                            |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
 | ``minimun_opennebula_expiration``         | ``30``                         | Minimum time to reuse previously generated JWTs    |
 |                                           |                                | (minutes)                                          |
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
@@ -71,6 +88,17 @@ The FireEdge server configuration file can be found in ``/etc/one/fireedge-serve
 | ``guacd/port``                            | ``4822``                       | Connection port of guacd server                    |
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
 | ``guacd/host``                            | ``localhost``                  | Connection hostname/IP of guacd server             |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``auth``                                  | ``opennebula``                 | Authentication driver for incoming requests:       |
+|                                           |                                | **OpenNebula** the authentication will be done by  |
+|                                           |                                | the OpenNebula core using the driver defined for   |
+|                                           |                                | the user. **remote** performs the login based on a |
+|                                           |                                | Kerberos X-Auth-Username header provided by        |
+|                                           |                                | authentication backend                             |
++-------------------------------------------+--------------------------------+----------------------------------------------------+
+| ``auth_redirect``                         |                                | This configuration is for the login button         |
+|                                           |                                | redirect. The available options are: **/**,        |
+|                                           |                                | **.** or a **URL**                                 |
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
 
 .. note:: JWT is acronime of JSON Web Token

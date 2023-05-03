@@ -55,6 +55,9 @@ Usable only with Sunstone:
 * :ref:`X.509 Authentication <x509_auth>`
 * :ref:`Sunstone Authentication <suns_auth>`
 
+Usable only with FireEdge:
+* :ref:`FireEdge Authentication <fireedge_auth>`
+
 Hypervisor Compatibility
 ================================================================================
 

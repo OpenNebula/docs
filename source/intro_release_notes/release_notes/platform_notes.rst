@@ -1,7 +1,7 @@
 .. _uspng:
 
 ================================================================================
-Platform Notes 6.6.1
+Platform Notes 6.6.2
 ================================================================================
 
 This page will show you the specific considerations when using an OpenNebula cloud, according to the different supported platforms.
@@ -111,33 +111,33 @@ Linux Contextualization Packages
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
 |          Component           |              Version                                    |                                     More information                                     |
 +==============================+=========================================================+==========================================================================================+
-| AlmaLinux                    | 8                                                       | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| AlmaLinux                    | 8,9                                                     | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
-| Alpine Linux                 | 3.13, 3.14, 3.15                                        | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| Alpine Linux                 | 3.15, 3.16, 3.17                                        | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
-| ALT Linux                    | p9, p10, Sisyphus                                       | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| ALT Linux                    | p9, p10                                                 | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
 | Amazon Linux                 | 2                                                       | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
 | CentOS                       | 7, 8 Stream                                             | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
-| Debian                       | 10, 11, 12                                              | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| Debian                       | 10, 11                                                  | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
-| Devuan                       | 2                                                       | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| Devuan                       | 3, 4                                                    | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
-| Fedora                       | 34, 35                                                  | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| Fedora                       | 36, 37                                                  | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
 | FreeBSD                      | 12, 13                                                  | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
 | openSUSE                     | 15                                                      | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
-| Oracle Linux                 | 7, 8                                                    | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| Oracle Linux                 | 7, 8, 9                                                 | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
-| Red Hat Enterprise Linux     | 7, 8                                                    | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| Red Hat Enterprise Linux     | 7, 8, 9                                                 | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
-| Rocky Linux                  | 8                                                       | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| Rocky Linux                  | 8, 9                                                    | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
-| Ubuntu                       | 14.04, 16.04, 18.04, 20.04, 22.04                       | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| Ubuntu                       | 18.04, 20.04, 22.04                                     | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
 
 Windows Contextualization Packages
@@ -261,6 +261,22 @@ The following items apply to all distributions:
 
     DISK = [ driver = "qcow2", cache = "writethrough" ]
 
+* Most Linux distributions using a kernel 5.X (i.e. Debian 11) mount cgroups v2 via systemd natively. If you have hosts with a previous version of the distribution mounting cgroups via fstab or in v1 compatibility mode (i.e. Debian 10) and their libvirt version is <5.5, during the migration of VMs from older hosts to new ones you can experience errors like
+
+.. code::
+
+    WWW MMM DD hh:mm:ss yyyy: MIGRATE: error: Unable to write to '/sys/fs/cgroup/machine.slice/machine-qemu/..../cpu.weight': Numerical result out of range Could not migrate VM_UID to HOST ExitCode: 1
+
+This happens in every single VM migration from a host with the previous OS version to a host with the new one.
+
+To solve this, there are 2 options: Delete the VM and recreate it scheduled in a host with the new OS version or mount cgroups in v1 compatibility mode in the nodes with the new OS version. To do this
+
+    1. Edit the bootloader default options (normally under ``/etc/defaults/grub.conf``)
+    2. Modify the default commandline for the nodes (usually ``GRUB_CMDLINE_LINUX="..."``) and add the option ``systemd.unified_cgroup_hierarchy=0``
+    3. Recreate the grub configuration file (in most cases executing a ``grub-mkconfig -o /boot/grub/grub.cfg``)
+    4. Reboot the host. The change will be persistent if the kernel is updated
+
+
 RedHat 8 Platform Notes
 --------------------------------------------------------------------------------
 
@@ -280,6 +296,15 @@ It is recommended that you disable PolicyKit for Libvirt:
     unix_sock_rw_perms = "0770"
     ...
 
+AlmaLinux 9 Platform Notes
+--------------------------------------------------------------------------------
+
+Disable Libvirtd's SystemD Socket Activation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+OpenNebula currently works only with the legacy ``livirtd.service``. You should disable libvirt's modular daemons and systemd socket activation for the ``libvirtd.service``.
+You can take a look at `this <https://github.com/OpenNebula/one/issues/6143>`__ bug report, for a detailed workaround procedure.
+
 vCenter 7.0 Platform Notes
 --------------------------------------------------------------------------------
 
@@ -287,3 +312,8 @@ Problem with Boot Order
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Currently in vCenter 7.0 changing the boot order is only supported in Virtual Machines at deployment time.
+
+Debian 10 and Ubuntu 18 Upgrade
+--------------------------------------------------------------------------------
+
+When upgrading your nodes from Debian 10 or Ubuntu 18 you may need to update the opennebula sudoers file because of the */usr merge* feature implemented for Debian11/Ubuntu20. You can `find more information and a recommended work around in this issue  <https://github.com/OpenNebula/one/issues/6090>`__.

@@ -160,10 +160,29 @@ For some applications you may need an asymmetric NUMA configuration, i.e. not di
 
 .. important:: OpenNebula will also check that the total MEMORY in all the nodes matches that set in the VM.
 
+NUMA Node Affinity
+================================================================================
+
+You can improve the performance of some VM workloads by manually pinning its virtual CPUs and memory to a given NUMA node, and thus preventing the VM virtual CPUs processes from migrating across NUMA nodes. Note that as opposed to the CPU pinning described in the next section, the host CPUs are **NOT** reserved for the VM for exclusive access.
+
+To set the affinity simply add the node id to the topology:
+
+.. code::
+
+   MEMORY = 1024
+   VCPU = 4
+   CPU  = 1
+
+   TOPOLOGY = [ NODE_AFFINITY = 1 ]
+
+.. important:: It is recommended to use homogeneous cluster configurations (same number of nodes, cores and threads per core) to allow the live-migration of VMs with NUMA node affinity.
+
+.. important:: NUMA node affinity cannot be used together with the PIN_POLICY attribute.
+
 CPU and NUMA Pinning
 ================================================================================
 
-When you need to expose the NUMA topology to the guest, you have to set a pinning policy to map each virtual NUMA node's resources (memory and vCPUs) onto the hypervisor nodes. OpenNebula can work with four different policies:
+When you need predictable performance for your VMs, you have to set a pinning policy to map each virtual NUMA node's resources (memory and vCPUs) onto the hypervisor nodes. OpenNebula can work with four different policies:
 
 * ``CORE``: each vCPU is assigned to a whole hypervisor core. No other threads in that core will be used. This policy can be useful to isolate the VM workload for security reasons.
 * ``THREAD``: each vCPU is assigned to a hypervisor CPU thread.
@@ -204,9 +223,25 @@ To enable the use of hugepages for the memory allocation of the VM just add the 
 
 .. code::
 
-	TOPOLOGY = [ HUGEPAGE_SIZE = 2 ]
+	TOPOLOGY = [ PIN_POLICY = thread, SOCKETS = 2, HUGEPAGE_SIZE = 2 ]
 
 OpenNebula will look for a Host with enough free pages of the requested size to allocate the VM. The resources of each virtual node will be placed as close as possible to the node providing the hugepages.
+
+You can also use hugepages with NUMA affinity (see section above). In this case OpenNebula will check that the selected node has enough free hugepages for the VM. For example (2M hugepages):
+
+.. code::
+
+	TOPOLOGY = [ NODE_AFFINITY = 0, HUGEPAGE_SIZE = 2 ]
+
+Finally, you can use hugepages and let OpenNebula look for a NUMA node to allocate the VM. In this case CPU affinity will be also set to the selected NUMA node. For example:
+
+.. code::
+
+	TOPOLOGY = [ HUGEPAGE_SIZE = 2 ]
+
+
+.. important:: When no pin policy or NUMA node affinity is set, OpenNebula will pick the node with a higher number of free hugepages, to try balancing the load.
+
 
 Summary of Virtual Topology Attributes
 ================================================================================
@@ -215,6 +250,8 @@ Summary of Virtual Topology Attributes
 + TOPOLOGY attribute | Meaning                                                             |
 +====================+=====================================================================+
 | PIN_POLICY         | vCPU pinning preference: ``CORE``, ``THREAD``, ``SHARED``, ``NONE`` |
++--------------------+---------------------------------------------------------------------+
+| NODE_AFFINITY      | Pin virtual CPUs to the given NUMA node in the host                 |
 +--------------------+---------------------------------------------------------------------+
 | SOCKETS            | Number of sockets or NUMA nodes                                     |
 +--------------------+---------------------------------------------------------------------+
@@ -292,7 +329,7 @@ Let's define a VM with two NUMA nodes using 2M hugepages, four vCPUs and 1G of m
    TOPOLOGY = [
      HUGEPAGE_SIZE = "2",
      MEMORY_ACCESS = "shared",
-     NUMA_NODES    = "2",
+     SOCKETS       = "2",
      PIN_POLICY    = "THREAD" ]
 
    DISK = [ IMAGE="CentOS7" ]

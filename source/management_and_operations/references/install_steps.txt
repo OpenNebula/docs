@@ -7,56 +7,65 @@ RHEL 7.x (CentOS/Oracle Linux 7.x)
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.1/one-context-6.6.1-1.el7.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.0/one-context-6.6.0-1.el7.noarch.rpm
 
-RHEL 8.x (CentOS/AlmaLinux/Oracle Linux 8.x) and Fedora 29+
+RHEL 8.x (CentOS/AlmaLinux/RockyLinux/Oracle Linux 8.x)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.1/one-context-6.6.1-1.el8.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.0/one-context-6.6.0-1.el8.noarch.rpm
+
+RHEL 9.x (AlmaLinux/RockyLinux/Oracle Linux 9.x) and Fedora 36,37
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.0/one-context-6.6.0-1.el9.noarch.rpm
 
 Debian/Ubuntu/Devuan
 ~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.1/one-context_6.0.0-1.deb
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.0/one-context_6.6.0-1.deb
 
 OpenSUSE 15 and Tumbleweed
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.1/one-context-6.6.1-1.suse.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.0/one-context-6.6.0-1.suse.noarch.rpm
 
-ALT Linux p9, Sisyphus
-~~~~~~~~~~~~~~~~~~~~~~
+ALT Linux p9, p10, Sisyphus
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.1/one-context-6.6.1-alt1.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.0/one-context-6.6.0-alt1.noarch.rpm
 
 Alpine Linux
 ~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.1/one-context-6.6.1-r1.apk
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.0/one-context-6.6.0-r1.apk
 
-FreeBSD 11, 12
+FreeBSD 12, 13
 ~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.1/one-context-6.6.1_1.txz
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.0/one-context-6.6.0_1.txz
 
 Windows
 ~~~~~~~
 
 Download the MSI package into ``C:\``:
 
+
 * https://github.com/OpenNebula/addon-context-windows/releases/download/v6.6.1/one-context-6.6.1.msi
+
 
 Or execute this command in powershell:
 
@@ -73,14 +82,6 @@ Install OpenSSH server
 Step 3. Install Contextualization Packages and Dependencies
 -----------------------------------------------------------
 
-RHEL 6.x (CentOS 6.x)
-~~~~~~~~~~~~~~~~~~~~~
-
-.. prompt:: bash # auto
-
-    # yum install -y epel-release
-    # yum install -y one-context-[0-9]*el6*rpm
-
 RHEL 7.x (CentOS/Oracle Linux 7.x)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -89,7 +90,7 @@ RHEL 7.x (CentOS/Oracle Linux 7.x)
     # yum install -y epel-release
     # yum install -y one-context-[0-9]*el7*rpm
 
-RHEL 8.x (CentOS/AlmaLinux/Oracle Linux 8.x) and Fedora 29+
+RHEL 8.x (CentOS/AlmaLinux/Oracle Linux 8.x)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
@@ -97,6 +98,16 @@ RHEL 8.x (CentOS/AlmaLinux/Oracle Linux 8.x) and Fedora 29+
     # yum install -y epel-release
     # yum install -y one-context-[0-9]*el8*rpm
     # systemctl enable network.service
+
+RHEL 9.x (AlmaLinux/Oracle Linux 9.x) and Fedora
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # yum install -y epel-release
+    # yum install -y one-context-[0-9]*el9*rpm
+    # systemctl enable network.service
+
 
 OpenSUSE
 ~~~~~~~~

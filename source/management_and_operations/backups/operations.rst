@@ -12,7 +12,7 @@ Backup Types
 OpenNebula supports two backup types:
 
 - **Full**, each backup contains a full copy of the VM disks. Libvirt version >= 5.5 is required.
-- **Incremental**, each backup contains only the changes since the last backup. Libvirt version >= 7.7 is required.
+- **Incremental**, each backup contains only the changes since the last backup. Incremental backups track changes by creating checkpoints (disk block dirty-bitmaps) using QEMU/Libvirt. Libvirt version >= 7.7 is required.
 
 The Backup Process
 --------------------------------------------------------------------------------
@@ -113,7 +113,7 @@ Reference: Backup Configuration Attributes
 +---------------------------+--------------------------------------------------------------------------------------------------------------+
 | ``FS_FREEZE``             | Operation to freeze guest FS: ``NONE`` do nothing, ``AGENT`` use guest agent, ``SUSPEND`` suspend the domain |
 +---------------------------+--------------------------------------------------------------------------------------------------------------+
-| ``KEEP_LAST``             | Only keep the last N backups for the VM                                                                      |
+| ``KEEP_LAST``             | Only keep the last N backups (full backups or increments) for the VM                                         |
 +---------------------------+--------------------------------------------------------------------------------------------------------------+
 | ``MODE``                  | Backup type ``FULL`` or ``INCREMENT``                                                                        |
 +---------------------------+--------------------------------------------------------------------------------------------------------------+
@@ -245,6 +245,13 @@ The schedule actions are in control of the scheduler. You can tune the number of
 | ``MAX_BACKUPS_HOST`` | Max number of backups per host                                                               |
 +----------------------+----------------------------------------------------------------------------------------------+
 
+Cancel Backup
+--------------------------------------------------------------------------------
+
+You can cancel ongoing backup operation using the ``onevm backup-cancel``. The command will try to gracefully terminate backup operation. If the command succeeds the VM will return to running (or poweroff) state. Note that not all stages of the backup operation can be canceled and some files may be left on the VM folder in the system datastore. These files will be cleaned up in during a subsequent backup.
+
+If the backup operation is not running, but the VM stays in the backup state, use command ``onevm recover`` to return VM back to running state.
+
 .. _vm_backups_restore:
 
 Restoring Backups
@@ -259,6 +266,8 @@ When you restore the backup you may choose to:
 
 - Not keep the NIC addressing (i.e. IPs, or MAC)
 - Not keep any NIC definition
+- In the case of incremental backups you can choose which increment to restore (or last by default)
+- Finally, you can pick a base name for the VM Templates and disk Images that will be created
 
 After you restore the VM, we recommend to review the restored template to fine-tune any additional parameter. The following example shows the recovering procedure:
 

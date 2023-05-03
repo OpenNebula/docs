@@ -45,11 +45,6 @@ vCenter Snapshot behavior
 
 VMs in vCenter 7.0 exhibit a new behavior regarding snapshots and disks attach/detach operations. When vCenter 7.0 detects any change in the number of disks attached to a VM, it automatically cleans all the VM snapshots. OpenNebula doesn't take this into account yet, so the snapshots stated by OpenNebula, after a disk attach or disk detach, are pointing to a null vCenter reference, and as such, cannot be used. Please keep this in mind before a solution is implemented.
 
-Virtual Machines Backup
-================================================================================
-
-When taking a VM backup, if the upload process fails and the app results in ERROR state, the backup will complete successfully. A detailed explanation can be found `here <https://github.com/OpenNebula/one/issues/5454>`__.
-
 Warning when Exporting an App from the Marketplace Using CLI
 ================================================================================
 
@@ -62,13 +57,13 @@ When exporting an application from the marketplace using the CLI the following w
 This is harmless and can be discarded, it will be addressed in future releases.
 
 Contextualization
-=================
+================================================================================
 
 - ``GROW_ROOTFS`` and ``GROW_FS`` will not extend btrfs filesystems
 - ``onesysprep`` does not support Debian 12 yet
 
 Backups
-=============
+================================================================================
 
 - OpenNebula stores the whole VM Template in a backup. When restoring it some attributes are wiped out as they are dynamic or they need to be re-generated (e.g. IP). However some attributes (e.g. DEV_PREFIX) would be better to keep them. It is recommended to review and adjust the resulting template for any missing (and required) attribute. The :ref:`list of attributes removed can be checked here <vm_backups_restore>`.
 
@@ -76,3 +71,42 @@ WHMCS - Client Users
 ================================================================================
 
 When the first client is created in WHMCS and purchases a product, following actions will fail due to targeting ID 0 (oneadmin).  Further client accounts past the first one will work as expected.
+
+NUMA Free Hugepages
+================================================================================
+
+After upgrading to 6.6.2, the host xml may contain ``HOST_SHARE/NUMA_NODES/NODE/HUGEPAGE/FREE`` attributes always set to ``0``. This attribute shouldn't be there. Xml-linter will show unexpected attribute. The real value of free hugepages is stored in ``MONITORING/NUMA_NODE/HUGEPAGE/FREE``, this value is presented by ``onehost show`` command and sunstone.
+
+Datastore Drivers - ``Argument list too long``
+================================================================================
+
+Datastore driver actions take the information from the command line arguments. When the number of images in a datastore is big, it can exceed the argument size limit. Drivers has been updated to take arguments through stdin. This needs to be configured in oned by adding ``-i`` to the ``M̀ARKET_MAD`` and ``DATASTORE_MAD`` arguments:
+
+.. prompt:: bash $ auto
+
+    MARKET_MAD = [
+        EXECUTABLE = "one_market",
+        ARGUMENTS  = "-i -t 15 -m http,s3,one,linuxcontainers,turnkeylinux,dockerhub,docker_registry"
+    ]
+
+    DATASTORE_MAD = [
+        EXECUTABLE = "one_datastore",
+        ARGUMENTS  = "-i -t 15 -d dummy,fs,lvm,ceph,dev,iscsi_libvirt,vcenter,restic,rsync -s shared,ssh,ceph,fs_lvm,fs_lvm_ssh,qcow2,vcenter"
+    ]
+
+Note: Passing arguments through command line will be deprecated in the next minor release (6.8)
+
+
+Market proxy settings
+================================================================================
+
+- The option ``--proxy`` in the ``MARKET_MAD`` may not be working correctly. To solve it, execute ``systemctl edit opennebula`` and add the following entries:
+
+.. prompt:: bash $ auto
+
+  [Service]
+  Environment="http_proxy=http://proxy_server"
+  Environment="https_proxy=http://proxy_server"
+  Environment="no_proxy=domain1,domain2"
+
+Where ``proxy_server`` is the proxy server to be used and ``no_proxy`` is a list of the domains or IP ranges that must not be accessed via proxy by opennebula. After that, reload systemd service configuration with ``systemctl daemon-reload`` and restart opennebula with a ``systemctl restart opennebula``
