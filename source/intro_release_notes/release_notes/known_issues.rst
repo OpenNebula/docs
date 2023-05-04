@@ -45,6 +45,13 @@ vCenter Snapshot behavior
 
 VMs in vCenter 7.0 exhibit a new behavior regarding snapshots and disks attach/detach operations. When vCenter 7.0 detects any change in the number of disks attached to a VM, it automatically cleans all the VM snapshots. OpenNebula doesn't take this into account yet, so the snapshots stated by OpenNebula, after a disk attach or disk detach, are pointing to a null vCenter reference, and as such, cannot be used. Please keep this in mind before a solution is implemented.
 
+Virtual Machines Backup
+================================================================================
+
+- When taking a VM backup, if the upload process fails and the app results in ERROR state, the backup will complete successfully. A detailed explanation can be found `here <https://github.com/OpenNebula/one/issues/5454>`__.
+- Running 'onedb fsck' deletes backup references, please refrain from using "onedb fsck" if you are using the backup functionality.
+- OpenNebula stores the whole VM Template in a backup. When restoring it some attributes are wiped out as they are dynamic or they need to be re-generated (e.g. IP). However some attributes (e.g. DEV_PREFIX) would be better to keep them. It is recommended to review and adjust the resulting template for any missing (and required) attribute. The :ref:`list of attributes removed can be checked here <vm_backups_restore>`.
+
 Warning when Exporting an App from the Marketplace Using CLI
 ================================================================================
 
@@ -62,10 +69,6 @@ Contextualization
 - ``GROW_ROOTFS`` and ``GROW_FS`` will not extend btrfs filesystems
 - ``onesysprep`` does not support Debian 12 yet
 
-Backups
-================================================================================
-
-- OpenNebula stores the whole VM Template in a backup. When restoring it some attributes are wiped out as they are dynamic or they need to be re-generated (e.g. IP). However some attributes (e.g. DEV_PREFIX) would be better to keep them. It is recommended to review and adjust the resulting template for any missing (and required) attribute. The :ref:`list of attributes removed can be checked here <vm_backups_restore>`.
 
 WHMCS - Client Users
 ================================================================================
