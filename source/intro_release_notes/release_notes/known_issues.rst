@@ -48,7 +48,8 @@ VMs in vCenter 7.0 exhibit a new behavior regarding snapshots and disks attach/d
 Virtual Machines Backup
 ================================================================================
 
-When taking a VM backup, if the upload process fails and the app results in ERROR state, the backup will complete successfully. A detailed explanation can be found `here <https://github.com/OpenNebula/one/issues/5454>`__.
+- When taking a VM backup, if the upload process fails and the app results in ERROR state, the backup will complete successfully. A detailed explanation can be found `here <https://github.com/OpenNebula/one/issues/5454>`__.
+- Running 'onedb fsck' deletes backup references, please refrain from using "onedb fsck" if you are using the backup functionality.
 
 Warning when Exporting an App from the Marketplace Using CLI
 ================================================================================
