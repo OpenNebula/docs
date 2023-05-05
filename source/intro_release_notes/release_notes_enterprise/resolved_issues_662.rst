@@ -27,3 +27,4 @@ The following issues has been solved in 6.6.2:
 - `Reordering the schedule actions creation mode <https://github.com/OpenNebula/one/issues/6091>`__.
 - `Fix locks under certain condition while doing backup operations <https://github.com/OpenNebula/one/issues/6199>`__.
 - `Fix error when making the first incremental backup in a VM in poweroff state <https://github.com/OpenNebula/one/issues/6200>`__.
+- `Fix fsck for backup images <https://github.com/OpenNebula/one/issues/6195>`__.
