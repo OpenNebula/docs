@@ -25,3 +25,4 @@ The following issues has been solved in 6.4.4:
 - `Fix termination time for scheduled actions with repeat times <https://github.com/OpenNebula/one/issues/6181>`__.
 - `Fix LinuxContainers marketplace monitoring <https://github.com/OpenNebula/one/issues/6184>`__.
 - `Fix Address Range IP6_END value <https://github.com/OpenNebula/one/issues/6156>`__.
+- `Validated unsupported action in the FireCracker driver <https://github.com/OpenNebula/one/issues/6173>`__.
