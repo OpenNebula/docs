@@ -22,9 +22,10 @@ The following issues has been solved in 6.6.2:
 - `Fix LinuxContainers marketplace monitoring <https://github.com/OpenNebula/one/issues/6184>`__.
 - `Improve VM HA hook script host_error.rb to skip VMs deployed on local datastores <https://github.com/OpenNebula/one/issues/6099>`__.
 - `Fix disk_type and source for block CD <https://github.com/OpenNebula/one/issues/6140>`__.
-- `Fix Address Range IP6_END value <https://github.com/OpenNebula/one/issues/6156>`__. 
+- `Fix Address Range IP6_END value <https://github.com/OpenNebula/one/issues/6156>`__.
 - `Fix restore dialog to properly set restore options <https://github.com/OpenNebula/one/issues/6187>`__.
 - `Reordering the schedule actions creation mode <https://github.com/OpenNebula/one/issues/6091>`__.
 - `Fix locks under certain condition while doing backup operations <https://github.com/OpenNebula/one/issues/6199>`__.
 - `Fix error when making the first incremental backup in a VM in poweroff state <https://github.com/OpenNebula/one/issues/6200>`__.
 - `Fix fsck for backup images <https://github.com/OpenNebula/one/issues/6195>`__.
+- `Validated unsupported action in the FireCracker driver <https://github.com/OpenNebula/one/issues/6173>`__.
