@@ -186,6 +186,16 @@ The Sunstone configuration file can be found in ``/etc/one/sunstone-server.conf`
 |                                   | (Default: ``http://localhost:2616``)                                                                |
 +-----------------------------------+-----------------------------------------------------------------------------------------------------+
 
+.. note::
+
+    To disable using fireedge you can set both of the endpoints to be ``''`` which will cause sunstone to fall back to the noVNC server for VNC access
+
+    .. code::
+
+       :private_fireedge_endpoint: ''
+       :public_fireedge_endpoint: ''
+
+
 .. _sunstone_in_ha:
 
 In order to properly use Sunstone with FireEdge in HA environments and have the Guacamole functionality available, all Sunstone servers need to access ``/var/lib/one/.one/fireedge_key``.
