@@ -28,4 +28,4 @@ The following issues has been solved in 6.6.2:
 - `Fix locks under certain condition while doing backup operations <https://github.com/OpenNebula/one/issues/6199>`__.
 - `Fix error when making the first incremental backup in a VM in poweroff state <https://github.com/OpenNebula/one/issues/6200>`__.
 - `Fix fsck for backup images <https://github.com/OpenNebula/one/issues/6195>`__.
-- `Validated unsupported action in the FireCracker driver <https://github.com/OpenNebula/one/issues/6173>`__.
+- `Fix missing actions in Firecracker driver <https://github.com/OpenNebula/one/issues/6173>`__.
