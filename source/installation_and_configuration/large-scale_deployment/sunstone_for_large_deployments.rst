@@ -484,6 +484,9 @@ You will need to configure a new virtual host in nginx. Depending on the operati
 
 .. code-block::bash
 
+    # No squealing.
+    server_tokens off;
+
     #### OpenNebula Sunstone upstream
     upstream sunstone  {
             server 127.0.0.1:9869;
@@ -515,22 +518,10 @@ You will need to configure a new virtual host in nginx. Depending on the operati
 
             ### Proxy requests to upstream
             location / {
-                    if ($args ~* password=.+&encrypt=.+&token=.+&info=.*) {
-                        rewrite ^/$ /websockify/ last;
-                    }
                     proxy_pass              http://sunstone;
                     proxy_set_header        X-Real-IP $remote_addr;
                     proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
                     proxy_set_header        X-Forwarded-Proto $scheme;
-            }
-
-            location /websockify {
-                    proxy_http_version 1.1;
-                    proxy_pass https://websocketproxy;
-                    proxy_set_header Upgrade $http_upgrade;
-                    proxy_set_header Connection "upgrade";
-                    proxy_read_timeout 61s;
-                    proxy_buffering off;
             }
 
             location /fireedge {
