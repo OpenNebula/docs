@@ -1,7 +1,7 @@
 .. _rn_enterprise:
 
 ================================================================================
-Release Notes 6.6.2 Enterprise Edition
+Release Notes 6.6.1 Enterprise Edition
 ================================================================================
 
 .. toctree::
@@ -9,4 +9,3 @@ Release Notes 6.6.2 Enterprise Edition
 
    What is OpenNebula EE<what_is>
    Resolved Issues in 6.6.1 <resolved_issues_661>
-   Resolved Issues in 6.6.2 <resolved_issues_662>
