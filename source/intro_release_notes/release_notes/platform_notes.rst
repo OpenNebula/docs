@@ -1,7 +1,7 @@
 .. _uspng:
 
 ================================================================================
-Platform Notes 6.6.1
+Platform Notes 6.6.2
 ================================================================================
 
 This page will show you the specific considerations when using an OpenNebula cloud, according to the different supported platforms.
@@ -115,13 +115,13 @@ Linux Contextualization Packages
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
 | Alpine Linux                 | 3.15, 3.16, 3.17                                        | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
-| ALT Linux                    | p9, p10, Sisyphus                                       | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| ALT Linux                    | p9, p10                                                 | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
 | Amazon Linux                 | 2                                                       | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
 | CentOS                       | 7, 8 Stream                                             | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
-| Debian                       | 10, 11, 12                                              | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| Debian                       | 10, 11                                                  | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
 | Devuan                       | 3, 4                                                    | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
@@ -267,7 +267,7 @@ The following items apply to all distributions:
 
     WWW MMM DD hh:mm:ss yyyy: MIGRATE: error: Unable to write to '/sys/fs/cgroup/machine.slice/machine-qemu/..../cpu.weight': Numerical result out of range Could not migrate VM_UID to HOST ExitCode: 1
 
-This happens in every single VM migration from a host with the previous OS version to a host with the new one. 
+This happens in every single VM migration from a host with the previous OS version to a host with the new one.
 
 To solve this, there are 2 options: Delete the VM and recreate it scheduled in a host with the new OS version or mount cgroups in v1 compatibility mode in the nodes with the new OS version. To do this
 
