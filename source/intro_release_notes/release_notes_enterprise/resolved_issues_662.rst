@@ -1,11 +1,11 @@
 .. _resolved_issues_662:
 
-Resolved Issues in 6.6.2
+Resolved Issues in 6.6.3
 --------------------------------------------------------------------------------
 
-A complete list of solved issues for 6.6.2 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/66?closed=1>`__.
+A complete list of solved issues for 6.6.3 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/66?closed=1>`__.
 
-The following new features has been backported to 6.6.2:
+The following new features has been backported to 6.6.3:
 
 - `Graceful stop of ongoing backup operations <https://github.com/OpenNebula/one/issues/6030>`__.
 - `Add support Centos 8 Stream, Amazon Linux and Opensuse <https://github.com/OpenNebula/one/issues/3178>`__.
@@ -13,7 +13,7 @@ The following new features has been backported to 6.6.2:
 - `Hugepages can be used without CPU pinning <https://github.com/OpenNebula/one/issues/6185>`__.
 - `Add remote authorization support in FireEdge Sunstone <https://github.com/OpenNebula/one/issues/6112>`__.
 
-The following issues has been solved in 6.6.2:
+The following issues has been solved in 6.6.3:
 
 - `Fix default scheduler NIC policies <https://github.com/OpenNebula/one/issues/6149>`__.
 - `Fix error when disabling the FireEdge configuration attributes in sunstone-server.conf <https://github.com/OpenNebula/one/issues/6163>`__.
