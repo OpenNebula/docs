@@ -1,0 +1,29 @@
+.. _resolved_issues_644:
+
+Resolved Issues in 6.4.4
+--------------------------------------------------------------------------------
+
+
+A complete list of solved issues for 6.4.4 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/65?closed=1>`__.
+
+The following new features has been backported to 6.4.4:
+
+- `Add support Centos 8 Stream, Amazon Linux and Opensuse <https://github.com/OpenNebula/one/issues/3178>`__.
+
+The following issues has been solved in 6.4.4:
+
+- `Fix CLI commands to not fail when config (/etc/one/cli/*.yaml) does not exist <https://github.com/OpenNebula/one/issues/5913>`__.
+- `Fix permissions for 'onevm disk-resize', fix error code for 'onevm create-chart' <https://github.com/OpenNebula/one/issues/6068>`__.
+- `Fix IPv6 was not being displayed on FireEdge Sunstone <https://github.com/OpenNebula/one/issues/6106>`__.
+- `Fix local characters for 'onedb upgrade' <https://github.com/OpenNebula/one/issues/6113>`__.
+- `Fix Sunstone VM error when adding schedule action leases <https://github.com/OpenNebula/one/issues/6144>`__.
+- `Fix Sunstone error when updating a template that always set deploy mode to "Default" <https://github.com/OpenNebula/one/issues/6015>`__.
+- `Fix VM template clone with images on FireEdge Sunstone <https://github.com/OpenNebula/one/issues/6137>`__.
+- `Fix Host system monitoring NETTX and NETRX <https://github.com/OpenNebula/one/issues/6114>`__.
+- `Fix default scheduler NIC policies <https://github.com/OpenNebula/one/issues/6149>`__.
+- `Fix datastore driver actions error: argument list too long <https://github.com/OpenNebula/one/issues/6162>`__.
+- `Fix termination time for scheduled actions with repeat times <https://github.com/OpenNebula/one/issues/6181>`__.
+- `Fix LinuxContainers marketplace monitoring <https://github.com/OpenNebula/one/issues/6184>`__.
+- `Fix Address Range IP6_END value <https://github.com/OpenNebula/one/issues/6156>`__.
+- `Fix some LinuxContainers marketplace applications failing to auto-contextualize <https://github.com/OpenNebula/one/issues/6190>`__.
+- `Fix missing actions in Firecracker driver <https://github.com/OpenNebula/one/issues/6173>`__.

@@ -487,6 +487,9 @@ You will need to configure a new virtual host in nginx. Depending on the operati
     # No squealing.
     server_tokens off;
 
+    # No squealing.
+    server_tokens off;
+
     #### OpenNebula Sunstone upstream
     upstream sunstone  {
             server 127.0.0.1:9869;
