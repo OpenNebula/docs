@@ -14,4 +14,5 @@ Release Notes 6.4.5 Enterprise Edition
    Resolved Issues in 6.4.1 <resolved_issues_641>
    Resolved Issues in 6.4.2 <resolved_issues_642>
    Resolved Issues in 6.4.3 <resolved_issues_643>
-   Resolved Issues in 6.4.5 <resolved_issues_644>
+   Resolved Issues in 6.4.4 <resolved_issues_644>
+   Resolved Issues in 6.4.5 <resolved_issues_645>
