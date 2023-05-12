@@ -83,7 +83,7 @@ Depending on the number of snapshots and their IDs, the driver might fail redefi
 NUMA Free Hugepages
 ================================================================================
 
-After upgrading to 6.4.4, the host xml may contain ``HOST_SHARE/NUMA_NODES/NODE/HUGEPAGE/FREE`` attributes always set to ``0``. This attribute shouldn't be there. Xml-linter will show unexpected attribute. The real value of free hugepages is stored in ``MONITORING/NUMA_NODE/HUGEPAGE/FREE``, this value is presented by ``onehost show`` command and sunstone.
+After upgrading to 6.4.5, the host xml may contain ``HOST_SHARE/NUMA_NODES/NODE/HUGEPAGE/FREE`` attributes always set to ``0``. This attribute shouldn't be there. Xml-linter will show unexpected attribute. The real value of free hugepages is stored in ``MONITORING/NUMA_NODE/HUGEPAGE/FREE``, this value is presented by ``onehost show`` command and sunstone.
 
 Datastore Drivers - ``Argument list too long``
 ================================================================================
