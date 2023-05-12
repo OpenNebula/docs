@@ -12,5 +12,5 @@ The Release Notes provide information on new features, improvements, and fixes i
 
    Release Notes 6.6 <release_notes/index>
    Release Notes 6.6.0 Community <release_notes_community/index>
-   Release Notes 6.6.3 Enterprise <release_notes_enterprise/index>
+   Release Notes 6.6.2 Enterprise <release_notes_enterprise/index>
    Upgrades <upgrades/index>
