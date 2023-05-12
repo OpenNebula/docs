@@ -30,3 +30,4 @@ The following issues has been solved in 6.6.2:
 - `Fix fsck for backup images <https://github.com/OpenNebula/one/issues/6195>`__.
 - `Fix missing actions in Firecracker driver <https://github.com/OpenNebula/one/issues/6173>`__.
 - `Fix some LinuxContainers marketplace applications failing to auto-contextualize <https://github.com/OpenNebula/one/issues/6190>`__.
+- `Fix incremental backups after reseting (``--reset``) and perform a poweroff cycle on the VM <https://github.com/OpenNebula/one/issues/6206>`__.
