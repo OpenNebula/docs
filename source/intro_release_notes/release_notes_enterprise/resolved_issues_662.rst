@@ -8,7 +8,7 @@ A complete list of solved issues for 6.6.2 can be found in the `project developm
 The following new features has been backported to 6.6.2:
 
 - `Graceful stop of ongoing backup operations <https://github.com/OpenNebula/one/issues/6030>`__.
-- `Add support Centos 8 Stream, Amazon Linux and Opensuse <https://github.com/OpenNebula/one/issues/3178>`__.
+- `Add support Centos 8 Stream, Amazon Linux and Opensuse on LinuxContainers marketplace <https://github.com/OpenNebula/one/issues/3178>`__.
 - `Add ability to pin the virtual CPUs and memory of a VM to a specific host NUMA node <https://github.com/OpenNebula/one/issues/5966>`__.
 - `Hugepages can be used without CPU pinning <https://github.com/OpenNebula/one/issues/6185>`__.
 - `Add remote authorization support in FireEdge Sunstone <https://github.com/OpenNebula/one/issues/6112>`__.
