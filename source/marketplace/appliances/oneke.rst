@@ -986,7 +986,7 @@ To create a 4 GiB persistent volume apply the following manifest using ``kubectl
     from accidental removal. Always back up your data!
 
 Create an NGINX Deployment
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To deploy an NGINX instance using the PVC created previously, apply the following manifest using ``kubectl``:
 
