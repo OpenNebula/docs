@@ -10,3 +10,5 @@ The following new features has been backported to 6.4.5:
 
 
 The following issues has been solved in 6.4.5:
+
+- `Fix LinuxContainers monitoring to use images.json and not traversing links <https://github.com/OpenNebula/one/issues/6171>`__.
