@@ -30,6 +30,7 @@ The following issues has been solved in 6.6.2:
 - `Fix fsck for backup images <https://github.com/OpenNebula/one/issues/6195>`__.
 - `Fix missing actions in Firecracker driver <https://github.com/OpenNebula/one/issues/6173>`__.
 - `Fix some LinuxContainers marketplace applications failing to auto-contextualize <https://github.com/OpenNebula/one/issues/6190>`__.
-- `Fix incremental backups after reseting (``--reset``) and perform a poweroff cycle on the VM <https://github.com/OpenNebula/one/issues/6206>`__.
+- `Fix incremental backups after reseting ("--reset") and perform a poweroff cycle on the VM <https://github.com/OpenNebula/one/issues/6206>`__.
 - `Fix Ceph trash to also clean base snapshots to prevent data loss on persistent images <https://github.com/OpenNebula/one/issues/6207>`__.
 - `Fix LinuxContainers monitoring to use images.json and not traversing links <https://github.com/OpenNebula/one/issues/6171>`__.
+- `Add Overcommitment dialog in host tab <https://github.com/OpenNebula/one/issues/5755>`__.
