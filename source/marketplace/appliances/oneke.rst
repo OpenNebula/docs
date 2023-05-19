@@ -36,6 +36,8 @@ Components
     | Contextualization package   | 6.6.0                                                                               |                             |
     +-----------------------------+-------------------------------------------------------------------------------------+-----------------------------+
 
+`Changelog <oneke_changelog.html>`_
+
 Requirements
 ------------
 
@@ -45,43 +47,6 @@ Requirements
   for multi-node orchestration.
 * Recommended Memory per VM: 512 MB (**vnf**), 3 GB (**master**), 3 GB (**worker**), 3 GB (**storage**).
 * Minimal Cores (VCPU) per VM: 1 (**vnf**), 2 (**master**), 2 (**worker**), 2 (**storage**).
-
-Features / Changelog
-====================
-
-OneKE 1.27.1-6.6.1-1.20230511 (Current)
----------------------------------------
-
-====================== ================
-Feature                Version
-====================== ================
-EE / CE flavors
-VNF + HAproxy          6.4.0-1.20220624
-RKE2 + Canal           v1.27.1+rke2r1
-Longhorn               1.4.1/1.4.1
-MetalLB                0.13.9/0.13.9
-Traefik                23.0.0/2.10.0
-One-Cleaner
-Multi-Master
-Airgapped install (EE)
-====================== ================
-
-OneKE 1.24.1-6.4.0-1.20220624 / **Technology Preview**
-------------------------------------------------------
-
-====================== ================
-Feature                Version
-====================== ================
-EE / CE flavors
-VNF + HAproxy          6.4.0-1.20220624
-RKE2 + Canal           v1.24.1+rke2r2
-Longhorn               1.2.4/1.2.4
-MetalLB                0.12.1/0.12.1
-Traefik                10.23.0/2.7.1
-One-Cleaner
-Multi-Master
-Airgapped install (EE)
-====================== ================
 
 Architecture Overview
 =====================
@@ -121,7 +86,7 @@ Each group of Virtual Machines is deployed and managed as a single entity (calle
 
 .. note::
 
-    For a full OneFlow API/template reference please refer to the `OneFlow Specification <https://docs.opennebula.io/6.6/integration_and_development/system_interfaces/appflow_api.html>`_.
+    For a full OneFlow API/template reference please refer to the `OneFlow Specification <https://docs.opennebula.io/stable/integration_and_development/system_interfaces/appflow_api.html>`_.
 
 OneKE Service has four different **Roles**:
 
@@ -216,7 +181,7 @@ Networking
 ^^^^^^^^^^
 
 OneKE's OneFlow Service requires two networks: a **public** and a **private** VNET.
-These two VNETs can be, for example, just a simple `bridged networks <https://docs.opennebula.io/6.6/open_cluster_deployment/networking_setup/bridged.html>`_.
+These two VNETs can be, for example, just a simple `bridged networks <https://docs.opennebula.io/stable/open_cluster_deployment/networking_setup/bridged.html>`_.
 
 .. note::
   - In case of the **CE** flavor the **public** VNET must have access to the public Internet to allow Kubernetes to download the in-cluster components, i.e. ``Longhorn``, ``Traefik``, ``MetalLB``, and other supplementary docker images when required.
@@ -313,7 +278,7 @@ On Kubernetes nodes the Routing/DNS configuration will look like these listings:
 
 .. note::
 
-    Please refer to the `Virtual Networks <https://docs.opennebula.io/6.6/management_and_operations/network_management/manage_vnets.html>`_ document for more info about networking in OpenNebula.
+    Please refer to the `Virtual Networks <https://docs.opennebula.io/stable/management_and_operations/network_management/manage_vnets.html>`_ document for more info about networking in OpenNebula.
 
 .. note::
 
@@ -473,17 +438,16 @@ Load Balancing (MetalLB)
       targetNamespace: metallb-system
       chartContent: <BASE64 OF A METALLB HELM CHART TGZ FILE>
       valuesContent: |
-        existingConfigMap: config
         controller:
           image:
             pullPolicy: IfNotPresent
-        skpeaker:
+        speaker:
           image:
             pullPolicy: IfNotPresent
 
 - A dedicated namespace ``metallb-system`` is provided.
 - `Image Pull Policy <https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy>`_ is optimized for airgapped deployments.
-- A precreated ``ConfigMap/config`` resource is provided (not managed by the Helm chart). Please refer for the official documentation on `MetalLB's configuration <https://metallb.universe.tf/configuration/>`_ to learn what the use cases of MetalLB are.
+- Precreated CRD configuration objects are provided (managed by `RKE2's Helm Integration <https://docs.rke2.io/helm/#automatically-deploying-manifests-and-helm-charts>`_ / installed in ``/var/lib/rancher/rke2/server/manifests/one-metallb-config.yaml``). Please refer to the official documentation on `MetalLB's configuration <https://metallb.universe.tf/configuration/>`_ to learn what the use cases of MetalLB are.
 
 .. warning::
 
@@ -502,7 +466,7 @@ It is triggered every ``2`` minutes and its sole purpose is to remove/clean up n
 Deployment
 ==========
 
-In this section we focus on a deployment of OneKE using CLI commands. For an easier Sunstone UI guide (with screenshots) please refer to the `Running Kubernetes Clusters <https://docs.opennebula.io/6.6/quick_start/usage_basics/running_kubernetes_clusters.html>`_ quick-start document.
+In this section we focus on a deployment of OneKE using CLI commands. For an easier Sunstone UI guide (with screenshots) please refer to the `Running Kubernetes Clusters <https://docs.opennebula.io/stable/quick_start/usage_basics/running_kubernetes_clusters.html>`_ quick-start document.
 
 Importing the OneKE Virtual Appliance
 -------------------------------------
@@ -597,7 +561,7 @@ Deployment Customization
 It is possible to modify VM templates related to the OneKE Virtual Appliance in order to customize the deployment, for example by adding more VM memory, VCPU cores to the workers, and resizing the Disk for the storage nodes. This should be done before the creation of the K8s cluster, i.e. before instantiating the OneKE OneFlow Service Template.
 
 When instantiating OneKE's OneFlow Service Template, you can further customize the deployment using the following
-`custom attributes <https://docs.opennebula.io/6.6/management_and_operations/multivm_service_management/appflow_use_cli.html#using-custom-attributes>`_:
+`custom attributes <https://docs.opennebula.io/stable/management_and_operations/multivm_service_management/appflow_use_cli.html#using-custom-attributes>`_:
 
 ==================================== ============ ======================= ========= ======= ===========
 Parameter                            Mandatory    Default                 Stage     Role    Description
@@ -692,7 +656,7 @@ Anti-affinity
 ^^^^^^^^^^^^^
 
 VMs related to the same role should be scheduled on different physical hosts in an HA setup to guarantee HA in case of a host failure. OpenNebula provides ``VM Group`` resources to achieve proper Host/VM
-`affinity/anti-affinity <https://docs.opennebula.io/6.6/management_and_operations/capacity_planning/affinity.html#virtual-machine-affinity>`_.
+`affinity/anti-affinity <https://docs.opennebula.io/stable/management_and_operations/capacity_planning/affinity.html#virtual-machine-affinity>`_.
 
 In the following section, we provide an example of how to create ``VM Group`` resources and how to modify OneKE's OneFlow Service Template to include VM groups.
 
@@ -1333,9 +1297,9 @@ Broken OneGate access
 ---------------------
 
 For detailed info about OneGate please refer to the
-`OneGate Usage <https://docs.opennebula.io/6.6/management_and_operations/multivm_service_management/onegate_usage.html>`_
+`OneGate Usage <https://docs.opennebula.io/stable/management_and_operations/multivm_service_management/onegate_usage.html>`_
 and
-`OneGate Configuration <https://docs.opennebula.io/6.6/installation_and_configuration/opennebula_services/onegate.html>`_
+`OneGate Configuration <https://docs.opennebula.io/stable/installation_and_configuration/opennebula_services/onegate.html>`_
 documents.
 
 Because OneKE is a OneFlow service it requires OneFlow and OneGate OpenNebula components to be operational.
