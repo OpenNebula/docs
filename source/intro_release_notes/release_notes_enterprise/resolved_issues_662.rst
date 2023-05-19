@@ -34,3 +34,4 @@ The following issues has been solved in 6.6.2:
 - `Fix Ceph trash to also clean base snapshots to prevent data loss on persistent images <https://github.com/OpenNebula/one/issues/6207>`__.
 - `Fix LinuxContainers monitoring to use images.json and not traversing links <https://github.com/OpenNebula/one/issues/6171>`__.
 - `Add Overcommitment dialog in host tab <https://github.com/OpenNebula/one/issues/5755>`__.
+- `Fix Context Custom variables gets key and values changed to upcase <https://github.com/OpenNebula/one/issues/6201>`__.
