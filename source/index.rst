@@ -1,5 +1,5 @@
 ================================================================================
-OpenNebula 6.6.2 Documentation
+OpenNebula |version| Documentation
 ================================================================================
 
 OpenNebula is an open source cloud management platform that combines virtualization and container technologies with multi-tenancy, automatic provision and elasticity to offer on-demand applications and services on enterprise, hybrid and edge environments.

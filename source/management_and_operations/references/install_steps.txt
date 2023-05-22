@@ -7,56 +7,56 @@ RHEL 7.x (CentOS/Oracle Linux 7.x)
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.0/one-context-6.6.0-1.el7.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|-1.el7.noarch.rpm
 
 RHEL 8.x (CentOS/AlmaLinux/RockyLinux/Oracle Linux 8.x)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.0/one-context-6.6.0-1.el8.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|-1.el8.noarch.rpm
 
 RHEL 9.x (AlmaLinux/RockyLinux/Oracle Linux 9.x) and Fedora 36,37
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.0/one-context-6.6.0-1.el9.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|-1.el9.noarch.rpm
 
 Debian/Ubuntu/Devuan
 ~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.0/one-context_6.6.0-1.deb
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|-1.deb
 
 OpenSUSE 15 and Tumbleweed
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.0/one-context-6.6.0-1.suse.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|-1.suse.noarch.rpm
 
 ALT Linux p9, p10, Sisyphus
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.0/one-context-6.6.0-alt1.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|-alt1.noarch.rpm
 
 Alpine Linux
 ~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.0/one-context-6.6.0-r1.apk
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|-r1.apk
 
 FreeBSD 12, 13
 ~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.0/one-context-6.6.0_1.txz
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|_1.txz
 
 Windows
 ~~~~~~~
