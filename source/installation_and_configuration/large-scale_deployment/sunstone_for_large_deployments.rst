@@ -441,11 +441,13 @@ You will need to edit the ``/etc/lighttpd/lighttpd.conf`` configuration file and
 
 -  Add the following modules (if not present already)
 
-   -  mod\_access
-   -  mod\_alias
-   -  mod\_proxy
-   -  mod\_accesslog
-   -  mod\_compress
+.. code-block:: none
+
+   mod_access
+   mod_alias
+   mod_proxy
+   mod_accesslog
+   mod_compress
 
 -  Change the server port to 443 if you are going to run lighttpd as root, or any number above 1024 otherwise:
 
@@ -543,6 +545,59 @@ You will need to configure a new virtual host in nginx. Depending on the operati
     }
 
 The IP address and port number used in ``upstream`` must be the ones the server Sunstone is running on. On typical installations the nginx master process is run as user root so you don't need to modify the HTTPS port.
+
+haproxy
+^^^^^^^
+
+To access sunstone via HTTPS via haproxy, please check the frontend and backend configurations 
+
+* About the frontend configuration, please remember that the SSL certificate and its private key must be concatenated. Supposing that the certificate and key for your server are ``host.crt`` and ``host.key``, and you want to set the the resulting file in ``/etc/certs/host.pem`` the commands would be thisv (the right permissions should be set too)
+
+.. code-block:: none
+
+   # cat host.crt host.key | tee /etc/certs/host.pem
+   # chmod 600 /etc/certs/host.pem
+
+We will suppose that the CA certificate is in the file ``/etc/certs/ca.crt``. The CA doesn't need to be concatenated with its private key.
+
+Once that is set, a frontend valid configuration would look like this, sending the requests to the server we configure as ``BACKEND_ONE``
+
+.. code-block:: none
+
+  frontend FRONTEND_ONE
+      mode http
+      bind *:80
+      bind *:443 ssl crt /etc/certs/cert.pem ca-file /etc/certs/ca.crt verify optional crt-ignore-err all
+      # To redirect the requests from HTTP to HTTPS uncomment the following line
+      # http-request redirect scheme https unless { ssl_fc }
+      default_backend BACKEND_ONE
+
+* The backend configuration is different depending if you want to use ``core`` or ``x509`` authentication. 
+
+  * If you want to use core authentication (based on username and password), the frontend would look like this (names in capital letters may be needed to be changed)
+
+  .. code-block:: none
+  
+    # haproxy backend config for Sunstone using core auth driver
+    backend BACKEND_ONE
+       mode http
+       option forwardfor
+       server ONE_CORE 127.0.0.1:9869
+
+  * In case you want to use x509 certificates for the authentication in sunstone, you need to pass some extra headers in order to make it work correctly
+
+  .. code-block:: none
+  
+    # haproxy backend config for Sunstone using x.509 auth driver
+    backend BACKEND_ONE
+       mode http
+        option forwardfor
+        http-request set-header SSL_CLIENT_CERT       -----BEGIN\ CERTIFICATE-----\n%{+Q}[ssl_c_der,base64]\n-----END\ CERTIFICATE-----
+        http-request set-header SSL_INFO              %[ssl_c_s_dn(cn)]:%[ssl_c_s_dn]
+        http-request set-header AUTHORIZATION         Basic\ %[req.fhdr(SSL_INFO),base64]
+        http-request del-header SSL_INFO
+        server ONE_X509 127.0.0.1:9869
+
 
 Step 3: Sunstone Configuration
 ------------------------------
