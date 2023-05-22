@@ -1,7 +1,7 @@
 .. _uspng:
 
 ================================================================================
-Platform Notes |release|
+Platform Notes |version|
 ================================================================================
 
 This page will show you the specific considerations when using an OpenNebula cloud, according to the different supported platforms.

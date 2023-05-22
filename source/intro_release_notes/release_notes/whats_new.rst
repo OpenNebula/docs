@@ -1,11 +1,12 @@
 .. _whats_new:
 
 ================================================================================
-What's New in 6.8
+What's New in |version|
 ================================================================================
 
-**OpenNebula 6.8 ‘-----’** is the fifth stable release of the OpenNebula 6 series...
+.. Attention: Substiontions doesn't work for emphasized text
 
+**OpenNebula 6.8 ‘-----’** is the fifth stable release of the OpenNebula 6 series...
 
 OpenNebula Core
 ================================================================================

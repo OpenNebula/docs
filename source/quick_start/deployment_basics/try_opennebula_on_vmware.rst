@@ -16,7 +16,7 @@ vOneCloud ships with the following components under the hood:
 +-----------------------+--------------------------------------------------------------------------------------------------+
 |       **AlmaLinux**   |                                                8                                                 |
 +-----------------------+--------------------------------------------------------------------------------------------------+
-| **OpenNebula**        | |release| (:ref:`release notes <rnguide>`)                                                       |
+| **OpenNebula**        | |version| (:ref:`release notes <rnguide>`)                                                       |
 +-----------------------+--------------------------------------------------------------------------------------------------+
 | **MariaDB**           | Default version shipped in AlmaLinux 8                                                           |
 +-----------------------+--------------------------------------------------------------------------------------------------+
@@ -229,7 +229,7 @@ Step 3. Import Datastores
 ---------------------------------------------------------------------------------
 
 .. _import_images_and_ds:
-    
+
 Datastores can be imported from the ``Storage --> Datastores`` Since datastores are going to be used to hold the images from VM Templates, all datastores **must** be imported before VM Template import.
 
 vCenter datastores hosts VMDK files and other file types so VMs and templates can use them, and these datastores can be represented in OpenNebula as both an Images Datastore and a System Datastore:
