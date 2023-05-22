@@ -305,6 +305,11 @@ Disable Libvirtd's SystemD Socket Activation
 OpenNebula currently works only with the legacy ``livirtd.service``. You should disable libvirt's modular daemons and systemd socket activation for the ``libvirtd.service``.
 You can take a look at `this <https://github.com/OpenNebula/one/issues/6143>`__ bug report, for a detailed workaround procedure.
 
+Ceph cluster setup
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+At the moment we are not testing ceph clusters nor ceph client(opennebula virtualization nodes) with alma9 due to a missing dependency on the epel9 repositories. Our team has `reported the problem <https://bugzilla.redhat.com/show_bug.cgi?id=2166620>`_.
+
 vCenter 7.0 Platform Notes
 --------------------------------------------------------------------------------
 
