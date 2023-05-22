@@ -42,6 +42,7 @@ Showing and Listing Hosts
 To display information about a single Host, use the ``show`` command:
 
 .. prompt:: bash $ auto
+   :substitutions:
 
     $ onehost show server
 
@@ -84,7 +85,7 @@ To display information about a single Host, use the ``show`` command:
     MODELNAME="Intel(R) Core(TM) i7-10510U CPU @ 1.80GHz"
     RESERVED_CPU=""
     RESERVED_MEM=""
-    VERSION="6.6.1"
+    VERSION="|release|"
     VM_MAD="kvm"
 
     NUMA NODES
@@ -292,19 +293,20 @@ This tag can be used at a later time for scheduling purposes, :ref:`see more det
 Updating Host Files
 --------------------------------------------------------------------------------
 
-When OpenNebula monitors a Host, it copies driver files to ``/var/tmp/one``. When these files are updated, they need to be copied again to the Hosts with the ``sync`` command. To keep track of the probes version there's a file in ``/var/lib/one/remotes/VERSION``. By default this holds the OpenNebula version (e.g. '6.6.1'). This version can be seen in the Hosts by using ``onehost show <host>``:
+When OpenNebula monitors a Host, it copies driver files to ``/var/tmp/one``. When these files are updated, they need to be copied again to the Hosts with the ``sync`` command. To keep track of the probes version there's a file in ``/var/lib/one/remotes/VERSION``. By default this holds the OpenNebula version (e.g. '|release|'). This version can be seen in the Hosts by using ``onehost show <host>``:
 
 .. prompt:: bash $ auto
+   :substitutions:
 
     $ onehost show 0
     HOST 0 INFORMATION
     ID                    : 0
     [...]
     MONITORING INFORMATION
-    VERSION="6.6.1"
+    VERSION="|release|"
     [...]
 
-The command ``onehost sync`` only updates the Hosts with ``VERSION`` lower than the one in the file ``/var/lib/one/remotes/VERSION``. In case you modify the probes this ``VERSION`` file should be modified with a greater value, for example ``6.6.1.01``.
+The command ``onehost sync`` only updates the Hosts with ``VERSION`` lower than the one in the file ``/var/lib/one/remotes/VERSION``. In case you modify the probes this ``VERSION`` file should be modified with a greater value, for example "|release|.01".
 
 In case you want to force an upgrade, that is, without any ``VERSION`` checking, you can do it by using the ``--force`` option:
 
