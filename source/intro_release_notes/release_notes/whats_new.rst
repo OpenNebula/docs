@@ -4,7 +4,7 @@
 What's New in |version|
 ================================================================================
 
-.. Attention: Substiontions doesn't work for emphasized text
+.. Attention: Substitutions doesn't work for emphasized text
 
 **OpenNebula 6.8 ‘-----’** is the fifth stable release of the OpenNebula 6 series...
 
