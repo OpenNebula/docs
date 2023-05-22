@@ -306,4 +306,7 @@ texinfo_documents = [
 # How to display URL addresses: 'footnote', 'no', or 'inline'.
 #texinfo_show_urls = 'footnote'
 
-rst_prolog = " .. |release| replace:: {release} ".format(release=release)
+rst_prolog = """
+ .. |release| replace:: {release}
+ .. |version| replace:: {version}
+""".format(release=release, version=version)

@@ -1,7 +1,7 @@
 .. _rn_enterprise:
 
 ================================================================================
-Release Notes |release| Enterprise Edition
+Release Notes |version| Enterprise Edition
 ================================================================================
 
 .. toctree::
