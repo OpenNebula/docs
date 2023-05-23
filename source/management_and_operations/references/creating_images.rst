@@ -95,7 +95,7 @@ Step 5. Guest OS Installation
 --------------------------------------------------------------------------------
 
 The script will be different depending on the distribution and the extra steps we want to perform in the image.
-It will be executed in a *chroot* jail of the image root filesystem.
+It will be executed in a *chroot* jail of the image root filesystem. Essentially, the script will ensure that the contextualization package is installed and that the image is bootable and accesible through SSH on the first launch.
 
 Here are some versions of the script for several distributions. The script name will be ``script.sh``.
 
@@ -157,8 +157,29 @@ Debian, Ubuntu
 
     # Take out serial console from kernel configuration
     # (it can freeze during the boot process).
-    sed -i 's/console=ttyS[^ "]*//' /etc/default/grub /etc/default/grub /etc/grub2.cfg
+    sed -i 's/console=ttyS[^ "]*//' /etc/default/grub /etc/grub2.cfg
 
+ALT Linux
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    # mount cdrom with packages
+    mkdir /tmp/mount
+    mount LABEL=PACKAGES /tmp/mount
+
+    apt-key update
+    apt-get update
+
+    # Remove cloud-init
+    apt-get purge -y cloud-init
+
+    # Install OpenNebula context package
+    dpkg -i /tmp/mount/one-context*rpm || apt-get install -fy
+
+    # Take out serial console from kernel configuration
+    # (it can freeze during the boot process).
+    sed -i 's/console=ttyS[^ "]*//' /etc/default/grub /etc/sysconfig/grub2 /etc/grub2.cfg
 
 
 Create an Overlay Image
