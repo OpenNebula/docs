@@ -15,6 +15,7 @@ The following new features has been backported to 6.6.2:
 - `Improve VM HA hook script host_error.rb to skip VMs deployed on local datastores <https://github.com/OpenNebula/one/issues/6099>`__.
 - `Add Overcommitment dialog in host tab <https://github.com/OpenNebula/one/issues/5755>`__.
 - `Reordering the schedule actions creation mode <https://github.com/OpenNebula/one/issues/6091>`__.
+- `Allow standalone qcow2 image on shared datastore <https://github.com/OpenNebula/one/issues/6098>`__, see: `configuration <https://docs.opennebula.io/devel/open_cluster_deployment/storage_setup/nas_ds.html#additional-configuration>`__.
 
 The following issues has been solved in 6.6.2:
 
