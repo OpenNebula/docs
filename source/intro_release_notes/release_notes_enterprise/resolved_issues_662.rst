@@ -12,6 +12,9 @@ The following new features has been backported to 6.6.2:
 - `Add ability to pin the virtual CPUs and memory of a VM to a specific host NUMA node <https://github.com/OpenNebula/one/issues/5966>`__.
 - `Hugepages can be used without CPU pinning <https://github.com/OpenNebula/one/issues/6185>`__.
 - `Add remote authorization support in FireEdge Sunstone <https://github.com/OpenNebula/one/issues/6112>`__.
+- `Improve VM HA hook script host_error.rb to skip VMs deployed on local datastores <https://github.com/OpenNebula/one/issues/6099>`__.
+- `Add Overcommitment dialog in host tab <https://github.com/OpenNebula/one/issues/5755>`__.
+- `Reordering the schedule actions creation mode <https://github.com/OpenNebula/one/issues/6091>`__.
 
 The following issues has been solved in 6.6.2:
 
@@ -20,11 +23,9 @@ The following issues has been solved in 6.6.2:
 - `Fix datastore driver actions error: argument list too long <https://github.com/OpenNebula/one/issues/6162>`__.
 - `Fix termination time for scheduled actions with repeat times <https://github.com/OpenNebula/one/issues/6181>`__.
 - `Fix LinuxContainers marketplace monitoring <https://github.com/OpenNebula/one/issues/6184>`__.
-- `Improve VM HA hook script host_error.rb to skip VMs deployed on local datastores <https://github.com/OpenNebula/one/issues/6099>`__.
 - `Fix disk_type and source for block CD <https://github.com/OpenNebula/one/issues/6140>`__.
 - `Fix Address Range IP6_END value <https://github.com/OpenNebula/one/issues/6156>`__.
 - `Fix restore dialog to properly set restore options <https://github.com/OpenNebula/one/issues/6187>`__.
-- `Reordering the schedule actions creation mode <https://github.com/OpenNebula/one/issues/6091>`__.
 - `Fix locks under certain condition while doing backup operations <https://github.com/OpenNebula/one/issues/6199>`__.
 - `Fix error when making the first incremental backup in a VM in poweroff state <https://github.com/OpenNebula/one/issues/6200>`__.
 - `Fix fsck for backup images <https://github.com/OpenNebula/one/issues/6195>`__.
@@ -33,5 +34,4 @@ The following issues has been solved in 6.6.2:
 - `Fix incremental backups after reseting ("--reset") and perform a poweroff cycle on the VM <https://github.com/OpenNebula/one/issues/6206>`__.
 - `Fix Ceph trash to also clean base snapshots to prevent data loss on persistent images <https://github.com/OpenNebula/one/issues/6207>`__.
 - `Fix LinuxContainers monitoring to use images.json and not traversing links <https://github.com/OpenNebula/one/issues/6171>`__.
-- `Add Overcommitment dialog in host tab <https://github.com/OpenNebula/one/issues/5755>`__.
 - `Fix Context Custom variables gets key and values changed to upcase <https://github.com/OpenNebula/one/issues/6201>`__.
