@@ -17,6 +17,14 @@ The following new features have been backported to 6.6.2:
 - `Reordering the schedule actions creation mode <https://github.com/OpenNebula/one/issues/6091>`__.
 - `Allow standalone qcow2 image on shared datastore <https://github.com/OpenNebula/one/issues/6098>`__, see: :ref:`configuration <nas_ds>`__.
 
+.. note::
+
+   In order to use the 'standalone qcow2 image on shared datastore' functionality above in OpenNebula 6.6, the following attribute needs to be added to /etc/one/oned.conf
+
+   ``INHERIT_DATASTORE_ATTR  = "QCOW2_STANDALONE"``
+
+   Remember to restart OpenNebula after applying the configuration change.
+
 The following issues have been solved in 6.6.2:
 
 - `Fix default scheduler NIC policies <https://github.com/OpenNebula/one/issues/6149>`__.
