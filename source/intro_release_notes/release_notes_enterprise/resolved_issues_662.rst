@@ -5,19 +5,19 @@ Resolved Issues in 6.6.2
 
 A complete list of solved issues for 6.6.2 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/66?closed=1>`__.
 
-The following new features has been backported to 6.6.2:
+The following new features have been backported to 6.6.2:
 
 - `Graceful stop of ongoing backup operations <https://github.com/OpenNebula/one/issues/6030>`__.
-- `Add support Centos 8 Stream, Amazon Linux and Opensuse on LinuxContainers marketplace <https://github.com/OpenNebula/one/issues/3178>`__.
-- `Add ability to pin the virtual CPUs and memory of a VM to a specific host NUMA node <https://github.com/OpenNebula/one/issues/5966>`__.
+- `Add support for CentOS 8 Stream, Amazon Linux, and openSUSE on LinuxContainers marketplace <https://github.com/OpenNebula/one/issues/3178>`__.
+- `Add the ability to pin the virtual CPUs and memory of a VM to a specific host NUMA node <https://github.com/OpenNebula/one/issues/5966>`__.
 - `Hugepages can be used without CPU pinning <https://github.com/OpenNebula/one/issues/6185>`__.
 - `Add remote authorization support in FireEdge Sunstone <https://github.com/OpenNebula/one/issues/6112>`__.
 - `Improve VM HA hook script host_error.rb to skip VMs deployed on local datastores <https://github.com/OpenNebula/one/issues/6099>`__.
 - `Add Overcommitment dialog in host tab <https://github.com/OpenNebula/one/issues/5755>`__.
 - `Reordering the schedule actions creation mode <https://github.com/OpenNebula/one/issues/6091>`__.
-- `Allow standalone qcow2 image on shared datastore <https://github.com/OpenNebula/one/issues/6098>`__, see: `configuration <https://docs.opennebula.io/devel/open_cluster_deployment/storage_setup/nas_ds.html#additional-configuration>`__.
+- `Allow standalone qcow2 image on shared datastore <https://github.com/OpenNebula/one/issues/6098>`__, see: :ref:`configuration <nas_ds>`__.
 
-The following issues has been solved in 6.6.2:
+The following issues have been solved in 6.6.2:
 
 - `Fix default scheduler NIC policies <https://github.com/OpenNebula/one/issues/6149>`__.
 - `Fix error when disabling the FireEdge configuration attributes in sunstone-server.conf <https://github.com/OpenNebula/one/issues/6163>`__.
@@ -32,7 +32,7 @@ The following issues has been solved in 6.6.2:
 - `Fix fsck for backup images <https://github.com/OpenNebula/one/issues/6195>`__.
 - `Fix missing actions in Firecracker driver <https://github.com/OpenNebula/one/issues/6173>`__.
 - `Fix some LinuxContainers marketplace applications failing to auto-contextualize <https://github.com/OpenNebula/one/issues/6190>`__.
-- `Fix incremental backups after reseting ("--reset") and perform a poweroff cycle on the VM <https://github.com/OpenNebula/one/issues/6206>`__.
+- `Fix incremental backups after resetting ("--reset") and performing a poweroff cycle on the VM <https://github.com/OpenNebula/one/issues/6206>`__.
 - `Fix Ceph trash to also clean base snapshots to prevent data loss on persistent images <https://github.com/OpenNebula/one/issues/6207>`__.
 - `Fix LinuxContainers monitoring to use images.json and not traversing links <https://github.com/OpenNebula/one/issues/6171>`__.
-- `Fix Context Custom variables gets key and values changed to upcase <https://github.com/OpenNebula/one/issues/6201>`__.
+- `Fix Context Custom variables get key and values changed to upcase <https://github.com/OpenNebula/one/issues/6201>`__.
