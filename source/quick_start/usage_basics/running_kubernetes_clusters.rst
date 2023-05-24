@@ -21,7 +21,7 @@ Now you need to select a datastore. Select the ``metal-aws-edge-cluster-image`` 
 
 |kubernetes-qs-marketplace-datastore|
 
-The Appliance will be ready when the image in ``Storage --> Images`` switches to ``READY`` from its ``LOCKED`` state. This process may take significant amount of time based on the networking resources available in your infrastructure (Kubernetes 1.24 amounts to a total of 120GB).
+The Appliance will be ready when the image in ``Storage --> Images`` switches to ``READY`` from its ``LOCKED`` state. This process may take significant amount of time based on the networking resources available in your infrastructure (Kubernetes 1.27 amounts to a total of 120GB).
 
 .. |kubernetes-qs-marketplace|           image:: /images/kubernetes-qs-marketplace.png
 .. |kubernetes-qs-marketplace-datastore| image:: /images/kubernetes-qs-marketplace-datastore.png
@@ -99,7 +99,7 @@ Step 4. Deploy an Application
 
 Connect to the master Kubernetes node (from the Open Nebula front-end node):
 
-.. prompt:: text $ auto
+.. prompt:: bash $ auto
 
     $ ssh -A -J root@1.2.3.4 root@172.20.0.2
 
@@ -112,7 +112,7 @@ where ``1.2.3.4`` should be the **public** address (AWS elastic IP) of a VNF nod
     at the location ``~/.ssh/id_rsa`` and make sure file permissions are correct, i.e. ``0600`` (or ``u=rw,go=``).
     For example:
 
-    .. prompt:: text $ auto
+    .. prompt:: bash $ auto
 
         $ ssh root@1.2.3.4 install -m u=rwx,go= -d /root/.ssh/ # make sure ~/.ssh/ exists
         $ scp ~/.ssh/id_rsa root@1.2.3.4:/root/.ssh/           # copy the key
@@ -120,27 +120,29 @@ where ``1.2.3.4`` should be the **public** address (AWS elastic IP) of a VNF nod
 
 Check if ``kubectl`` is working:
 
-.. prompt:: text $ auto
+.. prompt:: bash root@onekube-ip-172-20-0-2:~#  auto
 
-    $ kubectl get nodes
-    NAME                    STATUS   ROLES                       AGE   VERSION
-    onekube-ip-172-20-0-2   Ready    control-plane,etcd,master   15m   v1.24.1+rke2r2
-    onekube-ip-172-20-0-3   Ready    <none>                      13m   v1.24.1+rke2r2
-    onekube-ip-172-20-0-4   Ready    <none>                      12m   v1.24.1+rke2r2
+   root@onekube-ip-172-20-0-2:~# kubectl get nodes
+   NAME                    STATUS   ROLES                       AGE   VERSION
+   onekube-ip-172-20-0-2   Ready    control-plane,etcd,master   18m   v1.27.1+rke2r1
+   onekube-ip-172-20-0-3   Ready    <none>                      16m   v1.27.1+rke2r1
+   onekube-ip-172-20-0-4   Ready    <none>                      16m   v1.27.1+rke2r1
+
 
 Deploy nginx on the cluster:
 
-.. prompt:: yaml $ auto
+.. prompt:: bash root@onekube-ip-172-20-0-2:~# auto
 
-   $ kubectl run nginx --image=nginx --port 80
+   root@onekube-ip-172-20-0-2:~# kubectl run nginx --image=nginx --port 80
+   pod/nginx created
 
 After a few seconds, you should be able to see the nginx pod running
 
-.. prompt:: yaml $ auto
+.. prompt:: bash root@onekube-ip-172-20-0-2:~# auto
 
-    $ kubectl get pods
-    NAME    READY   STATUS    RESTARTS   AGE
-    nginx   1/1     Running   0          12s
+   root@onekube-ip-172-20-0-2:~# kubectl get pods
+   NAME    READY   STATUS    RESTARTS   AGE
+   nginx   1/1     Running   0          86s
 
 In order to access the application, we need to create a Service and IngressRoute objects that expose the application.
 
@@ -149,7 +151,7 @@ External IP Ingress
 
 Create a ``expose-nginx.yaml`` file with the following contents:
 
-.. prompt:: yaml $ auto
+.. code-block:: yaml
 
     ---
     apiVersion: v1
@@ -182,11 +184,11 @@ Create a ``expose-nginx.yaml`` file with the following contents:
 
 Apply the manifest using ``kubectl``:
 
-.. prompt:: text $ auto
+.. prompt:: bash root@onekube-ip-172-20-0-2:~# auto
 
-    $ kubectl apply -f expose-nginx.yaml
-    service/nginx created
-    ingressroute.traefik.containo.us/nginx created
+   root@onekube-ip-172-20-0-2:~# kubectl apply -f expose-nginx.yaml
+   service/nginx created
+   ingressroute.traefik.containo.us/nginx created
 
 Access the VNF node public IP in you browser using plain HTTP:
 
