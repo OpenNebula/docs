@@ -13,7 +13,7 @@ This guide assumes that you have deployed the OpenNebula front-end following the
 Step 1. Download the OneFlow Service from the Marketplace
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Log in to Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab and search for ``OneKE``. Select the ``Service OneKE 1.24 CE`` and click on the icon with the cloud and the down arrow inside (two positions to the right from the green ``+``).
+Log in to Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab and search for ``OneKE``. Select the ``Service OneKE 1.27 CE`` and click on the icon with the cloud and the down arrow inside (two positions to the right from the green ``+``).
 
 |kubernetes-qs-marketplace|
 
@@ -21,7 +21,7 @@ Now you need to select a datastore. Select the ``metal-aws-edge-cluster-image`` 
 
 |kubernetes-qs-marketplace-datastore|
 
-The Appliance will be ready when the image in ``Storage --> Images`` switches to ``READY`` from its ``LOCKED`` state. This process may take significant amount of time based on the networking resources available in your infrastructure (Kubernetes 1.24 amounts to a total of 120GB).
+The Appliance will be ready when the image in ``Storage --> Images`` switches to ``READY`` from its ``LOCKED`` state. This process may take significant amount of time based on the networking resources available in your infrastructure (Kubernetes 1.27 amounts to a total of 120GB).
 
 .. |kubernetes-qs-marketplace|           image:: /images/kubernetes-qs-marketplace.png
 .. |kubernetes-qs-marketplace-datastore| image:: /images/kubernetes-qs-marketplace-datastore.png
@@ -45,9 +45,9 @@ Step 3. Instantiate the Kubernetes Service
 
 .. note::
 
-    You may want to adjust the VM templates before you progress further - go to ``Templates --> VMs``, click on the ``Service OneKE 1.24 CE`` and blue button ``Update`` at the top.
+    You may want to adjust the VM templates before you progress further - go to ``Templates --> VMs``, click on the ``Service OneKE 1.27 CE`` and blue button ``Update`` at the top.
 
-Proceed to the ``Templates --> Services`` tab and select the ``Service OneKE 1.24 CE`` Service Template. Click on ``+`` and then ``Instantiate``.
+Proceed to the ``Templates --> Services`` tab and select the ``Service OneKE 1.27 CE`` Service Template. Click on ``+`` and then ``Instantiate``.
 
 A required step is clicking on ``Network`` and selecting the ``metal-aws-edge-cluster-public`` network for public network.
 
@@ -99,7 +99,7 @@ Step 4. Deploy an Application
 
 Connect to the master Kubernetes node:
 
-.. prompt:: text $ auto
+.. prompt:: bash $ auto
 
     $ ssh -A -J root@1.2.3.4 root@172.20.0.2
 
@@ -112,7 +112,7 @@ where ``1.2.3.4`` should be the **public** address (AWS elastic IP) of a VNF nod
     at the location ``~/.ssh/id_rsa`` and make sure file permissions are correct, i.e. ``0600`` (or ``u=rw,go=``).
     For example:
 
-    .. prompt:: text $ auto
+    .. prompt:: bash $ auto
 
         $ ssh root@1.2.3.4 install -m u=rwx,go= -d /root/.ssh/ # make sure ~/.ssh/ exists
         $ scp ~/.ssh/id_rsa root@1.2.3.4:/root/.ssh/           # copy the key
@@ -120,27 +120,29 @@ where ``1.2.3.4`` should be the **public** address (AWS elastic IP) of a VNF nod
 
 Check if ``kubectl`` is working:
 
-.. prompt:: text $ auto
+.. prompt:: bash root@onekube-ip-172-20-0-2:~#  auto
 
-    $ kubectl get nodes
-    NAME                    STATUS   ROLES                       AGE   VERSION
-    onekube-ip-172-20-0-2   Ready    control-plane,etcd,master   15m   v1.24.1+rke2r2
-    onekube-ip-172-20-0-3   Ready    <none>                      13m   v1.24.1+rke2r2
-    onekube-ip-172-20-0-4   Ready    <none>                      12m   v1.24.1+rke2r2
+   root@onekube-ip-172-20-0-2:~# kubectl get nodes
+   NAME                    STATUS   ROLES                       AGE   VERSION
+   onekube-ip-172-20-0-2   Ready    control-plane,etcd,master   18m   v1.27.1+rke2r1
+   onekube-ip-172-20-0-3   Ready    <none>                      16m   v1.27.1+rke2r1
+   onekube-ip-172-20-0-4   Ready    <none>                      16m   v1.27.1+rke2r1
+
 
 Deploy nginx on the cluster:
 
-.. prompt:: yaml $ auto
+.. prompt:: bash root@onekube-ip-172-20-0-2:~# auto
 
-   $ kubectl run nginx --image=nginx --port 80
+   root@onekube-ip-172-20-0-2:~# kubectl run nginx --image=nginx --port 80
+   pod/nginx created
 
 After a few seconds, you should be able to see the nginx pod running
 
-.. prompt:: yaml $ auto
+.. prompt:: bash root@onekube-ip-172-20-0-2:~# auto
 
-    $ kubectl get pods
-    NAME    READY   STATUS    RESTARTS   AGE
-    nginx   1/1     Running   0          12s
+   root@onekube-ip-172-20-0-2:~# kubectl get pods
+   NAME    READY   STATUS    RESTARTS   AGE
+   nginx   1/1     Running   0          86s
 
 In order to access the application, we need to create a Service and IngressRoute objects that expose the application.
 
@@ -149,7 +151,7 @@ External IP Ingress
 
 Create a ``expose-nginx.yaml`` file with the following contents:
 
-.. prompt:: yaml $ auto
+.. code-block:: yaml
 
     ---
     apiVersion: v1
@@ -182,11 +184,11 @@ Create a ``expose-nginx.yaml`` file with the following contents:
 
 Apply the manifest using ``kubectl``:
 
-.. prompt:: text $ auto
+.. prompt:: bash root@onekube-ip-172-20-0-2:~# auto
 
-    $ kubectl apply -f expose-nginx.yaml
-    service/nginx created
-    ingressroute.traefik.containo.us/nginx created
+   root@onekube-ip-172-20-0-2:~# kubectl apply -f expose-nginx.yaml
+   service/nginx created
+   ingressroute.traefik.containo.us/nginx created
 
 Access the VNF node public IP in you browser using plain HTTP:
 
