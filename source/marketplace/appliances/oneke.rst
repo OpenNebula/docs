@@ -447,7 +447,7 @@ Load Balancing (MetalLB)
 
 - A dedicated namespace ``metallb-system`` is provided.
 - `Image Pull Policy <https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy>`_ is optimized for airgapped deployments.
-- Precreated CRD configuration objects are provided (managed by `RKE2's Helm Integration <https://docs.rke2.io/helm/#automatically-deploying-manifests-and-helm-charts>`_ / installed in ``/var/lib/rancher/rke2/server/manifests/one-metallb-config.yaml``). Please refer to the official documentation on `MetalLB's configuration <https://metallb.universe.tf/configuration/>`_ to learn what the use cases of MetalLB are.
+- Precreated CRD configuration objects are provided (managed by RKE2 with `Helm Integration <https://docs.rke2.io/helm/#automatically-deploying-manifests-and-helm-charts>`_ / installed in ``/var/lib/rancher/rke2/server/manifests/one-metallb-config.yaml``). Please refer to the official documentation on `MetalLB's configuration <https://metallb.universe.tf/configuration/>`_ to learn what the use cases of MetalLB are.
 
 .. warning::
 

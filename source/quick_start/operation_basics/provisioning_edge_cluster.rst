@@ -9,6 +9,52 @@ In this section you can check all the steps needed to deploy an **Edge Cluster**
 
 .. important:: This guide assumes that you have deployed the OpenNebula front-end following the :ref:`Deployment Basics guide <deployment_basics>`. Here we'll be creating a metal Edge Cluster with KVM hypervisor, suitable for deploying both Virtual Machines and K8s clusters in the following :ref:`Usage Basics section <usage_basics>`.
 
+.. important:: If you're using OpenNebula 6.6.0 CE, before adding hosts to your environment, please apply this patch in all Frontend machines:
+
+   .. code-block:: diff
+
+        diff --git a/oneprovision/ansible/roles/opennebula-repository/tasks/centos.yml b/oneprovision/ansible/roles/opennebula-repository/tasks/centos.yml
+        index 022d2d2552..ffbf48cb77 100644
+        --- a/oneprovision/ansible/roles/opennebula-repository/tasks/centos.yml
+        +++ b/oneprovision/ansible/roles/opennebula-repository/tasks/centos.yml
+        @@ -19,7 +19,7 @@
+           when: ansible_distribution == "RedHat"
+         
+         - name: Add repository GPG key for RPM
+        -  rpm_key: key=https://downloads.opennebula.io/repo/repo.key
+        +  rpm_key: key=https://downloads.opennebula.io/repo/repo2.key
+           when: opennebula_repository_gpgcheck | bool
+         
+         - name: Add OpenNebula repository
+        @@ -27,7 +27,7 @@
+             name: opennebula
+             description: OpenNebula packages
+             baseurl: "{{ opennebula_repository_base }}/CentOS/{{ ansible_distribution_major_version }}/{{ ansible_architecture }}"
+        -    gpgkey: https://downloads.opennebula.io/repo/repo.key
+        +    gpgkey: https://downloads.opennebula.io/repo/repo2.key
+             gpgcheck: "{{ opennebula_repository_gpgcheck }}"
+             repo_gpgcheck: "{{ opennebula_repository_repo_gpgcheck }}"
+           notify: "clean repository metadata"
+        diff --git a/oneprovision/ansible/roles/opennebula-repository/tasks/debian.yml b/oneprovision/ansible/roles/opennebula-repository/tasks/debian.yml
+        index d74d0f076c..355786cfb7 100644
+        --- a/oneprovision/ansible/roles/opennebula-repository/tasks/debian.yml
+        +++ b/oneprovision/ansible/roles/opennebula-repository/tasks/debian.yml
+        @@ -8,7 +8,7 @@
+         
+         - name: Add repository key
+           apt_key:
+        -    url: https://downloads.opennebula.io/repo/repo.key
+        +    url: https://downloads.opennebula.io/repo/repo2.key
+             validate_certs: no
+             state: present
+           register: apt_result
+         
+
+   .. prompt:: bash # auto
+
+        # cd /usr/share/one/
+        # patch -Np1 < ~/oneprovision-repo.patch
+
 An Edge Cluster is a group of resources in OpenNebula and the corresponding resources in AWS, that are suitable to be run in edge locations with a minimal footprint. OpenNebula provides a specification of the cluster ready to be created.
 
 The following resources are created in OpenNebula when a new Edge Cluster is deployed:
