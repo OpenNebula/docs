@@ -12,7 +12,7 @@ The following new features have been backported to 6.6.2:
 - `Add the ability to pin the virtual CPUs and memory of a VM to a specific host NUMA node <https://github.com/OpenNebula/one/issues/5966>`__.
 - `Hugepages can be used without CPU pinning <https://github.com/OpenNebula/one/issues/6185>`__.
 - `Add remote authorization support in FireEdge Sunstone <https://github.com/OpenNebula/one/issues/6112>`__.
-- `Improve VM HA hook script host_error.rb to skip VMs deployed on local datastores <https://github.com/OpenNebula/one/issues/6099>`__.
+- `Improve VM HA hook script host_error.rb to skip VMs deployed on local datastores <https://docs.opennebula.io/6.6/installation_and_configuration/ha/vm_ha.html>`__.
 - `Add Overcommitment dialog in host tab <https://github.com/OpenNebula/one/issues/5755>`__.
 - `Reordering the schedule actions creation mode <https://github.com/OpenNebula/one/issues/6091>`__.
 - `Allow standalone qcow2 image on shared datastore <https://github.com/OpenNebula/one/issues/6098>`__, see :ref:`configuration <nas_ds>`.
