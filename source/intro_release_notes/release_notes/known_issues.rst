@@ -34,6 +34,9 @@ Sunstone
 
 - Guacamole RDP as is currently shipped in OpenNebula does not support NLA authentication. You can follow `these instructions <https://www.parallels.com/blogs/ras/disabling-network-level-authentication/>`__ in order to disable NLA in the Windows box to use Guacamole RDP within Sunstone.
 - Creating a VM with SPICE graphics, on Alma9, will cause the VM to stay on FAILED state.
+- To activate the SCALE button in Sunstone Service Instances Role subtab, the following setting needs to be activated in admin.yaml and user.yaml views:
+
+  ``Role.scale_dialog: true``
 
 Install Linux Graphical Desktop on KVM Virtual Machines
 ================================================================================
