@@ -27,3 +27,4 @@ The following issues has been solved in 6.4.4:
 - `Fix Address Range IP6_END value <https://github.com/OpenNebula/one/issues/6156>`__.
 - `Fix some LinuxContainers marketplace applications failing to auto-contextualize <https://github.com/OpenNebula/one/issues/6190>`__.
 - `Fix missing actions in Firecracker driver <https://github.com/OpenNebula/one/issues/6173>`__.
+- `Fix Sunstone overrides DISK SIZE attribute on instantiation <https://github.com/OpenNebula/one/issues/6215>`__.
