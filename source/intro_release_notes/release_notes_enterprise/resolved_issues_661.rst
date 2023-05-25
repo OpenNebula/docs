@@ -47,6 +47,7 @@ The following issues has been solved in 6.6.1:
 - `Fix one.vm.migrate call in Golang Cloud API (GOCA) <https://github.com/OpenNebula/one/issues/6108>`__.
 - `Fix undeploy/stop actions leaving VMs defined in vCenter <https://github.com/OpenNebula/one/issues/5990>`__.
 - `Fix Host system monitoring NETTX and NETRX <https://github.com/OpenNebula/one/issues/6114>`__.
+- `Fix Sunstone overrides DISK SIZE attribute on instantiation <https://github.com/OpenNebula/one/issues/6215>`__.
 
 Upgrading from OpenNebula 6.6.0 (Restic users only)
 --------------------------------------------------------------------------------
