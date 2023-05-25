@@ -152,7 +152,7 @@ To add OpenNebula repository, execute the following as user ``root``:
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Community Edition
-    baseurl=https://downloads.opennebula.io/repo/|release|/RedHat/$releasever/$basearch
+    baseurl=https://downloads.opennebula.io/repo/|version|/RedHat/$releasever/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo2.key
     gpgcheck=1
@@ -168,7 +168,7 @@ To add OpenNebula repository, execute the following as user ``root``:
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=OpenNebula Community Edition
-    baseurl=https://downloads.opennebula.io/repo/|release|/AlmaLinux/$releasever/$basearch
+    baseurl=https://downloads.opennebula.io/repo/|version|/AlmaLinux/$releasever/$basearch
     enabled=1
     gpgkey=https://downloads.opennebula.io/repo/repo2.key
     gpgcheck=1
@@ -200,7 +200,7 @@ First, add the repository signing GPG key on the Front-end by executing as user 
 .. prompt:: bash # auto
    :substitutions:
 
-    # echo "deb https://downloads.opennebula.io/repo/|release|/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://downloads.opennebula.io/repo/|version|/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Debian 11**
@@ -208,7 +208,7 @@ First, add the repository signing GPG key on the Front-end by executing as user 
 .. prompt:: bash # auto
    :substitutions:
 
-    # echo "deb https://downloads.opennebula.io/repo/|release|/Debian/11 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://downloads.opennebula.io/repo/|version|/Debian/11 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Ubuntu 20.04**
@@ -216,7 +216,7 @@ First, add the repository signing GPG key on the Front-end by executing as user 
 .. prompt:: bash # auto
    :substitutions:
 
-    # echo "deb https://downloads.opennebula.io/repo/|release|/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://downloads.opennebula.io/repo/|version|/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Ubuntu 22.04**
@@ -224,5 +224,5 @@ First, add the repository signing GPG key on the Front-end by executing as user 
 .. prompt:: bash # auto
    :substitutions:
 
-    # echo "deb https://downloads.opennebula.io/repo/|release|/Ubuntu/22.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://downloads.opennebula.io/repo/|version|/Ubuntu/22.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
