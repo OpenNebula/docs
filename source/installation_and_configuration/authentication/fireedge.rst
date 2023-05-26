@@ -19,6 +19,8 @@ In the basic mode, username and password are matched to those in OpenNebula's da
 
     :auth: opennebula
 
+.. _remote_auth_fireedge:
+
 Remote Auth
 ===========
 
