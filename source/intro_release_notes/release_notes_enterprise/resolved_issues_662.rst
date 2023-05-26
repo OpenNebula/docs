@@ -13,6 +13,7 @@ The following new features have been backported to 6.6.2:
 - :ref:`Hugepages can be used without CPU pinning <numa>`.
 - :ref:`Add remote authorization support in FireEdge Sunstone <remote_auth_fireedge>`.
 - :ref:`Improve VM HA hook script host_error.rb to skip VMs deployed on local datastores <vm_ha>`.
+- :ref:`Upgrade OneKE from 1.24 to 1.27 RKE2 release <oneke_guide>`.
 - :ref:`Add Overcommitment dialog in host tab <overcommitment>`.
 - :ref:`Reordering the schedule actions creation mode <vm_guide2_scheduling_actions>`.
 - :ref:`Allow standalone qcow2 image on shared datastore <nas_ds>`.
@@ -45,4 +46,5 @@ The following issues have been solved in 6.6.2:
 - `Fix LinuxContainers monitoring to use images.json and not traversing links <https://github.com/OpenNebula/one/issues/6171>`__.
 - `Fix Context Custom variables get key and values changed to upcase <https://github.com/OpenNebula/one/issues/6201>`__.
 - `Fix Scale button does not show on service role tab <https://github.com/OpenNebula/one/issues/6164>`__.
+- `Fix OneKE's MetalLB regression caused by ConfigMap deprecation <https://github.com/OpenNebula/one/issues/6210>`__.
 - `Fix Sunstone overrides DISK SIZE attribute on instantiation <https://github.com/OpenNebula/one/issues/6215>`__.
