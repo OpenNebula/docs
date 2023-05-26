@@ -47,4 +47,3 @@ The following issues have been solved in 6.6.2:
 - `Fix Scale button does not show on service role tab <https://github.com/OpenNebula/one/issues/6164>`__.
 - `Fix Sunstone overrides DISK SIZE attribute on instantiation <https://github.com/OpenNebula/one/issues/6215>`__.
 - `Fix Context Custom variables gets key and values changed to upcase <https://github.com/OpenNebula/one/issues/6201>`__.
-- `Add Overcommitment dialog in host tab <https://github.com/OpenNebula/one/issues/5755>`__.
