@@ -15,9 +15,9 @@ OpenNebula Hosted service provides two tools to create and manage resources and 
 
 .. note::
 
-    The OpenNebula Hosted Service does not offer support for VMware resources. 
- 
-.. note:: 
+    The OpenNebula Hosted Service does not offer support for VMware resources.
+
+.. note::
 
     OpenNebula Hosted Service is currently available as a technology preview for evaluation and PoC purposes.
 
@@ -76,6 +76,10 @@ You should have the following environment variables set, you may want to place t
 
 Provisioning KVM Clusters
 =========================
+
+.. warning::
+
+   The Hosted Cloud PoC provides users with an OpenNebula front-end that is hosted and paid for by OpenNebula Systems. Compute nodes can be provisioned using AWS and Equinix Metal public cloud resources, for which users are responsible via user-owned accounts.
 
 In order to provision new clusters within your cloud environment, you have to connect to https://poc.opennebula.cloud/fireedge/provision and login using username and password
 

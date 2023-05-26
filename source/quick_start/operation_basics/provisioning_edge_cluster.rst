@@ -43,12 +43,16 @@ Whenever your account is ready, you need to obtain both an ``access_key`` and a 
 
 Next, you need to choose the region where you want to deploy the resources. All the available regions can be checked `here <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html>`__.
 
-.. warning:: To be able to connect to the instances you deploy, you'll need SSH keys. They are installed in ``/var/lib/one/.ssh-oneprovision``. A current limitation of the edge clusters is that currently is not possible to access the VMs through the normal :ref:`Sunstone mechanisms <remote_access_sunstone>` to do so.
+.. important:: To be able to connect to the instances you deploy, you'll need SSH keys. They are installed in ``/var/lib/one/.ssh-oneprovision``. A current limitation of the edge clusters is that currently is not possible to access the VMs through the normal :ref:`Sunstone mechanisms <remote_access_sunstone>` to do so.
 
 Step 2: Create an AWS provider
 ================================================================================
 
 To deploy a complete edge provision with oneprovision from GUI, you first need to add a remote provider using the connection parameters above and choosing the location you wish to deploy those resources
+
+.. warning::
+
+   The Hosted Cloud PoC provides users with an OpenNebula front-end that is hosted and paid for by OpenNebula Systems. Compute nodes can be provisioned using AWS and Equinix Metal public cloud resources, for which users are responsible via user-owned accounts.
 
 First, to **create a provider**, go to provider list view:
 
