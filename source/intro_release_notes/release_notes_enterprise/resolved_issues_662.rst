@@ -15,6 +15,7 @@ The following new features have been backported to 6.6.2:
 - :ref:`Improve VM HA hook script host_error.rb to skip VMs deployed on local datastores <vm_ha>`.
 - `Add Overcommitment dialog in host tab <https://github.com/OpenNebula/one/issues/5755>`__.
 - `Reordering the schedule actions creation mode <https://github.com/OpenNebula/one/issues/6091>`__.
+- :ref:`Upgrade OneKE from 1.24 to 1.27 RKE2 release <oneke_guide>`.
 - `Allow standalone qcow2 image on shared datastore <https://github.com/OpenNebula/one/issues/6098>`__, see :ref:`configuration <nas_ds>`.
 
 .. note::
@@ -45,5 +46,4 @@ The following issues have been solved in 6.6.2:
 - `Fix LinuxContainers monitoring to use images.json and not traversing links <https://github.com/OpenNebula/one/issues/6171>`__.
 - `Fix Context Custom variables get key and values changed to upcase <https://github.com/OpenNebula/one/issues/6201>`__.
 - `Fix Scale button does not show on service role tab <https://github.com/OpenNebula/one/issues/6164>`__.
-- `Upgrade OneKE from 1.24 to 1.27 RKE2 release <https://github.com/OpenNebula/one/issues/6191>`__.
 - `Fix OneKE's MetalLB regression caused by ConfigMap deprecation <https://github.com/OpenNebula/one/issues/6210>`__.
