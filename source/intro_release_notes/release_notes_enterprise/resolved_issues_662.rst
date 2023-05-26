@@ -7,15 +7,15 @@ A complete list of solved issues for 6.6.2 can be found in the `project developm
 
 The following new features have been backported to 6.6.2:
 
-- `Graceful stop of ongoing backup operations <https://github.com/OpenNebula/one/issues/6030>`__.
+- :ref:`Graceful stop of ongoing backup operations <vm_backups_operations>`.
 - `Add support for CentOS 8 Stream, Amazon Linux, and openSUSE on LinuxContainers marketplace <https://github.com/OpenNebula/one/issues/3178>`__.
-- `Add the ability to pin the virtual CPUs and memory of a VM to a specific host NUMA node <https://github.com/OpenNebula/one/issues/5966>`__.
-- `Hugepages can be used without CPU pinning <https://github.com/OpenNebula/one/issues/6185>`__.
+- :ref:`Add the ability to pin the virtual CPUs and memory of a VM to a specific host NUMA node <numa>`.
+- :ref:`Hugepages can be used without CPU pinning <numa>`.
 - :ref:`Add remote authorization support in FireEdge Sunstone <remote_auth_fireedge>`.
 - :ref:`Improve VM HA hook script host_error.rb to skip VMs deployed on local datastores <vm_ha>`.
 - :ref:`Add Overcommitment dialog in host tab <overcommitment>`.
 - :ref:`Reordering the schedule actions creation mode <vm_guide2_scheduling_actions>`.
-- `Allow standalone qcow2 image on shared datastore <https://github.com/OpenNebula/one/issues/6098>`__, see :ref:`configuration <nas_ds>`.
+- :ref:`Allow standalone qcow2 image on shared datastore <nas_ds>`.
 
 .. note::
 
