@@ -45,3 +45,5 @@ The following issues have been solved in 6.6.2:
 - `Fix LinuxContainers monitoring to use images.json and not traversing links <https://github.com/OpenNebula/one/issues/6171>`__.
 - `Fix Context Custom variables get key and values changed to upcase <https://github.com/OpenNebula/one/issues/6201>`__.
 - `Fix Scale button does not show on service role tab <https://github.com/OpenNebula/one/issues/6164>`__.
+- `Upgrade OneKE from 1.24 to 1.27 RKE2 release <https://github.com/OpenNebula/one/issues/6191>`__.
+- `Fix OneKE's MetalLB regression caused by ConfigMap deprecation <https://github.com/OpenNebula/one/issues/6210>`__.
