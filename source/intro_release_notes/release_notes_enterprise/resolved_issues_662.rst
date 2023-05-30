@@ -48,3 +48,4 @@ The following issues have been solved in 6.6.2:
 - `Fix Scale button does not show on service role tab <https://github.com/OpenNebula/one/issues/6164>`__.
 - `Fix OneKE's MetalLB regression caused by ConfigMap deprecation <https://github.com/OpenNebula/one/issues/6210>`__.
 - `Fix Sunstone overrides DISK SIZE attribute on instantiation <https://github.com/OpenNebula/one/issues/6215>`__.
+- `Fix parsing of DockerHub Marketplace ENV varaible <https://github.com/OpenNebula/one/issues/6175>`__.
