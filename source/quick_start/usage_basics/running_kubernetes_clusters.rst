@@ -97,7 +97,7 @@ Now click on the instantiate button, go to ``Instances --> Services`` and wait f
 Step 4. Deploy an Application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Connect to the master Kubernetes node:
+Connect to the master Kubernetes node (from the Open Nebula front-end node):
 
 .. prompt:: text $ auto
 
