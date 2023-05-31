@@ -41,6 +41,9 @@ Located under ``/var/lib/one/remotes/datastore/<ds_mad>``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`.
    -  ``size`` the size of the image in Mb.
 
+
+.. _clone:
+
 -  **clone**: clones an image.
 
    -  **ARGUMENTS**: ``datastore_action_dump image_id``
