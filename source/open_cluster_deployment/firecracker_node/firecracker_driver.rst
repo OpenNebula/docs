@@ -48,15 +48,21 @@ Storage Limitations
 MicroVM Actions
 --------------------------------------------------------------------------------
 
-Some of the actions supported by OpenNebula for VMs and containers are not supported for microVM due to Firecracker's limitations. The following actions are not currently supported:
+Some of the :ref:`actions <devel_actions>` supported by OpenNebula for VMs and containers are not supported for microVM due to Firecracker's limitations.
 
-- ``Pause``
+The following actions are not currently supported:
+
+- ``Disk hot-plugging``
+- ``NIC hot-plugging``
+- ``Migration``
+- ``Recontextualization``
 - ``Reboot``
-- ``live disk-snapshots``
-- ``disk-saveas``
-- ``disk hot-plugging``
-- ``nic hot-plugging``
-- ``system snapshot``
+- ``Pause``
+- ``Capacity resize``
+- ``Disk resize``
+- ``Disk saving``
+- ``System snapshots``
+- ``Disk snapshots``
 
 Configuration
 ================================================================================
