@@ -9,3 +9,5 @@ The following new features have been backported to 6.6.3:
 
 
 The following issues have been solved in 6.6.3:
+
+- `Fix FSunstone currency change is not working <https://github.com/OpenNebula/one/issues/6222>`__.
