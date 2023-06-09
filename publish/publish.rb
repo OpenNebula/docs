@@ -76,8 +76,18 @@ error(
     )
 )
 
+# ensure dir exists
 rc = run("ssh #{ssh_op} #{host} 'ls #{host_path} | grep #{branch_dir}. | sort'")
+error(rc)
 
+# ensure branch_symlink_path exists
+rc = run("ssh #{ssh_op} #{host} 'test -e #{branch_symlink_path} || " <<
+             " echo \"#{branch_symlink_path} does not exists\" >&2'")
+error(rc)
+
+# ensure branch_symlink_path is a symlink
+rc = run("ssh #{ssh_op} #{host} 'test -L #{branch_symlink_path} || " <<
+             " echo \"#{branch_symlink_path} is not a symlink\" >&2'")
 error(rc)
 
 builds = rc[0].split
