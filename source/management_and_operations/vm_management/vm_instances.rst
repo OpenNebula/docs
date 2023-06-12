@@ -485,8 +485,16 @@ You can override the size of a ``DISK`` in a VM Template at instantiation:
 
     $ onetemplate instantiate <template> --disk u2104:size=20000 # Image u2104 will be resized to 2 GB
 
+You can also resize VM disks for both RUNNING and POWEROFF VMs.
 
-This can also be achieved from Sunstone, both in Cloud and Admin View, at the time of instantiating a VM Template.
+.. prompt:: text $ auto
+
+    $ onevm disk-resize <vm_id> <disk_id> <new_size> # <new_size> must be greater than current disk size
+
+This will make the VM disk grow on the hypervisor node. Then the contextualization service running inside the guest OS will expand the filesystem with the newfound free space. The support for this filesystem expansion depends on the Guest OS.
+
+.. important:: In FreeBSD the resize of the root filesystem inside the guest OS is not performed automatically by the Contextualization Service. This leads to `filesystem corruption <https://github.com/OpenNebula/addon-context-linux/issues/298>`_ and permanent data loss. This only applies to the partition mounted on ``/`` , partitions with other mountpoints will be resized.
+
 
 .. important:: In vCenter a disk can be resized only if the VM is in poweroff state and the VM has no snapshots or the vCenter template, which the VM is based on, doesn't use linked clones.
 
