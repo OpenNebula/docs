@@ -285,7 +285,13 @@ Deletes all but the last two history records from the metadata of Virtual Machin
 
 .. prompt:: text $ auto
 
-    $ onedb purge-history --start 2014/01/01 --end 2016/06/15
+    $ onedb purge-history --start 2008/07/24 --end 2023/06/14
+
+You can also delete history records for a specific VM
+
+.. prompt:: text $ auto
+
+    $ onedb purge-history --id <vm_id>
 
 
 .. _onedb_purge_done:
