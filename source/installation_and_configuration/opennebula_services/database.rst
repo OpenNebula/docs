@@ -327,7 +327,7 @@ You can filter the objects to update using one of the options:
 * ``--xpath``: XPath expression. Example: ``TEMPLATE[count(NIC)>1]``
 * ``--expr``: Simple expression using operators ``=``, ``!=``, ``<``, ``>``, ``<=`` or ``>=``. Examples: ``UNAME=oneadmin``, ``TEMPLATE/NIC/NIC_ID>0``
 
-If you want to change a value, add it as a third parameter. Use ``--delete`` argument to delete matching objects.
+If you want to change a value, add it as a third parameter. Use ``--delete`` argument to delete matching objects. In canse you want to append a new attribute use ``--append`` option.
 
 Examples:
 
@@ -348,6 +348,12 @@ Examples:
 .. prompt:: text $ auto
 
     $ onedb change-body vm --expr LCM_STATE=8 '/VM/TEMPLATE/DISK/CACHE' --delete
+
+- Append cache attribute in all disks in ``poweroff`` state:
+
+.. prompt:: text $ auto
+
+    $ onedb change-body vm --expr LCM_STATE=8 '/VM/TEMPLATE/DISK/CACHE' default --append
 
 .. _onedb_update_body:
 
