@@ -9,6 +9,8 @@ The following new features have been backported to 6.6.3:
 
 - Optimize :ref:`appending with onedb change-body <onedb_change_body>`.
 - Allow ``onedb purge-history`` to delete the history record of a :ref:`single VM <onedb_purge_history>`.
+- Improve :ref:`onehost sync <host_guide_sync>` error logging.
+
 
 The following issues have been solved in 6.6.3:
 
