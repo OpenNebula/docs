@@ -10,7 +10,7 @@ What's New in |version|
 
 OpenNebula Core
 ================================================================================
-- `Feature 1 <https://github.com/OpenNebula/one/issues/1234>`__.
+- Add ``sched-action`` and ``sg-attach`` to :ref:`VM Operation Permissions <oned_conf_vm_operations>`.
 
 Networking
 ================================================================================
