@@ -8,6 +8,7 @@ A complete list of solved issues for 6.4.5 can be found in the `project developm
 
 The following new features has been backported to 6.4.5:
 
+- Add ``sched-action`` and ``sg-attach`` to :ref:`VM Operation Permissions <oned_conf_vm_operations>`.
 
 The following issues has been solved in 6.4.5:
 
