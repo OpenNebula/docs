@@ -701,11 +701,14 @@ The following parameters define the operations associated with the **ADMIN**,
 permissions on other objects. Also some operations refer to a class of
 actions:
 
-- ``disk-snapshot``: includes ``create``, ``delete`` and revert actions
+- ``disk-snapshot``: includes ``create``, ``delete`` and ``revert`` actions
 - ``disk-attach``: includes ``attach`` and ``detach`` actions
-- ``nic-attach``: includes ``attach`` and ``detach`` actions
+- ``nic-attach``: includes ``attach``, ``detach`` and ``nic-update`` actions
 - ``snapshot``: includes ``create``, ``delete`` and ``revert`` actions
 - ``resched``: includes ``resched`` and ``unresched`` actions
+- ``migrate``: includes ``migrate``, ``live-migrate`` and ``poweroff migrate`` actions
+- ``sg-attach``: includes ``attach`` and ``detach`` actions
+- ``sched-action``: includes ``add``, ``delete`` and ``update`` actions
 
 The list and show operations require **USE** permission; this is not configurable.
 
@@ -713,11 +716,11 @@ In the following example you need **ADMIN** rights on a VM to perform ``migrate`
 
 .. code-block:: bash
 
-    VM_ADMIN_OPERATIONS  = "migrate, delete, recover, retry, deploy, resched"
+    VM_ADMIN_OPERATIONS  = "migrate, delete, recover, retry, deploy, resched, backup"
 
     VM_MANAGE_OPERATIONS = "undeploy, hold, release, stop, suspend, resume, reboot,
         poweroff, disk-attach, nic-attach, disk-snapshot, terminate, disk-resize,
-        snapshot, updateconf, rename, resize, update, disk-saveas"
+        snapshot, updateconf, rename, resize, update, disk-saveas, sched-action, sg-attach"
 
     VM_USE_OPERATIONS    = ""
 
