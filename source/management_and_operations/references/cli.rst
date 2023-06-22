@@ -78,7 +78,7 @@ If ``ONE_AUTH`` is not defined, ``$HOME/.one/one_auth`` will be used instead. If
     $ export ONE_POOL_PAGE_SIZE=disabled    # Disables pool pagination
 
 * **ONE_PAGER**: list commands will send their output through a pager process when in an interactive shell. By default, the pager process is set to ``less`` but it can be change to any other program. The pagination can be disabled using the argument ``--no-pager``. It sets the ``ONE_PAGER`` variable to ``cat``.
-* **ONE_LISTCONF**: allows the user to use an alternate layout to displays lists. The layouts are defined in ``/etc/one/cli/onevm.yaml``.
+* **ONE_LISTCONF**: allows the user to use an alternate layout to displays lists.
 
 .. prompt:: bash $ auto
 
@@ -142,6 +142,66 @@ If ``user`` is specified but not ``password`` the user will be prompted for the 
 
 * **ONE_SUNSTONE**: URL of the Sunstone portal, used for downloading Marketplace Apps streamed through Sunstone. If this is not specified, it will be inferred from ``ONE_XMLRPC`` (by changing the port to 9869), and if that ENV variable is undefined as well, it will default to ``http://localhost:9869``.
 * **ONEFLOW_URL**, **ONEFLOW_USER** and **ONEFLOW_PASSWORD**: these variables are used by the :ref:`OneFlow <oneflow_overview>` command line tools. If not set, the default OneFlow URL will be ``http://localhost:2474``. The user and password will be taken from the ``ONE_AUTH`` file if the environment variables are not found.
+
+CLI views
+================================================================================
+
+You can customize how certain commands are displayed by default. Each command has a yaml file associated to it, located at ``/etc/one/cli/``
+
+.. prompt:: bash $ auto
+
+    root@supermicro9:~# tree /etc/one/cli/
+    /etc/one/cli/
+    ├── oneacct.yaml
+    ├── oneacl.yaml
+    ├── onecluster.yaml
+    ├── onedatastore.yaml
+    ├── oneflowtemplate.yaml
+    ├── oneflow.yaml
+    ├── onegroup.yaml
+    ├── onehook.yaml
+    ├── onehost.yaml
+    ├── oneimage.yaml
+    ├── onemarketapp.yaml
+    ├── onemarket.yaml
+    ├── oneprovider.yaml
+    ├── oneprovision.yaml
+    ├── onesecgroup.yaml
+    ├── oneshowback.yaml
+    ├── onetemplate.yaml
+    ├── oneuser.yaml
+    ├── onevdc.yaml
+    ├── onevmgroup.yaml
+    ├── onevm.yaml
+    ├── onevnet.yaml
+    ├── onevntemplate.yaml
+    ├── onevrouter.yaml
+    └── onezone.yaml
+
+For example, in the case of ``onevm list``, by default it looks like this
+
+.. prompt:: bash $ auto
+
+    root@supermicro9:~# onevm list
+      ID USER     GROUP    NAME                                                                        STAT  CPU     MEM HOST                                                     TIME
+    9234 oneadmin oneadmin alma8-alma8-6-7-80-e3f1f4b2-6a26f4bd-1825.build                             unde  0.5      8G                                                      0d 05h57
+    9233 nhansen  users    alma8-kvm-ssh-6-6-pkofu-2.test                                              runn  0.5    1.3G localhost                                            0d 07h04
+    9232 nhansen  users    alma8-kvm-ssh-6-6-pkofu-1.test                                              runn  0.5    1.3G localhost                                            0d 07h04
+    9231 nhansen  users    alma8-kvm-ssh-6-6-pkofu-0.test                                              runn  0.5    1.8G localhost                                            0d 07h04
+
+But you can change the default colums, increase the column width and disable expansion to make it look like this
+
+.. prompt:: bash $ auto
+
+     ~  onevm list
+      ID NAME                             STAT IP
+    9188 minione-9188                     runn 172.20.0.65
+    9184 ubuntu2204-func-6-7-1lbob-0.test unde 172.20.0.61,192.168.150.1
+    9183 ubuntu2204-func-6-7-xjz0p-0.test unde 172.20.0.59,192.168.150.1
+    9182 ubuntu2204-func-6-7-q1okq-0.test unde 172.20.0.55,192.168.150.1
+    8705 bots                             poff 172.20.0.20
+    6460 tmux                             poff 172.20.0.5
+    5947 market-builder-5947              poff 172.20.0.26
 
 Shell Environment for Self-Contained Installations
 --------------------------------------------------------------------------------
