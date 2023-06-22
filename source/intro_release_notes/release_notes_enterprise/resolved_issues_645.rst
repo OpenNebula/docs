@@ -9,9 +9,9 @@ A complete list of solved issues for 6.4.5 can be found in the `project developm
 The following new features has been backported to 6.4.5:
 
 - Add ``sched-action`` and ``sg-attach`` to :ref:`VM Operation Permissions <oned_conf_vm_operations>`.
+- `Marketplace download app stepper should filter image DS <https://github.com/OpenNebula/one/issues/6213>`__. 
 
 The following issues has been solved in 6.4.5:
 
 - `Fix LinuxContainers monitoring to use images.json and not traversing links <https://github.com/OpenNebula/one/issues/6171>`__.
 - `Fix Creating a new image ends with wrong DEV_PREFIX <https://github.com/OpenNebula/one/issues/6214>`__.
-- `Fix [FSunstone] Marketplace download app stepper should filter image DS <https://github.com/OpenNebula/one/issues/6213>`__. 
