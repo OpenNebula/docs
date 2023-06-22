@@ -19,4 +19,5 @@ The following issues have been solved in 6.6.3:
 - `Fix wrong management of labels in OpenNebula Prometheus exporter <https://github.com/OpenNebula/one/issues/6226>`__.
 - `Fix Creating a new image ends with wrong DEV_PREFIX <https://github.com/OpenNebula/one/issues/6214>`__.
 - `Include HostSyncManager as a gem dependency <https://github.com/OpenNebula/one/issues/6245>`__.
+- `Fix [FSunstone] Marketplace download app stepper should filter image DS <https://github.com/OpenNebula/one/issues/6213>`__.   
 
