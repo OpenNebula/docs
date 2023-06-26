@@ -12,6 +12,7 @@ The following new features have been backported to 6.6.3:
 - Improve :ref:`onehost sync <host_guide_sync>` error logging.
 - Add ``sched-action`` and ``sg-attach`` to :ref:`VM Operation Permissions <oned_conf_vm_operations>`.
 - `Marketplace download app stepper should filter image DS <https://github.com/OpenNebula/one/issues/6213>`__.
+- Improve :ref:`list commands <cli>`  help messages to point to :ref:`layout configuration files <cli_views>`.
 
 The following issues have been solved in 6.6.3:
 
