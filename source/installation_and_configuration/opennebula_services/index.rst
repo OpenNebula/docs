@@ -17,4 +17,5 @@ OpenNebula Services
    OneGate Configuration <onegate>
    Database Maintenance <database>
    Troubleshooting <troubleshooting>
+   Replace failing frontend <replace_failing_fe>
    Support Utilities (EE) <support>
