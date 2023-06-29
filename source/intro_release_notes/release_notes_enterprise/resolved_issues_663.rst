@@ -13,6 +13,7 @@ The following new features have been backported to 6.6.3:
 - Add ``sched-action`` and ``sg-attach`` to :ref:`VM Operation Permissions <oned_conf_vm_operations>`.
 - `Marketplace download app stepper should filter image DS <https://github.com/OpenNebula/one/issues/6213>`__.
 - Improve :ref:`list commands <cli>`  help messages to point to :ref:`layout configuration files <cli_views>`.
+- `Add VCPU to VMs pool list <https://github.com/OpenNebula/one/issues/6111>`__. If you are upgrading from previous version, the ``VCPU`` will apear after first update of the VM. Use ``onevm update <vm_id> --append <empty_file>`` to force VM update.
 
 The following issues have been solved in 6.6.3:
 
@@ -23,3 +24,4 @@ The following issues have been solved in 6.6.3:
 - `Fix onegate man page generation <https://github.com/OpenNebula/one/issues/6172>`__.
 - Fix :ref:`onegather <support>` journal log collection when using systemd.
 - :ref:`Onegather <support>` now includes execution logs within the package.
+- `Fix VM operation permissions for disk-attach, nic-(de)attach and nic-update <https://github.com/OpenNebula/one/issues/6239>`__.
