@@ -80,7 +80,7 @@ First, add the repository signing GPG key on the Front-end by executing as user 
 
     .. prompt:: bash # auto
 
-       # wget -q -O- https://downloads.opennebula.io/repo/repo2.key | gpg --dearmor > /etc/apt/trusted.gpg.d/opennebula.gpg
+       # wget -q -O- https://downloads.opennebula.io/repo/repo2.key | gpg --yes --output /etc/apt/trusted.gpg.d/opennebula.gpg
 
 and then continue with repository configuration:
 
