@@ -21,3 +21,5 @@ The following issues have been solved in 6.6.3:
 - `Fix Creating a new image ends with wrong DEV_PREFIX <https://github.com/OpenNebula/one/issues/6214>`__.
 - `Include HostSyncManager as a gem dependency <https://github.com/OpenNebula/one/issues/6245>`__.
 - `Fix onegate man page generation <https://github.com/OpenNebula/one/issues/6172>`__.
+- Fix :ref:`Onegather <support>` journal log collection when using systemd.
+- :ref:`Onegather <support>` now includes execution logs within the package.
