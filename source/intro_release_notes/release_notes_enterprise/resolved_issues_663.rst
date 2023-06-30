@@ -25,3 +25,4 @@ The following issues have been solved in 6.6.3:
 - Fix :ref:`onegather <support>` journal log collection when using systemd.
 - :ref:`Onegather <support>` now includes execution logs within the package.
 - `Fix VM operation permissions for disk-attach, nic-(de)attach and nic-update <https://github.com/OpenNebula/one/issues/6239>`__.
+- `Fix reset flag for onevm backup --schedule <https://github.com/OpenNebula/one/issues/6193>`__.
