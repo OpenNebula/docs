@@ -18,3 +18,4 @@ The following issues has been solved in 6.4.5:
 - Fix :ref:`onegather <support>` journal log collection when using systemd.
 - :ref:`Onegather <support>` now includes execution logs within the package.
 - `Fix missing defaults on Turnkey marketplace <https://github.com/OpenNebula/one/issues/6258>`__.
+- `Fix LinuxContainers opensuse app not having SSH access <https://github.com/OpenNebula/one/issues/6257>`__.
