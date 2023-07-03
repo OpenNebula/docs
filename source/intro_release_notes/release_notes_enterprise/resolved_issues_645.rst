@@ -17,3 +17,4 @@ The following issues has been solved in 6.4.5:
 - `Fix onegate man page generation <https://github.com/OpenNebula/one/issues/6172>`__.
 - Fix :ref:`onegather <support>` journal log collection when using systemd.
 - :ref:`Onegather <support>` now includes execution logs within the package.
+- `Fix LinuxContainers opensuse app not having SSH access <https://github.com/OpenNebula/one/issues/6257>`__.
