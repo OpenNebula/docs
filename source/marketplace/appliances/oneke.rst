@@ -16,25 +16,23 @@ Components
 .. table::
     :widths: 100 50 40
 
-    +-----------------------------+-------------------------------------------------------------------------------------------------------------------+
-    | Component                   | Version                                                                                                           |
-    +=============================+=====================================================================================+=============================+
-    | `Service OneKE 1.27 CE <https://marketplace.opennebula.io/appliance/6a7ba6b7-75ca-444d-bf86-50a7b6f0658e>`_       |                             |
-    +-----------------------------+-------------------------------------------------------------------------------------+                             |
-    | `Service OneKE 1.27 EE <https://marketplace.opennebula.io/appliance/7c82d610-73f1-47d1-a85a-d799e00c631e>`_       |                             |
-    +-----------------------------+-------------------------------------------------------------------------------------+                             |
-    | Ubuntu                      | 22.04 LTS                                                                           | |certified-kubernetes-logo| |
-    +-----------------------------+-------------------------------------------------------------------------------------+                             |
-    | Kubernetes/RKE2             | v1.27.1+rke2r1                                                                      |                             |
-    +-----------------------------+-------------------------------------------------------------------------------------+                             |
-    | Longhorn                    | 1.4.1                                                                               |                             |
-    +-----------------------------+-------------------------------------------------------------------------------------+                             |
-    | MetalLB                     | 0.13.9                                                                              |                             |
-    +-----------------------------+-------------------------------------------------------------------------------------+                             |
-    | Traefik                     | 2.10.0                                                                              |                             |
-    +-----------------------------+-------------------------------------------------------------------------------------+                             |
-    | Contextualization package   | 6.6.0                                                                               |                             |
-    +-----------------------------+-------------------------------------------------------------------------------------+-----------------------------+
+    +-----------------------------+----------------------------------------------------------------------------------------------------------+
+    | Component                   | Version                                                                                                  |
+    +=============================+============================================================================+=============================+
+    | `Service OneKE 1.27 <https://marketplace.opennebula.io/appliance/7c82d610-73f1-47d1-a85a-d799e00c631e>`_ |                             |
+    +-----------------------------+----------------------------------------------------------------------------+                             |
+    | Ubuntu                      | 22.04 LTS                                                                  | |certified-kubernetes-logo| |
+    +-----------------------------+----------------------------------------------------------------------------+                             |
+    | Kubernetes/RKE2             | v1.27.1+rke2r1                                                             |                             |
+    +-----------------------------+----------------------------------------------------------------------------+                             |
+    | Longhorn                    | 1.4.1                                                                      |                             |
+    +-----------------------------+----------------------------------------------------------------------------+                             |
+    | MetalLB                     | 0.13.9                                                                     |                             |
+    +-----------------------------+----------------------------------------------------------------------------+                             |
+    | Traefik                     | 2.10.0                                                                     |                             |
+    +-----------------------------+----------------------------------------------------------------------------+                             |
+    | Contextualization package   | 6.6.1                                                                      |                             |
+    +-----------------------------+----------------------------------------------------------------------------+-----------------------------+
 
 `Changelog <oneke_changelog.html>`_
 
@@ -53,26 +51,24 @@ Architecture Overview
 
 OneKE is available as a Virtual Appliance from the `OpenNebula Public MarketPlace <https://marketplace.opennebula.io/appliance>`_.
 
-OneKE comes in two flavors: **CE** (Community Edition) and **EE** (Enterprise Edition). Currently, the only difference between **CE** and **EE** versions is that **EE** version is a fully airgapped installation and can be installed in isolated VNETs.
-
-Let's take a closer look at the **OneKE 1.27 CE** MarketPlace app:
+Let's take a closer look at the **OneKE 1.27** MarketPlace app:
 
 .. prompt:: bash $ auto
 
-    $ onemarketapp list -f NAME~'OneKE 1.27 CE' -l NAME --no-header
-    OneKE 1.27 CE Storage
-    OneKE 1.27 CE OS disk
-    Service OneKE 1.27 CE
-    OneKE 1.27 CE
-    OneKE 1.27 CE VNF
-    OneKE 1.27 CE Storage disk
+    $ onemarketapp list -f NAME~'OneKE 1.27' -l NAME --no-header
+    OneKE 1.27 Storage
+    OneKE 1.27 OS disk
+    Service OneKE 1.27
+    OneKE 1.27
+    OneKE 1.27 VNF
+    OneKE 1.27 Storage disk
 
-A specific version of OneKE/CE consists of:
+A specific version of OneKE consists of:
 
-- A single OneFlow template ``Service OneKE .. CE`` used to instantiate a cluster.
-- VM templates ``OneKE .. CE VNF``, ``OneKE .. CE``, ``OneKE .. CE Storage`` used to instantiate VMs.
-- Disk images ``OneKE .. CE OS disk``, ``OneKE .. CE Storage disk`` \
-  (all Kubernetes nodes are cloned from the ``OneKE .. CE OS disk`` image).
+- A single OneFlow template ``Service OneKE ..`` used to instantiate a cluster.
+- VM templates ``OneKE .. VNF``, ``OneKE ..``, ``OneKE .. Storage`` used to instantiate VMs.
+- Disk images ``OneKE .. OS disk``, ``OneKE .. Storage disk`` \
+  (all Kubernetes nodes are cloned from the ``OneKE .. OS disk`` image).
 
 .. note::
 
@@ -101,7 +97,7 @@ You can check the roles defined in the service template by using the following c
 
 .. prompt:: bash $ auto
 
-    $ oneflow-template show -j 'Service OneKE 1.27 CE' | jq -r '.DOCUMENT.TEMPLATE.BODY.roles[].name'
+    $ oneflow-template show -j 'Service OneKE 1.27' | jq -r '.DOCUMENT.TEMPLATE.BODY.roles[].name'
     vnf
     master
     worker
@@ -182,10 +178,6 @@ Networking
 
 OneKE's OneFlow Service requires two networks: a **public** and a **private** VNET.
 These two VNETs can be, for example, just a simple `bridged networks <https://docs.opennebula.io/stable/open_cluster_deployment/networking_setup/bridged.html>`_.
-
-.. note::
-  - In case of the **CE** flavor the **public** VNET must have access to the public Internet to allow Kubernetes to download the in-cluster components, i.e. ``Longhorn``, ``Traefik``, ``MetalLB``, and other supplementary docker images when required.
-  - In case of the **CE** flavor the **private** VNET must have the ``DNS`` context parameter defined, for example ``1.1.1.1``, ``8.8.8.8``, or any other DNS server/proxy capable of resolving public domains.
 
 Let's assume the following:
 
@@ -471,11 +463,11 @@ In this section we focus on a deployment of OneKE using CLI commands. For an eas
 Importing the OneKE Virtual Appliance
 -------------------------------------
 
-Let's run the following command to import in the OpenNebula Cloud the whole set of resources corresponding to the OneKE Virtual Appliance (CE flavor). An image datastore must be specified for storing the Virtual Appliance images.
+Let's run the following command to import in the OpenNebula Cloud the whole set of resources corresponding to the OneKE Virtual Appliance. An image datastore must be specified for storing the Virtual Appliance images.
 
 .. prompt:: bash $ auto
 
-    $ onemarketapp export 'Service OneKE 1.27 CE' 'Service OneKE 1.27 CE' --datastore 1
+    $ onemarketapp export 'Service OneKE 1.27' 'Service OneKE 1.27' --datastore 1
     IMAGE
         ID: 202
         ID: 203
@@ -526,7 +518,7 @@ Once the OneKE Virtual Appliance has been imported, a new cluster can be created
         }
     }
     EOF
-    $ oneflow-template instantiate 'Service OneKE 1.27 CE' /tmp/OneKE-instantiate
+    $ oneflow-template instantiate 'Service OneKE 1.27' /tmp/OneKE-instantiate
     ID: 105
 
 K8s cluster creation can take some minutes. The cluster is available once the OneFlow service is in RUNNING state
@@ -665,7 +657,7 @@ Let's assume that ``epsilon`` and ``omicron`` are hosts we want to use to deploy
 .. prompt:: bash $ auto
 
     $ cat >/tmp/OneKE-vmgroup <<'EOF'
-    NAME = "Service OneKE 1.27 CE"
+    NAME = "Service OneKE 1.27"
     ROLE = [
         NAME         = "vnf",
         HOST_AFFINED = "epsilon,omicron",
@@ -697,7 +689,7 @@ Now, let's modify the OneKE OneFlow Service Template:
 
 .. prompt:: bash $ auto
 
-    $ oneflow-template show 'Service OneKE 1.27 CE' --json | >/tmp/OneKE-update.json jq -r --arg vmgroup 'Service OneKE 1.27 CE' -f /dev/fd/3 3<<'EOF'
+    $ oneflow-template show 'Service OneKE 1.27' --json | >/tmp/OneKE-update.json jq -r --arg vmgroup 'Service OneKE 1.27' -f /dev/fd/3 3<<'EOF'
     .DOCUMENT.TEMPLATE.BODY | del(.registration_time) | . += {
       roles: .roles | map(
         .vm_template_contents = "VMGROUP=[VMGROUP_NAME=\"\($vmgroup)\",ROLE=\"\(.name)\"]\n" + .vm_template_contents
@@ -710,7 +702,7 @@ Content of the update (``/tmp/OneKE-update.json``) will look like this:
 .. code-block:: json
 
     {
-      "name": "Service OneKE 1.27 CE",
+      "name": "Service OneKE 1.27",
       "deployment": "straight",
       "description": "",
       "roles": [
@@ -718,7 +710,7 @@ Content of the update (``/tmp/OneKE-update.json``) will look like this:
           "name": "vnf",
           "cardinality": 1,
           "min_vms": 1,
-          "vm_template_contents": "VMGROUP=[VMGROUP_NAME=\"Service OneKE 1.27 CE\",ROLE=\"vnf\"]\nNIC=[NAME=\"NIC0\",NETWORK_ID=\"$Public\"]\nNIC=[NAME=\"NIC1\",NETWORK_ID=\"$Private\"]\nONEAPP_VROUTER_ETH0_VIP0=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VROUTER_ETH1_VIP0=\"$ONEAPP_VROUTER_ETH1_VIP0\"\nONEAPP_VNF_NAT4_ENABLED=\"$ONEAPP_VNF_NAT4_ENABLED\"\nONEAPP_VNF_NAT4_INTERFACES_OUT=\"$ONEAPP_VNF_NAT4_INTERFACES_OUT\"\nONEAPP_VNF_ROUTER4_ENABLED=\"$ONEAPP_VNF_ROUTER4_ENABLED\"\nONEAPP_VNF_ROUTER4_INTERFACES=\"$ONEAPP_VNF_ROUTER4_INTERFACES\"\nONEAPP_VNF_HAPROXY_INTERFACES=\"$ONEAPP_VNF_HAPROXY_INTERFACES\"\nONEAPP_VNF_HAPROXY_REFRESH_RATE=\"$ONEAPP_VNF_HAPROXY_REFRESH_RATE\"\nONEAPP_VNF_HAPROXY_CONFIG=\"$ONEAPP_VNF_HAPROXY_CONFIG\"\nONEAPP_VNF_HAPROXY_LB0_IP=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VNF_HAPROXY_LB0_PORT=\"9345\"\nONEAPP_VNF_HAPROXY_LB1_IP=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VNF_HAPROXY_LB1_PORT=\"6443\"\nONEAPP_VNF_HAPROXY_LB2_IP=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VNF_HAPROXY_LB2_PORT=\"$ONEAPP_VNF_HAPROXY_LB2_PORT\"\nONEAPP_VNF_HAPROXY_LB3_IP=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VNF_HAPROXY_LB3_PORT=\"$ONEAPP_VNF_HAPROXY_LB3_PORT\"\nONEAPP_VNF_KEEPALIVED_VRID=\"$ONEAPP_VNF_KEEPALIVED_VRID\"\n",
+          "vm_template_contents": "VMGROUP=[VMGROUP_NAME=\"Service OneKE 1.27\",ROLE=\"vnf\"]\nNIC=[NAME=\"NIC0\",NETWORK_ID=\"$Public\"]\nNIC=[NAME=\"NIC1\",NETWORK_ID=\"$Private\"]\nONEAPP_VROUTER_ETH0_VIP0=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VROUTER_ETH1_VIP0=\"$ONEAPP_VROUTER_ETH1_VIP0\"\nONEAPP_VNF_NAT4_ENABLED=\"$ONEAPP_VNF_NAT4_ENABLED\"\nONEAPP_VNF_NAT4_INTERFACES_OUT=\"$ONEAPP_VNF_NAT4_INTERFACES_OUT\"\nONEAPP_VNF_ROUTER4_ENABLED=\"$ONEAPP_VNF_ROUTER4_ENABLED\"\nONEAPP_VNF_ROUTER4_INTERFACES=\"$ONEAPP_VNF_ROUTER4_INTERFACES\"\nONEAPP_VNF_HAPROXY_INTERFACES=\"$ONEAPP_VNF_HAPROXY_INTERFACES\"\nONEAPP_VNF_HAPROXY_REFRESH_RATE=\"$ONEAPP_VNF_HAPROXY_REFRESH_RATE\"\nONEAPP_VNF_HAPROXY_CONFIG=\"$ONEAPP_VNF_HAPROXY_CONFIG\"\nONEAPP_VNF_HAPROXY_LB0_IP=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VNF_HAPROXY_LB0_PORT=\"9345\"\nONEAPP_VNF_HAPROXY_LB1_IP=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VNF_HAPROXY_LB1_PORT=\"6443\"\nONEAPP_VNF_HAPROXY_LB2_IP=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VNF_HAPROXY_LB2_PORT=\"$ONEAPP_VNF_HAPROXY_LB2_PORT\"\nONEAPP_VNF_HAPROXY_LB3_IP=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VNF_HAPROXY_LB3_PORT=\"$ONEAPP_VNF_HAPROXY_LB3_PORT\"\nONEAPP_VNF_KEEPALIVED_VRID=\"$ONEAPP_VNF_KEEPALIVED_VRID\"\n",
           "elasticity_policies": [],
           "scheduled_policies": [],
           "vm_template": 255
@@ -727,7 +719,7 @@ Content of the update (``/tmp/OneKE-update.json``) will look like this:
           "name": "master",
           "cardinality": 1,
           "min_vms": 1,
-          "vm_template_contents": "VMGROUP=[VMGROUP_NAME=\"Service OneKE 1.27 CE\",ROLE=\"master\"]\nNIC=[NAME=\"NIC0\",NETWORK_ID=\"$Private\"]\nONEAPP_VROUTER_ETH0_VIP0=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VROUTER_ETH1_VIP0=\"$ONEAPP_VROUTER_ETH1_VIP0\"\nONEAPP_K8S_EXTRA_SANS=\"$ONEAPP_K8S_EXTRA_SANS\"\nONEAPP_K8S_LOADBALANCER_RANGE=\"$ONEAPP_K8S_LOADBALANCER_RANGE\"\nONEAPP_K8S_LOADBALANCER_CONFIG=\"$ONEAPP_K8S_LOADBALANCER_CONFIG\"\n",
+          "vm_template_contents": "VMGROUP=[VMGROUP_NAME=\"Service OneKE 1.27\",ROLE=\"master\"]\nNIC=[NAME=\"NIC0\",NETWORK_ID=\"$Private\"]\nONEAPP_VROUTER_ETH0_VIP0=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VROUTER_ETH1_VIP0=\"$ONEAPP_VROUTER_ETH1_VIP0\"\nONEAPP_K8S_EXTRA_SANS=\"$ONEAPP_K8S_EXTRA_SANS\"\nONEAPP_K8S_LOADBALANCER_RANGE=\"$ONEAPP_K8S_LOADBALANCER_RANGE\"\nONEAPP_K8S_LOADBALANCER_CONFIG=\"$ONEAPP_K8S_LOADBALANCER_CONFIG\"\n",
           "parents": [
             "vnf"
           ],
@@ -738,7 +730,7 @@ Content of the update (``/tmp/OneKE-update.json``) will look like this:
         {
           "name": "worker",
           "cardinality": 1,
-          "vm_template_contents": "VMGROUP=[VMGROUP_NAME=\"Service OneKE 1.27 CE\",ROLE=\"worker\"]\nNIC=[NAME=\"NIC0\",NETWORK_ID=\"$Private\"]\nONEAPP_VROUTER_ETH0_VIP0=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VROUTER_ETH1_VIP0=\"$ONEAPP_VROUTER_ETH1_VIP0\"\nONEAPP_VNF_HAPROXY_LB2_IP=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VNF_HAPROXY_LB2_PORT=\"$ONEAPP_VNF_HAPROXY_LB2_PORT\"\nONEAPP_VNF_HAPROXY_LB3_IP=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VNF_HAPROXY_LB3_PORT=\"$ONEAPP_VNF_HAPROXY_LB3_PORT\"\n",
+          "vm_template_contents": "VMGROUP=[VMGROUP_NAME=\"Service OneKE 1.27\",ROLE=\"worker\"]\nNIC=[NAME=\"NIC0\",NETWORK_ID=\"$Private\"]\nONEAPP_VROUTER_ETH0_VIP0=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VROUTER_ETH1_VIP0=\"$ONEAPP_VROUTER_ETH1_VIP0\"\nONEAPP_VNF_HAPROXY_LB2_IP=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VNF_HAPROXY_LB2_PORT=\"$ONEAPP_VNF_HAPROXY_LB2_PORT\"\nONEAPP_VNF_HAPROXY_LB3_IP=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VNF_HAPROXY_LB3_PORT=\"$ONEAPP_VNF_HAPROXY_LB3_PORT\"\n",
           "parents": [
             "vnf"
           ],
@@ -750,7 +742,7 @@ Content of the update (``/tmp/OneKE-update.json``) will look like this:
           "name": "storage",
           "cardinality": 1,
           "min_vms": 1,
-          "vm_template_contents": "VMGROUP=[VMGROUP_NAME=\"Service OneKE 1.27 CE\",ROLE=\"storage\"]\nNIC=[NAME=\"NIC0\",NETWORK_ID=\"$Private\"]\nONEAPP_VROUTER_ETH0_VIP0=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VROUTER_ETH1_VIP0=\"$ONEAPP_VROUTER_ETH1_VIP0\"\nONEAPP_STORAGE_DEVICE=\"$ONEAPP_STORAGE_DEVICE\"\nONEAPP_STORAGE_FILESYSTEM=\"$ONEAPP_STORAGE_FILESYSTEM\"\n",
+          "vm_template_contents": "VMGROUP=[VMGROUP_NAME=\"Service OneKE 1.27\",ROLE=\"storage\"]\nNIC=[NAME=\"NIC0\",NETWORK_ID=\"$Private\"]\nONEAPP_VROUTER_ETH0_VIP0=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VROUTER_ETH1_VIP0=\"$ONEAPP_VROUTER_ETH1_VIP0\"\nONEAPP_STORAGE_DEVICE=\"$ONEAPP_STORAGE_DEVICE\"\nONEAPP_STORAGE_FILESYSTEM=\"$ONEAPP_STORAGE_FILESYSTEM\"\n",
           "parents": [
             "vnf"
           ],
@@ -793,7 +785,7 @@ Next, let's update the template:
 
 .. prompt:: bash $ auto
 
-    $ oneflow-template update 'Service OneKE 1.27 CE' /tmp/OneKE-update.json
+    $ oneflow-template update 'Service OneKE 1.27' /tmp/OneKE-update.json
 
 
 Operations
@@ -1216,8 +1208,8 @@ four basic steps:
 
     .. prompt:: bash $ auto
 
-        $ oneflow scale 'Service OneKE 1.24 CE' worker 2
-        $ oneflow show 'Service OneKE 1.24 CE'
+        $ oneflow scale 'Service OneKE 1.24' worker 2
+        $ oneflow show 'Service OneKE 1.24'
         ...
         LOG MESSAGES
         06/30/22 21:32 [I] New state: DEPLOYING_NETS
