@@ -615,7 +615,7 @@ Once the interface list is provided to the VNF, the service deployed inside the 
 
     Virtual Networks Mapping relies on using **external NIC aliases**, the second case!
 
-To hot-attach an **external NIC alias** to the existing VM, we must use CLI tools and pass a template file (e.g.: ``external-nic-alias.tmpl``) with content similar to the one below (network name, ID and NIC must be adapted to your use-case):
+To hot-attach an **external NIC alias** to the existing VM, we must use CLI tools and pass a template similar to the one below (network name, ID and NIC must be adapted to your use-case):
 
 .. code::
 
@@ -630,6 +630,18 @@ To hot-attach an **external NIC alias** to the existing VM, we must use CLI tool
     The template parameter ``EXTERNAL=YES`` must be set, otherwise, the alias will be configured as **internal** and an additional IP address will appear in the VM. The usage of external NIC aliases can be also enforced for all IP addresses of the specific virtual network if the parameter ``EXTERNAL=YES`` is set directly in your `virtual network <https://docs.opennebula.io/stable/management_and_operations/network_management/vn_templates.html>`__ template.
 
 Such alias can be attached to the VM (e.g., with ID 10) via command line following way:
+
+.. prompt:: bash $ auto
+
+   $ onevm nic-attach 10 <<EOF
+      NIC_ALIAS = [
+          NETWORK_ID = 0,
+          PARENT     = NIC0,
+          EXTERNAL   = YES
+      ]
+      EOF
+
+Alternatively you can use a file with the template contents
 
 .. prompt:: bash $ auto
 
