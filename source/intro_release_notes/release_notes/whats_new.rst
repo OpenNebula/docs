@@ -39,7 +39,7 @@ OneGate
 
 CLI
 ================================================================================
-- `Feature 1 <https://github.com/OpenNebula/one/issues/1234>`__.
+- `Allow STDIN passed templates for commands that accept template files <https://github.com/OpenNebula/one/issues/6242>`__.
 
 KVM
 ================================================================================
