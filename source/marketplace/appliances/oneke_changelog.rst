@@ -1,7 +1,25 @@
 OneKE's Features / Changelog
 ============================
 
-OneKE 1.27.1-6.6.1-1.20230519 (Current)
+OneKE 1.27.1-6.6.1-1.20230702 (Current)
+---------------------------------------
+
+====================== ================
+Feature                Version
+====================== ================
+VNF + HAproxy          6.6.1-1.20230607
+RKE2 + Canal           v1.27.1+rke2r1
+Longhorn               1.4.1/1.4.1
+MetalLB                0.13.9/0.13.9
+Traefik                23.0.0/2.10.0
+One-Cleaner
+Multi-Master
+Airgapped install
+====================== ================
+
+* Removed CE flavor / Renamed EE flavor `#6253 <https://github.com/OpenNebula/one/issues/6253>`_.
+
+OneKE 1.27.1-6.6.1-1.20230519
 ---------------------------------------
 
 ====================== ================

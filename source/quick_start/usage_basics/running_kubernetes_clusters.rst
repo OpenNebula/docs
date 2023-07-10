@@ -13,7 +13,7 @@ This guide assumes that you have deployed the OpenNebula front-end following the
 Step 1. Download the OneFlow Service from the Marketplace
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Log in to Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab and search for ``OneKE``. Select the ``Service OneKE 1.24 CE`` and click on the icon with the cloud and the down arrow inside (two positions to the right from the green ``+``).
+Log in to Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab and search for ``OneKE``. Select the ``Service OneKE 1.27`` and click on the icon with the cloud and the down arrow inside (two positions to the right from the green ``+``).
 
 |kubernetes-qs-marketplace|
 
@@ -45,9 +45,9 @@ Step 3. Instantiate the Kubernetes Service
 
 .. note::
 
-    You may want to adjust the VM templates before you progress further - go to ``Templates --> VMs``, click on the ``Service OneKE 1.24 CE`` and blue button ``Update`` at the top.
+    You may want to adjust the VM templates before you progress further - go to ``Templates --> VMs``, click on the ``Service OneKE 1.27`` and blue button ``Update`` at the top.
 
-Proceed to the ``Templates --> Services`` tab and select the ``Service OneKE 1.24 CE`` Service Template. Click on ``+`` and then ``Instantiate``.
+Proceed to the ``Templates --> Services`` tab and select the ``Service OneKE 1.27`` Service Template. Click on ``+`` and then ``Instantiate``.
 
 A required step is clicking on ``Network`` and selecting the ``metal-aws-edge-cluster-public`` network for public network.
 

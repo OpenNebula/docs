@@ -1,3 +1,5 @@
+.. _Replace failing front-end:
+
 =========================
 Replace failing front-end
 =========================
