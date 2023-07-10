@@ -508,7 +508,12 @@ The configuration for each driver is defined in the ``TM_MAD_CONF`` section. The
 
 - ``DS_MIGRATE``: set to ``YES`` if system datastore migrations are allowed for this TM. Only useful for system datastore TMs.
 
-- ``ALLOW_ORPHANS``: Whether snapshots can live without parents. It allows three values: ``YES``, ``NO`` and ``MIXED``. The last mode, ``MIXED``, allows the creation of orphan snapshots but takes into account some dependencies which can appear after a revert snapshot action on Ceph datastores.
+- ``ALLOW_ORPHANS``: Whether snapshots can live without parents:
+
+   -  ``YES``: The snapshot will be attempted to be deleted even if it has children
+   -  ``NO``: The snapshot will not be attempted to be deleted if it has children
+   -  ``MIXED``: Creates children snapshots from the current active(last recovered) snapshot.  This also takes into account some dependencies which can appear after a revert snapshot action in Ceph datastores.
+   -  ``FORMAT``: Allows orphans based on the image format in a ``SHARED`` datastore. For ``QCOW2`` this acts as ``NO`` and for ``RAW`` this acts as ``YES``
 
 Sample configuration:
 
