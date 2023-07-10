@@ -27,5 +27,6 @@ The following issues have been solved in 6.6.3:
 - :ref:`Onegather <support>` now includes execution logs within the package.
 - `Fix VM operation permissions for disk-attach, nic-(de)attach and nic-update <https://github.com/OpenNebula/one/issues/6239>`__.
 - `Fix reset flag for onevm backup --schedule <https://github.com/OpenNebula/one/issues/6193>`__.
+- `OpenNebula Prometheus exporter does not refresh data <https://github.com/OpenNebula/one/issues/6236>`__.
 - `Fix missing defaults on Turnkey marketplace <https://github.com/OpenNebula/one/issues/6258>`__.
 - `Fix LinuxContainers opensuse app not having SSH access <https://github.com/OpenNebula/one/issues/6257>`__.
