@@ -48,4 +48,4 @@ CLI
 ================================================================================
 
 Some CLI commands that accept template files are able to receive the same template via STDIN, thus bypassing the need of a temporary file to hold the template contents. This means the file argument is now optional
-and the OpenNebula CLI will check for STDIN if the file argument is missing.
+and the OpenNebula CLI will check for STDIN if the file argument is missing. The template must have bash symbols like ``$`` escaped, these are used for TEMPLATE references.
