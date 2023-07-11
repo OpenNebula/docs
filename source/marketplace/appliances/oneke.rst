@@ -136,7 +136,7 @@ VNF is a multi-node service that provides Routing, NAT, and Load-Balancing to On
 OneKE has been designed to run in a dual subnet environment: VNF provides NAT and Routing between public and private VNETs,
 and when the public VNET is a gateway to the public Internet it also enables Internet connectivity to all internal VMs.
 
-Dedicated documentation for VNF can be found at `VNF documentation <https://docs.opennebula.io/appliances/service/vnf.html>`_.
+Dedicated documentation for VNF can be found at :ref:`VNF documentation <service_vnf>`.
 
 Master Role
 ^^^^^^^^^^^
