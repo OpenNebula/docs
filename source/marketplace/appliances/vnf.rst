@@ -4,7 +4,7 @@
 Virtual Network Functions (VNF) and Virtual Router
 ==================================================
 
-OpenNebula Marketplace Appliance implementing various **Virtual Network Functions** (VNFs) and `Virtual Router <https://docs.opennebula.io/stable/management_and_operations/network_management/vrouter.html>`_.
+OpenNebula Marketplace Appliance implementing various **Virtual Network Functions** (VNFs) and :ref:`Virtual Router <vrouter>`.
 
 .. note::
 
