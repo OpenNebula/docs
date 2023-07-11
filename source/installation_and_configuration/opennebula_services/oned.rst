@@ -511,7 +511,12 @@ The configuration for each driver is defined in the ``TM_MAD_CONF`` section.
 
 - ``DS_MIGRATE``: set to ``YES`` if system datastore migrations are allowed for this TM. Only useful for system datastore TMs.
 
-- ``ALLOW_ORPHANS``: Whether snapshots can live without parents. It allows three values: ``YES``, ``NO`` and ``MIXED``. The last mode, ``MIXED``, allows the creation of orphan snapshots but takes into account some dependencies which can appear after a revert snapshot action on Ceph datastores.
+- ``ALLOW_ORPHANS``: Whether snapshots can live without parents:
+
+   -  ``YES``: The snapshot will be attempted to be deleted even if it has children
+   -  ``NO``: The snapshot will not be attempted to be deleted if it has children
+   -  ``MIXED``: Creates children snapshots from the current active(last recovered) snapshot.  This also takes into account some dependencies which can appear after a revert snapshot action in Ceph datastores.
+   -  ``FORMAT``: Allows orphans based on the image format in a ``SHARED`` datastore. For ``QCOW2`` this acts as ``NO`` and for ``RAW`` this acts as ``YES``
 
 Sample configuration:
 
@@ -701,11 +706,14 @@ The following parameters define the operations associated with the **ADMIN**,
 permissions on other objects. Also some operations refer to a class of
 actions:
 
-- ``disk-snapshot``: includes ``create``, ``delete`` and revert actions
+- ``disk-snapshot``: includes ``create``, ``delete`` and ``revert`` actions
 - ``disk-attach``: includes ``attach`` and ``detach`` actions
-- ``nic-attach``: includes ``attach`` and ``detach`` actions
+- ``nic-attach``: includes ``attach``, ``detach`` and ``nic-update`` actions
 - ``snapshot``: includes ``create``, ``delete`` and ``revert`` actions
 - ``resched``: includes ``resched`` and ``unresched`` actions
+- ``migrate``: includes ``migrate``, ``live-migrate`` and ``poweroff migrate`` actions
+- ``sg-attach``: includes ``attach`` and ``detach`` actions
+- ``sched-action``: includes ``add``, ``delete`` and ``update`` actions
 
 The list and show operations require **USE** permission; this is not configurable.
 
@@ -713,11 +721,11 @@ In the following example you need **ADMIN** rights on a VM to perform ``migrate`
 
 .. code-block:: bash
 
-    VM_ADMIN_OPERATIONS  = "migrate, delete, recover, retry, deploy, resched"
+    VM_ADMIN_OPERATIONS  = "migrate, delete, recover, retry, deploy, resched, backup"
 
     VM_MANAGE_OPERATIONS = "undeploy, hold, release, stop, suspend, resume, reboot,
         poweroff, disk-attach, nic-attach, disk-snapshot, terminate, disk-resize,
-        snapshot, updateconf, rename, resize, update, disk-saveas"
+        snapshot, updateconf, rename, resize, update, disk-saveas, sched-action, sg-attach"
 
     VM_USE_OPERATIONS    = ""
 

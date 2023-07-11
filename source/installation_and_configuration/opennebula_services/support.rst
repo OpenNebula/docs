@@ -56,46 +56,47 @@ The tool prints all actions, based on which you can decide if you want to provid
 .. code-block:: bash
 
     $ sudo onegather --fe-only
-    Get OS distribution
-    Get kernel version
-    Get installed packages
-    Get security settings
-    Get SELinux configuration
-    Get AppArmor configuration
-    Get system services
-    Get CPU information
-    Get memory/swap
-    Get disk space for FE and nodes
-    Get ENV vars
-    Get list of open ports
-    Get current user
-    Get process list
-    Get kernel runtime parameters (sysctl)
-    Get list of mounts
-    Get list of block devices
-    Get physical volumes list
-    Get volume group list
-    Get logical volumes list
-    Get Federation configuration
-    Get OneProvision GUI Logs
-    Get VM Templates
-    Get user "oneadmin"
-    Get Ruby version and Gems
-    Detect web server
-    Get OpenNebula version
-    Get OpenNebula logs
-    Get system logs
-    Get OpenNebula configuration
-    Get OpenNebula remotes
-    Get OneProvision GUI Logs
-    Dump OpenNebula objects
-
-    Tar bundle
+    [INFO] Getting: OS distribution.
+    [INFO] Getting: OS logs.
+    [INFO] Getting: OS journalctl log files.
+    [INFO] Getting: Kernel version.
+    [INFO] Getting: List of kernel modules.
+    [INFO] Getting: Installed packages.
+    [INFO] Getting: Security settings.
+    [INFO] Getting: SELinux configuration.
+    [INFO] Getting: AppArmor configuration.
+    [INFO] Getting: System services.
+    [INFO] Getting: CPU information.
+    [INFO] Getting: Memory and Swap.
+    [INFO] Getting: Disk space for FE and nodes.
+    [INFO] Getting: OS ENV vars.
+    [INFO] Getting: List of open ports.
+    [INFO] Getting: Current user.
+    [INFO] Getting: Processes list.
+    [INFO] Getting: Kernel runtime parameters.
+    [INFO] Getting: List of mounts.
+    [INFO] Getting: List of block devices.
+    [INFO] Getting: Physical Volumes list.
+    [INFO] Getting: Volume Group list.
+    [INFO] Getting: Logical Volumes list.
+    [INFO] Getting: Federation configuration.
+    [INFO] Getting: user 'oneadmin'.
+    [INFO] Getting: Ruby version and Gems.
+    [INFO] Detecting web server.
+    [INFO] Getting: OpenNebula version.
+    [INFO] Getting: OpenNebula logs.
+    [INFO] Getting: OpenNebula configuration.
+    [INFO] Getting: OpenNebula remotes.
+    [INFO] Getting: OneProvision GUI logs.
+    [INFO] Getting: VM Templates.
+    [INFO] Getting: VMS folder.
+    [INFO] Getting: Dump of OpenNebula objects.
+    [INFO] Fact gathering complete. Generating TAR bundle.
 
     ** Results **
-    -> Bundle: /tmp/d20230224-3237009-1t5au19
-    -> Bundle TAR: /tmp/d20230224-3237009-1t5au19.tar.xz
-    -> Bundle size is: 0.91 MB
+    -> Bundle: /tmp/d20230628-4048863-1o59zqe
+    -> Bundle TAR: /tmp/d20230628-4048863-1o59zqe.tar.xz
+    -> Bundle size is: 5.66 MB
     -> NOTICE: Bundle can be safely uploaded to Zendesk.
     -> NOTICE: Front-end is in STANDALONE mode.
 
