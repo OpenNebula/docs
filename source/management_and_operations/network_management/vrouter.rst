@@ -9,7 +9,7 @@ Virtual Routers provide routing across Virtual Networks. The administrators can 
 Download the Virtual Router Appliance
 ================================================================================
 
-OpenNebula provides appliance which implements various Virtual Network Functions (VNFs), including the virtual router. The virtual router image is prepared to run in a HA mode, and process the context information from OpenNebula. So its base capabilities can be easily extended. Continue to the `VNF appliance documention <https://docs.opennebula.io/appliances/service/vnf.html>`_ for more details about the advanced usage and other implemented functions.
+OpenNebula provides appliance which implements various Virtual Network Functions (VNFs), including the virtual router. The virtual router image is prepared to run in a HA mode, and process the context information from OpenNebula. So its base capabilities can be easily extended. Continue to the :ref:`VNF appliance documentation <service_vnf>` for more details about the advanced usage and other implemented functions.
 
 - Download the appliance from the OpenNebula Marketplace. For example to put the virtual router image in the default datastore and create a Virtual Router template named ``Service Virtual Router`` use:
 
