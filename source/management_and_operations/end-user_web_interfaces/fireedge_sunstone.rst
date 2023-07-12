@@ -137,7 +137,7 @@ The views definitions are placed in the ``/etc/one/fireedge/sunstone/`` director
     ...
     |-- admin/
     |   |-- backup-tab.yaml           <--- the Backup tab configuration file
-    |   |-- backup-tab.yaml           <--- the Cluster tab configuration file    
+    |   |-- cluster-tab.yaml          <--- the Cluster tab configuration file (not installed by default)   
     |   |-- datastore-tab.yaml        <--- the Datastore tab configuration file
     |   |-- file-tab.yaml             <--- the File tab configuration file
     |   |-- host-tab.yaml             <--- the Host tab configuration file
