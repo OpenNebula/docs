@@ -49,6 +49,7 @@ Templates
 Storage
 --------------------------------------------------------------------------------
 
+- **Datastores Tab**: Users can see all their ``FILE``, ``IMAGE``, and ``SYSTEM`` datastores. Also, the users can perform some managing actions, such as changing permissions, enabling and disabling, and more. From this tab, users can create a new Datastore of one of the types described before.
 - **Images Tab**: Users can see all their ``OS``, ``CDROM``, and ``DATABLOCK`` images. Also, the users can perform some managing actions, such as changing permissions, locking and unlocking, and more. From this tab, users can instantiate a new Image of one of the types described before.
 - **Files Tab**: Users can see all their ``KERNEL``, ``RAMDISK``, and ``CONTEXT`` images. Also, the users can perform some managing actions, such as changing permissions, enabling and disabling, and more. From this tab, users can instantiate a new Image of one of the types described before.
 - **Backups Tab**: Users can see all their ``BACKUP`` images. Also, the users can perform some managing actions, such as changing permissions and restoring.
@@ -63,7 +64,13 @@ Networks
 Infrastructure
 --------------------------------------------------------------------------------
 
+- **Clusters Tab**: Users can see all their Clusters.
 - **Hosts Tab**: Users can see all their Hosts, and perform managing operations such as enabling, disabling, and more. Also, users can create a new Host from this tab.
+
+System
+--------------------------------------------------------------------------------
+
+- **VDCs Tab**: Users can see all their VDCs, and can update, rename and view the resources associated with them, and more. Also, users can create a new VDC from this tab.
 
 .. _fireedge_sunstone_settings_tab:
 
@@ -130,15 +137,17 @@ The views definitions are placed in the ``/etc/one/fireedge/sunstone/`` director
     ...
     |-- admin/
     |   |-- backup-tab.yaml           <--- the Backup tab configuration file
+    |   |-- cluster-tab.yaml          <--- the Cluster tab configuration file (not installed by default)   
     |   |-- datastore-tab.yaml        <--- the Datastore tab configuration file
     |   |-- file-tab.yaml             <--- the File tab configuration file
     |   |-- host-tab.yaml             <--- the Host tab configuration file
     |   |-- image-tab.yaml            <--- the Image tab configuration file
     |   |-- marketplace-app-tab.yaml  <--- the Marketplace App tab configuration file
     |   |-- sec-group-tab.yaml        <--- the Security Group tab configuration file
+    |   |-- vdc-tab.yaml              <--- the VDC tab configuration file 
     |   |-- vm-tab.yaml               <--- the VM tab configuration file
     |   |-- vm-template-tab.yaml      <--- the VM Template tab configuration file
-    |   `-- vnet-tab.yaml             <--- the Virtual Network tab configuration file
+    |   |-- vnet-tab.yaml             <--- the Virtual Network tab configuration file
     |-- sunstone-server.conf
     |-- sunstone-views.yaml           <--- the FireEdge Sunstone views main configuration
     `-- user/

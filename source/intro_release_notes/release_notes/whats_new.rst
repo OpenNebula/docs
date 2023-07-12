@@ -27,7 +27,7 @@ Ruby Sunstone
 
 FireEdge Sunstone
 ================================================================================
-- `Feature 1 <https://github.com/OpenNebula/one/issues/1234>`__.
+- Implemented VDCs tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
 
 OneFlow - Service Management
 ================================================================================
