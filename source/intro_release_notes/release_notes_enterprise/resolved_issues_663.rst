@@ -15,7 +15,7 @@ The following new features have been backported to 6.6.3:
 - Improve :ref:`list commands <cli>`  help messages to point to :ref:`layout configuration files <cli_views>`.
 - `Add VCPU to VMs pool list <https://github.com/OpenNebula/one/issues/6111>`__. If you are upgrading from previous version, the ``VCPU`` will apear after first update of the VM. Use ``onevm update <vm_id> --append <empty_file>`` to force VM update.
 - Added a guide for :ref:`replacing a failing OpenNebula front-end host <Replace failing front-end>`.
-- `Missing unit selectors on create images and vm templates <https://github.com/OpenNebula/one/issues/6136>`__.
+- :ref:`Backup dialog in FireEdge Sunstone updated to make datastore selection optional if not needed <vm_backup>`.
 
 The following issues have been solved in 6.6.3:
 
@@ -32,3 +32,4 @@ The following issues have been solved in 6.6.3:
 - `OpenNebula Prometheus exporter does not refresh data <https://github.com/OpenNebula/one/issues/6236>`__.
 - `Fix missing defaults on Turnkey marketplace <https://github.com/OpenNebula/one/issues/6258>`__.
 - `Fix LinuxContainers opensuse app not having SSH access <https://github.com/OpenNebula/one/issues/6257>`__.
+- `Missing unit selectors on create images and vm templates <https://github.com/OpenNebula/one/issues/6136>`__.
