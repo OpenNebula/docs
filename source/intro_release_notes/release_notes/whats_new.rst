@@ -4,7 +4,7 @@
 What's New in 6.6
 ================================================================================
 
-**OpenNebula 6.6 ‘Electra’** is the fourth stable release of the OpenNebula 6 series. This new release comes packed with new functionality, mostly oriented to aid day-2 operations on production deployments of OpenNebula. There are two significant campaigns we would like to highlight in this regard.
+**OpenNebula 6.6 ‘Electra’** is the fourth stable release of the OpenNebula 6 series. This new release comes packed with new functionality, mostly oriented to aid day-2 operations on production deployments of OpenNebula. There are two significant campaigns we would like to highlight in this regard. The first one is the out of teh box integration with Prometheus for super charged monitoring as well as a set of Grafana dashboards.
 
 Prometheus
 ================================================================================
