@@ -34,3 +34,4 @@ The following issues have been solved in 6.6.3:
 - `Fix LinuxContainers opensuse app not having SSH access <https://github.com/OpenNebula/one/issues/6257>`__.
 - `Fix missing unit selectors on create images and vm templates <https://github.com/OpenNebula/one/issues/6136>`__.
 - `Fix wrong configuration for FreeMemory10 in Prometheus rules <https://github.com/OpenNebula/one/issues/6225>`__.
+- `Fix regular user cannot create a new VM template <https://github.com/OpenNebula/one/issues/6129>`__.
