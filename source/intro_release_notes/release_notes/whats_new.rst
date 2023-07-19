@@ -20,6 +20,7 @@ Networking
 Storage & Backups
 ================================================================================
 - `Shared datastore allows qcow2 backing link in CLONE action to be configurable  <https://github.com/OpenNebula/one/issues/6098>`__.
+- Backup Jobs enable you to define backup operations that involve multiple VMs, simplifying the management of your cloud infrastructure. With Backup Jobs, you can setup unified backup policies for multiple VMs, easily track it progress, and control the resources used.
 
 Ruby Sunstone
 ================================================================================

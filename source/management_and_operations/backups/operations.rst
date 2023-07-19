@@ -7,6 +7,14 @@ Virtual Machine Backup Operations
 Overview
 ================================================================================
 
+Backup Operations
+--------------------------------------------------------------------------------
+
+Backups can be operated in two modes:
+
+- Single VM (described in this guide). Backup operations are defined and managed for a single VM. You can use this method to manage the backups of few VMs.
+- Backup Jobs are described in the :ref:`backup jobs guide <vm_backup_jobs>`. They allow you to define backup operations involving multiple VMs and efficiently manage all the backups as a cohesive unit.
+
 Backup Types
 --------------------------------------------------------------------------------
 OpenNebula supports two backup types:
@@ -102,6 +110,8 @@ You should be able to see the configuration of the VM by showing its information
 Equivalently you can use Sunstone, simply go to the VM and the Conf tab:
 
 |vm_cfg|
+
+.. _vm_backups_config_attributes:
 
 Reference: Backup Configuration Attributes
 --------------------------------------------------------------------------------
@@ -232,10 +242,12 @@ You can program periodic backups :ref:`through the schedule actions interface <s
 
 **Note**: As any other schedule action you can plan for several backup operations, or add a pre-set backup schedule in the VM template.
 
+.. _vm_backups_scheduler:
+
 Reference: Scheduler Backup Attributes
 --------------------------------------------------------------------------------
 
-The schedule actions are in control of the scheduler. You can tune the number of concurrent backup operations with the following parameters in ``/etc/one/sched.conf``
+The schedule actions are in control of OpenNebula core. You can tune the number of concurrent backup operations with the following parameters in ``/etc/one/oned.conf``
 
 +----------------------+----------------------------------------------------------------------------------------------+
 | Attribute            | Description                                                                                  |

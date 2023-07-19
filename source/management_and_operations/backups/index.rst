@@ -11,3 +11,4 @@ Virtual Machine Backups
    Backup Datastore: Restic (EE) <restic>
    Backup Datastore: Rsync <rsync>
    VM Backup Operations <operations>
+   Backup Jobs <backup_jobs>

@@ -18,7 +18,8 @@ Before reading this chapter, you should have already installed your :ref:`Fronte
 This Chapter is structured as follows:
 
   - First, you will learn how to setup a datastore to save your VM backups, :ref:`for the restic backend <vm_backups_restic>` and :ref:`for the rsync datastore <vm_backups_rsync>`.
-  - And then, you will find out :ref:`how to perform and schedule VM backups, as well as to restore them<vm_backups_operations>`.
+  - And then, you will find out :ref:`how to perform and schedule VM backups, as well as to restore them <vm_backups_operations>`.
+  - Finally, if you need to backup a large number of VMs you can manage them :ref:`effectively through Backup Jobs <vm_backup_jobs>`.
 
 Hypervisor & Storage Compatibility
 ================================================================================

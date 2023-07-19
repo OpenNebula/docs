@@ -1265,7 +1265,7 @@ In Sunstone, the ``USER_INPUTS`` can be ordered with the mouse.
 Schedule actions Section
 ================================================================================
 
-The following attributes can use to define puntual or relative actions for the VM.
+The following attributes can use to define punctual or relative actions for the VM.
 
 +---------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |   Attribute   | Description                                                                                                                                                                    |
@@ -1277,6 +1277,8 @@ The following attributes can use to define puntual or relative actions for the V
 | ``DAYS``      | Sets the frequency for recurring actions. The specific values depends on the REPEAT mode, i.e. for yearly periods DAYS="1,365" would mean the first and last day of the  year. |
 +---------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``ACTION``    | The action that will be executed.                                                                                                                                              |
++---------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``ARGS``      | Additional arguments for the action (no need to define the VM_ID)                                                                                                              |
 +---------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``END_TYPE``  | When the users want end the action [ NEVER = 0 , NUMBER OF REPETITIONS = 1 , DATE = 2 ].                                                                                       |
 +---------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
