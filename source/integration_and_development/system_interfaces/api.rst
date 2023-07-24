@@ -199,10 +199,12 @@ onevm
 | unlock               | one.vm.unlock             | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
 | create-chart         | one.vm.schedadd           | VM:MANAGE         |
+|                      |                           |                   |
+| \-\-schedule         |                           |                   |
 +----------------------+---------------------------+-------------------+
-| update-chart         | one.vm.schedupdate        | VM:MANAGE         |
+| sched-update         | one.vm.schedupdate        | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
-| delete-chart         | one.vm.scheddelete        | VM:MANAGE         |
+| sched-delete         | one.vm.scheddelete        | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
 | backup \ :sup:`*`    | one.vm.backup             | VM:ADMIN          |
 +----------------------+---------------------------+-------------------+
@@ -993,6 +995,51 @@ onehook
 +-----------------------+----------------------------+---------------------------+
 | log                   | one.hooklog.info           | HOOK:-                    |
 +-----------------------+----------------------------+---------------------------+
+
+onebackupjob
+--------------------------------------------------------------------------------
+
++----------------------+---------------------------+--------------------------+
+| onebackupjob command |      XML-RPC Method       |      Auth. Request       |
++======================+===========================+==========================+
+| create               | one.backupjob.allocate    | BACKUPJOB:CREATE         |
++----------------------+---------------------------+--------------------------+
+| delete               | one.backupjob.delete      | BACKUPJOB:MANAGE         |
++----------------------+---------------------------+--------------------------+
+| show                 | one.backupjob.info        | BACKUPJOB:USE            |
++----------------------+---------------------------+--------------------------+
+| update               | one.backupjob.update      | BACKUPJOB:MANAGE         |
++----------------------+---------------------------+--------------------------+
+| rename               | one.backupjob.rename      | BACKUPJOB:MANAGE         |
++----------------------+---------------------------+--------------------------+
+| chown                | one.backupjob.chown       | BACKUPJOB:MANAGE         |
+|                      |                           |                          |
+| chgrp                |                           | [USER:MANAGE]            |
+|                      |                           |                          |
+|                      |                           | [GROUP:USE]              |
++----------------------+---------------------------+--------------------------+
+| chmod                | one.backupjob.chmod       | BACKUPJOB:<MANAGE/ADMIN> |
++----------------------+---------------------------+--------------------------+
+| lock                 | one.backupjob.lock        | BACKUPJOB:MANAGE         |
++----------------------+---------------------------+--------------------------+
+| unlock               | one.backupjob.unlock      | BACKUPJOB:MANAGE         |
++----------------------+---------------------------+--------------------------+
+| backup               | one.backupjob.backup      | BACKUPJOB:MANAGE         |
++----------------------+---------------------------+--------------------------+
+| cancel               | one.backupjob.cancel      | BACKUPJOB:MANAGE         |
++----------------------+---------------------------+--------------------------+
+| retry                | one.backupjob.retry       | BACKUPJOB:MANAGE         |
++----------------------+---------------------------+--------------------------+
+| priority             | one.backupjob.priority    | BACKUPJOB:<MANAGE/ADMIN> |
++----------------------+---------------------------+--------------------------+
+| backup \-\-schedule  | one.backupjob.schedadd    | BACKUPJOB:MANAGE         |
++----------------------+---------------------------+--------------------------+
+| sched-delete         | one.backupjob.scheddelete | BACKUPJOB:MANAGE         |
++----------------------+---------------------------+--------------------------+
+| sched-update         | one.backupjob.schedupdate | BACKUPJOB:MANAGE         |
++----------------------+---------------------------+--------------------------+
+| list                 | one.backupjobpool.info    | BACKUPJOB:USE            |
++----------------------+---------------------------+--------------------------+
 
 Actions for Templates Management
 ================================================================================
@@ -8045,6 +8092,333 @@ one.hooklog.info
 +------+-----------+-----------------------------------------------------------------------+
 | OUT  | Int       | ID of the object that caused the error.                               |
 +------+-----------+-----------------------------------------------------------------------+
+
+Actions for Backup Job Management
+================================================================================
+
+one.backupjob.allocate
+--------------------------------------------------------------------------------
+
+-  **Description**: Allocates a new Backup Job in OpenNebula.
+-  **Parameters**
+
+====  ==========  ==============================================================
+Type  Data Type   Description
+====  ==========  ==============================================================
+IN    String      The session string.
+IN    String      A string containing the Backup Job contents. Syntax can be the usual ``attribute=value`` or XML.
+OUT   Boolean     True or false whenever is successful or not.
+OUT   Int/String  The allocated resource ID / The error string.
+OUT   Int         Error code.
+====  ==========  ==============================================================
+
+one.backupjob.delete
+--------------------------------------------------------------------------------
+
+-  **Description**: Deletes the given Backup Job from the pool.
+-  **Parameters**
+
+====  ==========  ==============================================================
+Type  Data Type   Description
+====  ==========  ==============================================================
+IN    String      The session string.
+IN    Int         The object ID.
+IN    Boolean     Delete the Backup Job
+OUT   Boolean     True or false whenever is successful or not.
+OUT   Int/String  The resource ID / The error string.
+OUT   Int         Error code.
+OUT   Int         ID of the object that caused the error.
+====  ==========  ==============================================================
+
+one.backupjob.info
+--------------------------------------------------------------------------------
+
+-  **Description**: Retrieves information for the Backup Job.
+-  **Parameters**
+
+====  =========  ===============================================================
+Type  Data Type  Description
+====  =========  ===============================================================
+IN    String     The session string.
+IN    Int        The object ID.
+OUT   Boolean    True or false whenever is successful or not.
+OUT   String     The information string / The error string.
+OUT   Int        Error code.
+OUT   Int        ID of the object that caused the error.
+====  =========  ===============================================================
+
+one.backupjob.update
+--------------------------------------------------------------------------------
+
+-  **Description**: Replaces the Backup Job content.
+-  **Parameters**
+
+====  ==========  ==============================================================
+Type  Data Type   Description
+====  ==========  ==============================================================
+IN    String      The session string.
+IN    Int         The object ID.
+IN    String      The new Backup Job content. Syntax can be the usual ``attribute=value`` or XML.
+OUT   Boolean     True or false whenever is successful or not.
+OUT   Int/String  The resource ID / The error string.
+OUT   Int         Error code.
+====  ==========  ==============================================================
+
+one.backupjob.rename
+--------------------------------------------------------------------------------
+
+-  **Description**: Renames a Backup Job.
+-  **Parameters**
+
+====  ==========  ==============================================================
+Type  Data Type   Description
+====  ==========  ==============================================================
+IN    String      The session string.
+IN    Int         The object ID.
+IN    String      The new name.
+OUT   Boolean     True or false whenever is successful or not.
+OUT   Int/String  The resource ID / The error string.
+OUT   Int         Error code.
+OUT   Int         ID of the object that caused the error.
+====  ==========  ==============================================================
+
+one.backupjob.chown
+--------------------------------------------------------------------------------
+
+-  **Description**: Changes the ownership of a Backup Job.
+-  **Parameters**
+
+====  ==========  ==============================================================
+Type  Data Type   Description
+====  ==========  ==============================================================
+IN    String      The session string.
+IN    Int         The object ID.
+IN    Int         The User ID of the new owner. If set to -1, the owner is not changed.
+IN    Int         The Group ID of the new group. If set to -1, the group is not changed.
+OUT   Boolean     True or false whenever is successful or not.
+OUT   Int/String  The resource ID / The error string.
+OUT   Int         Error code.
+OUT   Int         ID of the object that caused the error.
+====  ==========  ==============================================================
+
+one.backupjob.chmod
+--------------------------------------------------------------------------------
+
+-  **Description**: Changes the permission bits of a Backup Job.
+-  **Parameters**
+
+====  ==========  ==============================================================
+Type  Data Type                          Description
+====  ==========  ==============================================================
+IN    String      The session string.
+IN    Int         The object ID.
+IN    Int         USER USE bit. If set to -1, it will not change.
+IN    Int         USER MANAGE bit. If set to -1, it will not change.
+IN    Int         USER ADMIN bit. If set to -1, it will not change.
+IN    Int         GROUP USE bit. If set to -1, it will not change.
+IN    Int         GROUP MANAGE bit. If set to -1, it will not change.
+IN    Int         GROUP ADMIN bit. If set to -1, it will not change.
+IN    Int         OTHER USE bit. If set to -1, it will not change.
+IN    Int         OTHER MANAGE bit. If set to -1, it will not change.
+IN    Int         OTHER ADMIN bit. If set to -1, it will not change.
+IN    Boolean     True to chmod the template plus any image defined in DISK.
+OUT   Boolean     True or false whenever is successful or not.
+OUT   Int/String  The resource ID / The error string.
+OUT   Int         Error code.
+OUT   Int         ID of the object that caused the error.
+====  ==========  ==============================================================
+
+one.backupjob.lock
+--------------------------------------------------------------------------------
+
+-  **Description**: Locks a Backup Job.
+-  **Parameters**
+
+====  =========  ===============================================================
+Type  Data Type  Description
+====  =========  ===============================================================
+IN    String     The session string.
+IN    Int        The object ID.
+IN    Int        Lock level: use (1), manage (2), admin (3), all (4)
+IN    Boolean    Test: check if the object is already locked to return an error
+OUT   Boolean    True or false whenever is successful or not.
+OUT   Int        The ID of the resource.
+OUT   Int        Error code.
+OUT   Int        ID of the object that caused the error.
+OUT   String     Timestamp when the object was locked in case of error when using test = true
+====  =========  ===============================================================
+
+one.backupjob.unlock
+--------------------------------------------------------------------------------
+
+-  **Description**: Unlocks a Backup Job.
+-  **Parameters**
+
+====  =========  ===============================================================
+Type  Data Type  Description
+====  =========  ===============================================================
+IN    String     The session string.
+IN    Int        The object ID.
+OUT   Boolean    True or false whenever is successful or not.
+OUT   Int        The ID of the resource.
+OUT   Int        Error code.
+OUT   Int        ID of the object that caused the error.
+====  =========  ===============================================================
+
+one.backupjob.backup
+--------------------------------------------------------------------------------
+
+-  **Description**: Executes a Backup Job, starts individual VM backups with respect to max backup limits.
+-  **Parameters**
+
+====  =========  ===============================================================
+Type  Data Type  Description
+====  =========  ===============================================================
+IN    String     The session string.
+IN    Int        The object ID.
+OUT   Boolean    True or false whenever is successful or not.
+OUT   Int        The ID of the resource.
+OUT   Int        Error code.
+OUT   Int        ID of the object that caused the error.
+====  =========  ===============================================================
+
+one.backupjob.cancel
+--------------------------------------------------------------------------------
+
+-  **Description**: Cancel ongoing Backup Job
+-  **Parameters**
+
+====  =========  ===============================================================
+Type  Data Type  Description
+====  =========  ===============================================================
+IN    String     The session string.
+IN    Int        The object ID.
+OUT   Boolean    True or false whenever is successful or not.
+OUT   Int        The ID of the resource.
+OUT   Int        Error code.
+OUT   Int        ID of the object that caused the error.
+====  =========  ===============================================================
+
+one.backupjob.retry
+--------------------------------------------------------------------------------
+
+-  **Description**: Retry previously failed VM backups.
+-  **Parameters**
+
+====  =========  ===============================================================
+Type  Data Type  Description
+====  =========  ===============================================================
+IN    String     The session string.
+IN    Int        The object ID.
+OUT   Boolean    True or false whenever is successful or not.
+OUT   Int        The ID of the resource.
+OUT   Int        Error code.
+OUT   Int        ID of the object that caused the error.
+====  =========  ===============================================================
+
+one.backupjob.priority
+--------------------------------------------------------------------------------
+
+-  **Description**: Set new priority for Backup Job.
+-  **Parameters**
+
+====  =========  ===============================================================
+Type  Data Type  Description
+====  =========  ===============================================================
+IN    String     The session string.
+IN    Int        The object ID.
+IN    Int        New priority value, only oneadmin may set priority > 50
+OUT   Boolean    True or false whenever is successful or not.
+OUT   Int        The ID of the resource.
+OUT   Int        Error code.
+OUT   Int        ID of the object that caused the error.
+====  =========  ===============================================================
+
+one.backupjob.schedadd
+--------------------------------------------------------------------------------
+
+-  **Description**: Add Scheduled Action to Backup Job.
+-  **Parameters**
+
+====  =========  ===============================================================
+Type  Data Type  Description
+====  =========  ===============================================================
+IN    String     The session string.
+IN    Int        The object ID.
+IN    String     A string containing the Scheduled Action contents. Syntax can be the usual ``attribute=value`` or XML.
+OUT   Boolean    True or false whenever is successful or not.
+OUT   Int        The ID of the resource / The error string.
+OUT   Int        Error code.
+OUT   Int        ID of the object that caused the error.
+====  =========  ===============================================================
+
+one.backupjob.schedupdate
+--------------------------------------------------------------------------------
+
+-  **Description**: Update Backup Job Scheduled Action.
+-  **Parameters**
+
+====  =========  ===============================================================
+Type  Data Type  Description
+====  =========  ===============================================================
+IN    String     The session string.
+IN    Int        The object ID.
+IN    Int        The Scheduled Action ID.
+IN    String     Template containing the updated Scheduled Action.. Syntax can be the usual ``attribute=value`` or XML.
+OUT   Boolean    True or false whenever is successful or not.
+OUT   Int        The ID of the resource / The error string.
+OUT   Int        Error code.
+OUT   Int        ID of the object that caused the error.
+====  =========  ===============================================================
+
+one.backupjob.scheddelete
+--------------------------------------------------------------------------------
+
+-  **Description**: Delete Scheduled Action from Backup Job.
+-  **Parameters**
+
+====  =========  ===============================================================
+Type  Data Type  Description
+====  =========  ===============================================================
+IN    String     The session string.
+IN    Int        The object ID.
+IN    Int        The Scheduled Action ID.
+OUT   Boolean    True or false whenever is successful or not.
+OUT   Int        The ID of the resource / The error string.
+OUT   Int        Error code.
+OUT   Int        ID of the object that caused the error.
+====  =========  ===============================================================
+
+one.backupjobpool.info
+--------------------------------------------------------------------------------
+
+-  **Description**: Retrieves information for all or part of the Backup Jobs in the pool.
+-  **Parameters**
+
+====  =========  ===============================================================
+Type  Data Type  Description
+====  =========  ===============================================================
+IN    String     The session string.
+IN    Int        Filter flag
+
+                 * **-4**: Resources belonging to the user's primary group
+
+                 * **-3**: Resources belonging to the user
+
+                 * **-2**: All resources
+
+                 * **-1**: Resources belonging to the user and any of his groups
+
+                 * **>= 0**: UID User's Resources
+IN    Int        When the next parameter is >= -1 this is the Range start ID. Can be -1. For smaller values this is the offset used for pagination.
+IN    Int        For values >= -1 this is the Range end ID. Can be -1 to get until the last ID. For values < -1 this is the page size used for pagination.
+OUT   Boolean    True or false whenever is successful or not.
+OUT   String     The information string / The error string.
+OUT   Int        Error code.
+OUT   Int        ID of the object that caused the error.
+====  =========  ===============================================================
+
+The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
 XSD Reference
 =============

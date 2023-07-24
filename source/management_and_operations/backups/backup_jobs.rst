@@ -55,6 +55,8 @@ Every backup operation within the Backup Job shares the same configuration attri
 +==================+===========================================================+
 | ``DATASTORE_ID`` | Datastore ID to save the backup files                     |
 +------------------+-----------------------------------------------------------+
+| ``RESET``        | Create a new backup image. Only for incremental backup    |
++------------------+-----------------------------------------------------------+
 | :ref:`Attributes for Single Backup operations <vm_backups_config_attributes>`|
 +------------------+-----------------------------------------------------------+
 
