@@ -16,6 +16,8 @@ The following new features have been backported to 6.6.3:
 - `Add VCPU to VMs pool list <https://github.com/OpenNebula/one/issues/6111>`__. If you are upgrading from previous version, the ``VCPU`` will apear after first update of the VM. Use ``onevm update <vm_id> --append <empty_file>`` to force VM update.
 - Added a guide for :ref:`replacing a failing OpenNebula front-end host <Replace failing front-end>`.
 - :ref:`Backup dialog in FireEdge Sunstone updated to make datastore selection optional if not needed <vm_backup>`.
+- :ref:`Add support to delete "in-chain" disk snapshots for tree layouts (qcow2) <vm_guide_2_disk_snapshots_managing>`.
+
 
 The following issues have been solved in 6.6.3:
 
@@ -35,3 +37,19 @@ The following issues have been solved in 6.6.3:
 - `Fix missing unit selectors on create images and vm templates <https://github.com/OpenNebula/one/issues/6136>`__.
 - `Fix wrong configuration for FreeMemory10 in Prometheus rules <https://github.com/OpenNebula/one/issues/6225>`__.
 - `Fix regular user cannot create a new VM template <https://github.com/OpenNebula/one/issues/6129>`__.
+
+
+Upgrade Notes
+--------------------------------------------------------------------------------
+Apart from the general considerations :ref:`described in the upgrade guide <upgrade_66>`, consider the following steps:
+
+
+Compatibility Notes
+--------------------------------------------------------------------------------
+
+In order to implement the delete operation (via `virsh blockcommit/blockpush` and `qemu-img rebase`) some internal changes has been made, namely:
+
+- KVM deployment files are re-written on the fly to resolve the `disk.<disk_id>` symbolic links. This solves an issue that prevents a correct `backingStore` to be constructed by libvirt for the VMs.
+- When a snapshot is deleted (`<vm_folder>/disk.<disk_id>.snap/<snap_id>`) some times it is necessary to adjust actual file names supporting a given snapshot. In this case a file ended by `.current` is created. All related operations have been updated to react to the presence of this file.
+
+This changes are not exposed by any OpenNebula interface and are not an issue for any existing VM while upgrading your cloud.
