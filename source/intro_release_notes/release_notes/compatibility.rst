@@ -44,6 +44,16 @@ Datastore Drivers Arguments
 
 Datastore driver actions take the information from stdin to prevent a ``Argument list too long`` error when there is a large number of images in a datastore. All configuration and driver files has been updated and no special action needs to be performed. However if you have develop your own datastore drivers those should be updated accordingly.
 
+KVM and Shared/Qcow2 Transfer Manager Drivers
+================================================================================
+
+In order to implement the disk-snapshot delete operation (via `virsh blockcommit/blockpush` and `qemu-img rebase`) some internal changes has been made, namely:
+
+- KVM deployment files are re-written on the fly to resolve the `disk.<disk_id>` symbolic links. This solves an issue that prevents a correct `backingStore` to be constructed by libvirt for the VMs.
+- When a snapshot is deleted (`<vm_folder>/disk.<disk_id>.snap/<snap_id>`) some times it is necessary to adjust actual file names supporting a given snapshot. In this case a file ended by `.current` is created. All related operations have been updated to react to the presence of this file.
+
+This changes are not exposed by any OpenNebula interface and are not an issue for any existing VM while upgrading your cloud.
+
 CLI
 ================================================================================
 
