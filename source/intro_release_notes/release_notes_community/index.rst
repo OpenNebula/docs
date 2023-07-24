@@ -8,3 +8,4 @@ Release Notes 6.6.3 Community
    :maxdepth: 1
 
    What is OpenNebula CE<what_is>
+   Compatibility Guide <compatibility>

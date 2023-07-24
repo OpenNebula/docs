@@ -41,15 +41,4 @@ The following issues have been solved in 6.6.3:
 
 Upgrade Notes
 --------------------------------------------------------------------------------
-Apart from the general considerations :ref:`described in the upgrade guide <upgrade_66>`, consider the following steps:
-
-
-Compatibility Notes
---------------------------------------------------------------------------------
-
-In order to implement the delete operation (via `virsh blockcommit/blockpush` and `qemu-img rebase`) some internal changes has been made, namely:
-
-- KVM deployment files are re-written on the fly to resolve the `disk.<disk_id>` symbolic links. This solves an issue that prevents a correct `backingStore` to be constructed by libvirt for the VMs.
-- When a snapshot is deleted (`<vm_folder>/disk.<disk_id>.snap/<snap_id>`) some times it is necessary to adjust actual file names supporting a given snapshot. In this case a file ended by `.current` is created. All related operations have been updated to react to the presence of this file.
-
-This changes are not exposed by any OpenNebula interface and are not an issue for any existing VM while upgrading your cloud.
+Apart from the general considerations :ref:`described in the upgrade guide <upgrade_66>`, consider this note (Disk Snapshots) in the :ref:`Compatiblity Guide <compatiblity_disk_snapshots>`.
