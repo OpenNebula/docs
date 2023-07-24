@@ -72,12 +72,6 @@ Contextualization
 - ``GROW_ROOTFS`` and ``GROW_FS`` will not extend btrfs filesystems
 - ``onesysprep`` does not support Debian 12 yet
 
-
-WHMCS - Client Users
-================================================================================
-
-When the first client is created in WHMCS and purchases a product, following actions will fail due to targeting ID 0 (oneadmin).  Further client accounts past the first one will work as expected.
-
 NUMA Free Hugepages
 ================================================================================
 
