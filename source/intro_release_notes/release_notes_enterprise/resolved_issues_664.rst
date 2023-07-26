@@ -1,0 +1,18 @@
+.. _resolved_issues_664:
+
+Resolved Issues in 6.6.4
+--------------------------------------------------------------------------------
+
+A complete list of solved issues for 6.6.4 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/70?closed=1>`__.
+
+The following new features have been backported to 6.6.4:
+
+
+
+The following issues have been solved in 6.6.4:
+
+
+Upgrade Notes
+================================================================================
+
+Apart from the general considerations :ref:`described in the upgrade guide <upgrade_66>`, consider this note (Disk Snapshots) in the :ref:`Compatiblity Guide <compatiblity_disk_snapshots>`.
