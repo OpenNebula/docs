@@ -40,5 +40,6 @@ The following issues have been solved in 6.6.3:
 
 
 Upgrade Notes
---------------------------------------------------------------------------------
+================================================================================
+
 Apart from the general considerations :ref:`described in the upgrade guide <upgrade_66>`, consider this note (Disk Snapshots) in the :ref:`Compatiblity Guide <compatiblity_disk_snapshots>`.
