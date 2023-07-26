@@ -11,6 +11,8 @@ The following new features have been backported to 6.6.4:
 
 The following issues have been solved in 6.6.4:
 
+- `Fix logic mismatch when attaching volatile disks for block drivers <https://github.com/OpenNebula/one/issues/6288>`__.
+
 
 Upgrade Notes
 ================================================================================
