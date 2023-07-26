@@ -410,14 +410,42 @@ Managing Disk Snapshots
 
 A user can take snapshots of VM disks to create a checkpoint of the state of an specific disk at any time. These snapshots can be organized, depending on the storage backend:
 
-- In a tree-like structure, meaning that every snapshot has a parent, except for the first snapshot whose parent is ``-1``. The active snapshot, the one the user has last reverted to, or taken, will act as the parent of the next snapshot. It's possible to delete snapshots that are not active and that have no children.
-- Flat structure, without parent/child relationship. In that case, snapshots can be freely removed.
+- **Flat layout**. This mode is used for raw images and local (SSH) transfer manager. Snapshots in this layout have no parent/child relationship; instead, they are taken as a complete copy of the virtual machine's (VM) disk at a specific time. Consequently, snapshots can be freely removed.
+
+.. code::
+
+    |- snap_1
+    |- snap_2
+    |- snap_3
+    |- snap_4
+    |- snap_5 (* active)
+
+- **Tree layout**. This mode is used for qcow2 images in the shared transfer manager. In this case, every snapshot has a parent, except for the first snapshot whose parent is ``-1``. The active snapshot is the one the user has last reverted to, or taken, will act as the parent of the next snapshot. There are some limitations when deleting snapshots in a tree, in general snapshots that represents a branch (or adjacent to a branch) cannot be deleted.
+
+.. code::
+
+    |- snap_1
+       |- snap_2
+          |- snap_3
+             |- snap_4 (* active)
+
+- **Mixed layout**. This mode represents the Ceph snapshot dependencies. In this case, snapshots are children (follwing a flat layout) of the last snapshot reverted to. This snapshot will be the base for subsequet snapshots. It's possible to delete snapshots that are not active and that have no children.
+
+.. code::
+
+    |- snap_1 (<--- last snapshot reverted)
+       |- snap_3
+       |- snap_4
+       |- snap_5
+       |- snap_6 (* active)
+    |- snap_2
+
 
 Disk snapshots are managed with the following commands:
 
 - ``disk-snapshot-create <vmid> <diskid> <name>``: Creates a new snapshot of the specified disk.
 - ``disk-snapshot-revert <vmid> <diskid> <snapshot_id>``: Reverts to the specified snapshot. The snapshots are immutable, therefore the user can revert to the same snapshot as many times as he wants, the disk will return always to the state of the snapshot at the time it was taken.
-- ``disk-snapshot-delete <vmid> <diskid> <snapshot_id>``: Deletes a snapshot if it has no children and is not active.
+- ``disk-snapshot-delete <vmid> <diskid> <snapshot_id>``: Deletes a snapshot. This operation may have some restrictions depending on the snapshots layout.
 
 ``disk-snapshot-create`` can take place when the VM is in ``RUNNING`` state, provided that the drivers support it, while ``disk-snapshot-revert`` requires the VM to be ``POWEROFF`` or ``SUSPENDED``. Live snapshots are only supported for some hypervisors and storage drivers:
 

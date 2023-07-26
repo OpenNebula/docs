@@ -59,6 +59,9 @@ OpenNebula Exporter
     * - opennebula_vm_total
       - Total number of VMs defined in OpenNebula
       - gauge
+    * - opennebula_vm_host_id
+      - Host ID where the VM is allocated
+      - gauge
     * - opennebula_vm_state
       - VM state 0:init 1:pending 2:hold 3:active 4:stopped 5:suspended 6:done 8:poweroff 9:undeployed 10:clonning
       - gauge

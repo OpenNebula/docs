@@ -1,3 +1,5 @@
+.. _Replace failing front-end:
+
 =========================
 Replace failing front-end
 =========================
@@ -66,7 +68,7 @@ Remove it from HA using the CLI command onezone ``onezone server-del <zone_id> <
 .. code:: shell
 
     onezone server-del <zone_id> <server_id>
-    
+
 
 Add the server back to the HA
 =============================

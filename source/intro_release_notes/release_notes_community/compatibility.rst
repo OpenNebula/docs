@@ -1,5 +1,5 @@
 
-.. _compatibility:
+.. _compatibility_ce:
 
 ====================
 Compatibility Guide
