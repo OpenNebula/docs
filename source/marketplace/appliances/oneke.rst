@@ -23,7 +23,9 @@ Components
     +-----------------------------+----------------------------------------------------------------------------+                             |
     | Ubuntu                      | 22.04 LTS                                                                  | |certified-kubernetes-logo| |
     +-----------------------------+----------------------------------------------------------------------------+                             |
-    | Kubernetes/RKE2             | v1.27.1+rke2r1                                                             |                             |
+    | Kubernetes/RKE2             | v1.27.2+rke2r1                                                             |                             |
+    +-----------------------------+----------------------------------------------------------------------------+                             |
+    | CNI/RKE2                    | v1.27.2+rke2r1                                                             |                             |
     +-----------------------------+----------------------------------------------------------------------------+                             |
     | Longhorn                    | 1.4.1                                                                      |                             |
     +-----------------------------+----------------------------------------------------------------------------+                             |
@@ -251,22 +253,19 @@ On a leader VNF node IP/NAT configuration will look like these listings:
 
 On Kubernetes nodes the Routing/DNS configuration will look like these listings:
 
-.. prompt:: bash root@onekube-ip-172-20-0-101:~# auto
+.. prompt:: bash root@oneke-ip-172-20-0-101:~# auto
 
-    root@onekube-ip-172-20-0-101:~# ip route list
+    root@oneke-ip-172-20-0-101:~# ip route list
     default via 172.20.0.86 dev eth0
-    10.42.0.2 dev calicf569944d00 scope link
-    10.42.1.0/24 via 10.42.1.0 dev flannel.1 onlink
-    10.42.2.0/24 via 10.42.2.0 dev flannel.1 onlink
-    10.42.3.0/24 via 10.42.3.0 dev flannel.1 onlink
-    10.42.4.0/24 via 10.42.4.0 dev flannel.1 onlink
+    10.42.0.0/24 via 10.42.0.166 dev cilium_host src 10.42.0.166
+    10.42.0.166 dev cilium_host scope link
+    10.42.1.0/24 via 10.42.0.166 dev cilium_host src 10.42.0.166 mtu 1450
     172.20.0.0/24 dev eth0 proto kernel scope link src 172.20.0.101
 
-.. prompt:: bash root@onekube-ip-172-20-0-101:~# auto
+.. prompt:: bash root@oneke-ip-172-20-0-101:~# auto
 
-    root@onekube-ip-172-20-0-101:~# cat /etc/resolv.conf
+    root@oneke-ip-172-20-0-101:~# cat /etc/resolv.conf
     nameserver 1.1.1.1
-
 
 .. note::
 
@@ -279,6 +278,7 @@ On Kubernetes nodes the Routing/DNS configuration will look like these listings:
 
 In-Cluster Components
 ---------------------
+
 Persistence (Longhorn)
 ^^^^^^^^^^^^^^^^^^^^^^
 
@@ -346,6 +346,14 @@ Longhorn is deployed during the cluster creation from an official Helm chart wit
   to prevent storage nodes from handling regular workloads.
 - Additional storage class is provided.
 
+.. important::
+
+    To deploy Longhorn:
+
+    * Set ``ONEAPP_K8S_LONGHORN_ENABLED`` to "YES".
+
+    * Scale up the ``storage`` role to at least a single VM (or modify the ``Service OneKE 1.27`` template before instantiating).
+
 Ingress Controller (Traefik)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -410,6 +418,19 @@ Traefik is deployed during the cluster creation from an official Helm chart with
 
 |
 
+.. important::
+
+    To deploy Traefik:
+
+    * Set ``ONEAPP_K8S_TRAEFIK_ENABLED`` to "YES".
+
+Load Balancing (Cilium)
+^^^^^^^^^^^^^^^^^^^^^^^
+
+When ``ONEAPP_K8S_CNI_PLUGIN`` is set to "cilium" and ``ONEAPP_K8S_CILIUM_RANGE`` is specified (for example "172.20.0.240/28"),
+then OneKE should be capable of deploying LoadBalancer services (without MetalLB). More information on how to use BGP load-balancers
+in Cilium can be found in the `official documentation <https://docs.cilium.io/en/stable/network/lb-ipam/>`_.
+
 Load Balancing (MetalLB)
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -440,6 +461,12 @@ Load Balancing (MetalLB)
 - A dedicated namespace ``metallb-system`` is provided.
 - `Image Pull Policy <https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy>`_ is optimized for airgapped deployments.
 - Precreated CRD configuration objects are provided (managed by RKE2 with `Helm Integration <https://docs.rke2.io/helm/#automatically-deploying-manifests-and-helm-charts>`_ / installed in ``/var/lib/rancher/rke2/server/manifests/one-metallb-config.yaml``). Please refer to the official documentation on `MetalLB's configuration <https://metallb.universe.tf/configuration/>`_ to learn what the use cases of MetalLB are.
+
+.. important::
+
+    To deploy MetalLB:
+
+    * Set ``ONEAPP_K8S_METALLB_ENABLED`` to "YES".
 
 .. warning::
 
@@ -501,19 +528,32 @@ Once the OneKE Virtual Appliance has been imported, a new cluster can be created
             "ONEAPP_VROUTER_ETH0_VIP0": "10.2.11.86",
             "ONEAPP_VROUTER_ETH1_VIP0": "172.20.0.86",
             "ONEAPP_K8S_EXTRA_SANS": "localhost,127.0.0.1,k8s.yourdomain.it",
-            "ONEAPP_K8S_LOADBALANCER_RANGE": "172.20.0.87-172.20.0.88",
-            "ONEAPP_K8S_LOADBALANCER_CONFIG": "",
+
+            "ONEAPP_K8S_MULTUS_ENABLED": "YES",
+            "ONEAPP_K8S_MULTUS_CONFIG": "",
+            "ONEAPP_K8S_CNI_PLUGIN": "cilium",
+            "ONEAPP_K8S_CNI_CONFIG": "",
+            "ONEAPP_K8S_CILIUM_RANGE": "",
+
+            "ONEAPP_K8S_LONGHORN_ENABLED": "YES",
             "ONEAPP_STORAGE_DEVICE": "/dev/vdb",
             "ONEAPP_STORAGE_FILESYSTEM": "xfs",
-            "ONEAPP_VNF_NAT4_ENABLED": "YES",
-            "ONEAPP_VNF_NAT4_INTERFACES_OUT": "eth0",
-            "ONEAPP_VNF_ROUTER4_ENABLED": "YES",
-            "ONEAPP_VNF_ROUTER4_INTERFACES": "eth0,eth1",
+
+            "ONEAPP_K8S_METALLB_ENABLED": "YES",
+            "ONEAPP_K8S_METALLB_CONFIG": "",
+            "ONEAPP_K8S_METALLB_RANGE": "172.20.0.87-172.20.0.88",
+
+            "ONEAPP_K8S_TRAEFIK_ENABLED": "YES",
             "ONEAPP_VNF_HAPROXY_INTERFACES": "eth0",
             "ONEAPP_VNF_HAPROXY_REFRESH_RATE": "30",
             "ONEAPP_VNF_HAPROXY_CONFIG": "",
             "ONEAPP_VNF_HAPROXY_LB2_PORT": "443",
             "ONEAPP_VNF_HAPROXY_LB3_PORT": "80",
+
+            "ONEAPP_VNF_NAT4_ENABLED": "YES",
+            "ONEAPP_VNF_NAT4_INTERFACES_OUT": "eth0",
+            "ONEAPP_VNF_ROUTER4_ENABLED": "YES",
+            "ONEAPP_VNF_ROUTER4_INTERFACES": "eth0,eth1",
             "ONEAPP_VNF_KEEPALIVED_VRID": "1"
         }
     }
@@ -561,19 +601,27 @@ Parameter                            Mandatory    Default                 Stage 
 ``ONEAPP_VROUTER_ETH0_VIP0``         ``YES``                              configure all     Control Plane Endpoint VIP (IPv4)
 ``ONEAPP_VROUTER_ETH1_VIP0``                                              configure all     Default Gateway VIP (IPv4)
 ``ONEAPP_K8S_EXTRA_SANS``                         ``localhost,127.0.0.1`` configure master  ApiServer extra certificate SANs
-``ONEAPP_K8S_LOADBALANCER_RANGE``                                         configure worker  MetalLB IP range
-``ONEAPP_K8S_LOADBALANCER_CONFIG``                                        configure worker  MetalLB custom config
-``ONEAPP_STORAGE_DEVICE``            ``YES``      ``/dev/vdb``            configure storage Dedicated storage device for Longhorn
+``ONEAPP_K8S_MULTUS_ENABLED``                     ``NO``                  configure master  Enable Multus
+``ONEAPP_K8S_MULTUS_CONFIG``                                              configure master  Multus custom config
+``ONEAPP_K8S_CNI_PLUGIN``                         ``cilium``              configure master  CNI plugin (canal, calico or cilium)
+``ONEAPP_K8S_CNI_CONFIG``                                                 configure master  CNI custom config
+``ONEAPP_K8S_CILIUM_RANGE``                                               configure master  Cilium LB IP/CIDR
+``ONEAPP_K8S_METALLB_ENABLED``                    ``NO``                  configure master  Enable MetalLB
+``ONEAPP_K8S_METALLB_RANGE``                                              configure master  MetalLB IP range
+``ONEAPP_K8S_METALLB_CONFIG``                                             configure master  MetalLB custom config
+``ONEAPP_K8S_LONGHORN_ENABLED``                   ``NO``                  configure master  Enable Longhorn
+``ONEAPP_STORAGE_DEVICE``                         ``/dev/vdb``            configure storage Dedicated storage device for Longhorn
 ``ONEAPP_STORAGE_FILESYSTEM``                     ``xfs``                 configure storage Filesystem type to init dedicated storage device
-``ONEAPP_VNF_NAT4_ENABLED``                       ``YES``                 configure vnf     Enable NAT for the whole cluster
-``ONEAPP_VNF_NAT4_INTERFACES_OUT``                ``eth0``                configure vnf     NAT - Outgoing (public) interfaces
-``ONEAPP_VNF_ROUTER4_ENABLED``                    ``YES``                 configure vnf     Enable IPv4 forwarding for selected NICs
-``ONEAPP_VNF_ROUTER4_INTERFACES``                 ``eth0,eth1``           configure vnf     IPv4 Router - NICs selected for IPv4 forwarding
+``ONEAPP_K8S_TRAEFIK_ENABLED``                    ``NO``                  configure master  Enable Traefik
 ``ONEAPP_VNF_HAPROXY_INTERFACES``                 ``eth0``                configure vnf     Interfaces to run HAProxy on
 ``ONEAPP_VNF_HAPROXY_REFRESH_RATE``               ``30``                  configure vnf     HAProxy / OneGate refresh rate
 ``ONEAPP_VNF_HAPROXY_CONFIG``                                             configure vnf     Custom HAProxy config
 ``ONEAPP_VNF_HAPROXY_LB2_PORT``                   ``443``                 configure vnf     HTTPS ingress port
 ``ONEAPP_VNF_HAPROXY_LB3_PORT``                   ``80``                  configure vnf     HTTP ingress port
+``ONEAPP_VNF_NAT4_ENABLED``                       ``YES``                 configure vnf     Enable NAT for the whole cluster
+``ONEAPP_VNF_NAT4_INTERFACES_OUT``                ``eth0``                configure vnf     NAT - Outgoing (public) interfaces
+``ONEAPP_VNF_ROUTER4_ENABLED``                    ``YES``                 configure vnf     Enable IPv4 forwarding for selected NICs
+``ONEAPP_VNF_ROUTER4_INTERFACES``                 ``eth0,eth1``           configure vnf     IPv4 Router - NICs selected for IPv4 forwarding
 ``ONEAPP_VNF_KEEPALIVED_VRID``                    ``1``                   configure vnf     Global vrouter id (1-255)
 ==================================== ============ ======================= ========= ======= ===========
 
@@ -586,6 +634,11 @@ Parameter                            Mandatory    Default                 Stage 
 
     ``ONEAPP_VROUTER_ETH1_VIP0`` - VNF cluster uses this VIP to act as a NAT gateway for every other VM deployed inside the **private** subnet.
     The ``eth1`` NIC should be connected to the **private** subnet.
+
+.. important::
+
+    If you enable Longhorn (via ``ONEAPP_K8S_LONGHORN_ENABLED``), then you also need to scale up the **storage** role
+    or modify the ``cardinality`` parameter in the service template.
 
 .. warning::
 
@@ -632,12 +685,12 @@ And afterwards we can list cluster nodes using ``kubectl``:
 .. prompt:: bash $ auto
 
     $ kubectl get nodes
-    NAME                      STATUS   ROLES                       AGE     VERSION
-    onekube-ip-172-20-0-101   Ready    control-plane,etcd,master   31m     v1.27.1+rke2r1
-    onekube-ip-172-20-0-102   Ready    <none>                      28m     v1.27.1+rke2r1
-    onekube-ip-172-20-0-103   Ready    <none>                      28m     v1.27.1+rke2r1
-    onekube-ip-172-20-0-104   Ready    control-plane,etcd,master   11m     v1.27.1+rke2r1
-    onekube-ip-172-20-0-105   Ready    control-plane,etcd,master   10m     v1.27.1+rke2r1
+    NAME                    STATUS   ROLES                       AGE     VERSION
+    oneke-ip-172-20-0-101   Ready    control-plane,etcd,master   31m     v1.27.2+rke2r1
+    oneke-ip-172-20-0-102   Ready    <none>                      28m     v1.27.2+rke2r1
+    oneke-ip-172-20-0-103   Ready    <none>                      28m     v1.27.2+rke2r1
+    oneke-ip-172-20-0-104   Ready    control-plane,etcd,master   11m     v1.27.2+rke2r1
+    oneke-ip-172-20-0-105   Ready    control-plane,etcd,master   10m     v1.27.2+rke2r1
 
 .. warning::
 
@@ -711,44 +764,47 @@ Content of the update (``/tmp/OneKE-update.json``) will look like this:
           "cardinality": 1,
           "min_vms": 1,
           "vm_template_contents": "VMGROUP=[VMGROUP_NAME=\"Service OneKE 1.27\",ROLE=\"vnf\"]\nNIC=[NAME=\"NIC0\",NETWORK_ID=\"$Public\"]\nNIC=[NAME=\"NIC1\",NETWORK_ID=\"$Private\"]\nONEAPP_VROUTER_ETH0_VIP0=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VROUTER_ETH1_VIP0=\"$ONEAPP_VROUTER_ETH1_VIP0\"\nONEAPP_VNF_NAT4_ENABLED=\"$ONEAPP_VNF_NAT4_ENABLED\"\nONEAPP_VNF_NAT4_INTERFACES_OUT=\"$ONEAPP_VNF_NAT4_INTERFACES_OUT\"\nONEAPP_VNF_ROUTER4_ENABLED=\"$ONEAPP_VNF_ROUTER4_ENABLED\"\nONEAPP_VNF_ROUTER4_INTERFACES=\"$ONEAPP_VNF_ROUTER4_INTERFACES\"\nONEAPP_VNF_HAPROXY_INTERFACES=\"$ONEAPP_VNF_HAPROXY_INTERFACES\"\nONEAPP_VNF_HAPROXY_REFRESH_RATE=\"$ONEAPP_VNF_HAPROXY_REFRESH_RATE\"\nONEAPP_VNF_HAPROXY_CONFIG=\"$ONEAPP_VNF_HAPROXY_CONFIG\"\nONEAPP_VNF_HAPROXY_LB0_IP=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VNF_HAPROXY_LB0_PORT=\"9345\"\nONEAPP_VNF_HAPROXY_LB1_IP=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VNF_HAPROXY_LB1_PORT=\"6443\"\nONEAPP_VNF_HAPROXY_LB2_IP=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VNF_HAPROXY_LB2_PORT=\"$ONEAPP_VNF_HAPROXY_LB2_PORT\"\nONEAPP_VNF_HAPROXY_LB3_IP=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VNF_HAPROXY_LB3_PORT=\"$ONEAPP_VNF_HAPROXY_LB3_PORT\"\nONEAPP_VNF_KEEPALIVED_VRID=\"$ONEAPP_VNF_KEEPALIVED_VRID\"\n",
+          "cooldown": 120,
           "elasticity_policies": [],
           "scheduled_policies": [],
-          "vm_template": 255
+          "vm_template": 1
         },
         {
           "name": "master",
-          "cardinality": 1,
-          "min_vms": 1,
-          "vm_template_contents": "VMGROUP=[VMGROUP_NAME=\"Service OneKE 1.27\",ROLE=\"master\"]\nNIC=[NAME=\"NIC0\",NETWORK_ID=\"$Private\"]\nONEAPP_VROUTER_ETH0_VIP0=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VROUTER_ETH1_VIP0=\"$ONEAPP_VROUTER_ETH1_VIP0\"\nONEAPP_K8S_EXTRA_SANS=\"$ONEAPP_K8S_EXTRA_SANS\"\nONEAPP_K8S_LOADBALANCER_RANGE=\"$ONEAPP_K8S_LOADBALANCER_RANGE\"\nONEAPP_K8S_LOADBALANCER_CONFIG=\"$ONEAPP_K8S_LOADBALANCER_CONFIG\"\n",
           "parents": [
             "vnf"
           ],
+          "cardinality": 1,
+          "min_vms": 1,
+          "vm_template_contents": "VMGROUP=[VMGROUP_NAME=\"Service OneKE 1.27\",ROLE=\"master\"]\nNIC=[NAME=\"NIC0\",NETWORK_ID=\"$Private\"]\nONEAPP_VROUTER_ETH0_VIP0=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VROUTER_ETH1_VIP0=\"$ONEAPP_VROUTER_ETH1_VIP0\"\nONEAPP_K8S_EXTRA_SANS=\"$ONEAPP_K8S_EXTRA_SANS\"\nONEAPP_K8S_MULTUS_ENABLED=\"$ONEAPP_K8S_MULTUS_ENABLED\"\nONEAPP_K8S_MULTUS_CONFIG=\"$ONEAPP_K8S_MULTUS_CONFIG\"\nONEAPP_K8S_CNI_PLUGIN=\"$ONEAPP_K8S_CNI_PLUGIN\"\nONEAPP_K8S_CNI_CONFIG=\"$ONEAPP_K8S_CNI_CONFIG\"\nONEAPP_K8S_CILIUM_RANGE=\"$ONEAPP_K8S_CILIUM_RANGE\"\nONEAPP_K8S_LONGHORN_ENABLED=\"$ONEAPP_K8S_LONGHORN_ENABLED\"\nONEAPP_K8S_METALLB_ENABLED=\"$ONEAPP_K8S_METALLB_ENABLED\"\nONEAPP_K8S_METALLB_CONFIG=\"$ONEAPP_K8S_METALLB_CONFIG\"\nONEAPP_K8S_METALLB_RANGE=\"$ONEAPP_K8S_METALLB_RANGE\"\nONEAPP_K8S_TRAEFIK_ENABLED=\"$ONEAPP_K8S_TRAEFIK_ENABLED\"\n",
+          "cooldown": 120,
           "elasticity_policies": [],
           "scheduled_policies": [],
-          "vm_template": 256
+          "vm_template": 2
         },
         {
           "name": "worker",
-          "cardinality": 1,
-          "vm_template_contents": "VMGROUP=[VMGROUP_NAME=\"Service OneKE 1.27\",ROLE=\"worker\"]\nNIC=[NAME=\"NIC0\",NETWORK_ID=\"$Private\"]\nONEAPP_VROUTER_ETH0_VIP0=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VROUTER_ETH1_VIP0=\"$ONEAPP_VROUTER_ETH1_VIP0\"\nONEAPP_VNF_HAPROXY_LB2_IP=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VNF_HAPROXY_LB2_PORT=\"$ONEAPP_VNF_HAPROXY_LB2_PORT\"\nONEAPP_VNF_HAPROXY_LB3_IP=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VNF_HAPROXY_LB3_PORT=\"$ONEAPP_VNF_HAPROXY_LB3_PORT\"\n",
           "parents": [
             "vnf"
           ],
+          "cardinality": 1,
+          "vm_template_contents": "VMGROUP=[VMGROUP_NAME=\"Service OneKE 1.27\",ROLE=\"worker\"]\nNIC=[NAME=\"NIC0\",NETWORK_ID=\"$Private\"]\nONEAPP_VROUTER_ETH0_VIP0=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VROUTER_ETH1_VIP0=\"$ONEAPP_VROUTER_ETH1_VIP0\"\nONEAPP_K8S_LONGHORN_ENABLED=\"$ONEAPP_K8S_LONGHORN_ENABLED\"\nONEAPP_K8S_METALLB_ENABLED=\"$ONEAPP_K8S_METALLB_ENABLED\"\nONEAPP_K8S_TRAEFIK_ENABLED=\"$ONEAPP_K8S_TRAEFIK_ENABLED\"\nONEAPP_VNF_HAPROXY_LB2_IP=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VNF_HAPROXY_LB2_PORT=\"$ONEAPP_VNF_HAPROXY_LB2_PORT\"\nONEAPP_VNF_HAPROXY_LB3_IP=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VNF_HAPROXY_LB3_PORT=\"$ONEAPP_VNF_HAPROXY_LB3_PORT\"\n",
+          "cooldown": 120,
           "elasticity_policies": [],
           "scheduled_policies": [],
-          "vm_template": 256
+          "vm_template": 2
         },
         {
           "name": "storage",
-          "cardinality": 1,
-          "min_vms": 1,
-          "vm_template_contents": "VMGROUP=[VMGROUP_NAME=\"Service OneKE 1.27\",ROLE=\"storage\"]\nNIC=[NAME=\"NIC0\",NETWORK_ID=\"$Private\"]\nONEAPP_VROUTER_ETH0_VIP0=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VROUTER_ETH1_VIP0=\"$ONEAPP_VROUTER_ETH1_VIP0\"\nONEAPP_STORAGE_DEVICE=\"$ONEAPP_STORAGE_DEVICE\"\nONEAPP_STORAGE_FILESYSTEM=\"$ONEAPP_STORAGE_FILESYSTEM\"\n",
           "parents": [
             "vnf"
           ],
+          "cardinality": 0,
+          "vm_template_contents": "VMGROUP=[VMGROUP_NAME=\"Service OneKE 1.27\",ROLE=\"storage\"]\nNIC=[NAME=\"NIC0\",NETWORK_ID=\"$Private\"]\nONEAPP_VROUTER_ETH0_VIP0=\"$ONEAPP_VROUTER_ETH0_VIP0\"\nONEAPP_VROUTER_ETH1_VIP0=\"$ONEAPP_VROUTER_ETH1_VIP0\"\nONEAPP_K8S_LONGHORN_ENABLED=\"$ONEAPP_K8S_LONGHORN_ENABLED\"\nONEAPP_STORAGE_DEVICE=\"$ONEAPP_STORAGE_DEVICE\"\nONEAPP_STORAGE_FILESYSTEM=\"$ONEAPP_STORAGE_FILESYSTEM\"\n",
+          "cooldown": 120,
           "elasticity_policies": [],
           "scheduled_policies": [],
-          "vm_template": 257
+          "vm_template": 3
         }
       ],
       "networks": {
@@ -759,19 +815,27 @@ Content of the update (``/tmp/OneKE-update.json``) will look like this:
         "ONEAPP_VROUTER_ETH0_VIP0": "M|text|Control Plane Endpoint VIP (IPv4)||",
         "ONEAPP_VROUTER_ETH1_VIP0": "O|text|Default Gateway VIP (IPv4)||",
         "ONEAPP_K8S_EXTRA_SANS": "O|text|ApiServer extra certificate SANs||localhost,127.0.0.1",
-        "ONEAPP_K8S_LOADBALANCER_RANGE": "O|text|MetalLB IP range (default none)||",
-        "ONEAPP_K8S_LOADBALANCER_CONFIG": "O|text64|MetalLB custom config (default none)||",
-        "ONEAPP_STORAGE_DEVICE": "M|text|Storage device path||/dev/vdb",
+        "ONEAPP_K8S_MULTUS_ENABLED": "O|boolean|Enable Multus||NO",
+        "ONEAPP_K8S_MULTUS_CONFIG": "O|text64|Multus custom config (default none)||",
+        "ONEAPP_K8S_CNI_PLUGIN": "O|list|CNI plugin supported by RKE2|canal,calico,cilium|cilium",
+        "ONEAPP_K8S_CNI_CONFIG": "O|text64|CNI custom config (default none)||",
+        "ONEAPP_K8S_CILIUM_RANGE": "O|text|Cilium LB IP CIDR (default none)||",
+        "ONEAPP_K8S_METALLB_ENABLED": "O|boolean|Enable MetalLB||NO",
+        "ONEAPP_K8S_METALLB_RANGE": "O|text|MetalLB IP range (default none)||",
+        "ONEAPP_K8S_METALLB_CONFIG": "O|text64|MetalLB custom config (default none)||",
+        "ONEAPP_K8S_LONGHORN_ENABLED": "O|boolean|Enable Longhorn||NO",
+        "ONEAPP_STORAGE_DEVICE": "O|text|Storage device path||/dev/vdb",
         "ONEAPP_STORAGE_FILESYSTEM": "O|text|Storage device filesystem||xfs",
-        "ONEAPP_VNF_NAT4_ENABLED": "O|boolean|Enable NAT||YES",
-        "ONEAPP_VNF_NAT4_INTERFACES_OUT": "O|text|NAT - Outgoing Interfaces||eth0",
-        "ONEAPP_VNF_ROUTER4_ENABLED": "O|boolean|Enable Router||YES",
-        "ONEAPP_VNF_ROUTER4_INTERFACES": "O|text|Router - Interfaces||eth0,eth1",
+        "ONEAPP_K8S_TRAEFIK_ENABLED": "O|boolean|Enable Traefik||NO",
         "ONEAPP_VNF_HAPROXY_INTERFACES": "O|text|Interfaces to run Haproxy on||eth0",
         "ONEAPP_VNF_HAPROXY_REFRESH_RATE": "O|number|Haproxy refresh rate||30",
         "ONEAPP_VNF_HAPROXY_CONFIG": "O|text|Custom Haproxy config (default none)||",
         "ONEAPP_VNF_HAPROXY_LB2_PORT": "O|number|HTTPS ingress port||443",
         "ONEAPP_VNF_HAPROXY_LB3_PORT": "O|number|HTTP ingress port||80",
+        "ONEAPP_VNF_NAT4_ENABLED": "O|boolean|Enable NAT||YES",
+        "ONEAPP_VNF_NAT4_INTERFACES_OUT": "O|text|NAT - Outgoing Interfaces||eth0",
+        "ONEAPP_VNF_ROUTER4_ENABLED": "O|boolean|Enable Router||YES",
+        "ONEAPP_VNF_ROUTER4_INTERFACES": "O|text|Router - Interfaces||eth0,eth1",
         "ONEAPP_VNF_KEEPALIVED_VRID": "O|number|Global vrouter id (1-255)||1"
       },
       "ready_status_gate": true
@@ -846,12 +910,12 @@ And then your local ``kubectl`` command should work just fine:
 .. prompt:: bash $ auto
 
     $ kubectl get nodes
-    NAME                      STATUS   ROLES                       AGE    VERSION
-    onekube-ip-172-20-0-101   Ready    control-plane,etcd,master   33m    v1.27.1+rke2r1
-    onekube-ip-172-20-0-102   Ready    <none>                      28m    v1.27.1+rke2r1
-    onekube-ip-172-20-0-103   Ready    <none>                      28m    v1.27.1+rke2r1
-    onekube-ip-172-20-0-104   Ready    control-plane,etcd,master   12m    v1.27.1+rke2r1
-    onekube-ip-172-20-0-105   Ready    control-plane,etcd,master   10m    v1.27.1+rke2r1
+    NAME                    STATUS   ROLES                       AGE    VERSION
+    oneke-ip-172-20-0-101   Ready    control-plane,etcd,master   33m    v1.27.2+rke2r1
+    oneke-ip-172-20-0-102   Ready    <none>                      28m    v1.27.2+rke2r1
+    oneke-ip-172-20-0-103   Ready    <none>                      28m    v1.27.2+rke2r1
+    oneke-ip-172-20-0-104   Ready    control-plane,etcd,master   12m    v1.27.2+rke2r1
+    oneke-ip-172-20-0-105   Ready    control-plane,etcd,master   10m    v1.27.2+rke2r1
 
 .. important::
 
@@ -890,12 +954,12 @@ and then run ``kubectl`` in another terminal:
 .. prompt:: bash $ auto
 
     $ kubectl get nodes
-    NAME                      STATUS   ROLES                       AGE    VERSION
-    onekube-ip-172-20-0-101   Ready    control-plane,etcd,master   58m    v1.27.1+rke2r1
-    onekube-ip-172-20-0-102   Ready    <none>                      52m    v1.27.1+rke2r1
-    onekube-ip-172-20-0-103   Ready    <none>                      52m    v1.27.1+rke2r1
-    onekube-ip-172-20-0-104   Ready    control-plane,etcd,master   31m    v1.27.1+rke2r1
-    onekube-ip-172-20-0-105   Ready    control-plane,etcd,master   29m    v1.27.1+rke2r1
+    NAME                    STATUS   ROLES                       AGE    VERSION
+    oneke-ip-172-20-0-101   Ready    control-plane,etcd,master   58m    v1.27.2+rke2r1
+    oneke-ip-172-20-0-102   Ready    <none>                      52m    v1.27.2+rke2r1
+    oneke-ip-172-20-0-103   Ready    <none>                      52m    v1.27.2+rke2r1
+    oneke-ip-172-20-0-104   Ready    control-plane,etcd,master   31m    v1.27.2+rke2r1
+    oneke-ip-172-20-0-105   Ready    control-plane,etcd,master   29m    v1.27.2+rke2r1
 
 
 Usage Example
