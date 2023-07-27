@@ -78,6 +78,10 @@ You can either use a public DNS server or local ``/etc/hosts`` file, for example
 
     To make the kubeconfig file work with custom SANs you will need to modify the ``clusters[0].cluster.server`` variable inside the YAML payload, for example: ``server: https://k8s.yourdomain.it:6443``.
 
+To be able to expose an example application you should enable OneKE's Traefik / HAProxy solution for ingress traffic:
+
+|kubernetes-qs-enable-ingress|
+
 Now click on the instantiate button, go to ``Instances --> Services`` and wait for the new Service to get into ``RUNNING`` state. You can also check the VMs being deployed in ``Instances --> VMs``.
 
 .. note::
@@ -93,6 +97,7 @@ Now click on the instantiate button, go to ``Instances --> Services`` and wait f
 .. |kubernetes-qs-pick-networks| image:: /images/kubernetes-qs-pick-networks.png
 .. |kubernetes-qs-pick-vips| image:: /images/kubernetes-qs-pick-vips.png
 .. |kubernetes-qs-add-sans| image:: /images/kubernetes-qs-add-sans.png
+.. |kubernetes-qs-enable-ingress| image:: /images/kubernetes-qs-enable-ingress.png
 
 Step 4. Deploy an Application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -120,27 +125,26 @@ where ``1.2.3.4`` should be the **public** address (AWS elastic IP) of a VNF nod
 
 Check if ``kubectl`` is working:
 
-.. prompt:: bash root@onekube-ip-172-20-0-2:~#  auto
+.. prompt:: bash root@oneke-ip-172-20-0-2:~#  auto
 
-   root@onekube-ip-172-20-0-2:~# kubectl get nodes
-   NAME                    STATUS   ROLES                       AGE   VERSION
-   onekube-ip-172-20-0-2   Ready    control-plane,etcd,master   18m   v1.27.1+rke2r1
-   onekube-ip-172-20-0-3   Ready    <none>                      16m   v1.27.1+rke2r1
-   onekube-ip-172-20-0-4   Ready    <none>                      16m   v1.27.1+rke2r1
+   root@oneke-ip-172-20-0-2:~# kubectl get nodes
+   NAME                  STATUS   ROLES                       AGE   VERSION
+   oneke-ip-172-20-0-2   Ready    control-plane,etcd,master   18m   v1.27.2+rke2r1
+   oneke-ip-172-20-0-3   Ready    <none>                      16m   v1.27.2+rke2r1
 
 
 Deploy nginx on the cluster:
 
-.. prompt:: bash root@onekube-ip-172-20-0-2:~# auto
+.. prompt:: bash root@oneke-ip-172-20-0-2:~# auto
 
-   root@onekube-ip-172-20-0-2:~# kubectl run nginx --image=nginx --port 80
+   root@oneke-ip-172-20-0-2:~# kubectl run nginx --image=nginx --port 80
    pod/nginx created
 
 After a few seconds, you should be able to see the nginx pod running
 
-.. prompt:: bash root@onekube-ip-172-20-0-2:~# auto
+.. prompt:: bash root@oneke-ip-172-20-0-2:~# auto
 
-   root@onekube-ip-172-20-0-2:~# kubectl get pods
+   root@oneke-ip-172-20-0-2:~# kubectl get pods
    NAME    READY   STATUS    RESTARTS   AGE
    nginx   1/1     Running   0          86s
 
@@ -184,9 +188,9 @@ Create a ``expose-nginx.yaml`` file with the following contents:
 
 Apply the manifest using ``kubectl``:
 
-.. prompt:: bash root@onekube-ip-172-20-0-2:~# auto
+.. prompt:: bash root@oneke-ip-172-20-0-2:~# auto
 
-   root@onekube-ip-172-20-0-2:~# kubectl apply -f expose-nginx.yaml
+   root@oneke-ip-172-20-0-2:~# kubectl apply -f expose-nginx.yaml
    service/nginx created
    ingressroute.traefik.containo.us/nginx created
 
