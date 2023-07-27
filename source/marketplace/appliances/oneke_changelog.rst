@@ -35,6 +35,28 @@ Airgapped install
 
   * Added Multus as an optional deployment.
 
+.. note::
+
+    To reproduce deployments from previous releases, please set context variables as suggested below:
+
+    =============================== =========
+    CONTEXT VARIABLE                VALUE
+    =============================== =========
+    ``ONEAPP_K8S_MULTUS_ENABLED``   ``NO``
+    ``ONEAPP_K8S_CNI_PLUGIN``       ``canal``
+    ``ONEAPP_K8S_LONGHORN_ENABLED`` ``YES``
+    ``ONEAPP_K8S_METALLB_ENABLED``  ``YES``
+    ``ONEAPP_K8S_TRAEFIK_ENABLED``  ``YES``
+    =============================== =========
+
+    You should also scale up the ``storage`` role:
+
+    .. prompt:: bash $ auto
+
+        $ oneflow scale '<service_id>' storage 1
+
+    Alternatively, you can modify the ``cardinality`` parameter inside the service template (before instantiation).
+
 OneKE 1.27.1-6.6.1-1.20230702
 -----------------------------
 
