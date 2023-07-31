@@ -7,7 +7,7 @@ A complete list of solved issues for 6.6.4 can be found in the `project developm
 
 The following new features have been backported to 6.6.4:
 
-
+- SR-IOV based NICs are live-updated when :ref:`updating the associated VNET attributes <vnet_update>`
 
 The following issues have been solved in 6.6.4:
 
