@@ -277,6 +277,8 @@ The update operation will trigger driver action to live update the network confi
 
  .. important:: QoS attribues (INBOUND and OUTBOUND) can be updated for single VMs with :ref:`onevm nic-update <nic_update>`.
 
+ .. important:: For SR-IOV based NICs you can update all the attributes that can be set for this type of interfaces
+
 As the network is updated for each VM and host, you can check the progress of the update in Virtual Network details:
 
   - ``UPDATED_VMS``, list of VM IDs already updated.
