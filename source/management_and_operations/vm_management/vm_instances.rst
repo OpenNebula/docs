@@ -640,7 +640,7 @@ Here is an usage example:
      0 suspend     09/20 00:00            																							 -
      1 resume      09/23 14:15            																							 -
 
-These actions can be deleted or edited using the ``onevm delete-chart`` and ``onevm update-chart`` command. The time attributes use Unix time internally.
+These actions can be deleted or edited using the ``onevm sched-delete`` and ``onevm sched-update`` command. The time attributes use Unix time internally.
 
 .. prompt:: text $ auto
 
@@ -705,7 +705,7 @@ Here is an usage example:
     1 resume           09/23 00:00           Weekly 2,6        After 5 times            -
     2 snapshot-create  09/23 00:00         Each 5 hours          On 12/25/18            -
 
-These actions can be deleted or edited using the ``onevm delete-chart`` and ``onevm update-chart`` command. The time attributes use Unix time internally.
+These actions can be deleted or edited using the ``onevm sched-delete`` and ``onevm sched-update`` command. The time attributes use Unix time internally.
 
 .. prompt:: text $ auto
 
@@ -760,47 +760,47 @@ This functionality is present graphically in Sunstone in the VM Template creatio
 
 The following table summarizes the actions that can be scheduled. Note that some of the above actions need some parameters to run (e.g. a disk ID or a snapshot name).
 
-+--------------------------+------------------+
-| Action                   | Arguments        |
-+--------------------------+------------------+
-| ``terminate [--hard]``   |                  |
-+--------------------------+------------------+
-| ``undeploy [--hard]``    |                  |
-+--------------------------+------------------+
-| ``hold``                 |                  |
-+--------------------------+------------------+
-| ``release``              |                  |
-+--------------------------+------------------+
-| ``stop``                 |                  |
-+--------------------------+------------------+
-| ``suspend``              |                  |
-+--------------------------+------------------+
-| ``resume``               |                  |
-+--------------------------+------------------+
-| ``reboot [--hard]``      |                  |
-+--------------------------+------------------+
-| ``poweroff [--hard]``    |                  |
-+--------------------------+------------------+
-| ``snapshot-create``      | name             |
-+--------------------------+------------------+
-| ``snapshot-revert``      | snap ID          |
-+--------------------------+------------------+
-| ``snapshot-delete``      | snap ID          |
-+--------------------------+------------------+
-| ``disk-snapshot-create`` | disk ID, name    |
-+--------------------------+------------------+
-| ``disk-snapshot-revert`` | disk ID, snap ID |
-+--------------------------+------------------+
-| ``disk-snapshot-delete`` | disk ID, snap ID |
-+--------------------------+------------------+
-| ``backup``               | datastore ID     |
-+--------------------------+------------------+
++--------------------------+---------------------+
+| Action                   | Arguments           |
++--------------------------+---------------------+
+| ``terminate [--hard]``   |                     |
++--------------------------+---------------------+
+| ``undeploy [--hard]``    |                     |
++--------------------------+---------------------+
+| ``hold``                 |                     |
++--------------------------+---------------------+
+| ``release``              |                     |
++--------------------------+---------------------+
+| ``stop``                 |                     |
++--------------------------+---------------------+
+| ``suspend``              |                     |
++--------------------------+---------------------+
+| ``resume``               |                     |
++--------------------------+---------------------+
+| ``reboot [--hard]``      |                     |
++--------------------------+---------------------+
+| ``poweroff [--hard]``    |                     |
++--------------------------+---------------------+
+| ``snapshot-create``      | name                |
++--------------------------+---------------------+
+| ``snapshot-revert``      | snap ID             |
++--------------------------+---------------------+
+| ``snapshot-delete``      | snap ID             |
++--------------------------+---------------------+
+| ``disk-snapshot-create`` | disk ID, name       |
++--------------------------+---------------------+
+| ``disk-snapshot-revert`` | disk ID, snap ID    |
++--------------------------+---------------------+
+| ``disk-snapshot-delete`` | disk ID, snap ID    |
++--------------------------+---------------------+
+| ``backup``               | datastore ID, reset |
++--------------------------+---------------------+
 
 You can pass arguments to the scheduled actions using the parameter ``ARGS`` in the action definition. For example:
 
 .. prompt:: text $ auto
 
-    $ onevm update-chart 0 0
+    $ onevm sched-update 0 0
 
     SCHED_ACTION=[
         ACTION="disk-snapshot-create",
@@ -856,8 +856,8 @@ In the previous example you can see that Scheduled Actions are added to the VMs.
 This functionality is also available in the CLI, through the following commands:
 
 - onevm create-chart
-- onevm update-chart
-- onevm delete-chart
+- onevm sched-update
+- onevm sched-delete
 
 The charters can be added into the ``onevm`` configuration file ``/etc/one/cli/onevm.yaml``:
 
