@@ -9,3 +9,4 @@ Release Notes 6.6.0 Community
 
    What is OpenNebula CE<what_is>
    Compatibility Guide <compatibility>
+   Known Issues <known_issues_ce>
