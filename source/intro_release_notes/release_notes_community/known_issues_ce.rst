@@ -11,5 +11,5 @@ This page will be updated with relevant information about bugs affecting OpenNeb
 Drivers - Images
 ================================================================================
 
-- On AlmaLinux 9, image fails to download due to different qemu-img output. `Patch <https://github.com/OpenNebula/one/commit/8b7d7029db163061cc4f49e80d5d532b78c795eb>`__ could be applied manually.
+- On AlmaLinux 9 and RHEL 9, image fails to download due to different qemu-img output. `Patch <https://github.com/OpenNebula/one/commit/8b7d7029db163061cc4f49e80d5d532b78c795eb>`__ could be applied manually.
 
