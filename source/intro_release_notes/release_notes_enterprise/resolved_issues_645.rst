@@ -19,3 +19,4 @@ The following issues has been solved in 6.4.5:
 - :ref:`Onegather <support>` now includes execution logs within the package.
 - `Fix missing defaults on Turnkey marketplace <https://github.com/OpenNebula/one/issues/6258>`__.
 - `Fix LinuxContainers opensuse app not having SSH access <https://github.com/OpenNebula/one/issues/6257>`__.
+- `Fix charset conversions for 'onedb fsck' and 'onedb sqlite2mysql' <https://github.com/OpenNebula/one/issues/6297>`__.
