@@ -12,6 +12,7 @@ The following new features have been backported to 6.6.4:
 The following issues have been solved in 6.6.4:
 
 - `Fix logic mismatch when attaching volatile disks for block drivers <https://github.com/OpenNebula/one/issues/6288>`__.
+- `Fix oned segmentation fault when configured to run cache mode <https://github.com/OpenNebula/one/pull/6301>`__.
 
 
 Upgrade Notes
