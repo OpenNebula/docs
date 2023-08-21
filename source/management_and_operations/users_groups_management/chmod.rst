@@ -34,11 +34,11 @@ The previous output shows that for the Template 0, the owner user ``oneuser1`` h
 
 You can check what operations are allowed with each of the **USE**, **MANAGE** and **ADMIN** rights in the :ref:`xml-rpc reference documentation <api>`. In general these rights are associated with the following operations:
 
-* **USE**: Operations that do not modify the resource like listing it or using it (e.g. using an image or a virtual network). Typically you will grant ``USE`` rights to share your resources with other users of your group or with the rest of the users.
+* **USE**: Operations that do not modify the resource like listing it or using it (e.g. using an image or a virtual network). Typically you will grant **USE** rights to share your resources with other users of your group or with the rest of the users.
 
-* **MANAGE**: Operations that modify the resource like stopping a virtual machine, changing the persistent attribute of an image or removing a lease from a network. Typically you will grant ``MANAGE`` rights to users that will manage your own resources.
+* **MANAGE**: Operations that modify the resource like stopping a virtual machine, changing the persistent attribute of an image or removing a lease from a network. Typically you will grant **MANAGE** rights to users that will manage your own resources.
 
-* **ADMIN**: Special operations that are typically limited to administrators, like updating the data of a host or deleting an user group. Typically you will grant ``ADMIN`` permissions to those users with an administrator role.
+* **ADMIN**: Special operations that are typically limited to administrators, like updating the data of a host or deleting an user group. Typically you will grant **ADMIN** permissions to those users with an administrator role.
 
 .. important:: VirtualMachine objects allow you to set the permission level required for each specific action, for example you may want to require USE for the delete-recreate operation instead the default ADMIN right. You can :ref:`overrride the default permissions for each action <oned_conf_vm_operations>` in oned.conf.
 
@@ -317,6 +317,32 @@ This view is designed to easily understand what the purpose of each ACL is. You 
 
 In the creation dialog you can easily define the resources affected by the rule and the permissions that are granted upon them.
 
+Default ACL Rules for Group
+===========================
+
+When new group is created, the following ACL rules are created:
+
+.. code::
+
+  ID     USER RES_VHNIUTGDCOZSvRMAPtB   RID OPE_UMAC  ZONE
+   6     @100     -H-----------------     *     -m--    #0
+   7     @100     --N----------------     *     u---    #0
+   8     @100     -------D-----------     *     u---    #0
+   9     @100     V--I-T---O-S-R--P-B     *     ---c     *
+
+Which means that, users of this group have **MANAGE** permissions for Hosts, **USE** permissions for Virtual Networks and Datastores. Users can create Virtual Machines, Images, Templates, Documents, Security Groups, Virtual Routers, VMGroups and Backup Jobs.
+
+Default ACL rules for group admin are:
+
+.. code::
+
+  ID     USER RES_VHNIUTGDCOZSvRMAPtB   RID OPE_UMAC  ZONE
+  10       #2     ----U--------------  @100     umac     *
+  11       #2     V-NI-T---O-S-R--P-B  @100     um--     *
+  12       #2     -------------R-----     *     ---c     *
+  13       #2     ------G------------  #100     -m--     *
+
+
 How Permission is Granted or Denied
 ===================================
 
@@ -340,7 +366,7 @@ If the resource is one of type ``VM``, ``NET``, ``IMAGE``, ``TEMPLATE``, or ``DO
     GROUP          : u--
     OTHER          : ---
 
-The output above shows that the owner of the image has ``USE`` and ``MANAGE`` rights.
+The output above shows that the owner of the image has **USE** and **MANAGE** rights.
 
 If none of the above conditions are true, then the set of ACL rules is iterated until one of the rules allows the operation.
 
