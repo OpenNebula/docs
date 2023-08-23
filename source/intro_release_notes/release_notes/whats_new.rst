@@ -52,6 +52,7 @@ Other Issues Solved
 
 - `Fix dict to xml conversion in PyONE by replacing dicttoxml by dict2xml <https://github.com/OpenNebula/one/issues/6064>`__.
 - `Updated some ruby deprecated methods incompatible with newer ruby releases <https://github.com/OpenNebula/one/issues/6246>`__.
+- `Fix issue with block device backed disks causing libvirt to fail to boot a VM <https://github.com/OpenNebula/one/issues/6212>`__.
 
 Features Backported to 6.6.x
 ================================================================================
