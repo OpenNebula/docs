@@ -52,6 +52,7 @@ Other Issues Solved
 
 - `Fix dict to xml conversion in PyONE by replacing dicttoxml by dict2xml <https://github.com/OpenNebula/one/issues/6064>`__.
 - `Updated some ruby deprecated methods incompatible with newer ruby releases <https://github.com/OpenNebula/one/issues/6246>`__.
+- `Fix issue when resuming a VM in 'pmsuspended' state in virsh <https://github.com/OpenNebula/one/issues/5793>`__.
 
 Features Backported to 6.6.x
 ================================================================================
