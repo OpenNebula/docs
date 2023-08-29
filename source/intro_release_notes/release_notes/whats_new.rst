@@ -43,6 +43,7 @@ OneGate
 CLI
 ================================================================================
 - `Allow STDIN passed templates for commands that accept template files <https://github.com/OpenNebula/one/issues/6242>`__.
+- New ``onevmgroup`` commands ``role-add``, ``role-delete`` and ``role-update`` for :ref:`managing VM Group roles <onevmgroup_api>`.
 
 KVM
 ================================================================================
