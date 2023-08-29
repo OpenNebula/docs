@@ -109,6 +109,12 @@ The default scheduling policies for hosts, datastores and virtual networks are d
 |      3 | **Fixed**: Networks will be ranked according to the PRIORITY attribute found in the Network template     |
 +--------+----------------------------------------------------------------------------------------------------------+
 
+* ``EXTERNAL_SCHEDULER``: Configuration to contact an external scheduler module:
+
+   * ``SERVER``, the http URL to perform the POST operation
+   * ``PROXY``, if needed to contact the external scheduler
+   * ``TIMEOUT``, how long to wait for a response
+
 * ``LOG``: Configuration for the logging system.
 
   * ``SYSTEM``: Defines logging system. Use ``file`` to log in the ``sched.log`` file, ``syslog`` to use syslog, ``std`` to use default log stream (stderr).

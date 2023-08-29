@@ -10,3 +10,4 @@ Capacity Planning
    Scheduling Policies <scheduling>
    Usage Quotas <quotas>
    Virtual Machine Affinity <affinity>
+   External Schedulers <external>

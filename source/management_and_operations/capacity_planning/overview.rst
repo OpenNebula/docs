@@ -14,6 +14,8 @@ This Chapter shows different mechanism available to administrators to control th
   - Similarly, you can limit the resources that are made available to :ref:`users with the quota system <quota_auth>`.
   - Finally, some workloads may require that you co-allocate or coordinate the capacity assigned to a group of Virtual Machines. :ref:`Affinity and placement rules can be set for VM groups <vmgroups>`.
 
+This chapter also includes a description on how to extend the scheduling component by configuring external modules, :ref:`see the external scheduler API section for more details <external_scheduler>`.
+
 Hypervisor Compatibility
 ================================================================================
 
