@@ -13,7 +13,7 @@ The following issues have been solved in 6.6.4:
 
 - `Fix logic mismatch when attaching volatile disks for block drivers <https://github.com/OpenNebula/one/issues/6288>`__.
 - `Fix oned segmentation fault when configured to run cache mode <https://github.com/OpenNebula/one/pull/6301>`__.
-
+- `Fix charset conversions for 'onedb fsck' and 'onedb sqlite2mysql' <https://github.com/OpenNebula/one/issues/6297>`__.
 
 Upgrade Notes
 ================================================================================
