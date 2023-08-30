@@ -114,6 +114,7 @@ The backup datastore drivers are responsible to store the generate ``backup`` fo
    -  ``host`` is the target host where the VM is running
    -  ``disks`` List (':' separated) of disk_ids  of disks that needs backup (e.g. "0:1:")
    -  ``deploy_id`` ID of the VM in the hypervisor
+   -  ``backupjob_id`` if defined '-' otherwise
    -  ``vm_id`` is the id of the VM
    -  ``ds_id`` is the target datastore (the system datastore).
    -  **STDIN**: ``datastore_action_dump`` See a decoded :ref:`example <sd_dump>`.
