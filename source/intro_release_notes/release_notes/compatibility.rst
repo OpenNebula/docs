@@ -39,15 +39,12 @@ In order to avoid breaking compatibility with older versions of OpenNebula heade
   /* -------------------------------------------------------------------------- */
 
 
-Datastore Drivers Arguments
+Datastore & Transfer Manager Drivers Arguments
 ================================================================================
 
 Datastore driver actions take the information from stdin to prevent a ``Argument list too long`` error when there is a large number of images in a datastore. All configuration and driver files has been updated and no special action needs to be performed. However if you have develop your own datastore drivers those should be updated accordingly.
 
-Transfer Manager Drivers Arguments
-================================================================================
-
-The backup operation now includes a new argument to accommodate the backup jobs. This shifts the vm_id and ds_id one position to preserve the convention across actions. This will only affect to custom backup drivers.
+The backup operation now includes a new argument to accommodate the backup jobs. This shifts the vm_id and ds_id one position to preserve the convention across actions. Additionally the backup URLs (``restic://`` and ``rsync://``) also include the backup job id, that also changes the position of some URL tokes. This will only affect to custom backup drivers.
 
 KVM and Shared/Qcow2 Transfer Manager Drivers
 ================================================================================

@@ -122,8 +122,7 @@ The backup datastore drivers are responsible to store the generate ``backup`` fo
    -  ``backup_id`` driver reference for the backup.
    -  ``size_mb`` size that the backup takes
 
-
--  **restore**: Restore the OpenNebula objects (VM Template and Images). Note that the actual download of the images will be made by the Image Datastore using the reference uri. The specific mechanism for download images of a given protocol are coded in the ``downloader.sh`` script. The pseudo-URL takes the form: ``<backup_proto>://<driver_snapshot_id_chain>/<disk filename>`` (example: ``restic://100/0:25f4b298,1:6968545c//var/lib/one/datastores/0/0/backup/disk.0)``
+-  **restore**: Restore the OpenNebula objects (VM Template and Images). Note that the actual download of the images will be made by the Image Datastore using the reference uri. The specific mechanism for download images of a given protocol are coded in the ``downloader.sh`` script. The pseudo-URL takes the form: ``<backup_proto>://<datastore_id>/<backup_job_id>/<driver_snapshot_id_chain>/<disk filename>`` (example: ``restic://100/23/0:25f4b298,1:6968545c//var/lib/one/datastores/0/0/backup/disk.0``, the backup job id can be empty):
 
    -  **ARGUMENTS**: ``datastore_action_dump image_id``
    -  **RETURNS**: ``Template_ID Image_ID1 Image_ID2 ...``
