@@ -252,12 +252,16 @@ This section configures the features enabled for the VM.
 |                         | creates the socket inside the VM, the Guest Agent itself    |     |         |         |
 |                         | must be installed and started in the VM.                    |     |         |         |
 +-------------------------+-------------------------------------------------------------+-----+---------+---------+
-| ``VIRTIO_SCSI_QUEUES``  | Numer of vCPU queues for the virtio-scsi controller.        | O   | \-      | \-      |
+| ``VIRTIO_SCSI_QUEUES``  | Number of queues for the virtio-scsi controller.            | O   | \-      | \-      |
++-------------------------+-------------------------------------------------------------+-----+---------+---------+
+| ``VIRTIO_BLK_QUEUES``   | Number of dispatch queues for the virtio-blk driver.        | O   | \-      | \-      |
 +-------------------------+-------------------------------------------------------------+-----+---------+---------+
 | ``IOTHREADS``           | Number of iothreads for virtio disks. By default threads    | O   | \-      | \-      |
 |                         | will be assign to disk by round robin algorithm. Disk       |     |         |         |
 |                         | thread id can be forced by disk ``IOTHREAD`` attribute.     |     |         |         |
 +-------------------------+-------------------------------------------------------------+-----+---------+---------+
+
+When setting up the virtio-scsi or virtio-blk queues, you can use the keyword ``auto`` which defaults to the number of vCPUs defined in the Virtual Machine. Also, the virtio-blk queues can be overridden per ``DISK`` so you can enable the multi-queue feature for the selected disks only.
 
 .. code::
 
@@ -266,8 +270,10 @@ This section configures the features enabled for the VM.
         ACPI = "yes",
         APIC = "no",
         GUEST_AGENT = "yes",
-        VIRTIO_SCSI_QUEUES = "4"
+        VIRTIO_SCSI_QUEUES = "auto"
+        VIRTIO_BLK_QUEUES = "auto"
     ]
+
 
 .. _reference_vm_template_disk_section:
 .. _template_disks_section:
@@ -318,6 +324,8 @@ Persistent and Clone Disks
 | ``IO``                          | Set IO policy. Values are ``threads``, ``native``.                                                                                        | O (Needs qemu 1.1)                | \-                                  | \-                                 | \-                                 |
 +---------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+-------------------------------------+------------------------------------+------------------------------------+
 | ``IOTHREAD``                    | Iothread id used by this disk. Default is round robin. Can be used only if ``IOTHREADS`` > 0.                                             | O (Needs qemu 2.1)                | \-                                  | \-                                 | \-                                 |
++---------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+-------------------------------------+------------------------------------+------------------------------------+
+| ``VIRTIO_BLK_QUEUES``           | Number of queues for the virtio-blk driver. It can be set for all disks, through the ``FEATURES`` attribute                               | O (Needs qemu 2.1)                | \-                                  | \-                                 | \-                                 |
 +---------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+-------------------------------------+------------------------------------+------------------------------------+
 | ``TOTAL_BYTES_SEC``,            | IO throttling attributes for the disk. They are specified in bytes or IOPS                                                                | O (Needs qemu 1.1)                | \-                                  | O                                  | \-                                 |
 | ``READ_BYTES_SEC``,             | (IO Operations) and can be specified for the total (read+write) or specific                                                               |                                   |                                     |                                    |                                    |

@@ -23,7 +23,8 @@ Storage & Backups
 - `Shared datastore allows qcow2 backing link in CLONE action to be configurable  <https://github.com/OpenNebula/one/issues/6098>`__.
 - `Allow resizing qcow2 and Ceph disks with snapshots  <https://github.com/OpenNebula/one/issues/6292>`__.
 - Backup Jobs enable you to define backup operations that involve multiple VMs, simplifying the management of your cloud infrastructure. With Backup Jobs, you can setup unified backup policies for multiple VMs, easily track it progress, and control the resources used.
-- `Added IO attribute to disk inheritence from VM Templates <https://github.com/OpenNebula/one/issues/6167>`__.
+- The ``VIRTIO_ISCSI_QUEUES`` attribute now offers support for the ``auto`` keyword, allowing you to automatically configure the number of queues to match the virtual CPU count of the Virtual Machine. For more information check the :ref:`VM Template Reference <template_features>` and the :ref:`KVM driver guide <kvmg>`.
+- Added a new attribute, ``VIRTIO_BLK_QUEUES``, to activate the multi-queue functionality in the virtio-blk driver. This attribute can be configured for all ``DISK`` devices within a VM either through the ``FEATURES`` attribute or globally in the KVM driver configuration file. For more information check the :ref:`VM Template Reference <template_features>` and the :ref:`KVM driver guide <kvmg>`.
 
 Ruby Sunstone
 ================================================================================

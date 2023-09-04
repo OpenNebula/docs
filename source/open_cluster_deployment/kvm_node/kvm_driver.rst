@@ -39,7 +39,7 @@ There are some attributes required for KVM to boot a VM. You can set a suitable 
 * ``EMULATOR``: path to the kvm executable.
 * ``OS``: attributes ``KERNEL``, ``INITRD``, ``BOOT``, ``ROOT``, ``KERNEL_CMD``, ``MACHINE``,  ``ARCH`` and ``SD_DISK_BUS``.
 * ``VCPU``
-* ``FEATURES``: attributes ``ACPI``, ``PAE``, ``APIC``, ``HEPRV``, ``GUEST_AGENT``, ``VIRTIO_SCSI_QUEUES``, ``IOTHREADS``.
+* ``FEATURES``: attributes ``ACPI``, ``PAE``, ``APIC``, ``HEPRV``, ``GUEST_AGENT``, ``VIRTIO_SCSI_QUEUES``, ``VIRTIO_BLK_QUEUES``, ``IOTHREADS``.
 * ``CPU_MODEL``: attribute ``MODEL``.
 * ``DISK``: attributes ``DRIVER``, ``CACHE``, ``IO``, ``DISCARD``, ``TOTAL_BYTES_SEC``, ``TOTAL_IOPS_SEC``, ``READ_BYTES_SEC``, ``WRITE_BYTES_SEC``, ``READ_IOPS_SEC``, ``WRITE_IOPS_SEC``, ``SIZE_IOPS_SEC``.
 * ``NIC``: attribute ``FILTER``, ``MODEL``.
@@ -56,7 +56,7 @@ For example (check the actual state in the configuration file on your Front-end)
 .. code::
 
     OS       = [ ARCH = "x86_64" ]
-    FEATURES = [ PAE = "no", ACPI = "yes", APIC = "no", HYPERV = "no", GUEST_AGENT = "no" ]
+    FEATURES = [ PAE = "no", ACPI = "yes", APIC = "no", HYPERV = "no", GUEST_AGENT = "no", VIRTIO_SCSI_QUEUES="auto" ]
     DISK     = [ DRIVER = "raw" , CACHE = "none"]
     HYPERV_OPTIONS="<relaxed state='on'/><vapic state='on'/><spinlocks state='on' retries='4096'/>"
     SPICE_OPTIONS="
@@ -198,7 +198,15 @@ For disks you can also use SCSI bus (``sd``) and it will use the virtio-scsi con
 .. code::
 
     FEATURES = [
-        VIRTIO_SCSI_QUEUES = 4
+        VIRTIO_SCSI_QUEUES = "auto"
+    ]
+
+Furthermore, you have the option to activate multi-queue support within the virtio-blk driver, enabling simultaneous management of distinct queues by various vCPUs. The ``auto`` keyword automatically set the number of queues to the number of vCPUs. When fine-tuning this configuration you may need to consider the queue depth of the underlying hardware. Additionally, this feature can also be configured by ``DISK``:
+
+.. code::
+
+    FEATURES = [
+        VIRTIO_BLK_QUEUES = "auto"
     ]
 
 Firmware
