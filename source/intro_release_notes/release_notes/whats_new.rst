@@ -50,7 +50,7 @@ CLI
 
 KVM
 ================================================================================
-- Added a monitoring to add ``KVM_CPU_FEATURES`` to the :ref:`Host Monitoring Information <hosts>`.
+- Added a monitoring script to add ``KVM_CPU_FEATURES`` to the :ref:`Host Monitoring Information <hosts>`.
 
 Other Issues Solved
 ================================================================================
