@@ -202,6 +202,8 @@ Example, a VM booting from ``sda1`` with kernel ``/vmlinuz``:
            ROOT       = sda1,
            KERNEL_CMD = "ro console=tty1"]
 
+.. _cpu_model_options_section:
+
 CPU_MODEL Options Section
 ================================================================================
 
@@ -217,6 +219,11 @@ This section (``CPU_MODEL``) configures the hardware configuration of the CPU ex
 | ``MODEL``               | The CPU model exposed to the guest. host-passthrough is  | O   | \-      | \-      |
 |                         | the same model as the host. Available modes are stored   |     |         |         |
 |                         | in the host information and obtained through monitor.    |     |         |         |
++-------------------------+----------------------------------------------------------+-----+---------+---------+
+| ``FEATURES``            | The CPU features required by the guest. This a comma     | O   | \-      | \-      |
+|                         | separated value list of the CPU features that a virtual  |     |         |         |
+|                         | machines. Available features are stored in the host      |     |         |         |
+|                         | information and obtained through monitor.                |     |         |         |
 +-------------------------+----------------------------------------------------------+-----+---------+---------+
 
 .. _template_features:

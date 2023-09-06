@@ -13,6 +13,8 @@ OpenNebula Core
 - Add ``sched-action`` and ``sg-attach`` to :ref:`VM Operation Permissions <oned_conf_vm_operations>`.
 - `Add VCPU to VMs pool list <https://github.com/OpenNebula/one/issues/6111>`__. If you are upgrading from previous version, the ``VCPU`` will apear after first update of the VM. Use ``onevm update <vm_id> --append <empty_file>`` to force VM update.
 - The scheduler has been extended so it can contact external modules to accomodate custom allocation policies easily, :ref:`see the external scheduler guide for more information <external_scheduler>`.
+- Deployment XML for libvirt will now generate feature tags for :ref:`CPU features defined in the VM Template under CPU_MODEL/FEATURES. <cpu_model_options_section>`
+- ``CPU_MODEL/FEATURES`` will now be added to :ref:`the Automatic Requirements. <scheduling>`
 
 Networking
 ================================================================================
@@ -48,7 +50,7 @@ CLI
 
 KVM
 ================================================================================
-- `Feature 1 <https://github.com/OpenNebula/one/issues/1234>`__.
+- Added a monitoring script to add ``KVM_CPU_FEATURES`` to the :ref:`Host Monitoring Information <hosts>`.
 
 Other Issues Solved
 ================================================================================
