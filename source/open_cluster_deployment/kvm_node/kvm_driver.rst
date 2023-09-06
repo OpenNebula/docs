@@ -48,6 +48,7 @@ There are some attributes required for KVM to boot a VM. You can set a suitable 
 * ``HYPERV_OPTIONS``: to enable hyperv extensions.
 * ``SPICE_OPTIONS``: to add default devices for SPICE.
 * ``OVMF_UEFIS``: to add allowed file paths for Open Virtual Machine Firmware.
+* ``Q35_ROOT_PORTS``: to modify the number of PCI devices that can be attached in q35 VMs (defaults to 16)
 
 .. warning:: These values are only used during VM creation; for other actions like nic or disk attach/detach the default values must be set in ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc``. For more info check :ref:`Files and Parameters <kvmg_files_and_parameters>` section.
 
