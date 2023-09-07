@@ -8159,6 +8159,7 @@ Type  Data Type   Description
 IN    String      The session string.
 IN    Int         The object ID.
 IN    String      The new Backup Job content. Syntax can be the usual ``attribute=value`` or XML.
+IN    Int         Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one.
 OUT   Boolean     True or false whenever is successful or not.
 OUT   Int/String  The resource ID / The error string.
 OUT   Int         Error code.
