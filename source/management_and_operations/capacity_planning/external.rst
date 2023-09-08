@@ -111,3 +111,37 @@ Configuration
 ================================================================================
 
 To configure, simply assign the URL for contacting the external scheduler to the ``EXTERNAL_SCHEDULER`` attribute. For more details, refer to the :ref:`scheduler configuration <schg_configuration>`.
+
+External Scheduler Server Example
+================================================================================
+Here is a simple example of ruby External Scheduler, which randomize host load based on Virtual Machine ID:
+
+.. code-block:: ruby
+
+    require 'sinatra'
+
+    before do
+        content_type 'application/json'
+    end
+
+    post '/' do
+        body = request.body.read
+        data = JSON.parse body
+
+        vms = []
+        response = { :VMS => vms }
+
+        # Go through all Virtual Machines
+        data['VMS'].each do |vm|
+            hosts = vm['HOST_IDS']
+
+            next if hosts.nil? || hosts.empty?
+
+            # Randomize the host based on the VM ID
+            host_id = hosts[vm['ID'].to_i % hosts.size]
+
+            vms << { :ID => vm['ID'], :HOST_ID => host_id }
+        end
+
+        response.to_json
+    end
