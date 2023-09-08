@@ -115,6 +115,16 @@ The default scheduling policies for hosts, datastores and virtual networks are d
    * ``PROXY``, if needed to contact the external scheduler
    * ``TIMEOUT``, how long to wait for a response
 
+* ``EXTERNAL_VM_ATTR``: Attributes serialized to External Scheduler, the format is 'PATH:NAME' where:
+
+    * PATH, attribute name in the Virtual Machine XML, could be
+
+        * absolute ``/VM/TEMPLATE/MEMORY``
+        * relative ``//MEMORY``, which takes first attribute with given name
+
+    * NAME, name of the attribute in the JSON output
+    * Examples: ``EXTERNAL_VM_ATTR = "/VM/GNAME:GROUP_NAME"``, ``EXTERNAL_VM_ATTR = "//UNAME:USER_NAME"``
+
 * ``LOG``: Configuration for the logging system.
 
   * ``SYSTEM``: Defines logging system. Use ``file`` to log in the ``sched.log`` file, ``syslog`` to use syslog, ``std`` to use default log stream (stderr).

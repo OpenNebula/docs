@@ -20,7 +20,7 @@ The scheduler employs a simple REST API. When the external scheduler is configur
 - ``HOST_IDS``: A list of IDs for hosts meeting the VM requirements
 - ``ID``: VM's ID
 - ``STATE``: Current state in string form
-- ``USER_TEMPLATE``: including all attributes
+- ``ATTRIBUTES``: Custom attributes as specified in :ref:`scheduler configuration <schg_configuration>` in ``EXTERNAL_VM_ATTR``.
 
 For instance, the following JSON illustrates a request for 3 VMs along with their corresponding matching hosts:
 
@@ -29,6 +29,10 @@ For instance, the following JSON illustrates a request for 3 VMs along with thei
     {
       "VMS": [
         {
+          "ATTRIBUTES": {
+            "GROUP_NAME": "oneadmin",
+            "USER_NAME": "oneadmin"
+          },
           "CAPACITY": {
             "CPU": 1.5,
             "DISK_SIZE": 1024,
@@ -40,10 +44,13 @@ For instance, the following JSON illustrates a request for 3 VMs along with thei
             5
           ],
           "ID": 32,
-          "STATE": "PENDING",
-          "USER_TEMPLATE": {}
+          "STATE": "PENDING"
         },
         {
+          "ATTRIBUTES": {
+            "GROUP_NAME": "users",
+            "USER_NAME": "userA"
+          },
           "CAPACITY": {
             "CPU": 1.5,
             "DISK_SIZE": 1024,
@@ -55,10 +62,13 @@ For instance, the following JSON illustrates a request for 3 VMs along with thei
             5
           ],
           "ID": 33,
-          "STATE": "PENDING",
-          "USER_TEMPLATE": {}
+          "STATE": "PENDING"
         },
         {
+          "ATTRIBUTES": {
+            "GROUP_NAME": "users",
+            "USER_NAME": "userA"
+          },
           "CAPACITY": {
             "CPU": 1.5,
             "DISK_SIZE": 1024,
@@ -70,8 +80,7 @@ For instance, the following JSON illustrates a request for 3 VMs along with thei
             5
           ],
           "ID": 34,
-          "STATE": "PENDING",
-          "USER_TEMPLATE": {}
+          "STATE": "PENDING"
         }
       ]
     }
