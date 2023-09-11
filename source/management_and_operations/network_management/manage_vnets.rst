@@ -393,6 +393,12 @@ To set the automatic selection mode, simply add the attribute ``NETWORK_MODE = "
 
     NIC = [ NETWORK_MODE = "auto" ]
 
+To do this via Sunstone you need to make sure the :ref:`sunstone view <suns_views>` you are using has the parameter ``automatic_selection_vnet`` set to ``true``.
+
+|vnet_automatic_selection|
+
+.. |vnet_automatic_selection| image:: /images/vnet_automatic_selection.png
+
 Also you can add SCHED_REQUIREMENTS and SCHED_RANK when this mode is activated. This will let you specify which networks can be used for a specific NIC (``SCHED_REQUIREMENTS``) and what are you preferences (``SCHED_RANK``) to select a network among the suitable ones.
 
 .. code::
