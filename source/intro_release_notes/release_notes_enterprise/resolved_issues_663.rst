@@ -17,6 +17,7 @@ The following new features have been backported to 6.6.3:
 - Added a guide for :ref:`replacing a failing OpenNebula front-end host <Replace failing front-end>`.
 - :ref:`Backup dialog in FireEdge Sunstone updated to make datastore selection optional if not needed <vm_backup>`.
 - :ref:`Add support to delete "in-chain" disk snapshots for tree layouts (qcow2) <vm_guide_2_disk_snapshots_managing>`.
+- :ref:`Customizable option to disable the Automatic Network Selection toggle on Sunstone <vgg_vn_automatic>`
 
 
 The following issues have been solved in 6.6.3:
