@@ -4,21 +4,11 @@
 Deploy OpenNebula Front-end on AWS
 ==================================
 
-In this guide, we'll go through a Front-end OpenNebula environment deployment, where all the OpenNebula services needed to use, manage and run the cloud will be collocated on a single dedicated bare-metal Host. Afterwards, you can continue to the Operations Basics section to add a remote Edge Cluster based on KVM or LXC to your shiny new OpenNebula cloud!
+In this guide, we'll go through a Front-end OpenNebula environment deployment, where all the OpenNebula services needed to use, manage and run the cloud will be collocated on a single dedicated bare-metal Host. Afterwards, you can continue to the Operations Basics section to add a remote Edge Cluster based on KVM to your shiny new OpenNebula cloud!
 
 While all the :ref:`installation and configuration <opennebula_installation>` steps can be done manually and would give you a better insight and control over what and how it is configured, we'll focus on the most straightforward approach by leveraging the miniONE tool.
 
-The `miniONE <https://github.com/OpenNebula/minione>`_ tool is a simple deployment script that deploys an OpenNebula Front-end. This tool is mainly intended for evaluation, development, and testing, but can also be used as a base for larger short-lived deployments. Usually, it takes just a few minutes to get the environment ready.
-
-
-If you're feeling adventurous, go ahead and try out the following.
-
-.. prompt:: bash # auto
-
-    # wget 'https://github.com/OpenNebula/minione/releases/latest/download/minione'
-    # sudo bash minione --frontend
-
-Otherwise, read on!
+The miniONE tool is a simple deployment script that deploys an OpenNebula Front-end. This tool is mainly intended for evaluation, development, and testing, but can also be used as a base for larger short-lived deployments. Usually, it takes just a few minutes to get the environment ready.
 
 Requirements
 ============
@@ -60,24 +50,14 @@ We recommend updating the system:
 Download
 ========
 
+miniONE can be downloaded by completing the form `here <https://opennebula.io/get-minione>`__.
+
+Deployment of Front-End
+=======================
+
 .. important::
 
     Unless specified, all commands below should be executed under privileged user **root**.
-
-Download the latest release of the miniONE tool by running one of the following commands:
-
-.. prompt:: bash # auto
-
-    # wget 'https://github.com/OpenNebula/minione/releases/latest/download/minione'
-
-or
-
-.. prompt:: bash # auto
-
-    # curl -O -L 'https://github.com/OpenNebula/minione/releases/latest/download/minione'
-
-Deploy
-======
 
 Various command line parameters passed to the miniONE tool can customize the deployment process, e.g. the required OpenNebula version or initial passwords. You can get a list of available flags by running:
 
@@ -111,6 +91,17 @@ The OpenNebula Front-end is now ready for evaluation.
 
 .. note:: miniONE offers more functionality. You can install OpenNebula with a KVM Host if you have a processor virtualization capabilities. Just drop the --Front-end flag to enable this if interested.
 
+Deployment of Front-End and KVM Node Cloud
+==========================================
+
+Run the following commands to deploy an evaluation cloud with a front-end and a single KVM node:
+
+.. prompt:: bash # auto
+
+    # sudo bash minione
+
+This option is suitable for bare-metal hosts to utilize HW virtualization, however the deployment will fallback to emulation (QEMU) if running on virtual machine or CPU without the virt. capabilities.
+
 Validation
 ==========
 
@@ -125,4 +116,6 @@ If the Host configured by **miniONE** is behind the firewall, the (default) Suns
 Next Steps
 ==========
 
-We recommend following the :ref:`Operations Guide <operation_basics>` from Quick Start after finishing this guide to add computing power to your shiny new OpenNebula cloud.
+After reaching this point, if you created a KVM node, you can follow the Running Virtual Machines section in the :ref:`Usage Basica Guide <usage_basics>`.
+
+If you want to try out instead OpenNebula public resource infrastructure provisioning or the Kubernestes engine, we recommend following the :ref:`Operations Guide <operation_basics>` from Quick Start after finishing this guide to add computing power to your shiny new OpenNebula cloud.
