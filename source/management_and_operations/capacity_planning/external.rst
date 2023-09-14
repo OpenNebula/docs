@@ -20,7 +20,7 @@ The scheduler employs a simple REST API. When the external scheduler is configur
 - ``HOST_IDS``: A list of IDs for hosts meeting the VM requirements
 - ``ID``: VM's ID
 - ``STATE``: Current state in string form
-- ``USER_TEMPLATE``: including all attributes
+- ``ATTRIBUTES``: Custom attributes as specified in :ref:`scheduler configuration <schg_configuration>` in ``EXTERNAL_VM_ATTR``.
 
 For instance, the following JSON illustrates a request for 3 VMs along with their corresponding matching hosts:
 
@@ -29,6 +29,10 @@ For instance, the following JSON illustrates a request for 3 VMs along with thei
     {
       "VMS": [
         {
+          "VM_ATTRIBUTES": {
+            "GNAME": "oneadmin",
+            "UNAME": "oneadmin"
+          },
           "CAPACITY": {
             "CPU": 1.5,
             "DISK_SIZE": 1024,
@@ -40,10 +44,13 @@ For instance, the following JSON illustrates a request for 3 VMs along with thei
             5
           ],
           "ID": 32,
-          "STATE": "PENDING",
-          "USER_TEMPLATE": {}
+          "STATE": "PENDING"
         },
         {
+          "VM_ATTRIBUTES": {
+            "GNAME": "users",
+            "UNAME": "userA"
+          },
           "CAPACITY": {
             "CPU": 1.5,
             "DISK_SIZE": 1024,
@@ -55,10 +62,13 @@ For instance, the following JSON illustrates a request for 3 VMs along with thei
             5
           ],
           "ID": 33,
-          "STATE": "PENDING",
-          "USER_TEMPLATE": {}
+          "STATE": "PENDING"
         },
         {
+          "VM_ATTRIBUTES": {
+            "GNAME": "users",
+            "UNAME": "userA"
+          },
           "CAPACITY": {
             "CPU": 1.5,
             "DISK_SIZE": 1024,
@@ -70,8 +80,7 @@ For instance, the following JSON illustrates a request for 3 VMs along with thei
             5
           ],
           "ID": 34,
-          "STATE": "PENDING",
-          "USER_TEMPLATE": {}
+          "STATE": "PENDING"
         }
       ]
     }
@@ -101,4 +110,38 @@ The external scheduler should respond with a similar structure, incorporating th
 Configuration
 ================================================================================
 
-To configure, simply assign the URL for contacting the external scheduler to the ``EXTERNAL_SCHEDULER`` attribute. For more details, refer to the :ref:`scheduler configuration <schg_configuration>`.
+To configure, simply assign the URL for contacting the external scheduler to the ``EXTERNAL_SCHEDULER`` attribute, and optionally add additional ``VM_ATTRIBUTES`` to the JSON request document. For more details, refer to the :ref:`scheduler configuration <schg_configuration>`.
+
+External Scheduler Server Example
+================================================================================
+Below is a straightforward template to help you in creating your custom external schedulers. This template is written in Ruby and uses the Sinatra web framework. The primary function of this scheduler is to take the initial list of hosts for each virtual machine and randomize the host allocation based on the Virtual Machine ID:
+
+.. code-block:: ruby
+
+    require 'sinatra'
+
+    before do
+        content_type 'application/json'
+    end
+
+    post '/' do
+        body = request.body.read
+        data = JSON.parse body
+
+        vms = []
+        response = { :VMS => vms }
+
+        # Go through all Virtual Machines
+        data['VMS'].each do |vm|
+            hosts = vm['HOST_IDS']
+
+            next if hosts.nil? || hosts.empty?
+
+            # Randomize the host based on the VM ID
+            host_id = hosts[vm['ID'].to_i % hosts.size]
+
+            vms << { :ID => vm['ID'], :HOST_ID => host_id }
+        end
+
+        response.to_json
+    end
