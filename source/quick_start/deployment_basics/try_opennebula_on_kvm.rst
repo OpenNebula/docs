@@ -27,7 +27,7 @@ If you don't have a server available with the above characteristics, we recommen
 
 - Frankfurt region
 - Ubuntu Server 20.04 LTS (HVM), SSD Volume Type - ami-0767046d1677be5a0
-- t2.small
+- t2.medium
 - 40 GB hard disk (you need to edit the Storage tab before launching the instance; by default it comes with just 8GB
 - open ports 22 (SSH), 80 (Sunstone), 2616 (FireEdge), 5030 (OneGate) by editing the Security Groups as per the picture. This can also happen after launching the instance following `this guide <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html>`__.
 
