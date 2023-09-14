@@ -9,8 +9,7 @@ In this section you can check all the steps needed to deploy an **Edge Cluster**
 
 .. important:: This guide assumes that you have deployed the OpenNebula front-end following the :ref:`Deployment Basics guide <deployment_basics>`. Here we'll be creating a metal Edge Cluster with KVM hypervisor, suitable for deploying both Virtual Machines and K8s clusters in the following :ref:`Usage Basics section <usage_basics>`.
 
-
-.. important:: If you're using OpenNebula 6.6.0 CE, before adding hosts to your environment, please apply this `patch <https://gist.github.com/tinova/73aa9ae5a7b35000563fa5801c7465c5>`__ in all Frontend machines:
+.. important:: If you're using OpenNebula 6.6.0 CE, before adding hosts to your environment, please create a oneprovision-repo.patch file with this `patch <https://gist.github.com/tinova/73aa9ae5a7b35000563fa5801c7465c5>`__ in your Frontend machine and then execute the below commands:
 
    .. code-block:: diff
 
