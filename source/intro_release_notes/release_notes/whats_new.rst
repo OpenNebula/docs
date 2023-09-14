@@ -48,6 +48,7 @@ API and CLI
 ================================================================================
 - Add enable method for MarketPlace; and state for Markeplace and Markeplace Appliances objects in the :ref:`Golang API (GOCA) <go>`.
 - `Allow STDIN passed templates for commands that accept template files <https://github.com/OpenNebula/one/issues/6242>`__.
+- New ``onevmgroup`` commands ``role-add``, ``role-delete`` and ``role-update`` for :ref:`managing VM Group roles <onevmgroup_api>`.
 
 KVM
 ================================================================================
