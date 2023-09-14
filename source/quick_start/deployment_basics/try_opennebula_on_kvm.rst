@@ -52,9 +52,6 @@ Download
 
 miniONE can be downloaded by completing the form `here <https://opennebula.io/get-minione>`__.
 
-Deployment of Front-End
-=======================
-
 .. important::
 
     Unless specified, all commands below should be executed under privileged user **root**.
@@ -66,6 +63,9 @@ Various command line parameters passed to the miniONE tool can customize the dep
     # bash minione --help
 
 In most cases, it's not necessary to specify anything, simply proceed with installation.
+
+Deployment of Front-End
+=======================
 
 Run the following command under the privileged user **root** to get ready the all-in-one OpenNebula Front-end installation:
 
@@ -89,10 +89,10 @@ Be patient, it should take only a few minutes to get the Host prepared. The main
 
 The OpenNebula Front-end is now ready for evaluation.
 
-.. note:: miniONE offers more functionality. You can install OpenNebula with a KVM Host if you have a processor virtualization capabilities. Just drop the --Front-end flag to enable this if interested.
+.. note:: miniONE offers more functionality. You can install OpenNebula with a KVM Host (next section) if you have a processor with virtualization capabilities. Just drop the --Front-end flag to enable this if interested.
 
-Deployment of Front-End and KVM Node Cloud
-==========================================
+Deployment of Front-End and KVM Node
+====================================
 
 Run the following commands to deploy an evaluation cloud with a front-end and a single KVM node:
 
@@ -100,7 +100,7 @@ Run the following commands to deploy an evaluation cloud with a front-end and a 
 
     # sudo bash minione
 
-This option is suitable for bare-metal hosts to utilize HW virtualization, however the deployment will fallback to emulation (QEMU) if running on virtual machine or CPU without the virt. capabilities.
+This option is suitable for bare-metal hosts to utilize HW virtualization. The deployment will fallback to emulation (QEMU) if running on virtual machine or CPU without virtualization capabilities.
 
 Validation
 ==========
