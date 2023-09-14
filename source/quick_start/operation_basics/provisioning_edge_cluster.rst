@@ -127,6 +127,8 @@ Step 4: Validation
 
 **Infrastructure Validation**
 
+.. note:: The following commands should be executed under the root ot the oneadmin users (you can use sudo to run commands as a root user).
+
 Once the deployment has finished, you can check that all the objects have been correctly created:
 
 .. prompt:: bash $ auto
