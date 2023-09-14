@@ -62,6 +62,7 @@ Other Issues Solved
 - `Fix issue with block device backed disks causing libvirt to fail to boot a VM <https://github.com/OpenNebula/one/issues/6212>`__.
 - `Fix issue when resuming a VM in 'pmsuspended' state in virsh <https://github.com/OpenNebula/one/issues/5793>`__.
 - `Fix issue datastore creation ignores cluster selection <https://github.com/OpenNebula/one/issues/6211>`__.
+- `Fix issue deploy VM after instantiate casues React app to crash <https://github.com/OpenNebula/one/issues/6276>`__.
 
 Features Backported to 6.6.x
 ================================================================================
