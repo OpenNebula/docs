@@ -146,7 +146,7 @@ You can also specify the ``VM_GROUP`` by its id (``VMGROUP_ID``), and in case of
 VM Group Management
 ================================================================================
 
-VM Groups can be updated to edit or add new rules. Currently only role to role rules can be updated if there are no VMs in the roles. All base operations are supported for the VMGroup object: ``rename``, ``chgrp``, ``chown``, ``chmod``, ``list``, ``show`` and ``delete``.
+VM Groups can be updated to edit or add new rules. Currently only role to role rules can be updated if there are no VMs in the roles. All base operations are supported for the VMGroup object: ``create``, ``delete``, ``chgrp``, ``chown``, ``chmod``, ``update``, ``rename``, ``list``, ``show``, ``lock`` and ``unlock``. For managing roles use ``onevmgroup`` commands ``role-add``, ``role-delete`` and ``role-update``.
 
 Note also that the same ACL/permission system is applied to VM Groups, so use access is required to place VMs in a group.
 
