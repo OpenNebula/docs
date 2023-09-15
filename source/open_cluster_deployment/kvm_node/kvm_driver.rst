@@ -44,6 +44,7 @@ There are some attributes required for KVM to boot a VM. You can set a suitable 
 * ``DISK``: attributes ``DRIVER``, ``CACHE``, ``IO``, ``DISCARD``, ``TOTAL_BYTES_SEC``, ``TOTAL_IOPS_SEC``, ``READ_BYTES_SEC``, ``WRITE_BYTES_SEC``, ``READ_IOPS_SEC``, ``WRITE_IOPS_SEC``, ``SIZE_IOPS_SEC``.
 * ``NIC``: attribute ``FILTER``, ``MODEL``.
 * ``GRAPHICS``: attributes ``TYPE``, ``LISTEN``, ``PASSWD``, ``KEYMAP``, ``RANDOM_PASSWD``. The VM instance must have at least empty ``GRAPHICS = []`` section to read these default attributes from the config file and to generate cluster unique ``PORT`` attribute.
+* ``VIDEO``: attributes: ``TYPE``, ``IOMMU``, ``ATS``, ``VRAM``, ``RESOLUTION``.
 * ``RAW``: to add libvirt attributes to the domain XML file.
 * ``HYPERV_OPTIONS``: to enable hyperv extensions.
 * ``SPICE_OPTIONS``: to add default devices for SPICE.
@@ -181,6 +182,17 @@ If properly configured, libvirt and KVM can work with SPICE (`check here for mor
 * ``TYPE = SPICE``
 
 Enabling spice will also make the driver inject a specific configuration for these machines. The configuration can be changed in the driver configuration file, variable ``SPICE_OPTIONS``.
+
+Video
+~~~~~
+
+If configured, libvirt will attach a video device to the virtual machine with the specified attributes. Available attributes are:
+
+* ``TYPE``: Defines the device type. Can be ``none``, ``vga``, ``cirrus``, and ``virtio``.  Utilizing ``virtio`` is required for ``IOMMU`` an ``ATS`` options.
+* ``IOMMU``: Enables the device to use emulated IOMMU.  Requires ``virtio`` type.
+* ``ATS``: Enables the device to use Address Translation Service.  Requires ``virtio`` type.
+* ``VRAM``: Defines the amount of VRAM to allocate to the video device, in kB.
+* ``RESOLUTION``: Defines the preferred resolution of the video device. Should be two numbers separated by an ``x``. Example: ``1920x1080``
 
 .. _kvmg_virtio:
 
