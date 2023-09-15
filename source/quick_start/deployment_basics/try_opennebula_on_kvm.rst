@@ -4,11 +4,11 @@
 Deploy OpenNebula Front-end on AWS
 ==================================
 
-In this guide, we'll go through a Front-end OpenNebula environment deployment, where all the OpenNebula services needed to use, manage and run the cloud will be collocated on a single dedicated bare-metal server or virtual machine. You will be also able to deploy a local KVM node within the same single server or virtual machine to try out OpenNebula, or for daily development work. Afterwards, if you need more resources or want to try out the automatic provisioning features for building multi-provider hybrid clouds, you can continue to the :ref:`Operations Guide <operation_basics>` to add a remote Edge Cluster based on KVM using AWS bare-metal instances to your shiny new OpenNebula cloud!
+In this guide, we'll go through a Front-end OpenNebula environment deployment, where all the OpenNebula services needed to use, manage and run the cloud will be collocated on a single dedicated bare-metal server or Virtual Machine (VM). You will be also able to deploy a local KVM node within the same single server or VM to try out OpenNebula, or for daily development work. Afterwards, if you need more physical resources or want to try out the automatic provisioning features for building multi-provider hybrid clouds, you can continue to the :ref:`Operations Guide <operation_basics>` to add a remote Edge Cluster based on KVM using AWS bare-metal instances to your shiny new OpenNebula cloud!
 
 While all the :ref:`installation and configuration <opennebula_installation>` steps can be done manually and would give you a better insight and control over what and how it is configured, we'll focus on the most straightforward approach by leveraging the miniONE tool.
 
-The miniONE tool is a simple deployment script that deploys an OpenNebula Front-end and, optionaly, a single KVM node within a single physical or virtual machine. This tool is mainly intended for evaluation, development, and testing, but can also be used as a base for larger short-lived deployments. Usually, it takes just a few minutes to get the environment ready.
+The miniONE tool is a simple deployment script that deploys an OpenNebula Front-end and, optionaly, a single KVM node within a single physical or virtual machine. This tool is mainly intended for evaluation, development, and testing, but it can also be used as a base for larger short-lived deployments. Usually, it takes just a few minutes to get the environment ready.
 
 Requirements
 ============
@@ -26,7 +26,7 @@ You'll need a server to try out OpenNebula. The provided Host should have a fres
 If you don't have a server available with the above characteristics, we recommend using a the Amazon EC2 service to obtain a VM to act as the OpenNebula Front-end. A tested combination is the following (but is by no means the only one possible):
 
 - Frankfurt region
-- Ubuntu Server 20.04 LTS (HVM), SSD Volume Type - ami-0767046d1677be5a0
+- Ubuntu Server 20.04 LTS (HVM), SSD Volume Type
 - t2.medium
 - 40 GB hard disk (you need to edit the Storage tab before launching the instance; by default it comes with just 8GB
 - open ports 22 (SSH), 80 (Sunstone), 2616 (FireEdge), 5030 (OneGate) by editing the Security Groups as per the picture. This can also happen after launching the instance following `this guide <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html>`__.
@@ -125,7 +125,7 @@ If you created a local KVM node with the front-end you can continue the validati
 - After clicking ‘Create’ you will be taken to the dashboard where you can see your running VMs.
 - You can click on your VM and manage it: Save its state, Reboot it, etc:
 
-.. note:: We know, thesea are very basic steps. If you want to try out real-life workloads with public IPs please continue to next section.
+.. note:: We know, these are very basic steps. If you want to try out real-life virtualization or kubernetes workloads with public IPs please continue to next section.
 
 Next Steps
 ==========
