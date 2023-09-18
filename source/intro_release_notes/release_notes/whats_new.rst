@@ -64,6 +64,7 @@ Other Issues Solved
 - `Fix issue datastore creation ignores cluster selection <https://github.com/OpenNebula/one/issues/6211>`__.
 - `Fix an issue where SSH auth driver would fail with openssh formatted private keys <https://github.com/OpenNebula/one/issues/6274>`__. 
 
+- `Fix an issue where LinuxContainers marketplace app templates would not match the LXC_UNPRIVILEGED setting handeld by the LXC driver <https://github.com/OpenNebula/one/issues/6190>`__.
 
 Features Backported to 6.6.x
 ================================================================================

@@ -142,6 +142,11 @@ In our example our cards have the groups 45, 46, 58 and 59 so we add this config
 
 .. _pci_config:
 
+.. note::
+
+  There may be permissions problems if ``/dev/vfio`` devices are not owned by ``oneadmin:kvm``. In this cases, a udev rule like ``SUBSYSTEM=="vfio", GROUP="kvm", OWNER="oneadmin"`` will set up the needed owner:group for them to work
+
+
 Driver Configuration
 --------------------
 
