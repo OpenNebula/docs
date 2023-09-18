@@ -183,6 +183,8 @@ If properly configured, libvirt and KVM can work with SPICE (`check here for mor
 
 Enabling spice will also make the driver inject a specific configuration for these machines. The configuration can be changed in the driver configuration file, variable ``SPICE_OPTIONS``.
 
+.. _kvm_video:
+
 Video
 ~~~~~
 

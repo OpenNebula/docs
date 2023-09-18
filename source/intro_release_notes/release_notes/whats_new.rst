@@ -53,6 +53,7 @@ API and CLI
 KVM
 ================================================================================
 - Added a monitoring script to add ``KVM_CPU_FEATURES`` to the :ref:`Host Monitoring Information <hosts>`.
+- Added the ``VIDEO`` attribute for VM's to :ref:`define a custom video device for VM's <kvm_video>`.
 
 Other Issues Solved
 ================================================================================
