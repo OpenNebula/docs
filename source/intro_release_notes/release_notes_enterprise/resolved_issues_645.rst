@@ -23,3 +23,4 @@ The following issues has been solved in 6.4.5:
 - `Fix initialization of 'sed' command avoiding repeating attributes <https://github.com/OpenNebula/one/issues/6306>`__.
 - `Fix an issue where SSH auth driver would fail with openssh formatted private keys <https://github.com/OpenNebula/one/issues/6274>`__.
 - `Fix an issue where LinuxContainers marketplace app templates would not match the LXC_UNPRIVILEGED setting handeld by the LXC driver <https://github.com/OpenNebula/one/issues/6190>`__.
+- `Fix schedule action is not setting the right day of the week in Sunstone on checkmark box <https://github.com/OpenNebula/one/issues/6260>`__.
