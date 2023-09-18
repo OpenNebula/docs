@@ -16,6 +16,7 @@ The following issues have been solved in 6.6.4:
 - `Fix charset conversions for 'onedb fsck' and 'onedb sqlite2mysql' <https://github.com/OpenNebula/one/issues/6297>`__.
 - `Fix initialization of 'sed' command avoiding repeating attributes <https://github.com/OpenNebula/one/issues/6306>`__.
 - `Fix IP alias detach so it does not removes VM vNICs from bridge ports (OVS) <https://github.com/OpenNebula/one/issues/6306>`__.
+- `Fix schedule action is not setting the right day of the week in Sunstone on checkmark box <https://github.com/OpenNebula/one/issues/6260>`__.
 
 Upgrade Notes
 ================================================================================
