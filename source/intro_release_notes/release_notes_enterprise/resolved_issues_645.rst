@@ -22,3 +22,4 @@ The following issues has been solved in 6.4.5:
 - `Fix charset conversions for 'onedb fsck' and 'onedb sqlite2mysql' <https://github.com/OpenNebula/one/issues/6297>`__.
 - `Fix initialization of 'sed' command avoiding repeating attributes <https://github.com/OpenNebula/one/issues/6306>`__.
 - `Fix an issue where SSH auth driver would fail with openssh formatted private keys <https://github.com/OpenNebula/one/issues/6274>`__.
+- `Fix an issue where LinuxContainers marketplace app templates would not match the LXC_UNPRIVILEGED setting handeld by the LXC driver <https://github.com/OpenNebula/one/issues/6190>`__.
