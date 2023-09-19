@@ -252,7 +252,7 @@ Users can instantiate it customizing anything except the CPU, VCPU and NIC. To c
 
     $ onetemplate instantiate 0 --memory 1G --disk "Ubuntu 16.04"
 
-Also, an user cannot delete any element of a list that has any restricted attributes. Having the following :ref:`restricted attributes in oned.conf <oned_conf_restricted_attributes_configuration>`:
+Also, a user cannot delete any element of a list that has any restricted attributes. Having the following :ref:`restricted attributes in oned.conf <oned_conf_restricted_attributes_configuration>`:
 
 .. code-block:: none
 
@@ -273,7 +273,7 @@ And the following template:
     NIC=[
       NETWORK_ID = "0" ]
 
-An user can delete the second disk but an user cannot delete the first disk because it has a restrictedd attribute.
+A user can delete the second disk but an user cannot delete the first disk because it has a restricted attribute.
 
 .. warning:: The provided attributes replace the existing ones. To add a new disk, the current one needs to be added also.
 
@@ -362,7 +362,7 @@ It is possible to update a template by using the ``onetemplate update``. This wi
 Restricted attributes when create or update a Template
 --------------------------------------------------------------------------------
 
-When an user creates or updates a template, there a some restricted attributes that he could not create or update. Having the following :ref:`restricted attributes in oned.conf <oned_conf_restricted_attributes_configuration>`:
+When a user creates or updates a template, there are some restricted attributes that she could not create or update. Having the following :ref:`restricted attributes in oned.conf <oned_conf_restricted_attributes_configuration>`:
 
 .. code-block:: none
 
@@ -384,7 +384,7 @@ And the following template:
 
 Users can create or update a template customizing anything except the CPU, VCPU and NIC.
 
-Also, an user cannot delete any element of a list that has any restricted attributes. Having the following :ref:`restricted attributes in oned.conf <oned_conf_restricted_attributes_configuration>`:
+Also, a user cannot delete any element of a list that has a restricted attributes. Having the following :ref:`restricted attributes in oned.conf <oned_conf_restricted_attributes_configuration>`:
 
 .. code-block:: none
 
@@ -405,8 +405,7 @@ And the following template:
     NIC=[
       NETWORK_ID = "0" ]
 
-An user can delete the second disk but an user cannot delete the first disk because it has a restrictedd attribute.
-
+A user can delete the second disk but she cannot delete the first disk because it contains a restrictedd attribute.
 
 Sharing Templates with other Users
 --------------------------------------------------------------------------------
