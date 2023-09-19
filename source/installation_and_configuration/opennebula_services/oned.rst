@@ -786,7 +786,9 @@ Sample configuration:
 
 OpenNebula evaluates these attributes:
 
+- on VM template create (``onetemplate create``)
 - on VM template instantiate (``onetemplate instantiate``)
+- on VM template update (``onetemplate update``)
 - on VM create (``onevm create``)
 - on VM attach NIC (``onevm nic-attach``), for example, to prevent using ``NIC/MAC``
 
