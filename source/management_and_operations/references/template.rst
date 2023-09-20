@@ -254,6 +254,8 @@ This section configures the features enabled for the VM.
 +-------------------------+-------------------------------------------------------------+-----+---------+---------+
 | ``HYPERV``              | Add hyperv extensions to the VM. The options can be         | O   | \-      | \-      |
 |                         | configured in the driver configuration, ``HYPERV_OPTIONS``. |     |         |         |
+|                         | Also, timers as configured in ``HYPERV_TIMERS`` are added   |     |         |         |
+|                         | to the domain clock.                                        |     |         |         |
 +-------------------------+-------------------------------------------------------------+-----+---------+---------+
 | ``GUEST_AGENT``         | Enables the QEMU Guest Agent communication. This only       | O   | \-      | \-      |
 |                         | creates the socket inside the VM, the Guest Agent itself    |     |         |         |

@@ -54,6 +54,7 @@ KVM
 ================================================================================
 - Added a monitoring script to add ``KVM_CPU_FEATURES`` to the :ref:`Host Monitoring Information <hosts>`.
 - Added the ``VIDEO`` attribute for VM's to :ref:`define a custom video device for VM's <kvm_video>`.
+- Extended support for Microsoft Windows guests: updated list of default ``HYPERV_OPTIONS`` and add a predefined set timers (configurable with ``HYPERV_TIMERS``) to the domain clock when ``HYPERV`` enhancements are enabled, :ref:`see the VM template reference <template_features>`.
 
 Other Issues Solved
 ================================================================================
@@ -63,6 +64,11 @@ Other Issues Solved
 - `Fix issue with block device backed disks causing libvirt to fail to boot a VM <https://github.com/OpenNebula/one/issues/6212>`__.
 - `Fix issue when resuming a VM in 'pmsuspended' state in virsh <https://github.com/OpenNebula/one/issues/5793>`__.
 - `Fix issue datastore creation ignores cluster selection <https://github.com/OpenNebula/one/issues/6211>`__.
+- `Fix issue deploy VM after instantiate casues React app to crash <https://github.com/OpenNebula/one/issues/6276>`__.
+- `Fix an issue where SSH auth driver would fail with openssh formatted private keys <https://github.com/OpenNebula/one/issues/6274>`__. 
+- `Fix an issue where LinuxContainers marketplace app templates would not match the LXC_UNPRIVILEGED setting handeld by the LXC driver <https://github.com/OpenNebula/one/issues/6190>`__.
+- `Fix issue where an non admin user has the error "Restricted attribute DISK" when updating VM Template <https://github.com/OpenNebula/one/issues/6154>`__. 
+- `Fix schedule action is not setting the right day of the week in Sunstone on checkmark box <https://github.com/OpenNebula/one/issues/6260>`__.
 
 Features Backported to 6.6.x
 ================================================================================
