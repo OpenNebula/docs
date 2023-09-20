@@ -53,6 +53,7 @@ API and CLI
 KVM
 ================================================================================
 - Added a monitoring script to add ``KVM_CPU_FEATURES`` to the :ref:`Host Monitoring Information <hosts>`.
+- Extended support for Microsoft Windows guests: updated list of default ``HYPERV_OPTIONS`` and add a predefined set timers (configurable with ``HYPERV_TIMERS``) to the domain clock when ``HYPERV`` enhancements are enabled, :ref:`see the VM template reference <template_features>`.
 
 Other Issues Solved
 ================================================================================
