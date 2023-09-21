@@ -35,6 +35,7 @@ Ruby Sunstone
 FireEdge Sunstone
 ================================================================================
 - Implemented VDCs tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
+- Implemented Users tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
 
 OneFlow - Service Management
 ================================================================================
