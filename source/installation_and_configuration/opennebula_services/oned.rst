@@ -790,6 +790,10 @@ OpenNebula evaluates these attributes:
 - on VM template instantiate (``onetemplate instantiate``)
 - on VM template update (``onetemplate update``)
 - on VM create (``onevm create``)
+- on VM update (``onevm update``)
+- on VM update configuration (``onevm updateconf``)
+- on VM resize (``onevm resize``)
+- on VM attach disk (``onevm disk-attach``)
 - on VM attach NIC (``onevm nic-attach``), for example, to prevent using ``NIC/MAC``
 
 .. _encrypted_attrs:
