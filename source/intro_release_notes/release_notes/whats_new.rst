@@ -70,6 +70,7 @@ Other Issues Solved
 - `Fix an issue where LinuxContainers marketplace app templates would not match the LXC_UNPRIVILEGED setting handeld by the LXC driver <https://github.com/OpenNebula/one/issues/6190>`__.
 - `Fix issue where an non admin user has the error "Restricted attribute DISK" when updating VM Template <https://github.com/OpenNebula/one/issues/6154>`__. 
 - `Fix schedule action is not setting the right day of the week in Sunstone on checkmark box <https://github.com/OpenNebula/one/issues/6260>`__.
+- `Disable change owner and change group for public MarketPlaces <https://github.com/OpenNebula/one/issues/6331>`__.
 
 Features Backported to 6.6.x
 ================================================================================
