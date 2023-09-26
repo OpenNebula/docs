@@ -1,3 +1,5 @@
+.. _oneke_guide:
+
 ====================================
 OpenNebula Kubernetes Engine (OneKE)
 ====================================

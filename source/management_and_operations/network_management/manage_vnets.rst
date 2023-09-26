@@ -380,6 +380,8 @@ The Virtual Machine will also get a free address from any of the address ranges 
 
 .. warning:: Users can only attach VMs or make reservations from Virtual Networks with **USE** rights on it. See the :ref:`Managing Permissions documentation <chmod>` for more information.
 
+.. _vgg_vn_automatic:
+
 Automatic Attach a Virtual Machine to a Virtual Network
 --------------------------------------------------------------------------------
 

@@ -143,6 +143,8 @@ If ``user`` is specified but not ``password`` the user will be prompted for the 
 * **ONE_SUNSTONE**: URL of the Sunstone portal, used for downloading Marketplace Apps streamed through Sunstone. If this is not specified, it will be inferred from ``ONE_XMLRPC`` (by changing the port to 9869), and if that ENV variable is undefined as well, it will default to ``http://localhost:9869``.
 * **ONEFLOW_URL**, **ONEFLOW_USER** and **ONEFLOW_PASSWORD**: these variables are used by the :ref:`OneFlow <oneflow_overview>` command line tools. If not set, the default OneFlow URL will be ``http://localhost:2474``. The user and password will be taken from the ``ONE_AUTH`` file if the environment variables are not found.
 
+.. _cli_views:
+
 CLI views
 ================================================================================
 
