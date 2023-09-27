@@ -10,9 +10,7 @@ What's New in |version|
 
 The fist highlight is the addition of the Virtual Datacenter (VDC) and User tab to FireEdge Sunstone. As you may know, we are working hard on replacing the eyes of OpenNebula, Ruby Sunstone, which has served well for over a decade. FireEdge Sunstone is starting to exhibit a high percentage of the needed functionality, as well as starting to expand the functionality given by Ruby Sunstone. An example is the new User tab, which also includes Accounting and Showback information that can be exported and presented in several different charts. Also Quotas subtab has undergo a face lifting, with a more comprehensive way to convey information.
 
-.. image:: /images/fireedge-new-quotas.png
-    :align: center
-.. image:: /images/fireedge-new-accounting.png
+.. image:: /images/fireedge-rns-68.png
     :align: center
 
 The second highlight is related with Backup functionality, with the introduction of Backup Jobs. Backup Jobs enables the definition of backup operations that involve multiple VMs, simplifying the management of your cloud infrastructure. It lets you establish a unified backup policy for multiple VMs, encompassing schedules, backup retention, and filesystem freeze mode, as well as maintain control over the execution of backup operations, ensuring they do not disrupt ongoing workloads. Moreover it allows for the monitoring the progress of backup operations, essential to estimate backup times accurately.
