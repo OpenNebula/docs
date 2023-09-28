@@ -8,15 +8,9 @@ A complete list of `known issues for OpenNebula is maintained here <https://gith
 
 This page will be updated with relevant information about bugs affecting OpenNebula, as well as possible workarounds until a patch is officially published.
 
-Drivers - Auth
-================================================================================
-
-- OpenNebula does not parse admin groups correctly. Groups starting by * indicating admin rights fails to parse, this affects all external `auth drivers including LDAP <https://github.com/OpenNebula/one/issues/5946>`_.
-
 Drivers - Network
 ================================================================================
 
-- If the nic-attach fails due to the libvirt bug (VM can not eject CD-ROM after reset) the nic appears in the VM (although without proper configuration) but it's not visible on OpenNebula VM `#5268 <http://github.com/OpenNebula/one/issues/5268>`_
 - Edge Cluster Public IP: NIC_ALIAS on the public network can only can only be associated to a NIC on the same network.
 
 Drivers - Storage
@@ -44,11 +38,6 @@ vCenter Snapshot behavior
 =================================
 
 VMs in vCenter 7.0 exhibit a new behavior regarding snapshots and disks attach/detach operations. When vCenter 7.0 detects any change in the number of disks attached to a VM, it automatically cleans all the VM snapshots. OpenNebula doesn't take this into account yet, so the snapshots stated by OpenNebula, after a disk attach or disk detach, are pointing to a null vCenter reference, and as such, cannot be used. Please keep this in mind before a solution is implemented.
-
-Virtual Machines Backup
-================================================================================
-
-When taking a VM backup, if the upload process fails and the app results in ERROR state, the backup will complete successfully. A detailed explanation can be found `here <https://github.com/OpenNebula/one/issues/5454>`__.
 
 Warning when Exporting an App from the Marketplace Using CLI
 ================================================================================
