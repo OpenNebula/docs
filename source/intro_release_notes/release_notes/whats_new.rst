@@ -15,7 +15,7 @@ The first highlight is the addition of the Virtual Datacenter (VDC) and User tab
 
 The second highlight is related to Backup functionality, with the introduction of Backup Jobs. Backup Jobs enable the definition of backup operations that involve multiple VMs, simplifying the management of your cloud infrastructure. It lets you establish a unified backup policy for multiple VMs, encompassing schedules, backup retention, and filesystem freeze mode, as well as maintain control over the execution of backup operations, ensuring they do not disrupt ongoing workloads. Moreover, it allows for the monitoring of the progress of backup operations, essential to estimate backup times accurately.
 
-And third and last, but not least, there ahve been a myriad of improvements in the KVM drivers. To name a few: now it's possible to fine-tune the selection of CPU flags, to specify io_uring driver for disks, define a custom video device for VMs and automatically define default set timers to improve Windows performance. These options have been implemented in the driver, and for the ones where it makes sense, are already exposed through Sunstone. Both flavours :)
+And third and last, but not least, there have been a myriad of improvements in the KVM drivers. To name a few: now it's possible to fine-tune the selection of CPU flags, to specify io_uring driver for disks, define a custom video device for VMs and automatically define default set timers to improve Windows performance. These options have been implemented in the driver, and for the ones where it makes sense, are already exposed through Sunstone. Both flavours :)
 
 As a bonus, the scheduler can be now configured to reach out to an external module (with a well-defined REST API) to get recommendations on initial VM placement. The motivation behind this new feature is to able to integrate OpenNebula with different Machine Learning modules that can optimize different metrics to optimize a given criteria, or set of criteria: reduce energy consumption, reduce latency with respect to end user, reduce overall infrastructure cost, etc. Check below to learn what other goodies, and bug fixes, made it into OpenNebula.
 
@@ -86,7 +86,7 @@ Additionally, the following functionalities are present that were not in OpenNeb
 - Add ``sched-action`` and ``sg-attach`` to :ref:`VM Operation Permissions <oned_conf_vm_operations>`.
 - `Marketplace download app stepper should filter image DS <https://github.com/OpenNebula/one/issues/6213>`__.
 - Improve :ref:`list commands <cli>`  help messages to point to :ref:`layout configuration files <cli_views>`.
-- `Add VCPU to VMs pool list <https://github.com/OpenNebula/one/issues/6111>`__. If you are upgrading from previous version, the ``VCPU`` will apear after first update of the VM. Use ``onevm update <vm_id> --append <empty_file>`` to force VM update.
+- `Add VCPU to VMs pool list <https://github.com/OpenNebula/one/issues/6111>`__. If you are upgrading from the previous version, the ``VCPU`` will appear after the first update of the VM. Use ``onevm update <vm_id> --append <empty_file>`` to force VM update.
 - Added a guide for :ref:`replacing a failing OpenNebula front-end host <Replace failing front-end>`.
 - :ref:`Backup dialog in FireEdge Sunstone updated to make datastore selection optional if not needed <vm_backup>`.
 - :ref:`Add support to delete "in-chain" disk snapshots for tree layouts (qcow2) <vm_guide_2_disk_snapshots_managing>`.
@@ -103,7 +103,7 @@ Additionally, the following functionalities are present that were not in OpenNeb
 - :ref:`Allow standalone qcow2 image on shared datastore <nas_ds>`.
 - :ref:`Graceful stop of ongoing backup operations <vm_backups_overview>`.
 - :ref:`FireEdge Sunstone datastores tab <fireedge_conf>`.
-- :ref:`Add support Centos 8 Stream, Amazon Linux and Opensuse for LXD marketplace <market_linux_container>`.
+- :ref:`Add support Centos 8 Stream, Amazon Linux, and Opensuse for LXD marketplace <market_linux_container>`.
 - :ref:`Add ability to pin the virtual CPUs and memory of a VM to a specific NUMA node <numa>`.
 - :ref:`Hugepages can be used without CPU pinning <numa>`.
 - Restic and Rsync drivers allows to limit CPU and I/O resources consumed by the backup operations. See :ref:`the restic <vm_backups_restic>` and :ref:`the rsync <vm_backups_rsync>` documentation for more information.
@@ -124,16 +124,16 @@ Other Issues Solved
 - `Fix issue with block device backed disks causing libvirt to fail to boot a VM <https://github.com/OpenNebula/one/issues/6212>`__.
 - `Fix issue when resuming a VM in 'pmsuspended' state in virsh <https://github.com/OpenNebula/one/issues/5793>`__.
 - `Fix issue datastore creation ignores cluster selection <https://github.com/OpenNebula/one/issues/6211>`__.
-- `Fix issue deploy VM after instantiate casues React app to crash <https://github.com/OpenNebula/one/issues/6276>`__.
+- `Fix issue deploy VM after instantiate causes React app to crash <https://github.com/OpenNebula/one/issues/6276>`__.
 - `Fix an issue where SSH auth driver would fail with openssh formatted private keys <https://github.com/OpenNebula/one/issues/6274>`__.
 - `Fix an issue where LinuxContainers marketplace app templates would not match the LXC_UNPRIVILEGED setting handeld by the LXC driver <https://github.com/OpenNebula/one/issues/6190>`__.
-- `Fix issue where an non admin user has the error "Restricted attribute DISK" when updating VM Template <https://github.com/OpenNebula/one/issues/6154>`__.
+- `Fix issue where an non-admin user has the error "Restricted attribute DISK" when updating VM Template <https://github.com/OpenNebula/one/issues/6154>`__.
 - `Fix schedule action is not setting the right day of the week in Sunstone on checkmark box <https://github.com/OpenNebula/one/issues/6260>`__.
 - `Fix disk RECOVERY_SNAPSHOT_FREQ on template instantiation on Ruby Sunstone <https://github.com/OpenNebula/one/issues/6067>`__.
-- `Fix case sentive on FireEdge endpoints <https://github.com/OpenNebula/one/issues/6051>`__.
+- `Fix case sensitive on FireEdge endpoints <https://github.com/OpenNebula/one/issues/6051>`__.
 - `Fix multiple minor issues in Sunstone schedule actions forms <https://github.com/OpenNebula/one/issues/5974>`__.
 - `Fix rsync backup driver to make use of RSYNC_USER value defined in the datastore template <https://github.com/OpenNebula/one/issues/6073>`__.
-- `Fix locked resource by admin can be overriden by user lock. Fix lock --all flag <https://github.com/OpenNebula/one/issues/6022>`__.
+- `Fix locked resource by admin can be overridden by user lock. Fix lock --all flag <https://github.com/OpenNebula/one/issues/6022>`__.
 - `Fix 'onetemplate instantiate' the persistent flag is not correctly handled <https://github.com/OpenNebula/one/issues/5916>`__.
 - `Fix Enable/disable actions for host to reset monitoring timers <https://github.com/OpenNebula/one/issues/6039>`__.
 - `Fix monitoring of NUMA memory and hugepages usage <https://github.com/OpenNebula/one/issues/6027>`__.
