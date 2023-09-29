@@ -11,7 +11,7 @@ This page will be updated with relevant information about bugs affecting OpenNeb
 Drivers - Network
 ================================================================================
 
-- Edge Cluster Public IP: NIC_ALIAS on the public network can only can only be associated to a NIC on the same network.
+- Edge Cluster Public IP: NIC_ALIAS on the public network can only be associated to a NIC on the same network.
 
 Drivers - Storage
 ================================================================================
@@ -28,6 +28,10 @@ Sunstone
 
 - Guacamole RDP as is currently shipped in OpenNebula does not support NLA authentication. You can follow `these instructions <https://www.parallels.com/blogs/ras/disabling-network-level-authentication/>`__ in order to disable NLA in the Windows box to use Guacamole RDP within Sunstone.
 - Creating a VM with SPICE graphics, on Alma9, will cause the VM to stay on FAILED state.
+
+OneProvision
+================================================================================
+- Until the 6.8 is released, OneProvision repositories definitions don't work
 
 Install Linux Graphical Desktop on KVM Virtual Machines
 ================================================================================
