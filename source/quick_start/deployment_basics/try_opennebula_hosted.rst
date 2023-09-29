@@ -73,9 +73,20 @@ You should have the following environment variables set, you may want to place t
     ONE_XMLRPC=http://poc.opennebula.cloud/xmlrpc
     ONEFLOW_URL=http://poc.opennebula.cloud:2474
 
+Hosted infrastructure
+=====================
+ 
+The cloud environment provided has two OpenNebula Hosts already added and configured ready to deploy VMs.
 
-Provisioning KVM Clusters
-=========================
+|hosted_nodes|
+
+.. warning::
+
+    Hosts provided within the Hosted Cloud PoC are virtualized hosts that use Qemu to run the virtual machines. The efficiency and performance of the virtual machines on this environment is not suitable for a production environment since a hardware virtualization of the machines is taking place. However, it is an easy way to test and get a first experience with the management and operation of OpenNebula.
+
+
+Provisioning additional KVM Clusters
+===================================
 
 .. warning::
 
@@ -98,3 +109,4 @@ Once you have provisioned resources, you can refer to :ref:`Usage Basics guide <
 .. |sunstone_login| image:: /images/sunstone-login.png
 .. |sunstone_change_password| image:: /images/sunstone_settings.png
 .. |fireedge_login| image:: /images/fireedge_for_rns.png
+.. |hosted_nodes| image:: /images/hosted_nodes.png
