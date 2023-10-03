@@ -66,3 +66,8 @@ Restricted Attributes
 ================================================================================
 
 Previous versions of OpenNebula silently ignored the removal of restricted attributes. However, with the `resolution of the issue 6315 <https://github.com/OpenNebula/one/issues/6315>`_, an error will be generated always in such cases.
+
+OneGate Proxy
+================================================================================
+
+We are actively developing an enhanced version of the OneGate Proxy implementation that comes with reduced requirements. Starting from release 6.8.0, we strongly recommend disabling this component and following the recommened network configuration outlined in :ref:`the OneGate Configuration guide <onegate_conf>`.

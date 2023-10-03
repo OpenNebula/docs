@@ -86,7 +86,7 @@ The cloud environment provided has two OpenNebula Hosts already added and config
 
 
 Provisioning additional KVM Clusters
-===================================
+====================================
 
 .. warning::
 
