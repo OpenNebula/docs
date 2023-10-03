@@ -96,6 +96,15 @@ RHEL 8.x (CentOS/AlmaLinux/Oracle Linux 8.x) and Fedora 29+
     # yum install -y one-context-[0-9]*el8*rpm
     # systemctl enable network.service
 
+RHEL 9.x (CentOS/AlmaLinux/Oracle Linux 9.x) and Fedora 36+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # yum install -y epel-release
+    # yum install -y one-context-[0-9]*el9*rpm
+    # systemctl enable NetworkManager.service
+
 OpenSUSE
 ~~~~~~~~
 
