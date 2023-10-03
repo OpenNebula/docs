@@ -16,6 +16,13 @@ RHEL 8.x (CentOS/AlmaLinux/Oracle Linux 8.x) and Fedora 29+
 
     # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.4.0/one-context-6.4.0-1.el8.noarch.rpm
 
+RHEL 9.x (CentOS/AlmaLinux/Oracle Linux 9.x) and Fedora 36+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v6.6.1/one-context-6.6.1-1.el9.noarch.rpm
+
 Debian/Ubuntu/Devuan
 ~~~~~~~~~~~~~~~~~~~~
 
@@ -95,6 +102,15 @@ RHEL 8.x (CentOS/AlmaLinux/Oracle Linux 8.x) and Fedora 29+
     # yum install -y epel-release
     # yum install -y one-context-[0-9]*el8*rpm
     # systemctl enable network.service
+
+RHEL 9.x (CentOS/AlmaLinux/Oracle Linux 9.x) and Fedora 36+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # yum install -y epel-release
+    # yum install -y one-context-[0-9]*el9*rpm
+    # systemctl enable NetworkManager.service
 
 OpenSUSE
 ~~~~~~~~
