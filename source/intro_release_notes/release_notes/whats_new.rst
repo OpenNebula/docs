@@ -184,3 +184,4 @@ Other Issues Solved
 - `Fix the template update process to ensure that restricted attributes are always kept <https://github.com/OpenNebula/one/issues/6315>`__. It's worth noting that previous versions silently ignored the removal of restricted attributes. However, with this patch, an error will be generated in such cases.
 - `Fix error when removing ipsets under heavy load <https://github.com/OpenNebula/one/issues/6299>`__.
 - `Disable change owner and change group for public MarketPlaces <https://github.com/OpenNebula/one/issues/6331>`__.
+- `Fix inputs do not accept decimals in resize capacity vm <https://github.com/OpenNebula/one/issues/6337>`__.
