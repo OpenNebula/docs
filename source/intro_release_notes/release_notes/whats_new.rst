@@ -185,3 +185,4 @@ Other Issues Solved
 - `Fix error when removing ipsets under heavy load <https://github.com/OpenNebula/one/issues/6299>`__.
 - `Disable change owner and change group for public MarketPlaces <https://github.com/OpenNebula/one/issues/6331>`__.
 - `Fix inputs do not accept decimals in resize capacity vm <https://github.com/OpenNebula/one/issues/6337>`__.
+- `Fix oneflow CLI autocompletion <https://github.com/OpenNebula/one/issues/6345>`__.
