@@ -883,8 +883,22 @@ Additional parameters can be passed using the ``merge_template`` inside the ``pa
 
 The following attributes can be also passed using the ``merge_template``:
 
-* network_values
-* custom_attrs_values
+* ``network_values``
+* ``custom_attrs_values``
+* ``vm_template_contents``
+
+For example, instantiate a service template with custom VM capacity
+
+.. code::
+
+    curl http://127.0.0.1:2474/service_template/4/action -u 'oneadmin:password' -v -X POST --data '{
+      "action": {
+        "perform":"instantiate",
+        "params":{"merge_template":{"vm_template_contents":"HOT_RESIZE=[CPU_HOT_ADD_ENABLED=\"YES\",\nMEMORY_HOT_ADD_ENABLED=\"YES\"]\nMEMORY_RESIZE_MODE=\"BALLOONING\"\nVCPU_MAX= \"2\"\nMEMORY_MAX=\"128\""}}
+      }
+    }'
+
+
 
 Delete a Given Template
 --------------------------------------------------------------------------------
