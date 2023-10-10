@@ -193,7 +193,7 @@ From Sunstone, you can view these custom attributes as fields to be filled when 
 
 |oneflow-templates-attrs|
 
-You can also use them through the CLI. When you instantiate the template using ``oneflow-template instantiate <ID> <file>``. 
+You can also use them through the CLI. When you instantiate the template using ``oneflow-template instantiate <ID> <file>``.
 
 Custom attributes can be defined at two different levels:
 
@@ -581,6 +581,55 @@ The Virtual Machines of a Service can share information with each other, using t
 From any VM, use the ``PUT ${ONEGATE_ENDPOINT}/vm`` action to store any information in the VM user template. This information will be in the form of attribute=vale, e.g. ``ACTIVE_TASK = 13``. Other VMs in the Service can request that information using the ``GET ${ONEGATE_ENDPOINT}/service`` action.
 
 You can read more details in the :ref:`OneGate API documentation <onegate_usage>`.
+
+VM Template override
+--------------------------------------------------------------------------------
+
+Each role is backed by a VM Template. Once the VM is instantiated, the resulting VM will inherit the attributes defined in the VM Template. You can pass extra attributes at the moment of the VM instantiation by using the ``vm_template_contents`` option within each role.
+
+For example, the following service template will make sure that the VMs created backing the role FAAS will have capacity hotplug functionality.
+
+.. prompt:: bash $ auto
+
+  root@provisionengine-test-env:~# oneflow-template show 241
+  SERVICE TEMPLATE 241 INFORMATION
+  ID                  : 241
+  NAME                : Function
+  USER                : oneadmin
+  GROUP               : oneadmin
+  REGISTRATION TIME   : 10/04 21:16:34
+
+  PERMISSIONS
+  OWNER               : um-
+  GROUP               : ---
+  OTHER               : ---
+
+  TEMPLATE CONTENTS
+  {
+    "name": "Function",
+    "deployment": "straight",
+    "description": "",
+    "roles": [
+      {
+        "name": "FAAS",
+        "cardinality": 1,
+        "vm_template": 0,
+        "shutdown_action": "terminate-hard",
+        "elasticity_policies": [
+
+        ],
+        "scheduled_policies": [
+
+        ],
+        "vm_template_contents": "HOT_RESIZE=[CPU_HOT_ADD_ENABLED=\"YES\",\nMEMORY_HOT_ADD_ENABLED=\"YES\"]\nMEMORY_RESIZE_MODE=\"BALLOONING\"\nVCPU_MAX= \"2\"\nMEMORY_MAX=\"128\""
+      }
+    ],
+    "ready_status_gate": false,
+    "automatic_deletion": false,
+    "registration_time": 1696454194
+  }
+
+
 
 Network mapping & Floating IPs
 --------------------------------------------------------------------------------
