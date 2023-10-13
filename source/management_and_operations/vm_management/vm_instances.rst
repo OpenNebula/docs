@@ -481,7 +481,7 @@ Live Resize of Capacity
 
 If you need to resize the capacity in the RUNNING state you have to setup some extra attributes to VM template, this attributes **must be set before the VM is started**. These attributes are driver specific, more info for :ref:`KVM <kvm_live_resize>` and :ref:`vCenter <vcenter_live_resize>`.
 
-.. warning:: Hotplug is only implemented only for KVM and vCenter.
+.. warning:: Hotplug is only implemented only for KVM and vCenter. Added CPUs will be in offline state after the resize. Enable them with ``echo 1 > /sys/devices/system/cpu/cpu<ID>/online``
 
 .. _vm_guide2_resize_disk:
 
