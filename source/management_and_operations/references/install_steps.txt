@@ -32,7 +32,7 @@ Debian/Ubuntu/Devuan
 .. prompt:: bash # auto
    :substitutions:
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|-1.deb
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context_|context_release|-1.deb
 
 OpenSUSE 15 and Tumbleweed
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
