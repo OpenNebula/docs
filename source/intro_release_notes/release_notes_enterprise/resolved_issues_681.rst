@@ -9,3 +9,5 @@ The following new features has been backported to 6.8.1:
 
 
 The following issues has been solved in 6.8.1:
+
+- Fix "NUMA" and "OS & CPU" tabs on Fireedge Sunstone return an error when at least one host contains a NUMA node that has exactly one hugepage.
