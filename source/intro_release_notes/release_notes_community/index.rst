@@ -1,7 +1,7 @@
 .. _rnce:
 
 ================================================================================
-Release Notes 6.6.4 Community
+Release Notes 6.6.1.1 Community
 ================================================================================
 
 .. toctree::
@@ -9,3 +9,4 @@ Release Notes 6.6.4 Community
 
    What is OpenNebula CE<what_is>
    Compatibility Guide <compatibility_ce>
+   Resolved Issues 6.6.1.1 <resolved_issues_6611>

@@ -75,7 +75,7 @@ You should have the following environment variables set, you may want to place t
 
 Hosted infrastructure
 =====================
- 
+
 The cloud environment provided has two OpenNebula Hosts already added and configured ready to deploy VMs.
 
 |hosted_nodes|
@@ -86,7 +86,7 @@ The cloud environment provided has two OpenNebula Hosts already added and config
 
 
 Provisioning additional KVM Clusters
-===================================
+=====================================
 
 .. warning::
 
