@@ -21,9 +21,9 @@ As a bonus, the scheduler can be now configured to reach out to an external modu
 
 As usual, OpenNebula 6.8 is named after a Nebula. The `Rosette Nebula <https://en.wikipedia.org/wiki/Rosette_Nebula>`__ (also known as Caldwell 49) is an H II region located near one end of a giant molecular cloud in the Monoceros region of the Milky Way Galaxy. The open cluster `NGC 2244 <https://en.wikipedia.org/wiki/NGC_2244>`__ (Caldwell 50) is closely associated with the nebulosity, the stars of the cluster having been formed from the nebula's matter.
 
-This is the first beta version for 6.8, aimed at testers and developers to try the new features. All the functionality is present and only bug fixes will happen between this release and final 6.8. Please check the :ref:`known issues <known_issues>` before submitting an issue through GitHub. Also note that being a development version, there is no migration path from the previous stable version (6.6.x) nor migration path to the final stable version (6.8.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/69>`__.
+OpenNebula 6.8 ‘Rosette’ is considered to be a stable release and as such it is available to update production environments.
 
-We’d like to thank all the people that support the project, OpenNebula is what it is thanks to its community! Please keep rocking.
+We’d like to thank all the people that :ref:`support the project<acknowledgements>`, OpenNebula is what it is thanks to its community! Please keep rocking.
 
 OpenNebula Core
 ================================================================================
@@ -32,10 +32,6 @@ OpenNebula Core
 - The scheduler has been extended so it can contact external modules to accomodate custom allocation policies easily, :ref:`see the external scheduler guide for more information <external_scheduler>`.
 - Deployment XML for libvirt will now generate feature tags for :ref:`CPU features defined in the VM Template under CPU_MODEL/FEATURES. <cpu_model_options_section>`
 - ``CPU_MODEL/FEATURES`` will now be added to :ref:`the Automatic Requirements. <scheduling>`
-
-Networking
-================================================================================
-- `Feature 1 <https://github.com/OpenNebula/one/issues/1234>`__.
 
 Storage & Backups
 ================================================================================
@@ -54,14 +50,6 @@ FireEdge Sunstone
 ================================================================================
 - Implemented VDCs tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
 - Implemented Users tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
-
-OneFlow - Service Management
-================================================================================
-- `Feature 1 <https://github.com/OpenNebula/one/issues/1234>`__.
-
-OneGate
-================================================================================
-- `Feature 1 <https://github.com/OpenNebula/one/issues/1234>`__.
 
 API and CLI
 ================================================================================
