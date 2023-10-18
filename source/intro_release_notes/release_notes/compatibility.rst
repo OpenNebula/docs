@@ -70,4 +70,4 @@ Previous versions of OpenNebula silently ignored the removal of restricted attri
 OneGate Proxy
 ================================================================================
 
-We are actively developing an enhanced version of the OneGate Proxy implementation that comes with reduced requirements. Starting from release 6.8.0, we strongly recommend disabling this component and following the recommened network configuration outlined in :ref:`the OneGate Configuration guide <onegate_conf>`.
+We are actively developing an enhanced version of the OneGate Proxy implementation that comes with reduced requirements. Starting from release 6.99.80, we strongly recommend disabling this component and following the recommened network configuration outlined in :ref:`the OneGate Configuration guide <onegate_conf>`.
