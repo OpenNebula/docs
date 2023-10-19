@@ -28,7 +28,7 @@ Main Features
 
 .. note::
 
-    We are continually expanding the feature set of FireEdge Sunstone, and hence its configuration files are in constant change. In versions 6.8.1 and later, configuration files in ``/etc/one/fireedge/sunstone/`` can be replaced by the ones that can be downloaded `here <https://minhaskamal.github.io/DownGit/#/home?url=https:%2F%2Fgithub.com%2FOpenNebula%2Fone%2Ftree%2Fc461d3084637f73a86f53b722f5b4c338bbcf8cc%2Fsrc%2Ffireedge%2Fetc%2Fsunstone>`__ in order to activate the latest features.
+    We are continually expanding the feature set of FireEdge Sunstone, and hence its configuration files are in constant change. In versions 6.8.1 and later, configuration files in ``/etc/one/fireedge/sunstone/`` can be replaced by the ones that can be downloaded `here <https://bit.ly/one-68-maintenance-config>`__ in order to activate the latest features.
 
 
 
