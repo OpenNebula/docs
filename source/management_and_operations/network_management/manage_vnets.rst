@@ -277,6 +277,8 @@ The update operation will trigger driver action to live update the network confi
 
  .. important:: QoS attribues (INBOUND and OUTBOUND) can be updated for single VMs with :ref:`onevm nic-update <nic_update>`.
 
+ .. important:: For SR-IOV based NICs you can update all the attributes that can be set for this type of interfaces
+
 As the network is updated for each VM and host, you can check the progress of the update in Virtual Network details:
 
   - ``UPDATED_VMS``, list of VM IDs already updated.
@@ -377,6 +379,8 @@ The Virtual Machine will also get a free address from any of the address ranges 
 .. warning:: Note that if OpenNebula is not able to obtain a lease from a network the submission will fail.
 
 .. warning:: Users can only attach VMs or make reservations from Virtual Networks with **USE** rights on it. See the :ref:`Managing Permissions documentation <chmod>` for more information.
+
+.. _vgg_vn_automatic:
 
 Automatic Attach a Virtual Machine to a Virtual Network
 --------------------------------------------------------------------------------
