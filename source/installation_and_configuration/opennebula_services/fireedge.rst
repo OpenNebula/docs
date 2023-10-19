@@ -26,6 +26,12 @@ Main Features
     http://<OPENNEBULA-FRONTEND>:2616
 
 
+.. note::
+
+    We are continually expanding the feature set of FireEdge Sunstone, and hence its configuration files are in constant change. In versions 6.8.1 and later, configuration files in ``/etc/one/fireedge/sunstone/`` can be replaced by the ones that can be downloaded `here <https://minhaskamal.github.io/DownGit/#/home?url=https:%2F%2Fgithub.com%2FOpenNebula%2Fone%2Ftree%2Fc461d3084637f73a86f53b722f5b4c338bbcf8cc%2Fsrc%2Ffireedge%2Fetc%2Fsunstone>`__ in order to activate the latest features.
+
+
+
 .. warning:: FireEdge currently doesn't support :ref:`federated environments <federation>`. It can interact only with a local OpenNebula instance (even if it's federated), but can't interact with remote, federated OpenNebula instances.
 
 .. _fireedge_install_configuration:
