@@ -308,11 +308,11 @@ If you need to resize the capacity of the VM in ``RUNNING`` state, you have to s
 MEMORY_RESIZE_MODE
 ------------------
 
-``BALLOONING`` is about dynamically adjusting the amount of RAM allocated to VMs. IT allows KVM to reclaim unused memory from one VM and allocate it to another VM that needs it more, all without shutting down or pausing the VMs. The parameter sets up a **balloon driver** within the VM that communicates with the host. When the host needs to **reclaim memory**, the driver *inflates*, reserving some of the VM's unused memory for the host. When the VM needs additional memory, the driver *deflates*, releasing reserved memory back to the VM.
+``BALLOONING`` is about dynamically adjusting the amount of RAM allocated to VMs. It allows KVM to reclaim unused memory from one VM and allocate it to another VM that needs it more, without shutting down or pausing the VMs. The parameter sets up a **balloon driver** within the VM that communicates with the host. When the host needs to **reclaim memory**, the driver *inflates*, reserving some of the VM's unused memory for the host. When the VM needs additional memory, the driver *deflates*, releasing reserved memory back to the VM.
 
 From the VM's standpoint, it seems like the available memory is decreasing or increasing. The OS inside the VM will think it's using more memory when the balloon inflates and think it's using less when the balloon deflates. This can go back and forth many times during the VM's lifecycle, always ensuring that each VM has as much memory as it needs, up to ``MEMORY_MAX``, but no more than that.
 
-In ``HOTPLUG`` mode the Guest OS will perceive a new virtual RAM stick being plugged into the virtual motherboard. The downside of this mode is that in order to reduce memory, you need to remove the exact memory it was added before, which emulates the RAM stick removal. By default is limited to 16 RAM stick devices.
+In ``HOTPLUG`` mode the Guest OS will perceive a new virtual RAM stick being plugged into the virtual motherboard. The downside of this mode is that in order to reduce memory, you need to remove the exact memory it was added before, which emulates the RAM stick removal. By default is limited to 16 RAM stick devices (ie, you can increase memory by hotplug 16 times).
 
 Disk/NIC Hotplugging
 --------------------
