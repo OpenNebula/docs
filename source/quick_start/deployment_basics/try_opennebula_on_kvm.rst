@@ -16,7 +16,7 @@ Requirements
 You'll need a server to try out OpenNebula. The provided Host should have a fresh default installation of the required operating system with the latest updates and without any customizations.
 
 - 4 GiB RAM
-- 20 GiB free space on disk
+- 80 GiB free space on disk
 - public IP address (FE-PublicIP)
 - privileged user access (`root`)
 - openssh-server package installed
@@ -26,10 +26,10 @@ You'll need a server to try out OpenNebula. The provided Host should have a fres
 If you don't have a server available with the above characteristics, we recommend using a the Amazon EC2 service to obtain a VM to act as the OpenNebula Front-end. A tested combination is the following (but is by no means the only one possible):
 
 - Frankfurt region
-- Ubuntu Server 20.04 LTS (HVM), SSD Volume Type - ami-0767046d1677be5a0
-- t2.small
-- 100 GB hard disk (you need to edit the Storage tab before launching the instance; by default it comes with just 8GB. It can be lower -40GB- if you are not planning to test the K8s appliance)
-- before launching the instance, please open the ports defined above by editing the Security Groups as per the picture. This can also happen after launching the instance following `this guide <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html>`__.
+- Ubuntu Server 20.04 LTS (HVM), SSD Volume Type
+- t2.medium
+- 80 GB hard disk (you need to edit the Storage tab before launching the instance; by default it comes with just 8GB)
+- open ports 22 (SSH), 80 (Sunstone), 2616 (FireEdge), 5030 (OneGate) by editing the Security Groups as per the picture. This can also happen after launching the instance following `this guide <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html>`__.
 
 |aws_security_groups|
 
