@@ -71,7 +71,8 @@ System
 --------------------------------------------------------------------------------
 
 - **VDCs Tab**: Users can see all their VDCs, and can update, rename and view the resources associated with them, and more. Also, users can create a new VDC from this tab.
-- **Users Tab**: Admins can access all the  users defined in the OpenNebula instance, and perform managing operations such as updating, enabling/disabling, setting quotas, and more. Also, admins can create new Users from this tab.
+- **Users Tab**: Admins can access all the users defined in the OpenNebula instance, and perform managing operations such as updating, enabling/disabling, setting quotas, and more. Also, admins can create new Users from this tab.
+- **VM Groups Tab**: Admins can access all the VM groups defined in the OpenNebula instance, and perform managing operations such as updating, enabling/disabling, and more. Also, admins can create new VM groups from this tab.
 
 .. _fireedge_sunstone_settings_tab:
 
@@ -149,6 +150,7 @@ The views definitions are placed in the ``/etc/one/fireedge/sunstone/`` director
     |   |-- vdc-tab.yaml              <--- the VDC tab configuration file 
     |   |-- vm-tab.yaml               <--- the VM tab configuration file
     |   |-- vm-template-tab.yaml      <--- the VM Template tab configuration file
+    |   |-- vm-group-tab.yaml         <--- the VM Group tab configuration file
     |   |-- vnet-tab.yaml             <--- the Virtual Network tab configuration file
     |-- sunstone-server.conf
     |-- sunstone-views.yaml           <--- the FireEdge Sunstone views main configuration
