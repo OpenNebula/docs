@@ -64,14 +64,32 @@ Various command line parameters passed to the miniONE tool can customize the dep
 
 In most cases, it's not necessary to specify anything, simply proceed with installation.
 
-Deployment of Front-End
-=======================
+Deploy Front-End only
+=====================
 
-Run the following command under the privileged user **root** to get ready the all-in-one OpenNebula Front-end installation:
+This option installs OpenNebula frontend and prepares it to provision hypervisor node on one of the providers with OneProvision later.
+
+Run the following command under the privileged user **root**
+
+.. important::
+
+    In this case, FireEdge and OneGate endpoints expose HTTP on public interface, keep in mind MiniONE is just an evaluation tool.
 
 .. prompt:: bash # auto
 
     # sudo bash minione --frontend
+
+
+Deploy Front-End and KVM Node
+=============================
+
+Run the following command under the privileged user **root** to deploy an evaluation cloud with an all-in-one front-end and a single KVM node:
+
+.. prompt:: bash # auto
+
+    # sudo bash minione
+
+This option is suitable for bare-metal hosts to utilize HW virtualization. The deployment will fallback to emulation (QEMU) if running on virtual machine or CPU without virtualization capabilities.
 
 Be patient, it should take only a few minutes to get the Host prepared. The main deployment steps are logged on the terminal, and at the end of a successful deployment the miniONE tool provides a report with connection parameters and initial credentials. For example:
 
@@ -87,20 +105,11 @@ Be patient, it should take only a few minutes to get the Host prepared. The main
       user: oneadmin
       password: lCmPUb5Gwk
 
-The OpenNebula Front-end is now ready for evaluation.
+.. note:: When running miniONE within an AWS instance, the reported IP may be a private address that's not reachable over the Internet. Use its public IP address to connect to the FireEdge and Sunstone services.
 
-.. note:: miniONE offers more functionality. You can install OpenNebula with a KVM Host (next section) if you have a processor with virtualization capabilities. Just drop the --Front-end flag to enable this if interested.
+The OpenNebula Front-end and local KVM node are now ready for evaluation.
 
-Deployment of Front-End and KVM Node
-====================================
-
-Run the following commands to deploy an evaluation cloud with a front-end and a single KVM node:
-
-.. prompt:: bash # auto
-
-    # sudo bash minione
-
-This option is suitable for bare-metal hosts to utilize HW virtualization. The deployment will fallback to emulation (QEMU) if running on virtual machine or CPU without virtualization capabilities.
+.. note:: miniONE offers more functionality. For example, you can install an OpenNebula front-end without a KVM Host (next section). Just add the --Front-end flag to enable this if interested.
 
 Validation
 ==========
