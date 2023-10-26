@@ -16,3 +16,4 @@ The following issues has been solved in 6.8.1:
 - `Added the VM Group templates tab to Fireedge Sunstone <https://github.com/OpenNebula/one/issues/5901>`__.
   - The new configuration files can be downloaded from `here <https://bit.ly/one-68-maintenance-config>`__
 - `Certain graphs now correctly display the delta values <https://github.com/OpenNebula/one/issues/6347>`__.
+- `Fix update of Virtual Network with empty attributes, which sometimes caused ERROR state <https://github.com/OpenNebula/one/issues/6367>`__.
