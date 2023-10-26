@@ -6,7 +6,7 @@ Running Kubernetes Clusters
 
 In the public OpenNebula System Marketplace there are also services available that let you deploy a multi-VM application. In this exercise we are going to import an `OneKE Service <https://marketplace.opennebula.io/appliance/7c82d610-73f1-47d1-a85a-d799e00c631e>`_ and launch a Kubernetes (RKE2) cluster with it.
 
-This guide assumes that you have deployed the OpenNebula front-end following the :ref:`Deployment Basics guide <deployment_basics>` and a metal Edge Cluster with KVM hypervisor following the :ref:`Provisining an Edge Cluster <first_edge_cluster>` guide. This ensures that your OpenNebula front-end has a publicly accessible IP address so the deployed services can report to the OneGate server (see :ref:`OneGate Configuration <onegate_conf>` for more details). We are going to assume the Edge Cluster naming schema ``metal-aws-edge-cluster``.
+This guide assumes that you have deployed the OpenNebula front-end following the :ref:`Deployment Basics guide <deployment_basics>` and a metal Edge Cluster with KVM hypervisor following the :ref:`Provisining an Edge Cluster <first_edge_cluster>` guide. This ensures that your OpenNebula front-end has a publicly accessible IP address so the deployed services can report to the OneGate server (see :ref:`OneGate Configuration <onegate_conf>` for more details). We are going to assume the Edge Cluster naming schema ``aws-edge-cluster``.
 
 .. important:: It's a known issue in AWS edge clusters that the ``REPLICA_HOST`` defined for the system datastores may cause QCOW2 image corruption, which causes VMs to boot incorrectly. To avoid this sporadic failure, remove the ``REPLICA_HOST`` parameter from your cluster's system datastore (go to Storage -> Datastore, select the aws-cluster* system datastore -most likely ID 101 if you started the QS guide from scratch- and delete the ``REPLICA_HOST`` parameter from the Attributes section).
 
@@ -17,18 +17,18 @@ Log in to Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab and search fo
 
 |kubernetes-qs-marketplace|
 
-Now you need to select a datastore. Select the ``metal-aws-edge-cluster-image`` Datastore.
+Now you need to select a datastore. Select the ``aws-edge-cluster-image`` Datastore.
 
 |kubernetes-qs-marketplace-datastore|
 
-The Appliance will be ready when the image in ``Storage --> Images`` switches to ``READY`` from its ``LOCKED`` state. This process may take significant amount of time based on the networking resources available in your infrastructure (Kubernetes 1.27 amounts to a total of 120GB).
+The Appliance will be ready when the image in ``Storage --> Images`` switches to ``READY`` from its ``LOCKED`` state. This process may take significant amount of time based on the networking resources available in your infrastructure (Kubernetes 1.27 amounts to a total of 52GB).
 
 .. |kubernetes-qs-marketplace|           image:: /images/kubernetes-qs-marketplace.png
 .. |kubernetes-qs-marketplace-datastore| image:: /images/kubernetes-qs-marketplace-datastore.png
 
 Step 2. Instantiate private network
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-During the AWS Edge Cluster provisioning a private private network template was created, we need to instantiate it first and assign a range to it. To do so, go to the ``Network --> Network Templates``, open the ``metal-aws-edge-cluster-private`` Virtual Network Template and click on the instantiate button.
+During the AWS Edge Cluster provisioning a private network template was created, we need to instantiate it first and assign a range to it. To do so, go to the ``Network --> Network Templates``, open the ``aws-edge-cluster-private`` Virtual Network Template and click on the instantiate button.
 
 We need to first put the name, e.g. ``aws-private`` and then add an address range, click ``+ Address Range`` and put a private IPv4 range, e.g. ``172.20.0.1``, for size we can put ``100``.
 
@@ -49,7 +49,7 @@ Step 3. Instantiate the Kubernetes Service
 
 Proceed to the ``Templates --> Services`` tab and select the ``Service OneKE 1.27`` Service Template. Click on ``+`` and then ``Instantiate``.
 
-A required step is clicking on ``Network`` and selecting the ``metal-aws-edge-cluster-public`` network for public network.
+A required step is clicking on ``Network`` and selecting the ``aws-edge-cluster-public`` network for public network.
 
 And for private network we will use the ``aws-private`` we instantiated before.
 
