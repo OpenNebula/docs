@@ -17,3 +17,4 @@ The following issues has been solved in 6.8.1:
   - The new configuration files can be downloaded from `here <https://bit.ly/one-68-maintenance-config>`__
 - `Fix an issue where KVM system snapshots would not be carried over to the new host after live migrating a VM <https://github.com/OpenNebula/one/issues/6363>`__.
 - `Certain graphs now correctly display the delta values <https://github.com/OpenNebula/one/issues/6347>`__.
+- `Fix update of Virtual Network with empty attributes, which sometimes caused ERROR state <https://github.com/OpenNebula/one/issues/6367>`__.
