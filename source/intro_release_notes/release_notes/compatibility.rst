@@ -67,6 +67,14 @@ Restricted Attributes
 
 Previous versions of OpenNebula silently ignored the removal of restricted attributes. However, with the `resolution of the issue 6315 <https://github.com/OpenNebula/one/issues/6315>`_, an error will be generated always in such cases.
 
+Labels
+================================================================================
+
+In previous versions of OpenNebula, label casing was consistently preserved. However, starting with version 6.8.0, in light of enhancements to our filtering system, we've transitioned to standardizing label names in uppercase.
+This change ensures better system consistency and performance. For a more detailed overview of this change you can refer to the `related discussion here <https://github.com/OpenNebula/one/issues/5134>`_.
+
+To ensure a seamless experience for our users, we've introduced `a migrator in this update <https://github.com/OpenNebula/one/issues/6002>`_, which automatically handles the transition.
+
 OneGate Proxy
 ================================================================================
 
