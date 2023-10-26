@@ -89,7 +89,24 @@ element and it will be translated to XML:
       }
     }, 1)
 
-However, this might be limiting when you want to add 2 entries with the same name. In such cases you need to pass the template directly in OpenNebula template format:
+When, there are multiple entries with the same key like DISK or NIC, you can use array (from the version 6.4.5+ and 6.8+).
+
+.. code:: python
+
+  one.vm.update(1,
+    {
+      'TEMPLATE': {
+        'NAME': 'test100',
+        'MEMORY': '1024',
+        'DISK': [
+          { 'IMAGE_ID': 1 },
+          { 'IMAGE_ID': 2 },
+        ]
+      }
+    }, 1)
+
+
+In any case, it's always possible to pass the template directly in OpenNebula format:
 
 .. code:: python
 
