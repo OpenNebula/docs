@@ -74,9 +74,7 @@ You can either use a public DNS server or local ``/etc/hosts`` file, for example
    127.0.0.1 localhost
    1.2.3.4 k8s.yourdomain.it
 
-.. important::
-
-    To make the kubeconfig file work with custom SANs you will need to modify the ``clusters[0].cluster.server`` variable inside the YAML payload (for example: ``server: https://k8s.yourdomain.it:6443``) which can be find in the file a path to which is a value of the $KUBECONFIG variable on the k8s master node (the details on how to log in to that node are given below in :ref:`Step 4. Provisining an Edge Cluster <https://docs.opennebula.io/6.8/quick_start/usage_basics/running_kubernetes_clusters.html#step-4-deploy-an-application>`). 
+.. important:: To make the kubeconfig file work with custom SANs you will need to modify the ``clusters[0].cluster.server`` variable inside the YAML payload (for example: ``server: https://k8s.yourdomain.it:6443``) which can be find in the file a path to which is a value of the $KUBECONFIG variable on the k8s master node (the details on how to log in to that node are given below in :ref:`Step 4. Provisining an Edge Cluster <step-4>`). 
 
 To be able to expose an example application you should enable OneKE's Traefik / HAProxy solution for ingress traffic:
 
@@ -94,23 +92,19 @@ and wait for the new Service to get into ``RUNNING`` state. You can also check i
 
    [oneadmin@FN]$ onevm list
 
-.. note::
-
-   The **public** IP address (AWS elastic IP) should be consulted in OpenNebula after the VNF instance is successfully provisioned. Go to ``Instances --> VMs`` and check the IP column to see what IP has OpenNebula assigned the VNF instance or via CLI:
+.. note:: The **public** IP address (AWS elastic IP) should be consulted in OpenNebula after the VNF instance is successfully provisioned. Go to ``Instances --> VMs`` and check the IP column to see what IP has OpenNebula assigned the VNF instance or via CLI:
 
 .. prompt:: bash $ auto
 
    [oneadmin@FN]$ onevm show -j <VNF_VM_ID>|jq -r .VM.TEMPLATE.NIC[0].EXTERNAL_IP
 
-.. note::
+.. important:: This is specific to AWS deployments. One needs to add a corresponding inboud rule into AWS security group (SG) with AWS elastic IP of VNF node for 5030 port and apply updated SG against AWS FN node.
 
-.. important::
 
-    This is specific to AWS deployments. One needs to add a corresponding inboud rule into AWS security group (SG) with AWS elastic IP of VNF node for 5030 port and apply updated SG against AWS FN node.
+If OneFlow service stuck in DEPLOYING state, please, check :ref:`OneFlow service is stuck in DEPLOYING <oneflow-service-is-stuck-in-deploying>`
 
-    If OneFlow service stuck in DEPLOYING state, please, check :ref:`OneFlow service is stuck in DEPLOYING` <https://docs.opennebula.io/6.8/quick_start/usage_basics/running_kubernetes_clusters.html#oneflow-service-is-stuck-in-deploying>`
 
-    After the OneFlow service is deployed you can also **scale up** the worker nodes - the template will start only one - to add more follow onto the tab ``Roles``, click on ``worker`` and green button ``Scale``.
+After the OneFlow service is deployed you can also **scale up** the worker nodes - the template will start only one - to add more follow onto the tab ``Roles``, click on ``worker`` and green button ``Scale``.
 
 .. note:: Even though Sunstone shows the VNC console button, VNC access to VMs running in Edge Clusters has been deemed insecure and as such OpenNebula filters this traffic. This means that the VNC access won't work for VMs running in Edge Clusters.
 
@@ -119,6 +113,8 @@ and wait for the new Service to get into ``RUNNING`` state. You can also check i
 .. |kubernetes-qs-add-sans| image:: /images/kubernetes-qs-add-sans.png
 .. |kubernetes-qs-enable-ingress| image:: /images/kubernetes-qs-enable-ingress.png
 
+.. _step-4:
+   
 Step 4. Deploy an Application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -229,6 +225,7 @@ Congrats! You successfully deployed a fully functional Kubernetes cluster in the
 
 Known Issues
 ~~~~~~~~~~~~
+.. _oneflow-service-is-stuck-in-deploying:
 
 OneFlow service is stuck in DEPLOYING
 +++++++++++++++++++++++++++++++++++++
@@ -249,7 +246,7 @@ recover such a broken instance, it must be recreated.
     But before you recreate it, please make sure your environment
     has good connection to the public Internet and in general its performance is not impaired.'
 
-The stuck in DEPLOYING state OneFlow service can not be terminated via 'delete' operation because such state is condisered as intermediate one. In order to do so one needs to use ``oneflow recover --delete <service_ID>`` command.
+The stuck in DEPLOYING state OneFlow service can not be terminated via 'delete' operation. In order to do so one needs to use ``oneflow recover --delete <service_ID>`` command.
 
 Another issue you might face with is VNF node can't contact OneGate server on FN. In that case there are messages in the ``/var/log/one/oneflow.log`` file as below:
 
