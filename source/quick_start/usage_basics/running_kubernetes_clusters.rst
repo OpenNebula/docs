@@ -76,19 +76,39 @@ You can either use a public DNS server or local ``/etc/hosts`` file, for example
 
 .. important::
 
-    To make the kubeconfig file work with custom SANs you will need to modify the ``clusters[0].cluster.server`` variable inside the YAML payload, for example: ``server: https://k8s.yourdomain.it:6443``.
+    To make the kubeconfig file work with custom SANs you will need to modify the ``clusters[0].cluster.server`` variable inside the YAML payload (for example: ``server: https://k8s.yourdomain.it:6443``) which can be find in the file a path to which is a value of the $KUBECONFIG variable on the k8s master node (the details on how to log in to that node are given below in :ref:`Step 4. Provisining an Edge Cluster <https://docs.opennebula.io/6.8/quick_start/usage_basics/running_kubernetes_clusters.html#step-4-deploy-an-application>`). 
 
 To be able to expose an example application you should enable OneKE's Traefik / HAProxy solution for ingress traffic:
 
 |kubernetes-qs-enable-ingress|
 
-Now click on the instantiate button, go to ``Instances --> Services`` and wait for the new Service to get into ``RUNNING`` state. You can also check the VMs being deployed in ``Instances --> VMs``.
+Now click on the instantiate button in Sunstone web-GUI, go to ``Instances --> Services`` or via command line interface (CLI)
+
+.. prompt:: bash $ auto
+
+   [oneadmin@FN]$ oneflow list
+
+and wait for the new Service to get into ``RUNNING`` state. You can also check in the Sunstone the VMs being deployed in ``Instances --> VMs`` or via CLI:
+
+.. prompt:: bash $ auto
+
+   [oneadmin@FN]$ onevm list
 
 .. note::
 
-   The **public** IP address (AWS elastic IP) should be consulted in OpenNebula after the VNF instance is successfully provisioned. Go to ``Instances --> VMs`` and check the IP column to see what IP has OpenNebula assigned the VNF instance.
+   The **public** IP address (AWS elastic IP) should be consulted in OpenNebula after the VNF instance is successfully provisioned. Go to ``Instances --> VMs`` and check the IP column to see what IP has OpenNebula assigned the VNF instance or via CLI:
+
+.. prompt:: bash $ auto
+
+   [oneadmin@FN]$ onevm show -j <VNF_VM_ID>|jq -r .VM.TEMPLATE.NIC[0].EXTERNAL_IP
 
 .. note::
+
+.. important::
+
+    This is specific to AWS deployments. One needs to add a corresponding inboud rule into AWS security group (SG) with AWS elastic IP of VNF node for 5030 port and apply updated SG against AWS FN node.
+
+    If OneFlow service stuck in DEPLOYING state, please, check :ref:`OneFlow service is stuck in DEPLOYING` <https://docs.opennebula.io/6.8/quick_start/usage_basics/running_kubernetes_clusters.html#oneflow-service-is-stuck-in-deploying>`
 
     After the OneFlow service is deployed you can also **scale up** the worker nodes - the template will start only one - to add more follow onto the tab ``Roles``, click on ``worker`` and green button ``Scale``.
 
@@ -108,7 +128,12 @@ Connect to the master Kubernetes node (from the Open Nebula front-end node):
 
     $ ssh -A -J root@1.2.3.4 root@172.20.0.2
 
-where ``1.2.3.4`` should be the **public** address (AWS elastic IP) of a VNF node.
+where ``1.2.3.4`` should be the **public** address (AWS elastic IP) of a VNF node which can be extracted by executing the following command:
+
+.. prompt:: bash $ auto
+
+   [oneadmin@FN]$ onevm show -j <VNF_VM_ID>|jq -r .VM.TEMPLATE.NIC[0].EXTERNAL_IP
+
 
 .. important::
 
@@ -222,4 +247,38 @@ recover such a broken instance, it must be recreated.
 .. important::
 
     But before you recreate it, please make sure your environment
-    has good connection to the public Internet and in general its performance is not impaired.
+    has good connection to the public Internet and in general its performance is not impaired.'
+
+The stuck in DEPLOYING state OneFlow service can not be terminated via 'delete' operation because such state is condisered as intermediate one. In order to do so one needs to use ``oneflow recover --delete <service_ID>`` command.
+
+Another issue you might face with is VNF node can't contact OneGate server on FN. In that case there are messages in the ``/var/log/one/oneflow.log`` file as below:
+
+
+.. code-block:: text
+
+    [EM] Timeout reached for VM [0] to report
+
+In such case there is only VNF node is deployed and running but no k8s ones. One needs to ssh to the VNF node and run as root ``onegate vm show`` to check if VNF is able to contact OneGate server on FN. In case of success the response should look like below:
+
+.. code-block:: text
+
+    [root@VNF]$ onegate vm show
+    VM 0                                                                       	 
+    NAME            	: vnf_0_(service_3)
+
+and in case of failure:
+
+
+.. code-block:: text
+
+    [root@VNF]$ onegate vm show
+    Timeout while connected to server (Failed to open TCP connection to <AWS elastic IP of FN>:5030 (execution expired)).
+    Server: <AWS elastic IP of FN>:5030
+
+Check on the VNF node if ONEGATE_ENDPOINT is set to AWS elastic IP address of FN:
+
+.. code-block:: text
+
+    [root@VNF]$ grep ONEGATE -r /run/one-context*
+
+Make sure a corresponding inboud rule in AWS security group (SG) with AWS elastic IP for 5030 port is present and modifications were applied to AWS FN node.
