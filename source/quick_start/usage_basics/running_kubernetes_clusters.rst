@@ -246,7 +246,11 @@ recover such a broken instance, it must be recreated.
     But before you recreate it, please make sure your environment
     has good connection to the public Internet and in general its performance is not impaired.'
 
-The stuck in DEPLOYING state OneFlow service can not be terminated via 'delete' operation. In order to do so one needs to use ``oneflow recover --delete <service_ID>`` command.
+The stuck in DEPLOYING state OneFlow service can not be terminated via 'delete' operation. In order to do so one needs to use the following command:
+
+.. prompt:: bash $ auto
+
+   [oneadmin@FN]$ oneflow recover --delete <service_ID>
 
 Another issue you might face with is VNF node can't contact OneGate server on FN. In that case there are messages in the ``/var/log/one/oneflow.log`` file as below:
 
@@ -255,7 +259,13 @@ Another issue you might face with is VNF node can't contact OneGate server on FN
 
     [EM] Timeout reached for VM [0] to report
 
-In such case there is only VNF node is deployed and running but no k8s ones. One needs to ssh to the VNF node and run as root ``onegate vm show`` to check if VNF is able to contact OneGate server on FN. In case of success the response should look like below:
+In such case there is only VNF node is deployed and running but no k8s ones. It is needed to ssh to the VNF node and run as root
+
+.. prompt:: bash $ auto
+
+   [root@VNF]$ onegate vm show
+
+to check if VNF is able to contact OneGate server on FN. In case of success the response should look like below:
 
 .. code-block:: text
 
