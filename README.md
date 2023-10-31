@@ -16,7 +16,9 @@ Building
 
 `Graphviz <https://graphviz.org/>` is needed to compile the documentation.
 
-Also the following Python dependencies: ``pip install sphinx sphinx_rtd_theme sphinx-prompt pyyaml``.
+Also the following Python dependencies:
+
+``pip install sphinx sphinx_rtd_theme sphinx-prompt sphinx_substitution_extensions pyyaml``.
 
 Build the documentation by running ``make html``.
 [More information](http://sphinx-doc.org/).
