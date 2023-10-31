@@ -19,3 +19,7 @@ The following issues has been solved in 6.8.1:
 - `Certain graphs now correctly display the delta values <https://github.com/OpenNebula/one/issues/6347>`__.
 - `Fix update of Virtual Network with empty attributes, which sometimes caused ERROR state <https://github.com/OpenNebula/one/issues/6367>`__.
 - `Creating VM templates with NIC + alias NIC now works correctly <https://github.com/OpenNebula/one/issues/6349>`__.
+- Fixed multiple issues related to DockerHub
+    - `Handle images that are missing the Cmd property <https://github.com/OpenNebula/one/issues/6374>`__.
+    - `Handle images that are missing the latest tag like RockyLinux <https://github.com/OpenNebula/one/issues/6196>`__.
+    - `Fix error management on multiple steps of the import process <https://github.com/OpenNebula/one/issues/6197>`__.
