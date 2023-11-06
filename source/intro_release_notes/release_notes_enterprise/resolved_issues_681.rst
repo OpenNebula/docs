@@ -22,3 +22,4 @@ The following issues has been solved in 6.8.1:
 - `Fix VM templates with NIC and NIC alias <https://github.com/OpenNebula/one/issues/6349>`__.
 - `Fix error handling when reusing names while downloading Marketplace service appliances <https://github.com/OpenNebula/one/issues/6370>`__.
 - Refactored label naming conventions, no text transforms are being applied to the names of labels anymore.
+- `Fix memory leak in Scheduler (VMGroupRole), optimize memory usage in Cluster constructor <https://github.com/OpenNebula/one/issues/6365>`__.
