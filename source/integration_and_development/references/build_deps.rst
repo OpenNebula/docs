@@ -119,6 +119,7 @@ AlmaLinux 8
 
 * **gcc-c++**
 * **gnutls-devel**
+* **java-1.7.0-openjdk-devel** # java-1.8.0-openjdk-devel needs to be installed for AlmaLinux 9
 * **libcurl-devel**
 * **libjpeg-turbo-devel**
 * **libnsl2-devel**
@@ -140,6 +141,8 @@ AlmaLinux 8
 * **sqlite-devel**
 * **systemd-devel**
 * **xmlrpc-c-devel**
+* **uuid-devel**
+* **zeromq-devel**
 
 Arch
 ================================================================================
