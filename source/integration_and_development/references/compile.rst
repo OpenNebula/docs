@@ -96,7 +96,13 @@ where *<install\_options>* can be one or more of:
 +--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **-p** | do not install OpenNebula Sunstone non-minified files                                                                                                                        |
 +--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **-F** | install OpenNebula FireEdge                                                                                                                                                  |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **-P** | do not install OpenNebula FireEdge non-minified files                                                                                                                        |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **-G** | install OpenNebula Gate                                                                                                                                                      |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **-6** | install only OpenNebula Gate Proxy                                                                                                                                           |
 +--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **-f** | install OpenNebula Flow                                                                                                                                                      |
 +--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -135,6 +141,29 @@ The packages do a ``system-wide`` installation. To create a similar environment,
     scons: done building targets.
     oneadmin@frontend:~/opennebula-x.y.z $> sudo ./install.sh -u oneadmin -g oneadmin
 
+.. warning::
+
+   An error as below might occur during building process:
+    .. prompt:: bash # auto
+
+        # scons -j2 mysql=yes syslog=yes
+        /usr/bin/ld: src/common/libnebula_common.a(HttpRequest.o): undefined reference to symbol 'curl_easy_cleanup'
+        /usr/bin/ld: /usr/lib64/libcurl.so.4: error adding symbols: DSO missing from command line
+        collect2: error: ld returned 1 exit status
+        scons: *** [src/scheduler/src/sched/mm_sched] Error 1
+        scons: building terminated because of errors.
+
+    In that case one needs to patch ``src/scheduler/src/sched/SConstruct`` file:
+
+    .. prompt:: bash # auto
+    
+       # diff one/src/scheduler/src/sched/SConstruct one-orig/src/scheduler/src/sched/SConstruct 
+       48c48,49
+       <     'xml2'
+       ---
+       >     'xml2',
+       >     'curl'
+
 Ruby Dependencies
 ================================================================================
 
@@ -154,12 +183,12 @@ Build Dependencies:
 Run Dependencies:
 
 - **aenum**: python OCA support
-- **dicttoxml**: python OCA support
+- **dict2xml**: python OCA support
 - **feature**: python OCA support
 - **lxml**: python OCA support
 - **six**: python OCA support
-- **tblib**': python OCA support
-- **xmltodict**: python OCA support
+- **tblib**: python OCA support
+- **xml2dict**: python OCA support
 
 To build run following:
 
@@ -175,6 +204,19 @@ Building Sunstone from Source
 ================================================================================
 
 Please check the :ref:`Sunstone Development guide <sunstone_dev>` for detailed information
+
+Building FireEdge from Source
+================================================================================
+
+.. prompt:: text $ auto
+
+    root@frontend:~/ $> cd ~/one/src/fireedge
+    root@frontend:~/ $> npm install
+    root@frontend:~/ $> cd ~/one
+    root@frontend:~/ $> scons fireedge=yes
+    root@frontend:~/ $> ./install.sh -F -u oneadmin -g oneadmin
+
+
 
 Building Docker Machine Plugin from Source
 ================================================================================
