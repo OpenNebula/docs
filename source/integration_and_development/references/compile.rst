@@ -222,7 +222,7 @@ Building FireEdge from Source
     root@frontend:~/ $> npm install
     root@frontend:~/ $> cd ~/one
     root@frontend:~/ $> scons fireedge=yes
-    root@frontend:~/ $> ./intall.sh -F -u oneadmin -g oneadmin
+    root@frontend:~/ $> ./install.sh -F -u oneadmin -g oneadmin
 
 
 
