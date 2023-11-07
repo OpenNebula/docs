@@ -27,3 +27,4 @@ The following issues has been solved in 6.4.5:
 - `Fix oneflow CLI autocompletion <https://github.com/OpenNebula/one/issues/6345>`__.
 - `Fix an issue where KVM system snapshots would not be carried over to the new host after live migrating a VM <https://github.com/OpenNebula/one/issues/6363>`__.
 - `Fix multiple keys in templates in PyOne <https://github.com/OpenNebula/one/issues/6064>`__.
+- `Fix Sunstone server crashes on login with remote auth enabled <https://github.com/OpenNebula/one/issues/6339>`__.
