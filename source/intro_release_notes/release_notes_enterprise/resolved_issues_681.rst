@@ -23,3 +23,4 @@ The following issues has been solved in 6.8.1:
 - `Fix error handling when reusing names while downloading Marketplace service appliances <https://github.com/OpenNebula/one/issues/6370>`__.
 - Refactored label naming conventions, no text transforms are being applied to the names of labels anymore.
 - `Fix duplicate CPU model input <https://github.com/OpenNebula/one/issues/6375>`__.
+- `Implemented Backup Jobs tab in FireEdge <https://github.com/OpenNebula/one/issues/6323>`__.
