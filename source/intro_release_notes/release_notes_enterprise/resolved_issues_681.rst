@@ -9,7 +9,7 @@ The following new features has been backported to 6.8.1:
 
 - `Optimized implementation of standard input capable commands  <https://github.com/OpenNebula/one/issues/6242>`__. Other commands were updated as well to handle standard input.
 - Minor optimization on the ``oneflow-template instantiate`` command when using the ``--multiple`` option.
-- `Added the VM Group templates tab to Fireedge Sunstone <https://docs.opennebula.io/6.8/management_and_operations/capacity_planning/affinity.html>`__.
+- Added the VM Group templates tab to Fireedge Sunstone. See :ref:`the VM affinity guide <vmgroups>` for more information.
   - The new configuration files can be downloaded from `here <https://bit.ly/one-68-maintenance-config>`__
 
 The following issues has been solved in 6.8.1:
