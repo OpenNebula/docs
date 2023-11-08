@@ -11,6 +11,7 @@ The following new features has been backported to 6.8.1:
 - Minor optimization on the ``oneflow-template instantiate`` command when using the ``--multiple`` option.
 - `Added the VM Group templates tab to Fireedge Sunstone <https://github.com/OpenNebula/one/issues/5901>`__.
   - The new configuration files can be downloaded from `here <https://bit.ly/one-68-maintenance-config>`__
+- Implemented :ref:`Backup Jobs <vm_backup_jobs>` tab in FireEdge Sunstone.
 
 The following issues has been solved in 6.8.1:
 
