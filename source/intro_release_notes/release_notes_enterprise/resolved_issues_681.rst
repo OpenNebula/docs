@@ -11,6 +11,7 @@ The following new features has been backported to 6.8.1:
 - Minor optimization on the ``oneflow-template instantiate`` command when using the ``--multiple`` option.
 - `Added the VM Group templates tab to Fireedge Sunstone <https://github.com/OpenNebula/one/issues/5901>`__.
   - The new configuration files can be downloaded from `here <https://bit.ly/one-68-maintenance-config>`__
+- Implemented :ref:`Backup Jobs <vm_backup_jobs>` tab in FireEdge Sunstone.
 
 The following issues has been solved in 6.8.1:
 
@@ -23,4 +24,3 @@ The following issues has been solved in 6.8.1:
 - `Fix error handling when reusing names while downloading Marketplace service appliances <https://github.com/OpenNebula/one/issues/6370>`__.
 - Refactored label naming conventions, no text transforms are being applied to the names of labels anymore.
 - `Fix duplicate CPU model input <https://github.com/OpenNebula/one/issues/6375>`__.
-- `Implemented Backup Jobs tab in FireEdge <https://github.com/OpenNebula/one/issues/6323>`__.
