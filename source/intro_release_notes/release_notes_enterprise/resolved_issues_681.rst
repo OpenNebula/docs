@@ -14,7 +14,6 @@ The following new features has been backported to 6.8.1:
 
 The following issues has been solved in 6.8.1:
 
-- Fix "NUMA" and "OS & CPU" tabs on Fireedge Sunstone return an error when at least one host contains a NUMA node that has exactly one hugepage.
 - Fix disk live-snapshot operation for the SSH drivers.
 - `Fix an issue where KVM system snapshots would not be carried over to the new host after live migrating a VM <https://github.com/OpenNebula/one/issues/6363>`__.
 - `Fix certain graphs to correctly display delta values <https://github.com/OpenNebula/one/issues/6347>`__.
