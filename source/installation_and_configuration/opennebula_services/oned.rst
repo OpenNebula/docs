@@ -729,6 +729,16 @@ In the following example you need **ADMIN** rights on a VM to perform ``migrate`
 
     VM_USE_OPERATIONS    = ""
 
+Generic Quota Configuration
+===========================
+
+Generic quota attributes used for the :ref:`Compute Quotas <quota_auth>`. Any numerical attribute from the Virtual Machine Template or User Template may be used. Sample configuration:
+
+.. code-block:: bash
+
+    QUOTA_VM_ATTRIBUTE = "VCPU"
+    QUOTA_VM_ATTRIBUTE = "LICENSE"
+
 .. _oned_conf_restricted_attributes_configuration:
 
 Restricted Attributes Configuration

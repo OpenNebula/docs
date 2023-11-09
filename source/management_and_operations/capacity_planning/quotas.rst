@@ -28,7 +28,7 @@ Defining User/Group Quotas
 
 Usage quotas are set in the OpenNebula template syntax (either plain text or XML). The following tables summarizes the attributes to define a quota for each resource type.
 
-Datastore Quotas.
+Datastore Quotas
 --------------------------------------------------------------------------------
 
 The attribute name is ``DATASTORE``.
@@ -44,7 +44,7 @@ The attribute name is ``DATASTORE``.
 | IMAGES              | Maximum number of images that can be created in the datastore |
 +---------------------+---------------------------------------------------------------+
 
-Compute Quotas.
+Compute Quotas
 --------------------------------------------------------------------------------
 
 The attribute name is ``VM``
@@ -74,7 +74,12 @@ The actual size accounted on the system and image datastores depends on the stor
 
 .. important:: Running quotas will be increased or decreased depending on the state of the Virtual Machine. The states in which the machine is counted as "Running" are ``ACTIVE`` , ``HOLD``, ``PENDING`` and ``CLONING``.
 
-Network Quotas.
+Generic Quotas
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The administrator can expand the Compute Quotas by adding ``QUOTA_VM_ATTRIBUTE`` to the configuration file :ref:`oned.conf <oned_conf>`. Any numerical attribute from Virtual Machine Template or User Template could be used as generic quota. The generic quota is addad also with the ``RUNNING_`` prefix.
+
+Network Quotas
 --------------------------------------------------------------------------------
 
 The attribute name is ``NETWORK``.
@@ -87,7 +92,7 @@ The attribute name is ``NETWORK``.
 | LEASES            | Maximum IPs that can be leased from the Network |
 +-------------------+-------------------------------------------------+
 
-Image Quotas.
+Image Quotas
 --------------------------------------------------------------------------------
 
 The attribute name is ``IMAGE``.
