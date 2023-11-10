@@ -1164,7 +1164,7 @@ Available actions:
    * From ``FAILED_SCALING`` continues scaling the Service.
    * From ``FAILED_UNDEPLOYING`` continues shutting down the Service.
    * From ``COOLDOWN`` the Service is set to running ignoring the cooldown duration.
-* **recover delete**: will delete the service and its VMs (no matter in what state the service is)
+   * ``"delete" : true`` in ``params`` will delete the service and its VMs no matter in what state the service is
 * **chown**
 * **chmod**
 * **chgrp**
