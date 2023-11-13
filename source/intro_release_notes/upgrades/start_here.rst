@@ -8,9 +8,6 @@ This guide describes the upgrade procedure for systems that are already running 
 
 Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what's new in OpenNebula |version|.
 
-.. important:: Users of the Community Edition of OpenNebula can upgrade to the latest version only if they are running a non-commercial deployment, but they will need to upgrade first to the previous stable version. In order to access the latest migrator package, a request needs to be submitted through this `online form <https://opennebula.io/get-migration>`__.
-
-
 Previous Steps
 ================================================================================
 

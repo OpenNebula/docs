@@ -6,8 +6,6 @@ Overview
 
 Keeping your OpenNebula up-to-date is very important, as you will receive the latest functionality and, more importantly, the latest security patches. It is possible to upgrade to the latest OpenNebula release from earlier versions.
 
-If you are using the Enterprise Edition you can upgrade from previous OpenNebula versions. If you are using the Community Edition you can only upgrade from the previous stable release if you are using your cloud for non-commercial purposes and you `need to request the migrator package <https://opennebula.io/get-migration>`__.
-
 Hypervisor Compatibility
 ================================================================================
 
