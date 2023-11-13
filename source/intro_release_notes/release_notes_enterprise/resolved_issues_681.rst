@@ -18,8 +18,12 @@ The following issues has been solved in 6.8.1:
 - `Fix an issue where KVM system snapshots would not be carried over to the new host after live migrating a VM <https://github.com/OpenNebula/one/issues/6363>`__.
 - `Fix certain graphs to correctly display delta values <https://github.com/OpenNebula/one/issues/6347>`__.
 - `Fix update of Virtual Network with empty attributes, which sometimes caused ERROR state <https://github.com/OpenNebula/one/issues/6367>`__.
+- `Fix creation of VM templates with NIC + alias NIC <https://github.com/OpenNebula/one/issues/6349>`__.
+- `Fix DockerHub downloader to handle images that are missing the Cmd property <https://github.com/OpenNebula/one/issues/6374>`__.
+- `Fix DockerHub downloader to handle images that are missing the latest tag like RockyLinux <https://github.com/OpenNebula/one/issues/6196>`__.
+- `Fix error management for DockerHub downloader on multiple steps of the import process <https://github.com/OpenNebula/one/issues/6197>`__.
 - `Fix VM templates with NIC and NIC alias <https://github.com/OpenNebula/one/issues/6349>`__.
 - `Fix error handling when reusing names while downloading Marketplace service appliances <https://github.com/OpenNebula/one/issues/6370>`__.
-- `Refactored label naming conventions, no text transforms are being applied to the names of labels anymore <https://github.com/OpenNebula/one/issues/6362>`__.
+- `Fix to label naming conventions, no text transforms are being applied to the names of labels anymore <https://github.com/OpenNebula/one/issues/6362>`__.
 - `Fix duplicate CPU model input <https://github.com/OpenNebula/one/issues/6375>`__.
 - `Fix datasources patching for configuration with single Front-end node in HA configuration <https://github.com/OpenNebula/one/issues/6343>`__.
