@@ -6,10 +6,6 @@ Upgrading Single Front-end Deployments
 
 If you are upgrading from a 6.0.x installation you only need to follow a reduced set of steps. If you are running a 5.12.x version or older, please check :ref:`these set of steps <upgrading_from_previous_extended_steps>` (some additional ones may apply, please review them at the end of the section).
 
-.. important::
-
-    Users of the Community Edition of OpenNebula can upgrade from the previous stable version if they are running a non-commercial OpenNebula cloud. In order to access the migrator package a request needs to be made through this `online form <https://opennebula.io/get-migration>`__.
-
 .. _upgrade_60:
 
 Upgrading from 6.0.x
@@ -177,8 +173,6 @@ CentOS/RHEL
 Community Edition
 ------------------
 
-There is an additoinal step if you are upgrading OpenNebula CE. After you get the `opennebula-migration-community package <https://opennebula.io/get-migration>`__, you need to install it in the OpenNebula Front-end.
-
 CentOS/RHEL
 ~~~~~~~~~~~
 
@@ -310,10 +304,6 @@ If you don't want to use the new feature, comment these out in order to get rid 
 
 Step 8. Upgrade the Database Version
 ================================================================================
-
-.. important::
-
-    Users of the Community Edition of OpenNebula can upgrade from the previous stable version if they are running a non-commercial OpenNebula cloud. In order to access the migrator package a request needs to be made through this `online form <https://opennebula.io/get-migration>`__.
 
 Make sure at this point that OpenNebula is not running. If you installed from packages, the service may have been started automatically. Simply run the ``onedb upgrade -v`` command. The connection parameters are automatically retrieved from ``oned.conf``.
 
