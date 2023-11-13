@@ -23,3 +23,4 @@ The following issues has been solved in 6.8.1:
 - `Refactored label naming conventions, no text transforms are being applied to the names of labels anymore <https://github.com/OpenNebula/one/issues/6362>`__.
 - `Fix duplicate CPU model input <https://github.com/OpenNebula/one/issues/6375>`__.
 - `Fix datasources patching for configuration with single Front-end node in HA configuration <https://github.com/OpenNebula/one/issues/6343>`__.
+- `Scheduler and vcenter monitoring reloads authentication after oneadmin password change <https://github.com/OpenNebula/one/issues/6354>`__.
