@@ -6,8 +6,6 @@ Upgrading Front-end Deployments from 6.2.x
 
 If you are upgrading from a 6.2.x installation you only need to follow a reduced set of steps. If you are running a 6.0.x version or older, please check :ref:`these set of steps <upgrade_single>` (some additional ones may apply, please review them at the end of the section).
 
-.. important:: Users of the Community Edition of OpenNebula can upgrade from the previous stable version if they are running a non-commercial OpenNebula cloud. In order to access the migrator package a request needs to be made through this `online form <https://opennebula.io/get-migration>`__.
-
 This section describes the installation procedure for systems that are already running a 6.2.x OpenNebula. The upgrade to OpenNebula |version| can be done directly following this section, you don't need to perform intermediate version upgrades. The upgrade will preserve all current users, hosts, resources and configurations.
 
 When performing a minor upgrade OpenNebula adheres to the following convention to ease the process:
