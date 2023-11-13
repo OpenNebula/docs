@@ -209,7 +209,7 @@ AlmaLinux/RHEL 8,9
 * **expat-devel**
 * **freerdp-devel**
 * **gnutls-devel**
-* **java-1.7.0-openjdk-devel**
+* **java-1.7.0-openjdk-devel** # java-1.8.0-openjdk-devel needs to be installed for AlmaLinux 9
 * **libcurl-devel**
 * **libffi-devel**
 * **libjpeg-turbo-devel**
@@ -246,7 +246,6 @@ AlmaLinux/RHEL 8,9
 * **systemd-devel**
 * **xmlrpc-c-devel**
 * **uuid-devel**
-* **ws-commons-util**
 * **zeromq-devel**
 
 Arch

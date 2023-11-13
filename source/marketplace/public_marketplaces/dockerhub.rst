@@ -42,12 +42,15 @@ where the meaning of each option is described below:
 +-----------------------+-------------------------------------------------------+
 | Argument              | Description                                           |
 +=======================+=======================================================+
-| ``<image>``           | DockerHub image name.                                 |
+| ``<image>``           | DockerHub image name for official images.             |
+|                       | ``user_name/image_name`` for unofficial images        |
 +-----------------------+-------------------------------------------------------+
 | ``<image_size>``      | Resulting image size in MB. (It must be greater       |
 |                       | than actual image size)                               |
 +-----------------------+-------------------------------------------------------+
 | ``<fs_type>``         | Filesystem type (ext4, ext3, ext2 or xfs)             |
++-----------------------+-------------------------------------------------------+
+| ``<format``           | Image file format (qcow2 or raw)                      |
 +-----------------------+-------------------------------------------------------+
 | ``<tag>``             | Image tag name (default ``latest``).                  |
 +-----------------------+-------------------------------------------------------+
@@ -56,12 +59,11 @@ where the meaning of each option is described below:
 
 .. warning:: OpenNebula finds out the image distribution automatically by running the container and checking ``/etc/os-release`` file. If this information is not available inside the container the ``distro`` argument have to be used.
 
-For example, to create a new image called ``nginx-dh`` based on the ``nginx`` image from DockerHub with 3GB size using ``ext4`` and the ``alpine`` tag, you can use:
+For example, to create a new image called ``opennebula_kvaps-dh`` based on the ``opennebula`` image from the user ``kvaps`` using a **3GB** ``ext4`` ``raw`` image file and the ``latest`` tag, you can use:
 
-.. code::
+.. prompt:: bash $ auto
 
-    $ oneimage create --name nginx-dh --path 'docker://nginx?size=3072&filesystem=ext4&format=raw&tag=alpine' --datastore 1
-      ID: 0
+    $ oneimage create --name opennebula_kvaps-dh --path 'docker://kvaps/opennebula?size=3072&filesystem=ext4&format=raw' --datastore 1
 
 .. note:: This url format can also be used at Sunstone image creation dialog.
 

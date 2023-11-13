@@ -132,8 +132,28 @@ Sunstone Development Dependencies
     sudo npm install -g grunt
     sudo npm install -g grunt-cli
 
+.. warning::
 
-3. Move to the Sunstone public folder and run:
+    In case of error as below try to add ``--force`` switch:
+
+    .. code::
+
+        sudo npm install -g grunt-cli
+        npm ERR! code EEXIST
+        npm ERR! path /usr/local/bin/grunt
+        npm ERR! EEXIST: file already exists
+        npm ERR! File exists: /usr/local/bin/grunt
+        npm ERR! Remove the existing file and try again, or run npm
+        npm ERR! with --force to overwrite files recklessly.
+
+3. Move to the Sunstone public folder 
+   
+.. code::
+
+   cd src/sunstone/public/
+
+
+and run:
 
 .. code::
 
@@ -141,6 +161,45 @@ Sunstone Development Dependencies
     bower install   # Dependenciees define in bower.json
 
 .. warning:: In order to run npm and bower commands ``git`` is required
+
+
+.. warning:: In case of error related with wrong python syntax one needs to install python2.7:
+
+   .. code::
+      
+        dnf groupinstall "development tools"
+        cd ~/
+        curl -L -O https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tar.xz
+        tar xf Python-2.7.18.tar.xz
+        cd Python-2.7.18/
+        ./configure --prefix=/usr/local --enable-shared --enable-unicode=ucs4
+        make
+        make install
+        echo "export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/bin/python2.7:$LD_LIBRARY_PATH" >> ~/.bash_profile
+        source ~/.bash_profile
+
+
+
+.. warning:: it's needed to downgrade node version to 10.21:
+
+   .. code::
+
+       node -v
+
+       npm install -g n
+
+       n 10.21
+
+Try to build sunstone again:
+
+.. code::
+
+   npm install --python=python2.7
+   bower install
+   cd ~/one-ee
+   scons sunstone=yes
+   sudo ./install.sh -s -u oneadmin -g oneadmin
+
 
 
 Building minified JS and CSS files
