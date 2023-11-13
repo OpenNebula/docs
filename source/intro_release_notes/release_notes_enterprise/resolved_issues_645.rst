@@ -30,3 +30,4 @@ The following issues has been solved in 6.4.5:
 - `Fix DockerHub downloader to handle images that are missing the Cmd property <https://github.com/OpenNebula/one/issues/6374>`__.
 - `Fix DockerHub downloader to handle images that are missing the latest tag like RockyLinux <https://github.com/OpenNebula/one/issues/6196>`__.
 - `Fix error management for DockerHub downloader on multiple steps of the import process <https://github.com/OpenNebula/one/issues/6197>`__.
+- `Fix Sunstone server crashes on login with remote auth enabled <https://github.com/OpenNebula/one/issues/6339>`__.

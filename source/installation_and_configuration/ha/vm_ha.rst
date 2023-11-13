@@ -44,7 +44,7 @@ We are defining a host hook, named ``host_error``, that will execute the script 
 |                     | - ``-r`` delete and recreate VMs running in the host. Their **state will be lost**!                |         |
 |                     | - ``-d`` delete VMs running in the host.                                                           |         |
 +---------------------+----------------------------------------------------------------------------------------------------+---------+
-| **Force Suspended** | ``-f`` force resubmission of suspended VMs                                                         | False   |
+| **Force Inactive**  | ``-f`` force resubmission of VMs in SUSPEND and POWEROFF states                                    | False   |
 +---------------------+----------------------------------------------------------------------------------------------------+---------+
 | **Avoid Transient** | ``-p <n>`` avoid resubmission if host comes back after ``<n>`` monitoring cycles                   | 2       |
 +---------------------+----------------------------------------------------------------------------------------------------+---------+
