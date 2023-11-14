@@ -27,3 +27,4 @@ The following issues has been solved in 6.8.1:
 - `Fix to label naming conventions, no text transforms are being applied to the names of labels anymore <https://github.com/OpenNebula/one/issues/6362>`__.
 - `Fix duplicate CPU model input <https://github.com/OpenNebula/one/issues/6375>`__.
 - `Fix datasources patching for configuration with single Front-end node in HA configuration <https://github.com/OpenNebula/one/issues/6343>`__.
+- `Changed the text in Support tab <https://github.com/OpenNebula/one/issues/6393>`__.
