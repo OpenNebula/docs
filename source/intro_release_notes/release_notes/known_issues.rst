@@ -18,11 +18,6 @@ Drivers - Storage
 
 - **LXC**, XFS formatted disk images are incompatible with the ``fs_lvm`` driver. The image `fails to be mounted <https://github.com/OpenNebula/one/issues/5802>`_ on the host.
 
-High Availability
-================================================================================
-
-HA server configuration synchronization with the command `onezone serversync` does not work for the PostgreSQL and SQLite DB Back-end
-
 Sunstone
 ================================================================================
 
