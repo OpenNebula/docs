@@ -24,6 +24,7 @@ The following issues has been solved in 6.8.1:
 - `Fix error management for DockerHub downloader on multiple steps of the import process <https://github.com/OpenNebula/one/issues/6197>`__.
 - `Fix VM templates with NIC and NIC alias <https://github.com/OpenNebula/one/issues/6349>`__.
 - `Fix error handling when reusing names while downloading Marketplace service appliances <https://github.com/OpenNebula/one/issues/6370>`__.
+- `Fix memory leak in Scheduler and optimize memory usage in Cluster objects <https://github.com/OpenNebula/one/issues/6365>`__.
 - `Fix to label naming conventions, no text transforms are being applied to the names of labels anymore <https://github.com/OpenNebula/one/issues/6362>`__.
 - `Fix duplicate CPU model input <https://github.com/OpenNebula/one/issues/6375>`__.
 - `Fix datasources patching for configuration with single Front-end node in HA configuration <https://github.com/OpenNebula/one/issues/6343>`__.
