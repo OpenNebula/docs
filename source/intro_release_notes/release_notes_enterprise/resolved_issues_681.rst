@@ -31,3 +31,4 @@ The following issues has been solved in 6.8.1:
 - `Fix CLI output after all disk snapshots are deleted <https://github.com/OpenNebula/one/issues/6388>`__.
 - `Fix authentication errors in scheduler and vcenter monitoring after oneadmin password change <https://github.com/OpenNebula/one/issues/6354>`__.
 - `Fix text in Support tab <https://github.com/OpenNebula/one/issues/6393>`__.
+- `Fix memory default size from MB to GB in FireEdge <https://github.com/OpenNebula/one/issues/6221>`__.
