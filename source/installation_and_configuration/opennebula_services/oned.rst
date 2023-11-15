@@ -18,7 +18,6 @@ The OpenNebula Daemon configuration file can be found in ``/etc/one/oned.conf`` 
 -  ``MANAGER_TIMER``: Time in seconds the core uses to evaluate periodical functions. ``MONITORING_INTERVAL`` cannot have a smaller value than ``MANAGER_TIMER``.
 -  ``MONITORING_INTERVAL_DATASTORE``: Time in seconds between each Datastore monitoring cycle.
 -  ``MONITORING_INTERVAL_MARKET``: Time in seconds between each Marketplace monitoring cycle.
--  ``MONITORING_INTERVAL_DB_UPDATE``: Time in seconds between DB writes of VM monitoring information. ``-1`` to disable DB updating and ``0`` to write every update.
 -  ``DS_MONITOR_VM_DISK``: Number of ``MONITORING_INTERVAL_DATASTORE`` intervals to monitor VM disks. ``0`` to disable. Only applies to ``fs`` and ``fs_lvm`` datastores.
 -  ``SCRIPTS_REMOTE_DIR``: Remote path to store the monitoring and VM management script.
 -  ``PORT``: Port where ``oned`` will listen for XML-RPC calls.
@@ -325,52 +324,28 @@ Sample configuration:
     #DEFAULT_IMAGE_PERSISTENT     = ""
     #DEFAULT_IMAGE_PERSISTENT_NEW = "NO"
 
-Information Collector
-=====================
+Monitoring Daemon
+=================
 
-This driver **cannot be assigned to a host**, and needs to be used with KVM drivers. These are the options that can be set:
+The Monitoring Daemon gather gather information from the cluster nodes. To define one, the following need to be set:
 
--  ``-a``: Address to bind the ``collectd`` socket (default ``0.0.0.0``)
--  ``-p``: UDP port to listen for monitor information (default ``4124``)
--  ``-f``: Interval in seconds to flush collected information (default ``5``)
--  ``-t``: Number of threads for the server (default ``50``)
--  ``-i``: Time in seconds of the monitoring push cycle. This parameter must be smaller than ``MONITORING_INTERVAL``, otherwise push monitoring will not be effective.
+-  **name**: name for this monitoring daemon.
+-  **executable**: path of the monitoring daemon as an absolute path or relative to ``/usr/lib/one/mads/``. Default value ``onemonitord``.
+-  **arguments**: for the daemon executable, usually a path to configuration file ``-c monitord.conf``.
+-  **threads**: number of threads used for communication
+
+For more information on configuring the information and monitoring system and hints to extend it, please check the :ref:`monitoring configuration <mon_conf>` and :ref:`information driver configuration guide <devel-im>`.
 
 Sample configuration:
 
 .. code-block:: bash
 
     IM_MAD = [
-          NAME       = "collectd",
-          EXECUTABLE = "collectd",
-          ARGUMENTS  = "-p 4124 -f 5 -t 50 -i 20" ]
-
-Information Drivers
-===================
-
-The information drivers are used to gather information from the cluster nodes and they depend on the virtualization you are using. You can define more than one information manager, but make sure they have different names. To define one, the following need to be set:
-
--  **name**: name for this information driver.
--  **executable**: path of the information driver executable as an absolute path or relative to ``/usr/lib/one/mads/``
--  **arguments**: for the driver executable, usually a probe configuration fileas an absolute path or relative to ``/etc/one/``.
-
-For more information on configuring the information and monitoring system and hints to extend it, please check the :ref:`information driver configuration guide <devel-im>`.
-
-Sample configuration:
-
-.. code-block:: bash
-
-    #-------------------------------------------------------------------------------
-    #  KVM UDP-push Information Driver Manager Configuration
-    #    -r number of retries when monitoring a host
-    #    -t number of threads, i.e. number of hosts monitored at the same time
-    #-------------------------------------------------------------------------------
-    IM_MAD = [
-          NAME          = "kvm",
-          SUNSTONE_NAME = "KVM",
-          EXECUTABLE    = "one_im_ssh",
-          ARGUMENTS     = "-r 3 -t 15 kvm" ]
-    #-------------------------------------------------------------------------------
+          NAME          = "monitord",
+          EXECUTABLE    = "onemonitord",
+          ARGUMENTS     = "-c monitord.conf",
+          THREADS       = 8
+    ]
 
 .. _oned_conf_virtualization_drivers:
 
