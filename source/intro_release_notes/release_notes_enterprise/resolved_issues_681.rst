@@ -33,3 +33,4 @@ The following issues has been solved in 6.8.1:
 - `Fix text in Support tab <https://github.com/OpenNebula/one/issues/6393>`__.
 - `Fix memory default size from MB to GB in FireEdge <https://github.com/OpenNebula/one/issues/6221>`__.
 - `Fix VIRTIO_BLK_QUEUES parameter so it can be used with VM templates with non-virtio bus (e.g. ide or scsi) <https://github.com/OpenNebula/one/issues/6401>`__.
+- `Fix OTP time for 2FA in Sunstone <https://github.com/OpenNebula/one/issues/6385>`__.
