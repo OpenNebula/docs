@@ -23,6 +23,7 @@ Drivers - Storage
 ================================================================================
 
 - **LXC**, XFS formatted disk images are incompatible with the ``fs_lvm`` driver. The image `fails to be mounted <https://github.com/OpenNebula/one/issues/5802>`_ on the host.
+- OneStor: Incremental backups doesn't work for VMs with OneStor recovery snapshots enabled in 6.6+. OneStor recovery snapshot feature is going to be decomissioned in 7.0.
 
 High Availability
 ================================================================================
