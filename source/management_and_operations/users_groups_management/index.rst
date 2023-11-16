@@ -10,6 +10,7 @@ Users and Groups
    Groups <manage_groups>
    VDCs <manage_vdcs>
    Sunstone Views <sunstone_views>
+   FireEdge Sunstone Views <fireedge_sunstone_views>
    Permissions and ACLs <chmod>
    Accounting <accounting>
    Showback <showback>

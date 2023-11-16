@@ -209,9 +209,9 @@ Example:
 Managing Groups in Sunstone
 ================================================================================
 
-All the described functionality is available graphically using :ref:`Sunstone <sunstone>`:
+All the described functionality is available graphically using :ref:`Fireedge Sunstone <fireedge_setup>`:
 
-|image3|
+|sunstone_group_list|
 
 There is an option to filter all system resources by ``group``. In the user's menu appear the groups of this user. There's the option ``All`` to see all system resources. When you filter by group, you also change the effective group of the user.
 
@@ -225,7 +225,7 @@ It's possible to show the filter in the top menu.
 
     filter-view: true
 
-.. |image3| image:: /images/sunstone_group_list.png
+.. |sunstone_group_list| image:: /images/sunstone_group_list.png
 .. |prepare-tmpl-chgrp| image:: /images/prepare-tmpl-chgrp.png
 .. |manage_groups_1| image:: /images/manage_groups_1.png
 .. |manage_groups_2| image:: /images/manage_groups_2.png
