@@ -213,17 +213,11 @@ All the described functionality is available graphically using :ref:`Fireedge Su
 
 |sunstone_group_list|
 
-There is an option to filter all system resources by ``group``. In the user's menu appear the groups of this user. There's the option ``All`` to see all system resources. When you filter by group, you also change the effective group of the user.
+There is an option to filter all system resources by ``group``. In the user's menu appear the groups of this user. There's the option ``Show All`` to see all system resources. When you filter by group, you also change the effective group of the user.
 
 This allows to work more comfortably on projects, by isolating the resources belonging to one group from others.
 
 |sunstone_filter|
-
-It's possible to show the filter in the top menu.
-
-.. code-block:: yaml
-
-    filter-view: true
 
 .. |sunstone_group_list| image:: /images/sunstone_group_list.png
 .. |prepare-tmpl-chgrp| image:: /images/prepare-tmpl-chgrp.png
