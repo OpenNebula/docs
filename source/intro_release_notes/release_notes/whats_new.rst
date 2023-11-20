@@ -52,6 +52,7 @@ FireEdge Sunstone
 - Implemented Users tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
 - Implemented VM Groups tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
 - Implemented Backup Jobs tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
+- Implemented Groups tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
 
 API and CLI
 ================================================================================
