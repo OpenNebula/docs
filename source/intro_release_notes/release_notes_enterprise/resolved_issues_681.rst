@@ -12,6 +12,8 @@ The following new features has been backported to 6.8.1:
 - Added the VM Group templates tab to Fireedge Sunstone. See :ref:`the VM affinity guide <vmgroups>` for more information.
   - The new configuration files can be downloaded from `here <https://bit.ly/one-68-maintenance-config>`__
 - Implemented :ref:`Backup Jobs <vm_backup_jobs>` tab in FireEdge Sunstone.
+- Added the Groups tab to Fireedge Sunstone. See :ref:`the Groups guide <manage_groups>` for more information.
+  - The new configuration files can be downloaded from `here <https://bit.ly/groups-tab>`__
 
 The following issues has been solved in 6.8.1:
 
