@@ -14,6 +14,7 @@ The following new features has been backported to 6.8.1:
 - Implemented :ref:`Backup Jobs <vm_backup_jobs>` tab in FireEdge Sunstone.
 - Added the Groups tab to Fireedge Sunstone. See :ref:`the Groups guide <manage_groups>` for more information.
   - The new configuration files can be downloaded from `here <https://bit.ly/groups-tab>`__
+- Implemented restricted attributes on Images and Virtual Networks in :ref:`Restricted Attributes <oned_conf_restricted_attributes_configuration>`.
 
 The following issues has been solved in 6.8.1:
 
