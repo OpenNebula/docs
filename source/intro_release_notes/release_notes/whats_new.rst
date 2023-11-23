@@ -22,6 +22,7 @@ FireEdge Sunstone
 - Implemented VM Groups tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
 - Implemented Backup Jobs tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
 - Implemented Groups tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
+- Implemented restricted attributes on Images and Virtual Networks in :ref:`Restricted Attributes <oned_conf_restricted_attributes_configuration>`.
 
 API and CLI
 ================================================================================
