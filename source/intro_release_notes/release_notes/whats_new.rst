@@ -16,11 +16,12 @@ OpenNebula Core
 Storage & Backups
 ================================================================================
 
-Ruby Sunstone
-================================================================================
-
 FireEdge Sunstone
 ================================================================================
+
+- Implemented VM Groups tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
+- Implemented Backup Jobs tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
+- Implemented Groups tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
 
 API and CLI
 ================================================================================
