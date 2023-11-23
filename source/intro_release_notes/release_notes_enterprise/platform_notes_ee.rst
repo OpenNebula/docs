@@ -1,7 +1,7 @@
 .. _uspng:
 
 ================================================================================
-Platform Notes 6.4.4
+Platform Notes 6.4.5
 ================================================================================
 
 This page will show you the specific considerations when using an OpenNebula cloud, according to the different supported platforms.
@@ -183,8 +183,8 @@ Open Cloud Storage Infrastructure
 +-----------+--------------------------------------------+-------------------------------------+
 | LVM2      | Version included in the Linux distribution | :ref:`LVM Drivers <lvm_drivers>`    |
 +-----------+--------------------------------------------+-------------------------------------+
-| Ceph      | Octopus 15.2.x                             | :ref:`The Ceph Datastore <ceph_ds>` |
-|           | Pacific v16.2.x                            |                                     |
+| Ceph      | Pacific v16.2.x                            | :ref:`The Ceph Datastore <ceph_ds>` |
+|           | Quincy  v17.2.x                            |                                     |
 +-----------+--------------------------------------------+-------------------------------------+
 
 Authentication
