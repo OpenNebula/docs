@@ -38,3 +38,4 @@ The following issues has been solved in 6.8.1:
 - `Fix VIRTIO_BLK_QUEUES parameter so it can be used with VM templates with non-virtio bus (e.g. ide or scsi) <https://github.com/OpenNebula/one/issues/6401>`__.
 - `Fix OTP time for 2FA in Sunstone <https://github.com/OpenNebula/one/issues/6385>`__.
 - `Fix KERNEL and RAMDISK inputs functionality when upgrading or creating a template in FireEdge <https://github.com/OpenNebula/one/issues/6334>`__.
+- `Fix User inputs not displayed when instantiating VM template in FireEdge <https://github.com/OpenNebula/one/issues/6392>`__.
