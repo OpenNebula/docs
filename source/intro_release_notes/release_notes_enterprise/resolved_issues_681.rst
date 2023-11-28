@@ -30,6 +30,7 @@ The following issues has been solved in 6.8.1:
 - `Fix memory leak in Scheduler and optimize memory usage in Cluster objects <https://github.com/OpenNebula/one/issues/6365>`__.
 - `Fix to label naming conventions, no text transforms are being applied to the names of labels anymore <https://github.com/OpenNebula/one/issues/6362>`__.
 - `Fix duplicate CPU model input <https://github.com/OpenNebula/one/issues/6375>`__.
+- `Fix accounting (history records) for VM disk actions <https://github.com/OpenNebula/one/issues/6320>`__.
 - `Fix datasources patching for configuration with single Front-end node in HA configuration <https://github.com/OpenNebula/one/issues/6343>`__.
 - `Fix CLI output after all disk snapshots are deleted <https://github.com/OpenNebula/one/issues/6388>`__.
 - `Fix authentication errors in scheduler and vcenter monitoring after oneadmin password change <https://github.com/OpenNebula/one/issues/6354>`__.
