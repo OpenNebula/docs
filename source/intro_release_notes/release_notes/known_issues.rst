@@ -17,11 +17,8 @@ Drivers - Storage
 ================================================================================
 
 - **LXC**, XFS formatted disk images are incompatible with the ``fs_lvm`` driver. The image `fails to be mounted <https://github.com/OpenNebula/one/issues/5802>`_ on the host.
-
-High Availability
-================================================================================
-
-HA server configuration synchronization with the command `onezone serversync` does not work for the PostgreSQL and SQLite DB Back-end
+- OneStor: Live migration doesn't work for VMs with OneStor recovery snapshots enabled in 6.8.0
+- OneStor: Incremental backups doesn't work for VMs with OneStor recovery snapshots enabled in 6.6+. OneStor recovery snapshot feature is going to be decomissioned in 7.0.
 
 Sunstone
 ================================================================================

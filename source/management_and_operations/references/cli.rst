@@ -42,6 +42,8 @@ The output of these commands can be customized by modifying the configuration fi
 
 List operation for each command will open a ``less`` session for a better user experience. First elements will be printed right away while the rest will begin to be requested and added to a cache, providing faster response times, specially on big deployments. Less session will automatically be canceled if a pipe is used for better interaction with scripts, providing the traditional, non interactive output.
 
+.. _cli_flow:
+
 OneFlow Commands
 ================================================================================
 

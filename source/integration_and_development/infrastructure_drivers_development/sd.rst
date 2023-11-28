@@ -313,6 +313,7 @@ Action scripts needed when the TM is used for the system datastore:
    -  ``host`` is the target host where the VM is running
    -  ``disks`` List (':' separated) of disk_ids  of disks that needs backup (e.g. "0:1:")
    -  ``deploy_id`` ID of the VM in the hypervisor
+   -  ``backupjob_id`` is the id of the Backup job ('-' if undefined)
    -  ``vm_id`` is the id of the VM
    -  ``ds_id`` is the target datastore (the system datastore)
 
@@ -323,6 +324,7 @@ Action scripts needed when the TM is used for the system datastore:
    -  ``host`` is the target host where the VM is running
    -  ``disks`` List (':' separated) of disk_ids  of disks that needs backup (e.g. "0:1:")
    -  ``deploy_id`` ID of the VM in the hypervisor
+   -  ``backupjob_id`` is the id of the Backup job ('-' if undefined)
    -  ``vm_id`` is the id of the VM
    -  ``ds_id`` is the target datastore (the system datastore)
 
