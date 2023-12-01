@@ -22,6 +22,10 @@ OpenNebula supports two backup types:
 - **Full**, each backup contains a full copy of the VM disks. Libvirt version >= 5.5 is required.
 - **Incremental**, each backup contains only the changes since the last backup. Incremental backups track changes by creating checkpoints (disk block dirty-bitmaps) using QEMU/Libvirt. Libvirt version >= 7.7 is required.
 
+Incremental backups can use two different modes:
+- **CBT** (Changed Block Tracking). For each increment OpenNebula creates a block bitmap in the disk image to track which blocks have changed since the last backup.
+- **SNAPSHOT**. OpenNebula tracks changes by creating a separate disk snapshot. This snapshot stores all disk changes since the last backup.
+
 The Backup Process
 --------------------------------------------------------------------------------
 VM backups can be taken live or while the VM is powered-off, the operation comprises three steps:
@@ -126,6 +130,8 @@ Reference: Backup Configuration Attributes
 | ``KEEP_LAST``             | Only keep the last N backups (full backups or increments) for the VM                                         |
 +---------------------------+--------------------------------------------------------------------------------------------------------------+
 | ``MODE``                  | Backup type ``FULL`` or ``INCREMENT``                                                                        |
++---------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``INCREMENT_MODE``        | Incremental backup type ``CBT`` or ``SNAPSHOT``                                                              |
 +---------------------------+--------------------------------------------------------------------------------------------------------------+
 | ``INCREMENTAL_BACKUP_ID`` | For ``INCREMENT`` points to the backup image where increment chain is stored                                 |
 +---------------------------+--------------------------------------------------------------------------------------------------------------+
