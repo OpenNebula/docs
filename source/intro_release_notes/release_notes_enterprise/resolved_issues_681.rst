@@ -15,6 +15,8 @@ The following new features has been backported to 6.8.1:
 - Added the Groups tab to Fireedge Sunstone. See :ref:`the Groups guide <manage_groups>` for more information.
   - The new configuration files can be downloaded from `here <https://bit.ly/groups-tab>`__
 - Implemented restricted attributes on Images and Virtual Networks in :ref:`Restricted Attributes <oned_conf_restricted_attributes_configuration>`.
+- Incremental backups now support a snapshot mode to track changes using :ref:`snapshots instead of CBT checkpoints <vm_backups_operations>`.
+- Backups can be configured to use a custom path in the hosts FS for :ref:`restic <vm_backups_restic>` and :ref:`rsync <vm_backups_rsync>`.
 - Added numerous :ref:`CLI improvements <cli>` for the backup management.
 
 The following issues has been solved in 6.8.1:
