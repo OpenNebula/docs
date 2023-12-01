@@ -23,6 +23,7 @@ OpenNebula supports two backup types:
 - **Incremental**, each backup contains only the changes since the last backup. Incremental backups track changes by creating checkpoints (disk block dirty-bitmaps) using QEMU/Libvirt. Libvirt version >= 7.7 is required.
 
 Incremental backups can use two different modes:
+
 - **CBT** (Changed Block Tracking). For each increment OpenNebula creates a block bitmap in the disk image to track which blocks have changed since the last backup.
 - **SNAPSHOT**. OpenNebula tracks changes by creating a separate disk snapshot. This snapshot stores all disk changes since the last backup.
 
