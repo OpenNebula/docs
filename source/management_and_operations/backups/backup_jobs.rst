@@ -49,6 +49,7 @@ Every backup operation within the Backup Job shares the same configuration attri
       FS_FREEZE = "NONE"
       KEEP_LAST = "4"
       MODE = "INCREMENT"
+      INCREMENT_MODE = "SNAPSHOT"
 
 +------------------+-----------------------------------------------------------+
 | Attribute        | Description                                               |
