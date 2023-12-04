@@ -43,6 +43,7 @@ The following issues has been solved in 6.8.1:
 - `Fix OTP time for 2FA in Sunstone <https://github.com/OpenNebula/one/issues/6385>`__.
 - `Fix KERNEL and RAMDISK inputs functionality when upgrading or creating a template in FireEdge <https://github.com/OpenNebula/one/issues/6334>`__.
 - `Fix User inputs not displayed when instantiating VM template in FireEdge <https://github.com/OpenNebula/one/issues/6392>`__.
+- `Fix one.vm.updateconf ignoring VIRTIO_BLK_QUEUES  <https://github.com/OpenNebula/one/issues/6414>`__.
 - `Fix OneFlow VMs that may not include vm_info parameter in some cases <https://github.com/OpenNebula/one/issues/6406>`__.
 - `Fix vCenter nic_attach action throwing parsing error <https://github.com/OpenNebula/one/issues/6391>`__.
 - `Fix labeling system in FireEdge Sunstone <https://github.com/OpenNebula/one/issues/6362>`__.
