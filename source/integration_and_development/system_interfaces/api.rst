@@ -2093,7 +2093,8 @@ The supported attributes are:
 | ``OS``       | ``ARCH``, ``MACHINE``, ``KERNEL``, ``INITRD``, ``BOOTLOADER``, ``BOOT``,|
 |              | ``SD_DISK_BUS``, ``UUID``                                               |
 +--------------+-------------------------------------------------------------------------+
-| ``FEATURES`` | ``ACPI``, ``PAE``, ``APIC``, ``LOCALTIME``, ``HYPERV``, ``GUEST_AGENT`` |
+| ``FEATURES`` | ``ACPI``, ``PAE``, ``APIC``, ``LOCALTIME``, ``HYPERV``, ``GUEST_AGENT``,|
+|              | ``VIRTIO_SCSI_QUEUES``, ``VIRTIO_BLK_QUEUES``, ``IOTHREADS``            |
 +--------------+-------------------------------------------------------------------------+
 | ``INPUT``    | ``TYPE``, ``BUS``                                                       |
 +--------------+-------------------------------------------------------------------------+
