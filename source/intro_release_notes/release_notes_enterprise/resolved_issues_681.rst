@@ -49,3 +49,4 @@ The following issues has been solved in 6.8.1:
 - `Fix labeling system in FireEdge Sunstone <https://github.com/OpenNebula/one/issues/6362>`__.
 - `Fix Sunstone issues unnecessary call when creating a marketplace app <https://github.com/OpenNebula/one/issues/6334>`__.
 - `Fix missing catalan keymap <https://github.com/OpenNebula/one/issues/6420>`__.
+- `Fix snapshot revert action to use custom script names (regression introduced by 2efd976) <https://github.com/OpenNebula/one/issues/6382>`__.
