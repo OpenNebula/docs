@@ -3,8 +3,27 @@
 OneKE's Features / Changelog
 ============================
 
-OneKE 1.27.2-6.6.1-1.20230724 (Current)
+OneKE 1.27.2-6.6.1-1.20231211 (Current)
 ---------------------------------------
+
+======================================= ================
+Feature                                 Version
+======================================= ================
+VNF + HAproxy                           6.6.1-1.20230607
+RKE2 + Multus / Cilium / Calico / Canal v1.27.2+rke2r1
+Longhorn                                1.4.1/1.4.1
+MetalLB                                 0.13.9/0.13.9
+Traefik                                 23.0.0/2.10.0
+One-Cleaner
+Multi-Master
+Airgapped install (**OneKE 1.27a**)
+======================================= ================
+
+* Removed all airgapped images from OneKE 1.27.
+* Introduced OneKE 1.27a, the airgapped version.
+
+OneKE 1.27.2-6.6.1-1.20230724
+-----------------------------
 
 ====================== ================
 Feature                Version
