@@ -16,6 +16,22 @@ Considerations & Limitations
 
 Try to use :ref:`virtio <kvmg_virtio>` whenever possible, both for networks and disks. Using emulated hardware, both for networks and disks, will have an impact on performance and will not expose all the available functionality. For instance, if you don't use ``virtio`` for the disk drivers, you will not be able to exceed a small number of devices connected to the controller, meaning that you have a limit when attaching disks and it will not work while the VM is running (live disk-attach).
 
+When **updating the VM configuration live** using ``one.vm.updateconf`` although the all of the VM configuration will get updated on the VM instance template, only the CONTEXT and BACKUP_CONFIG will take effect immediately. The rest of the configuration will not take effect until the next VM reboot because it changes the VM virtual hardware.
+
+The full list of configuration attributes are:
+
+.. code-block::
+
+    OS        = ["ARCH", "MACHINE", "KERNEL", "INITRD", "BOOTLOADER", "BOOT", "UUID"]
+    FEATURES  = ["ACPI", "PAE", "APIC", "LOCALTIME", "HYPERV", "GUEST_AGENT", "VIRTIO_SCSI_QUEUES", "VIRTIO_BLK_QUEUES", "IOTHREADS"]
+    INPUT     = ["TYPE", "BUS"]
+    GRAPHICS  = ["TYPE", "LISTEN", "PASSWD", "KEYMAP" ]
+    VIDEO     = ["TYPE", "IOMMU", "ATS", "VRAM", "RESOLUTION"]
+    RAW       = ["DATA", "DATA_VMX", "TYPE", "VALIDATE"]
+    CPU_MODEL = ["MODEL"]
+    BACKUP_CONFIG = ["FS_FREEZE", "KEEP_LAST", "BACKUP_VOLATILE", "MODE", "INCREMENT_MODE"]
+    CONTEXT (any value, **variable substitution will be made**)
+
 Configuration
 ================================================================================
 

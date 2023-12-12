@@ -5,7 +5,7 @@ Resolved Issues in 6.8.1
 
 A complete list of solved issues for 6.8.1 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/71?closed=1>`__.
 
-The following new features has been backported to 6.8.1:
+The following new features have been backported to 6.8.1:
 
 - Optimized implementation of :ref:`standard input capable commands <cli>`. Other commands were updated as well to handle standard input.
 - Minor optimization on the ``oneflow-template instantiate`` command when using the :ref:`--multiple <cli_flow>` option.
@@ -18,6 +18,7 @@ The following new features has been backported to 6.8.1:
 - Incremental backups now support a snapshot mode to track changes using :ref:`snapshots instead of CBT checkpoints <vm_backups_operations>`.
 - Backups can be configured to use a custom path in the hosts FS for :ref:`restic <vm_backups_restic>` and :ref:`rsync <vm_backups_rsync>`.
 - Added numerous :ref:`CLI improvements <cli>` for the backup management.
+- Added more CLI formatting options to some :ref:`oneflow commands <cli_flow>`.
 
 The following issues has been solved in 6.8.1:
 
@@ -51,3 +52,4 @@ The following issues has been solved in 6.8.1:
 - `Fix missing catalan keymap <https://github.com/OpenNebula/one/issues/6420>`__.
 - `Fix snapshot revert action to use custom script names (regression introduced by 2efd976) <https://github.com/OpenNebula/one/issues/6382>`__.
 - `Fix several cases where VM quotas were corrupted after stop, undeploy or terminate command <https://github.com/OpenNebula/one/issues/6355>`__.
+- `Fix Datastore monitoring <https://github.com/OpenNebula/one/issues/6409>`__.
