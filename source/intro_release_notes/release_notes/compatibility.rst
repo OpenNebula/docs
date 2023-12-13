@@ -15,11 +15,6 @@ Visit the :ref:`Features list <features>` and the :ref:`What's New guide <whats_
     - The table ``vm_pool`` now contains the column ``json_body`` which provides searching for values using JSON keys, and no longer contains the ``search_token`` column, effectively removing FULLTEXT searching entirely. This should greatly improve performance when performing search filters on virtual machines as well as remove the need for regenerating FULLTEXT indexing.  Due to this change, the search now uses a JSON path to search, for example: ``VM.NAME=production`` would match all VM's which have name containing ``production``.
     - The migrator has been updated to make these changes automatically with the ``onedb upgrade`` tool. When tested on a database containing just over 150,000 VM entries, the upgrade took roughly 4100 seconds using an HDD and about 3500 seconds using a ramdisk.
 
-API
-================================================================================
-
-The instance method ``document_tye`` of the class ``OpenNebula::Document`` now returns the ``DOCUMENT_TYPE`` value of the document body. Previously the ``document_tye`` instance method returned the value of the constant ``DOCUMENT_TYPE`` defined on each of the ``OpenNebula::Document`` child classes.
-
 Configuration Files Headers
 ================================================================================
 
