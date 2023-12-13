@@ -37,4 +37,3 @@ Features Backported to 6.8.x
 Other Issues Solved
 ================================================================================
 - `Fix for systemd unit files in the part responsible for log compression <https://github.com/OpenNebula/one/issues/6282>`__.
-- `Fix **document_type** instance method from the OpenNebula::Document class Ruby API returning a constant value <https://github.com/OpenNebula/one/issues/6425>`__.
