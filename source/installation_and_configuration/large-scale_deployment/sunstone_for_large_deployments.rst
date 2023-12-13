@@ -172,11 +172,11 @@ If FireEdge is installed and running on the same machine and expected to be used
       </Location>
     </VirtualHost>
 
-In Sunstone configuration (:ref:`/etc/one/sunstone-server.conf <sunstone_conf>`), set the public FireEdge endpoint in option ``:public_fireedge_endpoint``, to the public endpoint that correctly redirects to fireedge (in the example, all URLs with the /fireedge handle). E.g.,
+In Sunstone configuration (:ref:`/etc/one/sunstone-server.conf <sunstone_conf>`), set the public FireEdge endpoint in option ``:public_fireedge_endpoint``, to the public endpoint that correctly redirects to FireEdge. Sunstone will automatically add the /fireedge suffix to any URL meant to be go to FireEdge, so we can skip that (we can leave it as well, since /fireedge/fireedge will be redirected by FireEdge server to the /fireedge endopoint). E.g.,
 
 .. code::
 
-    :public_fireedge_endpoint: http://one.example.one/fireedge
+    :public_fireedge_endpoint: http://one.example.one
 
 .. _suns_advance_apache_tls_proxy:
 
@@ -546,7 +546,7 @@ The IP address and port number used in ``upstream`` must be the ones the server 
 haproxy
 ^^^^^^^
 
-To access sunstone via HTTPS via haproxy, please check the frontend and backend configurations 
+To access sunstone via HTTPS via haproxy, please check the frontend and backend configurations
 
 * About the frontend configuration, please remember that the SSL certificate and its private key must be concatenated. Supposing that the certificate and key for your server are ``host.crt`` and ``host.key``, and you want to set the the resulting file in ``/etc/certs/host.pem`` the commands would be thisv (the right permissions should be set too)
 
@@ -569,12 +569,12 @@ Once that is set, a frontend valid configuration would look like this, sending t
       # http-request redirect scheme https unless { ssl_fc }
       default_backend BACKEND_ONE
 
-* The backend configuration is different depending if you want to use ``core`` or ``x509`` authentication. 
+* The backend configuration is different depending if you want to use ``core`` or ``x509`` authentication.
 
   * If you want to use core authentication (based on username and password), the frontend would look like this (names in capital letters may be needed to be changed)
 
   .. code-block:: none
-  
+
     # haproxy backend config for Sunstone using core auth driver
     backend BACKEND_ONE
        mode http
@@ -584,7 +584,7 @@ Once that is set, a frontend valid configuration would look like this, sending t
   * In case you want to use x509 certificates for the authentication in sunstone, you need to pass some extra headers in order to make it work correctly
 
   .. code-block:: none
-  
+
     # haproxy backend config for Sunstone using x.509 auth driver
     backend BACKEND_ONE
        mode http
