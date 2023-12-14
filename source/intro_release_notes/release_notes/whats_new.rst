@@ -63,6 +63,10 @@ KVM
 - Added the ``VIDEO`` attribute for VM's to :ref:`define a custom video device for VM's <kvm_video>`.
 - Extended support for Microsoft Windows guests: updated list of default ``HYPERV_OPTIONS`` and add a predefined set timers (configurable with ``HYPERV_TIMERS``) to the domain clock when ``HYPERV`` enhancements are enabled, :ref:`see the VM template reference <template_features>`.
 
+vCenter
+================================================================================
+- Added support for :ref:`vSphere 8.0 U2 <vcenter_nodes_platform_notes>` by utilizing the rbvmomi2 gem
+
 Features Backported to 6.6.x
 ================================================================================
 
