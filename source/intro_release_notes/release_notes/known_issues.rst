@@ -42,7 +42,8 @@ OpenNebula uses the ``cirrus`` graphical adapter for KVM Virtual Machines by def
 vCenter Snapshot behavior
 =================================
 
-VMs in vCenter 7.0 exhibit a new behavior regarding snapshots and disks attach/detach operations. When vCenter 7.0 detects any change in the number of disks attached to a VM, it automatically cleans all the VM snapshots. OpenNebula doesn't take this into account yet, so the snapshots stated by OpenNebula, after a disk attach or disk detach, are pointing to a null vCenter reference, and as such, cannot be used. Please keep this in mind before a solution is implemented.
+- VMs in vCenter 7.0 exhibit a new behavior regarding snapshots and disks attach/detach operations. When vCenter 7.0 detects any change in the number of disks attached to a VM, it automatically cleans all the VM snapshots. OpenNebula doesn't take this into account yet, so the snapshots stated by OpenNebula, after a disk attach or disk detach, are pointing to a null vCenter reference, and as such, cannot be used. Please keep this in mind before a solution is implemented.
+- In both vCenter 7.0 and vCenter 8.0 when trying to create a vcenter datastore image with a URL for the source Path, a Timeout error is shown instead of the image ID. The Image is still created, but the output value from oneimage is incorrect.
 
 Warning when Exporting an App from the Marketplace Using CLI
 ================================================================================
