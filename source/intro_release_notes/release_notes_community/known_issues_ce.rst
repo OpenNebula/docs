@@ -8,6 +8,10 @@ A complete list of `known issues for OpenNebula is maintained here <https://gith
 
 This page will be updated with relevant information about bugs affecting OpenNebula, as well as possible workarounds until a patch is officially published.
 
+Security
+================================================================================
+- By default the ``RAW/DATA`` attribute is not restricted for regular users, which may lead to private data breach from the server. To fix this please modify the value ``VM_RESTRICTED_ATTR = "RAW"`` to ``VM_RESTRICTED_ATTR = "RAW/DATA"`` in oned.conf
+
 Drivers - Network
 ================================================================================
 
