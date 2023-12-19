@@ -29,15 +29,6 @@ Sunstone
 
 - Guacamole RDP as is currently shipped in OpenNebula does not support NLA authentication. You can follow `these instructions <https://www.parallels.com/blogs/ras/disabling-network-level-authentication/>`__ in order to disable NLA in the Windows box to use Guacamole RDP within Sunstone.
 - Creating a VM with SPICE graphics, on Alma9, will cause the VM to stay on FAILED state.
-- In FireEdge Sunstone, if at least one host contains a NUMA node that has exactly one hugepage:
-
-  * When you create or update a VM Template, if the hypervisor is not vCenter or Firecracker, the app will crash after clicking on the checbox "NUMA Topology" on the NUMA tab.
-  * When a VM Template is updated, if the hypervisor is not vCenter or Firecracker and the VM Template has an attribute "TOPOLOGY", the app will crash after clicking on the NUMA tab.
-
-- In FireEdge Sunstone, if a host has a KVM hypervisor VM MAD:
-
-  * When a VM Template is created or updated, if the host template does not contain an attribute called "KVM_CPU_FEATURES", the app will crash after clicking on the OS & CPU tab.
-
 
 OneProvision
 ================================================================================
@@ -51,7 +42,8 @@ OpenNebula uses the ``cirrus`` graphical adapter for KVM Virtual Machines by def
 vCenter Snapshot behavior
 =================================
 
-VMs in vCenter 7.0 exhibit a new behavior regarding snapshots and disks attach/detach operations. When vCenter 7.0 detects any change in the number of disks attached to a VM, it automatically cleans all the VM snapshots. OpenNebula doesn't take this into account yet, so the snapshots stated by OpenNebula, after a disk attach or disk detach, are pointing to a null vCenter reference, and as such, cannot be used. Please keep this in mind before a solution is implemented.
+- VMs in vCenter 7.0 exhibit a new behavior regarding snapshots and disks attach/detach operations. When vCenter 7.0 detects any change in the number of disks attached to a VM, it automatically cleans all the VM snapshots. OpenNebula doesn't take this into account yet, so the snapshots stated by OpenNebula, after a disk attach or disk detach, are pointing to a null vCenter reference, and as such, cannot be used. Please keep this in mind before a solution is implemented.
+- In both vCenter 7.0 and vCenter 8.0 when trying to create a vcenter datastore image with a URL for the source Path, a Timeout error is shown instead of the image ID. The Image is still created, but the output value from oneimage is incorrect.
 
 Warning when Exporting an App from the Marketplace Using CLI
 ================================================================================

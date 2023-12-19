@@ -8,3 +8,4 @@ Release Notes |version| Enterprise Edition
    :maxdepth: 1
 
    What is OpenNebula EE<what_is>
+   Resolved Issues 6.8.1 <resolved_issues_681>
