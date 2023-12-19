@@ -7,6 +7,7 @@ A complete list of solved issues for 6.8.1 can be found in the `project developm
 
 The following new features have been backported to 6.8.1:
 
+- Added support for :ref:`vSphere 8<vcenter_nodes_platform_notes>`.
 - Optimized implementation of :ref:`standard input capable commands <cli>`. Other commands were updated as well to handle standard input.
 - Minor optimization on the ``oneflow-template instantiate`` command when using the :ref:`--multiple <cli_flow>` option.
 - Added the VM Group templates tab to Fireedge Sunstone. See :ref:`the VM affinity guide <vmgroups>` for more information.
