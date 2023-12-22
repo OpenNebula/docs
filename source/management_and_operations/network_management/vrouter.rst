@@ -42,12 +42,11 @@ To create a new Virtual Router from Sunstone, follow the wizard to select the Vi
 
 For each Virtual Network, the following options can be defined:
 
-* **Floating IP**. Only used in High Availability, explained bellow.
+* **Floating IP**. Only used in High Availability. This option is controlled with ``FLOATING_IP`` and ``FLOATING_ONLY`` parameters.
 
 * **Force IPv4**. You can force the IP assigned to the network interface. When the VR is not configured in High Availability, this will be the IP requested for the Virtual Machine appliance.
 
 * **Management interface**. If checked, this network interface will be a Virtual Router management interface. Traffic will not be forwarded to it.
-
 
 Once ready, click the "create" button to finish. OpenNebula will create the Virtual Router and the Virtual Machines automatically.
 
@@ -68,7 +67,8 @@ Then use the ``onevrouter create`` command:
     NAME = my-vr
     NIC = [
       NETWORK="blue-net",
-      IP="192.168.30.5" ]
+      IP="192.168.30.5",
+      FLOATING_IP = "yes" ]
     NIC = [
       NETWORK="red-net" ]
 
@@ -122,15 +122,15 @@ To enable a high availability scenario, you need to choose 2 or more number of i
 
 In this scenario, the following Virtual Router options became relevant:
 
-* **Keepalived ID**: Optional. Sets keepalived configuration parameter ``virtual_router_id``.
+* **Keepalived ID**: Optional. Sets keepalived configuration parameter ``virtual_router_id``. If not set OpenNebula will pick one for you.
 * **Keepalived password**: Optional. Sets keepalived configuration parameter ``authentication/auth_pass``.
 
 And for each Virtual Network Interface:
 
-* **Floating IP**. Check it to enable the floating IP.
+* **Floating IP**. Check it to enable the floating IP. This adds the attribute ``FLOATING_IP = yes`` in the NIC.
 * **Force IPv4**. Optional. With the floating IP option selected, this field requests a fixed IP for that floating IP, not the individual VM IPs.
 
-The floating IP assignment is managed in a similar way to normal VM IPs. If you open the information of the Virtual Network, it will contain a lease assigned to the Virtual Router (not a VM). Besides the floating IP, each VM will get their own individual IP.
+The floating IP assignment is managed in a similar way to normal VM IPs. If you open the information of the Virtual Network, it will contain a lease assigned to the Virtual Router (not a VM). Besides the floating IP, you can choose to assign each VM their own individual IP in the network or not (set ``FLOATING_ONLY = yes`` in the NIC). In this case VRRP will run on one of the other VM NICs.
 
 Other Virtual Machines in the network will use the floating IP to contact the Virtual Router VMs. At any given time, only one VM is using that floating IP address. If the active VM crashes, the other VMs will coordinate to assign the floating IP to a new Virtual Router VM.
 
@@ -141,6 +141,7 @@ You can provide two optional parameters in the context to configure the keepaliv
 
 * ``VROUTER_KEEPALIVED_PASSWORD``: Password used for the service to protect the service from packages of rogue machines. By default the service is configured without password.
 * ``VROUTER_KEEPALIVED_ID``: Number identifier of the service (1-255). This is useful when you have several virtual routers or other keepalived services in the same network. By default it is generated from the Virtual Router ID (``$vrouter_id & 255``) but you can specify it manually if needed.
+* ``FLOATING_IP`` and ``FLOATING_ONLY`` controls the IP assignment  on the NIC interface. When the ``FLOATING_IP`` is set to ``yes`` an IP (``VROUTER_IP``) is assigned and shared across all VMs of the VR. When ``FLOATING_ONLY`` is set to ``yes`` no additional IP is allocated for that NIC.
 
 These parameters can also be provided in the Virtual Router creation wizard of Sunstone.
 
