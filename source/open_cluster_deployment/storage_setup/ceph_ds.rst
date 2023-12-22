@@ -176,15 +176,15 @@ To use your Ceph Cluster with the OpenNebula, you need to define a System and Im
 
 .. warning::
 
-    When putting ``ceph.conf`` file in non-default location (the default one it ``/etc/ceph/ceph.conf``) one needs to perform two steps as below.
+    In order to place the ``ceph.conf`` file in a non-default location (ie, other than ``/etc/ceph/ceph.conf``), please perform the following steps.
     
-    1) On all nodes listed in the value of ``BRIDGE_LIST`` configuration attribute of ceph-base DS move ``ceph.conf`` file into desired location:
+    1) On all nodes listed in ``BRIDGE_LIST`` configuration attribute of ceph-based DS, move the ``ceph.conf`` file into desired location:
 
     .. prompt:: bash $ auto
 
         $ sudo mv /etc/ceph/ceph.conf /etc/ceph/ceph1.conf\
 
-    Extract and save the ceph key into separate file (it has to contain only the key, nothing else):
+    Extract and save the Ceph key into separate file (it has to contain only the key, nothing else):
 
     .. prompt:: bash $ auto
 
@@ -193,7 +193,7 @@ To use your Ceph Cluster with the OpenNebula, you need to define a System and Im
 
     2) Add two configuration attributes:
 
-        - ``CEPH_CONF`` configuration attribute with absolute path to the custom location of ``ceph.conf`` file and
+        - ``CEPH_CONF`` configuration attribute with absolute path to the custom location of ``ceph.conf`` file.
         - ``CEPH_KEY`` configuration attribute with absolute path to the location of the ceph key file saved in the previous step.
 
     .. prompt:: bash $ auto
