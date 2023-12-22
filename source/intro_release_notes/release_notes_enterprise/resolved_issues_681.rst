@@ -11,10 +11,14 @@ The following new features have been backported to 6.8.1:
 - Optimized implementation of :ref:`standard input capable commands <cli>`. Other commands were updated as well to handle standard input.
 - Minor optimization on the ``oneflow-template instantiate`` command when using the :ref:`--multiple <cli_flow>` option.
 - Added the VM Group templates tab to Fireedge Sunstone. See :ref:`the VM affinity guide <vmgroups>` for more information.
+
   - The new configuration files can be downloaded from `here <https://bit.ly/one-68-maintenance-config>`__
+
 - Implemented :ref:`Backup Jobs <vm_backup_jobs>` tab in FireEdge Sunstone.
 - Added the Groups tab to Fireedge Sunstone. See :ref:`the Groups guide <manage_groups>` for more information.
+
   - The new configuration files can be downloaded from `here <https://bit.ly/groups-tab>`__
+
 - Implemented restricted attributes on Images and Virtual Networks in :ref:`Restricted Attributes <oned_conf_restricted_attributes_configuration>`.
 - Incremental backups now support a snapshot mode to track changes using :ref:`snapshots instead of CBT checkpoints <vm_backups_operations>`.
 - Backups can be configured to use a custom path in the hosts FS for :ref:`restic <vm_backups_restic>` and :ref:`rsync <vm_backups_rsync>`.
