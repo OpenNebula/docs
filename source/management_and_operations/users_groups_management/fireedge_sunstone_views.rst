@@ -85,6 +85,7 @@ View definitions are placed in the ``/etc/one/fireedge/sunstone`` directory. Eac
 
     /etc/one/fireedge/sunstone
     |-- admin/
+    |   |-- acl-tab.yaml                   <--- Enable ACL tab and define its actions
     |   |-- backupjobs-tab.yaml            <--- Enable Backup jobs tab and define its actions
     |   |-- backup-tab.yaml                <--- Enable Backup tab and define its actions
     |   |-- datastore-tab.yaml             <--- Enable Datastore tab and define its actions

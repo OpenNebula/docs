@@ -74,6 +74,7 @@ System
 - **Users Tab**: Admins can access all the users defined in the OpenNebula instance, and perform managing operations such as updating, enabling/disabling, setting quotas, and more. Also, admins can create new Users from this tab.
 - **Groups Tab**: Admins can access all the groups defined in the OpenNebula instance, and perform managing operations such as updating, setting quotas, and more. Also, admins can create new Groups from this tab.
 - **VM Groups Tab**: Admins can access all the VM groups defined in the OpenNebula instance, and perform managing operations such as updating, enabling/disabling, and more. Also, admins can create new VM groups from this tab.
+- **ACL Tab**: Admins can access all the ACL rules defined in the OpenNebula instance, and perform create and delete operations.
 
 .. _fireedge_sunstone_settings_tab:
 
