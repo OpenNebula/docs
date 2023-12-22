@@ -173,33 +173,38 @@ To use your Ceph Cluster with the OpenNebula, you need to define a System and Im
 
 .. note:: Ceph Luminous release allows use of erasure coding for ``RBD`` images. In general, erasure-coded images take up less space but have worse I/O performance. Erasure coding can be enabled on Image and/or System Datastores by configuring ``EC_POOL_NAME`` with the name of the erasure-coded data pool. Regular replicated Ceph pool ``POOL_NAME`` is still required for image metadata. More information in `Ceph documentation <https://docs.ceph.com/en/latest/rados/operations/erasure-code/#erasure-coding-with-overwrites>`__.
 
-.. note:: When putting ``ceph.conf`` file in non-default location (the default one it ``/etc/ceph/ceph.conf``) one needs to perform two steps as below:
-1)  On all nodes listed in the value of ``BRIDGE_LIST`` configuration attribute of ceph-base DS move ceph.conf file into desired location:
 
-.. prompt:: bash $ auto
+.. warning::
 
-  $ sudo mv /etc/ceph/ceph.conf /etc/ceph/ceph1.conf
+    When putting ``ceph.conf`` file in non-default location (the default one it ``/etc/ceph/ceph.conf``) one needs to perform two steps as below.
+    
+    1) On all nodes listed in the value of ``BRIDGE_LIST`` configuration attribute of ceph-base DS move ``ceph.conf`` file into desired location:
 
+    .. prompt:: bash $ auto
 
-Extract and save the ceph key into separate file (it has to contain only the key, nothing else):
+        $ sudo mv /etc/ceph/ceph.conf /etc/ceph/ceph1.conf\
 
-.. prompt:: bash $ auto
+    Extract and save the ceph key into separate file (it has to contain only the key, nothing else):
 
-  $ sudo grep -o -P '(?<=key = ).*(?=)' /etc/ceph/ceph.client.oneadmin.keyring >> /etc/ceph/ceph.client.oneadmin.key
+    .. prompt:: bash $ auto
 
-2) Add ``CEPH_CONF`` configuration attribute with absolute path to the custom location of ``ceph.conf`` file e,g.
-
-.. prompt:: bash $ auto
-
-  [oneadmin@FN]$ onedatastore update <DS_ID>
-CEPH_CONF="/etc/ceph/ceph1.conf"
+        $ sudo grep -o -P '(?<=key = ).*(?=)' /etc/ceph/ceph.client.oneadmin.keyring >> /etc/ceph/ceph.client.oneadmin.key
 
 
-as well as ``CEPH_KEY`` configuration attribute with absolute path to the location of the ceph key file saved in the previous step:
-CEPH_KEY="/etc/ceph/ceph.client.oneadmin.key"
+    2) Add two configuration attributes:
 
+        - ``CEPH_CONF`` configuration attribute with absolute path to the custom location of ``ceph.conf`` file and
+        - ``CEPH_KEY`` configuration attribute with absolute path to the location of the ceph key file saved in the previous step.
 
-None of the services need to be restarted.
+    .. prompt:: bash $ auto
+
+        $ onedatastore update <DS_ID>
+        CEPH_CONF="/etc/ceph/ceph1.conf"
+        CEPH_KEY="/etc/ceph/ceph.client.oneadmin.key"
+        
+        
+    None of the services need to be restarted.
+
 
 Create System Datastore
 --------------------------------------------------------------------------------
