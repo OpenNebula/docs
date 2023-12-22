@@ -240,13 +240,13 @@ The ACL rules are managed using the :ref:`oneacl command <cli>`. The 'oneacl lis
 .. prompt:: text $ auto
 
     $ oneacl list
-       ID     USER RES_VHNIUTGDCOZSvRMA   RID OPE_UMAC  ZONE
-        0       @1     V--I-T---O-S----     *     ---c     *
-        1        *     ----------Z-----     *     u---     *
-        2        *     --------------MA     *     u---     *
-        3       @1     -H--------------     *     -m--    #0
-        4       @1     --N----D--------     *     u---    #0
-        5     @106     ---I------------   #31     u---    #0
+       ID     USER RES_VHNIUTGDCOZSvRMAPtB   RID OPE_UMAC  ZONE
+        0       @1     V--I-T---O-S-------     *     ---c     *
+        1        *     ----------Z--------     *     u---     *
+        2        *     --------------MA---     *     u---     *
+        3       @1     -H-----------------     *     -m--    #0
+        4       @1     --N----D-----------     *     u---    #0
+        5     @106     ---I---------------   #31     u---    #0
 
 The rules shown correspond to the following ones:
 
@@ -290,6 +290,7 @@ The **Resources** column lists the existing Resource types initials. Each rule f
 -  ``A : MARKETPLACEAPP``
 -  ``P : VMGROUP``
 -  ``t : VNTEMPLATE``
+-  ``B : BACKUPJOB``
 
 **RID** stands for Resource ID, it can be an individual object (#), group (@) or cluster (%) id; or all (\*) objects.
 
@@ -302,20 +303,74 @@ The next **Operations** column lists the allowed operations initials.
 
 And the last column, **Zone**, shows the zone(s) where the rule applies. It can be an individual zone id (#), or all (\*) zone.
 
-Managing ACLs via Sunstone
-==========================
+Managing ACLs via FireEdge Sunstone
+===================================
 
-Sunstone offers a very intuitive and easy way of managing ACLs.
+FireEdge Sunstone offers a very intuitive and easy way of managing ACLs.
 
 Select ACLs in the left-side menu to access a view of the current ACLs defined in OpenNebula:
 
 |image1|
 
-This view is designed to easily understand what the purpose of each ACL is. You can create new ACLs by clicking on the ``New`` button at the top. A dialog will pop up:
+This view is designed to easily understand what the purpose of each ACL is. You can create new ACLs in two different ways.
 
-|image2|
+First way it is to use the Create from string by clicking on the icon with a pencil:
 
-In the creation dialog you can easily define the resources affected by the rule and the permissions that are granted upon them.
+|fireedge_sunstone_acl_create_string_button|
+
+In the creation dialog you can type the string ACL rule in the same way as the CLI. After type the rule, FireEdge Sunstone will validate if the string has the correct format and will show to the user what is the meaning of the rule.
+
+If we use the following example:
+
+.. code::
+
+    #3 IMAGE+TEMPLATE/@100 USE+MANAGE #0
+
+FireEdge Sunstone will validate the rule and show its meaning:
+
+|fireedge_sunstone_acl_create_string_form|
+
+Also, if the rule has a not valid format, FireEdge Sunstone will show an error:
+
+|fireedge_sunstone_acl_create_string_form_novalid|
+
+The other way to create a rule it is to use the Create form by clicking the icon with a plus symbol. In this case, the user will be guided for different steps to create the rule. For example, to create the rule:
+
+.. code::
+
+    #3 IMAGE+TEMPLATE/@100 USE+MANAGE #0
+
+The following steps are needed:
+
+-  Click on the icon with plus symbol:
+
+|fireedge_sunstone_acl_create|
+
+-  Select whom the rule will apply. Could be an individual user, a group or all users:
+
+|fireedge_sunstone_acl_create_users|
+
+-  Select affected resources by the rule:
+
+|fireedge_sunstone_acl_create_resources|
+
+-  Select resource owners. Could be an individual user, a group of users, a cluster or all users:
+
+|fireedge_sunstone_acl_create_resourcesidentifier|
+
+-  Select the allowed operations that this rule will enable:
+
+|fireedge_sunstone_acl_create_rights|
+
+-  Select the zone where the rule will apply. Optional unless OpenNebula is configured in a federation:
+
+|fireedge_sunstone_acl_create_zone|
+
+-  Finally, the summary step will show the user the rule in string format and its meaning:
+
+|fireedge_sunstone_acl_create_summary|
+
+In both ways, to create the rule the user will have to click on Finish button.
 
 Default ACL Rules for Group
 ===========================
@@ -399,3 +454,14 @@ The other ACL rules are enforced: individual (#) and group (@). The Virtual Netw
 .. |image1| image:: /images/sunstone_acl_list.png
 .. |image2| image:: /images/sunstone_acl_create.png
 .. |image3| image:: /images/sunstone_managing_perms.png
+.. |fireedge_sunstone_acl_create_string_button| image:: /images/fireedge_sunstone_acl_create_string.png
+.. |fireedge_sunstone_acl_create_string_form| image:: /images/fireedge_sunstone_acl_create_string_form.png
+.. |fireedge_sunstone_acl_create_string_form_novalid| image:: /images/fireedge_sunstone_acl_create_string_novalid.png
+.. |fireedge_sunstone_acl_create| image:: /images/fireedge_sunstone_acl_create.png
+.. |fireedge_sunstone_acl_create_users| image:: /images/fireedge_sunstone_acl_create_user.png
+.. |fireedge_sunstone_acl_create_resources| image:: /images/fireedge_sunstone_acl_create_resources.png
+.. |fireedge_sunstone_acl_create_resourcesidentifier| image:: /images/fireedge_sunstone_acl_create_resourcesidentifier.png
+.. |fireedge_sunstone_acl_create_rights| image:: /images/fireedge_sunstone_acl_create_rights.png
+.. |fireedge_sunstone_acl_create_zone| image:: /images/fireedge_sunstone_acl_create_zone.png
+.. |fireedge_sunstone_acl_create_summary| image:: /images/fireedge_sunstone_acl_create_summary.png
+  
