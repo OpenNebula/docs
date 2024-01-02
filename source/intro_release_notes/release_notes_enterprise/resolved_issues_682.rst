@@ -10,3 +10,5 @@ The following new features have been backported to 6.8.2:
 - Virtual Routers now support ``FLOATING_ONLY`` attributes for their network NICs. When this attribute is set to ``yes`` no additional IPs are allocated for the VMs of the VR, :ref:`see more information on the Virtual Router guide <vrouter>`.
 
 The following issues has been solved in 6.8.2:
+
+- `Fix monitoring encryption <https://github.com/OpenNebula/one/issues/6445>`__.
