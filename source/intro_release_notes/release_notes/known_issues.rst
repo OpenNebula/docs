@@ -39,6 +39,15 @@ Install Linux Graphical Desktop on KVM Virtual Machines
 
 OpenNebula uses the ``cirrus`` graphical adapter for KVM Virtual Machines by default. It could happen that after installing a graphical desktop on a Linux VM, the Xorg window system does not load the appropriate video driver. You can force a VESA mode by configuring the kernel parameter ``vga=VESA_MODE`` in the GNU GRUB configuration file. `Here <https://en.wikipedia.org/wiki/VESA_BIOS_Extensions#Linux_video_mode_numbers/>`__ you can find the VESA mode numbers. For example, adding ``vga=791`` as kernel parameter will select the 16-bit 1024×768 resolution mode.
 
+vCenter Image behavior
+=================================
+
+Images created or modified with the vcenter datastore driver may fail. This is due to a missing require statment in the script which checks file size.  To resolve the issue, please insert the following code directly below the ``require 'vcenter_driver'`` line, which should be on line 56, into the file ``/var/lib/one/remotes/datastore/vcenter/stat``:
+
+.. prompt:: ruby $ auto
+
+    require 'open3'
+
 vCenter Snapshot behavior
 =================================
 
