@@ -638,24 +638,27 @@ Here is an usage example:
     [...]
 
     SCHEDULED ACTIONS
-    ID ACTION             SCHEDULED                  REP                  END         DONE MESSAGE
-     0 suspend     09/20 00:00            																							 -
-     1 resume      09/23 14:15            																							 -
+    ID    ACTION  ARGS   SCHEDULED REPEAT   END STATUS
+     0   suspend     - 09/20 00:00              Next in 12.08 days
+     1    resume     - 09/23 14:15              Next in 15.67 days
 
 These actions can be deleted or edited using the ``onevm sched-delete`` and ``onevm sched-update`` command. The time attributes use Unix time internally.
 
 .. prompt:: text $ auto
 
-    $ onevm update 0
+    $ onevm sched-update 0 0
 
-    SCHED_ACTION=[
-      ACTION="suspend",
-      ID="0",
-      TIME="1379628000" ]
-    SCHED_ACTION=[
-      ACTION="resume",
-      ID="1",
-      TIME="1379938500" ]
+    ID="0"
+    PARENT_ID="0"
+    TYPE="VM"
+    ACTION="suspend"
+    TIME="1703164454"
+    REPEAT="-1"
+    END_TYPE="-1"
+    END_VALUE="-1"
+    DONE="-1"
+
+.. note:: The attributes ``ID``, ``PARENT_ID`` and ``TYPE`` are OpenNebula system attributes and can't be modified. For more details about the attributes which can be modified see :ref:`Scheduled Action Template <template_schedule_actions>`
 
 Periodic Punctual Actions
 --------------------------------------------------------------------------------
@@ -668,7 +671,7 @@ To schedule periodic actions also use the option --schedule. However this comman
     - ``--hourly``: defines a hourly periodicity, so, the action will be execute each 'x' hours.
     - ``--end``: defines when you want that the relative action finishes.
 
-The option ``--weekly``, ``--monthly`` and ``--yearly`` need the number of the days that the users wants execute the action.
+The option ``--weekly``, ``--monthly`` and ``--yearly`` need the index of the days that the users wants execute the action.
 
     - ``--weekly``: days separate with commas between 0 (Sunday) and 6 (Saturday). [0,6]
     - ``--monthly``: days separate with commas between 1 and 31. [1,31]
@@ -691,8 +694,8 @@ Here is an usage example:
     $ onevm resume 0 --schedule "09/23 14:15" --weekly "2,6" --end 5
     VM 0: resume scheduled at 2018-09-23 14:15:00 +0200
 
-    $ onevm snapshot-create 0 --schedule "09/23" --hourly 5 --end "12/25"
-    VM 0: resume scheduled at 2018-09-23 14:15:00 +0200
+    $ onevm snapshot-create 0 snap-01 --schedule "09/23" --hourly 5 --end "12/25"
+    VM 0: snapshot-create scheduled at 2018-09-23 14:15:00 +0200
 
     $ onevm show 0
     VIRTUAL MACHINE 0 INFORMATION
@@ -702,42 +705,28 @@ Here is an usage example:
     [...]
 
     SCHEDULED ACTIONS
-    ID ACTION            SCHEDULED                  REP                  END         DONE MESSAGE
-    0 suspend          09/23 00:00           Weekly 1,5        After 5 times            -
-    1 resume           09/23 00:00           Weekly 2,6        After 5 times            -
-    2 snapshot-create  09/23 00:00         Each 5 hours          On 12/25/18            -
+    ID           ACTION     ARGS    SCHEDULED        REPEAT            END  STATUS
+     0          suspend        -  09/20 00:00    Weekly 1,5  After 5 times  Next in 1.08 days
+     1           resume        -  09/23 14:15    Weekly 2,6  After 5 times  Next in 4.67 days
+     2  snapshot-create  snap-01  09/19 21:16  Each 5 hours    On 12/25/18  Next in 4.78 hours
 
 These actions can be deleted or edited using the ``onevm sched-delete`` and ``onevm sched-update`` command. The time attributes use Unix time internally.
 
 .. prompt:: text $ auto
 
-    $ onevm update 0
+    $ onevm sched-update 0 2
 
-    SCHED_ACTION=[
-        ACTION="suspend",
-        DAYS="1,5",
-        END_TYPE="1",
-        END_VALUE="5",
-        ID="0",
-        REPEAT="0",
-        TIME="1537653600" ]
-    SCHED_ACTION=[
-        ACTION="resume",
-        DAYS="2,6",
-        END_TYPE="1",
-        END_VALUE="5",
-        ID="1",
-        REPEAT="0",
-        TIME="1537653600" ]
-    SCHED_ACTION=[
-        ACTION="snapshot-create",
-        DAYS="5",
-        END_TYPE="2",
-        END_VALUE="1545692400",
-        ID="2",
-        REPEAT="3",
-        TIME="1537653600" ]
-
+    ID="2"
+    PARENT_ID="0"
+    TYPE="VM"
+    ACTION="snapshot-create"
+    ARGS="snap-01"
+    TIME="1701998190"
+    REPEAT="3"
+    DAYS="5"
+    END_TYPE="2"
+    END_VALUE="1893452400"
+    DONE="1701980968"
 
 Relative Actions
 --------------------------------------------------------------------------------
@@ -804,15 +793,17 @@ You can pass arguments to the scheduled actions using the parameter ``ARGS`` in 
 
     $ onevm sched-update 0 0
 
-    SCHED_ACTION=[
-        ACTION="disk-snapshot-create",
-        ARGS="0, disksnap_example",
-        DAYS="1,5",
-        END_TYPE="1",
-        END_VALUE="5",
-        ID="0",
-        REPEAT="0",
-        TIME="1537653600" ]
+    ID="2"
+    PARENT_ID="0"
+    TYPE="VM"
+    ACTION="disk-snapshot-create",
+    ARGS="0, disksnap_example",
+    DAYS="1,5",
+    END_TYPE="1",
+    END_VALUE="5",
+    ID="0",
+    REPEAT="0",
+    TIME="1537653600"
 
 In this example, the first argument would be the disk and the second the snapshot name.
 
@@ -833,15 +824,9 @@ This functionality automatically adds scheduling actions in VM templates. To ena
     suspend:
       time: "+1209600"
       color: "#000000"
-      warning:
-        time: "-86400"
-        color: "#085aef"
     terminate:
       time: "+1209600"
       color: "#e1ef08"
-      warning:
-        time: "-86400"
-        color: "#ef2808"
 
 In the previous example you can see that Scheduled Actions are added to the VMs. You can tune the following values:
 
@@ -850,9 +835,6 @@ In the previous example you can see that Scheduled Actions are added to the VMs.
 |         | The order is very important since time adds to the previous scheduled action.                         |
 +---------+-------------------------------------------------------------------------------------------------------+
 | color   | Is the color in hexadecimal since the icon will appear in the Vms table                               |
-+---------+-------------------------------------------------------------------------------------------------------+
-| warning | It is an alert (color change of the icon in the VM table) that will change when the limit has elapsed |
-|         | minus the time placed                                                                                 |
 +---------+-------------------------------------------------------------------------------------------------------+
 
 This functionality is also available in the CLI, through the following commands:
@@ -868,22 +850,16 @@ The charters can be added into the ``onevm`` configuration file ``/etc/one/cli/o
     :charters:
       :suspend:
         :time: "+1209600"
-        :warning:
-          :time: 86400
       :terminate:
         :time: "+1209600"
-        :warning:
-          :time: 86400
 
 The information about the charters can be checked with the command ``onevm show``:
 
 .. prompt:: bash $ auto
 
     SCHEDULED ACTIONS
-    ID    ACTION  ARGS   SCHEDULED REPEAT   END  DONE                             MESSAGE CHARTER
-     1 terminate     - 01/01 03:00                  -                                   - In 1.25 hours *
-
-.. warning:: If the CHARTER has a * it shows the warning message as it was configured previously.
+    ID     ACTION     ARGS    SCHEDULED        REPEAT            END  STATUS
+     1  terminate        -  01/01 03:00                               In 1.25 hours
 
 .. _vm_guide2_user_defined_data:
 
