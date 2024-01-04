@@ -8,6 +8,10 @@ A complete list of `known issues for OpenNebula is maintained here <https://gith
 
 This page will be updated with relevant information about bugs affecting OpenNebula, as well as possible workarounds until a patch is officially published.
 
+Security
+================================================================================
+- By default the ``RAW/DATA`` attribute is not restricted for regular users, which may lead to private data breach from the server. To fix this please modify the value ``VM_RESTRICTED_ATTR = "RAW"`` to ``VM_RESTRICTED_ATTR = "RAW/DATA"`` in oned.conf
+
 Drivers - Network
 ================================================================================
 
@@ -35,10 +39,20 @@ Install Linux Graphical Desktop on KVM Virtual Machines
 
 OpenNebula uses the ``cirrus`` graphical adapter for KVM Virtual Machines by default. It could happen that after installing a graphical desktop on a Linux VM, the Xorg window system does not load the appropriate video driver. You can force a VESA mode by configuring the kernel parameter ``vga=VESA_MODE`` in the GNU GRUB configuration file. `Here <https://en.wikipedia.org/wiki/VESA_BIOS_Extensions#Linux_video_mode_numbers/>`__ you can find the VESA mode numbers. For example, adding ``vga=791`` as kernel parameter will select the 16-bit 1024×768 resolution mode.
 
+vCenter Image behavior
+=================================
+
+Images created or modified with the vcenter datastore driver may fail. This is due to a missing require statment in the script which checks file size.  To resolve the issue, please insert the following code directly below the ``require 'vcenter_driver'`` line, which should be on line 56, into the file ``/var/lib/one/remotes/datastore/vcenter/stat``:
+
+.. prompt:: ruby $ auto
+
+    require 'open3'
+
 vCenter Snapshot behavior
 =================================
 
-VMs in vCenter 7.0 exhibit a new behavior regarding snapshots and disks attach/detach operations. When vCenter 7.0 detects any change in the number of disks attached to a VM, it automatically cleans all the VM snapshots. OpenNebula doesn't take this into account yet, so the snapshots stated by OpenNebula, after a disk attach or disk detach, are pointing to a null vCenter reference, and as such, cannot be used. Please keep this in mind before a solution is implemented.
+- VMs in vCenter 7.0 exhibit a new behavior regarding snapshots and disks attach/detach operations. When vCenter 7.0 detects any change in the number of disks attached to a VM, it automatically cleans all the VM snapshots. OpenNebula doesn't take this into account yet, so the snapshots stated by OpenNebula, after a disk attach or disk detach, are pointing to a null vCenter reference, and as such, cannot be used. Please keep this in mind before a solution is implemented.
+- In both vCenter 7.0 and vCenter 8.0 when trying to create a vcenter datastore image with a URL for the source Path, a Timeout error is shown instead of the image ID. The Image is still created, but the output value from oneimage is incorrect.
 
 Warning when Exporting an App from the Marketplace Using CLI
 ================================================================================
@@ -51,6 +65,12 @@ When exporting an application from the marketplace using the CLI the following w
 
 This is harmless and can be discarded, it will be addressed in future releases.
 
+Timeout when creating image from URL source using the CLI
+====================================================================
+
+When running the CLI command ``oneimage create`` while using a URL for the source of the image, and the curl version is at least 7.17.0, the command may output a timeout message ( ``Net::ReadTimeout with #<TCPSocket:(closed)>`` ) but will still create the image. This can be resolved by using the ``-o / --noretry`` flag for ``oneimage create`` to prevent the internal curl command from retrying and triggering a timeout.
+
+
 Contextualization
 =================
 
@@ -61,11 +81,6 @@ Backups
 =============
 
 - OpenNebula stores the whole VM Template in a backup. When restoring it some attributes are wiped out as they are dynamic or they need to be re-generated (e.g. IP). However some attributes (e.g. DEV_PREFIX) would be better to keep them. It is recommended to review and adjust the resulting template for any missing (and required) attribute. The :ref:`list of attributes removed can be checked here <vm_backups_restore>`.
-
-WHMCS - Client Users
-================================================================================
-
-When the first client is created in WHMCS and purchases a product, following actions will fail due to targeting ID 0 (oneadmin).  Further client accounts past the first one will work as expected.
 
 Market proxy settings
 ================================================================================

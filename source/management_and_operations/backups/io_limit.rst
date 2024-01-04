@@ -24,7 +24,13 @@ After that, reboot the hypervisor and double check that the setting is correct (
    $ cat /sys/fs/cgroup/user.slice/user-9869.slice/cgroup.controllers
    cpuset cpu io memory pids
 
+Temporary Backup Path
+--------------------------------------------------------------------------------
 
+Disk images backups are generated within a local folder in the host where the VM is running. These images are later uploaded to the selected backup datastore. By default, this temporary path is set to the VM folder, in ``/var/lib/one/datastores/<DATASTORE_ID>/<VM_ID>/backup``.
 
+However, it's possible to modify this path to utilize alternative locations, such as different local volumes, or to opt out of using the shared VM folder entirely.
+
+To change the base folder to store disk backups for **all** hosts edit ``/var/lib/one/remotes/etc/datastore.conf`` and set the ``BACKUP_BASE_PATH`` variable. Please note this file uses shell syntax.
 
 
