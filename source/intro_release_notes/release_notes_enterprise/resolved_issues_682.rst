@@ -16,3 +16,5 @@ The following issues has been solved in 6.8.2:
 - `Fix monitoring encryption <https://github.com/OpenNebula/one/issues/6445>`__.
 - `Fix accounting after resizing VM memory or CPU <https://github.com/OpenNebula/one/issues/6387>`__.
 - `Fix [FSunstone] multiple issues with image pool view <https://github.com/OpenNebula/one/issues/6380>`__.
+- `Fix VMs with serveral SATA disks <https://github.com/OpenNebula/one/issues/5705>`__.
+
