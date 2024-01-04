@@ -65,6 +65,12 @@ When exporting an application from the marketplace using the CLI the following w
 
 This is harmless and can be discarded, it will be addressed in future releases.
 
+Timeout when creating image from URL source using the CLI
+====================================================================
+
+When running the CLI command ``oneimage create`` while using a URL for the source of the image, and the curl version is at least 7.17.0, the command may output a timeout message ( ``Net::ReadTimeout with #<TCPSocket:(closed)>`` ) but will still create the image. This can be resolved by using the ``-o / --noretry`` flag for ``oneimage create`` to prevent the internal curl command from retrying and triggering a timeout.
+
+
 Contextualization
 =================
 
