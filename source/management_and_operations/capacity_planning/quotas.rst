@@ -28,7 +28,7 @@ Defining User/Group Quotas
 
 Usage quotas are set in the OpenNebula template syntax (either plain text or XML). The following tables summarizes the attributes to define a quota for each resource type.
 
-Datastore Quotas.
+Datastore Quotas
 --------------------------------------------------------------------------------
 
 The attribute name is ``DATASTORE``.
@@ -44,7 +44,7 @@ The attribute name is ``DATASTORE``.
 | IMAGES              | Maximum number of images that can be created in the datastore |
 +---------------------+---------------------------------------------------------------+
 
-Compute Quotas.
+Compute Quotas
 --------------------------------------------------------------------------------
 
 The attribute name is ``VM``
@@ -74,7 +74,31 @@ The actual size accounted on the system and image datastores depends on the stor
 
 .. important:: Running quotas will be increased or decreased depending on the state of the Virtual Machine. The states in which the machine is counted as "Running" are ``ACTIVE`` , ``HOLD``, ``PENDING`` and ``CLONING``.
 
-Network Quotas.
+.. _quota_auth_generic:
+
+Generic Quotas
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Administrators have the capability to expand Compute Quotas by introducing the ``QUOTA_VM_ATTRIBUTE`` into the :ref:`OpenNebula configuration file <oned_conf>`. This attribute allows any numerical attribute from the Virtual Machine Template or User Template to serve as a generic quota.
+
+As an example, one could categorize each VM template into a specific Quality of Service (QoS) category based on attributes like ``CPU`` and append a metric to denote this:
+
+.. code-block:: bash
+
+    CPU    = 12
+    MEMORY = 4096
+
+    ...
+
+    GOLD_QOS = 1
+
+Subsequently, a quota can be enforced for a user, e.g. ``GOLD_QOS = 5``, signifying that the user is restricted to a maximum of 5 VMs within the ``GOLD_QOS`` category. Administrators have the flexibility to determine which VMs fall under a category by utilizing any combination of VM attributes. Similarly, limitations can be set on the number of PCI passthrough GPUs by adding ``GPU = 1`` to templates incorporating such devices...
+
+Each generic quota is also automatically prefixed with ``RUNNING_``. For instance, ``RUNNING_GOLD_QOS`` would specify the number of VMs in an ``ACTIVE`` state with the GOLD_QOS attribute. This allows the establishment of quotas specifically tailored for running VMs.
+
+Additionally, it's important to note that each generic quota defined via ``QUOTA_VM_ATTRIBUTE`` is automatically included in the ``VM_RESTICTED_ATTR`` set. This inclusion prevents regular users from circumventing the quota system by altering the attributes related to these generic quotas.
+
+Network Quotas
 --------------------------------------------------------------------------------
 
 The attribute name is ``NETWORK``.
@@ -87,7 +111,7 @@ The attribute name is ``NETWORK``.
 | LEASES            | Maximum IPs that can be leased from the Network |
 +-------------------+-------------------------------------------------+
 
-Image Quotas.
+Image Quotas
 --------------------------------------------------------------------------------
 
 The attribute name is ``IMAGE``.
