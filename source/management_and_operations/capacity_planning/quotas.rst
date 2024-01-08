@@ -74,10 +74,29 @@ The actual size accounted on the system and image datastores depends on the stor
 
 .. important:: Running quotas will be increased or decreased depending on the state of the Virtual Machine. The states in which the machine is counted as "Running" are ``ACTIVE`` , ``HOLD``, ``PENDING`` and ``CLONING``.
 
+.. _quota_auth_generic:
+
 Generic Quotas
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The administrator can expand the Compute Quotas by adding ``QUOTA_VM_ATTRIBUTE`` to the configuration file :ref:`oned.conf <oned_conf>`. Any numerical attribute from Virtual Machine Template or User Template could be used as generic quota. The generic quota is addad also with the ``RUNNING_`` prefix.
+Administrators have the capability to expand Compute Quotas by introducing the ``QUOTA_VM_ATTRIBUTE`` into the :ref:`OpenNebula configuration file <oned_conf>`. This attribute allows any numerical attribute from the Virtual Machine Template or User Template to serve as a generic quota.
+
+As an example, one could categorize each VM template into a specific Quality of Service (QoS) category based on attributes like ``CPU`` and append a metric to denote this:
+
+.. code-block:: bash
+
+    CPU    = 12
+    MEMORY = 4096
+
+    ...
+
+    GOLD_QOS = 1
+
+Subsequently, a quota can be enforced for a user, e.g. ``GOLD_QOS = 5``, signifying that the user is restricted to a maximum of 5 VMs within the ``GOLD_QOS`` category. Administrators have the flexibility to determine which VMs fall under a category by utilizing any combination of VM attributes. Similarly, limitations can be set on the number of PCI passthrough GPUs by adding ``GPU = 1`` to templates incorporating such devices...
+
+Each generic quota is also automatically prefixed with ``RUNNING_``. For instance, ``RUNNING_GOLD_QOS`` would specify the number of VMs in an ``ACTIVE`` state with the GOLD_QOS attribute. This allows the establishment of quotas specifically tailored for running VMs.
+
+Additionally, it's important to note that each generic quota defined via ``QUOTA_VM_ATTRIBUTE`` is automatically included in the ``VM_RESTICTED_ATTR`` set. This inclusion prevents regular users from circumventing the quota system by altering the attributes related to these generic quotas.
 
 Network Quotas
 --------------------------------------------------------------------------------

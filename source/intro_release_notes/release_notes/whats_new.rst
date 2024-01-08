@@ -21,7 +21,8 @@ We’d like to thank all the people that :ref:`support the project<acknowledgeme
 
 OpenNebula Core
 ================================================================================
-.. - **Generic Quotas**: Option to specify custom quotas for OpenNebula, :ref:`<quota_auth>`
+
+- **Generic Quotas**: :ref:`Option to specify custom quotas for OpenNebula VMs, <quota_auth_generic>`
 
 Storage & Backups
 ================================================================================
