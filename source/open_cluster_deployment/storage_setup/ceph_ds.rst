@@ -178,12 +178,12 @@ To use your Ceph Cluster with the OpenNebula, you need to define a System and Im
 .. warning::
 
     In order to place the ``ceph.conf`` file in a non-default location (ie, other than ``/etc/ceph/ceph.conf``), please perform the following steps.
-    
+
     1) On all nodes listed in ``BRIDGE_LIST`` configuration attribute of ceph-based DS, move the ``ceph.conf`` file into desired location:
 
     .. prompt:: bash $ auto
 
-        $ sudo mv /etc/ceph/ceph.conf /etc/ceph/ceph1.conf\
+        $ sudo mv /etc/ceph/ceph.conf /etc/ceph/ceph1.conf
 
     Extract and save the Ceph key into separate file (it has to contain only the key, nothing else):
 
@@ -202,8 +202,8 @@ To use your Ceph Cluster with the OpenNebula, you need to define a System and Im
         $ onedatastore update <DS_ID>
         CEPH_CONF="/etc/ceph/ceph1.conf"
         CEPH_KEY="/etc/ceph/ceph.client.oneadmin.key"
-        
-        
+
+
     None of the services need to be restarted.
 
 
