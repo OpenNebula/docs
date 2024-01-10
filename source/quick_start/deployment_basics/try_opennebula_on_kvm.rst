@@ -80,21 +80,6 @@ Run the following command under the privileged user **root**
     # sudo bash minione --frontend
 
 
-Deploy Front-End and KVM Node
-=============================
-
-Run the following command under the privileged user **root** to deploy an evaluation cloud with an all-in-one front-end and a single KVM node:
-
-.. important::
-
-    This option uses private IP for OneGate which is fine for local KVM but won't work for :ref:`OneProvision <first_edge_cluster>` or :ref:`Kubernetes cluster <running_kubernetes_clusters>`
-
-.. prompt:: bash # auto
-
-    # sudo bash minione
-
-This option is suitable for bare-metal hosts to utilize HW virtualization. The deployment will fallback to emulation (QEMU) if running on virtual machine or CPU without virtualization capabilities.
-
 Be patient, it should take only a few minutes to get the Host prepared. The main deployment steps are logged on the terminal, and at the end of a successful deployment the miniONE tool provides a report with connection parameters and initial credentials. For example:
 
 .. code::
@@ -137,6 +122,21 @@ If you created a local KVM node with the front-end you can continue the validati
 - You can click on your VM and manage it: Save its state, Reboot it, etc:
 
 .. note:: We know, these are very basic steps. If you want to try out real-life virtualization or kubernetes workloads with public IPs please continue to next section.
+
+Deploy Front-End and KVM Node
+=============================
+
+If you want to quickly deploy an OpenNebula front-end + a virtualization node, run the following command under the privileged user **root** to deploy an evaluation cloud with an all-in-one front-end and a single KVM node:
+
+.. important::
+
+    This option uses private IP for OneGate which is fine for local KVM but won't work for :ref:`OneProvision <first_edge_cluster>` or :ref:`Kubernetes cluster <running_kubernetes_clusters>`
+
+.. prompt:: bash # auto
+
+    # sudo bash minione
+
+This option is suitable for bare-metal hosts to utilize HW virtualization. The deployment will fallback to emulation (QEMU) if running on virtual machine or CPU without virtualization capabilities.
 
 Next Steps
 ==========
