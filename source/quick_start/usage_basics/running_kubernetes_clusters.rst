@@ -74,7 +74,7 @@ You can either use a public DNS server or local ``/etc/hosts`` file, for example
    127.0.0.1 localhost
    1.2.3.4 k8s.yourdomain.it
 
-.. important:: To make the kubeconfig file work with custom SANs you will need to modify the ``clusters[0].cluster.server`` variable inside the YAML payload (for example: ``server: https://k8s.yourdomain.it:6443``) which can be find in the file a path to which is a value of the $KUBECONFIG variable on the k8s master node (the details on how to log in to that node are given below in :ref:`Step 4. Provisining an Edge Cluster <step-4>`). 
+.. important:: To make the kubeconfig file work with custom SANs you will need to modify the ``clusters[0].cluster.server`` variable inside the YAML payload (for example: ``server: https://k8s.yourdomain.it:6443``) which can be find in the file a path to which is a value of the $KUBECONFIG variable on the k8s master node (the details on how to log in to that node are given below in :ref:`Step 4. Provisining an Edge Cluster <step-4>`).
 
 To be able to expose an example application you should enable OneKE's Traefik / HAProxy solution for ingress traffic:
 
@@ -114,7 +114,7 @@ After the OneFlow service is deployed you can also **scale up** the worker nodes
 .. |kubernetes-qs-enable-ingress| image:: /images/kubernetes-qs-enable-ingress.png
 
 .. _step-4:
-   
+
 Step 4. Deploy an Application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -270,7 +270,7 @@ to check if VNF is able to contact OneGate server on FN. In case of success the 
 .. code-block:: text
 
     [root@VNF]$ onegate vm show
-    VM 0                                                                       	 
+    VM 0
     NAME            	: vnf_0_(service_3)
 
 and in case of failure:
