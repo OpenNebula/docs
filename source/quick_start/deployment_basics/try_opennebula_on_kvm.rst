@@ -85,6 +85,10 @@ Deploy Front-End and KVM Node
 
 Run the following command under the privileged user **root** to deploy an evaluation cloud with an all-in-one front-end and a single KVM node:
 
+.. important::
+
+    This option uses private IP for OneGate which is fine for local KVM but won't work for :ref:`OneProvision <first_edge_cluster>` or :ref:`Kubernetes cluster <running_kubernetes_clusters>`
+
 .. prompt:: bash # auto
 
     # sudo bash minione
