@@ -16,7 +16,7 @@ Front-end Setup
 
 In either mode, the Front-end needs to have access to the Image Datastores by mounting the associated directory in ``/var/lib/one/datastores/<datastore_id>``. In the case of the **NFS mode** the directory needs to be mounted from the NAS server. For the **SSH mode** you can mount any storage medium in the datastore directory.
 
-The Front-end needs also to have access to the the shared LVM either directly (see the configuration requirements below) or through a Host by specifying the ``BRIDGE_LIST`` attribute in the datastore template.
+The Front-end needs also to have access to the shared LVM either directly (see the configuration requirements below) or through a Host by specifying the ``BRIDGE_LIST`` attribute in the datastore template.
 
 Hosts Setup
 ================================================================================

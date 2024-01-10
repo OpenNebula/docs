@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenNebula 4.6\n"
@@ -337,7 +337,7 @@ msgid ""
 "When you create a new host the credentials and endpoint for that host are "
 "retrieved from the ``/etc/one/ec2_driver.conf`` file using the host name. "
 "Therefore, if you want to add a new host to manage a different region, i.e. "
-"``eu-west-1``, just add your credentials and the capacity limits to the the "
+"``eu-west-1``, just add your credentials and the capacity limits to the "
 "``eu-west-1`` section in the conf file, and specify that name (eu-west-1) "
 "when creating the new host."
 msgstr ""
