@@ -18,7 +18,8 @@ This guide assumes that you already have a functional Ceph Cluster in place. Add
 .. prompt:: bash $ auto
 
     $ ceph osd pool create one 128
-
+    $ ceph osd pool application enable one rbd
+    $ rbd pool init -p one
     $ ceph osd lspools
     0 data,1 metadata,2 rbd,6 one,
 
