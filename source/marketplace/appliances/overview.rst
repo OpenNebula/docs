@@ -20,7 +20,7 @@ Every appliance goes through the following stages:
 2. :ref:`Configuration <one_service_stage_configure>` (instantiation time)
 3. :ref:`Bootstrap <one_service_stage_bootstrap>` (instantiation time)
 
-Each stage is handled by a script installed in the appliance in ``/etc/one-appliance/service``. In the the **install** stage this script is triggered during the image build. For the remaining stages, it's triggered as part of the regular OS contextualization. The selected stage is an argument of this script.
+Each stage is handled by a script installed in the appliance in ``/etc/one-appliance/service``. In the **install** stage this script is triggered during the image build. For the remaining stages, it's triggered as part of the regular OS contextualization. The selected stage is an argument of this script.
 
 To find out more about the service script and the appliance-specific contextualization parameters, run with argument ``help``:
 
