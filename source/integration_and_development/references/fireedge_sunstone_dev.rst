@@ -150,7 +150,7 @@ vCenter
 +--------------+---------------------------------------------+----------------------------------------------------------------------------+
 | **POST**     | ``/fireedge/api/vcenter/hosts/<vCenter>``   | **Perform** Import vCenter clusters as OpenNebula hosts                    |
 +--------------+---------------------------------------------+----------------------------------------------------------------------------+
-| **POST**     | ``/fireedge/api/vcenter/import/<vObject>``  | **Perform** Import the the desired vCenter object                          |
+| **POST**     | ``/fireedge/api/vcenter/import/<vObject>``  | **Perform** Import the desired vCenter object                              |
 +--------------+---------------------------------------------+----------------------------------------------------------------------------+
 | **POST**     | ``/fireedge/api/vcenter/cleartags/<id>``    | **Perform** Clear extraconfig tags from a vCenter VM                       |
 +--------------+---------------------------------------------+----------------------------------------------------------------------------+

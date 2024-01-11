@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenNebula 4.6\n"
@@ -254,7 +254,7 @@ msgstr ""
 
 #: ../../source/administration/sunstone_gui/suns_views.rst:101
 msgid ""
-"The name of the view is the the filename without the yaml extension. The "
+"The name of the view is the filename without the yaml extension. The "
 "default views are defined by the user.yaml and admin.yaml files, as shown "
 "below:"
 msgstr ""

@@ -548,7 +548,7 @@ haproxy
 
 To access sunstone via HTTPS via haproxy, please check the frontend and backend configurations
 
-* About the frontend configuration, please remember that the SSL certificate and its private key must be concatenated. Supposing that the certificate and key for your server are ``host.crt`` and ``host.key``, and you want to set the the resulting file in ``/etc/certs/host.pem`` the commands would be thisv (the right permissions should be set too)
+* About the frontend configuration, please remember that the SSL certificate and its private key must be concatenated. Supposing that the certificate and key for your server are ``host.crt`` and ``host.key``, and you want to set the resulting file in ``/etc/certs/host.pem`` the commands would be thisv (the right permissions should be set too)
 
 .. code-block:: none
 

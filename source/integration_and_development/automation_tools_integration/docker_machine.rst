@@ -22,7 +22,7 @@ The recommended way to install the driver is to configure the :ref:`repositories
 
 Alternatively you can get the binary `here <https://downloads.opennebula.io/packages/opennebula-6.6.0/opennebula-docker-machine-6.6.0.tar.gz>`__.
 
-Lastly, in the case that you already have it installed in the OpenNebula frontend (or any other host) you can instead copy the ``/usr/bin/docker-machine-driver-opennebula`` file directly from the the frontend into any directory on your desktop which is included in your ``$PATH``.
+Lastly, in the case that you already have it installed in the OpenNebula frontend (or any other host) you can instead copy the ``/usr/bin/docker-machine-driver-opennebula`` file directly from the frontend into any directory on your desktop which is included in your ``$PATH``.
 
 Step 2 - Configure Client Machine to Access the OpenNebula Cloud
 --------------------------------------------------------------------------------
