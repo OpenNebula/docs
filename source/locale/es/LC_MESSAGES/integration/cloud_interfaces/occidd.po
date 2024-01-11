@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenNebula 4.6\n"
@@ -522,7 +522,7 @@ msgstr ""
 
 #: ../../source/integration/cloud_interfaces/occidd.rst:294
 msgid ""
-"**200 OK**: An XML representation of the the available collections in the "
+"**200 OK**: An XML representation of the available collections in the "
 "http body"
 msgstr ""
 

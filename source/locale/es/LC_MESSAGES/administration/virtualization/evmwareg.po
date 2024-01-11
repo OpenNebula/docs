@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenNebula 4.6\n"
@@ -410,7 +410,7 @@ msgstr ""
 
 #: ../../source/administration/virtualization/evmwareg.rst:228
 msgid ""
-"Afterwards, an image template needs to be written, using the the absolut "
+"Afterwards, an image template needs to be written, using the absolut "
 "path to the directory as the PATH value. For example:"
 msgstr ""
 

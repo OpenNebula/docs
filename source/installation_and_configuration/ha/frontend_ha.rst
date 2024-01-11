@@ -440,4 +440,4 @@ Usage
 
     # onezone serversync <remote_opennebula_server> [--db]
 
-where ``<remote_opennebula_server>`` needs to be replaced by a hostname/IP of the the OpenNebula server that will be used to fetch configuration files from. If ``--db`` option is used, the local database will be synced with the one located on remote server.
+where ``<remote_opennebula_server>`` needs to be replaced by a hostname/IP of the OpenNebula server that will be used to fetch configuration files from. If ``--db`` option is used, the local database will be synced with the one located on remote server.
