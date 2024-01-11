@@ -17,6 +17,7 @@ The following issues has been solved in 6.8.2:
 - `Fix accounting after resizing VM memory or CPU <https://github.com/OpenNebula/one/issues/6387>`__.
 - `Fix [FSunstone] multiple issues with image pool view <https://github.com/OpenNebula/one/issues/6380>`__.
 - `Fix VMs with serveral SATA disks <https://github.com/OpenNebula/one/issues/5705>`__.
-- `Fix [Funstone] Fix validation checkbox <https://github.com/OpenNebula/one/issues/6418>`__.
-- `Fix  DB migration to 6.8.0 fails due to undefined method 'text' <https://github.com/OpenNebula/one/issues/6453>`__.
+- `Fix [FSunstone] Fix validation checkbox <https://github.com/OpenNebula/one/issues/6418>`__.
+- `Fix DB migration to 6.8.0 fails due to undefined method 'text' <https://github.com/OpenNebula/one/issues/6453>`__.
+- `Fix [FSuntone] Implement Virtual Network Template Tab <https://github.com/OpenNebula/one/issues/6118>`__.
 
