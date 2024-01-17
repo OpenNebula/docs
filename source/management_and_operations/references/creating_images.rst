@@ -5,246 +5,78 @@
 Creating Disk Images
 ================================================================================
 
+When it comes to creating OS disk images for your VM guests, you have several options:
 
-You can use the images provided by the distributions as a basis for your images.
-These images are usually prepared to be used with other clouds and won't behave correctly or won't have all the features provided by OpenNebula.
-However, you can customize these images before importing them.
 
-Using a GNU/Linux Host
-================================================================================
+* **OpenNebula Marketplace Appliances:** Utilize ready-to-use `OpenNebula Marketplace appliances <https://marketplace.opennebula.io/appliance>`_.
 
-To perform the image modification we'll use the `libguestfs <http://libguestfs.org/>`__ software running on a Linux machine with KVM support.
-A modern distribution with a recent version of libguestfs (>= 1.26) should be used.
+* **OpenNebula Apps Project:** Build or customize your own images using the build toolchain provided by the `OpenNebula Apps project <https://github.com/OpenNebula/one-apps>`_.
 
-Step 1. Install Libguestfs
---------------------------------------------------------------------------------
+* **Manual Installation:** Perform a manual installation directly in a running VM guest.
 
-The package is available in most distributions. Here are the commands to do it in some of them.
+.. _add_content_marketplace:
 
-RHEL
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OpenNebula Marketplace Appliances
+=================================
 
-.. prompt:: bash # auto
+If you have access to the public OpenNebula Marketplace from your frontend, you'll find pre-configured images ready to run in an OpenNebula Cloud.
 
-    # yum install libguestfs-tools
+To retrieve images from the OpenNebula Marketplace:
 
-Debian/Ubuntu
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1. Navigate to the *Storage/Apps* tab in Sunstone.
+2. Select one of the available images.
+3. Click the *Download* button.
 
-.. prompt:: bash # auto
+|sunstone_marketplace_list_import|
 
-    # apt-get install libguestfs-tools
+Using the CLI, you can list an import images using these commands:
 
-Arch Linux
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. prompt:: text $ auto
 
-This package is available in `aur repository <https://aur.archlinux.org/packages/libguestfs/>`__. You can either download the ``PKGBUILD`` and compile it manually or use a pacman helper like `yaourt <https://archlinux.fr/yaourt-en>`__:
+	$ onemarketapp list
+	  ID NAME                         VERSION  SIZE STAT TYPE  REGTIME MARKET               ZONE
+	[...]
+	  41 boot2docker                   1.10.2   32M  rdy  img 02/26/16 OpenNebula Public       0
+	  42 alpine-vrouter (KVM)           1.0.3  256M  rdy  img 03/10/16 OpenNebula Public       0
+	  43 alpine-vrouter (vcenter)         1.0  256M  rdy  img 03/10/16 OpenNebula Public       0
+	  44 CoreOS alpha                1000.0.0  245M  rdy  img 04/03/16 OpenNebula Public       0
+	  45 Devuan                      1.0 Beta    8M  rdy  img 05/03/16 OpenNebula Public       0
+	$ onemarketapp export Devuan Devuan --datastore default
+	IMAGE
+		ID: 12
+	VMTEMPLATE
+		ID: -1
 
-.. prompt:: bash # auto
+OpenNebula Apps Project
+=======================
 
-    # yaourt -S libguestfs
+The OpenNebula Apps project provides an extensive toolkit for creating specialized appliances tailored to your OpenNebula cloud environment. If you wish to rebuild the provided appliances yourself, check the following information:
 
+* **Requirements:** Review the `requirements <https://github.com/OpenNebula/one-apps/wiki/tool_reqs>`_ for building context packages and appliances.
 
-Step 2. Download the Image
---------------------------------------------------------------------------------
+* **Build Tools Usage:** Learn how to `use the build tools <https://github.com/OpenNebula/one-apps/wiki/tool_use>`_ effectively.
 
-You can find the images for distributions in these links. We are going to use the ones from RHEL but the others are here for reference:
+If you need to incorporate additional content or include a new base OS, refer to the `developer information <https://github.com/OpenNebula/one-apps/wiki/tool_dev>`_ for detailed guidance.
 
-* **AlmaLinux**: https://repo.almalinux.org/almalinux/
-* **Debian**: https://cdimage.debian.org/cdimage/openstack/
-* **Ubuntu**: https://cloud-images.ubuntu.com/
-* **Amazon Linux**: https://cdn.amazonlinux.com/os-images/latest/kvm/
-* **Oracle Linux**: https://yum.oracle.com/oracle-linux-templates.html
-
-Step 3. Download Context Packages
---------------------------------------------------------------------------------
-
-The context packages can be downloaded from the `release section of the project <https://github.com/OpenNebula/addon-context-linux/releases>`__.
-Make sure you download the version you need. For example, for RHEL 8, download the corresponding `rpm` package (``one-context-<VERSION>.el8.noarch.rpm``).
-Do not download the packages marked with `ec2` as they are specific for EC2 images.
-
-You have to download them to a directory that we will later refer. For our example, we'll call it ``packages``.
-
-.. prompt:: bash $ auto
-   :substitutions:
-
-    $ mkdir packages
-    $ cd packages
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|-1.el6.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|-1.el7.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|-1.el8.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|-1.suse.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|-alt1.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context_|context_release|-1.deb
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|-r1.apk
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|_1.txz
-    $ cd ..
-
-Step 4. Create a CDROM Image with Context Packages
---------------------------------------------------------------------------------
-
-The CDROM image (ISO) will be created with an specific label so later it is easier to mount it. The label chosen is ``PACKAGES``.
-
-
-.. prompt:: bash $ auto
-
-    $ genisoimage -o packages.iso -R -J -V PACKAGES packages/
-
-
-Step 5. Guest OS Installation
---------------------------------------------------------------------------------
-
-The script will be different depending on the distribution and the extra steps we want to perform in the image.
-It will be executed in a *chroot* jail of the image root filesystem. Essentially, the script will ensure that the contextualization package is installed and that the image is bootable and accesible through SSH on the first launch.
-
-Here are some versions of the script for several distributions. The script name will be ``script.sh``.
-
-CentOS 7
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-    mkdir /tmp/mount
-    mount LABEL=PACKAGES /tmp/mount
-
-    yum install -y epel-release
-
-    # Remove NetworkManager
-    yum remove -y NetworkManager
-
-    # Install OpenNebula context package
-    yum install -y /tmp/mount/one-context*el7*rpm
-
-    # Take out serial console from kernel configuration
-    # (it can freeze during the boot process).
-    sed -i --follow-symlinks 's/console=ttyS[^ "]*//g' /etc/default/grub /etc/grub2.cfg
-
-AlmaLinux 8/9
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-    mkdir /tmp/mount
-    mount LABEL=PACKAGES /tmp/mount
-
-    dnf install -y epel-release
-
-    # Install OpenNebula context package
-    yum install -y /tmp/mount/one-context*el8*rpm
-    systemctl enable network.service
-
-    # Take out serial console from kernel configuration
-    # (it can freeze during the boot process).
-    sed -i --follow-symlinks 's/console=ttyS[^ "]*//g' /etc/default/grub /etc/grub2.cfg
-
-Debian, Ubuntu
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-    # mount cdrom with packages
-    mkdir /tmp/mount
-    mount LABEL=PACKAGES /tmp/mount
-
-    apt-key update
-    apt-get update
-
-    # Remove cloud-init
-    apt-get purge -y cloud-init
-
-    # Install OpenNebula context package
-    dpkg -i /tmp/mount/one-context*deb || apt-get install -fy
-
-    # Take out serial console from kernel configuration
-    # (it can freeze during the boot process).
-    sed -i 's/console=ttyS[^ "]*//' /etc/default/grub /etc/grub2.cfg
-
-ALT Linux
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-    # mount cdrom with packages
-    mkdir /tmp/mount
-    mount LABEL=PACKAGES /tmp/mount
-
-    apt-key update
-    apt-get update
-
-    # Remove cloud-init
-    apt-get purge -y cloud-init
-
-    # Install OpenNebula context package
-    dpkg -i /tmp/mount/one-context*rpm || apt-get install -fy
-
-    # Take out serial console from kernel configuration
-    # (it can freeze during the boot process).
-    sed -i 's/console=ttyS[^ "]*//' /etc/default/grub /etc/sysconfig/grub2 /etc/grub2.cfg
-
-
-Create an Overlay Image
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-It's always a good idea to not modify the original image in case you want to use it again or something goes wrong with the process. To do it we can use ``qemu-img`` command:
-
-.. prompt:: bash $ auto
-
-    $ qemu-img create -f qcow2 -b <original image> modified.qcow2
-
-Apply Customizations to the Image
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Now we are going to execute ``virt-customize`` (a tool of libguestfs) to modify the image. This is the meaning of the parameters:
-
-* ``-v``: verbose output, in case we want to debug problems
-* ``--attach packages.iso``: add the CDROM image previously created with the packages
-* ``--format qcow2``: the image format is qcow2
-* ``-a modified.qcow2``: the disk image we want to modify
-* ``--run script.sh``: script with the instructions to modify the image
-* ``--root-password disabled``: delete root password. In case you want to set a password (for debugging) use ``--root-password password:the-new-root-password``
-
-.. prompt:: bash $ auto
-
-    $ virt-customize -v --attach packages.iso --format qcow2 -a modified.qcow2 --run script.sh --root-password disabled
-
-Alternatively, you can force `start qemu directly <https://libguestfs.org/libguestfs-test-tool.1.html>`__ (instead of using *libvirt* as backend):
-
-.. prompt:: bash $ auto
-
-    $ LIBGUESTFS_BACKEND=direct virt-customize -v --attach packages.iso --format qcow2 -a modified.qcow2 --run script.sh --root-password disabled
-
-Convert the Image to the Desired Format
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-After we are happy with the result, we can convert the image to the preferred format to import to OpenNebula.
-Even if we want a final ``qcow2`` image we need to convert it to consolidate all the layers in one file.
-For example, to create a ``qcow2`` image that can be imported to *fs* (ssh, shared and qcow2), *ceph* and *fs_lvm* datastores we can execute this command:
-
-.. prompt:: bash $ auto
-
-    $ qemu-img convert -O qcow2 modified.qcow2 final.qcow2
-
-If you want to create a ``vmdk`` image, for vCenter hypervisors, you can use this other command:
-
-.. prompt:: bash $ auto
-
-    $ qemu-img convert -O vmdk modified.qcow2 final.vmdk
-
-Upload it to an OpenNebula Datastore
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-You can now use Sunstone to upload the final version of the image or copy it to the frontend and import it. If you are going to use the second option make sure that the image is in a directory that allows image imports (by default ``/var/tmp``). For example:
-
-.. prompt:: bash $ auto
-
-    $ oneimage create --name centos7 --path /var/tmp/final.qcow2 --prefix vd --datastore default
 
 .. _add_content_install_withing_opennebula:
 
-Using OpenNebula
-================
+Manual Installation
+===================
 
-If you are using KVM hypervisor you can create base images using OpenNebula.
+If you are using KVM hypervisor you can create base images using OpenNebula by manually installing the operating system.
+
+.. note::
+
+    You can also start with a base installation provided by the official ditribution channels:
+
+    * **AlmaLinux**: https://repo.almalinux.org/almalinux/
+    * **Debian**: https://cdimage.debian.org/cdimage/openstack/
+    * **Ubuntu**: https://cloud-images.ubuntu.com/
+    * **Amazon Linux**: https://cdn.amazonlinux.com/os-images/latest/kvm/
+    * **Oracle Linux**: https://yum.oracle.com/oracle-linux-templates.html
+
+    In this case, jump to Step 2 and register a persistent VM disk using the downloaded qcow2 image. And in Step 3, the VM template disks should just use the base image (no install CD in this case)
 
 Step 1. Add the Installation Medium
 -----------------------------------
@@ -259,9 +91,7 @@ For example, to add the CentOS ISO file you can use this command:
 Step 2. Create Installation Disk
 --------------------------------
 
-The disk where the OS will be installed needs to be created as a ``DATABLOCK``.
-Don't make the image too big as it can be resized afterwards on VM instantiation.
-Also make sure to make it persistent so we won't lose the disk changes when the Virtual Machine terminates.
+The disk where the OS will be installed needs to be created as a ``DATABLOCK``. Don't make the image too big as it can be resized afterwards on VM instantiation. Also make sure to make it persistent so we won't lose the disk changes when the Virtual Machine terminates.
 
 |sunstone_datablock_create|
 
@@ -274,7 +104,7 @@ If you are using the CLI you can do the same with this command:
 Step 3. Create a Template to do the Installation
 ------------------------------------------------
 
-You'll need to create a VM Template with the following caracteristics:
+You'll need to create a VM Template with the following characteristics:
 
 * In *Storage* tab, ``DISK 0`` disk will be the installation disk (future base image) created in step 2, and ``DISK 1`` Second disk will be the installation CD image created in step 1.
 * In *Network* tab, attach ``NIC 0`` to a Virtual Network as it will be needed to download context packages.
@@ -308,39 +138,6 @@ Using the CLI you can do:
 
     $ oneimage nonpersistent centos7
     $ oneimage chmod centos7 744
-
-
-.. _add_content_marketplace:
-
-Using the OpenNebula Marketplace
-================================
-
-If you have access to the public OpenNebula Marketplace from your frontend, you'll find there images prepared to run in a OpenNebula Cloud.
-To get images from the OpenNebula Marketplace:
-
-* Go to the *Storage/Apps* tab in Sunstone
-* Select one of the images displayed
-* Click the *Download* button
-
-|sunstone_marketplace_list_import|
-
-Using the CLI, you can list an import images using these commands:
-
-.. prompt:: text $ auto
-
-	$ onemarketapp list
-	  ID NAME                         VERSION  SIZE STAT TYPE  REGTIME MARKET               ZONE
-	[...]
-	  41 boot2docker                   1.10.2   32M  rdy  img 02/26/16 OpenNebula Public       0
-	  42 alpine-vrouter (KVM)           1.0.3  256M  rdy  img 03/10/16 OpenNebula Public       0
-	  43 alpine-vrouter (vcenter)         1.0  256M  rdy  img 03/10/16 OpenNebula Public       0
-	  44 CoreOS alpha                1000.0.0  245M  rdy  img 04/03/16 OpenNebula Public       0
-	  45 Devuan                      1.0 Beta    8M  rdy  img 05/03/16 OpenNebula Public       0
-	$ onemarketapp export Devuan Devuan --datastore default
-	IMAGE
-		ID: 12
-	VMTEMPLATE
-		ID: -1
 
 .. |sunstone_datablock_create| image:: /images/sunstone_datablock_create.png
 .. |sunstone_marketplace_list_import| image:: /images/sunstone_marketplace_list_import.png
