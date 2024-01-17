@@ -4,4 +4,4 @@ This OpenNebula marketplace appliance comes with a preinstalled `WordPress <http
 * Based on the latest AlmaLinux 8 Linux distribution (for x86-64).
 * No default login (local or SSH) password - must be provided via contextualization
 
-The full documentation of the `WordPress appliance <https://github.com/OpenNebula/one-apps/wiki>`_ is maintained in the OpenNebula Apps project.
+The full documentation of the `WordPress appliance <https://github.com/OpenNebula/one-apps/wiki>`__ is maintained in the OpenNebula Apps project.
