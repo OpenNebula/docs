@@ -4,34 +4,45 @@
 Open Cloud Contextualization
 ================================================================================
 
-Prepare the Virtual Machine Image
-================================================================================
+OpenNebula provides a set of contextualization packages for different operating systems that integrates the VM guests with the OpenNebula services. The OpenNebula contextualization process allows to automatically:
 
-Step 1. Start a VM with the OS you want to Customize
---------------------------------------------------------------------------------
+* Configure guest networking and hostname settings.
+* Set up user credentials for seamless VM access.
+* Define the system timezone.
+* Resize disk partitions as needed.
+* Execute custom actions during boot.
 
-Supported contextualization packages are available for the OS's described in the :ref:`platform notes <context_supported_platforms>`.
+All the OS appliances available in the `OpenNebula Marketplace <https://marketplace.opennebula.io/appliance>`_ comes already with all the software installed. If you want to build these images yourself take a look at the `OpenNebula Apps project <https://github.com/OpenNebula/one-apps>`_.
 
-.. include:: install_steps.txt
+Install the Context Packages
+============================
 
-Step 4. Run Sysprep in Windows Machines
---------------------------------------------------------------------------------
+Additionally you can install the packages manually in any running VM guest, just grab the `latest version of the context packages for your OS system <https://github.com/OpenNebula/one-apps/releases>`_ and install them (don't forget to save your changes to the VM disk!).
 
-Execute ``sysprep`` to prepare the OS for duplication. You can find more information at:
+Using the Context Packages
+==========================
 
-https://technet.microsoft.com/en-us/library/cc721940(v=ws.10).aspx
+Configuration parameters are passed to the contextualization packages through the ``CONTEXT`` attribute of the virtual machine. The most common attributes are network configuration, user credentials and startup scripts. These parameters can be both added using the CLI to the template or using Sunstone Template wizard. Here is an example of the context section using the CLI:
 
-Step 5. Power Off the Machine and Save it
---------------------------------------------------------------------------------
+.. code-block:: bash
 
-After these configuration is done you should power off the machine, so it is in a consistent state the next time it boots. Then you will have to save the image.
+    CONTEXT = [
+        TOKEN = "YES",
+        NETWORK = "YES",
+        SSH_PUBLIC_KEY = "$USER[SSH_PUBLIC_KEY]",
+        START_SCRIPT = "yum install -y ntpdate"
+    ]
 
-If you are using OpenNebula to prepare the image you can use the command ``onevm disk-saveas``, for example, to save the first disk of a Virtual Machine called "centos-installation" into an image called "centos-contextualized" you can issue this command:
+In the following links you can learn more details on how to:
 
-.. prompt:: bash $ auto
+* `Network configuration <https://github.com/OpenNebula/one-apps/wiki/linux_feature#network-configuration>`_.
+* `Setup user credentials <https://github.com/OpenNebula/one-apps/wiki/linux_feature#user-credentials>`_.
+* `Execute scripts on boot <https://github.com/OpenNebula/one-apps/wiki/linux_feature#execute-scripts-on-boot>`_.
+* `Filesystem tunning <https://github.com/OpenNebula/one-apps/wiki/linux_feature#file-system-configuration>`_.
+* `Other OS settings and OneGate <https://github.com/OpenNebula/one-apps/wiki/linux_feature#other-system-configuration>`_.
 
-    $ onevm disk-saveas centos-installation 0 centos-contextualized
+Contextualization Reference
+===========================
 
-Using sunstone web interface you can find the option in the Virtual Machine storage tab.
+The full list of options and attributes in the contextualization section are described in the :ref:`Virtual Machine Definition File reference section <template_context>`
 
-.. include:: template.txt
