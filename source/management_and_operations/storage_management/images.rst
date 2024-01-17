@@ -236,7 +236,7 @@ Then define the secret and set its value, beware it's base64 encoded. **This has
 
     $ virsh -c qemu:///system secret-define secret.xml
 
-    $ virsh -c qemu:///system secret-set-value a94c5c16-d936-4346-89ad-7067517f411a "$(echo secret-passphrase | base64)"
+    $ virsh -c qemu:///system secret-set-value a94c5c16-d936-4346-89ad-7067517f411a "$(echo -n secret-passphrase | base64)"
 
 Managing Images
 ================================================================================
