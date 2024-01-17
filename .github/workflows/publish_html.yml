@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9
+          python-version: 3.11
 
       - name: Set up Ruby ${{ matrix.ruby-version }}
         uses: ruby/setup-ruby@v1
@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install sphinx==4.4.0 sphinx_rtd_theme==1.0.0 sphinx-prompt pyyaml
+          pip install sphinx==5.0.0 sphinx_rtd_theme==1.2.0 sphinx-prompt pyyaml Sphinx-Substitution-Extensions[prompt]
           gem install yaml open3
 
 # ------------------------------------------------------------------------------
