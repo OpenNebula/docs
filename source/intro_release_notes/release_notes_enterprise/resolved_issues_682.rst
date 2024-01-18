@@ -20,4 +20,4 @@ The following issues has been solved in 6.8.2:
 - `Fix [FSunstone] Fix validation checkbox <https://github.com/OpenNebula/one/issues/6418>`__.
 - `Fix DB migration to 6.8.0 fails due to undefined method 'text' <https://github.com/OpenNebula/one/issues/6453>`__.
 - `Fix [FSuntone] Implement Virtual Network Template Tab <https://github.com/OpenNebula/one/issues/6118>`__.
-
+- `Fix occasional duplicate floating IP in HA environment, which cause monitroing issues <https://github.com/OpenNebula/one/issues/6372>`__.
