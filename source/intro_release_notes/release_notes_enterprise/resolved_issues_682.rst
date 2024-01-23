@@ -22,3 +22,4 @@ The following issues has been solved in 6.8.2:
 - `Fix [FSuntone] Implement Virtual Network Template Tab <https://github.com/OpenNebula/one/issues/6118>`__.
 - `Fix Create VM button is not fully disabled with setting "cloud_vm_create: false" <https://github.com/OpenNebula/one/issues/6450>`__.
 - `Fix [FSunstone] Cannot upload image <https://github.com/OpenNebula/one/issues/6423>`__.
+- `Fix timeout during oneimage create with higher curl versions <https://github.com/OpenNebula/one/issues/6431>`__.
