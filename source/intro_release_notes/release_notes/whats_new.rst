@@ -36,6 +36,7 @@ KVM
 Features Backported to 6.8.x
 ================================================================================
 
+- For VMs with resched flag add ``HOST_ID`` to :ref:`External Scheduler API <external_scheduler>`.
 
 Other Issues Solved
 ================================================================================
