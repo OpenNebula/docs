@@ -30,7 +30,7 @@ Sunstone
 - Guacamole RDP as is currently shipped in OpenNebula does not support NLA authentication. You can follow `these instructions <https://www.parallels.com/blogs/ras/disabling-network-level-authentication/>`__ in order to disable NLA in the Windows box to use Guacamole RDP within Sunstone.
 - Creating a VM with SPICE graphics, on Alma9, will cause the VM to stay on FAILED state.
 
-Fireedge
+FireEdge
 ================================================================================
 
 - Due to a configuration mismatch the `disk snapshot buttons are currently not being rendered properly <https://github.com/OpenNebula/one/issues/6486>`__. In order to re-enable the disk snapshots the following values need to be added in the ``vm-tab.yaml`` configuration file,
