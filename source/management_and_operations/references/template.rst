@@ -684,6 +684,13 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 | ``ONEGATE_ENDPOINT``              | OpenNebula will automatically add this variable if ``TOKEN`` is ``YES``.                        | O                            | O       |
 |                                   | Defaults to ``http://169.254.16.9:5030``. Value loaded from ``/etc/one/oned.conf``              |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
+| ``REPORT_READY``                  | The VM will send the READY signal to the onegate server. After this, the                        | O                            | O       |
+|                                   | VM Template will contain ``READY=YES`` in the ``USER_TEMPLATE`` section                         |                              |         |
++-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
+| ``READY_SCRIPT``                  | ``READY=YES`` will only be sent if the script is succesfully executed                           | Linux                        | Linux   |
++-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
+| ``READY_SCRIPT_PATH``             | Similar to READY_SCRIPT but the script exists in the Guest FS                                   | Linux                        | Linux   |
++-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``NETWORK``                       | ``YES`` to fill automatically the networking parameters for each NIC, used by the               | O                            | O       |
 |                                   | :ref:`Contextualization packages <context_overview>`.                                           |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
