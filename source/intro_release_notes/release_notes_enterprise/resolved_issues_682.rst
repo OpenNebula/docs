@@ -26,3 +26,4 @@ The following issues has been solved in 6.8.2:
 - `Fix [FSunstone] Cannot upload image <https://github.com/OpenNebula/one/issues/6423>`__.
 - `Fix timeout during oneimage create with higher curl versions <https://github.com/OpenNebula/one/issues/6431>`__.
 - `Fix [FSunstone] User Input list sorting error <https://github.com/OpenNebula/one/issues/6229>`__.
+- `Fix [FSunstone] Poweroff hard available for SHUTDOWN state <https://github.com/OpenNebula/one/issues/6448>`__.
