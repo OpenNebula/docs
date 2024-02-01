@@ -13,7 +13,7 @@ The following new features have been backported to 6.8.2:
 
 The following issues has been solved in 6.8.2:
 
-- `Fix VM Migration Failure using two SYSTEM_DS on same host <https://github.com/OpenNebula/one/issues/6379>`
+- `Fix VM Migration Failure using two SYSTEM_DS on same host <https://github.com/OpenNebula/one/issues/6379>__`
 - `Fix possible segfault in VM disk resize <https://github.com/OpenNebula/one/issues/6432>`__.
 - `Fix monitoring encryption <https://github.com/OpenNebula/one/issues/6445>`__.
 - `Fix accounting after resizing VM memory or CPU <https://github.com/OpenNebula/one/issues/6387>`__.
