@@ -59,7 +59,7 @@ You can find the images for distributions in these links. We are going to use th
 Step 3. Download Context Packages
 --------------------------------------------------------------------------------
 
-The context packages can be downloaded from the `release section of the project <https://github.com/OpenNebula/addon-context-linux/releases>`__.
+The context packages can be downloaded from the `release section of the project <https://github.com/OpenNebula/one-apps/releases>`__.
 Make sure you download the version you need. For example, for RHEL 8, download the corresponding `rpm` package (``one-context-<VERSION>.el8.noarch.rpm``).
 Do not download the packages marked with `ec2` as they are specific for EC2 images.
 
@@ -70,14 +70,14 @@ You have to download them to a directory that we will later refer. For our examp
 
     $ mkdir packages
     $ cd packages
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|-1.el6.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|-1.el7.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|-1.el8.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|-1.suse.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|-alt1.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context_|context_release|-1.deb
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|-r1.apk
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v|context_release|/one-context-|context_release|_1.txz
+    $ wget https://github.com/OpenNebula/one-apps/releases/download/v|context_release|/one-context-|context_release|-1.el6.noarch.rpm
+    $ wget https://github.com/OpenNebula/one-apps/releases/download/v|context_release|/one-context-|context_release|-1.el7.noarch.rpm
+    $ wget https://github.com/OpenNebula/one-apps/releases/download/v|context_release|/one-context-|context_release|-1.el8.noarch.rpm
+    $ wget https://github.com/OpenNebula/one-apps/releases/download/v|context_release|/one-context-|context_release|-1.suse.noarch.rpm
+    $ wget https://github.com/OpenNebula/one-apps/releases/download/v|context_release|/one-context-|context_release|-alt1.noarch.rpm
+    $ wget https://github.com/OpenNebula/one-apps/releases/download/v|context_release|/one-context_|context_release|-1.deb
+    $ wget https://github.com/OpenNebula/one-apps/releases/download/v|context_release|/one-context-|context_release|-r1.apk
+    $ wget https://github.com/OpenNebula/one-apps/releases/download/v|context_release|/one-context-|context_release|_1.txz
     $ cd ..
 
 Step 4. Create a CDROM Image with Context Packages

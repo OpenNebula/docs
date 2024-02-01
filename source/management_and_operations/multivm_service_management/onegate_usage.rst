@@ -60,7 +60,7 @@ In vCenter this information is available in the extraConfig section of the VM me
 Using the OneGate Client inside the Guest VM
 --------------------------------------------------------------------------------
 
-A Ruby client that implements the OneGate API is included in the official `OpenNebula context packages <https://github.com/OpenNebula/addon-context-linux>`__. This is a simple command line interface to interact with the OneGate server, it will handle the authentication and requests complexity.
+A Ruby client that implements the OneGate API is included in the official `OpenNebula context packages <https://github.com/OpenNebula/one-apps>`__. This is a simple command line interface to interact with the OneGate server, it will handle the authentication and requests complexity.
 
 OneGate Client Usage
 --------------------------------------------------------------------------------
