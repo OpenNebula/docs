@@ -17,13 +17,13 @@ The following issues has been solved in 6.8.2:
 - `Fix possible segfault in VM disk resize <https://github.com/OpenNebula/one/issues/6432>`__.
 - `Fix monitoring encryption <https://github.com/OpenNebula/one/issues/6445>`__.
 - `Fix accounting after resizing VM memory or CPU <https://github.com/OpenNebula/one/issues/6387>`__.
-- `Fix [FSunstone] multiple issues with image pool view <https://github.com/OpenNebula/one/issues/6380>`__.
 - `Fix VMs with serveral SATA disks <https://github.com/OpenNebula/one/issues/5705>`__.
-- `Fix [FSunstone] Fix validation checkbox <https://github.com/OpenNebula/one/issues/6418>`__.
 - `Fix DB migration to 6.8.0 fails due to undefined method 'text' <https://github.com/OpenNebula/one/issues/6453>`__.
-- `Fix [FSuntone] Implement Virtual Network Template Tab <https://github.com/OpenNebula/one/issues/6118>`__.
 - `Fix Create VM button is not fully disabled with setting "cloud_vm_create: false" <https://github.com/OpenNebula/one/issues/6450>`__.
-- `Fix [FSunstone] Cannot upload image <https://github.com/OpenNebula/one/issues/6423>`__.
 - `Fix timeout during oneimage create with higher curl versions <https://github.com/OpenNebula/one/issues/6431>`__.
 - `Fix [FSunstone] User Input list sorting error <https://github.com/OpenNebula/one/issues/6229>`__.
 - `Fix [FSunstone] Poweroff hard available for SHUTDOWN state <https://github.com/OpenNebula/one/issues/6448>`__.
+- `Fix [FSuntone] Implement Virtual Network Template Tab <https://github.com/OpenNebula/one/issues/6118>`__.
+- `Fix [FSunstone] Cannot upload image <https://github.com/OpenNebula/one/issues/6423>`__.
+- `Fix [FSunstone] Fix validation checkbox <https://github.com/OpenNebula/one/issues/6418>`__.
+- `Fix [FSunstone] multiple issues with image pool view <https://github.com/OpenNebula/one/issues/6380>`__.
