@@ -18,6 +18,7 @@ The scheduler employs a simple REST API. When the external scheduler is configur
   - ``DISK``: Additional disk space in the system datastore (in megabytes)
 
 - ``HOST_IDS``: A list of IDs for hosts meeting the VM requirements
+- ``HOST_ID``: Host ID, where the VM is deployed. Used only if the VM is requested to reschedule (migrate) to other host.
 - ``ID``: VM's ID
 - ``STATE``: Current state in string form
 - ``ATTRIBUTES``: Custom attributes as specified in :ref:`scheduler configuration <schg_configuration>` in ``EXTERNAL_VM_ATTR``.
@@ -75,12 +76,12 @@ For instance, the following JSON illustrates a request for 3 VMs along with thei
             "MEMORY": 131072
           },
           "HOST_IDS": [
-            3,
             4,
             5
           ],
+          "HOST_ID": 3,
           "ID": 34,
-          "STATE": "PENDING"
+          "STATE": "RUNNING"
         }
       ]
     }
