@@ -14,6 +14,9 @@ OpenNebula provides a set of contextualization packages for different operating 
 
 All the OS appliances available in the `OpenNebula Marketplace <https://marketplace.opennebula.io/appliance>`_ comes already with all the software installed. If you want to build these images yourself take a look at the `OpenNebula Apps project <https://github.com/OpenNebula/one-apps>`_.
 
+Install the Context Packages
+============================
+
 Additionally you can install the packages manually in any running VM guest, just grab the `latest version of the context packages for your OS system <https://github.com/OpenNebula/one-apps/releases>`_ and install them (don't forget to save your changes to the VM disk!).
 
 Using the Context Packages
