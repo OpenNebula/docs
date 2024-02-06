@@ -10,4 +10,6 @@ The following new features has been backported to 6.4.6:
 
 
 The following issues has been solved in 6.4.6:
+
 - `Fix Sunstone issues unnecessary call when creating a marketplace app <https://github.com/OpenNebula/one/issues/6334>`__.
+- `Fix occasional duplicate floating IP in HA environment, which cause monitroing issues <https://github.com/OpenNebula/one/issues/6372>`__.
