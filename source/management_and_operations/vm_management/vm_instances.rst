@@ -364,6 +364,18 @@ To attach a new security group, you need to click on the shield on the NIC row. 
 
 To detach the security group, you must click on the X next to the security group. A confirm dialog will be displayed to ensure that you want to detach the security group.
 
+.. _vm_guide2_pci:
+
+PCI devices
+--------------------------------------------------------------------------------
+
+You can attach or detach a PCI to a Virtual Machine in ``POWEROFF`` and ``UNDEPLOYED`` state. Example:
+
+.. prompt:: text $ auto
+
+    $ onevm pci-attach alpine01 --pci_class 0c03 --pci_device 0015 --pci_vendor 1912
+    $ onevm pci-detach alpine01 0
+
 .. _vm_guide2_snapshotting:
 
 Virtual Machine System Snapshots
