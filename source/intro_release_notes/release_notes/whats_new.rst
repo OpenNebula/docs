@@ -31,6 +31,8 @@ FireEdge Sunstone
 API and CLI
 ================================================================================
 
+- New commands to :ref:`attach and detach PCI device <vm_guide2_pci>` to a Virtual Machine
+
 KVM
 ================================================================================
 
