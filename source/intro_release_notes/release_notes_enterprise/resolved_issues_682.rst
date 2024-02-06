@@ -24,6 +24,7 @@ The following issues have been solved in 6.8.2:
 - `Fix occasional duplicate floating IP in HA environment, which cause monitroing issues <https://github.com/OpenNebula/one/issues/6372>`__.
 
 Also, the following issues have been solved in the FireEdge Sunstone Web UI:
+
 - `Fix cannot upload image" issue <https://github.com/OpenNebula/one/issues/6423>`__.
 - `Fix validation checkbox <https://github.com/OpenNebula/one/issues/6418>`__.
 - `Fix multiple issues with image pool view <https://github.com/OpenNebula/one/issues/6380>`__.
