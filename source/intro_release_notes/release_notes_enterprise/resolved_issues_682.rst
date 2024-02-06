@@ -11,7 +11,7 @@ The following new features have been backported to 6.8.2:
 - Virtual Routers now support ``FLOATING_ONLY`` attributes for their network NICs. When this attribute is set to ``yes`` no additional IPs are allocated for the VMs of the VR, :ref:`see more information on the Virtual Router guide <vrouter>`.
 - For VMs with resched flag add ``HOST_ID`` to :ref:`External Scheduler API <external_scheduler>`.
 
-The following issues has been solved in 6.8.2:
+The following issues have been solved in 6.8.2:
 
 - `Fix VM Migration Failure using two SYSTEM_DS on same host <https://github.com/OpenNebula/one/issues/6379>`__.
 - `Fix possible segfault in VM disk resize <https://github.com/OpenNebula/one/issues/6432>`__.
@@ -21,9 +21,12 @@ The following issues has been solved in 6.8.2:
 - `Fix DB migration to 6.8.0 fails due to undefined method 'text' <https://github.com/OpenNebula/one/issues/6453>`__.
 - `Fix Create VM button is not fully disabled with setting "cloud_vm_create: false" <https://github.com/OpenNebula/one/issues/6450>`__.
 - `Fix timeout during oneimage create with higher curl versions <https://github.com/OpenNebula/one/issues/6431>`__.
-- `Fix [FSunstone] User Input list sorting error <https://github.com/OpenNebula/one/issues/6229>`__.
-- `Fix [FSunstone] Poweroff hard available for SHUTDOWN state <https://github.com/OpenNebula/one/issues/6448>`__.
-- `Fix [FSuntone] Implement Virtual Network Template Tab <https://github.com/OpenNebula/one/issues/6118>`__.
-- `Fix [FSunstone] Cannot upload image <https://github.com/OpenNebula/one/issues/6423>`__.
-- `Fix [FSunstone] Fix validation checkbox <https://github.com/OpenNebula/one/issues/6418>`__.
-- `Fix [FSunstone] multiple issues with image pool view <https://github.com/OpenNebula/one/issues/6380>`__.
+- `Fix occasional duplicate floating IP in HA environment, which cause monitroing issues <https://github.com/OpenNebula/one/issues/6372>`__.
+
+Also, the following issues have been solved in the FireEdge Sunstone Web UI:
+- `Fix cannot upload image" issue <https://github.com/OpenNebula/one/issues/6423>`__.
+- `Fix validation checkbox <https://github.com/OpenNebula/one/issues/6418>`__.
+- `Fix multiple issues with image pool view <https://github.com/OpenNebula/one/issues/6380>`__.
+- `Fix User Input list sorting error <https://github.com/OpenNebula/one/issues/6229>`__.
+- `Fix poweroff hard available for SHUTDOWN state <https://github.com/OpenNebula/one/issues/6448>`__.
+- `New Virtual Network Template Tab <https://github.com/OpenNebula/one/issues/6118>`__.
