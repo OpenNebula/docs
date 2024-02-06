@@ -14,6 +14,7 @@ OpenNebula Core
 ================================================================================
 - **Generic Quotas**: Option to specify :ref:`custom quotas for OpenNebula VMs, <quota_auth_generic>`
 
+
 Storage & Backups
 ================================================================================
 
@@ -40,6 +41,11 @@ Features Backported to 6.8.x
 
 Other Issues Solved
 ================================================================================
+
 - `Fix for systemd unit files in the part responsible for log compression <https://github.com/OpenNebula/one/issues/6282>`__.
-- `Fix [FSunstone] multiple issues with image pool view <https://github.com/OpenNebula/one/issues/6380>`__.
-- `Fix [FSunstone] User Input list sorting error <https://github.com/OpenNebula/one/issues/6229>`__.
+- `Fix sudoers path for systems tools to point to /usr/sbin for Debian OS <https://github.com/OpenNebula/one/issues/5909>`__.
+
+Also, the following issues have been solved in the FireEdge Sunstone Web UI:
+
+- `Fix multiple issues with image pool view <https://github.com/OpenNebula/one/issues/6380>`__.
+- `Fix User Input list sorting error <https://github.com/OpenNebula/one/issues/6229>`__.
