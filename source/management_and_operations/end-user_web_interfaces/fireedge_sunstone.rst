@@ -40,11 +40,13 @@ Instances
 --------------------------------------------------------------------------------
 
 - **VMs Tab**: Users can see all their Virtual Machines, and perform managing actions such as changing permissions, attaching disks, attaching networks, taking snapshots, adding scheduled actions, remote console connections, and more. From this tab, users can also instantiate a new Virtual Machine. Some VM actions can be through multiple VMs, such as: ``suspend``, ``stop``, ``power-off``, ``reboot``, ``resume``, ``undeploy`` and more.
+- **Services Tab**: Admins can see all their services, and perform different kinds of managing actions. From this tab, admins can also instantiate new services. 
 
 Templates
 --------------------------------------------------------------------------------
 
 - **VM Template Tab**: Users can see all their Templates, and perform updates and clones. From this tab, user can also instantiate a Virtual Machine. Also, the user can perform some managing operations over the templates, such as: change permissions, share and unshare, lock and unlock, and more.
+- **Service Template Tab**: Admins can see all their Service Templates, create new ones and update existing templates. From this tab, admins can also instantiate services directly and perform different kinds of managing operations.
 
 Storage
 --------------------------------------------------------------------------------
