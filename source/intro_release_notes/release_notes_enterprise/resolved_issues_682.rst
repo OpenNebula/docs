@@ -22,6 +22,7 @@ The following issues have been solved in 6.8.2:
 - `Fix Create VM button is not fully disabled with setting "cloud_vm_create: false" <https://github.com/OpenNebula/one/issues/6450>`__.
 - `Fix timeout during oneimage create with higher curl versions <https://github.com/OpenNebula/one/issues/6431>`__.
 - `Fix occasional duplicate floating IP in HA environment, which cause monitroing issues <https://github.com/OpenNebula/one/issues/6372>`__.
+- `Fix PCI passthrough device addresses for machine models based on q35 <https://github.com/OpenNebula/one/issues/6372>`__.
 
 Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 
