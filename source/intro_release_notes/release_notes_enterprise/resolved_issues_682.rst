@@ -33,3 +33,4 @@ Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 - `Fix User Input list sorting error <https://github.com/OpenNebula/one/issues/6229>`__.
 - `Fix poweroff hard available for SHUTDOWN state <https://github.com/OpenNebula/one/issues/6448>`__.
 - `New Virtual Network Template Tab <https://github.com/OpenNebula/one/issues/6118>`__.
+- `Add generic template to Settings for User template <https://github.com/OpenNebula/one/issues/6219>`__.
