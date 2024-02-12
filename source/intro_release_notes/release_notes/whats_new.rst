@@ -13,7 +13,7 @@ We’d like to thank all the people that :ref:`support the project<acknowledgeme
 OpenNebula Core
 ================================================================================
 - **Generic Quotas**: Option to specify :ref:`custom quotas for OpenNebula VMs, <quota_auth_generic>`
-
+- **PCI attach/detach**: generic PCI devices (e.g. GPU/vGPUs) now support :ref:`attach and detach operations <vm_guide2_pci>` in poweroff and undeployed states. Note that this functionality (in any state) is already present for NIC PCI passthrough/SRIOV devices.
 
 Storage & Backups
 ================================================================================
@@ -32,7 +32,6 @@ FireEdge Sunstone
 API and CLI
 ================================================================================
 
-- New commands to :ref:`attach and detach PCI device <vm_guide2_pci>` to a Virtual Machine
 
 KVM
 ================================================================================
