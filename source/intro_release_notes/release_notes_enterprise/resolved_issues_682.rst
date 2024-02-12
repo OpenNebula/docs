@@ -10,6 +10,7 @@ The following new features have been backported to 6.8.2:
 
 - Virtual Routers now support ``FLOATING_ONLY`` attributes for their network NICs. When this attribute is set to ``yes`` no additional IPs are allocated for the VMs of the VR, :ref:`see more information on the Virtual Router guide <vrouter>`.
 - For VMs with resched flag add ``HOST_ID`` to :ref:`External Scheduler API <external_scheduler>`.
+- New operation to :ref:`attach/detach PCI passthrough devices in poweroff and undeployed <vm_guide2_pci>`. Note that this feature is available through the API and CLI in this 6.8.2 release.
 
 The following issues have been solved in 6.8.2:
 
