@@ -25,7 +25,7 @@ Main Features
 
     http://<OPENNEBULA-FRONTEND>:2616
 
-
+.. _fireedge_files_note:
 .. note::
 
     We are continually expanding the feature set of FireEdge Sunstone, and hence its configuration files are in constant change. In versions 6.8.2 and later, configuration files in ``/etc/one/fireedge/sunstone/`` can be replaced by the ones that can be downloaded `here <https://bit.ly/one-681-config>`__ in order to activate the latest features.
