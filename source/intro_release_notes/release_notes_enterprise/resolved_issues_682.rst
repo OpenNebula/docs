@@ -27,6 +27,7 @@ The following issues have been solved in 6.8.2:
 - `Fix occasional duplicate floating IP in HA environment, which cause monitroing issues <https://github.com/OpenNebula/one/issues/6372>`__.
 - `Fix oneflow client adding uri prefix path to the http request path <https://github.com/OpenNebula/one/issues/5768>`__.
 - `Fix PCI passthrough device addresses for machine models based on q35 <https://github.com/OpenNebula/one/issues/6372>`__.
+- `Fix updateconf API call to return an error when backup mode cannot be changed <https://github.com/OpenNebula/one/issues/6400>`__.
 
 Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 
