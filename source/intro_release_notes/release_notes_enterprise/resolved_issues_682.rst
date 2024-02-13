@@ -13,7 +13,7 @@ The following new features have been backported to 6.8.2:
 - New operation to :ref:`attach/detach PCI passthrough devices in poweroff and undeployed <vm_guide2_pci>`. Note that this feature is available through the API and CLI in this 6.8.2 release.
 - Added the Cluster tab to Fireedge Sunstone. See :ref:`the Cluster guide <cluster_guide>` for more information.  To download configuration files, see :ref:`Configuration files <fireedge_files_note>`
 - Added the ACL tab to Fireedge Sunstone. See :ref:`the ACL guide <manage_acl>` for more information. To download configuration files, see :ref:`Configuration files <fireedge_files_note>`.
-- Supported custom attributes at Python binding.
+- Supported custom attributes at :ref:`Python binding <python>`.
 
 The following issues have been solved in 6.8.2:
 
