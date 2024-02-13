@@ -202,41 +202,183 @@ Finally, you can boot a VM from an ISO installation image and install the OS. Pl
 LUKS encrypted Images
 --------------------------------------------------------------------------------
 
-LUKS-encrypted Images can be used **only on KVM** based hypervisors. First you need to create an encrypted
-volume using ``raw`` format, for example:
+
+.. note:: LUKS-encrypted Images can be used **only on KVM**-based hypervisors.
+
+There are two possible scenarios:
+
+- :ref:`Convert existing non-encrypted image into LUKS-encrypted one<convert_existing_non-encrypted_image_into_LUKS-encrypted_one>`;
+- :ref:`Build LUKS-encrypted OS image from scratch<build_LUKS-encrypted_OS_image_from_scratch>`.
+
+Both are covered below.
+
+.. _convert_existing_non-encrypted_image_into_LUKS-encrypted_one:
+
+Convert existing non-encrypted image into LUKS-encrypted one
+`````````````````````````````````````````````````````````````````
+
+All the commands below within that section need to be done as **oneadmin** user.
+
+Generate a secret key to be used for encrypting LUKS image and save it into a file (e.g. ``passphrase.luks``):
 
 .. prompt:: text $ auto
 
-    $ qemu-img create --object secret,id=sec0,data=secret-passphrase -o key-secret=sec0 -f luks /tmp/luks.vol 10G
+    $ openssl rand -base64 10|tr -d '=' > passphrase.luks
 
-Then create the image into the OpenNebula Datastore as usual:
-
-.. prompt:: text $ auto
-
-    $ oneimage create --name luks-image --path /tmp/luks.vol -d default
-
-Finally you need to define the secret in the libvirt, prepare a secret.xml file
+Set ``600`` permissions on that file:
 
 .. prompt:: text $ auto
 
-    $ uuidgen
-    a94c5c16-d936-4346-89ad-7067517f411a
+    $ chmod 600 passphrase.luks
+
+ 
+Check a path to already registered in OpenNebula image which needs to be encrypted:
 
 .. prompt:: text $ auto
 
-    $ cat secret.xml
+    $ oneimage show 0|grep -i source|cut -d ':' -f2
+    /var/lib/one//datastores/1/2f7afcdd0f5c7644a8f82ec57f3ede54
+
+ 
+Get an information about virtual size of the image:
+
+.. prompt:: text $ auto
+
+    $ qemu-img info /var/lib/one//datastores/1/2f7afcdd0f5c7644a8f82ec57f3ede54 2>/dev/null | egrep -i "virtual size"
+    virtual size: 256 MiB (268435456 bytes)
+
+ 
+Create empty LUKS-encrypted image with the same size as exiting OS image which needs to be encrypted:
+
+.. prompt:: text $ auto
+
+    $ qemu-img create --object secret,id=sec0,file=passphrase.luks -o key-secret=sec0 -f luks /tmp/alpine-3.17.luks 256M
+
+ 
+Convert existing OS image into LUKS-encrypted one:
+
+.. prompt:: text $ auto
+
+    $ qemu-img convert --target-image-opts --object secret,id=sec0,file=passphrase.luks -f qcow2 /var/lib/one//datastores/1/2f7afcdd0f5c7644a8f82ec57f3ede54 -n driver=luks,file.filename=/tmp/alpine-3.17.luks,key-secret=sec0
+
+ 
+Register converted LUKS-encrypted image in OpenNebula:
+
+.. prompt:: text $ auto
+
+    $ oneimage create --name alpine-3.17_luks --path /tmp/alpine-3.17.luks -d default --prefix vd
+
+ 
+Generate UUID and save it into environment variable for future use:
+
+.. prompt:: text $ auto
+
+    $ UUID=$(uuidgen); echo $UUID
+
+
+Create a ``secret.xml`` file by issuing
+
+.. prompt:: text $ auto
+
+    $ cat > secret.xml <<EOF
     <secret ephemeral='no' private='yes'>
-          <uuid>a94c5c16-d936-4346-89ad-7067517f411a</uuid>
+       <uuid>$UUID</uuid>
           <description>luks key</description>
     </secret>
+    EOF
 
-Then define the secret and set its value, beware it's base64 encoded. **This has to be done on every hypervisor**
+Set ``600`` permissions for secret.xml file:
+
+.. prompt:: text $ auto
+
+    $ chmod 600 secret.xml
+
+Now one needs to open LUKS-encrypted image properties in Sunstone interface and add new attribute called ``LUKS_SECRET`` in the **"Attributes"** section on the **"Info"** tab. Paste generated earlier UUID as a value for that attribute. Click on "+" button located on the right side of the row with new attribute and its value.
+
+.. _img_sunstone_luks_secret_create:
+
+|image2|
+
+Copy ``passphrase.luks`` and ``secret.xml`` files on all your hypervisor nodes and execute on all of them the following commands as **oneadmin** user:
 
 .. prompt:: text $ auto
 
     $ virsh -c qemu:///system secret-define secret.xml
+    
+    $ virsh -c qemu:///system secret-set-value $(sed -n 's:.*<uuid>\(.*\)</uuid>.*:\1:p' secret.xml) --file passphrase.luks --plain
 
-    $ virsh -c qemu:///system secret-set-value a94c5c16-d936-4346-89ad-7067517f411a "$(echo -n secret-passphrase | base64)"
+Create VM template with LUKS-encrypted disk and instantiate VM. If everything worked as it should then VM should be booted successfully.
+
+.. _build_LUKS-encrypted_OS_image_from_scratch:
+
+
+Build LUKS-encrypted OS image from scratch
+`````````````````````````````````````````````````````````````````
+
+Generate a secret key to be used for encrypting LUKS image and save it into a file (e.g. ``passphrase.luks``):
+
+.. prompt:: text $ auto
+
+    $ openssl rand -base64 10|tr -d '=' > passphrase.luks
+
+Set ``600`` permissions on that file:
+
+.. prompt:: text $ auto
+
+    $ chmod 600 passphrase.luks
+
+Create an encrypted volume using raw format, for example:
+
+.. prompt:: text $ auto
+
+    $ qemu-img create --object secret,id=sec0,file=passphrase.luks -o key-secret=sec0 -f luks /tmp/luks.vol 5G
+
+
+Register that image in the OpenNebula:
+
+.. prompt:: text $ auto
+
+    $ oneimage create --name luks-image --path /tmp/luks.vol -d default --prefix vd --persistent
+
+Generate UUID and save it into environment variable for future use:
+
+.. prompt:: text $ auto
+
+    $ UUID=$(uuidgen); echo $UUID
+
+
+Create a ``secret.xml`` file by issuing
+
+.. prompt:: text $ auto
+
+    $ cat > secret.xml <<EOF
+    <secret ephemeral='no' private='yes'>
+       <uuid>$UUID</uuid>
+          <description>luks key</description>
+    </secret>
+    EOF
+
+Set ``600`` permissions for secret.xml file:
+
+.. prompt:: text $ auto
+
+    $ chmod 600 secret.xml
+
+Now one needs to open LUKS-encrypted image properties in Sunstone interface and add new attribute called ``LUKS_SECRET`` in the **"Attributes"** section on the **"Info"** tab. Paste generated earlier UUID as a value for that attribute. Click on "+" button located on the right side of the row with new attribute and its value (see :ref:`screenshot <img_sunstone_luks_secret_create>`).
+
+Copy ``passphrase.luks`` and ``secret.xml`` files on all your hypervisor nodes and execute on all of them the following commands as **oneadmin** user:
+
+.. prompt:: text $ auto
+
+    $ virsh -c qemu:///system secret-define secret.xml
+    
+    $ virsh -c qemu:///system secret-set-value $(sed -n 's:.*<uuid>\(.*\)</uuid>.*:\1:p' secret.xml) --file passphrase.luks --plain
+
+Register OS installation ISO-image in the OpenNebula.
+
+Create VM template and add both images (LUKS-encrypted and ISO ones) into it. Instantiate VM from that template.
+
+Install OS on LUKS-encrypted image. Terminate the VM. All changes made on LUKS-encrypted disk are saved because it is persistent. One needs to make that image non-persistent in case it has to be used for instantiation of multiple VMs. Update the VM template by removing ISO disk and save changes. Instantiate VM from that template with LUKS-encrypted disk. If everything worked as it has to then the VM should be booted successfully.
 
 Managing Images
 ================================================================================
@@ -404,4 +546,5 @@ When creating Images you can upload them to the Datastore via the client browser
 
 Note that when file sizes become big (normally over 1GB), and depending on your hardware, it may take long to complete the copying. Since the upload request needs to stay pending until copying is successful (so it can delete the temp file safely), there might be Ajax timeouts and/or lack of response from the server. This may cause errors, or trigger re-uploads (which re-initiate the loading progress bar).
 
+.. |image2| image:: /images/sunstone_luks_secret_create.png
 .. |image3| image:: /images/sunstone_image_create.png
