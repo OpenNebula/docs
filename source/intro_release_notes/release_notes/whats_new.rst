@@ -57,6 +57,8 @@ API and CLI
 - `Allow STDIN passed templates for commands that accept template files <https://github.com/OpenNebula/one/issues/6242>`__.
 - New ``onevmgroup`` commands ``role-add``, ``role-delete`` and ``role-update`` for :ref:`managing VM Group roles <onevmgroup_api>`.
 
+- New commands to :ref:`attach and detach PCI device <vm_guide2_pci>` to a Virtual Machine
+
 KVM
 ================================================================================
 - Added a monitoring script to add ``KVM_CPU_FEATURES`` to the :ref:`Host Monitoring Information <hosts>`.

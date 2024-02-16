@@ -20,6 +20,10 @@ It is recommended to use either `Apache <https://httpd.apache.org/>`__ or `NGINX
 
 The web server should be deployed by the administrator before registering the MarketPlace.
 
+Summary
+================================================================================
+
+
 Configuration
 ================================================================================
 
@@ -38,6 +42,10 @@ These are the configuration attributes of a Marketplace template of the HTTP kin
 +-----------------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``BRIDGE_LIST`` | **NO**   | Space separated list of servers to access the public directory. If not defined, the public directory will be local to the Front-end.                  |
 +-----------------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+When an image is uploaded to this market, it is copied to ``BRIDGE_LIST``:``PUBLIC_DIR`` (if ``BRIDGE_LIST`` is not set, then it is copied to the current frontend where OpenNebula is running). After that, they are available in ``BASE_URL``. OpenNebula does not set up neither the webserver nor the secure access to it.
+
+|HTTP marketplace overview|
 
 For example, the following examples illustrate the creation of a Marketplace:
 
@@ -65,3 +73,7 @@ Tuning & Extending
 .. important:: Any modification of code should be handled carefully. Although we might provide hints on how to fine-tune various parts by customizing the OpenNebula internals, in general, **it's NOT recommended to make changes in the existing code**. Please note the changes will be lost during the OpenNebula upgrade and have to be introduced back again manually!
 
 System administrators and integrators are encouraged to modify these drivers in order to integrate them with their datacenter. Please refer to the :ref:`Market Driver Development <devel-market>` guide to learn about the driver details.
+
+
+.. |HTTP marketplace overview| image:: /images/market_http.png
+  :width: 70%
