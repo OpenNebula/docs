@@ -14,6 +14,7 @@ The following new features have been backported to 6.8.2:
 - Added the Cluster tab to Fireedge Sunstone. See :ref:`the Cluster guide <cluster_guide>` for more information.  To download configuration files, see :ref:`Configuration files <fireedge_files_note>`
 - Added the ACL tab to Fireedge Sunstone. See :ref:`the ACL guide <manage_acl>` for more information. To download configuration files, see :ref:`Configuration files <fireedge_files_note>`.
 - Supported custom attributes at :ref:`Python binding <python>`.
+- Updated way of building and installing :ref:`Python binding <python>`
 
 The following issues have been solved in 6.8.2:
 
@@ -39,3 +40,4 @@ Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 - `Fix poweroff hard available for SHUTDOWN state <https://github.com/OpenNebula/one/issues/6448>`__.
 - `New Virtual Network Template Tab <https://github.com/OpenNebula/one/issues/6118>`__.
 - `Add generic template to Settings for User template <https://github.com/OpenNebula/one/issues/6219>`__.
+
