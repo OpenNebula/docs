@@ -14,6 +14,7 @@ The following new features have been backported to 6.8.2:
 - Added the Cluster tab to Fireedge Sunstone. See :ref:`the Cluster guide <cluster_guide>` for more information.
 - Added the ACL tab to Fireedge Sunstone. See :ref:`the ACL guide <manage_acl>` for more information.
 - Supported custom attributes at :ref:`Python binding <python>`.
+- Added the Virtual Network Templates Tab to Fireedge Sunstone. See :ref:`the VN Templates guide <vn_templates>` for more information.
 
 .. note::
    In order to use the new functionality introduced in Fireedge sunstone, please refer to the following :ref:`guide <fireedge_files_note>`.
@@ -40,5 +41,5 @@ Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 - `Fix multiple issues with image pool view <https://github.com/OpenNebula/one/issues/6380>`__.
 - `Fix User Input list sorting error <https://github.com/OpenNebula/one/issues/6229>`__.
 - `Fix poweroff hard available for SHUTDOWN state <https://github.com/OpenNebula/one/issues/6448>`__.
-- `New Virtual Network Template Tab <https://github.com/OpenNebula/one/issues/6118>`__.
-- `Add generic template to Settings for User template <https://github.com/OpenNebula/one/issues/6219>`__.
+- `Fix generic template to Settings for User template <https://github.com/OpenNebula/one/issues/6219>`__.
+- `Fix VM action buttons respond to state updates <https://github.com/OpenNebula/one/issues/6384>`__.
