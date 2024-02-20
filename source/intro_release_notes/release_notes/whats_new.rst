@@ -52,3 +52,4 @@ Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 - `Fix multiple issues with image pool view <https://github.com/OpenNebula/one/issues/6380>`__.
 - `Fix User Input list sorting error <https://github.com/OpenNebula/one/issues/6229>`__.
 - `Fix missing host subtabs <https://github.com/OpenNebula/one/issues/6490>`__.
+- `Fix VM action buttons respond to state updates <https://github.com/OpenNebula/one/issues/6384>`__.
