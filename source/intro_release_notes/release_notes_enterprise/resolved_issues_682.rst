@@ -45,3 +45,4 @@ Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 - `Fix poweroff hard available for SHUTDOWN state <https://github.com/OpenNebula/one/issues/6448>`__.
 - `Fix generic template to Settings for User template <https://github.com/OpenNebula/one/issues/6219>`__.
 - `Fix VM action buttons respond to state updates <https://github.com/OpenNebula/one/issues/6384>`__.
+- `Fix table selection issue <https://github.com/OpenNebula/one/issues/6507>`__.
