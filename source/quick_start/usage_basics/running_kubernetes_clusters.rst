@@ -55,14 +55,6 @@ And for private network we will use the ``aws-private`` we instantiated before.
 
 |kubernetes-qs-pick-networks|
 
-Also, we need to specify some VIPs from the private subnet, put e.g.: ``172.20.0.253`` and ``172.20.0.254``
-
-|kubernetes-qs-pick-vips|
-
-.. note::
-
-    This is specific to AWS deployments. In an on-prem scenario the ``Control Plane Endpoint VIP`` should be IP address taken from a **public** VNET.
-
 You will most likely want to add a custom domain to Kubernetes SANs, so the ``kubectl`` command could be used from "outside" of the cluster.
 
 |kubernetes-qs-add-sans|
@@ -109,7 +101,6 @@ After the OneFlow service is deployed you can also **scale up** the worker nodes
 .. note:: Even though Sunstone shows the VNC console button, VNC access to VMs running in Edge Clusters has been deemed insecure and as such OpenNebula filters this traffic. This means that the VNC access won't work for VMs running in Edge Clusters.
 
 .. |kubernetes-qs-pick-networks| image:: /images/kubernetes-qs-pick-networks.png
-.. |kubernetes-qs-pick-vips| image:: /images/kubernetes-qs-pick-vips.png
 .. |kubernetes-qs-add-sans| image:: /images/kubernetes-qs-add-sans.png
 .. |kubernetes-qs-enable-ingress| image:: /images/kubernetes-qs-enable-ingress.png
 
