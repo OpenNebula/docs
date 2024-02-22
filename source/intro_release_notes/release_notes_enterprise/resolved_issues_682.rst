@@ -1,16 +1,16 @@
 .. _resolved_issues_682:
 
-Resolved Issues in 6.8.2
+Resolved Issues in 6.8.3
 --------------------------------------------------------------------------------
 
-A complete list of solved issues for 6.8.2 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/73?closed=1>`__.
+A complete list of solved issues for 6.8.3 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/73?closed=1>`__.
 
 
-The following new features have been backported to 6.8.2:
+The following new features have been backported to 6.8.3:
 
 - Virtual Routers now support ``FLOATING_ONLY`` attributes for their network NICs. When this attribute is set to ``yes`` no additional IPs are allocated for the VMs of the VR, :ref:`see more information on the Virtual Router guide <vrouter>`.
 - For VMs with resched flag add ``HOST_ID`` to :ref:`External Scheduler API <external_scheduler>`.
-- New operation to :ref:`attach/detach PCI passthrough devices in poweroff and undeployed <vm_guide2_pci>`. Note that this feature is available through the API and CLI in this 6.8.2 release.
+- New operation to :ref:`attach/detach PCI passthrough devices in poweroff and undeployed <vm_guide2_pci>`. Note that this feature is available through the API and CLI in this 6.8.3 release.
 - Added the Cluster tab to Fireedge Sunstone. See :ref:`the Cluster guide <cluster_guide>` for more information.
 - Added the ACL tab to Fireedge Sunstone. See :ref:`the ACL guide <manage_acl>` for more information.
 - Supported custom attributes at :ref:`Python binding <python>`.
@@ -19,7 +19,7 @@ The following new features have been backported to 6.8.2:
 .. note::
    In order to use the new functionality introduced in Fireedge sunstone, please refer to the following :ref:`guide <fireedge_files_note>`.
 
-The following issues have been solved in 6.8.2:
+The following issues have been solved in 6.8.3:
 
 - `Fix VM Migration Failure using two SYSTEM_DS on same host <https://github.com/OpenNebula/one/issues/6379>`__.
 - `Fix possible segfault in VM disk resize <https://github.com/OpenNebula/one/issues/6432>`__.
