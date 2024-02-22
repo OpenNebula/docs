@@ -21,4 +21,4 @@ The following issues have been solved in 6.8.3:
 
 Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 
-- `Fix bug description <https://github.com/OpenNebula/one/issues/6423>`__.
+- `Fix Implement Support Tab <https://github.com/OpenNebula/one/issues/5905>`__.
