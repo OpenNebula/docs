@@ -17,6 +17,7 @@ The following new features have been backported to 6.8.3:
 The following issues have been solved in 6.8.3:
 
 - `Fix quota after VM disk (de)attach for CEPH, LVM datastores <https://github.com/OpenNebula/one/issues/6506>`__.
+- `Fix disk size and quotas after VM disk revert to snapshot with smaller size <https://github.com/OpenNebula/one/issues/6503>`__.
 
 
 Also, the following issues have been solved in the FireEdge Sunstone Web UI:
