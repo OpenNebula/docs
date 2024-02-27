@@ -40,6 +40,7 @@ Features Backported to 6.8.x
 ================================================================================
 
 - For VMs with resched flag add ``HOST_ID`` to :ref:`External Scheduler API <external_scheduler>`.
+- Option to restore individual disk from backup Image see :ref:`Restoring Backups <vm_backups_restore>`.
 
 Other Issues Solved
 ================================================================================
