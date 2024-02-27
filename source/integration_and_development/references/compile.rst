@@ -144,7 +144,7 @@ The packages do a ``system-wide`` installation. To create a similar environment,
     oneadmin@frontend:~/ $> wget <opennebula tar gz>
     oneadmin@frontend:~/ $> tar xzf <opennebula tar gz>
     oneadmin@frontend:~/ $> cd opennebula-x.y.z
-    oneadmin@frontend:~/opennebula-x.y.z/ $> scons -j2 mysql=yes syslog=yes
+    oneadmin@frontend:~/opennebula-x.y.z/ $> scons -j2 mysql=yes syslog=yes fireedge=yes
     [ lots of compiling information ]
     scons: done building targets.
     oneadmin@frontend:~/opennebula-x.y.z $> sudo ./install.sh -u oneadmin -g oneadmin
