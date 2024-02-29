@@ -16,3 +16,4 @@ The following issues has been solved in 6.4.6:
 - `Fix occasional duplicate floating IP in HA environment, which cause monitroing issues <https://github.com/OpenNebula/one/issues/6372>`__.
 - `Fix oneflow client adding uri prefix path to the http request path <https://github.com/OpenNebula/one/issues/5768>`__.
 - `Fix quota after VM disk (de)attach for CEPH, LVM datastores <https://github.com/OpenNebula/one/issues/6506>`__.
+- `Fix incorrect filtering of remove_off_hosts <https://github.com/OpenNebula/one/issues/6472>`__.
