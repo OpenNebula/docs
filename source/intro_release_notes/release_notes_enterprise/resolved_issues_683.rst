@@ -18,7 +18,7 @@ The following issues have been solved in 6.8.3:
 
 - `Fix quota after VM disk (de)attach for CEPH, LVM datastores <https://github.com/OpenNebula/one/issues/6506>`__.
 - `Add QS Reference to README.md <https://github.com/OpenNebula/one/issues/6513>`__.
-
+- `Fix incorrect filtering of remove_off_hosts <https://github.com/OpenNebula/one/issues/6472>`__.
 
 Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 
