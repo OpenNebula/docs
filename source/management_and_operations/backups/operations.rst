@@ -287,7 +287,7 @@ When you restore the backup you may choose to:
 - Not keep any NIC definition
 - In the case of incremental backups you can choose which increment to restore (or last by default)
 - Finally, you can pick a base name for the VM Templates and disk Images that will be created
-- Restore only individual disk, without the template
+- Restore only an individual disk, without the associated VM template
 
 After you restore the VM, we recommend to review the restored template to fine-tune any additional parameter. The following example shows the recovering procedure:
 
