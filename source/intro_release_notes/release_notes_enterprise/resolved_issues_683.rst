@@ -24,3 +24,4 @@ The following issues have been solved in 6.8.3:
 Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 
 - `Fix Implement Support Tab <https://github.com/OpenNebula/one/issues/5905>`__.
+- `Fix Implement Zone Tab <https://github.com/OpenNebula/one/issues/6120>`__.
