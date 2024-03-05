@@ -17,3 +17,4 @@ The following issues has been solved in 6.4.6:
 - `Fix oneflow client adding uri prefix path to the http request path <https://github.com/OpenNebula/one/issues/5768>`__.
 - `Fix quota after VM disk (de)attach for CEPH, LVM datastores <https://github.com/OpenNebula/one/issues/6506>`__.
 - `Fix incorrect filtering of remove_off_hosts <https://github.com/OpenNebula/one/issues/6472>`__.
+- `Fix error reporting of CLI tools for JSON and YAML output <https://github.com/OpenNebula/one/issues/6509>`__.
