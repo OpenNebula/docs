@@ -21,6 +21,7 @@ The following issues have been solved in 6.8.3:
 - `Fix incorrect filtering of remove_off_hosts <https://github.com/OpenNebula/one/issues/6472>`__.
 - `Fix error reporting of CLI tools for JSON and YAML output <https://github.com/OpenNebula/one/issues/6509>`__.
 
-Also, the following issues have been solved in the FireEdge Sunstone Web UI:
+Also, the following issues have been backported in the FireEdge Sunstone Web UI:
 
-- `Fix Implement Support Tab <https://github.com/OpenNebula/one/issues/5905>`__.
+- `Implement Support Tab <https://github.com/OpenNebula/one/issues/5905>`__.
+- `Implement Zone Tab <https://github.com/OpenNebula/one/issues/6120>`__.
