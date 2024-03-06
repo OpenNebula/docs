@@ -28,6 +28,7 @@ FireEdge Sunstone
 - Implemented ACL tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
 - Implemented Cluster tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
 - Implemented OneFlow tabs in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
+- Implemented Marketplace tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
 
 API and CLI
 ================================================================================
