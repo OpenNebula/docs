@@ -25,3 +25,4 @@ Also, the following issues have been backported in the FireEdge Sunstone Web UI:
 
 - `Implement Support Tab <https://github.com/OpenNebula/one/issues/5905>`__.
 - `Implement Zone Tab <https://github.com/OpenNebula/one/issues/6120>`__.
+- Added the Marketplace tab to Fireedge Sunstone. See :ref:`the Marketplaces guide <marketplaces>` for more information.
