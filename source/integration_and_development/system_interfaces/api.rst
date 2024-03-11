@@ -5155,6 +5155,9 @@ one.image.restore
 | IN   | String    | Template (KEY=VALUE) with restore options:                                                             |
 |      |           |   - NO_IP (YES/NO) to restore IP and MAC addresses                                                     |
 |      |           |   - NO_NIC (YES/NO) to restore NIC attributes                                                          |
+|      |           |   - NAME (string) name of the restored template and image                                              |
+|      |           |   - INCREMENT_ID (int) id of the incremental backup                                                    |
+|      |           |   - DISK_ID (int) ID of the disk to restore, do not restore the template                               |
 +------+-----------+--------------------------------------------------------------------------------------------------------+
 | OUT  | Boolean   | true or false whenever is successful or not                                                            |
 +------+-----------+--------------------------------------------------------------------------------------------------------+
