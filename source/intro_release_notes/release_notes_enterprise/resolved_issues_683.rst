@@ -17,7 +17,8 @@ The following new features have been backported to 6.8.3:
 The following issues have been solved in 6.8.3:
 
 - `Fix quota after VM disk (de)attach for CEPH, LVM datastores <https://github.com/OpenNebula/one/issues/6506>`__.
-- `Add QS Reference to README.md <https://github.com/OpenNebula/one/issues/6513>`__.
+- `Fix disk size and quotas after VM disk revert to snapshot with smaller size <https://github.com/OpenNebula/one/issues/6503>`__.
+- `Fix README.md to include a reference to the Quick Start guide <https://github.com/OpenNebula/one/issues/6513>`__.
 - `Fix incorrect filtering of remove_off_hosts <https://github.com/OpenNebula/one/issues/6472>`__.
 - `Fix error reporting of CLI tools for JSON and YAML output <https://github.com/OpenNebula/one/issues/6509>`__.
 
