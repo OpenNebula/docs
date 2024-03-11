@@ -21,6 +21,7 @@ The following issues have been solved in 6.8.3:
 - `Fix README.md to include a reference to the Quick Start guide <https://github.com/OpenNebula/one/issues/6513>`__.
 - `Fix incorrect filtering of remove_off_hosts <https://github.com/OpenNebula/one/issues/6472>`__.
 - `Fix error reporting of CLI tools for JSON and YAML output <https://github.com/OpenNebula/one/issues/6509>`__.
+- `Fix LDAP group athorization for AD <https://github.com/OpenNebula/one/issues/6528>`__.
 
 Also, the following issues have been backported in the FireEdge Sunstone Web UI:
 
