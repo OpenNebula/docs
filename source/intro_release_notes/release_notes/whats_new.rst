@@ -48,6 +48,7 @@ Other Issues Solved
 
 - `Fix for systemd unit files in the part responsible for log compression <https://github.com/OpenNebula/one/issues/6282>`__.
 - `Fix sudoers path for systems tools to point to /usr/sbin for Debian OS <https://github.com/OpenNebula/one/issues/5909>`__.
+- `Fix LDAP group athorization for AD <https://github.com/OpenNebula/one/issues/6528>`__.
 
 Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 
