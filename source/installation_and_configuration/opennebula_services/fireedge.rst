@@ -133,7 +133,7 @@ The FireEdge server configuration file can be found in ``/etc/one/fireedge-serve
 | ``tmpdir``                                | ``/var/tmp``                              | Directory to store temporal files when uploading     |
 |                                           |                                           | images                                               |
 +-------------------------------------------+-------------------------------------------+------------------------------------------------------+
-| ``max_upload_file_size``                  | ``20000``                                 | Max size upload file (bytes)                         |
+| ``max_upload_file_size``                  | ``10737418240``                           | Max size upload file (bytes). Default is 10GB        |
 +-------------------------------------------+-------------------------------------------+------------------------------------------------------+
 | ``proxy``                                 |                                           | Enable an http proxy for the support portal and      |
 |                                           |                                           | to download MarketPlaceApps                          |
