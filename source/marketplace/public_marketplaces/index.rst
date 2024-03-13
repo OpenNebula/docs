@@ -1,4 +1,4 @@
-.. _public_marketplaces_index:
+.. _public_marketplaces:
 
 ====================
 Public Marketplaces
