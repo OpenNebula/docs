@@ -11,7 +11,7 @@ OpenNebula FireEdge server provides a **next-generation web-management interface
 
 This second Sunstone incarnation is written in `React <https://reactjs.org/>`__ / `Redux <https://redux.js.org/>`__ and `Material-UI <https://mui.com/>`__ is used for the styles and layout of the web.
 
-If you want to do development work over Sunstone, you need to install OpenNebula from source code. For this, you will need :ref:`build dependencies <build_deps>`, `git <https://git-scm.com/>`__, `nodeJS <https://nodejs.org/en/>`__ and `npm <https://docs.npmjs.com/downloading-and-installing-node-js-and-npm>`__.
+If you want to do development work over Sunstone, you need to install OpenNebula from source code. For this, you will need :ref:`build dependencies <build_deps>`, `git <https://git-scm.com/>`__, `nodeJS v12 <https://nodejs.org/en/blog/release/v12.22.12>`__ and `npm v6 <https://docs.npmjs.com/downloading-and-installing-node-js-and-npm>`__.
 
 Once the environment has been prepared, you need to clone `one repository <https://github.com/OpenNebula/one>`__ and follow the steps :ref:`to compile the OpenNebula software <compile>`.
 
