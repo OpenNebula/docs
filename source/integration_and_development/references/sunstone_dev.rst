@@ -180,7 +180,7 @@ and run:
 
 
 
-.. warning:: it's needed to downgrade node version to 10.21:
+  It's needed to downgrade node version to 10.21:
 
    .. code::
 
@@ -190,15 +190,15 @@ and run:
 
        n 10.21
 
-Try to build sunstone again:
+  Try to build sunstone again:
 
-.. code::
+  .. code::
 
-   npm install --python=python2.7
-   bower install
-   cd ~/one-ee
-   scons sunstone=yes
-   sudo ./install.sh -s -u oneadmin -g oneadmin
+    npm install --python=python2.7
+    bower install
+    cd ~/one-ee
+    scons sunstone=yes
+    sudo ./install.sh -s -u oneadmin -g oneadmin
 
 
 
