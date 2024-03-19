@@ -23,6 +23,7 @@ The following issues have been solved in 6.8.3:
 - `Fix error reporting of CLI tools for JSON and YAML output <https://github.com/OpenNebula/one/issues/6509>`__.
 - `Fix LDAP group athorization for AD <https://github.com/OpenNebula/one/issues/6528>`__.
 - `Fix CLI listing formatting ignored when passing --search <https://github.com/OpenNebula/one/issues/6511>`__.
+- `Fix upgrade of Scheduled Actions, 'onedb fsck' checks Scheduled Action consistency <https://github.com/OpenNebula/one/issues/6541>`__.
 
 
 Also, the following issues have been backported in the FireEdge Sunstone Web UI:
