@@ -83,4 +83,4 @@ We are actively developing an enhanced version of the OneGate Proxy implementati
 Check Datastore Capacity During Image Create
 ================================================================================
 
-We fixed and synchronized usage of the ``no_check_capacity`` flag across all APIs (XML-RPC, CLI, Ruby, Java, Python). Now it works as described in the :ref:`XML-RPC API documentation <api>`. If you are using Ruby, Java or Python binding please make sure it works as intended.
+We fixed and synchronized usage of the ``no_check_capacity`` flag across all APIs (XML-RPC, CLI, Ruby, Java, Python). Now it works as described in the :ref:`XML-RPC API documentation <api>`. If you are using this flag in any of the API bindings provided for OpenNebula please make sure you update your code.
