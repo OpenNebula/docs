@@ -8203,8 +8203,6 @@ one.hookpool.info
 
 The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
-.. _api_xsd_reference:
-
 one.hooklog.info
 --------------------------------------------------------------------------------
 
@@ -8560,6 +8558,8 @@ OUT   Int        ID of the object that caused the error.
 ====  =========  ===============================================================
 
 The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
+
+.. _api_xsd_reference:
 
 XSD Reference
 =============
