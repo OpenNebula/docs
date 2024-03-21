@@ -25,6 +25,7 @@ The following issues have been solved in 6.8.3:
 - `Fix CLI listing formatting ignored when passing --search <https://github.com/OpenNebula/one/issues/6511>`__.
 - `Fix upgrade of Scheduled Actions, 'onedb fsck' checks Scheduled Action consistency <https://github.com/OpenNebula/one/issues/6541>`__.
 - `Fix no_check_capacity flag for 'oneimage create' command <https://github.com/OpenNebula/one/issues/6533>`__.
+- `Fix Remove -V|--version from onecfg help and man page <https://github.com/OpenNebula/one/issues/6481>`__.
 
 
 Also, the following issues have been backported in the FireEdge Sunstone Web UI:
