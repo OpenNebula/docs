@@ -85,7 +85,7 @@ An OpenNebula Cloud Infrastructure can combine multiple clusters with different 
 Edge Cluster
 ============
 
-OpenNebula brings its own Edge Cluster configuration that is based on solid open source storage and networking technologies, and is a much simpler approach than those of customized cloud architectures made of more complex, general-purpose and separate infrastructure components. It can be deployed on-demand on virtual or bare-metal resources both on-premises and on your choice of public cloud or edge providerto to enable seamless hybrid cloud deployments. Our Edge Clusters are **fully supported end-to-end by OpenNebula Systems**. More info on this approach can be found on our `website <https://opennebula.io/edge-cloud/>`_.
+OpenNebula brings its own Edge Cluster configuration that is based on solid open source storage and networking technologies, and is a much simpler approach than those of customized cloud architectures made of more complex, general-purpose and separate infrastructure components. It can be deployed on-demand on virtual or bare-metal resources both on-premises and on your choice of public cloud or edge provider to enable seamless hybrid cloud deployments. Our Edge Clusters are **fully supported end-to-end by OpenNebula Systems**. More info on this approach can be found on our `website <https://opennebula.io/edge-cloud/>`_.
 
 |image5|
 
