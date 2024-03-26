@@ -26,6 +26,7 @@ The following issues have been solved in 6.8.3:
 - `Fix upgrade of Scheduled Actions, 'onedb fsck' checks Scheduled Action consistency <https://github.com/OpenNebula/one/issues/6541>`__.
 - `Fix no_check_capacity flag for 'oneimage create' command <https://github.com/OpenNebula/one/issues/6533>`__.
 - `Fix Remove -V|--version from onecfg help and man page <https://github.com/OpenNebula/one/issues/6481>`__.
+- `Fix SPICE max password length <https://github.com/OpenNebula/one/issues/6530>`__.
 - `Fix handling of Scheduled Actions for Virtual Machines in done state <https://github.com/OpenNebula/one/issues/6542>`__.
 
 
