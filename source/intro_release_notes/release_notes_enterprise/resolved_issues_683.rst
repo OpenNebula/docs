@@ -28,6 +28,7 @@ The following issues have been solved in 6.8.3:
 - `Fix Remove -V|--version from onecfg help and man page <https://github.com/OpenNebula/one/issues/6481>`__.
 - `Fix SPICE max password length <https://github.com/OpenNebula/one/issues/6530>`__.
 - `Fix handling of Scheduled Actions for Virtual Machines in done state <https://github.com/OpenNebula/one/issues/6542>`__.
+- `Fix live migration with non-shared storage for VMs with snaphosts <https://github.com/OpenNebula/one/issues/6368>`__.
 
 
 Also, the following issues have been backported in the FireEdge Sunstone Web UI:
