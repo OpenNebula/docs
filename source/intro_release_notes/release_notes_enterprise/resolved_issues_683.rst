@@ -30,8 +30,8 @@ The following issues have been solved in 6.8.3:
 - `Fix handling of Scheduled Actions for Virtual Machines in done state <https://github.com/OpenNebula/one/issues/6542>`__.
 - `Fix live migration with non-shared storage for VMs with snaphosts <https://github.com/OpenNebula/one/issues/6368>`__.
 - `Fix backup Scheduled Action blocks other Scheduled Actions execution <https://github.com/OpenNebula/one/issues/6550>`__.
-- `Fix VM monitoring when managing multiple vCenter<https://github.com/OpenNebula/one/issues/6550>`__.
-
+- `Fix VM monitoring when managing multiple vCenter <https://github.com/OpenNebula/one/issues/6550>`__.
+- `Fix backup PARALLEL execution mode <https://github.com/OpenNebula/one/issues/6464>`__.
 
 Also, the following issues have been backported in the FireEdge Sunstone Web UI:
 
