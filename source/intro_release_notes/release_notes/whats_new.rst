@@ -58,3 +58,4 @@ Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 - `Fix missing host subtabs <https://github.com/OpenNebula/one/issues/6490>`__.
 - `Fix VM action buttons respond to state updates <https://github.com/OpenNebula/one/issues/6384>`__.
 - `Fix table selection issue <https://github.com/OpenNebula/one/issues/6507>`__.
+- `Fix global API timeout configurability <https://github.com/OpenNebula/one/issues/6537>`__.
