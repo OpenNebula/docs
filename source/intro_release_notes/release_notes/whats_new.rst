@@ -29,6 +29,7 @@ FireEdge Sunstone
 - Implemented Cluster tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
 - Implemented OneFlow tabs in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
 - Implemented Marketplace tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
+- Implemented Virtual Router tabs in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
 
 API and CLI
 ================================================================================
