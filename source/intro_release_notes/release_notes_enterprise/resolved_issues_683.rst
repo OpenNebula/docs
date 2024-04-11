@@ -32,6 +32,7 @@ The following issues have been solved in 6.8.3:
 - `Fix backup Scheduled Action blocks other Scheduled Actions execution <https://github.com/OpenNebula/one/issues/6550>`__.
 - `Fix VM monitoring when managing multiple vCenter <https://github.com/OpenNebula/one/issues/6550>`__.
 - `Fix backup PARALLEL execution mode <https://github.com/OpenNebula/one/issues/6464>`__.
+- `Fix error message handling for oneflow <https://github.com/OpenNebula/one/issues/6529>`__.
 
 Also, the following issues have been backported in the FireEdge Sunstone Web UI:
 
