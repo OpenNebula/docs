@@ -50,7 +50,7 @@ The login screen will not display the username and password fields anymore, as a
 
 |fireedge_remote_login|
 
-Note that OpenNebula will not verify that the user holds a valid certificate at the time of login: this is expected to be done by the external container of the FireEdge server (normally Apache), whose job is to tell the user's browser that the site requires a user certificate and to check that the certificate is consistently signed by the chosen Certificate Authority (CA).
+Note that OpenNebula will not verify that the user holds a valid certificate at the time of login: this is expected to be done by the external container of the FireEdge server (normally Apache), whose job is to tell the user's browser that the site requires a user certificate and to check that the certificate is consistently signed by the chosen Certificate Authority (CA). The setup with Apache/SAML is the more common and tested. However, it can rely on Apache/Nginx for OIDC.
 
 .. warning:: The FireEdge authentication only handles the authentication of the user at the time of login. Authentication of the user certificate is a complementary setup, which can rely on Apache.
 
