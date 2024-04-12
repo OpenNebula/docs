@@ -24,6 +24,10 @@ In the basic mode, username and password are matched to those in OpenNebula's da
 Remote Auth
 ===========
 
+The Sunstone/FireEdge remote authentication method only handles the authentication of the user at the time of login. Authentication of the remote ticket is a complementary setup, which can rely on Apache/Nginx for OIDC, following the same procedure that if we're using SAML.
+
+Following the de-authentication issue after logout() and cookie destruction/reset or session expiration, we're considering to implement a Sunstone/FireEdge Initiated Logout ASAP. For this case, we will consider that FireEdge will be responsible for initiation of internal security context (security session) destruction (i.e., logout the user). After this, we will redirect the user agent to the IdP logout endpoint URL defined in the current OIDC Session Management Spec fixing and closing the process.
+
 This method performs OpenNebula login based on user extraction and compares it with the password value in the user database.
 
 To update existing users to use remote authentication, change the controller to public and update the password as follows:
