@@ -34,6 +34,7 @@ The following issues have been solved in 6.8.3:
 - `Fix backup PARALLEL execution mode <https://github.com/OpenNebula/one/issues/6464>`__.
 - `Fix error message handling for oneflow <https://github.com/OpenNebula/one/issues/6529>`__.
 - `Fix MYSQL_OPT_RECONNECT deprecated warning, improve reconnection procedure <https://github.com/OpenNebula/one/issues/6543>`__.
+- `Fix error handling in OneFlow scaling operations <https://github.com/OpenNebula/one/issues/6545>`__.
 
 Also, the following issues have been backported in the FireEdge Sunstone Web UI:
 
