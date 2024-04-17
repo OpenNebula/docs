@@ -156,7 +156,7 @@ Also, there are a set of common attributes that can be used in any Datastore to 
 | ``DATASTORE_CAPACITY_CHECK`` | If ``yes``, the available capacity of the Datastore is checked before creating a new image                                       |
 +------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
 | ``LIMIT_MB``                 | The maximum capacity allowed for the Datastore in ``MB``. Works both ways, to reserve some Datastore capacity to be unused       |
-|                              | when ``LIMIT_MB`` < ``TOTAL_MB`` or allows Datastore overcommitment when ``LIMIT_MB`` > ``TOTAL_MB``.                            |
+|                              | when ``LIMIT_MB`` < ``TOTAL_MB`` or allows Datastore overcommitment when ``LIMIT_MB`` > ``TOTAL_MB``.
 +------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
 | ``BRIDGE_LIST``              | Space separated list of hosts that have access to the storage to add new images to the datastore.                                |
 +------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
