@@ -9,6 +9,7 @@ A complete list of solved issues for 6.8.3 can be found in the `project developm
 The following new features have been backported to 6.8.3:
 
 - Option to restore individual disk from backup Image see :ref:`Restoring Backups <vm_backups_restore>`.
+- Allow use of ``LIMIT_MB`` attribute for Datastore overcommitment, see :ref:`Datastore attributes <datastore_common>`.
 
 .. note::
    In order to use the new functionality introduced in Fireedge sunstone, please refer to the following :ref:`guide <fireedge_files_note>`.
