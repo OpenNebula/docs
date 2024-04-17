@@ -535,24 +535,25 @@ Some of the VM configuration attributes defined in the VM Template can be update
 |  Attribute        |                              Sub-attributes                             |
 +===================+=========================================================================+
 | ``OS``            | ``ARCH``, ``MACHINE``, ``KERNEL``, ``INITRD``, ``BOOTLOADER``, ``BOOT``,|
-|                   | ``SD_DISK_BUS``, ``UUID``                                               |
+|                   | ``KERNEL_CMD``, ``ROOT``, ``SD_DISK_BUS``, ``UUID``, ``FIRMWARE``       |
 +-------------------+-------------------------------------------------------------------------+
 | ``FEATURES``      | ``ACPI``, ``PAE``, ``APIC``, ``LOCALTIME``, ``HYPERV``, ``GUEST_AGENT``,|
-|                   | ``IOTHREADS``                                                           |
+|                   | ``VIRTIO_SCSI_QUEUES``, ``VIRTIO_BLK_QUEUES``, ``IOTHREADS``            |
 +-------------------+-------------------------------------------------------------------------+
 | ``INPUT``         | ``TYPE``, ``BUS``                                                       |
 +-------------------+-------------------------------------------------------------------------+
-| ``GRAPHICS``      | ``TYPE``, ``LISTEN``, ``PASSWD``, ``KEYMAP``                            |
+| ``GRAPHICS``      | ``TYPE``, ``LISTEN``, ``PASSWD``, ``KEYMAP``, ``COMMAND``               |
 +-------------------+-------------------------------------------------------------------------+
 | ``VIDEO``         | ``TYPE``, ``IOMMU``, ``ATS``, ``VRAM``, ``RESOLUTION``                  |
 +-------------------+-------------------------------------------------------------------------+
-| ``RAW``           | ``DATA``, ``DATA_VMX``, ``TYPE``                                        |
+| ``RAW``           | ``DATA``, ``DATA_VMX``, ``TYPE``, ``VALIDATE``                          |
 +-------------------+-------------------------------------------------------------------------+
 | ``CPU_MODEL``     | ``MODEL``                                                               |
 +-------------------+-------------------------------------------------------------------------+
-| ``BACKUP_CONFIG`` | ``FS_FREEZE``, ``KEEP_LAST``, ``BACKUP_VOLATILE``, ``MODE``             |
+| ``BACKUP_CONFIG`` | ``FS_FREEZE``, ``KEEP_LAST``, ``BACKUP_VOLATILE``, ``MODE``,            |
+|                   | ``INCREMENT_MODE``                                                      |
 +-------------------+-------------------------------------------------------------------------+
-| ``CONTEXT``       | Any value. **Variable substitution will be made**                       |
+| ``CONTEXT``       | Any value, except ``ETH*``. **Variable substitution will be made**      |
 +-------------------+-------------------------------------------------------------------------+
 
 Visit the :ref:`Virtual Machine Template reference <template>` for a complete description of each attribute.
