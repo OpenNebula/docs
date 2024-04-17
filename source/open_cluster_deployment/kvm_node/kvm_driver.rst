@@ -20,17 +20,17 @@ When **updating the VM configuration live** using ``one.vm.updateconf`` although
 
 The full list of configuration attributes are:
 
-.. code-block::
+.. code-block:: text
 
-    OS        = ["ARCH", "MACHINE", "KERNEL", "INITRD", "BOOTLOADER", "BOOT", "UUID"]
+    OS        = ["ARCH", "MACHINE", "KERNEL", "INITRD", "BOOTLOADER", "BOOT", "KERNEL_CMD", "ROOT", "SD_DISK_BUS", "UUID", "FIRMWARE"]
     FEATURES  = ["ACPI", "PAE", "APIC", "LOCALTIME", "HYPERV", "GUEST_AGENT", "VIRTIO_SCSI_QUEUES", "VIRTIO_BLK_QUEUES", "IOTHREADS"]
     INPUT     = ["TYPE", "BUS"]
-    GRAPHICS  = ["TYPE", "LISTEN", "PASSWD", "KEYMAP" ]
+    GRAPHICS  = ["TYPE", "LISTEN", "PASSWD", "KEYMAP", "COMMAND" ]
     VIDEO     = ["TYPE", "IOMMU", "ATS", "VRAM", "RESOLUTION"]
     RAW       = ["DATA", "DATA_VMX", "TYPE", "VALIDATE"]
     CPU_MODEL = ["MODEL"]
     BACKUP_CONFIG = ["FS_FREEZE", "KEEP_LAST", "BACKUP_VOLATILE", "MODE", "INCREMENT_MODE"]
-    CONTEXT (any value, **variable substitution will be made**)
+    CONTEXT (any value, except ETH*, **variable substitution will be made**)
 
 Configuration
 ================================================================================
