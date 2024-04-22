@@ -78,7 +78,7 @@ To ensure a seamless experience for our users, we've introduced `a migrator in t
 OneGate Proxy
 ================================================================================
 
-We are actively developing an enhanced version of the OneGate Proxy implementation that comes with reduced requirements. Starting from release 6.8.3, we strongly recommend disabling this component and following the recommened network configuration outlined in :ref:`the OneGate Configuration guide <onegate_conf>`.
+We are actively developing an enhanced version of the OneGate Proxy implementation that comes with reduced requirements. Starting from release 6.8.4, we strongly recommend disabling this component and following the recommened network configuration outlined in :ref:`the OneGate Configuration guide <onegate_conf>`.
 
 Check Datastore Capacity During Image Create
 ================================================================================

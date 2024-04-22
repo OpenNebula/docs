@@ -11,3 +11,4 @@ Release Notes |version| Enterprise Edition
    Resolved Issues 6.8.1 <resolved_issues_681>
    Resolved Issues 6.8.2 <resolved_issues_682>
    Resolved Issues 6.8.3 <resolved_issues_683>
+   Resolved Issues 6.8.4 <resolved_issues_684>
