@@ -23,7 +23,7 @@ Front-End Components
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 | Ubuntu Server            | 20.04 (LTS), 22.04 (LTS)                               | :ref:`Front-End Installation <frontend_installation>` |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-| Debian                   | 10, 11                                                 | :ref:`Front-End Installation <frontend_installation>`.|
+| Debian                   | 11, 12                                                 | :ref:`Front-End Installation <frontend_installation>`.|
 |                          |                                                        | Not certified to manage VMware infrastructures        |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 | MariaDB or MySQL         | Version included in the Linux distribution             | :ref:`MySQL Setup <mysql>`                            |
@@ -320,4 +320,3 @@ Debian 10 and Ubuntu 18 Upgrade
 --------------------------------------------------------------------------------
 
 When upgrading your nodes from Debian 10 or Ubuntu 18 you may need to update the opennebula sudoers file because of the */usr merge* feature implemented for Debian11/Ubuntu20. You can `find more information and a recommended work around in this issue  <https://github.com/OpenNebula/one/issues/6090>`__.
-

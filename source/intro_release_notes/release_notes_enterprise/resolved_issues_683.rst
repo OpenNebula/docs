@@ -5,6 +5,7 @@ Resolved Issues in 6.8.3
 
 A complete list of solved issues for 6.8.3 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/75?closed=1>`__.
 
+OpenNebula 6.8.3 introduces support for Debian 12 and removes support for Debian 10.
 
 The following new features have been backported to 6.8.3:
 
