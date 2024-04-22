@@ -95,6 +95,8 @@ Backups
 
 - OpenNebula stores the whole VM Template in a backup. When restoring it some attributes are wiped out as they are dynamic or they need to be re-generated (e.g. IP). However some attributes (e.g. DEV_PREFIX) would be better to keep them. It is recommended to review and adjust the resulting template for any missing (and required) attribute. The :ref:`list of attributes removed can be checked here <vm_backups_restore>`.
 
+- Incremental snapshot backups on Debian12 doesn't work due to `issue with AppArmor <https://github.com/OpenNebula/one/issues/6565>`_.
+
 Market proxy settings
 ================================================================================
 

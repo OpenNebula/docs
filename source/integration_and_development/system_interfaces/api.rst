@@ -2095,22 +2095,22 @@ The supported attributes are:
 |  Attribute         |                              Sub-attributes                                    |
 +====================+================================================================================+
 | ``OS``             | ``ARCH``, ``MACHINE``, ``KERNEL``, ``INITRD``, ``BOOTLOADER``, ``BOOT``,       |
-|                    | ``SD_DISK_BUS``, ``UUID``                                                      |
+|                    | ``KERNEL_CMD``, ``ROOT``, ``SD_DISK_BUS``, ``UUID``, ``FIRMWARE``              |
 +--------------------+--------------------------------------------------------------------------------+
-|  ``CPU_MODEL``     | ``MODEL``, ``UUID``                                                            |
+|  ``CPU_MODEL``     | ``MODEL``                                                                      |
 +--------------------+--------------------------------------------------------------------------------+
 | ``FEATURES``       | ``ACPI``, ``PAE``, ``APIC``, ``LOCALTIME``, ``HYPERV``, ``GUEST_AGENT``,       |
 |                    | ``VIRTIO_SCSI_QUEUES``, ``VIRTIO_BLK_QUEUES``, ``IOTHREADS``                   |
 +--------------------+--------------------------------------------------------------------------------+
 | ``INPUT``          | ``TYPE``, ``BUS``                                                              |
 +--------------------+--------------------------------------------------------------------------------+
-| ``GRAPHICS``       | ``TYPE``, ``LISTEN``, ``PASSWD``, ``KEYMAP``                                   |
+| ``GRAPHICS``       | ``TYPE``, ``LISTEN``, ``PASSWD``, ``KEYMAP``, ``COMMAND``                      |
 +--------------------+--------------------------------------------------------------------------------+
 | ``VIDEO``          | ``TYPE``, ``IOMMU``, ``ATS``, ``VRAM``, ``RESOLUTION``                         |
 +--------------------+--------------------------------------------------------------------------------+
-| ``RAW``            | ``DATA``, ``DATA_VMX``, ``TYPE``                                               |
+| ``RAW``            | ``DATA``, ``DATA_VMX``, ``TYPE``, ``VALIDATE``                                 |
 +--------------------+--------------------------------------------------------------------------------+
-| ``CONTEXT``        | Any value. **Variable substitution will be made**                              |
+| ``CONTEXT``        | Any value, except ``ETH*``. **Variable substitution will be made**             |
 +--------------------+--------------------------------------------------------------------------------+
 | ``BACKUP_CONFIG``  | ``FS_FREEZE``, ``KEEP_LAST``, ``BACKUP_VOLATILE``, ``MODE``, ``INCREMENT_MODE``|
 +--------------------+--------------------------------------------------------------------------------+
@@ -5154,6 +5154,9 @@ one.image.restore
 | IN   | String    | Template (KEY=VALUE) with restore options:                                                             |
 |      |           |   - NO_IP (YES/NO) to restore IP and MAC addresses                                                     |
 |      |           |   - NO_NIC (YES/NO) to restore NIC attributes                                                          |
+|      |           |   - NAME (string) name of the restored template and image                                              |
+|      |           |   - INCREMENT_ID (int) id of the incremental backup                                                    |
+|      |           |   - DISK_ID (int) ID of the disk to restore, do not restore the template                               |
 +------+-----------+--------------------------------------------------------------------------------------------------------+
 | OUT  | Boolean   | true or false whenever is successful or not                                                            |
 +------+-----------+--------------------------------------------------------------------------------------------------------+
