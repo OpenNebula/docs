@@ -53,7 +53,7 @@ To start your first Docker host you just need to use the ``docker-machine create
 
 .. prompt:: bash # auto
 
-    #docker-machine create --driver opennebula --opennebula-template-id $TEMPLATE_ID $VM_NAME
+    # docker-machine create --driver opennebula --opennebula-template-id $TEMPLATE_ID $VM_NAME
 
 This command creates a VM in OpenNebula using $TEMPLATE_ID as the template and $VM_NAME as the VM name.
 
