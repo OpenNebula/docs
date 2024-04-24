@@ -11,3 +11,6 @@ The following new features have been backported to 6.8.4:
 
 
 The following issues have been solved in 6.8.4:
+
+- `Fix issue with READY=YES flag persisting after VM POWEROFF <https://github.com/OpenNebula/one/issues/6476>`__.
+
