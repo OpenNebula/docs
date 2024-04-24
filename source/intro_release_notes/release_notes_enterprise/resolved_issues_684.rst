@@ -11,4 +11,5 @@ The following new features have been backported to 6.8.4:
 
 
 The following issues have been solved in 6.8.4:
-- `Fix READY attribute wasn't remove terminated VMs <https://github.com/OpenNebula/one/issues/6476>`__.
+
+- `Fix READY attribute wasn't removed for terminated VMs <https://github.com/OpenNebula/one/issues/6476>`__.
