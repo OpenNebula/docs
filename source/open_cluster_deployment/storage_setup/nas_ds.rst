@@ -108,7 +108,18 @@ Also note that there are additional attributes that can be set. Check the :ref:`
 
 .. warning:: Be sure to use the same ``TM_MAD`` for both the System and Image datastore. When combining different transfer modes, check the section below.
 
-.. include:: qcow2_options.txt
+Additional Configuration
+--------------------------------------------------------------------------------
+
+* ``QCOW2_OPTIONS``: Custom options for the ``qemu-img`` clone action. Images are created through the ``qemu-img`` command using the original image as a backing file. Custom options can be sent to ``qemu-img`` clone action through the variable ``QCOW2_OPTIONS`` in ``/etc/one/tmrc``.
+* ``DD_BLOCK_SIZE``: Block size for `dd` operations (default: 64kB) could be set in ``/var/lib/one/remotes/etc/datastore/fs/fs.conf``.
+* ``SUPPORTED_FS``: Comma-separated list with every filesystem supported for creating formatted datablocks. Can be set in ``/var/lib/one/remotes/etc/datastore/datastore.conf``.
+* ``FS_OPTS_<FS>``: Options for creating the filesystem for formatted datablocks. Can be set in ``/var/lib/one/remotes/etc/datastore/datastore.conf`` for each filesystem type.
+* ``SPARSE``: If set to ``NO`` the images and disks in the image and system Datastore, respectively, wont be sparsed (i.e. the files will use all assigned space on the Datastore filesystem).
+* ``QCOW2_STANDALONE``: If set to ``YES`` the standalone qcow2 disk is created during :ref:`CLONE <clone>` operation (default: QCOW2_STANDALONE="NO"). Unlike previous options, this one is defined in image datastore template and inherited by the disks.
+
+.. warning:: Before adding a new filesystem to the ``SUPPORTED_FS`` list make sure that the corresponding ``mkfs.<fs_name>`` command is available in the Front-end and hypervisor Hosts. If an unsupported FS is used by the user the default one will be used.
+
 
 .. _shared-ssh-mode:
 
