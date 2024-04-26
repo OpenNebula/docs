@@ -99,6 +99,8 @@ Additional Configuration
 
 .. warning:: Before adding a new filesystem to the ``SUPPORTED_FS`` list make sure that the corresponding ``mkfs.<fs_name>`` command is available in the Front-end and hypervisor Hosts. If an unsupported FS is used by the user the default one will be used.
 
+.. note:: When using a Local Storage Datastore the ``QCOW2_OPTIONS`` attribute is ignored since the cloning script uses the ``tar`` command instead of ``qemu-img``.
+
 Datastore Internals
 ================================================================================
 
