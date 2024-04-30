@@ -11,3 +11,5 @@ The following new features have been backported to 6.8.4:
 
 
 The following issues have been solved in 6.8.4:
+
+- `Fix monitoring of Ceph SYSTEM datastores when using quotas <https://github.com/OpenNebula/one/issues/6564>`__.
