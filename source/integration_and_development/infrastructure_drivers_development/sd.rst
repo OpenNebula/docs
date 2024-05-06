@@ -127,6 +127,27 @@ The backup datastore drivers are responsible to store the generate ``backup`` fo
    -  **ARGUMENTS**: ``datastore_action_dump image_id``
    -  **RETURNS**: ``Template_ID Image_ID1 Image_ID2 ...``
 
+- **ls**: Lists the disk backups included in a given backup together with a downloader URL. The action receives the increment ID as a parameter and the information of the backup image, datastore and VM as XML through standard input.
+
+  - **ARGUMENTS**: ``-i <increment_id>`` to select a specific increment to restore use -1 for last increment or full backups.
+  - **STDIN**: An XML document with the VM, backup Image and Datastore object information, in the form:
+
+.. code::
+
+        <DS_DRIVER_ACTION_DATA>
+          <VM>...</VM>
+          <DATASTORE>...</DATASTORE>
+          <IMAGE>...</IMAGE>
+        </DS_DRIVER_ACTION_DATA>
+
+- **RETURNS**: A JSON document that includes for each disk a downloader URL. This URL is then used by the restore scripts to get the VM disk backups:
+
+.. code::
+
+    {
+      "0": "rsync://102//0:0e6658/var/lib/one/datastores/102/21/0e6658/disk.0.0"
+    }
+
 The following actions needs also to be implemented (see above):
 
 - **monitor**: Returns the storage space of the backup system.
@@ -327,6 +348,16 @@ Action scripts needed when the TM is used for the system datastore:
    -  ``backupjob_id`` is the id of the Backup job ('-' if undefined)
    -  ``vm_id`` is the id of the VM
    -  ``ds_id`` is the target datastore (the system datastore)
+
+- **restore**: Restores VM disks from a backup. This script will access the ``ls`` operation of the associated datastore to get a list of VM disks and their downloader pseudo-URLs. The downloader script is then used to get the disk images from the backup and replace the VM disks. The VM is in poweroff state.
+
+   -  **ARGUMENTS**: ``host:remote_system_ds vm_id img_id inc_id disk_id``
+   -  ``remote_system_ds_dir`` is the path for the VM directory in the system datastore in the host
+   -  ``host`` is the target host where the VM is running
+   -  ``vm_id`` is the id of the VM
+   -  ``img_id`` is the id of the image backup to restore
+   -  ``inc_id`` ID of the increment to use, -1 will select the last increment or for full backups
+   -  ``disk_id`` is the id of the disk to restore, -1 will restore all available disks
 
 .. note:: If the TM is only for regular images you only need to implement the first group.
 

@@ -276,10 +276,86 @@ If the backup operation is not running, but the VM stays in the backup state, us
 Restoring Backups
 ================================================================================
 
-When you restore a VM backup OpenNebula will create:
+There are two main methods for restoring VM backups:
+
+- In-place restore: This involves replacing the disks of the VM with a backup copy.
+- Full restore: This process creates new disk images and templates. Unlike in-place restore, this operation doesn't require the VM to exist beforehand.
+
+In-place Restore
+--------------------------------------------------------------------------------
+
+In this mode, the disks of an existing VM are replaced with a copy from a backup. This operation requires that the VM is in a powered-off state. During the restoration process, you have the option to restore all disks or only the selected one.
+
+For example, let's consider a scenario with VM 83 in a powered-off state and an image backup (176) of this VM with three increments. It's important to note that the VM remains powered off during this process.
+
+.. prompt:: bash $ auto
+
+    $ oneimage show 176
+    IMAGE 176 INFORMATION
+    ID             : 176
+
+    ...
+
+    BACKUP INFORMATION
+    VM             : 83
+    TYPE           : INCREMENTAL
+
+    BACKUP INCREMENTS
+     ID PID T SIZE                DATE SOURCE
+      0  -1 F 173M      05/06 08:46:08 5f33de
+      1   0 I 1M        05/06 08:52:05 a0c4eb
+      2   1 I 1M        05/06 08:52:46 046843
+
+and the corresponding VM.
+
+.. prompt:: bash $ auto
+
+    $ onevm show 83
+    VIRTUAL MACHINE 83 INFORMATION
+    ID                  : 83
+    NAME                : alpine-83
+
+    ...
+
+    VM DISKS
+     ID DATASTORE  TARGET IMAGE                               SIZE      TYPE SAVE
+      0 default    vda    alpine                              173M/256M file   NO
+      1 -          hda    CONTEXT                             1M/-      -       -
+
+    ...
+
+    BACKUP CONFIGURATION
+    BACKUP_VOLATILE="NO"
+    FS_FREEZE="NONE"
+    INCREMENTAL_BACKUP_ID="176"
+    INCREMENT_MODE="CBT"
+    KEEP_LAST="4"
+    LAST_INCREMENT_ID="2"
+    MODE="INCREMENT"
+
+    VM BACKUPS
+    IMAGE IDS: 176
+
+    ...
+
+To restore all disks of the VM from the second increment (ID 1), simply execute:
+
+.. prompt:: bash $ auto
+
+    $ onevm restore --increment 1 83 176
+
+Note that all snapshots of the VM will be deleted upon restoring the backup.
+
+
+Full Restore
+--------------------------------------------------------------------------------
+
+When you perform a full restore a VM backup OpenNebula will create:
 
 - A Virtual Machine Template, with an equivalent definition to that of the VM when the backup was taken (i.e. NICs, capacity...)
 - A disk image for each of the disks stored in the backup.
+
+Note that in this case the VM does not have to exists. This operation is not tied to the original VM where the backup was made.
 
 When you restore the backup you may choose to:
 

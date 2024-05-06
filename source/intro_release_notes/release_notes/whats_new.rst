@@ -17,6 +17,7 @@ OpenNebula Core
 
 Storage & Backups
 ================================================================================
+- **In-place restore**: Users now have access to a streamlined operation for restoring VM disk backups directly onto existing VMs, eliminating the need of generating new images and VM templates. For further information, please refer to the :ref:`backup documentation <vm_backups_restore>`.
 
 FireEdge Sunstone
 ================================================================================
