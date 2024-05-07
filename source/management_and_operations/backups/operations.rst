@@ -243,7 +243,7 @@ The ``SOURCE`` attribute in the backup images (and increments) is an opaque refe
 Scheduling Backups
 --------------------------------------------------------------------------------
 
-You can program periodic backups :ref:`through the schedule actions interface <schedule_actions>`. Note that in this case, you have to pass the target datastore ID as argument of the action. You can create a periodic backup with the ``--schedule`` option in the CLI, or through Sunstone in the Schedule Action tab:
+You can program periodic backups :ref:`through the schedule actions interface <schedule_actions>`. Note that in this case, you have to pass the target datastore ID as argument of the action. You can create a periodic backup with the ``--schedule`` option in the CLI, or through FireEdge Sunstone in the Schedule Action dialog (to open the dialog, click the Sched Actions tab, then click Add action).
 
 |vm_schedule|
 
