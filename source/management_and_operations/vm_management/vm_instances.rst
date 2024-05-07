@@ -1218,6 +1218,8 @@ After that you can access the VM and configure the SSH service:
     # Add user: username/password
     root@<guest-VM>:~$ adduser <username>
 
+.. note:: Guacamole SSH uses RSA encryption. Make sure the VM SSH accepts RSA, otherwise you need to explicitly enable it in the VM SSH configuration (HostkeyAlgorithms and PubkeyAcceptedAlgorithms set as '+ssha-rsa)
+
 .. _spice_sunstone:
 
 Configure VM for SPICE
