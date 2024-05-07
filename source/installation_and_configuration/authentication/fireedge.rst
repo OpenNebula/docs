@@ -54,6 +54,15 @@ Note that OpenNebula will not verify that the user holds a valid certificate at 
 
 .. warning:: The FireEdge authentication only handles the authentication of the user at the time of login. Authentication of the user certificate is a complementary setup, which can rely on Apache.
 
+.. _ldap_auth_fireedge:
+
+LDAP Auth
+=========
+
+This method performs the Opennebula login based on the LDAP user.
+
+To enable this login method, set up the ldap configuration. you can follow this :ref:`guide <ldap>`  
+
 .. _2f_auth_fireedge:
 
 Two Factor Authentication
