@@ -10,6 +10,8 @@ By default, FireEdge works with the default ``core`` authentication method (user
 
 The following sections explain the client-to-FireEdge server authentication methods.
 
+.. _basic_auth_fireedge:
+
 Basic Auth
 ===========
 
@@ -56,12 +58,12 @@ Note that OpenNebula will not verify that the user holds a valid certificate at 
 
 .. _ldap_auth_fireedge:
 
-LDAP Auth
-=========
+LDAP/AD Auth
+============
 
-This method performs the Opennebula login based on the LDAP user.
+This method performs the OpenNebula login by delegating the authentication on a specific LDAP/AD server or several servers. 
 
-To enable this login method, set up the ldap configuration. you can follow this :ref:`guide <ldap>`  
+No special configuratoin is needed in FireEdge, the authenticatoin method should be kept as 'opennebula' like in the :ref:`Basic Auth case<remote_auth_fireedge>`. However, this needs to be set up in the OpenNebula core side, to set up the ldap configuration this :ref:`guide <ldap>` needs to be followed.
 
 .. _2f_auth_fireedge:
 
