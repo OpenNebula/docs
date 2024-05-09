@@ -91,14 +91,12 @@ Also note that there are additional attributes that can be set. Check the :ref:`
 
 .. include:: qcow2_options.txt
 
-.. note:: When using a Local Storage Datastore the ``QCOW2_OPTIONS`` attribute is ignored since the cloning script uses the ``tar`` command instead of ``qemu-img``.
-
 Datastore Internals
 ================================================================================
 
 .. include:: internals_fs_common.txt
 
-In this case, the System Datastore is distributed among the Hosts. The **ssh** transfer driver uses the Hosts' local storage to place the images of running Virtual Machines. All the operations are then performed locally but images have to always be copied to the Hosts, which in turn can be a very resource-demanding operation.
+In the this case, the System Datastore is distributed among the Hosts. The **ssh** transfer driver uses the Hosts' local storage to place the images of running Virtual Machines. All the operations are then performed locally but images have to always be copied to the Hosts, which in turn can be a very resource-demanding operation.
 
 |image2|
 
