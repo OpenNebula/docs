@@ -239,6 +239,8 @@ Contextualization Attributes
 | ``SEARCH_DOMAIN``        | Default search domains for DNS resolution.            |
 +--------------------------+-------------------------------------------------------+
 
+These attributes can be established in the Virtual Network Template and also in the VM Template NIC section.
+
 .. _vnet_template_interface_creation:
 
 Interface Creation Options
