@@ -290,13 +290,13 @@ In some scenarios it maybe useful to select and specific device, in this case si
 Sunstone
 ~~~~~~~~
 
-In Sunstone the information is displayed in the **PCI** tab:
+In Sunstone the information is displayed in the **PCI** tab of a host:
 
-|image1|
+|pciHostTab|
 
-To add a PCI device to a template, select the **Input/Output** tab:
+To add a PCI device to a template, select the **PCI Devices** tab when you are creating a virtual machine template:
 
-|image2|
+|pciTemplateTab|
 
 Usage as Network Interfaces
 ---------------------------
@@ -350,8 +350,8 @@ In the Network tab, under advanced options the hardware profile of the interface
 
 Use the rest of the dialog as usual by selecting a network from the table.
 
-|image3|
+|pciNic|
 
-.. |image1| image:: /images/sunstone_host_pci.png
-.. |image2| image:: /images/sunstone_template_pci.png
-.. |image3| image:: /images/sunstone_nic_passthrough.png
+.. |pciHostTab| image:: /images/sunstone_host_pci.png
+.. |pciTemplateTab| image:: /images/sunstone_template_pci.png
+.. |pciNic| image:: /images/sunstone_nic_passthrough.png
