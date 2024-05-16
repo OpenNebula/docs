@@ -94,7 +94,7 @@ Internally Sunstone adds the field ``TWO_FACTOR_AUTH_SECRET``.
 
 |fireedge_template_user_auth|
 
--  To disable 2FA, go to the **Settings**, fins the section **Two Factor Authentication** tab and click remove button.
+-  To disable 2FA, go to the **Settings**, find the section **Two Factor Authentication** tab and click remove button.
 
 |fireedge_settings_2fa_dissable|
 
