@@ -17,3 +17,4 @@ The following issues have been solved in 6.8.4:
 - `Fix and issue in OneFlow that prevented the creation/reservation of Virtual Networks <https://github.com/OpenNebula/terraform-provider-opennebula/issues/527>`__.
 - `Fix crash in 'onetemplate instantiate' overriding SCHED_ACTION with empty value <https://github.com/OpenNebula/one/issues/6580>`__.
 - `Fix attach NIC action to use DEFAULT_ATTACH_NIC_MODEL defined in kvmrc <https://github.com/OpenNebula/one/issues/6575>`__.
+- `Fix limitations on number and naming of virtual disks <https://github.com/OpenNebula/one/issues/6291>`__.
