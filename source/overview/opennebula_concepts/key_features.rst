@@ -38,7 +38,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 * Dynamic creation of clusters as pools of Hosts
 * Dynamic creation of Virtual Data Centers as fully-isolated virtual environments
 * Federation of multiple Zones for scalability, isolation or multiple-site support
-* Powerful and flexible Scheduler - deploy your workload in different locations 
+* Powerful and flexible Scheduler - deploy your workload in different locations
 
 **HIGH AVAILABILITY AND BUSINESS CONTINUITY**
 

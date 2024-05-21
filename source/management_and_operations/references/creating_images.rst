@@ -36,7 +36,6 @@ Using the CLI, you can list an import images using these commands:
 	$ onemarketapp list
 	  ID NAME                         VERSION  SIZE STAT TYPE  REGTIME MARKET               ZONE
 	[...]
-	  41 boot2docker                   1.10.2   32M  rdy  img 02/26/16 OpenNebula Public       0
 	  42 alpine-vrouter (KVM)           1.0.3  256M  rdy  img 03/10/16 OpenNebula Public       0
 	  43 alpine-vrouter (vcenter)         1.0  256M  rdy  img 03/10/16 OpenNebula Public       0
 	  44 CoreOS alpha                1000.0.0  245M  rdy  img 04/03/16 OpenNebula Public       0

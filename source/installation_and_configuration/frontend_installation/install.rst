@@ -112,8 +112,6 @@ Available packages for OpenNebula clients, the Front-end and hypervisor Nodes:
 +------------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **python3-pyone**                        | :ref:`Python 3 OCA <python>` Bindings                                                                         |
 +------------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **docker-machine-opennebula**            | OpenNebula driver for Docker Machine                                                                          |
-+------------------------------------------+---------------------------------------------------------------------------------------------------------------+
 
 There are also packages with debugging symbols for some platforms, e.g. ``openenbula-debuginfo`` on AlmaLinux/RHEL and ``opennebula-dbgsym`` on Debian/Ubuntu. Other architecture-specific components might come with similarly named packages, please query your packaging database if necessary.
 

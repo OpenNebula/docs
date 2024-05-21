@@ -56,8 +56,6 @@ The argument expression [OPTION=VALUE] is used to set non-default values for :
 +----------------+--------------------------------------------------------+
 | systemd        | **yes** if you want to build systemd support           |
 +----------------+--------------------------------------------------------+
-| docker_machine | **yes** if you want to build the docker-machine driver |
-+----------------+--------------------------------------------------------+
 | rubygems       | **yes** if you want to generate ruby gems              |
 +----------------+--------------------------------------------------------+
 | svncterm       | **no** to skip building vnc support for LXD drivers    |
@@ -119,8 +117,6 @@ where *<install\_options>* can be one or more of:
 | **-l** | creates symlinks instead of copying files, useful for development                                                                                                            |
 +--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **-h** | prints installer help                                                                                                                                                        |
-+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **-e** | install Docker Machine plugin                                                                                                                                                |
 +--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. note::
@@ -223,23 +219,3 @@ Building FireEdge from Source
     root@frontend:~/ $> cd ~/one
     root@frontend:~/ $> scons fireedge=yes
     root@frontend:~/ $> ./install.sh -F -u oneadmin -g oneadmin
-
-
-
-Building Docker Machine Plugin from Source
-================================================================================
-
-Requirements
---------------------------------------------------------------------------------
-
-* **Go >= 1.9**
-* **dep** (https://github.com/golang/dep)
-
-Scons includes an option to build the Docker Machine Plugin using the `docker_machine` option:
-
-.. prompt:: text $ auto
-
-    scons docker_machine=yes
-
-Once you have built you can install it running the install.sh with the `-e` option.
-
