@@ -8,6 +8,8 @@ A complete list of solved issues for 6.8.4 can be found in the `project developm
 
 The following new features have been backported to 6.8.4:
 
+- Allow VM recover recreate in poweroff and suspended state, see :ref:`Recover from VM Failures <ftguide_virtual_machine_failures>`.
+
 
 
 The following issues have been solved in 6.8.4:
