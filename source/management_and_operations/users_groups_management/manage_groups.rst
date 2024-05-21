@@ -142,12 +142,14 @@ With the commands ``oneuser addgroup`` and ``delgroup`` the administrator can ad
 
 The group set with ``chgrp`` is the primary group, and resources (Images, VMs, etc) created by a user will belong to this primary group. Users can change their primary group to any of their secondary group without the intervention of an administrator, using ``chgrp`` again.
 
+.. _groupwise_configuration_attributes:
+
 Group-wise Configuration Attributes
 ================================================================================
 
 When a group is created you can define specific configuration aspects for the group users. These include:
 
-* Sunstone. Allow users and group admins to access specific views. The configuration attributes are stored in the group template in the ``SUNSTONE`` attribute:
+* Sunstone. Allow users and group admins to access specific views. The configuration attributes are stored in the group template in the ``FIREEDGE`` attribute:
 
 +-------------------------+---------------------------------------------------------------------------------+
 |         Attribute       |                                   Description                                   |
@@ -161,18 +163,19 @@ When a group is created you can define specific configuration aspects for the gr
 | GROUP_ADMIN_VIEWS       | List of available views for the group admins                                    |
 +-------------------------+---------------------------------------------------------------------------------+
 
-The views are defined by a comma separated list of group names. By default the following views are defined: ``groupadmin, cloud, admin, user, admin_vcenter, cloud_vcenter, groupadmin_vcenter``
+The views are defined by a comma separated list of group names. By default the following views are defined: ``groupadmin, cloud, admin, user``
 
 Example:
 
 .. code::
 
-    SUNSTONE = [
+    FIREEDGE=[
       DEFAULT_VIEW = "cloud",
-      VIEWS        = "cloud",
+      VIEWS        = "cloud"
       GROUP_ADMIN_DEFAULT_VIEW = "groupadmin",
-      GROUP_ADMIN_VIEWS        = "groupadmin,cloud"
+      GROUP_ADMIN_VIEWS = "groupadmin,cloud",
     ]
+
 
 * OpenNebula Core. Set specific attributes to control some operations. The configuration attributes are stored in the group template in the ``OPENNEBULA`` attribute:
 
