@@ -31,6 +31,7 @@ FireEdge Sunstone
 - Implemented OneFlow tabs in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
 - Implemented Marketplace tab in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
 - Implemented Virtual Router tabs in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
+- Improve management of virtual machine templates solving minor issues, simplifying the way to manage alias and adding a new PCI tab to easily manage PCI devices in :ref:`FireEdge Sunstone <fireedge_sunstone>`.
 
 API and CLI
 ================================================================================
