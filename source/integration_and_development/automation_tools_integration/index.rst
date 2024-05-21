@@ -8,4 +8,3 @@ Automation Tools Integration
    Overview <overview>
    Terraform <terraform>
    Ansible <ansible>
-   Rancher <rancher>
