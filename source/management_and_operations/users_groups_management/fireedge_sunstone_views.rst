@@ -76,6 +76,60 @@ These options are saved in the group template, as well as other hidden settings.
 
 .. _fireedge_sunstone_views_define_new:
 
+Views configuration on sunstone-views.yaml
+================================================================================
+
+The file sunstone-views.yaml configures:
+
+- Default views if a group does not have :ref:`Sunstone configuration attributes <groupwise_configuration_attributes>`:
+
+  .. code-block:: yaml
+
+    # This file describes which Sunstone views are available according to the
+    # primary group a user belongs to
+    groups:
+        oneadmin:
+            - admin
+            - user
+    default:
+        - user
+
+  Users that belong to oneadmin group will used admin and user views and all the users that does not belong to oneadmin group will used user view (that configuration only applies if the group that the user belongs :ref:`does not have the FIREEDGE attribute on his template <groupwise_configuration_attributes>`):
+
+- Name and description that will be showed on Sunstone:  
+
+  .. code-block:: yaml
+
+    # Name and description of each view.
+    #
+    # More views could be added creating a new object under views attribute.
+    # Example:
+    #   customview:
+    #     name: Name of the custom view
+    #     description: Description of the custom view
+
+    views:
+      admin:
+        name: groups.view.admin.name
+        description: groups.view.admin.description
+      cloud:
+        name: groups.view.cloud.name
+        description: groups.view.cloud.description
+      groupadmin:
+        name: groups.view.groupadmin.name
+        description: groups.view.groupadmin.description
+      user:
+        name: groups.view.user.name
+        description: groups.view.user.description
+      customview:
+        name: Custom view
+        description: Description for custom view 
+
+  The views attribute is used to add readable names and description to the views. If we used the previous configuration, the result on Sunstone will be:
+
+  |fireedge_sunstone_views|
+
+
 Defining a New OpenNebula Sunstone View or Customizing an Existing one
 ================================================================================
 
@@ -127,7 +181,7 @@ View definitions are placed in the ``/etc/one/fireedge/sunstone`` directory. Eac
     `-- sunstone-views.yaml
     ...
 
-.. note:: The easiest way to create a custom view is to copy the admin folder and modify or delete tab files as needed.
+.. note:: The easiest way to create a custom view is to copy the admin folder and modify or delete tab files as needed. Also, configure sunstone-views.yaml if it is needed.
 
 .. _fireedge_sunstone_views_custom:
 
@@ -269,11 +323,13 @@ To create a new view:
 
   1. Create a folder with the name of the view in ``/etc/one/fireedge/sunstone``.
   2. Add the yaml files for each tab that the view will show.
-  3. Update or create a group to use the new view.
+  3. Configure sunstone-views.yaml if it is needed.
+  4. Update or create a group to use the new view.
 
 .. |fireedge_sunstone_admin_dashboard| image:: /images/fireedge_sunstone_admin_view.png
 .. |fireedge_sunstone_view_dashboard| image:: /images/fireedge_sunstone_user_view.png
 .. |fireedge_sunstone_groupadmin_dashboard| image:: /images/fireedge_sunstone_groupadmin_view.png
 .. |fireedge_sunstone_cloud_dashboard| image:: /images/fireedge_sunstone_cloud_view.png
 .. |fireedge_sunstone_group_defview| image:: /images/fireedge_sunstone_group_defview.png  
-.. |fireedge_sunstone_views_change| image:: /images/fireedge_sunstone_views_change.png  
+.. |fireedge_sunstone_views_change| image:: /images/fireedge_sunstone_views_change.png
+.. |fireedge_sunstone_views| image:: /images/groups_views.png
