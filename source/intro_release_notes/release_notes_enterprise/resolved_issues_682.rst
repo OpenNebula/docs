@@ -1,12 +1,12 @@
 .. _resolved_issues_682:
 
-Resolved Issues in 6.8.4
+Resolved Issues in 6.8.2
 --------------------------------------------------------------------------------
 
-A complete list of solved issues for 6.8.4 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/73?closed=1>`__.
+A complete list of solved issues for 6.8.2 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/73?closed=1>`__.
 
 
-The following new features have been backported to 6.8.4:
+The following new features have been backported to 6.8.2:
 
 - Virtual Routers now support ``FLOATING_ONLY`` attributes for their network NICs. When this attribute is set to ``yes`` no additional IPs are allocated for the VMs of the VR, :ref:`see more information on the Virtual Router guide <vrouter>`.
 - For VMs with resched flag add ``HOST_ID`` to :ref:`External Scheduler API <external_scheduler>`.
@@ -19,7 +19,7 @@ The following new features have been backported to 6.8.4:
 .. note::
    In order to use the new functionality introduced in Fireedge sunstone, please refer to the following :ref:`guide <fireedge_files_note>`.
 
-The following issues have been solved in 6.8.4:
+The following issues have been solved in 6.8.2:
 
 - `Fix VM Migration Failure using two SYSTEM_DS on same host <https://github.com/OpenNebula/one/issues/6379>`__.
 - `Fix possible segfault in VM disk resize <https://github.com/OpenNebula/one/issues/6432>`__.
