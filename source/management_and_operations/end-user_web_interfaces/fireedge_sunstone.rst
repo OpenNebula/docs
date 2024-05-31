@@ -87,11 +87,17 @@ From this section, users can define multiple configuration options for themselve
 
 - **Schema (default = System)**: change the FireEdge Sunstone Theme to dark, light or matching with the system.
 - **Language (default = English US)**: select the language that they want to use for the UI.
+- **View**: allows to change the user view.
+- **Default endpoint**: allows to change the FireEdge Sunstone endpoint when using federation.
+- **SSH Public key**: allows the user to specify a public SSH key that they can use on the VMs.
 - Disable the dashboard animations. By default they are enabled.
+- **Change password**: allows to change the user's password.
 - **Labels**: allows the user to manage their labels.
 - **SSH Public key**: allows the user to specify a public SSH key that they can use on the VMs.
 - **SSH Private key**: allows the user to specify a private SSH key that they can use when establishing connections with their VMs.
 - **SSH Private key passphrase**: if the private SSH key is encrypted, the user must specify the password.
+- **Login token**: allows to create a new token for the user.
+- **Two Factor Authentication**: allows to register an app to perform :ref:`Two Factor Authentication <2f_auth_fireedge>`.
 
 .. note:: All the configurations set in this section will be in the user template.
 
