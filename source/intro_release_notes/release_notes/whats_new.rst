@@ -66,3 +66,4 @@ Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 - `Fix refresh table Host after create a new host <https://github.com/OpenNebula/one/issues/6451>`__.
 - `Fix enhance placement tab <https://github.com/OpenNebula/one/issues/6419>`__.
 - `Fix change user password on FireEdge Sunstone <https://github.com/OpenNebula/one/issues/6471>`__.
+- `Fix separate Vms and vm views <https://github.com/OpenNebula/one/issues/6092>`__.
