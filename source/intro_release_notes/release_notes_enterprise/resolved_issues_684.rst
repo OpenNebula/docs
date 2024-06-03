@@ -26,6 +26,7 @@ Also, the following issues have been backported in the FireEdge Sunstone Web UI:
 
 - `Add description for views in create form group <https://github.com/OpenNebula/one/issues/6399>`__.
 - `Fix change user password on FireEdge Sunstone <https://github.com/OpenNebula/one/issues/6471>`__.
+- `Fix modify "Show All" option on switch group menu <https://github.com/OpenNebula/one/issues/6455>`__.
 
 .. note::
    In order to use the new functionality introduced in Fireedge sunstone, please refer to the following :ref:`guide <fireedge_files_note>`.
