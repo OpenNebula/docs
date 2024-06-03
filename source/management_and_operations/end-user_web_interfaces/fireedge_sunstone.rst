@@ -91,6 +91,7 @@ From this section, users can define multiple configuration options for themselve
 - **Default endpoint**: allows to change the FireEdge Sunstone endpoint when using federation.
 - **SSH Public key**: allows the user to specify a public SSH key that they can use on the VMs.
 - Disable the dashboard animations. By default they are enabled.
+- Disable the information on full screen. By default they are disabled.
 - **Change password**: allows to change the user's password.
 - **Labels**: allows the user to manage their labels.
 - **SSH Public key**: allows the user to specify a public SSH key that they can use on the VMs.
