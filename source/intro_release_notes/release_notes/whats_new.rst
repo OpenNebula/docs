@@ -67,3 +67,4 @@ Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 - `Fix enhance placement tab <https://github.com/OpenNebula/one/issues/6419>`__.
 - `Fix change user password on FireEdge Sunstone <https://github.com/OpenNebula/one/issues/6471>`__.
 - `Fix separate Vms and vm views <https://github.com/OpenNebula/one/issues/6092>`__.
+- `Fix modify "Show All" option on switch group menu <https://github.com/OpenNebula/one/issues/6455>`__.

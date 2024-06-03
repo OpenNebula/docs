@@ -216,7 +216,9 @@ All the described functionality is available graphically using :ref:`Fireedge Su
 
 |sunstone_group_list|
 
-There is an option to filter all system resources by ``group``. In the user's menu appear the groups of this user. There's the option ``Show All`` to see all system resources. When you filter by group, you also change the effective group of the user.
+In the user's menu appear the groups of an user where the user can filter all system resources by ``group``. When you filter by group, you also change the effective group of the user.
+
+There's the option ``Show all`` to see all system resources, the option ``Show all owned by the user or his groups`` to see all resources that belong to the user or one of his groups and the option ``Show all owned by the user`` to see all resources that belong to the user.
 
 This allows to work more comfortably on projects, by isolating the resources belonging to one group from others.
 
