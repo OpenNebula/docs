@@ -14,6 +14,7 @@ OpenNebula Core
 ================================================================================
 - **Generic Quotas**: Option to specify :ref:`custom quotas for OpenNebula VMs, <quota_auth_generic>`
 - **PCI attach/detach**: generic PCI devices (e.g. GPU/vGPUs) now support :ref:`attach and detach operations <vm_guide2_pci>` in poweroff and undeployed states. Note that this functionality (in any state) is already present for NIC PCI passthrough/SRIOV devices.
+- **Search Virtual Machines**: The new :ref:`JSON search syntax <vm_search>` allow advanced search by ``onevm list --search`` command. See also the :ref:`compatibility notes <compatibility>`.
 
 Storage & Backups
 ================================================================================
@@ -35,7 +36,7 @@ FireEdge Sunstone
 
 API and CLI
 ================================================================================
-
+- ``onedb create-index`` command removed, the :ref:`VM search <vm_search>` use new DB column ``body_json``.
 
 KVM
 ================================================================================
