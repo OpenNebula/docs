@@ -89,7 +89,7 @@ element and it will be translated to XML:
       }
     }, 1)
 
-When, there are multiple entries with the same key like DISK or NIC, you can use array (from the version 6.4.6+ and 6.8+).
+When, there are multiple entries with the same key like DISK or NIC, you can use array (from the version 6.4.7+ and 6.8+).
 
 .. code:: python
 

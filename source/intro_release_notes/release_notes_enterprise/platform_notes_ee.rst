@@ -1,7 +1,7 @@
 .. _uspng:
 
 ================================================================================
-Platform Notes 6.4.6
+Platform Notes 6.4.7
 ================================================================================
 
 This page will show you the specific considerations when using an OpenNebula cloud, according to the different supported platforms.
@@ -50,7 +50,7 @@ vCenter Nodes
 +-----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 | NSX-T     | 2.4.1+                                | `VMware compatiblity <https://www.vmware.com/resources/compatibility/sim/interop_matrix.php>`__. :ref:`NSX Documentation <nsx_setup>`. |
 +-----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
-| NSX-V     | 6.4.6+                                | `VMware compatiblity <https://www.vmware.com/resources/compatibility/sim/interop_matrix.php>`__. :ref:`NSX Documentation <nsx_setup>`  |
+| NSX-V     | 6.4.7+                                | `VMware compatiblity <https://www.vmware.com/resources/compatibility/sim/interop_matrix.php>`__. :ref:`NSX Documentation <nsx_setup>`  |
 +-----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 
 .. note:: Debian front-ends are not certified to manage VMware infrastructures with OpenNebula.
