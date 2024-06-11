@@ -17,15 +17,13 @@ Front-End Components
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 |        Component         |                        Version                         |                    More information                   |
 +==========================+========================================================+=======================================================+
-| Red Hat Enterprise Linux | 7, 8, 9                                                | :ref:`Front-End Installation <frontend_installation>` |
-+--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-| CentOS                   | 7                                                      | :ref:`Front-End Installation <frontend_installation>` |
+| Red Hat Enterprise Linux | 8, 9                                                   | :ref:`Front-End Installation <frontend_installation>` |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 | AlmaLinux                | 8, 9                                                   | :ref:`Front-End Installation <frontend_installation>` |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-| Ubuntu Server            | 18.04 (LTS), 20.04 (LTS), 22.04 (LTS)                  | :ref:`Front-End Installation <frontend_installation>` |
+| Ubuntu Server            | 20.04, 22.04, 24.04                                    | :ref:`Front-End Installation <frontend_installation>` |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-| Debian                   | 10, 11                                                 | :ref:`Front-End Installation <frontend_installation>`.|
+| Debian                   | 11, 12                                                 | :ref:`Front-End Installation <frontend_installation>`.|
 |                          |                                                        | Not certified to manage VMware infrastructures        |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 | MariaDB or MySQL         | Version included in the Linux distribution             | :ref:`MySQL Setup <mysql>`                            |
