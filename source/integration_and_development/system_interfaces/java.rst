@@ -9,14 +9,45 @@ This page contains the OpenNebula Cloud API Specification for Java. It has been 
 Download
 ================================================================================
 
-You can download the ``.jar`` file compiled using Java 1.8, the required libraries, and the javadoc packaged in a tar.gz file `following this link <http://downloads.opennebula.io/packages>`__ in the OpenNebula version you have installed.
+You can download the ``.jar`` file compiled using Java 11, the required libraries, and the javadoc packaged in a tar.gz file `following this link <http://downloads.opennebula.io/packages>`__ in the OpenNebula version you have installed.
 
 You can also consult the `javadoc online </doc/6.4/oca/java/>`__.
+
+Compilation on Java 8
+================================================================================
+
+If you need to compile the Java bindings for Java 8, please follow this steps
+
+- Download the source code of opennebula (available on `OpenNebula code repository <https://www.github.com/OpenNebula/one>`__)
+
+  ``git clone https://www.github.com/OpenNebula/one``
+
+- On the source code, change to the directory ``src/oca/java``
+
+  ``cd one/src/oca/java``
+
+- Download the apache xmlrpc library (note that the URL may change in your case)
+
+  ``curl -OL https://archive.apache.org/dist/ws/xmlrpc/binaries/xmlrpc-3.1.1-bin.tar.gz``
+
+- Uncompress it and move the ``/lib`` directory to the source code dir
+
+  ``tar xzvf xmlrpc-3.1.1-bin.tar.gz; mv xmlrpc-3.1.1/lib .``
+
+- Modify the build script adding to the libraries the xmlrpc library
+
+  ``sed -i 's@^LIB_DIR="/usr/share/java"$@LIB_DIR="/usr/share/java:./lib"@g' build.sh``
+
+- Build the library
+
+  ``build.sh``
+
+The jar file with the bindings will be the ``jar/org.opennebula.client.jar`` file
 
 Usage
 ================================================================================
 
-To use the OpenNebula Cloud API for Java in your Java project, you have to add to the classpath the org.opennebula.client.jar file and the XML-RPC libraries located in the lib directory.
+To use the OpenNebula Cloud API for Java in your Java project, you have to add to the classpath the ``org.opennebula.client.jar`` file and the XML-RPC libraries located in the lib directory.
 
 Code Sample
 ================================================================================
