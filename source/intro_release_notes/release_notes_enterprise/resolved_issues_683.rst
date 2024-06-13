@@ -39,6 +39,12 @@ The following issues have been solved in 6.8.3:
 - `Fix error handling in OneFlow scaling operations <https://github.com/OpenNebula/one/issues/6545>`__.
 - `Fix inconsistency in CONTEXT->ETH* values <https://github.com/OpenNebula/one/issues/6552>`__.
 
+
+The following issues have been solved in the FireEdge Sunstone Web UI:
+
+- `Fix add 'EFI' firmware option <https://github.com/OpenNebula/one/issues/6417>`__.
+
+
 Also, the following issues have been backported in the FireEdge Sunstone Web UI:
 
 - `Implement Support Tab <https://github.com/OpenNebula/one/issues/5905>`__.
