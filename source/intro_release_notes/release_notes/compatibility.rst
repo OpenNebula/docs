@@ -25,4 +25,13 @@ Opennebula and opennebula-cli gems both require Nokogiri gem as a running depend
 
 Search Virtual Machines
 ================================================================================
-Searching for Virtual Machines has new syntax, use ``onevm list --search "VM.NAME=abc"`` instead of ``onevm list --search "NAME=abc"``. See :ref:`Search Virtual Machines <vm_search>`.
+Searching for Virtual Machines has new syntax. It deosn't search for exact match, but it searches for pattern. See the following table with examples. More info in :ref:`Search Virtual Machines <vm_search>`.
+
+=======================   ============    ===============================================================
+Search Description        Old syntax      New syntax
+=======================   ============    ===============================================================
+VM name                   NAME=abc        VM.NAME=abc
+VM with disk target vda   TARGET=vda      VM.TEMPLATE.DISK[*].TARGET=vda
+IP matching               IP=10.10.0.5    VM.TEMPLATE.NIC[*].IP=10.10.0.5
+IP starts with 10.10      ---             VM.TEMPLATE.NIC[*].IP=10.10
+=======================   ============    ===============================================================
