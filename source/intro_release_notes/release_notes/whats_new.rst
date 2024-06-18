@@ -69,3 +69,4 @@ Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 - `Fix separate Vms and vm views <https://github.com/OpenNebula/one/issues/6092>`__.
 - `Fix modify "Show All" option on switch group menu <https://github.com/OpenNebula/one/issues/6455>`__.
 - `Fix Mixed up comments for some of columns in some sunstone views <https://github.com/OpenNebula/one/issues/6562>`__.
+- `Fix QoL improvements for ERROR Dismiss popup <https://github.com/OpenNebula/one/issues/6069>`__.
