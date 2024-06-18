@@ -72,3 +72,4 @@ Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 - `Fix QoL improvements for ERROR Dismiss popup <https://github.com/OpenNebula/one/issues/6069>`__.
 - `Fix detailed view stuck in fullscreen <https://github.com/OpenNebula/one/issues/6613>`__.
 - `Fix unnecesary extra step when creating Image <https://github.com/OpenNebula/one/issues/6386>`__.
+- `Fix simplified view of the table <https://github.com/OpenNebula/one/issues/6075>`__.
