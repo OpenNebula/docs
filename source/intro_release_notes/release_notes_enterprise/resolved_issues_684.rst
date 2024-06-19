@@ -28,6 +28,7 @@ Also, the following issues have been backported in the FireEdge Sunstone Web UI:
 - `Fix change user password on FireEdge Sunstone <https://github.com/OpenNebula/one/issues/6471>`__.
 - `Fix modify "Show All" option on switch group menu <https://github.com/OpenNebula/one/issues/6455>`__.
 - `Fix datastore filtering in image creation dialog <https://github.com/OpenNebula/one/issues/6447>`__.
+- `Fix CPU and memory validations when only a list of values is allowed <https://github.com/OpenNebula/one/issues/6484>`__.
 
 .. note::
    In order to use the new functionality introduced in Fireedge sunstone, please refer to the following :ref:`guide <fireedge_files_note>`.
