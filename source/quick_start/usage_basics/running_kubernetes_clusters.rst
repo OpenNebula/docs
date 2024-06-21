@@ -10,6 +10,8 @@ This guide assumes that you have deployed the OpenNebula front-end following the
 
 .. important:: It's a known issue in AWS edge clusters that the ``REPLICA_HOST`` defined for the system datastores may cause QCOW2 image corruption, which causes VMs to boot incorrectly. To avoid this sporadic failure, remove the ``REPLICA_HOST`` parameter from your cluster's system datastore (go to Storage -> Datastore, select the aws-cluster* system datastore -most likely ID 101 if you started the QS guide from scratch- and delete the ``REPLICA_HOST`` parameter from the Attributes section).
 
+.. important:: OneKE VMs will need to access to the onegate service in the opennebula server. The easiest way to achieve this is ensuring that the ONEGATE_ENDPOINT parameter in the `/etc/one/oned.conf` has the public IP of the opennebula frontend and that it is reachable on the internet.
+
 Step 1. Download the OneFlow Service from the Marketplace
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -67,6 +69,9 @@ You can either use a public DNS server or local ``/etc/hosts`` file, for example
    1.2.3.4 k8s.yourdomain.it
 
 .. important:: To make the kubeconfig file work with custom SANs you will need to modify the ``clusters[0].cluster.server`` variable inside the YAML payload (for example: ``server: https://k8s.yourdomain.it:6443``) which can be find in the file a path to which is a value of the $KUBECONFIG variable on the k8s master node (the details on how to log in to that node are given below in :ref:`Step 4. Provisining an Edge Cluster <step-4>`).
+
+In oneKE 1.29, the kubeconfig file can be obtained from the variable ``ONEKE_KUBECONFIG`` from a master VM. For instance, a way to get it automatically would be:
+``onevm show "master..." | awk -F = '/^ONEKE_KUBECONFIG/ {print $2}' | tr -d \" | base64 -d``
 
 To be able to expose an example application you should enable OneKE's Traefik / HAProxy solution for ingress traffic:
 
@@ -197,6 +202,9 @@ Create a ``expose-nginx.yaml`` file with the following contents:
               name: nginx
               port: 80
               scheme: http
+
+.. important:: This is out of the scope of OpenNebula and in the scope of kubernetes administration but, please, note that traefik could be updated and its API version may be different. You can check it with ``kubectl api-versions | grep traefik``). In that case you should need to adjust the ``apiVersion`` parameter of the previous manifest.
+
 
 Apply the manifest using ``kubectl``:
 
