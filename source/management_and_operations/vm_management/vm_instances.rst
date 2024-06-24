@@ -157,7 +157,7 @@ and details about it can be obtained with ``show``:
 Searching for VM Instances
 --------------------------------------------------------------------------------
 
-You can search for VM instances by using the ``--search`` option of the ``onevm list`` command. This is specially useful on large environments with many VMs. The filter must be in a ``VM.KEY=VALUE`` format and will return all the VMs which fit the filter.
+You can search for VM instances by using the ``--search`` option of the ``onevm list`` command. This is specially useful on large environments with many VMs. The filter must be in a ``VM.KEY1=VALUE1&VM.KEY2=VALUE2`` format and will return all the VMs which fit the filter. The ``&`` works as logical AND. You can use ``*=VALUE`` to search the full VM body.
 
 Searching is performed using JSON on the whole body of the VM. You can use the MySQL JSON path without the leading ``$.``, information about the path structure can be found in the [MySQL Documentation](https://dev.mysql.com/doc/refman/5.7/en/json.html#json-path-syntax) or [MariaDB Documentation](https://mariadb.com/kb/en/jsonpath-expressions/).  Currently, the value is wrapped in ``%`` for the query, so it will match if it contains the value provided.
 
@@ -169,11 +169,11 @@ For example, for searching a VM with a specific MAC address:
      ID    USER     GROUP    NAME    STAT UCPU UMEM HOST TIME
      21005 oneadmin oneadmin test-vm pend    0   0K      1d 23h11
 
-Equivalently if there are more than one VM instance that matches the result they will be shown. For example, VMs NAME containing a pattern:
+Equivalently if there are more than one VM instance that matches the result they will be shown. For example, VMs NAME containing a pattern and owned by oneadmin:
 
 .. prompt:: text $ auto
 
-    $ onevm list --search 'VM.NAME=test-vm'
+    $ onevm list --search 'VM.NAME=test-vm&VM.UNAME=oneadmin'
      ID    USER     GROUP    NAME     STAT UCPU UMEM HOST TIME
      21005 oneadmin oneadmin test-vm  pend    0   0K       1d 23h13
      2100  oneadmin oneadmin test-vm2 pend    0   0K      12d 17h59

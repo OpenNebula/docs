@@ -13,16 +13,6 @@ Optimize Database
 
 Depending on the environment, you should consider periodically executing the following tasks for an optimal database performance:
 
-MySQL/MariaDB FTS Index
---------------------------------------------------------------------------------
-
-To be able to search for VMs by different attributes, the OpenNebula database leverages `full-text search indexes <https://dev.mysql.com/doc/refman/5.6/en/innodb-fulltext-index.html>`__ (FTS). The size of this index can grow fast, depending on the cloud load. To free some space, periodically recreate FTS indexes by executing the following SQL commands:
-
-.. code::
-
-   ALTER TABLE vm_pool DROP INDEX ftidx;
-   ALTER TABLE vm_pool ADD FULLTEXT INDEX ftidx (search_token);
-
 Cleanup Old Content
 --------------------------------------------------------------------------------
 
