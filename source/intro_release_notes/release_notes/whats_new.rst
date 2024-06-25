@@ -54,6 +54,7 @@ Other Issues Solved
 - `Fix sudoers path for systems tools to point to /usr/sbin for Debian OS <https://github.com/OpenNebula/one/issues/5909>`__.
 - `Fix LDAP group athorization for AD <https://github.com/OpenNebula/one/issues/6528>`__.
 - `Fix an uncommon error in TM drivers when domfsfreeze hangs indefinitely  <https://github.com/OpenNebula/one/issues/5921>`__.
+- `Fix incorrect logic in resolve_networks OneFlow function` <https://github.com/OpenNebula/one/issues/6589>`__.
 
 Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 
