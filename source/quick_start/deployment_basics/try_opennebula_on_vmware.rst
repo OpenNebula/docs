@@ -4,24 +4,63 @@
 Deploy OpenNebula Front-end on VMware
 =====================================
 
-.. OVA = Open Virtual Appliance file
-
 In this tutorial, we’ll use **vOneCloud** to install an OpenNebula Front-end on top of an existing VMware installation. Completing this tutorial takes approximately five minutes.
 
 **vOneCLoud** is an Open Virtual Appliance (OVA) for VMware vSphere. It contains a complete OpenNebula Front-end, installed and configured on an AlmaLinux OS. It is free to download and use, and may be used for small-size production deployments. With **vOneCloud**, you can deploy on top of your VMware infrastructure all of the OpenNebula services needed to use, manage and run OpenNebula.
 
-.. image:: /images/vonecloud_logo.png
-    :align: center
-
 In this tutorial, we’ll complete the following high-level steps:
 
     #. Verify the system requirements.
-    #. Download **vOneCloud**.
-    #. Deploy the **vOneCloud** OVA.
-    #. Configure the **vOneCloud** virtual appliance.
+    #. Download vOneCloud.
+    #. Deploy the vOneCloud OVA.
+    #. Configure the vOneCloud virtual appliance.
     #. Access the OpenNebula Front-end through the FireEdge GUI.
 
 After finishing this tutorial, you will have deployed a complete, ready-to-use OpenNebula Front-end on top of your VMware infrastructure. You will then be able to log in via the FireEdge GUI, define hosts and deploy virtual machines.
+
+Brief Overview of vOneCloud
+===========================
+
+.. image:: /images/vonecloud_logo.png
+    :align: center
+
+vOneCloud ships with a default of 2 vCPUs, 16 GiB of RAM and 100GB of disk size. It is certified for infrastructures of the following dimensions:
+
+- Up to 1000 VMs in total
+- Up to 100 users, with a limit of 10 users accessing the system simultaneously
+
+vOneCloud ships with the following components under the hood:
+
++-----------------------+--------------------------------------------------------------------------------------------------+
+|       **AlmaLinux**   |                                                8                                                 |
++-----------------------+--------------------------------------------------------------------------------------------------+
+| **OpenNebula**        | |version| (:ref:`release notes <rnguide>`)                                                       |
++-----------------------+--------------------------------------------------------------------------------------------------+
+| **MariaDB**           | Default version shipped in AlmaLinux 8                                                           |
++-----------------------+--------------------------------------------------------------------------------------------------+
+| **Phusion Passenger** | Default version shipped in AlmaLinux 8 (used to run Sunstone)                                    |
++-----------------------+--------------------------------------------------------------------------------------------------+
+
+.. _accounts:
+
+vOneCloud ships with several pre-created user accounts, described below:
+
++----------+---------------------+-------------------------+----------------------------------------------------------------------------------+
+| Account  |      Interface      |           Role          |                                   Description                                    |
++==========+=====================+=========================+==================================================================================+
+| root     | linux               | Appliance administrator | This user can log into the appliance (local login, no SSH).                      |
++----------+---------------------+-------------------------+----------------------------------------------------------------------------------+
+| oneadmin | linux               | Service user            | Used to run all OpenNebula services.                                             |
++----------+---------------------+-------------------------+----------------------------------------------------------------------------------+
+| oneadmin | OpenNebula Sunstone | Cloud administrator     | Cloud administrator. Run any task in OpenNebula, including creating other users. |
++----------+---------------------+-------------------------+----------------------------------------------------------------------------------+
+
+vOneCloud includes the Control Console, a text-based interface that offers menus for configuring the appliance. You can access the Control Console by opening the vOneCloud appliance console in vCenter. We will use the Control Console to configure vOneCloud in the steps below.  
+
+.. note::
+
+    Please bear in mind that vOneCloud is shipped only for evaluation purposes.
+
 
 Step 1. Verify the System Requirements
 ======================================
@@ -88,8 +127,6 @@ At this point, the vOneCloud virtual appliance is up and running.
      .. image:: /images/control-console-wrong.png
         :align: center
         :scale: 60%
-
-    |
     
     then the virtual appliance is displaying the wrong tty terminal. The vOneCloud Control Console is on tty1. To access tty1, press ``Ctrl+Alt+F1``.
     
@@ -122,6 +159,14 @@ In the Control Console, press ``1`` to configure the network following the steps
         - **DNS servers**: IP address(es) of one or more DNS servers.
         - **Search domain** (optional): Search domains for DNS.
 
+Below is an example of a static network configuration on the available network interface, ``eth0``. The interface is set on the 10.0.1.x Class C network, the gateway at 10.0.1.1 and the DNS server at 8.8.8.8.
+
+.. image:: /images/network-conf-example.png
+    :align: center
+    :scale: 60%
+    
+|
+
 After filling in the information, select **OK** to exit the dialog.
 
 In the next screen, select **Activate a connection** and ensure that **System eth0** is activated. Then, select **Set system hostname** and type a hostname.
@@ -138,8 +183,10 @@ Enter the desired password. You will use this password to log into the FireEdge 
 
 .. important::
 
-    This is the OpenNebula system user account, not to be confused with the Linux user ``oneadmin``.
+    This password is for the OpenNebula system user account, not to be confused with the Linux user ``oneadmin``.
 
+.. _Step 4.3:
+    
 Step 4.3. Configure the Linux ``root`` User Password
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -148,6 +195,8 @@ In the Control Console, press ``3`` to set the password for the Linux OS ``root`
 .. warning::
 
     This password is not often used, so it’s easy to forget. As in all Unix-like systems, there is no way to recover a lost ``root`` password, so ensure it is stored in a safe place.
+
+.. _Step 4.4:
 
 Step 4.4. Configure a Public IP for vOneCloud
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -163,9 +212,7 @@ At this point, the vOneCloud appliance is configured and ready to be accessed th
 Step 5. Access the OpenNebula Front-end through the FireEdge GUI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Open a web browser (Firefox or Chrome) and enter the public IP or FQDN you defined as the FireEdge endpoint in Step 4.4.
-
-For example, ``http://10.0.1.176``.
+Open a web browser (Firefox or Chrome) and enter the public IP or FQDN you defined as the FireEdge endpoint in :ref:`Step 4.4 <Step 4.4>`. For example, ``http://10.0.1.176``.
 
 You should be greeted by the FireEdge login screen:
 
@@ -175,7 +222,7 @@ You should be greeted by the FireEdge login screen:
 
 |
 
-In the **Username** field, type ``oneadmin``. In the **Password** field, enter the password you defined for the OpenNebula user in Step 4.2.
+In the **Username** field, type ``oneadmin``. In the **Password** field, enter the password you defined for the OpenNebula user in :ref:`Step 4.2 <Step 4.2>`.
 
 FireEdge should display the Dashboard:
 
@@ -195,9 +242,7 @@ Congratulations -- you have deployed and fully configured an OpenNebula Front-en
         :align: center
         :scale: 70%
     
-    |
-    
-    Return to the Control Console and configure a public IP or FQDN (see Step 4.4 above).
+    Return to the Control Console and configure a public IP or FQDN (see :ref:`Step 4.4 <Step 4.4>` above).
 
 .. _advanced_login:
 
@@ -210,4 +255,9 @@ If wish to access the Linux OS running on the virtual appliance, you can do so i
         - Connect to vOneCloud’s public IP address or FQDN. For example: ``ssh root@10.0.1.176``.
             (If connecting from Windows, you can use a program such as `PuTTY <http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>`__ or `WinSCP <https://winscp.net/>`__.)
     * Using vCenter:
-        - When connected to the Control Console, change to tty2 by pressing ``Ctrl+Alt+F2``. Then, log in to the system as ``root`` with the password you defined in Step 4.3.
+        - When connected to the Control Console, change to tty2 by pressing ``Ctrl+Alt+F2``. Then, log in to the system as ``root`` with the password you defined in :ref:`Step 4.3 <Step 4.3>`.
+
+Next Steps
+==========
+
+Want to try out automatic resource provisioning on public infrastructure? Follow the :ref:`Operations Guide <operation_basics>` to deploy an Edge Cluster on AWS -- in under 10 minutes -- and add computing power to your OpenNebula cloud.
