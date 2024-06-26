@@ -35,6 +35,7 @@ FireEdge Sunstone
 
 API and CLI
 ================================================================================
+- `OneFlow message logging improved <https://github.com/OpenNebula/one/issues/6553>`__.
 
 
 KVM
