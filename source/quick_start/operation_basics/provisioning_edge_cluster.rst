@@ -5,7 +5,7 @@
 Provisioning an Edge Cluster
 ============================
 
-In this tutorial, we’ll use the FireEdge GUI to provision an **Edge Cluster** on AWS, with just few clicks.
+In this tutorial, we’ll use the Sunstone GUI to provision an **Edge Cluster** on AWS, with just few clicks.
 
 To complete this tutorial, you need an OpenNebula Front-end installed and configured for provisioning remote resources. You can quickly and easily a Front-end with **miniONE**, as described at the beginning of this :ref:`Quick Start Guide <quick_start>`.
 
@@ -41,7 +41,7 @@ To create the OpenNebula hosts and ensure connectivity, OpenNebula creates the f
     * An **Internet Gateway** to provide internet access for the hosts and VMs.
     * A **routing table** for directing network traffic between these elements.
 
-.. note:: FireEdge will request Elastic IPs for the public IPs you request. If you receive an error message about not being able to request more IPs when creating a provision, check the `limits of your account <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html>`__ in your zone.
+.. note:: Sunstone will request Elastic IPs for the public IPs you request. If you receive an error message about not being able to request more IPs when creating a provision, check the `limits of your account <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html>`__ in your zone.
 
 
 Step 1: Configure AWS
@@ -53,17 +53,17 @@ After you have created your account, you’ll need to obtain the ``access_key`` 
 
 Next, you need to choose the region where you want to deploy the new resources. You can check the available regions in AWS’s documentation: `Regions, Availability Zones, and Local Zones <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html>`__.
 
-Step 2: Create an AWS Provider in FireEdge
+Step 2: Create an AWS Provider in Sunstone
 ==========================================
 
 .. include info on loggin in
 .. https://<FRONT-END IP>:2616/fireedge/provision
 
-When you have your AWS account set up, it’s time to log in to FireEdge and create your AWS provider in OpenNebula. We will log in as user ``oneadmin``.
+When you have your AWS account set up, it’s time to log in to  and create your AWS provider in OpenNebula. We will log in as user ``oneadmin``.
 
-.. important:: If you wish to log in as a different user, bear in mind that in order to add providers the user must belong to the ``oneadmin`` group. If the user is not a member of that group, FireEdge will not display the providers.
+.. important:: If you wish to log in as a different user, bear in mind that in order to add providers the user must belong to the ``oneadmin`` group. If the user is not a member of that group,  will not display the providers.
 
-To log in to FireEdge, point your browser to the OneProvision address:
+To log in to , point your browser to the OneProvision address:
 
 .. code:: bash
 
@@ -71,7 +71,7 @@ To log in to FireEdge, point your browser to the OneProvision address:
 
 In the log in screen, enter the credentials for user ``oneadmin``.
 
-FireEdge should display the **OneProvision** screen:
+ should display the **OneProvision** screen:
 
 .. image:: /images/6.10-oneprovision.png
     :align: center
@@ -83,7 +83,7 @@ FireEdge should display the **OneProvision** screen:
 
    The Hosted Cloud PoC provides users with an OpenNebula front-end that is hosted and paid for by OpenNebula Systems. Compute nodes can be provisioned using AWS and Equinix Metal public cloud resources, for which users are responsible via user-owned accounts.
 
-To create a provider, open the left-hand pane (by hovering the mouse over the icons to the left of the screen), then click **Providers**. FireEdge should display the **Providers** screen:
+To create a provider, open the left-hand pane (by hovering the mouse over the icons to the left of the screen), then click **Providers**.  should display the **Providers** screen:
 
 .. image:: /images/fireedge_cpi_provider_list1.png
     :align: center
@@ -99,7 +99,7 @@ To add a new provider, click the **Plus button** on the right:
 
 |
 
-FireEdge should display the **Provision type** and **Provider type** drop-down menus, as well as additional information. Leave the **Provision type** drop-down on ``metal``. For **Provider type**, select ``AWS``. Then, click the box that displays the desired location for your provision, for example **aws-frankfurt**, as shown below.
+ should display the **Provision type** and **Provider type** drop-down menus, as well as additional information. Leave the **Provision type** drop-down on ``metal``. For **Provider type**, select ``AWS``. Then, click the box that displays the desired location for your provision, for example **aws-frankfurt**, as shown below.
 
 |image_provider_create_step1|
 
@@ -111,7 +111,7 @@ Click **NEXT**. In the final screen, you will need to provide your AWS access ke
 
 |image_provider_create_step3|
 
-Click **FINISH**. FireEdge should now display the **Providers** screen, showing your new provider:
+Click **FINISH**.  should now display the **Providers** screen, showing your new provider:
 
 .. image:: /images/6.10-oneprovision-new_aws_provider.png
     :align: center
@@ -135,7 +135,7 @@ To provision the cluster, open the left-hand pane, select **Provisions**, and cl
 .. +add screenshot
 .. based on image:: /images/fireedge_cpi_provider_list1.png
 
-FireEdge should display the **Create Provision** screen. The screen shows the available providers --- in this case, the AWS provider created in the previous step. The AWS provider offers two provision templates: **aws-hci-cluster** and **aws-edge-cluster**:
+ should display the **Create Provision** screen. The screen shows the available providers --- in this case, the AWS provider created in the previous step. The AWS provider offers two provision templates: **aws-hci-cluster** and **aws-edge-cluster**:
 
 .. image:: /images/6.10-oneprovision-aws_provider_options.png
     :align: center
