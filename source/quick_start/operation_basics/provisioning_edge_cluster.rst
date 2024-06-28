@@ -5,9 +5,9 @@
 Provisioning an Edge Cluster
 ============================
 
-In this tutorial, we’ll use the Sunstone GUI to provision an **Edge Cluster** on AWS, with just few clicks.
+In this tutorial, we’ll use the Sunstone GUI to provision an **Edge Cluster** on AWS, with just a few clicks.
 
-To complete this tutorial, you need an OpenNebula Front-end installed and configured for provisioning remote resources. You can quickly and easily a Front-end with **miniONE**, as described at the beginning of this :ref:`Quick Start Guide <quick_start>`.
+To complete this tutorial, you need an OpenNebula Front-end installed and configured for provisioning remote resources. You can quickly and easily install a Front-end with **miniONE**, as described at the beginning of this :ref:`Quick Start Guide <quick_start>`.
 
 The edge cluster we’ll create in this tutorial will include a KVM hypervisor. It will be a suitable platform for deploying both Virtual Machines and Kubernetes clusters, as described in :ref:`Usage Basics section <usage_basics>`.
 
@@ -59,11 +59,11 @@ Step 2: Create an AWS Provider in Sunstone
 .. include info on loggin in
 .. https://<FRONT-END IP>:2616/fireedge/provision
 
-When you have your AWS account set up, it’s time to log in to  and create your AWS provider in OpenNebula. We will log in as user ``oneadmin``.
+When you have your AWS account set up, it’s time to log in to Sunstone and create your AWS provider in OpenNebula. We will log in as user ``oneadmin``.
 
-.. important:: If you wish to log in as a different user, bear in mind that in order to add providers the user must belong to the ``oneadmin`` group. If the user is not a member of that group,  will not display the providers.
+.. important:: If you wish to log in as a different user, bear in mind that in order to add providers the user must belong to the ``oneadmin`` group. If the user is not a member of that group, Sunstone will not display the providers.
 
-To log in to , point your browser to the OneProvision address:
+To log in, point your browser to the OneProvision address:
 
 .. code:: bash
 
@@ -71,7 +71,7 @@ To log in to , point your browser to the OneProvision address:
 
 In the log in screen, enter the credentials for user ``oneadmin``.
 
- should display the **OneProvision** screen:
+Sunstone should display the **OneProvision** screen:
 
 .. image:: /images/6.10-oneprovision.png
     :align: center
@@ -83,7 +83,7 @@ In the log in screen, enter the credentials for user ``oneadmin``.
 
    The Hosted Cloud PoC provides users with an OpenNebula front-end that is hosted and paid for by OpenNebula Systems. Compute nodes can be provisioned using AWS and Equinix Metal public cloud resources, for which users are responsible via user-owned accounts.
 
-To create a provider, open the left-hand pane (by hovering the mouse over the icons to the left of the screen), then click **Providers**.  should display the **Providers** screen:
+To create a provider, open the left-hand pane (by hovering the mouse over the icons to the left of the screen), then click **Providers**. Sunstone should display the **Providers** screen:
 
 .. image:: /images/fireedge_cpi_provider_list1.png
     :align: center
@@ -99,7 +99,7 @@ To add a new provider, click the **Plus button** on the right:
 
 |
 
- should display the **Provision type** and **Provider type** drop-down menus, as well as additional information. Leave the **Provision type** drop-down on ``metal``. For **Provider type**, select ``AWS``. Then, click the box that displays the desired location for your provision, for example **aws-frankfurt**, as shown below.
+Sunstone should display the **Provision type** and **Provider type** drop-down menus, as well as additional information. Leave the **Provision type** drop-down on ``metal``. For **Provider type**, select ``AWS``. Then, click the box that displays the desired location for your provision, for example **aws-frankfurt**, as shown below.
 
 |image_provider_create_step1|
 
@@ -111,7 +111,7 @@ Click **NEXT**. In the final screen, you will need to provide your AWS access ke
 
 |image_provider_create_step3|
 
-Click **FINISH**.  should now display the **Providers** screen, showing your new provider:
+Click **FINISH**. Sunstone should now display the **Providers** screen, showing your new provider:
 
 .. image:: /images/6.10-oneprovision-new_aws_provider.png
     :align: center
@@ -135,7 +135,7 @@ To provision the cluster, open the left-hand pane, select **Provisions**, and cl
 .. +add screenshot
 .. based on image:: /images/fireedge_cpi_provider_list1.png
 
- should display the **Create Provision** screen. The screen shows the available providers --- in this case, the AWS provider created in the previous step. The AWS provider offers two provision templates: **aws-hci-cluster** and **aws-edge-cluster**:
+Sunstone should display the **Create Provision** screen. The screen shows the available providers --- in this case, the AWS provider created in the previous step. The AWS provider offers two provision templates: **aws-hci-cluster** and **aws-edge-cluster**:
 
 .. image:: /images/6.10-oneprovision-aws_provider_options.png
     :align: center
@@ -183,7 +183,7 @@ You can leave the other values at their defaults:
     * **AWS AMI image**: ``default``
     * **AWS instance type, user bare-metal instances**: ``c5.metal``
     
-To provision the cluster, click **Finish**. OneProvision will begin the provisioning process in the background. The cluster should appear in the **Provisions** tab:
+To provision the cluster, click **Finish**. OneProvision will launch the provisioning process in the background. The cluster should appear in the **Provisions** tab:
 
 .. image:: /images/fireedge_cpi_provision_list2.png
     :align: center
@@ -283,6 +283,10 @@ For example:
     If you want root access to the edge cluster, log in as user ``ubuntu``, then ``sudo`` to root.
 
 
+Next Steps
+==========
+
+To see all of the resources created with your new edge cluster, and how they are displayed in Sunstone, see :doc:`Operating an Edge Cluster <operating_edge_cluster>`.
 
 
 
