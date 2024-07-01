@@ -1,91 +1,126 @@
 .. _try_opennebula_hosted:
 
-===============================
-Try OpenNebula Hosted Front-end
-===============================
+====================================================
+Try an OpenNebula Front-end on Hosted Infrastructure
+====================================================
 
-This guide will walk you through the steps to request, setup and manage an OpenNebula Hosted Environment, to provision new resources and to create an environment for your cloud and edge computing needs.
+For evaluation purposes, you can request and evaluate a complete OpenNebula Front-end running on infrastructure hosted by OpenNebula. The OpenNebula Hosted Service Front-end allows you to try OpenNebula on the **KVM** hypervisor, to configure it to your needs, and to provision new resources in the cloud and at the edge. You can then run and manage Virtual Machines and Kubernetes clusters.
 
-The OpenNebula Hosted service allows corporate users to try OpenNebula on **KVM** for the execution of virtual machines and Kubernetes clusters.
+A hosted OpenNebula installation offers two tools to create and manage resources and clusters:
 
-OpenNebula Hosted service provides two tools to create and manage resources and clusters:
-
-  - **Sunstone**, a web-based UI that can be used by both administrators and end users to manage in one central and uniform point all the resources
-  - **FireEdge**, a web-based UI that is used to provision OpenNebula Clusters on public cloud using different providers (AWS, Equinix) and on-premise resources.
+    * FireEdge, the new web-based GUI used to define, provision and manage infrastructure resources
+    * OpenNebula's command-line interface (CLI)
 
 .. note::
 
-    The OpenNebula Hosted Service does not offer support for VMware resources.
+    Please note that the OpenNebula Hosted Service is available as a technology preview for purposes of proof-of-concept (PoC) and evaluation. It currently does not offer support for VMware resources.
+    
+This page describes how to request, configure and manage an OpenNebula hosted environment.
 
-.. note::
+    #. Request a PoC
+    #. Configure Access
+    #. (Optional): Install the CLI
 
-    OpenNebula Hosted Service is currently available as a technology preview for evaluation and PoC purposes.
 
-Request a PoC
-=============
+Step 1: Request a PoC
+=====================
 
-In order to request a PoC, you have to fill the following `form <https://opennebula.io/request-a-hosted-poc-with-opennebula>`_.
+To request the OpenNebula Hosted service, you will need to `request a PoC <https://opennebula.io/request-a-hosted-poc-with-opennebula>`_ by completing the required form.
 
-Once you fill the form, you will receive an email containing information on how to connect to **Sunstone** and **FireEdge** to manage your cloud environment and provision resources for running your workloads (Virtual Machines and/or Kubernetes Clusters).
+When completing the form, please provide the desired name for the subdomain that will be used to host you OpenNebula cloud. For the rest of this guide, we will assume that the subdomain is ``poc``, i.e. that the OpenNebula hosted environment will be available at ``poc.opennebula.cloud``. Throughout this guide, replace ``poc`` with the actual name of your subdomain.
 
-.. note::
+After filling in the form, you will receive an email with your login information for connecting to **FireEdge**. Using FireEdge, you can manage your cloud environment and provision resources for running workloads.
 
-    When filling up the form, you have to choose a name for the subdomain.
+Step 2: Configure Access
+========================
 
-    For the rest of the guide we assume that the name of the subdomain is *poc* (i.e. the OpenNebula hosted environment will be available at ``poc.opennebula.cloud``). You have to replace *poc* with your *subdomain* in the guide.
-
-First Setup
-============
-
-First you need to login to Sunstone.
+Log in to the FireEdge GUI, using the credentials you received by email.
 
 |sunstone_login|
 
-Once you login with the credentials that you have received in your email, for security reasons change your password that you have received by email. To change the password you have to go to ``Settings`` Tab.
+Step 2.1: Change your Security Credentials
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+For security reasons, change the password that you received by email. To change the password you have to go to ``Settings`` Tab.
+
+.. +add screenshot
 
 |sunstone_change_password|
 
+Step 2.2: Add your SSH Key
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 You should also add your public SSH key in order to be able to connect to the resources that will be created in your cloud environment.
 
-As an alternative to using the GUIs, you can use the :ref:`OpenNebula Command Line Interface (CLI) <cli>`.
+.. +add description
 
-In order to use the CLI, you need to install the required dependencies. Make sure you are using the :ref:`OpenNebula repositories <repositories>`, then proceed to install:
+Step 3 (Optional): Install the CLI
+==================================
 
-.. prompt:: yaml $ auto
+Besides the FireEdge GUI, you can also use the :ref:`OpenNebula Command Line Interface (CLI) <cli>`, to configure the Front-end, and to create and manage cloud infrastructure resources.
 
-    # On Debian/Ubuntu
-    apt install opennebula-tools opennebula-flow opennebula-provision
-    # On Centos
-    yum install opennebula opennebula-flow opennebula-provision
+The CLI comprises a set of command-line tools which are distributed in three software packages. To use the CLI, you need to install these software packages on a supported operating system. Currently, the supported operating systems are the following Linux distributions:
 
-Create the authentication file one_auth with the admin credentials (replace ``password`` with your password).
+   * AlmaLinux >= 8, 9
+   * CentOS >= 7, 8
+   * Red Hat Enterprise Linux >= 7, 8, 9
+   * Debian >= 10, 11, 128
+   * Ubuntu >= 148.04, 20.04, 22.04, 24.04
+
+To install the CLI, first add the :ref:`OpenNebula repositories <repositories>`, then follow your distribution's normal procedure to install the following packages:
+
+    * ``opennebula-tools``
+    * ``opennebula-flow``
+    * ``opennebula-provision``
+
+For example, in Debian/Ubuntu, run (as root):
+
+.. code::
+
+        apt install opennebula-tools opennebula-flow opennebula-provision
+
+Step 3.1. Configure the CLI User
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The command-line tools run as the OpenNebula user ``oneadmin``. To log into the Front-end, you need to create an authentication file with the user's log in credentials.
+
+In the ``oneadmin`` user's home directory, create a directory called ``.one``, and a file called ``one_auth``, with the following contents:
+
+.. code:: bash
+
+    one:<your password>
+
+For example, run as Linux user ``oneadmin``:
 
 .. code:: bash
 
     mkdir -p "$HOME/.one"
     echo 'one:password' > "$HOME/.one/one_auth"
 
+For more information on user accounts in OpenNebula, see :doc:`Managing Users <../../management_and_operations/users_groups_management/manage_users>`.
 
-You should have the following environment variables set, you may want to place them in the ``.bashrc`` of the users' Unix account for convenience:
+Step 3.2. Define the CLI Environment
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code:: bash
+The following variables must be set in the ``oneadmin`` user's environment:
 
-    ONE_XMLRPC=http://poc.opennebula.cloud/xmlrpc
-    ONEFLOW_URL=http://poc.opennebula.cloud:2474
+.. code::
 
-Hosted infrastructure
-=====================
- 
-The cloud environment provided has two OpenNebula Hosts already added and configured ready to deploy VMs.
+    ONE_XMLRPC=http://<your subdomain>.opennebula.cloud/xmlrpc
+    ONEFLOW_URL=http://<your subdomain>.opennebula.cloud:2474
+
+For convenience, we recommend you define these variables in the ``.bashrc`` file of the user's ``$HOME`` directory.
+
+
+Exploring FireEdge and the Hosted Infrastructure
+================================================
+
+The cloud environment provided in the hosted infrastructure includes two OpenNebula hosts, already configured and ready to deploy VMs. 
 
 |hosted_nodes|
 
-.. warning::
+Bear in mind that in this evaluation environment, the hosts use QEMU virtualization to run the VMs, with the consequent loss of efficiency and performance. This environment is not suitable for production; however, it is an easy-to-use tool for testing and getting a first experience in the management and operation of OpenNebula.
 
-    Hosts provided within the Hosted Cloud PoC are virtualized hosts that use Qemu to run the virtual machines. The efficiency and performance of the virtual machines on this environment is not suitable for a production environment since a hardware virtualization of the machines is taking place. However, it is an easy way to test and get a first experience with the management and operation of OpenNebula.
-
-
-Provisioning additional KVM Clusters
+Provisioning Additional KVM Clusters
 ====================================
 
 .. warning::
