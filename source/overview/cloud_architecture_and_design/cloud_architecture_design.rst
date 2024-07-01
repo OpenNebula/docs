@@ -124,7 +124,7 @@ Because no two clouds are the same, OpenNebula provides many different interface
 
 -  **OneFlow API** to create, control and monitor :ref:`multi-tier applications or services composed of interconnected Virtual Machines <appflow_api>`.
 
--  **Sunstone custom routes and tabs** to extend the :ref:`sunstone web UI interface <sunstone_dev>`.
+-  **Ruby Sunstone custom routes and tabs** to extend the :ref:`ruby sunstone web UI interface <ruby_sunstone_dev>`.
 
 -  **Hook Manager** to :ref:`trigger administration scripts upon resource state changes or API calls <hooks>`.
 

@@ -173,7 +173,7 @@ The Sunstone configuration file can be found in ``/etc/one/sunstone-server.conf`
 | **Routes**                                                                                                                              |
 +-----------------------------------+-----------------------------------------------------------------------------------------------------+
 | ``:routes``                       | List of Ruby files containing custom routes to be loaded.                                           |
-|                                   | Check :ref:`server plugins <sunstone_dev>` for more information.                                    |
+|                                   | Check :ref:`server plugins <ruby_sunstone_dev>` for more information.                               |
 +-----------------------------------+-----------------------------------------------------------------------------------------------------+
 | **FireEdge**                                                                                                                            |
 +-----------------------------------+-----------------------------------------------------------------------------------------------------+
