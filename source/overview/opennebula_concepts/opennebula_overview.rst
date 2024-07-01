@@ -128,9 +128,7 @@ The main components of an OpenNebula installation are:
 
 These are OpenNebula’s system interfaces:
 
-* **Sunstone**: OpenNebula comes with a Graphical User Interface (WebUI) intended for both end users and administrators to easily manage all OpenNebula resources and perform typical operations. It’s a dedicated daemon installed by default as part of the Single Front-end Installation, but can be deployed independently on a different machine.
-
-* **FireEdge**: The FireEdge server provides a next-generation Graphical User Interface (WebUI) for the provisioning of remote OpenNebula Clusters (leveraging the new OneProvision tool) as well as additional functionality to Sunstone.
+* **Sunstone**: OpenNebula comes with a next-generation Graphical User Interface (WebUI) intended for both end users and administrators to easily manage all OpenNebula resources and perform typical operations. It’s a dedicated daemon installed by default as part of the Single Front-end Installation, but can be deployed independently on a different machine.
 
 * **CLI**: OpenNebula provides a significant set of commands to interact with the system and its different components via terminal.
 
