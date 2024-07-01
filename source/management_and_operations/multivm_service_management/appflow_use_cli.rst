@@ -133,7 +133,7 @@ To enable it, you need to add the following attribute to the service template:
 Determining when a VM is READY
 --------------------------------------------------------------------------------
 
-Depending on the deployment strategy, OneFlow will wait until all the VMs in a specific Role are all in ``RUNNING`` state before deploying VMs that belong to a child Role. How OneFlow determines the running state of the VMs can be specified with the checkbox ``Wait for VMs to report that the are READY`` available in the Service creation dialog in Sunstone, or the attribute in ``ready_status_gate`` in the top level of the Service Template JSON.
+Depending on the deployment strategy, OneFlow will wait until all the VMs in a specific Role are all in ``RUNNING`` state before deploying VMs that belong to a child Role. How OneFlow determines the running state of the VMs can be specified with the checkbox ``Consider VMs as running only when they report READY status via OneGate`` available in the Service creation dialog in Sunstone, or the attribute in ``ready_status_gate`` in the top level of the Service Template JSON.
 
 |oneflow-ready-status-checkbox|
 

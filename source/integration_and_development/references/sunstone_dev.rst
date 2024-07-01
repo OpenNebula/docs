@@ -4,412 +4,375 @@
 Sunstone Development
 ================================================================================
 
-In OpenNebula 5.0 the graphical interface code, Sunstone, was redesigned and modularized to improve the code readability and ease the task of adding new components. Now, each component (tab, panel, form...) is defined in a separate module using `requirejs <http://requirejs.org/>`__ and HTML code is now defined in separate files using `Handlebars <http://handlebarsjs.com/>`__ templates. External libraries are handled using `Bower <http://bower.io/>`__, a Javascript package manager. `Zurb Foundation <http://foundation.zurb.com/>`__ is used for the styles and layout of the web and additional CSS styles are added using `SASS <http://sass-lang.com/>`__. `Grunt <http://gruntjs.com/>`__ is used as a tasker to automate the different processes to generate the optimized files.
+OpenNebula FireEdge server provides a **next-generation web-management interface**. It is able to deliver several applications accessible through the following URLs:
 
-RequireJS
+- Provision GUI: ``<http://<OPENNEBULA-FRONTEND>:2616/fireedge/provision>``
+- Sunstone GUI: ``<http://<OPENNEBULA-FRONTEND>:2616/fireedge/sunstone>`` (automatically redirected from ``<http://<OPENNEBULA-FRONTEND>:2616/``)
+
+This second Sunstone incarnation is written in `React <https://reactjs.org/>`__ / `Redux <https://redux.js.org/>`__ and `Material-UI <https://mui.com/>`__ is used for the styles and layout of the web.
+
+If you want to do development work over Sunstone, you need to install OpenNebula from source. For this, you will need :ref:`build dependencies <build_deps>`, `git <https://git-scm.com/>`__, `nodeJS v12 <https://nodejs.org/en/blog/release/v12.22.12>`__ and `npm v6 <https://docs.npmjs.com/downloading-and-installing-node-js-and-npm>`__.
+
+Once the environment has been prepared, you need to clone `one repository <https://github.com/OpenNebula/one>`__ and follow the steps :ref:`to compile the OpenNebula software <compile>`.
+
+Then move to FireEdge directory (``src/fireedge``) and run:
+
+.. prompt:: bash $ auto
+
+    $ npm i         # Install dependencies from package.json
+    $ npm run       # List the available scripts
+    $ npm run dev   # Start the development server. By default on http://localhost:2616/fireedge
+
+You can read more about this in the :ref:`FireEdge configuration guide <fireedge_install_configuration>`.
+
+FireEdge API
 ================================================================================
 
-`requirejs <http://requirejs.org/>`__ allows you to define blocks of functionality in different modules/files and then load and reuse them in other modules.
+OpenNebula FireEdge API is a RESTful service to communicate with other OpenNebula services.
 
-This is an example of the images-tab files layout:
+Among others, it includes the OpenNebula Cloud API Specification for JS. It been designed as a wrapper for the :ref:`XML-RPC methods <api>`, with some basic helpers to return the data in JSON formats. This means that you should be familiar with the XML-RPC API and the JSON formats returned by the OpenNebula core.
 
-.. code::
+Authentication & Authorization
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  images-tab.js
-  images-tab/
-    actions.js
-    buttons.js
-    datatable.js
-    dialogs/
-      ...
-    panels/
-      ...
+User authentication is done via XMLRPC using the OpenNebula authorization module. If the username and password matches with the serveradmin data, the user's request will be granted, the session data will be saved in a global variable (cache-nodejs), and a JSON Web Token (JWT) will be generated that must be sent in the authorization header of the HTTP request.
 
-And how the different modules are used in the images-tab file:
+.. prompt:: bash $ auto
 
-.. code-block:: javascript
+    $ curl -X POST -H "Content-Type: application/json" \
+    $ -d '{"user": "username", "token": "password"}' \
+    $ http://fireedge.server/fireedge/api/auth
 
-  /* images-tab.js content */
+.. note:: The JWT lifetime can be configured in the fireedge_server.conf configuration file.
 
-  define(function(require) {
-    var Buttons = require('./images-tab/buttons');
-    var Actions = require('./images-tab/actions');
-    var Table = require('./images-tab/datatable');
+Methods
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    var _dialogs = [
-      require('./images-tab/dialogs/clone')
-    ];
-
-    var _panels = [
-      require('./images-tab/panels/info'),
-      require('./images-tab/panels/vms'),
-      require('./images-tab/panels/snapshots')
-    ];
-  })
-
-The `optimization tool <http://requirejs.org/docs/optimization.html>`__ provided by `requirejs <http://requirejs.org/>`__ is used to group multiple files into a single minified file (dist/main.js). The options for the optimization are defined in the `Gruntfile.js <https://github.com/OpenNebula/one/blob/master/src/sunstone/public/Gruntfile.js>`__ file using the `r.js plugin <https://github.com/gruntjs/grunt-contrib-requirejs>`__ for `Grunt <http://gruntjs.com/>`__.
-
-Handlebars
-================================================================================
-
-`Handlebars <http://handlebarsjs.com/>`__ provides the power necessary to let you build semantic templates and is largely compatible with Mustache templates.
-
-.. code-block:: html
-
-  <div id="comments">
-    {{#each comments}}
-    <h2><a href="/posts/{{../permalink}}#{{id}}">{{title}}</a></h2>
-    <div>{{body}}</div>
-    {{/each}}
-  </div>
-
-The integration between `Handlebars <http://handlebarsjs.com/>`__ and `requirejs <http://requirejs.org/>`__ is done using the `Handlebars plugin for requirejs <https://github.com/SlexAxton/require-handlebars-plugin>`__, that allows you to use the templates just adding a prefix to the require call
-
-.. code-block:: javascript
-
-  var TemplateHTML = require('hbs!./auth-driver/html');
-  return TemplateHTML({
-    'dialogId': this.dialogId,
-    'userCreationHTML': this.userCreation.html()
-  });
-
-Additional helpers can be defined just creating a new file inside the ``app/templates/helpers`` folder. These helpers will be available for any template of the app.
-
-.. code-block:: html+handlebars
-
-  {{#isTabActionEnabled "vms-tab" "VM.attachdisk"}}
-  <span class="right">
-    <button id="attach_disk" class="button tiny success right radius">
-      {{tr "Attach disk"}}
-    </button>
-  </span>
-  {{/isTabActionEnabled}}
-
-SASS & Foundation
-================================================================================
-
-The `Zurb Foundation <http://foundation.zurb.com/>`__ framework is used for the layout of the app. It provides a powerful grid system and different nifty widgets such as tabs, sliders, dialogs...
-
-The Zurb Foundation configuration parameters are defined in the ``app/scss/settings.scss`` file and new styles for the app can be added in the ``app/scss/app.scss`` file. After modifying these files, the app.css and app.min.css files must be generated as explained in the following section.
-
-
-Modifying JS & CSS files
-================================================================================
-
-Sunstone can be run in two different environments:
-
-- Production, using the minified css ``css/app.min.css`` and javascript ``dist/main.js`` files.
-- Development, using the non minified css ``css/app.css`` and javascript files ``app/main.js``. Note that each file/module will be retrieved in a different HTTP request and the app will take longer to start, therefore it is not recommended for production environments
-
-By default Sunstone is configured to use the minified files, therefore any change in the source code will not apply until the minified files are generated again. But you can set the ``env`` parameter in sunstone-server.conf to ``dev`` to use the non minified files and test your changes.
-
-After testing the changes, the minified files can be generated by running the ``grunt requirejs`` task or the ``scons sunstone=yes`` command as explained in the following section. It is recommended to change again the ``env`` parameter in sunstone-server.conf to ``prod`` and test again the changes.
-
-.. code::
-
-  sunstone/
-    public/
-      app/                    # JS sources
-      bower_components/       # External libraries
-      css/                    # CSS optimized files
-      dist/                   # JS optimized files
-      node_modules/           # Development dependencies
-      scss/                   # CSS sources
-      bower.json              # List of external libraries
-      Gruntfile.js            # Tasks to optimize files
-      package.json            # List of dev dependencies
-    routes/                   # Custom routes for Sunstone Server
-
-Sunstone Development Dependencies
+Auth
 --------------------------------------------------------------------------------
 
-1. Install nodejs v12 and npm v6
-2. Install the following npm packages:
++--------------+--------------------------------------+--------------------------------------------------------+
+| Method       | URL                                  | Meaning / Entity Body                                  |
++==============+======================================+========================================================+
+| **POST**     | ``/fireedge/api/auth``               | Authenticate user by credentials.                      |
++--------------+--------------------------------------+--------------------------------------------------------+
+| **POST**     | ``/fireedge/api/tfa``                | Set the Two factor authentication (2FA).               |
++--------------+--------------------------------------+--------------------------------------------------------+
+| **GET**      | ``/fireedge/api/tfa``                | **Show** the QR code resource.                         |
++--------------+--------------------------------------+--------------------------------------------------------+
+| **DELETE**   | ``/fireedge/api/tfa``                | **Delete** the QR code resource.                       |
++--------------+--------------------------------------+--------------------------------------------------------+
 
-.. code::
-
-    sudo npm install -g bower
-    sudo npm install -g grunt
-    sudo npm install -g grunt-cli
-
-.. warning::
-
-    In case of error as below try to add ``--force`` switch:
-
-    .. code::
-
-        sudo npm install -g grunt-cli
-        npm ERR! code EEXIST
-        npm ERR! path /usr/local/bin/grunt
-        npm ERR! EEXIST: file already exists
-        npm ERR! File exists: /usr/local/bin/grunt
-        npm ERR! Remove the existing file and try again, or run npm
-        npm ERR! with --force to overwrite files recklessly.
-
-3. Move to the Sunstone public folder 
-   
-.. code::
-
-   cd src/sunstone/public/
-
-
-and run:
-
-.. code::
-
-    npm install     # Dependencies defined in package.json
-    bower install   # Dependenciees define in bower.json
-
-.. warning:: In order to run npm and bower commands ``git`` is required
-
-
-.. warning:: In case of error related with wrong python syntax one needs to install python2.7:
-
-   .. code::
-      
-        dnf groupinstall "development tools"
-        cd ~/
-        curl -L -O https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tar.xz
-        tar xf Python-2.7.18.tar.xz
-        cd Python-2.7.18/
-        ./configure --prefix=/usr/local --enable-shared --enable-unicode=ucs4
-        make
-        make install
-        echo "export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/bin/python2.7:$LD_LIBRARY_PATH" >> ~/.bash_profile
-        source ~/.bash_profile
-
-
-
-  It's needed to downgrade node version to 10.21:
-
-   .. code::
-
-       node -v
-
-       npm install -g n
-
-       n 10.21
-
-  Try to build sunstone again:
-
-  .. code::
-
-    npm install --python=python2.7
-    bower install
-    cd ~/one-ee
-    scons sunstone=yes
-    sudo ./install.sh -s -u oneadmin -g oneadmin
-
-
-
-Building minified JS and CSS files
+File
 --------------------------------------------------------------------------------
 
-Scons includes an option to build the minified JS and CSS files. Sunstone development dependencies must be installed before running this command.
++--------------+--------------------------------------+--------------------------------------------------------+
+| Method       | URL                                  | Meaning / Entity Body                                  |
++==============+======================================+========================================================+
+| **GET**      | ``/fireedge/api/files``              | **List** the files collection.                         |
++--------------+--------------------------------------+--------------------------------------------------------+
+| **GET**      | ``/fireedge/api/files/<id>``         | **Show** the file identified by <id>.                  |
++--------------+--------------------------------------+--------------------------------------------------------+
+| **POST**     | ``/fireedge/api/files``              | **Create** a new file.                                 |
++--------------+--------------------------------------+--------------------------------------------------------+
+| **PUT**      | ``/fireedge/api/files/<id>``         | **Update** the file identified by <id>.                |
++--------------+--------------------------------------+--------------------------------------------------------+
+| **DELETE**   | ``/fireedge/api/files/<id>``         | **Delete** the file identified by <id>.                |
++--------------+--------------------------------------+--------------------------------------------------------+
 
-.. code::
-
-    scons sunstone=yes
-
-Or you can do this process manually by running the following commands:
-
-Run the following command to generate the app.css file in the css folder, including any modification done to the ``app/scss/app.scss`` and ``app/scss/settings.scss`` files:
-
-.. code::
-
-    grunt sass
-
-Run the following command to generate the minified files in the dist folder, including any modification done to the js files and the app.min.css in the css folder, based on the app.css file generated in the previous step:
-
-.. code::
-
-    grunt requirejs
-
-These are the files generated by the ``grunt requirejs`` command:
-
-.. code::
-
-    css
-        app.min.css
-    dist
-        login.js login.js.map main-dist.js main.js.map
-    console
-        spice.js spice.js.map vnc.js vnc.js.map
-
-.. warning:: If the following error appears when running scons sunstone=yes or any of the grunt commands, you may have skip one step, so move to the Sunstone public folder and run 'bower install'
-
-.. code::
-
-  Running "sass:dist" (sass) task
-  >> Error: File to import not found or unreadable: util/util
-  ...
-  >>         on line 43 of scss/_settings.scss
-  >> >> @import 'util/util';
-  >>    ^
-  Warning:  Use --force to continue.
-
-Install.sh
+OneFlow
 --------------------------------------------------------------------------------
 
-By default the install.sh script will install all the files, including the non-minified ones. Providing the -p option, only the minified files will be installed.
++--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
+| Method       | URL                                                           | Meaning / Entity Body                                                  |
++==============+===============================================================+========================================================================+
+| **GET**      | ``/fireedge/api/service_template``                            | **List** the service template collection.                              |
++--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
+| **GET**      | ``/fireedge/api/service_template/<id>``                       | **Show** the service template identified by <id>.                      |
++--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
+| **POST**     | ``/fireedge/api/service_template``                            | **Create** a new service template.                                     |
++--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
+| **PUT**      | ``/fireedge/api/service_template/<id>``                       | **Update** the service template identified by <id>.                    |
++--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
+| **DELETE**   | ``/fireedge/api/service_template/<id>``                       | **Delete** the service template identified by <id>.                    |
++--------------+---------------------------------------------------------------+------------------------------------------------------------------------+
 
-The script generates a symbolic link **main.js** pointing to ``VAR_LOCATION/sunstone/main.js``. This file has been generated the first time that Sunstone starts, joining the base of Sunstone and the active addons.
++--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| Method       | URL                                                           | Meaning / Entity Body                                                                               |
++==============+===============================================================+=====================================================================================================+
+| **GET**      | ``/fireedge/api/service``                                     | **List** the service collection.                                                                    |
++--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| **GET**      | ``/fireedge/api/service/<id>``                                | **Show** the service identified by <id>.                                                            |
++--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| **POST**     | ``/fireedge/api/service``                                     | **Create** a new service.                                                                           |
++--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| **PUT**      | ``/fireedge/api/service/<id>``                                | **Update** the service identified by <id>.                                                          |
++--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| **DELETE**   | ``/fireedge/api/service/<id>``                                | **Delete** the service identified by <id>.                                                          |
++--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| **POST**     | ``/fireedge/api/service/action/<id>``                         | **Perform** an action on the service identified by <id>.                                            |
++--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| **POST**     | ``/fireedge/api/service/scale/<id>``                          | **Perform** an scale on the service identified by <id>.                                             |
++--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| **POST**     | ``/fireedge/api/service/role_action/<role_id>/<id>``          | **Perform** an action on all the VMs belonging to the role to the service identified both by <id>.  |
++--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| **POST**     | ``/fireedge/api/service/sched_action/<id>``                   | **Create** a new schedule action on the service identified by <id>.                                 |
++--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| **PUT**      | ``/fireedge/api/service/sched_action/<sched_action_id>/<id>`` | **Update** the schedule action on the service identified both by <id>.                              |
++--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| **DELETE**   | ``/fireedge/api/service/sched_action/<sched_action_id>/<id>`` | **Delete** the schedule action on the service identified both by <id>.                              |
++--------------+---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
 
-Adding Custom Tabs
+Sunstone
+--------------------------------------------------------------------------------
+
++--------------+---------------------------------------+---------------------------------------------------------+
+| Method       | URL                                   | Meaning / Entity Body                                   |
++==============+=======================================+=========================================================+
+| **GET**      | ``/fireedge/api/sunstone/views``      | **Get** the Sunstone view.                              |
++--------------+---------------------------------------+---------------------------------------------------------+
+| **GET**      | ``/fireedge/api/sunstone/config``     | **Get** the Sunstone config.                            |
++--------------+---------------------------------------+---------------------------------------------------------+
+
+vCenter
+--------------------------------------------------------------------------------
+
++--------------+---------------------------------------------+----------------------------------------------------------------------------+
+| Method       | URL                                         | Meaning / Entity Body                                                      |
++==============+=============================================+============================================================================+
+| **GET**      | ``/fireedge/api/vcenter``                   | **List** Show a list with unimported vCenter objects                       |
++--------------+---------------------------------------------+----------------------------------------------------------------------------+
+| **GET**      | ``/fireedge/api/vcenter/<id>``              | **Show** Show unimported vCenter object                                    |
++--------------+---------------------------------------------+----------------------------------------------------------------------------+
+| **GET**      | ``/fireedge/api/vcenter/listall``           | **List** Show a list with unimported vCenter objects excluding all filters |
++--------------+---------------------------------------------+----------------------------------------------------------------------------+
+| **GET**      | ``/fireedge/api/vcenter/listall/<id>``      | **Get** Show unimported vCenter objects excluding all filters              |
++--------------+---------------------------------------------+----------------------------------------------------------------------------+
+| **POST**     | ``/fireedge/api/vcenter/hosts/<vCenter>``   | **Perform** Import vCenter clusters as OpenNebula hosts                    |
++--------------+---------------------------------------------+----------------------------------------------------------------------------+
+| **POST**     | ``/fireedge/api/vcenter/import/<vObject>``  | **Perform** Import the desired vCenter object                              |
++--------------+---------------------------------------------+----------------------------------------------------------------------------+
+| **POST**     | ``/fireedge/api/vcenter/cleartags/<id>``    | **Perform** Clear extraconfig tags from a vCenter VM                       |
++--------------+---------------------------------------------+----------------------------------------------------------------------------+
+
+Zendesk
+--------------------------------------------------------------------------------
+
++--------------+---------------------------------------------+----------------------------------------------------+
+| Method       | URL                                         | Meaning / Entity Body                              |
++==============+=============================================+====================================================+
+| **POST**     | ``/fireedge/api/zendesk/login``             | Authenticate user by credentials.                  |
++--------------+---------------------------------------------+----------------------------------------------------+
+| **GET**      | ``/fireedge/api/zendesk``                   | **List** the tickets collection.                   |
++--------------+---------------------------------------------+----------------------------------------------------+
+| **GET**      | ``/fireedge/api/zendesk/<id>``              | **Show** the ticket identified by <id>.            |
++--------------+---------------------------------------------+----------------------------------------------------+
+| **GET**      | ``/fireedge/api/zendesk/comments/<id>``     | **List** the ticket's comments identified by <id>. |
++--------------+---------------------------------------------+----------------------------------------------------+
+| **POST**     | ``/fireedge/api/zendesk``                   | **Create** a new ticket.                           |
++--------------+---------------------------------------------+----------------------------------------------------+
+| **PUT**      | ``/fireedge/api/zendesk/<id>``              | **Update** the ticket identified by <id>.          |
++--------------+---------------------------------------------+----------------------------------------------------+
+
+
+Frontend Architecture
 ================================================================================
 
-New tabs can be included following these steps:
+An important part of managing OpenNebula through an interface is the use of forms and lists of resources. For this reason, we decided to extract some of this logic in configuration files.
 
-* Add your code inside the ``app`` folder. The tab must be provided as a module.
-* Include the new tab as a dependency in the ``app/main.js`` file for the ``app`` module.
+Unlike the current, ruby-based Sunstone, it's the behavior of requests in parallel which allows the use of the interface with greater flexibility and fluidity.
 
-.. code-block:: javascript
+Queries to get the pool resource from OpenNebula are greatly optimized, which ensures a swift response of the interface. If a large amount of certain types of resources are present (for example VMs or Hosts), a performance strategy that consists of making queries with intervals is implemented. Thus, the representation of the first interval list of resources is faster and the rest of the queries are kept in the background.
 
-  shim: {
-    'app': {
-      deps: [
-        'tabs/provision-tab',
-        'tabs/dashboard-tab',
-        'tabs/system-tab',
-        ...
-        'tabs/mycustom-tab'
-      ]
-    },
+Sunstone Configuration Files
+================================================================================
 
-* Include the tab configuration inside the different Sunstone views ``/etc/one/sunstone-views/(admin|user|...).yaml``
+Through the configuration files we can define view types and assign them to different groups. Then, we differentiate between the master and view files.
+
+Master File
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This file orchestrates the views according to the user's primary group and it's located in ``etc/sunstone/sunstone-view.yaml``.
+
+In the following example, all groups have access to the user view and ``oneadmin`` to the admin view also:
 
 .. code-block:: yaml
 
-  enabled_tabs:
-    - dashboard-tab
-    - system-tab
-    ...
-    - mycustom-tab
-  tabs:
-    mycustom-apps-tab:
-        panel_tabs:
-            myscustom_info_tab: true
-        table_columns:
-            - 0         # Checkbox
-            - 1         # ID
-            - 2         # Name
-        actions:
-            MyCustom.create: true
-            MyCustom.refresh: true
+  # etc/sunstone/sunstone-view.yaml
+  groups:
+    oneadmin:
+      - admin
+      - user
+  default:
+    - user
 
-* Generate the minified files including the new tab by running the ``grunt requirejs`` command.
 
-You can see an example of external tabs and custom routes for AppMarket in its own `Github repository <https://github.com/OpenNebula/addon-appmarket/tree/master/src/sunstone>`_
+View Directory And Tab Files
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Custom Routes for Sunstone Server
+The view directory contains the route or tab files. These tab files, with YAML extension, describe the behavior of each resource list within the application: VMs, Networks, Hosts, etc.
+
+The tab files are located in ``etc/sunstone/<view_name>/<resource_tab>``.
+
+Adding New Tabs
 ================================================================================
 
-:ref:`OpenNebula Sunstone <sunstone>` server plugins consist of a set files defining custom routes. Custom routes will have priority over default routes and allow administrators to integrate their own custom controllers in the Sunstone Server.
+OpenNebula resources are grouped into pools and can be managed from the interface through resource tab (or route) where we can operate over one or more resources, filter by attributes or get detailed information about individual resource.
 
-Configuring Sunstone Server Plugins
---------------------------------------------------------------------------------
+To develop a new tab, it's necessary to understand the structure of the configuration tab files:
 
-It is very easy to enable custom plugins:
+- **Resource**: related information about resources.
+- **Actions**: buttons to operate over the resources.
+- **Filters**: list of criteria to filter the resources.
+- **Information Tabs**: list of tabs to show detailed information.
+- **Dialogs**: steps and logic to render the dialog.
 
-#. Place your custom routes in the ``/usr/lib/one/sunstone/routes`` folder.
-#. Modify ``/etc/one/sunstone-server.conf`` to indicate which files should be loaded, as shown in the following example:
 
-.. code-block:: yaml
+Resource
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    # This will load ''custom.rb'' and ''other.rb'' plugin files.
-    :routes:
-        - custom
-        - other
+Using the view files as a starting point, the interface generates the available routes and defines them in a menu.
 
-Creating Sunstone Server Plugins
---------------------------------------------------------------------------------
+Through each tab in sidebar you can control and manage one of OpenNebula resource pool. All tabs should have a folder in the containers directory ``src/client/containers`` and enable the route in ``src/client/apps/sunstone/routesOne.js``.
 
-Sunstone server is a `Sinatra <http://www.sinatrarb.com/>`__ application. A server plugin is simply a file containing one or several custom routes, as defined in sinatra applications.
-
-The following example defines 4 custom routes:
-
-.. code-block:: ruby
-
-    get '/myplugin/myresource/:id' do
-        resource_id = params[:id]
-        # code...
-    end
-     
-    post '/myplugin/myresource' do
-        # code
-    end
-     
-    put '/myplugin/myresource/:id' do
-        # code
-    end
-     
-    del '/myplugin/myresource/:id' do
-        # code
-    end
-
-Custom routes take preference over Sunstone server routes. In order to ease debugging and ensure that plugins are not interfering with each other, we recommend however to place the routes in a custom namespace (``myplugin`` in the example).
-
-From the plugin code routes, there is access to all the variables, helpers, etc. which are defined in the main sunstone application code. For example:
-
-.. code-block:: ruby
-
-    opennebula_client = $cloud_auth.client(session[:user])
-    sunstone_config = $conf
-    logger.info("New route")
-    vm3_log = @SunstoneServer.get_vm_log(3)
-
-ESLint
-================================================================================
-
-Install ESLint:
-
-.. code::
-
-  sudo npm install -g eslint
-
-After the installation you can initialize ESLint with your own rules or use OpenNebula's configuration:
-
-1. Use the command ``eslint --init`` to create your own `.eslintrc.json` with your personal configuration.
-
-  or
-
-2. Manually create the `.eslintrc.json` and copy/paste the following code:
-
-``one/src/sunstone/public/.eslintrc.json``
-
-.. code::
-
-  {
-    "env": {
-        "browser": true,
-        "es6": true
-    },
-    "parserOptions": {
-        "sourceType": "module"
-    },
-    "rules": {
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "double"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ],
-        "eqeqeq": 2,
-        "no-trailing-spaces": [
-            "error"
-        ]
-        //new rules here
-    }
-  }
++------------------------------------+--------------------------------------------------------------------------------------------------+
+|               Property             |                                     Description                                                  |
++====================================+==================================================================================================+
+| ``resource_name``                  | Reference to ``RESOURCE_NAMES`` in ``src/client/constants/index.js``                             |
++------------------------------------+--------------------------------------------------------------------------------------------------+
 
 .. note::
 
-  The usage of ESLint is not mandatory but we recomend our contributors to use it, to be sure that the code is standardiced.
+  It's important that ``resource_name`` matches the ``RESOURCE_NAMES`` constant, because the constants are used to define the routes in ``src/client/apps/sunstone/routesOne.js``.
 
-More information about `ESlint <https://eslint.org/>`__ project.
+
+Actions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+List of actions to operate over the resources: ``refresh``, ``chown``, ``chgrp``, ``lock``, ``unlock``, etc.
+
+There're three action types:
+
+- Form modal actions. All of actions that they haven't ``_dialog`` suffix.
+- Actions referenced in other files, E.g.: VM Template ``create_app_dialog`` references to  Marketplace App ``create_dialog``.
+- Form actions on separate route. All of actions that they have ``_dialog`` suffix. E.g.: VM Template ``instantiate_dialog`` will have defined a route similar to ``http://localhost:2616/fireedge/sunstone/vm-template/instantiate``.
+
+All actions are defined in the resource constants, e.g.: for VM Templates are located in ``src/client/constants/vmTemplate.js`` as ``VM_TEMPLATE_ACTIONS``.
+
+Filter
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This includes the list of criteria to filter each OpenNebula resource pool.
+
+To add one, first it's necessary to implement the filter in the table columns. E.g.:
+
+.. code-block:: javascript
+
+  // src/client/components/Tables/MarketplaceApps/columns.js
+  {
+    Header: 'State',
+    id: 'STATE',
+    disableFilters: false,
+    Filter: ({ column }) =>
+      CategoryFilter({
+        column,
+        multiple: true,
+        title: 'State',
+      }),
+    filter: 'includesValue',
+  }
+
+Information Tabs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The detailed view of a resource is structure in a tabs layout. Tabs are defined in the ``index.js`` of each resource folder ``src/client/components/Tabs/<resource>``. E.g.: VM Templates tabs are located in ``src/client/components/Tabs/VmTemplate/index.js``.
+
+Each entry in the ``info-tabs`` represents a tab and they have two attributes, except the ``info`` tab:
+
+- ``enabled``: defines if the tab is visible.
+- ``actions``: contains the allowed actions in the tab. The function to get available actions is located in ``src/client/models/Helper.js``.
+
+The ``info`` tab is special because it contains panels sections. Each panel section is an attributes group that can include actions.
+
+Attributes group can be separated on four panels:
+
+- Information: main attributes to explain the resource.
+- Permissions: associated permissions for the owner, the users in her group, and others.
+- Ownership: user and group to which it belongs.
+- Attributes (not always): these panels are singular because they have information about each hypervisor and monitoring.
+
+Each group of actions can filter by hypervisor (**only resources with hypervisor**), e.g.:
+
+.. code-block:: yaml
+
+  # etc/sunstone/admin/vm-tab.yaml
+  storage:
+    enabled: true
+    actions:
+      attach_disk:
+        enabled: true
+        not_on:
+          - firecracker
+
+Dialogs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The resource actions that have ``_dialog`` suffix, need to define their structure in this section.
+
+The first entries in the dialog mean the available steps. Then, within the step are defined the accessible sections.
+
+Each step and section should match the **id** in code and can filter by hypervisor (**only resources with hypervisor**).
+
+See some examples:
+
+- Required step: ``src/client/components/Forms/VmTemplate/InstantiateForm/Steps/VmTemplatesTable/index.js``
+- Step with sections: ``src/client/components/Forms/VmTemplate/InstantiateForm/Steps/BasicConfiguration/index.js``
+- Step with tabs: ``src/client/components/Forms/VmTemplate/InstantiateForm/Steps/AdvancedOptions/index.js``
+
+.. code-block:: yaml
+
+  # etc/sunstone/admin/vm-template-tab.yaml
+  # ** Required means that it's necessary for the operation of the form
+  dialogs:
+    instantiate_dialog:
+      select_vm_template: true # required
+      configuration:
+        information: true
+        ownership: true
+        permissions: true
+        capacity: true
+        vm_group: true
+        vcenter:
+          enabled: true
+          not_on:
+            - kvm
+            - lxc
+            - firecracker
+      advanced_options:
+        storage: true
+        network: true
+        placement: true
+        sched_action: true
+        booting: true
+
+SSO (Single sign-on)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+With this function you can enter the FireEdge from the browser without logging in. For this you need to send in the URL the externalToken parameter with the JWT of the user.
+
+For example:
+
+.. prompt:: bash $ auto
+
+    $ https://{fireedge-sunstone}?externalToken={JWT}
+
+.. note::
+
+    To obtain the JWT you must first make a call to ``http://{fireedge}/fireedge/api/auth`` sending the user's credentials and take only the value of **token**, e.g.:
+
+    .. code::
+
+        $ curl -X POST -H "Content-Type: application/json" \
+        $ -d '{ "user": "username", "token": "password" }' \
+        $ http://{fireedge}/fireedge/api/auth
+
+       {"id":200,"message":"OK","data":{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIwIiwiYXVkIjoic2VydmVyYWRtaW46b25lYWRtaW4iLCJqdGkiOiJ2SU85ME91VUU5b1RNaXRRVytLYmNqRXZlS252Qnc5c2Ura1pPNlVRdmRjPSIsImlhdCI6MTY1MDI3NTQzMC45MzcsImV4cCI6MTY1MDI4NjIzMH0.AqJGLbCNG470PbjoI4yLqvKNOl1FR4Ui6YlK6pSZddQ","id":"0"}}

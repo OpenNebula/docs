@@ -63,7 +63,7 @@ To create a VM Group, use the Sunstone web interface, or create a template file 
 Placement Policies
 ================================================================================
 
-The following placement policies cane be applied to the VMs of a VM Group.
+The following placement policies can be applied to the VMs of a VM Group.
 
 VM to Host Affinity
 --------------------------------------------------------------------------------
@@ -98,7 +98,7 @@ Role to Role Affinity
 
 Specifies whether the VMs of a role have to be placed together or separately with the VMs of other role. This useful to combine the Host-VM and VM-VM policies. Affinity rules for roles are set with the ``AFFINED`` and ``ANTI_AFFINED`` attributes.
 
-For example, consider that you need the VMs of a database to run together so they access the same storage. At the same time, you need all the backup VMs to run in a separate hosts; and you need database and backups to be also in different hosts. Finally, you may have some constraints about where the database and backups may run:
+For example, consider that you need the VMs of a database to run together so they access the same storage. At the same time, you need all the backup VMs to run in a separate hosts; and you need database and backups to also be in different hosts. Finally, you may have some constraints about where the database and backups may run:
 
 .. prompt:: bash $ auto
 
@@ -157,5 +157,7 @@ Managing VM Groups with Sunstone
 You can also manage VM Groups using :ref:`Sunstone <sunstone>`, through the VM Group tab.
 
 |vmg_wizard_create|
+|vmg_wizard_create-2|
 
 .. |vmg_wizard_create| image:: /images/vmg_wizard_create.png
+.. |vmg_wizard_create-2| image:: /images/vmg_wizard_create-2.png

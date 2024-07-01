@@ -4,7 +4,7 @@
 Virtual Machine Template
 ========================
 
-A template file consists of a set of attributes that defines a Virtual Machine. Using the command ``onetemplate create``, a template can be registered in OpenNebula to be later instantiated. For compatibility with previous versions, you can also create a new Virtual Machine directly from a template file, using the ``onevm create`` command.
+A template file consists of a set of attributes that defines a Virtual Machine. Using the command ``onetemplate create``, a template can be registered in OpenNebula to be instantiated later. For compatibility with previous versions, you can also create a new Virtual Machine directly from a template file, using the ``onevm create`` command.
 
 .. warning:: There are some template attributes that can compromise the security of the system or the security of other VMs, and can be used **only** by users in the oneadmin group. These attributes can be configured in :ref:`oned.conf <oned_conf>`, the default ones are labeled with ``*`` in the following tables. See the complete list in the :ref:`Restricted Attributes <template_restricted_attributes>` section.
 
@@ -134,7 +134,7 @@ The following attributes can be defined to set the cost of a VM. Read the :ref:`
 OS and Boot Options Section
 ================================================================================
 
-The OS system is defined with the ``OS`` vector attribute. The following sub-attributes are supported:
+The operating system is defined with the ``OS`` vector attribute. The following sub-attributes are supported:
 
 .. note:: The hypervisor column states that the attribute is **O**\ ptional, **M**\ andatory, or ``-`` not supported for that hypervisor.
 
@@ -180,7 +180,7 @@ The OS system is defined with the ``OS`` vector attribute. The following sub-att
 
 (!!) Use one of ``KERNEL_DS`` or KERNEL (and ``INITRD`` or ``INITRD_DS``).
 
-``KERNEL_DS`` and ``INITRD_DS`` refer to and image registered in a File Datastore and must be of type ``KERNEL`` and ``RAMDISK``, respectively. The image should be refer using one of the following:
+``KERNEL_DS`` and ``INITRD_DS`` refer to an image registered in a File Datastore and must be of type ``KERNEL`` and ``RAMDISK``, respectively. The image should be referred to using one of the following:
 
 -  ``$FILE[IMAGE=<image name>]``, to select own files.
 -  ``$FILE[IMAGE=<image name>, <IMAGE_UNAME|IMAGE_UID>=<owner name|owner id>]``, to select images owned by other users, by user name or uid.
@@ -209,21 +209,21 @@ CPU_MODEL Options Section
 
 This section (``CPU_MODEL``) configures the hardware configuration of the CPU exposed to the guest.
 
-.. note:: The hypervisor column states that the attribute is **O**\ optional or ``-`` not supported for that hypervisor.
+.. note:: The hypervisor column states that the attribute is **O**\ ptional or ``-`` not supported for that hypervisor.
 
 .. note:: The following attributes are not configurable in Firecracker.
 
 +-------------------------+----------------------------------------------------------+-----+---------+---------+
 | Sub-Attribute           | Description                                              | KVM | vCenter |   LXC   |
 +=========================+==========================================================+=====+=========+=========+
-| ``MODEL``               | The CPU model exposed to the guest. host-passthrough is  | O   | \-      | \-      |
+| ``MODEL``               | The CPU model exposed to the guest. Host-passthrough is  | O   | \-      | \-      |
 |                         | the same model as the host. Available modes are stored   |     |         |         |
 |                         | in the host information and obtained through monitor.    |     |         |         |
 +-------------------------+----------------------------------------------------------+-----+---------+---------+
 | ``FEATURES``            | The CPU features required by the guest. This a comma     | O   | \-      | \-      |
-|                         | separated value list of the CPU features that a virtual  |     |         |         |
-|                         | machines. Available features are stored in the host      |     |         |         |
-|                         | information and obtained through monitor.                |     |         |         |
+|                         | separated list of values of the CPU features in a        |     |         |         |
+|                         | virtual machine. Available features are stored in        |     |         |         |
+|                         | the host information and obtained through monitor.       |     |         |         |
 +-------------------------+----------------------------------------------------------+-----+---------+---------+
 
 .. _template_features:
@@ -266,7 +266,7 @@ This section configures the features enabled for the VM.
 | ``VIRTIO_BLK_QUEUES``   | Number of dispatch queues for the virtio-blk driver.        | O   | \-      | \-      |
 +-------------------------+-------------------------------------------------------------+-----+---------+---------+
 | ``IOTHREADS``           | Number of iothreads for virtio disks. By default threads    | O   | \-      | \-      |
-|                         | will be assign to disk by round robin algorithm. Disk       |     |         |         |
+|                         | will be assigned to disk by round robin algorithm. Disk     |     |         |         |
 |                         | thread id can be forced by disk ``IOTHREAD`` attribute.     |     |         |         |
 +-------------------------+-------------------------------------------------------------+-----+---------+---------+
 
@@ -546,9 +546,9 @@ Network Section
 | ``PARENT``             | It is used only on alias, it references the NIC which is alias of.                                       | O                     | O                     | O                     | O                     |
 +------------------------+----------------------------------------------------------------------------------------------------------+-----------------------+-----------------------+-----------------------+-----------------------+
 
-.. warning:: The ``PORTS`` and ``ICMP`` attributes require the firewalling functionality to be configured. Please read the :ref:`firewall configuration guide <firewall>`.
+.. warning:: The ``PORTS`` and ``ICMP`` attributes require the firewall functionality to be configured. Please read the :ref:`firewall configuration guide <firewall>`.
 
-Example, a VM with two NIC attached to two different networks:
+Example, a VM with two NIC's attached to two different networks:
 
 .. code::
 
@@ -560,7 +560,7 @@ Example, a VM with two NIC attached to two different networks:
     NIC = [ NETWORK_MODE = "auto",
             SCHED_REQUIREMENTS = "TRAFFIC_TYPE=\"public\"" ]
 
-Example, a VM with two NIC attached, one is an alias of the other one:
+Example, a VM with two NIC's attached, one is an alias of the other one:
 
 .. code::
 
@@ -574,7 +574,7 @@ For more information on setting up virtual networks please check the :ref:`Manag
 Network Defaults
 --------------------------------------------------------------------------------
 
-You can define a ``NIC_DEFAULT`` attribute with values that will be copied to each new ``NIC``. This is specially useful for an administrator to define configuration parameters, such as ``MODEL``, that final users may not be aware of.
+You can define a ``NIC_DEFAULT`` attribute with values that will be copied to each new ``NIC``. This is especially useful for an administrator to define configuration parameters, such as ``MODEL``, that final users may not be aware of.
 
 .. code::
 
@@ -627,7 +627,7 @@ The following I/O interfaces can be defined for a VM:
 |              | * ``RESOLUTION``: The preferred device resolution(ex: "1920x1080", "1280x768")       | O   | \-      | \-      | \-          |
 +--------------+--------------------------------------------------------------------------------------+-----+---------+---------+-------------+
 
-\ :sup:`*` Password will be truncated if its length exceeds 8 characters for ``vnc`` or 60 characters for ``spice``.
+.. note:: Password will be truncated if its length exceeds 8 characters for ``vnc`` or 60 characters for ``spice``.
 
 Example:
 
@@ -638,9 +638,9 @@ Example:
       LISTEN  = "0.0.0.0",
       PORT    = "5905"]
 
-.. warning:: For KVM hypervisor the port number is a real one, not the VNC port. So for VNC port 0 you should specify 5900, for port 1 is 5901 and so on.
+.. warning:: For the KVM hypervisor the port number is a real one, not the VNC port. So for VNC port 0 you should specify 5900, for port 1, 5901 and so on.
 
-.. warning:: OpenNebula will prevent VNC port collision within a cluster to ensure that a VM can be deployed or migrated to any host in the selected cluster. If the selected port is in use the VM deployment will fail. If the user does not specify the port variable, OpenNebula will try to assign ``VNC_PORTS[START] + VMID``, or the first lower available port. The ``VNC_PORTS[START]`` is specified inside the ``oned.conf`` file.
+.. warning:: OpenNebula will prevent VNC port collision within a cluster to ensure that a VM can be deployed or migrated to any host in the selected cluster. If the selected port is in use, the VM deployment will fail. If the user does not specify the port variable, OpenNebula will try to assign ``VNC_PORTS[START] + VMID``, or the first lower available port. The ``VNC_PORTS[START]`` is specified inside the ``oned.conf`` file.
 
 .. _template_context:
 
@@ -833,7 +833,7 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 
 .. note::   If more than one of the password changing attributes listed above is defined, only the one with highest priority will be applied. The priority is the same as the order of appearance in this table.
 
-The values referred to by ``VARIABLE`` can be defined :
+The values referred to by ``VARIABLE`` can be defined as:
 
 **Hardcoded values:**
 
@@ -843,20 +843,20 @@ The values referred to by ``VARIABLE`` can be defined :
 
 **Using template variables**
 
-``$<template_variable>``: any single value variable of the VM template, like for example:
+``$<template_variable>``: any single value variable of the VM template, for example:
 
 .. code::
 
           IP_GEN       = "10.0.0.$VMID"
           SET_HOSTNAME = "$NAME"
 
-``$<template_variable>[<attribute>]``: Any single value contained in a multiple value variable in the VM template, like for example:
+``$<template_variable>[<attribute>]``: Any single value contained in a multiple value variable in the VM template, for example:
 
 .. code::
 
           IP_PRIVATE = $NIC[IP]
 
-``$<template_variable>[<attribute>, <attribute2>=<value2>]``: Any single value contained in the variable of the VM template, setting one attribute to discern between multiple variables called the same way, like for example:
+``$<template_variable>[<attribute>, <attribute2>=<value2>]``: Any single value contained in the variable of the VM template, setting one attribute to discern between multiple variables called the same way, for example:
 
 .. code::
 
@@ -864,27 +864,27 @@ The values referred to by ``VARIABLE`` can be defined :
 
 **Using Virtual Network template variables**
 
-``$NETWORK[<vnet_attribute>, <NETWORK_ID|NETWORK|NIC_ID>=<vnet_id|vnet_name|nic_id>]``: Any single value variable in the Virtual Network template, like for example:
+``$NETWORK[<vnet_attribute>, <NETWORK_ID|NETWORK|NIC_ID>=<vnet_id|vnet_name|nic_id>]``: Any single value variable in the Virtual Network template, for example:
 
 .. code::
 
           DNS = "$NETWORK[DNS, NETWORK_ID=3]"
 
-.. note:: The network MUST be in used by any of the NICs defined in the template. The vnet\_attribute can be ``TEMPLATE`` to include the whole vnet template in XML (base64 encoded).
+.. note:: The network MUST be in use by any of the NICs defined in the template. The vnet\_attribute can be ``TEMPLATE`` to include the whole vnet template in XML (base64 encoded).
 
 **Using Image template variables**
 
-``$IMAGE[<image_attribute>, <IMAGE_ID|IMAGE>=<img_id|img_name>]``: Any single value variable in the Image template, like for example:
+``$IMAGE[<image_attribute>, <IMAGE_ID|IMAGE>=<img_id|img_name>]``: Any single value variable in the Image template, for example:
 
 .. code::
 
           root = "$IMAGE[ROOT_PASS, IMAGE_ID=0]"
 
-.. note:: The image MUST be in used by any of the DISKs defined in the template. The image\_attribute can be ``TEMPLATE`` to include the whole image template in XML (base64 encoded).
+.. note:: The image MUST be in use by any of the DISKs defined in the template. The image\_attribute can be ``TEMPLATE`` to include the whole image template in XML (base64 encoded).
 
 **Using User template variables**
 
-``$USER[<user_attribute>]``: Any single value variable in the user (owner of the VM) template, like for example:
+``$USER[<user_attribute>]``: Any single value variable in the user (owner of the VM) template, for example:
 
 .. code::
 
@@ -1302,7 +1302,7 @@ In Sunstone, the ``USER_INPUTS`` can be ordered with the mouse.
 Schedule actions Section
 ================================================================================
 
-The following attributes can use to define punctual or relative actions for the VM.
+The following attributes can used to define punctual or relative actions for the VM.
 
 +---------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |   Attribute   | Description                                                                                                                                                                    |
@@ -1425,4 +1425,10 @@ For example:
 
 |sunstone_network_options|
 
+|sunstone_network_options-2|
+
+|sunstone_network_options-3|
+
 .. |sunstone_network_options| image:: /images/sunstone_network_options.png
+.. |sunstone_network_options-2| image:: /images/sunstone_network_options-2.png
+.. |sunstone_network_options-3| image:: /images/sunstone_network_options-3.png

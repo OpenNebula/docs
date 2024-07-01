@@ -60,16 +60,16 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'OpenNebula'
-copyright = '2023, OpenNebula Team <contact@opennebula.io>'
+copyright = '2024, OpenNebula Team <contact@opennebula.io>'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = '6.99'
+version = '6.9'
 # The full version, including alpha/beta/rc tags.
-release = '6.99.80'
+release = '6.9.80'
 # The context packages released version
 context_release = '6.8.1'
 

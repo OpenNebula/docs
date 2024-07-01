@@ -10,12 +10,12 @@ This page describes how to define a new Virtual Network. A Virtual Network inclu
 * Address Range.
 * Configuration attributes for the guests.
 
-When writing a Virtual Network template in a file just follows the same syntax as the :ref:`VM template <template>`.
+When writing a Virtual Network template in a file, it follows the same syntax as the :ref:`VM template <template>`.
 
 Physical Network Attributes
 ================================================================================
 
-It defines the **underlying networking infrastructure** that will support the Virtual Network, such as the ``VLAN ID`` or the hypervisor interface to bind the Virtual Network.
+It defines the **underlying networking infrastructure** that will support the Virtual Network, such as the ``VLAN ID`` or the hypervisor interface to bind the Virtual Network to.
 
 +------------------------+--------------------------------------------------+----------+----------------------------------+----------+
 | Attribute              | Description                                      | Value    | Mandatory                        | Drivers  |
@@ -51,7 +51,7 @@ It defines the **underlying networking infrastructure** that will support the Vi
 |                        |                                                  |          | Optional for vCenter             | vcenter  |
 +------------------------+--------------------------------------------------+----------+----------------------------------+----------+
 
-You have more information about the attributes used by the vCenter network driver in the :ref:`vCenter Network Overview <vcenter_network_attributes>` section.
+More information about the attributes used by the vCenter network driver are available in the :ref:`vCenter Network Overview <vcenter_network_attributes>` section.
 
 Quality of Service Attributes
 ================================================================================

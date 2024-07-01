@@ -207,11 +207,6 @@ To build run following:
 Building Sunstone from Source
 ================================================================================
 
-Please check the :ref:`Sunstone Development guide <sunstone_dev>` for detailed information
-
-Building FireEdge from Source
-================================================================================
-
 .. prompt:: text $ auto
 
     root@frontend:~/ $> cd ~/one/src/fireedge
@@ -219,3 +214,8 @@ Building FireEdge from Source
     root@frontend:~/ $> cd ~/one
     root@frontend:~/ $> scons fireedge=yes
     root@frontend:~/ $> ./install.sh -F -u oneadmin -g oneadmin
+
+Building Ruby Sunstone from Source
+================================================================================
+
+Please check the :ref:`Ruby Sunstone Development guide <ruby_sunstone_dev>` for detailed information

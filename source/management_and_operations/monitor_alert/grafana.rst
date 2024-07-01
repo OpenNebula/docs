@@ -7,12 +7,12 @@ Grafana Visualization
 Requirements
 ================================================================================
 
-This guide assumes you have already and up and running Grafana service. If you do not have already Grafana installed, follow the follwoing guides:
+This guide assumes you already have a up and running Grafana service. If you do not already have Grafana installed, refer to the following guides:
 
   - `Download and Installation <https://grafana.com/grafana/download>`_.
   - `Add a new Prometheus Data sources <https://grafana.com/blog/2022/01/26/video-how-to-set-up-a-prometheus-data-source-in-grafana/>`_.
 
-.. note:: Prometheus is listening in the standard port (9090) as described in the installation guide.
+.. note:: Prometheus is listening on the standard port (9090) as described in the installation guide.
 
 Grafana Dashboards
 ================================================================================
@@ -36,7 +36,7 @@ Grafana Provisioning
 Grafana supports `provisioning` which can be used to automatically reconfigure Grafana instances
 in shell scripts or automation engines like ansible.
 
-In case of OpenNebula you can use it to for example configure datasources and dashboards:
+In case of OpenNebula you can use it to, for instance, configure datasources and dashboards:
 
 .. prompt:: bash # auto
 
@@ -54,14 +54,14 @@ In case of OpenNebula you can use it to for example configure datasources and da
 
 .. important::
 
-   In the case your Grafana instance is running along Prometheus on the same OpenNebula server,
-   then the **http://localhost:9090** above can be utilized with `ssh tunneling`:
+   In the case that your Grafana instance is running alongside Prometheus on the same OpenNebula server,
+   then the **http://localhost:9090** above, can be accessed with `ssh tunneling`:
 
    .. prompt:: bash $ auto
 
       $ ssh -L 9090:localhost:9090 user@opennebula-server-running-prometheus
 
-   Otherwise, provide FQDN or IP address and make sure you can access Prometheus instance from your web browser.
+   Otherwise, provide the FQDN or IP address and make sure that you can access the Prometheus instance from your web browser.
 
 .. prompt:: bash # auto
 
@@ -80,7 +80,7 @@ In case of OpenNebula you can use it to for example configure datasources and da
    # systemctl restart grafana-server.service
 
 After the `grafana-server.service` restarts you should be able to connect and verify that the ``prometheus`` datasource
-is operational and OpenNebula dashboards show live data.
+is operational and the OpenNebula dashboards show live data.
 
 Please refer to the official documentation to learn more about
 `Grafana provisioning <https://grafana.com/docs/grafana/latest/administration/provisioning/>`_.
