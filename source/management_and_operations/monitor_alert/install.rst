@@ -9,7 +9,7 @@ This page describes how to install the OpenNebula Prometheus integration package
 Step 1. OpenNebula Repositories [Front-end, Hosts]
 ================================================================================
 
-At this point OpenNebula software repositories should be already configured in your front-end and hosts. Double check this is the case before proceeding, more information can be found in the :ref:`OpenNebula Repositories <repositories>` guide.
+At this point OpenNebula software repositories should already be configured in your front-end and hosts. Double check this is the case before proceeding, more information can be found in the :ref:`OpenNebula Repositories <repositories>` guide.
 
 Step 2. Install Front-end Packages [Front-end]
 ================================================================================
@@ -69,7 +69,7 @@ Note that you will be able to use any existing installation of the node exporter
 Step 4. Configure Prometheus [Front-end]
 ================================================================================
 
-The OpenNebula Prometheus package comes with a simple script that automatically configure the scrape endpoints for your cloud. First, make sure all your hosts are properly listed with onehost command, for example:
+The OpenNebula Prometheus package comes with a simple script that automatically configures the scrape endpoints for your cloud. First, make sure all your hosts are properly listed with the onehost command, for example:
 
 .. prompt:: bash $ auto
 
