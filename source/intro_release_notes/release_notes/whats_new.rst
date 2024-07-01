@@ -6,7 +6,7 @@ What's New in |version|
 
 .. Attention: Substitutions doesn't work for emphasized text
 
-**OpenNebula 7.0 ‘’** is the fifth stable release of the OpenNebula 6 series. This version of OpenNebula focuses on features to improve the end user experience as well as to optimize the use of the HW resources in KVM-based infrastructures.
+**OpenNebula 6.10 ‘’** is the fifth stable release of the OpenNebula 6 series. This version of OpenNebula focuses on features to improve the end user experience as well as to optimize the use of the HW resources in KVM-based infrastructures.
 
 We’d like to thank all the people that :ref:`support the project<acknowledgements>`, OpenNebula is what it is thanks to its community! Please keep rocking.
 
@@ -42,6 +42,8 @@ KVM
 
 Features Backported to 6.8.x
 ================================================================================
+
+Additionally, the following functionalities are present that were not in OpenNebula 6.8.0, although they debuted in subsequent maintenance releases of the 6.8.x series:
 
 - For VMs with resched flag add ``HOST_ID`` to :ref:`External Scheduler API <external_scheduler>`.
 - Option to restore individual disk from backup Image see :ref:`Restoring Backups <vm_backups_restore>`.
