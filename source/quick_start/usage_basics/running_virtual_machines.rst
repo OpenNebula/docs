@@ -132,7 +132,7 @@ Before instantiating the VM, we need to set the network it will connect to.
 
 Click the **Network** tab, then click the **Attach NIC** button:
 
-.. image:: /images/6.10-vm_insantiate_wiz4-attach_nic.png
+.. image:: /images/6.10-sunstone-vm_instantiate_wiz4-attach_nic.png
    :align: center
 
 |
