@@ -411,7 +411,7 @@ FireEdge
 
    Make sure the TCP port 2616 is not blocked on your firewall.
 
-Now you can try to log in through the FireEdge Sunstone GUI and FireEdge Provision GUI. To do so, point your browser to ``http://<frontend_address>:2616/fireedge/sunstone`` to access to FireEdge Sunstone and point your browser to ``http://<frontend_address>:2616/fireedge/provision`` to access to FireEdge Provision. You should get to the login page in both cases. The access user is ``oneadmin`` and initial (or customized) password is the one from the file ``/var/lib/one/.one/one_auth`` on your Front-end.
+Now you can try to log in through the Sunstone GUI and Provision GUI. To do so, point your browser to ``http://<frontend_address>:2616/fireedge/sunstone`` to access to Sunstone and point your browser to ``http://<frontend_address>:2616/fireedge/provision`` to access to Provision. You should get to the login page in both cases. The access user is ``oneadmin`` and initial (or customized) password is the one from the file ``/var/lib/one/.one/one_auth`` on your Front-end.
 
 |sunstone_login|
 
