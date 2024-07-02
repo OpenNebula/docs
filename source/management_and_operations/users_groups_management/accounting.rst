@@ -380,9 +380,9 @@ If you execute oneacct with the ``-x`` option, you will get an XML output define
 Sunstone
 ========
 
-Sunstone also displays information about accounting. Information is accessible via the User dialogs for the user and admin views. The cloud view can access the metering information in the dashboard, whereas the group admin user can access them under the users section.
+Sunstone also displays information about accounting. Information is accessible via the User details, clicking on the Accounting tab in admin, cloud and group admin views.
 
-|image1|
+|sunstone_accounting|
 
 Tuning & Extending
 ==================
@@ -394,4 +394,4 @@ There are two kinds of monitoring values:
 
 Developers interacting with OpenNebula using the Ruby bindings can use the `VirtualMachinePool.accounting method <http://docs.opennebula.io/doc/6.4/oca/ruby/OpenNebula/VirtualMachinePool.html#accounting-instance_method>`__ to retrieve accounting information filtering and ordering by multiple parameters.
 
-.. |image1| image:: /images/accounting_admin_view.png
+.. |sunstone_accounting| image:: /images/accounting_admin_view.png

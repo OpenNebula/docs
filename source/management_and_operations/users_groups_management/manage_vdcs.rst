@@ -125,10 +125,10 @@ The Groups will share the physical resources, but without being aware of it. If 
 Managing VDCs in Sunstone
 ================================================================================
 
-All the described functionality is available graphically using :ref:`Sunstone <sunstone>`:
+All the described functionality is available graphically using :ref:`Sunstone <fireedge_conf>`:
 
-|qs_vdc13|
+|sunstone_vdcs|
 
 .. |VDC Organization| image:: /images/vdc_organization.png
-.. |qs_vdc13| image:: /images/qs_vdc13.png
+.. |sunstone_vdcs| image:: /images/sunstone_vdcs.png
    :width: 100 %

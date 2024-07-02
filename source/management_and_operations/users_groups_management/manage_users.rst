@@ -235,7 +235,9 @@ For instance, as ``regularuser`` you could do the following:
 
 As you can see, any user can find out his ID using the ``oneuser show`` command without any arguments.
 
-Regular users can retrieve their quota and user information in the settings section in the top right corner of the main screen: |image1|
+Regular users can retrieve their information in the Settings section of Sunstone: 
+
+|sunstone_user_settings|
 
 Finally some configuration attributes can be set to tune the behavior of Sunstone or OpenNebula for the user. For a description of these attributes please check :ref:`the group configuration guide <manage_users_primary_and_secondary_groups>`.
 
@@ -244,13 +246,13 @@ Finally some configuration attributes can be set to tune the behavior of Sunston
 Managing Users in Sunstone
 ================================================================================
 
-All the described functionality is available graphically using :ref:`Sunstone <sunstone>`:
+All the described functionality is available graphically using :ref:`Sunstone <fireedge_configuration>`:
 
-|image2|
+|sunstone_user_list|
 
 
-.. |image1| image:: /images/sunstone_user_settings.png
-.. |image2| image:: /images/sunstone_user_list.png
+.. |sunstone_user_settings| image:: /images/sunstone_user_settings.png
+.. |sunstone_user_list| image:: /images/sunstone_user_list.png
 
 
 .. _change_credentials:
