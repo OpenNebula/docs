@@ -70,8 +70,6 @@ Available packages for OpenNebula clients, the Front-end and hypervisor Nodes:
 +------------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **opennebula-tools**                     | Command Line Interface                                                                                        |
 +------------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **opennebula-sunstone**                  | GUI :ref:`Sunstone <sunstone>` and noVNC Proxy Server                                                         |
-+------------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **opennebula-fireedge**                  | Next-generation GUI :ref:`FireEdge <fireedge_setup>`                                                          |
 +------------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **opennebula-gate**                      | :ref:`OneGate <onegate_overview>` server which allows communication between VMs and OpenNebula                |
@@ -126,7 +124,7 @@ Install all OpenNebula Front-end components by executing the following commands 
 
 .. prompt:: bash # auto
 
-    # yum -y install opennebula opennebula-sunstone opennebula-fireedge opennebula-gate opennebula-flow opennebula-provision
+    # yum -y install opennebula opennebula-fireedge opennebula-gate opennebula-flow opennebula-provision
 
 .. _install_docker_deps_rh:
 
@@ -164,7 +162,7 @@ Install all OpenNebula Front-end components by executing the following commands 
 .. prompt:: bash # auto
 
     # apt-get update
-    # apt-get -y install opennebula opennebula-sunstone opennebula-fireedge opennebula-gate opennebula-flow opennebula-provision
+    # apt-get -y install opennebula opennebula-fireedge opennebula-gate opennebula-flow opennebula-provision
 
 .. _install_docker_deps_deb:
 
@@ -274,15 +272,7 @@ Check how to :ref:`change oneadmin password <change_credentials>` for already ru
 FireEdge
 --------
 
-OpenNebula FireEdge is a next-generation web server that delivers a GUI for remote OpenNebula clusters provisioning (OneProvision GUI) as well as additional functionality to Sunstone (Guacamole, and VMRC for VMware). It is installed and configured by default but can be skipped if you don't need these features.
-
-You have to configure Sunstone with the public endpoint of FireEdge so that one service can redirect users to the other. To configure the public FireEdge endpoint in Sunstone, edit ``/etc/one/sunstone-server.conf`` and update parameter ``:public_fireedge_endpoint`` with the base URL (domain or IP-based) over which end-users will access FireEdge. For example:
-
-.. code::
-
-    :public_fireedge_endpoint: http://one.example.com:2616
-
-If you are reconfiguring any time later already running services, don't forget to restart them to apply the changes.
+OpenNebula FireEdge is a next-generation web server that delivers a GUI for remote OpenNebula clusters provisioning (OneProvision GUI) as well as additional functionality to Sunstone (Guacamole). It is installed and configured by default but can be skipped if you don't need these features.
 
 .. note::
 
@@ -342,8 +332,6 @@ The complete list of operating system services provided by OpenNebula:
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
 | **opennebula-hem**                    | Hook Execution Service                                                 | opennebula                |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
-| **opennebula-sunstone**               | GUI server :ref:`Sunstone <sunstone>`                                  |                           |
-+---------------------------------------+------------------------------------------------------------------------+---------------------------+
 | **opennebula-fireedge**               | Next-generation GUI server :ref:`FireEdge <fireedge_setup>`            |                           |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
 | **opennebula-gate**                   | OneGate Server for communication between VMs and OpenNebula            |                           |
@@ -351,8 +339,6 @@ The complete list of operating system services provided by OpenNebula:
 | **opennebula-flow**                   | OneFlow Server for multi-VM services                                   |                           |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
 | **opennebula-guacd**                  | Guacamole Proxy Daemon                                                 | opennebula-fireedge       |
-+---------------------------------------+------------------------------------------------------------------------+---------------------------+
-| **opennebula-novnc**                  | noVNC Proxy Server                                                     | opennebula-sunstone       |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
 | **opennebula-showback**               | Service for periodic recalculation of showback                         | opennebula                |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
@@ -367,7 +353,7 @@ You are ready to **start** all OpenNebula services with the following command (N
 
 .. prompt:: bash # auto
 
-    # systemctl start opennebula opennebula-sunstone opennebula-fireedge opennebula-gate opennebula-flow
+    # systemctl start opennebula opennebula-fireedge opennebula-gate opennebula-flow
 
 .. warning::
 
@@ -377,7 +363,7 @@ Other OpenNebula services might be started as a dependency but you don't need to
 
 .. prompt:: bash # auto
 
-    # systemctl enable opennebula opennebula-sunstone opennebula-fireedge opennebula-gate opennebula-flow
+    # systemctl enable opennebula opennebula-fireedge opennebula-gate opennebula-flow
 
 .. _verify_frontend_section:
 
@@ -418,18 +404,18 @@ You can investigate the OpenNebula logs in ``/var/log/one``, check files ``/var/
 
 .. _verify_frontend_section_sunstone:
 
-Sunstone
+FireEdge
 --------------------------------------------------------------------------------
 
 .. note::
 
-   Make sure the TCP port 9869 is not blocked on your firewall.
+   Make sure the TCP port 2616 is not blocked on your firewall.
 
-Now you can try to log in through the Sunstone GUI. To do so, point your browser to ``http://<frontend_address>:9869``. You should get to the login page. The access user is ``oneadmin`` and initial (or customized) password is the one from the file ``/var/lib/one/.one/one_auth`` on your Front-end.
+Now you can try to log in through the FireEdge Sunstone GUI and FireEdge Provision GUI. To do so, point your browser to ``http://<frontend_address>:2616/fireedge/sunstone`` to access to FireEdge Sunstone and point your browser to ``http://<frontend_address>:2616/fireedge/provision`` to access to FireEdge Provision. You should get to the login page in both cases. The access user is ``oneadmin`` and initial (or customized) password is the one from the file ``/var/lib/one/.one/one_auth`` on your Front-end.
 
 |sunstone_login|
 
-In case of problems, you can investigate the OpenNebula logs in ``/var/log/one`` and check file ``/var/log/one/sunstone.log``.
+In case of problems, you can investigate the OpenNebula logs in ``/var/log/one`` and check file ``/var/log/one/fireedge.log``.
 
 Directory Structure
 --------------------------------------------------------------------------------
@@ -441,7 +427,7 @@ The following table lists few significant directories on your OpenNebula Front-e
 +=====================================+======================================================================================+
 | ``/etc/one/``                       | **Configuration files**                                                              |
 +-------------------------------------+--------------------------------------------------------------------------------------+
-| ``/var/log/one/``                   | Log files, e.g. ``oned.log``, ``sched.log``, ``sunstone.log`` and ``<vmid>.log``     |
+| ``/var/log/one/``                   | Log files, e.g. ``oned.log``, ``sched.log``, ``fireedge.log`` and ``<vmid>.log``     |
 +-------------------------------------+--------------------------------------------------------------------------------------+
 | ``/var/lib/one/``                   | ``oneadmin`` home directory                                                          |
 +-------------------------------------+--------------------------------------------------------------------------------------+
@@ -494,8 +480,6 @@ The list below shows the ports used by OpenNebula. These ports need to be open f
 +------------+------------------------------------------------------------------------------+
 | ``5030``   | OneGate server                                                               |
 +------------+------------------------------------------------------------------------------+
-| ``9869``   | GUI server Sunstone                                                          |
-+------------+------------------------------------------------------------------------------+
 | ``29876``  | noVNC Proxy Server                                                           |
 +------------+------------------------------------------------------------------------------+
 
@@ -507,8 +491,6 @@ OpenNebula connects to the hypervisor Nodes over SSH (port 22). Additionally, th
 
 - OpenNebula Marketplace (``https://marketplace.opennebula.io/``)
 - Linux Containers Makerplace (``https://images.linuxcontainers.org/``)
-- TurnKey Linux (``http://mirror.turnkeylinux.org/``)
-- Docker Hub (``https://hub.docker.com/``)
 
 You should open the outgoing connections to these services.
 
@@ -529,7 +511,7 @@ Use following command to **stop all** OpenNebula services:
 .. prompt:: bash # auto
 
     # systemctl stop opennebula opennebula-scheduler opennebula-hem \
-        opennebula-sunstone opennebula-fireedge opennebula-gate opennebula-flow \
+        opennebula-fireedge opennebula-gate opennebula-flow \
         opennebula-guacd opennebula-novnc opennebula-showback.timer \
         opennebula-ssh-agent opennebula-ssh-socks-cleaner.timer
 
@@ -538,7 +520,7 @@ Use the following command to **restart all** already running OpenNebula services
 .. prompt:: bash # auto
 
     # systemctl try-restart opennebula opennebula-scheduler opennebula-hem \
-        opennebula-sunstone opennebula-fireedge opennebula-gate opennebula-flow \
+        opennebula-fireedge opennebula-gate opennebula-flow \
         opennebula-guacd opennebula-novnc opennebula-ssh-agent
 
 Learn more about `Managing Services with Systemd <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/managing-services-with-systemd_configuring-basic-system-settings#managing-system-services_managing-services-with-systemd>`__.
@@ -546,7 +528,7 @@ Learn more about `Managing Services with Systemd <https://access.redhat.com/docu
 In production environments the services should be stopped in a specific order and with extra manual safety checks:
 
 1. Stop **opennebula-scheduler** to stop planning deployment of VMs.
-2. Stop **opennebula-sunstone** and **opennebula-fireedge** to disable GUI access to users.
+2. Stop **opennebula-fireedge** to disable GUI access to users.
 3. Stop **openenbula-flow** to disable unattended multi-VM optations.
 4. Check and wait until there are no active operations with VMs and images.
 5. Stop **opennebula** and rest services.
