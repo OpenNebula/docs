@@ -1,7 +1,7 @@
 .. _suns_views:
 
 ================================================================================
-Sunstone Views
+Ruby Sunstone Views
 ================================================================================
 
 The OpenNebula Sunstone Views can be grouped into two different layouts. On one hand, the classic Sunstone layout exposes a complete view of the cloud, allowing administrators and advanced users to have full control of any physical or virtual resource of the cloud. On the other hand, the cloud layout exposes a simplified version of the cloud, where end-users will be able to manage any virtual resource of the cloud without taking care of physical resource management.

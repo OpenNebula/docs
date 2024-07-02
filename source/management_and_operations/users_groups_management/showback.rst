@@ -21,12 +21,15 @@ There is a default cost that will be applied to VM Templates without a cost defi
 
 .. warning::
 
-    If your users can access the :ref:`Sunstone 'user' view <suns_views>`, it's important to set a default cost. These users can manage their own Templates, which won't have a specific cost assigned.
+    If your users can access the :ref:`Sunstone 'user' view <fireedge_suns_views>`, it's important to set a default cost. These users can manage their own Templates, which won't have a specific cost assigned.
 
 Calculate Monthly Reports
 ================================================================================
 
-Before the cost reports can be seen by the users, the administrator has to generate them. To create the monthly cost reports, use the ``oneshowback`` command:
+Before the cost reports can be seen by the users, the administrator has to generate them. To create the monthly cost reports, use the ``oneshowback`` command or Sunstone:
+
+Using oneshowback command
+--------------------------------------------------------------------------------
 
 .. prompt:: text $ auto
 
@@ -77,12 +80,20 @@ To calculate only September:
 
     Existing records can be re-calculated. This can be useful to update old records when a VM is renamed, or the owner is changed. In this case, the cost of previous months will be also assigned to the new user.
 
+Using Sunstone
+--------------------------------------------------------------------------------
+
+Log in Sunstone as an administrator user and go to the Settings section. Select a start date and a end date and press Calculate showback button:
+
+|sunstone_showback_calculate|
+
 Retrieve Monthly Reports
 ================================================================================
 
 Any user or administrator can see their monthly showback reports from the CLI or Sunstone:
 
-|showback_cloudview|
+Using CLI
+--------------------------------------------------------------------------------
 
 .. prompt:: text $ auto
 
@@ -109,16 +120,24 @@ Any user or administrator can see their monthly showback reports from the CLI or
          --endpoint endpoint       URL of OpenNebula xmlrpc frontend
 
 
+Using Sunstone
+--------------------------------------------------------------------------------
+
+Log in Sunstone and go to the Users or Groups section. Click on an user or a group and select the Showback tab:
+
+|showback_showback|
+
 Disable Showback in Sunstone
 ================================================================================
 
-Showback reports can be disabled in any of the Sunstone views modifying the yaml file of those views. These files can be found in ``/etc/one/sunstone-views``
+Showback reports can be disabled in any of the Sunstone views modifying the yaml file called ``user-tab.yaml`` in the corresponding view (:ref:`See Sunstone views to get more information <fireedge_suns_views>`):
 
 .. code-block:: yaml
 
     ...
-    features:
-        showback: false
+    info-tabs:
+      showback:
+        enabled: false        
 
 Tuning & Extending
 ================================================================================
@@ -137,4 +156,5 @@ Developers interacting with OpenNebula using the Ruby bindings can use the `Virt
 
 .. |showback_template_wizard| image:: /images/showback_template_wizard.png
 .. |showback_instantiate| image:: /images/showback_instantiate.png
-.. |showback_cloudview| image:: /images/showback_cloudview.png
+.. |showback_showback| image:: /images/sunstone_showback.png
+.. |sunstone_showback_calculate| image:: /images/sunstone_showback_calculate.png

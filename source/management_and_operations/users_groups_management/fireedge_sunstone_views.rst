@@ -1,7 +1,7 @@
 .. _fireedge_suns_views:
 
 ================================================================================
-Fireedge Sunstone Views
+Sunstone Views
 ================================================================================
 
 Using the OpenNebula FireEdge Sunstone Views you will be able to provide a simplified UI aimed at end-users of an OpenNebula cloud. The OpenNebula FireEdge Sunstone Views are fully customizable, so you can easily enable or disable specific information tabs or action buttons. :ref:`You can define multiple views for different user groups <fireedge_sunstone_views_define_new>`. You can define multiple views for different user groups. Each view defines a set of UI components, so each user just accesses and views the relevant parts of the cloud for her role. Default views:
@@ -142,19 +142,28 @@ View definitions are placed in the ``/etc/one/fireedge/sunstone`` directory. Eac
     |   |-- acl-tab.yaml                   <--- Enable ACL tab and define its actions
     |   |-- backupjobs-tab.yaml            <--- Enable Backup jobs tab and define its actions
     |   |-- backup-tab.yaml                <--- Enable Backup tab and define its actions
+    |   |-- cluster-tab.yaml               <--- Enable Cluster tab and define its actions
     |   |-- datastore-tab.yaml             <--- Enable Datastore tab and define its actions
     |   |-- file-tab.yaml                  <--- Enable Files tab and define its actions
     |   |-- group-tab.yaml                 <--- Enable Groups tab and define its actions
     |   |-- host-tab.yaml                  <--- Enable Host tab and define its actions
     |   |-- image-tab.yaml                 <--- Enable Images tab and define its actions
     |   |-- marketplace-app-tab.yaml       <--- Enable Apps tab and define its actions
+    |   |-- marketplace-tab.yaml           <--- Enable Marketplace tab and define its actions
     |   |-- sec-group-tab.yaml             <--- Enable Security groups tab and define its actions
+    |   |-- service-tab.yaml               <--- Enable Service tab and define its actions
+    |   |-- service-template-tab.yaml      <--- Enable Service template tab and define its actions
+    |   |-- support-tab.yaml               <--- Enable Support tab and define its actions
     |   |-- user-tab.yaml                  <--- Enable User tab and define its actions
     |   |-- vdc-tab.yaml                   <--- Enable VDC tab and define its actions
     |   |-- vm-group-tab.yaml              <--- Enable Virtual Machine groups tab and define its actions
     |   |-- vm-tab-tab.yaml                <--- Enable Virtual Machine tab and define its actions
     |   |-- vm-template-tab.yaml           <--- Enable Virtual Machine templates tab and define its actions
     |   |-- vnet-tab.yaml                  <--- Enable Virtual Networks tab and define its actions
+    |   |-- vnet-template-tab.yaml         <--- Enable Virtual Networks templates tab and define its actions
+    |   |-- vrouter-tab.yaml               <--- Enable Virtual Router tab and define its actions
+    |   |-- vrouter-template-tab.yaml      <--- Enable Virtual Router template tab and define its actions
+    |   |-- zone-tab.yaml                  <--- Enable Zone tab and define its actions    
     |-- user/
     |   |-- backup-tab.yaml                <--- Enable Backup tab and define its actions
     |   |-- file-tab.yaml                  <--- Enable Files tab and define its actions
