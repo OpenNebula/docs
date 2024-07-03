@@ -25,7 +25,7 @@ Opennebula and opennebula-cli gems both require Nokogiri gem as a running depend
 
 Search Virtual Machines
 ================================================================================
-Searching for Virtual Machines has new syntax. It deosn't search for exact match, but it searches for pattern. See the following table with examples. More info in :ref:`Search Virtual Machines <vm_search>`.
+VM search uses has new pattern-based syntax. The following table includes some examples to move from old search format to the new one, see :ref:`Search Virtual Machines <vm_search>` for more info:
 
 =======================   ============    ===============================================================
 Search Description        Old syntax      New syntax
