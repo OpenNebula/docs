@@ -8,10 +8,9 @@ This guide will walk you through the steps to request, setup and manage an OpenN
 
 The OpenNebula Hosted service allows corporate users to try OpenNebula on **KVM** for the execution of virtual machines and Kubernetes clusters.
 
-OpenNebula Hosted service provides two tools to create and manage resources and clusters:
+OpenNebula Hosted service provides the following tool to create and manage resources and clusters:
 
-  - **Sunstone**, a web-based UI that can be used by both administrators and end users to manage in one central and uniform point all the resources
-  - **FireEdge**, a web-based UI that is used to provision OpenNebula Clusters on public cloud using different providers (AWS, Equinix) and on-premise resources.
+  - **Sunstone**, a web-based UI that can be used by both administrators and end users to manage and provision in one central and uniform point all the resources.
 
 .. note::
 
@@ -26,7 +25,7 @@ Request a PoC
 
 In order to request a PoC, you have to fill the following `form <https://opennebula.io/request-a-hosted-poc-with-opennebula>`_.
 
-Once you fill the form, you will receive an email containing information on how to connect to **Sunstone** and **FireEdge** to manage your cloud environment and provision resources for running your workloads (Virtual Machines and/or Kubernetes Clusters).
+Once you fill the form, you will receive an email containing information on how to connect to **Sunstone** to manage your cloud environment and provision resources for running your workloads (Virtual Machines and/or Kubernetes Clusters).
 
 .. note::
 
@@ -41,7 +40,7 @@ First you need to login to Sunstone.
 
 |sunstone_login|
 
-Once you login with the credentials that you have received in your email, for security reasons change your password that you have received by email. To change the password you have to go to ``Settings`` Tab.
+Once you login with the credentials that you have received in your email, for security reasons please update that password to something else. To change the password you have to go to the ``System`` tab and then under ``Users`` & select the user you want to update the password for.
 
 |sunstone_change_password|
 
@@ -100,13 +99,13 @@ You can provision KVM clusters on different public cloud providers (AWS and Equi
 
 You can follow this :ref:`guide <first_edge_cluster>` to provision your first edge cluster on AWS.
 
-Once you create  a cluster, you can manage it using the Sunstone GUI (https://poc.opennebula.cloud). Please follow this :ref:`guide <operating_edge_cluster>` that explains how to operate an Edge Cluster.
+Once you create  a cluster, you can manage it using the Sunstone GUI (https://poc.opennebula.cloud:2616). Please follow this :ref:`guide <operating_edge_cluster>` that explains how to operate an Edge Cluster.
 
 Running Virtual Machines and Kubernetes Clusters
 =================================================
 Once you have provisioned resources, you can refer to :ref:`Usage Basics guide <usage_basics>` to run virtual machines and Kubernetes Clusters in your cloud environment.
 
 .. |sunstone_login| image:: /images/sunstone-login.png
-.. |sunstone_change_password| image:: /images/sunstone_settings.png
+.. |sunstone_change_password| image:: /images/sunstone_change_password.png
 .. |fireedge_login| image:: /images/fireedge_for_rns.png
 .. |hosted_nodes| image:: /images/hosted_nodes.png
