@@ -21,7 +21,7 @@ You'll need a server to try out OpenNebula. The provided Host should have a fres
 - privileged user access (`root`)
 - openssh-server package installed
 - operating system: RHEL/AlmaLinux 8 or 9, Debian 10 or 11, Ubuntu 20.04 or 22.0.4
-- open ports: 22 (SSH), 80 (Sunstone), 2616 (FireEdge), 5030 (OneGate).
+- open ports: 22 (SSH), 80 (Ruby Sunstone), 2616 (FireEdge), 5030 (OneGate).
 
 If you don't have a server available with the above characteristics, we recommend using a the Amazon EC2 service to obtain a VM to act as the OpenNebula Front-end. A tested combination is the following (but is by no means the only one possible):
 
@@ -29,7 +29,7 @@ If you don't have a server available with the above characteristics, we recommen
 - Ubuntu Server 20.04 LTS (HVM), SSD Volume Type
 - t2.medium
 - 80 GB hard disk (you need to edit the Storage tab before launching the instance; by default it comes with just 8GB)
-- open ports 22 (SSH), 80 (Sunstone), 2616 (FireEdge), 5030 (OneGate) by editing the Security Groups as per the picture. This can also happen after launching the instance following `this guide <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html>`__.
+- open ports 22 (SSH), 80 (Ruby Sunstone), 2616 (FireEdge), 5030 (OneGate) by editing the Security Groups as per the picture. This can also happen after launching the instance following `this guide <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html>`__.
 
 |aws_security_groups|
 
@@ -94,7 +94,7 @@ Be patient, it should take only a few minutes to get the Host prepared. The main
       user: oneadmin
       password: lCmPUb5Gwk
 
-.. note:: When running miniONE within an AWS instance, the reported IP may be a private address that's not reachable over the Internet. Use its public IP address to connect to the FireEdge and Sunstone services.
+.. note:: When running miniONE within an AWS instance, the reported IP may be a private address that's not reachable over the Internet. Use its public IP address to connect to the FireEdge and Ruby Sunstone services.
 
 The OpenNebula Front-end and local KVM node are now ready for evaluation.
 
@@ -103,23 +103,24 @@ The OpenNebula Front-end and local KVM node are now ready for evaluation.
 Validation
 ==========
 
-Point your browser to the Sunstone web URL provided in the deployment report above and log in as the user **oneadmin** with provided credentials.
+Point your browser to the FireEdge web URL provided in the deployment report above and log in as the user **oneadmin** with provided credentials.
 
 |images-sunstone-dashboard|
 
-If the Host configured by **miniONE** is behind the firewall, the (default) Sunstone port 80 has to be enabled for the machine you are connecting from.
+If the Host configured by **miniONE** is behind the firewall, the (default) FireEdge port 2616 has to be enabled for the machine you are connecting from.
 
-.. |images-sunstone-dashboard| image:: /images/sunstone-dashboard.png
+With the default Admin View you can do anything in OpenNebula. Switch to the Cloud View (top right-->Views-->cloud) to see how a final user will see OpenNebula.
 
-With the default Admin View you can do anything in OpenNebula. Switch to the Cloud View (oneadmin-->Views-->cloud) to see how a final user will see OpenNebula.
+|images-sunstone-change-view|
 
-The Cloud View interface is much simpler and targeted at end users.
+The :ref:`Cloud View <fireedge_cloud_view>` interface is much simpler and targeted at end users.
 
 If you created a local KVM node with the front-end you can continue the validation with the following steps:
 
-- Create a new Virtual Machine by clicking the ‘+’ button. Select the only available template and click ‘Create’.
-- After clicking ‘Create’ you will be taken to the dashboard where you can see your running VMs.
-- You can click on your VM and manage it: Save its state, Reboot it, etc:
+- Create a new Virtual Machine by clicking ‘VMs’ button. This will take you to the instances/VMs tab.
+- Press ‘+’ button and select the only available template. Continue through the instantiation dialog.
+- After clicking ‘Finish’ your VM will be instantiated, and you should be able to see your running machine.
+- You can click on your VM to manage it: Save it's state, Reboot it, etc:
 
 .. note:: We know, these are very basic steps. If you want to try out real-life virtualization or kubernetes workloads with public IPs please continue to next section.
 
@@ -142,3 +143,7 @@ Next Steps
 ==========
 
 if you want to continue the evaluation with physical resources for VMs and Kubernetes clusters or try out the automatic provisioning features for building multi-provider hybrid clouds, you can follow the :ref:`Operations Guide <operation_basics>` to add a remote Edge Cluster based on KVM using AWS bare-metal instances to your shiny new OpenNebula cloud!
+
+
+.. |images-sunstone-dashboard| image:: /images/sunstone-dashboard.png
+.. |images-sunstone-change-view| image:: /images/sunstone-change-view.png

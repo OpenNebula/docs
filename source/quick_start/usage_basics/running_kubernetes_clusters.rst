@@ -13,7 +13,7 @@ This guide assumes that you have deployed the OpenNebula front-end following the
 Step 1. Download the OneFlow Service from the Marketplace
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Log in to Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab and search for ``OneKE``. Select the ``Service OneKE 1.27`` and click on the icon with the cloud and the down arrow inside (two positions to the right from the green ``+``).
+Log in to Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab and search for ``OneKe 1.27``. Select the ``Service OneKE 1.27`` and click on the icon with the cloud and the down arrow inside.
 
 |kubernetes-qs-marketplace|
 
@@ -24,21 +24,29 @@ Now you need to select a datastore. Select the ``aws-edge-cluster-image`` Datast
 The Appliance will be ready when the image in ``Storage --> Images`` switches to ``READY`` from its ``LOCKED`` state. This process may take significant amount of time based on the networking resources available in your infrastructure (Kubernetes 1.27 amounts to a total of 52GB).
 
 .. |kubernetes-qs-marketplace|           image:: /images/kubernetes-qs-marketplace.png
-.. |kubernetes-qs-marketplace-datastore| image:: /images/kubernetes-qs-marketplace-datastore.png
+.. |kubernetes-qs-marketplace-datastore| image:: /images/aws_cluster_images_datastore.png
 
 Step 2. Instantiate private network
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 During the AWS Edge Cluster provisioning a private network template was created, we need to instantiate it first and assign a range to it. To do so, go to the ``Network --> Network Templates``, open the ``aws-edge-cluster-private`` Virtual Network Template and click on the instantiate button.
 
-We need to first put the name, e.g. ``aws-private`` and then add an address range, click ``+ Address Range`` and put a private IPv4 range, e.g. ``172.20.0.1``, for size we can put ``100``.
+First we need to give the network a name, e.g. ``aws-private``
 
-Last thing you need to add to the network is a DNS server, click the ``Context`` tab under Network configuration and put a DNS server, e.g. ``8.8.8.8`` or ``1.1.1.1``.
+|kubernetes-aws-private-network|
 
-|kubernetes-qs-create-ar|
+Then hit ``Next`` & click ``+ Address Range`` and select a private IPv4 range, e.g. ``172.20.0.1``, for size we can use ``100``.
+
+|kubernetes-aws-private-network-range|
+
+Last thing you need to add to the network is a DNS server, click the ``Context`` tab and add a DNS server, e.g. ``8.8.8.8`` or ``1.1.1.1``.
+
+|kubernetes-aws-dns|
 
 Now you are ready to start the Kubernetes Service.
 
-.. |kubernetes-qs-create-ar| image:: /images/kubernetes-qs-create-ar.png
+.. |kubernetes-aws-private-network| image:: /images/kubernetes_aws_private_network.png
+.. |kubernetes-aws-private-network-range| image:: /images/kubernetes_aws_private_network_address_range.png
+.. |kubernetes-aws-dns| image:: /images/kubernetes_aws_dns.png
 
 Step 3. Instantiate the Kubernetes Service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -47,60 +55,69 @@ Step 3. Instantiate the Kubernetes Service
 
     You may want to adjust the VM templates before you progress further - go to ``Templates --> VMs``, click on the ``Service OneKE 1.27`` and blue button ``Update`` at the top.
 
-Proceed to the ``Templates --> Services`` tab and select the ``Service OneKE 1.27`` Service Template. Click on ``+`` and then ``Instantiate``.
+Proceed to the ``Templates --> Service Templates`` tab and select the ``Service OneKE 1.27`` Service Template. Click on the ``Instantiate`` button (next to Update).
 
-A required step is clicking on ``Network`` and selecting the ``aws-edge-cluster-public`` network for public network.
+Then we can give our service a name and the number of instances to instantiate, for this example we will use ``OneKE 1.27`` and start ``1`` instance of it.
 
-And for private network we will use the ``aws-private`` we instantiated before.
+|kubernetes-qs-service-start|
 
-|kubernetes-qs-pick-networks|
+Then we hit ``Next`` until we reach the ``Network`` step. Under which we select the ``aws-edge-cluster-public`` network, for the public network ID
+
+|kubernetes-qs-pick-networks-public|
+
+and ``aws-private`` for the private network ID.
+
+|kubernetes-qs-pick-networks-private|
 
 You will most likely want to add a custom domain to Kubernetes SANs, so the ``kubectl`` command could be used from "outside" of the cluster.
 
 |kubernetes-qs-add-sans|
 
-You can either use a public DNS server or local ``/etc/hosts`` file, for example:
+You can either use a public DNS server or your local ``/etc/hosts`` file, for example:
 
 .. prompt:: text $ auto
 
    127.0.0.1 localhost
    1.2.3.4 k8s.yourdomain.it
 
-.. important:: To make the kubeconfig file work with custom SANs you will need to modify the ``clusters[0].cluster.server`` variable inside the YAML payload (for example: ``server: https://k8s.yourdomain.it:6443``) which can be find in the file a path to which is a value of the $KUBECONFIG variable on the k8s master node (the details on how to log in to that node are given below in :ref:`Step 4. Provisining an Edge Cluster <step-4>`).
+.. important:: To make the kubeconfig file work with custom SANs you will need to modify the ``clusters[0].cluster.server`` variable inside the YAML payload (for example: ``server: https://k8s.yourdomain.it:6443``) which can be found in the file whose path is a value of the $KUBECONFIG variable on the k8s master node (the details on how to log in to that node are given below in :ref:`Step 4. Provisining an Edge Cluster <step-4>`).
 
 To be able to expose an example application you should enable OneKE's Traefik / HAProxy solution for ingress traffic:
 
 |kubernetes-qs-enable-ingress|
 
-Now click on the instantiate button in Sunstone web-GUI, go to ``Instances --> Services`` or via command line interface (CLI)
+Now click on the instantiate button in the Sunstone web-GUI, go to ``Instances --> Services`` or via command line interface (CLI)
 
 .. prompt:: bash $ auto
 
    [oneadmin@FN]$ oneflow list
 
-and wait for the new Service to get into ``RUNNING`` state. You can also check in the Sunstone the VMs being deployed in ``Instances --> VMs`` or via CLI:
+and wait for the new Service to get into ``RUNNING`` state. You can also check the VMs being deployed in Sunstone under the ``Instances --> VMs`` tab or via the CLI:
 
 .. prompt:: bash $ auto
 
    [oneadmin@FN]$ onevm list
 
-.. note:: The **public** IP address (AWS elastic IP) should be consulted in OpenNebula after the VNF instance is successfully provisioned. Go to ``Instances --> VMs`` and check the IP column to see what IP has OpenNebula assigned the VNF instance or via CLI:
+.. note:: The **public** IP address (AWS elastic IP) should be consulted in OpenNebula after the VNF instance is successfully provisioned. Go to ``Instances --> VMs`` and check the IP column to see what IP OpenNebula has assigned the VNF instance, or via the CLI:
 
 .. prompt:: bash $ auto
 
    [oneadmin@FN]$ onevm show -j <VNF_VM_ID>|jq -r .VM.TEMPLATE.NIC[0].EXTERNAL_IP
 
-.. important:: This is specific to AWS deployments. One needs to add a corresponding inboud rule into AWS security group (SG) with AWS elastic IP of VNF node for 5030 port and apply updated SG against AWS FN node.
+.. important:: This is specific to AWS deployments. One needs to add a corresponding inboud rule into AWS security group (SG) with AWS elastic IP of VNF node for 5030 port and apply the updated SG against the AWS FN node.
 
 
-If OneFlow service stuck in DEPLOYING state, please, check :ref:`OneFlow service is stuck in DEPLOYING <oneflow-service-is-stuck-in-deploying>`
+If the OneFlow service is stuck in DEPLOYING state, please, check :ref:`OneFlow service is stuck in DEPLOYING <oneflow-service-is-stuck-in-deploying>`
 
 
-After the OneFlow service is deployed you can also **scale up** the worker nodes - the template will start only one - to add more follow onto the tab ``Roles``, click on ``worker`` and green button ``Scale``.
+After the OneFlow service is deployed you can also **scale up** the worker nodes - the template will start only one - to add more follow onto the tab ``Roles``, click on ``worker`` and then the green button ``Scale``.
 
 .. note:: Even though Sunstone shows the VNC console button, VNC access to VMs running in Edge Clusters has been deemed insecure and as such OpenNebula filters this traffic. This means that the VNC access won't work for VMs running in Edge Clusters.
 
-.. |kubernetes-qs-pick-networks| image:: /images/kubernetes-qs-pick-networks.png
+
+.. |kubernetes-qs-service-start| image:: /images/kubernetes_service_start.png
+.. |kubernetes-qs-pick-networks-public| image:: /images/kubernetes-qs-pick-networks-public.png
+.. |kubernetes-qs-pick-networks-private| image:: /images/kubernetes-qs-pick-networks-private.png
 .. |kubernetes-qs-add-sans| image:: /images/kubernetes-qs-add-sans.png
 .. |kubernetes-qs-enable-ingress| image:: /images/kubernetes-qs-enable-ingress.png
 
@@ -235,28 +252,28 @@ recover such a broken instance, it must be recreated.
 .. important::
 
     But before you recreate it, please make sure your environment
-    has good connection to the public Internet and in general its performance is not impaired.'
+    has good connection to the public Internet and in general its performance is not impaired.
 
-The stuck in DEPLOYING state OneFlow service can not be terminated via 'delete' operation. In order to do so one needs to use the following command:
+The stuck in DEPLOYING state for a OneFlow service can not be terminated via the 'delete' operation. In order to do so, one needs to use the following command:
 
 .. prompt:: bash $ auto
 
    [oneadmin@FN]$ oneflow recover --delete <service_ID>
 
-Another issue you might face with is VNF node can't contact OneGate server on FN. In that case there are messages in the ``/var/log/one/oneflow.log`` file as below:
+Another issue you might face is the VNF node can't contact the OneGate server on FN. In that case there are messages in the ``/var/log/one/oneflow.log`` file like this:
 
 
 .. code-block:: text
 
     [EM] Timeout reached for VM [0] to report
 
-In such case there is only VNF node is deployed and running but no k8s ones. It is needed to ssh to the VNF node and run as root
+In such a case, only the VNF node will be deployed and no k8s ones. Thus you must SSH into the VNF node and run as root:
 
 .. prompt:: bash $ auto
 
    [root@VNF]$ onegate vm show
 
-to check if VNF is able to contact OneGate server on FN. In case of success the response should look like below:
+to check if the VNF is able to contact the OneGate server on FN. A successful response should look like the one below:
 
 .. code-block:: text
 
@@ -273,10 +290,10 @@ and in case of failure:
     Timeout while connected to server (Failed to open TCP connection to <AWS elastic IP of FN>:5030 (execution expired)).
     Server: <AWS elastic IP of FN>:5030
 
-Check on the VNF node if ONEGATE_ENDPOINT is set to AWS elastic IP address of FN:
+Check on the VNF node if ONEGATE_ENDPOINT is set to the AWS elastic IP address of FN:
 
 .. code-block:: text
 
     [root@VNF]$ grep ONEGATE -r /run/one-context*
 
-Make sure a corresponding inboud rule in AWS security group (SG) with AWS elastic IP for 5030 port is present and modifications were applied to AWS FN node.
+Make sure a corresponding inboud rule exists in the AWS security group (SG) with AWS elastic IP on port 5030 and modifications have been applied to AWS FN node.

@@ -5,7 +5,7 @@
 Provisioning an Edge Cluster
 ============================
 
-In this section you can check all the steps needed to deploy an **Edge Cluster**. This involves the FireEdge OneProvision GUI and Sunstone to manage the resources created in OpenNebula. Each new provision in the OneProvision GUI creates a new OpenNebula cluster.
+In this section you can check all the steps needed to deploy an **Edge Cluster**. This involves the OneProvision GUI and Sunstone to manage the resources created in OpenNebula. Each new provision in the OneProvision GUI creates a new OpenNebula cluster.
 
 .. important:: This guide assumes that you have deployed the OpenNebula front-end following the :ref:`Deployment Basics guide <deployment_basics>`. Here we'll be creating a metal Edge Cluster with KVM hypervisor, suitable for deploying both Virtual Machines and K8s clusters in the following :ref:`Usage Basics section <usage_basics>`.
 
@@ -25,9 +25,9 @@ During the provision of the cluster all these resources and their corresponding 
 * An Internet Gateway to provide Internet access to the Host and VMs.
 * A routing table for the previous elements.
 
-.. note:: Take into account that FireEdge will request Elastic IPs for the public IPs you request. If you receive an error message about not being able to request more IPs when creating a provision, please check the `limits of your account <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html>`__ in your zone.
+.. note:: Take into account that Sunstone will request Elastic IPs for the public IPs you request. If you receive an error message about not being able to request more IPs when creating a provision, please check the `limits of your account <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html>`__ in your zone.
 
-We'll be using the FireEdge GUI in this guide, so please make sure you can log in to it using your Front-end IP and default port 2616, as well as your oneadmin credentials. If you require to log in as a user other than oneadmin, in order to use the provision interface the user must belong to the oneadmin group, otherwise the providers won't be shown in the wizard.
+We'll be using the Sunstone GUI in this guide, so please make sure you can log in to it using your Front-end IP and default port 2616, as well as your oneadmin credentials. If you require to log in as a user other than oneadmin, in order to use the provision interface the user must belong to the oneadmin group, otherwise the providers won't be shown in the wizard.
 
 .. prompt:: bash $ auto
 
