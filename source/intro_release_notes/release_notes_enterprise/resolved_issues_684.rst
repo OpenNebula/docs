@@ -22,6 +22,7 @@ The following issues have been solved in 6.8.4:
 - `Fix limitations on number and naming of virtual disks <https://github.com/OpenNebula/one/issues/6291>`__.
 - `Fix oneflow recover operation to properly detect services in a failure state <https://github.com/OpenNebula/one/issues/6396>`__.
 - `Fix missing HOST.HOST_SHARE.DATASTORES.DS attribute in the XML schema <https://github.com/OpenNebula/one/issues/6630>`__.
+- `Fix incorrect network resolution in OneFlow for some corner cases` <https://github.com/OpenNebula/one/issues/6589>`__.
 
 Also, the following issues have been backported in the FireEdge Sunstone Web UI:
 
