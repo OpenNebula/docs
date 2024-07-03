@@ -6,7 +6,7 @@ What's New in |version|
 
 .. Attention: Substitutions doesn't work for emphasized text
 
-**OpenNebula 7.0 ‘’** is the fifth stable release of the OpenNebula 6 series. This version of OpenNebula focuses on features to improve the end user experience as well as to optimize the use of the HW resources in KVM-based infrastructures.
+**OpenNebula 6.10 ‘’** is the fifth stable release of the OpenNebula 6 series. This version of OpenNebula focuses on features to improve the end user experience as well as to optimize the use of the HW resources in KVM-based infrastructures.
 
 We’d like to thank all the people that :ref:`support the project<acknowledgements>`, OpenNebula is what it is thanks to its community! Please keep rocking.
 
@@ -36,13 +36,17 @@ FireEdge Sunstone
 
 API and CLI
 ================================================================================
-- ``onedb create-index`` command removed, the :ref:`VM search <vm_search>` use new DB column ``body_json``.
+- ``onedb create-index`` command has been removed, a new :ref:`VM search <vm_search>` engine has been implemented to allow flexible queries and improve performance.
+- `OneFlow message logging improved <https://github.com/OpenNebula/one/issues/6553>`__.
+
 
 KVM
 ================================================================================
 
 Features Backported to 6.8.x
 ================================================================================
+
+Additionally, the following functionalities are present that were not in OpenNebula 6.8.0, although they debuted in subsequent maintenance releases of the 6.8.x series:
 
 - For VMs with resched flag add ``HOST_ID`` to :ref:`External Scheduler API <external_scheduler>`.
 - Option to restore individual disk from backup Image see :ref:`Restoring Backups <vm_backups_restore>`.
@@ -69,3 +73,8 @@ Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 - `Fix change user password on FireEdge Sunstone <https://github.com/OpenNebula/one/issues/6471>`__.
 - `Fix separate Vms and vm views <https://github.com/OpenNebula/one/issues/6092>`__.
 - `Fix modify "Show All" option on switch group menu <https://github.com/OpenNebula/one/issues/6455>`__.
+- `Fix mixed up comments for some of columns in some sunstone views <https://github.com/OpenNebula/one/issues/6562>`__.
+- `Fix QoL improvements for ERROR Dismiss popup <https://github.com/OpenNebula/one/issues/6069>`__.
+- `Fix detailed view stuck in fullscreen <https://github.com/OpenNebula/one/issues/6613>`__.
+- `Fix unnecesary extra step when creating Image <https://github.com/OpenNebula/one/issues/6386>`__.
+- `Fix simplified view of the table <https://github.com/OpenNebula/one/issues/6075>`__.

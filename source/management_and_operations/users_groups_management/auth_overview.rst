@@ -23,6 +23,7 @@ For basic users it's recommended to read at least the ones for **Users**, **Grou
 * :ref:`Managing Groups <manage_groups>`
 * :ref:`Managing VDCs <manage_vdcs>`
 * :ref:`Managing Permissions and ACLs<chmod>`
+* :ref:`Sunstone Views <fireedge_suns_views>`
 * :ref:`Accounting Tool <accounting>`
 * :ref:`Showback <showback>`
 

@@ -13,11 +13,11 @@ We are going to assume the Edge Cluster naming schema "metal-kvm-aws-cluster".
 Step 1. Download the image from the Marketplace
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Log in to Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab and search for WordPress. Select it and click on the icon with the cloud and the down arrow inside (two positions to the left from the green "+").
+Log in to Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab and search for WordPress. Select it and click on the icon with the cloud and the down arrow inside.
 
 |wordpress_marketplace|
 
-Now you need to select a datastore. For efficiency, and taking into account we are only going to run this appliaction in the OpenNebula cluster created in "Operations Basics", select the aws-cluster-Images Datastore.
+Click ``Next`` in the first step and then select a datastore. For efficiency sake, and taking into account we are only going to run this appliaction in the OpenNebula cluster created in "Operations Basics", select the aws-cluster-images Datastore.
 
 |aws_cluster_images_datastore|
 
@@ -31,7 +31,7 @@ Step 2. Instantiate the VM
 
 Proceed to the ``Templates --> VMs`` tab and select the "Service WordPress - KVM" VM Template (that should one of two available, along with the default CentOS 7 pulled from the Marketplace by miniONE). Click on Instantiate.
 
-Feel free to modify the capacity and input data to configure the WordPress service. A required step is clicking on Network and selecting the aws-cluster-public network.
+Feel free to modify the capacity and input data to configure the WordPress service. A required step is clicking on the ``Network`` tab and attaching the aws-cluster-public network.
 
 |select_aws_cluster_public_network|
 

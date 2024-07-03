@@ -149,7 +149,7 @@ Group-wise Configuration Attributes
 
 When a group is created you can define specific configuration aspects for the group users. These include:
 
-* Sunstone. Allow users and group admins to access specific views. The configuration attributes are stored in the group template in the ``FIREEDGE`` attribute:
+* **Sunstone:** Allow users and group admins to access specific views. The configuration attributes are stored in the group template in the ``FIREEDGE`` attribute:
 
 +-------------------------+---------------------------------------------------------------------------------+
 |         Attribute       |                                   Description                                   |
@@ -177,7 +177,7 @@ Example:
     ]
 
 
-* OpenNebula Core. Set specific attributes to control some operations. The configuration attributes are stored in the group template in the ``OPENNEBULA`` attribute:
+* **OpenNebula Core:** Set specific attributes to control some operations. The configuration attributes are stored in the group template in the ``OPENNEBULA`` attribute:
 
 +------------------------------+----------------------------------------------------------------------------+
 |         Attribute            |                              Description                                   |
@@ -212,7 +212,7 @@ Example:
 Managing Groups in Sunstone
 ================================================================================
 
-All the described functionality is available graphically using :ref:`Fireedge Sunstone <fireedge_setup>`:
+All the described functionality is available graphically using :ref:`Sunstone <fireedge_setup>`:
 
 |sunstone_group_list|
 

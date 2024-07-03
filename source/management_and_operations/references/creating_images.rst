@@ -29,7 +29,7 @@ To retrieve images from the OpenNebula Marketplace:
 
 |sunstone_marketplace_list_import|
 
-Using the CLI, you can list an import images using these commands:
+Using the CLI, you can list and import images using these commands:
 
 .. prompt:: text $ auto
 
@@ -63,7 +63,7 @@ If you need to incorporate additional content or include a new base OS, refer to
 Manual Installation
 ===================
 
-If you are using KVM hypervisor you can create base images using OpenNebula by manually installing the operating system.
+If you are using the KVM hypervisor you can create base images using OpenNebula by manually installing the operating system.
 
 .. note::
 
@@ -105,12 +105,18 @@ Step 3. Create a Template to do the Installation
 
 You'll need to create a VM Template with the following characteristics:
 
-* In *Storage* tab, ``DISK 0`` disk will be the installation disk (future base image) created in step 2, and ``DISK 1`` Second disk will be the installation CD image created in step 1.
-* In *Network* tab, attach ``NIC 0`` to a Virtual Network as it will be needed to download context packages.
-* In *Boot* tab of *OS & CPU* tab, enable (check) both disks for booting.
+In the **Advanced Options** step:
+
+* Under the *Storage* tab, ``DISK 0`` disk will be the installation disk (future base image) created in step 2, and ``DISK 1`` Second disk will be the installation CD image created in step 1.
+
+* Under the *Network* tab, attach ``NIC 0`` to a Virtual Network as it will be needed to download context packages.
+
+* Under the *OS & CPU* tab in the *Boot order* section, enable (check) both disks for booting.
   The boot order will be: first the installation media and second the installation disk.
-* In *Input/Output* tab: enable VNC in *Graphics* and set ``Tablet`` ``USB`` in *Inputs*.
+
+* Under the *Input/Output* tab: enable VNC in *Graphics* and set ``Tablet`` ``USB`` in *Inputs*.
   This will be useful in case the OS has a graphical installation.
+
 
 This can be done from the CLI as well using this command:
 
@@ -120,14 +126,14 @@ This can be done from the CLI as well using this command:
 
 Now, instantiate the recently created VM Template and do the guest OS installation using the VNC viewer.
 You'll need to configure the network manually as there are no context packages in the installation media.
-Upon completion, tell the instanter to reboot the machine, login to the guest OS and follow the :ref:`Open Cloud Contextualization <kvm_contextualization>` instructions.
+Upon completion, tell the instantiater to reboot the machine, login to the guest OS and follow the :ref:`Open Cloud Contextualization <kvm_contextualization>` instructions.
 
-As a tip, one of the latest things you should do when using this method is disabling ``root`` password and deleting any extra users created by the installation tools.
+As a tip, one of the final things you should do when using this method is disabling ``root`` password and deleting any extra users created by the installation tools.
 
 Step 4. Shutdown the Machine and Configure the Image
 ----------------------------------------------------
 
-Now, you can shutdown the Virtual Machine from the guest OS. When the Vitual Machine appears as ``POWEROFF`` in OpenNebula, terminate it.
+Now, you can shutdown the Virtual Machine from the guest OS. When the Virtual Machine appears as ``POWEROFF`` in OpenNebula, terminate it.
 
 Make sure to change the attribute ``PERSISTENT`` of the installation disk image to ``NO`` and set access permissions for other users (optional).
 

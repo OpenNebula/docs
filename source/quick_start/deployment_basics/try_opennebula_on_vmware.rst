@@ -157,14 +157,9 @@ As the last step, you need to configure a public-facing address that will be use
 Step 3. Check access to the Sunstone GUI
 --------------------------------------------------------------------------------
 
-After opening the Sunstone interface (``http://<appliance_ip>`` with oneadmin credentials), you are now ready to add computing clusters to OpenNebula and start launching your first Virtual Machines!
+After opening the Sunstone interface (``http://<appliance_ip>:2616`` with oneadmin credentials), you are now ready to add computing clusters to OpenNebula and start launching your first Virtual Machines!
 
-.. image:: /images/sunstone-main.png
-    :align: center
-
-If Sunstone greets you with an error while connecting to the public FireEdge endpoint, return to Control Center in the previous step and configure a valid endpoint:
-
-.. image:: /images/sunstone-fe-error.png
+.. image:: /images/sunstone-dashboard.png
     :align: center
 
 Next Steps

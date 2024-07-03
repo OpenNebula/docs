@@ -4,7 +4,7 @@
 Operating an Edge Cluster
 =========================
 
-In this guide you will see all the resources created in OpenNebula as a part of the Edge Cluster. These resources have all been created using FireEdge OneProvision GUI in AWS.
+In this guide you will see all the resources created in OpenNebula as a part of the Edge Cluster. These resources have all been created using the OneProvision GUI in AWS.
 
 Cluster
 ================================================================================
@@ -58,7 +58,7 @@ Check :ref:`this link <datastores>` to get a sound overview of datastore managem
 Virtual Networks: Public
 ================================================================================
 
-A virtual network in OpenNebula basically resembles the physical network in the datacenter. Virtual Networks allow VMs to have connectivity between them and with the rest of the world. Each Edge Cluster has one public network with the number of the IPs chosen by the user (in FireEdge); this will allow VMs to have public connectivity so the user can connect to them.
+A virtual network in OpenNebula basically resembles the physical network in the datacenter. Virtual Networks allow VMs to have connectivity between them and with the rest of the world. Each Edge Cluster has one public network with the number of the IPs chosen by the user (in Sunstone); this will allow VMs to have public connectivity so the user can connect to them.
 
 |image_public_net|
 
