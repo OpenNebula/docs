@@ -23,6 +23,7 @@ The following issues have been solved in 6.8.4:
 - `Fix oneflow recover operation to properly detect services in a failure state <https://github.com/OpenNebula/one/issues/6396>`__.
 - `Fix missing HOST.HOST_SHARE.DATASTORES.DS attribute in the XML schema <https://github.com/OpenNebula/one/issues/6630>`__.
 - `Fix incorrect network resolution in OneFlow for some corner cases` <https://github.com/OpenNebula/one/issues/6589>`__.
+- `Fix quotas after (de)attach disk to VM in poweroff state <https://github.com/OpenNebula/one/issues/6615>`__.
 
 Also, the following issues have been backported in the FireEdge Sunstone Web UI:
 
