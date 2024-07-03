@@ -22,3 +22,16 @@ We changed default for `CLEANUP_MEMORY_ON_STOP` to `no` as it could potentially 
 Ruby gems opennebula and opennebula-cli
 ================================================================================
 Opennebula and opennebula-cli gems both require Nokogiri gem as a running dependency. As nokogiri from 1.16 requires Ruby >= 3.0 we locked Nokogiri to 1.16 to avoid installation failure on systems such as AlmaLinux 8, Debian 10, Ubuntu 20.04. In next 7.0 we will revisit this issue.
+
+Search Virtual Machines
+================================================================================
+VM search uses has new pattern-based syntax. The following table includes some examples to move from old search format to the new one, see :ref:`Search Virtual Machines <vm_search>` for more info:
+
+=======================   ============    ===============================================================
+Search Description        Old syntax      New syntax
+=======================   ============    ===============================================================
+VM name                   NAME=abc        VM.NAME=abc
+VM with disk target vda   TARGET=vda      VM.TEMPLATE.DISK[*].TARGET=vda
+IP matching               IP=10.10.0.5    VM.TEMPLATE.NIC[*].IP=10.10.0.5
+IP starts with 10.10      ---             VM.TEMPLATE.NIC[*].IP=10.10
+=======================   ============    ===============================================================
