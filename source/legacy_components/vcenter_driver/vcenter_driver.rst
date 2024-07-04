@@ -93,7 +93,7 @@ The following section configures the vCenter datastore transfer drivers, used to
         NAME = "vcenter", LN_TARGET = "NONE", CLONE_TARGET = "SYSTEM", SHARED = "YES"
     ]
 
-See the :ref:`Storage Drivers reference <sd>` for more information about these parameters, and how to customize and extend the drivers. The :ref:`vCenter Storage Setup <vmware_storage_setup>` guide gives more details on the vCenter storage model in OpenNebula.
+See the :ref:`Storage Drivers reference <sd>` for more information about these parameters, and how to customize and extend the drivers.
 
 vCenter Networking Drivers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -107,7 +107,7 @@ The following section configures the networking drivers, used to import and crea
         BRIDGE_TYPE = "vcenter_port_groups"
     ]
 
-See the :ref:`Networking Drivers reference <devel-nm>` for more information about these parameters, and how to customize and extend the drivers. The :ref:`vCenter Networking Setup <vmware_networking_setup>` guide gives more details on the vCenter networking model in OpenNebula.
+See the :ref:`Networking Drivers reference <devel-nm>` for more information about these parameters, and how to customize and extend the drivers.
 
 vCenter Monitoring Drivers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~

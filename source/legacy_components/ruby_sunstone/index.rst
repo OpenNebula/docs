@@ -1,12 +1,10 @@
-.. _vmware_networking_setup:
+.. _ruby_sunstone:
 
 ================================================================================
-VMware Networking Setup
+Ruby Sunstone
 ================================================================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
-   Overview <overview>
-   vCenter Networking <vcenter_networking>
-   NSX Setup <nsx_setup>
+   Sunstone Service Configuration <sunstone>

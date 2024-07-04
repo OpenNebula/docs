@@ -19,8 +19,6 @@ OpenNebula is an open source cloud management platform that combines virtualizat
 +------------------------------------------+------------------------------------------------------------------------------------------+
 | :ref:`Automatic Cluster Deployment <acd>`| How to automaticaly deploy clusters on-premises and on-cloud                             |
 +------------------------------------------+------------------------------------------------------------------------------------------+
-| :ref:`VMware Cluster Deployment <vcd>`   | How to install and set up customized clusters based on VMware                            |
-+------------------------------------------+------------------------------------------------------------------------------------------+
 | :ref:`Integration and Development <id>`  | APIs and drivers to integrate OpenNebula with applications and platforms                 |
 +------------------------------------------+------------------------------------------------------------------------------------------+
 | :ref:`Release Notes <rn>`                | New features, improvements and fixes, and the upgrade process in each version            |
@@ -38,9 +36,9 @@ OpenNebula is an open source cloud management platform that combines virtualizat
    Marketplaces and Appliances <marketplace/index>
    Open Cluster Deployment <open_cluster_deployment/index>
    Automatic Cluster Deployment <provision_clusters/index>
-   VMware Cluster Deployment <vmware_cluster_deployment/index>
    Integration and Development <integration_and_development/index>
    Release Notes <intro_release_notes/index>
+   Legacy Components <legacy_components/index>
 
 .. raw:: html
    :file: toc.html

@@ -67,16 +67,6 @@ You have more information about what a Managed Object Reference is and what the 
 
    OpenNebula will create a special key at boot time and save it in ``/var/lib/one/.one/one_key``. This key will be used as a private key to encrypt and decrypt all the passwords for all the vCenters that OpenNebula can access. Thus, the password shown in the OpenNebula Host representing the vCenter is the original password encrypted with this key.
 
-Next Steps
---------------------------------------------------------------------------------
-
-Now, you can continue with:
-
-- :ref:`VMware Storage Setup <vmware_storage_setup>`,
-- :ref:`VMware Networking Setup <vmware_networking_setup>`
-
-to additionally configure, extend and control your cloud.
-
 .. _vcenter_permissions_requirement:
 
 Permissions requirement
