@@ -333,7 +333,7 @@ For instance, if the previous example template is written in the vm-example.txt 
     $ onetemplate create vm-example.txt
     ID: 6
 
-Via Sunstone, you can easily add templates using the provided wizards (or copy/pasting a template file) and delete them clicking on the delete button.
+Via Sunstone, you can easily add templates using the provided wizards and delete them clicking on the delete button.
 
 
 .. _vm_template_clone:
@@ -449,14 +449,14 @@ The ``onetemplate chmod --recursive`` option will perform the chmod action also 
 
 Sunstone offers an "alias" for ``onetemplate chmod --recursive 640``, the share action:
 
-|image1|
+|sunstone_template_share|
 
 Managing VM Templates with Sunstone
 ================================================================================
 
-Sunstone exposes the above functionality in the Templates > VMs tab:
+Sunstone exposes the above functionality in the Templates > VM Templates tab:
 
-|image2|
+|sunstone_template_create|
 
-.. |image1| image:: /images/sunstone_template_share.png
-.. |image2| image:: /images/sunstone_template_create.png
+.. |sunstone_template_share| image:: /images/sunstone_template_share.png
+.. |sunstone_template_create| image:: /images/sunstone_template_create.png
