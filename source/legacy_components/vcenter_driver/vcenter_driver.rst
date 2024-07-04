@@ -14,7 +14,7 @@ Driver Defaults
 vCenter Virtualization Drivers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following sections in the ``/etc/one/oned.conf`` file describe the information and virtualization drivers for vCenter, which are enabled by default:
+The following sections in the ``/etc/one/oned.conf`` file describe the information and virtualization drivers for vCenter. Since the vCenter driver is in legacy mode, they need to be enabled by uncomenting them.
 
 .. code::
 
@@ -63,7 +63,7 @@ Additionally, certain behavior of the vCenter driver can be configured in ``/var
 vCenter Datastore Drivers
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following section configures the vCenter datastore drivers, used to copy images to and from vCenter image datastores.
+The following section configures the vCenter datastore drivers, used to copy images to and from vCenter image datastores. They need to be uncommented.
 
 .. code::
 
@@ -98,7 +98,7 @@ See the :ref:`Storage Drivers reference <sd>` for more information about these p
 vCenter Networking Drivers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following section configures the networking drivers, used to import and create networks from vCenter.
+The following section configures the networking drivers, used to import and create networks from vCenter. They need to be uncommented.
 
 .. code::
 
@@ -111,6 +111,8 @@ See the :ref:`Networking Drivers reference <devel-nm>` for more information abou
 
 vCenter Monitoring Drivers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This drivers need to be uncommented in /etc/one/monitord.conf.
 
 vCenter clusters and Virtual Machines monitoring is performed through ``onemonitord``. Details on its configuration can be found on the :ref:`dedicated guide <mon>`.
 
