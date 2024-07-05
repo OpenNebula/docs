@@ -173,7 +173,7 @@ and for VM templates:
 
 .. note:: NICs are marked as auto, so they can work when the Marketplace Application is exported to a OpenNebula cloud. If you have NIC_ALIAS in the template, NICs are **not** marked as auto, you need to select the network when you instantiate it.
 
-.. warning:: To avoid clashing names, if no name is specified, a hash is added at the end of the main object name. Sub objects like disks or VM templates in case of Service Template, have always the hash.
+.. warning:: To avoid clashing names, if no name is specified, a hash is added at the end of the main object name. Sub objects like disks or VM templates in case of Service Template, always have the hash.
 
 Marketplace Appliance Attributes
 --------------------------------------------------------------------------------
@@ -244,16 +244,8 @@ Please take a look at the CLI reference to see how to use these actions. These o
 
 Using Sunstone to Manage Marketplace Appliances
 ================================================================================
-You can also import and export Marketplace Appliances using :ref:`Sunstone <sunstone>`. Select the Storage > MarketApps tab, and there, you will be able see the available Appliances in a user friendly way.
+You can also import and export Marketplace Appliances using :ref:`Sunstone <fireedge>`. Select the Storage > Apps tab, and there, you will be able see the available Appliances in a user friendly way.
 
 .. image:: /images/show_marketplaceapp.png
     :width: 90%
     :align: center
-
-Exporting Appliances into vCenter Datastore
-================================================================================
-
-When using a vCenter datastore there are two ways of export an app into the marketplace:
-
-- You can import an existing VM template from your vCenter and then select it when exporting the app. This will create a clone from your template and replace the disks by the ones downloaded.
-- If you don't select any existing VM template, OpenNebula will automatically create a new one in vCenter and use it. This template will be reused when you export a new app.
