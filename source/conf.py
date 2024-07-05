@@ -38,9 +38,12 @@ extensions = ['sphinx.ext.graphviz',
               'sphinx-prompt',
               'sphinx_substitution_extensions']
 
-spelling_lang = 'en_US'
 
-spelling_word_list_filename=['./wordlists/opennebula.txt']
+## Spellchecker configuration
+from spellchecking.modules.filters import ContractionFilter
+
+spelling_lang = 'en_US'
+spelling_word_list_filename=['./ext/spellchecking/wordlists/opennebula.txt']
 
 spelling_show_suggestions=False
 spelling_ignore_case = True
@@ -50,6 +53,9 @@ spelling_ignore_wiki_words=True
 spelling_ignore_python_builtins=True
 spelling_ignore_importable_modules=True
 spelling_ignore_contributor_names=True
+
+spelling_filters = [ContractionFilter]
+####
 
 todo_include_todos = False
 
