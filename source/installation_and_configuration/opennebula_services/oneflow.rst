@@ -78,9 +78,9 @@ In the default configuration, the OneFlow server will only listen to requests co
 Configure Sunstone
 ------------------
 
-Sunstone GUI enables end-users to access the OneFlow from the UI and it directly connects to OneFlow on their behalf. Sunstone has configured the OneFlow endpoint it connects to in ``/etc/one/sunstone-server.conf`` in parameter ``:oneflow_server``. When OneFlow is running on a different host than Sunstone, the endpoint in Sunstone must be configured appropriately.
+Sunstone GUI enables end-users to access the OneFlow from the UI and it directly connects to OneFlow on their behalf. Sunstone has configured the OneFlow endpoint it connects to in ``/etc/one/fireedge-server.conf`` in parameter ``:oneflow_server``. When OneFlow is running on a different host than Sunstone, the endpoint in Sunstone must be configured appropriately.
 
-Sunstone tabs for OneFlow (*Services* and *Service Templates*) are enabled in Sunstone by default. To customize visibility for different types of users, follow the :ref:`Sunstone Views <suns_views>` documentation.
+Sunstone tabs for OneFlow (*Services* and *Service Templates*) are enabled in Sunstone by default. To customize visibility for different types of users, follow the :ref:`Sunstone Views <fireedge_suns_views>` documentation.
 
 Configure CLI
 -------------

@@ -7,7 +7,7 @@ Troubleshooting
 Logging
 =======
 
-Every OpenNebula server generates logs with a configurable verbosity (level of detail) and through different means (file, syslog, or standard error output) to allow cloud administrators to troubleshoot the potential problems. Logs are stored in ``/var/log/one/`` on a Front-end Host with a particular component. Some valuable error messages can be also seen by the end-users in :ref:`CLI <cli>` tools or the :ref:`Sunstone GUI <sunstone>`.
+Every OpenNebula server generates logs with a configurable verbosity (level of detail) and through different means (file, syslog, or standard error output) to allow cloud administrators to troubleshoot the potential problems. Logs are stored in ``/var/log/one/`` on a Front-end Host with a particular component. Some valuable error messages can be also seen by the end-users in :ref:`CLI <cli>` tools or the :ref:`Sunstone GUI <fireedge>`.
 
 Configure Logging System
 ------------------------
@@ -17,7 +17,6 @@ Follow the guides of each component to find the logs' location and configuration
 - OpenNebula Daemon: :ref:`logs <oned_conf_service>`, :ref:`configuration <oned_conf>` (parameter ``LOG/DEBUG_LEVEL``)
 - Scheduler: :ref:`logs <sched_conf_service>`, :ref:`configuration <sched_conf>` (parameter ``LOG/DEBUG_LEVEL``)
 - Monitoring: :ref:`logs <mon_conf_service>`, :ref:`configuration <mon_conf>` (parameter ``LOG/DEBUG_LEVEL``)
-- Sunstone: :ref:`logs <sunstone_conf_service>`, :ref:`configuration <sunstone_conf>` (parameter ``:debug_level``)
 - FireEdge: :ref:`logs <fireedge_conf_service>`, :ref:`configuration <fireedge_conf>` (parameter ``log``)
 - OneFlow: :ref:`logs <oneflow_conf_service>`, :ref:`configuration <oneflow_conf>` (parameter ``:debug_level``)
 - OneGate: :ref:`logs <onegate_conf_service>`, :ref:`configuration <onegate_conf>` (parameter ``:debug_level``)

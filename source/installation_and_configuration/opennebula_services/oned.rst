@@ -9,7 +9,7 @@ The OpenNebula Daemon (``oned``) is the **core service of the cloud management p
 Configuration
 =============
 
-The OpenNebula Daemon configuration file can be found in ``/etc/one/oned.conf`` on the Front-end and can be customized with parameters:
+The OpenNebula Daemon configuration file can be found in ``/etc/one/oned.conf`` on the Front-end and can be customized with the following parameters:
 
 .. note::
 
@@ -714,7 +714,7 @@ Generic quota attributes used for :ref:`Compute Quotas <quota_auth>`. You can im
     QUOTA_VM_ATTRIBUTE = "VCPU"
     QUOTA_VM_ATTRIBUTE = "LICENSE"
 
-Note that any generic quota attribute will be added to the ``VM_RESTRICTEC_ATTR`` set (see below).
+Note that any generic quota attribute will be added to the ``VM_RESTRICTED_ATTR`` set (see below).
 
 .. _oned_conf_restricted_attributes_configuration:
 
