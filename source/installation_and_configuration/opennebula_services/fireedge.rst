@@ -1,3 +1,4 @@
+.. _fireedge:
 .. _fireedge_setup:
 .. _fireedge_configuration:
 .. _fireedge_conf:
@@ -11,7 +12,7 @@ The OpenNebula FireEdge server provides a **next-generation web-management inter
 Main Features
 --------------------------------------------------------------------------------
 
-- **VMRC and Guacamole Proxy** for Sunstone to remotely access the VMs (incl., VNC, RDP, and SSH)
+- **Guacamole Proxy** for Sunstone to remotely access the VMs (incl., VNC, RDP, and SSH)
 - **OneProvision GUI**: to manage deployments of fully operational Clusters on remote Edge Cloud providers, see :ref:`Provisioning an Edge Cluster <first_edge_cluster>`. Accessible from the following URL:
 
 .. code::
@@ -26,7 +27,6 @@ Main Features
     http://<OPENNEBULA-FRONTEND>:2616
 
 
-.. warning:: FireEdge currently doesn't support :ref:`federated environments <federation>`. It can interact only with a local OpenNebula instance (even if it's federated), but can't interact with remote, federated OpenNebula instances.
 
 .. _fireedge_install_configuration:
 
@@ -100,7 +100,7 @@ The FireEdge server configuration file can be found in ``/etc/one/fireedge-serve
 |                                           |                                | **.** or a **URL**                                 |
 +-------------------------------------------+--------------------------------+----------------------------------------------------+
 
-.. note:: JWT is acronime of JSON Web Token
+.. note:: JWT is a acronym of JSON Web Token
 
 .. _oneprovision_configuration:
 
@@ -155,7 +155,7 @@ The FireEdge server configuration file can be found in ``/etc/one/fireedge-serve
 | ``keep_me_logged_in``                     | ``true``                                  | True to display 'Keep me logged in' option           |
 +-------------------------------------------+-------------------------------------------+------------------------------------------------------+
 
-Once the server is initialized, it creates the file ``/var/lib/one/.one/fireedge_key``, used to encrypt communications with Guacd.
+Once the server is initialized, it creates the file ``/var/lib/one/.one/fireedge_key``, used to encrypt communication with Guacd.
 
 .. _fireedge_in_ha:
 
@@ -177,7 +177,7 @@ Branding FireEdge
 
 You can add your logo to the login, main, favicon and loading screens by updating the ``logo:`` attribute as follows:
 
-- The login screen is defined in the ``/etc/one/fireedge/sunstone/sunstone-views.yaml``.
+- The logo configuration is done in the ``/etc/one/fireedge/sunstone/sunstone-views.yaml`` file.
 - The logo of the main UI screen is defined for each view.
 
 The logo image must be copied to ``/usr/lib/one/fireedge/src/client/assets/images/logos``.
@@ -186,6 +186,7 @@ The following example shows how you can change the logo to a generic linux one (
 
 .. code-block:: yaml
 
+    # /etc/one/fireedge/sunstone/sunstone-views.yaml
     ---
     logo: linux.png
 
@@ -201,30 +202,6 @@ The following example shows how you can change the logo to a generic linux one (
    The logo can be updated without having to restart the FireEdge server!
 
 |fireedge_sunstone_linux_login_logo| |fireedge_sunstone_linux_drawer_logo|
-
-Configure Sunstone for VMRC and Guacamole
---------------------------------------------------------------------------------
-
-.. note::
-
-    After a configuration change, the Sunstone server must be :ref:`restarted <sunstone_conf_service>` to take effect.
-
-In order for Sunstone (not FireEdge Sunstone, but rather the current Sunstone, with full admin functionality) to allow VMRC and Guacamole VNC/RDP/SSH access, you need to configure Sunstone with the public endpoint of FireEdge so that one service can redirect users to the other. To configure the public FireEdge endpoint in Sunstone, edit ``/etc/one/sunstone-server.conf`` and update the ``:public_fireedge_endpoint`` with the base URL (domain or IP-based) over which end-users can access the service. For example:
-
-.. code::
-
-    :public_fireedge_endpoint: http://one.example.com:2616
-
-.. hint::
-
-    If you aren't planning to use FireEdge, you can disable it in Sunstone by commenting out the following parameters in ``/etc/one/sunstone-server.conf``, e.g.:
-
-    .. code::
-
-        #:private_fireedge_endpoint: http://localhost:2616
-        #:public_fireedge_endpoint: http://localhost:2616
-
-.. warning:: FireEdge currently doesn't support :ref:`X.509 Authentication <x509_auth>`.
 
 .. _fireedge_conf_guacamole:
 
@@ -296,7 +273,7 @@ A common issue when starting FireEdge is a used port:
 
     Error: listen EADDRINUSE: address already in use 0.0.0.0:2616
 
-If another service is using the port, you can change FireEdge configuration (``/etc/one/fireedge-server.conf``) to use another host/port. Remember to also adjust the FireEdge endpoints in Sunstone configuration (``/etc/one/sunstone-server.conf``) as well.
+If another service is using the port, you can change FireEdge configuration (``/etc/one/fireedge-server.conf``) to use another host/port.
 
 .. |oneprovision_dashboard| image:: /images/oneprovision_dashboard.png
 .. |fireedge_sunstone_dashboard| image:: /images/fireedge_sunstone_dashboard.png

@@ -27,7 +27,7 @@ The Scheduling algorithm easily allows us to implement several placement heurist
 
 The policy used to place a VM can be configured in two places:
 
-* Globally, for all the VMs in the configuration file ``/etc/one/sched.conf`` of Scheduler.
+* Globally, for all the VMs in the configuration file ``/etc/one/sched.conf`` of the scheduler.
 * For each VM, as defined by the general ``SCHED_RANK`` and ``SCHED_DS_RANK`` and NIC-specific ``SCHED_RANK`` in the VM template.
 
 .. _schg_configuration:
@@ -149,7 +149,7 @@ To start, restart or stop the server, execute one of:
 
 .. note::
 
-   Service is automatically started (unless masked) upon the start of OpenNebula Daemon.
+   The service is automatically started (unless masked) upon the start of the OpenNebula Daemon.
 
 Server **logs** are located in ``/var/log/one`` in following file:
 
