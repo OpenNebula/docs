@@ -19,4 +19,5 @@ jobs:
           python-version: '3.12'
 
       - name: Run Spellcheck
-        run: .github/scripts/spellcheck.sh
+        run: |
+          .github/scripts/spellcheck.sh

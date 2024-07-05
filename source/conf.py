@@ -14,6 +14,8 @@
 import sys
 import os
 import yaml
+print(f"Current directory: {os.getcwd()}")
+print(f"Wordlist path: {os.path.abspath('ext/spellchecking/wordlists/opennebula.txt')}")
 
 import sphinx_rtd_theme
 
@@ -43,7 +45,7 @@ extensions = ['sphinx.ext.graphviz',
 from spellchecking.modules.filters import ContractionFilter
 
 spelling_lang = 'en_US'
-spelling_word_list_filename=['./ext/spellchecking/wordlists/opennebula.txt']
+spelling_word_list_filename=['ext/spellchecking/wordlists/opennebula_doesnotexist.txt']
 
 spelling_show_suggestions=False
 spelling_ignore_case = True

@@ -50,6 +50,7 @@ html:
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
 spelling:
+	ruby generate_index.rb >> source/toc.html
 	$(SPHINXBUILD) -b spelling $(ALLSPHINXOPTS) $(BUILDDIR)/spellcheck
 	@echo
 	@echo "Spell check finished. The results are in $(BUILDDIR)/spellcheck."
