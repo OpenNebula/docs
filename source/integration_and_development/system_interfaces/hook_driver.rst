@@ -140,7 +140,7 @@ The state hooks are only available for **Hosts** and **Virtual Machines** and th
 +-----------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | LCM_STATE             | YES       | The LCM state that triggers the hook (Only for VM hooks)                                                                                                                        |
 +-----------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ON                    | YES       | For ``RESOURCE=VM``, shortcut to define common ``STATE``/``LCM_STATE`` pairs. Supported values are: RUNNING, SHUTDOWN, STOP, DONE, UNKNOWN, CUSTOM                              |
+| ON                    | YES       | For ``RESOURCE=VM``, shortcut to define common ``STATE``/``LCM_STATE`` pairs. Supported values are: PROLOG, RUNNING, SHUTDOWN, STOP, DONE, UNKNOWN, CUSTOM                      |
 +-----------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. warning:: Note that ``ON`` is mandatory for VM hooks, use ``ON=CUSTOM`` with ``STATE`` and ``LCM_STATE`` to define hooks on specific state transitions.
