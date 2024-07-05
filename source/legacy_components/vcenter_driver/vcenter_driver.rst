@@ -14,7 +14,7 @@ Driver Defaults
 vCenter Virtualization Drivers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following sections in the ``/etc/one/oned.conf`` file describe the information and virtualization drivers for vCenter. Since the vCenter driver is in legacy mode, they need to be enabled by uncomenting them.
+The following sections in the ``/etc/one/oned.conf`` file describe the information and virtualization drivers for vCenter. Since the vCenter driver is in legacy mode, they need to be enabled by uncommenting them.
 
 .. code::
 
@@ -44,7 +44,7 @@ The following sections in the ``/etc/one/oned.conf`` file describe the informati
     #-------------------------------------------------------------------------------
 
 
-IMPORTED_VMS_ACTIONS define which operatons are allowed to be executed on imported VMs (Wild VMs).
+IMPORTED_VMS_ACTIONS define which operations are allowed to be executed on imported VMs (Wild VMs).
 
 As a virtualization driver, the vCenter driver accepts a series of parameters that control its execution. The parameters allowed are:
 
@@ -341,7 +341,7 @@ In Sunstone, click on Datastores under the Storage menu entry, and then click on
 .. image:: /images/vcenter_datastore_import_step1.png
     :align: center
 
-In the new window, choose a cluster that will authenticate you into this vCenter instance and click on **Get Datastores**. This will retrieve all the datastores available for import - those that haven't been imiported yet. If the OpenNebula clusters IDs column is empty that means that the import tool could not find an OpenNebula cluster where the datastore can be grouped and you may have to assign it manually later.
+In the new window, choose a cluster that will authenticate you into this vCenter instance and click on **Get Datastores**. This will retrieve all the datastores available for import - those that haven't been imported yet. If the OpenNebula clusters IDs column is empty that means that the import tool could not find an OpenNebula cluster where the datastore can be grouped and you may have to assign it manually later.
 
 From the list, select the datastore you want to import and then click on the Import button. You'll get a notification with the IDs of the datastores that have been created.
 
@@ -354,7 +354,7 @@ Importing vCenter VM Templates
 
 The **onevcenter** tool and the Sunstone interface can be used to import existing VM templates from vCenter.
 
-.. important:: This step should be performed **after** we have succesfully imported the datastores where the template's hard disk files are located, and those datastores have been monitored at least once.
+.. important:: This step should be performed **after** we have successfully imported the datastores where the template's hard disk files are located, and those datastores have been monitored at least once.
 
 OpenNebula will create OpenNebula images that represent vCenter VM disks, and virtual networks that represent the port groups used by the virtual NICs. For example, we have a template that has three disks and an NIC connected to the VM Network port group.
 
@@ -714,7 +714,7 @@ Requirements (both live and cold migrations)
 * Target OpenNebula Host can specify an ESX_MIGRATION_LIST attribute:
     - If not specified, target ESX Host is not explicitly declared and migration may fail
     - If set to an empty string (""), OpenNebula will randomly chose a target ESX from all the ESXs that belong to the vCenter target cluster
-    - If set to a space-separated list of ESX hostnames (that need to beling to the vCenter target cluster), OpenNebula will randomly chose a target ESX from the list
+    - If set to a space-separated list of ESX hostnames (that need to belong to the vCenter target cluster), OpenNebula will randomly chose a target ESX from the list
 
 A good place to check if the VM meets the OpenNebula requirements is the 'AUTOMATIC_REQUIREMENTS' attribute of the Virtual Machine (this can be reviewed in the Template info tab). Check if it includes the target OpenNebula clusters (remember, a cluster in OpenNebula is a collection of Hosts, virtual networks and datastores; a cluster in vCenter is represented as a Host in OpenNebula).
 

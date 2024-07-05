@@ -41,7 +41,7 @@ Limitations
 ============
 - Incremental backups are only available for KVM and qcow2 disks
 - Live backups are only supported for KVM
-- Attaching a disk to a VM that had an incremental backup previosly made will yield an error. The `--reset` option for the backup operation is required to recreate a new incremental chain
+- Attaching a disk to a VM that had an incremental backup previously made will yield an error. The `--reset` option for the backup operation is required to recreate a new incremental chain
 - Incremental backups on VMs with disk or system snapshots is not supported
 
 Preparing VMs for Backups

@@ -102,7 +102,7 @@ These commands use some common options described below:
 +-----------------------------+--------------------------------------------------+
 | ``--vmname name``           | Name for the new VM Template                     |
 +-----------------------------+--------------------------------------------------+
-| ``--market market_id``      | Marketplace to import the Appliction             |
+| ``--market market_id``      | Marketplace to import the Application            |
 +-----------------------------+--------------------------------------------------+
 | ``--yes``                   | Import everything.                               |
 +-----------------------------+--------------------------------------------------+

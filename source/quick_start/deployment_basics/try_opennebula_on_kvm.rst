@@ -8,7 +8,7 @@ In this guide, we'll go through a Front-end OpenNebula environment deployment, w
 
 While all the :ref:`installation and configuration <opennebula_installation>` steps can be done manually and would give you a better insight and control over what and how it is configured, we'll focus on the most straightforward approach by leveraging the miniONE tool.
 
-The miniONE tool is a simple deployment script that deploys an OpenNebula Front-end and, optionaly, a single KVM node within a single physical or virtual machine. This tool is mainly intended for evaluation, development, and testing, but it can also be used as a base for larger short-lived deployments. Usually, it takes just a few minutes to get the environment ready.
+The miniONE tool is a simple deployment script that deploys an OpenNebula Front-end and, optionally, a single KVM node within a single physical or virtual machine. This tool is mainly intended for evaluation, development, and testing, but it can also be used as a base for larger short-lived deployments. Usually, it takes just a few minutes to get the environment ready.
 
 Requirements
 ============
@@ -33,7 +33,7 @@ If you don't have a server available with the above characteristics, we recommen
 
 |aws_security_groups|
 
-In order to SSH into the EC2 VM, you need to pass the correct user and PEM file (you can create one and download it prior to launching the instance). You'll then be conecting to your Front-end using a comand similar to:
+In order to SSH into the EC2 VM, you need to pass the correct user and PEM file (you can create one and download it prior to launching the instance). You'll then be connecting to your Front-end using a command similar to:
 
 .. prompt:: bash # auto
 

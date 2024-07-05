@@ -93,7 +93,7 @@ You can upload VMDK files that can be attached to Virtual Machines as Virtual Ha
 The file containing the VMDK can be uploaded in two ways:
 
 - Adding the file from your desktop filesystem.
-- Specify the path using an HTTP URL. OpenNebula will download the VMDK file directly into the vCenter datatore.
+- Specify the path using an HTTP URL. OpenNebula will download the VMDK file directly into the vCenter datastore.
 
 The file to be uploaded can be:
 

@@ -50,7 +50,7 @@ To create a new System Datastore, you need to set following (template) parameter
 |                 +------------------------------------------------------+
 |                 | ``qcow2`` for qcow2 transfer mode                    |
 +-----------------+------------------------------------------------------+
-| ``BRIDGE_LIST`` | Space separeted list of hosts with system DS mounted |
+| ``BRIDGE_LIST`` | Space separated list of hosts with system DS mounted |
 +-----------------+------------------------------------------------------+
 
 This can be done either in Sunstone or through the CLI; for example, to create a System Datastore using the shared mode simply enter:
@@ -87,7 +87,7 @@ To create a new Image Datastore, you need to set the following (template) parame
     - Datastore driver to use
   * - ``TM_MAD``
     - ``shared`` or ``qcow2``
-    - Transfer driver, ``qcow2`` uses specialized operartions for ``qcow2`` files
+    - Transfer driver, ``qcow2`` uses specialized operations for ``qcow2`` files
   * - ``CONVERT``
     - ``yes`` (default) or ``no``
     - If ``DRIVER`` is set on the image datastore, this option controls whether the images in different formats are internally converted into the ``DRIVER`` format on import.

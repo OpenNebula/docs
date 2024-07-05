@@ -17,7 +17,7 @@ Log in to Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab and search fo
 
 |wordpress_marketplace|
 
-Click ``Next`` in the first step and then select a datastore. For efficiency sake, and taking into account we are only going to run this appliaction in the OpenNebula cluster created in "Operations Basics", select the aws-cluster-images Datastore.
+Click ``Next`` in the first step and then select a datastore. For efficiency sake, and taking into account we are only going to run this application in the OpenNebula cluster created in "Operations Basics", select the aws-cluster-images Datastore.
 
 |aws_cluster_images_datastore|
 

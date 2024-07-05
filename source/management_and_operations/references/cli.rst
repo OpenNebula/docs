@@ -21,8 +21,8 @@ CLI
 * `oneimage </doc/6.8/cli/oneimage.1.html>`__: manages OpenNebula images.
 * `onemarket </doc/6.8/cli/onemarket.1.html>`__: manages internal and external marketplaces.
 * `onemarketapp </doc/6.8/cli/onemarketapp.1.html>`__: manages appliances from marketplaces.
-* `oneprovider </doc/6.8/cli/oneprovider.1.html>`__: mnanages OpenNebula providers.
-* `oneprovision </doc/6.8/cli/oneprovision.1.html>`__: mnanages OpenNebula provisions.
+* `oneprovider </doc/6.8/cli/oneprovider.1.html>`__: manages OpenNebula providers.
+* `oneprovision </doc/6.8/cli/oneprovision.1.html>`__: manages OpenNebula provisions.
 * `onesecgroup </doc/6.8/cli/onesecgroup.1.html>`__: manages OpenNebula security groups.
 * `oneshowback </doc/6.8/cli/oneshowback.1.html>`__: OpenNebula Showback tool.
 * `onetemplate </doc/6.8/cli/onetemplate.1.html>`__: manages OpenNebula templates.
@@ -191,7 +191,7 @@ For example, in the case of ``onevm list``, by default it looks like this
     9232 nhansen  users    alma8-kvm-ssh-6-6-pkofu-1.test                                              runn  0.5    1.3G localhost                                            0d 07h04
     9231 nhansen  users    alma8-kvm-ssh-6-6-pkofu-0.test                                              runn  0.5    1.8G localhost                                            0d 07h04
 
-But you can change the default colums, increase the column width and disable expansion to make it look like this
+But you can change the default columns, increase the column width and disable expansion to make it look like this
 
 .. prompt:: bash $ auto
 

@@ -33,9 +33,23 @@ sys.path.append(os.path.abspath('ext'))
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = ['sphinx.ext.graphviz',
               'sphinx.ext.todo',
+              'sphinxcontrib.spelling',
               'versions',
               'sphinx-prompt',
               'sphinx_substitution_extensions']
+
+spelling_lang = 'en_US'
+
+spelling_word_list_filename=['./wordlists/opennebula.txt']
+
+spelling_show_suggestions=False
+spelling_ignore_case = True
+spelling_ignore_pypi_package_names=False
+spelling_ignore_acronyms=True
+spelling_ignore_wiki_words=True
+spelling_ignore_python_builtins=True
+spelling_ignore_importable_modules=True
+spelling_ignore_contributor_names=True
 
 todo_include_todos = False
 

@@ -33,7 +33,7 @@ No two use cases are the same, so OpenNebula has been designed with flexibility 
 Virtualized Applications
 ========================
 
-* OpenNebula orchestrates **Virtual Machines**, but depending on the kind of workload you can use different types of hypervisors. OpenNebula can be deployed on top of your VMware vCentre infrastructure, but it can also manage KVM-based workloads as well as LXC **system containers** and lightweight Firecracker **microVMs** (especially convenient, for instance, to run application containers).
+* OpenNebula orchestrates **Virtual Machines**, but depending on the kind of workload you can use different types of hypervisors. OpenNebula can be deployed on top of your VMware vCenter infrastructure, but it can also manage KVM-based workloads as well as LXC **system containers** and lightweight Firecracker **microVMs** (especially convenient, for instance, to run application containers).
 
 * OpenNebula provides **multi-tenancy** by design, offering different types of interfaces for users depending on their roles within your organization or the level of expertise or functionality required.
 
@@ -122,7 +122,7 @@ The main components of an OpenNebula installation are:
 
 * **OneFlow**: The OneFlow orchestrates multi-VM services as a whole, defining dependencies and auto-scaling policies for the application components, interacts with the OpenNebula Daemon to manage the Virtual Machines (starts, stops), and can be controlled via the Sunstone GUI or over CLI. It’s a dedicated daemon installed by default as part of the Single Front-end Installation, but can be deployed independently on a different machine.
 
-* **OneGate**: The OneGate server allows Virtual Machines to pull and push information from/to OpenNebula, so users and administrators can use it to gather metrics, detect problems in their applications, and trigger OneFlow elasticity rules from inside the VMs. It can be used with all hypervisor Host types (KVM, LXC, FIrecracker, and vCenter) if the guest operating system has preinstalled the OpenNebula contextualization package. It’s a dedicated daemon installed by default as part of the Single Front-end Installation, but can be deployed independently on a different machine.
+* **OneGate**: The OneGate server allows Virtual Machines to pull and push information from/to OpenNebula, so users and administrators can use it to gather metrics, detect problems in their applications, and trigger OneFlow elasticity rules from inside the VMs. It can be used with all hypervisor Host types (KVM, LXC, Firecracker, and vCenter) if the guest operating system has preinstalled the OpenNebula contextualization package. It’s a dedicated daemon installed by default as part of the Single Front-end Installation, but can be deployed independently on a different machine.
 
 * **OneGate/Proxy**: The OneGate/Proxy service is a simple TCP proxy solution, that can be used to improve security of the OneGate's endpoint. Users can enable it on hypervisor Nodes, then it should become much easier to protect OneGate's traffic with a VPN solution, or at least, the requirement of exposing OneGate on a public IP in certain environments is no longer present.
 

@@ -67,7 +67,7 @@ If you are using the KVM hypervisor you can create base images using OpenNebula 
 
 .. note::
 
-    You can also start with a base installation provided by the official ditribution channels:
+    You can also start with a base installation provided by the official distribution channels:
 
     * **AlmaLinux**: https://repo.almalinux.org/almalinux/
     * **Debian**: https://cdimage.debian.org/cdimage/openstack/

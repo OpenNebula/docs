@@ -43,7 +43,7 @@ In particular the following capacity attributes can be reserved:
 |                        | from the TOTAL MEM. See :ref:`scheduler <schg_limit>`.                   |
 +------------------------+--------------------------------------------------------------------------+
 
-.. important:: These values can be negative, in that case you'll be actually increasing the overall capacity so overcommiting host capacity.
+.. important:: These values can be negative, in that case you'll be actually increasing the overall capacity so overcommitting host capacity.
 
 The above values can be absolute, for example ``RESERVED_MEM=-10240`` will add 1GB of memory to the Host. Or they can be expressed in percentage, for example ``RESERVED_MEM=-10%`` will increase the memory of the host by a 10%.
 

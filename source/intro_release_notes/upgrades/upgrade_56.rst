@@ -126,7 +126,7 @@ Bug recovering
 
 If Ceph datastores were used with OpenNebula <= 5.6.2 and any VM have been reverted to a snapshot, it's needed to follow the next steps for recovering snapshot tree consistency:
 
-.. warning:: Check history in order to find how many reverts have been done. If the number of reverts are greater than 1 we do not recommend to deleted any snapshot, becase it will cause lose of information. If the number of revert is 1 you can fix it by following the steps below.
+.. warning:: Check history in order to find how many reverts have been done. If the number of reverts are greater than 1 we do not recommend to deleted any snapshot, because it will cause lose of information. If the number of revert is 1 you can fix it by following the steps below.
 
 - Use the command ``onedb update-body vm --id <vm_id>`` for updating the body of the VM.
 - Set /VM/SNAPSHOTS/CURRENT_BASE to the ID of the current active snapshot.

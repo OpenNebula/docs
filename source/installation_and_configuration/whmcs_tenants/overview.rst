@@ -13,7 +13,7 @@ Inside of OpenNebula when an order is accepted, the setup is performed: there is
 How I Should Read This Chaper
 ================================================================================
 
-Before reading this chapter you should be aware of the `WHMCS Documentation <https://docs.whmcs.com/Documentation_Home>`__ and haved it installed on a server which can access your OpenNebula install.  You should also be familiar with OpenNebula's :ref:`Manage Users <manage_users>`, :ref:`Manage Groups <manage_groups>`, :ref:`Usage Quotas <quota_auth>` and :ref:`Managing Permissions <chmod>` features.
+Before reading this chapter you should be aware of the `WHMCS Documentation <https://docs.whmcs.com/Documentation_Home>`__ and have it installed on a server which can access your OpenNebula install.  You should also be familiar with OpenNebula's :ref:`Manage Users <manage_users>`, :ref:`Manage Groups <manage_groups>`, :ref:`Usage Quotas <quota_auth>` and :ref:`Managing Permissions <chmod>` features.
 
 In this chapter there are three guides for this module:
  * Install/Configure

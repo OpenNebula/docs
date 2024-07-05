@@ -490,7 +490,7 @@ The list below shows the ports used by OpenNebula. These ports need to be open f
 OpenNebula connects to the hypervisor Nodes over SSH (port 22). Additionally, the main OpenNebula Daemon (oned) may connect to various remote Marketplace servers to get a list of available appliances, e.g.:
 
 - OpenNebula Marketplace (``https://marketplace.opennebula.io/``)
-- Linux Containers Makerplace (``https://images.linuxcontainers.org/``)
+- Linux Containers Marketplace (``https://images.linuxcontainers.org/``)
 
 You should open the outgoing connections to these services.
 
@@ -529,7 +529,7 @@ In production environments the services should be stopped in a specific order an
 
 1. Stop **opennebula-scheduler** to stop planning deployment of VMs.
 2. Stop **opennebula-fireedge** to disable GUI access to users.
-3. Stop **openenbula-flow** to disable unattended multi-VM optations.
+3. Stop **openenbula-flow** to disable unattended multi-VM options.
 4. Check and wait until there are no active operations with VMs and images.
 5. Stop **opennebula** and rest services.
 

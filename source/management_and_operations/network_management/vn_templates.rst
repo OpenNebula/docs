@@ -71,7 +71,7 @@ First create a Virtual Network Template and set all the attributes which need to
     $ onevntemplate create vn_template.txt
       ID: 0
 
-Once the Virtual Network Template has been creted, change the permissions to make it available for the users you want. In the example below all the users will be able to instantiate the template:
+Once the Virtual Network Template has been created, change the permissions to make it available for the users you want. In the example below all the users will be able to instantiate the template:
 
 .. code::
 

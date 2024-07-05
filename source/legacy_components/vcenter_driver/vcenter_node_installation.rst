@@ -13,7 +13,7 @@ Note that OpenNebula scheduling decisions are therefore made at ESX Cluster leve
 Requirements
 ================================================================================
 
-* Supported vSphere version (check :ref:`Platform Notes <vcenter_nodes_platform_notes>`). Please note that Debian is not supported in the OpenNebula front-end if you are intending to manage VMware infrstructures.
+* Supported vSphere version (check :ref:`Platform Notes <vcenter_nodes_platform_notes>`). Please note that Debian is not supported in the OpenNebula front-end if you are intending to manage VMware infrastructures.
 * vCenter user for OpenNebula, the hassle-free approach is to declare this oneadmin user as an administrator. Otherwise, a table with the permissions required is found at the :ref:`end of this guide <vcenter_permissions_requirement>`.
 * If virtual standard switches are used, check that those switches exist in every ESX Host belonging to the same ESX cluster. Conversely, if you use distributed virtual switches, check that ESX Hosts have been added to switches.
 * :ref:`Configuring FireEdge <fireedge_setup>` to enable VMRC access to VMs.

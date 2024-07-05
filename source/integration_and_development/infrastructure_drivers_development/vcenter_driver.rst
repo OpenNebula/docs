@@ -39,7 +39,7 @@ OpenNebula stores the instance uuid inside a template definition in the followin
 
 * ``VCENTER_INSTANCE_ID``
 
-OpenNebula's import tools, which are explained later, will get the morefs and vcenter's intance uuid for you when a resource is imported or created, but if you want to know the managed object reference of a resource we offer you the following information.
+OpenNebula's import tools, which are explained later, will get the morefs and vcenter's instance uuid for you when a resource is imported or created, but if you want to know the managed object reference of a resource we offer you the following information.
 
 Getting a Managed Object Reference
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -70,7 +70,7 @@ VMware VM Templates and OpenNebula
 
 In OpenNebula, Virtual Machines are deployed from VMware VM Templates that **must exist previously in vCenter and must be imported into OpenNebula**. There is a one-to-one relationship between each VMware VM Template and the equivalent OpenNebula VM Template. Users will then instantiate the OpenNebula VM Template and OpenNebula will create a Virtual Machine clone from the vCenter template.
 
-VMs launched in vCenter through OpenNebula can access VMware advanced features and it can be managed through the OpenNebula provisioning portal -to control the life-cycle, add/remove NICs, make snapshots-. It is not recommended to manage them through vCenter. Changes in ESX locatoin made by DRS will be detected by OpenNebula and update its internal representation accordingly.
+VMs launched in vCenter through OpenNebula can access VMware advanced features and it can be managed through the OpenNebula provisioning portal -to control the life-cycle, add/remove NICs, make snapshots-. It is not recommended to manage them through vCenter. Changes in ESX location made by DRS will be detected by OpenNebula and update its internal representation accordingly.
 
 .. warning:: Changes to the VM Template in vCenter (like for instance migrate its disk to another datastore) are not supported. If any change is made to the vCenter VM Template, it needs to be reimported into OpenNebula.
 
@@ -166,7 +166,7 @@ The VCENTER_RESOURCE_POOL has the following elements:
 * O: it means that it is optional to select a Resource Pool.
 * list: this will be a list shown to users.
 * Which resource pool you want this VM to run in?: that's the question that will be shown to users.
-* TestResourcePool/NestedResourcePool,TestResourcePool: that's the list of Resource Pool references separeted with commas that are available to the user.
+* TestResourcePool/NestedResourcePool,TestResourcePool: that's the list of Resource Pool references separated with commas that are available to the user.
 * TestResourcePool/NestedResourcePool: is the default Resource Pool that will be selected on the list.
 
 The import process guides the OpenNbula admin and creates the VCENTER_RESOURCE_POOL attribute so it doesn't need to be hand-crafted. If we want to specify a Resource Pool we should select Fixed from the Type drop-down menu and introduce the reference under Default Resource Pool:
@@ -189,7 +189,7 @@ If we wanted to offer a list to the user:
 Referencing a Resource Pool
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The VCENTER_RESOURCE_POOL attribute expects a string containing the name of the Resource Pool. If the Resource Pool is nested, the name of the Resource Pool should be preceeded by slashes and the names of the parent Resource Pools.
+The VCENTER_RESOURCE_POOL attribute expects a string containing the name of the Resource Pool. If the Resource Pool is nested, the name of the Resource Pool should be preceded by slashes and the names of the parent Resource Pools.
 
 For instance, a Resource Pool "NestedResourcePool" nested under "TestResourcePool"
 

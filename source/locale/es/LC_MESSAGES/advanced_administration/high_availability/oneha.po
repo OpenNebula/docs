@@ -377,7 +377,7 @@ msgstr ""
 #: ../../source/advanced_administration/high_availability/oneha.rst:292
 msgid ""
 "In these cases it's important to review the states of all the Virtual "
-"Machines and let OpenNebula know if the driver exited succesfully or not. "
+"Machines and let OpenNebula know if the driver exited successfully or not. "
 "There is a command specific for this: ``onevm recover``. You can read more "
 "about this command in the :ref:`Managing Virtual Machines <vm_guide_2>` "
 "guide."

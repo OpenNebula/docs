@@ -17,7 +17,7 @@ A **provision template** is a YAML-formatted file with parameters specifying the
 
   * remote connection (SSH),
   * host provision driver,
-  * host configuration tunales.
+  * host configuration tunables.
 
 * list of OpenNebula infrastructure objects (cluster, hosts, datastores, virtual networks) to deploy with overrides to the global defaults above.
 
@@ -109,7 +109,7 @@ Sections ``cluster``, ``hosts``, ``datastores``, ``networks`` contain list of Op
             hostname: "myhost1"
           count: 2
 
-    The resulting hostanmes would be ``myhost1_0`` and ``myhost1_1``.
+    The resulting hostnames would be ``myhost1_0`` and ``myhost1_1``.
 
 Example of datastore defined from regular template:
 

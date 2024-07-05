@@ -110,7 +110,7 @@ Use the ``-v`` flag to see the complete version with comments, e.g.:
 Command exits with different return codes based on the state of database:
 
 - ``0``: The current version of the DB match with the source version.
-- ``1``: The database has not been bootstraped yet, requires OpenNebula start.
+- ``1``: The database has not been bootstrapped yet, requires OpenNebula start.
 - ``2``: The DB version is older than required, requires upgrade.
 - ``3``: The DB version is newer and not supported by this release.
 - ``-1``: Any other problem (e.g., connection issues)
@@ -317,7 +317,7 @@ You can filter the objects to update using one of the options:
 * ``--xpath``: XPath expression. Example: ``TEMPLATE[count(NIC)>1]``
 * ``--expr``: Simple expression using operators ``=``, ``!=``, ``<``, ``>``, ``<=`` or ``>=``. Examples: ``UNAME=oneadmin``, ``TEMPLATE/NIC/NIC_ID>0``
 
-If you want to change a value, add it as a third parameter. Use ``--delete`` argument to delete matching objects. In canse you want to append a new attribute use ``--append`` option.
+If you want to change a value, add it as a third parameter. Use ``--delete`` argument to delete matching objects. In case you want to append a new attribute use ``--append`` option.
 
 Examples:
 
