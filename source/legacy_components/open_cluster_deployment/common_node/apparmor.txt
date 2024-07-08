@@ -1,0 +1,7 @@
+Depending on the type of OpenNebula deployment, the AppArmor can block some operations initiated by the OpenNebula Front-end, which results in a failure of the particular operation.  It's **not recommended to disable** the apparmor on production environments, as it degrades the security of your server, but to investigate and workaround each individual problem, a good starting point is `AppArmor HowToUse Guide <https://wiki.debian.org/AppArmor/HowToUse/>`__. The administrator might disable the AppArmor to temporarily workaround the problem or on non-production deployments the steps for disabling it can be found `here <https://wiki.debian.org/AppArmor/HowToUse#Disable_AppArmor>`__.
+
+.. note:: Depending on your OpenNebula deployment type, the following lines might be required at ``/etc/apparmor.d/abstractions/libvirt-qemu`` profile:
+
+    .. prompt:: bash # auto
+
+        # /var/lib/one/datastores/** rwk,

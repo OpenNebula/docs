@@ -13,6 +13,5 @@ The Open Cluster Deployment Guide provides instructions on how to install and se
 
    KVM Node Deployment <kvm_node/index>
    LXC Node Deployment <lxc_node/index>
-   Firecracker Node Deployment <firecracker_node/index>
    Open Cloud Storage Setup <storage_setup/index>
    Open Cloud Networking Setup <networking_setup/index>
