@@ -1,7 +1,7 @@
 .. _legacy_vcenter_driver:
 
 ================================================================================
-vCenter Driver
+VMware Integration
 ================================================================================
 
 .. toctree::
@@ -12,4 +12,3 @@ vCenter Driver
    vCenter Datastores <vcenter_datastores>
    vCenter Networking <vcenter_networking>
    NSX Setup <nsx_setup>
-   Migrate Images Between KVM and vCenter <migrate_images_between_kvm_and_vcenter>
