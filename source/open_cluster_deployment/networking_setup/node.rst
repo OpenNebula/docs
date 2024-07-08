@@ -11,7 +11,7 @@ Bridged Networking Mode
 
 Requirements
 --------------------------------------------------------------------------------
-* The OpenNebula node packages are installed. See the :ref:`KVM node <kvm_node>`, the :ref:`LXC node <lxc_node>` and the :ref:`Firecracker node <fc_node>` installation sections for more details.
+* The OpenNebula node packages are installed. See the :ref:`KVM node <kvm_node>` and :ref:`LXC node <lxc_node>` installation sections for more details.
 
 Configuration
 --------------------------------------------------------------------------------
@@ -22,7 +22,7 @@ Configuration
 
 Requirements
 --------------------------------------------------------------------------------
-* The OpenNebula node packages are installed. See the :ref:`KVM node <kvm_node>`, the :ref:`LXC node <lxc_node>` and the :ref:`Firecracker node <fc_node>` installation sections for more details.
+* The OpenNebula node packages are installed. See the :ref:`KVM node <kvm_node>` and :ref:`LXC node <lxc_node>` installation sections for more details.
 
 * The ``8021q`` module must be loaded in the kernel.
 
@@ -40,7 +40,7 @@ VXLAN Networking Mode
 
 Requirements
 --------------------------------------------------------------------------------
-* The OpenNebula node packages are installed. See the :ref:`KVM node <kvm_node>`, the :ref:`LXC node <lxc_node>` and the :ref:`Firecracker node <fc_node>` installation sections for more details.
+* The OpenNebula node packages are installed. See the :ref:`KVM node <kvm_node>` and :ref:`LXC node <lxc_node>` installation sections for more details.
 
 * The node must run a Linux kernel (>3.7.0) that natively supports the VXLAN protocol and the associated iproute2 package.
 
@@ -56,7 +56,7 @@ Open vSwitch Networking Mode
 
 Requirements
 --------------------------------------------------------------------------------
-* The OpenNebula node packages are installed. See the :ref:`KVM node <kvm_node>`, the :ref:`LXC node <lxc_node>` and the :ref:`Firecracker node <fc_node>` installation sections for more details.
+* The OpenNebula node packages are installed. See the :ref:`KVM node <kvm_node>` and :ref:`LXC node <lxc_node>` installation sections for more details.
 
 * You need to install Open vSwitch on each node. Please refer to the Open vSwitch documentation to do so.
 

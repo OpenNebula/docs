@@ -12,3 +12,4 @@ Legacy Components refers to functionality that is present in this current versio
 
    Ruby Sunstone <ruby_sunstone/index>
    VMware Integration <vcenter_driver/index>
+   Open Cluster Deployment <open_cluster_deployment/index>
