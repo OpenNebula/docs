@@ -33,6 +33,7 @@ DN
 Datablock
 Datablocks
 Datacenter
+Datastore
 Datastores
 Devuan
 Dialogs
@@ -42,6 +43,7 @@ Dockerhub
 ESX
 Entrypoint
 Equinix
+FaaS
 Failover
 Fargate
 FileManagement
@@ -91,10 +93,12 @@ Netplan
 Nokogiri
 Numa
 Onecfg
+Oneflow
 Opennebula
 OpenvSwitch
 Overcommitment
 Overprovision
+PaaS
 Passthrough
 Passwordless
 Persistency
@@ -117,6 +121,7 @@ SAML
 SLA
 SLAAC
 SRIOV
+Scalability
 Sched
 Schemas
 Scons
@@ -140,6 +145,7 @@ Unmanaged
 Unregister
 Uplink
 VID
+VMs
 VMware
 VNet
 VNets
@@ -215,6 +221,7 @@ bindfs
 bing
 bitrate
 blk
+boolean
 booleans
 bootable
 bootloader
@@ -255,8 +262,10 @@ datablocks
 datacenter
 datacenters
 datapath
+datasets
 datasource
 datasources
+datastore
 datastorepool
 datastores
 datatable
@@ -343,6 +352,7 @@ haproxy
 hd
 hda
 het
+hoc
 hooklog
 hookpool
 hostname
@@ -470,12 +480,22 @@ oXXX
 ocurrer
 offlines
 ok
+oneacct
 oneacl
+oneadmin
 onebackupjob
 onebr
+onecluster
+oned
+onedatastore
+onedb
 oneds
+oneflow
+onegate
 onegroup
 onehook
+onehost
+oneimage
 onemarket
 onemarketapp
 oneprovision
@@ -484,8 +504,13 @@ oneshowback
 onetemplate
 oneuser
 onevcenter
+onevdc
+onevm
 onevmgroup
+onevnet
 onevntemplate
+onevrouter
+onezone
 onpremise
 onwards
 openjdk
@@ -528,6 +553,7 @@ pregenerated
 preloaded
 prem
 premigrate
+prepend
 programme
 prolog
 prometheus
@@ -574,8 +600,10 @@ rss
 rsync
 rubygems
 runnning
+runtime
 rx
 saveas
+scalability
 scalable
 sched
 schedadd
@@ -684,6 +712,7 @@ usr
 vCPU
 vCPUS
 vCPUs
+vCenter
 vCenters
 vGPU
 vGPUs
@@ -692,6 +721,7 @@ vNIC
 vNUMA
 vOneCloud
 vRouters
+vSphere
 vSwitch
 vSwith
 vcenter

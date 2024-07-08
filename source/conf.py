@@ -45,9 +45,10 @@ extensions = ['sphinx.ext.graphviz',
 from spellchecking.modules.filters import ContractionFilter
 
 spelling_lang = 'en_US'
-spelling_word_list_filename=['ext/spellchecking/wordlists/opennebula_doesnotexist.txt']
+spelling_word_list_filename=['ext/spellchecking/wordlists/opennebula.txt']
 
-spelling_show_suggestions=False
+spelling_show_suggestions=True
+spelling_suggestion_limit=5
 spelling_ignore_case = True
 spelling_ignore_pypi_package_names=False
 spelling_ignore_acronyms=True

@@ -6,7 +6,7 @@ Running Virtual Machines
 
 .. important:: This guide assumes that you have deployed the OpenNebula front-end following the :ref:`Deployment Basics guide <deployment_basics>` and a metal Edge Cluster with KVM hypervisor following the :ref:`Provisining an Edge Cluster <first_edge_cluster>` guide.
 
-OpenNebula Systems mointains a curated set of Virtual Machines in the `public marketplace <http://marketplace.opennebula.io>`__. We are going to use the WordPress appliance to try out our brand new cloud.
+OpenNebula Systems maintains a curated set of Virtual Machines in the `public marketplace <http://marketplace.opennebula.io>`__. We are going to use the WordPress appliance to try out our brand new cloud.
 
 We are going to assume the Edge Cluster naming schema "metal-kvm-aws-cluster".
 
