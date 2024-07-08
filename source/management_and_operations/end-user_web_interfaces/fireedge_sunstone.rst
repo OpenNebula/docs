@@ -83,7 +83,7 @@ System
 Settings
 --------------------------------------------------------------------------------
 
-From this section, users can define multiple configuration options for themselves, that willl be saved inside the user template, such as:
+From this section, users can define multiple configuration options for themselves, that will be saved inside the user template, such as:
 
 - **Schema (default = System)**: change the FireEdge Sunstone Theme to dark, light or matching with the system.
 - **Language (default = English US)**: select the language that they want to use for the UI.
@@ -226,7 +226,7 @@ The attributes described here indicate which buttons are visible to operate over
 +-------------------------+-----------------------------------------------------------------------------+
 | ``hold``                | Users will be able to set to hold Virtual Machines.                         |
 +-------------------------+-----------------------------------------------------------------------------+
-| ``instantiate_dialog``  | Users will be able to instantiate the resouce.                              |
+| ``instantiate_dialog``  | Users will be able to instantiate the resource.                             |
 +-------------------------+-----------------------------------------------------------------------------+
 | ``lock``                | Users will be able to lock the resource.                                    |
 +-------------------------+-----------------------------------------------------------------------------+

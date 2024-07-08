@@ -56,7 +56,6 @@ All the above clusters make use of AWS metal instances. Virtual provisions are n
     # Edit /etc/one/fireedge/provision/providers.d/aws.yaml and uncomment virtual
 
 Note that you only need to do this once for any virtual provider.
-º2dd
 
 
 

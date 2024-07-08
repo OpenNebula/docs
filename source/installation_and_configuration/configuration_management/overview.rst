@@ -14,7 +14,7 @@ OpenNebula has tens of configuration files, where cloud administrators can fine-
 This chapter describes how to use the configuration management tool to
 
 - Upgrade your configuration files for the new OpenNebula version.
-- Check the verion status of the current installation.
+- Check the version status of the current installation.
 - Identify custom changes made to the configuration files.
 - Apply changes to configuration files based on differential file (available also in **Community Edition**).
 - Validate configuration files.

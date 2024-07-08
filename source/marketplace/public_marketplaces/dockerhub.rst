@@ -12,7 +12,7 @@ Requirements and limitations
 
 - Docker must be installed and configured at the frontend. ``oneadmin`` user must have permissions for running docker.
 - Approximately 6GB of storage plus the container image size.
-- As images are builded in the OpenNebula Frontend node the architecture of this node will limit the images architecture.
+- As images are built in the OpenNebula Frontend node the architecture of this node will limit the images architecture.
 
 .. warning:: OpenNebula service must be restarted after providing permissions to ``oneadmin`` for  running docker.
 

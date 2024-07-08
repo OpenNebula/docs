@@ -26,7 +26,7 @@ An On-Premises Edge Cluster with Ceph consists of a set of hosts with the follow
   * -
     - Your network should allow inbound connections to ports 22 (TCP), 179 (TCP) and 8472 (UDP) on the management network. The Internet/Public network should not restrict any access. You can later set Security Groups for your VMs.
   * -
-    - It's recomended to use also sperate network interfaces for Ceph
+    - It's recommended to use also separate network interfaces for Ceph
   * -
     - The nodes needs access to Internet (at least while oneprovision runs), to be able to install the dependencies.
   * - **Storage**
@@ -204,7 +204,7 @@ For example let's create a 192.168.0.100/26 network from the private network tem
 Step 4. A Simple test, run a container
 --------------------------------------------------------------------------------
 
-As a simple test we'll run a container. For example let's pick the nginx base image from Tunrkey Linux Market:
+As a simple test we'll run a container. For example let's pick the nginx base image from Turnkey Linux Market:
 
 .. prompt:: bash $ auto
 

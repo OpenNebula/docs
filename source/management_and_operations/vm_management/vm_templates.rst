@@ -405,7 +405,7 @@ And the following template:
     NIC=[
       NETWORK_ID = "0" ]
 
-A user can delete the second disk but she cannot delete the first disk because it contains a restrictedd attribute.
+A user can delete the second disk but she cannot delete the first disk because it contains a restricted attribute.
 
 Sharing Templates with other Users
 --------------------------------------------------------------------------------

@@ -63,7 +63,7 @@ LDAP/AD Auth
 
 This method performs the OpenNebula login by delegating the authentication on a specific LDAP/AD server or several servers. 
 
-No special configuratoin is needed in FireEdge, the authenticatoin method should be kept as 'opennebula' like in the :ref:`Basic Auth case<remote_auth_fireedge>`. However, this needs to be set up in the OpenNebula core side, to set up the ldap configuration this :ref:`guide <ldap>` needs to be followed.
+No special configuration is needed in FireEdge, the authentication method should be kept as 'opennebula' like in the :ref:`Basic Auth case<remote_auth_fireedge>`. However, this needs to be set up in the OpenNebula core side, to set up the ldap configuration this :ref:`guide <ldap>` needs to be followed.
 
 .. _2f_auth_fireedge:
 

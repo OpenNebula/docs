@@ -44,7 +44,7 @@ The following configuration parameters can be adjusted in ``/var/lib/one/remotes
 | ``:ovs_bridge_conf``     | *(Hash)* Options for Open vSwitch bridge creation                                |
 +--------------------------+----------------------------------------------------------------------------------+
 
-.. note:: Remember to run ``onehost sync -f`` to synchonize the changes to all the nodes.
+.. note:: Remember to run ``onehost sync -f`` to synchronize the changes to all the nodes.
 
 .. _ovswitch_net:
 
@@ -201,7 +201,7 @@ After rebooting the system mount the hugepage folder so application can access t
 
     # mount /mnt/hugepages1G
 
-Now check hugepages are allocted to NUMA nodes, for example (or with ``numastat -m``):
+Now check hugepages are allocated to NUMA nodes, for example (or with ``numastat -m``):
 
 .. code:: bash
 

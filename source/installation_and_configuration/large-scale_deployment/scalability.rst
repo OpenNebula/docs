@@ -205,7 +205,7 @@ When oned is started in read-only (or cache) mode, it resolves any read-only ope
     +-------------------------+-------------------------+-------------------------+
     | one.hostpool.monitoring | one.vn.info             |  one.market.info        |
     +-------------------------+-------------------------+-------------------------+
-    | one.groupool.info       | one.vntemplate.info     |  one.marketapp.info     |
+    | one.grouppool.info      | one.vntemplate.info     |  one.marketapp.info     |
     +-------------------------+-------------------------+-------------------------+
     | one.userpool.info       | one.image.info          |  one.vmgroup.info       |
     +-------------------------+-------------------------+-------------------------+

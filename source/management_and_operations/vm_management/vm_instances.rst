@@ -354,7 +354,7 @@ You can live attach or detach security groups to VMs. Simply specify the VM, net
 
     $ onevm sg-attach centos-server 0 101
 
-Similary to detach a security group execute:.
+Similarly to detach a security group execute:.
 
 .. prompt:: text $ auto
 
@@ -419,7 +419,7 @@ There are two kinds of operations related to disk snapshots:
 * ``disk-snapshot-create``, ``disk-snapshot-revert``, ``disk-snapshot-delete``, ``disk-snapshot-rename``: Allows the user to take snapshots of the disk states and return to them during the VM life-cycle. It is also possible to rename or delete snapshots.
 * ``disk-saveas``: Exports VM disk (or a previously created snapshot) to an Image in an OpenNebula Datastore. This is a live action.
 
-.. warning:: Disk snapshost might have different limitations depending on the hypervisor. Please check the limitations of the specific virtualization driver you're using to ensure this feature is available before using it.
+.. warning:: Disk snapshots might have different limitations depending on the hypervisor. Please check the limitations of the specific virtualization driver you're using to ensure this feature is available before using it.
 
 .. _vm_guide_2_disk_snapshots_managing:
 
@@ -446,7 +446,7 @@ With these combinations (CEPH and qcow2 datastores and KVM hypervisor) you can :
 
 .. warning:: OpenNebula will not automatically handle live ``disk-snapshot-create`` and ``disk-snapshot-revert`` operations for VMs in ``RUNNING`` if the virtualization driver do not support it (check the limitations of the corresponding virtualization driver guide to know if this feature is available for your hypervisor). In this case the user needs to suspend or poweroff the VM before creating the snapshot.
 
-See the :ref:`Storage Driver <sd_tm>` guide for a reference on the driver actions invoked to perform live and non-live snapshost.
+See the :ref:`Storage Driver <sd_tm>` guide for a reference on the driver actions invoked to perform live and non-live snapshots.
 
 .. warning::
 
@@ -566,7 +566,7 @@ Visit the :ref:`Virtual Machine Template reference <template>` for a complete de
 
 .. warning:: This action might not be supported for ``RUNNING`` VMs depending on the hypervisor. Please check the limitation section of the specific virtualization driver.
 
-.. note:: In running state only changes in CONTEXT take effect immediately, other values may need a VM restart. Also, the action may fail and the context will not be changed if the VM is running. You can try to manualy trigger the action again.
+.. note:: In running state only changes in CONTEXT take effect immediately, other values may need a VM restart. Also, the action may fail and the context will not be changed if the VM is running. You can try to manually trigger the action again.
 
 .. _vm_guide2_clone_vm:
 
@@ -1004,7 +1004,7 @@ Note: By default, the above operations do not check the target host capacity. Yo
    - ``--delete``: Deletes the VM, moving it to the DONE state immediately
    - ``--recreate``: Deletes the VM, and moves it to the PENDING state
 
--  ``migrate`` or ``resched``: A VM in the UNKNOWN state can be booted in a different host manually (``migrate``) or automatically by the scheduler (``resched``). This action must be performed only if the storage is shared, or manually transfered by the administrator. OpenNebula will not perform any action on the storage for this migration.
+-  ``migrate`` or ``resched``: A VM in the UNKNOWN state can be booted in a different host manually (``migrate``) or automatically by the scheduler (``resched``). This action must be performed only if the storage is shared, or manually transferred by the administrator. OpenNebula will not perform any action on the storage for this migration.
 
 .. _remote_access_sunstone:
 
@@ -1015,7 +1015,7 @@ Accessing VM Console and Desktop
 
 Sunstone provides several different methods to access your VM console and desktop: VNC, SPICE, RDP, VMRC, SSH, and ``virt-viewer``. If configured in the VM, these methods can be used to access the VM console through Sunstone.  For some of those connections, we will need to start a new FireEdge server to establish the remote connection. This section shows how these different technologies can be configured and what each requirement is.
 
-:ref:`FireEdge <fireedge_configuration>` automatically installs dependencies for Guacamole connectinos and VMRC proxy, which are necessary to use VNC, RDP, SSH, and VMRC.
+:ref:`FireEdge <fireedge_configuration>` automatically installs dependencies for Guacamole connections and VMRC proxy, which are necessary to use VNC, RDP, SSH, and VMRC.
 
 +-----------------+-------------------+---------------------+
 |   Connection    |   With FireEdge   |  Without FireEdge   |
@@ -1224,7 +1224,7 @@ After that you can access the VM and configure the SSH service:
     # Add user: username/password
     root@<guest-VM>:~$ adduser <username>
 
-.. note:: Guacamole SSH uses RSA encryption. Make sure the VM SSH accepts RSA, otherwise you need to explicitly enable it in the VM SSH configuration (HostkeyAlgorithms and PubkeyAcceptedAlgorithms set as '+ssha-rsa)
+.. note:: Guacamole SSH uses RSA encryption. Make sure the VM SSH accepts RSA, otherwise you need to explicitly enable it in the VM SSH configuration (HostkeyAlgorithms and PubkeyAcceptedAlgorithms set as '+ssh-rsa)
 
 .. _spice_sunstone:
 

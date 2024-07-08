@@ -275,7 +275,7 @@ The update operation will trigger driver action to live update the network confi
 |                   | - OUTBOUND_PEAK_BW     |
 +-------------------+------------------------+
 
- .. important:: QoS attribues (INBOUND and OUTBOUND) can be updated for single VMs with :ref:`onevm nic-update <nic_update>`.
+ .. important:: QoS attributes (INBOUND and OUTBOUND) can be updated for single VMs with :ref:`onevm nic-update <nic_update>`.
 
  .. important:: For SR-IOV based NICs you can update all the attributes that can be set for this type of interfaces
 
@@ -451,7 +451,7 @@ Recovering the Virtual Network
 --------------------------------------------------------------------------------
 
 In case the Virtual Network is not in ``READY`` state, use ``onevnet recover`` to fix the Virtual Network. The command accepts the following flags:
- * ``--failure`` Driver action doesn't completed succesfully, move the Virtual Network to ``ERROR`` state.
+ * ``--failure`` Driver action doesn't completed successfully, move the Virtual Network to ``ERROR`` state.
  * ``--success`` User manually fixed the issue, move the Virtual Network to ``READY`` state.
  * ``--delete`` The Virtual Network can't be fixed, delete it.
  * ``--retry`` Retry the last driver action. Allowed only in ``UPDATE_FAILURE`` state

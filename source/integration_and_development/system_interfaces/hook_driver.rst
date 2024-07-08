@@ -580,7 +580,7 @@ There are two different types of EVENT messages, representing API and state even
 | CHANGE (SERVICE) | ``EVENT SERVICE SERVICE_ID`` (e.g. ``EVENT SERVICE 0``)                                                             |
 +------------------+---------------------------------------------------------------------------------------------------------------------+
 
-Keys are used to subscribe to specific events. Note also that you do not need to specify the whole key, form example ``EVENT STATE HOST/ERROR/`` will suscribe for state changes to ``ERROR`` on the hosts, while ``EVENT STATE HOST/`` will suscribe for all state changes of the hosts.
+Keys are used to subscribe to specific events. Note also that you do not need to specify the whole key, form example ``EVENT STATE HOST/ERROR/`` will subscribe for state changes to ``ERROR`` on the hosts, while ``EVENT STATE HOST/`` will subscribe for all state changes of the hosts.
 
 The content of an event message is an XML document containing information related to the event, the XSD representing this content are available `here <https://github.com/OpenNebula/one/tree/master/share/doc/xsd>`__.
 

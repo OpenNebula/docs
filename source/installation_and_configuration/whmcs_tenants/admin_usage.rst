@@ -21,7 +21,7 @@ From the Products/Services page, click on **Create a New Product**.  Select the 
 
 On this page, click on the **Module Settings** tab then select **OpenNebula Tenants** for the **Module Name**, then select your recently created **Server Group**.  Here, you can fill in the maximum resources usable by this product. You can also set the ACL parameters which will be created in OpenNebula for this product.
 
-These resource limites correlate to the :ref:`Quota <quota_auth>` for the Group in OpenNebula, so this will limit the amount of resources used in OpenNebula for each product.  You can also enable Metric Billing and set pricing for each of these metrics:
+These resource limits correlate to the :ref:`Quota <quota_auth>` for the Group in OpenNebula, so this will limit the amount of resources used in OpenNebula for each product.  You can also enable Metric Billing and set pricing for each of these metrics:
 
  * IP Addresses
  * RAM

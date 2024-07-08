@@ -121,7 +121,7 @@ Mount options configuration section also in lxcrc
 | ``:dev_<fs>``              | Mount options for disk devices (in the host). Options are set per  |
 |                            | fs type (e.g. dev_xfs, dev_ext3...)                                |
 +----------------------------+--------------------------------------------------------------------+
-| ``:disk``                  | Mount options for data DISK in the contianer (lxc.mount.entry)     |
+| ``:disk``                  | Mount options for data DISK in the container (lxc.mount.entry)     |
 +----------------------------+--------------------------------------------------------------------+
 | ``:rootfs``                | Mount options for root fs in the container (lxc.rootfs.options)    |
 +----------------------------+--------------------------------------------------------------------+
@@ -175,7 +175,7 @@ Container Templates can be defined by using the same attributes described in :re
       NETWORK_UNAME="oneadmin",
       SECURITY_GROUPS="0" ]
 
-The LXC driver will create a swap limitation equal to the amount of memory definded in the VM Template. The attribute ``LXC_SWAP`` can be used to declare extra swap for the container.
+The LXC driver will create a swap limitation equal to the amount of memory defined in the VM Template. The attribute ``LXC_SWAP`` can be used to declare extra swap for the container.
 
 Remote Access
 -----------------------

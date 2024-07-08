@@ -261,7 +261,7 @@ msgstr ""
 
 #: ../../source/user/virtual_resource_management/vm_guide_2.rst:47
 msgid ""
-"The VM is shut down. The VM disks are transfered to the system datastore. "
+"The VM is shut down. The VM disks are transferred to the system datastore. "
 "The VM can be resumed later."
 msgstr ""
 

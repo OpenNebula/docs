@@ -185,7 +185,7 @@ For example let's create a 192.168.0.100/26 network from the private network tem
 Step 4. A Simple test, run a container
 --------------------------------------------------------------------------------
 
-As a simple test we'll run a container. For example let's pick the nginx base image from Tunrkey Linux Market:
+As a simple test we'll run a container. For example let's pick the nginx base image from Turnkey Linux Market:
 
 .. prompt:: bash $ auto
 

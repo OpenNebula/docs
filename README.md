@@ -23,6 +23,20 @@ Also the following Python dependencies:
 Build the documentation by running ``make html``.
 [More information](http://sphinx-doc.org/).
 
+Spell checking
+-------------
+
+`sphinxcontrib.spelling <https://sphinxcontrib-spelling.readthedocs.io/en/latest/index.html` is needed to run the spell checker.
+
+Also, the following Python dependencies:
+``pip install sphinxcontrib-spelling pyenchant``
+
+And the `python3-enchant package`:
+``sudo apt install python3-enchant``
+
+If the spellchecker job fails for your branch, you can check the job log which will display the file + word that didn't pass the spell checker along with some suggestions.
+Either you will have to correct the typo and push it again, or if it's a false positive, you can update the custom wordlist used at `source/ext/spellchecking/wordlists/opennebula.txt`
+
 Translations
 ------------
 

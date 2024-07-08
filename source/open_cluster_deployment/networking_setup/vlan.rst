@@ -43,7 +43,7 @@ The following configuration parameters can be adjusted in ``/var/lib/one/remotes
 | ``:ip_link_conf``      | *(Hash)* Options passed to ``ip`` cmd. on VLAN interface create (``ip link add``)                     |
 +------------------------+-------------------------------------------------------------------------------------------------------+
 
-.. note:: Remember to run ``onehost sync -f`` to synchonize the changes to all the nodes.
+.. note:: Remember to run ``onehost sync -f`` to synchronize the changes to all the nodes.
 
 Example:
 

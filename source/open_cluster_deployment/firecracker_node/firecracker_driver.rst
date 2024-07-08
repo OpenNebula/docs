@@ -94,7 +94,7 @@ Firecracker specifics configurations are available in the ``/var/lib/one/remotes
 | ``:shutdown_timeout``      | Timeout (in seconds) for executing cancel action if   |
 |                            | shutdown gets stuck                                   |
 +----------------------------+-------------------------------------------------------+
-| ``:cgroup_location``       | Path where cgrup file system is mounted               |
+| ``:cgroup_location``       | Path where group file system is mounted               |
 +----------------------------+-------------------------------------------------------+
 | ``:cgroup_cpu_shares``     | If true the cpu.shares value will be set according to |
 |                            | the VM CPU value, if false the cpu.shares is left by  |

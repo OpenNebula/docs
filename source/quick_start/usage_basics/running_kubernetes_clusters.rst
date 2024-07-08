@@ -104,7 +104,7 @@ and wait for the new Service to get into ``RUNNING`` state. You can also check t
 
    [oneadmin@FN]$ onevm show -j <VNF_VM_ID>|jq -r .VM.TEMPLATE.NIC[0].EXTERNAL_IP
 
-.. important:: This is specific to AWS deployments. One needs to add a corresponding inboud rule into AWS security group (SG) with AWS elastic IP of VNF node for 5030 port and apply the updated SG against the AWS FN node.
+.. important:: This is specific to AWS deployments. One needs to add a corresponding inbound rule into AWS security group (SG) with AWS elastic IP of VNF node for 5030 port and apply the updated SG against the AWS FN node.
 
 
 If the OneFlow service is stuck in DEPLOYING state, please, check :ref:`OneFlow service is stuck in DEPLOYING <oneflow-service-is-stuck-in-deploying>`
@@ -296,4 +296,4 @@ Check on the VNF node if ONEGATE_ENDPOINT is set to the AWS elastic IP address o
 
     [root@VNF]$ grep ONEGATE -r /run/one-context*
 
-Make sure a corresponding inboud rule exists in the AWS security group (SG) with AWS elastic IP on port 5030 and modifications have been applied to AWS FN node.
+Make sure a corresponding inbound rule exists in the AWS security group (SG) with AWS elastic IP on port 5030 and modifications have been applied to AWS FN node.

@@ -3,7 +3,7 @@ Limiting I/O and CPU usage
 
 Backup operations may incur in a high I/O or CPU demands. This will add noise to the VMs running in the hypervisor. You can control resource usage of the backup operations by:
 
-  * Lower the priority of the associated processes. Backup commands are run under a given ionice priority (best-effor, class 2 scheduler); and a given nice.
+  * Lower the priority of the associated processes. Backup commands are run under a given ionice priority (best-effort, class 2 scheduler); and a given nice.
 
   * Confine the associated processes in a cgroup. OpenNebula will create a systemd slice for each backup datastore so the backup commands run with a limited number or read/write IOPS and CPU Quota.
 

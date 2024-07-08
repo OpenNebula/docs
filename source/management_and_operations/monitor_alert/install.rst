@@ -25,7 +25,7 @@ You should also install the Prometheus-KVM package that includes metric exporter
   - The OpenNebula Libvirt exporter (unused in Front-ends).
   - The `Prometheus Node exporter binary <https://github.com/prometheus/node_exporter/blob/master/LICENSE>`_.
 
-Prometheus, Alertmanager Node Exporter are free software and they are re-distributed for your convinience under the terms of the Apache License 2.0, as described in the `Prometheus <https://github.com/prometheus/prometheus/blob/main/LICENSE>`_, `Alertmanager <https://github.com/prometheus/alertmanager/blob/main/LICENSE>`_ and `Node exporter <https://github.com/prometheus/node_exporter/blob/master/LICENSE>`_ licenses respectively.
+Prometheus, Alertmanager Node Exporter are free software and they are re-distributed for your convenience under the terms of the Apache License 2.0, as described in the `Prometheus <https://github.com/prometheus/prometheus/blob/main/LICENSE>`_, `Alertmanager <https://github.com/prometheus/alertmanager/blob/main/LICENSE>`_ and `Node exporter <https://github.com/prometheus/node_exporter/blob/master/LICENSE>`_ licenses respectively.
 
 Note that you will be able to use any existing installation of both systems after the installation.
 
@@ -50,7 +50,7 @@ In your hosts you need to install the Prometheus-KVM, this package includes:
   - The OpenNebula Libvirt exporter.
   - The `Prometheus Node exporter binary <https://github.com/prometheus/node_exporter/blob/master/LICENSE>`_.
 
-Prometheus Node exporter is free software and re-distributed in this package for your convinience under the terms of the Apache License 2.0, as described in the `Node exporter license <https://github.com/prometheus/node_exporter/blob/master/LICENSE>`_.
+Prometheus Node exporter is free software and re-distributed in this package for your convenience under the terms of the Apache License 2.0, as described in the `Node exporter license <https://github.com/prometheus/node_exporter/blob/master/LICENSE>`_.
 
 Note that you will be able to use any existing installation of the node exporter after the installation.
 
@@ -157,7 +157,7 @@ Finally, we need to start and enable both exporters:
 
    # systemctl enable --now opennebula-exporter.service opennebula-node-exporter.service
 
-If everything went ok, you should be able to check that prometheus and both exporers are running:
+If everything went ok, you should be able to check that prometheus and both exporters are running:
 
 .. prompt:: bash # auto
 
@@ -188,7 +188,7 @@ Now we need to enable and start the node and libvirt exporters. Simply, using th
 
    # systemctl enable --now opennebula-libvirt-exporter.service opennebula-node-exporter.service
 
-As we did previsouly, let's verify exporters are listening in the targets ports:
+As we did previously, let's verify exporters are listening in the targets ports:
 
 .. prompt:: bash # auto
 
@@ -196,7 +196,7 @@ As we did previsouly, let's verify exporters are listening in the targets ports:
    LISTEN    0      100          0.0.0.0:9926       0.0.0.0:*     users:(("ruby",pid=38851,fd=7))
    LISTEN    0      4096               *:9100             *:*     users:(("node_exporter",pid=38884,fd=3))
 
-You should be able also to retrive some metrics:
+You should be able also to retrieve some metrics:
 
 .. prompt:: bash $ auto
 
