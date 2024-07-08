@@ -14,9 +14,6 @@
 import sys
 import os
 import yaml
-print(f"Current directory: {os.getcwd()}")
-print(f"Wordlist path: {os.path.abspath('ext/spellchecking/wordlists/opennebula.txt')}")
-
 import sphinx_rtd_theme
 
 sys.path.append(os.path.abspath('ext'))
