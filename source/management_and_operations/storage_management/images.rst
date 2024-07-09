@@ -105,7 +105,7 @@ For OS Images, you need to install the :ref:`OpenNebula context packages for you
 
 .. note:: You can use **gz** compressed image files when registering them in OpenNebula.
 
-.. important:: Susntone will allow you to upload disk images from your desktop.
+.. important:: Sunstone will allow you to upload disk images from your desktop.
 
 When you need to set a complex number of options when creating the Image, you can also pass all of them in a file. We call these files templates. This is how the template for previous example looks like:
 

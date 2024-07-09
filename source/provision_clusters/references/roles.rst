@@ -40,7 +40,7 @@ Docker if installed by ceph-ansible.
 ========================================= ============================== ===========
 Parameter                                 Default                        Description
 ========================================= ============================== ===========
-``ceph_opennebula_osd_libvirt_enabled``   true                           Enables libvirt configuraion (not used for LXC)
+``ceph_opennebula_osd_libvirt_enabled``   true                           Enables libvirt configuration (not used for LXC)
 ========================================= ============================== ===========
 
 

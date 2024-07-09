@@ -18,7 +18,7 @@ This Chapter introduces the OpenNebula system interfaces:
   * The **XML-RPC interface** is the primary interface for OpenNebula, exposing all the functionality to interface the OpenNebula daemon. Through the XML-RPC interface you can control and manage any OpenNebula resource. You can find also bindings on some popular languages like :ref:`Ruby <ruby>`, :ref:`JAVA <java>`, :ref:`Golang <go>` and :ref:`Python <python>`.
   * The :ref:`OpenNebula OneFlow API <appflow_api>` is a RESTful service to create, control and monitor services composed of interconnected Virtual Machines with deployment dependencies between them.
   * The :ref:`The OneGate Server <onegate_api>` provides a RESTful service for Virtual Machines to pull and push information from/to OpenNebula.
-  * A very convinient way to integrate OpenNebula in your infrastructure are the **Hooks**. Hooks allow you to trigger actions on specific OpenNebula events. You can also subscribe to the event bus (zeroMQ) to integrate your own modules.
+  * A very convenient way to integrate OpenNebula in your infrastructure are the **Hooks**. Hooks allow you to trigger actions on specific OpenNebula events. You can also subscribe to the event bus (zeroMQ) to integrate your own modules.
 
 Hypervisor Compatibility
 ================================================================================

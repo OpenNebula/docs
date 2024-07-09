@@ -410,6 +410,6 @@ After the installation you can initialize ESLint with your own rules or use Open
 
 .. note::
 
-  The usage of ESLint is not mandatory but we recomend our contributors to use it, to be sure that the code is standardiced.
+  The usage of ESLint is not mandatory but we recommend our contributors to use it, to be sure that the code is standardized.
 
 More information about `ESlint <https://eslint.org/>`__ project.

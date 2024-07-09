@@ -284,7 +284,7 @@ Action scripts needed when the TM is used for the system datastore:
    -  ``host`` is the target host to deploy the VM
    -  ``remote_system_ds`` is the path for the system datastore in the host
    -  ``vm_id`` is the id of the VM
-   -  ``ds_id`` is the source datastore (the images datastore) for normal disks or target datastore (the system datastore) for volatiled disks
+   -  ``ds_id`` is the source datastore (the images datastore) for normal disks or target datastore (the system datastore) for volatile disks
 
 -  **mkimage**: creates an image on-the-fly bypassing the datastore/image workflow
 
@@ -327,7 +327,7 @@ Action scripts needed when the TM is used for the system datastore:
 
 -  **monitor_ds**: monitors a **ssh-like** system datastore. Distributed system datastores should ``exit 0`` on the previous monitor script. Arguments and return values are the same as the monitor script.
 
--  **pre_backup** and **pre_backup_live**: These actions needs to generate disk backup images, as well as the VM XML representaion in the folder ``remote_system_ds/backup``. Each disk is created in the form ``disk.<disk_id>.<increment_id>``. The VM representation is stored in a file named ``vm.xml``. The live version needs to pause/snapshot the VM to create consistent backup images.
+-  **pre_backup** and **pre_backup_live**: These actions needs to generate disk backup images, as well as the VM XML representation in the folder ``remote_system_ds/backup``. Each disk is created in the form ``disk.<disk_id>.<increment_id>``. The VM representation is stored in a file named ``vm.xml``. The live version needs to pause/snapshot the VM to create consistent backup images.
 
    -  **ARGUMENTS**: ``host:remote_system_ds disks deploy_id vm_id ds_id``
    -  ``remote_system_ds_dir`` is the path for the VM directory in the system datastore in the host

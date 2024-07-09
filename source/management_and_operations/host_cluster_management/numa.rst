@@ -17,7 +17,7 @@ In this guide you'll learn to set up OpenNebula to control how VM resources are 
 
 In OpenNebula the virtual topology of a VM is defined by the number of sockets, cores and threads. We assume that a NUMA node or cell is equivalent to a socket and they will be used interchangeably in this guide.
 
-.. note:: Different limitations might exist regarding virtual topology definition and CPU pinning depending on the hypervisor. In vCenter, NUMA pinning is delegated to the ESX hypervisor, core threads are always set to 1, and number of cores are assigned to the numCoresPerSocket property of the VM. Regading other hypervisors, please check the corresponding driver guide.
+.. note:: Different limitations might exist regarding virtual topology definition and CPU pinning depending on the hypervisor. In vCenter, NUMA pinning is delegated to the ESX hypervisor, core threads are always set to 1, and number of cores are assigned to the numCoresPerSocket property of the VM. Regarding other hypervisors, please check the corresponding driver guide.
 
 Defining a Virtual Topology
 ================================================================================

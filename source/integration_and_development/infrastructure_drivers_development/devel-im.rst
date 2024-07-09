@@ -33,7 +33,7 @@ The structure of monitoring message is:
 
 Description of message types:
 
-- **SYSTEM_HOST** - General information about the host, which doesn't change too often (e.g. total memory, disk cpacity, datastores, pci devices, NUMA nodes, ...)
+- **SYSTEM_HOST** - General information about the host, which doesn't change too often (e.g. total memory, disk capacity, datastores, pci devices, NUMA nodes, ...)
 - **MONITOR_HOST** - Monitoring information: used memory, used cpu, network traffic, ...
 - **BEACON_HOST** - notification message, indicating that the agent is still alive
 - **MONITOR_VM** - VMs monitoring information: used memory, used CPUs, disk io, ...

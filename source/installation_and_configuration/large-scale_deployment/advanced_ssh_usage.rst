@@ -85,7 +85,7 @@ The following SSH configuration snippets introduce various ways how to configure
 Persistent Connections
 ----------------------
 
-OpenSSH allows us to reuse a single SSH connection by multiple sessions (commands) running against the same host in parallel, and to keep the connection open for further commands. Reusing an already opened session saves time in managaging new TCP connections and speeds up the driver operations. This provides a boost, especially with high latency (or distant) remotes.
+OpenSSH allows us to reuse a single SSH connection by multiple sessions (commands) running against the same host in parallel, and to keep the connection open for further commands. Reusing an already opened session saves time in managing new TCP connections and speeds up the driver operations. This provides a boost, especially with high latency (or distant) remotes.
 
 .. prompt:: bash $ auto
 

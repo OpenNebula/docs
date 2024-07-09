@@ -57,14 +57,13 @@ After that, proceed with the specific Datastore documentation you might be inter
 Hypervisor Compatibility
 ========================
 
-This chapter applies to KVM, Firecracker, and LXC.
+This chapter applies to KVM and LXC.
 
 .. warning::
 
    Hypervisor limitations:
 
    - **LXC** Node only supports :ref:`NFS/NAS <nas_ds>`, :ref:`Local Storage <local_ds>` and :ref:`Ceph <ceph_ds>` datastores
-   - **Firecracker** Node only supports :ref:`NFS/NAS <nas_ds>`, :ref:`Local Storage <local_ds>` datastores.
 
 Follow the chapter :ref:`vCenter Storage <vcenter_ds>` for a similar guide for vCenter.
 

@@ -88,7 +88,7 @@ Templates use `ERB <https://docs.ruby-lang.org/en/2.5.0/ERB.html>`__ syntax.
 
     * **obj**: contains the OpenNebula object information in hash format.
     * **provision**: contains provision information located in the object XML under ``TEMPLATE/PROVISION``.
-    * **c**: contains information about the OpenNebula cluster. It is useful to create a realation between the object and the cluster.
+    * **c**: contains information about the OpenNebula cluster. It is useful to create a relation between the object and the cluster.
     * **obj['user_data']**: special value that contains the user data that should be added to the hosts, it basically contains the public SSH key to access them.
 
     .. prompt:: bash $ auto

@@ -172,7 +172,7 @@ If FireEdge is installed and running on the same machine and expected to be used
       </Location>
     </VirtualHost>
 
-In Sunstone configuration (:ref:`/etc/one/sunstone-server.conf <sunstone_conf>`), set the public FireEdge endpoint in option ``:public_fireedge_endpoint``, to the public endpoint that correctly redirects to FireEdge. Sunstone will automatically add the /fireedge suffix to any URL meant to be go to FireEdge, so we can skip that (we can leave it as well, since /fireedge/fireedge will be redirected by FireEdge server to the /fireedge endopoint). E.g.,
+In Sunstone configuration (:ref:`/etc/one/sunstone-server.conf <sunstone_conf>`), set the public FireEdge endpoint in option ``:public_fireedge_endpoint``, to the public endpoint that correctly redirects to FireEdge. Sunstone will automatically add the /fireedge suffix to any URL meant to be go to FireEdge, so we can skip that (we can leave it as well, since /fireedge/fireedge will be redirected by FireEdge server to the /fireedge endpoint). E.g.,
 
 .. code::
 
@@ -343,7 +343,7 @@ In the directory where Sunstone files reside (``/usr/lib/one/sunstone``), there 
 
     $ unicorn -p 9869
 
-The default Unicorn configuration should be fine for most installations, but a configuration file can be created to tune it. For example, to tell Unicorn to spawn four processes and redirect stndard error output to ``/tmp/unicorn.log``, we can create a file called ``unicorn.conf`` with the following content:
+The default Unicorn configuration should be fine for most installations, but a configuration file can be created to tune it. For example, to tell Unicorn to spawn four processes and redirect standard error output to ``/tmp/unicorn.log``, we can create a file called ``unicorn.conf`` with the following content:
 
 .. code::
 
@@ -548,7 +548,7 @@ haproxy
 
 To access sunstone via HTTPS via haproxy, please check the frontend and backend configurations
 
-* About the frontend configuration, please remember that the SSL certificate and its private key must be concatenated. Supposing that the certificate and key for your server are ``host.crt`` and ``host.key``, and you want to set the resulting file in ``/etc/certs/host.pem`` the commands would be thisv (the right permissions should be set too)
+* About the frontend configuration, please remember that the SSL certificate and its private key must be concatenated. Supposing that the certificate and key for your server are ``host.crt`` and ``host.key``, and you want to set the resulting file in ``/etc/certs/host.pem`` the commands would be these (the right permissions should be set too)
 
 .. code-block:: none
 

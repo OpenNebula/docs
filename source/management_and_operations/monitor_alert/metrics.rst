@@ -48,7 +48,7 @@ OpenNebula Exporter
       - Total capacity of the datastore
       - gauge
     * - opennebula_datastore_used_bytes
-      - Capacity being used in the dastore
+      - Capacity being used in the datastore
       - gauge
     * - opennebula_datastore_free_bytes
       - Available capacity in the datastore
@@ -63,7 +63,7 @@ OpenNebula Exporter
       - Host ID where the VM is allocated
       - gauge
     * - opennebula_vm_state
-      - VM state 0:init 1:pending 2:hold 3:active 4:stopped 5:suspended 6:done 8:poweroff 9:undeployed 10:clonning
+      - VM state 0:init 1:pending 2:hold 3:active 4:stopped 5:suspended 6:done 8:poweroff 9:undeployed 10:cloning
       - gauge
     * - opennebula_vm_lcm_state
       - VM LCM state, only relevant for state 3 (active)
@@ -122,7 +122,7 @@ Libvirt Exporter
       - The total number of exceptions raised by the Rack application.
       - counter
     * - opennebula_libvirt_state
-      - State of the domain 0:no_state, 1:running, 2:blocked, 3:paused, 4:shutdown, 5:shutoff, 6:chrased, 7:suspended (PM)
+      - State of the domain 0:no_state, 1:running, 2:blocked, 3:paused, 4:shutdown, 5:shutoff, 6:crashed, 7:suspended (PM)
       - gauge
     * - opennebula_libvirt_cpu_seconds_total
       - Total CPU time used by the domain
@@ -145,7 +145,7 @@ Libvirt Exporter
     * - opennebula_libvirt_memory_swapout_bytes_total
       - Amount of data written out to swap space
       - gauge
-    * - opennebula_libvirt_memory_unsed_bytes
+    * - opennebula_libvirt_memory_unused_bytes
       - Amount of memory left unused by the system
       - gauge
     * - opennebula_libvirt_memory_available_bytes
@@ -164,7 +164,7 @@ Libvirt Exporter
       - State of the virtual CPU 0:offline, 1:running, 2:blocked
       - gauge
     * - opennebula_libvirt_vcpu_time_seconds_total
-      - vitual cpu time spent by virtual CPU
+      - virtual cpu time spent by virtual CPU
       - gauge
     * - opennebula_libvirt_vcpu_wait_seconds_total
       - Time the vCPU wants to run, but the host scheduler has something else running ahead of it

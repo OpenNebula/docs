@@ -220,4 +220,4 @@ To use your new IPAM module you need to:
     IPAM_MAD = <ipam_mad>
    ]
 
-Any VM (or VNET reservation) from IPAM Network will contanct the IPAM using your drivers.
+Any VM (or VNET reservation) from IPAM Network will contact the IPAM using your drivers.

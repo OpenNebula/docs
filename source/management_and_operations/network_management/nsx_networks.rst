@@ -22,7 +22,7 @@ In Sunstone proceed to ``Network --> Virtual Networks`` and click on the green "
 
       - Name: Logical switch name
       - Description: Logical Switch Description
-      - Cluster: Select the appropiate cluster
+      - Cluster: Select the appropriate cluster
 
   - In the Conf tab select “NSX”, the OpenNebula Host representing the vCenter cluster where you want this logical switch to be available and the Transport Zone, and the other attributes that better suit your use case.
 
@@ -140,7 +140,7 @@ Importing NSX networks when a VM is imported
 
 OpenNebula automatically imports NSX networks attached to VMs.
 
- - If NSX credentails are defined, the imported network should have an NSX_ID attribute, allowing this network be able to use other NSX features as Security Groups.
+ - If NSX credentials are defined, the imported network should have an NSX_ID attribute, allowing this network be able to use other NSX features as Security Groups.
  - If NSX credentials are not defined, the imported network won't have a NSX_ID attribute, so other NSX features will not be available for these networks and it will be treated as a regular vCenter network.
 
 Other Virtual Network Operations

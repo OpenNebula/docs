@@ -78,7 +78,7 @@ Import from CLI:
 Check NSX Manager Autodiscovered Attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-After a vCenter cluster is imported and the monitor cycle finalises, the NSX Manager registered for that cluster is detected. You can read that information by going to ``Infrastructure --> Hosts``
+After a vCenter cluster is imported and the monitor cycle finalizes, the NSX Manager registered for that cluster is detected. You can read that information by going to ``Infrastructure --> Hosts``
 
 After clicking on the desired OpenNebula Host, the following information is available under the NSX tab:
 
@@ -111,7 +111,7 @@ Now, NSX credentials are saved in two new attributes:
 
 Remember that transport zones cannot be created from OpenNebula; they should exist beforehand. You can add transport zones in NSX Manager and OpenNebula will detect them after the following monitor cycle. At that time, the next attribute will show up:
 
-    - **NSX_TRANSPORT_ZONES** = Containing the Transport zones availables.
+    - **NSX_TRANSPORT_ZONES** = Containing the Transport zones available.
 
 .. _nsx-non-editable-attributes:
 

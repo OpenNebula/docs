@@ -30,6 +30,8 @@ The cloud environment installed by miniONE is mainly intended for evaluation, de
 Step 1. Prepare the VM in AWS
 =============================
 
+In order to SSH into the EC2 VM, you need to pass the correct user and PEM file (you can create one and download it prior to launching the instance). You'll then be connecting to your Front-end using a command similar to:
+
 As a first step, if you don’t already have one, create an account in AWS. AWS publishes a complete guide: `How do I create and activate a new AWS account? <https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/>`__
 
 After you have created your account, you’ll need to obtain the ``access_key`` and ``secret_key`` of a user with the necessary permissions to manage instances. The relevant AWS guide is `Configure tool authentication with AWS <https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html>`__.

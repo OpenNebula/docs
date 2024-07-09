@@ -64,7 +64,7 @@ In order to enable fencing you need to implement file ``/var/lib/one/remotes/hoo
 - Update your hosts using ``onehost update <HOST_ID>`` and add there the attribute ``FENCE_IP`` with the fencing device IP.
 - Update the above script and add ``USERNAME`` and ``PASSWORD`` of your fencing device.
 - Remove the line ``echo ""Fence host not configured, please edit ft/fence_host.sh"" && exit 1`` from above script.
-- Depending on your hardware provider, you will need to use a differnt tool to control the ILO, so please check your hardware manual, for example:
+- Depending on your hardware provider, you will need to use a different tool to control the ILO, so please check your hardware manual, for example:
 
 .. prompt:: bash $ auto
 

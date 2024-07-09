@@ -100,7 +100,7 @@ Step 1. Choosing a datastore
 
 By default, the VM will be deployed in the datastore that the OpenNebula's scheduler chooses according to its policy.
 
-The policy is set in the /etc/one/sched.conf configuration file and by default OpenNebula will try to deploy the VMs trying to distibute them across the available datastores.
+The policy is set in the /etc/one/sched.conf configuration file and by default OpenNebula will try to deploy the VMs trying to distribute them across the available datastores.
 
 You can force that OpenNebula uses specific datastores overriding the scheduler's policy with the SCHED_DS_REQUIREMENTS as explained :ref:`here <sched_ds>`.
 
@@ -112,7 +112,7 @@ Step 2. Specifying how the disks are copied
 
 OpenNebula instructs vCenter to "move all disk backing an disallow sharing". That means that vCenter will create a full clone of the disks inside the template, and that full clone flattens all disks from the parent-most to the child-most disk.
 
-However if you import the template with Linked Clones support OpenNebula will "move only the child-most disk backing" which means that any parent disk backings should be left in their current locations and if the disks hace delta disks on top of them, then linked clones of the template disks will be used.
+However if you import the template with Linked Clones support OpenNebula will "move only the child-most disk backing" which means that any parent disk backings should be left in their current locations and if the disks have delta disks on top of them, then linked clones of the template disks will be used.
 
 You have more information about disk moving operations `here <https://www.vmware.com/support/developer/vc-sdk/visdk41pubs/ApiReference/vim.vm.RelocateSpec.DiskMoveOptions.html>`__ and the use of Linked Clones :ref:`here <vcenter_linked_clones_description>`.
 
@@ -312,9 +312,9 @@ To enable resize for a virtual machine, add the following block to the template 
         CPU_HOT_ADD_ENABLED = "YES",
         MEMORY_HOT_ADD_ENABLED = "YES"]
 
-OpenNebula uses the ``CPU_HOT_ADD_ENABLED`` field to activate or desactivate the CPU Hot resize in vCenter. If a ``CPU_HOT_ADD_ENABLED`` is not supplied or the value is ``NO``, OpenNebula will desactivate the CPU Hot resize in vCenter.
+OpenNebula uses the ``CPU_HOT_ADD_ENABLED`` field to activate or deactivate the CPU Hot resize in vCenter. If a ``CPU_HOT_ADD_ENABLED`` is not supplied or the value is ``NO``, OpenNebula will deactivate the CPU Hot resize in vCenter.
 
-OpenNebula uses the ``MEMORY_HOT_ADD_ENABLED`` field to activate or desactivate the MEMORY Hot resize in vCenter. If a ``MEMORY_HOT_ADD_ENABLED`` is not supplied or the value is ``NO``, OpenNebula will desactivate the MEMORY Hot resize in vCenter.
+OpenNebula uses the ``MEMORY_HOT_ADD_ENABLED`` field to activate or deactivate the MEMORY Hot resize in vCenter. If a ``MEMORY_HOT_ADD_ENABLED`` is not supplied or the value is ``NO``, OpenNebula will deactivate the MEMORY Hot resize in vCenter.
 
 To activate or deactivate these options it is necessary to turn off and resume the Virtual Machine, since vCenter does not allow changing these settings with the Virtual Machine turned on.
 

@@ -200,7 +200,7 @@ If the system is not working well, the problem could be in database performance.
 Troubleshooting
 ===============
 
-.. important:: When debuging the monitor system, we recommend increasing the ``DEBUG`` level for both ``oned`` and ``onemonitord``, and restarting OpenNebula.
+.. important:: When debugging the monitor system, we recommend increasing the ``DEBUG`` level for both ``oned`` and ``onemonitord``, and restarting OpenNebula.
 
 Healthy Monitoring System
 -------------------------

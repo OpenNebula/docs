@@ -206,7 +206,7 @@ After updating the configuration file ``/etc/one/sunstone-server.conf``, if you 
 
 If you don't want to use the new feature, comment these out in order to get rid of the error.
 
-.. note:: After doing the change, please restart Sunseont or Apache/Nginx in case you are using Sunstone behind one of them.
+.. note:: After doing the change, please restart Sunstone or Apache/Nginx in case you are using Sunstone behind one of them.
 
 Step 8. Upgrade the Database Version
 ================================================================================

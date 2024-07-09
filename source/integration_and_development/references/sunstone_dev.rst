@@ -251,7 +251,7 @@ Actions
 
 List of actions to operate over the resources: ``refresh``, ``chown``, ``chgrp``, ``lock``, ``unlock``, etc.
 
-There're three action types:
+There are three action types:
 
 - Form modal actions. All of actions that they haven't ``_dialog`` suffix.
 - Actions referenced in other files, E.g.: VM Template ``create_app_dialog`` references to  Marketplace App ``create_dialog``.

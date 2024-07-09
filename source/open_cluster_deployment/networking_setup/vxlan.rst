@@ -58,7 +58,7 @@ The following configuration parameters can be adjusted in ``/var/lib/one/remotes
 +------------------------+-------------------------------------------------------------------------------------------------------+
 | Parameter              | Description                                                                                           |
 +========================+=======================================================================================================+
-| ``:vxlan_mc``          | Base multicast address for each VLAN. The multicas address is vxlan_mc + vlan_id                      |
+| ``:vxlan_mc``          | Base multicast address for each VLAN. The multicast address is vxlan_mc + vlan_id                     |
 +------------------------+-------------------------------------------------------------------------------------------------------+
 | ``:vxlan_ttl``         | Time To Live (TTL) should be > 1 in routed multicast networks (IGMP)                                  |
 +------------------------+-------------------------------------------------------------------------------------------------------+
@@ -71,7 +71,7 @@ The following configuration parameters can be adjusted in ``/var/lib/one/remotes
 | ``:ip_link_conf``      | *(Hash)* Options passed to ``ip`` cmd. on VLAN interface create (``ip link add``)                     |
 +------------------------+-------------------------------------------------------------------------------------------------------+
 
-.. note:: Remember to run ``onehost sync -f`` to synchonize the changes to all the nodes.
+.. note:: Remember to run ``onehost sync -f`` to synchronize the changes to all the nodes.
 
 Example:
 

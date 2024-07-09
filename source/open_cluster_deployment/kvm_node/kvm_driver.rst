@@ -93,7 +93,7 @@ For example (check the actual state in the configuration file on your Front-end)
 
   These values can be overriden in the Cluster, Host and VM Template
 
-**Since OpenNebula 6.0** you should no longer need to modify the ``EMULATOR`` variable to point to the kvm exectuable; instead, ``EMULATOR`` now points to the symlink ``/usr/bin/qemu-kvm-one`` which should link the correct KVM binary for the given OS on a Host.
+**Since OpenNebula 6.0** you should no longer need to modify the ``EMULATOR`` variable to point to the kvm executable; instead, ``EMULATOR`` now points to the symlink ``/usr/bin/qemu-kvm-one`` which should link the correct KVM binary for the given OS on a Host.
 
 Live-Migration for Other Cache settings
 --------------------------------------------------------------------------------
@@ -124,14 +124,14 @@ Working with cgroups (Optional)
 
 Optionally, you can set-up cgroups to control resources on your Hosts. By default KVM VMs will be placed in the ``machine.slice``, the resources assigned in this slice can be adjusted for each hypervisor. The `libvirt cgroups documentation <https://libvirt.org/cgroups.html>`__ describes all the cases and the way the cgroups are managed by libvirt/KVM.
 
-OpenNebula will compute the ``shares`` attribute of the Libvirt domain using the ``CPU`` parameter and the base share value, which depends on the cgroups version of the hypervisor. For example, a VM with ``CPU=2`` will get a cgroup value of ``cpu.shares = 2048`` (or ``cpu.weight=200`` for cgroups version 2),  twice the default value. Note that if you have a mix of cgroups version 1 and 2 hosts you may have inconsistent resource distribution if you life-migrate a VM across different versions.
+OpenNebula will compute the ``shares`` attribute of the Libvirt domain using the ``CPU`` parameter and the base share value, which depends on the cgroups version of the hypervisor. For example, a VM with ``CPU=2`` will get a cgroup value of ``cpu.shares = 2048`` (or ``cpu.weight=200`` for cgroups version 2),  twice the default value. Note that if you have a mix of cgroups version 1 and 2 hosts you may have inconsistent resource distribution if you live-migrate a VM across different versions.
 
 .. _kvmg_memory_cleanup:
 
 Memory Cleanup (Optional)
 -------------------------
 
-Memory allocated by caches or memory fragmentation may cause the VM to fail to deploy, even if there is enough memory on the Host at first sight. To avoid such failures and provide the best memory placement for the VMs, it's possible to trigger memory cleanup and compactation before the VM starts and/or after the VM stops (by default enabled only on stop). The feature is configured in ``/var/lib/one/etc/remotes/vmm/kvm/kvmrc`` on the Front-end:
+Memory allocated by caches or memory fragmentation may cause the VM to fail to deploy, even if there is enough memory on the Host at first sight. To avoid such failures and provide the best memory placement for the VMs, it's possible to trigger memory cleanup and compaction before the VM starts and/or after the VM stops (by default enabled only on stop). The feature is configured in ``/var/lib/one/etc/remotes/vmm/kvm/kvmrc`` on the Front-end:
 
 .. code-block:: bash
 
@@ -158,7 +158,7 @@ DISK
 * ``DRIVER``: specifies the format of the disk image; possible values are ``raw``, ``qcow2``... This attribute corresponds to the ``format`` option of the ``-driver`` argument of the ``kvm`` command.
 * ``CACHE``: specifies the optional cache mechanism; possible values are ``default``, ``none``, ``writethrough`` and ``writeback``.
 * ``IO``: sets IO policy; possible values are ``threads`` and ``native``.
-* ``IOTHREAD``: thread id used by this disk. It can only be used for virtio disk conrtollers and if ``IOTHREADS`` > 0.
+* ``IOTHREAD``: thread id used by this disk. It can only be used for virtio disk controllers and if ``IOTHREADS`` > 0.
 * ``DISCARD``: controls what to do with trim commands; the options are ``ignore`` or ``unmap``. It can only be used with virtio-scsi.
 * IO Throttling support - You can limit TOTAL/READ/WRITE throughput or IOPS. Also, burst control for these IO operations can be set for each disk. :ref:`See the reference guide for the attributed names and purpose <reference_vm_template_disk_section>`.
 
@@ -242,7 +242,7 @@ Furthermore, you have the option to activate multi-queue support within the virt
 
 Firmware
 ~~~~~~~~
-The ``OS/FIRMWARE`` attribute can be defined to load a specific firmare interface
+The ``OS/FIRMWARE`` attribute can be defined to load a specific firmware interface
 for virtual machines.
 The allowed values are:
 
@@ -310,7 +310,7 @@ If you need to resize the capacity of the VM in ``RUNNING`` state, you have to s
 |                        | memory you have to remove the exact amount which was previously added. Prefer offline removing.  |           |
 |                        +--------------------------------------------------------------------------------------------------+           |
 |                        | ``BALLOONING`` - Internally this use ``virsh setmem`` to add more memory. The new memory size    |           |
-|                        | is only recomendation for the VM, the actual memory usage may be different.                      |           |
+|                        | is only recommendation for the VM, the actual memory usage may be different.                     |           |
 |                        | The target VM displays ``MEMORY_MAX`` as available memory.                                       |           |
 +------------------------+--------------------------------------------------------------------------------------------------+-----------+
 | ``MEMORY_MAX``         | Maximum memory allocated for the VM.                                                             | **NO**    |
@@ -455,7 +455,7 @@ The parameters that can be changed here are as follows:
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``DEFAULT_ATTACH_CACHE``                      | This parameter will set the default cache type for new attached disks. It will be used in case the attached disk does not have a specific cache method set (can be set using templates when attaching a disk).  |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_DISCARD``                    | Default dicard option for newly attached disks, if the attribute is missing in the template.                                                                                                                    |
+| ``DEFAULT_ATTACH_DISCARD``                    | Default discard option for newly attached disks, if the attribute is missing in the template.                                                                                                                   |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``DEFAULT_ATTACH_IO``                         | Default I/O policy for newly attached disks, if the attribute is missing in the template.                                                                                                                       |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
