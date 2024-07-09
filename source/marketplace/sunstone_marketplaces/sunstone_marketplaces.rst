@@ -98,7 +98,11 @@ Select a marketplace and click on Apps tab to see the appliances of a marketplac
 .. |marketplace_update| image:: /images/marketplaces/update.png
 .. |marketplace_delete| image:: /images/marketplaces/delete.png
 .. |marketplace_enable| image:: /images/marketplaces/enable.png
-.. |marketplace_change| image:: /images/marketplaces/change.png  
+.. |marketplace_change| image:: /images/marketplaces/change.png
 .. |marketplace_details| image:: /images/marketplaces/details.png
+<<<<<<< HEAD
 .. |marketplace_apps| image:: /images/marketplaces/apps.png
-  
+
+=======
+.. |marketplace_apps| image:: /images/marketplaces/apps.png
+>>>>>>> 4be884a1 (M #-: Remove dockerhub from sunstone marketplaces)
