@@ -13,4 +13,3 @@ Virtual Network Management
    Security Groups <security_groups>
    Self Provision <self_provision>
    Virtual Routers <vrouter>
-   NSX Networks <nsx_networks>

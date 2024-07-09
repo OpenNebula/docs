@@ -38,7 +38,7 @@ New Virtual Routers are created from a special type of VM Template, as the one c
 Sunstone
 --------------------------------------------------------------------------------
 
-To create a new Virtual Router from Sunstone, follow the wizard to select the Virtual Networks that will get logically linked to it. This connection takes effect when the Virtual Machine containing the VR Appliance is automatically deployed, with a network interface attached to each Virtual Network.
+To create a new Virtual Router from :ref:`Sunstone UI Interface <fireedge_sunstone>`, follow the wizard to select the Virtual Networks that will get logically linked to it. This connection takes effect when the Virtual Machine containing the VR Appliance is automatically deployed, with a network interface attached to each Virtual Network.
 
 For each Virtual Network, the following options can be defined:
 
@@ -87,11 +87,11 @@ Managing Virtual Routers
 
 Using the Virtual Routers tab in Sunstone, or the ``onevrouter show`` command, you can retrieve the generic resource information such as owner and group, the list of Virtual Networks interconnected by this router, and the Virtual Machines that are actually providing the routing.
 
-|sunstone_topology|
-
 The Virtual Networks connected to the VR machines can be modified with the attach/detach actions.
 
-In Sunstone the actions can be found in the Virtual Router's main information panel, in the networks table. The options to add a new Virtual Network are the same that were explained for the creation wizard, see previous section.
+In :ref:`Sunstone UI Interface <fireedge_sunstone>` the actions can be found in the Virtual Router's main information panel, in the networks table. The options to add a new Virtual Network are the same that were explained for the creation wizard, see previous section.
+
+|sunstone_vrouter|
 
 The ``onevrouter nic-attach`` command takes a file containing a single NIC attribute. Alternatively, you can provide the new virtual network settings with command options, see ``onevrouter nic-attach -h`` for more information.
 
@@ -146,4 +146,4 @@ You can provide two optional parameters in the context to configure the keepaliv
 These parameters can also be provided in the Virtual Router creation wizard of Sunstone.
 
 .. |sunstone_create_vrouter| image:: /images/sunstone_create_vrouter.png
-.. |sunstone_topology| image:: /images/sunstone_topology.png
+.. |sunstone_vrouter| image:: /images/sunstone_vrouter.png

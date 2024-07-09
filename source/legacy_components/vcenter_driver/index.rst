@@ -12,3 +12,4 @@ VMware Integration
    vCenter Datastores <vcenter_datastores>
    vCenter Networking <vcenter_networking>
    NSX Setup <nsx_setup>
+   NSX Networks <nsx_networks>
