@@ -1,148 +1,234 @@
 .. _try_opennebula_on_kvm:
 
-==================================
-Deploy OpenNebula Front-end on AWS
-==================================
+================================
+Quick Start Using miniONE on AWS
+================================
 
-In this guide, we'll go through a Front-end OpenNebula environment deployment, where all the OpenNebula services needed to use, manage and run the cloud will be collocated on a single dedicated bare-metal server or Virtual Machine (VM). You will be also able to deploy a local KVM node within the same single server or VM to try out OpenNebula, or for daily development work. Afterwards, if you need more physical resources or want to try out the automatic provisioning features for building multi-provider hybrid clouds, you can continue to the :ref:`Operations Guide <operation_basics>` to add a remote Edge Cluster based on KVM using AWS bare-metal instances to your shiny new OpenNebula cloud!
+With **miniONE**, you can build an OpenNebula cloud with a single command in under ten minutes. In this tutorial, we’ll use miniONE to install an OpenNebula Front-end on a virtual machine in AWS. Later, you can use this Front-end to provision additional resources -- such as edge clusters or Kubernetes clusters -- on your OpenNebula cloud.
 
-While all the :ref:`installation and configuration <opennebula_installation>` steps can be done manually and would give you a better insight and control over what and how it is configured, we'll focus on the most straightforward approach by leveraging the miniONE tool.
+To complete this tutorial, you will need an AWS account with the capacity to create a virtual machine and obtain public IP addresses.
 
-The miniONE tool is a simple deployment script that deploys an OpenNebula Front-end and, optionally, a single KVM node within a single physical or virtual machine. This tool is mainly intended for evaluation, development, and testing, but it can also be used as a base for larger short-lived deployments. Usually, it takes just a few minutes to get the environment ready.
+**miniONE** is a simple Bash script. It automatically downloads, installs and configures an OpenNebula Front-end and all necessary components to manage and run virtual machines.
 
-Requirements
-============
+To install an OpenNebula Front-end using miniONE, we’ll need to complete the following high-level steps:
 
-You'll need a server to try out OpenNebula. The provided Host should have a fresh default installation of the required operating system with the latest updates and without any customizations.
+   #. Prepare the AWS VM where we’ll install miniONE.
+   #. Update the OS in the VM.
+   #. Download and run the miniONE script.
+   #. Verify the installation.
 
-- 4 GiB RAM
-- 80 GiB free space on disk
-- public IP address (FE-PublicIP)
-- privileged user access (`root`)
-- openssh-server package installed
-- operating system: RHEL/AlmaLinux 8 or 9, Debian 10 or 11, Ubuntu 20.04 or 22.0.4
-- open ports: 22 (SSH), 80 (Ruby Sunstone), 2616 (FireEdge), 5030 (OneGate).
+The cloud environment installed by miniONE is mainly intended for evaluation, development and testing. However, it can also serve as a base for larger short-lived deployments.
 
-If you don't have a server available with the above characteristics, we recommend using a the Amazon EC2 service to obtain a VM to act as the OpenNebula Front-end. A tested combination is the following (but is by no means the only one possible):
+.. note::
 
-- Frankfurt region
-- Ubuntu Server 20.04 LTS (HVM), SSD Volume Type
-- t2.medium
-- 80 GB hard disk (you need to edit the Storage tab before launching the instance; by default it comes with just 8GB)
-- open ports 22 (SSH), 80 (Ruby Sunstone), 2616 (FireEdge), 5030 (OneGate) by editing the Security Groups as per the picture. This can also happen after launching the instance following `this guide <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html>`__.
+    To complete this tutorial, you will need to log in to a remote Linux machine via SSH. If you follow this tutorial on a Windows machine, you will need to use an SSH client application such as `PuTTY <https://www.putty.org/>`_.
+   
+.. tip::
 
-|aws_security_groups|
+    For a list of options supported by the script, run ``bash minione -h``. The script supports several types of installations (such as installing a Front-end and a KVM hypervisor node) which are not covered in this tutorial.
+
+Step 1. Prepare the VM in AWS
+=============================
 
 In order to SSH into the EC2 VM, you need to pass the correct user and PEM file (you can create one and download it prior to launching the instance). You'll then be connecting to your Front-end using a command similar to:
 
-.. prompt:: bash # auto
+As a first step, if you don’t already have one, create an account in AWS. AWS publishes a complete guide: `How do I create and activate a new AWS account? <https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/>`__
 
-    # ssh <FE-PublicIP> -l ubuntu -i <PATH-TO-PEM-FILE>
+After you have created your account, you’ll need to obtain the ``access_key`` and ``secret_key`` of a user with the necessary permissions to manage instances. The relevant AWS guide is `Configure tool authentication with AWS <https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html>`__.
 
-We recommend updating the system:
+Next, you need to choose the region where you want to deploy the new resources. You can check the available regions in AWS’s documentation: `Regions, Availability Zones, and Local Zones <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html>`__.
 
-.. prompt:: bash # auto
+To run the miniONE script on AWS, you will need to instantiate a virtual machine with a supported operating system and the latest software updates, and without any customizations.
 
-    # sudo apt update && sudo apt upgrade
+**Supported operating systems:**
+   - RHEL/AlmaLinux 8 or 9
+   - Debian 10 or 11
+   - Ubuntu 20.04 or 22.04
 
-.. |aws_security_groups| image:: /images/aws_security_groups.png
+**Minimum hardware:**
+   - 4 GiB RAM
+   - 80 GiB free disk space
 
-Download
-========
+**Configuration:**
+   - Access to the privileged user (root) account
+   - A public IP address
+   - An SSH server running on port 22
+   - Open ports:
+      - 22 (SSH)
+      - 80 (for the Ruby Sunstone GUI)
+      - 2616 (for the FireEdge GUI)
+      - 5030 (for the OneGate service)
 
-miniONE can be downloaded by completing the form `here <https://opennebula.io/get-minione>`__.
+.. tip:: To quickly deploy a suitable VM, browse the AWS AMI Catalog and select ``Ubuntu Server 22.04 LTS (HVM), SSD Volume Type``:
 
-.. important::
+   .. image:: /images/minione-aws-ubuntu22.04.png
+      :align: center
 
-    Unless specified, all commands below should be executed under privileged user **root**.
+Below is an example of a successfully-tested configuration (though by no means the only possible one):
 
-Various command line parameters passed to the miniONE tool can customize the deployment process, e.g. the required OpenNebula version or initial passwords. You can get a list of available flags by running:
+- Region: Frankfurt
+- Operating System: Ubuntu Server 22.04 LTS (HVM)
+- Tier: ``t2.medium``
+- Open ports: 22, 80, 2616, 5030
+- Storage: 80 GB SSD
 
-.. prompt:: bash # auto
+When configuring the VM, ensure to assign enough storage (by editing the **Storage** tab), since by default the VM is only assigned 8GB.
 
-    # bash minione --help
+Likewise, ensure that the ports mentioned above are open for incoming connections, by editing the **Security Group** for the VM:
 
-In most cases, it's not necessary to specify anything, simply proceed with installation.
+    .. image:: /images/aws_security_groups.png
+        :align: center
 
-Deploy Front-End only
-=====================
+When configuration is finished, launch an instance of the VM. (See `Amazon’s tutorial <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/option2-task1-launch-ec2-instance.html>`_ if you have any doubts.) Once the VM is up and running we’ll need to log in to it, by following the steps below.
 
-This option installs OpenNebula frontend and prepares it to provision hypervisor node on one of the providers with OneProvision later.
+.. _minione_log_in_to_ec2:
 
-Run the following command under the privileged user **root**
+Step 1.1. Log in to the EC2 VM
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. important::
+To log in to your EC2 VM using SSH, you will need to generate a key pair (public and private key) for your Amazon EC2 instance. You will use your private key to log in to your EC2 VM.
 
-    In this case, FireEdge and OneGate endpoints expose HTTP on public interface, keep in mind MiniONE is just an evaluation tool.
+You can generate a key pair from within Amazon EC2 itself. You can download the private key as a PEM file, and use this file to connect to your EC2 VM using SSH.
 
-.. prompt:: bash # auto
+For complete instructions on creating key pairs and connecting to your Linux instance, see the AWS documentation: `Create a key pair for your Amazon EC2 instance <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html>`_ and `Connect to your Linux instance from Linux or macOS using SSH <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-linux-inst-ssh.html>`_.
 
-    # sudo bash minione --frontend
+After downloading the PEM file, make sure to set its file permissions to read-only, for the user only. On Linux, you can set these permissions with ``chmod 400 <PEM file>``, for example ``chmod 400 ~/.ssh/aws_pemfile.pem``.
 
+To log in to your EC2 VM, use ssh as user ``ubuntu``, specifying the PEM file you downloaded, by running this command:
 
-Be patient, it should take only a few minutes to get the Host prepared. The main deployment steps are logged on the terminal, and at the end of a successful deployment the miniONE tool provides a report with connection parameters and initial credentials. For example:
+.. prompt::
 
-.. code::
+   ssh <public IP of the VM> -l ubuntu -i <PEM file>
 
-    ### Report
-    OpenNebula 6.6 was installed
-    Sunstone is running on:
-      http://3.121.76.103/
-    FireEdge is running on:
-      http://3.121.76.103:2616/
-    Use following to login:
+For example:
+
+.. prompt::
+
+   ssh <IP> -l ubuntu -i ~/.ssh/aws_pemfile.pem
+
+.. warning::
+
+   Ensure you have set the appropriate permissions for the PEM file, or for security reasons SSH will refuse to connect.
+   
+
+Step 1.2. Update the VM Operating System
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Once you have logged in to the VM as user ``ubuntu``, use the ``sudo`` command to become the root user (no password is required):
+
+.. prompt::
+
+    sudo su -
+
+Then, update the system to its latest software packages by running the following command:
+
+.. prompt::
+
+   apt update && apt upgrade
+
+Your AWS VM is now ready. In the next steps, we’ll download the miniONE script, upload it to the VM, and run the installation.
+
+Step 3: Download and install miniONE
+====================================
+
+To download miniONE, please fill `the required form <https://opennebula.io/get-minione/>`__.
+
+Step 3.1. Copy the miniONE script to the AWS VM
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+After downloading miniONE, you will need to copy it to your AWS VM.
+
+- On Linux and Mac:
+    
+    If you’re on Linux, you can copy it with the ``scp`` command, providing the same user and PEM file as when logging in via SSH. For example, the command below copies the miniONE script to the ``ubuntu`` user’s home directory:
+
+        .. prompt::
+   
+          scp -i <path to PEM file> <path to minione script> ubuntu@<public IP of the VM>:~
+
+- On Windows:
+
+    You can use either of two methods:
+    
+    * The GUI tool `WinSCP <https://winscp.net/eng/download.php>`_, which allows you to copy files by drag-and-drop
+    * The command-line tool `PuTTY Secure Copy <https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html>`_, which emulates the Unix ``scp`` tool.
+    
+    For both methods you will need to provide the private key file for authentication.
+
+Step 3.2. Run the miniONE script on the AWS VM
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+After copying the miniONE script to the VM, log in to the VM (as described :ref:`above <minione_log_in_to_ec2>`).
+
+Use the ``sudo`` command to become the ``root`` user.
+
+If necessary, use the ``cd`` command to navigate to the folder where you copied the miniONE script. For example, if you copied it to the home directory of user ``ubuntu`` run ``cd ~ubuntu``.
+
+To install miniONE, run:
+
+.. prompt::
+
+   bash minione --frontend
+
+The miniONE script will begin the installation, logging output to the terminal. Installation may take about a minute. When it’s finished, miniONE shows a report with connection parameters and login credentials:
+
+.. prompt::
+
+   ### Report
+   OpenNebula 6.8 was installed
+   Sunstone is running on:
+   http://<omitted>/
+   FireEdge is running on:
+   http://<omitted>:2616/
+   Use following to login:
       user: oneadmin
       password: lCmPUb5Gwk
-
-.. note:: When running miniONE within an AWS instance, the reported IP may be a private address that's not reachable over the Internet. Use its public IP address to connect to the FireEdge and Ruby Sunstone services.
-
-The OpenNebula Front-end and local KVM node are now ready for evaluation.
-
-.. note:: miniONE offers more functionality. For example, you can install an OpenNebula front-end without a KVM Host (next section). Just add the --Front-end flag to enable this if interested.
-
-Validation
-==========
-
-Point your browser to the FireEdge web URL provided in the deployment report above and log in as the user **oneadmin** with provided credentials.
-
-|images-sunstone-dashboard|
-
-If the Host configured by **miniONE** is behind the firewall, the (default) FireEdge port 2616 has to be enabled for the machine you are connecting from.
-
-With the default Admin View you can do anything in OpenNebula. Switch to the Cloud View (top right-->Views-->cloud) to see how a final user will see OpenNebula.
-
-|images-sunstone-change-view|
-
-The :ref:`Cloud View <fireedge_cloud_view>` interface is much simpler and targeted at end users.
-
-If you created a local KVM node with the front-end you can continue the validation with the following steps:
-
-- Create a new Virtual Machine by clicking ‘VMs’ button. This will take you to the instances/VMs tab.
-- Press ‘+’ button and select the only available template. Continue through the instantiation dialog.
-- After clicking ‘Finish’ your VM will be instantiated, and you should be able to see your running machine.
-- You can click on your VM to manage it: Save it's state, Reboot it, etc:
-
-.. note:: We know, these are very basic steps. If you want to try out real-life virtualization or kubernetes workloads with public IPs please continue to next section.
-
-Deploy Front-End and KVM Node
-=============================
-
-If you want to quickly deploy an OpenNebula front-end + a virtualization node, run the following command under the privileged user **root** to deploy an evaluation cloud with an all-in-one front-end and a single KVM node:
+   
+At this point, you have successfully installed miniONE. OpenNebula services should be running, and the system should be ready for your first login.
 
 .. important::
 
-    This option uses private IP for OneGate which is fine for local KVM but won't work for :ref:`OneProvision <first_edge_cluster>` or :ref:`Kubernetes cluster <running_kubernetes_clusters>`
+   In this configuration, the Ruby and FireEdge Sunstone endpoints, and the OneGate endpoint expose HTTP on a public network interface. miniONE is an evaluation tool, and this configuration should not be used in production environments.
 
-.. prompt:: bash # auto
+Step 4: Verify the Installation
+===============================
 
-    # sudo bash minione
+We will verify the installation by logging in to OpenNebula’s FireEdge Sunstone GUI.
 
-This option is suitable for bare-metal hosts to utilize HW virtualization. The deployment will fallback to emulation (QEMU) if running on virtual machine or CPU without virtualization capabilities.
+.. note:: When running miniONE within an AWS instance, the reported IP may be a private address that’s not reachable over the Internet. Use the instance’s public IP address to connect to the FireEdge and Ruby Sunstone services.
+
+Point your browser to the FireEdge IP and port provided by the miniONE output shown above, i.e. ``<public IP>:2616``. You should be greeted with the Sunstone login screen:
+
+.. image:: /images/sunstone-login.png
+   :align: center
+   :scale: 50%
+
+|
+
+In the **Username** input field, type ``oneadmin``. For **Password**, enter the password provided by miniONE, then press ``Enter`` or click **SIGN IN**.
+
+The screen should display the Sunstone Dashboard:
+
+.. image:: /images/sunstone-dashboard.png
+   :align: center
+
+|
+
+This is the default view for cloud administrators. From this view in Sunstone, you have complete control over your OpenNebula infrastructure. (The :ref:`Cloud View <fireedge_cloud_view>` interface is much simpler, intended for end users.) To explore what you can do in the GUI, open the left-hand panel by clicking on the hamburger icon on the top left:
+
+.. image:: /images/sunstone-dashboard_hamb_menu.png
+   :align: center
+   :scale: 50%
+
+|
+
+Congratulations --- you have deployed an OpenNebula Front-end node, which is ready to provision resources on cloud infrastructure. 
+
 
 Next Steps
 ==========
 
-if you want to continue the evaluation with physical resources for VMs and Kubernetes clusters or try out the automatic provisioning features for building multi-provider hybrid clouds, you can follow the :ref:`Operations Guide <operation_basics>` to add a remote Edge Cluster based on KVM using AWS bare-metal instances to your shiny new OpenNebula cloud!
+You can now try out the GUI-based automatic provisioning features in the :ref:`Operations Guide <operation_basics>` to quickly and easily add a remote Edge Cluster on AWS to your shiny new OpenNebula cloud!
 
 
 .. |images-sunstone-dashboard| image:: /images/sunstone-dashboard.png
