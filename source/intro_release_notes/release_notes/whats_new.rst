@@ -21,7 +21,7 @@ Remove components, no longer included in the OpenNebula distribution:
 
 Legacy components, included in the distribution but no longer receive updates or bug fixes:
 
-- Ruby Suntone
+- Ruby Sunstone
 - vCenter Driver
 
 OpenNebula Core

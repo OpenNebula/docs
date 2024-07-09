@@ -9,7 +9,7 @@ This page describes how to install a complete OpenNebula Front-end from binary p
 
 .. warning::
 
-    Running Front-end inside an LXD container is limited! Integrations with LXC public marketplace won't be avilable, as it requires mounting block devices. This feature is usually not available in the LXD containers.
+    Running Front-end inside an LXD container is limited! Integrations with LXC public marketplace won't be available, as it requires mounting block devices. This feature is usually not available in the LXD containers.
 
 Proceed with the following steps to get the fully-featured OpenNebula Front-end up.
 
