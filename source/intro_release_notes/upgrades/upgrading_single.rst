@@ -8,7 +8,7 @@ Upgrading Single Front-end Deployments
 
     Users of the Community Edition of OpenNebula can upgrade from the previous stable version if they are running a non-commercial OpenNebula cloud. In order to access the migrator package a request needs to be made through this `online form <https://opennebula.io/get-migration>`__. In order to use these non-commercial migrators to upgrade to the latest CE release (OpenNebula 6.6), you will need to upgrade your existing OpenNebula environment first to CE Patch Release 6.6.0.1
 
-.. important:: If you haven't done so, please enable the :ref:`OpenNebula and needed 3rd party repositories <setup_opennebula_repos>` before attempting the upgrade process. If you want to use Docker related functionality of OpenNebula and/or OpenNebula Edge Clusters provisioning you'll need to follow :ref:`this for RedHat <install_docker_deps_rh>` or :ref:`this for Debian <install_docker_deps_deb>` distributions.
+.. important:: If you haven't done so, please enable the :ref:`OpenNebula and needed 3rd party repositories <setup_opennebula_repos>` before attempting the upgrade process.
 
 Upgrading from 5.6 and higher
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

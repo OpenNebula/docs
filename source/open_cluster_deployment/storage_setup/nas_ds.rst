@@ -21,8 +21,6 @@ Simply mount the **Image** Datastore directory in the Front-end in ``/var/lib/on
 
 .. note::  **NFS volumes mount tips**. The following options are recommended to mount NFS shares:``soft, intr, rsize=32768, wsize=32768``. With the documented configuration of libvirt/kvm the image files are accessed as ``oneadmin`` user. If the files must be read by ``root``, the option ``no_root_squash`` must be added.
 
-.. warning:: Bind mounts for Datastores `aren't supported on LXD deployments <https://github.com/OpenNebula/one/issues/3494#issuecomment-510174200>`__.
-
 Host Setup
 ================================================================================
 

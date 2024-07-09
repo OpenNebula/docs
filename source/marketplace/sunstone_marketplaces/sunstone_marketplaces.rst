@@ -15,7 +15,7 @@ You will find the marketplace sub-menu under the storage menu. From there, you w
 * :ref:`Check details of a marketplace <sunstone_marketplaces_details>`
 * :ref:`See the appliances that have a marketplace <sunstone_marketplaces_appliances>`
 
-.. note:: Only :ref:`OpenNebula Systems <market_one>`, :ref:`DockerHub <market_dh>`, :ref:`Docker Registry <market_docker_registry>`, :ref:`HTTP <market_http>` and :ref:`S3 <market_s3>` marketplaces could be created with Sunstone.
+.. note:: Only :ref:`OpenNebula Systems <market_one>`, :ref:`LinuxContainers <market_linux_container>`, :ref:`HTTP <market_http>` and :ref:`S3 <market_s3>` marketplaces could be created with Sunstone.
 
 |marketplace_dashboard|
 

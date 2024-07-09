@@ -9,7 +9,7 @@ This page describes how to install a complete OpenNebula Front-end from binary p
 
 .. warning::
 
-    Running Front-end inside an LXD container is limited! Integrations with selected public marketplaces (Docker Hub, LXC, TurnKey Linux) and building images from custom Dockerfiles won't be available, as they require mounting of block devices. This feature is usually not available in the LXD containers.
+    Running Front-end inside an LXD container is limited! Integrations with LXC public marketplace won't be avilable, as it requires mounting block devices. This feature is usually not available in the LXD containers.
 
 Proceed with the following steps to get the fully-featured OpenNebula Front-end up.
 
@@ -126,20 +126,9 @@ Install all OpenNebula Front-end components by executing the following commands 
 
     # yum -y install opennebula opennebula-fireedge opennebula-gate opennebula-flow opennebula-provision
 
-.. _install_docker_deps_rh:
-
 **Optional**
 
-1. Install dependencies for :ref:`Docker Hub Marketplace <market_dh>`:
-
-- install Docker following the official documentation `<https://docs.docker.com/engine/install/>`
-- add user ``oneadmin`` into group ``docker``:
-
-.. prompt:: bash # auto
-
-    # usermod -a -G docker oneadmin
-
-2. Install dependencies for OpenNebula Edge Clusters provisioning:
+1. Install dependencies for OpenNebula Edge Clusters provisioning:
 
 .. note::
 
@@ -164,20 +153,9 @@ Install all OpenNebula Front-end components by executing the following commands 
     # apt-get update
     # apt-get -y install opennebula opennebula-fireedge opennebula-gate opennebula-flow opennebula-provision
 
-.. _install_docker_deps_deb:
-
 **Optional**
 
-1. Install dependencies for :ref:`Docker Hub Marketplace <market_dh>`:
-
-- install Docker following the official documentation for `Debian <https://docs.docker.com/engine/install/debian/>`_ or `Ubuntu <https://docs.docker.com/engine/install/ubuntu/>`_
-- add user ``oneadmin`` into group ``docker``:
-
-.. prompt:: bash # auto
-
-    # usermod -a -G docker oneadmin
-
-2. Install dependencies for OpenNebula Edge Clusters provisioning:
+1. Install dependencies for OpenNebula Edge Clusters provisioning:
 
 .. note::
 

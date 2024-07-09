@@ -11,11 +11,7 @@ OpenNebula will configure by default the following Marketplaces in your installa
 +=========================+===============================================================================================+
 | OpenNebula Public       | The official public `OpenNebula Systems Marketplace <http://marketplace.opennebula.systems>`__|
 +-------------------------+-----------------------------------------------------------------------------------------------+
-| Linux Containers        | The public LXD/LXC `image repository <https://images.linuxcontainers.org>`__                  |
-+-------------------------+-----------------------------------------------------------------------------------------------+
-| Turnkey Linux Containers| The Turnkey Linux `image repository <https://www.turnkeylinux.org>`__                         |
-+-------------------------+-----------------------------------------------------------------------------------------------+
-| DockerHub               | The Docker Hub `image repository <https://hub.docker.com>`__                                  |
+| Linux Containers        | The public LXC `image repository <https://images.linuxcontainers.org>`__                      |
 +-------------------------+-----------------------------------------------------------------------------------------------+
 
 .. important:: The OpenNebula front-end needs access to the Internet to use the public Marketplaces.
@@ -28,8 +24,6 @@ You can list the marketplaces configured in OpenNebula with ``onemarket list``. 
 
     $ onemarket list
     ID NAME                                                            SIZE AVAIL   APPS MAD     ZONE STAT
-    3  DockerHub                                                         0M -          0 dockerh    0 off
-    2  TurnKey Linux Containers                                          0M -          0 turnkey    0 off
     1  Linux Containers                                                  0M -          0 linuxco    0 off
     0  OpenNebula Public                                                 0M -         48 one        0 on
 

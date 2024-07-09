@@ -26,26 +26,6 @@ KVM Nodes
 | Fedora                  | 32 (x86-64), 33 (x86-64)                                  | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 
-Firecracker Nodes
-=================
-
-+-------------------------+-----------------------------------------------------------+-----------------------------------------+
-|        Component        |                          Version                          |             More information            |
-+=========================+===========================================================+=========================================+
-| Fedora                  | 32 (x86-64), 33 (x86-64)                                  | :ref:`Firecracker Driver <fc_node>`     |
-+-------------------------+-----------------------------------------------------------+-----------------------------------------+
-
-Front-end Platform Notes
-========================
-
-Fedora 32, 33
--------------
-
-Docker Hub fails to import image as Docker doesn't support cgroup v2. Front-end must reconfigured to
-
-- use legacy cgroup v1 by passing kernel parameter ``systemd.unified_cgroup_hierarchy=0``
-- enable IPv4 forwarding ``sysctl net.ipv4.ip_forward=1``
-
 Nodes Platform Notes
 ====================
 

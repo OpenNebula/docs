@@ -34,8 +34,7 @@ Parameter                         Default                                   Desc
 
 Role ceph-opennebula-osd
 --------------------------------------------------------------------------------
-Creates rbd client directories, configures libvirts secrets, disables
-Docker if installed by ceph-ansible.
+Creates rbd client directories, configures libvirts secrets, disables Docker if installed by ceph-ansible.
 
 ========================================= ============================== ===========
 Parameter                                 Default                        Description

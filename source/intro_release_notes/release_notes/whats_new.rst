@@ -10,6 +10,20 @@ What's New in |version|
 
 We’d like to thank all the people that :ref:`support the project<acknowledgements>`, OpenNebula is what it is thanks to its community! Please keep rocking.
 
+Remove components, no longer included in the OpenNebula distribution:
+
+- LXD driver
+- Firecracker driver
+- Docker Machine
+- DockerHub Marketplace
+- Docker Registry
+- TurnkeyLinux
+
+Legacy components, included in the distribution but no longer receive updates or bug fixes:
+
+- Ruby Suntone
+- vCenter Driver
+
 OpenNebula Core
 ================================================================================
 - **Generic Quotas**: Option to specify :ref:`custom quotas for OpenNebula VMs, <quota_auth_generic>`

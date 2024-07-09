@@ -9,5 +9,4 @@ Public Marketplaces
 
    Overview <overview>
    OpenNebula Systems Marketplace <opennebula>
-   Dockerhub Marketplace <dockerhub>
-   Linux Containers and Turnkey Linux Marketplaces <lxc>
+   Linux Containers Marketplace <lxc>

@@ -145,54 +145,9 @@ You can even create a filesystem in the new image so it is ready-to-use by the V
 Using Marketplaces
 --------------------------------------------------------------------------------
 
-OpenNebula leverages the applications created by several popular marketplaces, like DockerHub or Linuxcontainers.org. These are great places to grab a working installation of an OS/application ready to use in your Cloud. The OpenNebula project also prepares *contextualized* OS installations of popular distributions and applications, you can `check the list in the OpenNebula Marketplace <https://marketplace.opennebula.io/appliance>`_.
+OpenNebula leverages the applications created by several popular marketplaces, like Linuxcontainers.org. These are great places to grab a working installation of an OS/application ready to use in your Cloud. The OpenNebula project also prepares *contextualized* OS installations of popular distributions and applications, you can `check the list in the OpenNebula Marketplace <https://marketplace.opennebula.io/appliance>`_.
 
 You can find :ref:`more information on using these Marketplaces here <marketplaces>`.
-
- .. _dockerfile:
-
-Using a Dockerfile
---------------------------------------------------------------------------------
-
-You can create Images using your own dockerfiles. The ``PATH`` in this case has the following format:
-
-.. code::
-
-    dockerfile://<path_to_file>?fileb64=<file_in_base64>&context=<yes|no>
-
-where:
-
-+-----------------------+------------------------------------------------------------+
-| Argument              | Description                                                |
-+=======================+============================================================+
-| ``<path_to_file>``    | Path in OpenNebula server where the Dockerfile is located. |
-+-----------------------+------------------------------------------------------------+
-| ``<file_in_base64>``  | Dockerfile in Base64 form. If this is specified, the path  |
-|                       | is ignored.                                                |
-+-----------------------+------------------------------------------------------------+
-| ``<context>``         | If it set to yes, OpenNebula context packages are added.   |
-|                       | If it is not set or set to no, they are omitted.           |
-+-----------------------+------------------------------------------------------------+
-| ``<fs_type>``         | Filesystem type (ext4, ext3, ext2 or xfs)                  |
-+-----------------------+------------------------------------------------------------+
-| ``<tag>``             | Image tag name (default ``latest``).                       |
-+-----------------------+------------------------------------------------------------+
-| ``<distro>``          | (Optional) base OS distribution.                           |
-+-----------------------+------------------------------------------------------------+
-
-.. important:: Multistage Dockerfiles are not supported, only one FROM directive can be included.
-
-To create an image using your own Dockerfile use the ``oneimage create`` command with a ``dockerfile://`` path. For example:
-
-.. code::
-
-    $ oneimage create --name testing-df --path 'dockerfile:///tmp/my_dockerfile?size=256' --datastore 1 --prefix vd
-      ID: 0
-    $ oneimage list
-      ID USER     GROUP    NAME       DATASTORE SIZE TYPE PER STAT RVMS
-      0  oneadmin oneadmin testing-df default   256M OS    No rdy     0
-
-There is also a dedicated ``oneimage dockerfile`` command that will open an editor so you can easily edit your Dockerfile there.
 
 Installing the Guest OS
 --------------------------------------------------------------------------------
