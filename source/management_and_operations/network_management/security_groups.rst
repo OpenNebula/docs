@@ -47,7 +47,7 @@ A Security Group is composed of several Rules. Each Rule is defined with the fol
 .. note::
    When using ``IPSEC`` value for ``PROTOCOL``, rules for the Encapsulating Security Payload (ESP) protocol of IPSec are set.
 
-To create a Security Group, use the Sunstone web interface, or create a template file following this example:
+To create a Security Group, use the :ref:`Sunstone UI Interface <fireedge_sunstone>`, or create a template file following this example:
 
 .. code::
 

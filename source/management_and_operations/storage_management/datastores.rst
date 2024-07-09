@@ -195,5 +195,8 @@ System Datastores can be disabled to prevent the scheduler from deploying new VM
 Using Sunstone to Manage Datastores
 ================================================================================
 
-You can also manage your Datastores using :ref:`Sunstone <sunstone>`. Select the Storage > Datastore tab, and there, you will be able to create, enable, disable, delete and see information about your datastores in a user friendly way.
+You can also manage your Datastores using :ref:`Sunstone UI Interface <fireedge_sunstone>`. Select the Storage > Datastore tab, and there, you will be able to create, enable, disable, delete and see information about your datastores in a user friendly way.
 
+|image1|
+
+.. |image1| image:: /images/sunstone_datastores.png

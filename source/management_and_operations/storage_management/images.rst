@@ -489,7 +489,7 @@ The :ref:`contextualization cdrom <context_overview>` can include ``CONTEXT`` ty
 Using Sunstone to Manage Images
 ================================================================================
 
-You can also manage your Images using :ref:`Sunstone <sunstone>`. Select the Images tab, and there, you will be able to manage and check the information about your images in a user friendly way. By default this tab is available in the ``admin`` view, but not in the ``cloud`` or ``groupadmin`` views.
+You can also manage your Images using :ref:`Sunstone UI Interface <fireedge_sunstone>`. Select the Images tab, and there, you will be able to manage and check the information about your images in a user friendly way. By default this tab is available in the ``admin`` view, but not in the ``cloud`` or ``groupadmin`` views.
 
 |image3|
 
@@ -498,7 +498,7 @@ Uploading Images from Sunstone
 
 When creating Images you can upload them to the Datastore via the client browser. The process copies the image from the client desktop to a temporal location and creates the Image from it (as described above).
 
-Note that when file sizes become big (normally over 1GB), and depending on your hardware, it may take long to complete the copying. Since the upload request needs to stay pending until copying is successful (so it can delete the temp file safely), there might be Ajax timeouts and/or lack of response from the server. This may cause errors, or trigger re-uploads (which re-initiate the loading progress bar).
+.. note:: Note that when file sizes become big (normally over 1GB), and depending on your hardware, it may take long to complete the copying. Since the upload request needs to stay pending until copying is successful (so it can delete the temp file safely), there might be Ajax timeouts and/or lack of response from the server. This may cause errors, or trigger re-uploads (which re-initiate the loading progress bar).
 
 .. |image2| image:: /images/sunstone_luks_secret_create.png
 .. |image3| image:: /images/sunstone_image_create.png

@@ -359,8 +359,16 @@ After a Virtual Machine is imported, its life-cycle (including creation of snaps
 Using Sunstone to Manage Hosts
 ================================================================================
 
-You can also manage your Hosts using :ref:`Sunstone <sunstone>`. Select the Host tab, and there, you will be able to create, enable, disable, delete, and see information about your Hosts in a user-friendly way.
+You can also manage your Hosts using :ref:`Sunstone UI Interface <fireedge_sunstone>`. Select the Host tab, and there, you will be able to create, enable, disable, delete, and see information about your Hosts in a user-friendly way.
 
 |image1|
 
-.. |image1| image:: /images/hosts_sunstone.png
+-  Create new hosts
+
+|image2|
+
+
+
+
+.. |image1| image:: /images/hosts_fireedge.png
+.. |image2| image:: /images/hosts_create.png

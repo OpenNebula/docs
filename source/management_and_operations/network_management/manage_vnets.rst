@@ -395,12 +395,6 @@ To set the automatic selection mode, simply add the attribute ``NETWORK_MODE = "
 
     NIC = [ NETWORK_MODE = "auto" ]
 
-To do this via Sunstone you need to make sure the :ref:`sunstone view <suns_views>` you are using has the parameter ``automatic_selection_vnet`` set to ``true``.
-
-|vnet_automatic_selection|
-
-.. |vnet_automatic_selection| image:: /images/vnet_automatic_selection.png
-
 Also you can add SCHED_REQUIREMENTS and SCHED_RANK when this mode is activated. This will let you specify which networks can be used for a specific NIC (``SCHED_REQUIREMENTS``) and what are you preferences (``SCHED_RANK``) to select a network among the suitable ones.
 
 .. code::
@@ -458,6 +452,14 @@ In case the Virtual Network is not in ``READY`` state, use ``onevnet recover`` t
 
 Using Sunstone to Manage Virtual Networks
 ================================================================================
-You can also manage your Virtual Networks using :ref:`Sunstone <sunstone>`. Select the Networks tab, and there, you will be able to create, enable, and operate your Virtual Networks in a user friendly way.
+You can also manage your Virtual Networks using :ref:`Sunstone UI Interface <fireedge_sunstone>`. Select the Virtual Networks tab, and there, you will be able to create, enable, and operate your Virtual Networks in a user friendly way.
 
-.. |image0| image:: /images/sunstone_vnet_create.png
+
+|image0|
+
+-  Create new Virtual Networks
+
+|image1|
+
+.. |image0| image:: /images/sunstone_vnets.png
+.. |image1| image:: /images/sunstone_vnet_create.png
