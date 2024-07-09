@@ -9,10 +9,6 @@ The role of a **Group Admin is to manage all the virtual resources of the Group*
 
 |groupadmin_dash|
 
-Group administrators can also access the :ref:`simplified Cloud View <cloud_view>` if they prefer to.
-
-|groupadmin_change_view|
-
 Manage Users
 ================================================================================
 
@@ -86,9 +82,6 @@ Group administrators **can create** :ref:`Virtual Routers <vrouter>` **from Temp
 
 |groupadmin_create_vrouter|
 
-|groupadmin_topology|
-
-
 .. |groupadmin_dash| image:: /images/sunstone_groupadmin_dash.png
 .. |groupadmin_change_view| image:: /images/sunstone_groupadmin_change_view.png
 .. |groupadmin_users| image:: /images/sunstone_groupadmin_users.png
@@ -102,4 +95,3 @@ Group administrators **can create** :ref:`Virtual Routers <vrouter>` **from Temp
 .. |groupadmin_group_showback| image:: /images/sunstone_groupadmin_group_showback.png
 .. |groupadmin_user_acct| image:: /images/sunstone_groupadmin_user_acct.png
 .. |groupadmin_create_vrouter| image:: /images/sunstone_groupadmin_create_vrouter.png
-.. |groupadmin_topology| image:: /images/sunstone_groupadmin_topology.png
