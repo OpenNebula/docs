@@ -98,20 +98,6 @@ Parameter                         Default                        Description
 ``iptables_masquerade_interface`` ansible_default_ipv4.interface NAT output interface
 ================================= ============================== ===========
 
-Role opennebula-node-firecracker
---------------------------------------------------------------------------------
-
-.. !!! Description and parameters needs to be IN SYNC WITH THE ROLE CONTENT !!!
-
-Installs the ``opennebula-node-firecracker`` package, optionally configures the KVM module for the nested virtualization, and ensures libvirt is enabled and running.
-
-================================================== ================ ===========
-Parameter                                          Default          Description
-================================================== ================ ===========
-``opennebula_node_firecracker_network_drivers``    elastic, vxlan   Virtual network drivers to be enabled to work with Firecracker
-``opennebula_node_firecracker_network_hook_types`` clean, pre       Required virtual network types
-================================================== ================ ===========
-
 Role opennebula-node-kvm
 --------------------------------------------------------------------------------
 
