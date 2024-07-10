@@ -52,6 +52,7 @@ API and CLI
 ================================================================================
 - ``onedb create-index`` command has been removed, a new :ref:`VM search <vm_search>` engine has been implemented to allow flexible queries and improve performance.
 - `OneFlow message logging improved <https://github.com/OpenNebula/one/issues/6553>`__.
+- :ref:`New dry flag for onedb fsck command <onedb_fsck>`: check DB consistency, while the OpenNebula is running, but without writing fixes to the DB.
 
 
 KVM
