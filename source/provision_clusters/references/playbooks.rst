@@ -43,7 +43,6 @@ All code for Ansible (tasks, roles, playbooks) is installed into ``/usr/share/on
     │   ├── ddc
     │   ├── frr
     │   ├── iptables
-    │   ├── opennebula-node-firecracker
     │   ├── opennebula-node-kvm
     │   ├── opennebula-node-lxc
     │   ├── opennebula-repository
