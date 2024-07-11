@@ -59,7 +59,7 @@ This is a simplified view, mainly intended for end-users that just require a por
 
 In this scenario the cloud administrator must prepare a set of templates and images and make them available to the cloud users. These Templates must be ready to be instantiated. Before using them, users can optionally customize the VM capacity, add new network interfaces, and provide values required by the template.  Thereby, the user doesn't have to know any details of the infrastructure, such as networking or storage. For more information on how to configure this scenario see :ref:`this section <cloud_view>`
 
-|cloud_dash|
+|sunstone_cloud_dash|
 
 .. _vcenter_user_view:
 
@@ -419,7 +419,7 @@ The actions available for a given VM can be customized and extended by modifying
 .. |sunstone_dashboard| image:: /images/sunstone_dashboard.png
 .. |admin_view| image:: /images/admin_view.png
 .. |sunstone_user_dashboard| image:: /images/sunstone_user_dashboard.png
-.. |cloud_dash| image:: /images/cloud_dash.png
+.. |sunstone_cloud_dash| image:: /images/sunstone_cloud_dash.png
 .. |views_settings| image:: /images/views_settings.png
 .. |views_change| image:: /images/views_change.png
 .. |sunstone_group_defview| image:: /images/sunstone_group_defview.png
