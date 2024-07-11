@@ -13,5 +13,3 @@ Infrastructure Integration
    Authentication Driver <devel-auth>
    Market Driver <devel-market>
    IPAM Driver <devel-ipam>
-   vCenter Driver <vcenter_driver>
-   NSX Driver <nsx_driver>
