@@ -6,7 +6,7 @@ Accessing VM Console and Desktop
 
 Sunstone provides several different methods to access your VM console and desktop: VNC, SPICE, RDP, VMRC, SSH, and ``virt-viewer``. If configured in the VM, these methods can be used to access the VM console through Sunstone.  For some of those connections, we will need to start a new FireEdge server to establish the remote connection. This section shows how these different technologies can be configured and what each requirement is.
 
-:ref:`FireEdge <fireedge_configuration>` automatically installs dependencies for Guacamole connectinos and VMRC proxy, which are necessary to use VNC, RDP, SSH, and VMRC.
+:ref:`FireEdge <fireedge_configuration>` automatically installs dependencies for Guacamole connections and VMRC proxy, which are necessary to use VNC, RDP, SSH, and VMRC.
 
 +-----------------+-------------------+---------------------+
 |   Connection    |   With FireEdge   |  Without FireEdge   |
@@ -215,7 +215,7 @@ After that you can access the VM and configure the SSH service:
     # Add user: username/password
     root@<guest-VM>:~$ adduser <username>
 
-.. note:: Guacamole SSH uses RSA encryption. Make sure the VM SSH accepts RSA, otherwise you need to explicitly enable it in the VM SSH configuration (HostkeyAlgorithms and PubkeyAcceptedAlgorithms set as '+ssha-rsa)
+.. note:: Guacamole SSH uses RSA encryption. Make sure the VM SSH accepts RSA, otherwise you need to explicitly enable it in the VM SSH configuration (HostkeyAlgorithms and PubkeyAcceptedAlgorithms set as '+ssh-rsa)
 
 .. _spice_ruby_sunstone:
 

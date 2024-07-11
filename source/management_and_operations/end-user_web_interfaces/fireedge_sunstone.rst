@@ -46,7 +46,7 @@ Templates
 
 - **VM Template Tab**: Users can see all their Templates, and perform updates and clones. From this tab, user can also instantiate a Virtual Machine. Also, the user can perform some managing operations over the templates, such as: change permissions, share and unshare, lock and unlock, and more.
 - **Service Template Tab**: Admins can see all their Service Templates, create new ones and update existing templates. From this tab, admins can also instantiate services directly and perform different kinds of managing operations.
-- **Virtual Routers Template Tab**: Admins can see all their Virtual Routers Templates, create new ones and update existing templates. From this tab, admins can also instantiate vritual routers directly and perform different kinds of managing operations.
+- **Virtual Routers Template Tab**: Admins can see all their Virtual Routers Templates, create new ones and update existing templates. From this tab, admins can also instantiate virtual routers directly and perform different kinds of managing operations.
 - **VM Groups Tab**: Admins can access all the VM groups defined in the OpenNebula instance, and perform managing operations such as updating, enabling/disabling, and more. Also, admins can create new VM groups from this tab.
 
 Storage
@@ -70,7 +70,7 @@ Networks
 Infrastructure
 --------------------------------------------------------------------------------
 
-- **Clusters Tab**: Users can see all their Clusters, and perfom managing operations such as updating and deleting.
+- **Clusters Tab**: Users can see all their Clusters, and perform managing operations such as updating and deleting.
 - **Hosts Tab**: Users can see all their Hosts, and perform managing operations such as enabling, disabling, and more. Also, users can create a new Host from this tab.
 - **Zone Tab**: Users can see all their Zones and see all the information about a zone.
 
