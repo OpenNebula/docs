@@ -75,6 +75,8 @@ The OneFlow configuration file can be found in ``/etc/one/oneflow-server.conf`` 
 
 In the default configuration, the OneFlow server will only listen to requests coming from ``localhost`` (which is enough to control OneFlow over Sunstone running on the same host). If you want to control OneFlow over API/CLI remotely, you need to change ``:host`` parameter in ``/etc/one/oneflow-server.conf`` to a public IP of your Front-end host or to ``0.0.0.0`` (to work on all IP addresses configured on Host).
 
+.. _oneflow_conf_sunstone:
+
 Configure Sunstone
 ------------------
 
