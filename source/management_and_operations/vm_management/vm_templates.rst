@@ -185,9 +185,8 @@ Each VM Template can have a cost per hour. This cost is set by CPU unit and MEMO
 Enable End User Features
 --------------------------------------------------------------------------------
 
-There are a few features of the :ref:`Cloud View <suns_views>` that will work if you configure the Template to make use of them:
+There are a few features of the :ref:`Cloud View <cloud_view>` that will work if you configure the Template to make use of them:
 
-* Users will see the Template logo (``LOGO``) and description (``DESCRIPTION``), something that is not so visible in the normal admin view.
 * The Cloud View gives access to the VM's VNC, but only if it is configured in the Template.
 * End users can upload their public ssh key. This requires the VM guest to be :ref:`contextualized <context_overview>`, and the Template must have the ssh contextualization enabled.
 

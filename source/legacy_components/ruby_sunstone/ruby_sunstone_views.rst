@@ -1,4 +1,4 @@
-.. _suns_views:
+.. _ruby_sunstone_views:
 
 ================================================================================
 Ruby Sunstone Views
@@ -419,7 +419,7 @@ The actions available for a given VM can be customized and extended by modifying
 .. |sunstone_dashboard| image:: /images/sunstone_dashboard.png
 .. |admin_view| image:: /images/admin_view.png
 .. |sunstone_user_dashboard| image:: /images/sunstone_user_dashboard.png
-.. |sunstone_cloud_dash| image:: /images/sunstone_cloud_dash.png
+.. |sunstone_cloud_dash| image:: /images/ruby_sunstone_cloud_dash.png
 .. |views_settings| image:: /images/views_settings.png
 .. |views_change| image:: /images/views_change.png
 .. |sunstone_group_defview| image:: /images/sunstone_group_defview.png
