@@ -1,22 +1,20 @@
 .. _fireedge_sunstone:
 
 ================================================================================
-Using FireEdge Sunstone
+Using Sunstone
 ================================================================================
 
 Overview
 ================================================================================
 
-**FireEdge Sunstone** is the new generation OpenNebula web interface, fully featured for VM and VM Template management and with other :ref:`sections <fireedge_sections>` ready covering most functionality for end users.
+**Sunstone** is the new generation OpenNebula web interface, fully featured for VM and VM Template management and with other :ref:`sections <fireedge_sections>` ready covering most functionality for end users.
 
 This interface is delivered by the :ref:`FireEdge server <fireedge_setup>`, and it is its main interface, meaning that it will redirect to Sunstone when contacted in the ``http://<OPENNEBULA-FRONTEND>:2616/`` address.
-
-.. warning:: FireEdge Sunstone is fully functional for VM and VM Template management, but it lacks all the functionality of the traditional Ruby Sunstone. FireEdge Sunstone is still in BETA stage.
 
 Configuration
 ================================================================================
 
-To configure FireEdge Sunstone, there are several options to consider, and they are described in the :ref:`FireEdge Configuration <fireedge_setup>` guide.
+To configure Sunstone, there are several options to consider, and they are described in the :ref:`FireEdge Configuration <fireedge_setup>` guide.
 
 Usage
 ================================================================================
@@ -34,12 +32,13 @@ They can also configure several options from the :ref:`settings tab <fireedge_su
 Sections
 ================================================================================
 
-The available FireEdge Sunstone sections and their tabs are described in the following subsections. All the tabs described below can be deactivated in the :ref:`FireEdge Sunstone views <fireedge_sunstone_views>`
+The available Sunstone sections and their tabs are described in the following subsections. All the tabs described below can be deactivated in the :ref:`Sunstone views <fireedge_sunstone_views>`
 
 Instances
 --------------------------------------------------------------------------------
 
 - **VMs Tab**: Users can see all their Virtual Machines, and perform managing actions such as changing permissions, attaching disks, attaching networks, taking snapshots, adding scheduled actions, remote console connections, and more. From this tab, users can also instantiate a new Virtual Machine. Some VM actions can be through multiple VMs, such as: ``suspend``, ``stop``, ``power-off``, ``reboot``, ``resume``, ``undeploy`` and more.
+- **Virtual Routers Tab**: Admins can see all their virtual routers, and perform different kinds of managing actions. From this tab, admins can also instantiate new virtual routers. 
 - **Services Tab**: Admins can see all their services, and perform different kinds of managing actions. From this tab, admins can also instantiate new services. 
 
 Templates
@@ -47,6 +46,8 @@ Templates
 
 - **VM Template Tab**: Users can see all their Templates, and perform updates and clones. From this tab, user can also instantiate a Virtual Machine. Also, the user can perform some managing operations over the templates, such as: change permissions, share and unshare, lock and unlock, and more.
 - **Service Template Tab**: Admins can see all their Service Templates, create new ones and update existing templates. From this tab, admins can also instantiate services directly and perform different kinds of managing operations.
+- **Virtual Routers Template Tab**: Admins can see all their Virtual Routers Templates, create new ones and update existing templates. From this tab, admins can also instantiate virtual routers directly and perform different kinds of managing operations.
+- **VM Groups Tab**: Admins can access all the VM groups defined in the OpenNebula instance, and perform managing operations such as updating, enabling/disabling, and more. Also, admins can create new VM groups from this tab.
 
 Storage
 --------------------------------------------------------------------------------
@@ -55,19 +56,23 @@ Storage
 - **Images Tab**: Users can see all their ``OS``, ``CDROM``, and ``DATABLOCK`` images. Also, the users can perform some managing actions, such as changing permissions, locking and unlocking, and more. From this tab, users can instantiate a new Image of one of the types described before.
 - **Files Tab**: Users can see all their ``KERNEL``, ``RAMDISK``, and ``CONTEXT`` images. Also, the users can perform some managing actions, such as changing permissions, enabling and disabling, and more. From this tab, users can instantiate a new Image of one of the types described before.
 - **Backups Tab**: Users can see all their ``BACKUP`` images. Also, the users can perform some managing actions, such as changing permissions and restoring.
+- **Marketplace Tab**: Users can see all their marketplaces. Also, the users can perform some managing actions, such as create and update a marketplace, changing permissions and restoring, and more.
 - **Marketplace Apps Tab**: Users can see all the apps from their active marketplaces, download and create templates from them, or download them locally on their computers.
+- **BackupJobs Tab**: Users can see all their backup jobs. Also, the users can perform some managing actions, such as create, start and cancel a backup job, changing permissions and restoring, and more.
 
 Networks
 --------------------------------------------------------------------------------
 
 - **Virtual Networks Tab**: Users can see all their Virtual Networks, and perform managing operations such as updating, reserving, changing permissions, and more. Also, users can create a new Virtual Network from this tab.
+- **Virtual Networks Template Tab**: Users can see all their Virtual Networks Templates, and perform updates. From this tab, user can also instantiate a Virtual Network from a template. Also, the user can perform some managing operations over the templates, such as: change permissions, lock and unlock, and more.
 - **Security Groups Tab**: Users can see all their Security Groups, and perform managing operations such as updating, cloning, committing, changing permissions, and more. Also, users can create a new Security Group from this tab.
 
 Infrastructure
 --------------------------------------------------------------------------------
 
-- **Clusters Tab**: Users can see all their Clusters.
+- **Clusters Tab**: Users can see all their Clusters, and perform managing operations such as updating and deleting.
 - **Hosts Tab**: Users can see all their Hosts, and perform managing operations such as enabling, disabling, and more. Also, users can create a new Host from this tab.
+- **Zone Tab**: Users can see all their Zones and see all the information about a zone.
 
 System
 --------------------------------------------------------------------------------
@@ -75,7 +80,6 @@ System
 - **VDCs Tab**: Users can see all their VDCs, and can update, rename and view the resources associated with them, and more. Also, users can create a new VDC from this tab.
 - **Users Tab**: Admins can access all the users defined in the OpenNebula instance, and perform managing operations such as updating, enabling/disabling, setting quotas, and more. Also, admins can create new Users from this tab.
 - **Groups Tab**: Admins can access all the groups defined in the OpenNebula instance, and perform managing operations such as updating, setting quotas, and more. Also, admins can create new Groups from this tab.
-- **VM Groups Tab**: Admins can access all the VM groups defined in the OpenNebula instance, and perform managing operations such as updating, enabling/disabling, and more. Also, admins can create new VM groups from this tab.
 - **ACL Tab**: Admins can access all the ACL rules defined in the OpenNebula instance, and perform create and delete operations.
 
 .. _fireedge_sunstone_settings_tab:
@@ -85,10 +89,10 @@ Settings
 
 From this section, users can define multiple configuration options for themselves, that will be saved inside the user template, such as:
 
-- **Schema (default = System)**: change the FireEdge Sunstone Theme to dark, light or matching with the system.
+- **Schema (default = System)**: change the Sunstone Theme to dark, light or matching with the system.
 - **Language (default = English US)**: select the language that they want to use for the UI.
 - **View**: allows to change the user view.
-- **Default endpoint**: allows to change the FireEdge Sunstone endpoint when using federation.
+- **Default endpoint**: allows to change the Sunstone endpoint when using federation.
 - **SSH Public key**: allows the user to specify a public SSH key that they can use on the VMs.
 - Disable the dashboard animations. By default they are enabled.
 - Disable the information on full screen. By default they are disabled.
@@ -109,12 +113,14 @@ From this section, users can define multiple configuration options for themselve
 Views
 ================================================================================
 
-Using the FireEdge Sunstone views, you can provide a simplified UI aimed at end-users of an OpenNebula cloud. FireEdge Sunstone Views are fully customizable, so you can easily enable or disable specific information tabs or action buttons. :ref:`You can define multiple views for different user groups <fireedge_sunstone_new_view>`. Each view defines a set of UI components, so each user accesses and views the relevant parts of the cloud for their role. Default views:
+Using the Sunstone views, you can provide a simplified UI aimed at end-users of an OpenNebula cloud. Sunstone Views are fully customizable, so you can easily enable or disable specific information tabs or action buttons. :ref:`You can define multiple views for different user groups <fireedge_sunstone_new_view>`. Each view defines a set of UI components, so each user accesses and views the relevant parts of the cloud for their role. Default views:
 
 - :ref:`Admin View <fireedge_sunstone_admin_view>`.
 - :ref:`User View <fireedge_sunstone_user_view>`.
+- :ref:`Groupadmin View <fireedge_sunstone_groupadmin_view>`.
+- :ref:`Cloud View <fireedge_sunstone_cloud_view>`.
 
-Each view is in an individual directory, ``admin`` and ``user`` that OpenNebula proposes by default, as described in the next section.
+Each view is in an individual directory, ``admin``, ``user``, ``groupadmin`` and ``cloud`` that OpenNebula proposes by default, as described in the next section.
 
 Default Views
 --------------------------------------------------------------------------------
@@ -136,6 +142,20 @@ User View
 Based on the Admin View. It is an advanced user view intended for users with fewer privileges than an admin user, allowing them to manage Virtual Machines and Templates. Users will not be able to manage or retrieve the hosts and clusters of the cloud. Details can be configured in the ``/etc/one/fireedge/sunstone/user/`` directory.
 
 |fireedge_sunstone_user_view|
+
+.. _fireedge_sunstone_groupadmin_view:
+
+Groupadmin View
+--------------------------------------------------------------------------------
+
+This view it's like a limited version of the cloud administrator view to be used by the administrators of a group. Details can be configured in the ``/etc/one/fireedge/sunstone/groupadmin/`` directory. More details on :ref:`Group admin view <group_admin_view>`
+
+.. _fireedge_sunstone_cloud_view:
+
+Cloud View
+--------------------------------------------------------------------------------
+
+This is a simplified view intended for cloud consumers that just require a portal where they can provision new VMs easily. Details can be configured in the ``/etc/one/fireedge/sunstone/cloud/`` directory. More details on :ref:`Cloud view <cloud_view>`
 
 .. _fireedge_sunstone_new_view:
 
@@ -177,7 +197,7 @@ The easiest way to create a custom view is to copy the ``admin`` or ``user`` fol
 View Customization
 --------------------------------------------------------------------------------
 
-On FireEdge Sunstone each view is defined by a folder that has the YAML files for the configured tabs. The content for those files is divided into sections that are described in the following sections.
+On Sunstone each view is defined by a folder that has the YAML files for the configured tabs. The content for those files is divided into sections that are described in the following sections.
 
 In the following tables, the description field contains the expected behavior when is set to ``true``.
 

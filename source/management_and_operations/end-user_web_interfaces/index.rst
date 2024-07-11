@@ -9,4 +9,4 @@ Cloud End-User
    Self-service Cloud View <cloud_view>
    Group Admin View <groupadmin_view>
    Sunstone Labels <sunstone_labels>
-   FireEdge Sunstone <fireedge_sunstone>
+   Sunstone <fireedge_sunstone>

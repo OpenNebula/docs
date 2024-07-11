@@ -368,7 +368,7 @@ To attach a new security group, you need to click on the shield on the NIC row. 
 
 |sunstone_sg_attach|
 
-To detach the security group, you must click on the X next to the security group. A confirm dialog will be displayed to ensure that you want to detach the security group.
+To detach the security group, you must click on the Trash button next to the security group. A confirm dialog will be displayed to ensure that you want to detach the security group.
 
 .. _vm_guide2_pci:
 
@@ -764,7 +764,7 @@ For instance, a VM Template with the following SCHED_ACTION will spawn VMs that 
        TIME="+3600" ]
 
 
-This functionality is present graphically in Sunstone in the VM Template creation and update dialog, and in the VM Actions tab.
+This functionality is present graphically in Sunstone in the VM Template creation and update wizard, on the second step Advanced options, under Schedule Action tab.
 
 .. _schedule_actions:
 
@@ -833,28 +833,51 @@ In this example, the first argument would be the disk and the second the snapsho
 Virtual Machine Charters
 ================================================================================
 
-This functionality automatically adds scheduling actions in VM templates. To enable Charters, you only need add the following to ``sunstone-server.conf`` file:
-
-|image1|
+This functionality automatically adds scheduling actions in VM templates. To enable create Charters in Sunstone, you only need to add the following to ``vm-tab.yaml`` file in the corresponding :ref:`Sunstone view <fireedge_sunstone_views>`:
 
 .. prompt:: text $ auto
 
-  :leases:
-    suspend:
-      time: "+1209600"
-      color: "#000000"
+  info-tabs:
+    sched_actions:
+      enabled: true
+      actions:
+        charter_create: true
+
+|sunstone_vm_charter|
+
+After enable the creation of Charters, you have to define the schedule actions that has a charter. To do that, you only need to modify the file ``sunstone-server.conf`` in the :ref:`FireEdge configuration <fireedge_conf>`.
+
+To explain that, we are gonna use an example:
+
+.. prompt:: text $ auto
+
+  leases:
     terminate:
-      time: "+1209600"
-      color: "#e1ef08"
+      edit: false
+      execute_after_weeks: 3      
+    poweroff:
+      edit: true
+      execute_after_minutes: 5      
 
-In the previous example you can see that Scheduled Actions are added to the VMs. You can tune the following values:
+The previous example will create two schedule actions:
 
-+---------+-------------------------------------------------------------------------------------------------------+
-| time    | Time for the action in secs example: +1209600 is two weeks.                                           |
-|         | The order is very important since time adds to the previous scheduled action.                         |
-+---------+-------------------------------------------------------------------------------------------------------+
-| color   | Is the color in hexadecimal since the icon will appear in the Vms table                               |
-+---------+-------------------------------------------------------------------------------------------------------+
+- The virtual machine will be terminated 3 weeks after it was instantiated and you cannot edit this action before create it.
+- The virtual machine will be power off after 5 minutes after it was instantiated and you can edit the action before create it.
+
+So, when the user clicks on the Charter button, the following info will appear:
+
+|sunstone_charter_info|
+
+The first action cannot be edited but in the second one, you can change the action and the time. Also, you can tune the definition of a Charter:
+
++------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| edit                         | If the action could be edit or not. Allow values: true, false                                                              |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+|| execute_after_<period_type> || Execute the action after the time that is defined. <period_type> allow values: years, months, weeks, days, hours, minutes |
+||                             || e.g. execute_after_years: 2 -> The action will be executed after 2 years since the virtual machine was instantiated.      |
+||                             || e.g. execute_after_months: 3 -> The action will be executed after 3 months since the virtual machine was instantiated.    |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+
 
 This functionality is also available in the CLI, through the following commands:
 
@@ -1011,43 +1034,27 @@ Note: By default, the above operations do not check the target host capacity. Yo
 Accessing VM Console and Desktop
 ================================================================================
 
-.. TODO - Needs review and rewrite
+Sunstone provides several different methods to access your VM console and desktop: VNC, RDP, and SSH. If configured in the VM, these methods can be used to access the VM console through Sunstone. This section shows how these different technologies can be configured and what each requirement is.
 
-Sunstone provides several different methods to access your VM console and desktop: VNC, SPICE, RDP, VMRC, SSH, and ``virt-viewer``. If configured in the VM, these methods can be used to access the VM console through Sunstone.  For some of those connections, we will need to start a new FireEdge server to establish the remote connection. This section shows how these different technologies can be configured and what each requirement is.
-
-:ref:`FireEdge <fireedge_configuration>` automatically installs dependencies for Guacamole connections and VMRC proxy, which are necessary to use VNC, RDP, SSH, and VMRC.
-
-+-----------------+-------------------+---------------------+
-|   Connection    |   With FireEdge   |  Without FireEdge   |
-+=================+===================+=====================+
-| VNC             | Guacamole         | noVNC               |
-+-----------------+-------------------+---------------------+
-| RDP             | Guacamole         | noVNC               |
-+-----------------+-------------------+---------------------+
-| SSH             | Guacamole         | N/A                 |
-+-----------------+-------------------+---------------------+
-| SPICE           | noVNC             | noVNC               |
-+-----------------+-------------------+---------------------+
-| ``virt-viewer`` | noVNC             | noVNC               |
-+-----------------+-------------------+---------------------+
-| VMRC            | VMRC proxy        | N/A                 |
-+-----------------+-------------------+---------------------+
+:ref:`FireEdge <fireedge_configuration>` automatically installs dependencies for Guacamole connections which are necessary to use VNC, RDP and SSH.
 
 .. important::
 
-    :ref:`FireEdge <fireedge_conf>` server must be running to get Guacamole connections working. For VMRC, Sunstone and FireEdge must be running on the **same server**.
+    :ref:`FireEdge <fireedge_conf>` server must be running to get Guacamole connections working.
 
 .. _requirements_remote_access_sunstone:
 
-Requirements for connections via noVNC
---------------------------------------
 
-The Sunstone GUI offers the possibility of starting a VNC/SPICE session to a Virtual
-Machine. This is done by using a **VNC/SPICE websocket-based client (noVNC)** on the client side and
-a VNC proxy translating and redirecting the connections on the server side.
 
-To enable VNC/SPICE console service, you must have a ``GRAPHICS`` section in the VM template, as
-stated in the documentation. Make sure the attribute ``IP`` is set correctly (``0.0.0.0`` to allow
+.. _vnc_sunstone:
+
+Configuring your VM for VNC
+---------------------------
+
+VNC is a graphical console with wide support among many hypervisors and clients.
+
+To enable the VNC console service you must have a ``GRAPHICS`` section in the VM template,
+as stated in the documentation. Make sure the attribute ``IP`` is set correctly (``0.0.0.0`` to allow
 connections from everywhere), otherwise no connections will be allowed from the outside.
 
 For example, to configure this in the Virtual Machine template:
@@ -1059,68 +1066,13 @@ For example, to configure this in the Virtual Machine template:
         TYPE="vnc"
     ]
 
-Make sure there are no firewalls blocking the connections and websockets enabled in your browser.
-**The proxy will redirect the websocket** data from the VNC proxy port to the VNC port stated in
-the template of the VM. The value of the proxy port is defined in ``sunstone-server.conf`` as
-``:vnc_proxy_port``.
+**Your browser must support websockets**, and have them enabled.
 
-You can retrieve useful information from ``/var/log/one/novnc.log``. **Your browser must support
-websockets**, and have them enabled.
-
-When using secure websockets, make sure that your certificate and key (if not included in the
-certificate) are correctly set in the :ref:`Sunstone configuration files <sunstone_setup>`.
-Note that your certificate must be valid and trusted for the wss connection to work.
-
-If you are working with a certificate that is not accepted by the browser, you can manually add
-it to the browser trust list by visiting ``https://sunstone.server.address:vnc_proxy_port``.
-The browser will warn that the certificate is not secure and prompt you to manually trust it.
-
-.. _vnc_sunstone:
-
-Configuring your VM for VNC
----------------------------
-
-VNC is a graphical console with wide support among many hypervisors and clients.
-
-VNC without FireEdge
-""""""""""""""""""""
-
-When clicking the VNC icon a request is made, and if a VNC session is possible, the Sunstone server will add the VM
-Host to the list of allowed vnc session targets and create a **random token** associated with it. The
-server responds with the session token, then a ``noVNC`` dialog pops up.
-
-The VNC console embedded in this dialog will try to connect to the proxy, either using websockets
-(default) or emulating them using Flash. Only connections providing the right token will be successful.
-The token expires and cannot be reused.
-
-Make sure that you can connect directly from the Sunstone Front-end to the VM using a normal VNC
-client tool, such as ``vncviewer``.
-
-.. _requirements_guacamole_vnc_sunstone:
-
-VNC with FireEdge
-"""""""""""""""""
-
-To enable the VNC console service you must have a ``GRAPHICS`` section in the VM template,
-as stated in the documentation.
-
-To configure it via Sunstone, you need to update the VM template. In the Input/Output tab,
+To configure it via Sunstone, you need to update the VM template. In the second step, Advanced options, under the Input/Output tab,
 you can see the graphics section where you can add the IP, the port, a connection password
 or define your keymap.
 
 |sunstone_guac_vnc|
-
-To configure this in Virtual Machine template in **advanced mode**:
-
-.. code-block:: none
-
-    GRAPHICS=[
-        LISTEN="0.0.0.0",
-        TYPE="vnc"
-    ]
-
-.. note:: Make sure the attribute ``IP`` is set correctly (``0.0.0.0`` to allow connections
-    from everywhere), otherwise, no connections will be allowed from the outside.
 
 .. _rdp_sunstone:
 
@@ -1130,16 +1082,7 @@ Configure VM for RDP
 Short for **Remote Desktop Protocol**, it allows one computer to connect to another computer
 over a network in order to use it remotely.
 
-RDP without FireEdge
-""""""""""""""""""""
-
-RDP connections are available on Sunstone using noVNC. You will only have to download the
-RDP file and open it with an RDP client to establish a connection with your Virtual Machine.
-
 .. _requirements_guacamole_rdp_sunstone:
-
-RDP with FireEdge
-"""""""""""""""""
 
 To enable RDP connections to the VM, you must have one ``NIC``
 with ``RDP`` attribute equal to ``YES`` in the template.
@@ -1147,7 +1090,8 @@ with ``RDP`` attribute equal to ``YES`` in the template.
 Via Sunstone, you need to enable a RDP connection on one of the VM template networks, **after or
 before its instantiation**.
 
-|sunstone_guac_nic|
+|sunstone_guac_nic_1|
+|sunstone_guac_nic_2|
 
 To configure this in Virtual Machine template in **advanced mode**:
 
@@ -1158,8 +1102,7 @@ To configure this in Virtual Machine template in **advanced mode**:
         RDP = "YES"
     ]
 
-Once the VM is instantiated, users will be able to download the **file configuration or
-connect via browser**.
+Once the VM is instantiated, users will be able to **connect via browser**.
 
 |sunstone_guac_rdp|
 
@@ -1184,7 +1127,7 @@ If the VM template has a ``PASSWORD`` and ``USERNAME`` set in the contextualizat
 Configure VM for SSH
 --------------------
 
-**SSH connections are available only when a reachable Firedge server is found**. Unlike VNC or RDP,
+Unlike VNC or RDP,
 SSH is a text protocol. SSH connections require a hostname or IP address defining
 the destination machine. Like with the :ref:`RDP <requirements_guacamole_rdp_sunstone>` connections,
 you need to enable the SSH connection on one of the VM template networks.
@@ -1226,69 +1169,14 @@ After that you can access the VM and configure the SSH service:
 
 .. note:: Guacamole SSH uses RSA encryption. Make sure the VM SSH accepts RSA, otherwise you need to explicitly enable it in the VM SSH configuration (HostkeyAlgorithms and PubkeyAcceptedAlgorithms set as '+ssh-rsa)
 
-.. _spice_sunstone:
-
-Configure VM for SPICE
-----------------------
-
-SPICE connections are channeled only through the noVNC proxy. SPICE support in Sunstone share
-a similar architecture to the VNC implementation. Sunstone use a **SPICE-HTML5** widget in
-its console dialog that communicates with the proxy by using websockets.
-
-.. important:: SPICE connections when using NAT and remote-viewer won't work since noVNC proxy
-    does not offer SPICE support, and a direct connection between browser and virtualization node
-    is needed. However the SPICE HTML5 console can use noVNC proxy to offer SPICE connectivity,
-    please use this option as an alternative
-
-.. note:: For the correct functioning of the SPICE Web Client, we recommend defining by default
-    the SPICE parameters in ``/etc/one/vmm_mad/vmm_exec_kvm.conf``. In this way, once the file is modified and OpenNebula is restarted, it will be applied to all  the VMs instantiated from now on. You can also override these SPICE parameters in VM Template. For more info check :ref:`Driver Defaults
-    <kvmg_default_attributes>` section.
-
-.. _virt_viewer_sunstone:
-
-Configure VM for virt-viewer
-----------------------------
-
-``virt-viewer`` connections are channeled only through the noVNC proxy. virt-viewer is a minimal tool
-for displaying the graphical console of a virtual machine. It can **display VNC or SPICE protocol**,
-and uses libvirt to look up the graphical connection details.
-
-In this case, Sunstone allows you to download the **virt-viewer configuration file** for the VNC and
-SPICE protocols. The only requirement is the ``virt-viewer`` being installed on the machine from which you are accessing the Sunstone.
-
-To use this option, you will only have to enable any of two protocols in the VM. Once the VM is
-``instantiated`` and ``running``, users will be able to download the ``virt-viewer`` file.
-
-|sunstone_virt_viewer_button|
-
-.. _vmrc_sunstone:
-
-Configure VM for VMRC
----------------------
-
-.. important:: VMRC connections are available only when a reachable FireEdge server is found.
-
-*VMware Remote Console* provides console access and client device connection to VMs on a remote host.
-
-These types of connections request a ``TOKEN`` from vCenter to connect with the Virtual Machine
-allocated on vCenter every time you click on the VMRC button.
-
-To use this option, you will only have to enable VNC / VMRC connections to your VMs and start the
-FireEdge Server.
-
-.. note:: To change the keyboard distribution in the VMRC connection, you need to change the
-    keyboard layout in the running operating system.
-
-|sunstone_vmrc|
-
-.. |image1| image:: /images/vm_charter.png
-.. |sunstone_virt_viewer_button| image:: /images/sunstone_virt_viewer_button.png
+.. |sunstone_vm_charter| image:: /images/sunstone_vm_charter.png
+.. |sunstone_charter_info| image:: /images/sunstone_charter_info.png
 .. |sunstone_rdp_connection| image:: /images/sunstone_rdp_connection.png
 .. |sunstone_rdp_button| image:: /images/sunstone_rdp_button.png
 .. |sunstone_guac_vnc| image:: /images/sunstone_guac_vnc.png
 .. |sunstone_guac_rdp| image:: /images/sunstone_guac_rdp.png
 .. |sunstone_guac_rdp_interface| image:: /images/sunstone_guac_rdp_interface.png
-.. |sunstone_guac_nic| image:: /images/sunstone_guac_nic.png
-.. |sunstone_vmrc| image:: /images/sunstone_vmrc.png
+.. |sunstone_guac_nic_1| image:: /images/sunstone_guac_nic_1.png
+.. |sunstone_guac_nic_2| image:: /images/sunstone_guac_nic_2.png    
 .. |sunstone_sg_main_view| image:: /images/sunstone_sg_main_view.png
 .. |sunstone_sg_attach| image:: /images/sunstone_sg_attach.png
