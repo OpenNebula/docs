@@ -36,11 +36,7 @@ The first step in building a customized cluster is to decide on the hypervisor t
 
 -  **Virtualization and Cloud Management on KVM**. Many companies use OpenNebula to manage data center virtualization, consolidate servers, and integrate existing IT assets for computing, storage, and networking. In this deployment model, OpenNebula directly integrates with KVM and has complete control over virtual and physical resources, providing advanced features for capacity management, resource optimization, high availability and business continuity. Some of these deployments additionally use OpenNebula’s **Cloud Management and Provisioning** features when they want to federate data centers, implement cloud bursting, or offer self-service portals for end-users.
 
--  **Cloud Management on VMware vCenter**. Other companies use OpenNebula to provide a multi-tenant, cloud-like provisioning layer on top of VMware vCenter. These deployments are looking for provisioning, elasticity and multi-tenancy cloud features like virtual data centers provisioning, datacenter federation or hybrid cloud computing to connect in-house infrastructures with public clouds, while the infrastructure is managed by already familiar tools for infrastructure management and operation, such as vSphere and vCenter Operations Manager.
-
 -  **Containerization with LXC**. Containers are the next step towards virtualization. They have a minimal memory footprint and skip the compute intensive and sometimes unacceptable performance degradation inherent to hardware emulation. You can have a very high density of containers per virtualization node and run workloads close to bare-metal metrics. LXC focuses on system containers unlike similar technologies like Docker, which focuses on application containers.
-
--  **Lightweight Virtualization on Firecracker**. Firecracker MicroVMs provide enhanced security and workload isolation over traditional container solutions while preserving their speed and resource efficiency. MicroVMs are especially designed for creating and managing secure, multi-tenant container (CaaS) and function-based (FaaS) services.
 
 After having installed the cloud with one hypervisor, you may add other hypervisors. You can deploy heterogeneous multi-hypervisor environments managed by a single OpenNebula instance. An advantage of using OpenNebula on VMware is the strategic path to openness as companies move beyond virtualization toward a private cloud. OpenNebula can leverage existing VMware infrastructure, protecting IT investments, and at the same time gradually integrate other open source hypervisors, therefore avoiding future vendor lock-in and strengthening the negotiating position of the company.
 
@@ -49,20 +45,20 @@ After having installed the cloud with one hypervisor, you may add other hypervis
 3.2. Install the Virtualization hosts
 -------------------------------------------------
 
-Now you are ready to **add the virtualization nodes**. The OpenNebula packages bring support for :ref:`KVM <kvm_node>`, :ref:`LXC <lxd_node>`, :ref:`Firecracker <fc_node>` and :ref:`vCenter <vCenter_node>` nodes. In the case of vCenter, a host represents a vCenter cluster with all its ESX hosts. You can add different hypervisors to the same OpenNebula instance.
+Now you are ready to **add the virtualization nodes**. The OpenNebula packages bring support for :ref:`KVM <kvm_node>` and :ref:`LXC<lxd_node>` nodes. In the case of vCenter, a host represents a vCenter cluster with all its ESX hosts. You can add different hypervisors to the same OpenNebula instance.
 
 3.3. Integrate with Data Center Infrastructure
 ------------------------------------------------------------
 
 Now you should have an OpenNebula cloud up and running with at least one virtualization node. The next step is to configure OpenNebula to work with your infrastructure. When using the vCenter driver, no additional configurations are needed.
 
-However, when using KVM, LXC or Firecracker, OpenNebula directly manages the hypervisor, networking and storage platforms, and you may need additional configuration:
+However, OpenNebula directly manages the hypervisor, networking and storage platforms, and you may need additional configuration:
 
 -  **Networking setup** with :ref:`802.1Q VLANs <hm-vlan>`, :ref:`Open vSwitch <openvswitch>` or :ref:`VXLAN <vxlan>`.
 
 -  **Storage setup** with :ref:`NFS/NAS datastore <nas_ds>`, :ref:`Local Storage datastore <local_ds>`, :ref:`SAN datastore <lvm_drivers>`, :ref:`Ceph <ceph_ds>`, :ref:`Dev <dev_ds>`, or :ref:`iSCSI <iscsi_ds>` datastore.
 
--  **Host setup** with the configuration options for the :ref:`KVM hosts <kvmg>`, :ref:`LXC hosts <lxdmg>`, :ref:`Firecracker hosts <fcmg>` :ref:`Monitoring subsystem <mon>`, :ref:`Virtual Machine HA <ftguide>` or :ref:`PCI Passthrough <kvm_pci_passthrough>`.
+-  **Host setup** with the configuration options for the :ref:`KVM hosts <kvmg>`, :ref:`LXC hosts <lxdmg>`, :ref:`Monitoring subsystem <mon>`, :ref:`Virtual Machine HA <ftguide>` or :ref:`PCI Passthrough <kvm_pci_passthrough>`.
 
 - **Authenticagtion setup**, OpenNebula comes by default with an internal **user/password authentication system**, but it can use an external Authentication driver like :ref:`ssh <ssh_auth>`, :ref:`x509 <x509_auth>`, :ref:`ldap <ldap>` or :ref:`Active Directory <ldap>`.
 

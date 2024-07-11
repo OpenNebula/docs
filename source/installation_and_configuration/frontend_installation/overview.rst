@@ -13,7 +13,7 @@ Before reading this chapter make sure you are familiar with the :ref:`Architectu
 
 The aim of this chapter is to give you a quick-start guide to deploying OpenNebula. This is the simplest possible installation, but it is also the foundation for a more complex setup. First, you should go through the :ref:`Database Setup <database_setup>` section, especially if you expect to use OpenNebula for production. Then move on to the configuration of :ref:`OpenNebula Repositories <repositories>`, from which you'll install the required components. And finally, proceed with the :ref:`Front-end Installation <frontend_installation>` section. You'll end up running a fully featured OpenNebula Front-end.
 
-After reading this chapter, you can go on to add the :ref:`KVM <kvm_node>`, :ref:`LXC <lxc_node>`,  :ref:`Firecracker <fc_node>` hypervisor nodes, or :ref:`vCenter <vcenter_node>`.
+After reading this chapter, you can go on to add the :ref:`KVM <kvm_node>` or :ref:`LXC <lxc_node>` hypervisor nodes.
 
 To scale from a single-host Front-end deployment to several hosts for better performance or reliability (HA), continue to the following chapters on :ref:`Large-scale Deployment <large_scale_deployment>`, :ref:`High Availability <ha>` and :ref:`Data Center Federation <federation_section>`.
 

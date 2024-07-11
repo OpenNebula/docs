@@ -21,9 +21,9 @@ Front-End Components
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 | AlmaLinux                | 8, 9                                                   | :ref:`Front-End Installation <frontend_installation>` |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-| Ubuntu Server            | 20.04 (LTS), 22.04 (LTS)                               | :ref:`Front-End Installation <frontend_installation>` |
+| Ubuntu Server            | 22.04 (LTS), 24.04 (LTS)                               | :ref:`Front-End Installation <frontend_installation>` |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-| Debian                   | 10, 11                                                 | :ref:`Front-End Installation <frontend_installation>`.|
+| Debian                   | 11, 12                                                 | :ref:`Front-End Installation <frontend_installation>`.|
 |                          |                                                        | Not certified to manage VMware infrastructures        |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 | MariaDB or MySQL         | Version included in the Linux distribution             | :ref:`MySQL Setup <mysql>`                            |
@@ -62,9 +62,9 @@ KVM Nodes
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
 | AlmaLinux                | 8, 9                                                    | :ref:`KVM Driver <kvmg>`                |
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
-| Ubuntu Server            | 20.04 (LTS), 22.04 (LTS)                                | :ref:`KVM Driver <kvmg>`                |
+| Ubuntu Server            | 22.04 (LTS), 24.04 (LTS)                                | :ref:`KVM Driver <kvmg>`                |
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
-| Debian                   | 10, 11                                                  | :ref:`KVM Driver <kvmg>`                |
+| Debian                   | 11, 12                                                  | :ref:`KVM Driver <kvmg>`                |
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
 | KVM/Libvirt              | Support for version included in the Linux distribution. | :ref:`KVM Node Installation <kvm_node>` |
 |                          | For RHEL the packages from ``qemu-ev`` are used.        |                                         |
@@ -76,32 +76,14 @@ LXC Nodes
 +---------------+--------------------------------------------------------+-----------------------------------------+
 |   Component   |                        Version                         |             More information            |
 +===============+========================================================+=========================================+
-| Ubuntu Server | 20.04 (LTS), 22.04 (LTS)                               | :ref:`LXC Driver <lxcmg>`               |
+| Ubuntu Server | 22.04 (LTS), 24.04 (LTS)                               | :ref:`LXC Driver <lxcmg>`               |
 +---------------+--------------------------------------------------------+-----------------------------------------+
-| Debian        | 10, 11                                                 | :ref:`LXC Driver <lxcmg>`               |
+| Debian        | 11, 12                                                 | :ref:`LXC Driver <lxcmg>`               |
 +---------------+--------------------------------------------------------+-----------------------------------------+
 | AlmaLinux     | 8, 9                                                   | :ref:`LXC Driver <lxcmg>`               |
 +---------------+--------------------------------------------------------+-----------------------------------------+
 | LXC           | Support for version included in the Linux distribution | :ref:`LXC Node Installation <lxc_node>` |
 +---------------+--------------------------------------------------------+-----------------------------------------+
-
-Firecracker Nodes
---------------------------------------------------------------------------------
-
-+--------------------------+-------------------------------------------------+----------------------------------+
-|        Component         |                     Version                     |         More information         |
-+==========================+=================================================+==================================+
-| Red Hat Enterprise Linux | 8, 9                                            | :ref:`Firecracker Driver <fcmg>` |
-+--------------------------+-------------------------------------------------+----------------------------------+
-| AlmaLinux                | 8, 9                                            | :ref:`Firecracker Driver <fcmg>` |
-+--------------------------+-------------------------------------------------+----------------------------------+
-| Ubuntu Server            | 20.04 (LTS), 22.04 (LTS)                        | :ref:`Firecracker Driver <fcmg>` |
-+--------------------------+-------------------------------------------------+----------------------------------+
-| Debian                   | 10, 11                                          | :ref:`Firecracker Driver <fcmg>` |
-+--------------------------+-------------------------------------------------+----------------------------------+
-| KVM/Firecracker          | Support for Firecracker and KVM versions        | :ref:`Firecracker Node           |
-|                          | included in the Linux distribution.             | Installation <fc_node>`          |
-+--------------------------+-------------------------------------------------+----------------------------------+
 
 .. _context_supported_platforms:
 
@@ -264,4 +246,3 @@ Debian 10 and Ubuntu 18 Upgrade
 --------------------------------------------------------------------------------
 
 When upgrading your nodes from Debian 10 or Ubuntu 18 you may need to update the opennebula sudoers file because of the */usr merge* feature implemented for Debian11/Ubuntu20. You can `find more information and a recommended work around in this issue  <https://github.com/OpenNebula/one/issues/6090>`__.
-
