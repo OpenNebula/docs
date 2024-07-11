@@ -325,7 +325,7 @@ The Service and Service Template tabs may complain about connection failures to 
 
 |sunstone_oneflow_error|
 
-Ensure you have OneFlow server :ref:`configured and running <oneflow_conf>`, or disable Service and Service Templates tabs in :ref:`Sunstone View <suns_views>`.
+Ensure you have OneFlow server :ref:`configured and running <oneflow_conf>`, or disable Service and Service Templates tabs in :ref:`Sunstone View <ruby_sunstone_views>`.
 
 Tuning and Extending
 ====================
@@ -378,7 +378,7 @@ Branding Sunstone
 You can add your logo to the login and main screens by updating the ``logo:`` attribute as follows:
 
 - The login screen is defined in the ``/etc/one/sunstone-views.yaml``.
-- The logo of the main UI screen is defined for each view in :ref:`the view yaml file <suns_views>`.
+- The logo of the main UI screen is defined for each view in :ref:`the view yaml file <ruby_sunstone_views>`.
 
 The logo image must be copied to ``/usr/lib/one/sunstone/public/images/``.
 
@@ -393,7 +393,7 @@ Global User Settings of Sunstone Views
 
 OpenNebula Sunstone can be adapted to different user roles. For example, it will only show the
 resources the users have access to. Its behavior can be customized and extended via
-:ref:`Sunstone Views <suns_views>`.
+:ref:`Sunstone Views <ruby_sunstone_views>`.
 
 The preferred method to select which views are available to each group is to update the group
 configuration from Sunstone, as described in :ref:`Sunstone Views section <suns_views_configuring_access>`.
@@ -438,7 +438,7 @@ than one view is available for a given user, the first one is the default.
 Different Endpoint for Different View
 -------------------------------------
 
-OpenNebula :ref:`Sunstone Views <suns_views>` can be adapted to use a different endpoint for
+OpenNebula :ref:`Sunstone Views <ruby_sunstone_views>` can be adapted to use a different endpoint for
 each kind of user, such as if you want one endpoint for the admins and a different one for the
 cloud users. You just have to deploy a :ref:`new sunstone server <suns_advance>` and set a default
 view for each sunstone instance:
