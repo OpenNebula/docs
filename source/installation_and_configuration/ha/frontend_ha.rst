@@ -45,7 +45,6 @@ Every HA cluster requires:
 
 The servers should be configured in the following way:
 
-* Sunstone (with or without Apache/Passenger) running on all the nodes.
 * Shared datastores must be mounted on all the nodes.
 
 Bootstrapping the HA cluster
@@ -351,16 +350,16 @@ OpenNebula stores virtual machine logs inside ``/var/log/one/`` as files named `
 Optionally, if you are planning to use the FireEdge OneProvision GUI, in order to have all provision logs available in all HA nodes (hence, available on leader change), all nodes need to share the same ``/var/lib/one/fireedge`` folder.
 
 
-Sunstone and FireEdge
+FireEdge
 ================================================================================
 
-There are several types of Sunstone deployments in an HA environment. The basic one is Sunstone running on each OpenNebula Front-end node configured with the local OpenNebula. Only one server, the *leader* with floating IP, is used by the clients.
+There are several types of FireEdge deployments in an HA environment. The basic one is FireEdge running on **each OpenNebula Front-end node** configured with the local OpenNebula. Only one server, the *leader* with floating IP, is used by the clients.
 
-It is possible to configure a load balancer (e.g. HAProxy, Pound, Apache, or Nginx) over the Front-ends to spread the load (read operations) among the nodes. In this case, the **Memcached** and shared ``/var/tmp/`` may be required. Please see :ref:`Configuring Sunstone for Large Deployments <suns_advance>`.
+It is possible to configure a load balancer (e.g. HAProxy, Pound, Apache, or Nginx) over the Front-ends to spread the load (read operations) among the nodes.
 
-To easily scale out beyond the total number of core OpenNebula daemons, Sunstone can be running on separate machines. They should talk to the cluster floating IP (see ``:one_xmlprc:`` in ``sunstone-server.conf``) and may also require **Memcached** and shared ``/var/tmp/`` between Sunstone and Front-end nodes. Please check :ref:`Configuring Sunstone for Large Deployments <suns_advance>`.
+To easily scale out beyond the total number of core OpenNebula daemons, FireEdge can be running on separate machines. They should talk to the cluster floating IP (see ``:one_xmlprc:`` in ``fireedge-server.conf``) and shared ``/var/tmp/`` between Fireedge and Front-end nodes. Please check :ref:`Configuring FireEdge for Large Deployments <fireedge_advance>`.
 
-FireEdge and Sunstone need to share the same ``/var/lib/one/.one/fireedge_key``. This is covered by the above procedure. Additionally, to have all provision logs available in all HA nodes (hence, available on leader change), all nodes need to share the same ``/var/lib/one/fireedge`` folder.
+FireEdge need to share the same ``/var/lib/one/.one/fireedge_key``. This is covered by the above procedure. Additionally, to have all provision logs available in all HA nodes (hence, available on leader change), all nodes need to share the same ``/var/lib/one/fireedge`` folder.
 
 Raft Configuration Attributes
 ================================================================================
@@ -416,17 +415,14 @@ Individual files:
 - ``/etc/one/oneflow-server.conf``
 - ``/etc/one/onegate-server.conf``
 - ``/etc/one/sched.conf``
-- ``/etc/one/sunstone-logos.yaml``
-- ``/etc/one/sunstone-server.conf``
 - ``/etc/one/vcenter_driver.default``
 
 Folders:
 
-- ``/etc/one/sunstone-views``
+- ``/etc/one/fireedge``
 - ``/etc/one/auth``
 - ``/etc/one/ec2query_templates``
 - ``/etc/one/hm``
-- ``/etc/one/sunstone-views``
 - ``/etc/one/vmm_exec``
 
 .. note:: Any file inside previous folders that doesn't exist on the remote server (like backups) will **not** be removed.
@@ -441,3 +437,12 @@ Usage
     # onezone serversync <remote_opennebula_server> [--db]
 
 where ``<remote_opennebula_server>`` needs to be replaced by a hostname/IP of the OpenNebula server that will be used to fetch configuration files from. If ``--db`` option is used, the local database will be synced with the one located on remote server.
+
+You also have to adjust the configuration file of each FireEdge ``/etc/one/fireedge-server.conf``, to know which FireEdge corresponds to which zone.
+
+.. code::
+
+    default_zone:
+      id: 0
+      name: 'OpenNebula'
+      endpoint: 'http://localhost:2633/RPC2'

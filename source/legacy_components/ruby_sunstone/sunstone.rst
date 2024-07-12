@@ -440,7 +440,7 @@ Different Endpoint for Different View
 
 OpenNebula :ref:`Sunstone Views <ruby_sunstone_views>` can be adapted to use a different endpoint for
 each kind of user, such as if you want one endpoint for the admins and a different one for the
-cloud users. You just have to deploy a :ref:`new sunstone server <suns_advance>` and set a default
+cloud users. You just have to deploy a :ref:`new sunstone server <sunstone_advance>` and set a default
 view for each sunstone instance:
 
 .. code::
