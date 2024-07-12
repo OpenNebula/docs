@@ -38,9 +38,9 @@ It is a good idea to prevent any API access to the master zone during this step 
 Step 2. Stop All Zones
 ================================================================================
 
-Stop OpenNebula and any other related services you may have running: OneFlow, OneGate, Sunstone & FireEdge. It's preferable to use the system tools, like ``systemctl`` or ``service`` as ``root`` in order to stop the services.
+Stop OpenNebula and any other related services you may have running: OneFlow, OneGate & FireEdge. It's preferable to use the system tools, like ``systemctl`` or ``service`` as ``root`` in order to stop the services.
 
-.. important:: If you are running Sunstone behind Apache/Nginx, please stop this service instead of Sunstone one.
+.. important:: If you are running FireEdge service behind Apache/Nginx, please stop also the Apache/Nginx service.
 
 .. warning:: Make sure that every OpenNebula process is stopped. The output of ``systemctl list-units | grep opennebula`` should be empty.
 
