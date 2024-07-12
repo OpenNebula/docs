@@ -74,6 +74,7 @@ Other Issues Solved
 - `Fix LDAP group athorization for AD <https://github.com/OpenNebula/one/issues/6528>`__.
 - `Fix an uncommon error in TM drivers when domfsfreeze hangs indefinitely  <https://github.com/OpenNebula/one/issues/5921>`__.
 - `Fix the oneflow and oneflow-template delete functions  <https://github.com/OpenNebula/one/issues/6305>`__.
+- `Fix not possible to navigate within almost all VM graphs <https://github.com/OpenNebula/one/issues/6637>`__.
 
 Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 
