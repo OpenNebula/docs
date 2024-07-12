@@ -5,51 +5,55 @@
 Key Features
 ============
 
-OpenNebula offers a **simple but feature-rich and flexible solution** to build and manage data center virtualization and enterprise clouds. This guide summarizes its key features(\*). You can also refer to the :ref:`Platform Notes <uspng>` included in the documentation of each version to know about the infrastructure platforms and services supported by OpenNebula.
+OpenNebula offers a **simple** but **feature-rich** and **flexible solution** to build and manage data center virtualization and enterprise clouds. This page provides a summary of its key features(\*).
+
+To learn more about the infrastructure platforms and services supported in each version of OpenNebula, refer to the :ref:`Platform Notes <uspng>` for each version.
+
+For high-level overviews and in-depth technical guides, please refer to OpenNebula’s `White Papers <https://opennebula.io/white-papers/>`_.
 
 **INTERFACES**
 
-* Simple, clean, intuitive GUI for users and admins with different views
-* Powerful CLI that resembles typical UNIX commands applications
+* Simple, clean, intuitive GUI, with different views for cloud admins and end users
+* Powerful command-line tools resembling typical Unix tools
 * API in multiple languages
 
 **APPLICATION MANAGEMENT AND CATALOG**
 
 * Easy self-provision of containerized and virtualized workflows from a catalog
 * Secure sharing of applications with other cloud users
-* Multi tier applications with auto-scaling
+* Multi-tier applications with auto-scaling
 * Gain insight into applications to query their status and metrics, and use them in auto-scaling
 
 **APPLIANCE MARKETPLACE**
 
 * Public Marketplace with pre-built applications ( PaaS, K8S, CI/CD…)
 * Build your private Marketplace to share and distribute applications within your organization
-* Integration with third-party Marketplaces like Docker Hub and Linux Containers
+* Integration with third-party public or private Marketplaces such as Linux Containers
 
 **CHARGEBACK**
 
 * Fine-grained accounting and monitoring
-* Showback capability enabling the integration with chargeback and billing systems
+* Showback capability enabling integration with chargeback and billing systems
 
 **CAPACITY AND PERFORMANCE MANAGEMENT**
 
 * Fine-grained ACLs for resource allocation
 * Resource Quota Management to track and limit resource utilization
-* Dynamic creation of clusters as pools of Hosts
+* Dynamic creation of Clusters as pools of Hosts
 * Dynamic creation of Virtual Data Centers as fully-isolated virtual environments
 * Federation of multiple Zones for scalability, isolation or multiple-site support
 * Powerful and flexible Scheduler - deploy your workload in different locations
 
 **HIGH AVAILABILITY AND BUSINESS CONTINUITY**
 
-* High availability architecture
-* Persistent database Back-end with support for high availability configurations
-* Configurable behavior in the event of failure for cost-effective failover solutions
+* High-Availability architecture
+* Persistent database backend with support for high-availability configurations
+* Configurable behavior in the event of failure, for cost-effective failover solutions
 
 **VIRTUAL INFRASTRUCTURE MANAGEMENT**
 
-* Virtual infrastructure management adjusted to enterprise data centers
-* Complete life-cycle management of virtual resources
+* Virtual infrastructure management adjusted for enterprise data centers
+* Complete life cycle management of virtual resources
 * Powerful hooking system
 * Full control, monitoring and accounting of virtual infrastructure resources
 * Fine-grained multi-tenancy
@@ -77,11 +81,11 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 * Modular and extensible architecture
 * Customizable plug-ins for integration with any third-party data center service
-* API for integration with higher level tools such as billing, self-service portals…
+* API for integration with higher-level tools such as billing, self-service portals...
 
 **LICENSING**
 
-* Fully open source software released under Apache license 
+* Fully open source software released under the Apache license
 
 **UPGRADE PROCESS**
 
@@ -92,8 +96,8 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 **QUALITY ASSURANCE**
 
 * Internal quality assurance process
-* Technology matured through an active and engaged large community
-* Scalability, and performance tested on many massive scalable deployments
+* Technology matured through a large, active and engaged community
+* Scalability and performance tested on many massive scalable deployments
 
 **PRODUCT SUPPORT**
 

@@ -51,8 +51,6 @@ To create a Security Group, use the :ref:`Sunstone UI Interface <fireedge_sunsto
 
 .. code::
 
-    $ cat ./sg.txt
-
     NAME = test
 
     RULE = [
@@ -76,7 +74,7 @@ To create a Security Group, use the :ref:`Sunstone UI Interface <fireedge_sunsto
     $ onesecgroup create ./sg.txt
     ID: 102
 
-  .. note:: This guide focuses on the CLI command ``onesecgroup``, but you can also manage Security Groups using :ref:`Sunstone <sunstone>`, mainly through the Security Group tab in a user friendly way.
+.. tip:: This guide focuses on the CLI command ``onesecgroup``, but you can also manage Security Groups using the :ref:`Sunstone GUI interface <fireedge_sunstone>`. Select the **Security Group** tab to create and manage groups in a user-friendly way.
 
 |sg_wizard_create|
 

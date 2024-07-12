@@ -76,10 +76,10 @@ These options are saved in the group template, as well as other hidden settings.
 
 .. _fireedge_sunstone_views_define_new:
 
-Views configuration on sunstone-views.yaml
+Views configuration on ``sunstone-views.yaml``
 ================================================================================
 
-The file sunstone-views.yaml configures:
+The file ``sunstone-views.yaml`` configures:
 
 - Default views if a group does not have :ref:`Sunstone configuration attributes <groupwise_configuration_attributes>`:
 
@@ -294,7 +294,6 @@ An example of a tab with the vm-template-tab.yaml file:
           not_on:
             - kvm
             - lxc
-            - firecracker
         network: true
         storage: true
         placement: true
@@ -311,7 +310,6 @@ An example of a tab with the vm-template-tab.yaml file:
           not_on:
             - kvm
             - lxc
-            - firecracker
         network: true
         storage: true
         placement: true
@@ -332,7 +330,7 @@ To create a new view:
 
   1. Create a folder with the name of the view in ``/etc/one/fireedge/sunstone``.
   2. Add the yaml files for each tab that the view will show.
-  3. Configure sunstone-views.yaml if it is needed.
+  3. Configure ``sunstone-views.yaml`` if needed.
   4. Update or create a group to use the new view.
 
 .. |fireedge_sunstone_admin_dashboard| image:: /images/fireedge_sunstone_admin_view.png

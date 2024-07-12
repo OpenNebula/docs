@@ -23,9 +23,9 @@ If you have access to the public OpenNebula Marketplace from your frontend, you'
 
 To retrieve images from the OpenNebula Marketplace:
 
-1. Navigate to the *Storage/Apps* tab in Sunstone.
+1. In Sunstone, select the **Storage --> Apps** tab.
 2. Select one of the available images.
-3. Click the *Download* button.
+3. Click **Download**.
 
 |sunstone_marketplace_list_import|
 

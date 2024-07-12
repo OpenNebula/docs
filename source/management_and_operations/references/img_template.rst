@@ -6,7 +6,9 @@ Image Template
 
 This page describes how to define a new image template. An image template follows the same syntax as the :ref:`VM template <template>`.
 
-.. warning:: There are some template attributes that can compromise the security of the system or the security of other VMs, and can be used **only** by users in the oneadmin group. These attributes can be configured in :ref:`oned.conf <oned_conf>`, the default ones are labeled with ``*`` in the following tables. See the complete list in the :ref:`Restricted Attributes <img_template_restricted_attributes>` section.
+.. warning:: Some template attributes can compromise the security of the system or the security of other VMs, and can be used **only** by users in the ``oneadmin`` group. These attributes can be configured in :ref:`oned.conf <oned_conf>`. In the following tables, default attributes are marked with ``*``. For the complete list, see the :ref:`Restricted Attributes <img_template_restricted_attributes>` section.
+
+.. important:: The vCenter driver is a legacy component, and no longer receives updates or bug fixes. 
 
 Template Attributes
 ================================================================================
@@ -61,7 +63,7 @@ The following attributes can be defined in the template:
 
 .. warning:: Be careful when ``PATH`` points to a compressed bz2 image, since although it will work, OpenNebula will not calculate its size correctly.
 
-.. important:: All the above KVM attributes apply to Firecracker and LXC. With the exception of ``DEV_PREFIX`` which is always ``virtio`` for Firecracker and doesn't apply for LXC. And ``TARGET`` doesn't apply to neither of them.
+.. important:: All of the above KVM attributes also apply to LXC, with the exception of ``DEV_PREFIX`` and ``TARGET``.
 
 Mandatory attributes for ``DATABLOCK`` images with no ``PATH`` set:
 

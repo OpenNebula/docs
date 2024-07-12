@@ -334,7 +334,7 @@ The monitoring mechanism in OpenNebula reports all VMs found in a hypervisor, ev
       $ onehost show 3
       HOST 3 INFORMATION
       ID                    : 3
-      NAME                  : MyvCenterHost
+      NAME                  : MyAWSHost
       CLUSTER               : -
       STATE                 : MONITORED
       [...]
@@ -350,11 +350,11 @@ And imported using the ``onehost importvm`` command:
       $ onehost importvm 0 CentOS7
       $ onevm list
       ID USER     GROUP    NAME            STAT UCPU    UMEM HOST               TIME
-       3 oneadmin oneadmin CentOS7         runn    0    590M MyvCenterHost  0d 01h02
+       3 oneadmin oneadmin CentOS7         runn    0    590M MyAWSHost  0d 01h02
 
 After a Virtual Machine is imported, its life-cycle (including creation of snapshots) can be controlled through OpenNebula. However, some  operations *cannot* be performed on an imported VM, including: poweroff, undeploy, migrate or delete-recreate.
 
-.. warning:: Wild VMs' support and limitations may be different depending on the virtualization driver used (e.g KVM, LXC, ...). In order to find more specific information for the virtualization driver you're using, please check the corresponding driver guide.
+.. warning:: Wild VMs’ support and limitations may differ depending on the virtualization driver used (e.g KVM or LXC). In order to find more specific information for the virtualization driver you’re using, please check the corresponding driver guide.
 
 Using Sunstone to Manage Hosts
 ================================================================================

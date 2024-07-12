@@ -89,7 +89,7 @@ Using the Virtual Routers tab in Sunstone, or the ``onevrouter show`` command, y
 
 The Virtual Networks connected to the VR machines can be modified with the attach/detach actions.
 
-In :ref:`Sunstone UI Interface <fireedge_sunstone>` the actions can be found in the Virtual Router's main information panel, in the networks table. The options to add a new Virtual Network are the same that were explained for the creation wizard, see previous section.
+In the :ref:`Sunstone GUI <fireedge_sunstone>` the actions can be found in the Virtual Router’s main information panel, in the networks table. The options to add a new Virtual Network are the same as for the creation wizard, see previous section.
 
 |sunstone_vrouter|
 
@@ -112,7 +112,7 @@ High Availability
 
 More than one Virtual Machines can be associated to a Virtual Router in order to implement a high availability scenario. In this case, OpenNebula will also assign a floating IP to the group of Virtual Machines, that will coordinate to manage the traffic directed to that IP.
 
-To enable a high availability scenario, you need to choose 2 or more number of instances when the Virtual Router is created in Sunstone. In the CLI, the number of VM instances is given with the ``-m`` option
+To enable a high-availability scenario, you need to choose 2 or more number of instances when the Virtual Router is created in Sunstone. In the CLI, the number of VM instances is given with the ``-m`` option
 
 .. code::
 
