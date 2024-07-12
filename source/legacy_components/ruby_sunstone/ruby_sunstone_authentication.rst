@@ -1,4 +1,4 @@
-.. _suns_auth:
+.. _ruby_sunstone_authentication:
 
 =======================
 Sunstone Authentication
@@ -164,10 +164,10 @@ This allows us to use e.g. U2F/FIDO2 authentication keys. In this case, to enabl
 
 |sunstone_settings_2fa_keys|
 
-.. |image0| image:: /images/sunstone_login_x5094.png
-.. |sunstone_settings_auth| image:: /images/sunstone-settings-auth.png
-.. |sunstone_settings_2fa_app| image:: /images/sunstone-settings-2fa-app.png
-.. |sunstone_settings_2fa_keys| image:: /images/sunstone-settings-2fa-keys.png
-.. |sunstone_settings_2fa_result| image:: /images/sunstone-settings-2fa-result.png
-.. |sunstone_settings_2fa_login| image:: /images/sunstone-settings-2fa-login.png
-.. |sunstone_template_user_auth| image:: /images/sunstone-template-user-auth.png
+.. |image0| image:: /images/ruby_sunstone_login_x5094.png
+.. |sunstone_settings_auth| image:: /images/ruby_sunstone-settings-auth.png
+.. |sunstone_settings_2fa_app| image:: /images/ruby_sunstone-settings-2fa-app.png
+.. |sunstone_settings_2fa_keys| image:: /images/ruby_sunstone-settings-2fa-keys.png
+.. |sunstone_settings_2fa_result| image:: /images/ruby_sunstone-settings-2fa-result.png
+.. |sunstone_settings_2fa_login| image:: /images/ruby_sunstone-settings-2fa-login.png
+.. |sunstone_template_user_auth| image:: /images/ruby_sunstone-template-user-auth.png

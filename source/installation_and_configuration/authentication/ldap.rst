@@ -296,19 +296,13 @@ Each group in OpenNebula can have its :ref:`admins <manage_groups_permissions>` 
 Enabling LDAP auth in Sunstone
 ==============================
 
-Update the ``/etc/one/sunstone-server.conf`` ``:auth`` parameter to use ``opennebula``:
+Update the ``/etc/one/fireedge-server.conf`` ``:auth`` parameter to use ``opennebula``:
 
 .. code-block:: yaml
 
         :auth: opennebula
 
 Using this method, the credentials provided in the login screen will be sent to the OpenNebula core, and the authentication will be delegated to the OpenNebula auth system using the specified driver for that user. Therefore any OpenNebula auth driver can be used through this method to authenticate the user (e.g. LDAP).
-
-To automatically encode credentials as explained in the :ref:`DN's with special characters <ldap_dn_with_special_characters>` section, also add this parameter to the sunstone configuration:
-
-.. code-block:: yaml
-
-        :encode_user_password: true
 
 Multiple LDAP servers: Order vs. Regex Match
 ============================================
