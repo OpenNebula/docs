@@ -11,5 +11,4 @@ Authentication Configuration
    SSH Authentication <ssh>
    X.509 Authentication <x509>
    LDAP Authentication <ldap>
-   Sunstone Authentication <sunstone>
-   FireEdge Authentication <fireedge>
+   Sunstone Authentication <sunstone_auth>

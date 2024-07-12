@@ -159,12 +159,3 @@ Follow these steps to change oneadmin's authentication method to ``x509``:
 .. prompt:: bash $ auto
 
     $ export ONE_AUTH=/home/oneadmin/.one/one_x509
-
-Enabling x509 in Sunstone
-=========================
-
-In ``/etc/one/sunstone-server.conf`` update parameter ``:auth`` to ``x509``:
-
-.. code-block:: yaml
-
-    :auth: x509

@@ -26,13 +26,13 @@ You can choose from the following authentication drivers to access OpenNebula fr
 
 By default, any authentication driver configured to work with OpenNebula can be used out-of-the-box with Sunstone. Additionally you can add a TLS-proxy to secure the Sunstone. See:
 
-- :ref:`Sunstone Authentication <sunstone>`
+- :ref:`Sunstone Authentication <sunstone_auth>`
 
 **c) Server Authentication**
 
 This method is designed to delegate the authentication process to high level tools interacting with OpenNebula. You'll be interested in this method if you are developing your own servers.
 
-OpenNebula ships with two GUI servers - :ref:`Sunstone <sunstone>` and :ref:`FireEdge <fireedge_setup>`. When a user interacts with one of them, the server authenticates the request and then forwards the requested operation to the OpenNebula Daemon. The forwarded requests are encrypted using a symmetric key. The following guide shows how to strengthen the security of these requests using X.509 certificates. This is especially relevant if you are running your server in a machine other than the Front-end.
+OpenNebula ships with a GUI server - :ref:`Sunstone <fireedge_setup>`. When a user interacts with one of them, the server authenticates the request and then forwards the requested operation to the OpenNebula Daemon. The forwarded requests are encrypted using a symmetric key. The following guide shows how to strengthen the security of these requests using X.509 certificates. This is especially relevant if you are running your server in a machine other than the Front-end.
 
 - :ref:`Cloud Servers Authentication <cloud_auth>`
 
@@ -52,11 +52,7 @@ Usable only with API and CLI:
 
 Usable only with Sunstone:
 
-* :ref:`X.509 Authentication <x509_auth>`
-* :ref:`Sunstone Authentication <suns_auth>`
-
-Usable only with FireEdge:
-* :ref:`FireEdge Authentication <fireedge_auth>`
+* :ref:`Sunstone Authentication <sunstone_auth>`
 
 Hypervisor Compatibility
 ================================================================================

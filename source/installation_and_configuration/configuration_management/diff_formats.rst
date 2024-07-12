@@ -79,17 +79,16 @@ these paths are valid to address the emphasized parameters:
 
 	In the ``oned.conf``-like configurations, some nested structures are unique (e.g., ``DB=[...]`` is just a single database connection configuration) and some can appear several times (e.g., ``VM_MAD=[...]`` configures execution of different drivers for different hypervisors, one section for each driver). In the second case, the nested structure is uniquely addressed by a value of one identifying parameter inside the structure, usually ``NAME``. This value (including the quotes) is placed as part of the path. See path 3 above.
 
-- for the following ``/etc/one/sunstone-server.conf`` snippet
+- for the following ``/etc/one/fireedge-server.conf`` snippet
 
 .. code::
 
-    # OpenNebula sever contact information
+    # OpenNebula: use it if you have oned and fireedge on different servers
     :one_xmlrpc: http://localhost:2633/RPC2     # path 4
-    :one_xmlrpc_timeout: 60
 
 these paths are valid to address the emphasized parameter(s):
 
-  4. ``:one_xmlrpc`` or ``":one_xmlrpc"``
+  1. ``:one_xmlrpc`` or ``":one_xmlrpc"``
 
 - for the following ``/etc/one/cli/oneimage.yaml`` snippet
 

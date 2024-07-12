@@ -102,7 +102,7 @@ From this section, users can define multiple configuration options for themselve
 - **SSH Private key**: allows the user to specify a private SSH key that they can use when establishing connections with their VMs.
 - **SSH Private key passphrase**: if the private SSH key is encrypted, the user must specify the password.
 - **Login token**: allows to create a new token for the user.
-- **Two Factor Authentication**: allows to register an app to perform :ref:`Two Factor Authentication <2f_auth_fireedge>`.
+- **Two Factor Authentication**: allows to register an app to perform :ref:`Two Factor Authentication <sunstone_2f_auth>`.
 
 .. note:: All the configurations set in this section will be in the user template.
 
