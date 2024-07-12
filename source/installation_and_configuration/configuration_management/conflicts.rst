@@ -88,11 +88,11 @@ Example of multiple patch modes for multiple files:
     # onecfg upgrade \
         --patch-modes skip:/etc/one/oned.conf \
         --patch-modes skip,replace:/etc/one/oned.conf:5.10.0 \
-        --patch-modes force:/etc/one/sunstone-logos.yaml:5.6.0 \
-        --patch-modes replace:/etc/one/sunstone-server.conf \
-        --patch-modes skip:/etc/one/sunstone-views/admin.yaml:5.4.1 \
-        --patch-modes skip:/etc/one/sunstone-views/admin.yaml:5.4.2 \
-        --patch-modes skip:/etc/one/sunstone-views/kvm/admin.yaml
+        --patch-modes force:/etc/one/fireedge/sunstone-views.yaml:5.6.0 \
+        --patch-modes replace:/etc/one/fireedge-server.conf \
+        --patch-modes skip:/etc/one/fireedge/sunstone/admin/acl-tab.yaml:5.4.1 \
+        --patch-modes skip:/etc/one/fireedge/sunstone/admin/vm-tab.yaml:5.4.2 \
+        --patch-modes skip:/etc/one/fireedge/sunstone/admin/vm-template-tab.yaml
 
 Restore from Backup
 ===================

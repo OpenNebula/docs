@@ -41,10 +41,6 @@ Name                                                               Type
 ``/etc/one/onehem-server.conf``                                    YAML
 ``/etc/one/packet_driver.default``                                 Plain file (or XML)
 ``/etc/one/sched.conf``                                            oned.conf-like
-``/etc/one/sunstone-logos.yaml``                                   YAML w/ ordered arrays
-``/etc/one/sunstone-server.conf``                                  YAML
-``/etc/one/sunstone-views.yaml``                                   YAML
-``/etc/one/sunstone-views/**/*.yaml``                              YAML
 ``/etc/one/tmrc``                                                  Shell
 ``/etc/one/vcenter_driver.conf``                                   YAML
 ``/etc/one/vcenter_driver.default``                                Plain file (or XML)
