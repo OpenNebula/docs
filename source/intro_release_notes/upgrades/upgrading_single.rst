@@ -30,9 +30,9 @@ Set all Hosts to disable mode to stop all monitoring processes.
 Step 3. Stop OpenNebula
 ================================================================================
 
-Stop OpenNebula and any other related services you may have running: OneFlow, OneGate, Sunstone & FireEdge. It's preferable to use the system tools, like ``systemctl`` or ``service`` as ``root`` in order to stop the services.
+Stop OpenNebula and any other related services you may have running: OneFlow, OneGate & FireEdge. It's preferable to use the system tools, like ``systemctl`` or ``service`` as ``root`` in order to stop the services.
 
-.. important:: If you are running Sunstone behind Apache/Nginx, please stop this service instead of Sunstone one.
+.. important:: If you are running FireEdge service behind Apache/Nginx, please stop also the Apache/Nginx service.
 
 .. warning:: Make sure that every OpenNebula process is stopped. The output of ``systemctl list-units | grep opennebula`` should be empty.
 
@@ -60,13 +60,13 @@ Ubuntu/Debian
 .. prompt:: bash $ auto
 
     $ apt-get update
-    $ apt-get install --only-upgrade opennebula opennebula-sunstone opennebula-gate opennebula-flow opennebula-provision opennebula-fireedge python3-pyone
+    $ apt-get install --only-upgrade opennebula opennebula-gate opennebula-flow opennebula-provision opennebula-fireedge python3-pyone
 
 RHEL
 
 .. prompt:: bash $ auto
 
-    $ yum upgrade opennebula opennebula-sunstone opennebula-gate opennebula-flow opennebula-provision opennebula-fireedge python3-pyone
+    $ yum upgrade opennebula opennebula-gate opennebula-flow opennebula-provision opennebula-fireedge python3-pyone
 
 .. important::
 
@@ -190,24 +190,6 @@ After checking the state of configuration, in most cases running the following c
 
 If you get conflicts when running ``onecfg`` upgrade refer to the :ref:`onecfg upgrade basic usage documentation <cfg_usage>` on how to upgrade and troubleshoot the configurations, in particular the :ref:`onecfg upgrade doc <cfg_upgrade>` and the :ref:`troubleshooting section <cfg_conflicts>`.
 
-FireEdge public endpoint is not working
---------------------------------------------------------------------------------
-
-After updating the configuration file ``/etc/one/sunstone-server.conf``, if you didn't install FireEdge :ref:`FireEdge <fireedge_setup>` you might get an error like this ``FireEdge public endpoint is not working, please contact your cloud administrator`` in the Web GUI. By default this configuration file will have the following configuration enabled.
-
-.. prompt:: bash $ auto
-
-    $ tail -n 5 /etc/one/sunstone-server.conf
-    # FireEdge
-    ################################################################################
-
-    :private_fireedge_endpoint: http://localhost:2616
-    :public_fireedge_endpoint: http://localhost:2616
-
-If you don't want to use the new feature, comment these out in order to get rid of the error.
-
-.. note:: After doing the change, please restart Sunstone or Apache/Nginx in case you are using Sunstone behind one of them.
-
 Step 8. Upgrade the Database Version
 ================================================================================
 
@@ -232,9 +214,9 @@ First, move the |version| backup file created by the upgrade command to a safe p
 Step 10. Start OpenNebula
 ================================================================================
 
-Start OpenNebula and any other related services: OneFlow, OneGate, Sunstone & FireEdge. It's preferable to use the system tools, like ``systemctl`` or ``service`` as ``root`` in order to stop the services.
+Start OpenNebula and any other related services: OneFlow, OneGate & FireEdge. It's preferable to use the system tools, like ``systemctl`` or ``service`` as ``root`` in order to stop the services.
 
-.. important:: If you are running Sunstone behind Apache/Nginx, please start this service instead of Sunstone one.
+.. important:: If you are running FireEdge service behind Apache/Nginx, please start also the Apache/Nginx service.
 
 Step 11. Restore Custom Probes
 ================================================================================

@@ -25,9 +25,9 @@ Step 3. Stop the HA Cluster
 
 You need to stop all the nodes in the cluster to upgrade them at the same time. Start with the followers and leave the leader until the end.
 
-Stop OpenNebula and any other related services you may have running: OneFlow, OneGate, Sunstone & FireEdge. It's preferable to use the system tools, like ``systemctl`` or ``service`` as ``root`` in order to stop the services.
+Stop OpenNebula and any other related services you may have running: OneFlow, OneGate & FireEdge. It's preferable to use the system tools, like ``systemctl`` or ``service`` as ``root`` in order to stop the services.
 
-.. important:: If you are running Sunstone behind Apache/Nginx, please stop this service instead of Sunstone one.
+.. important:: If you are running FireEdge service behind Apache/Nginx, please stop also the Apache/Nginx service.
 
 .. warning:: Make sure that every OpenNebula process is stopped. The output of ``systemctl list-units | grep opennebula`` should be empty.
 
@@ -80,9 +80,9 @@ On each of the followers, ensure these folders are owned by the ``oneadmin`` use
 Step 7. Start OpenNebula in the Leader and Followers
 ================================================================================
 
-Start OpenNebula and any other related services: OneFlow, OneGate, Sunstone & FireEdge. It's preferable to use the system tools, like ``systemctl`` or ``service`` as ``root`` in order to stop the services.
+Start OpenNebula and any other related services: OneFlow, OneGate & FireEdge. It's preferable to use the system tools, like ``systemctl`` or ``service`` as ``root`` in order to stop the services.
 
-.. important:: If you are running Sunstone behind Apache/Nginx, please start this service instead of Sunstone one.
+.. important:: If you are running FireEdge service behind Apache/Nginx, please start also the Apache/Nginx service.
 
 Step 8. Check Cluster Health
 ================================================================================
