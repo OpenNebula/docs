@@ -9,5 +9,5 @@ Large-scale Deployment
 
    Overview <overview>
    Scalability Testing and Tuning <scalability>
-   Sunstone for Large Deployments <sunstone_for_large_deployments>
+   FireEdge for Large Deployments <fireedge_for_large_deployments>
    Advanced SSH Usage <advanced_ssh_usage>

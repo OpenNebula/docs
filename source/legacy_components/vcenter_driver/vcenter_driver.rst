@@ -140,7 +140,7 @@ vCenter clusters, VM templates, networks, datastores, and VMDK files located in 
 
 * Using the Import button in Sunstone.
 
-.. warning:: The image import operation may take a long time. If you use the Sunstone client and receive a "Cannot contact server: is it running and reachable?" the 30-second Sunstone timeout may have been reached. In this case, either :ref:`configure Sunstone to run behind Apache/NGINX <suns_advance>` or use the CLI tool instead.
+.. warning:: The image import operation may take a long time. If you use the Sunstone client and receive a "Cannot contact server: is it running and reachable?" the 30-second Sunstone timeout may have been reached. In this case, either :ref:`configure Sunstone to run behind Apache/NGINX <sunstone_advance>` or use the CLI tool instead.
 
 
 The following vCenter resources can be easily imported into OpenNebula:

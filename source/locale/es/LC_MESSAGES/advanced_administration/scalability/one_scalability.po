@@ -235,5 +235,5 @@ msgstr ""
 #: ../../source/advanced_administration/scalability/one_scalability.rst:87
 msgid ""
 "Please refer to guide about :ref:`Configuring Sunstone for Large Deployments"
-" <suns_advance>`."
+" <sunstone_advance>`."
 msgstr ""

@@ -1,4 +1,4 @@
-.. _suns_advance:
+.. _sunstone_advance:
 
 ==============================
 Sunstone for Large Deployments
@@ -20,7 +20,7 @@ Self-contained deployment of Sunstone (using ``opennebula-sunstone`` system serv
 
 The Sunstone server is implemented as a Rack server. This makes it suitable to run in any web server that supports this protocol. In the Ruby world this is the standard supported by most web servers. We can now select web servers that support spawning multiple processes, like Unicorn, or embedding the service inside Apache HTTP Server or Nginx using the Passenger module. Another benefit is the ability to run Sunstone on several servers and balance the load between them.
 
-.. _suns_advance_federated:
+.. _sunstone_advance_federated:
 
 .. warning:: Deploying Sunstone behind a proxy in a federated environment requires specific configuration to properly handle the Sunstone headers required by the Federation.
 
@@ -65,7 +65,7 @@ Another thing you have to take into account is the user under which the server w
     # chmod a+x /var/lib/one/.one
     # chmod a+x /var/lib/one/sunstone
 
-.. _suns_advance_marketplace:
+.. _sunstone_advance_marketplace:
 
 **Marketplace**
 
@@ -79,7 +79,7 @@ If you are using a Back-end other than Passenger, please adapt these recommendat
 
 We advise using **Apache/Passenger** in your installation, but we'll also present the other options. For more information on Rack and web servers that support it, you can check the `Rack documentation <https://www.rubydoc.info/github/rack/rack/>`__ page. Alternatively, you can check a `list of Ruby web servers <https://www.ruby-toolbox.com/categories/web_servers>`__.
 
-.. _suns_advance_web_proxy:
+.. _sunstone_advance_web_proxy:
 
 Deploy with Apache/Passenger (Recommended)
 ------------------------------------------
@@ -103,7 +103,7 @@ Deploy with Apache/Passenger (Recommended)
 
 The first thing you have to do is install Phusion Passenger. For this you can use binary packages for your distribution or follow the `installation instructions <https://www.phusionpassenger.com/download/#open_source>`__ from their web page. The installation is self explanatory and will guide you through the whole process. Follow the guidance and you will be ready to run Sunstone.
 
-.. _suns_advance_apache_proxy:
+.. _sunstone_advance_apache_proxy:
 
 Non-TLS Configuration
 ^^^^^^^^^^^^^^^^^^^^^
@@ -178,7 +178,7 @@ In Sunstone configuration (:ref:`/etc/one/sunstone-server.conf <sunstone_conf>`)
 
     :public_fireedge_endpoint: http://one.example.one
 
-.. _suns_advance_apache_tls_proxy:
+.. _sunstone_advance_apache_tls_proxy:
 
 TLS-secured Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -326,7 +326,7 @@ It is also possible to use Sunstone ``remote`` authentication with Apache and Pa
 Now, our configuration is ready to use Passenger and Kerberos. Restart or reload the Apache HTTP server and point to the Virtual Host while using a valid Kerberos ticket to check that everything is running.
 
 
-.. _suns_advance_unicorn:
+.. _sunstone_advance_unicorn:
 
 Deploy with Unicorn (Legacy)
 ----------------------------
@@ -391,7 +391,7 @@ Multiple Hosts
 
 You can run Sunstone on several servers and use a load balancer that connects to them. Make sure you are using ``memcache`` for sessions and both Sunstone servers connect to the same ``memcached`` server. To do this, change the parameter ``:memcache_host`` in the configuration file. Also make sure that both Sunstone instances connect to the same OpenNebula server.
 
-.. _ss_proxy:
+.. _ss_sunstone_proxy:
 
 Configuring an SSL Proxy
 ========================

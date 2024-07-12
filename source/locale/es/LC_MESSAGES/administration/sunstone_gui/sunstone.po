@@ -489,6 +489,6 @@ msgstr ""
 
 #: ../../source/administration/sunstone_gui/sunstone.rst:162
 msgid ""
-":ref:`Advanced Deployments <suns_advance>`, improving scalability and "
+":ref:`Advanced Deployments <sunstone_advance>`, improving scalability and "
 "isolating the server"
 msgstr ""

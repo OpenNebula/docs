@@ -279,7 +279,7 @@ To connect to the cluster from another server you can use one of the two followi
 
     export ONE_XMLRPC=http://ENDPOINT_IP:2633/RPC2
 
-- Using Sunstone: Modify ``one_xmlrpc`` in :ref:`/etc/one/sunstone-server.conf <sunstone_sunstone_server_conf>`
+- Using FireEdge: Modify ``one_xmlrpc`` in :ref:`/etc/one/fireedge-server.conf <fireedge_configuration>`
 
 The new endpoint will be the load balancer address.
 
@@ -295,10 +295,10 @@ For non-test installations use a MySQL/MariaDB database. SQLite is too slow for 
 
 Be sure to review the :ref:`recommended maintenance procedures <mysql_maintenance>` for the MySQL database backend.
 
-Sunstone Tuning
+FireEdge Tuning
 ---------------------------
 
-Please refer to the guide on :ref:`Configuring Sunstone for Large Deployments <suns_advance>`.
+Please refer to the guide on :ref:`Configuring FireEdge for Large Deployments <fireedge_advance>`.
 
 
 .. |scala| image:: /images/one_scalability.jpg
