@@ -15,3 +15,4 @@ Ruby Sunstone
    Cloud view <ruby_sunstone_cloud_view>
    Sunstone Authentication <ruby_sunstone_authentication>
    Sunstone for Large Deployments <sunstone_for_large_deployments>
+   Ruby Sunstone Development <ruby_sunstone_dev>
