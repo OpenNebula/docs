@@ -134,26 +134,6 @@ Sunstone
 | **GET**      | ``/fireedge/api/sunstone/config``     | **Get** the Sunstone config.                            |
 +--------------+---------------------------------------+---------------------------------------------------------+
 
-vCenter
---------------------------------------------------------------------------------
-
-+--------------+---------------------------------------------+----------------------------------------------------------------------------+
-| Method       | URL                                         | Meaning / Entity Body                                                      |
-+==============+=============================================+============================================================================+
-| **GET**      | ``/fireedge/api/vcenter``                   | **List** Show a list with unimported vCenter objects                       |
-+--------------+---------------------------------------------+----------------------------------------------------------------------------+
-| **GET**      | ``/fireedge/api/vcenter/<id>``              | **Show** Show unimported vCenter object                                    |
-+--------------+---------------------------------------------+----------------------------------------------------------------------------+
-| **GET**      | ``/fireedge/api/vcenter/listall``           | **List** Show a list with unimported vCenter objects excluding all filters |
-+--------------+---------------------------------------------+----------------------------------------------------------------------------+
-| **GET**      | ``/fireedge/api/vcenter/listall/<id>``      | **Get** Show unimported vCenter objects excluding all filters              |
-+--------------+---------------------------------------------+----------------------------------------------------------------------------+
-| **POST**     | ``/fireedge/api/vcenter/hosts/<vCenter>``   | **Perform** Import vCenter clusters as OpenNebula hosts                    |
-+--------------+---------------------------------------------+----------------------------------------------------------------------------+
-| **POST**     | ``/fireedge/api/vcenter/import/<vObject>``  | **Perform** Import the desired vCenter object                              |
-+--------------+---------------------------------------------+----------------------------------------------------------------------------+
-| **POST**     | ``/fireedge/api/vcenter/cleartags/<id>``    | **Perform** Clear extraconfig tags from a vCenter VM                       |
-+--------------+---------------------------------------------+----------------------------------------------------------------------------+
 
 Zendesk
 --------------------------------------------------------------------------------
@@ -217,7 +197,7 @@ The tab files are located in ``etc/sunstone/<view_name>/<resource_tab>``.
 Adding New Tabs
 ================================================================================
 
-OpenNebula resources are grouped into pools and can be managed from the interface through resource tab (or route) where we can operate over one or more resources, filter by attributes or get detailed information about individual resource.
+OpenNebula resources are grouped into pools and can be managed from the interface through resource tab (or route) where we can operate over one or more resources, filter by attributes or get detailed information about individual resources.
 
 To develop a new tab, it's necessary to understand the structure of the configuration tab files:
 
@@ -233,7 +213,7 @@ Resource
 
 Using the view files as a starting point, the interface generates the available routes and defines them in a menu.
 
-Through each tab in sidebar you can control and manage one of OpenNebula resource pool. All tabs should have a folder in the containers directory ``src/client/containers`` and enable the route in ``src/client/apps/sunstone/routesOne.js``.
+Through each tab in the sidebar you can control and manage OpenNebula resources. All tabs should have a folder in the containers directory ``src/client/containers`` and enabled the route in ``src/client/apps/sunstone/routesOne.js``.
 
 +------------------------------------+--------------------------------------------------------------------------------------------------+
 |               Property             |                                     Description                                                  |
@@ -253,11 +233,11 @@ List of actions to operate over the resources: ``refresh``, ``chown``, ``chgrp``
 
 There are three action types:
 
-- Form modal actions. All of actions that they haven't ``_dialog`` suffix.
-- Actions referenced in other files, E.g.: VM Template ``create_app_dialog`` references to  Marketplace App ``create_dialog``.
-- Form actions on separate route. All of actions that they have ``_dialog`` suffix. E.g.: VM Template ``instantiate_dialog`` will have defined a route similar to ``http://localhost:2616/fireedge/sunstone/vm-template/instantiate``.
+- Form modal actions. These actions do not have a ``_dialog`` suffix.
+- Actions referenced in other files. For example, the VM Template ``create_app_dialog`` references the Marketplace App ``create_dialog``.
+- Form actions on separate route. These actions have a ``_dialog`` suffix. For example, the VM Template ``instantiate_dialog`` will have a route defined similar to ``http://localhost:2616/fireedge/sunstone/vm-template/instantiate``.
 
-All actions are defined in the resource constants, e.g.: for VM Templates are located in ``src/client/constants/vmTemplate.js`` as ``VM_TEMPLATE_ACTIONS``.
+All actions are defined in the resource constants. For example, the VM Template's are located in ``src/client/constants/vmTemplate.js`` as ``VM_TEMPLATE_ACTIONS``.
 
 Filter
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -285,21 +265,21 @@ To add one, first it's necessary to implement the filter in the table columns. E
 Information Tabs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The detailed view of a resource is structure in a tabs layout. Tabs are defined in the ``index.js`` of each resource folder ``src/client/components/Tabs/<resource>``. E.g.: VM Templates tabs are located in ``src/client/components/Tabs/VmTemplate/index.js``.
+The detailed view of a resource is structured in a tab-like layout. Tabs are defined in the ``index.js`` file of each resource's folder ``src/client/components/Tabs/<resource>``. E.g.: The VM Templates tabs are located in ``src/client/components/Tabs/VmTemplate/index.js``.
 
-Each entry in the ``info-tabs`` represents a tab and they have two attributes, except the ``info`` tab:
+Each entry in the ``info-tabs`` represents a tab and they all have two attributes, except for the ``info`` tab:
 
 - ``enabled``: defines if the tab is visible.
-- ``actions``: contains the allowed actions in the tab. The function to get available actions is located in ``src/client/models/Helper.js``.
+- ``actions``: contains the allowed actions in the tab. The utility function to get the available actions for a tab is located at ``src/client/models/Helper.js``.
 
-The ``info`` tab is special because it contains panels sections. Each panel section is an attributes group that can include actions.
+The ``info`` tab is special because it contains panels sections. Each panel section is an attribute group that can include actions itself.
 
-Attributes group can be separated on four panels:
+Attribute groups can be separated into four panels:
 
-- Information: main attributes to explain the resource.
+- Information: Main attributes and details for the resource.
 - Permissions: associated permissions for the owner, the users in her group, and others.
 - Ownership: user and group to which it belongs.
-- Attributes (not always): these panels are singular because they have information about each hypervisor and monitoring.
+- Attributes (not always displayed): these panels are separate because they have information about each hypervisor and monitoring.
 
 Each group of actions can filter by hypervisor (**only resources with hypervisor**), e.g.:
 
@@ -317,11 +297,11 @@ Each group of actions can filter by hypervisor (**only resources with hypervisor
 Dialogs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The resource actions that have ``_dialog`` suffix, need to define their structure in this section.
+The resource actions that have the ``_dialog`` suffix, need to define their structure in this section.
 
-The first entries in the dialog mean the available steps. Then, within the step are defined the accessible sections.
+The first entries in the dialog refer to the available steps. Then, within the individual step definitions are the accessible sections.
 
-Each step and section should match the **id** in code and can filter by hypervisor (**only resources with hypervisor**).
+Each step and section should match the **id** in the code and can filter by hypervisor (**only resources with hypervisor**).
 
 See some examples:
 
@@ -357,7 +337,7 @@ See some examples:
 
 SSO (Single sign-on)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-With this function you can enter the FireEdge from the browser without logging in. For this you need to send in the URL the externalToken parameter with the JWT of the user.
+With this function you can access the Sunstone UI from the browser without logging in. For this, you need to send the JWT of the user in the ``externalToken`` parameter of the URL.
 
 For example:
 
@@ -367,7 +347,7 @@ For example:
 
 .. note::
 
-    To obtain the JWT you must first make a call to ``http://{fireedge}/fireedge/api/auth`` sending the user's credentials and take only the value of **token**, e.g.:
+    To obtain the JWT you must first make a call to ``http://{fireedge}/fireedge/api/auth`` sending the user's credentials and retrieving only the value of **token**, e.g.:
 
     .. code::
 
