@@ -16,3 +16,4 @@ VMware Integration
    NSX Setup <nsx_setup>
    NSX Driver <nsx_driver>
    NSX Networks <nsx_networks>
+   GuestOS Contextualization <vcenter_contextualization>

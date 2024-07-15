@@ -10,5 +10,4 @@ References
    Virtual Network Template <vnet_template>
    Command Line Interface <cli>
    Guest OS Installation <creating_images>
-   Contextualization (Open Source Cloud) <kvm_contextualization>
-   Contextualization (VMware vCenter) <vcenter_contextualization>
+   Contextualization <kvm_contextualization>
