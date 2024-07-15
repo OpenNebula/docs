@@ -6,9 +6,11 @@ Virtual Machine Template
 
 A template file consists of a set of attributes that defines a Virtual Machine. Using the command ``onetemplate create``, a template can be registered in OpenNebula to be instantiated later. For compatibility with previous versions, you can also create a new Virtual Machine directly from a template file, using the ``onevm create`` command.
 
-.. warning:: There are some template attributes that can compromise the security of the system or the security of other VMs, and can be used **only** by users in the oneadmin group. These attributes can be configured in :ref:`oned.conf <oned_conf>`, the default ones are labeled with ``*`` in the following tables. See the complete list in the :ref:`Restricted Attributes <template_restricted_attributes>` section.
+.. warning:: Some template attributes can compromise the security of the system or the security of other VMs, and can be used **only** by users in the ``oneadmin`` group. These attributes can be configured in :ref:`oned.conf <oned_conf>`. In the following tables, default attributes are marked with ``*``. For the complete list, see the :ref:`Restricted Attributes <img_template_restricted_attributes>` section.
 
 .. note:: If not explicitly stated, the described attributes are valid for all supported hypervisors.
+
+.. important:: The vCenter driver is a legacy component, and no longer receives updates or bug fixes.
 
 Syntax
 ================================================================================
@@ -1038,7 +1040,7 @@ The syntax of the rank expressions is defined as:
             | '-' expr
             | '(' expr ')'
 
-Rank expressions are evaluated using each host information. '+', '-', '\*', '/' and '-' are arithmetic operators. The rank expression is calculated using floating point arithmetics, and then round to an integer value.
+Rank expressions are evaluated using each host information. '+', '-', '\*', '/' and '-' are arithmetic operators. The rank expression is calculated using floating point arithmetic, and then rounded to an integer value.
 
 .. warning:: The rank expression is evaluated for each host, those hosts with a higher rank are used first to start the VM. The rank policy must be implemented by the scheduler. Check the configuration guide to configure the scheduler.
 
