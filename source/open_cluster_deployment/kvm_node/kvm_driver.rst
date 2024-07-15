@@ -366,6 +366,8 @@ The agent package needed in the Guest OS is available in most distributions. It'
 
 The communication channel with guest agent is enabled in the domain XML when the ``GUEST_AGENT`` feature is selected in the VM Template.
 
+You can extend the VM monitoring information by setting ``:enabled`` to **true** on the file ``/var/lib/one/remotes/etc/im/kvm-probes.d/guestagent.conf``. Execute ``onehost sync --force`` afterwards.
+
 Importing VMs
 -------------
 
