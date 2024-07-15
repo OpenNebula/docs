@@ -53,6 +53,8 @@ It defines the **underlying networking infrastructure** that will support the Vi
 
 More information about the attributes used by the vCenter network driver are available in the :ref:`vCenter Network Overview <vcenter_network_attributes>` section.
 
+.. important:: The vCenter driver is a legacy component, and no longer receives updates or bug fixes.
+
 Quality of Service Attributes
 ================================================================================
 

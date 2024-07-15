@@ -100,11 +100,11 @@ Once the Virtual Network Template has been created, change the permissions to ma
       ID USER          GROUP        NAME            CLUSTERS   BRIDGE  STATE  LEASES
       1  user          users        private         0          virbr0  rdy         0
 
-The network is now ready, users can create VMs and attach their interfaces to the newly created Virtual Network. Simply adding ``NIC = [ NETWORK = private ]`` or selecting it through Sunstone.
+The network is now ready. Users can create VMs and attach their interfaces to the newly created Virtual Network, by simply adding ``NIC = [ NETWORK = private ]`` or selecting it through Sunstone.
 
 .. note:: Note that for using the newly created Virtual Network, the user needs to define an Address Range either during the Virtual Network Template instantiation or just updating the Virtual Network.
 
-You can also manage your Virtual Networks Templates using :ref:`Sunstone UI Interface <fireedge_sunstone>`. Select the Networks Template tab, and there, you will be able to create and operate your Virtual Networks Templates in a user friendly way.
+You can also manage your Virtual Networks Templates using :ref:`Sunstone UI Interface <fireedge_sunstone>`. Select the **Networks Template** tab to create and operate your Virtual Networks Templates in a user-friendly way.
 
 |image0|
 

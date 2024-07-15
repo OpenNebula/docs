@@ -45,7 +45,7 @@ With that file in place we just need to create the datastore from that:
     $ onedatastore create ds_rsync.txt
     ID: 100
 
-Once these things are set up and it has been verified that all the hosts can access `RSYNC_HOST` using the `RSYNC_USER`, you should be able to start utilizing the rsync backup system.  You can also create the DS through Sunstone like any other datastore:
+After applying this configuration and verifying that all of the hosts can access `RSYNC_HOST` using the `RSYNC_USER`, you should be able to start utilizing the rsync backup system.  You can also create the DS through Sunstone like any other datastore:
 
 |rsync_create|
 

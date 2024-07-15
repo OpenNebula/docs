@@ -489,7 +489,7 @@ The :ref:`contextualization cdrom <context_overview>` can include ``CONTEXT`` ty
 Using Sunstone to Manage Images
 ================================================================================
 
-You can also manage your Images using :ref:`Sunstone UI Interface <fireedge_sunstone>`. Select the Images tab, and there, you will be able to manage and check the information about your images in a user friendly way. By default this tab is available in the ``admin`` view, but not in the ``cloud`` or ``groupadmin`` views.
+You can also manage your Images using the :ref:`Sunstone GUI <fireedge_sunstone>`. Select the **Images** tab to manage and check information about your images in a user-friendly way. By default this tab is available in the ``admin`` view, but not in the ``cloud`` or ``groupadmin`` views.
 
 |image3|
 

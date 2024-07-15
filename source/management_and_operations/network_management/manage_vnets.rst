@@ -140,7 +140,7 @@ The Virtual Network will be moving through different states to represent the act
 Adding and Deleting Virtual Networks
 ====================================
 
-.. note:: This guide uses the CLI command ``onevnet``, but you can also manage your virtual networks using :ref:`Sunstone <sunstone>`. Select the Network tab, and there you will be able to create and manage your virtual networks in a user friendly way.
+.. tip:: This guide uses the CLI command ``onevnet``, but you can also manage your virtual networks using the :ref:`Sunstone GUI <fireedge_sunstone>`. Select the **Virtual Networks** tab to create, enable and operate your virtual networks in a user-friendly way.
 
 There are three different ways for creating a network:
 
@@ -452,7 +452,7 @@ In case the Virtual Network is not in ``READY`` state, use ``onevnet recover`` t
 
 Using Sunstone to Manage Virtual Networks
 ================================================================================
-You can also manage your Virtual Networks using :ref:`Sunstone UI Interface <fireedge_sunstone>`. Select the Virtual Networks tab, and there, you will be able to create, enable, and operate your Virtual Networks in a user friendly way.
+You can also manage your Virtual Networks using the :ref:`Sunstone GUI <fireedge_sunstone>`. Select the **Virtual Networks** tab to create, enable, and operate your Virtual Networks in a user-friendly way.
 
 
 |image0|

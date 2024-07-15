@@ -68,7 +68,7 @@ You can configure backups in the VM Template, so every VM created will have a pr
       KEEP_LAST = "4",
       MODE = "INCREMENT" ]
 
-Equivalently, you can use Sunstone, simply go to the Backup tab:
+To configure using the Sunstone GUI, select the **Backup** tab:
 
 |template_cfg|
 
@@ -112,7 +112,7 @@ You should be able to see the configuration of the VM by showing its information
    LAST_INCREMENT_ID="-1"
    MODE="INCREMENT"
 
-Equivalently you can use Sunstone, simply go to the VM and the Conf tab:
+To configure using the Sunstone GUI, select the **Backup** tab:
 
 |vm_cfg|
 

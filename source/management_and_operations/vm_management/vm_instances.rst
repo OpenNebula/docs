@@ -497,7 +497,7 @@ The following is an example of the previous procedure from the command line:
 Live Resize of Capacity
 --------------------------------------------------------------------------------
 
-If you need to resize the capacity in the RUNNING state you have to setup some extra attributes to VM template, this attributes **must be set before the VM is started**. These attributes are driver specific, more info for :ref:`KVM <kvm_live_resize>` and :ref:`vCenter <vcenter_live_resize>`.
+If you need to resize the capacity in the RUNNING state you have to set up some extra attributes in the VM template. These attributes **must be set before the VM is started**. These attributes are driver-specific, more info for :ref:`KVM <kvm_live_resize>` and :ref:`vCenter <vcenter_live_resize>`.
 
 .. warning:: Hotplug is only implemented only for KVM and vCenter. Added CPUs will be in offline state after the resize. Enable them with ``echo 1 > /sys/devices/system/cpu/cpu<ID>/online``
 
@@ -833,7 +833,7 @@ In this example, the first argument would be the disk and the second the snapsho
 Virtual Machine Charters
 ================================================================================
 
-This functionality automatically adds scheduling actions in VM templates. To enable create Charters in Sunstone, you only need to add the following to ``vm-tab.yaml`` file in the corresponding :ref:`Sunstone view <fireedge_sunstone_views>`:
+This functionality automatically adds scheduling actions in VM templates. To enable create Charters in Sunstone, you only need to add the following to the ``vm-tab.yaml`` file in the corresponding :ref:`Sunstone view <fireedge_sunstone_views>`:
 
 .. prompt:: text $ auto
 
@@ -845,7 +845,7 @@ This functionality automatically adds scheduling actions in VM templates. To ena
 
 |sunstone_vm_charter|
 
-After enable the creation of Charters, you have to define the schedule actions that has a charter. To do that, you only need to modify the file ``sunstone-server.conf`` in the :ref:`FireEdge configuration <fireedge_conf>`.
+After enabling the creation of Charters, you have to define the schedule actions that have a charter. To do that, you only need to modify the file ``sunstone-server.conf`` in the :ref:`FireEdge configuration <fireedge_conf>`.
 
 To explain that, we are gonna use an example:
 
@@ -1040,7 +1040,7 @@ Sunstone provides several different methods to access your VM console and deskto
 
 .. important::
 
-    :ref:`FireEdge <fireedge_conf>` server must be running to get Guacamole connections working.
+    The :ref:`FireEdge <fireedge_conf>` server must be running to get Guacamole connections working.
 
 .. _requirements_remote_access_sunstone:
 

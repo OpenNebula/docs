@@ -45,7 +45,9 @@ Performing a VM backup may require some support from the hypervisor or the disk 
 |            +------------------------+------+-----------+------+-----------+
 |            | LVM                    | Not supported                       |
 +------------+------------------------+------+-----------+------+-----------+
-|  vCenter   | vCenter                | Not supported                       |
+|  vCenter   | vCenter\ :sup:`**`     | Not supported                       |
 +------------+------------------------+------+-----------+------+-----------+
 
-\ :sup:`*` Means any datastore based on files with the given format, i.e. NFS/SAN or SSH
+\ :sup:`*` Any datastore based on files with the given format, i.e. NFS/SAN or SSH.
+
+\ :sup:`**` The legacy vCenter driver is included in the distribution, but no longer receives updates or bug fixes.

@@ -4,6 +4,8 @@
 vCenter Contextualization and Customization
 ================================================================================
 
+.. important:: The vCenter driver is a legacy component, and no longer receives updates or bug fixes.
+
 You have two options to prepare a guest OS on boot:
 
 * OpenNebula's contextualization process.
@@ -65,7 +67,7 @@ The last two steps can be done using Sunstone or the CLI as explained in the :re
 vCenter Customization
 ================================================================================
 
-vCenter offers a way to prepare the guest OS on boot. For example configuring its network, licenses, Active Directory server, etc. OpenNebula vCenter drivers offers a way to tie one OpenNebula template with one of these customizations so it is applied on VM startup. You can get more information about this system in `VMware documentation <https://pubs.vmware.com/vsphere-60/index.jsp?topic=%2Fcom.vmware.vsphere.vm_admin.doc%2FGUID-EB5F090E-723C-4470-B640-50B35D1EC016.html>`__.
+vCenter offers a way to prepare the guest OS on boot, for example by configuring its network, licenses, Active Directory server, etc. OpenNebula vCenter drivers offer a way to tie one OpenNebula template with one of these customizations so it is applied on VM startup. You can get more information about this system in `VMware documentation <https://pubs.vmware.com/vsphere-60/index.jsp?topic=%2Fcom.vmware.vsphere.vm_admin.doc%2FGUID-EB5F090E-723C-4470-B640-50B35D1EC016.html>`__.
 
 There are a couple of things to take into account:
 
