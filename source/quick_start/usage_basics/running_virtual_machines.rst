@@ -13,7 +13,7 @@ In this tutorial, we’ll use that infrastructure to deploy a fully-configured v
 
 We’ll follow these high-level steps:
 
-   #. Download the Wordpress Appliance from the OpenNebula Marketplace.
+   #. Download the WordPress Appliance from the OpenNebula Marketplace.
    #. Instantiate the Virtual Machine for the Appliance.
    #. Verify the Installation by Connecting to WordPress.
 
