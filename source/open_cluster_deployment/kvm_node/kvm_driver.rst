@@ -366,7 +366,266 @@ The agent package needed in the Guest OS is available in most distributions. It'
 
 The communication channel with guest agent is enabled in the domain XML when the ``GUEST_AGENT`` feature is selected in the VM Template.
 
-You can extend the VM monitoring information by setting ``:enabled`` to **true** on the file ``/var/lib/one/remotes/etc/im/kvm-probes.d/guestagent.conf``. Execute ``onehost sync --force`` afterwards.
+You can extend the VM monitoring information with information gathered by the guest agent by setting ``:enabled`` to **true** on the file ``/var/lib/one/remotes/etc/im/kvm-probes.d/guestagent.conf``. Execute ``onehost sync --force`` afterwards. This file contains a list of ``:commands`` that will be executed when running the VM monitoring probes. The result of the execution of these commands will appear on the MONITORING section on the VM instance template.
+
+By default an example command is provided, this effectively allows to detect VM crashes
+
+.. code-block:: yaml
+
+  :commands:
+    :vm_crash: "one-$vm_id '{\"execute\":\"guest-ping\"}' --timeout 5"
+
+As a result you'll see on the MONITORING section an output containing the result of executing said command and parsing the ``return`` key, which is ``{}``
+
+.. code-block:: json
+
+    {
+      "CPU": "0.0",
+      "DISKRDBYTES": "287175970",
+      "DISKRDIOPS": "14795",
+      "DISKWRBYTES": "2655895040",
+      "DISKWRIOPS": "36070",
+      "DISK_SIZE": [
+        {
+          "ID": "0",
+          "SIZE": "863"
+        },
+        {
+          "ID": "1",
+          "SIZE": "1"
+        }
+      ],
+      "ID": "159",
+      "MEMORY": "1838804",
+      "NETRX": "135117657",
+      "NETTX": "630067",
+      "TIMESTAMP": "1720712912",
+      "VM_CRASH": "{}"
+    }
+
+If a VM doesn't have the qemu guest agent or libvirt cannot query it, you'll get in the ``VM_CRASH`` section an output like ``error: Guest agent is not responding: QEMU guest agent is not connected``.
+
+You can define your custom commands. For example, the guest agent command ``virsh qemu-agent-command one-159 '{"execute":"guest-info"}' | jq .``  showcases detailed guest information
+
+.. code-block:: json
+
+    {
+      "return": {
+        "version": "6.2.0",
+        "supported_commands": [
+          {
+            "enabled": true,
+            "name": "guest-ssh-remove-authorized-keys",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-ssh-add-authorized-keys",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-ssh-get-authorized-keys",
+            "success-response": true
+          },
+          {
+            "enabled": false,
+            "name": "guest-get-devices",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-get-osinfo",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-get-timezone",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-get-users",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-get-host-name",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-exec",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-exec-status",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-get-memory-block-info",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-set-memory-blocks",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-get-memory-blocks",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-set-user-password",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-get-fsinfo",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-get-disks",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-set-vcpus",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-get-vcpus",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-network-get-interfaces",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-suspend-hybrid",
+            "success-response": false
+          },
+          {
+            "enabled": true,
+            "name": "guest-suspend-ram",
+            "success-response": false
+          },
+          {
+            "enabled": true,
+            "name": "guest-suspend-disk",
+            "success-response": false
+          },
+          {
+            "enabled": true,
+            "name": "guest-fstrim",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-fsfreeze-thaw",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-fsfreeze-freeze-list",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-fsfreeze-freeze",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-fsfreeze-status",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-file-flush",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-file-seek",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-file-write",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-file-read",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-file-close",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-file-open",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-shutdown",
+            "success-response": false
+          },
+          {
+            "enabled": true,
+            "name": "guest-info",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-set-time",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-get-time",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-ping",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-sync",
+            "success-response": true
+          },
+          {
+            "enabled": true,
+            "name": "guest-sync-delimited",
+            "success-response": true
+          }
+        ]
+      }
+    }
+
+You can translate that into a command on the configuration file as follows
+
+.. code-block:: yaml
+
+  :enabled: true
+  :commands:
+    :vm_crash: "one-$vm_id '{\"execute\":\"guest-ping\"}' --timeout 5"
+    :guest_info: "one-$vm_id '{\"execute\":\"guest-info\"}' --timeout 5"
+
 
 Importing VMs
 -------------
