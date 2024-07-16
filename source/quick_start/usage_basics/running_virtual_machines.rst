@@ -4,48 +4,181 @@
 Running Virtual Machines
 ========================
 
-.. important:: This guide assumes that you have deployed the OpenNebula front-end following the :ref:`Deployment Basics guide <deployment_basics>` and a metal Edge Cluster with KVM hypervisor following the :ref:`Provisining an Edge Cluster <first_edge_cluster>` guide.
+In previous tutorials of this Quick Start Guide, we:
 
-OpenNebula Systems maintains a curated set of Virtual Machines in the `public marketplace <http://marketplace.opennebula.io>`__. We are going to use the WordPress appliance to try out our brand new cloud.
+   * Installed an :ref:`OpenNebula Front-end using miniONE <try_opennebula_on_kvm>`, and
+   * Deployed a :ref:`Metal Edge Cluster <first_edge_cluster>` on AWS.
+   
+In this tutorial, we’ll use that infrastructure to deploy a fully-configured virtual machine with a ready-to-use WordPress installation, in under five minutes.
 
-We are going to assume the Edge Cluster naming schema "metal-kvm-aws-cluster".
+We’ll follow these high-level steps:
 
-Step 1. Download the image from the Marketplace
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   #. Download the Wordpress Appliance from the OpenNebula Marketplace.
+   #. Instantiate the Virtual Machine for the Appliance.
+   #. Verify the Installation by Connecting to WordPress.
 
-Log in to Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab and search for WordPress. Select it and click on the icon with the cloud and the down arrow inside.
+.. important:: As mentioned above, in this tutorial we’ll deploy to the Edge Cluster created previously in this Quick Start Guide. To complete this tutorial, you need the Edge Cluster up and running.
 
-|wordpress_marketplace|
+Step 1. Download the Wordpress Appliance from the OpenNebula Marketplace
+========================================================================
 
-Click ``Next`` in the first step and then select a datastore. For efficiency sake, and taking into account we are only going to run this application in the OpenNebula cluster created in "Operations Basics", select the aws-cluster-images Datastore.
+The `OpenNebula Public Marketplace <https://marketplace.opennebula.io>`_ is a repository of Virtual Machines and appliances which are curated, tested and certified by OpenNebula.
 
-|aws_cluster_images_datastore|
+To access the Marketplace, first log in to Sunstone on your OpenNebula Front-end, as user ``oneadmin``.
 
-The appliance will be ready when the image in ``Storage --> Images`` moves to READY from its LOCKED state.
+Open the left-hand pane (by hovering the mouse over the icons on the left), then select **Storage**, then **Apps**.
 
-.. |wordpress_marketplace| image:: /images/wordpress_marketplace.png
-.. |aws_cluster_images_datastore| image:: /images/aws_cluster_images_datastore.png
+.. image:: /images/sunstone-select_apps.png
+   :align: center
+   :scale: 70%
+
+|
+
+Sunstone will display the **Apps** screen, showing the first page of apps that are available for download.
+
+.. image:: /images/sunstone-apps_list.png
+   :align: center
+   :scale: 60%
+
+|
+
+Search for the app called **Service WordPress - KVM**. If it’s not on the list, type ``wordpress`` in the search field at the top, to filter by name.
+
+.. image:: /images/sunstone-apps-word_filter.png
+   :align: center
+   :scale: 70%
+
+|
+
+Click **Service WordPress - KVM** to select it, then click the **Import into Datastore** |icon1| icon:
+
+.. image:: /images/sunstone-import_wordp_to_ds.png
+   :align: center
+
+|
+
+Sunstone will display the **Download App to OpenNebula** dialog:
+
+.. image:: /images/sunstone-download_app.png
+   :align: center
+   :scale: 60%
+
+|
+
+Click **Next**. In the next screen, we'll need to select a datastore. For efficiency, and to try out the cluster created in :ref:`Provisioning an Edge Cluster <first_edge_cluster>`, select the ``aws-cluster-image`` datastore:
+
+.. image:: /images/aws_cluster_images_datastore.png
+   :align: center
+
+|
+
+Click **Finish**. Sunstone will download the appliance template and display basic information for the appliance, shown below in the **Info** tab:
+
+.. image:: /images/sunstone-wordpress_info.png
+   :align: center
+   :scale: 80%
+
+|
+
+Wait for the appliance **State** to indicate **READY**. When it does, the VM will be ready to be instantiated.
 
 Step 2. Instantiate the VM
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+==========================
 
-Proceed to the ``Templates --> VMs`` tab and select the "Service WordPress - KVM" VM Template (that should one of two available, along with the default CentOS 7 pulled from the Marketplace by miniONE). Click on Instantiate.
+In the left-hand pane, click **Templates**, then **VM Templates**:
 
-Feel free to modify the capacity and input data to configure the WordPress service. A required step is clicking on the ``Network`` tab and attaching the aws-cluster-public network.
+.. image:: /images/sunstone-vm_templates.png
+   :align: center
+   :scale: 70%
 
-|select_aws_cluster_public_network|
+|
 
-Now proceed to ``Instances --> VMs`` and wait for the only VM there to get into RUNNING state.
+Select **Service WordPress - KVM**, then click the **Instantiate** |icon2| icon at the top:
 
-.. note:: Even though Sunstone shows the VNC console button, VNC access to Containers or VMs running in Edge Clusters has been deemed insecure and as such OpenNebula filters this traffic. This means that the VNC access won't work for VMs running in Edge Clusters.
+.. image:: /images/sunstone-vm_instantiate.png
+   :align: center
+   :scale: 70%
 
-.. |select_aws_cluster_public_network| image:: /images/select_aws_cluster_public_network.png
+|
+
+Sunstone will display the first screen of the **Instantiate VM Template** wizard:
+
+.. image:: /images/sunstone-vm_instantiate_wiz1.png
+   :align: center
+   :scale: 70%
+
+|
+
+Feel free to modify the VM’s capacity according to your requirements, or leave the default values.
+
+Click **Next**. Sunstone displays the **User Inputs** screen, where you can modify parameters such as the security credentials for the site administrator, or SSL certificates.
+
+.. image:: /images/sunstone-vm_instantiate_wiz2.png
+   :align: center
+   :scale: 60%
+
+|
+
+Click **Next**. Sunstone displays the last screen of the wizard, **Advanced Options**:
+
+.. image:: /images/sunstone-vm_instantiate_wiz3.png
+   :align: center
+   :scale: 70%
+
+|
+
+In this screen we need to specify what network the VM will connect to. Select the **Network** tab, then click the **Attach NIC** button:
+
+.. image:: /images/sunstone-vm_instantiate_wiz4-attach_nic.png
+   :align: center
+
+|
+
+Sunstone will display a wizard with network parameters:
+
+.. image:: /images/sunstone-vm_instantiate-attach_nic1.png
+   :align: center
+   :scale: 70%
+
+|
+
+Click **Next**. Sunstone displays the **Select a network** screen:
+
+.. image:: /images/select_aws_cluster_public_network.png
+   :align: center
+
+|
+
+Select ``aws-cluster-public``, then click **Next**. Sunstone displays the final screen, **Select QoS**:
+
+.. image:: /images/sunstone-vm_instantiate-attach_nic3.png
+   :align: center
+   :scale: 70%
+
+|
+
+To instantiate the VM, click **Finish**. Sunstone will take you to the last screen of the **Instantiate VM Template** wizard. To deploy the VM, click **Finish**.
+
+Sunstone will deploy the VM to the AWS edge cluster, and display the **VMs** screen with the status of the VM. When the VM is running --- as indicated by the green dot --- it will be ready for your first login.
+
+.. image:: /images/sunstone-wordpress.png
+   :align: center
+
+|
+
+.. note:: The VNC icon |icon3| displayed by Sunstone does not work for accessing VMs deployed on Edge Clusters, since this access method is considered insecure and is disabled by OpenNebula.
 
 Step 3. Connect to WordPress
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+============================
 
-Select the public IP of the VM, which is highlighted in bold. You should only have one bold IP in that VM. Simply enter that in a new tab in your browser and you'll be greeted by the famous five minute WordPress installation process! That's it, you have a working OpenNebula cloud. Congrats!
+Select the public IP of the VM, which is highlighted in bold (blurred in the screen shown above). Simply enter the IP in your browser, and you’ll be greeted by the famous five-minute WordPress installation process.
 
 |wordpress_install_page|
 
+That’s it --- you have a working OpenNebula cloud with a WordPress up and running. Congratulations!
+
 .. |wordpress_install_page| image:: /images/wordpress_install_page.png
+
+.. |icon1| image:: /images/icons/sunstone/import_into_datastore.png
+.. |icon2| image:: /images/icons/sunstone/instantiate.png
+.. |icon3| image:: /images/icons/sunstone/VNC.png
