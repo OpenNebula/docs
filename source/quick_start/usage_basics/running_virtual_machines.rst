@@ -19,7 +19,7 @@ We’ll follow these high-level steps:
 
 .. important:: As mentioned above, in this tutorial we’ll deploy to the Edge Cluster created previously in this Quick Start Guide. To complete this tutorial, you need the Edge Cluster up and running.
 
-Step 1. Download the Wordpress Appliance from the OpenNebula Marketplace
+Step 1. Download the WordPress Appliance from the OpenNebula Marketplace
 ========================================================================
 
 The `OpenNebula Public Marketplace <https://marketplace.opennebula.io>`_ is a repository of Virtual Machines and appliances which are curated, tested and certified by OpenNebula.
