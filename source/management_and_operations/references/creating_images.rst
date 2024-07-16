@@ -36,8 +36,7 @@ Using the CLI, you can list and import images using these commands:
 	$ onemarketapp list
 	  ID NAME                         VERSION  SIZE STAT TYPE  REGTIME MARKET               ZONE
 	[...]
-	  42 alpine-vrouter (KVM)           1.0.3  256M  rdy  img 03/10/16 OpenNebula Public       0
-	  43 alpine-vrouter (vcenter)         1.0  256M  rdy  img 03/10/16 OpenNebula Public       0
+	  43 alpine-vrouter                 1.0.3  256M  rdy  img 03/10/16 OpenNebula Public       0
 	  44 CoreOS alpha                1000.0.0  245M  rdy  img 04/03/16 OpenNebula Public       0
 	  45 Devuan                      1.0 Beta    8M  rdy  img 05/03/16 OpenNebula Public       0
 	$ onemarketapp export Devuan Devuan --datastore default
