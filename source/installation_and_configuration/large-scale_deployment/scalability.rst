@@ -65,7 +65,7 @@ The four most common API calls were used to stress the core at the same time in 
 Hypervisor Scalability
 --------------------------------------
 
-The number of VMs, micro-VMs or containers that a virtualization node can run is limited by the virtualization technology, hardware configuration and OpenNebula node components (drivers). In this section we have evaluated only the performance of OpenNebula, virtualization and monitoring drivers for the KVM, Firecracker and LXD. The host specs are the following:
+The number of VMs, micro-VMs or containers that a virtualization node can run is limited by the virtualization technology, hardware configuration and OpenNebula node components (drivers). This section presents the performance of OpenNebula and the virtualization and monitoring drivers for KVM, based on the following host specs:
 
 +---------------+---------------------------------------------------------------+
 | CPU model:    | Intel(R) Xeon(TM) E5-2650 v4 @2.2GHz, 2 sockets 24 cores (HT) |
@@ -76,22 +76,16 @@ The number of VMs, micro-VMs or containers that a virtualization node can run is
 +---------------+---------------------------------------------------------------+
 | OS:           | Ubuntu 18.04                                                  |
 +---------------+---------------------------------------------------------------+
-| Hypervisor:   | Libvirt (4.0), Qemu (2.11), lxd (3.03)                        |
+| Hypervisor:   | Libvirt (4.0), Qemu (2.11)                                    |
 +---------------+---------------------------------------------------------------+
 
-**Virtualization Drivers**: We have tested the ability of OpenNebula drivers to manage a given number of VMs. Note that the actual limits of the virtualization technologies are greater and the following tests do not try to assess these limits. OpenNebula is capable of managing the following number of VMs for each driver:
+**Virtualization Drivers**: We have tested the ability of the OpenNebula drivers to manage a given number of VMs. Note that the actual limits of the virtualization technologies are greater and the following test did not try to assess these limits. Testing on the KVM hypervisor yielded the following:
 
 +-------------+-------------------+-------+------+--------------+-----------+-----+
 | Hypervisor  | OS                | RAM   | CPU  | Max. VM/host | Context   | VNC |
 +-------------+-------------------+-------+------+--------------+-----------+-----+
 | KVM         | None (empty disk) | 32MB  | 0.1  | 500          | SSH keys  | yes |
 +-------------+-------------------+-------+------+--------------+-----------+-----+
-| LXD         | Alpine            | 32MB  | 0.1  | 500          | SSH keys  | yes |
-+-------------+-------------------+-------+------+--------------+-----------+-----+
-| FireCracker | Alpine            | 32MB  | 0.1  | 1500         | SSH keys  | yes |
-+-------------+-------------------+-------+------+--------------+-----------+-----+
-
-Note: VMs were deployed in 100 chunks in all cases.
 
 **Monitoring Drivers**: In this case we measured the time it takes the monitor driver to gather VM monitoring and state this information:
 
@@ -99,10 +93,6 @@ Note: VMs were deployed in 100 chunks in all cases.
 | Hypervisor  | Total monitoring time | Instance Monitoring time |
 +-------------+-----------------------+--------------------------+
 | KVM         | 52s (500 VMs)         | 0.11s                    |
-+-------------+-----------------------+--------------------------+
-| LXD         | 48s (500 containers)  | 0.10s                    |
-+-------------+-----------------------+--------------------------+
-| Firecracker | 43s (1500 micro-VMs)  | 0.03s                    |
 +-------------+-----------------------+--------------------------+
 
 Note: These values can be used as a baseline to adjust the probe frequency in :ref:`/etc/one/monitord.conf <mon_conf>`.
@@ -118,6 +108,8 @@ Following OpenNebula 5.12, the monitoring system uses TCP/UDP to send monitoring
 For vCenter environments, OpenNebula uses the VI API offered by vCenter to monitor the state of the hypervisor and all the Virtual Machines running in all the imported vCenter clusters. The driver is optimized to cache common VM information.
 
 In both environments, our scalability testing achieves the monitoring of tens of thousands of VMs in a few minutes.
+
+.. important:: The vCenter driver is a legacy component. It is currently included in the distribution, but no longer receives updates or bug fixes.
 
 Core Tuning
 ---------------------------

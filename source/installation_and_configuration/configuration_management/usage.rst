@@ -186,7 +186,6 @@ When running in verbose mode with ``--verbose``, it writes all checked files:
 .. prompt:: bash # auto
 
     # onecfg validate --verbose
-    INFO  : File '/etc/one/vcenter_driver.default' - OK
     INFO  : File '/etc/one/ec2_driver.default' - OK
     INFO  : File '/etc/one/az_driver.default' - OK
     INFO  : File '/etc/one/auth/ldap_auth.conf' - OK
@@ -200,7 +199,6 @@ When running in verbose mode with ``--verbose``, it writes all checked files:
     .. prompt:: bash # auto
 
         # onecfg validate --prefix /tmp/ONE --verbose
-        INFO  : File '/tmp/ONE/etc/one/vcenter_driver.default' - OK
         INFO  : File '/tmp/ONE/etc/one/ec2_driver.default' - OK
         INFO  : File '/tmp/ONE/etc/one/az_driver.default' - OK
         INFO  : File '/tmp/ONE/etc/one/auth/ldap_auth.conf' - OK
@@ -399,7 +397,6 @@ To see the files changed during the upgrade, run the command in verbose mode via
     ANY   : Backup stored in '/tmp/onescape/backups/2019-12-12_15:14:39_18278'
     INFO  : Updating from 5.8.0 to 5.10.0
     INFO  : Incremental update from 5.8.0 to 5.10.0
-    INFO  : Update file '/etc/one/vcenter_driver.default'
     INFO  : Skip file '/etc/one/cli/oneprovision.yaml' - missing
     INFO  : Update file '/etc/one/cli/onegroup.yaml'
     INFO  : Update file '/etc/one/cli/onehost.yaml'

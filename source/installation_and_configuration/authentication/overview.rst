@@ -24,7 +24,7 @@ You can choose from the following authentication drivers to access OpenNebula fr
 
 **b) Sunstone Authentication**
 
-By default, any authentication driver configured to work with OpenNebula can be used out-of-the-box with Sunstone. Additionally you can add a TLS-proxy to secure the Sunstone. See:
+By default, any authentication driver configured to work with OpenNebula can be used out-of-the-box with Sunstone. Additionally you can add a TLS-proxy to secure Sunstone. See:
 
 - :ref:`Sunstone Authentication <sunstone_auth>`
 

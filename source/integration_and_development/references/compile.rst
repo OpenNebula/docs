@@ -218,4 +218,6 @@ Building Sunstone from Source
 Building Ruby Sunstone from Source
 ================================================================================
 
-Please check the :ref:`Ruby Sunstone Development guide <ruby_sunstone_dev>` for detailed information
+Ruby Sunstone is a legacy component, which no longer receives updates or bug fixes. Sunstone UI functionality is now provided by the FireEdge server.
+
+Please check the :ref:`Ruby Sunstone Development guide <ruby_sunstone_dev>` for detailed information.

@@ -68,7 +68,7 @@ For example, this is the directory tree of the bridge driver synced to a virtual
 
 .. code-block:: text
 
-    root@ubuntu1804-lxd-ssh-6ee11-2:/var/tmp/one/vnm/bridge# tree ./
+    root@ubuntu1804-ssh-6ee11-2:/var/tmp/one/vnm/bridge# tree ./
     ./
     ├── clean
     ├── clean.d

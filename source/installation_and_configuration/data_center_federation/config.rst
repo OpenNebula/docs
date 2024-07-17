@@ -14,9 +14,9 @@ In this document, each configuration step starts with **Master** or **Slave** to
 
 .. important:: When using a HA environment, every change at any configuration file included in the steps below should be applied to every HA cluster node.
 
-.. important:: The federation can be set-up with MySQL/MariaDB or SQLite backends, but you can't mix them across Zones. MySQL/MariaDB is recommended for production deployments.
+.. important:: The federation can be set up with MySQL/MariaDB or SQLite as backends, but you can't mix them across Zones. MySQL/MariaDB is recommended for production deployments.
 
-.. important:: FireEdge is a next-generation GUI, which is not fully supported in federation environments yet. Please connect only to the zone you which to operate with FireEdge directly, as it doesn't allow to switch zones. Also take into account that the FireEdge functionality enabled in Sunstone won't be present if you switch to a remote zone in Sunstone.
+.. important:: FireEdge, the next-generation server for the Sunstone GUI, currently does not support switching zones in a federation environment. Please connect directly to the zone that you wish to work on. Likewise, take into account that the FireEdge functionality enabled in Sunstone will not be available if you switch to a remote zone from within Sunstone.
 
 Step 1. Configure the OpenNebula Federation Master Zone
 ================================================================================
@@ -122,10 +122,10 @@ Now you can start adding more servers to the *slave* Zone to provide it with HA 
 
 .. important:: It is important to double check that the federation is working before adding HA servers to the Zone, as you will be updating the Zone metadata which is federated information.
 
-Step 4. Show service information by Zone Sunstone (Optional)
+Step 4. Show Service Information by Zone in Sunstone (Optional)
 ================================================================================
 
-To see the information of the services in the sunstone of a particular zone, it is required to do the following:
+To see services information for a specific zone within Sunstone, you need to do the following:
 
 - Adjust the ``:host`` field in ``/etc/one/oneflow-server.conf`` of the slave zone to allow listening for requests outside of 127.0.0.1
 
@@ -133,7 +133,7 @@ To see the information of the services in the sunstone of a particular zone, it 
 
 - Update the slave zone in the master zone. Adding the ``ONEFLOW_ENDPOINT=http://<slave-zone-ip>:2474/`` field with the public address of the slave zone with the following command ``onezone update <id-slave-zone>``
 
-- restart sunstone service
+- Restart the Sunstone service
 
 Importing Existing OpenNebula Zones
 ================================================================================

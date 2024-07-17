@@ -33,5 +33,3 @@ Fedora 32
 ---------
 
 `Live migration <https://github.com/OpenNebula/one/issues/4695>`__ with KVM virtual machines doesn't work.
-
-Firecracker doesn't support cgroup v2; Host must use kernel parameter ``systemd.unified_cgroup_hierarchy=0`` to fall back to cgroup v1.
