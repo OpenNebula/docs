@@ -186,6 +186,7 @@ When running in verbose mode with ``--verbose``, it writes all checked files:
 .. prompt:: bash # auto
 
     # onecfg validate --verbose
+    INFO  : File '/etc/one/vcenter_driver.default' - OK
     INFO  : File '/etc/one/ec2_driver.default' - OK
     INFO  : File '/etc/one/az_driver.default' - OK
     INFO  : File '/etc/one/auth/ldap_auth.conf' - OK
@@ -199,6 +200,7 @@ When running in verbose mode with ``--verbose``, it writes all checked files:
     .. prompt:: bash # auto
 
         # onecfg validate --prefix /tmp/ONE --verbose
+        INFO  : File '/tmp/ONE/etc/one/vcenter_driver.default' - OK
         INFO  : File '/tmp/ONE/etc/one/ec2_driver.default' - OK
         INFO  : File '/tmp/ONE/etc/one/az_driver.default' - OK
         INFO  : File '/tmp/ONE/etc/one/auth/ldap_auth.conf' - OK

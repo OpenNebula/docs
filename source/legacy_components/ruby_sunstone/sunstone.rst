@@ -7,6 +7,8 @@
 Sunstone Configuration
 ======================
 
+.. important:: You are in the :ref:`Legacy Components <legacy_components>` section of the documentation. The pages in this section refer to components currently included in OpenNebula, but which are no longer maintained or receive bug fixes; they will be removed in future versions. For information on the latest changes in OpenNebula, please refer to the :ref:`Release Notes <release_notes>`.
+
 The OpenNebula Sunstone server provides a **web-based management interface**. It's a dedicated daemon installed by default as part of the :ref:`Single Front-end Installation <frontend_installation>`, but can be deployed independently on a different machine. The server is distributed as an operating system package ``opennebula-sunstone`` with the system services ``opennebula-sunstone`` for Sunstone and ``opennebula-novnc`` for noVNC Proxy.
 
 Configuration
