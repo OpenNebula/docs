@@ -28,8 +28,6 @@ Front-End Components
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 | MariaDB or MySQL         | Version included in the Linux distribution             | :ref:`MySQL Setup <mysql>`                            |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-| PostgreSQL               | 9.5+, Version included in the Linux distribution       | :ref:`PostgreSQL Setup <postgresql>`                  |
-+--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 | SQLite                   | Version included in the Linux distribution             | Default DB, no configuration needed                   |
 +--------------------------+--------------------------------------------------------+-------------------------------------------------------+
 | Ruby Gems                | Versions installed by packages or install_gems utility | :ref:`front-end installation <ruby_runtime>`          |

@@ -542,7 +542,6 @@ pci
 persisent
 persistency
 pluggable
-postgresql
 postmigrate
 poweroff
 poweron

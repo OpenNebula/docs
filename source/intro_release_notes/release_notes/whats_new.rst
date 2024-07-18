@@ -25,6 +25,7 @@ Remove components, no longer included in the OpenNebula distribution:
 - DockerHub Marketplace
 - Docker Registry
 - TurnkeyLinux
+- Postgresql - TP
 
 Legacy components, included in the distribution but no longer receive updates or bug fixes:
 

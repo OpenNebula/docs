@@ -25,7 +25,7 @@ The OpenNebula Daemon configuration file can be found in ``/etc/one/oned.conf`` 
 -  ``HOSTNAME``: Hostname to use instead of autodetect it. This hostname is used to connect to Front-end during driver operations.
 -  ``DB``: Vector of configuration attributes for the database Back-end.
 
-   -  ``BACKEND``: Set to ``sqlite`` or ``mysql`` or ``postgresql``. Please visit the :ref:`MySQL configuration guide <mysql>` or :ref:`PostgreSQL configuration guide <postgresql>` for more information.
+   -  ``BACKEND``: Set to ``sqlite`` or ``mysql``. Please see the :ref:`MySQL configuration guide <mysql>` for more information.
    -  ``SERVER`` (MySQL only): Host name or IP address of the MySQL server.
    -  ``USER`` (MySQL only): MySQL user's login ID.
    -  ``PASSWD`` (MySQL only): MySQL user's password.

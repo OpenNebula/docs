@@ -208,12 +208,12 @@ Several OpenNebula components depend on Ruby and specific Ruby libraries (gems).
     # test -L /usr/share/one/gems && unlink /usr/share/one/gems
     # /usr/share/one/install_gems
 
-Step 5. Enabling MySQL/MariaDB/PostgreSQL (Optional)
+Step 5. Enabling MySQL/MariaDB (Optional)
 ================================================================================
 
 You can skip this step if you want to deploy OpenNebula as quickly as possible for evaluation.
 
-If you are deploying Front-end for production/serious use, make sure you read the :ref:`Database Setup <database_setup>` guide and select the suitable database Back-end. Although it **is** possible to switch from (default) SQLite to MySQL/MariaDB Back-end later, it's not easy and straightforward, so **we suggest to deploy and use MySQL/MariaDB Back-end from the very beginning**. Also, please note it's not possible to migrate existing databases to PostgreSQL at all.
+If you are deploying Front-end for production/serious use, make sure you read the :ref:`Database Setup <database_setup>` guide and select the suitable database Back-end. Although it **is** possible to switch from (default) SQLite to MySQL/MariaDB Back-end later, it's not easy and straightforward, so **we suggest to deploy and use MySQL/MariaDB Back-end from the very beginning**.
 
 Step 6. Configuring OpenNebula
 ================================================================================

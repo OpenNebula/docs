@@ -41,7 +41,7 @@ Available subcommands (visit the :ref:`manual page <cli>` for full reference):
 - :ref:`update-body <onedb_update_body>` - Allows to update OpenNebula objects body in database
 - :ref:`sqlite2mysql <onedb_sqlite2mysql>` - Migration tool from SQLite to MySQL/MariaDB
 
-The command ``onedb`` works with all supported database backends - SQLite, MySQL/MariaDB, or PostgreSQL. The database type and connection parameters are automatically taken from OpenNebula Daemon configuration (:ref:`/etc/one/oned.conf <oned_conf>`), but can be overwrite on the command line with the following example parameters:
+The command ``onedb`` works with all supported database backends - SQLite or MySQL/MariaDB. The database type and connection parameters are automatically taken from OpenNebula Daemon configuration (:ref:`/etc/one/oned.conf <oned_conf>`), but can be overwrite on the command line with the following example parameters:
 
 **Automatic Connection Parameters**
 
@@ -60,12 +60,6 @@ The command ``onedb`` works with all supported database backends - SQLite, MySQL
 .. prompt:: bash $ auto
 
     $ onedb <command> -v -S localhost -u oneadmin -p oneadmin -d opennebula
-
-**PostgreSQL**
-
-.. prompt:: bash $ auto
-
-    $ onedb <command> -v -t postgresql -S localhost -u oneadmin -p oneadmin -d opennebula
 
 .. warning::
 

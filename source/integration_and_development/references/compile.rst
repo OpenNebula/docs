@@ -42,8 +42,6 @@ The argument expression [OPTION=VALUE] is used to set non-default values for :
 +----------------+--------------------------------------------------------------+
 | mysql          | **yes** if you want to build mysql support                   |
 +----------------+--------------------------------------------------------------+
-| postgresql     | **yes** if you want to build PostgreSQL support              |
-+----------------+--------------------------------------------------------------+
 | xmlrpc         | path-to-xmlrpc-install                                       |
 +----------------+--------------------------------------------------------------+
 | parsers        | **yes** if you want to rebuild flex/bison files              |
