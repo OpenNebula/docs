@@ -8,6 +8,13 @@ What's New in |version|
 
 **OpenNebula 6.10 ‘’** is the fifth stable release of the OpenNebula 6 series. This version of OpenNebula focuses on features to improve the end user experience as well as to optimize the use of the HW resources in KVM-based infrastructures.
 
+..
+   * Sunstone -> FSunstone. Fully functional, this is now the default
+   * Keeping the name, FireEdge is just the front-end.
+   * Improvements on Backups
+   * Legacy components, we are keeping them but not maintaining them, ie we won't support new relesaes of vCenter for instance, nor adding new functionality to RSunstone
+
+
 We’d like to thank all the people that :ref:`support the project<acknowledgements>`, OpenNebula is what it is thanks to its community! Please keep rocking.
 
 Remove components, no longer included in the OpenNebula distribution:
@@ -23,6 +30,10 @@ Legacy components, included in the distribution but no longer receive updates or
 
 - Ruby Sunstone
 - vCenter Driver
+
+..
+   Beta Release
+   Bubble Nebula https://en.wikipedia.org/wiki/Bubble_Nebula
 
 OpenNebula Core
 ================================================================================
