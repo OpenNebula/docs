@@ -140,6 +140,10 @@ The dedicated tool ``onesupport_vcenter_privs`` is used to gather permissions co
 
     The tool connects directly to your vCenter instance and must be provided with connection parameters.
 
+.. important::
+
+    The legacy vCenter driver is included in the distribution, but no longer receives updates or bug fixes.
+    
 Syntax:
 
 .. prompt:: bash $ auto

@@ -21,13 +21,26 @@ You can list the Marketplace Appliances (apps) with ``onemartketapp list`` comma
 
     $ onemarketapp list
       ID NAME                          VERSION  SIZE STAT TYPE  REGTIME MARKET     ZONE
-     463 scratch                           1.0    2G  rdy  img 06/25/13 DockerHub     0
-     462 alt                               1.0    2G  rdy  img 02/03/21 DockerHub     0
-     461 hipache                           1.0    2G  rdy  img 06/01/16 DockerHub     0
-     ...
-       2 avideo_16.0 - LXD                 1.0    5G  rdy  img 06/05/20 TurnKey Li    0
-       1 asp - LXD                         1.0    5G  rdy  img 11/23/18 TurnKey Li    0
-       0 ansible_16.0 - LXD                1.0    5G  rdy  img 08/28/20 TurnKey Li    0
+        74 Alpine Linux 3.20                     6.10.0-2-2  256M  rdy  img 05/14/24 OpenNebula    0
+        73 Amazon Linux 2023                     6.10.0-2-2   25G  rdy  img 05/14/24 OpenNebula    0
+        72 Service MinIO                         6.10.0-2-2  2.2G  rdy  img 05/31/24 OpenNebula    0
+        71 Service Virtual Router                6.10.0-2-2    2G  rdy  img 05/15/24 OpenNebula    0
+        70 Service WordPress - KVM               6.10.0-2-2   10G  rdy  img 05/14/24 OpenNebula    0
+        69 Service Harbor                        6.10.0-2-2   20G  rdy  img 05/14/24 OpenNebula    0
+        68 Custom via netboot.xyz                  2.0.32-1    0M  rdy  tpl 10/27/21 OpenNebula    0
+        67 Ttylinux - KVM                        1.0-1.2019  200M  rdy  img 01/01/70 OpenNebula    0
+        ...
+        23 FreeBSD 13                            6.10.0-2-2    4G  rdy  img 05/14/24 OpenNebula    0
+        22 Alpine Linux 3.18                     6.10.0-2-2  256M  rdy  img 05/14/24 OpenNebula    0
+        21 Oracle Linux 9                        6.10.0-2-2   37G  rdy  img 05/14/24 OpenNebula    0
+        20 ALT Linux p9                          6.8.1-1-20  1.5G  rdy  img 02/01/24 OpenNebula    0
+        19 OneKE 1.29 Airgapped Storage          1.29.4-6.1    0M  rdy  tpl 05/10/24 OpenNebula    0
+        18 OneKE 1.29 Airgapped OS disk          1.29.4-6.1   25G  rdy  img 05/10/24 OpenNebula    0
+        17 OneKE 1.29 Airgapped                  1.29.4-6.1    0M  rdy  tpl 05/10/24 OpenNebula    0
+        16 Service OneKE 1.29 Airgapped          1.29.4-6.1    0M  rdy  srv 05/10/24 OpenNebula    0
+        15 OneKE 1.29                            1.29.2-6.1    0M  rdy  tpl 05/10/24 OpenNebula    0
+        14 OneKE 1.29 OS disk                    1.29.2-6.1   25G  rdy  img 05/10/24 OpenNebula    0
+        13 OneKE 1.29 VNF                        1.29.2-6.1    2G  rdy  img 05/15/24 OpenNebula    0
 
 To get more details of an Appliance use the ``show`` option, for example:
 
@@ -169,7 +182,7 @@ and for VM templates:
     ID: 448
     ID: 449
 
-.. important:: If a running VM has not TEMPLATE_ID attribute, it can not be imported into the marketplace.
+.. important:: If a running VM doesn't have the ``TEMPLATE_ID`` attribute set, it cannot be imported into the marketplace.
 
 .. note:: NICs are marked as auto, so they can work when the Marketplace Application is exported to a OpenNebula cloud. If you have NIC_ALIAS in the template, NICs are **not** marked as auto, you need to select the network when you instantiate it.
 

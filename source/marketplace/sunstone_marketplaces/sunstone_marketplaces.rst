@@ -4,8 +4,7 @@
 Managing Marketplaces in Sunstone
 ================================================================================
 
-Marketplaces could be manage graphically using :ref:`Sunstone <fireedge_sunstone>`:
-You will find the marketplace sub-menu under the storage menu. From there, you will be able to:
+The :ref:`Sunstone web UI <fireedge_sunstone>` allows you to graphically manage marketplaces. Within Sunstone, open the left-hand pane, then select **Storage** -> **Marketplaces** to perform the following operations:
 
 * :ref:`Create a marketplace <sunstone_marketplaces_create>`
 * :ref:`Update a marketplace <sunstone_marketplaces_update>`
@@ -21,7 +20,7 @@ You will find the marketplace sub-menu under the storage menu. From there, you w
 
 .. _sunstone_marketplaces_create:
 
-Create a marketplace
+Create a Marketplace
 --------------------------------------------------------------------------------
 1. Click on the create button:
 
@@ -38,7 +37,7 @@ Create a marketplace
 
 .. _sunstone_marketplaces_update:
 
-Update a marketplace
+Update a Marketplace
 --------------------------------------------------------------------------------
 
 Select a marketplace and click on the update button:
@@ -47,7 +46,7 @@ Select a marketplace and click on the update button:
 
 .. _sunstone_marketplaces_delete:
 
-Delete a marketplace
+Delete a Marketplace
 --------------------------------------------------------------------------------
 
 Select a marketplace and click on the delete button:
@@ -56,7 +55,7 @@ Select a marketplace and click on the delete button:
 
 .. _sunstone_marketplaces_enable:
 
-Enable or disable a marketplace
+Enable or Disable a Marketplace
 --------------------------------------------------------------------------------
 
 Select a marketplace and click on the enable/disable menu:
@@ -65,7 +64,7 @@ Select a marketplace and click on the enable/disable menu:
 
 .. _sunstone_marketplaces_change:
 
-Change the owner or the group of a marketplace
+Change the Owner or the Group of a Marketplace
 --------------------------------------------------------------------------------
 
 Select a marketplace and click on the change owner/change group menu:
@@ -74,7 +73,7 @@ Select a marketplace and click on the change owner/change group menu:
 
 .. _sunstone_marketplaces_details:
 
-Check details of a marketplace
+Check Details of a Marketplace
 --------------------------------------------------------------------------------
 
 Select a marketplace and click on Info tab to see the details of a marketplace:
@@ -83,10 +82,10 @@ Select a marketplace and click on Info tab to see the details of a marketplace:
 
 .. _sunstone_marketplaces_appliances:
 
-See the appliances that have a marketplace
+See Appliances Available in a Marketplace
 --------------------------------------------------------------------------------
 
-Select a marketplace and click on Apps tab to see the appliances of a marketplace:
+Select a marketplace and click on Apps tab to see the appliances in a marketplace:
 
 |marketplace_apps|
 

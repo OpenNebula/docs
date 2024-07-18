@@ -248,7 +248,7 @@ RHEL
 
     $ yum upgrade opennebula-node-<hypervisor>
 
-.. note:: Note that the ``<hypervisor>`` tag should be replaced by the name of the corresponding hypervisor (i.e ``kvm``, ``lxc`` or ``firecracker``).
+.. note:: Note that the ``<hypervisor>`` tag should be replaced by the name of the corresponding hypervisor (i.e ``kvm`` or ``lxc``).
 
 .. important::  For KVM hypervisor it's necessary to restart also the libvirt service
 

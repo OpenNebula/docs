@@ -38,6 +38,8 @@ Front-End Components
 vCenter Nodes
 --------------------------------------------------------------------------------
 
+.. important:: The legacy vCenter driver is included in the distribution, but no longer receives updates or bug fixes.
+
 +-----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 | Component |                Version                |                                                            More information                                                            |
 +===========+=======================================+========================================================================================================================================+
@@ -234,6 +236,8 @@ You can take a look at `this <https://github.com/OpenNebula/one/issues/6143>`__ 
 
 vCenter 7.0 Platform Notes
 --------------------------------------------------------------------------------
+
+.. important:: The legacy vCenter driver is currently included in the distribution, but no longer receives updates or bug fixes.
 
 Problem with Boot Order
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

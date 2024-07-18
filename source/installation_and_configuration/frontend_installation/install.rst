@@ -7,10 +7,6 @@ Single Front-end Installation
 
 This page describes how to install a complete OpenNebula Front-end from binary packages available in the :ref:`software repositories <repositories>` configured in the previous section. We recommend using a Host with the supported operating system as installation from packages provides the best experience and is referenced from other places of this documentation. If there are no packages for your distribution, you might consider reading the :ref:`Building from Source Code <compile>` guide to build OpenNebula on your own.
 
-.. warning::
-
-    Running Front-end inside an LXD container is limited! Integrations with LXC public marketplace won't be available, as it requires mounting block devices. This feature is usually not available in the LXD containers.
-
 Proceed with the following steps to get the fully-featured OpenNebula Front-end up.
 
 Step 1. Disable SELinux on AlmaLinux/CentOS7/RHEL (Optional)
@@ -86,13 +82,7 @@ Available packages for OpenNebula clients, the Front-end and hypervisor Nodes:
 +------------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **opennebula-node-kvm**                  | Base setup for KVM hyp. Node                                                                                  |
 +------------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **opennebula-node-firecracker**          | Base setup for Firecracker hypervisor Node                                                                    |
-+------------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **opennebula-node-lxc**                  | Base setup for LXC hypervisor Node (*not on RHEL 7*)                                                          |
-+------------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **opennebula-node-lxd**                  | Base setup for LXD hypervisor Node (*only on Ubuntu and Debian*)                                              |
-+------------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| **opennebula-lxd-snap**                  | Meta-package to install LXD snap (*only on Ubuntu 18.04*)                                                     |
 +------------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | **opennebula-guacd**                     | Proxy daemon for Guacamole                                                                                    |
 +------------------------------------------+---------------------------------------------------------------------------------------------------------------+
@@ -250,7 +240,7 @@ Check how to :ref:`change oneadmin password <change_credentials>` for already ru
 FireEdge
 --------
 
-OpenNebula FireEdge is a next-generation web server that delivers a GUI for remote OpenNebula clusters provisioning (OneProvision GUI) as well as additional functionality to Sunstone (Guacamole). It is installed and configured by default but can be skipped if you don't need these features.
+OpenNebula FireEdge is the next-generation web UI server that replaces the legacy Ruby Sunstone. It provides the Sunstone GUI --- including additional functionality via Guacamole --- as well as the OneProvision GUI for provisioning clusters. It is installed and configured by default.
 
 .. note::
 

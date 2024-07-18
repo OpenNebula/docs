@@ -160,7 +160,7 @@ Frontend Architecture
 
 An important part of managing OpenNebula through an interface is the use of forms and lists of resources. For this reason, we decided to extract some of this logic in configuration files.
 
-Unlike the current, ruby-based Sunstone, it's the behavior of requests in parallel which allows the use of the interface with greater flexibility and fluidity.
+Unlike in the legacy Ruby-based Sunstone, it's the behavior of requests in parallel which allows the use of the interface with greater flexibility and fluidity.
 
 Queries to get the pool resource from OpenNebula are greatly optimized, which ensures a swift response of the interface. If a large amount of certain types of resources are present (for example VMs or Hosts), a performance strategy that consists of making queries with intervals is implemented. Thus, the representation of the first interval list of resources is faster and the rest of the queries are kept in the background.
 
@@ -292,7 +292,7 @@ Each group of actions can filter by hypervisor (**only resources with hypervisor
       attach_disk:
         enabled: true
         not_on:
-          - firecracker
+          - lxc
 
 Dialogs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -314,26 +314,36 @@ See some examples:
   # etc/sunstone/admin/vm-template-tab.yaml
   # ** Required means that it's necessary for the operation of the form
   dialogs:
-    instantiate_dialog:
-      select_vm_template: true # required
-      configuration:
-        information: true
-        ownership: true
-        permissions: true
-        capacity: true
-        vm_group: true
-        vcenter:
-          enabled: true
-          not_on:
-            - kvm
-            - lxc
-            - firecracker
-      advanced_options:
-        storage: true
-        network: true
-        placement: true
-        sched_action: true
-        booting: true
+    information: true
+    ownership: true
+    capacity: true
+    vm_group: true
+    network: true
+    storage: true
+    placement: true
+    sched_action: true
+    booting: true
+    backup: true
+  create_dialog:
+    ownership: true
+    capacity: true
+    showback: true
+    vm_group: true
+    network: true
+    storage: true
+    placement: true
+    pci: true
+    input_output: true
+    sched_action: true
+    context: true
+    booting: true
+    numa:
+      enabled: true
+      not_on:
+        - lxc
+    backup: true
+
+
 
 SSO (Single sign-on)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -4,7 +4,7 @@
 OneGate Configuration
 =====================
 
-The OneGate server allows **Virtual Machines to pull and push information from/to OpenNebula**. It can be used with all hypervisor Host types (KVM, LXC, Firecracker, and vCenter) if the guest operating system has preinstalled the OpenNebula :ref:`contextualization package <os_install>`. It's a dedicated daemon installed by default as part of the :ref:`Single Front-end Installation <frontend_installation>`, but can be deployed independently on a different machine. The server is distributed as an operating system package ``opennebula-gate`` with the system service ``opennebula-gate``.
+The OneGate server allows **Virtual Machines to pull and push information from/to OpenNebula**. It can be used with all hypervisor Host types (KVM, LXC, and the legacy vCenter driver) if the guest operating system has preinstalled the OpenNebula :ref:`contextualization package <os_install>`. It's a dedicated daemon installed by default as part of the :ref:`Single Front-end Installation <frontend_installation>`, but can be deployed independently on a different machine. The server is distributed as an operating system package ``opennebula-gate`` with the system service ``opennebula-gate``.
 
 Read more in :ref:`OneGate Usage <onegate_usage>`.
 
@@ -242,8 +242,7 @@ Other logs are also available in Journald. Use the following command to show:
     hypervisor Nodes and the OpenNebula Front-end machines. It should allow for OneGate communication to be conveyed through securely,
     and without the need for exposing OneGate on a public IP address.
 
-    Each of the OpenNebula DEB/RPM node packages: ``opennebula-node-kvm``, ``opennebula-node-lxc`` and ``opennebula-node-firecracker``
-    contains the ``opennebula-gate-proxy`` systemd service. To enable and start it on your Hosts, execute as **root**:
+    Each of the OpenNebula DEB/RPM node packages: ``opennebula-node-kvm`` and ``opennebula-node-lxc`` contains the ``opennebula-gate-proxy`` systemd service. To enable and start it on your Hosts, execute as **root**:
 
     .. prompt:: bash # auto
 

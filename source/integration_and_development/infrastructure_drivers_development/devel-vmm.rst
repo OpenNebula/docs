@@ -105,7 +105,7 @@ Each driver can define a list of supported actions for :ref:`imported VMs <impor
 - recover
 - retry
 
-These supported action are specified in the :ref:`oned.conf file <oned_conf>`, ``imported_vms_actions`` variable:
+These supported actions are specified in the :ref:`oned.conf file <oned_conf>`, ``imported_vms_actions`` variable:
 
 .. code::
 

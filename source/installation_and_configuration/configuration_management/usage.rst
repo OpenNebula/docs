@@ -399,7 +399,6 @@ To see the files changed during the upgrade, run the command in verbose mode via
     ANY   : Backup stored in '/tmp/onescape/backups/2019-12-12_15:14:39_18278'
     INFO  : Updating from 5.8.0 to 5.10.0
     INFO  : Incremental update from 5.8.0 to 5.10.0
-    INFO  : Update file '/etc/one/vcenter_driver.default'
     INFO  : Skip file '/etc/one/cli/oneprovision.yaml' - missing
     INFO  : Update file '/etc/one/cli/onegroup.yaml'
     INFO  : Update file '/etc/one/cli/onehost.yaml'
