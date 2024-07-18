@@ -22,11 +22,10 @@ Sunstone
 ================================================================================
 
 - Guacamole RDP as is currently shipped in OpenNebula does not support NLA authentication. You can follow `these instructions <https://www.parallels.com/blogs/ras/disabling-network-level-authentication/>`__ in order to disable NLA in the Windows box to use Guacamole RDP within Sunstone.
-- Creating a VM with SPICE graphics, on Alma9, will cause the VM to stay on FAILED state.
 
 OneProvision
 ================================================================================
-- Until the 6.8 is released, OneProvision repositories definitions don't work
+- Until 6.10 is released, OneProvision repositories definitions don't work
 
 Install Linux Graphical Desktop on KVM Virtual Machines
 ================================================================================
@@ -59,11 +58,6 @@ Backups
 =============
 
 - OpenNebula stores the whole VM Template in a backup. When restoring it some attributes are wiped out as they are dynamic or they need to be re-generated (e.g. IP). However some attributes (e.g. DEV_PREFIX) would be better to keep them. It is recommended to review and adjust the resulting template for any missing (and required) attribute. The :ref:`list of attributes removed can be checked here <vm_backups_restore>`.
-
-WHMCS - Client Users
-================================================================================
-
-When the first client is created in WHMCS and purchases a product, following actions will fail due to targeting ID 0 (oneadmin).  Further client accounts past the first one will work as expected.
 
 Market proxy settings
 ================================================================================

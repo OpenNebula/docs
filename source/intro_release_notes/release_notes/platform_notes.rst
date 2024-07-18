@@ -173,10 +173,6 @@ The following applies to all Front-Ends:
 * XML-RPC tuning parameters (``MAX_CONN``, ``MAX_CONN_BACKLOG``, ``KEEPALIVE_TIMEOUT``, ``KEEPALIVE_MAX_CONN`` and ``TIMEOUT``) are only available with packages distributed by us, as they are compiled with a newer xmlrpc-c library.
 * Only **Ruby versions >= 2.0 are supported**.
 
-Ubuntu 20.04
---------------------------------------------------------------------------------
-
-When using Apache to serve Sunstone, it's required to grant read permissions to the user running ``httpd`` in ``/var/lib/one``.
 
 Nodes Platform Notes
 ================================================================================

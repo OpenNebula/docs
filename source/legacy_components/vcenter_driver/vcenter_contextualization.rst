@@ -25,7 +25,7 @@ Supported contextualization packages are available for the OS's described in the
 
 If you already happen to have a VM or Template in vCenter with the installed OS you can start it and prepare it to be used with OpenNebula. Alternatively you can start an installation process with the OS media.
 
-.. include:: install_steps.txt
+.. include:: ../../management_and_operations/references/install_steps.txt
 
 Step 4. Install VMware Tools
 --------------------------------------------------------------------------------
@@ -60,7 +60,7 @@ These are the steps needed to finish the preparation and import it to OpenNebula
 
 The last two steps can be done using Sunstone or the CLI as explained in the :ref:`Import vCenter Resources section <vcenter_import_resources>`
 
-.. include:: template.txt
+.. include:: ../../management_and_operations/references/template.txt
 
 .. _vcenter_customization:
 
