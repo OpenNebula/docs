@@ -6,18 +6,23 @@ What's New in |version|
 
 .. Attention: Substitutions doesn't work for emphasized text
 
-**OpenNebula 6.10 ‘’** is the fifth stable release of the OpenNebula 6 series. This version of OpenNebula focuses on features to improve the end user experience as well as to optimize the use of the HW resources in KVM-based infrastructures.
+**OpenNebula 6.10 ‘Bubble’** is the Beta release for what will be the sixth stable release of the OpenNebula 6 series, an LTS release which will receive support until 2027.
 
-..
-   * Sunstone -> FSunstone. Fully functional, this is now the default
-   * Keeping the name, FireEdge is just the front-end.
-   * Improvements on Backups
-   * Legacy components, we are keeping them but not maintaining them, ie we won't support new relesaes of vCenter for instance, nor adding new functionality to RSunstone
+Major highlights of this release include implementation of the full functionality of Sunstone on the next-generation FireEdge server, as well as improvements in backups, support for new versions of operating systems for the Front-end node, and streamlining by deprecating little-used components or providing them as legacy components.
 
+OpenNebula’s Sunstone web UI has been completely implemented on the FireEdge server, which now provides the complete set of features and functionality previously offered by the Ruby-based Sunstone server. The new Sunstone UI served by FireEdge brings a clean, fast, highly-customizable and easy-to-use UI.
 
-We’d like to thank all the people that :ref:`support the project<acknowledgements>`, OpenNebula is what it is thanks to its community! Please keep rocking.
+.. image:: /images/sunstone-full_dashboard.png
+   :align: center
+   :scale: 60%
 
-Remove components, no longer included in the OpenNebula distribution:
+The Sunstone UI provided by FireEdge is now the default. The Ruby-based Sunstone UI is included in this release as a legacy component, but will not be updated with new features or receive maintenance, and will be removed in a future release.
+
+The second highlight is improved backup functionality by the addition of the **in-place restore** backup mode, which allows you to replace the disks of a VM with a backup copy without manually generating new images and VM templates.
+
+Thirdly, myriad improvements in core functionality, the API and CLI, including support for PCI attach and detach operations, improved OneFlow message logging, and new functionality for searching for VMs.
+
+Finally, OpenNebula is being streamlined by removing obsolete or little-used components. The following are no longer included in the OpenNebula distribution:
 
 - LXD driver
 - Firecracker driver
@@ -27,14 +32,16 @@ Remove components, no longer included in the OpenNebula distribution:
 - TurnkeyLinux
 - PostgreSQL - TP
 
-Legacy components, included in the distribution but no longer receive updates or bug fixes:
+The following are now included in the distribution as legacy components, which no longer receive updates or bug fixes:
 
 - Ruby Sunstone
 - vCenter Driver
 
-..
-   Beta Release
-   Bubble Nebula https://en.wikipedia.org/wiki/Bubble_Nebula
+For more information, please refer to the :ref:`Legacy Components <legacy_components>` section of the documentation.
+
+This Beta release of OpenNebula 6.10 is named after the `Bubble Nebula <https://en.wikipedia.org/wiki/Bubble_Nebula>` in the constellation Cassiopeia. Also known as NGC 7635 and Caldwell 11, it is a young, glowing emission nebula formed by the stellar wind of a hot, massive central star.
+
+We’d like to thank all the people that :ref:`support the project<acknowledgements>`, OpenNebula is what it is thanks to its community! Please keep rocking.
 
 OpenNebula Core
 ================================================================================
