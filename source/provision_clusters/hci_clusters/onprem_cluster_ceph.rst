@@ -99,7 +99,7 @@ Before we start we need to prepare the hosts for our on-prem cluster. We just ne
     DISTRIB_CODENAME=focal
     DISTRIB_DESCRIPTION="Ubuntu 20.04.3 LTS"
 
-Step 2. Create your On-premises cluster
+Step 2. Create your On-premises Cluster
 --------------------------------------------------------------------------------
 
 Check that you have your On-Premises provider created (if not, the instruction for creating it can be found :ref:`here <onprem_provider>`):
@@ -159,7 +159,7 @@ Now we can create our On-Premises Edge Cluster, grab the attributes for the inpu
       Provision successfully created
       ID: 4
 
-Step 3. Quick tour on your new cluster
+Step 3. Quick Tour of your New Cluster
 --------------------------------------------------------------------------------
 
 Let's first check the hosts are up and running, in our simple case:
@@ -201,75 +201,95 @@ For example let's create a 192.168.0.100/26 network from the private network tem
     $ onevntemplate instantiate 0 --ip 192.168.0.100 --size 64
     VN ID: 5
 
-Step 4. A Simple test, run a container
+Step 4. As a Simple test, Run a VM
 --------------------------------------------------------------------------------
 
-As a simple test we'll run a container. For example let's pick the nginx base image from Turnkey Linux Market:
+As a simple test we'll run a small VM, an Alpine Linux from the OpenNebula Public Marketplace.
 
 .. prompt:: bash $ auto
 
-    $ onemarketapp list | grep -i 'nginx.*LX'
-     107 nginx - LXD                                         1.0    5G  rdy  img 11/23/18 TurnKey Li    0
+  $ onemarketapp list | grep -i alpine
+  74 Alpine Linux 3.20                       6.10.0-2-2  256M  rdy  img 05/14/24 OpenNebula    0
+  51 Alpine Linux 3.17                       6.10.0-2-2  256M  rdy  img 05/14/24 OpenNebula    0
+  40 Alpine Linux 3.16                       6.10.0-2-2  256M  rdy  img 02/01/24 OpenNebula    0
+  27 Alpine Linux 3.19                       6.10.0-2-2  256M  rdy  img 05/14/24 OpenNebula    0
+  22 Alpine Linux 3.18                       6.10.0-2-2  256M  rdy  img 05/14/24 OpenNebula    0
 
-and add it into our cloud:
+We'll select the newest version (ID 74 in this case) and add it to our cloud:
 
 .. prompt:: bash $ auto
 
-   $ onemarketapp export 107 nginx_market -d default
+   $ onemarketapp export 74 alpine_market -d default
     IMAGE
         ID: 2
     VMTEMPLATE
         ID: 3
 
-   $ oneimage list
-  ID USER     GROUP    NAME                    DATASTORE     SIZE TYPE PER STAT RVMS
-   2 oneadmin oneadmin nginx_market            default      1024M OS    No rdy     0
-
-The final step will be adding a network interface to the template just created (3 in our example):
+The VM template has been created, with ID 3.
 
 .. prompt:: bash $ auto
 
-    $onetemplate update 3
-    ...
-    NIC = [ NETWORK_MODE = "auto", SCHED_REQUIREMENTS = "NETROLE = \"public\"" ]
+   $ oneimage list
+  ID USER     GROUP    NAME                       DATASTORE     SIZE TYPE PER STAT RVMS
+   3 oneadmin oneadmin alpine_market              default       256M OS    No rdy     0
 
-Now we can create the VM from this template:
+The final step is adding a network interface to the template just created:
+
+.. prompt:: bash $ auto
+
+    $ onetemplate update 3
+    ...
+    NIC = [ NETWORK_MODE = "auto" ]
+
+Now we can instantiate the VM from this template:
 
 .. prompt:: bash $ auto
 
     $ onetemplate instantiate 3
-    VM ID:10
+    VM ID:11
 
-    $ onevm show 10
+The VM has been instantiated with ID 11. To see information for the VM:
+
+.. prompt:: bash $ auto
+
+    $ onevm show 11
     VIRTUAL MACHINE 10 INFORMATION
-    ID                  : 10
-    NAME                : nginx-10
-    USER                : oneadmin
-    GROUP               : oneadmin
-    STATE               : ACTIVE
+    ID                  : 11                  
+    NAME                : alpine_market-11    
+    USER                : oneadmin            
+    GROUP               : oneadmin            
+    STATE               : ACTIVE              
     LCM_STATE           : RUNNING
 
     ...
 
-    VIRTUAL MACHINE MONITORING
-    CPU                 : 0
-    MEMORY              : 332.7M
-    NETTX               : 103K
-    NETRX               : 102K
+    VIRTUAL MACHINE MONITORING                                                      
+    CPU                 : 0.0                 
+    MEMORY              : 173.7M              
+    NETTX               : 14K                 
+    NETRX               : 54K
 
     ...
     VM DISKS
      ID DATASTORE  TARGET IMAGE                               SIZE      TYPE SAVE
-      0 default    sda    nginx                               5G/5G     file   NO
+      0 default    vda    alpine_market                       80M/256M  file   NO
       1 -          hda    CONTEXT                             1M/-      -       -
 
     VM NICS
      ID NETWORK              BRIDGE       IP              MAC               PCI_ID
-      0 onprem-hci-cluster-publi onebr4       172.16.0.2      02:00:ac:10:00:02
+      0 onprem-cluster-publi onebr4       172.16.0.2      02:00:ac:10:00:02
 
-If you connect through SSH to the VM, the setup screen for the appliance should welcome you:
+You should now be able to connect to the VM via SSH:
 
-|image_mysql|
+.. code::
+
+  $ ssh root@172.16.0.2
+    The authenticity of host '172.16.0.2 (172.16.0.2)' can't be established.
+    ED25519 key fingerprint is SHA256:Uz6WarB4k+1Sq2DI5Zz7b15p0ND7fr+kwxzIxSzr/Zg.
+    This key is not known by any other names
+    Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+    Warning: Permanently added '172.16.0.2' (ED25519) to the list of known hosts
+    localhost:~#
 
 Advanced: Customize the HCI Cluster
 ================================================================================
@@ -352,12 +372,12 @@ An example of such a definition is following. See that in this example you can d
 
 
 
-Operating Providers & Edge Clusters
+Operating Providers and Edge Clusters
 ================================================================================
 
 Refer to the :ref:`cluster operation guide <cluster_operations>` to check all of the operations needed to create, manage, and delete an Edge Cluster. Refer to the :ref:`providers guide <provider_operations>` to check all of the operations related to providers.
 
-You can also manage On-Premise Clusters using the OneProvision FireEdge GUI.
+You can also manage AWS Clusters using the OneProvision GUI in Sunstone.
 
 |image_fireedge|
 

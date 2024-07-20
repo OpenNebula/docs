@@ -36,4 +36,4 @@ Next, if you are interested in optional integration with the IP Address Manager 
 Hypervisor Compatibility
 ================================================================================
 
-This chapter applies to KVM, LXC and Firecracker.
+This chapter applies to KVM and LXC.

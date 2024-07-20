@@ -70,10 +70,10 @@ Adding and Customizing Edge Providers
 
 The predefined providers are located in ``/usr/share/one/oneprovision/edge-clusters/<provision_type>/providers/<provider>``. The provision type can be ``metal`` or ``virtual``, and the provider is one of the ones available.
 
-The providers' information is loaded by the OneProvision FireEdge GUI, so the user can choose one of them in order to create his or her own provider. If you want to add a new template here, you need to follow these steps:
+Providers' information is loaded by the OneProvision Sunstone GUI, so the user can select one in order to create his or her own provider. If you want to add a new template here, you need to follow these steps:
 
 1. Clone one of the templates.
 2. In the cloned template put the new information.
-3. Restart the OneProvision FireEdge GUI ``systemctl restart opennebula-fireedge``.
+3. Restart the OneProvision Edge GUI ``systemctl restart opennebula-fireedge``.
 
 .. note:: If you want to modify some of the existing providers, you just need to execute points 2 and 3.

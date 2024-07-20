@@ -40,7 +40,7 @@ Operating Providers & Edge Clusters
 
 Refer to the :ref:`cluster operation guide <cluster_operations>` to check all of the operations needed to create, manage, and delete an Edge Cluster. Refer to the :ref:`providers guide <provider_operations>` to check all of the operations related to providers.
 
-You can also manage Equinix Clusters using the OneProvision FireEdge GUI.
+You can also manage AWS Clusters using the OneProvision GUI in Sunstone.
 
 |image_fireedge|
 
