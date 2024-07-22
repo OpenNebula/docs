@@ -184,64 +184,159 @@ All these operations can be also done through the CLI. When you instantiate the 
     # Instantiate a network template
     {"networks_values": [{"Private":{"template_id":"0", "extra":"AR=[ IP=192.168.122.10, SIZE=10, TYPE=IP4 ]"}}]}
 
-Using Custom Attributes
+
+
+Adding or Overwriting Attributes in Virtual Machine Templates
 --------------------------------------------------------------------------------
 
-You can use some custom attributes in service template to pass them to the virtual machine context section. This custom attributes are key-value format and can be mandatory or optional.
+To enhance or modify the functionality implemented by a Virtual Machine (VM) template of a role, you can use *User Inputs* and *Custom Attributes*. These attributes allow you to add more information and context to the template in a key-value format. Below are the main differences between these two attributes:
 
-From Sunstone, you can view these custom attributes as fields to be filled when the service is going to be instantiated:
-
-|oneflow-templates-attrs|
-
-You can also use them through the CLI. When you instantiate the template using ``oneflow-template instantiate <ID> <file>``.
-
-Custom attributes can be defined at two different levels:
-
-- **Service level**: custom attributes are applied to all roles in the service. You can define custom attributes at the service level as follows:
-
-  .. code::
-
-      {"custom_attrs_values":{"A":"A_VALUE", "B":"B_VALUE"}
-
-
-- **Role level**: custom attributes are applied to a single role within the service. Custom attributes can be combined at role and service level, where custom role attributes will take precedence. Below you can see an example of a service with two different roles and custom attributes at service and role level:
+* **User Inputs**: ``user_inputs`` enable the creation of attributes that OpenNebula will prompt the user for during instantiation. These attributes are added to the context section of the VM, making their values accessible as environment variables within the VM. This feature is useful for creating variables and attributes inside the VM based on user input:
 
   .. code::
 
       {
-        "custom_attrs_values": {
-          "A": "A_VALUE",
-          "B": "B_VALUE"
-        },
+        "name": "User inputs example",
+        "description": "Service using user_inputs",
+        "deployment": "straight",
         "roles": [
-          {
-            "name": "role_1"
-          },
-          {
-            "name": "role_2",
-            "custom_attrs_values": {
-              "B": "B_VALUE_2",
-              "C": "C_VALUE"
+            {
+                "name": "master",
+                "vm_template": 0,
+                "cardinality": 1,
+                "vm_template_contents": "CONTEXT = [\nATT_A = \"$ATT_A\"\nATT_B = \"$ATT_B\"\n]"
+            },
+            {
+                "name": "worker",
+                "vm_template": 1,
+                "cardinality": 2,
+                "vm_template_contents": "CONTEXT = [\nATT_B = \"$ATT_B\"\nATT_C = \"$ATT_C\"\n]"
             }
-          }
-        ]
+        ],
+        "user_inputs": {
+            "ATT_A": "O|fixed|| |2",
+            "ATT_B": "M|list||0.5,1,2,4|1",
+            "ATT_C": "M|range||512..8192|2048"
+        }
       }
 
-.. note:: Custom attributes will be applied to all roles inside ``vm_template_contents`` section. When custom attributes coexist with user inputs of VM template, **custom attributes are preferred** to contextualization.
+  In OneFlow, ``user_inputs`` follow the same syntax used for VMs' ``user_inputs``. For more details on configuring allowed values, including default ones, please refer to this section of the documentation.
+
+  .. warning:: Users need to manually define the content of the ``vm_template_content`` to pass the attributes to the VM. Use the convention ``ATT_NAME = $ATT_NAME`` in the ``vm_template_content``. During instantiation, OpenNebula will replace all ``$ATT_NAME`` variables with their corresponding values.
+
+
+* **Custom attributes**: ``custom_attrs_values`` allow you to modify attributes and fields of the VM template. These attributes are added to the root of the VM template document, overwriting the existing information. For example, you can overwrite the CPU and Memory values of a template for a specific role:
 
   .. code::
 
-    {
-      "custom_attrs_values":{ "A": "A_VALUE" },
-      "user_inputs_values": { "A": "A_VALUE_OTHER"},
-      "role": {
-        "vm_template_contents": "A = \"A_VALUE\"\n"
+      {
+          "name": "Custom attributes example",
+          "description": "Service using custom_attributes",
+          "deployment": "straight",
+          "roles": [
+              {
+                  "name": "master",
+                  "vm_template": 0,
+                  "cardinality": 1
+              },
+              {
+                  "name": "worker",
+                  "vm_template": 1,
+                  "cardinality": 2,
+                  "vm_template_contents": "CPU = \"$CPU\"\nMEMORY = \"$MEMORY\""
+              }
+          ],
+          "custom_attrs_values": {
+              "CPU": 2,
+              "MEMORY": 2048
+          }
       }
-    }
 
-  If VM template had ``CONTEXT = [ A_CONTEXT = "$A" ]``, after service instantiation, the result are going to be ``CONTEXT = [ A_CONTEXT = "A_VALUE" ]``
 
-In order to pass the service custom attributes to the VM  when using the CLI they need to be duplicated inside ``vm_template_contents`` section.
+  .. warning:: Similar to user inputs, the content of ``vm_template_contents`` must be manually created to use custom attributes. OpenNebula will automatically replace the content of each variable at instantiation time.
+
+
+  **Custom Attributes Levels**
+
+  Custom attributes can be defined at two different levels:
+
+  * **Service level**: custom attributes are applied to all roles in the service. You can define custom attributes at the service level as follows:
+
+    .. code::
+
+        {
+          ...
+          "roles": [
+            {
+              "name": "worker"
+              "vm_template": 1,
+              "vm_template_contents": "ATT_A = \"$ATT_A\"\nATT_B = \"$ATT_B\"\n"
+            },
+            ...
+          ]
+          "custom_attrs_values": {
+            "ATT_A": "A_VALUE",
+            "ATT_B": "B_VALUE"
+          },
+        }
+
+  * **Role level**: custom attributes are applied to a single role within the service. Custom attributes can be combined at role and service level, where custom role attributes will take precedence. Below you can see an example of a service with two different roles and custom attributes at service and role level:
+
+    .. code::
+
+        {
+          ...
+          "roles": [
+            ...
+            {
+              "name": "worker",
+              "vm_template": 1,
+              "vm_template_contents": "ATT_A = \"$ATT_A\"\nATT_B = \"$ATT_B\"\n"
+              "custom_attrs_values": {
+                "ATT_A": "A_VALUE",
+                "ATT_B": "B_VALUE"
+              }
+            }
+          ]
+          ...
+        }
+
+    .. note:: In case you use custom attributes at both levels, the custom attributes at the Role level will take precedence over the custom attributes at the Service level.
+
+    .. note:: Custom attributes will be applied to all roles inside ``vm_template_contents`` section. When custom attributes coexist with user inputs of VM template, **custom attributes are preferred** to contextualization.
+
+      .. code::
+
+        {
+          ...
+          "roles": [
+            {
+              "name": "worker",
+              "vm_template": 1,
+              "vm_template_contents": "ATT_A = \"$ATT_A\"\n"
+            }
+          ]
+          "custom_attrs_values":{ "ATT_A": "A_VALUE" },
+          "user_inputs_values": { "ATT_A": "A_VALUE_OTHER"},
+        }
+
+      In this example, if the VM template contents attribute includes `CONTEXT = [ ATT_A = "$ATT_A" ]` before Service instantiation, after instantiation, it will be updated to `CONTEXT = [ ATT_A = "A_VALUE" ]`.
+
+
+**Adding attributes through CLI**
+
+There are two ways, using the CLI, to add User Inputs or Custom Attributes to a Service Template:
+
+* **Creating a new Service template**: attributes can be added to a Service Template by including them in the JSON file used to create the Service Template. For example, to add a new User Input to a Service Template, you can include the User Input in the JSON file used to create the Service Template as shown in the examples above. Then, when you create the Service Template using the ``oneflow-template create <file>`` command, where ``file`` indicates the path of the JSON file used to create the Service Template.
+* **Updating an existing Service template**: attributes can be added to an existing Service Template by updating the template of the Service Template. To achieve this, you can use the ``oneflow-template update <ID>`` command. This command will open an editor where you can add the new attributes to the Service Template. Alternatively, you can use the ``oneflow-template update <ID> <file>`` command to update the Service Template with the attributes included in the specified file.
+
+**Adding attributes through Sunstone**
+
+From Sunstone, you can add User Inputs as fields during the creation of the OneFlow service template or updating an already existing one in the following form:
+
+|oneflow-templates-attrs|
+
+.. note:: Currently, Custom Attributes are not supported in Sunstone. In order to add custom attributes, you need to use the CLI.
 
 .. _service_clone:
 
