@@ -7,7 +7,7 @@ Edge Cluster Operations
 Edge Cluster Limitations
 ========================
 
-* Currently it is not possible to connect to VMs running in edge clusters through the normal :ref:`Sunstone mechanisms to access VM console <remote_access_sunstone>`, like for instance VNC. Other mechanisms that implies connection to the VM IP, such as SSH and RDP, work as in other VMs running in local clusters.
+* Currently it is not possible to connect to VMs running in edge clusters through the normal :ref:`Sunstone mechanisms to access VM console <remote_access_sunstone>`, such as VNC. Other mechanisms that connect to the VM’s IP, such as SSH and RDP, work as in other VMs running in local clusters.
 
 
 Creating a Cluster

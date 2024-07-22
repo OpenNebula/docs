@@ -65,7 +65,7 @@ This chapter applies to KVM and LXC.
 
    - **LXC** Node only supports :ref:`NFS/NAS <nas_ds>`, :ref:`Local Storage <local_ds>` and :ref:`Ceph <ceph_ds>` datastores
 
-Follow the chapter :ref:`vCenter Storage <vcenter_ds>` for a similar guide for vCenter.
+For a storage guide on the legacy vCenter driver, see :ref:`vCenter Storage <vcenter_ds>`.
 
 .. |image0| image:: /images/datastoreoverview.png
     :width: 35%

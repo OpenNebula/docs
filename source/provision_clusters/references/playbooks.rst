@@ -125,7 +125,7 @@ The roles and tasks are applied during the configuration in the following order:
 
 1. **ddc**: general asserts and cleanups,
 2. **opennebula-repository**: set up the OpenNebula package repository.
-3. **opennebula-node-<X>**: install OpenNebula node KVM, LXC or Firecracker.
+3. **opennebula-node-<X>**: install OpenNebula KVM or LXC node.
 4. **opennebula-ssh**: deploy local SSH keys for the remote oneadmin.
 5. **iptables**: create basic iptables rules.
 6. **frr**: configure FRR.
