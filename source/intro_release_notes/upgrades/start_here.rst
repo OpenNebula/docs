@@ -46,8 +46,6 @@ Update your OpenNebula packages by following only the guide that applies to your
 
 Follow :ref:`onecfg upgrade <cfg_upgrade>` documentation for information on how to upgrade and troubleshoot the configurations.
 
-.. important:: If you are upgrading from OpenNebula 6.0, please read the appropriate :ref:`Guide <upgrade_60>` and make sure you apply all the changes described.
-
 .. _validate_upgrade:
 
 Validate OpenNebula

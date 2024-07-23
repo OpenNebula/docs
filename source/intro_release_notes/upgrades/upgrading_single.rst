@@ -261,7 +261,7 @@ Enable all Hosts, disabled in step 2:
 
    $ onehost enable <host_id>
 
-After following all the steps, please review the :ref:`Additional Steps <upgrade_60>` for upgrading from 6.x. If upgrading from a version earlier than 6.0, please see :ref:`Upgrading from Previous Versions <upgrade_from_previous>`.
+If upgrading from a version earlier than 6.0, please see :ref:`Upgrading from Previous Versions <upgrade_from_previous>`.
 
 Testing
 ================================================================================

@@ -18,6 +18,6 @@ How Should I Read This Chapter
 
 You only need to read this chapter if you are upgrading OpenNebula to a newer release. Make sure you have read the :ref:`Release Notes <rn>` and particularly the :ref:`Compatibility <compatibility>` section first.
 
-The first stop is the :ref:`Start Here <start_here>` section that lays out the workflow needed to upgrade. The system will upgrade from the currently installed release to the latest release. If you are running an Enterprise Edition version older than the previous stable version please read the :ref:`guide <upgrade_60>` that describes the necessary extra steps. If you need to upgrade from a version older than 6.0, please read :ref:`Upgrade from Previous Versions <upgrade_from_previous>`. In case something goes awry you can always :ref:`restore OpenNebula <restoring_version>` to the state previous to the update.
+The first stop is the :ref:`Start Here <start_here>` section that lays out the workflow needed to upgrade. The system will upgrade from the currently installed release to the latest release. If you need to upgrade from a version older than 6.0, please read :ref:`Upgrade from Previous Versions <upgrade_from_previous>`. In case something goes awry you can always :ref:`restore OpenNebula <restoring_version>` to the state previous to the update.
 
 After the upgrade procedure you can continue using your upgraded OpenNebula Cloud.
