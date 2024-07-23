@@ -16,7 +16,7 @@ We fixed and synchronized usage of the ``no_check_capacity`` flag across all API
 
 VM Drivers
 ================================================================================
-We changed default for `CLEANUP_MEMORY_ON_STOP` to `no` as it could potentially lead to heavy workload on hosts when multiple VMs were stopped or migrated in parallel, e.g. when running `onehost flush`.
+We changed default for ``CLEANUP_MEMORY_ON_STOP`` to ``no`` as it could potentially lead to heavy workload on hosts when multiple VMs were stopped or migrated in parallel, e.g. when running ``onehost flush``.
 
 Ruby gems opennebula and opennebula-cli
 ================================================================================

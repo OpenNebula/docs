@@ -1,7 +1,7 @@
-.. _upgrade_56:
+.. _upgrade_60:
 
 ================================================================================
-Additional Steps for 5.6.x
+Additional Steps for 6.x
 ================================================================================
 
 Upgrade OpenNebula to the latest version
@@ -18,6 +18,8 @@ Since 5.10 passwords and tokens are generated using SHA256. OpenNebula will upda
 
     $ oneuser passwd --sha256 serveradmin `cat /var/lib/one/.one/sunstone_auth|cut -f2 -d':'`
 
+.. _update_hooks:
+
 Update your Hooks
 ================================================================================
 
@@ -25,18 +27,22 @@ Hooks are no longer defined in ``oned.conf``. You need to recreate any hook you 
 
 RAFT/HA Hooks
 --------------------------------------------------------------------------------
+
 HA Hooks keep working as they did in previous versions. For design reasons, these are the only hooks which need to be defined in ``oned.conf`` and cannot be managed via the API or CLI. You should preserve your previous configuration in ``oned.conf``.
 
 Fault Tolerance Hooks
 --------------------------------------------------------------------------------
+
 In order to migrate fault tolerance hooks, just follow the steps defined in :ref:`Fault Tolerance guide <ftguide>`.
 
 vCenter Hooks
 --------------------------------------------------------------------------------
+
 The vCenter Hooks, used for creating virtual networks, will be created automatically when needed.
 
 Custom Hooks
 --------------------------------------------------------------------------------
+
 Custom Hooks migration strongly depends on your use case for the hook. Below there is a list of examples which represent the most common use cases.
 
 - Create/Remove hooks. Corresponds to the legacy ``ON=CREATE`` and ``ON=REMOVE`` hooks
@@ -107,26 +113,3 @@ If there is a hook defined for a Host or VM state change, the hook template has 
 Note that you may need to adapt the arguments of your hook, as ``$ID`` is not currently supported. More information on defining :ref:`state Hooks can be found here <state_hooks>`.
 
 .. note:: Note that, in both examples, ``ARGUMENTS_STDIN=yes`` can be used for passing the parameters via STDIN instead of command line argument.
-
-Known Issues
-================================================================================
-
-If the MySQL database password contains special characters, such as ``@`` or ``#``, the onedb command will fail to connect to it.
-
-The workaround is to temporarily change the oneadmin's password to an ASCII string. The `set password <http://dev.mysql.com/doc/refman/5.6/en/set-password.html>`__ statement can be used for this:
-
-.. code::
-
-    $ mysql -u oneadmin -p
-
-    mysql> SET PASSWORD = PASSWORD('newpass');
-
-Bug recovering
-================================================================================
-
-If Ceph datastores were used with OpenNebula <= 5.6.2 and any VM have been reverted to a snapshot, it's needed to follow the next steps for recovering snapshot tree consistency:
-
-.. warning:: Check history in order to find how many reverts have been done. If the number of reverts are greater than 1 we do not recommend to deleted any snapshot, because it will cause lose of information. If the number of revert is 1 you can fix it by following the steps below.
-
-- Use the command ``onedb update-body vm --id <vm_id>`` for updating the body of the VM.
-- Set /VM/SNAPSHOTS/CURRENT_BASE to the ID of the current active snapshot.

@@ -6,11 +6,11 @@ Upgrading Single Front-end Deployments
 
 .. important::
 
-    Users of the Community Edition of OpenNebula can upgrade from the previous stable version if they are running a non-commercial OpenNebula cloud. In order to access the migrator package a request needs to be made through this `online form <https://opennebula.io/get-migration>`__. In order to use these non-commercial migrators to upgrade to the latest CE release (OpenNebula 6.6), you will need to upgrade your existing OpenNebula environment first to CE Patch Release 6.6.0.1
+    Users of the Community Edition of OpenNebula can upgrade from the previous stable version if they are running a non-commercial OpenNebula cloud. In order to access the migrator package a request needs to be made through this `online form <https://opennebula.io/get-migration>`__. In order to use these non-commercial migrators to upgrade to the latest CE release (OpenNebula 6.8.0), you will need to upgrade your existing OpenNebula environment first to CE Patch Release 6.6.0.1
 
 .. important:: If you haven't done so, please enable the :ref:`OpenNebula and needed 3rd party repositories <setup_opennebula_repos>` before attempting the upgrade process.
 
-Upgrading from 5.6 and higher
+Upgrading from 6.x and higher
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Step 1. Check Virtual Machine Status
@@ -133,8 +133,8 @@ A clean state might look like this:
 
     $ onecfg status
     --- Versions ------------------------------
-    OpenNebula:  5.8.5
-    Config:      5.8.0
+    OpenNebula:  6.8.3
+    Config:      6.8.0
 
     --- Available Configuration Updates -------
     No updates available.
@@ -148,7 +148,7 @@ If you get error message about an unknown configuration version, you don't need 
 
     $ onecfg status
     --- Versions ------------------------------
-    OpenNebula:  5.8.5
+    OpenNebula:  6.8.3
     Config:      unknown
     ERROR: Unknown config version
 
@@ -163,8 +163,8 @@ The following invalid state:
 
     $ onecfg status
     --- Versions ------------------------------
-    OpenNebula:  5.8.5
-    Config:      5.8.0
+    OpenNebula:  6.8.3
+    Config:      6.8.0
     ERROR: Configurations metadata are outdated.
 
 needs to be fixed by reinitialization of the configuration state. Any unprocessed upgrades will be lost and the current state will be initialized based on your current OpenNebula version and configurations located in system directories.
@@ -174,8 +174,8 @@ needs to be fixed by reinitialization of the configuration state. Any unprocesse
     $ onecfg init --force
     $ onecfg status
     --- Versions ------------------------------
-    OpenNebula:  5.8.5
-    Config:      5.8.5
+    OpenNebula:  6.8.3
+    Config:      6.8.3
 
     --- Available Configuration Updates -------
     No updates available.
@@ -261,13 +261,7 @@ Enable all Hosts, disabled in step 2:
 
    $ onehost enable <host_id>
 
-After following all the steps, please review the corresponding guide:
-
-.. toctree::
-   :maxdepth: 1
-
-   Additional Steps for 5.8.x <upgrade_58>
-   Additional Steps for 5.6.x <upgrade_56>
+After following all the steps, please review the :ref:`Additional Steps <upgrade_60>` for upgrading from 6.x. If upgrading from a version earlier than 6.0, please see :ref:`Upgrading from Previous Versions <upgrade_from_previous>`.
 
 Testing
 ================================================================================

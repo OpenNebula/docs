@@ -6,19 +6,21 @@ What’s New in |version|
 
 .. Attention: Substitutions doesn't work for emphasized text
 
-**OpenNebula 6.10 “Bubble”** is the sixth stable release of the OpenNebula 6 series. This new release features the first complete implementation of the Sunstone UI functionality on the FireEdge server, as well as improvements in backups, support for new versions of operating systems for the Front-end node, and streamlining by removing obsolete or little-used components or providing them as legacy components.
+**OpenNebula 6.10 “Bubble”** is the sixth stable release of the OpenNebula 6 series. This new release features the first complete implementation of the Sunstone UI functionality on the FireEdge server, as well as improvements in backups, support for new versions of operating systems for the Front-end node, and streamlining by removing obsolete or little-used components, or providing them as legacy components.
 
-The first major highlight in this release is the new Sunstone UI. The full power of OpenNebula’s web UI is now provided by the FireEdge server, which delivers the complete set of features previously offered by the Ruby-based Sunstone UI. The new Sunstone UI served by FireEdge brings a clean, fast, highly-customizable and easy-to-use UI.
+The first major highlight in this release is the new Sunstone UI. The full power of OpenNebula’s web UI is now provided by the FireEdge server, which delivers the complete set of features previously offered by legacy Ruby-based Sunstone. The new Sunstone UI brings a clean, fast, highly-customizable and easy-to-use UI.
 
 .. image:: /images/sunstone-full_dashboard.png
    :align: center
    :scale: 60%
 
+|
+
 The Sunstone UI provided by FireEdge is now the default. The Ruby-based Sunstone UI is included in this release as a legacy component, but will not be updated with new features or receive maintenance, and will be removed in a future release.
 
-The second highlight in this release is improved backup functionality by the addition of the **in-place restore** backup mode, which allows you to replace the disks of a VM with a backup copy without manually generating new images and VM templates.
+The second highlight in this release is improved backup functionality, thanks to the addition of the **in-place restore** backup mode. This feature replaces the old procedure for restoring a VM from a backup, and allows you to replace the disks of a VM with a backup copy without manually generating new images and VM templates. The feature is available through the CLI and the Sunstone UI, where it can be easily accessed in the Host controls for the selected VM (in **Instances** -> **VMs**).
 
-This release also includes myriad improvements in core functionality, the API and CLI, such as support for PCI attach and detach operations, improved OneFlow message logging, and new functionality for searching for VMs.
+This release also includes myriad improvements in core functionality, the API and CLI; such as support for PCI attach and detach operations, improved OneFlow message logging, and new functionality for searching for VMs.
 
 Finally, OpenNebula is being streamlined by removing obsolete or little-used components. The following are no longer included in the OpenNebula distribution:
 
@@ -37,7 +39,7 @@ The following are now included in the distribution as legacy components, which n
 
 Both will be removed in future releases. For more information, please refer to the :ref:`Legacy Components <legacy_components>` section of the documentation.
 
-OpenNebula 6.10 is named after the `Bubble Nebula <https://www.constellation-guide.com/bubble-nebula-ngc-7635/>` (NGC 7635) in the constellation Cassiopeia. It is a young, glowing emission nebula energized by a hot, massive central star. Partly located in a group of stars between 7000 and 8000 light-years away from Earth, the Bubble Nebula is in expansion, with a central “bubble” measuring between six and ten light-years and an estimated temperature of more than 37,000 degrees Celsius (67,000 Fahrenheit). It was discovered by celebrated astronomer William Herschel in 1787.
+OpenNebula 6.10 is named after the `Bubble Nebula <https://www.constellation-guide.com/bubble-nebula-ngc-7635/>` (NGC 7635) in the constellation Cassiopeia. It is a young, glowing emission nebula energized by a hot, massive central star. Partly located in a group of stars between 7000 and 8000 light-years away from Earth, the Bubble Nebula is in expansion, with a central “bubble” measuring between six and ten light-years and an estimated temperature of more than 37,000 degrees Celsius (67,000 Fahrenheit). It was discovered by the celebrated astronomer William Herschel in 1787.
 
 .. important:: This is the first beta version for 6.10, intended for testers and developers to try the new features. All new functionality is present in this release, and only bug fixes will be implemented between this release and the final 6.10 version. Please check the `known issues <https://github.com/OpenNebula/one/issues?q=is%3Aopen+is%3Aissue+label%3A%22Type%3A+Bug%22+label%3A%22Status%3A+Accepted%22>` before submitting an issue through GitHub. Also note that being a development version, there is no migration path from the previous stable version (6.8.x) nor migration path to the final stable version (6.10.0). A list of open issues may be found at the `GitHub development portal <https://github.com/OpenNebula/one/milestone/76>`.
 

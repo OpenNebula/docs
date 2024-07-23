@@ -25,7 +25,7 @@ Sunstone
 
 OneProvision
 ================================================================================
-- Until 6.10 is released, OneProvision repositories definitions don't work
+- Until 6.10 is released, OneProvision repositories definitions don't work.
 
 Install Linux Graphical Desktop on KVM Virtual Machines
 ================================================================================
