@@ -22,26 +22,41 @@ The second highlight in this release is improved backup functionality, thanks to
 
 This release also includes myriad improvements in core functionality, the API and CLI; such as support for PCI attach and detach operations, improved OneFlow message logging, and new functionality for searching for VMs.
 
-Finally, OpenNebula is being streamlined by removing obsolete or little-used components. The following are no longer included in the OpenNebula distribution:
+Finally, OpenNebula is being streamlined by removing obsolete or little-used components. The following table lists components no longer included in the OpenNebula distribution, as well as their alternative components:
 
-- LXD driver
-- Firecracker driver
-- Docker Machine
-- DockerHub Marketplace
-- Docker Registry
-- TurnkeyLinux
-- PostgreSQL - TP
++-----------------------+--------------------------------------------------------------------+
+| Component             | Alternative                                                        |
++=======================+====================================================================+
+| LXD driver            | :ref:`LXC <market_linux_container>`                                |
++-----------------------+--------------------------------------------------------------------+
+| Firecracker driver    | :ref:`KVM <kvmg>`                                                  |
++-----------------------+--------------------------------------------------------------------+
+| Docker Machine        | `OneKE <https://github.com/OpenNebula/one-apps/wiki/oneke_intro>`_ |
++-----------------------+--------------------------------------------------------------------+
+| DockerHub Marketplace | `OneKE <https://github.com/OpenNebula/one-apps/wiki/oneke_intro>`_ |
++-----------------------+--------------------------------------------------------------------+
+| Docker Registry       | `OneKE <https://github.com/OpenNebula/one-apps/wiki/oneke_intro>`_ |
++-----------------------+--------------------------------------------------------------------+
+| TurnkeyLinux          | :ref:`LXC <market_linux_container>`                                |
++-----------------------+--------------------------------------------------------------------+
+| PostgreSQL - TP       | :ref:`MySQL <mysql_setup>`                                         |
++-----------------------+--------------------------------------------------------------------+
 
-The following are now included in the distribution as legacy components, which no longer receive updates or bug fixes:
+The components in the table below are now included in the distribution as legacy components. They no longer receive updates or bug fixes, and will be removed in future releases:
 
-- Ruby Sunstone
-- vCenter Driver
++----------------+------------------------------+
+| Component      | Documentation                |
++================+==============================+
+| Ruby Sunstone  | :ref:`ruby_sunstone`         |
++----------------+------------------------------+
+| vCenter driver | :ref:`legacy_vcenter_driver` |
++----------------+------------------------------+
 
-Both will be removed in future releases. For more information, please refer to the :ref:`Legacy Components <legacy_components>` section of the documentation.
+For the full documentation please refer to the :ref:`Legacy Components <legacy_components>` section.
 
-OpenNebula 6.10 is named after the `Bubble Nebula <https://www.constellation-guide.com/bubble-nebula-ngc-7635/>` (NGC 7635) in the constellation Cassiopeia. It is a young, glowing emission nebula energized by a hot, massive central star. Partly located in a group of stars between 7000 and 8000 light-years away from Earth, the Bubble Nebula is in expansion, with a central “bubble” measuring between six and ten light-years and an estimated temperature of more than 37,000 degrees Celsius (67,000 Fahrenheit). It was discovered by the celebrated astronomer William Herschel in 1787.
+OpenNebula 6.10 is named after the `Bubble Nebula <https://www.constellation-guide.com/bubble-nebula-ngc-7635/>`_ (NGC 7635) in the constellation Cassiopeia. It is a young, glowing emission nebula energized by a hot, massive central star. Partly located in a group of stars between 7000 and 8000 light-years away from Earth, the Bubble Nebula is in expansion, with a central “bubble” measuring between six and ten light-years and an estimated temperature of more than 37,000 degrees Celsius (67,000 Fahrenheit). It was discovered by the celebrated astronomer William Herschel in 1787.
 
-.. important:: This is the first beta version for 6.10, intended for testers and developers to try the new features. All new functionality is present in this release, and only bug fixes will be implemented between this release and the final 6.10 version. Please check the `known issues <https://github.com/OpenNebula/one/issues?q=is%3Aopen+is%3Aissue+label%3A%22Type%3A+Bug%22+label%3A%22Status%3A+Accepted%22>` before submitting an issue through GitHub. Also note that being a development version, there is no migration path from the previous stable version (6.8.x) nor migration path to the final stable version (6.10.0). A list of open issues may be found at the `GitHub development portal <https://github.com/OpenNebula/one/milestone/76>`.
+.. important:: This is the first beta version for 6.10, intended for testers and developers to try the new features. All new functionality is present in this release, and only bug fixes will be implemented between this release and the final 6.10 version. Please check the `known issues <https://github.com/OpenNebula/one/issues?q=is%3Aopen+is%3Aissue+label%3A%22Type%3A+Bug%22+label%3A%22Status%3A+Accepted%22>`_ before submitting an issue through GitHub. Also note that being a development version, there is no migration path from the previous stable version (6.8.x) nor migration path to the final stable version (6.10.0). A list of open issues may be found at the `GitHub development portal <https://github.com/OpenNebula/one/milestone/76>`_.
 
 We’d like to thank all the people that :ref:`support the project<acknowledgements>`, OpenNebula is what it is thanks to its community! Please keep rocking.
 
