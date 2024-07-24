@@ -99,7 +99,7 @@ To install the CLI tools, you need to install the software packages on a support
    * CentOS: 7, 8
    * Red Hat Enterprise Linux: 7, 8, 9
    * Debian: 10, 11, 128
-   * Ubuntu: 148.04, 20.04, 22.04, 24.04
+   * Ubuntu: 22.04, 24.04
 
 Step 3.1. Add the Software Repositories
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
