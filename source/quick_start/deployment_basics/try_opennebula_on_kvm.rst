@@ -42,8 +42,8 @@ To run the miniONE script on AWS, you will need to instantiate a virtual machine
 
 **Supported operating systems:**
    - RHEL/AlmaLinux 8 or 9
-   - Debian 10 or 11
-   - Ubuntu 20.04 or 22.04
+   - Debian 11 or 12
+   - Ubuntu 22.04 or 24.04
 
 **Minimum hardware:**
    - 4 GiB RAM
