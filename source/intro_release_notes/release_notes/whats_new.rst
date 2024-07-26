@@ -110,6 +110,7 @@ Other Issues Solved
 - `Fix an uncommon error in TM drivers when domfsfreeze hangs indefinitely  <https://github.com/OpenNebula/one/issues/5921>`__.
 - `Fix the oneflow and oneflow-template delete functions  <https://github.com/OpenNebula/one/issues/6305>`__.
 - `Fix not possible to navigate within almost all VM graphs <https://github.com/OpenNebula/one/issues/6637>`__.
+- `Fix the Restic Password with special characters cause restore to fail <https://github.com/OpenNebula/one/issues/6571>`__.
 
 Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 
