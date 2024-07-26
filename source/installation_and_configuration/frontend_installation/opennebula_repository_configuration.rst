@@ -79,14 +79,6 @@ First, add the repository signing GPG key on the Front-end by executing as user 
 
 and then continue with repository configuration:
 
-**Debian 10**
-
-.. prompt:: bash # auto
-   :substitutions:
-
-    # echo "deb [signed-by=/etc/apt/keyrings/opennebula.gpg] https://<token>@enterprise.opennebula.io/repo/|version|/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
-    # apt-get update
-
 **Debian 11**
 
 .. prompt:: bash # auto
@@ -95,12 +87,12 @@ and then continue with repository configuration:
     # echo "deb [signed-by=/etc/apt/keyrings/opennebula.gpg] https://<token>@enterprise.opennebula.io/repo/|version|/Debian/11 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
-**Ubuntu 20.04**
+**Debian 12**
 
 .. prompt:: bash # auto
    :substitutions:
 
-    # echo "deb [signed-by=/etc/apt/keyrings/opennebula.gpg] https://<token>@enterprise.opennebula.io/repo/|version|/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb [signed-by=/etc/apt/keyrings/opennebula.gpg] https://<token>@enterprise.opennebula.io/repo/|version|/Debian/12 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Ubuntu 22.04**
@@ -109,6 +101,14 @@ and then continue with repository configuration:
    :substitutions:
 
     # echo "deb [signed-by=/etc/apt/keyrings/opennebula.gpg] https://<token>@enterprise.opennebula.io/repo/|version|/Ubuntu/22.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # apt-get update
+
+**Ubuntu 24.04**
+
+.. prompt:: bash # auto
+   :substitutions:
+
+    # echo "deb [signed-by=/etc/apt/keyrings/opennebula.gpg] https://<token>@enterprise.opennebula.io/repo/|version|/Ubuntu/24.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 .. note::
@@ -191,14 +191,6 @@ First, add the repository signing GPG key on the Front-end by executing as user 
 
     # wget -q -O- https://downloads.opennebula.io/repo/repo2.key | gpg --dearmor --yes --output /etc/apt/keyrings/opennebula.gpg
 
-**Debian 10**
-
-.. prompt:: bash # auto
-   :substitutions:
-
-    # echo "deb [signed-by=/etc/apt/keyrings/opennebula.gpg] https://downloads.opennebula.io/repo/|version|/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
-    # apt-get update
-
 **Debian 11**
 
 .. prompt:: bash # auto
@@ -207,12 +199,12 @@ First, add the repository signing GPG key on the Front-end by executing as user 
     # echo "deb [signed-by=/etc/apt/keyrings/opennebula.gpg] https://downloads.opennebula.io/repo/|version|/Debian/11 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
-**Ubuntu 20.04**
+**Debian 12**
 
 .. prompt:: bash # auto
    :substitutions:
 
-    # echo "deb [signed-by=/etc/apt/keyrings/opennebula.gpg] https://downloads.opennebula.io/repo/|version|/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb [signed-by=/etc/apt/keyrings/opennebula.gpg] https://downloads.opennebula.io/repo/|version|/Debian/12 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 **Ubuntu 22.04**
@@ -221,4 +213,12 @@ First, add the repository signing GPG key on the Front-end by executing as user 
    :substitutions:
 
     # echo "deb [signed-by=/etc/apt/keyrings/opennebula.gpg] https://downloads.opennebula.io/repo/|version|/Ubuntu/22.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # apt-get update
+
+**Ubuntu 24.04**
+
+.. prompt:: bash # auto
+   :substitutions:
+
+    # echo "deb [signed-by=/etc/apt/keyrings/opennebula.gpg] https://downloads.opennebula.io/repo/|version|/Ubuntu/24.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
