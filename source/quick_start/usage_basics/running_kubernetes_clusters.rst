@@ -4,49 +4,112 @@
 Running Kubernetes Clusters
 ============================
 
-In the public OpenNebula System Marketplace there are also services available that let you deploy a multi-VM application. In this exercise we are going to import an `OneKE Service <https://marketplace.opennebula.io/appliance/7c82d610-73f1-47d1-a85a-d799e00c631e>`_ and launch a Kubernetes (RKE2) cluster with it.
+.. ++ = hasta acá
 
-This guide assumes that you have deployed the OpenNebula front-end following the :ref:`Deployment Basics guide <deployment_basics>` and a metal Edge Cluster with KVM hypervisor following the :ref:`Provisining an Edge Cluster <first_edge_cluster>` guide. This ensures that your OpenNebula front-end has a publicly accessible IP address so the deployed services can report to the OneGate server (see :ref:`OneGate Configuration <onegate_conf>` for more details). We are going to assume the Edge Cluster naming schema ``aws-edge-cluster``.
+In previous tutorials of this Quick Start Guide, we:
 
-.. important:: It's a known issue in AWS edge clusters that the ``REPLICA_HOST`` defined for the system datastores may cause QCOW2 image corruption, which causes VMs to boot incorrectly. To avoid this sporadic failure, remove the ``REPLICA_HOST`` parameter from your cluster's system datastore (go to Storage -> Datastore, select the aws-cluster* system datastore -most likely ID 101 if you started the QS guide from scratch- and delete the ``REPLICA_HOST`` parameter from the Attributes section).
+   * Installed an :ref:`OpenNebula Front-end using miniONE <try_opennebula_on_kvm>`,
+   * deployed a :ref:`Metal Edge Cluster <first_edge_cluster>` on AWS, and
+   * deployed a :ref:`Virtual Machine <running_virtual_machines>` with WordPress on that Metal Edge Cluster.
+   
+At this point, we are ready to deploy something more complex on our Metal Edge Cluster: an enterprise-grade, CNCF-certified, multi-master Kubernetes cluster based on SUSE Rancher’s RKE2 Kubernetes distribution. Like the VM with WordPress, the Kubernetes distribution is available in the `OpenNebula Public Marketplace <https://marketplace.opennebula.io>`__, as the multi-VM appliance **OneKE**.
 
-Step 1. Download the OneFlow Service from the Marketplace
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+To deploy Kubernetes, we’ll follow these high-level steps:
 
-Log in to Sunstone as oneadmin. Go to the ``Storage --> Apps`` tab and search for ``OneKe 1.27``. Select the ``Service OneKE 1.27`` and click on the icon with the cloud and the down arrow inside.
+   #. Download the OneKE Service from the OpenNebula Marketplace.
+   #. Instantiate a private network on the Edge Cluster.
+   #. Instantiate the Kubernetes Service.
+   #. Deploy an application on Kubernetes.
 
-|kubernetes-qs-marketplace|
+.. important:: As mentioned above, in this tutorial we’ll use the infrastructure created in previous tutorials of this Quick Start Guide, namely our :ref:`OpenNebula Front-end <try_opennebula_on_kvm>` and our :ref:`Metal Edge Cluster <first_edge_cluster>`, both deployed on AWS. To complete this tutorial, you will need the Front-end and the Edge Cluster up and running.
 
-Now you need to select a datastore. Select the ``aws-edge-cluster-image`` Datastore.
+A Preliminary Step: Remove ``REPLICA_HOST``
+==============================================
+
+It’s known issue in AWS Edge Clusters that the ``REPLICA_HOST`` parameter in the template for the cluster’s datastore may cause QCOW2 image corruption, which causes VMs to boot incorrectly. To avoid the possibility of sporadic VM boot failures, remove the ``REPLICA_HOST`` parameter by following these steps:
+
+   #. Log in to Sunstone as user ``oneadmin``.
+   #. Open the left-hand pane (by hovering your mouse over the icons on the left), then select **Storage** -> **Datastore**.
+   #. Select the AWS cluster’s system datastore. (It will probably show ID ``101`` if you began this Quick Start Guide on a clean install.)
+   #. In the **Attributes** section, find the ``REPLICA_HOST`` attribute and hover your mouse to the right, to display the icons |icon3| for editing the parameter value:
+   
+      .. image:: /images/kubernetes-replica_host_param.png
+   
+   #. Click the **Trash** icon |icon4| to delete the ``REPLICA_HOST`` parameter from the datastore.
+   
+Step 1. Download the OneKE Service from the OpenNebula Marketplace
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The `OpenNebula Public Marketplace <https://marketplace.opennebula.io>`_ is a repository of Virtual Machines and appliances which are curated, tested and certified by OpenNebula.
+
+The Kubernetes cluster packaged in the **OneKE** multi-VM appliance. To download it, follow the same steps as when downloading the WordPress VM:
+
+Log in to Sunstone as user ``oneadmin``.
+
+Open the left-hand pane (by hovering the mouse over the icons on the left), then select **Storage**, then **Apps**. Sunstone will display the **Apps** screen, showing the first page of apps that are available for download.
+
+.. image:: /images/sunstone-apps_list.png
+   :align: center
+   :scale: 60%
+
+|
+
+In the search field at the top, type ``oneke`` to filter by name. Then, select **Service OneKE <version number>** with the hightest version number, in this case **Service OneKE 1.29** highlighted below.
+
+.. image:: /images/sunstone-service_oneke_1.29.png
+   :align: center
+   :scale: 60%
+
+|
+
+Click the **Import into Datastore** |icon1| icon.
+
+Sunstone displays the **Download App to OpenNebula** wizard. In the second screen you will need to select a datastore for the appliance. Select the ``aws-edge-cluster-image`` datastore.
 
 |kubernetes-qs-marketplace-datastore|
 
-The Appliance will be ready when the image in ``Storage --> Images`` switches to ``READY`` from its ``LOCKED`` state. This process may take significant amount of time based on the networking resources available in your infrastructure (Kubernetes 1.27 amounts to a total of 52GB).
+Click **Finish**. Sunstone will display the appliance template and download the appliance in the background. Wait for the appliance **State** to indicate **READY**. The appliance comprises a 25GB download, so this may take several minutes.
 
-.. |kubernetes-qs-marketplace|           image:: /images/kubernetes-qs-marketplace.png
-.. |kubernetes-qs-marketplace-datastore| image:: /images/aws_cluster_images_datastore.png
+Step 2. Instantiate a Private Network on the Edge Cluster
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Step 2. Instantiate private network
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-During the AWS Edge Cluster provisioning a private network template was created, we need to instantiate it first and assign a range to it. To do so, go to the ``Network --> Network Templates``, open the ``aws-edge-cluster-private`` Virtual Network Template and click on the instantiate button.
+During :ref:`Provisioning an Edge Cluster <first_edge_cluster>`, OpenNebula automatically created a network template for the Edge Cluster. Now we need to instantiate it and assign a range of IPs to it.
 
-First we need to give the network a name, e.g. ``aws-private``
+In Sunstone, open the left-hand pane, Select **Network** -> **Network Templates**, then select the **aws-edge-cluster-private** Vitual Network template. Click the **Instantiate** |icon2| icon at the top.
+
+.. image:: /images/sunstone-aws_cluster_private_net_template.png
+   :align: center
+
+|
+
+Sunstone displays the **Instantiate Network Template** wizard. In the first screen, choose a name for the network, e.g. ``aws-private``.
 
 |kubernetes-aws-private-network|
 
-Then hit ``Next`` & click ``+ Address Range`` and select a private IPv4 range, e.g. ``172.20.0.1``, for size we can use ``100``.
+Click **Next**. In the next screen, click the **+ Address Range** box to select an IP address range for the network.
+
+.. image:: /images/sunstone-aws_cluster_private_net_template-add_addr.png
+   :align: center
+
+|
+
+Sunstone displays the **Address Range** dialog box. Here you can define an address range by selecting the first address and the size of the address range. Select a range of private IPv4 addresses, for example ``172.20.0.1``. In this example we’ll set a size of ``100``.
 
 |kubernetes-aws-private-network-range|
 
-Last thing you need to add to the network is a DNS server, click the ``Context`` tab and add a DNS server, e.g. ``8.8.8.8`` or ``1.1.1.1``.
+Lastly, you will need to add a DNS server for the network. Select the **Context** tab, then the **DNS** input field. Type the address for the DNS server, such as ``8.8.8.8`` or ``1.1.1.1``.
 
 |kubernetes-aws-dns|
 
-Now you are ready to start the Kubernetes Service.
+Click **Finish**.
+
+At this point, you have instantiated a private network for the Edge Cluster where Kubernetes will be deployed, and are ready to start the Kubernetes Service.
 
 .. |kubernetes-aws-private-network| image:: /images/kubernetes_aws_private_network.png
 .. |kubernetes-aws-private-network-range| image:: /images/kubernetes_aws_private_network_address_range.png
 .. |kubernetes-aws-dns| image:: /images/kubernetes_aws_dns.png
+
+.. +++++++++++++++++++++++++++++++++++++
 
 Step 3. Instantiate the Kubernetes Service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -297,3 +360,8 @@ Check on the VNF node if ONEGATE_ENDPOINT is set to the AWS elastic IP address o
     [root@VNF]$ grep ONEGATE -r /run/one-context*
 
 Make sure a corresponding inbound rule exists in the AWS security group (SG) with AWS elastic IP on port 5030 and modifications have been applied to AWS FN node.
+
+.. |icon1| image:: /images/icons/sunstone/import_into_datastore.png
+.. |icon2| image:: /images/icons/sunstone/instantiate.png
+.. |icon3| image:: /images/icons/sunstone/parameter_manipulation_icons.png
+.. |icon4| image:: /images/icons/sunstone/trash.png
