@@ -96,7 +96,7 @@ Subsequently, a quota can be enforced for a user, e.g. ``GOLD_QOS = 5``, signify
 
 Each generic quota is also automatically prefixed with ``RUNNING_``. For instance, ``RUNNING_GOLD_QOS`` would specify the number of VMs in an ``ACTIVE`` state with the GOLD_QOS attribute. This allows the establishment of quotas specifically tailored for running VMs.
 
-Additionally, it's important to note that each generic quota defined via ``QUOTA_VM_ATTRIBUTE`` is automatically included in the ``VM_RESTICTED_ATTR`` set. This inclusion prevents regular users from circumventing the quota system by altering the attributes related to these generic quotas.
+Additionally, it's important to note that each generic quota defined via ``QUOTA_VM_ATTRIBUTE`` is automatically included in the ``VM_RESTRICTED_ATTR`` set. This inclusion prevents regular users from circumventing the quota system by altering the attributes related to these generic quotas.
 
 Network Quotas
 --------------------------------------------------------------------------------
