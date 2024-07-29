@@ -52,7 +52,7 @@ The components in the table below are now included in the distribution as legacy
 
 For the full documentation please refer to the :ref:`Legacy Components <legacy_components>` section.
 
-Beginning on version 6.10, users of the :ref:`Community Edition <what_is_community>` will be able to access two features previously only available in the Enterprise Edition:
+Beginning on version 6.10, users of the :ref:`Community Edition <what_is_community>` can access two features previously only available in the Enterprise Edition:
 
    * **Backups** using `Restic <https://restic.net/>`__, an open-source backup program designed for speed and security. The Community Edition now includes the possibility of using Restic as a backend for backup operations.
    * **System monitoring** using `Prometheus <https://prometheus.io/>`__, a set of open-source monitoring and alerting tools. The Community edition now includes the possibility of using Prometheus as a backend for monitoring infrastructure.
