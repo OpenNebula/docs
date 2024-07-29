@@ -93,6 +93,8 @@ API and CLI
 KVM
 ================================================================================
 
+- Extended KVM VM monitoring with :ref:`qemu guest agent information <enabling_qemu_guest_agent>`.
+
 Features Backported to 6.8.x
 ================================================================================
 
