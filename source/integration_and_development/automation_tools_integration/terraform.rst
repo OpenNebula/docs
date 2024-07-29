@@ -6,7 +6,7 @@ Terraform OpenNebula Provider
 
 Terraform is used to create, manage, and manipulate infrastructure resources (e.g. physical machines, VMs, network switches, containers, etc.). Almost any infrastructure noun can be represented as a resource in Terraform. The OpenNebula provider is officially supported by HashiCorp and fully open source, the repository is available `here <https://github.com/OpenNebula/terraform-provider-opennebula>`__.
 
-The OpenNebula provider is used to interact with OpenNebula resources trough Terraform. The provider allow you to manage your OpenNebula clusters resources. It needs to be configured with proper credentials before it can be used.
+The OpenNebula provider is used to interact with OpenNebula resources through Terraform. The provider allows you to manage your OpenNebula clusters resources. It needs to be configured with proper credentials before it can be used.
 
 The provider official documentation can be found `here <https://www.terraform.io/docs/providers/opennebula/index.html>`__.
 
