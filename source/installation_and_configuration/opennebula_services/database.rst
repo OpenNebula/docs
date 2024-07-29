@@ -141,6 +141,8 @@ onedb fsck
 
 Checks the consistency of OpenNebula objects inside the database and fixes any problems it finds. For example, if the machine where OpenNebula is running crashes or loses connectivity to the database, you may have the wrong number of VMs running in a Host or incorrect usage quotas for some users.
 
+To repair any error, first you need to stop OpenNebula and then run the ``onedb fsck`` command. To check consistency, without writing fixes, use the ``--dry`` option.
+
 .. prompt:: text $ auto
 
     $ onedb fsck
