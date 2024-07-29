@@ -24,19 +24,28 @@ To deploy Kubernetes, we’ll follow these high-level steps:
 .. important:: As mentioned above, in this tutorial we’ll use the infrastructure created in previous tutorials of this Quick Start Guide, namely our :ref:`OpenNebula Front-end <try_opennebula_on_kvm>` and our :ref:`Metal Edge Cluster <first_edge_cluster>`, both deployed on AWS. To complete this tutorial, you will need the Front-end and the Edge Cluster up and running.
 
 A Preliminary Step: Remove ``REPLICA_HOST``
-==============================================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 It’s known issue in AWS Edge Clusters that the ``REPLICA_HOST`` parameter in the template for the cluster’s datastore may cause QCOW2 image corruption, which causes VMs to boot incorrectly. To avoid the possibility of sporadic VM boot failures, remove the ``REPLICA_HOST`` parameter by following these steps:
 
    #. Log in to Sunstone as user ``oneadmin``.
    #. Open the left-hand pane (by hovering your mouse over the icons on the left), then select **Storage** -> **Datastore**.
-   #. Select the AWS cluster’s system datastore. (It will probably show ID ``101`` if you began this Quick Start Guide on a clean install.)
-   #. In the **Attributes** section, find the ``REPLICA_HOST`` attribute and hover your mouse to the right, to display the icons |icon3| for editing the parameter value:
    
-      .. image:: /images/kubernetes-replica_host_param.png
+      .. image:: /images/sunstone-storage-datastores.png
+         :align: center
+         :scale: 50%
+      
+   #. Select the AWS cluster’s **system** datastore. (If you began this Quick Start Guide on a clean install, it will probably display ID ``101``.)
+   #. Sunstone displays the **Info** panel for the datastore. Scroll down to the **Attributes** section and find the ``REPLICA_HOST`` attribute. Hover your mouse to the right, to display the icons |icon3| for editing the attribute value:
+   
+      .. image:: /images/sunstone-aws_cluster_replica_host.png
+         :align: center
+         :scale: 50%
    
    #. Click the **Trash** icon |icon4| to delete the ``REPLICA_HOST`` parameter from the datastore.
-   
+
+..      .. image:: /images/kubernetes-replica_host_param.png   
+
 Step 1. Download the OneKE Service from the OpenNebula Marketplace
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -46,7 +55,7 @@ The Kubernetes cluster packaged in the **OneKE** multi-VM appliance. To download
 
 Log in to Sunstone as user ``oneadmin``.
 
-Open the left-hand pane (by hovering the mouse over the icons on the left), then select **Storage**, then **Apps**. Sunstone will display the **Apps** screen, showing the first page of apps that are available for download.
+Open the left-hand pane, then select **Storage**, then **Apps**. Sunstone will display the **Apps** screen, showing the first page of apps that are available for download.
 
 .. image:: /images/sunstone-apps_list.png
    :align: center
@@ -109,46 +118,77 @@ At this point, you have instantiated a private network for the Edge Cluster wher
 .. |kubernetes-aws-private-network-range| image:: /images/kubernetes_aws_private_network_address_range.png
 .. |kubernetes-aws-dns| image:: /images/kubernetes_aws_dns.png
 
-.. +++++++++++++++++++++++++++++++++++++
+
 
 Step 3. Instantiate the Kubernetes Service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. note::
+.. Acá iba nota "You may want to adjust the VM templates..." que está en la versión online.
 
-    You may want to adjust the VM templates before you progress further - go to ``Templates --> VMs``, click on the ``Service OneKE 1.27`` and blue button ``Update`` at the top.
+In the left-hand pane, select **Templates** -> **Service Templates**. Then, select **Service OneKE 1.29** and click the **Instantiate** icon |icon2| above.
 
-Proceed to the ``Templates --> Service Templates`` tab and select the ``Service OneKE 1.27`` Service Template. Click on the ``Instantiate`` button (next to Update).
-
-Then we can give our service a name and the number of instances to instantiate, for this example we will use ``OneKE 1.27`` and start ``1`` instance of it.
+Sunstone displays the **Instantiate Service Template** wizard. In the first screen we can give our service a name and specify the number of instances to instantiate; in this example we’ll use ``OneKE 1.29``, and start a single instance.
 
 |kubernetes-qs-service-start|
 
-Then we hit ``Next`` until we reach the ``Network`` step. Under which we select the ``aws-edge-cluster-public`` network, for the public network ID
+Click **Next** to go to the next screen, **User Inputs**.
 
-|kubernetes-qs-pick-networks-public|
+Here you can define parameters for the cluster, including a custom domain, VNF routers, storage options and others. There are three **User inputs** pages in total; you can browse available parameters by clicking the page numbers below.
 
-and ``aws-private`` for the private network ID.
+.. image:: /images/sunstone-kubernetes-user_inputs.png
+   :align: center
+   :scale: 70%
 
-|kubernetes-qs-pick-networks-private|
+|
 
-You will most likely want to add a custom domain to Kubernetes SANs, so the ``kubectl`` command could be used from "outside" of the cluster.
+
+Optional: Add a Custom Domain
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To enable access with the ``kubectl`` command from outside the cluster, you can add a custom domain for the Kubernetes SANs. Enter it in the **ApiServer extra certificate SANs** field, as shown below.
 
 |kubernetes-qs-add-sans|
 
-You can either use a public DNS server or your local ``/etc/hosts`` file, for example:
+For name resolution you can use public DNS server or add the custom domain to your local ``/etc/hosts`` file, for example:
 
 .. prompt:: text $ auto
 
    127.0.0.1 localhost
    1.2.3.4 k8s.yourdomain.it
+   
+.. important::
 
-.. important:: To make the kubeconfig file work with custom SANs you will need to modify the ``clusters[0].cluster.server`` variable inside the YAML payload (for example: ``server: https://k8s.yourdomain.it:6443``) which can be found in the file whose path is a value of the $KUBECONFIG variable on the k8s master node (the details on how to log in to that node are given below in :ref:`Step 4. Provisining an Edge Cluster <step-4>`).
+   When using a custom SAN, to access the cluster using the ``kubeconfig`` file you will need to modify the variable ``clusters[0].cluster.server`` to include the name of the cluster, e.g. ``server: https://k8s.yourdomain.it:6443``. The variable is stored in the ``kubeconfig`` file, which itself is defined in the Kubernetes master node, in the variable ``$KUBECONFIG``.
 
-To be able to expose an example application you should enable OneKE's Traefik / HAProxy solution for ingress traffic:
+   To define the variable in the ``kubeconfig`` file, follow these high-level steps:
+
+   #. Log in to the Kubernetes master node (see :ref:`Step 4 <step-4>` below).
+   #. Find the ``kubeconfig`` file by checking the value of the ``$KUBECONFIG`` variable, e.g. by running ``echo $KUBECONFIG``.
+   #. Edit the file and modify the value of ``clusters[0].cluster.server`` with your domain name, e.g. ``server: https://k8s.yourdomain.it:6443``.
+
+Enable **Traefik/HaProxy**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To expose an example application on the public network, you will need to enable OneKE’s Traefik/HAProxy solution for ingress traffic. In **User Inputs**, go to Page 2 by clicking ``2`` or the right arrow. In the second page of **User Inputs**, click the **Enable Traefik** switch to activate it.
 
 |kubernetes-qs-enable-ingress|
 
+Select the Public and Private Networks
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Click **Next** to go to the next screen, **Network**.
+
+First we’ll select the public network. Check that the **Network ID** drop-down menu displays ``Public``, then select the **metal-aws-edge-cluster-public** network.
+
+|kubernetes-qs-pick-networks-public|
+
+To select the private network, change the **Network ID** drop-down to ``Private``, then select **aws-private**.
+
+|kubernetes-qs-pick-networks-private|
+
+If you wish to add a ----
+
+.. +++ FIN
+
+At this point, the Kubernetes service template is ready to be instantiated. To instantiate it, click the **Instantiate** |icon2| icon at the top 
 Now click on the instantiate button in the Sunstone web-GUI, go to ``Instances --> Services`` or via command line interface (CLI)
 
 .. prompt:: bash $ auto
@@ -178,9 +218,9 @@ After the OneFlow service is deployed you can also **scale up** the worker nodes
 .. note:: Even though Sunstone shows the VNC console button, VNC access to VMs running in Edge Clusters has been deemed insecure and as such OpenNebula filters this traffic. This means that the VNC access won't work for VMs running in Edge Clusters.
 
 
-.. |kubernetes-qs-service-start| image:: /images/kubernetes_service_start.png
-.. |kubernetes-qs-pick-networks-public| image:: /images/kubernetes-qs-pick-networks-public.png
-.. |kubernetes-qs-pick-networks-private| image:: /images/kubernetes-qs-pick-networks-private.png
+.. |kubernetes-qs-service-start| image:: /images/kubernetes_service_start-1.29.png
+.. |kubernetes-qs-pick-networks-public| image:: /images/kubernetes-qs-pick-networks-public-1.29.png
+.. |kubernetes-qs-pick-networks-private| image:: /images/kubernetes-qs-pick-networks-private-1.29.png
 .. |kubernetes-qs-add-sans| image:: /images/kubernetes-qs-add-sans.png
 .. |kubernetes-qs-enable-ingress| image:: /images/kubernetes-qs-enable-ingress.png
 
