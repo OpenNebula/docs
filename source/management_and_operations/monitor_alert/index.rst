@@ -1,5 +1,5 @@
 ============================
-Monitoring and Alerting (EE)
+Monitoring and Alerting
 ============================
 
 .. toctree::

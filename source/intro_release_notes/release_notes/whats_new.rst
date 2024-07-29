@@ -6,7 +6,7 @@ What’s New in |version|
 
 .. Attention: Substitutions doesn't work for emphasized text
 
-**OpenNebula 6.10 “Bubble”** is the sixth stable release of the OpenNebula 6 series. This new release features the first complete implementation of the Sunstone UI functionality on the FireEdge server, as well as improvements in backups, support for new versions of operating systems for the Front-end node, and streamlining by removing obsolete or little-used components, or providing them as legacy components.
+**OpenNebula 6.10 “Bubble”** is the sixth stable release of the OpenNebula 6 series. This new release features the first complete implementation of the Sunstone UI functionality on the FireEdge server, as well as improvements in backups, support for new versions of operating systems for the Front-end node, new features included in the Community Edition, and streamlining by removing obsolete or little-used components, or providing them as legacy components.
 
 The first major highlight in this release is the new Sunstone UI. The full power of OpenNebula’s web UI is now provided by the FireEdge server, which delivers the complete set of features previously offered by legacy Ruby-based Sunstone. The new Sunstone UI brings a clean, fast, highly-customizable and easy-to-use UI.
 
@@ -51,6 +51,11 @@ The components in the table below are now included in the distribution as legacy
 +----------------+------------------------------+
 
 For the full documentation please refer to the :ref:`Legacy Components <legacy_components>` section.
+
+Beginning on version 6.10, users of the :ref:`Community Edition <what_is_community>` will be able to access two features previously only available in the Enterprise Edition:
+
+   * **Backups** using `Restic <https://restic.net/>`__, an open-source backup program designed for speed and security. The Community Edition now includes the possibility of using Restic as a backend for backup operations.
+   * **System monitoring** using `Prometheus <https://prometheus.io/>`__, a set of open-source monitoring and alerting tools. The Community edition now includes the possibility of using Prometheus as a backend for monitoring infrastructure.
 
 OpenNebula 6.10 is named after the `Bubble Nebula <https://www.constellation-guide.com/bubble-nebula-ngc-7635/>`__ (NGC 7635) in the constellation Cassiopeia. It is a young, glowing emission nebula energized by a hot, massive central star. Partly located in a group of stars between 7000 and 8000 light-years away from Earth, the Bubble Nebula is in expansion, with a central “bubble” measuring between six and ten light-years and an estimated temperature of more than 37,000 degrees Celsius (67,000 Fahrenheit). It was discovered by the celebrated astronomer William Herschel in 1787.
 

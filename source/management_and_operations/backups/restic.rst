@@ -1,12 +1,12 @@
 .. _vm_backups_restic:
 
 ================================================================================
-Backup Datastore: Restic (EE)
+Backup Datastore: Restic
 ================================================================================
 
-`Restic is an open source (BSD 2-Clause License) backup tool <https://restic.net/>`_ designed to be fast, secure and efficient. The current implementation of the driver uses the SFTP storage type. Restic offers interesting features to store backups, like deduplication (only transferring image blobs not already present in the repository) or compression (enabled by default).
+`Restic <https://restic.net/>`__ is an open source (BSD 2-Clause License) backup tool designed for speed, security and efficiency. The current implementation of the driver uses the SFTP storage type. Restic offers interesting features to store backups, like deduplication (only transferring image blobs not already present in the repository) or compression (enabled by default).
 
-If you are using the enterprise edition (EE) of OpenNebula, the right version of restic has been already downloaded and installed in your system as a dependency. In this guide we will use the following terminology (introduce by restic):
+In both the Enterprise and Community editions of OpenNebula, the correct version of restic is included as a dependency. In this guide we will use the following terminology (introduced by restic):
 
 - *Repository*: This is the storage volume where the disk images backups will be stored. Restic creates an specific interval structure to store the backups efficiently. The restic driver access to the repository through the sftp. protocol. OpenNebula will create a separate restic repository for each VM or backup job.
 

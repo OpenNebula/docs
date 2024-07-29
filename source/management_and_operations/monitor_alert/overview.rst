@@ -1,7 +1,7 @@
 .. _monitor_alert_overview:
 
 ================================================================================
-Monitoring and Alerting (EE)
+Monitoring and Alerting
 ================================================================================
 
 This chapter contains documentation on how to configure OpenNebula to work with `Prometheus monitoring and alerting toolkit <http://prometheus.io>`_. The integration consists of four components:
@@ -10,8 +10,6 @@ This chapter contains documentation on how to configure OpenNebula to work with 
   - An OpenNebula Exporter, that provides basic information about the overall OpenNebula cloud.
   - Alert rules sample files based on the provided metrics
   - `Grafana <https://grafana.com/>`_ dashboards to visualize VM, Host and OpenNebula information in a convenient way.
-
-.. important:: This feature is only available for OpenNebula Enterprise Edition.
 
 How Should I Read This Chapter
 ================================================================================
