@@ -18,17 +18,17 @@ This section focuses on the scale limits of oned, the controller component, for 
 The following results have been obtained with synthetic workloads that stress oned running on a physical server with the following specifications:
 
 +----------------------+---------------------------------------------------------+
-| CPU model:           | Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz                |
+| CPU model:           | Intel(R) Xeon(R) E-2278G CPU @ 3.40GHz                  |
 +----------------------+---------------------------------------------------------+
-| RAM:                 | 2x8GB, DDR3, 1600 MT/s                                  |
+| RAM:                 | 2x16GB, DDR4, 2667 MHz                                  |
 +----------------------+---------------------------------------------------------+
-| HDD:                 | KINGSTON SH103S3, SSD 240 GB                            |
+| HDD:                 | SSD 480 GB                                              |
 +----------------------+---------------------------------------------------------+
-| OS:                  | Ubuntu 19.10                                            |
+| OS:                  | Ubuntu 22.04                                            |
 +----------------------+---------------------------------------------------------+
-| OpenNebula:          | Version 5.12                                            |
+| OpenNebula:          | Version 6.10                                            |
 +----------------------+---------------------------------------------------------+
-| Database:            | MariaDB v10.1 with default configurations               |
+| Database:            | MySQL  Ver 8.0.37-0ubuntu0.22.04.3                      |
 +----------------------+---------------------------------------------------------+
 
 In a single zone, OpenNebula (oned) can work with the following limits:
@@ -38,7 +38,7 @@ In a single zone, OpenNebula (oned) can work with the following limits:
 +--------------------------+-----------------------------------------------------+
 | Number of VMs            | 20,000                                              |
 +--------------------------+-----------------------------------------------------+
-| Average VM template size | 7 KB                                                |
+| Average VM template size | 10 KB                                               |
 +--------------------------+-----------------------------------------------------+
 
 In production environments, we do not recommend exceeding in the same installation this number of servers (1,250) and VMs (20,000), as well as a load of 30 API requests/s to avoid the system becoming excessively slow. Better performance can be achieved with specific tuning of other components, like the database, or better hardware.
@@ -51,13 +51,13 @@ The four most common API calls were used to stress the core at the same time in 
 +-----------------------+---------------------+--------------------+--------------------+
 | API Call - ratio      | API Load: 10 req/s  | API Load: 20 req/s | API Load: 30 req/s |
 +-----------------------+---------------------+--------------------+--------------------+
-| host.info (30%)       | 0.04                | 0.24               | 0.31               |
+| host.info (30%)       | 0.02                | 0.05               | 0.06               |
 +-----------------------+---------------------+--------------------+--------------------+
-| hostpool.info (20%)   | 0.25                | 0.57               | 0.66               |
+| hostpool.info (20%)   | 0.04                | 0.07               | 0.07               |
 +-----------------------+---------------------+--------------------+--------------------+
-| vm.info (30%)         | 0.06                | 0.26               | 0.33               |
+| vm.info (30%)         | 0.01                | 0.05               | 0.06               |
 +-----------------------+---------------------+--------------------+--------------------+
-| vmpool.info (20%)     | 2.39                | 4.68               | 6.36               |
+| vmpool.info (20%)     | 0.78                | 1.10               | 1.27               |
 +-----------------------+---------------------+--------------------+--------------------+
 
 .. _hv_scalability:
