@@ -120,6 +120,7 @@ Other Issues Solved
 - `Fix not possible to navigate within almost all VM graphs <https://github.com/OpenNebula/one/issues/6637>`__.
 - `Fix the Restic Password with special characters cause restore to fail <https://github.com/OpenNebula/one/issues/6571>`__.
 - `Fix OneFlow server error output <https://github.com/OpenNebula/one/issues/6656>`__.
+- `Fix KVM migration when SYNC_TIME is not defined <https://github.com/OpenNebula/one/issues/6634>`__.
 
 Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 
