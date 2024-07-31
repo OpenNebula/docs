@@ -4,8 +4,6 @@
 Running Kubernetes Clusters
 ============================
 
-.. ++ = hasta acá
-
 In previous tutorials of this Quick Start Guide, we:
 
    * Installed an :ref:`OpenNebula Front-end using miniONE <try_opennebula_on_kvm>`,
@@ -26,10 +24,10 @@ To deploy Kubernetes, we’ll follow these high-level steps:
 A Preliminary Step: Remove ``REPLICA_HOST``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-It’s a known issue in AWS Edge Clusters that the ``REPLICA_HOST`` parameter in the template for the cluster’s datastore may cause QCOW2 image corruption, which causes VMs to boot incorrectly. To avoid the possibility of sporadic VM boot failures, remove the ``REPLICA_HOST`` parameter by following these steps:
+It’s a known issue in AWS Edge Clusters that the ``REPLICA_HOST`` parameter in the template for the cluster’s datastore may cause QCOW2 image corruption, which causes VMs to boot incorrectly. To avoid the possibility of sporadic VM boot failures, remove the ``REPLICA_HOST`` parameter, by following these steps:
 
    #. Log in to Sunstone as user ``oneadmin``.
-   #. Open the left-hand pane (by hovering your mouse over the icons on the left), then select **Storage** -> **Datastore**.
+   #. Open the left-hand pane (by hovering your mouse over the icons on the left), then select **Storage** -> **Datastores**.
    
       .. image:: /images/sunstone-storage-datastores.png
          :align: center
@@ -37,8 +35,8 @@ It’s a known issue in AWS Edge Clusters that the ``REPLICA_HOST`` parameter in
       
       |
       
-   #. Select the AWS cluster’s **system** datastore. (If you began this Quick Start Guide on a clean install, it will probably display ID ``101``.)
-   #. Sunstone displays the **Info** panel for the datastore. Scroll down to the **Attributes** section and find the ``REPLICA_HOST`` attribute. Hover your mouse to the right, to display the **Copy**/**Edit**/**Delete** icons |icon3| for the attribute value:
+   #. Select the **system** datastore for the AWS cluster. (If you began this Quick Start Guide on a clean install, it will probably display ID ``101``.)
+   #. Sunstone will display the **Info** panel for the datastore. Scroll down to the **Attributes** section and find the ``REPLICA_HOST`` attribute. Hover your mouse to the right, to display the **Copy**/**Edit**/**Delete** icons |icon3| for the attribute value:
    
       .. image:: /images/sunstone-aws_cluster_replica_host.png
          :align: center
@@ -79,7 +77,7 @@ In the search field at the top, type ``oneke`` to filter by name. Then, select *
 
 Click the **Import into Datastore** |icon1| icon.
 
-Just like with the WordPress appliance, Sunstone displays the **Download App to OpenNebula** wizard. In the second screen you will need to select a datastore for the appliance. Select the ``aws-edge-cluster-image`` datastore.
+Just like with the WordPress appliance, Sunstone displays the **Download App to OpenNebula** wizard. Click **Next**. In the second screen you will need to select a datastore for the appliance. Select the **aws-edge-cluster-image** datastore.
 
 |kubernetes-qs-marketplace-datastore|
 
@@ -90,7 +88,7 @@ Click **Finish**. Sunstone will display the appliance template and download the 
 Step 2. Instantiate a Private Network on the Edge Cluster
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-During :ref:`Provisioning an Edge Cluster <first_edge_cluster>`, OpenNebula automatically created a network template for the Edge Cluster. Now we need to instantiate it and assign a range of IPs to it.
+During :ref:`Provisioning an Edge Cluster <first_edge_cluster>`, OpenNebula automatically created a network template for the Edge Cluster. In this step we will instantiate it and assign a range of IPs to it.
 
 In Sunstone, open the left-hand pane, Select **Network** -> **Network Templates**, then select the **aws-edge-cluster-private** Virtual Network template. Click the **Instantiate** |icon2| icon at the top.
 
@@ -120,7 +118,7 @@ Lastly, you will need to add a DNS server for the network. Select the **Context*
 
 Click **Finish**.
 
-At this point, you have instantiated a private network for the Edge Cluster where Kubernetes will be deployed, and are ready to deploy the Kubernetes Service.
+At this point, you have instantiated a private network for the Edge Cluster where Kubernetes will be deployed, and are ready to instantiate the Kubernetes Service.
 
 .. |kubernetes-aws-private-network| image:: /images/kubernetes_aws_private_network.png
 .. |kubernetes-aws-private-network-range| image:: /images/kubernetes_aws_private_network_address_range.png
@@ -135,13 +133,13 @@ Step 3. Instantiate the Kubernetes Service
 
 In the left-hand pane, select **Templates** -> **Service Templates**. Then, select **Service OneKE 1.29** and click the **Instantiate** icon |icon2| above.
 
-Sunstone displays the **Instantiate Service Template** wizard. In the first screen you can give our service a name and specify the number of instances to instantiate; in this example we’ll use ``OneKE 1.29``, and start a single instance.
+Sunstone displays the **Instantiate Service Template** wizard. In the first screen you can give your service a name and specify the number of instances to instantiate; in this example we’ll use ``OneKE 1.29``, and start a single instance.
 
 |kubernetes-qs-service-start|
 
 Click **Next** to go to the next screen, **User Inputs**.
 
-Here you can define parameters for the cluster, including a custom domain, plugins, VNF routers, storage options and others. There are three **User inputs** pages in total; you can browse available parameters by clicking the page numbers below.
+Here you can define parameters for the cluster, including a custom domain, plugins, VNF routers, storage options and others. There are three **User inputs** pages in total; you can browse them by clicking the page numbers at the bottom of each page.
 
 .. image:: /images/sunstone-kubernetes-user_inputs.png
    :align: center
@@ -153,11 +151,11 @@ Here you can define parameters for the cluster, including a custom domain, plugi
 Optional: Add a Custom Domain
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To enable access with the ``kubectl`` command from outside the cluster, you can add a custom domain for the Kubernetes SANs. Enter it in the **ApiServer extra certificate SANs** field, as shown below.
+To enable access with the ``kubectl`` command from outside the cluster, you can add a custom domain for the Kubernetes SANs. Enter your custom domain in the **ApiServer extra certificate SANs** field, as shown below.
 
 |kubernetes-qs-add-sans|
 
-For name resolution you can use public DNS server or add the custom domain to your local ``/etc/hosts`` file, for example:
+You can use a public DNS server or add the custom domain to your local ``/etc/hosts`` file, for example:
 
 .. prompt:: text $ auto
 
@@ -166,12 +164,12 @@ For name resolution you can use public DNS server or add the custom domain to yo
    
 .. important::
 
-   When using a custom SAN, to access the cluster using the ``kubeconfig`` file you will need to modify the variable ``clusters[0].cluster.server`` to include the name of the cluster, e.g. ``server: https://k8s.yourdomain.it:6443``. The variable is stored in the ``kubeconfig`` file, which itself is defined in the Kubernetes master node, in the variable ``$KUBECONFIG``.
+   When using a custom SAN, to access the cluster using a kubeconfig file you will need to modify the variable ``clusters[0].cluster.server`` in the file to include the name of the cluster, e.g. ``server: https://k8s.yourdomain.it:6443``. The path of the kubeconfig file is set in the ``KUBECONFIG`` variable in the Kubernetes master node.
 
-   To define the variable in the ``kubeconfig`` file, follow these high-level steps:
+   To define the variable in the kubeconfig file, follow these high-level steps:
 
    #. Log in to the Kubernetes master node (see :ref:`Step 4 <step-4>` below).
-   #. Find the ``kubeconfig`` file by checking the value of the ``$KUBECONFIG`` variable, e.g. by running ``echo $KUBECONFIG``.
+   #. Find the kubeconfig file by checking the value of the ``KUBECONFIG`` variable, e.g. by running ``echo $KUBECONFIG``.
    #. Edit the file and modify the value of ``clusters[0].cluster.server`` with your domain name, e.g. ``server: https://k8s.yourdomain.it:6443``.
 
 Enable **Traefik/HaProxy**
@@ -202,6 +200,8 @@ Verify the Cluster Deployment
 
 To verify that the Kubernetes cluster and its VMs have correctly deployed, you can either use the Sunstone UI, or run the ``onevm`` command on the Front-end node.
 
+To verify in the Sunstone GUI, open the left-hand pane, then Select **Instances** -> **Services**. You should see the OneKE service up and running, with its running VMs visible in the **Roles** tab.
+
 To verify the deployment using the command line, log in to the Front-end node as user ``oneadmin``, then run ``oneflow list``. In the command output, check that the State is ``RUNNING``.
 
 On the Front-end node, run:
@@ -221,11 +221,10 @@ To verify that the VMs for the cluster were correctly deployed, you can use the 
     4 oneadmin oneadmin worker_0_(service_3)             runn    2      3G <cluster_public_IP>           0d 00h05
     3 oneadmin oneadmin master_0_(service_3)             runn    2      3G <cluster_public_IP>           0d 00h05
     2 oneadmin oneadmin vnf_0_(service_3)                runn    1      2G <cluster_public_IP>           0d 00h06
-    1 oneadmin oneadmin Service WordPress - KVM-1        runn    1      2G <cluster_public_IP>           0d 00h21
 
 .. _check_vnf:
 
-After the VNF instance is successfully provisioned, you need to consult the public IP address (AWS elastic IP) that was assigned to it by OpenNebula. In Sunstone, got to **Instances** -> **VMs**, and check the **IP** column to see the IP assigned to VNF by OpenNebula.
+After the VNF instance is successfully provisioned, you need to consult its public IP address (AWS elastic IP). In Sunstone, got to **Instances** -> **VMs**, and check the **IP** column to see the IP assigned to the VNF.
 
 Alternatively, to check on the command line, log in to the Front-end and run:
 
@@ -355,6 +354,8 @@ Congratulations! You have successfully deployed a fully functional Kubernetes cl
 
 .. |external_ip_nginx_welcome_page| image:: /images/external_ip_nginx_welcome_page.png
 
+.. tip:: For more information including additional features for the OneKE appliance, please refer to the documentation at the `OpenNebula Apps Documentation <https://github.com/OpenNebula/one-apps/wiki>`__ project.
+
 Known Issues
 ~~~~~~~~~~~~
 .. _oneflow-service-is-stuck-in-deploying:
@@ -362,41 +363,43 @@ Known Issues
 OneFlow Service is Stuck in ``DEPLOYING``
 +++++++++++++++++++++++++++++++++++++++++
 
-A network misconfiguration, or any major failure (such as network timeouts or performance problems) can result in OneFlow services locking up. The OneFlow service will lock if *any* of the VMs belonging to the Kubernetes cluster does not report ``READY=YES`` to OneGate within the default time.
+An error in the network, or any major failure (such as network timeouts or performance problems) can cause the OneFlow service to lock due to communications outage between it and the VMs in a multi-VM service such as Kubernetes. The OneFlow service will lock if *any* of the VMs belonging to the Kubernetes cluster does not report ``READY=YES`` to OneGate within the default time.
 
-You can determine if this is the case by inspecting the ``/var/log/one/oneflow.log`` file on your OpenNebula Front-end and looking for:
+If one or more of the VMs in the Kubernetes cluster never leave the ``DEPLOYING`` state, you can troubleshoot OneFlow communications by inspecting the file ``/var/log/oneflow.log`` on the Front-end node. Look for a line like the following:
 
 .. code-block:: text
 
     [E]: [LCM] [one.document.info] User couldn't be authenticated, aborting call.
 
-The line above means that provisioning your OneFlow service exceeded the allowed to time and it is not possible to recover this broken instance; it must be recreated.
+The line above means that provisioning the OneFlow service exceeded the allowed time. In this case it is not possible to recover broken VM instance; it must be recreated.
 
-.. important::
+If you attempt to recreate the instance, ensure that your environment has a good connection to the public Internet and does not suffer from any impairments in performance.
 
-    But attempting to recreate the instance, please ensure that your environment has a good connection to the public Internet and does not suffer from any impairments in performance.
+.. _terminate_oneflow:
 
-To terminate a OneFlow service stuck in ``DEPLOYING``, you cannot use the ``delete`` operation. You will need to run the following command:
+A OneFlow service stuck in ``DEPLOYING`` cannot be terminated by the ``delete`` operation. To terminate it, you need to run the following command:
 
 .. prompt:: bash $ auto
 
    [oneadmin@FN]$ oneflow recover --delete <service_ID>
 
-.. ++DESDE ACÁ
-Another issue you might face is the VNF node can't contact the OneGate server on FN. In that case there are messages in the ``/var/log/one/oneflow.log`` file like this:
+Connectivity to the OneGate Server
+++++++++++++++++++++++++++++++++++
+
+Another possible cause for VMs in the Kubernetes cluster failing to run is lack of contact between the VNF node in the cluster and the OneGate server on the Front-end. In this case, the ``/var/log/one/oneflow.log`` file on the Front-end will display messages like the following:
 
 
 .. code-block:: text
 
     [EM] Timeout reached for VM [0] to report
 
-In such a case, only the VNF node will be deployed and no k8s ones. Thus you must SSH into the VNF node and run as root:
+In this scenario only the VNF node is successfully deployed, but no Kubernetes nodes. To troubleshoot, log in to the VNF node via SSH, then run as root:
 
 .. prompt:: bash $ auto
 
    [root@VNF]$ onegate vm show
 
-to check if the VNF is able to contact the OneGate server on FN. A successful response should look like the one below:
+to check if the VNF is able to contact the OneGate server on FN. A successful response should look like:
 
 .. code-block:: text
 
@@ -406,20 +409,21 @@ to check if the VNF is able to contact the OneGate server on FN. A successful re
 
 and in case of failure:
 
-
 .. code-block:: text
 
     [root@VNF]$ onegate vm show
     Timeout while connected to server (Failed to open TCP connection to <AWS elastic IP of FN>:5030 (execution expired)).
     Server: <AWS elastic IP of FN>:5030
 
-Check on the VNF node if ONEGATE_ENDPOINT is set to the AWS elastic IP address of FN:
+One possible problem is that the VNF node is trying to connect to the wrong AWS IP address of the Front-end node. In the VNF node, the IP address for the Front-end node is defined in the scripts contained in the ``/run/one-context*`` directories, as the ``ONEGATE_ENDPOINT`` parameter. You can check the value of this parameter with:
 
 .. code-block:: text
 
     [root@VNF]$ grep ONEGATE -r /run/one-context*
 
-Make sure a corresponding inbound rule exists in the AWS security group (SG) with AWS elastic IP on port 5030 and modifications have been applied to AWS FN node.
+If necessary, edit the parameter with the correct IP address, then terminate the service from the Front-end (see :ref:`above <terminate_oneflow>`) and re-deploy.
+
+On the Front-end node, the OneGate server listens on port 5030, so you must ensure that this port accepts incoming connections. If necessary, create an inbound rule in the AWS security groups for the elastic IP of the Front-end.
 
 .. |icon1| image:: /images/icons/sunstone/import_into_datastore.png
 .. |icon2| image:: /images/icons/sunstone/instantiate.png
