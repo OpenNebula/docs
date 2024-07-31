@@ -4,6 +4,8 @@
 Running Kubernetes Clusters
 ============================
 
+.. NOTE: This is a HOW-TO
+
 In previous tutorials of this Quick Start Guide, we:
 
    * Installed an :ref:`OpenNebula Front-end using miniONE <try_opennebula_on_kvm>`,
