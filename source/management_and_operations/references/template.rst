@@ -1309,7 +1309,9 @@ The following attributes can used to define punctual or relative actions for the
 +---------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |   Attribute   | Description                                                                                                                                                                    |
 +===============+================================================================================================================================================================================+
-| ``TIME``      | Time in seconds to start the action.                                                                                                                                           |
+| ``TIME``      | Time in seconds to start the action. Can be defined as relative value ``+sec`` from the VM start, OpenNebula computes and stores absolute value.                               |
++---------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``WARNING``   | Time in seconds (can be relative ``+sec`` from the VM start), when the CLI and Sunstone will highlight the action, because it will be executed soon.                           |
 +---------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``REPEAT``    | Define the granularity of the action [ WEEKLY = 0 , MONTHLY = 1 , YEARLY = 2 , HOURLY = 3 ].                                                                                   |
 +---------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -1335,7 +1337,8 @@ Example:
         END_VALUE="5",
         ID="0",
         REPEAT="0",
-        TIME="1537653600" ]
+        TIME="1537653600",
+        WARNING="1537567200" ]
 
 .. |user_inputs| image:: /images/sunstone_user_inputs.png
 

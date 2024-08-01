@@ -69,6 +69,7 @@ OpenNebula Core
 - **PCI attach/detach**: generic PCI devices (e.g. GPU/vGPUs) now support :ref:`attach and detach operations <vm_guide2_pci>` in poweroff and undeployed states. Note that this functionality (in any state) is already present for NIC PCI passthrough/SRIOV devices.
 - **Search Virtual Machines**: The new :ref:`JSON search syntax <vm_search>` allow advanced search by ``onevm list --search`` command. It also greatly improves the performance of  searches. See also the :ref:`compatibility notes <compatibility>`.
 - **Additional settings at cluster level**: The ``FEATURES`` attribute for ``CPU_MODEL`` can be :ref:`set at cluster level <kvmg_default_attributes>` so all VMs running in a given cluster will use the same CPU features by default.
+- **Warning attribute for Scheduled Action**: The ``WARNiNG`` attribute can be used to highlight the :ref:`Scheduled Action <template_schedule_actions>` in the CLI and Sunstone, before it is executed.
 
 Storage & Backups
 ================================================================================
