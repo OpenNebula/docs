@@ -892,16 +892,21 @@ The charters can be added into the ``onevm`` configuration file ``/etc/one/cli/o
     :charters:
       :suspend:
         :time: "+1209600"
+        :warning:
+            :time: "+1123200"
       :terminate:
         :time: "+1209600"
+        :warning:
+            :time: "+1123200"
 
-The information about the charters can be checked with the command ``onevm show``:
+The information about the charters can be checked with the command ``onevm show``, the ``*`` in front of the ID indicates that the warning time passed:
 
 .. prompt:: bash $ auto
 
     SCHEDULED ACTIONS
     ID     ACTION     ARGS    SCHEDULED        REPEAT            END  STATUS
-     1  terminate        -  01/01 03:00                               In 1.25 hours
+    *0  suspend          -  01/01 03:00                               Next in 1.25 hours
+     1  terminate        -  15/01 03:00                               Next in 14 days
 
 .. _vm_guide2_user_defined_data:
 
