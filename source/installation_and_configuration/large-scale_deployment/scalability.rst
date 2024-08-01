@@ -28,7 +28,7 @@ The following results have been obtained with synthetic workloads that stress on
 +----------------------+---------------------------------------------------------+
 | OpenNebula:          | Version 6.10                                            |
 +----------------------+---------------------------------------------------------+
-| Database:            | MySQL  Ver 8.0.37-0ubuntu0.22.04.3                      |
+| Database:            | MySQL  Version 8.0.37-0ubuntu0.22.04.3                  |
 +----------------------+---------------------------------------------------------+
 
 In a single zone, OpenNebula (oned) can work with the following limits:
