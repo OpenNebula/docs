@@ -10,7 +10,7 @@ In previous tutorials of this Quick Start Guide, we:
    * deployed a :ref:`Metal Edge Cluster <first_edge_cluster>` on AWS, and
    * deployed a :ref:`Virtual Machine <running_virtual_machines>` with WordPress on that Metal Edge Cluster.
 
-At this point, we are ready to deploy something more complex on our Metal Edge Cluster: an enterprise-grade, multi-master Kubernetes cluster based on SUSE Rancher’s RKE2 Kubernetes distribution. Like the WordPress VM, the Kubernetes cluster is available in the `OpenNebula Public Marketplace <https://marketplace.opennebula.io>`__, where you can find it as the multi-VM appliance **Service OneKE**, the OpenNebula Kubernetes Edition.
+At this point, we are ready to deploy something more complex on our Metal Edge Cluster: an enterprise-grade, multi-master Kubernetes cluster based on SUSE Rancher’s RKE2 Kubernetes distribution. Like the WordPress VM, the Kubernetes cluster is available in the `OpenNebula Public Marketplace <https://marketplace.opennebula.io>`. You can find it as the multi-VM appliance **Service OneKE**, the OpenNebula Kubernetes Edition.
 
 To deploy the Kubernetes cluster, we’ll follow these high-level steps:
 
@@ -38,9 +38,7 @@ Follow these steps:
       .. image:: /images/sunstone-storage-datastores.png
          :align: center
          :scale: 50%
-      
-      |
-      
+
    #. Select the **system** datastore for the AWS cluster. (If you began this Quick Start Guide on a clean install, it will probably display ID ``101``.)
    #. Sunstone will display the **Info** panel for the datastore. Scroll down to the **Attributes** section and find the ``REPLICA_HOST`` attribute. Hover your mouse to the right, to display the **Copy**/**Edit**/**Delete** icons |icon3| for the attribute value:
    
@@ -52,7 +50,7 @@ Follow these steps:
    
    #. Click the **Delete** icon |icon4|.
 
-The ``REPLICA_HOST`` parameter has been deleted from the datastore; we are now ready to download the OneKE appliance.
+You have deleted the ``REPLICA_HOST`` parameter from the datastore. In the next step we’ll download the OneKE appliance.
 
 ..      .. image:: /images/kubernetes-replica_host_param.png   
 
@@ -297,7 +295,7 @@ In this example, ``172.20.0.2`` is the private IP address of the Kubernetes mast
         $ scp ~/.ssh/id_rsa root@1.2.3.4:/root/.ssh/           # copy the key
         $ ssh root@1.2.3.4 chmod u=rw,go= /root/.ssh/id_rsa    # make sure the key is secured
 
-Once you have connected to the Kubernetes master node, check if ``kubectl`` is working:
+Once you have connected to the Kubernetes master node, check if ``kubectl`` is working, by running ``kubectl get nodes``:
 
 .. prompt:: bash root@oneke-ip-172-20-0-2:~#  auto
 
@@ -373,7 +371,7 @@ To access the application, point your browser to the public IP of the VNF node i
 
 Congratulations! You have successfully deployed a fully functional Kubernetes cluster at the edge, and have completed the Quick Start Guide.
 
-For more information including additional features for the OneKE Appliance, please refer to the documentation at the `OpenNebula Apps Documentation <https://github.com/OpenNebula/one-apps/wiki>`__ project.
+For more information including additional features for the OneKE Appliance, please refer to the `OpenNebula Apps Documentation <https://github.com/OpenNebula/one-apps/wiki>`__.
 
 .. |external_ip_nginx_welcome_page| image:: /images/external_ip_nginx_welcome_page.png
 
@@ -386,7 +384,7 @@ Known Issues
 OneFlow Service is Stuck in ``DEPLOYING``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-An error in network configuration, or any major failure (such as network timeouts or performance problems) can cause the OneFlow service to lock due to a communications outage between it and the VMs in a multi-VM service such as Kubernetes. The OneFlow service will lock if *any* of the VMs belonging to the Kubernetes cluster does not report ``READY=YES`` to OneGate within the default time.
+An error in network configuration, or any major failure (such as network timeouts or performance problems) can cause the OneKE service to lock up due to a communications outage between it and the Front-end node. The OneKE service will lock if *any* of the VMs belonging to it does not report ``READY=YES`` to OneGate within the default time.
 
 If one or more of the VMs in the Kubernetes cluster never leave the ``DEPLOYING`` state, you can troubleshoot OneFlow communications by inspecting the file ``/var/log/oneflow.log`` on the Front-end node. Look for a line like the following:
 
@@ -394,13 +392,13 @@ If one or more of the VMs in the Kubernetes cluster never leave the ``DEPLOYING`
 
     [E]: [LCM] [one.document.info] User couldn't be authenticated, aborting call.
 
-The line above means that provisioning the OneFlow service exceeded the allowed time. In this case it is not possible to recover the broken VM instance; it must be recreated.
+The line above means that provisioning the service exceeded the allowed time. In this case it is not possible to recover the broken VM instance; it must be recreated.
 
-If you attempt to recreate the instance, ensure that your environment has a good connection to the public Internet and does not suffer from any impairments in performance.
+Before attempting to recreate the instance, ensure that your environment has a good connection to the public Internet and does not suffer from any impairments in performance.
 
 .. _terminate_oneflow:
 
-To recreate the VM instance, you must first terminate the OneFlow service. A OneFlow service stuck in ``DEPLOYING`` cannot be terminated by the ``delete`` operation. To terminate it, you need to run the following command:
+To recreate the VM instance, you must first terminate the OneKE service. A service stuck in ``DEPLOYING`` cannot be terminated by the ``delete`` operation. To terminate it, you need to run the following command:
 
 .. prompt:: bash $ auto
 
@@ -413,9 +411,9 @@ Lack of Connectivity to the OneGate Server
 
 Another possible cause for VMs in the Kubernetes cluster failing to run is lack of contact between the VNF node in the cluster and the OneGate server on the Front-end.
 
-As described in the :ref:`Quick Start Using miniONE on AWS <try_opennebula_on_kvm>`, the AWS instance where the Front-end is running needs to allow incoming connections for port 5030. If you do not want to open the port for all addresses, check the **public** IP address of the VNF node (the AWS Elastic IP, see :ref:`above <check_vnf>`), and create an inbound rule in the AWS security groups for the elastic IP of the VNF node.
+As described in :ref:`Quick Start Using miniONE on AWS <try_opennebula_on_kvm>`, the AWS instance where the Front-end is running needs to allow incoming connections for port 5030. If you do not want to open the port for all addresses, check the **public** IP address of the VNF node (the AWS Elastic IP, see :ref:`above <check_vnf>`), and create an inbound rule in the AWS security groups that IP.
 
-In this case, the ``/var/log/one/oneflow.log`` file on the Front-end will display messages like the following:
+In cases of lack of connectivity with the OneGate server, the ``/var/log/one/oneflow.log`` file on the Front-end will display messages like the following:
 
 
 .. code-block:: text
@@ -424,7 +422,7 @@ In this case, the ``/var/log/one/oneflow.log`` file on the Front-end will displa
 
 In this scenario only the VNF node is successfully deployed, but no Kubernetes nodes.
 
-To troubleshoot, log in to the VNF node via SSH. Then, check if the VNF is able to contact the OneGate server on the Front-end node by running this command as root:
+To troubleshoot, log in to the VNF node via SSH. Then, check if the VNF node is able to contact the OneGate server on the Front-end node, by running this command as root:
 
 .. prompt:: bash $ auto
 
@@ -449,7 +447,7 @@ And a failure gives a timeout message:
 Possible causes
 ++++++++++++++++
 
-**Wrong Front-end node AWS IP**: The VNF node may be trying to connect to the OneGate server on the wrong IP address. In the VNF node, the IP address for the Front-end node is defined by the ``ONEGATE_ENDPOINT`` parameter, in the scripts found in the ``/run/one-context*`` directories. You can check the value of this parameter with:
+**Wrong Front-end node AWS IP**: The VNF node may be trying to connect to the OneGate server on the wrong IP address. In the VNF node, the IP address for the Front-end node is defined by the value of ``ONEGATE_ENDPOINT``, in the scripts found in the ``/run/one-context*`` directories. You can check the value with:
 
 .. code-block:: text
 
