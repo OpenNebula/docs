@@ -26,40 +26,42 @@ Follow these simple steps to install the OpenNebula software:
 .. note::
 
     scons can parallelize the build with the `-j NUM_THREADS` parameter. For instance, to compile the with 4 parallel processes execute
-    
+
     .. code::
 
         $ scons -j 4 [OPTION=VALUE]
 
 The argument expression [OPTION=VALUE] is used to set non-default values for :
 
-+----------------+--------------------------------------------------------------+
-| OPTION         | VALUE                                                        |
-+================+==============================================================+
-| sqlite\_dir    | path-to-sqlite-install                                       |
-+----------------+--------------------------------------------------------------+
-| sqlite         | **no** if you don't want to build sqlite support             |
-+----------------+--------------------------------------------------------------+
-| mysql          | **yes** if you want to build mysql support                   |
-+----------------+--------------------------------------------------------------+
-| xmlrpc         | path-to-xmlrpc-install                                       |
-+----------------+--------------------------------------------------------------+
-| parsers        | **yes** if you want to rebuild flex/bison files              |
-+----------------+--------------------------------------------------------------+
-| new\_xmlrpc    | **yes** if you have an xmlrpc-c version >= 1.31              |
-+----------------+--------------------------------------------------------------+
-| sunstone       | **yes** if you want to build ruby sunstone minified files    |
-+----------------+--------------------------------------------------------------+
-| fireedge       | **yes** if you want to build fireedge minified files         |
-+----------------+--------------------------------------------------------------+
-| systemd        | **yes** if you want to build systemd support                 |
-+----------------+--------------------------------------------------------------+
-| rubygems       | **yes** if you want to generate ruby gems                    |
-+----------------+--------------------------------------------------------------+
-| svncterm       | **no** to skip building vnc support for LXD drivers          |
-+----------------+--------------------------------------------------------------+
-| context        | **no** Download guest contextualization packages             |
-+----------------+--------------------------------------------------------------+
++-------------+---------+--------------------------------------------------------------+
+| OPTION      | Default | VALUE                                                        |
++=============+=========+==============================================================+
+| sqlite\_dir |         | path-to-sqlite-install                                       |
++-------------+---------+--------------------------------------------------------------+
+| sqlite      |  yes    | **no** if you don't want to build sqlite support             |
++-------------+---------+--------------------------------------------------------------+
+| mysql       |  no     | **yes** if you want to build mysql support                   |
++-------------+---------+--------------------------------------------------------------+
+| xmlrpc      |         | path-to-xmlrpc-install                                       |
++-------------+---------+--------------------------------------------------------------+
+| parsers     |  no     | **yes** if you want to rebuild flex/bison files. obsolete    |
++-------------+---------+--------------------------------------------------------------+
+| new\_xmlrpc |  no     | **yes** if you have an xmlrpc-c version >= 1.31              |
++-------------+---------+--------------------------------------------------------------+
+| sunstone    |  no     | **yes** if you want to build ruby sunstone minified files    |
++-------------+---------+--------------------------------------------------------------+
+| fireedge    |  no     | **yes** if you want to build fireedge minified files         |
++-------------+---------+--------------------------------------------------------------+
+| systemd     |  no     | **yes** if you want to build systemd support                 |
++-------------+---------+--------------------------------------------------------------+
+| rubygems    |  no     | **yes** if you want to generate ruby gems                    |
++-------------+---------+--------------------------------------------------------------+
+| svncterm    |  yes    | **no** to skip building vnc support for LXD drivers          |
++-------------+---------+--------------------------------------------------------------+
+| context     |  no     | **yes** to download guest contextualization packages         |
++-------------+---------+--------------------------------------------------------------+
+| download    |  no     | **yes** to download 3rdParty tools (restic, prometheus, ...) |
++-------------+---------+--------------------------------------------------------------+
 
 If the following error appears, then you need to remove the option 'new\_xmlrpc=yes' or install xmlrpc-c version >= 1.31:
 
