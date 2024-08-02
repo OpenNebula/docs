@@ -44,7 +44,7 @@ The argument expression [OPTION=VALUE] is used to set non-default values for :
 +-------------+---------+--------------------------------------------------------------+
 | xmlrpc      |         | path-to-xmlrpc-install                                       |
 +-------------+---------+--------------------------------------------------------------+
-| parsers     |  no     | **yes** if you want to rebuild flex/bison files. obsolete    |
+| parsers     |  no     | **yes** if you want to rebuild flex/bison files.             |
 +-------------+---------+--------------------------------------------------------------+
 | new\_xmlrpc |  no     | **yes** if you have an xmlrpc-c version >= 1.31              |
 +-------------+---------+--------------------------------------------------------------+
