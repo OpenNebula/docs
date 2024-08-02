@@ -6,10 +6,7 @@ OpenNebula Overview
 
 Welcome to OpenNebula, the open source **Cloud & Edge Computing Platform** bringing real freedom to your Enterprise Cloud 🚀
 
-.. +++++++++
-
-
-OpenNebula is a **powerful, but easy-to-use, open source platform to build and manage enterprise clouds and virtualized DCs**. It combines existing virtualization technologies with advanced features for multi-tenancy, automatic provision, and elasticity on private, hybrid, and edge environments. This overview introduces the basic concepts that you need to design, install, and configure an OpenNebula cloud.
+OpenNebula is a **powerful, but easy-to-use, open source platform to build and manage enterprise clouds and virtualized Data Centers**. It combines existing virtualization technologies with advanced features for multi-tenancy, automatic provision and elasticity on private, hybrid, and edge environments.
 
 OpenNebula provides a single, feature-rich and flexible platform that **unifies management of IT infrastructure and applications, preventing vendor lock-in and reducing complexity, resource consumption and operational costs**.
 
@@ -23,6 +20,8 @@ OpenNebula can manage:
 
 * **Any Time**: Add and remove new clusters automatically in order to meet peaks in demand, or to implement fault tolerance strategies or latency requirements.
 
+This overview introduces the basic concepts that you need to design, install, and configure an OpenNebula cloud.
+
 |image1|
 
 The OpenNebula Model for Cloud Users
@@ -33,7 +32,7 @@ OpenNebula is designed for simplicity and flexibility, to help organizations ada
 Virtualized Applications
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-OpenNebula manages workloads based on KVM, LXC system containers. It can manage both single VMs and complex mult-tier services composed of several VMs that require sophisticated elasticity rules and dynamic adaptability. In OpenNebula, VM-based applications are created from images and templates. Users can modify templates or create new ones; they can be shared by the cloud administrator using a private corporate marketplace. Pre-defined, fully-functional templates are also available in the OpenNebula Marketplace, which allows users to easily download and deploy VMs, virtual appliances and full-featured mult-VM services.
+OpenNebula manages workloads based on KVM, LXC system containers. It can manage both single VMs and complex mult-tier services composed of several VMs that require sophisticated elasticity rules and dynamic adaptability. In OpenNebula, VM-based applications are created from images and templates. Users can modify templates or create new ones; they can be shared by the cloud administrator using a private corporate marketplace. Pre-defined, fully-functional templates are also available in the OpenNebula Marketplace, which allows users to easily download and deploy VMs, virtual appliances and full-featured multi-VM services.
 
 OpenNebula’s management model provides multi-tenancy by design, offering different user interfaces depending on users’ roles within an organization, or the level of required expertise or functionality.
 
@@ -161,20 +160,20 @@ The interactions between OpenNebula and the underlying cloud infrastructure are 
 
 * **Event Bus**: A generic message bus where OpenNebula publishes resource events. The message bus is used to synchronize OpenNebula services as well as to integrate custom applications.
 
-.. +++++++++
-
-The OpenNebula documentation summarizes the `Platform Notes <http://docs.opennebula.io/6.4/intro_release_notes/release_notes/platform_notes.html>`_ with the infrastructure platforms and services supported by each OpenNebula release, and its `key features <http://docs.opennebula.io/6.4/overview/opennebula_concepts/key_features.html>`_. Because OpenNebula leverages the functionality exposed by the underlying platform services, its functionality and performance may be affected by the limitations imposed by those services.
+The OpenNebula documentation provides a summary of its :ref:`key features <key_features>`. The :ref:`Platform Notes <uspng>` list the infrastructure platforms and resources supported by each OpenNebula release. Because OpenNebula leverages the functionality exposed by the underlying platform services, its functionality and performance may be affected by the limitations imposed by those services.
 
 Next Steps
 ^^^^^^^^^^
 
 **Building an evaluation environment**
 
-You can always evaluate OpenNebula by following our `Quick Start <http://docs.opennebula.io/6.4/quick_start/index.html>`_ guide, where you will learn how to use `vOneCloud <http://docs.opennebula.io/6.4/quick_start/deployment_basics/try_opennebula_on_vmware.html>`_—our virtual appliance for VMware vSphere—or `miniONE <http://docs.opennebula.io/6.4/quick_start/deployment_basics/try_opennebula_on_kvm.html>`_—our deployment tool for installing a single-node OpenNebula cloud with KVM inside a virtual machine or physical host— and then to provision an OpenNebula Edge Cluster on AWS to run your `containers <http://docs.opennebula.io/6.4/quick_start/usage_basics/running_containers.html>`_, `virtual machines <http://docs.opennebula.io/6.4/quick_start/usage_basics/running_virtual_machines.html>`_ or `Kubernetes <http://docs.opennebula.io/6.4/quick_start/usage_basics/running_kubernetes_clusters.html>`_ clusters on a truly multi-cloud environment. This is the fastest way for you to familiarize yourself with the new OpenNebula, as you only need the necessary resources to deploy the OpenNebula front-end.
+We strongly recommend you evaluate OpenNebula by following our :ref:`Quick Start Guide <quick_start>`. The Guide will walk you through a set of tutorials that start at :ref:`installing an OpenNebula Front-end <try_opennebula_on_kvm>`, continue with :ref:`deploying an Edge Cluster on AWS <first_edge_cluster>`, then a :ref:`WordPress appliance <running_virtual_machines>` and finally a :ref:`Kubernetes cluster <running_kubernetes_clusters>`, all using the Sunstone web UI. This is the quickest way to familiarize yourself with OpenNebula since most tutorials take under ten minutes to complete.
 
 **Setting up a production environment**
 
-If you are interested in building a production environment, the `Cloud Architecture Design <http://docs.opennebula.io/6.4/overview/cloud_architecture_and_design/cloud_architecture_design.html>`_ guide is a good resource for you to explore the different options to consider and the available choices. Remember that if you need our support at any time, or access to our professional services (including our **Managed Cloud Services**) or to the **Enterprise Edition**, you can always `contact us <https://opennebula.io/enterprise>`_.
+If you are interested in building a production environment, then :ref:`Cloud Architecture Design <intro>` is a good resource to explore and consider the available options and choices.
+
+Remember that if you need our support at any time, or access to our professional services or to the **Enterprise Edition**, you can always `contact us <https://opennebula.io/enterprise>`__.
 
 
 .. |image1| image:: /images/overview_key-features.png
