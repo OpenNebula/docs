@@ -130,12 +130,10 @@ Because no two clouds are the same, OpenNebula provides many different interface
 
 |OpenNebula Cloud Architecture|
 
-.. 08_Cloud Architecture Design sans VMware
-
 .. |OpenNebula Hypervisors| image:: /images/6_features.png
   :width: 70%
-
-.. 07_Cloud Architecture Design 2
+  :align: center
 
 .. |OpenNebula Cloud Architecture| image:: /images/new_overview_integrators.png
   :width: 70%
+  :align: center  
