@@ -32,7 +32,7 @@ OpenNebula is designed for simplicity and flexibility, to help organizations ada
 Virtualized Applications
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-OpenNebula manages workloads based on KVM, LXC system containers. It can manage both single VMs and complex mult-tier services composed of several VMs that require sophisticated elasticity rules and dynamic adaptability. In OpenNebula, VM-based applications are created from images and templates. Users can modify templates or create new ones; they can be shared by the cloud administrator using a private corporate marketplace. Pre-defined, fully-functional templates are also available in the OpenNebula Marketplace, which allows users to easily download and deploy VMs, virtual appliances and full-featured multi-VM services.
+OpenNebula manages workloads based on KVM, LXC system containers. It can manage both single VMs and complex multi-tier services composed of several VMs that require sophisticated elasticity rules and dynamic adaptability. In OpenNebula, VM-based applications are created from images and templates. Users can modify templates or create new ones; they can be shared by the cloud administrator using a private corporate marketplace. Pre-defined, fully-functional templates are also available in the OpenNebula Marketplace, which allows users to easily download and deploy VMs, virtual appliances and full-featured multi-VM services.
 
 OpenNebula’s management model provides multi-tenancy by design, offering different user interfaces depending on users’ roles within an organization, or the level of required expertise or functionality.
 
@@ -167,14 +167,22 @@ Next Steps
 
 **Building an evaluation environment**
 
-We strongly recommend you evaluate OpenNebula by following our :ref:`Quick Start Guide <quick_start>`. The Guide will walk you through a set of tutorials that start at :ref:`installing an OpenNebula Front-end <try_opennebula_on_kvm>`, continue with :ref:`deploying an Edge Cluster on AWS <first_edge_cluster>`, then a :ref:`WordPress appliance <running_virtual_machines>` and finally a :ref:`Kubernetes cluster <running_kubernetes_clusters>`, all using the Sunstone web UI. This is the quickest way to familiarize yourself with OpenNebula since most tutorials take under ten minutes to complete.
+To evaluate OpenNebula, we strongly recommend that you follow our :ref:`Quick Start Guide <quick_start>`. The Guide will walk you through a series of tutorials to progressively build infrastructure. All tutorials use the Sunstone UI, and most take under ten minutes to complete.
+
+Following the Guide, you can quickly and easily:
+
+  * :ref:`Install an OpenNebula Front-end <try_opennebula_on_kvm>`, then use that Front-end to
+  * :ref:`Deploy an Edge Cluster <first_edge_cluster>`, where you will
+  * :ref:`Deploy a Virtual Machine <running_virtual_machines>`, and finally
+  * :ref:`Deploy a Kubernetes cluster <running_kubernetes_clusters>`.
+  
+The Quick Start Guide is by far the fastest way to familiarize yourself with OpenNebula.
 
 **Setting up a production environment**
 
 If you are interested in building a production environment, then :ref:`Cloud Architecture Design <intro>` is a good resource to explore and consider the available options and choices.
 
 Remember that if you need our support at any time, or access to our professional services or to the **Enterprise Edition**, you can always `contact us <https://opennebula.io/enterprise>`__.
-
 
 .. |image1| image:: /images/overview_key-features.png
   :width: 70%
