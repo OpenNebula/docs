@@ -4,6 +4,24 @@ OpenNebula |version| Documentation
 
 OpenNebula is an open source cloud management platform that combines virtualization and container technologies with multi-tenancy, automatic provision and elasticity to offer on-demand applications and services on enterprise, hybrid and edge environments.
 
+The first two sections of the OpenNebula documentation are designed to help you **quickly try out and evaluate** OpenNebula, and to provide you with an **overview** of the OpenNebula cloud model, architecture and components.
+
++--------------------------------------------------------------------+------------------------------------------------------------------+
+|                  Quick Start - Try out in minutes                  |             Overview - Learn about OpenNebula                    |
++====================================================================+==================================================================+
+| The :ref:`Quick Start <qs>` Guide allows you to try OpenNebula     | The :ref:`Overview <ov>` section covers OpenNebula architecture  |
+| following simple tutorials to progressively build infrastructure   | and components, and describes the steps for designing,           |
+| using a simple and powerful web UI.                                | installing and deploying an OpenNebula Cloud.                    |
+|                                                                    |                                                                  |
+| * :ref:`Install an OpenNebula Front-end <try_opennebula_on_kvm>`   | * :ref:`OpenNebula Concepts <opennebula_concepts>`               |
+| * :ref:`Deploy an Edge Cluster <first_edge_cluster>`               | * :ref:`Key Features <key_features>`                             |
+| * :ref:`Deploy a Virtual Machine <running_virtual_machines>`       | * :ref:`Cloud Architecture Design <intro>`                       |
+| * :ref:`Deploy a Kubernetes cluster <running_kubernetes_clusters>` |                                                                  |
+|                                                                    |                                                                  |
++--------------------------------------------------------------------+------------------------------------------------------------------+
+
+Other sections in the documentation provide detailed explanations, guides and references for OpenNebula components, tools, interfaces and procedures.
+  
 +------------------------------------------+------------------------------------------------------------------------------------------+
 |                  Guide                   |                                     Description                                          |
 +==========================================+==========================================================================================+
@@ -25,6 +43,8 @@ OpenNebula is an open source cloud management platform that combines virtualizat
 +------------------------------------------+------------------------------------------------------------------------------------------+
 | :ref:`Legacy Components <lc>`            | No longer maintained, legacy & deprecated component documentation                        |
 +------------------------------------------+------------------------------------------------------------------------------------------+
+
+The full contents of the documentation are listed below.
 
 .. _entry_point:
 
