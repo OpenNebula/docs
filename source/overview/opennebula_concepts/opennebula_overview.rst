@@ -6,47 +6,42 @@ OpenNebula Overview
 
 Welcome to OpenNebula, the open source **Cloud & Edge Computing Platform** bringing real freedom to your Enterprise Cloud 🚀
 
-OpenNebula is a **powerful, but easy-to-use, open source platform to build and manage enterprise clouds and virtualized Data Centers**. It combines existing virtualization technologies with advanced features for multi-tenancy, automatic provision and elasticity on private, hybrid, and edge environments.
+This page provides a high-level overview of the OpenNebula cloud model, architecture and components. To familiarize yourself with OpenNebula and build an evaluation environment, we strongly recommend you follow the tutorials in our :ref:`Quick Start Guide <quick_start>`. For a description of the steps needed to build a production environment, please refer to :ref:`Cloud Architecture Design <intro>`.
 
-OpenNebula provides a single, feature-rich and flexible platform that **unifies management of IT infrastructure and applications, preventing vendor lock-in and reducing complexity, resource consumption and operational costs**.
-
-OpenNebula can manage:
-
-* **Any Application**: Combine containerized applications from Kubernetes with Virtual Machine workloads in a common shared environment to offer the best of both worlds: mature virtualization technology and orchestration of application containers.
-
-* **Any Infrastructure**: Open cloud architecture to orchestrate compute, storage, and networking driven by software.
-
-* **Any Cloud**: Unlock the power of a true hybrid, edge and multi-cloud platform by combining your private cloud with infrastructure resources from third-party virtual and bare-metal cloud providers such as AWS and Equinix Metal, and manage all cloud operations under a single control panel and interoperable layer.
-
-* **Any Time**: Add and remove new clusters automatically in order to meet peaks in demand, or to implement fault tolerance strategies or latency requirements.
-
-This overview introduces the basic concepts that you need to design, install, and configure an OpenNebula cloud.
+OpenNebula is a **powerful, but easy-to-use, open source platform to build and manage enterprise clouds and virtualized Data Centers**. It combines existing virtualization technologies with advanced features for multi-tenancy, automatic provision and elasticity on private, hybrid, and edge environments. It unifies management of IT infrastructure and applications, preventing vendor lock-in and reducing complexity, resource consumption and operational costs.
 
 |image1|
 
-The OpenNebula Model for Cloud Users
+OpenNebula Infrastructure and Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-OpenNebula is designed for simplicity and flexibility, to help organizations adapt it to their real needs. It implements a flexible cloud model that combines Virtual Machines, virtualized and containerized applications. Its management model and underlying architecture strive to provide a single solution using proven and efficient open-source technologies to offer flexibility by allowing for different types of virtualization using a single toolset, and controlled by a single entity.
+An OpenNebula infrastructure can be deployed on-premises, in the cloud, at the edge, or in hybrid and multi-cloud environments. Virtualization is based on the KVM open source hypervisor, with support for LXC.
+
+In an OpenNebula cloud, the basic controlling entity is an OpenNebula **Front-end**. The Front-end runs and interacts with components such as daemons, services and interfaces to provide deployment, management, orchestration and monitoring. The system is modular; designed for flexibility in adapting to different needs, it offers numerous possibilities for infrastructure deployment as well as management and operations, such as using different database backends for persisting the state of the cloud, using external authentication systems, and integrating with accounting, chargeback or other platforms.
+
+OpenNebula can manage both single VMs and complex multi-tier services composed of several VMs that require sophisticated elasticity rules and dynamic adaptability.
 
 Virtualized Applications
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-OpenNebula manages workloads based on KVM, LXC system containers. It can manage both single VMs and complex multi-tier services composed of several VMs that require sophisticated elasticity rules and dynamic adaptability. In OpenNebula, VM-based applications are created from images and templates. Users can modify templates or create new ones; they can be shared by the cloud administrator using a private corporate marketplace. Pre-defined, fully-functional templates are also available in the OpenNebula Marketplace, which allows users to easily download and deploy VMs, virtual appliances and full-featured multi-VM services.
-
-OpenNebula’s management model provides multi-tenancy by design, offering different user interfaces depending on users’ roles within an organization, or the level of required expertise or functionality.
-
-OpenNebula’s management tools include the Sunstone Web UI, an easy-to-use visual interface that allows for managing cloud infrastructure, including creating new templates for VMs, services, networks, etc., and implementing the full multi-tenancy features of the underlying system, allowing access to users with different roles, access and management permissions.
+Elements in the OpenNebula infrastructure -- such as Virtual Machines, networks and appliances -- are created from images and templates. Users can modify existing templates or create new ones. Cloud administrators can share templates across their organizations, either directly or using a private corporate marketplace. Additionally, the `OpenNebula Public Marketplace <https://marketplace.opennebula.io>`__ offers pre-defined, fully-functional templates for download and deployment, including for multi-VM applications and virtual devices.
 
 Containerized Applications through Kubernetes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In addition to the possibilities for containerized application deployment through LXC, OpenNebula supports the automated deployment of Kubernetes clusters through a virtual appliance, OneKE, the OpenNebula Kubernetes Engine. OneKE is an enterprise-grade, CNCF-certified Kubernetes distribution that‬ ‭simplifies the provisioning, operations, and lifecycle management of Kubernetes. It enables OpenNebula to run any type of containerized application using a single toolset, on
-‭premises, on a public cloud, or at the edge. It offers the possibility a configuring as a multi-master cluster for High Availability (HA), as well as features such as a load balancing, various CNI plugins and Longhorn storage.
-
-OneKE is available on the OpenNebula Marketplace. Using the Sunstone UI, users can easily download it from the Marketplace, apply minimal configuration, and automatically deploy it. The Quick Start Guide of this documentation features a complete tutorial for deploying it on an AWS and running an example application.
+OpenNebula supports the automated deployment of Kubernetes clusters through a virtual appliance, **OneKE**, the OpenNebula Kubernetes Engine. OneKE is an enterprise-grade, CNCF-certified Kubernetes distribution based on SUSE Rancher RKE2. In its basic configuration it comprises four Virtual Machines: the Kubernetes master node, a VNF node, a storage and a worker node. It can be configured as a multi-master cluster for high availability, and easily scaled up to include more worker nodes, either before deployment or dynamically during operation. It includes various features such as MetalLB load balancing, Multus and Cilium CNI plugins, and Longhorn storage. It is available as a multi-VM appliance on the OpenNebula Marketplace, and can be installed in minutes using the Sunstone web UI.
 
 |image2|
+
+Management Model and Tools
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+OpenNebula’s management model provides multi-tenancy by design, offering different user interfaces depending on users’ roles within an organization, or the level of required expertise or functionality.
+
+OpenNebula’s management tools include the Sunstone Web UI, an easy-to-use visual interface for managing cloud infrastructure. Sunstone supports creating new templates for VMs, services, networks and devices. The UI implements the full multi-tenancy features of the underlying system, allowing access to users with different roles, access and management permissions.
+
+|sunstone|
+
 
 Cloud Access Models and Roles
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -169,7 +164,7 @@ Next Steps
 
 To evaluate OpenNebula, we strongly recommend that you follow our :ref:`Quick Start Guide <quick_start>`. The Guide will walk you through a series of tutorials to progressively build infrastructure. All tutorials use the Sunstone UI, and most take under ten minutes to complete.
 
-Following the Guide, you can quickly and easily:
+Following the Guide, you can:
 
   * :ref:`Install an OpenNebula Front-end <try_opennebula_on_kvm>`, then use that Front-end to
   * :ref:`Deploy an Edge Cluster <first_edge_cluster>`, where you will
@@ -204,3 +199,7 @@ Remember that if you need our support at any time, or access to our professional
 
 .. |image7| image:: /images/overview_architecture.png
   :width: 70%
+
+.. |sunstone| image:: /images/sunstone-full_dashboard.png
+  :width: 70%
+  :align: middle
