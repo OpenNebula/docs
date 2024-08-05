@@ -14,6 +14,7 @@ Autostart
 Backported
 Balancer
 Bool
+Broadcom
 Bzip
 CaaS
 Cardinality
@@ -226,6 +227,7 @@ boolean
 booleans
 bootable
 bootloader
+browseable
 btrfs
 bugfixes
 busLogic
@@ -388,6 +390,7 @@ instantiater
 instantiation
 integrations
 integrators
+interoperable
 iommu
 ionice
 iops
@@ -677,6 +680,7 @@ tty
 tunables
 tx
 txt
+ubuntu
 udev
 uid
 umask
