@@ -1,10 +1,12 @@
 .. _try_opennebula_on_kvm:
 
-================================
-Quick Start Using miniONE on AWS
-================================
+=====================================
+Deploy an OpenNebula Front-end on AWS
+=====================================
 
-With **miniONE**, you can build an OpenNebula cloud with a single command in under ten minutes. In this tutorial, we’ll use miniONE to install an OpenNebula Front-end on a virtual machine in AWS. Later, you can use this Front-end to provision additional resources -- such as edge clusters or Kubernetes clusters -- on your OpenNebula cloud.
+In this tutorial, we’ll install an OpenNebula Front-end in under ten minutes, using **miniONE**, the installation script provided by OpenNebula.
+
+We’ll install our OpenNebula Front-end on a Virtual Machine in AWS. In later sections of this Quick Start Guide, you can use this Front-end to provision additional resources — such as Edge clusters or Kubernetes clusters — on your OpenNebula cloud.
 
 To complete this tutorial, you will need an AWS account with the capacity to create a virtual machine and obtain public IP addresses.
 
