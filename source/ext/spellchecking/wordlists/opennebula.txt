@@ -226,6 +226,7 @@ boolean
 booleans
 bootable
 bootloader
+browseable
 btrfs
 bugfixes
 busLogic
