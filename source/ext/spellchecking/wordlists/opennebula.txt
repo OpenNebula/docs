@@ -226,6 +226,7 @@ boolean
 booleans
 bootable
 bootloader
+browseable
 btrfs
 bugfixes
 busLogic
@@ -388,6 +389,7 @@ instantiater
 instantiation
 integrations
 integrators
+interoperable
 iommu
 ionice
 iops
