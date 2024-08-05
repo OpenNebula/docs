@@ -38,29 +38,29 @@ The argument expression [OPTION=VALUE] is used to set non-default values for :
 +=============+=========+==============================================================+
 | sqlite\_dir |         | path-to-sqlite-install                                       |
 +-------------+---------+--------------------------------------------------------------+
-| sqlite      |  yes    | **no** if you don't want to build sqlite support             |
+| sqlite      |  yes    | **no** if you don't want to build Sqlite support             |
 +-------------+---------+--------------------------------------------------------------+
-| mysql       |  no     | **yes** if you want to build mysql support                   |
+| mysql       |  no     | **yes** if you want to build MySQL support                   |
 +-------------+---------+--------------------------------------------------------------+
 | xmlrpc      |         | path-to-xmlrpc-install                                       |
 +-------------+---------+--------------------------------------------------------------+
-| parsers     |  no     | **yes** if you want to rebuild flex/bison files.             |
+| parsers     |  no     | **yes** if you want to rebuild Flex/Bison files.             |
 +-------------+---------+--------------------------------------------------------------+
 | new\_xmlrpc |  no     | **yes** if you have an xmlrpc-c version >= 1.31              |
 +-------------+---------+--------------------------------------------------------------+
-| sunstone    |  no     | **yes** if you want to build ruby sunstone minified files    |
+| sunstone    |  no     | **yes** if you want to build Ruby Sunstone minified files    |
 +-------------+---------+--------------------------------------------------------------+
-| fireedge    |  no     | **yes** if you want to build fireedge minified files         |
+| fireedge    |  no     | **yes** if you want to build FireEdge minified files         |
 +-------------+---------+--------------------------------------------------------------+
 | systemd     |  no     | **yes** if you want to build systemd support                 |
 +-------------+---------+--------------------------------------------------------------+
-| rubygems    |  no     | **yes** if you want to generate ruby gems                    |
+| rubygems    |  no     | **yes** if you want to generate Ruby gems                    |
 +-------------+---------+--------------------------------------------------------------+
-| svncterm    |  yes    | **no** to skip building vnc support for LXD drivers          |
+| svncterm    |  yes    | **no** to skip building VNC support for LXD drivers          |
 +-------------+---------+--------------------------------------------------------------+
 | context     |  no     | **yes** to download guest contextualization packages         |
 +-------------+---------+--------------------------------------------------------------+
-| download    |  no     | **yes** to download 3rdParty tools (restic, prometheus, ...) |
+| download    |  no     | **yes** to download 3rd-party tools (Restic, Prometheus...)  |
 +-------------+---------+--------------------------------------------------------------+
 
 If the following error appears, then you need to remove the option 'new\_xmlrpc=yes' or install xmlrpc-c version >= 1.31:
