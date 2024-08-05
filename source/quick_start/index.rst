@@ -5,7 +5,9 @@
 Quick Start
 ================================================================================
 
-The Quick Start Guide provides an example of a learning, development or OpenNebula test installation. The guide will walk you through the steps to set up an OpenNebula Front-end and to automatically deploy a simple Edge Cluster on AWS for true hybrid and multi-cloud computing. To install a production-ready environment, go to the Installation and Configuration Guide after completing this guide. To learn about OpenNebula and try its main features, see the Get Started Guide.
+The Quick Start Guide is designed to help you deploy an OpenNebula environment for learning, developing or testing. By following a series of tutorials, you can progressively build infrastructure from an OpenNebula **Front-end** to provisioning an **Edge Cluster**, running a **Virtual Machine**, and finally deploying a **Kubernetes cluster**.
+
+All tutorials use OpenNebula’s **Sunstone** web UI, and most take under ten minutes to complete. The Quick Start is by far the fastest way to familiarize yourself with OpenNebula.
 
 .. toctree::
    :maxdepth: 2

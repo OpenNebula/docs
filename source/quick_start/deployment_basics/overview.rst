@@ -4,14 +4,21 @@
 Overview
 ========
 
-So we heard you want to try out OpenNebula? Welcome! You are in the right place.
+So we heard you want to try out OpenNebula? Welcome! You came to the right place.
 
-This Quick Start guide will guide you through the process to achieve a fully functional OpenNebula cloud. In this guide, we’ll go through a Front-end OpenNebula environment deployment, where all the OpenNebula services needed to use, manage and run the cloud will be collocated on a single dedicated Host. Afterwards, you can continue to the Operations Basics section to add a remote Cluster based on KVM or LXC to your shiny new OpenNebula cloud!
+This Quick Start Guide will help you through the process of achieving a fully functional OpenNebula cloud, through a series of tutorials along three sections:
 
-In particular, Deployment Basic will get you an OpenNebula Front-end, ready to rock. First, please choose your fighter:
+- :ref:`Deployment Basics <deployment_basics>`, where you can deploy an OpenNebula Front-end.
+- :ref:`Operation Basics <operation_basics>`, where you can learn to deploy and operate an Edge Cluster.
+- :ref:`Usage basics <usage_basics>`, where you can deploy a Virtual Machine and a Kubernetes cluster.
 
-- :ref:`Deploy OpenNebula Front-end on AWS <try_opennebula_on_kvm>` guide.
-- :ref:`Deploy OpenNebula Front-end on VMware <try_opennebula_on_vmware>` guide.
-- :ref:`Try OpenNebula Hosted Front-end  <try_opennebula_hosted>` guide.
+Each section builds on the previous one, to take you from a bare install to quickly deploying an enterprise-grade Kubernetes cluster.
 
-Afterwards, you can move on to :ref:`Operations Basics <operation_basics>` to learn how to add Edge Clusters (i.e., computing nodes) and then finally to :ref:`Usage Basics <usage_basics>` to deploy your VMs, containers or multi-tier services on your new cloud!
+First, to install your Front-end, please select your preferred infrastructure:
+
+- :ref:`Deploy OpenNebula Front-end on AWS <try_opennebula_on_kvm>`.
+- :ref:`Deploy OpenNebula Front-end on VMware <try_opennebula_on_vmware>`.
+- :ref:`Try OpenNebula Hosted Front-end  <try_opennebula_hosted>`.
+
+Then, you can move on to the next sections to quickly deploy your VMs or multi-tier services on your new cloud.
+
