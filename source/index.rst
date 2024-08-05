@@ -2,9 +2,9 @@
 OpenNebula |version| Documentation
 ================================================================================
 
-OpenNebula is an open source cloud management platform that combines virtualization and container technologies with multi-tenancy, automatic provision and elasticity to offer on-demand applications and services on enterprise, hybrid and edge environments.
+OpenNebula is an open-source cloud management platform that combines virtualization with multi-tenancy, automatic provision and elasticity to offer on-demand applications and services on enterprise, hybrid and edge environments.
 
-The first two sections of the OpenNebula documentation are designed to help you **quickly try out and evaluate** OpenNebula, and to provide you with an **overview** of the OpenNebula cloud model, architecture and components.
+The first two sections of the OpenNebula documentation are designed to help you quickly try out and evaluate OpenNebula, and to provide you with an overview of the OpenNebula cloud model, architecture and components.
 
 +--------------------------------------------------------------------+------------------------------------------------------------------+
 |                  Quick Start - Try out in minutes                  |             Overview - Learn about OpenNebula                    |
