@@ -11,9 +11,10 @@ The following table describes all configuration files and their type from direct
 
 managed by the ``onecfg`` tool:
 
-================================================================== ======================
-Name                                                               Type
-================================================================== ======================
+================================================================== ====================== 
+Name                                                               Type                   
+================================================================== ====================== 
+``/etc/one/alertmanager/alertmanager.yml``                         YAML
 ``/etc/one/auth/ldap_auth.conf``                                   YAML w/ ordered arrays
 ``/etc/one/auth/server_x509_auth.conf``                            YAML
 ``/etc/one/auth/x509_auth.conf``                                   YAML
@@ -24,6 +25,7 @@ Name                                                               Type
 ``/etc/one/ec2_driver.conf``                                       YAML
 ``/etc/one/ec2_driver.default``                                    Plain file (or XML)
 ``/etc/one/ec2query_templates/*.erb``                              Plain file (or XML)
+``/etc/one/hm/hmrc``                                               Shell
 ``/etc/one/econe.conf``                                            YAML
 ``/etc/one/fireedge-server.conf``                                  YAML
 ``/etc/one/fireedge/provision/providers.d-extra/*.yaml``           YAML
@@ -33,14 +35,18 @@ Name                                                               Type
 ``/etc/one/fireedge/sunstone/sunstone-server.conf``                YAML
 ``/etc/one/fireedge/sunstone/sunstone-views.yaml``                 YAML
 ``/etc/one/guacd``                                                 Shell
-``/etc/one/hm/hmrc``                                               Shell
 ``/etc/one/monitord.conf``                                         oned.conf-like
 ``/etc/one/oned.conf``                                             oned.conf-like
 ``/etc/one/oneflow-server.conf``                                   YAML
 ``/etc/one/onegate-server.conf``                                   YAML
 ``/etc/one/onehem-server.conf``                                    YAML
-``/etc/one/packet_driver.default``                                 Plain file (or XML)
+``/etc/one/prometheus/prometheus.yml``                             YAML
+``/etc/one/prometheus/rules.yml``                                  YAML
 ``/etc/one/sched.conf``                                            oned.conf-like
+``/etc/one/sunstone-logos.yaml``                                   YAML w/ ordered arrays
+``/etc/one/sunstone-server.conf``                                  YAML
+``/etc/one/sunstone-views.yaml``                                   YAML
+``/etc/one/sunstone-views/**/*.yaml``                              YAML
 ``/etc/one/tmrc``                                                  Shell
 ``/etc/one/vcenter_driver.conf``                                   YAML
 ``/etc/one/vcenter_driver.default``                                Plain file (or XML)
@@ -51,6 +57,7 @@ Name                                                               Type
 ``/var/lib/one/remotes/etc/datastore/ceph/ceph.conf``              Shell
 ``/var/lib/one/remotes/etc/datastore/datastore.conf``              Shell
 ``/var/lib/one/remotes/etc/datastore/fs/fs.conf``                  Shell
+``/var/lib/one/remotes/etc/im/kvm-probes.d/guestagent.conf``       YAML
 ``/var/lib/one/remotes/etc/im/kvm-probes.d/pci.conf``              YAML
 ``/var/lib/one/remotes/etc/im/kvm-probes.d/probe_db.conf``         YAML
 ``/var/lib/one/remotes/etc/im/lxc-probes.d/probe_db.conf``         YAML
@@ -64,6 +71,4 @@ Name                                                               Type
 ``/var/lib/one/remotes/etc/vmm/lxc/profiles/*``                    Plain file (or XML)
 ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterrc``                 YAML
 ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``            YAML
-``/var/lib/one/remotes/vmm/kvm/kvmrc``                             Shell
-``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``                YAML
-================================================================== ======================
+================================================================== ====================== 
