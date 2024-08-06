@@ -23,7 +23,7 @@ The cloud environment installed by miniONE is mainly intended for evaluation, de
 
 .. note::
 
-    To complete this tutorial, you will need to log in to a remote Linux machine via SSH. If you follow this tutorial on a Windows machine, you will need to use an SSH client application such as `PuTTY <https://www.putty.org/>`_.
+    To complete this tutorial, you will need to log in to a remote Linux machine via SSH. If you follow this tutorial on a Windows machine, you will need to use an SSH client application such as `PuTTY <https://www.putty.org/>`__.
    
 .. tip::
 
@@ -92,7 +92,7 @@ To log in to your EC2 VM using SSH, you will need to generate a key pair (public
 
 You can generate a key pair from within Amazon EC2 itself. You can download the private key as a PEM file, and use this file to connect to your EC2 VM using SSH.
 
-For complete instructions on creating key pairs and connecting to your Linux instance, see the AWS documentation: `Create a key pair for your Amazon EC2 instance <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html>`_ and `Connect to your Linux instance from Linux or macOS using SSH <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-linux-inst-ssh.html>`_.
+For complete instructions on creating key pairs and connecting to your Linux instance, see the AWS documentation: `Create a key pair for your Amazon EC2 instance <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html>`__ and `Connect to your Linux instance from Linux or macOS using SSH <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-linux-inst-ssh.html>`__.
 
 After downloading the PEM file, make sure to set its file permissions to read-only, for the user only. On Linux, you can set these permissions with ``chmod 400 <PEM file>``, for example ``chmod 400 ~/.ssh/aws_pemfile.pem``.
 
@@ -152,8 +152,8 @@ After downloading miniONE, you will need to copy it to your AWS VM.
 
     You can use either of two methods:
     
-    * The GUI tool `WinSCP <https://winscp.net/eng/download.php>`_, which allows you to copy files by drag-and-drop
-    * The command-line tool `PuTTY Secure Copy <https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html>`_, which emulates the Unix ``scp`` tool.
+    * The GUI tool `WinSCP <https://winscp.net/eng/download.php>`__, which allows you to copy files by drag-and-drop
+    * The command-line tool `PuTTY Secure Copy <https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html>`__, which emulates the Unix ``scp`` tool.
     
     For both methods you will need to provide the private key file for authentication.
 
