@@ -75,7 +75,6 @@ Name                                                               Type
 ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc``                         Shell
 ``/var/lib/one/remotes/etc/vmm/lxc/lxcrc``                         YAML
 ``/var/lib/one/remotes/etc/vmm/lxc/profiles/*``                    Plain file (or XML)
-``/var/lib/one/remotes/etc/vmm/lxd/lxdrc``                         YAML
 ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterrc``                 YAML
 ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``            YAML
 ``/var/lib/one/remotes/vmm/kvm/kvmrc``                             Shell
