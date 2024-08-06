@@ -122,8 +122,6 @@ The main components of an OpenNebula installation are listed below.
 
 * **OneGate**: The OneGate server allows Virtual Machines to pull and push information from/to OpenNebula, enabling users and admins to gather metrics, detect problems in their applications, and trigger OneFlow elasticity rules from inside the VMs. It’s a dedicated daemon installed by default as part of the Single Front-end Installation, but can be deployed independently on a different machine.
 
-* **OneGate/Proxy**: The OneGate/Proxy service is a simple TCP proxy solution that can be used to improve security for the OneGates endpoint, and which users can enable on hypervisor Nodes. Using this service avoids the need to expose the OneGate server on a public IP address in certain environments; furthermore, it greatly simplifies protecting the traffic to and from OneGate with a VPN solution.
-
 These are OpenNebula’s system interfaces:
 
 * **Sunstone**: OpenNebula’s next-generation Graphical User Interface (WebUI) intended for both end-users and administrators to easily manage all OpenNebula resources and perform typical operations. It’s a dedicated daemon installed by default as part of the Single Front-end Installation, but can be deployed independently on a different machine.
