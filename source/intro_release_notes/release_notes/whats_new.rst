@@ -59,8 +59,6 @@ Beginning on version 6.10, users of the :ref:`Community Edition <what_is_communi
 
 OpenNebula 6.10 is named after the `Bubble Nebula <https://www.constellation-guide.com/bubble-nebula-ngc-7635/>`__ (NGC 7635) in the constellation Cassiopeia. It is a young, glowing emission nebula energized by a hot, massive central star. Partly located in a group of stars between 7000 and 8000 light-years away from Earth, the Bubble Nebula is in expansion, with a central “bubble” measuring between six and ten light-years and an estimated temperature of more than 37,000 degrees Celsius (67,000 Fahrenheit). It was discovered by the celebrated astronomer William Herschel in 1787.
 
-.. important:: This is the first beta version for 6.10, intended for testers and developers to try the new features. All new functionality is present in this release, and only bug fixes will be implemented between this release and the final 6.10 version. Please check the `known issues <https://github.com/OpenNebula/one/issues?q=is%3Aopen+is%3Aissue+label%3A%22Type%3A+Bug%22+label%3A%22Status%3A+Accepted%22>`__ before submitting an issue through GitHub. Also note that being a development version, there is no migration path from the previous stable version (6.8.x) nor migration path to the final stable version (6.10.0). A list of open issues may be found at the `GitHub development portal <https://github.com/OpenNebula/one/milestone/76>`__.
-
 We’d like to thank all the people that :ref:`support the project<acknowledgements>`, OpenNebula is what it is thanks to its community! Please keep rocking.
 
 OpenNebula Core
