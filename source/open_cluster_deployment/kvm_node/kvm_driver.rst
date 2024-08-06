@@ -438,9 +438,6 @@ You can define your custom commands. For example, the guest agent command ``virs
             "name": "guest-get-osinfo",
             "success-response": true
           },
-
-          ...
-
           {
             "enabled": true,
             "name": "guest-ping",

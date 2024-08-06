@@ -501,8 +501,6 @@ In production environments the services should be stopped in a specific order an
 4. Check and wait until there are no active operations with VMs and images.
 5. Stop **opennebula** and rest services.
 
-.. TODO - extend point 3 and 4
-
 Step 10. Next steps
 ================================================================================
 
