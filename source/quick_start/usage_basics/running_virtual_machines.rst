@@ -22,7 +22,7 @@ We’ll follow these high-level steps:
 Step 1. Download the WordPress Appliance from the OpenNebula Marketplace
 ========================================================================
 
-The `OpenNebula Public Marketplace <https://marketplace.opennebula.io>`_ is a repository of Virtual Machines and appliances which are curated, tested and certified by OpenNebula.
+The `OpenNebula Public Marketplace <https://marketplace.opennebula.io>`__ is a repository of Virtual Machines and appliances which are curated, tested and certified by OpenNebula.
 
 To access the Marketplace, first log in to Sunstone on your OpenNebula Front-end, as user ``oneadmin``.
 

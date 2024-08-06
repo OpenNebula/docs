@@ -25,7 +25,7 @@ This page describes how to request, configure and manage an OpenNebula hosted en
 Step 1: Request a PoC
 =====================
 
-To request the OpenNebula Hosted service, you will need to `request a PoC <https://opennebula.io/request-a-hosted-poc-with-opennebula>`_ by completing the required form.
+To request the OpenNebula Hosted service, you will need to `request a PoC <https://opennebula.io/request-a-hosted-poc-with-opennebula>`__ by completing the required form.
 
 When completing the form, please provide the desired name for the subdomain that will be used to host your OpenNebula cloud. In this guide, we will assume that the subdomain is ``poc``, i.e. that the OpenNebula hosted environment will be available at ``poc.opennebula.cloud``. Throughout this guide, replace ``poc`` with the actual name of your subdomain.
 

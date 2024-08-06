@@ -10,7 +10,7 @@ In previous tutorials of this Quick Start Guide, we:
    * deployed a :ref:`Metal Edge Cluster <first_edge_cluster>` on AWS, and
    * deployed a :ref:`Virtual Machine <running_virtual_machines>` with WordPress on that Metal Edge Cluster.
 
-At this point, we are ready to deploy something more complex on our Metal Edge Cluster: an enterprise-grade, multi-master Kubernetes cluster based on SUSE Rancher’s RKE2 Kubernetes distribution. Like the WordPress VM, the Kubernetes cluster is available in the `OpenNebula Public Marketplace <https://marketplace.opennebula.io>`. You can find it as the multi-VM appliance **Service OneKE**, the OpenNebula Kubernetes Edition.
+At this point, we are ready to deploy something more complex on our Metal Edge Cluster: an enterprise-grade, multi-master Kubernetes cluster based on SUSE Rancher’s RKE2 Kubernetes distribution. Like the WordPress VM, the Kubernetes cluster is available in the `OpenNebula Public Marketplace <https://marketplace.opennebula.io>`__. You can find it as the multi-VM appliance **Service OneKE**, the OpenNebula Kubernetes Edition.
 
 To deploy the Kubernetes cluster, we’ll follow these high-level steps:
 
@@ -57,7 +57,7 @@ You have deleted the ``REPLICA_HOST`` parameter from the datastore. In the next 
 Step 1. Download the OneKE Service from the OpenNebula Marketplace
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The `OpenNebula Public Marketplace <https://marketplace.opennebula.io>`_ is a repository of Virtual Machines and appliances which are curated, tested and certified by OpenNebula.
+The `OpenNebula Public Marketplace <https://marketplace.opennebula.io>`__ is a repository of Virtual Machines and appliances which are curated, tested and certified by OpenNebula.
 
 The Kubernetes cluster is packaged in a multi-VM service appliance listed as **Service OneKE <version>**. To download it, follow the same steps as when downloading the WordPress VM:
 

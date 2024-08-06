@@ -9,7 +9,7 @@ OpenNebula offers a **simple** but **feature-rich** and **flexible solution** to
 
 To learn more about the infrastructure platforms and services supported in each version of OpenNebula, refer to the :ref:`Platform Notes <uspng>` for each version.
 
-For high-level overviews and in-depth technical guides, please refer to OpenNebula’s `White Papers <https://opennebula.io/white-papers/>`_.
+For high-level overviews and in-depth technical guides, please refer to OpenNebula’s `White Papers <https://opennebula.io/white-papers/>`__.
 
 **INTERFACES**
 
