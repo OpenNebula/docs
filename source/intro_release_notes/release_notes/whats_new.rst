@@ -121,6 +121,7 @@ Other Issues Solved
 - `Fix the Restic Password with special characters cause restore to fail <https://github.com/OpenNebula/one/issues/6571>`__.
 - `Fix OneFlow server error output <https://github.com/OpenNebula/one/issues/6656>`__.
 - `Fix KVM migration when SYNC_TIME is not defined <https://github.com/OpenNebula/one/issues/6634>`__.
+- `Fix virsh capabilities output missing full list of CPU features <https://github.com/OpenNebula/one/issues/6686>`__.
 
 Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 
