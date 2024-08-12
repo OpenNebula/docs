@@ -299,8 +299,6 @@ If you don't want to use the new feature, comment these out in order to get rid 
 Step 8. Upgrade the Database Version
 ================================================================================
 
-.. important:: Users of the Community Edition of OpenNebula can upgrade from the previous stable version if they are running a non-commercial OpenNebula cloud. In order to access the migrator package a request needs to be made through this `online form <https://opennebula.io/get-migration>`__.
-
 Make sure at this point that OpenNebula is not running. If you installed from packages, the service may have been started automatically. Simply run the ``onedb upgrade -v`` command. The connection parameters are automatically retrieved from ``/etc/one/oned.conf``.
 
 Step 9. Check DB Consistency
