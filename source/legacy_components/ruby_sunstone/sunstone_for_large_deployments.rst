@@ -84,17 +84,6 @@ We advise using **Apache/Passenger** in your installation, but we'll also presen
 Deploy with Apache/Passenger (Recommended)
 ------------------------------------------
 
-.. warning::
-
-    Since OpenNebula 5.10, all required Ruby gems are packaged and installed into a dedicated directory ``/usr/share/one/gems-dist/`` symlinked to ``/usr/share/one/gems/``. Check the details in :ref:`Front-end Installation <ruby_runtime>`.
-
-    If the symlinked location is preserved, the shipped Ruby gems are used exclusively. It might be necessary to force the Ruby running inside the web server to use the dedicated locations by configuring the ``GEMS_HOME`` and ``GEMS_PATH`` environment variables, for example by putting the following settings into your Apache configuration:
-
-    .. code-block:: apache
-
-        SetEnv GEM_PATH /usr/share/one/gems/
-        SetEnv GEM_HOME /usr/share/one/gems/
-
 `Phusion Passenger <https://www.phusionpassenger.com/>`__ is a module for the `Apache <http://httpd.apache.org/>`__ and `Nginx <http://nginx.org/en/>`__ web servers that runs Ruby Rack applications. This can be used to run the Sunstone server and will manage its whole life cycle. If you are already using one of these servers or if you feel comfortable with one of them, we encourage you to use this method. This kind of deployment adds better concurrency and lets us add a https endpoint.
 
 .. note::

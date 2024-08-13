@@ -467,11 +467,6 @@ You can translate that into a command on the configuration file as follows
     :guest_info: "one-$vm_id '{\"execute\":\"guest-info\"}' --timeout 5"
 
 
-Importing VMs
--------------
-
-VMs running on KVM hypervisors that were not launched through OpenNebula can be :ref:`imported in OpenNebula <import_wild_vms>`. It is important to highlight that, besides the limitations explained in the Host guide, the "Poweroff" operation is not available for these imported VMs in KVM.
-
 Tuning & Extending
 ==================
 
