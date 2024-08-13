@@ -78,28 +78,6 @@ RHEL
 
     To prevent this problem, reapply the correct file permissions after upgrading.
 
-.. important::
-
-    When **upgrading** an existing deployment which may have used OpenNebula <5.10.0 anytime in the past, you may also need to upgrade the required Ruby dependencies, by running the ``install_gems`` script. You will need to do this if you are not yet using the shipped Ruby gems. (If this is the case, the symbolic link ``/usr/share/one/gems`` does not exist on your Front-end node.)
-
-    If unsure, run ``/usr/share/one/install_gems`` and the script warns if action is not relevant for you. For example:
-
-    .. prompt:: bash $ auto
-
-        $ /usr/share/one/install_gems
-        WARNING: Running install_gems is not necessary anymore, as all the
-        required dependencies are already installed by your packaging
-        system into symlinked location /usr/share/one/gems. Ruby gems
-        installed by this script won't be used until this symlink exists.
-        Remove the symlink before starting the OpenNebula services
-        to use Ruby gems installed by this script. E.g. execute
-
-            # unlink /usr/share/one/gems
-
-        Execution continues in 15 seconds ...
-
-    Read :ref:`this <ruby_runtime>` for more information.
-
 Community Edition
 --------------------------------------------------------------------------------
 

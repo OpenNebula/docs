@@ -9,26 +9,15 @@ This page describes how to install a complete OpenNebula Front-end from binary p
 
 Proceed with the following steps to get the fully-featured OpenNebula Front-end up.
 
-Step 1. Disable SELinux on AlmaLinux/CentOS7/RHEL (Optional)
-================================================================================
-
-Depending on the type of OpenNebula deployment, the SELinux can block some operations initiated by the OpenNebula Front-end, which results in a failure of the particular operation.  It's **not recommended to disable** the SELinux in production environments as it degrades the security of your server, but instead to investigate and work around each individual problem based on the `SELinux User's and Administrator's Guide <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/>`__. The administrator might disable the SELinux to temporarily work around the problem or on non-production deployments by changing the following line in ``/etc/selinux/config``:
-
-.. code-block:: bash
-
-    SELINUX=disabled
-
-After the change, you have to reboot the machine.
-
 .. _setup_opennebula_repos:
 
-Step 2. Add OpenNebula Repositories
+Step 1. Configure the OpenNebula Repositories
 ================================================================================
 
 Follow the :ref:`OpenNebula Repositories <repositories>` guide and add software repositories for the OpenNebula edition you are going to deploy.
 
 
-Step 3. Add 3rd Party Repositories
+Step 2. Add 3rd Party Repositories
 ================================================================================
 
 Not all OpenNebula dependencies are in base distribution repositories. On selected platforms below you need to enable 3rd party repositories by running the following commands under privileged user (``root``):
@@ -107,7 +96,7 @@ There are also packages with debugging symbols for some platforms, e.g. ``openen
 
    There are a few differences in package names among distributions. Those with varying package names contain mostly integration libraries and since they are for general use on installation Hosts, their names are left to follow the distribution conventions. Above, you can find the AlmaLinux/RHEL specific packages prefixed with "*rpm:*" and Debian/Ubuntu specific packages prefixed with "*deb:*".
 
-AlmaLinux / CentOS7 / RHEL
+AlmaLinux / RHEL
 --------------------------
 
 Install all OpenNebula Front-end components by executing the following commands under a privileged user:
@@ -160,52 +149,14 @@ Install all OpenNebula Front-end components by executing the following commands 
     # curl 'https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux_amd64.zip' | zcat >/usr/bin/terraform
     # chmod 0755 /usr/bin/terraform
 
-.. _ruby_runtime:
-
-Step 4. Install Ruby Dependencies System-wide (Optional)
-================================================================================
-
-.. important::
-
-    For **new deployments**, we recommend skipping this step.
-
-When **upgrading** an existing deployment which could be running OpenNebula older than 5.10.0 anytime in the past, you might need to install Ruby dependencies via ``install_gems`` if you are not yet using the shipped Ruby gems (i.e., when symbolic link ``/usr/share/one/gems`` doesn't exist on your Front-end)!
-
-.. warning::
-
-    Since OpenNebula 5.10, this step is **optional** and all required Ruby gems are provided within the **opennebula-rubygems** package. Ruby gems are installed into a dedicated directory ``/usr/share/one/gems-dist/``, but OpenNebula uses them via the (symlinked) location ``/usr/share/one/gems/`` which points to the ``gems-dist/`` directory. When the ``gems/`` directory (by default on new installations) exists, OpenNebula uses the gems inside **exclusively** by removing any other system Ruby gems locations from the search paths!
-
-    .. prompt:: bash # auto
-
-        # ls -lad /usr/share/one/gems*
-        lrwxrwxrwx 1 root root    9 Aug 13 11:41 /usr/share/one/gems -> gems-dist
-        drwxr-xr-x 9 root root 4096 Aug 13 11:41 /usr/share/one/gems-dist
-
-    If you want to use the system-wide Ruby gems instead of the packaged ones, remove the symlink ``/usr/share/one/gems/`` and install all required dependencies with the ``install_gems`` script described below. The removed ``/usr/share/one/gems/`` symlink **won't be created again on the next OpenNebula upgrade**. Ruby gems shipped with OpenNebula can't be avoided or uninstalled, but their use can be disabled by removing the ``/usr/share/one/gems/`` symlink.
-
-    If additional Ruby gems are needed by custom drivers or hooks, they must be installed into the introduced dedicated directory. For example, set the gem name in ``$GEM_NAME`` and run under privileged user root:
-
-    .. prompt:: bash # auto
-
-        # export GEM_PATH=/usr/share/one/gems/
-        # export GEM_HOME=/usr/share/one/gems/
-        # gem install --install-dir /usr/share/one/gems/ --bindir /usr/share/one/gems/bin/ --no-document --conservative $GEM_NAME
-
-Several OpenNebula components depend on Ruby and specific Ruby libraries (gems). They are distributed alongside OpenNebula but are available to and used exclusively by OpenNebula. For advanced usage, you can use the following commands to install all Ruby libraries system-wide and enforce OpenNebula to use them:
-
-.. prompt:: bash # auto
-
-    # test -L /usr/share/one/gems && unlink /usr/share/one/gems
-    # /usr/share/one/install_gems
-
-Step 5. Enabling MySQL/MariaDB (Optional)
+Step 3. Enabling MySQL/MariaDB (Optional)
 ================================================================================
 
 You can skip this step if you want to deploy OpenNebula as quickly as possible for evaluation.
 
 If you are deploying Front-end for production/serious use, make sure you read the :ref:`Database Setup <database_setup>` guide and select the suitable database Back-end. Although it **is** possible to switch from (default) SQLite to MySQL/MariaDB Back-end later, it's not easy and straightforward, so **we suggest to deploy and use MySQL/MariaDB Back-end from the very beginning**.
 
-Step 6. Configuring OpenNebula
+Step 4. Configuring OpenNebula
 ================================================================================
 
 OpenNebula Daemon
@@ -286,7 +237,7 @@ If you are reconfiguring already running services at a later point, don't forget
 
 .. _frontend_services:
 
-Step 7. Starting and Managing OpenNebula Services
+Step 5. Starting and Managing OpenNebula Services
 ================================================================================
 
 The complete list of operating system services provided by OpenNebula:
@@ -335,7 +286,7 @@ Other OpenNebula services might be started as a dependency but you don't need to
 
 .. _verify_frontend_section:
 
-Step 8. Verifying the Installation
+Step 6. Verifying the Installation
 ================================================================================
 
 After OpenNebula is started for the first time, you should check that the commands can connect to the OpenNebula daemon. You can do this in the Linux CLI or the graphical user interface Sunstone.
@@ -462,7 +413,7 @@ OpenNebula connects to the hypervisor Nodes over SSH (port 22). Additionally, th
 
 You should open the outgoing connections to these services.
 
-Step 9. Stop and Restart Services (Optional)
+Step 7. Stop and Restart Services (Optional)
 ================================================================================
 
 To stop, start or restart any of the listed individual :ref:`services <frontend_services>`, follow the examples below for a selected service:
@@ -501,7 +452,7 @@ In production environments the services should be stopped in a specific order an
 4. Check and wait until there are no active operations with VMs and images.
 5. Stop **opennebula** and rest services.
 
-Step 10. Next steps
+Step 8. Next steps
 ================================================================================
 
 Now that you have successfully started your OpenNebula services, you can continue with adding content to your cloud. Add hypervisor Nodes, storage, and Virtual Networks. Or you can provision Users with Groups and permissions, Images, define and run Virtual Machines.

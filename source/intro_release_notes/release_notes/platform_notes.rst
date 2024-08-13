@@ -14,24 +14,24 @@ Certified Components Version
 Front-End Components
 --------------------------------------------------------------------------------
 
-+--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-|        Component         |                        Version                         |                    More information                   |
-+==========================+========================================================+=======================================================+
-| Red Hat Enterprise Linux | 8, 9                                                   | :ref:`Front-End Installation <frontend_installation>` |
-+--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-| AlmaLinux                | 8, 9                                                   | :ref:`Front-End Installation <frontend_installation>` |
-+--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-| Ubuntu Server            | 22.04 (LTS), 24.04 (LTS)                               | :ref:`Front-End Installation <frontend_installation>` |
-+--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-| Debian                   | 11, 12                                                 | :ref:`Front-End Installation <frontend_installation>`.|
-|                          |                                                        | Not certified to manage VMware infrastructures        |
-+--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-| MariaDB or MySQL         | Version included in the Linux distribution             | :ref:`MySQL Setup <mysql>`                            |
-+--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-| SQLite                   | Version included in the Linux distribution             | Default DB, no configuration needed                   |
-+--------------------------+--------------------------------------------------------+-------------------------------------------------------+
-| Ruby Gems                | Versions installed by packages or install_gems utility | :ref:`front-end installation <ruby_runtime>`          |
-+--------------------------+--------------------------------------------------------+-------------------------------------------------------+
++--------------------------+---------------------------------------------+-------------------------------------------------------+
+|        Component         |                        Version              |                    More information                   |
++==========================+=============================================+=======================================================+
+| Red Hat Enterprise Linux | 8, 9                                        | :ref:`Front-End Installation <frontend_installation>` |
++--------------------------+---------------------------------------------+-------------------------------------------------------+
+| AlmaLinux                | 8, 9                                        | :ref:`Front-End Installation <frontend_installation>` |
++--------------------------+---------------------------------------------+-------------------------------------------------------+
+| Ubuntu Server            | 22.04 (LTS), 24.04 (LTS)                    | :ref:`Front-End Installation <frontend_installation>` |
++--------------------------+---------------------------------------------+-------------------------------------------------------+
+| Debian                   | 11, 12                                      | :ref:`Front-End Installation <frontend_installation>`.|
+|                          |                                             | Not certified to manage VMware infrastructures        |
++--------------------------+---------------------------------------------+-------------------------------------------------------+
+| MariaDB or MySQL         | Version included in the Linux distribution  | :ref:`MySQL Setup <mysql>`                            |
++--------------------------+---------------------------------------------+-------------------------------------------------------+
+| SQLite                   | Version included in the Linux distribution  | Default DB, no configuration needed                   |
++--------------------------+---------------------------------------------+-------------------------------------------------------+
+| Ruby Gems                | Versions installed by opennebula-rubygems   | Detailed information in ``/usr/share/one/Gemfile``    |
++--------------------------+---------------------------------------------+-------------------------------------------------------+
 
 .. _vcenter_nodes_platform_notes:
 
@@ -148,8 +148,6 @@ Sunstone
 
     **Chrome**: chrome://flags -> #touch-events: disabled.
     **Firefox**: about:config -> dom.w3c_touch_events: disabled.
-
-.. note:: Generally, for all Linux platforms, it is worth noting that Ruby gems should be used from packages shipped with OpenNebula or installed with the :ref:`install_gems <ruby_runtime>` utility. Avoid using Ruby gem versions shipped with your platform.
 
 .. _edge_cluster_provision_workloads_compatibility:
 

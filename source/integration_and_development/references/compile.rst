@@ -171,7 +171,7 @@ The packages do a ``system-wide`` installation. To create a similar environment,
 Ruby Dependencies
 ================================================================================
 
-Please follow the :ref:`installation guide <ruby_runtime>`, for a detailed description on how to install the Ruby dependencies.
+All required Ruby gems are provided by the **opennebula-rubygems** package. Please check the :ref:`Front-end installation guide <packages>` for more information on installing this package.
 
 Building Python Bindings from source
 ================================================================================
