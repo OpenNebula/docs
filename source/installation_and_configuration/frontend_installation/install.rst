@@ -130,34 +130,6 @@ Install all OpenNebula Front-end components by executing the following commands 
 
     # yum -y install opennebula opennebula-sunstone opennebula-fireedge opennebula-gate opennebula-flow opennebula-provision
 
-.. _install_docker_deps_rh:
-
-**Optional**
-
-1. Install dependencies for :ref:`Docker Hub Marketplace <market_dh>`:
-
-- install Docker following the official documentation `<https://docs.docker.com/engine/install/>`
-- add user ``oneadmin`` into group ``docker``:
-
-.. prompt:: bash # auto
-
-    # usermod -a -G docker oneadmin
-
-2. Install dependencies for OpenNebula Edge Clusters provisioning:
-
-.. note::
-
-   Ansible and Terraform can be also installed from packages if their versions are **Ansible 2.9.x** and **Terraform 0.14.x**.
-
-.. prompt:: bash # auto
-
-    # yum -y install python3-pip
-    # pip3 install 'cryptography<3.4'
-    # pip3 install 'ansible>=2.8.0,<2.10.0'
-    # pip3 install 'Jinja2>=2.10.0'
-    # curl 'https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux_amd64.zip' | zcat >/usr/bin/terraform
-    # chmod 0755 /usr/bin/terraform
-
 Debian / Ubuntu
 ---------------
 
@@ -168,33 +140,53 @@ Install all OpenNebula Front-end components by executing the following commands 
     # apt-get update
     # apt-get -y install opennebula opennebula-sunstone opennebula-fireedge opennebula-gate opennebula-flow opennebula-provision
 
-.. _install_docker_deps_deb:
 
-**Optional**
+Optional: Install dependencies for :ref:`Docker Hub Marketplace <market_dh>`
+----------------------------------------------------------------------------
 
-1. Install dependencies for :ref:`Docker Hub Marketplace <market_dh>`:
+.. _install_docker_deps_rh:
 
-- install Docker following the official documentation for `Debian <https://docs.docker.com/engine/install/debian/>`_ or `Ubuntu <https://docs.docker.com/engine/install/ubuntu/>`_
+AlmaLinux / CentOS7 / RHEL
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Install Docker following the official documentation `<https://docs.docker.com/engine/install/>`_
+
 - add user ``oneadmin`` into group ``docker``:
 
 .. prompt:: bash # auto
 
     # usermod -a -G docker oneadmin
 
-2. Install dependencies for OpenNebula Edge Clusters provisioning:
+.. _install_docker_deps_deb:
 
-.. note::
+Debian / Ubuntu
+^^^^^^^^^^^^^^^
 
-   Ansible and Terraform can be also installed from packages if their versions are **Ansible 2.9.x** and **Terraform 0.14.x**.
+Install Docker following the official documentation for `Debian <https://docs.docker.com/engine/install/debian/>`_ or `Ubuntu <https://docs.docker.com/engine/install/ubuntu/>`_
+
+- add user ``oneadmin`` into group ``docker``:
 
 .. prompt:: bash # auto
 
-    # apt-get -y install python3-pip
-    # pip3 install 'cryptography<3.4'
-    # pip3 install 'ansible>=2.8.0,<2.10.0'
-    # pip3 install 'Jinja2>=2.10.0'
+    # usermod -a -G docker oneadmin
+
+Optional: Install dependencies for OpenNebula Edge Clusters provisioning
+------------------------------------------------------------------------
+
+There are 2 main dependencies which needs to be installed on the FE for running provisioning.
+
+1. **Terraform** -- is needed to provision resources on public cloud providers, download the binary as follows
+
+.. prompt:: bash # auto
+
     # curl 'https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux_amd64.zip' | zcat >/usr/bin/terraform
     # chmod 0755 /usr/bin/terraform
+
+
+2. **Ansible** -- is used to configure the provisioned resources (cloud or on-premise). Ansible system package is installed
+as a dependency of the opennebula-provision package. However for HCI provisioning including Ceph, the system-installed
+ansible version may not be sufficient as it requires ansible-core 2.15+. It is advised to use latest Ubuntu for the FE if
+Ceph HCI provision is needed or install ansible 2.15+ on the system and make it default for oneadmin user.
 
 .. _ruby_runtime:
 
