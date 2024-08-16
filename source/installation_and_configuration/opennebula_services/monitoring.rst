@@ -36,11 +36,15 @@ The monitor daemon (``onemonitord``) is configured in ``/etc/one/monitord.conf``
 +---------------------+---------------------+------------------------------------------------------------------------------------+
 | ``MONITORING_INTERVAL_HOST``              | Wait time (seconds) without receiving any beacon before restarting the probes      |
 +---------------------+---------------------+------------------------------------------------------------------------------------+
-| ``HOST_MONITORING_EXPIRATION_TIME``       | Seconds before Host monitoring information expires, 0 to disable monitoring.       |
+| ``HOST_MONITORING_EXPIRATION_TIME``       | Time in seconds before Host monitoring information expires. Use 0 to disable Host  |
+|                                           | monitoring recording                                                               |
++---------------------+---------------------+------------------------------------------------------------------------------------+
+| ``VM_MONITORING_EXPIRATION_TIME``         | Time in seconds before VM monitoring information expires. Use 0 to disable VM      |
+|                                           | monitoring recording                                                               |
 +---------------------+---------------------+------------------------------------------------------------------------------------+
 | **Database** (main configuration taken from ``oned.conf``, only ``onemonitord`` specifics here)                                |
 +---------------------+---------------------+------------------------------------------------------------------------------------+
-| ``DB``              | ``CONNECTIONS``     | DB connections. DB needs to be configured to support oned + monitord connections.  |
+| ``DB``              | ``CONNECTIONS``     | DB connections. DB needs to be configured to support oned + monitord connections   |
 +---------------------+---------------------+------------------------------------------------------------------------------------+
 | **Network Configuration**                                                                                                      |
 +---------------------+---------------------+------------------------------------------------------------------------------------+
@@ -54,9 +58,9 @@ The monitor daemon (``onemonitord``) is configured in ``/etc/one/monitord.conf``
 |                     +---------------------+------------------------------------------------------------------------------------+
 |                     | ``THREADS``         | Number of threads used to receive messages from monitor probes                     |
 |                     +---------------------+------------------------------------------------------------------------------------+
-|                     | ``PUBKEY``          | Absolute path to public key. Empty for no encryption.                              |
+|                     | ``PUBKEY``          | Absolute path to public key. Empty for no encryption                               |
 |                     +---------------------+------------------------------------------------------------------------------------+
-|                     | ``PRIKEY``          | Absolute path to private key. Empty for no encryption.                             |
+|                     | ``PRIKEY``          | Absolute path to private key. Empty for no encryption                              |
 +---------------------+---------------------+------------------------------------------------------------------------------------+
 | **Probes Configuration**                                                                                                       |
 +---------------------+---------------------+------------------------------------------------------------------------------------+
@@ -68,7 +72,7 @@ The monitor daemon (``onemonitord``) is configured in ``/etc/one/monitord.conf``
 |                     +---------------------+------------------------------------------------------------------------------------+
 |                     | ``STATE_VM``        | Time in seconds to send VM status (ie. running, error, stopped...)                 |
 |                     +---------------------+------------------------------------------------------------------------------------+
-|                     | ``MONITOR_VM``      | Time in seconds to send VM resource usage metrics.                                 |
+|                     | ``MONITOR_VM``      | Time in seconds to send VM resource usage metrics                                  |
 |                     +---------------------+------------------------------------------------------------------------------------+
 |                     | ``SYNC_STATE_VM``   | Send a complete VM report if probes stopped more than ``SYNC_STATE_VM`` seconds    |
 +---------------------+---------------------+------------------------------------------------------------------------------------+
@@ -228,7 +232,7 @@ If this is the case, it's probably because the Monitor Daemon isn't receiving an
 Monitoring Probes
 -----------------
 
-To troubleshoot errors produced during the execution of the monitoring probes, try to execute them directly through the command line as oneadmin in the Hosts. Information about malformed messages should be reported in ``/var/log/one/oned.log`` or ``/var/log/one/monitord.log``
+To troubleshoot errors produced during the execution of the monitoring probes, try to execute them directly through the command line as oneadmin in the Hosts. Information about malformed messages should be reported in ``/var/log/one/oned.log`` or ``/var/log/one/monitor.log``
 
 
 .. |image0| image:: /images/collector.png
