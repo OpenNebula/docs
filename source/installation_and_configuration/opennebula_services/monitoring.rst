@@ -36,7 +36,7 @@ The monitor daemon (``onemonitord``) is configured in ``/etc/one/monitord.conf``
 +---------------------+---------------------+------------------------------------------------------------------------------------+
 | ``MONITORING_INTERVAL_HOST``              | Wait time (seconds) without receiving any beacon before restarting the probes      |
 +---------------------+---------------------+------------------------------------------------------------------------------------+
-| ``HOST_MONITORING_EXPIRATION_TIME``       | Time in seconds before Host monitoring information expires, Use 0 to disable Host  |
+| ``HOST_MONITORING_EXPIRATION_TIME``       | Time in seconds before Host monitoring information expires. Use 0 to disable Host  |
 |                                           | monitoring recording                                                               |
 +---------------------+---------------------+------------------------------------------------------------------------------------+
 | ``VM_MONITORING_EXPIRATION_TIME``         | Time in seconds before VM monitoring information expires. Use 0 to disable VM      |
