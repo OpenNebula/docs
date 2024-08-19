@@ -14,9 +14,9 @@ In this tutorial, we’ll complete the following high-level steps:
     #. Download vOneCloud.
     #. Deploy the vOneCloud OVA.
     #. Configure the vOneCloud virtual appliance.
-    #. Access the OpenNebula Front-end through the FireEdge GUI.
+    #. Access the OpenNebula Front-end through the Sunstone GUI.
 
-After finishing this tutorial, you will have deployed a complete, ready-to-use OpenNebula Front-end on top of your VMware infrastructure. You will then be able to log in via the FireEdge GUI, define hosts and deploy virtual machines.
+After finishing this tutorial, you will have deployed a complete, ready-to-use OpenNebula Front-end on top of your VMware infrastructure. You will then be able to log in via the Sunstone GUI, define hosts and deploy virtual machines.
 
 Brief Overview of vOneCloud
 ===========================
@@ -140,7 +140,7 @@ We’ll configure the following:
     * Network connection for the vOneCloud appliance
     * OpenNebula user ``oneadmin`` password
     * Linux ``root`` password
-    * IP address or FQDN for the public endpoint of FireEdge
+    * IP address or FQDN for the public endpoint of Sunstone
 
 Step 4.1. Configure the Network
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -179,7 +179,7 @@ Step 4.2. Configure the OpenNebula User Password
 
 In the Control Console, press ``2`` to configure the password for the OpenNebula user, ``oneadmin``.
 
-Enter the desired password. You will use this password to log into the FireEdge GUI in the last step of this tutorial.
+Enter the desired password. You will use this password to log into the Sunstone GUI in the last step of this tutorial.
 
 .. important::
 
@@ -201,22 +201,22 @@ In the Control Console, press ``3`` to set the password for the Linux OS ``root`
 Step 4.4. Configure a Public IP for vOneCloud
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the Control Console, press ``4`` to select the FQDN or public IP address that will serve as the endpoint for accessing the FireEdge GUI.
+In the Control Console, press ``4`` to select the FQDN or public IP address that will serve as the endpoint for accessing the Sunstone GUI.
 
-At this point, the vOneCloud appliance is configured and ready to be accessed through the FireEdge GUI.
+At this point, the vOneCloud appliance is configured and ready to be accessed through the Sunstone GUI.
 
 .. important::
 
-    Bear in mind that in this evaluation version, FireEdge is listening on unencrypted HTTP over a public IP address.
+    Bear in mind that in this evaluation version, the FireEdge server for the Sunstone UI is listening on unencrypted HTTP over a public IP address.
 
-Step 5. Access the OpenNebula Front-end through the FireEdge GUI
+Step 5. Access the OpenNebula Front-end through the Sunstone GUI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Open a web browser (Firefox or Chrome) and enter the public IP or FQDN you defined as the FireEdge endpoint in :ref:`Step 4.4 <Step 4.4>`. For example, ``http://10.0.1.176``.
+Open a web browser (Firefox or Chrome) and enter the public IP or FQDN you defined as the Sunstone endpoint in :ref:`Step 4.4 <Step 4.4>`. For example, ``http://10.0.1.176``.
 
-You should be greeted by the FireEdge login screen:
+You should be greeted by the Sunstone login screen:
 
-.. image:: /images/6.10-fireedge_login.png
+.. image:: /images/sunstone_login_dark.png
     :align: center
     :scale: 50%
 
@@ -224,7 +224,7 @@ You should be greeted by the FireEdge login screen:
 
 In the **Username** field, type ``oneadmin``. In the **Password** field, enter the password you defined for the OpenNebula user in :ref:`Step 4.2 <Step 4.2>`.
 
-FireEdge should display the Dashboard:
+Sunstone should display the Dashboard:
 
 .. image:: /images/6.10-sunstone_dashboard.png
     :align: center
@@ -236,7 +236,7 @@ Congratulations — you have deployed and fully configured an OpenNebula Front-e
 
 .. note::
 
-    If you get an error message from FireEdge when attempting to log in, it means the public endpoint for FireEdge is not properly configured.
+    If you get an error message from Sunstone when attempting to log in, it means the public endpoint for Sunstone is not properly configured.
     
     .. image:: /images/sunstone-fe-error.png
         :align: center

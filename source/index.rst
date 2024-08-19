@@ -7,7 +7,7 @@ OpenNebula is an open-source cloud management platform that combines virtualizat
 The first two sections of the OpenNebula documentation are designed to help you quickly try out and evaluate OpenNebula, and to provide you with an overview of the OpenNebula cloud model, architecture and components.
 
 +--------------------------------------------------------------------+------------------------------------------------------------------+
-|                  Quick Start - Try out in minutes                  |             Overview - Learn about OpenNebula                    |
+|                  Quick Start - Try out in Minutes                  |             Overview - Learn About OpenNebula                    |
 +====================================================================+==================================================================+
 | The :ref:`Quick Start <qs>` Guide allows you to try OpenNebula     | The :ref:`Overview <ov>` section covers OpenNebula architecture  |
 | following simple tutorials to progressively build infrastructure   | and components, and describes the steps for designing,           |
@@ -19,6 +19,17 @@ The first two sections of the OpenNebula documentation are designed to help you 
 | * :ref:`Deploy a Kubernetes cluster <running_kubernetes_clusters>` |                                                                  |
 |                                                                    |                                                                  |
 +--------------------------------------------------------------------+------------------------------------------------------------------+
+
++--------------------------------------------------------------------+-----------------------------------------------------------------------------+
+|                  Quick Install - Automatic Deployment              |   Quick Migration - Smooth VM Migration from Broadcom VMware                |
++====================================================================+=============================================================================+
+| Perform Automated DevOps-like deployment                           | Quickly migrate your VMs using OneSwap, a migration tool                    |
+| using `OneDeploy <https://github.com/OpenNebula/one-deploy>`__.    | designed to automatically migrate VMs from vCenter to OpenNebula.           |
+|                                                                    |                                                                             |
+| * :ref:`OneDeploy Overview <one_deploy_overview>`                  | * `OneSwap Webinar <https://opennebula.io/project/oneswap-migration/>`__    |
+| * :ref:`Tutorial (Local Storage) <od_local>`                       | * `OneSwap on GitHub <https://github.com/OpenNebula/one-swap>`__            |
+| * :ref:`Tutorial (Shared Storage) <od_shared>`                     |                                                                             |
++--------------------------------------------------------------------+-----------------------------------------------------------------------------+
 
 Other sections in the documentation provide detailed explanations, guides and references for OpenNebula components, tools, interfaces and procedures.
   
