@@ -36,6 +36,8 @@ Available subcommands (visit the :ref:`manual page <cli>` for full reference):
 - :ref:`backup <onedb_backup>` - Backs up database into a file
 - :ref:`restore <onedb_restore>` - Restores database from backup
 - :ref:`purge-history <onedb_purge_history>` - Cleans up history records in VM metadata
+- :ref:`change-history <onedb_change_history>` - Change records in VM metadata
+- :ref:`update-history <onedb_update_history>` - Update history records in VM metadata
 - :ref:`purge-done <onedb_purge_done>` - Cleans database of unused content
 - :ref:`change-body <onedb_change_body>` - Allows to update OpenNebula objects in database
 - :ref:`update-body <onedb_update_body>` - Allows to update OpenNebula objects body in database
@@ -132,6 +134,34 @@ Every database upgrade is internally logged into the table. You can use the ``hi
     Version:   3.8.0
     Timestamp: 10/19 16:04:17
     Comment:   Database migrated from 3.7.80 to 3.8.0 (OpenNebula 3.8.0) by onedb command.
+
+
+.. _onedb_change_history:
+
+onedb change history
+--------------------------------------------------------------------------------
+
+Change the CLUSTER_ID of a previous VM sequence in a non interactive way. This is useful when accidentally deleting a cluster. You might be unable to attach disks or NICs to the VM due to the VM being reported in a non existing cluster.
+
+The following command changes the the sequence 0 of the VM 224 to have the CLUSTER_ID set to 0.
+
+.. prompt:: text $ auto
+
+    $ onedb change-history --id 224 --seq 0 '/HISTORY/CID' 0
+
+.. _onedb_update_history:
+
+onedb update history
+--------------------------------------------------------------------------------
+
+Change the scheduling record of a previous VM sequence interactively. This is useful when recovering from errors in the database.
+
+The following command prompts an editor to open where the XML of the sequence 0 of the VM 224 will be edited.
+
+.. prompt:: text $ auto
+
+    $ onedb update-history --id 224 --seq 0
+
 
 
 .. _onedb_fsck:
