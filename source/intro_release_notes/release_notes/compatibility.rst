@@ -34,3 +34,9 @@ VM with disk target vda   TARGET=vda      VM.TEMPLATE.DISK[*].TARGET=vda
 IP matching               IP=10.10.0.5    VM.TEMPLATE.NIC[*].IP=10.10.0.5
 IP starts with 10.10      ---             VM.TEMPLATE.NIC[*].IP=10.10
 =======================   ============    ===============================================================
+
+Labels on Sunstone
+================================================================================
+Only :ref:`persistent user labels <ruby_suns_views_user_labels>` that were created in old Sunstone will be showed :ref:`in new Sunstone <sunstone_labels>`. We are working to offer you a better experience in new Sunstone with the system and user labels in future versions of OpenNebula.
+
+Remember that in new Sunstone you need to create the user label in the Settings section before apply a label to a resource. See :ref:`Sunstone labels guide <sunstone_labels>` to get more information.
