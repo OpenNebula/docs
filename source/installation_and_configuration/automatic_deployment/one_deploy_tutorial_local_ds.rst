@@ -29,7 +29,7 @@ We’ll follow these high-level steps:
    #. Run the playbooks.
    #. Verify the installation.
 
-.. important:: This tutorial was designed and tested using Ubuntu 24.04 or 22.04 for all servers involved (i.e. OpenNebula Front-end and Hypervisor nodes) using a virtual environment with `Poetry <https://python-poetry.org/>`__ . For information on other installation methods and OSes, please refer to the `OneDeploy Wiki <https://github.com/OpenNebula/one-deploy/wiki>`__.
+.. important:: This tutorial was designed and tested using Ubuntu 24.04 and 22.04 for all servers involved (i.e. OpenNebula Front-end and Hypervisor nodes) using a virtual environment with `Poetry <https://python-poetry.org/>`__ . For information on other installation methods and OSes, please refer to the `OneDeploy Wiki <https://github.com/OpenNebula/one-deploy/wiki>`__.
 
 Requirements
 ^^^^^^^^^^^^^^^^^^^^^^

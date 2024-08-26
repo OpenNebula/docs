@@ -1,11 +1,8 @@
 .. _one_deploy_overview:
 
-=====================================================
-Quick Install: Automated Deployment Using OneDeploy
-=====================================================
-
-Overview
-^^^^^^^^^
+=================================
+Overview of Automatic Deployment
+=================================
 
 OpenNebula provides `OneDeploy <https://github.com/OpenNebula/one-deploy>`__, a set of Ansible playbooks that allows you to automatically deploy an OpenNebula cloud in a simple and convenient way.
 

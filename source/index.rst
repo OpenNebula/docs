@@ -31,9 +31,9 @@ The first two sections of the OpenNebula documentation are designed to help you 
    | Perform Automated DevOps-like deployment                               | Quickly migrate your VMs using OneSwap, a migration tool                    |
    | using `OneDeploy <https://github.com/OpenNebula/one-deploy>`__.        | designed to automatically migrate VMs from vCenter to OpenNebula.           |
    |                                                                        |                                                                             |
-   | * :ref:`OneDeploy Overview <one_deploy_overview>`                      | * `OneSwap Webinar <https://opennebula.io/project/oneswap-migration/>`__    |
-   | * :ref:`Tutorial (Local Storage) <od_local>`                           | * `OneSwap on GitHub <https://github.com/OpenNebula/one-swap>`__            |
-   | * :ref:`Tutorial (Shared Storage) <od_shared>`                         |                                                                             |
+   | * :ref:`Overview <one_deploy_overview>`                                | * `OneSwap Webinar <https://opennebula.io/project/oneswap-migration/>`__    |
+   | * :ref:`Automated Deployment with Local Storage <od_local>`            | * `OneSwap on GitHub <https://github.com/OpenNebula/one-swap>`__            |
+   | * :ref:`Automated Deployment with Shared Storage <od_shared>`          |                                                                             |
    +------------------------------------------------------------------------+-----------------------------------------------------------------------------+
 
 Other sections in the documentation provide detailed explanations, guides and references for OpenNebula components, tools, interfaces and procedures.
