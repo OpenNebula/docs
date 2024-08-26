@@ -343,7 +343,13 @@ After the command completes, your new OpenNebula cloud should be up and running.
 Verifying the Installation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-On the Front-end, you can check that the OpenNebula services are running with: ``systemctl status opennebula.service``, as shown below:
+On the Front-end, you can check that the OpenNebula services are running with:
+
+.. code::
+
+   systemctl status opennebula.service
+
+For example:
 
 .. prompt:: bash # auto
 

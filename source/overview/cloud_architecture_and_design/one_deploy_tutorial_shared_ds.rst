@@ -195,10 +195,10 @@ Below are sample contents for ``shared.yml``. You will probably need to modify p
              GATEWAY: 172.20.0.1
              DNS: 1.1.1.1
 
-   ds: { mode: shared }
+       ds: { mode: shared }
 
-   fstab:
-     - src: "172.20.0.5:/storage/one_datastores"
+       fstab:
+        - src: "172.20.0.5:/storage/one_datastores"
 
    frontend:
      hosts:
@@ -372,7 +372,37 @@ After the command completes, your new OpenNebula cloud should be up and running.
 Verifying the Installation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-On the Front-end, you can check that the OpenNebula services are running with: ``systemctl status opennebula.service``, as shown below:
+On the Front-end, check that the NFS share with the datastores is mounted, by running the ``df`` command. Sample output:
+
+.. prompt:: bash # auto
+
+   df
+   Filesystem     1K-blocks    Used Available Use% Mounted on
+   tmpfs             796304    1016    795288   1% /run
+   /dev/vda1       29378688 4622632  24739672  16% /
+   tmpfs            3981500       0   3981500   0% /dev/shm
+   tmpfs               5120       4      5116   1% /run/lock
+   tmpfs            3981500       0   3981500   0% /run/qemu
+   /dev/vda16        901520  166284    672108  20% /boot
+   /dev/vda15        106832    6246    100586   6% /boot/efi
+   tmpfs             796300       8    796292   1% /run/user/0
+   172.20.0.5:/storage/one_datastores   5004032 2447104   2540544  50% /var/lib/one/datastores
+   
+The ``/etc/fstab`` file should contain a line like the following:
+
+.. code::
+
+   172.20.0.5:/storage/one_datastores /var/lib/one/datastores nfs rw,relatime,comment=one-deploy 0 0
+
+The same configuration should be present on the Hypervisor nodes.
+
+On the Front-end, check that the OpenNebula services are running with:
+
+.. code::
+
+   systemctl status opennebula.service
+
+For example:
 
 .. prompt:: bash # auto
 
