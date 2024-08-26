@@ -1,16 +1,16 @@
 .. _one_deploy_shared:
 .. _od_shared:
 
-==================================================
-Tutorial: Automated Deployment with Shared Storage
-==================================================
+========================================================
+Tutorial: Automated Cloud Deployment with Shared Storage
+========================================================
 
 Overview
 ^^^^^^^^^^^^^^^^^^^^^^
 
-In this tutorial, we’ll use `OneDeploy <https://github.com/OpenNebula/one-deploy>`__ to automatically deploy a simple OpenNebula cloud, with one Front-end and two Hosts using storage shared over NFS. In this configuration, the OpenNebula Front-end and hypervisor nodes read datastore images from an NFS share available on the network.
+In this tutorial, we’ll use `OneDeploy <https://github.com/OpenNebula/one-deploy>`__ to automatically deploy a simple OpenNebula cloud, with one Front-end and two Hosts using storage shared over NFS. In this configuration, the OpenNebula Front-end and Hypervisor nodes read datastore images from an NFS share available on the network.
 
-This sample architecture uses a basic network configuration, a flat (bridged) network, where the VM’s IPs are part of the same network as the hypervisors.
+This sample architecture uses a basic network configuration, a flat (bridged) network, where the VM’s IPs are part of the same network as the Hypervisors.
 
 .. image:: ../../images/one_deploy_arch_shared.png
    :align: center
@@ -35,12 +35,12 @@ We’ll follow these high-level steps:
 Requirements
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The following requirements must be met for your cloud hosts (Front-end and hypervisors):
+The following requirements must be met for your cloud hosts (Front-end and Hypervisors):
 
    * Ubuntu 22.04 or 24.04 with Netplan >=0.105
-   * Passwordless SSH login, as root, from the front-end node to the hypervisors nodes
-   * The user that will perform the installation needs to be able to sudo to root account
-   * A range of free IPs in the same network connecting the Front-end and hypervisors
+   * Passwordless SSH login, as root, from the Front-end node to the Hypervisors nodes
+   * The user that will perform the installation needs to be able to sudo to the root account
+   * A range of free IPs in the same network connecting the Front-end and Hypervisors
 
 In this tutorial we assume there is a NFS server already available for your cloud. In this example we assume that the following structure is created in the NFS/NAS sever:
 
@@ -228,12 +228,12 @@ The table below lists some of the parameters, please update them to your setup:
 +-------------------+-------------------------------------------------------------------------------------------------+
 | ``DNS``           | DNS server of the network.                                                                      |
 +-------------------+-------------------------------------------------------------------------------------------------+
-| ``f1,n1,n2``      | ``ansible_host`` IP address for the front-end (``f1``) and hypervisors (``n1`` and ``n2``).     |
+| ``f1,n1,n2``      | ``ansible_host`` IP address for the front-end (``f1``) and Hypervisors (``n1`` and ``n2``).     |
 +-------------------+-------------------------------------------------------------------------------------------------+
 | ``fstab``         | The NFS share for accessing datastores, in <host>:<folder> format.                              |
 +-------------------+-------------------------------------------------------------------------------------------------+
 
-In this example, the Front-end will be installed on the server with IP 172.20.0.10, and the two hypervisors on 0.11 and 0.12, respectively. The virtual network will be bridged through the ``eth0`` interface of the hypervisors, and VMs will get IP addresses within the range ``172.20.0.100 - 172.20.0.147``, using ``172.20.0.1`` as default gateway. The NFS server resides on 172.20.0.5, and shares the directory ``/storage/one_datastores``.
+In this example, the Front-end will be installed on the server with IP 172.20.0.10, and the two Hypervisors on 0.11 and 0.12, respectively. The virtual network will be bridged through the ``eth0`` interface of the Hypervisors, and VMs will get IP addresses within the range ``172.20.0.100 - 172.20.0.147``, using ``172.20.0.1`` as the default gateway. The NFS server resides on 172.20.0.5, and shares the directory ``/storage/one_datastores``.
 
 Below are the contents of the ``ansible.cfg`` file:
 
@@ -421,7 +421,7 @@ Output should be similar to the following:
       1 172.20.0.12                                  default      0       0 / 100 (0%)     0K / 1.9G (0%) on
       0 172.20.0.11                                  default      0       0 / 100 (0%)     0K / 1.9G (0%) on
 
-The two servers that we specified in the ``shared.yml`` file are running as OpenNebula hypervisor nodes. Ensure that the last column, ``STAT``, displays ``on`` and not ``err``.
+The two servers that we specified in the ``shared.yml`` file are running as OpenNebula Hypervisor nodes. Ensure that the last column, ``STAT``, displays ``on`` and not ``err``.
 
 To check the datastores, run:
 

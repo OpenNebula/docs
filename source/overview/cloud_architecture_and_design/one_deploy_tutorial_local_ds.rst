@@ -1,16 +1,16 @@
 .. _one_deploy_local:
 .. _od_local:
 
-=================================================
-Tutorial: Automated Deployment with Local Storage
-=================================================
+=======================================================
+Tutorial: Automated Cloud Deployment with Local Storage
+=======================================================
 
 Overview
 ^^^^^^^^^^^^^^^^^^^^^^
 
-In this tutorial, we’ll use `OneDeploy <https://github.com/OpenNebula/one-deploy>`__ to automatically deploy a simple OpenNebula cloud, with one Front-end and two Hosts using local storage. In this configuration the virtual disk images are transferred from the Front-end to the hypervisors’ local storage using the SSH protocol.
+In this tutorial, we’ll use `OneDeploy <https://github.com/OpenNebula/one-deploy>`__ to automatically deploy a simple OpenNebula cloud, with one Front-end and two Hosts using local storage. In this configuration the virtual disk images are transferred from the Front-end to the Hypervisors’ local storage using the SSH protocol.
 
-This sample architecture uses a basic network configuration, a flat (bridged) network, where the VM’s IPs are part of the same network as the hypervisors.
+This sample architecture uses a basic network configuration, a flat (bridged) network, where each VM’s IPs are part of the same network as the Hypervisors.
 
 .. image:: ../../images/one_deploy_arch_local.png
    :align: center
@@ -29,17 +29,17 @@ We’ll follow these high-level steps:
    #. Run the playbooks.
    #. Verify the installation.
 
-.. important:: This tutorial was designed and tested using Ubuntu 24.04 or 22.04 for all servers involved (i.e. OpenNebula front-end and hypervisor nodes) using a virtual environment with `Poetry <https://python-poetry.org/>`__ . For information on other installation methods and OSes, please refer to the `OneDeploy Wiki <https://github.com/OpenNebula/one-deploy/wiki>`__.
+.. important:: This tutorial was designed and tested using Ubuntu 24.04 or 22.04 for all servers involved (i.e. OpenNebula Front-end and Hypervisor nodes) using a virtual environment with `Poetry <https://python-poetry.org/>`__ . For information on other installation methods and OSes, please refer to the `OneDeploy Wiki <https://github.com/OpenNebula/one-deploy/wiki>`__.
 
 Requirements
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The following requirements must be met for your cloud hosts (Front-end and hypervisors):
+The following requirements must be met for your cloud hosts (Front-end and Hypervisors):
 
    * Ubuntu 22.04 or 24.04 with Netplan >=0.105
-   * Passwordless SSH login, as root, from the front-end node to the hypervisors nodes
-   * The user that will perform the installation needs to be able to sudo to root account
-   * A range of free IPs in the same network connecting the Front-end and hypervisors
+   * Passwordless SSH login, as root, from the Front-end node to the Hypervisor nodes
+   * The user that will perform the installation needs to be able to sudo to the root account
+   * A range of free IPs in the same network connecting the Front-end and Hypervisors
 
 Installing OneDeploy in the Front-end
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -201,10 +201,10 @@ The table below lists some of the parameters, please update them to your setup:
 +-------------------+-------------------------------------------------------------------------------------------------+
 | ``DNS``           | DNS server of the network.                                                                      |
 +-------------------+-------------------------------------------------------------------------------------------------+
-| ``f1,n1,n2``      | ``ansible_host`` IP address for the Front-end (``f1``) and hypervisors (``n1`` and ``n2``) .    |
+| ``f1,n1,n2``      | ``ansible_host`` IP address for the Front-end (``f1``) and Hypervisors (``n1`` and ``n2``) .    |
 +-------------------+-------------------------------------------------------------------------------------------------+
 
-In this example, the Front-end will be installed on the server with IP 172.20.0.2, and the two hypervisors on 0.3 and 0.4, respectively. The virtual network will be bridged through the ``eth0`` interface of the hypervisors, and VMs will get IP addresses within the range ``172.20.0.100 - 172.20.0.147``, using ``172.20.0.1`` as default gateway.
+In this example, the Front-end will be installed on the server with IP 172.20.0.2, and the two Hypervisors on 0.3 and 0.4, respectively. The virtual network will be bridged through the ``eth0`` interface of the hypervisors, and VMs will get IP addresses within the range ``172.20.0.100 - 172.20.0.147``, using ``172.20.0.1`` as default gateway.
 
 Below are the contents of the ``ansible.cfg`` file:
 
@@ -392,7 +392,7 @@ Output should be similar to the following:
       1 172.20.0.4                                  default      0       0 / 100 (0%)     0K / 1.9G (0%) on
       0 172.20.0.3                                  default      0       0 / 100 (0%)     0K / 1.9G (0%) on
 
-The two servers that we specified in the ``example.yml`` file are running as OpenNebula hypervisor nodes. Ensure that the last column, ``STAT``, displays ``on`` and not ``err``.
+The two servers that we specified in the ``example.yml`` file are running as OpenNebula Hypervisor nodes. Ensure that the last column, ``STAT``, displays ``on`` and not ``err``.
 
 To check the datastores, run:
 
@@ -505,6 +505,13 @@ You can run:
    rtt min/avg/max/mdev = 0.203/0.303/0.404/0.082 m
 
 The VM is up and running. At this point, you have deployed a complete, fully functional OpenNebula cloud.
+
+Summary of the Installation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The installation in this tutorial follows the most basic OpenNebula cloud configuration. It creates a virtual network using a range of IPs already available on the physical network. Each VM in the cloud connects to this virtual network using the main network interface on the Hypervisor node where the VM is running.
+
+You can also use automated deployment with more advanced network configurations, such as `VXLAN/EVPN <https://github.com/OpenNebula/one-deploy/wiki/arch_evpn>`__ or Virtual IPs (VIPs) for `High-Availability <https://github.com/OpenNebula/one-deploy/wiki/arch_ha>`__. For details on these and other configuration options, please refer to the `OneDeploy Wiki <https://github.com/OpenNebula/one-deploy/wiki>`__.
 
 Next Steps
 ^^^^^^^^^^^^^^
