@@ -16,7 +16,7 @@ To learn how to manage and operate your cloud, consult the :ref:`Management and 
    :maxdepth: 2
 
    Automatic Deployment <automatic_deployment/index>
-   Front-end Installation <frontend_installation/index>
+   Manual Front-end Installation <frontend_installation/index>
    Large-scale Deployment <large-scale_deployment/index>
    High Availability <ha/index>
    Data Center Federation <data_center_federation/index>
