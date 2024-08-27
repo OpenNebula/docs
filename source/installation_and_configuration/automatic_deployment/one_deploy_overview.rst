@@ -76,5 +76,5 @@ Quick Start Tutorials
 
 The documentation includes two short tutorials for quick deployment, using a few commands. To quickly get started with OneDeploy, select your preferred architecture to install an OpenNebula cloud in a few simple steps.
 
-   * :ref:`Tutorial: Automated Deployment with Local Storage <one_deploy_local>`
-   * :ref:`Tutorial: Automated Deployment with NFS Shared Storage <one_deploy_shared>`
+   * :ref:`Automated Deployment with Local Storage <one_deploy_local>`
+   * :ref:`Automated Deployment with NFS Shared Storage <one_deploy_shared>`

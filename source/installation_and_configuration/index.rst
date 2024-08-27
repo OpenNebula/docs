@@ -8,7 +8,7 @@
 Installation and Configuration
 ================================================================================
 
-The Installation and Configuration Guide provides instructions and reference on OpenNebula in production environments, including automatic or manual installation, advanced configurations such as HA or federation, and configuration of the OpenNebula services.
+The Installation and Configuration Guide provides instructions and references for OpenNebula in production environments, including automatic and manual installation, advanced configurations such as HA or federation, and configuration of the OpenNebula services.
 
 To learn how to manage and operate your cloud, consult the :ref:`Management and Operations Guide <management_and_operations>`. To deploy customized clusters, refer to the :ref:`Deployment guides <open_cluster_deployment>` after completing this guide.
 
