@@ -1,7 +1,7 @@
 .. _whats_new:
 
 ================================================================================
-What’s New in |version|
+What’s New in 6.10
 ================================================================================
 
 .. Attention: Substitutions doesn't work for emphasized text
@@ -54,8 +54,8 @@ For the full documentation please refer to the :ref:`Legacy Components <legacy_c
 
 Beginning on version 6.10, users of the :ref:`Community Edition <what_is_community>` can access two features previously only available in the Enterprise Edition:
 
-   * **Backups** using `Restic <https://restic.net/>`__, an open-source backup program designed for speed and security. The Community Edition now includes the possibility of using Restic as a backend for backup operations.
-   * **System monitoring** using `Prometheus <https://prometheus.io/>`__, a set of open-source monitoring and alerting tools. The Community edition now includes the possibility of using Prometheus as a backend for monitoring infrastructure.
+   * **Backups** using `Restic <https://restic.net/>`__, an open source backup program designed for speed and security. The Community Edition now includes the possibility of using Restic as a backend for backup operations.
+   * **System monitoring** using `Prometheus <https://prometheus.io/>`__, a set of open source monitoring and alerting tools. The Community edition now includes the possibility of using Prometheus as a backend for monitoring infrastructure.
 
 OpenNebula 6.10 is named after the `Bubble Nebula <https://www.constellation-guide.com/bubble-nebula-ngc-7635/>`__ (NGC 7635) in the constellation Cassiopeia. It is a young, glowing emission nebula energized by a hot, massive central star. Partly located in a group of stars between 7000 and 8000 light-years away from Earth, the Bubble Nebula is in expansion, with a central “bubble” measuring between six and ten light-years and an estimated temperature of more than 37,000 degrees Celsius (67,000 Fahrenheit). It was discovered by the celebrated astronomer William Herschel in 1787.
 
@@ -67,7 +67,7 @@ OpenNebula Core
 - **PCI attach/detach**: generic PCI devices (e.g. GPU/vGPUs) now support :ref:`attach and detach operations <vm_guide2_pci>` in poweroff and undeployed states. Note that this functionality (in any state) is already present for NIC PCI passthrough/SRIOV devices.
 - **Search Virtual Machines**: The new :ref:`JSON search syntax <vm_search>` allow advanced search by ``onevm list --search`` command. It also greatly improves the performance of  searches. See also the :ref:`compatibility notes <compatibility>`.
 - **Additional settings at cluster level**: The ``FEATURES`` attribute for ``CPU_MODEL`` can be :ref:`set at cluster level <kvmg_default_attributes>` so all VMs running in a given cluster will use the same CPU features by default.
-- **Warning attribute for Scheduled Action**: The ``WARNiNG`` attribute can be used to highlight the :ref:`Scheduled Action <template_schedule_actions>` in the CLI and Sunstone, before it is executed.
+- **Warning attribute for Scheduled Action**: The ``WARNING`` attribute can be used to highlight the :ref:`Scheduled Action <template_schedule_actions>` in the CLI and Sunstone, before it is executed.
 
 Storage & Backups
 ================================================================================
@@ -134,9 +134,9 @@ Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 - `Fix refresh table Host after create a new host <https://github.com/OpenNebula/one/issues/6451>`__.
 - `Fix enhance placement tab <https://github.com/OpenNebula/one/issues/6419>`__.
 - `Fix change user password on FireEdge Sunstone <https://github.com/OpenNebula/one/issues/6471>`__.
-- `Fix separate Vms and vm views <https://github.com/OpenNebula/one/issues/6092>`__.
+- `Fix separate VMs and VM views <https://github.com/OpenNebula/one/issues/6092>`__.
 - `Fix modify "Show All" option on switch group menu <https://github.com/OpenNebula/one/issues/6455>`__.
-- `Fix mixed up comments for some of columns in some sunstone views <https://github.com/OpenNebula/one/issues/6562>`__.
+- `Fix mixed up comments for some of columns in some Sunstone views <https://github.com/OpenNebula/one/issues/6562>`__.
 - `Fix QoL improvements for ERROR Dismiss popup <https://github.com/OpenNebula/one/issues/6069>`__.
 - `Fix detailed view stuck in fullscreen <https://github.com/OpenNebula/one/issues/6613>`__.
 - `Fix unnecesary extra step when creating Image <https://github.com/OpenNebula/one/issues/6386>`__.
