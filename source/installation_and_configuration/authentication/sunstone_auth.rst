@@ -65,6 +65,76 @@ This method performs the OpenNebula login by delegating the authentication on a 
 
 No special configuration is needed in Sunstone, the authentication method should be kept as 'opennebula' like in the :ref:`Basic Auth case <suntone_basic_auth>`. However, this needs to be set up in the OpenNebula core side, to set up the ldap configuration this :ref:`guide <ldap>` needs to be followed.
 
+X.509 Auth
+==========
+
+This method performs the login to OpenNebula based on a X.509 certificate’s DN (Distinguished Name). The DN is extracted from the certificate and matched to the password value in the user database.
+
+The user password has to be changed by running one of the following commands:
+
+.. prompt:: bash $ auto
+
+    $ oneuser chauth johndoe x509 "/C=ES/O=ONE/OU=DEV/CN=clouduser"
+
+or the same command using a certificate file:
+
+.. prompt:: bash $ auto
+
+    $ oneuser chauth johndoe --x509 --cert /tmp/my_cert.pem
+
+New users with this authentication method should be created as follows:
+
+.. prompt:: bash $ auto
+
+    $ oneuser create johndoe "/C=ES/O=ONE/OU=DEV/CN=clouduser" --driver x509
+
+or using a certificate file:
+
+.. prompt:: bash $ auto
+
+    $ oneuser create new_user --x509 --cert /tmp/my_cert.pem
+
+To enable this login method, set the ``:auth:`` option in ``/etc/one/fireedge-server.conf`` to ``x509`` and restart FireEdge:
+
+.. code-block:: yaml
+
+    auth: x509
+
+The login screen will not display the username and password fields anymore, as all information is fetched from the user certificate:
+
+|sunstone_remote_login|
+
+.. note::
+
+   To configure this function in mandatory to have an :ref:`Apache/Nginx <large_scale_deployment>`  below are the rules for each one
+
+Apache
+------
+
+.. code-block:: yaml
+
+    <VirtualHost *:443>
+        ...
+        SSLVerifyClient require
+        SSLVerifyDepth 1
+
+        RequestHeader set X-Client-Dn "%{SSL_CLIENT_S_DN}s" 
+        <IfModule mod_ssl.c>
+            SSLProxyEngine On
+        </IfModule>
+    </VirtualHost>
+
+Nginx
+-----
+.. code-block:: yaml
+
+    ssl_verify_client optional;  
+    location / {
+        ...
+        proxy_set_header X-Client-Dn $client_dn;
+    }
+ 
+
 .. _sunstone_2f_auth:
 
 Two Factor Authentication
