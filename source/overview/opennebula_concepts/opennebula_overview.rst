@@ -153,7 +153,7 @@ The OpenNebula documentation provides a summary of its :ref:`key features <key_f
 Next Steps
 ^^^^^^^^^^
 
-**Building an evaluation environment**
+**Building an Evaluation Environment**
 
 To evaluate OpenNebula, we strongly recommend that you follow our :ref:`Quick Start Guide <quick_start>`. The Guide will walk you through a series of tutorials to progressively build infrastructure. All tutorials use the Sunstone UI, and most take under ten minutes to complete.
 
@@ -166,9 +166,11 @@ Following the Guide, you can:
   
 The Quick Start Guide is by far the fastest way to familiarize yourself with OpenNebula.
 
-**Setting up a production environment**
+**Setting up a Production Environment**
 
 If you are interested in building a production environment, then :ref:`Cloud Architecture Design <intro>` is a good resource to explore and consider the available options and choices.
+
+If you are interested in automatic, DevOps-like deployment of a production-ready OpenNebula cloud, please refer to the :ref:`Automatic Deployment <automatic_deployment>` section of the Installation Guide.
 
 Remember that if you need our support at any time, or access to our professional services or to the **Enterprise Edition**, you can always `contact us <https://opennebula.io/enterprise>`__.
 

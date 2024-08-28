@@ -1,16 +1,16 @@
 .. _one_deploy_shared:
 .. _od_shared:
 
-==================================================
-Tutorial: Automated Deployment with Shared Storage
-==================================================
+========================================================
+Tutorial: Automated Cloud Deployment with Shared Storage
+========================================================
 
 Overview
 ^^^^^^^^^^^^^^^^^^^^^^
 
-In this tutorial, we’ll use `OneDeploy <https://github.com/OpenNebula/one-deploy>`__ to automatically deploy a simple OpenNebula cloud, with one Front-end and two Hosts using storage shared over NFS. In this configuration, the OpenNebula Front-end and hypervisor nodes read datastore images from an NFS share available on the network.
+In this tutorial, we’ll use `OneDeploy <https://github.com/OpenNebula/one-deploy>`__ to automatically deploy a simple OpenNebula cloud, with one Front-end and two Hosts using storage shared over NFS. In this configuration, the OpenNebula Front-end and Hypervisor nodes read datastore images from an NFS share available on the network.
 
-This sample architecture uses a basic network configuration, a flat (bridged) network, where the VM’s IPs are part of the same network as the hypervisors.
+This sample architecture uses a basic network configuration, a flat (bridged) network, where each VM’s IPs is part of the same network as the Hypervisors.
 
 .. image:: ../../images/one_deploy_arch_shared.png
    :align: center
@@ -30,19 +30,19 @@ We’ll follow these high-level steps:
    #. Run the playbooks.
    #. Verify the installation.
 
-.. important:: This tutorial was designed and tested using Ubuntu 24.04 or 22.04 for all servers involved (i.e. OpenNebula front-end and hypervisor nodes) using a virtual environment with `Poetry <https://python-poetry.org/>`__ . For information on other installation methods and OSes, please refer to the `OneDeploy Wiki <https://github.com/OpenNebula/one-deploy/wiki>`__.
+.. important:: This tutorial was designed and tested using Ubuntu 24.04 and 22.04 for all servers involved (i.e. OpenNebula front-end and hypervisor nodes) using a virtual environment with `Poetry <https://python-poetry.org/>`__. For information on other installation methods and OSes, please refer to the `OneDeploy Wiki <https://github.com/OpenNebula/one-deploy/wiki>`__.
 
 Requirements
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The following requirements must be met for your cloud hosts (Front-end and hypervisors):
+The cloud hosts (i.e. the OpenNebula Front-end and Hypervisors) must meet the following requirements:
 
    * Ubuntu 22.04 or 24.04 with Netplan >=0.105
-   * Passwordless SSH login, as root, from the front-end node to the hypervisors nodes
-   * The user that will perform the installation needs to be able to sudo to root account
-   * A range of free IPs in the same network connecting the Front-end and hypervisors
+   * Passwordless SSH login, as root, from the Front-end node to the Hypervisors nodes
+   * The user that will perform the installation needs to be able to sudo to the root account
+   * A range of free IPs in the same network connecting the Front-end and Hypervisors
 
-In this tutorial we assume there is a NFS server already available for your cloud. In this example we assume that the following structure is created in the NFS/NAS sever:
+In this tutorial we assume that an NFS server is already available for your cloud. In this example the server shares the ``/storage/one_datastores`` directory, owned by UID 9869:
 
 .. prompt:: bash # auto
 
@@ -50,9 +50,15 @@ In this tutorial we assume there is a NFS server already available for your clou
     total 0
     drwxr-xr-x 2 9869 9869 6 Jun 26 17:55 one_datastores
 
-.. important:: The ownership of the folders **MUST** be 9869 as this is the UID/GID assigned to the `oneadmin` account during the installation.
+.. important:: The shared directories **MUST** be owned by UID and GID 9869, since these are assigned to the OpenNebula ``oneadmin`` user during installation. If you need to change the UID/GID, run as root:
 
-This folder is exported to all the OpenNebula servers in the cloud, in our example:
+   .. code::
+   
+      chown 9869:9869 /storage/one_datastores
+
+   You change these values without the need for a user with this UID/GID to exist on the system.
+
+The shared folder must be available to all servers will OpenNebula will be deployed. The example ``/etc/exports`` file shown below shares the folder for the entire network where the servers reside.
 
 .. code:: shell
 
@@ -61,7 +67,7 @@ This folder is exported to all the OpenNebula servers in the cloud, in our examp
     # See exports(5) for more information.
     #
     # Use exportfs -r to reread
-    # /export	192.168.1.10(rw,no_root_squash)
+
     /storage/one_datastores 172.20.0.0/24(rw,soft,intr,async)
 
 Installing OneDeploy in the Front-end
@@ -78,7 +84,7 @@ To install the packages, run:
 
    sudo apt install python3-pip python3-poetry
 
-Clone the ``one-deploy`` repository:
+Once the packages are installed, clone the ``one-deploy`` repository:
 
 .. code::
 
@@ -90,7 +96,7 @@ Go to the ``one-deploy`` directory:
 
    cd one-deploy
 
-Install the necessary components for the installation by running:
+Install the necessary components for the installation, by running:
 
 .. code::
 
@@ -195,10 +201,10 @@ Below are sample contents for ``shared.yml``. You will probably need to modify p
              GATEWAY: 172.20.0.1
              DNS: 1.1.1.1
 
-   ds: { mode: shared }
+       ds: { mode: shared }
 
-   fstab:
-     - src: "172.20.0.5:/storage/one_datastores"
+       fstab:
+        - src: "172.20.0.5:/storage/one_datastores"
 
    frontend:
      hosts:
@@ -228,12 +234,12 @@ The table below lists some of the parameters, please update them to your setup:
 +-------------------+-------------------------------------------------------------------------------------------------+
 | ``DNS``           | DNS server of the network.                                                                      |
 +-------------------+-------------------------------------------------------------------------------------------------+
-| ``f1,n1,n2``      | ``ansible_host`` IP address for the front-end (``f1``) and hypervisors (``n1`` and ``n2``).     |
+| ``f1,n1,n2``      | ``ansible_host`` IP address for the front-end (``f1``) and Hypervisors (``n1`` and ``n2``).     |
 +-------------------+-------------------------------------------------------------------------------------------------+
 | ``fstab``         | The NFS share for accessing datastores, in <host>:<folder> format.                              |
 +-------------------+-------------------------------------------------------------------------------------------------+
 
-In this example, the Front-end will be installed on the server with IP 172.20.0.10, and the two hypervisors on 0.11 and 0.12, respectively. The virtual network will be bridged through the ``eth0`` interface of the hypervisors, and VMs will get IP addresses within the range ``172.20.0.100 - 172.20.0.147``, using ``172.20.0.1`` as default gateway. The NFS server resides on 172.20.0.5, and shares the directory ``/storage/one_datastores``.
+In this example, the Front-end will be installed on the server with IP 172.20.0.10, and the two Hypervisors on 0.11 and 0.12, respectively. The virtual network will be bridged through the ``eth0`` interface of the Hypervisors, and VMs will get IP addresses within the range 172.20.0.100 - 172.20.0.147, using 172.20.0.1 as the default gateway. The NFS server resides on 172.20.0.5, and shares the directory ``/storage/one_datastores``.
 
 Below are the contents of the ``ansible.cfg`` file:
 
@@ -298,7 +304,7 @@ Example command and output:
        "ping": "pong"
    }
 
-If any host is unreachable, you will see output like the following:
+If any host is unreachable, or if access via SSH is not properly configured, you will see output like the following:
 
 .. prompt:: bash # auto
 
@@ -315,7 +321,7 @@ Once you have edited the files, it’s time to run the Ansible playbooks.
 
 First, ensure you are in the Poetry environment by verifying that your terminal prompt begins with ``(one-deploy-py3.12)``.
 
-In the ``my-one`` directory, run this command:
+To run the playbooks, in the ``my-one`` directory, run this command:
 
 .. code::
 
@@ -372,7 +378,37 @@ After the command completes, your new OpenNebula cloud should be up and running.
 Verifying the Installation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-On the Front-end, you can check that the OpenNebula services are running with: ``systemctl status opennebula.service``, as shown below:
+On the Front-end, check that the NFS share with the datastores is mounted, by running the ``df`` command. The sample output below shows the NFS share mounted on ``/var/lib/one/datastores``:
+
+.. prompt:: bash # auto
+
+   df
+   Filesystem     1K-blocks    Used Available Use% Mounted on
+   tmpfs             796304    1016    795288   1% /run
+   /dev/vda1       29378688 4622632  24739672  16% /
+   tmpfs            3981500       0   3981500   0% /dev/shm
+   tmpfs               5120       4      5116   1% /run/lock
+   tmpfs            3981500       0   3981500   0% /run/qemu
+   /dev/vda16        901520  166284    672108  20% /boot
+   /dev/vda15        106832    6246    100586   6% /boot/efi
+   tmpfs             796300       8    796292   1% /run/user/0
+   172.20.0.5:/storage/one_datastores   5004032 2447104   2540544  50% /var/lib/one/datastores
+   
+The ``/etc/fstab`` file should contain a line like the following:
+
+.. code::
+
+   172.20.0.5:/storage/one_datastores /var/lib/one/datastores nfs rw,relatime,comment=one-deploy 0 0
+
+The same configuration should be present on the Hypervisor nodes.
+
+On the Front-end, check that the OpenNebula services are running:
+
+.. code::
+
+   systemctl status opennebula.service
+
+For example:
 
 .. prompt:: bash # auto
 
@@ -400,7 +436,7 @@ On the Front-end, you can check that the OpenNebula services are running with: `
                 ├─7243 ruby /usr/lib/one/mads/one_im_exec.rb -r 3 -t 15 -w 90 lxc
                 └─7256 ruby /usr/lib/one/mads/one_im_exec.rb -r 3 -t 15 -w 90 qemu
 
-Next we’ll verify that the cloud resources are up. First, become the ``oneadmin`` by running:
+Next we’ll verify that the cloud resources are up. First, become the ``oneadmin`` user by running:
 
 .. code::
 
@@ -421,13 +457,15 @@ Output should be similar to the following:
       1 172.20.0.12                                  default      0       0 / 100 (0%)     0K / 1.9G (0%) on
       0 172.20.0.11                                  default      0       0 / 100 (0%)     0K / 1.9G (0%) on
 
-The two servers that we specified in the ``shared.yml`` file are running as OpenNebula hypervisor nodes. Ensure that the last column, ``STAT``, displays ``on`` and not ``err``.
+The two servers that we specified in the ``shared.yml`` file are running as OpenNebula Hypervisor nodes. Ensure that the last column, ``STAT``, displays ``on`` and not ``err``.
 
 To check the datastores, run:
 
 .. code::
 
-   ``onedatastore list``:
+   onedatastore list
+
+Output should be similar to the following:
 
 .. prompt:: bash # auto
 
@@ -439,7 +477,13 @@ To check the datastores, run:
 
 Again, verify that the last column, ``STAT``, displays ``on`` and not ``err``.
 
-Finally, verify the virtual network created as part of the deployment, in this case ``service``:
+Finally, verify the virtual network created as part of the deployment (in this case ``service``) by running:
+
+.. code::
+
+   onevnet list
+
+For example:
 
 .. prompt:: bash # auto
 
@@ -449,7 +493,7 @@ Finally, verify the virtual network created as part of the deployment, in this c
 
 The ``STATE`` column should display ``rdy``.
 
-Next we can connect to the Sunstone UI on the Front-end. On the control node or any other machine with connectivity to the Front-end node, point your browser to ``<Front-end IP>:2616``, in this case ``http://172.20.0.10:2616``. You should be greeted with the Sunstone login screen:
+Next we can connect to the Sunstone UI on the Front-end. On any machine with connectivity to the Front-end node, point your browser to ``<Front-end IP>:2616``, in this case ``http://172.20.0.10:2616``. You should be greeted with the Sunstone login screen:
 
 .. image:: ../../images/sunstone_login_dark.png
    :align: center
@@ -458,6 +502,8 @@ Next we can connect to the Sunstone UI on the Front-end. On the control node or 
 |
 
 You can log in as user ``oneadmin``, with the password provided as the ``one_pass`` parameter in the ``shared.yml`` file (in this example, ``opennebulapass``).
+
+At this point, we have verified that the complete OpenNebula cloud is up and running. Next we’ll test the Hypervisor nodes by creating and deploying a test VM.
 
 Creating a Test VM
 ^^^^^^^^^^^^^^^^^^^^
@@ -478,7 +524,11 @@ The image will be downloaded and assigned ID ``0``:
    VMTEMPLATE
        ID: 0
 
-Verify that the image is ready to be instantiated, with ``oneimage list``.
+Verify that the image is ready to be instantiated, by running: 
+
+.. code::
+
+   oneimage list
 
 .. prompt:: bash # auto
 
@@ -492,16 +542,20 @@ To create a test VM based on the Alpine image and attach it to the ``service`` n
 
 .. code::
 
-   onetemplate instantiate --nic admin_net alpine
+   onetemplate instantiate --nic service alpine
 
 The command should return the ID of the VM, in this case ``0``:
 
 .. prompt:: bash # auto
 
-   oneadmin@front-end:~$  onetemplate instantiate --nic admin_net alpine
+   oneadmin@front-end:~$  onetemplate instantiate --nic service alpine
    VM ID: 0
 
-Wait a few moments for the VM to reach its running state. To verify that it is running, issue ``onevm list``:
+Wait a few moments for the VM to reach its running state. To verify that it is running, run:
+
+.. code:: 
+
+   onevm list
 
 .. prompt:: bash # auto
 
@@ -511,9 +565,9 @@ Wait a few moments for the VM to reach its running state. To verify that it is r
 
 Ensure that the ``STAT`` column displays ``runn``.
 
-Finally, verify that the VM is reachable on the network. Being the first VM deployed to the virtual network, this test VM will use the first IP available on the network, in this case ``172.20.0.100``. (Note that in the output of the command above, the IP listed is that of the Host where the VM runs, not the VM.)
+Finally, verify that the VM is reachable on the network. Being the first VM that was deployed, this test VM will use the first IP available on the network, in this case ``172.20.0.100``. (Note that in the output of the command above, the IP listed is that of the Hypervisor where the VM runs, not the VM.)
 
-You can run:
+To test connectivity with the VM, you can run:
 
 .. code::
 
@@ -532,6 +586,13 @@ You can run:
    rtt min/avg/max/mdev = 0.203/0.303/0.404/0.082 m
 
 The VM is up and running. At this point, you have deployed a complete, fully functional OpenNebula cloud.
+
+Summary of the Installation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The installation in this tutorial follows the most basic OpenNebula cloud configuration, creating a virtual network on a range of IPs already available on the physical network. Each VM in the cloud connects to this virtual network using the main interface on the Hypervisor node where the VM is running.
+
+You can also use automated deployment with more advanced network configurations, such as `VXLAN/EVPN <https://github.com/OpenNebula/one-deploy/wiki/arch_evpn>`__ or Virtual IPs (VIPs) for `High-Availability <https://github.com/OpenNebula/one-deploy/wiki/arch_ha>`__. For details on these and other configuration options, please refer to the `OneDeploy Wiki <https://github.com/OpenNebula/one-deploy/wiki>`__.
 
 Next Steps
 ^^^^^^^^^^^^^^
