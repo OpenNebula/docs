@@ -1,7 +1,7 @@
 .. _whats_new:
 
 ================================================================================
-What’s New in 6.10
+What’s New in |version|
 ================================================================================
 
 .. Attention: Substitutions doesn't work for emphasized text
