@@ -8,5 +8,5 @@ Automatic Deployment
   :maxdepth: 2
 
   Overview <one_deploy_overview>
-  Tutorial: Automated Deployment with Local Storage <one_deploy_tutorial_local_ds>
-  Tutorial: Automated Deployment with Shared Storage <one_deploy_tutorial_shared_ds>
+  Cloud Deployment with Local Storage <one_deploy_tutorial_local_ds>
+  Cloud Deployment with Shared Storage <one_deploy_tutorial_shared_ds>

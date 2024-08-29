@@ -1,12 +1,12 @@
 .. _try_opennebula_on_vmware:
 
 ==============================================
-Deploy OpenNebula Front-end on Broadcom VMware
+Deploy OpenNebula Front-end on VMware
 ==============================================
 
-In this tutorial, we’ll use **vOneCloud** to install an OpenNebula Front-end on top of an existing Broadcom VMware installation. Completing this tutorial takes approximately five minutes.
+In this tutorial, we’ll use **vOneCloud** to install an OpenNebula Front-end on top of an existing VMware installation. Completing this tutorial takes approximately five minutes.
 
-**vOneCLoud** is an Open Virtual Appliance (OVA) for Broadcom VMware vSphere. It contains a complete OpenNebula Front-end, installed and configured on an AlmaLinux OS. It is free to download and use, and may be used for small-size production deployments. With **vOneCloud**, you can deploy on top of your VMware infrastructure all of the OpenNebula services needed to use, manage and run OpenNebula.
+**vOneCLoud** is an Open Virtual Appliance (OVA) for VMware vSphere. It contains a complete OpenNebula Front-end, installed and configured on an AlmaLinux OS. It is free to download and use, and may be used for small-size production deployments. With **vOneCloud**, you can deploy on top of your VMware infrastructure all of the OpenNebula services needed to use, manage and run OpenNebula.
 
 In this tutorial, we’ll complete the following high-level steps:
 

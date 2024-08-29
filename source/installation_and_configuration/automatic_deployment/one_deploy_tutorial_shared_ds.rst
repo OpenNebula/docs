@@ -56,7 +56,7 @@ In this tutorial we assume that an NFS server is already available for your clou
    
       chown 9869:9869 /storage/one_datastores
 
-   You change these values without the need for a user with this UID/GID to exist on the system.
+   You can change these values even if a user with this UID/GID does not exist on the system.
 
 The shared folder must be available to all servers will OpenNebula will be deployed. The example ``/etc/exports`` file shown below shares the folder for the entire network where the servers reside.
 
