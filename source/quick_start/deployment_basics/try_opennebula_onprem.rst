@@ -6,7 +6,7 @@ Deploy an OpenNebula Front-end On-premises
 
 In this tutorial, we’ll install an OpenNebula Front-end in under ten minutes, using **miniONE**, the installation script provided by OpenNebula.
 
-This simple installation includes a single OpenNebula Front-end without any hypervisor nodes. You can perform the installation on any physical or virtual server that meets the system :ref:`requirements <minione_reqs>`. Later, you can use this Front-end to provision resources on cloud providers, for example as described in :ref:`Edge Cluster on AWS <first_edge_cluster>`.
+This simple installation includes a single OpenNebula Front-end without any hypervisor nodes. You can perform the installation on any physical or virtual server that meets the system :ref:`requirements <minione_reqs>`. Later, you can use this Front-end to provision resources on cloud providers, for example as described in :ref:`Provisioning an Edge Cluster <first_edge_cluster>`.
 
 .. We’ll install the Front-end on a bare-metal host on-premises. You can later use this Front-end to provision resources on cloud providers, for example an :ref:`Edge Cluster on AWS <first_edge_cluster>`.
 
@@ -14,7 +14,7 @@ This simple installation includes a single OpenNebula Front-end without any hype
 
 To install an OpenNebula Front-end using miniONE, we’ll need to complete the following high-level steps:
 
-   #. Ensure that the host machine meets the installation requirements.
+   #. Ensure that the host server meets the installation requirements.
    #. Download and run the miniONE script.
    #. Verify the installation.
 
@@ -22,7 +22,7 @@ The cloud environment installed by miniONE is mainly intended for evaluation, de
 
 .. important::
 
-   In this tutorial, we will install a Front-end only, without a KVM hypervisor. The miniONE script offers the option to install both a Front-end and a KVM hypervisor on the same host, but that configuration does not allow you to provision remote resources, since it uses a private IP address for communicating with VMs.
+   In this tutorial, we will install a Front-end only, without a KVM hypervisor. While the miniONE script offers the option to install both a Front-end and a KVM hypervisor on the same server, that configuration does not allow you to provision remote resources, and is not covered in this tutorial.
 
 .. .. important::
 
@@ -135,7 +135,7 @@ This is the default view for cloud administrators. From this view in Sunstone, y
 
 |
 
-Congratulations --- you have deployed an OpenNebula Front-end node, which is ready to provision resources on cloud infrastructure.
+Congratulations — you have deployed an OpenNebula Front-end node, which is ready to provision resources on cloud infrastructure.
 
 Additional Installation Options
 ===============================
@@ -146,7 +146,11 @@ The miniONE script offers several options for installation, which you can check 
 
    bash minione -h
 
-If you run miniONE without any options, it will install an OpenNebula Front-end and a KVM hypervisor node on the local machine. With this configuration you will be able to deploy VMs to the local machine, but you will not be able to provision remote resources, since the installation uses a private IP address for communicating with VMs.
+Options include setting parameters for the virtual network, passwords for new VMs, and others.
+
+.. tip::
+
+   If you run miniONE without any options, it will install an OpenNebula Front-end and a KVM hypervisor node on the local machine. With this configuration you will be able to deploy VMs to the local machine, but you will not be able to provision remote resources, since this type of installation uses a private IP address for communicating with VMs.
 
 Next Steps
 ==========

@@ -224,7 +224,7 @@ This is the default view for cloud administrators. From this view in Sunstone, y
 
 |
 
-Congratulations --- you have deployed an OpenNebula Front-end node, which is ready to provision resources on cloud infrastructure. 
+Congratulations — you have deployed an OpenNebula Front-end node, which is ready to provision resources on cloud infrastructure. 
 
 
 Next Steps
