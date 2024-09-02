@@ -16,9 +16,9 @@ The first major highlight in this release is the new Sunstone UI. The full power
 
 The Sunstone UI provided by FireEdge is now the default. The Ruby-based Sunstone UI is included in this release as a legacy component, but will not be updated with new features or receive maintenance, and will be removed in a future release.
 
-In another major highlight, this release offers the possibility of performing automatic, DevOps-like deployment of an OpenNebula cloud, using :ref:`OneDeploy <one_deploy_overview>`. OneDeploy is a set of Ansible playbooks that allow you to automatically deploy a complete OpenNebula cloud, including advanced features such as Ceph storage, High Availability for the Front-end, federation, and installing the Front-end on a VM. The documentation includes tutorials for quick deployment, and the `OneDeploy Wiki <https://github.com/OpenNebula/one-deploy/wiki>`__ contains references for all available configuration options.
+In another major highlight, this release offers the possibility of performing automatic, DevOps-like deployment of an OpenNebula cloud, using :ref:`OneDeploy <one_deploy_overview>`. OneDeploy is a set of Ansible playbooks that allow you to automatically deploy a complete OpenNebula cloud, including advanced features such as Ceph storage, High Availability for the Front-end, federation, and installing the Front-end on a VM. The documentation includes tutorials for two common architectures, and the `OneDeploy Wiki <https://github.com/OpenNebula/one-deploy/wiki>`__ contains references for all available configuration options.
 
-This release also brings significant improvements in simplifying migration from VMware, by introducing `OneSwap <https://github.com/OpenNebula/one-swap/wiki>`__, a command-line tool for automating the migration of VMs from vCenter to OpenNebula. Designed to run from the OpenNebula Front-end, OneSwap automatically creates the resources for each virtual machine, greatly simplifying and speeding up the migration process.
+This release also brings significant improvements in simplifying migration from VMware, by introducing `OneSwap <https://github.com/OpenNebula/one-swap/wiki>`__, a command-line tool for automatically migrating VMs from vCenter to OpenNebula. Designed to run from the OpenNebula Front-end, OneSwap automatically creates the resources for each Virtual Machine, greatly speeding up the migration process.
 
 Another highlight in this release is improved backup functionality, thanks to the addition of the **in-place restore** backup mode. This feature replaces the old procedure for restoring a VM from a backup, and allows you to replace the disks of a VM with a backup copy without manually generating new images and VM templates. The feature is available through the CLI and the Sunstone UI, where it can be easily accessed in the Host controls for the selected VM (in **Instances** -> **VMs**).
 
@@ -106,10 +106,13 @@ KVM
 
 - Extended KVM VM monitoring with :ref:`qemu guest agent information <enabling_qemu_guest_agent>`.
 
-Automatic Deployment and Migration
+Automatic Deployment
 ================================================================================
 
 - Automatic deployment of an OpenNebula cloud with :ref:`OneDeploy <one_deploy_overview>`.
+
+Automatic Migration of VMs from VMware
+================================================================================
 - Automatic migration of VMs from VMware to OpenNebula with `OneSwap <https://github.com/OpenNebula/one-swap/wiki>`__.
 
 Features Backported to 6.8.x
