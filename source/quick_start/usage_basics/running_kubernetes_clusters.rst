@@ -39,7 +39,11 @@ Follow these steps:
          :align: center
          :scale: 50%
 
-   #. Select the **system** datastore for the AWS cluster. (If you began this Quick Start Guide on a clean install, it will probably display ID ``101``.)
+   #. Select the **system** datastore for the AWS cluster. (If you began this Quick Start Guide on a clean install, it will probably display ID ``100``.)
+   
+      .. image:: /images/sunstone-aws_edge_cluster_sys_ds.png
+         :align: center
+         
    #. Sunstone will display the **Info** panel for the datastore. Scroll down to the **Attributes** section and find the ``REPLICA_HOST`` attribute. Hover your mouse to the right, to display the **Copy**/**Edit**/**Delete** icons |icon3| for the attribute value:
    
       .. image:: /images/sunstone-aws_cluster_replica_host.png
@@ -49,6 +53,7 @@ Follow these steps:
       |
    
    #. Click the **Delete** icon |icon4|.
+   #. When Sunstone requests to confirm the action, click **Yes**.
 
 You have deleted the ``REPLICA_HOST`` parameter from the datastore. In the next step we’ll download the OneKE appliance.
 
@@ -60,8 +65,6 @@ Step 1. Download the OneKE Service from the OpenNebula Marketplace
 The `OpenNebula Public Marketplace <https://marketplace.opennebula.io>`__ is a repository of Virtual Machines and appliances which are curated, tested and certified by OpenNebula.
 
 The Kubernetes cluster is packaged in a multi-VM service appliance listed as **Service OneKE <version>**. To download it, follow the same steps as when downloading the WordPress VM:
-
-Log in to Sunstone as user ``oneadmin``.
 
 Open the left-hand pane, then select **Storage** -> **Apps**. Sunstone will display the **Apps** screen, showing the first page of apps that are available for download.
 
@@ -81,7 +84,13 @@ In the search field at the top, type ``oneke`` to filter by name. Then, select *
 
 Click the **Import into Datastore** |icon1| icon.
 
-As with the WordPress appliance, Sunstone displays the **Download App to OpenNebula** wizard. In the first screen of the wizard, click **Next**. In the second screen you will need to select a datastore for the appliance. Select the **aws-edge-cluster-image** datastore.
+As with the WordPress appliance, Sunstone displays the **Download App to OpenNebula** wizard. In the first screen of the wizard, click **Next**.
+
+.. image:: /images/sunstone-aws_cluster_download_oneke.png
+   :align: center
+   :scale: 60%
+
+In the second screen you will need to select a datastore for the appliance. Select the **aws-edge-cluster-image** datastore.
 
 |kubernetes-qs-marketplace-datastore|
 
@@ -117,6 +126,8 @@ Click **Next**. In the next screen, click the **Address Range** box to select an
 Sunstone displays the **Address Range** dialog box. Here you can define an address range by selecting the first address and the size of the address range. Select a range of private IPv4 addresses, for example ``172.20.0.1``. In this example we’ll set a size of ``100``.
 
 |kubernetes-aws-private-network-range|
+
+Click **Accept**.
 
 Lastly, you will need to add a DNS server for the network. Select the **Context** tab, then the **DNS** input field. Type the address for the DNS server, such as ``8.8.8.8`` or ``1.1.1.1``.
 
@@ -192,7 +203,13 @@ Click **Next** to go to the next screen, **Network**.
 Select the Public and Private Networks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Kubernetes cluster needs access to the private and the public network defined for the Edge Cluster. First we’ll select the public network. Check that the **Network ID** drop-down menu displays ``Public``, then select the **metal-aws-edge-cluster-public** network.
+The Kubernetes cluster needs access to the private and the public network defined for the Edge Cluster. First we’ll select the public network.
+
+Set the **Network ID** drop-down menu to ``Public``, and the **Network Type** drop-down menu to ``Existing``.
+
+.. image::/images/sunstone_kubernetes_netw_dropdowns.png
+
+Check that the **Network ID** drop-down menu displays ``Public``, then select the **metal-aws-edge-cluster-public** network.
 
 |kubernetes-qs-pick-networks-public|
 
@@ -226,12 +243,11 @@ To verify that the VMs for the cluster were correctly deployed, you can use the 
 .. prompt:: bash $ auto
 
    [oneadmin@FN]$ onevm list
-   ID USER     GROUP    NAME                             STAT  CPU     MEM HOST                              TIME
-    5 oneadmin oneadmin storage_0_(service_3)            runn    2      3G <cluster_public_IP>           0d 00h05
-    4 oneadmin oneadmin worker_0_(service_3)             runn    2      3G <cluster_public_IP>           0d 00h05
-    3 oneadmin oneadmin master_0_(service_3)             runn    2      3G <cluster_public_IP>           0d 00h05
-    2 oneadmin oneadmin vnf_0_(service_3)                runn    1      2G <cluster_public_IP>           0d 00h06
-    1 oneadmin oneadmin Service WordPress - KVM-1        runn    1      2G 54.235.30.169                 0d 00h21
+   ID USER     GROUP    NAME                                            STAT  CPU     MEM HOST                                          TIME
+    3 oneadmin oneadmin worker_0_(service_3)                            runn    2      3G <cluster_public_IP>                       0d 00h31
+    2 oneadmin oneadmin master_0_(service_3)                            runn    2      3G <cluster_public_IP>                       0d 00h31
+    1 oneadmin oneadmin vnf_0_(service_3)                               runn    1    512M <cluster_public_IP>                       0d 00h31
+    0 oneadmin oneadmin Service WordPress - KVM-0                       runn    1    768M <cluster_public_IP>                       0d 01h22
 
 At this point you have successfully instantiated the Kubernetes cluster. Before deploying an application, you need to find out the **public** IP address of the VNF node, since we will use it later to connect to the master Kubernetes node.
 
@@ -240,15 +256,18 @@ At this point you have successfully instantiated the Kubernetes cluster. Before 
 Check the IP Address for the VNF Node
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To see the IP in Sunstone, go to **Instances** -> **VMs**, then check the **IP** column for the VNF VM.
+To check the VNF node IP in Sunstone, in the left-hand pane go to **Instances** -> **VMs**, then check the information displayed under **vnf_0_(service_<ID>)**. The IP is displayed on the right, highlighted in the image below (note that all public IPs have been blurred in the image):
+
+   .. image:: /images/sunstone-aws_k8s_vms_list.png
+      :align: center
 
 Alternatively, to check on the command line, log in to the Front-end and run:
 
 .. prompt:: bash $ auto
 
-      [oneadmin@FN]$ onevm show -j <VNF_VM_ID>|jq -r .VM.TEMPLATE.NIC[0].EXTERNAL_IP
+      onevm show -j <VNF_VM_ID>|jq -r .VM.TEMPLATE.NIC[0].EXTERNAL_IP
 
-Replace ``<VNF_VM_ID>`` with the ID of the VNF VM as listed by the ``onevm list`` command (ID ``2`` in the example above).
+Replace ``<VNF_VM_ID>`` with the ID of the VNF VM as listed by the ``onevm list`` command (ID ``1`` in the example above).
 
 If you do not see all VMs listed, or if the OneKE Service is stuck in ``DEPLOYING``, see :ref:`Known Issues <k8s_known_issues>` below.
 
@@ -277,17 +296,17 @@ To deploy an application, we will first connect to the master Kubernetes node vi
 
 For connecting to the master Kubernetes node, you need to know the public address (AWS elastic IP) of the VNF node, as described :ref:`above <check_vnf>`.
 
-Once you know the correct IP, from the Front-end node connect to the master Kubernetes node with this command:
+Once you know the correct IP, from the Front-end node connect to the master Kubernetes node with the below command (replace “1.2.3.4” with the public IP address of the VNF node):
 
 .. prompt:: bash $ auto
 
-    $ ssh -A -J root@<VNF node public IP> root@172.20.0.2
+    $ ssh -A -J root@1.2.3.4 root@172.20.0.2
 
 In this example, ``172.20.0.2`` is the private IP address of the Kubernetes master node (the second address in the private network).
 
 .. tip::
 
-    If you don't use ``ssh-agent`` then you may skip the ``-A`` flag in the above command. You will need to copy your *private* ssh key (used to connect to VNF) into the VNF node itself, at the location ``~/.ssh/id_rsa``. Make sure that the file permissions are correct, i.e. ``0600`` (or ``u=rw,go=``). For example:
+    If you don’t use ``ssh-agent`` then you may skip the ``-A`` flag in the above command. You will need to copy your *private* ssh key (used to connect to VNF) into the VNF node itself, at the location ``~/.ssh/id_rsa``. Make sure that the file permissions are correct, i.e. ``0600`` (or ``u=rw,go=``). For example:
 
     .. prompt:: bash $ auto
 
@@ -386,7 +405,7 @@ OneFlow Service is Stuck in ``DEPLOYING``
 
 An error in network configuration, or any major failure (such as network timeouts or performance problems) can cause the OneKE service to lock up due to a communications outage between it and the Front-end node. The OneKE service will lock if *any* of the VMs belonging to it does not report ``READY=YES`` to OneGate within the default time.
 
-If one or more of the VMs in the Kubernetes cluster never leave the ``DEPLOYING`` state, you can troubleshoot OneFlow communications by inspecting the file ``/var/log/oneflow.log`` on the Front-end node. Look for a line like the following:
+If one or more of the VMs in the Kubernetes cluster never leave the ``DEPLOYING`` state, you can troubleshoot OneFlow communications by inspecting the file ``/var/log/one/oneflow.log`` on the Front-end node. Look for a line like the following:
 
 .. code-block:: text
 
@@ -402,7 +421,7 @@ To recreate the VM instance, you must first terminate the OneKE service. A servi
 
 .. prompt:: bash $ auto
 
-   [oneadmin@FN]$ oneflow recover --delete <service_ID>
+   oneflow recover --delete <service_ID>
 
 Then, re-instantiate the service from the Sunstone UI: in the left-hand pane, **Service Templates** -> **OneKE 1.29**, then click the **Instantiate** icon.
 
@@ -411,7 +430,7 @@ Lack of Connectivity to the OneGate Server
 
 Another possible cause for VMs in the Kubernetes cluster failing to run is lack of contact between the VNF node in the cluster and the OneGate server on the Front-end.
 
-As described in :ref:`Quick Start Using miniONE on AWS <try_opennebula_on_kvm>`, the AWS instance where the Front-end is running needs to allow incoming connections for port 5030. If you do not want to open the port for all addresses, check the **public** IP address of the VNF node (the AWS Elastic IP, see :ref:`above <check_vnf>`), and create an inbound rule in the AWS security groups that IP.
+As described in :ref:`Quick Start Using miniONE on AWS <try_opennebula_on_kvm>`, the AWS instance where the Front-end is running must allow incoming connections for port 5030. If you do not want to open the port for all addresses, check the **public** IP address of the VNF node (the AWS Elastic IP, see :ref:`above <check_vnf>`), and create an inbound rule in the AWS security groups for that IP.
 
 In cases of lack of connectivity with the OneGate server, the ``/var/log/one/oneflow.log`` file on the Front-end will display messages like the following:
 
@@ -422,43 +441,121 @@ In cases of lack of connectivity with the OneGate server, the ``/var/log/one/one
 
 In this scenario only the VNF node is successfully deployed, but no Kubernetes nodes.
 
-To troubleshoot, log in to the VNF node via SSH. Then, check if the VNF node is able to contact the OneGate server on the Front-end node, by running this command as root:
+To troubleshoot, follow these steps:
 
-.. prompt:: bash $ auto
+   #. Find out the IP address of the VNF node, as described :ref:`above <check_vnf>`.
+   #. Log in to the VNF node via ssh as root. 
+   #. Check if the VNF node is able to contact the OneGate server on the Front-end node, by running this command:
 
-   [root@VNF]$ onegate vm show
+   .. prompt:: bash $ auto
 
-A successful response should look like:
+      onegate vm show
 
-.. code-block:: text
+   A successful response should look like:
 
-    [root@VNF]$ onegate vm show
-    VM 0
-    NAME            	: vnf_0_(service_3)
+   .. code-block:: text
 
-And a failure gives a timeout message:
+      [root@VNF]$ onegate vm show
+       VM 0
+       NAME            	: vnf_0_(service_3)
 
-.. code-block:: text
+   And a failure gives a timeout message:
 
-    [root@VNF]$ onegate vm show
-    Timeout while connected to server (Failed to open TCP connection to <AWS elastic IP of FN>:5030 (execution expired)).
-    Server: <AWS elastic IP of FN>:5030
+   .. code-block:: text
 
-Possible causes
-++++++++++++++++
+       [root@VNF]$ onegate vm show
+       Timeout while connected to server (Failed to open TCP connection to <AWS elastic IP of FN>:5030 (execution expired)).
+       Server: <AWS elastic IP of FN>:5030
+       
+   In this case, the VNF node cannot communicate with the OneGate service on the Front-end node. Possible causes include:
 
-**Wrong Front-end node AWS IP**: The VNF node may be trying to connect to the OneGate server on the wrong IP address. In the VNF node, the IP address for the Front-end node is defined by the value of ``ONEGATE_ENDPOINT``, in the scripts found in the ``/run/one-context*`` directories. You can check the value with:
+      * **Wrong Front-end node for the AWS IP**: The VNF node may be trying to connect to the OneGate server on the wrong IP address. In the VNF node, the IP address for the Front-end node is defined by the value of ``ONEGATE_ENDPOINT``, in the scripts found in the ``/run/one-context`` directory. You can check the value with:
 
-.. code-block:: text
+      .. code-block:: text
 
-    [root@VNF]$ grep ONEGATE -r /run/one-context*
+       grep -r ONEGATE /run/one-context*
 
-If the value of ``ONEGATE_ENDPOINT`` does not match the IP address where OneGate is listening on the Front-end node, edit the parameter with the correct IP address, then terminate the service from the Front-end (see :ref:`above <terminate_oneflow>`) and re-deploy.
+      If the value of ``ONEGATE_ENDPOINT`` does not match the IP address where OneGate is listening on the Front-end node, edit the parameter with the correct IP address. Then, terminate the OneKE service from the Front-end (see :ref:`above <terminate_oneflow>`) and re-deploy.
 
-**Filtered incoming connections**: On the Front-end node, the OneGate server listens on port 5030, so you must ensure that this port accepts incoming connections. If necessary, create an inbound rule in the AWS security groups for the elastic IP of the VNF node.
+      * **Filtered incoming connections**: On the Front-end node, the OneGate server listens on port 5030, so you must ensure that this port accepts incoming connections. If necessary, create an inbound rule in the AWS security groups for the elastic IP of the VNF node.
 
 .. |icon1| image:: /images/icons/sunstone/import_into_datastore.png
 .. |icon2| image:: /images/icons/sunstone/instantiate.png
 .. |icon3| image:: /images/icons/sunstone/parameter_manipulation_icons.png
 .. |icon4| image:: /images/icons/sunstone/trash.png
 .. |icon5| image:: /images/icons/sunstone/VNC.png
+
+One or more VMs Fail to Report Ready
+++++++++++++++++++++++++++++++++++++++
+
+Another possible cause for failure of the OneKE Service to leave the ``DEPLOYING`` state is that a temporary network glitch or other variation in performance prevented one or more of the VMs in the service to report ``READY`` to the OneGate service. In this case, it is possible that you see all of the VMs in the service up and running, but the OneKE service is stuck in ``DEPLOYING``.
+
+For example on the Front-end, the output of ``onevm list`` shows all VMs running:
+
+.. prompt::
+
+   onevm list
+     ID USER     GROUP    NAME                                            STAT  CPU     MEM HOST                         TIME
+      3 oneadmin oneadmin worker_0_(service_3)                            runn    2      3G <public IP>              0d 01h02
+      2 oneadmin oneadmin master_0_(service_3)                            runn    2      3G <public IP>              0d 01h02
+      1 oneadmin oneadmin vnf_0_(service_3)                               runn    1    512M <public IP>              0d 01h03
+      0 oneadmin oneadmin Service WordPress - KVM-0                       runn    1    768M <public IP>              0d 01h53
+
+Yet ``oneflow list`` shows:
+
+.. prompt::
+
+  ID USER     GROUP    NAME                                                                   STARTTIME STAT     
+   3 oneadmin oneadmin OneKE 1.29                                                        08/30 12:30:07 DEPLOYING
+
+In this case you can manually instruct the VMs to report ``READY`` to the OneGate server. Follow these steps:
+
+   #. From the Front-end node, log in to the VNF node by running:
+   
+      .. prompt::
+      
+         ssh root@<VNF IP>
+
+      (To find out the IP address of the VNF node, see :ref:`above <check_vnf>`.)
+      
+   #. For each VM in the OneKE service, run the following command:
+   
+      .. prompt::
+      
+         onegate vm update <ID> --data "READY=YES"
+         
+      For example, ``onegate vm update 2 --data "READY=YES"``.
+      
+      Then, you can check the status of the service with ``onegate vm show``:
+      
+      .. prompt::
+      
+         onegate service show
+         SERVICE 3                                                                       
+         NAME                : OneKE 1.29          
+         STATE               : RUNNING             
+         
+         ROLE vnf                                                                        
+         VM 1                                                                            
+         NAME                : vnf_0_(service_3)   
+         
+         ROLE master                                                                     
+         VM 2                                                                            
+         NAME                : master_0_(service_3)
+         
+         ROLE worker                                                                     
+         VM 3                                                                            
+         NAME                : worker_0_(service_3)
+         
+         ROLE storage
+         
+   #. On the Front-end, run ``oneflow list`` again to verify that the service reports ``RUNNING``:
+   
+      .. prompt::
+      
+         [oneadmin@FN]$ oneflow list
+         ID USER     GROUP    NAME                                                                    STARTTIME STAT     
+          3 oneadmin oneadmin OneKE 1.29                                                         08/30 12:35:21 RUNNING
+
+
+
