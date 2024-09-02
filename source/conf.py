@@ -86,9 +86,9 @@ copyright = '2024, OpenNebula Team <contact@opennebula.io>'
 # built documents.
 #
 # The short X.Y version.
-version = '7.0'
+version = '6.10'
 # The full version, including alpha/beta/rc tags.
-release = '6.99.0'
+release = '6.10.0'
 # The context packages released version
 context_release = '6.10.0'
 
