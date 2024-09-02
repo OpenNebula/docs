@@ -296,17 +296,17 @@ To deploy an application, we will first connect to the master Kubernetes node vi
 
 For connecting to the master Kubernetes node, you need to know the public address (AWS elastic IP) of the VNF node, as described :ref:`above <check_vnf>`.
 
-Once you know the correct IP, from the Front-end node connect to the master Kubernetes node with this command:
+Once you know the correct IP, from the Front-end node connect to the master Kubernetes node with the below command (replace “1.2.3.4” with the public IP address of the VNF node):
 
 .. prompt:: bash $ auto
 
-    $ ssh -A -J root@<VNF node public IP> root@172.20.0.2
+    $ ssh -A -J root@1.2.3.4 root@172.20.0.2
 
 In this example, ``172.20.0.2`` is the private IP address of the Kubernetes master node (the second address in the private network).
 
 .. tip::
 
-    If you don't use ``ssh-agent`` then you may skip the ``-A`` flag in the above command. You will need to copy your *private* ssh key (used to connect to VNF) into the VNF node itself, at the location ``~/.ssh/id_rsa``. Make sure that the file permissions are correct, i.e. ``0600`` (or ``u=rw,go=``). For example:
+    If you don’t use ``ssh-agent`` then you may skip the ``-A`` flag in the above command. You will need to copy your *private* ssh key (used to connect to VNF) into the VNF node itself, at the location ``~/.ssh/id_rsa``. Make sure that the file permissions are correct, i.e. ``0600`` (or ``u=rw,go=``). For example:
 
     .. prompt:: bash $ auto
 
@@ -421,7 +421,7 @@ To recreate the VM instance, you must first terminate the OneKE service. A servi
 
 .. prompt:: bash $ auto
 
-   [oneadmin@FN]$ oneflow recover --delete <service_ID>
+   oneflow recover --delete <service_ID>
 
 Then, re-instantiate the service from the Sunstone UI: in the left-hand pane, **Service Templates** -> **OneKE 1.29**, then click the **Instantiate** icon.
 
@@ -430,7 +430,7 @@ Lack of Connectivity to the OneGate Server
 
 Another possible cause for VMs in the Kubernetes cluster failing to run is lack of contact between the VNF node in the cluster and the OneGate server on the Front-end.
 
-As described in :ref:`Quick Start Using miniONE on AWS <try_opennebula_on_kvm>`, the AWS instance where the Front-end is running needs to allow incoming connections for port 5030. If you do not want to open the port for all addresses, check the **public** IP address of the VNF node (the AWS Elastic IP, see :ref:`above <check_vnf>`), and create an inbound rule in the AWS security groups for that IP.
+As described in :ref:`Quick Start Using miniONE on AWS <try_opennebula_on_kvm>`, the AWS instance where the Front-end is running must allow incoming connections for port 5030. If you do not want to open the port for all addresses, check the **public** IP address of the VNF node (the AWS Elastic IP, see :ref:`above <check_vnf>`), and create an inbound rule in the AWS security groups for that IP.
 
 In cases of lack of connectivity with the OneGate server, the ``/var/log/one/oneflow.log`` file on the Front-end will display messages like the following:
 
@@ -444,7 +444,7 @@ In this scenario only the VNF node is successfully deployed, but no Kubernetes n
 To troubleshoot, follow these steps:
 
    #. Find out the IP address of the VNF node, as described :ref:`above <check_vnf>`.
-   #. Log in to the VNF node as root. 
+   #. Log in to the VNF node via ssh as root. 
    #. Check if the VNF node is able to contact the OneGate server on the Front-end node, by running this command:
 
    .. prompt:: bash $ auto
@@ -469,13 +469,13 @@ To troubleshoot, follow these steps:
        
    In this case, the VNF node cannot communicate with the OneGate service on the Front-end node. Possible causes include:
 
-      * **Wrong Front-end node AWS IP**: The VNF node may be trying to connect to the OneGate server on the wrong IP address. In the VNF node, the IP address for the Front-end node is defined by the value of ``ONEGATE_ENDPOINT``, in the scripts found in the ``/run/one-context`` directory. You can check the value with:
+      * **Wrong Front-end node for the AWS IP**: The VNF node may be trying to connect to the OneGate server on the wrong IP address. In the VNF node, the IP address for the Front-end node is defined by the value of ``ONEGATE_ENDPOINT``, in the scripts found in the ``/run/one-context`` directory. You can check the value with:
 
       .. code-block:: text
 
-       [root@VNF]$ grep -r ONEGATE /run/one-context*
+       grep -r ONEGATE /run/one-context*
 
-      If the value of ``ONEGATE_ENDPOINT`` does not match the IP address where OneGate is listening on the Front-end node, edit the parameter with the correct IP address, then terminate the service from the Front-end (see :ref:`above <terminate_oneflow>`) and re-deploy.
+      If the value of ``ONEGATE_ENDPOINT`` does not match the IP address where OneGate is listening on the Front-end node, edit the parameter with the correct IP address. Then, terminate the OneKE service from the Front-end (see :ref:`above <terminate_oneflow>`) and re-deploy.
 
       * **Filtered incoming connections**: On the Front-end node, the OneGate server listens on port 5030, so you must ensure that this port accepts incoming connections. If necessary, create an inbound rule in the AWS security groups for the elastic IP of the VNF node.
 
@@ -488,27 +488,27 @@ To troubleshoot, follow these steps:
 One or more VMs Fail to Report Ready
 ++++++++++++++++++++++++++++++++++++++
 
-Another possible cause for failure of the OneKE Service to leave the ``DEPLOYING`` state is that a temporary network glitch or other variation in performance prevented one or more of the VMs in the service to report ``READY``` to the OneGate service. In this case, you may see all of the VMs in the service up and running, yet the OneKE service is stuck in ``DEPLOYING``.
+Another possible cause for failure of the OneKE Service to leave the ``DEPLOYING`` state is that a temporary network glitch or other variation in performance prevented one or more of the VMs in the service to report ``READY`` to the OneGate service. In this case, it is possible that you see all of the VMs in the service up and running, but the OneKE service is stuck in ``DEPLOYING``.
 
 For example on the Front-end, the output of ``onevm list`` shows all VMs running:
 
 .. prompt::
 
    onevm list
-     ID USER     GROUP    NAME                                            STAT  CPU     MEM HOST                                   TIME
-      3 oneadmin oneadmin worker_0_(service_3)                            runn    2      3G 54.89.83.204                       0d 01h02
-      2 oneadmin oneadmin master_0_(service_3)                            runn    2      3G 54.89.83.204                       0d 01h02
-      1 oneadmin oneadmin vnf_0_(service_3)                               runn    1    512M 54.89.83.204                       0d 01h03
-      0 oneadmin oneadmin Service WordPress - KVM-0                       runn    1    768M 54.89.83.204                       0d 01h53
+     ID USER     GROUP    NAME                                            STAT  CPU     MEM HOST                         TIME
+      3 oneadmin oneadmin worker_0_(service_3)                            runn    2      3G <public IP>              0d 01h02
+      2 oneadmin oneadmin master_0_(service_3)                            runn    2      3G <public IP>              0d 01h02
+      1 oneadmin oneadmin vnf_0_(service_3)                               runn    1    512M <public IP>              0d 01h03
+      0 oneadmin oneadmin Service WordPress - KVM-0                       runn    1    768M <public IP>              0d 01h53
 
 Yet ``oneflow list`` shows:
 
 .. prompt::
 
-  ID USER     GROUP    NAME                                                                                      STARTTIME STAT     
-   3 oneadmin oneadmin OneKE 1.29                                                                           08/30 12:30:07 DEPLOYING
+  ID USER     GROUP    NAME                                                                   STARTTIME STAT     
+   3 oneadmin oneadmin OneKE 1.29                                                        08/30 12:30:07 DEPLOYING
 
-In these cases you can manually instruct the VMs to report ``READY`` to the OneGate server. Follow these steps:
+In this case you can manually instruct the VMs to report ``READY`` to the OneGate server. Follow these steps:
 
    #. From the Front-end node, log in to the VNF node by running:
    
@@ -554,8 +554,8 @@ In these cases you can manually instruct the VMs to report ``READY`` to the OneG
       .. prompt::
       
          [oneadmin@FN]$ oneflow list
-         ID USER     GROUP    NAME                                                                                      STARTTIME STAT     
-          3 oneadmin oneadmin OneKE 1.29                                                                           08/30 12:35:21 RUNNING
+         ID USER     GROUP    NAME                                                                    STARTTIME STAT     
+          3 oneadmin oneadmin OneKE 1.29                                                         08/30 12:35:21 RUNNING
 
 
 

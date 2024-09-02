@@ -61,15 +61,15 @@ To run the miniONE script on AWS, you will need to instantiate a virtual machine
       - 2616 (for the FireEdge GUI)
       - 5030 (for the OneGate service)
 
-.. tip:: To quickly deploy a suitable VM, browse the AWS AMI Catalog and select ``Ubuntu Server 22.04 LTS (HVM), SSD Volume Type``:
+.. tip:: To quickly deploy a suitable VM, browse the AWS AMI Catalog and select **Ubuntu Server 24.04 LTS (HVM), SSD Volume Type**:
 
-   .. image:: /images/minione-aws-ubuntu22.04.png
+   .. image:: /images/minione-aws-ubuntu24.04.png
       :align: center
 
 Below is an example of a successfully-tested configuration (though by no means the only possible one):
 
 - Region: Frankfurt
-- Operating System: Ubuntu Server 22.04 LTS (HVM)
+- Operating System: Ubuntu Server 24.04 LTS (HVM)
 - Tier: ``t2.medium``
 - Open ports: 22, 80, 2616, 5030
 - Storage: 80 GB SSD
