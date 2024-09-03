@@ -24,7 +24,7 @@ The cloud environment installed by miniONE is mainly intended for evaluation, de
 .. note::
 
     To complete this tutorial, you will need to log in to a remote Linux machine via SSH. If you follow this tutorial on a Windows machine, you will need to use an SSH client application such as `PuTTY <https://www.putty.org/>`__.
-   
+
 .. tip::
 
     For a list of options supported by the script, run ``bash minione -h``. The script supports several types of installations (such as installing a Front-end and a KVM hypervisor node) which are not covered in this tutorial.
@@ -111,7 +111,7 @@ For example:
 .. warning::
 
    Ensure you have set the appropriate permissions for the PEM file, or for security reasons SSH will refuse to connect.
-   
+
 
 Step 1.2. Update the VM Operating System
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -170,20 +170,20 @@ Step 3.1. Copy the miniONE script to the AWS VM
 After downloading miniONE, you will need to copy it to your AWS VM.
 
 - On Linux and Mac:
-    
+
     If you’re on Linux, you can copy it with the ``scp`` command, providing the same user and PEM file as when logging in via SSH. For example, the command below copies the miniONE script to the ``ubuntu`` user’s home directory:
 
         .. prompt::
-   
+
           scp -i <path to PEM file> <path to minione script> ubuntu@<public IP of the VM>:~
 
 - On Windows:
 
     You can use either of two methods:
-    
+
     * The GUI tool `WinSCP <https://winscp.net/eng/download.php>`__, which allows you to copy files by drag-and-drop
     * The command-line tool `PuTTY Secure Copy <https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html>`__, which emulates the Unix ``scp`` tool.
-    
+
     For both methods you will need to provide the private key file for authentication.
 
 Step 3.2. Run the miniONE script on the AWS VM
@@ -220,7 +220,7 @@ The miniONE script will begin the installation, logging output to the terminal. 
 .. prompt::
 
    ### Report
-   OpenNebula 6.8 was installed
+   OpenNebula 6.10 was installed
    Sunstone is running on:
    http://<omitted>/
    FireEdge is running on:
@@ -228,7 +228,7 @@ The miniONE script will begin the installation, logging output to the terminal. 
    Use following to login:
       user: oneadmin
       password: lCmPUb5Gwk
-   
+
 At this point, you have successfully installed miniONE. OpenNebula services should be running, and the system should be ready for your first login.
 
 .. important::
@@ -267,7 +267,7 @@ This is the default view for cloud administrators. From this view in Sunstone, y
 
 |
 
-Congratulations — you have deployed an OpenNebula Front-end node, which is ready to provision resources on cloud infrastructure. 
+Congratulations — you have deployed an OpenNebula Front-end node, which is ready to provision resources on cloud infrastructure.
 
 
 Next Steps
