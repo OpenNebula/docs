@@ -137,6 +137,7 @@ Other Issues Solved
 - `Fix OneFlow server error output <https://github.com/OpenNebula/one/issues/6656>`__.
 - `Fix KVM migration when SYNC_TIME is not defined <https://github.com/OpenNebula/one/issues/6634>`__.
 - `Fix virsh capabilities output missing full list of CPU features <https://github.com/OpenNebula/one/issues/6686>`__.
+- `Fix oneflow and oneflow-template missing headers <https://github.com/OpenNebula/one/issues/6508>__`.
 
 Also, the following issues have been solved in the FireEdge Sunstone Web UI:
 
