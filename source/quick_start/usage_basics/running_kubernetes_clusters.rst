@@ -361,7 +361,8 @@ On the Kubernetes master node, create a file called ``expose-nginx.yaml`` with t
           port: 80
           targetPort: 80
     ---
-    apiVersion: traefik.containo.us/v1alpha1
+    # In Traefik < 3.0.0 it used to be "apiVersion: traefik.containo.us/v1alpha1".
+    apiVersion: traefik.io/v1alpha1
     kind: IngressRoute
     metadata:
       name: nginx
