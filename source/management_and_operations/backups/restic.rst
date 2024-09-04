@@ -113,35 +113,37 @@ To recover from this error, check there are no ongoing operations and execute ``
 Reference: Restic Datastore Attributes
 ================================================================================
 
-+------------------------+--------------------------------------------------------------------------------------------------------------+
-| Attribute              | Description                                                                                                  |
-+========================+==============================================================================================================+
-| ``RESTIC_SFTP_USER``   | User to connect to the backup server (default ``oneadmin``)                                                  |
-+------------------------+--------------------------------------------------------------------------------------------------------------+
-| ``RESTIC_SFTP_SERVER`` | IP address of the backup server                                                                              |
-+------------------------+--------------------------------------------------------------------------------------------------------------+
-| ``RESTIC_PASSWORD``    | Password to access the restic repository                                                                     |
-+------------------------+--------------------------------------------------------------------------------------------------------------+
-| ``RESTIC_IONICE``      | Run backups under a given ionice priority (best-effort, class 2). Value: 0 (high) - 7 (low)                  |
-+------------------------+--------------------------------------------------------------------------------------------------------------+
-| ``RESTIC_NICE``        | Run backups under a given nice. Value: -19 (high) to 19 (low)                                                |
-+------------------------+--------------------------------------------------------------------------------------------------------------+
-| ``RESTIC_MAX_RIOPS``   | Run backups in a systemd slice, limiting the max number of read iops                                         |
-+------------------------+--------------------------------------------------------------------------------------------------------------+
-| ``RESTIC_MAX_WIOPS``   | Run backups in a systemd slice, limiting the max number of write iops                                        |
-+------------------------+--------------------------------------------------------------------------------------------------------------+
-| ``RESTIC_CPU_QUOTA``   | Run backups in a systemd slice with a given cpu quota (percentage). Use > 100 for using several CPUs         |
-+------------------------+--------------------------------------------------------------------------------------------------------------+
-| ``RESTIC_BWLIMIT``     | Limit restic upload/download bandwidth                                                                       |
-+------------------------+--------------------------------------------------------------------------------------------------------------+
-| ``RESTIC_COMPRESSION`` | Compression (three modes:off, auto, max), default is ``auto`` (average compression without to much CPU usage)|
-+------------------------+--------------------------------------------------------------------------------------------------------------+
-| ``RESTIC_CONNECTIONS`` | Number of concurrent connections (default 5). For high-latency backends this number can be increased.        |
-+------------------------+--------------------------------------------------------------------------------------------------------------+
-| ``RESTIC_MAXPROC``     | Sets ``GOMAXPROCS`` for restic to limit the OS threads that execute user-level Go code simultaneously.       |
-+------------------------+--------------------------------------------------------------------------------------------------------------+
-| ``RESTIC_SPARSIFY``    | Runs ``virt-sparsify`` on flatten backups to reduce backup size. It requires ``libguestfs`` package.         |
-+------------------------+--------------------------------------------------------------------------------------------------------------+
++------------------------------+--------------------------------------------------------------------------------------------------------------+
+| Attribute                    | Description                                                                                                  |
++==============================+==============================================================================================================+
+| ``RESTIC_SFTP_USER``         | User to connect to the backup server (default ``oneadmin``)                                                  |
++------------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_SFTP_SERVER``       | IP address of the backup server                                                                              |
++------------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_PASSWORD``          | Password to access the restic repository                                                                     |
++------------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_IONICE``            | Run backups under a given ionice priority (best-effort, class 2). Value: 0 (high) - 7 (low)                  |
++------------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_NICE``              | Run backups under a given nice. Value: -19 (high) to 19 (low)                                                |
++------------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_MAX_RIOPS``         | Run backups in a systemd slice, limiting the max number of read iops                                         |
++------------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_MAX_WIOPS``         | Run backups in a systemd slice, limiting the max number of write iops                                        |
++------------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_CPU_QUOTA``         | Run backups in a systemd slice with a given cpu quota (percentage). Use > 100 for using several CPUs         |
++------------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_BWLIMIT``           | Limit restic upload/download bandwidth                                                                       |
++------------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_COMPRESSION``       | Compression (three modes:off, auto, max), default is ``auto`` (average compression without to much CPU usage)|
++------------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_CONNECTIONS``       | Number of concurrent connections (default 5). For high-latency backends this number can be increased.        |
++------------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_MAXPROC``           | Sets ``GOMAXPROCS`` for restic to limit the OS threads that execute user-level Go code simultaneously.       |
++------------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``RESTIC_SPARSIFY``          | Runs ``virt-sparsify`` on flatten backups to reduce backup size. It requires ``libguestfs`` package.         |
++------------------------------+--------------------------------------------------------------------------------------------------------------+
+| ``DATASTORE_CAPACITY_CHECK`` | Enable/Disable automatic capacity check on the datastore before a backup operation                           |
++------------------------------+--------------------------------------------------------------------------------------------------------------+
 
 .. |restic_create| image:: /images/backup_restic_create.png
     :width: 700
