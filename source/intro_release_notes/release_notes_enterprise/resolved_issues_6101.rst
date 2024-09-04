@@ -11,3 +11,4 @@ The following issues has been solved in 6.10.1:
 
 - `Fix KVM VM migration when CLEANUP_MEMORY_STOP is not defined in the driver configuration <https://github.com/OpenNebula/one/issues/6665>`__.
 - `Fix a very uncommon error while initializing drivers <https://github.com/OpenNebula/one/issues/6694>`__.
+- `Fix restore of volatile disks from a VM backup <https://github.com/OpenNebula/one/issues/6607>`__.
