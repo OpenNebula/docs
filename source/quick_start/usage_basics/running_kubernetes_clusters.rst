@@ -198,25 +198,7 @@ To expose an example application on the public network, you will need to enable 
 
 |kubernetes-qs-enable-ingress|
 
-Enable Additional Network Options
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Click **3** at the bottom of the page to go to the third **User Inputs** screen.
-
-In this screen, activate the following toggle switches:
-
-   * Enable DNS recursor
-   * Enable NAT
-   * Enable Router
-
-   .. image:: /images/sunstone-k8s_enable_netw_params.png
-      :align: center
-
-|
-
-
 Click **Next** to go to the next screen, **Network**.
-
 
 Select the Public and Private Networks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
