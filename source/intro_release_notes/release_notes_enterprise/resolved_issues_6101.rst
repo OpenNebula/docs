@@ -15,4 +15,7 @@ The following issues has been solved in 6.10.1:
 - `Fix a very uncommon error while initializing drivers <https://github.com/OpenNebula/one/issues/6694>`__.
 - `Fix restore of volatile disks from a VM backup <https://github.com/OpenNebula/one/issues/6607>`__.
 - `Fix backup of VM with ISO images to skip the backup of CD drives <https://github.com/OpenNebula/one/issues/6578>`__.
-- `Fix Sunstone checkmark for backup volatile disks <https://github.com/OpenNebula/one/issues/6532>`__.
+- `Fix Sunstone/OneProvision configuration mismatch <https://github.com/OpenNebula/one/issues/6711>`__.
+- `Fix Sunstone check button for backing up volatile disks <https://github.com/OpenNebula/one/issues/6532>`__.
+- `Fix the reloading process of the monitor drivers <https://github.com/OpenNebula/one/issues/6687>`__.
+- `Fix oned initialization when the configuration file contains drivers with the same name <https://github.com/OpenNebula/one/issues/5801>`__.
