@@ -16,7 +16,6 @@ In this document, each configuration step starts with **Master** or **Slave** to
 
 .. important:: The federation can be set up with MySQL/MariaDB or SQLite as backends, but you can't mix them across Zones. MySQL/MariaDB is recommended for production deployments.
 
-.. important:: FireEdge, the next-generation server for the Sunstone GUI, currently does not support switching zones in a federation environment. Please connect directly to the zone that you wish to work on. Likewise, take into account that the FireEdge functionality enabled in Sunstone will not be available if you switch to a remote zone from within Sunstone.
 
 Step 1. Configure the OpenNebula Federation Master Zone
 ================================================================================
@@ -112,6 +111,19 @@ Step 2. Adding a New Federation Slave Zone
     Sqlite database backup restored in one.db
 
 - **Slave**: Start OpenNebula.
+
+- **Slave**: In each Slave node you must place the configuration so that it is able to know which zone it represents. for this you must modify the ``/etc/one/fireedge-server.conf`` file with the zone information.
+
+.. code-block:: bash
+
+    default_zone:
+        id: 100 //ID
+        name: 'Slave' // NAME
+        endpoint: 'http://<slave-ip>:2633/RPC2' //ENDPOINT
+
+.. note:: In case the default :ref:`PORT <fireedge_conf>` of the FireEdge (Master or Slave) is changed, it is required that the zone that this fireedge represents has the ``FIREEDGE_ENDPOINT`` field added with the endpoint that the other FireEdge receives HTTPS requests.
+
+- **Slave**: Start FireEdge.
 
 The Zone should be now configured and ready to use.
 
