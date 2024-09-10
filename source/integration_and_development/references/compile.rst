@@ -160,8 +160,8 @@ The packages do a ``system-wide`` installation. To create a similar environment,
     In that case one needs to patch ``src/scheduler/src/sched/SConstruct`` file:
 
     .. prompt:: bash # auto
-    
-       # diff one/src/scheduler/src/sched/SConstruct one-orig/src/scheduler/src/sched/SConstruct 
+
+       # diff one/src/scheduler/src/sched/SConstruct one-orig/src/scheduler/src/sched/SConstruct
        48c48,49
        <     'xml2'
        ---
@@ -186,13 +186,10 @@ Build Dependencies:
 
 Run Dependencies:
 
-- **aenum**: python OCA support
 - **dict2xml**: python OCA support
-- **feature**: python OCA support
 - **lxml**: python OCA support
-- **six**: python OCA support
-- **tblib**: python OCA support
 - **xml2dict**: python OCA support
+- **requests**: python OCA support
 
 To build run following:
 
