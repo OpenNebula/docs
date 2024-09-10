@@ -19,4 +19,4 @@ The following issues has been solved in 6.10.1:
 - `Fix Sunstone check button for backing up volatile disks <https://github.com/OpenNebula/one/issues/6532>`__.
 - `Fix the reloading process of the monitor drivers <https://github.com/OpenNebula/one/issues/6687>`__.
 - `Fix oned initialization when the configuration file contains drivers with the same name <https://github.com/OpenNebula/one/issues/5801>`__.
-- `Adjust PyOne dependencies <https://github.com/OpenNebula/one/issues/6577>`__.
+- `Fix PyOne dependencies to not mix pip and python3-* packages <https://github.com/OpenNebula/one/issues/6577>`__.
