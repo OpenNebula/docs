@@ -16,8 +16,6 @@ In this document, each configuration step starts with **Master** or **Slave** to
 
 .. important:: The federation can be set up with MySQL/MariaDB or SQLite as backends, but you can't mix them across Zones. MySQL/MariaDB is recommended for production deployments.
 
-.. important:: FireEdge, the next-generation server for the Sunstone GUI, currently does not support switching zones in a federation environment. Please connect directly to the zone that you wish to work on. Likewise, take into account that the FireEdge functionality enabled in Sunstone will not be available if you switch to a remote zone from within Sunstone.
-
 Step 1. Configure the OpenNebula Federation Master Zone
 ================================================================================
 
