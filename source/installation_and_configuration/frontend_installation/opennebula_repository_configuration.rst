@@ -23,6 +23,14 @@ OpenNebula Systems provides an OpenNebula Enterprise Edition to customers with a
 AlmaLinux/RHEL
 --------------------------------------------------------------------------------
 
+In **rhel9** and **AlmaLinux9** Some dependencies cannot be found in the default repositories. Some extra repositories need to be enabled. To do this, execute the following as the root user:
+
+.. code-block:: bash
+
+    repo=$(yum repolist --disabled | grep -i -e powertools -e crb | awk '{print $1}' | head -1)
+    yum config-manager --set-enabled $repo && yum makecache
+
+
 To add the OpenNebula enterprise repository, execute the following as user ``root``:
 
 **RHEL 8, 9**
@@ -137,6 +145,14 @@ The community edition of OpenNebula offers the full functionality of the Cloud M
 
 AlmaLinux/RHEL
 --------------------------------------------------------------------------------
+
+In **rhel9** and **AlmaLinux9** Some dependencies cannot be found in the default repositories. Some extra repositories need to be enabled. To do this, execute the following as the root user:
+
+.. code-block:: bash
+
+    repo=$(yum repolist --disabled | grep -i -e powertools -e crb | awk '{print $1}' | head -1)
+    yum config-manager --set-enabled $repo && yum makecache
+
 
 To add OpenNebula repository, execute the following as user ``root``:
 
