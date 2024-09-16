@@ -25,6 +25,8 @@ Sunstone
 
 - The current configuration for both Sunstone and One-Provision contain a mismatch in the `keep_me_logged` configuration option. This issue has been fixed but the new configuration files need to be downloaded in order for this fix to take effect, refer to :ref:`the following section <fireedge_install_configuration>` for instructions on how to do this.
 
+- When instantiate a vrouter, the values filled in the form `are not used to replace the corresponding variables in the CONTEXT section <https://github.com/OpenNebula/one/issues/6725>`_ of the corresponding virtual machine.
+
 Install Linux Graphical Desktop on KVM Virtual Machines
 ================================================================================
 
