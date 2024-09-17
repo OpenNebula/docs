@@ -20,3 +20,4 @@ The following issues has been solved in 6.10.1:
 - `Fix the reloading process of the monitor drivers <https://github.com/OpenNebula/one/issues/6687>`__.
 - `Fix oned initialization when the configuration file contains drivers with the same name <https://github.com/OpenNebula/one/issues/5801>`__.
 - `Fix PyOne dependencies to not mix pip and python3-* packages <https://github.com/OpenNebula/one/issues/6577>`__.
+- `Add the "onevm disk-snapshot-list" command <https://github.com/OpenNebula/one/issues/6624>`__.
