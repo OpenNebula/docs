@@ -31,6 +31,7 @@ Sunstone
 
 - Guacamole RDP as is currently shipped in OpenNebula does not support NLA authentication. You can follow `these instructions <https://www.parallels.com/blogs/ras/disabling-network-level-authentication/>`__ in order to disable NLA in the Windows box to use Guacamole RDP within Sunstone.
 - Creating a VM with SPICE graphics, on Alma9, will cause the VM to stay on FAILED state.
+- Ruby Sunstone fails to start on newer distributions (e.g, Ubuntu 24.04), due to a breaking change introduced in `Psych 4.0 <https://github.com/ruby/psych/releases/tag/v4.0.0>`_. We are currently working on a fix.
 
 FireEdge
 ================================================================================
