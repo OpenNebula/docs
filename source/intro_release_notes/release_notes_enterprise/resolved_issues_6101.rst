@@ -8,6 +8,7 @@ A complete list of solved issues for 6.10.1 can be found in the `project develop
 The following new features have been backported to 6.10.1:
 
 - Backup datastore capacity is checked before attempting to create a backup. This test can be disable with the ``DATASTORE_CAPACITY_CHECK`` attribute, either globally or per datastore.
+- Add the "onevm disk-snapshot-list" command <https://docs.opennebula.io/doc/6.8/cli/onevm.1.html>
 
 The following issues has been solved in 6.10.1:
 
@@ -20,4 +21,3 @@ The following issues has been solved in 6.10.1:
 - `Fix the reloading process of the monitor drivers <https://github.com/OpenNebula/one/issues/6687>`__.
 - `Fix oned initialization when the configuration file contains drivers with the same name <https://github.com/OpenNebula/one/issues/5801>`__.
 - `Fix PyOne dependencies to not mix pip and python3-* packages <https://github.com/OpenNebula/one/issues/6577>`__.
-- `Add the "onevm disk-snapshot-list" command <https://github.com/OpenNebula/one/issues/6624>`__.
