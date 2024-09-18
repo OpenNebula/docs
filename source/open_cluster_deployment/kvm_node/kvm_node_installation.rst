@@ -134,15 +134,6 @@ To add a node to the cloud, run this command as ``oneadmin`` in the Front-end (r
       ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
        0 node01          default     0       0 / 400 (0%)     0K / 7.7G (0%) on
 
-.. _kvm_wild:
-
-Step 8. Import Existing VMs (Optional)
-======================================
-
-Optionally, you can import virtual machines already running on the Host. You'll be able to control such virtual machines from OpenNebula, although the set of operations is vastly reduced (when compared to the virtual machines started from OpenNebula). Follow the :ref:`Importing Wild VMs <import_wild_vms>` guide.
-
-You can import wild VMs anytime later.
-
 .. _kvm_next:
 
 Next steps

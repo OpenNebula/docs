@@ -63,7 +63,7 @@ These arguments are specified in the :ref:`oned.conf file <oned_conf>`, ``argume
         default    = "vmm_exec/vmm_exec_kvm.conf",
         ...
 
-Each driver can define a list of supported actions for :ref:`imported VMs <import_wild_vms>`. Please note that in order to import VMs, your monitoring drivers should report the :ref:`IMPORT_TEMPLATE variable <devel-im_vm_information>`. The complete list of actions is:
+Each driver can define a list of supported actions for :ref:`imported VMs <import_wild_vms>`. The complete list of actions is:
 
 .. _devel_actions:
 

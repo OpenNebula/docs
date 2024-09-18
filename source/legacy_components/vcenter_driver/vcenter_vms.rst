@@ -74,15 +74,14 @@ The monitoring attributes retrieved from a vCenter VM are:
 - VCENTER_VM_NAME: VM name on vCenter
 - DISK_x_ACTUAL_PATH: Physical path of the disk inside the vCenter datastore
 
-vCenter Template or Wild VM Importing Procedure
+vCenter Template Importing Procedure
 ================================================================================
 
-While a VM Template or Wild VM is being imported, OpenNebula will inspect the virtual disks and virtual nics and it will create images and virtual networks referencing the disks and port-groups used by the VM. This process may take some time, please be patient.
+While a VM Template is being imported, OpenNebula will inspect the virtual disks and virtual nics and it will create images and virtual networks referencing the disks and port-groups used by the VM. This process may take some time, please be patient.
 
 You have more information about these procedures:
 
 - :ref:`vCenter Template import <vcenter_template_import>`
-- :ref:`Wild VM import <vcenter_import_wild_vms>`
 
 .. _vcenter_cloning_procedure:
 
@@ -229,9 +228,9 @@ vCenter Images
 
 You can follow the common :ref:`Managing Images Section <images>`, considering that VMDK snapshots are not supported as well as the following considerations.
 
-OpenNebula scans VM Templates and Wild VMs for existing disks and it will create OpenNebula images that will represent those virtual disks. Thanks to this scanning process, existing disks will be visible for OpenNebula, and therefore can be detached from the deployed VMs. The following information is important about images created when a vCenter template or Wild VM is imported:
+OpenNebula scans VM Templates and Wild VMs for existing disks and it will create OpenNebula images that will represent those virtual disks. Thanks to this scanning process, existing disks will be visible for OpenNebula, and therefore can be detached from the deployed VMs. The following information is important about images created when a vCenter template is imported:
 
-- VM disks in imported as part of a VM Template or Wild VM are considered unmanaged images.
+- VM disks in imported as part of a VM Template are considered unmanaged images.
 - An unmanaged image won't be cloned by OpenNebula when a VM is instantiated. When OpenNebula deploys a VM, vCenter will clone the vCenter template and it will be  responsible of creating the copies of the template disks and attach them to the new Virtual Machine.
 - Although the images are considered unmanaged, you can perform operations like detaching the disks.
 - Virtual Machines in vCenter will have some variables created by OpenNebula that allows an OpenNebula disk element to be related with a vCenter Virtual Hard Disk. For example the unmanaged DISK with ID=0 has a variable called opennebula.disk.0 in vCenter's VM that stores a reference to the disk created by vCenter that will help OpenNebula identify what disk has to be detached.
@@ -262,7 +261,7 @@ The following image template attributes need to be considered for vCenter VMDK i
 | ``VCENTER_DISK_TYPE``       | The type of disk has implications on performance and occupied space. Values (careful with the case):  delta,eagerZeroedThick,flatMonolithic,preallocated,raw,rdm,rdmp,seSparse,sparse2Gb,sparseMonolithic,thick,thick2Gb,thin. More information `in the VMware documentation <http://pubs.vmware.com/vsphere-60/index.jsp?topic=%2Fcom.vmware.wssdk.apiref.doc%2Fvim.VirtualDiskManager.VirtualDiskType.html>`__.  |
 |                             | Known as "Disk Provisioning Type" in Sunstone.                                                                                                                                                                                                                                                                                                                                                                     |
 +-----------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``VCENTER_IMPORTED``        | It will be set to YES for images that have been imported when a vCenter template or Wild VM is imported. If this attribute is set to YES, OpenNebula **will not delete** the VMDK file in vCenter so you don't actually delete the hard disk attached to a template. If you remove this attribute the VMDK file will be deleted when the Image is deleted in OpenNebula.                                           |
+| ``VCENTER_IMPORTED``        | It will be set to YES for images that have been imported when a vCenter template is imported. If this attribute is set to YES, OpenNebula **will not delete** the VMDK file in vCenter so you don't actually delete the hard disk attached to a template. If you remove this attribute the VMDK file will be deleted when the Image is deleted in OpenNebula.                                                      |
 +-----------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 VMDK images in vCenter datastores can be:
