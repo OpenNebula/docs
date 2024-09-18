@@ -25,6 +25,8 @@ Sunstone
 
 - When instantiate a vrouter, the values filled in the form `are not used to replace the corresponding variables in the CONTEXT section <https://github.com/OpenNebula/one/issues/6725>`_ of the corresponding virtual machine.
 
+- `'Groupadmin' view fails to load for groups with multiple admin users <https://github.com/OpenNebula/one/issues/6730>`__.
+
 Install Linux Graphical Desktop on KVM Virtual Machines
 ================================================================================
 
