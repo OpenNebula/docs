@@ -8,7 +8,7 @@ A complete list of solved issues for 6.10.1 can be found in the `project develop
 The following new features have been backported to 6.10.1:
 
 - Backup datastore capacity is checked before attempting to create a backup. This test can be disable with the ``DATASTORE_CAPACITY_CHECK`` attribute, either globally or per datastore.
-- Add the "onevm disk-snapshot-list" command <https://docs.opennebula.io/doc/6.8/cli/onevm.1.html>
+- Add the "onevm disk-snapshot-list" command :ref:`cli`
 
 The following issues has been solved in 6.10.1:
 
