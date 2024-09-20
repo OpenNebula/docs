@@ -15,6 +15,7 @@ The following issues has been solved in 6.10.1:
 - `Fix KVM VM migration when CLEANUP_MEMORY_STOP is not defined in the driver configuration <https://github.com/OpenNebula/one/issues/6665>`__.
 - `Fix a very uncommon error while initializing drivers <https://github.com/OpenNebula/one/issues/6694>`__.
 - `Fix restore of volatile disks from a VM backup <https://github.com/OpenNebula/one/issues/6607>`__.
+- `Fix backups of volatile disks in Ceph drivers <https://github.com/OpenNebula/one/issues/6505>`__.
 - `Fix backup of VM with ISO images to skip the backup of CD drives <https://github.com/OpenNebula/one/issues/6578>`__.
 - `Fix Sunstone/OneProvision configuration mismatch <https://github.com/OpenNebula/one/issues/6711>`__.
 - `Fix Sunstone check button for backing up volatile disks <https://github.com/OpenNebula/one/issues/6532>`__.
