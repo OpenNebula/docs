@@ -24,3 +24,4 @@ The following issues has been solved in 6.10.1:
 - `Fix PyOne dependencies to not mix pip and python3-* packages <https://github.com/OpenNebula/one/issues/6577>`__.
 - `Fix inconsistent CPU pinning after VM cold migration <https://github.com/OpenNebula/one/issues/6596>`__.
 - `Fix User inputs doesn't propagate value to context attribute of vm using Sunstone <https://github.com/OpenNebula/one/issues/6725>`__.
+- `Optimize handling of VM histories, it greatly improves perfomance of all VM operations for VMs with many history records <https://github.com/OpenNebula/one/issues/2111>`__.
