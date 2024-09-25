@@ -316,8 +316,6 @@ The attributes described here indicate which buttons are visible to operate over
 +-------------------------+-----------------------------------------------------------------------------+
 | ``unshare``             | Users will be able to unshare VM Templates.                                 |
 +-------------------------+-----------------------------------------------------------------------------+
-| ``vmrc``                | Users will be able to establish a VMRC connection.                          |
-+-------------------------+-----------------------------------------------------------------------------+
 | ``vnc``                 | Users will be able to establish a VNC connection.                           |
 +-------------------------+-----------------------------------------------------------------------------+
 
