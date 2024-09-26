@@ -32,6 +32,64 @@ Sunstone
 - Guacamole RDP as is currently shipped in OpenNebula does not support NLA authentication. You can follow `these instructions <https://www.parallels.com/blogs/ras/disabling-network-level-authentication/>`__ in order to disable NLA in the Windows box to use Guacamole RDP within Sunstone.
 - Creating a VM with SPICE graphics, on Alma9, will cause the VM to stay on FAILED state.
 
+.. warning:: Ruby Sunstone fails to start on newer distributions (e.g, Ubuntu 24.04), due to a breaking change introduced in `Psych 4.0 <https://github.com/ruby/psych/releases/tag/v4.0.0>`_. In order to circumvent this you can download two patches from `here <https://bit.ly/one-68-rsunstone_patches>`__.
+
+
+They can then be applied by following these steps:
+
+1. **Download the Patches**
+
+   Save the two patch files from the provided link to a temporary directory on your system, e.g., ``/tmp``.
+
+2. **Apply the `sunstone-server.rb` Patch**
+
+   - **Navigate to the Sunstone Directory**
+
+     ::
+
+       cd /usr/lib/one/sunstone
+
+   - **Backup the Original File**
+
+     ::
+
+       cp sunstone-server.rb sunstone-server.rb.bak
+
+   - **Apply the Patch**
+
+     ::
+
+       patch < /tmp/sunstone-server.patch
+
+3. **Apply the `SunstoneViews.rb` Patch**
+
+   - **Navigate to the Models Directory**
+
+     ::
+
+       cd /usr/lib/one/sunstone/models
+
+   - **Backup the Original File**
+
+     ::
+
+       cp SunstoneViews.rb SunstoneViews.rb.bak
+
+   - **Apply the Patch**
+
+     ::
+
+       patch < /tmp/SunstoneViews.patch
+
+4. **Restart the Sunstone Service**
+
+   After applying the patches, restart the Sunstone service to apply the changes:
+
+   ::
+
+     systemctl restart opennebula-sunstone
+
+
 FireEdge
 ================================================================================
 
