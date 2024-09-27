@@ -164,7 +164,7 @@ If you do not have a physical TPM device on your host you can emulate one.  Ther
 .. code::
     
     <devices>
-        <tpm model='tpm-crd'>
+        <tpm model='tpm-crb'>
             <backend type='emulator' version='2.0'/>
         </tpm>
     </devices>
