@@ -1172,7 +1172,11 @@ After that you can access the VM and configure the SSH service:
     # Add user: username/password
     root@<guest-VM>:~$ adduser <username>
 
+|fireedge_sunstone_ssh_list| |fireedge_sunstone_ssh_console|
+
 .. note:: Guacamole SSH uses RSA encryption. Make sure the VM SSH accepts RSA, otherwise you need to explicitly enable it in the VM SSH configuration (HostkeyAlgorithms and PubkeyAcceptedAlgorithms set as '+ssh-rsa)
+
+
 
 .. |sunstone_vm_charter| image:: /images/sunstone_vm_charter.png
 .. |sunstone_charter_info| image:: /images/sunstone_charter_info.png
@@ -1185,3 +1189,7 @@ After that you can access the VM and configure the SSH service:
 .. |sunstone_guac_nic_2| image:: /images/sunstone_guac_nic_2.png    
 .. |sunstone_sg_main_view| image:: /images/sunstone_sg_main_view.png
 .. |sunstone_sg_attach| image:: /images/sunstone_sg_attach.png
+.. |fireedge_sunstone_ssh_list| image:: /images/fireedge_sunstone_ssh_list.png
+   :width: 45%
+.. |fireedge_sunstone_ssh_console| image:: /images/fireedge_sunstone_ssh_console.png
+   :width: 45%
