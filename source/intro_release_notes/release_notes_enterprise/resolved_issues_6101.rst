@@ -9,6 +9,7 @@ The following new features have been backported to 6.10.1:
 
 - Backup datastore capacity is checked before attempting to create a backup. This test can be disable with the ``DATASTORE_CAPACITY_CHECK`` attribute, either globally or per datastore.
 - Add a "disk-snapshot-list" option to :ref:`onevm cli <cli>`.
+- `Optimize handling of VM histories, it greatly improves perfomance of all VM operations for VMs with many history records <https://github.com/OpenNebula/one/issues/2111>`__.
 
 The following issues has been solved in 6.10.1:
 
@@ -24,4 +25,3 @@ The following issues has been solved in 6.10.1:
 - `Fix PyOne dependencies to not mix pip and python3-* packages <https://github.com/OpenNebula/one/issues/6577>`__.
 - `Fix inconsistent CPU pinning after VM cold migration <https://github.com/OpenNebula/one/issues/6596>`__.
 - `Fix User inputs doesn't propagate value to context attribute of vm using Sunstone <https://github.com/OpenNebula/one/issues/6725>`__.
-- `Optimize handling of VM histories, it greatly improves perfomance of all VM operations for VMs with many history records <https://github.com/OpenNebula/one/issues/2111>`__.
