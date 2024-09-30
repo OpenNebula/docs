@@ -27,6 +27,7 @@ Conf
 Config
 Cooldown
 Corosync
+Cortana
 Crypted
 Ctrl
 Customizable
@@ -95,6 +96,7 @@ Netplan
 Nokogiri
 NSX
 Numa
+NVMe
 Onecfg
 Oneflow
 Opennebula
@@ -124,6 +126,7 @@ SAML
 SLA
 SLAAC
 SRIOV
+SSD
 Scalability
 Sched
 Schemas
@@ -317,6 +320,7 @@ dsbl
 dvportgroup
 eagerZeroedThick
 ec
+edk
 ee
 eebc
 eht
@@ -533,6 +537,7 @@ overcommitted
 overcommitting
 overprovision
 overriden
+ovmf
 ovswitch
 parallelize
 param
@@ -544,6 +549,7 @@ passthrough
 passwd
 passwordless
 pci
+performant
 persisent
 persistency
 pluggable
@@ -663,6 +669,7 @@ svncterm
 swapfile
 swapin
 swapout
+swtpm
 symlink
 symlinked
 symlinks
@@ -678,6 +685,7 @@ tmp
 toolchain
 toolset
 topologies
+tpm
 tty
 tunables
 tx
