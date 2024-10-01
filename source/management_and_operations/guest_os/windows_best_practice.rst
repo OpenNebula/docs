@@ -34,7 +34,7 @@ General
 
 Fill out the name and resources you wish you allocate to this virtual machine. Ensure there is enough memory for the version of Windows you are installing. 
 
-You may also set :ref:`Memory Resize Mode <kvm_live_resize>` to Ballooning here to allow you to change the memory usage. If you do enable this you'll also want to Enable hot resize and set the Max memory value.  Inside of the Windows VM, the hardware will read as having `MAX_MEMORY` amount of RAM however when you resize the memory, the QEMU Guest Agent will expand a "balloon" to effectively remove that memory from the Windows VM and free it up on the host. Later, the memory can be increased up to but not exceeding `MAX_MEMORY`.
+You may also set :ref:`Memory Resize Mode <kvm_live_resize>` to Ballooning here to allow you to change the memory usage. If you do enable this you'll also want to Enable Hot Resize and set the Max memory value.  Inside of the Windows VM, the hardware will read as having `MAX_MEMORY` amount of RAM however when you resize the memory, the QEMU Guest Agent will expand a "balloon" to effectively remove that memory from the Windows VM and free it up on the host. Later, the memory can be increased up to but not exceeding `MAX_MEMORY`.
 
 Once these are filled out, proceed to the Advanced Options to configure the rest of the template.
 
@@ -44,6 +44,8 @@ Storage
 
 Here, you'll want to attach some disk images. The first disk should be the target persistent image we created earlier. Once selected, click Next to the Advanced options section.  Here, define the BUS as Virtio(not required if you did this earlier), leave cache at None or set it to Writethrough, and set IO policy to Native. This should provide the most performance for the disk.
 
+Now add a new disk and select the Windows Installation ISO, there are no advanced options required here. Also add two more new disks, one of them select the VirtIO ISO, and the other select the Context ISO you downloaded earlier. These also do not require any advanced options.
+
 Network
 -------
 
@@ -51,7 +53,7 @@ On the main Networks tab when creating this template before attaching any NICs t
 
 You can define a network interface here if required. It's possible to setup Windows without network access however to update the system you'll need to eventually connect to the internet.  Be aware that during installation if you do not define emulated hardware model as `virtio` then Windows will attempt to use DHCP on this interface to connect to the internet. You will need to either manually configure the networking inside the VM or install Context packages before the OpenNebula defined network configuration will be applied.
 
-The "RDP Connection" is useful if you want to access RDP using the browser, however the SPICE display we will go over later may be more performant. Any Override values you set here won't take effect until after Context has been installed later on.
+The "RDP Connection" option is useful if you want to access RDP using the browser.  You should enable this on the primary network device, and will need to enable it inside the virtual machine later before being able to use it.
 
 
 OS & CPU
@@ -130,9 +132,9 @@ CPU Model
 Input/Output
 ~~~~~~~~~~~~
 
-Here we will adjust how the virtual machine is accessed. We recommend changing VNC to SPICE.  Then, under the Inputs section select a Tablet type on USB bus, then click Add. This will make the mouse click where you want it to when using remote access.
+Under the Inputs section select a Tablet type on USB bus, then click Add. This will make the mouse click where you want it to when using VNC.
 
-Defining a Virtio model display device at a higher resolution can be useful here as well, as the default 800x600 desktop is quite small. This will cause the SPICE connection to display at this resolution. A VRAM value is not required.
+Defining a Virtio model display device at a higher resolution can be useful here as well, this can allow higher resolutions in the desktop.
 
 If you are using non-networking PCI Passthrough devices, this is the place to add them as well, such as GPU's. See the :ref:`PCI Passthrough Guide <kvm_pci_passthrough>`.
 
@@ -215,7 +217,7 @@ Now that we've created the template with all the necessary images and configurat
 
 Once the Virtual Machine has been instantiated, it should begin deploying.  If it is not, ensure the scheduler requirements can be met and any hosts are the proper Pin Policy for their NUMA Configuration.
 
-Once the Virtual Machine is running, open up the SPICE viewer.  If you are fast enough, you should see the prompt `Press any key to boot from CD or DVD...` upon which you should click into the SPICE viewer and press any key.  If you do not see this and instead see a `Shell>` prompt, you should type `exit` and hit Enter. This will cause it to reboot, and then you can press a key to trigger booting to the ISO.
+Once the Virtual Machine is running, open up the VNC viewer.  If you are fast enough, you should see the prompt `Press any key to boot from CD or DVD...` upon which you should click into the VNC viewer and press any key.  If you do not see this and instead see a `Shell>` prompt, you should click in and type `exit` then hit Enter. This will cause it to reboot, and then you can press a key to trigger booting to the ISO.
 
 It may take a few minutes for the ISO to load properly but you should eventually see the Windows Setup window. Specify the Language/Time Formats and the Keyboard format, then click Next to continue. Click "Install Now" and wait for Setup to start.
 
@@ -245,9 +247,11 @@ Now that we have Windows installed on our Virtual Machine and we are at the desk
 
 Once that is completed, you should navigate back to the list of drives and open up the CD Drive with the `one-context-*` label. In here should be an MSI, which you should run.  It will install very quickly since our context packages are quite small.
 
-Once this is done you should be able to shut down the virtual machine either from the SPICE viewer or from OpenNebula's Power Off command.  Once it is read as being in POWEROFF state, you can clean up everything. In the storage tab, make sure you disconnect the Windows Installation ISO, the VirtIO Windows ISO, and the Context-Windows ISO.
+You should also enable Remote Desktop at this point.  Just open the Settings and navigate to System -> Remote Desktop Settings and enable Remote Desktop.  If you want to use the browser based RDP rather than an RDP client then you'll also need to expand this option and uncheck the box "Require devices to use Network Level Authentication to connect".
 
-Finally, boot the virtual machine up again and verify the network configuration. It should match the assigned configuration in OpenNebula since we installed the context packages. At this point you should be able to move forward with updating the operating system with all the latest updates, then utilizing your system.
+Once this is done you should be able to shut down the virtual machine either from the VNC viewer or from OpenNebula's Power Off command.  Once it is read as being in POWEROFF state, you can clean up everything. In the storage tab, make sure you disconnect the Windows Installation ISO, the VirtIO Windows ISO, and the Context-Windows ISO leaving behind the 
+
+Finally, boot the virtual machine up again and verify the network configuration. It should match the assigned configuration in OpenNebula since we installed the context packages. If RDP was enabled you should be able to connect to it as well. At this point you should be able to move forward with updating the operating system with all the latest updates, then utilizing your system.
 
 At this point you can make any internal changes to the operating system necessary including updating it and disabling services or features to increase performance.  There are probably some programs which can be uninstalled as well which are not necessary for most use cases.  Once the Operating System is how you would like it to be you can shut down the virtual machine from inside.  Once OpenNebula monitors the VM as being powered off, you can :ref:`Save the Virtual Machine Instance <vm_guide2_clone_vm>` ( do not mark the saved one as persistent ) and then you should be able to instantiate this new saved Template to deploy multiple Windows machines.
 
