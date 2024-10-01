@@ -695,6 +695,7 @@ udev
 uid
 umask
 un
+uncheck
 uncomment
 uncommented
 uncommenting

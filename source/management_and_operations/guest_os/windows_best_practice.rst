@@ -24,7 +24,7 @@ In order to begin installing Windows we will need to create a template which wil
   :width: 90%
   :align: center
 - Download the `VirtIO Drivers ISO from the virtio-win github page <https://github.com/virtio-win/virtio-win-pkg-scripts/blob/master/README.md>`_ and add it to OpenNebula as a CDROM type.
-  If you require WHQL-signed VirtIO drivers, then you may need to obtain those thrugh a paid RHEL License as noted in that README.
+  If you require WHQL-signed VirtIO drivers, then you may need to obtain those through a paid RHEL License as noted in that README.
 - Download the latest `OpenNebula Contextualization ISO <https://github.com/OpenNebula/one-apps/releases>`__ and add it to OpenNebula as a CDROM type.
 
 Once all of these images have been prepared we can start creating the template. Under **Templates --> VMs** click the **+** button at the top, then select **Create**.  In here we need to add all of these images and define the VM configuration, we'll go through each necessary section here:
