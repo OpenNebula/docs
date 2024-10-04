@@ -260,7 +260,7 @@ Due to the elements with TYPE equal to APP, BLOG tab has title Blog and MYSQL ta
 
 |sunstone_user_inputs_metadata_1|
 
-Due to the elements with TYPE equal to GROUP, CONFIG group has title Configuration and ADDITIONAL group has title Additional parameters (TTILE attribute). Also, due to these elements Sunstone shows a tooltip in both groups (DESCRIPTION attribute):
+Due to the elements with TYPE equal to GROUP, CONFIG group has title Configuration and ADDITIONAL group has title Additional parameters (TTILE attribute). Also, due to these elements Sunstone shows a info text in both groups (DESCRIPTION attribute):
 
 |sunstone_user_inputs_metadata_2|
 

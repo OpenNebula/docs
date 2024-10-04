@@ -1301,7 +1301,7 @@ In Sunstone, the ``USER_INPUTS`` can be ordered with the mouse.
 
 .. _template_user_inputs_metadata:
 
-``USER_INPUTS_METADATA`` provides the template creator with the possibility to add titles and descriptions to the user inputs. To understand how Sunston renders user inputs metadata, :ref:`see User Inputs in Sunstone <vm_guide_user_inputs_sunstone>`.
+``USER_INPUTS_METADATA`` provides the template creator with the possibility to add titles and descriptions to the user inputs. To understand how Sunstone renders user inputs metadata, :ref:`see User Inputs in Sunstone <vm_guide_user_inputs_sunstone>`.
 
 .. note:: ``USER_INPUTS_METADATA`` only will be used in Sunstone, not in others components of OpenNebula.
 
@@ -1314,7 +1314,7 @@ In Sunstone, the ``USER_INPUTS`` can be ordered with the mouse.
 +-----------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``TITLE``       | No        | In the case of ``APP`` is the text that will be showed to the user in a Sunstone tab. In the case of ``GROUP`` is the text that will be showed to the user in a Sunstone group.  |
 +-----------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DESCRIPTION`` | No        | In the case of ``APP`` is a text info note that will be showed in the APP tab. In the case of ``GROUP`` is the text that will be showed as tooltip in the Sunstone group.        |
+| ``DESCRIPTION`` | No        | In the case of ``APP`` is a text info note that will be showed in the APP tab. In the case of ``GROUP`` is the text that will be showed as info text in the Sunstone group.      |
 +-----------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Example:
