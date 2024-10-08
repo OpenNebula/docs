@@ -22,10 +22,15 @@ OpenNebula supports two backup types:
 - **Full**, each backup contains a full copy of the VM disks. Libvirt version >= 5.5 is required.
 - **Incremental**, each backup contains only the changes since the last backup. Incremental backups track changes by creating checkpoints (disk block dirty-bitmaps) using QEMU/Libvirt. Libvirt version >= 7.7 is required.
 
-Incremental backups can use two different modes:
+Incremental backups of **qcow2** disks can use two different modes via the ``INCREMENT_MODE`` user setting:
 
 - **CBT** (Changed Block Tracking). For each increment OpenNebula creates a block bitmap in the disk image to track which blocks have changed since the last backup.
 - **SNAPSHOT**. OpenNebula tracks changes by creating a separate disk snapshot. This snapshot stores all disk changes since the last backup.
+
+Also, for **RBD** disks (Ceph), FULL and INCREMENT backups are currently stored in a different way, although the difference should be transparent to the user:
+
+- **Full** backups (``FORMAT=raw``) store the RBD export converted to a qcow2 file. The restore process involves converting it to a RAW file and importing it to the Ceph pool.
+- **Incremental** backups (``FORMAT=rbd``) store the initial RBD export, as well as zero or more increment files, in the native format of Ceph exports (`rbd export --export-format 2` / `rbd export-diff`). The restore process involves importing the initial export and applying the diff files in the same order, one by one.
 
 The Backup Process
 --------------------------------------------------------------------------------
@@ -35,11 +40,11 @@ VM backups can be taken live or while the VM is powered-off, the operation compr
 - *Backup*: Full disk copies (or increments) are uploaded to the backup server. In this step, OpenNebula will use the specific datastore drivers for the backup system.
 - *Post-backup*: Cleans any temporal file in the hypervisor.
 
-.. note:: In order to save space in the backup system, disk backups are stored always in Qcow2 format.
+.. note:: In order to save space in the backup system, RAW disk backups are converted and stored always in Qcow2 format.
 
 Limitations
 ============
-- Incremental backups are only available for KVM and qcow2 disks
+- Incremental backups are only available for KVM and qcow2/RBD disks
 - Live backups are only supported for KVM
 - Attaching a disk to a VM that had an incremental backup previously made will yield an error. The `--reset` option for the backup operation is required to recreate a new incremental chain
 - Incremental backups on VMs with disk or system snapshots is not supported
