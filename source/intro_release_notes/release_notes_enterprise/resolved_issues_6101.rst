@@ -27,6 +27,6 @@ The following issues has been solved in 6.10.1:
 - `Fix inconsistent CPU pinning after VM cold migration <https://github.com/OpenNebula/one/issues/6596>`__.
 - `Fix User inputs doesn't propagate value to context attribute of vm using Sunstone <https://github.com/OpenNebula/one/issues/6725>`__.
 - `Fix VM disk selection when restoring backups <https://github.com/OpenNebula/one/issues/6739>`__.
-- `Fix Improvements in card style and functionality <https://github.com/OpenNebula/one/issues/6718>`__.
+- `Fix Sunstone card view for large installations adding a new row mode style <https://github.com/OpenNebula/one/issues/6718>`__.
 - `Fix Sunstone datastore limit parsing <https://github.com/OpenNebula/one/issues/6746>`__.
-- `Fix Reset backup failed after restore individual disk on the VM <https://github.com/OpenNebula/one/issues/6741>`__.
+- `Fix reset backup failed after restore individual disk on the VM <https://github.com/OpenNebula/one/issues/6741>`__.
