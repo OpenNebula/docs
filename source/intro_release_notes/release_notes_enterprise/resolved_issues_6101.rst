@@ -10,6 +10,7 @@ The following new features have been backported to 6.10.1:
 - Backup datastore capacity is checked before attempting to create a backup. This test can be disable with the ``DATASTORE_CAPACITY_CHECK`` attribute, either globally or per datastore.
 - Add a "disk-snapshot-list" option to :ref:`onevm cli <cli>`.
 - `Optimize handling of VM history records, it greatly improves perfomance of all VM operations for VMs with many history records <https://github.com/OpenNebula/one/issues/2111>`__.
+- `Add support for incremental backups in Ceph <https://github.com/OpenNebula/one/issues/6411>`__.
 
 The following issues has been solved in 6.10.1:
 
@@ -26,5 +27,6 @@ The following issues has been solved in 6.10.1:
 - `Fix inconsistent CPU pinning after VM cold migration <https://github.com/OpenNebula/one/issues/6596>`__.
 - `Fix User inputs doesn't propagate value to context attribute of vm using Sunstone <https://github.com/OpenNebula/one/issues/6725>`__.
 - `Fix VM disk selection when restoring backups <https://github.com/OpenNebula/one/issues/6739>`__.
-- `Fix Improvements in card style and functionality <https://github.com/OpenNebula/one/issues/6718>`__.
+- `Fix Sunstone card view for large installations adding a new row mode style <https://github.com/OpenNebula/one/issues/6718>`__.
 - `Fix Sunstone datastore limit parsing <https://github.com/OpenNebula/one/issues/6746>`__.
+- `Fix reset backup failed after restore individual disk on the VM <https://github.com/OpenNebula/one/issues/6741>`__.
