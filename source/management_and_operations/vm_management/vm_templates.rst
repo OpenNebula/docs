@@ -162,6 +162,109 @@ The User Inputs functionality provides the VM Template creator the possibility t
 
 :ref:`See User Inputs Section in the VM Template reference <template_user_inputs>`.
 
+.. _vm_guide_user_inputs_sunstone:
+
+User Inputs in Sunstone
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When a virtual machine template is instantiated using Sunstone, the user will be asked to fill the user inputs that are defined in the virtual machine template. So, using the following user inputs:
+
+.. code-block:: none
+
+    USER_INPUTS = [
+      BLOG_TITLE="M|text|Blog Title",
+      BLOG_DESCRIPTION="O|text|Blog Description",
+      MYSQL_ENDPOINT="M|text|MySQL Endpoint",
+      MYSQL_USER="O|password|MySQL User",
+      MYSQL_PASSWORD="O|password|MySQL Password",
+      MYSQL_ADDITIONAL="O|boolean|Define additional parameters",
+      MYSQL_SOCKET="O|text|MySQL Socket",
+      MYSQL_CHARSET="O|text|MySQL Charset",
+    ]
+
+The result will be a step with all the user inputs that are defined in the template:
+
+|sunstone_user_inputs_no_convention|
+
+In order to improve the user experience, Sunstone can render this user inputs in a different way, easy to understand to the Sunstone user. To do that, Sunstone uses rules based on the name of the user inputs. That rules are:
+
+.. _sunstone_layout_rules:
+
+- User input name has to meet the following convention ``ONEAPP_<APP>_<GROUP>_<FIELD>`` where all the user inputs that meet this convention will be grouped by APP and GROUP. An APP will be render as a tab in Sunstone and a GROUP will group the user inputs that belong to this group.
+- If ``FIELD`` is the word ``ENABLED`` and the user input type is boolean, all the user inputs that has the same APP and GROUP will be hidden until the ENABLED user input is turn on.
+- If a user input not meet the convention, will be placed in a tab called Others.
+- If all the user inputs do not meet the convention name, no tabs will be rendered (as the previous example).
+
+So, if the previous template is modified as follows:
+
+.. code-block:: none
+
+    USER_INPUTS = [
+      ONEAPP_BLOG_CONF_TITLE="M|text|Blog Title",
+      ONEAPP_BLOG_CONF_DESCRIPTION="O|text|Blog Description",
+      ONEAPP_MYSQL_CONFIG_ENDPOINT="M|text|MySQL Endpoint",
+      ONEAPP_MYSQL_CONFIG_USER="O|password|MySQL User",
+      ONEAPP_MYSQL_CONFIG_PASSWORD="O|password|MySQL Password",
+      ONEAPP_MYSQL_ADDITIONAL_ENABLED="O|boolean|Define additional parameters",
+      ONEAPP_MYSQL_ADDITIONAL_SOCKET="O|text|MySQL Socket",
+      ONEAPP_MYSQL_ADDITIONAL_CHARSET="O|text|MySQL Charset",
+    ]
+
+The user inputs will be grouped in a tab called BLOG with a group called CONF:
+
+|sunstone_user_inputs_convention_blog|
+
+Also, there will be a tab called MYSQL with two groups, CONFIG and ADDITIONAL:
+
+|sunstone_user_inputs_convention_mysql_1|
+
+To see the user inputs in the ADDITONAL group, the user must turn on the Define additional parameters user input:
+
+|sunstone_user_inputs_convention_mysql_2|
+
+
+Additional data for User Inputs in Sunstone
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In order to help the Sunstone user, the virtual machine templates can be extended with an attribute called USER_INPUTS_METADATA that will be adding some info to the APPS and GROUPS.
+
+:ref:`See User Inputs Section Metadata in the VM Template reference <template_user_inputs_metadata>`.
+
+.. note:: The attribute ``USER_INPUTS_METADATA`` only will be used in Sunstone, not in others components of OpenNebula.
+
+So, if we use the previous template and add the following information:
+
+.. code::
+
+  USER_INPUTS_METADATA=[
+    DESCRIPTION="This tab includes all the information about the blog section in this template.",
+    NAME="BLOG",
+    TITLE="Blog",
+    TYPE="APP" ]
+  USER_INPUTS_METADATA=[
+    NAME="MYSQL",
+    TITLE="MySQL",
+    TYPE="APP" ]
+  USER_INPUTS_METADATA=[
+    DESCRIPTION="MySQL configuration parameters",
+    NAME="CONFIG",
+    TITLE="Configuration",
+    TYPE="GROUP" ]
+  USER_INPUTS_METADATA=[
+    DESCRIPTION="Additional MySQL parameters",
+    NAME="ADDITIONAL",
+    TITLE="Additional parameters",
+    TYPE="GROUP" ]
+
+Due to the elements with TYPE equal to APP, BLOG tab has title Blog and MYSQL tab has title MySQL (TITLE attribute). Also, due to these elements, we have an info note in the Blog tab (DESCRIPTION attribute):
+
+|sunstone_user_inputs_metadata_1|
+
+Due to the elements with TYPE equal to GROUP, CONFIG group has title Configuration and ADDITIONAL group has title Additional parameters (TTILE attribute). Also, due to these elements Sunstone shows a info text in both groups (DESCRIPTION attribute):
+
+|sunstone_user_inputs_metadata_2|
+
+
 .. _sched_actions_templ:
 
 Schedule Actions
@@ -459,3 +562,9 @@ Sunstone exposes the above functionality in the Templates > VM Templates tab:
 
 .. |sunstone_template_share| image:: /images/sunstone_template_share.png
 .. |sunstone_template_create| image:: /images/sunstone_template_create.png
+.. |sunstone_user_inputs_no_convention| image:: /images/sunstone_user_inputs_no_convention.png
+.. |sunstone_user_inputs_convention_blog| image:: /images/sunstone_user_inputs_convention_blog.png
+.. |sunstone_user_inputs_convention_mysql_1| image:: /images/sunstone_user_inputs_convention_mysql_1.png
+.. |sunstone_user_inputs_convention_mysql_2| image:: /images/sunstone_user_inputs_convention_mysql_2.png
+.. |sunstone_user_inputs_metadata_1| image:: /images/sunstone_user_inputs_metadata_1.png
+.. |sunstone_user_inputs_metadata_2| image:: /images/sunstone_user_inputs_metadata_2.png

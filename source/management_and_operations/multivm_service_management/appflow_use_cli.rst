@@ -338,6 +338,80 @@ From Sunstone, you can add User Inputs as fields during the creation of the OneF
 
 .. note:: Currently, Custom Attributes are not supported in Sunstone. In order to add custom attributes, you need to use the CLI.
 
+.. _oneflow-sunstone-userinputs:
+
+**Render user inputs in Sunstone**
+
+When a service template is instantiated using Sunstone, the user will be asked to fill the user inputs that the service template has defined. So, using the following user inputs:
+
+.. code:: 
+
+  "custom_attrs": {
+    "APACHE_USER": "O|text|Apache user||",
+    "APACHE_ENDPOINT": "O|text|Apache endpoint||"
+  },
+
+A step called Service Inputs will render the user inputs for the service:
+
+|sunstone_oneflow_serviceinputs_noconvention|
+
+In order to improve the user experience, Sunstone can render this user inputs in a different way, easy to understand to the Sunstone user. To do that, Sunstone uses rules based on the name of the user inputs. :ref:`That rules are the same as the ones used in virtual machines templates <sunstone_layout_rules>`.
+
+So, if the previous template is modified as follows:
+
+.. code:: 
+
+  "custom_attrs": {
+    "ONEAPP_APACHE_CONFIG_USER": "O|text|Apache user||",
+    "ONEAPP_APACHE_CONFIG_ENDPOINT": "O|text|Apache endpoint||"
+  },
+
+The user inputs will be grouped in a tab called APACHE with a group called CONFIG:
+
+|sunstone_oneflow_serviceinputs_convention|
+
+If the service has a role with a virtual machine template that has user inputs that do not exist on the service template, these user inputs that belong to the virtual machine template will be rendered in a different step called Roles Inputs.
+
+So, if the service template references to the :ref:`virtual machine template defined in <vm_guide_user_inputs_sunstone>` Sunstone will look like:
+
+|sunstone_oneflow_serviceinputs_noconvention_template|
+
+Where all the user inputs that belong to the virtual machine template and are not in the service template are grouped in a tab with the name of the role.
+
+**Additional data to render user inputs in Sunstone**
+
+In order to help the Sunstone user, the service templates can be extended with an attribute called ``custom_attrs_metadata`` that will be adding some info to the APPS and GROUPS.
+
+.. note:: The attribute ``custom_attrs_metadata`` only will be used in Sunstone, not in others components of OpenNebula.
+
+So, if we use the previous template and add the following information:
+
+.. code:: 
+
+  "custom_attrs_metadata": [
+    {
+      "type": "APP",
+      "name": "APACHE",
+      "title": "Apache",
+      "description": "Description of the Apache section."
+    },
+    {
+      "type": "GROUP",
+      "name": "CONFIG",
+      "title": "Configuration",
+      "description": "Description of the Configuration section."
+    }
+  ],  
+  "logo": "data:image/png;base64,<BASE64_IMAGE>"
+
+Where BASE64_IMAGE is an image in base64 format, Sunstone will render the following:
+
+|sunstone_oneflow_serviceinputs_layout|
+
+Using logo attribute we can add a logo to the service template in base64. Also, adding info objects with metadata (:ref:`please, see user inputs metadata <template_user_inputs_metadata>` to get info about the object structure).
+
+.. note:: Remember that any user input that doesn't meet convention name will be place on the Others tab or Others group. If all user inputs don't meet convention name, no tabs or groups will be rendered.
+
 .. _service_clone:
 
 Clone a Service Template
@@ -837,3 +911,7 @@ For more information on the resource representation, please check the :ref:`API 
 .. |oneflow-network-mapping-router_context_config| image:: /images/oneflow-network-map-router_context_config.png
 .. |oneflow-network-mapping-service_template_nw_config| image:: /images/oneflow-network-map-service_template_nw_config.png
 .. |oneflow-network-mapping-service_template_role_router| image:: /images/oneflow-network-map-service_template_role_router.png
+.. |sunstone_oneflow_serviceinputs_noconvention| image:: /images/sunstone_oneflow_serviceinputs_noconvention.png
+.. |sunstone_oneflow_serviceinputs_noconvention_template| image:: /images/sunstone_oneflow_serviceinputs_noconvention_template.png
+.. |sunstone_oneflow_serviceinputs_convention| image:: /images/sunstone_oneflow_serviceinputs_convention.png
+.. |sunstone_oneflow_serviceinputs_layout| image:: /images/sunstone_oneflow_serviceinputs_layout.png
