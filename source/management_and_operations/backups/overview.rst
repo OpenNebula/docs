@@ -26,28 +26,30 @@ Hypervisor & Storage Compatibility
 
 Performing a VM backup may require some support from the hypervisor or the disk image formats. The following table summarizes the backup modes supported for each hypervisor and storage system.
 
-+------------+------------------------+------+-----------+------+-----------+
-| Hypervisor | Storage                | Full             | Incremental      |
-+            +                        +------+-----------+------+-----------+
-|            |                        | Live | Power off | Live | Power off |
-+============+========================+======+===========+======+===========+
-|  KVM       | File\ :sup:`*` (qcow2) | Yes  | Yes       |  Yes |   Yes     |
-+            +------------------------+------+-----------+------+-----------+
-|            | File\ :sup:`*` (raw)   | Yes  | Yes       |  No  |   No      |
-+            +------------------------+------+-----------+------+-----------+
-|            | Ceph                   | Yes  | Yes       |  No  |   No      |
-+            +------------------------+------+-----------+------+-----------+
-|            | LVM                    | Not supported                       |
-+------------+------------------------+------+-----------+------+-----------+
-|  LXC       | File (any format)      | No   | Yes       |  No  |   No      |
-|            +------------------------+------+-----------+------+-----------+
-|            | Ceph                   | No   | Yes       |  No  |   No      |
-|            +------------------------+------+-----------+------+-----------+
-|            | LVM                    | Not supported                       |
-+------------+------------------------+------+-----------+------+-----------+
-|  vCenter   | vCenter\ :sup:`**`     | Not supported                       |
-+------------+------------------------+------+-----------+------+-----------+
++------------+------------------------+---------+-----------+---------+-----------+
+| Hypervisor | Storage                | Full                | Incremental         |
++            +                        +---------+-----------+---------+-----------+
+|            |                        | Live    | Power off | Live    | Power off |
++============+========================+=========+===========+=========+===========+
+|  KVM       | File\ :sup:`*` (qcow2) | Yes     | Yes       |  Yes    |   Yes     |
++            +------------------------+---------+-----------+---------+-----------+
+|            | File\ :sup:`*` (raw)   | Yes     | Yes       |  No     |   No      |
++            +------------------------+---------+-----------+---------+-----------+
+|            | Ceph                   | Yes`†`  | Yes`†`    |  Yes`†` |   Yes`†`  |
++            +------------------------+---------+-----------+---------+-----------+
+|            | LVM                    | Not supported                             |
++------------+------------------------+---------+-----------+---------+-----------+
+|  LXC       | File (any format)      | No      | Yes       |  No     |   No      |
+|            +------------------------+---------+-----------+---------+-----------+
+|            | Ceph                   | No      | Yes       |  No     |   No      |
+|            +------------------------+---------+-----------+---------+-----------+
+|            | LVM                    | Not supported                             |
++------------+------------------------+---------+-----------+---------+-----------+
+|  vCenter   | vCenter\ :sup:`**`     | Not supported                             |
++------------+------------------------+---------+-----------+---------+-----------+
 
 \ :sup:`*` Any datastore based on files with the given format, i.e. NFS/SAN or SSH.
 
 \ :sup:`**` The legacy vCenter driver is included in the distribution, but no longer receives updates or bug fixes.
+
+\ :sup:`†` Ceph full/incremental backups are currently stored in a different way, see :ref:`backup types <vm_backups_operations>` for more details.
