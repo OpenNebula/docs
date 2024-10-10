@@ -677,7 +677,7 @@ Datastore Backup STDIN Example
         <GID>0</GID>
         <UNAME>oneadmin</UNAME>
         <GNAME>oneadmin</GNAME>
-        <NAME>gr_rsync</NAME>
+        <NAME>rsync</NAME>
         <PERMISSIONS>
           <OWNER_U>1</OWNER_U>
           <OWNER_M>1</OWNER_M>
@@ -744,7 +744,7 @@ Datastore Backup STDIN Example
         <TEMPLATE>
           <AUTOMATIC_DS_REQUIREMENTS>("CLUSTERS/ID" @> 0)</AUTOMATIC_DS_REQUIREMENTS>
           <AUTOMATIC_NIC_REQUIREMENTS>("CLUSTERS/ID" @> 0)</AUTOMATIC_NIC_REQUIREMENTS>
-          <AUTOMATIC_REQUIREMENTS>(CLUSTER_ID = 0) & !(PUBLIC_CLOUD = YES) & !(PIN_POLICY = PINNED)</AUTOMATIC_REQUIREMENTS>
+          <AUTOMATIC_REQUIREMENTS>(CLUSTER_ID = 0)</AUTOMATIC_REQUIREMENTS>
           <CONTEXT>
             <DISK_ID>1</DISK_ID>
             <ETH0_DNS/>
