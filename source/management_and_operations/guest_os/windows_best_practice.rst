@@ -20,9 +20,11 @@ In order to begin installing Windows we will need to create a template which wil
 - Download the Windows ISO of your choice from Microsoft.  Add this as a CDROM type image in OpenNebula
 - :ref:`Create a persistent empty image <creating_images>` which will be the target disk for Windows to be installed on. Different versions of Windows require different minimum disk space.
   Under Advanced Options set BUS to Virtio, and setting the format to RAW will also increase disk performance but QCOW2 is sparse and saves disk space.
+
 .. image:: /images/windows_bp_create_image.png
   :width: 90%
   :align: center
+
 - Download the `VirtIO Drivers ISO from the virtio-win github page <https://github.com/virtio-win/virtio-win-pkg-scripts/blob/master/README.md>`_ and add it to OpenNebula as a CDROM type.
   If you require WHQL-signed VirtIO drivers, then you may need to obtain those through a paid RHEL License as noted in that README.
 - Download the latest `OpenNebula Contextualization ISO <https://github.com/OpenNebula/one-apps/releases>`__ and add it to OpenNebula as a CDROM type.
@@ -32,7 +34,7 @@ Once all of these images have been prepared we can start creating the template. 
 General
 -------
 
-Fill out the name and resources you wish you allocate to this virtual machine. Ensure there is enough memory for the version of Windows you are installing. 
+Fill out the name and resources you wish you allocate to this virtual machine. Ensure there is enough memory for the version of Windows you are installing.
 
 You may also set :ref:`Memory Resize Mode <kvm_live_resize>` to Ballooning here to allow you to change the memory usage. If you do enable this you'll also want to Enable Hot Resize and set the Max memory value.  Inside of the Windows VM, the hardware will read as having `MAX_MEMORY` amount of RAM however when you resize the memory, the QEMU Guest Agent will expand a "balloon" to effectively remove that memory from the Windows VM and free it up on the host. Later, the memory can be increased up to but not exceeding `MAX_MEMORY`.
 
@@ -97,7 +99,7 @@ On each host, you should backup the original firmware files in case you need to 
 After that you should copy the new files into their places:
 
 .. code::
-    
+
     cd /path/to/download/RPM/extracted/usr/share/
     cp -r edk2 qemu OVMF /usr/share/.
 
@@ -142,7 +144,7 @@ If you are using non-networking PCI Passthrough devices, this is the place to ad
 Tags
 ~~~~
 
-Here we can add some RAW data that can be useful depending on your use case.  
+Here we can add some RAW data that can be useful depending on your use case.
 
 
 TPM Device
@@ -162,12 +164,12 @@ If you have a physical TPM device on your host, you can pass through the TPM to 
         </tpm>
     </devices>
 
-If you do not have a physical TPM device on your host you can emulate one.  There are two options for the model, `tpm-tis` is the default and will work with both TPM 1.2 and 2.0  while `tpm-crb` will only work when the TPM version is 2.0.  
+If you do not have a physical TPM device on your host you can emulate one.  There are two options for the model, `tpm-tis` is the default and will work with both TPM 1.2 and 2.0  while `tpm-crb` will only work when the TPM version is 2.0.
 
 .. note:: If using an emulated TPM device, ensure you have installed swtpm and swtpm-tools packages on all hypervisors.
 
 .. code::
-    
+
     <devices>
         <tpm model='tpm-crb'>
             <backend type='emulator' version='2.0'/>
@@ -175,7 +177,7 @@ If you do not have a physical TPM device on your host you can emulate one.  Ther
     </devices>
 
 .. code::
-    
+
     <devices>
         <tpm model='tpm-tis'>
             <backend type='emulator'/>
@@ -190,7 +192,7 @@ Above 4G Encoding
 If you have a GPU which has more than 4GB of memory, you may be unable to address all of the memory without changing a BIOS setting to allow this encoding.  Include the following XML if you wish to utilize all the memory of the GPU:
 
 .. code::
-    
+
     <qemu:commandline>
         <qemu:arg value='-fw_cfg'/>
         <qemu:arg value='opt/ovmf/X-PciMmio64Mb,string=65536'/>
@@ -200,7 +202,7 @@ If you have a GPU which has more than 4GB of memory, you may be unable to addres
 NUMA
 ~~~~
 
-By default, libvirt/QEMU will allocate 1 core to 1 socket, so 8 CPUs will be seen by the system as 8 sockets each with 1 core. This is fine for most operating systems however Windows has restrictions on sockets so we need to define NUMA topology.  
+By default, libvirt/QEMU will allocate 1 core to 1 socket, so 8 CPUs will be seen by the system as 8 sockets each with 1 core. This is fine for most operating systems however Windows has restrictions on sockets so we need to define NUMA topology.
 
 For best performance, the Pin Policy should be set to `core` however any of the policies will allow Windows to see all allocated CPUs.  Define sockets as 1 and Threads as 1, but define Cores and Virtual CPU Select to the same value as the CPU defined in the General tab.
 
@@ -229,14 +231,14 @@ In order to do this, click `Load Driver` then `Browse...`.  In here, scroll down
     :width: 65%
     :align: center
 
-Windows will now begin installing.  This will take some time depending on the hardware, but once it is completed and has rebooted you should be prompted to begin the setup. Proceed as normal here until it prompts for network access.  Select the option `I don't have internet` and then `Continue with limited setup`.  
+Windows will now begin installing.  This will take some time depending on the hardware, but once it is completed and has rebooted you should be prompted to begin the setup. Proceed as normal here until it prompts for network access.  Select the option `I don't have internet` and then `Continue with limited setup`.
 
 .. note:: For Windows 11 this may not be an option depending on how old the image is. If you are unable to bypass the network requirement part of Windows 11, press `Shift + F10` to open a Command Prompt in the Virtual Machine.  Then type `oobe/BypassNRO` and hit enter. This will reboot the machine and allow you to bypass the network requirements.
 
 .. image:: /images/windows_bp_bypassnro.png
     :width: 65%
     :align: center
-    
+
 You should have to create a local account here at this point, so continue through that setup.  We recommend disabling all telemetry and diagnostic options and ad identification which may impact performance. Same with Cortana, this can be skipped or disabled later on. Windows should continue setting up now. Once completed you should be at the Windows Desktop
 
 
@@ -249,7 +251,7 @@ Once that is completed, you should navigate back to the list of drives and open 
 
 You should also enable Remote Desktop at this point.  Just open the Settings and navigate to System -> Remote Desktop Settings and enable Remote Desktop.  If you want to use the browser based RDP rather than an RDP client then you'll also need to expand this option and uncheck the box "Require devices to use Network Level Authentication to connect".
 
-Once this is done you should be able to shut down the virtual machine either from the VNC viewer or from OpenNebula's Power Off command.  Once it is read as being in POWEROFF state, you can clean up everything. In the storage tab, make sure you disconnect the Windows Installation ISO, the VirtIO Windows ISO, and the Context-Windows ISO leaving behind the 
+Once this is done you should be able to shut down the virtual machine either from the VNC viewer or from OpenNebula's Power Off command.  Once it is read as being in POWEROFF state, you can clean up everything. In the storage tab, make sure you disconnect the Windows Installation ISO, the VirtIO Windows ISO, and the Context-Windows ISO leaving behind the
 
 Finally, boot the virtual machine up again and verify the network configuration. It should match the assigned configuration in OpenNebula since we installed the context packages. If RDP was enabled you should be able to connect to it as well. At this point you should be able to move forward with updating the operating system with all the latest updates, then utilizing your system.
 
