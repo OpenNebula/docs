@@ -20,9 +20,11 @@ In order to begin installing Windows we will need to create a template which wil
 - Download the Windows ISO of your choice from Microsoft.  Add this as a CDROM type image in OpenNebula
 - :ref:`Create a persistent empty image <creating_images>` which will be the target disk for Windows to be installed on. Different versions of Windows require different minimum disk space.
   Under Advanced Options set BUS to Virtio, and setting the format to RAW will also increase disk performance but QCOW2 is sparse and saves disk space.
+
 .. image:: /images/windows_bp_create_image.png
   :width: 90%
   :align: center
+
 - Download the `VirtIO Drivers ISO from the virtio-win github page <https://github.com/virtio-win/virtio-win-pkg-scripts/blob/master/README.md>`_ and add it to OpenNebula as a CDROM type.
   If you require WHQL-signed VirtIO drivers, then you may need to obtain those through a paid RHEL License as noted in that README.
 - Download the latest `OpenNebula Contextualization ISO <https://github.com/OpenNebula/one-apps/releases>`__ and add it to OpenNebula as a CDROM type.
