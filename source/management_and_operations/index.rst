@@ -21,5 +21,6 @@ The Management and Operations Guide provides complete information about how to o
    Multi-VM Service <multivm_service_management/index>
    Users and Groups <users_groups_management/index>
    Capacity Planning <capacity_planning/index>
-   Monitoring and Alerting (EE) <monitor_alert/index>
+   Monitoring and Alerting <monitor_alert/index>
+   Guest Operating Systems <guest_os/index>
    References <references/index>
