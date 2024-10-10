@@ -9,5 +9,3 @@ References
    Image Template <img_template>
    Virtual Network Template <vnet_template>
    Command Line Interface <cli>
-   Guest OS Installation <creating_images>
-   Contextualization <kvm_contextualization>
