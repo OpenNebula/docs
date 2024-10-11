@@ -72,7 +72,7 @@ Windows
 Download the MSI package into ``C:\``:
 
 
-* https://github.com/OpenNebula/one-apps/releases/download/v6.8.1/one-context-6.8.1.msi
+* https://github.com/OpenNebula/one-apps/releases/download/v|context_release|/one-context-|context_release|.msi
 
 
 Or execute this command in powershell:
