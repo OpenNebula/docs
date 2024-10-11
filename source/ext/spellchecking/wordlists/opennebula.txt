@@ -416,6 +416,7 @@ kb
 keepalived
 keymap
 keyring
+keyrings
 keytab
 kubeconfig
 kubernetes
