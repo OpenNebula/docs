@@ -92,9 +92,9 @@ Mountpoints
 Multicast
 Multicluster
 Multus
+NSX
 Netplan
 Nokogiri
-NSX
 Numa
 NVMe
 Onecfg
@@ -416,6 +416,7 @@ kb
 keepalived
 keymap
 keyring
+keyrings
 keytab
 kubeconfig
 kubernetes

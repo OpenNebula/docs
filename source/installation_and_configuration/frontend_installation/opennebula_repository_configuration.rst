@@ -80,6 +80,15 @@ Debian/Ubuntu
 
 First, add the repository signing GPG key on the Front-end by executing as user ``root``:
 
+.. note::
+
+    It might be needed to create /etc/apt/keyrings directory in Debian 11 because it does not exist by default:
+
+    .. prompt:: bash # auto
+
+        # mkdir -p /etc/apt/keyrings
+
+
 .. prompt:: bash # auto
 
     # wget -q -O- https://downloads.opennebula.io/repo/repo2.key | gpg --dearmor --yes --output /etc/apt/keyrings/opennebula.gpg
