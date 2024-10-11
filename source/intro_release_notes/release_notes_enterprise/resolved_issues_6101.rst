@@ -30,3 +30,4 @@ The following issues has been solved in 6.10.1:
 - `Fix Sunstone card view for large installations adding a new row mode style <https://github.com/OpenNebula/one/issues/6718>`__.
 - `Fix Sunstone datastore limit parsing <https://github.com/OpenNebula/one/issues/6746>`__.
 - `Fix reset backup failed after restore individual disk on the VM <https://github.com/OpenNebula/one/issues/6741>`__.
+- `Fix reconfiguration process for VMs using context disk of block type <https://github.com/OpenNebula/one/issues/6689>`__.
