@@ -216,7 +216,6 @@ And each scheduled policy is defined as:
           },
           'deployment' => {
               :type => :string,
-              :enum => ['none', 'straight'],
               :default => 'none'
           },
           'description' => {
@@ -225,12 +224,6 @@ And each scheduled policy is defined as:
           },
           'shutdown_action' => {
               :type => :string,
-              :enum => [
-                  'terminate',
-                  'terminate-hard',
-                  'shutdown',
-                  'shutdown-hard'
-              ],
               :required => false
           },
           'roles' => {
@@ -293,9 +286,6 @@ VM Role Schema
         },
         'type' => {
             :type => :string,
-            :enum => [
-                'vm'
-            ],
             :required => true
         },
         'cardinality' => {
@@ -330,12 +320,6 @@ VM Role Schema
         },
         'shutdown_action' => {
             :type => :string,
-            :enum => [
-                'terminate',
-                'terminate-hard',
-                'shutdown',
-                'shutdown-hard'
-            ],
             :required => false
         },
         'min_vms' => {
@@ -364,11 +348,6 @@ VM Role Schema
                 :properties => {
                     'type' => {
                         :type => :string,
-                        :enum => [
-                            'CHANGE',
-                            'CARDINALITY',
-                            'PERCENTAGE_CHANGE'
-                        ],
                         :required => true
                     },
                     'adjust' => {
@@ -409,11 +388,6 @@ VM Role Schema
                 :properties => {
                     'type' => {
                         :type => :string,
-                        :enum => [
-                            'CHANGE',
-                            'CARDINALITY',
-                            'PERCENTAGE_CHANGE'
-                        ],
                         :required => true
                     },
                     'adjust' => {
@@ -453,9 +427,6 @@ VR Role Schema
         },
         'type' => {
             :type => :string,
-            :enum => [
-                'vr'
-            ],
             :required => true
         },
         'template_id' => {

@@ -101,7 +101,7 @@ Defining the Roles of a Service
 
 A Role defines a set of virtual resources that are part of a Service. These resources can either be Virtual Machines (VMs) or Virtual Routers (VRs), depending on the type of Role. Each Role describes attributes like the number of instances (cardinality), the template to be used, and various scaling policies, among others.
 
-Roles are used to orchestrate and manage these resources according to attributed setted in their respectives templates. There are two main types of Roles:
+Roles are used to orchestrate and manage these resources according to attributes set in their respective templates. There are two main types of Roles:
 
 1. **VM Role**: this Role defines a Virtual Machine Role within the Service. It is primarily used to manage a group of Virtual Machines that are part of the Service. This Role includes attributes like ``template_id``, which specifies the VM template to be used, as well as options for scaling and elasticity policies.
 
@@ -166,7 +166,7 @@ Roles are used to orchestrate and manage these resources according to attributed
   | ``parents``             | array     | No         | An array of parent Role names.                                                             |
   +-------------------------+-----------+------------+--------------------------------------------------------------------------------------------+
 
-.. warning:: Keep in mind that Autoscaling and Elasticity options for Virtual Router Roles are not supported, as these operations are not natively supported by Virtual Routers.
+.. warning:: Keep in mind that Auto-scaling and Elasticity options for Virtual Router Roles are not supported, as these operations are not natively supported by Virtual Routers.
 
 Create and List Existing Service Templates
 --------------------------------------------------------------------------------
@@ -250,7 +250,7 @@ You can update the Service Template by specifying the file in the command, as sh
 
     oneflow-template update <ID> <file>
 
-The above exmaple will update the descripton of the Service template and the cardinality of the ``frontend``` role after merging both files.
+The above example will update the description of the Service template and the cardinality of the ``frontend``` role after merging both files.
 
 Updating Service Templates can also be done through Sunstone. Simply select the desired Service Template, making the changes through the graphical interface selecting the ``Update`` button in the toolbar;
 
@@ -755,7 +755,7 @@ It's important to note the existence of some new attributes that has been added 
 | ``log``                 | array     | Contains a log of important events, such as state changes, with a timestamp and severity.                  |
 |                         |           | Example: {"timestamp": 1728498179, "severity": "I", "message": "New state: RUNNING"}.                      |
 +-------------------------+-----------+------------+-----------------------------------------------------------------------------------------------+
-| ``start_time``          | integer   | The Unix timestamp of when the Service was started. Can be used for tracking uptime.                       |
+| ``start_time``          | integer   | The Unix timestamp of when the Service was started. Can be used for tracking up time.                       |
 +-------------------------+-----------+------------+-----------------------------------------------------------------------------------------------+
 
 New attributes have also been added within each role that show information relevant to each type of role.
@@ -864,7 +864,7 @@ Depending on the deployment strategy, OneFlow will wait until all the VMs in a s
 If ``ready_status_gate`` is set to ``true``, a VM will only be considered to be in running state the following points are true:
 
 * VM is in ``RUNNING`` state for OpenNebula. Which specifically means that ``LCM_STATE==3`` and ``STATE>=3``
-* The VM has ``READY=YES`` in the user template. For more information about this scenario, we recomend to take a look to the :ref:`OneGate server <onegate_overview>` guide.
+* The VM has ``READY=YES`` in the user template. For more information about this scenario, we recommend to take a look to the :ref:`OneGate server <onegate_overview>` guide.
 
 If ``ready_status_gate`` is set to ``false``, a VM will be considered to be in running state when it's in running state for OpenNebula (``LCM_STATE==3`` and ``STATE>=3``). Take into account that the VM will be considered ``RUNNING`` the very same moment the hypervisor boots the VM (before it loads the OS).
 
@@ -1260,7 +1260,7 @@ This functionality automatically adds scheduling actions in VM when the service 
 
 .. _service_global:
 
-Accesing Parent's Role attributes from children
+Accessing Parent's Role attributes from children
 --------------------------------------------------------------------------------
 
 You can define attributes that refer to a parent's attribute, for example, the parent can push an attribute trough OneGate and its children can use it on their template.
