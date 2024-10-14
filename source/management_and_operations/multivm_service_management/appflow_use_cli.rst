@@ -413,8 +413,6 @@ To enhance the flexibility of User Inputs in Service templates, they can be conf
 
   .. note:: In case you use User Inputs at both levels, **the User Inputs at the Role level will take precedence** over the User Inputs at the Service level.
 
-## TODO: mostrar aqui output de oneflow preguntando los atributos como ejemplo
-
 From Sunstone, you can add User Inputs as fields during the creation of the OneFlow Service template or updating an already existing one in the following form:
 
 |oneflow-templates-attrs|
@@ -866,7 +864,7 @@ Depending on the deployment strategy, OneFlow will wait until all the VMs in a s
 If ``ready_status_gate`` is set to ``true``, a VM will only be considered to be in running state the following points are true:
 
 * VM is in ``RUNNING`` state for OpenNebula. Which specifically means that ``LCM_STATE==3`` and ``STATE>=3``
-* The VM has ``READY=YES`` in the user template. For more information about this scenario, we recomend to take a look to the OneGate guide. #TODO
+* The VM has ``READY=YES`` in the user template. For more information about this scenario, we recomend to take a look to the :ref:`OneGate server <onegate_overview>` guide.
 
 If ``ready_status_gate`` is set to ``false``, a VM will be considered to be in running state when it's in running state for OpenNebula (``LCM_STATE==3`` and ``STATE>=3``). Take into account that the VM will be considered ``RUNNING`` the very same moment the hypervisor boots the VM (before it loads the OS).
 
@@ -1146,6 +1144,7 @@ You can read more details in the :ref:`OneGate API documentation <onegate_usage>
 
 Network mapping & Floating IPs
 --------------------------------------------------------------------------------
+
 Network mapping in OneFlow is facilitated through the use of Virtual Router Roles, which enable efficient management of network resources and floating IPs within your cloud environment.
 
 |oneflow-network-mapping|
@@ -1157,7 +1156,7 @@ To establish network mapping, you need to define a Service Template that include
 .. code-block:: json
 
     {
-      "roles": []
+      "roles": [
         ...
         {
           "name": "VNF",
@@ -1192,7 +1191,7 @@ Highlighting some elements of the previous template
 - **cardinality**: Indicates the number of Virtual Routers that will be instantiated for this Role. In the case of more than one, we will be creating a router in HA mode automatically.
 - **template_contents**: Contains the configuration for the Network Interfaces. Here, the `NETWORK_ID` is set to `$Public`, denoting the use of a public network, and `FLOATING_IP` is set to "yes," indicating that floating IPs will be allocated automatically by OneFlow.
 
-Additionally, as it's described in the Dynamic Network Configuration section, the **networks_values** attribute provides configuration details for the public network, specifying the Virtual Network template ID and other parameters.
+Additionally, as it's described in the :ref:`Dynamic Network Configuration <_appflow_use_cli_networks>` section, the ``networks_values`` attribute provides configuration details for the public network, specifying the Virtual Network template ID and other parameters.
 
 **Instantiating the Service**
 
@@ -1200,34 +1199,43 @@ When the Service is instantiated, the Virtual Router Role will look like the fol
 
 .. code-block:: json
 
-    {
-      "name": "VR_EXAMPLE",
-      "type": "vr",
-      "template_id": 1,
-      "state": 2,
-      "cardinality": 3,
-      "template_contents": {
-        "NIC": [
-          {
-            "NETWORK_ID": "0",
-            "FLOATING_IP": "yes"
-          }
+  {
+    ...
+    "roles": [
+      ...
+      {
+        "name": "VR_EXAMPLE",
+        "type": "vr",
+        "template_id": 1,
+        "state": 2,
+        "cardinality": 3,
+        "template_contents": {
+          "NIC": [
+            {
+              "NETWORK_ID": "0",
+              "FLOATING_IP": "yes"
+            }
+          ],
+          "NAME": "VR_EXAMPLE(service_5)"
+        },
+        "nodes": [
+          ...
         ],
-        "NAME": "VR_EXAMPLE(service_5)"
-      },
-      "nodes": [
-        ...
-      ],
-      "on_hold": false,
-      "last_vmname": 0,
-      "vrouter_id": 2,
-      "vrouter_ips": [
-        {
-          "NETWORK_ID": 0,
-          "VROUTER_IP": "1.1.1.1"
-        }
-      ]
-    }
+        "on_hold": false,
+        "last_vmname": 0,
+        "vrouter_id": 2,
+        "vrouter_ips": [
+          {
+            "NETWORK_ID": 0,
+            "VROUTER_IP": "1.1.1.1"
+          }
+        ]
+      }
+      ...
+    ]
+    ...
+  }
+    
 
 In this instantiation:
 
@@ -1238,9 +1246,8 @@ In this instantiation:
 
 In many cases, the networks and the IP of the router are dynamically assigned. There are two different methods for other Roles to obtain the Virtual Router’s IP address:
 
-* **Direct Access via Parent Role**: If a Role has a Virtual Router Role as its parent, it can access the attributes of the parent Service directly. This allows for seamless communication without additional configuration.
-
-* **Using OneGate**: If the Role does not inherit from a Virtual Router Role, you can utilize OneGate within the virtual machines of the Roles to retrieve this information. Ensure that the "Add OneGate token" option is checked when configuring the templates used in the Service Template. This enables the VMs to securely access the necessary data from the OneFlow environment.
+* **Direct Access via Parent Role**: If a Role has a Virtual Router Role as its parent, :ref:`it can access the attributes of the parent Role directly <_service_global>`.
+* **Using OneGate**: If the Role does not inherit from a Virtual Router Role, you can utilize the :ref:`OneGate server <onegate_overview>` within the virtual machines of the Roles to retrieve this information. Ensure that the "Add OneGate token" option is checked when configuring the templates used in the Service Template. This enables the VMs to securely access the necessary data from the OneFlow environment.
 
 .. _service_charters:
 
