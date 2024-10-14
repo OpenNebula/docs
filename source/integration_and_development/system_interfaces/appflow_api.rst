@@ -130,7 +130,7 @@ A Service is defined with JSON syntax templates.
 +-----------------------+----------------+-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``on_hold``           | boolean        | **NO**    | If on_hold is set to true, all VMs of the service will be created in ``HOLD`` state.                                                                                                                                                                                                                             |
 +-----------------------+----------------+-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``custom_attrs``      | hash           | **NO**    | Hash of custom attributes to use in the service.                                                                                                                                                                                                                                                                 |
+| ``user_inputs``       | hash           | **NO**    | Hash of custom attributes to use in the service.                                                                                                                                                                                                                                                                 |
 +-----------------------+----------------+-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``networks``          | hash           | **NO**    | Hash of virtual networks to use in the service.                                                                                                                                                                                                                                                                  |
 +-----------------------+----------------+-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -146,7 +146,9 @@ Each Role is defined as:
 +-------------------------+-------------------+---------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``cardinality``         | integer           | **NO**                          | Number of VMs to deploy. Defaults to 1.                                                                                                                                                                            |
 +-------------------------+-------------------+---------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``vm_template``         | integer           | **YES**                         | OpenNebula VM Template ID. See the :ref:`OpenNebula documentation for VM Templates <vm_guide>`.                                                                                                                    |
+| ``template_id``         | integer           | **YES**                         | OpenNebula VM Template ID. See the :ref:`OpenNebula documentation for VM Templates <vm_guide>`.                                                                                                                    |
++-------------------------+-------------------+---------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``type``                | string            | **YES**                         | Defines the role type, ``vm`` for VM role and ``vr`` for VR roles.                                                                                                                                                 |
 +-------------------------+-------------------+---------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``parents``             | array of string   | **NO**                          | Names of the roles that must be deployed before this one.                                                                                                                                                          |
 +-------------------------+-------------------+---------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -208,192 +210,290 @@ And each scheduled policy is defined as:
     {
       :type => :object,
       :properties => {
-        'name' => {
-          :type => :string,
-          :required => true
-        },
-        'deployment' => {
-          :type => :string,
-          :enum => %w{none straight},
-          :default => 'none'
-        },
-        'description' => {
-          :type => :string,
-          :required => false
-        },
-        'shutdown_action' => {
-          :type => :string,
-          :enum => %w{terminate terminate-hard shutdown shutdown-hard},
-          :required => false
-        },
-        'roles' => {
-          :type => :array,
-          :items => ROLE_SCHEMA,
-          :required => true
-        },
-        'custom_attrs' => {
-          :type => :object,
-          :properties => {},
-          :required => false
-        },
-        'custom_attrs_values' => {
-          :type => :object,
-          :properties => {},
-          :required => false
-        },
-        'networks' => {
-          :type => :object,
-          :properties => {},
-          :required => false
-        },
-        'networks_values' => {
-          :type => :array,
-          :items => {
-            :type => :object,
-            :properties => {}},
-          :required => false
-        },
-        'ready_status_gate' => {
-          :type => :boolean,
-          :required => false
-        },
-        'on_hold' => {
-          :type => :boolean,
-          :required => false
-        }
+          'name' => {
+              :type => :string,
+              :required => true
+          },
+          'deployment' => {
+              :type => :string,
+              :enum => ['none', 'straight'],
+              :default => 'none'
+          },
+          'description' => {
+              :type => :string,
+              :default => ''
+          },
+          'shutdown_action' => {
+              :type => :string,
+              :enum => [
+                  'terminate',
+                  'terminate-hard',
+                  'shutdown',
+                  'shutdown-hard'
+              ],
+              :required => false
+          },
+          'roles' => {
+              :type => :array,
+              :items => [],
+              :required => true
+          },
+          'user_inputs' => {
+              :type => :object,
+              :properties => {},
+              :required => false
+          },
+          'user_inputs_values' => {
+              :type => :object,
+              :properties => {},
+              :required => false
+          },
+          'ready_status_gate' => {
+              :type => :boolean,
+              :required => false
+          },
+          'automatic_deletion' => {
+              :type => :boolean,
+              :required => false
+          },
+          'networks' => {
+              :type => :object,
+              :properties => {},
+              :required => false
+          },
+          'networks_values' => {
+              :type => :array,
+              :items => {
+                  :type => :object,
+                  :properties => {}
+              },
+              :required => false
+          },
+          'on_hold' => {
+              :type => :boolean,
+              :required => false
+          }
       }
     }
 
 .. _flow_role_schema:
 
-Role Schema
+VM Role Schema
 --------------------------------------------------------------------------------
 
 .. code::
 
-    {
-      :type => :object,
-      :properties => {
+{
+    :type => :object,
+    :properties => {
         'name' => {
-          :type => :string,
-          :required => true
+            :type => :string,
+            :required => true,
+            :regex => /^\w+$/
+        },
+        'type' => {
+            :type => :string,
+            :enum => [
+                'vm'
+            ],
+            :required => true
         },
         'cardinality' => {
-          :type => :integer,
-          :default => 1,
-          :minimum => 0
+            :type => :integer,
+            :default => 0,
+            :minimum => 0
         },
-        'vm_template' => {
-          :type => :integer,
-          :required => true
+        'template_id' => {
+            :type => :integer,
+            :required => true
         },
-        'vm_template_contents' => {
-          :type => :string,
-          :required => false
+        'template_contents' => {
+            :type => :object,
+            :properties => {},
+            :required => false
+        },
+        'user_inputs' => {
+            :type => :object,
+            :properties => {},
+            :required => false
+        },
+        'user_inputs_values' => {
+            :type => :object,
+            :properties => {},
+            :required => false
         },
         'parents' => {
-          :type => :array,
-          :items => {
-            :type => :string
-          }
+            :type => :array,
+            :items => {
+                :type => :string
+            }
         },
         'shutdown_action' => {
-          :type => :string,
-          :enum => ['shutdown', 'shutdown-hard']},
-          :required => false
+            :type => :string,
+            :enum => [
+                'terminate',
+                'terminate-hard',
+                'shutdown',
+                'shutdown-hard'
+            ],
+            :required => false
         },
         'min_vms' => {
-          :type => :integer,
-          :required => false,
-          :minimum => 0
+            :type => :integer,
+            :required => false,
+            :minimum => 0
         },
         'max_vms' => {
-          :type => :integer,
-          :required => false,
-          :minimum => 0
+            :type => :integer,
+            :required => false,
+            :minimum => 0
         },
         'cooldown' => {
-          :type => :integer,
-          :required => false,
-          :minimum => 0
+            :type => :integer,
+            :required => false,
+            :minimum => 0
         },
         'on_hold' => {
-          :type => :boolean,
-          :required => false
+            :type => :boolean,
+            :required => false
         },
         'elasticity_policies' => {
-          :type => :array,
-          :items => {
-            :type => :object,
-            :properties => {
-              'type' => {
-                :type => :string,
-                :enum => ['CHANGE', 'CARDINALITY', 'PERCENTAGE_CHANGE'],
-                :required => true
-              },
-              'adjust' => {
-                :type => :integer,
-                :required => true
-              },
-              'min_adjust_step' => {
-                :type => :integer,
-                :required => false,
-                :minimum => 1
-              },
-              'period_number' => {
-                :type => :integer,
-                :required => false,
-                :minimum => 0
-              },
-              'period' => {
-                :type => :integer,
-                :required => false,
-                :minimum => 0
-              },
-              'expression' => {
-                :type => :string,
-                :required => true
-              },
-              'cooldown' => {
-                :type => :integer,
-                :required => false,
-                :minimum => 0
-              }
+            :type => :array,
+            :items => {
+                :type => :object,
+                :properties => {
+                    'type' => {
+                        :type => :string,
+                        :enum => [
+                            'CHANGE',
+                            'CARDINALITY',
+                            'PERCENTAGE_CHANGE'
+                        ],
+                        :required => true
+                    },
+                    'adjust' => {
+                        :type => :integer,
+                        :required => true
+                    },
+                    'min_adjust_step' => {
+                        :type => :integer,
+                        :required => false,
+                        :minimum => 1
+                    },
+                    'period_number' => {
+                        :type => :integer,
+                        :required => false,
+                        :minimum => 0
+                    },
+                    'period' => {
+                        :type => :integer,
+                        :required => false,
+                        :minimum => 0
+                    },
+                    'expression' => {
+                        :type => :string,
+                        :required => true
+                    },
+                    'cooldown' => {
+                        :type => :integer,
+                        :required => false,
+                        :minimum => 0
+                    }
+                }
             }
-          }
         },
         'scheduled_policies' => {
-          :type => :array,
-          :items => {
-            :type => :object,
-            :properties => {
-              'type' => {
-                :type => :string,
-                :enum => ['CHANGE', 'CARDINALITY', 'PERCENTAGE_CHANGE'],
-                :required => true
-              },
-              'adjust' => {
-                :type => :integer,
-                :required => true
-              },
-              'min_adjust_step' => {
-                :type => :integer,
-                :required => false,
-                :minimum => 1
-              },
-              'start_time' => {
-                :type => :string,
-                :required => false
-              },
-              'recurrence' => {
-                :type => :string,
-                :required => false
-              }
+            :type => :array,
+            :items => {
+                :type => :object,
+                :properties => {
+                    'type' => {
+                        :type => :string,
+                        :enum => [
+                            'CHANGE',
+                            'CARDINALITY',
+                            'PERCENTAGE_CHANGE'
+                        ],
+                        :required => true
+                    },
+                    'adjust' => {
+                        :type => :integer,
+                        :required => true
+                    },
+                    'min_adjust_step' => {
+                        :type => :integer,
+                        :required => false,
+                        :minimum => 1
+                    },
+                    'start_time' => {
+                        :type => :string,
+                        :required => false
+                    },
+                    'recurrence' => {
+                        :type => :string,
+                        :required => false
+                    }
+                }
             }
-          }
         }
-      }
     }
+  }
+
+VR Role Schema
+--------------------------------------------------------------------------------
+
+.. code::
+  {
+    :type => :object,
+    :properties => {
+        'name' => {
+            :type => :string,
+            :required => true,
+            :regex => /^\w+$/
+        },
+        'type' => {
+            :type => :string,
+            :enum => [
+                'vr'
+            ],
+            :required => true
+        },
+        'template_id' => {
+            :type => :integer,
+            :required => true
+        },
+        'cardinality' => {
+            :type => :integer,
+            :default => 0,
+            :minimum => 0
+        },
+        'template_contents' => {
+            :type => :object,
+            :properties => {},
+            :required => false
+        },
+        'user_inputs' => {
+            :type => :object,
+            :properties => {},
+            :required => false
+        },
+        'user_inputs_values' => {
+            :type => :object,
+            :properties => {},
+            :required => false
+        },
+        'on_hold' => {
+            :type => :boolean,
+            :required => false
+        },
+        'parents' => {
+            :type => :array,
+            :items => {
+                :type => :string
+            }
+        }
+    }
+  }
 
 Action Schema
 --------------------------------------------------------------------------------
@@ -447,7 +547,8 @@ Create a New Service Template
         {
           "name":"frontend",
           "cardinality":"1",
-          "vm_template":"0",
+          "template_id":"0",
+          "type": "vm",
           "shutdown_action":"shutdown",
           "min_vms":"1",
           "max_vms":"4",
@@ -474,7 +575,8 @@ Create a New Service Template
         {
           "name":"worker",
           "cardinality":"2",
-          "vm_template":"0",
+          "template_id":"0",
+          "type": "vm",
           "shutdown_action":"shutdown",
           "parents":[
             "frontend"
@@ -532,7 +634,8 @@ Create a New Service Template
                     "recurrence": "0 2 1-10 * * "
                   }
                 ],
-                "vm_template": 0,
+                "template_id": 0,
+                "type": "vm",
                 "name": "frontend",
                 "min_vms": 1,
                 "max_vms": 4,
@@ -555,7 +658,8 @@ Create a New Service Template
                 "scheduled_policies": [
 
                 ],
-                "vm_template": 0,
+                "template_id": 0,
+                "type": "vm",
                 "name": "worker",
                 "min_vms": 2,
                 "max_vms": 10,
@@ -644,7 +748,8 @@ Get Detailed Information of a Given Service Template
                     "recurrence": "0 2 1-10 * * "
                   }
                 ],
-                "vm_template": 0,
+                "template_id": 0,
+                "type": "vm",
                 ...
 
 List the Available Service Templates
@@ -693,7 +798,8 @@ List the Available Service Templates
                         "recurrence": "0 2 1-10 * * "
                       }
                     ],
-                    "vm_template": 0,
+                    "template_id": 0,
+                    "type": "vm",
                     "name": "frontend",
                     "min_vms": 1,
                     "max_vms": 4,
@@ -722,7 +828,7 @@ Update a Given Template
         {
           "name":"frontend",
           "cardinality":"1",
-          "vm_template":"0",
+          "template_id":"0",
           "shutdown_action":"shutdown-hard",
           "min_vms":"1",
           "max_vms":"4",
@@ -749,7 +855,8 @@ Update a Given Template
         {
           "name":"worker",
           "cardinality":"2",
-          "vm_template":"0",
+          "template_id":"0",
+          "type": "vm",
           "shutdown_action":"shutdown",
           "parents":[
             "frontend"
@@ -809,7 +916,8 @@ Update a Given Template
                     "recurrence": "0 2 1-10 * * "
                   }
                 ],
-                "vm_template": 0,
+                "template_id": 0,
+                "type": "vm",
                 "name": "frontend",
                 "min_vms": 1,
                 "max_vms": 4,
@@ -868,7 +976,8 @@ Instantiate a Given Template
                     "recurrence": "0 2 1-10 * * "
                   }
                 ],
-                "vm_template": 0,
+                "template_id": 0,
+                "type": "vm",
 
 Additional parameters can be passed using the ``merge_template`` inside the ``params``. For example, if we want to change the name when instantiating:
 
@@ -884,8 +993,8 @@ Additional parameters can be passed using the ``merge_template`` inside the ``pa
 The following attributes can be also passed using the ``merge_template``:
 
 * ``network_values``
-* ``custom_attrs_values``
-* ``vm_template_contents``
+* ``user_inputs_values``
+* ``template_contents``
 
 For example, instantiate a service template with custom VM capacity
 
@@ -894,8 +1003,19 @@ For example, instantiate a service template with custom VM capacity
     curl http://127.0.0.1:2474/service_template/4/action -u 'oneadmin:password' -v -X POST --data '{
       "action": {
         "perform":"instantiate",
-        "params":{"merge_template":{"vm_template_contents":"HOT_RESIZE=[CPU_HOT_ADD_ENABLED=\"YES\",\nMEMORY_HOT_ADD_ENABLED=\"YES\"]\nMEMORY_RESIZE_MODE=\"BALLOONING\"\nVCPU_MAX= \"2\"\nMEMORY_MAX=\"128\""}}
-      }
+        "params":{
+          "merge_template": {
+            "template_contents": {
+              "HOT_RESIZE": {
+                "CPU_HOT_ADD_ENABLED": "YES",
+                "MEMORY_HOT_ADD_ENABLED": "YES"
+              },
+              "MEMORY_RESIZE_MODE": "BALLOONING",
+              "VCPU_MAX": "2",
+              "MEMORY_MAX": "128"
+            }
+          } 
+        }
     }'
 
 
@@ -974,7 +1094,8 @@ Get Detailed Information of a Given Service
                     "recurrence": "0 2 1-10 * * "
                   }
                 ],
-                "vm_template": 0,
+                "template_id": 0,
+                "type": "vm",
                 "disposed_nodes": [
 
                 ],
@@ -1020,7 +1141,8 @@ Get Detailed Information of a Given Service
                 "scheduled_policies": [
 
                 ],
-                "vm_template": 0,
+                "template_id": 0,
+                "type": "vm",
                 "disposed_nodes": [
 
                 ],
@@ -1265,7 +1387,8 @@ Add a role to a running service
           "role" : '{
                 "name": "NEW_ROLE",
                 "cardinality": 1,
-                "vm_template": 0,
+                "template_id": 0,
+                "type": "vm",
                 "min_vms": 1,
                 "max_vms": 2,
                 "elasticity_policies": [],
@@ -1318,7 +1441,8 @@ Append can be used to append information to the service, in this case the reques
         {
           "name":"frontend",
           "cardinality":"1",
-          "vm_template":"0",
+          "template_id":"0",
+          "type": "vm",
           "shutdown_action":"shutdown-hard",
           "min_vms":"1",
           "max_vms":"4",
@@ -1345,7 +1469,8 @@ Append can be used to append information to the service, in this case the reques
         {
           "name":"worker",
           "cardinality":"2",
-          "vm_template":"0",
+          "template_id":"0",
+          "type": "vm",
           "shutdown_action":"shutdown",
           "parents":[
             "frontend"
@@ -1405,7 +1530,8 @@ Append can be used to append information to the service, in this case the reques
                     "recurrence": "0 2 1-10 * * "
                   }
                 ],
-                "vm_template": 0,
+                "template_id": 0,
+                "type": "vm",
                 "name": "frontend",
                 "min_vms": 1,
                 "max_vms": 4,
