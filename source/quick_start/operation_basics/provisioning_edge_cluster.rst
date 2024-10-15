@@ -224,7 +224,7 @@ First, log in to the Front-end node.
 
 .. tip:: If you installed the Front-end by following the :doc:`Quickstart with miniONE on AWS <../deployment_basics/try_opennebula_on_kvm>` tutorial, to log into the Front-end you will need to use the key stored in the PEM file that you obtained from AWS. For details, see :ref:`minione_log_in_to_ec2` in that tutorial.
 
-On the Front-end node, login as ``oneadmin`` user to perform the following actions:
+On the Front-end node, use the ``oneprovision`` command to perform the following actions:
 
 List clusters in the provision: ``oneprovision cluster list``.
 
