@@ -31,7 +31,7 @@ Disks attached to a VM will be backed by a non-persistent or persistent image, a
 Limitations
 --------------------------------------------------------------------------------
 
-* When a vCenter template or wild VM is imported into OpenNebula, the virtual disks are imported as OpenNebula images. If you get an error about not having enough datastore capacity to import VMs or images, please consider changing the "DATASTORE_CAPACITY_CHECK" in ``oned.conf`` to "no" and restarting OpenNebula.
+* When a vCenter template is imported into OpenNebula, the virtual disks are imported as OpenNebula images. If you get an error about not having enough datastore capacity to import VMs or images, please consider changing the "DATASTORE_CAPACITY_CHECK" in ``oned.conf`` to "no" and restarting OpenNebula.
 * No support for disk snapshots in the vCenter datastore.
 * Image names and paths cannot contain spaces or non ASCII characters.
 

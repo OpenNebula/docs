@@ -107,7 +107,7 @@ To display information about a single Host, use the ``show`` command:
 
     WILD VIRTUAL MACHINES
 
-    NAME                                                      IMPORT_ID  CPU     MEMORY
+    NAME                                                      DEPLOY_ID  CPU     MEMORY
 
     VIRTUAL MACHINES
 
@@ -120,7 +120,7 @@ The information of a Host contains:
 * **Capacity** (*Host Shares*) for CPU and memory.
 * **Local datastore information** (*Local System Datastore*) if the Host is configured to use a local datastore (e.g. in SSH transfer mode).
 * **Monitoring Information**, including PCI devices and NUMA information of the node. You can also find hypervisor specific information here.
-* **Virtual Machines** allocated to the Host. *Wild* are virtual machines running on the Host but not started by OpenNebula, and can be imported.
+* **Virtual Machines** allocated to the Host. *Wild* are virtual machines running on the Host but not started by OpenNebula.
 
 To see a list of all the Hosts:
 
@@ -324,10 +324,10 @@ You can also select which Hosts you want to upgrade by naming them or selecting 
 
 .. _import_wild_vms:
 
-Importing Wild VMs
+Wild VMs
 ================================================================================
 
-The monitoring mechanism in OpenNebula reports all VMs found in a hypervisor, even those not launched through OpenNebula. These VMs are referred to as Wild VMs and can be imported to be managed through OpenNebula. The Wild VMs can be spotted through the ``onehost show`` command:
+The monitoring mechanism in OpenNebula reports all VMs found in a hypervisor, even those not launched through OpenNebula. These VMs are referred to as Wild VMs. The Wild VMs can be spotted through the ``onehost show`` command:
 
 .. prompt:: bash $ auto
 
@@ -339,20 +339,9 @@ The monitoring mechanism in OpenNebula reports all VMs found in a hypervisor, ev
       STATE                 : MONITORED
       [...]
       WILD VIRTUAL MACHINES
-                          NAME                            IMPORT_ID  CPU     MEMORY
+                          NAME                            DEPLOY_ID  CPU     MEMORY
                  Ubuntu14.04VM 4223f951-243a-b31a-018f-390a02ff5c96    1       2048
                        CentOS7 422375e7-7fc7-4ed1-e0f0-fb778fe6e6e0    1       2048
-
-And imported using the ``onehost importvm`` command:
-
-.. prompt:: bash $ auto
-
-      $ onehost importvm 0 CentOS7
-      $ onevm list
-      ID USER     GROUP    NAME            STAT UCPU    UMEM HOST               TIME
-       3 oneadmin oneadmin CentOS7         runn    0    590M MyAWSHost  0d 01h02
-
-After a Virtual Machine is imported, its life-cycle (including creation of snapshots) can be controlled through OpenNebula. However, some  operations *cannot* be performed on an imported VM, including: poweroff, undeploy, migrate or delete-recreate.
 
 .. warning:: Wild VMs’ support and limitations may differ depending on the virtualization driver used (e.g KVM or LXC). In order to find more specific information for the virtualization driver you’re using, please check the corresponding driver guide.
 

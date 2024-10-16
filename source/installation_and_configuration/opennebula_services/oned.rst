@@ -363,45 +363,6 @@ The virtualization drivers are used to create, control and monitor VMs on the ho
 -  ``KEEP_SNAPSHOTS``: Do not remove snapshots on power on/off cycles and live migrations if the hypervisor supports that
 -  ``LIVE_RESIZE``: Hypervisor supports hotplug VCPU and memory. Values: ``YES`` or ``NO``
 -  ``SUPPORT_SHAREABLE``: Hypervisor supports shareable disks. Values: ``YES`` or ``NO``
--  ``IMPORTED_VMS_ACTIONS``: Comma-separated list of actions supported for imported VMs. The available actions are:
-
-   - ``migrate``
-   - ``live-migrate``
-   - ``terminate``
-   - ``terminate-hard``
-   - ``undeploy``
-   - ``undeploy-hard``
-   - ``hold``
-   - ``release``
-   - ``stop``
-   - ``suspend``
-   - ``resume``
-   - ``delete``
-   - ``delete-recreate``
-   - ``reboot``
-   - ``reboot-hard``
-   - ``resched``
-   - ``unresched``
-   - ``poweroff``
-   - ``poweroff-hard``
-   - ``disk-attach``
-   - ``disk-detach``
-   - ``nic-attach``
-   - ``nic-detach``
-   - ``disk-snapshot-create``
-   - ``disk-snapshot-delete``
-   - ``disk-snapshot-rename``
-   - ``disk-snapshot-revert``
-   - ``disk-resize``
-   - ``disk-saveas``
-   - ``resize``
-   - ``update``
-   - ``updateconf``
-   - ``snapshot-create``
-   - ``snapshot-delete``
-   - ``snapshot-revert``
-   - ``recover``
-   - ``retry``
 
 There are some non-mandatory attributes:
 
@@ -430,10 +391,7 @@ Sample configuration:
         TYPE           = "kvm",
         KEEP_SNAPSHOTS = "no",
         LIVE_RESIZE    = "yes",
-        SUPPORT_SHAREABLE    = "yes",
-        IMPORTED_VMS_ACTIONS = "terminate, terminate-hard, hold, release, suspend,
-            resume, delete, reboot, reboot-hard, resched, unresched, disk-attach,
-            disk-detach, nic-attach, nic-detach, snap-create, snap-delete"
+        SUPPORT_SHAREABLE    = "yes"
     ]
 
 .. _oned_conf_transfer_driver:
