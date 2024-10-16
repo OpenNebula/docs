@@ -276,7 +276,7 @@ VM Role Schema
 
 .. code::
 
-{
+  {
     :type => :object,
     :properties => {
         'name' => {
@@ -417,6 +417,7 @@ VR Role Schema
 --------------------------------------------------------------------------------
 
 .. code::
+
   {
     :type => :object,
     :properties => {

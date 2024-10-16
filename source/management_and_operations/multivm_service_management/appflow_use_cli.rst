@@ -498,13 +498,13 @@ Using logo attribute we can add a logo to the service template in base64. Also, 
 Configuring Dynamic Networks in a Service Template
 --------------------------------------------------------------------------------
 
-Each Service Role is assigned either a :ref:`Virtual Machine Template <vm_guide>` or a :ref:`Virtual Router Template <vr_guide>`, depending on whether its type is ``vm`` or ``vr``, through the ``template_id`` attribute of each Role. This template defines the capacity and other characteristics of the instance, including network interfaces configuration. In addition to specifying Virtual Networks in the template, the Service Template can also define a set of dynamic networks.
+Each Service Role is assigned either a :ref:`Virtual Machine Template <vm_guide>` or a :ref:`Virtual Router Template <vrouter>`, depending on whether its type is ``vm`` or ``vr``, through the ``template_id`` attribute of each Role. This template defines the capacity and other characteristics of the instance, including network interfaces configuration. In addition to specifying Virtual Networks in the template, the Service Template can also define a set of dynamic networks.
 
 A Service Template can define three different dynamic network modes, determining how the networks will be used, and these must be declared in the template body under the ``network_values`` field. This three types are explained below:
 
 * **Existing Virtual Network**: VMs in the Role will take a lease from an existing network. You'll likely use this method for networks with a predefined address set (e.g., public IPs). 
 
-  .. code-block:: json
+.. code::
 
     {
       ...
@@ -517,7 +517,7 @@ A Service Template can define three different dynamic network modes, determining
 
 * **Network reservation**: The system will create a reservation from an existing network for the Service. Specify the name of the reservation and its size. This method is useful when you need to allocate a pool of IPs for your Service.
 
-  .. code-block:: json
+.. code::
 
     {
       ...
@@ -533,7 +533,7 @@ A Service Template can define three different dynamic network modes, determining
 
 * **Instantiate a network template**: A network template is instantiated, and depending on the selected template, you might need to specify the address range to create (e.g., a private VLAN for internal Service communication).
 
-  .. code-block:: json
+.. code::
 
     {
       ...
@@ -553,7 +553,8 @@ This allows you to create more generic Service Templates. For example, the same 
 
 In addition to specifying Virtual Networks in the template, the Service Template also needs to indicate which Roles will be connected to the dynamic networks, which can be achieved using the ``template_contents`` field. As stated in previous sections, this field is used to override the original template of the Virtual Machine or Virtual Router. For example, to attach a network to the Role, you can specify the following configuration:
 
-.. code-block:: json
+.. code::
+
     {
       ...
       "roles": [
@@ -601,7 +602,7 @@ A Service Template can be instantiated as a Service. Each newly created Service 
 
 Each Service Role creates :ref:`Virtual Machines <vm_instances>` in OpenNebula from :ref:`VM Templates <vm_guide>`, that must be created beforehand.
 
-.. _appflow_use_cli_service_body::
+.. _appflow_use_cli_service_body:
 
 Understanding a Service body
 --------------------------------------------------------------------------------
@@ -755,7 +756,7 @@ It's important to note the existence of some new attributes that has been added 
 | ``log``                 | array     | Contains a log of important events, such as state changes, with a timestamp and severity.                  |
 |                         |           | Example: {"timestamp": 1728498179, "severity": "I", "message": "New state: RUNNING"}.                      |
 +-------------------------+-----------+------------+-----------------------------------------------------------------------------------------------+
-| ``start_time``          | integer   | The Unix timestamp of when the Service was started. Can be used for tracking up time.                       |
+| ``start_time``          | integer   | The Unix timestamp of when the Service was started. Can be used for tracking up time.                      |
 +-------------------------+-----------+------------+-----------------------------------------------------------------------------------------------+
 
 New attributes have also been added within each role that show information relevant to each type of role.
@@ -1153,7 +1154,7 @@ Network mapping in OneFlow is facilitated through the use of Virtual Router Role
 
 To establish network mapping, you need to define a Service Template that includes a Virtual Router Role. Below is an example configuration for a Virtual Router Role in JSON format:
 
-.. code-block:: json
+.. code::
 
     {
       "roles": [
@@ -1191,13 +1192,13 @@ Highlighting some elements of the previous template
 - **cardinality**: Indicates the number of Virtual Routers that will be instantiated for this Role. In the case of more than one, we will be creating a router in HA mode automatically.
 - **template_contents**: Contains the configuration for the Network Interfaces. Here, the `NETWORK_ID` is set to `$Public`, denoting the use of a public network, and `FLOATING_IP` is set to "yes," indicating that floating IPs will be allocated automatically by OneFlow.
 
-Additionally, as it's described in the :ref:`Dynamic Network Configuration <_appflow_use_cli_networks>` section, the ``networks_values`` attribute provides configuration details for the public network, specifying the Virtual Network template ID and other parameters.
+Additionally, as it's described in the :ref:`Dynamic Network Configuration <appflow_use_cli_networks>` section, the ``networks_values`` attribute provides configuration details for the public network, specifying the Virtual Network template ID and other parameters.
 
 **Instantiating the Service**
 
 When the Service is instantiated, the Virtual Router Role will look like the following:
 
-.. code-block:: json
+.. code::
 
   {
     ...
@@ -1246,7 +1247,7 @@ In this instantiation:
 
 In many cases, the networks and the IP of the router are dynamically assigned. There are two different methods for other Roles to obtain the Virtual Router’s IP address:
 
-* **Direct Access via Parent Role**: If a Role has a Virtual Router Role as its parent, :ref:`it can access the attributes of the parent Role directly <_service_global>`.
+* **Direct Access via Parent Role**: If a Role has a Virtual Router Role as its parent, :ref:`it can access the attributes of the parent Role directly <service_global>`.
 * **Using OneGate**: If the Role does not inherit from a Virtual Router Role, you can utilize the :ref:`OneGate server <onegate_overview>` within the virtual machines of the Roles to retrieve this information. Ensure that the "Add OneGate token" option is checked when configuring the templates used in the Service Template. This enables the VMs to securely access the necessary data from the OneFlow environment.
 
 .. _service_charters:
