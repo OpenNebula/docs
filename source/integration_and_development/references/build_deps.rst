@@ -16,7 +16,7 @@ This page lists the **build** dependencies for OpenNebula.
 * **openssl** development libraries (>= 0.9.8)
 * **ruby** interpreter (>= 2.0.0)
 
-Ubuntu 20.04, 22.04
+Ubuntu 22.04, 24.04
 ================================================================================
 
 * **bash-completion**
@@ -63,7 +63,7 @@ Install all requirements using::
 
     apt install bash-completion debhelper default-jdk freerdp2-dev grunt javahelper libaugeas-dev libcairo2-dev libcurl4-openssl-dev libmysql++-dev libmysqlclient-dev libnode-dev libossp-uuid-dev libpango1.0-dev libpulse-dev libsqlite3-dev libssh2-1-dev libssl-dev libsystemd-dev libtool libvncserver-dev libvorbis-dev libwebp-dev libws-commons-util-java libxml2-dev libxmlrpc-c++8-dev libxslt1-dev libzmq3-dev libzmq5 nodejs npm python3 python3-pip python3-setuptools rake ruby-dev scons unzip && npm install -g bower
 
-Debian 11
+Debian 11, Debian 12
 ================================================================================
 
 * **bash-completion**
@@ -107,54 +107,6 @@ Debian 11
 Install all requirements using::
 
     apt install bash-completion debhelper default-jdk default-libmysqlclient-dev freerdp2-dev grunt javahelper libaugeas-dev libcairo2-dev libcurl4-openssl-dev libnode-dev libossp-uuid-dev libpango1.0-dev libpulse-dev libsqlite3-dev libssh2-1-dev libssl-dev libsystemd-dev libtool libvncserver-dev libvorbis-dev libwebp-dev libws-commons-util-java libxml2-dev libxmlrpc-c++8-dev libxslt1-dev libzmq3-dev libzmq5 nodejs npm python3 python3-setuptools rake ruby-dev scons unzip && npm install -g bower
-
-Debian 10
-================================================================================
-
-* **bash-completion**
-* **bower**
-* **debhelper (>= 7.0.50~)**
-* **default-jdk**
-* **default-libmysqlclient-dev**
-* **freerdp2-dev**
-* **grunt**
-* **javahelper (>= 0.32)**
-* **libaugeas-dev**
-* **libcairo2-dev**
-* **libcurl4-openssl-dev**
-* **libnode-dev (>= 10)**
-* **libossp-uuid-dev**
-* **libpango1.0-dev**
-* **libpulse-dev**
-* **libsqlite3-dev**
-* **libssh2-1-dev**
-* **libssl-dev**
-* **libsystemd-dev**
-* **libtool**
-* **libvncserver-dev**
-* **libvorbis-dev**
-* **libwebp-dev**
-* **libws-commons-util-java**
-* **libxml2-dev**
-* **libxmlrpc-c++8-dev**
-* **libxmlrpc3-client-java**
-* **libxmlrpc3-common-java**
-* **libxslt1-dev**
-* **libzmq3-dev**
-* **libzmq5**
-* **nodejs (>= 10)**
-* **npm**
-* **python3**
-* **python3-pip**
-* **python3-setuptools**
-* **rake**
-* **ruby-dev**
-* **scons**
-* **unzip**
-
-Install all requirements using::
-
-    apt install bash-completion debhelper default-jdk default-libmysqlclient-dev freerdp2-dev grunt javahelper libaugeas-dev libcairo2-dev libcurl4-openssl-dev libnode-dev libossp-uuid-dev libpango1.0-dev libpulse-dev libsqlite3-dev libssh2-1-dev libssl-dev libsystemd-dev libtool libvncserver-dev libvorbis-dev libwebp-dev libws-commons-util-java libxml2-dev libxmlrpc-c++8-dev libxmlrpc3-client-java libxmlrpc3-common-java libxslt1-dev libzmq3-dev libzmq5 nodejs npm python3 python3-pip python3-setuptools rake ruby-dev unzip && npm install -g bower && pip3 install scons
 
 AlmaLinux/RHEL 8,9
 ================================================================================
