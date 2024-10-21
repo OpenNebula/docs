@@ -81,19 +81,31 @@ RHEL
 Community Edition
 --------------------------------------------------------------------------------
 
-There is an additional step if you are upgrading OpenNebula CE. After you get the `opennebula-migration-community package <https://opennebula.io/get-migration>`__, you need to install it in the OpenNebula Front-end.
+If upgrading OpenNebula CE, you will need to install the ``opennebula-migration-community`` package on your Front-end.
 
-RHEL
+If you are upgrading to the *latest* version, you will need to download the package from the `Get Migration Packages <https://opennebula.io/get-migration>`__ page.
+
+If you are upgrading to any prior version (such as upgrading from 6.6 to 6.8), then the migration package is already included in the OpenNebula repositories.
+
+To install the migration package:
+
+On RHEL:
 
 .. prompt:: bash $ auto
 
     $ rpm -i opennebula-migration-community*.rpm
 
-Debian/Ubuntu
+On Debian/Ubuntu:
 
 .. prompt:: bash $ auto
 
 	$ dpkg -i opennebula-migration-community*.deb
+
+.. note::
+
+    Before downloading the migration package, it's a good idea to double-check the URL in your software repository file. Ensure that the URL includes the software major and minor version (in ``<major>.<minor>`` format), but not the exact release.
+    
+    For example, for OpenNebula version 6.8, the file should point to ``https://downloads.opennebula.io/repo/6.8`` and not ``https://downloads.opennebula.io/repo/6.8.0``. The first case will include migration packages for 6.8.*, whereas the second case will exclude minor versions such as 6.8.0.1.
 
 Step 7. Update Configuration Files
 ================================================================================
