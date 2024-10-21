@@ -105,7 +105,7 @@ On Debian/Ubuntu:
 
     Before downloading the migration package, it's a good idea to double-check the URL in your software repository file. Ensure that the URL includes the software major and minor version (in ``<major>.<minor>`` format), but not the exact release.
     
-    For example, for OpenNebula version 6.8, the file should point to https://downloads.opennebula.io/repo/6.8 and not https://downloads.opennebula.io/repo/6.8.0. The first case will include migration packages for 6.8.*, whereas the second case will exclude minor versions such as 6.8.0.1.
+    For example, for OpenNebula version 6.8, the file should point to ``https://downloads.opennebula.io/repo/6.8`` and not ``https://downloads.opennebula.io/repo/6.8.0``. The first case will include migration packages for 6.8.*, whereas the second case will exclude minor versions such as 6.8.0.1.
 
 Step 7. Update Configuration Files
 ================================================================================
