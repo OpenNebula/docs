@@ -212,7 +212,7 @@ Use the ``oneuser/onegroup defaultquota`` command.
 
     $ oneuser defaultquota
 
-By default, the defaultquota is set to unlimited. Once the editor opens after issuing ``oneuser defaultquota`` you'll see comments regarding how to set the quotas and no quota template. Setting a quota with a template using unlimited values will translate to a blank quota. If you issue ``oneuser defaultquota`` again, you'll se the same comments with blank quota. If you set a non unlimited quota, you'll see the value of the quota that is established as default.
+By default, the defaultquota is set to unlimited. Once the editor opens after issuing ``oneuser defaultquota`` you'll see comments regarding how to set the quotas and no quota template. Setting a quota with a template using unlimited values will translate to a blank quota. If you issue ``oneuser defaultquota`` again, you'll see the same comments with blank quota. If you set a non unlimited quota, you'll see the value of the quota that is established as default.
 
 Checking User/Group Quotas
 ================================================================================
