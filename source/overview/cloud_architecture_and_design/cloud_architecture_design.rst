@@ -8,7 +8,7 @@ This page describes the high-level steps to design and deploy an OpenNebula clou
 
 To familiarize yourself with deployment and daily operations, or if you want to quickly try an Edge, Hybrid or Multi-cloud deployment, we strongly recommend you begin with the :ref:`Quick Start Guide <quick_start>`. In the Quick Start, you can:
 
-  * :ref:`Install an OpenNebula Front-end <try_opennebula_on_kvm>`
+  * :ref:`Install an OpenNebula Front-end <deployment_basics_overview>`
   * Deploy on-demand :ref:`Edge Clusters <first_edge_cluster>` on remote cloud providers
   * Deploy :ref:`Virtual Machines <running_virtual_machines>` and :ref:`Kubernetes clusters <running_kubernetes_clusters>`
   
