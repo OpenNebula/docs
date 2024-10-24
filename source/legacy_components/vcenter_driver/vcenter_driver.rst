@@ -37,16 +37,10 @@ The following sections in the ``/etc/one/oned.conf`` file describe the informati
         KEEP_SNAPSHOTS    = "yes",
         DS_LIVE_MIGRATION = "yes",
         COLD_NIC_ATTACH   = "yes",
-        LIVE_RESIZE       = "yes",
-        IMPORTED_VMS_ACTIONS = "terminate, terminate-hard, hold, release, suspend,
-            resume, delete, reboot, reboot-hard, resched, unresched, poweroff,
-            poweroff-hard, disk-attach, disk-detach, nic-attach, nic-detach,
-            snapshot-create, snapshot-delete, migrate, live-migrate"
+        LIVE_RESIZE       = "yes"
     ]
     #-------------------------------------------------------------------------------
 
-
-IMPORTED_VMS_ACTIONS define which operations are allowed to be executed on imported VMs (Wild VMs).
 
 As a virtualization driver, the vCenter driver accepts a series of parameters that control its execution. The parameters allowed are:
 
@@ -126,7 +120,6 @@ Limitations
 -----------
 
 * only the disk-saveas operation is supported for VMs in the ``POWEROFF`` state.
-* imported Wild VMs cannot be stopped, undeployed nor ``recover --recreated``.
 
 
 vCenter Import Tool
@@ -151,7 +144,6 @@ The following vCenter resources can be easily imported into OpenNebula:
 * Datastores
 * Networks
 * VM Templates
-* Wild VMs (VMs launched outside of OpenNebula)
 * Images
 
 .. _vcenter_import_clusters:
@@ -460,105 +452,18 @@ If you modify a VM template and you edit a disk or NIC that was found by OpenNeb
 
 Before using your OpenNebula cloud, you may want to read about the :ref:`vCenter specifics <vcenter_specifics>`.
 
-.. _vcenter_import_wild_vms:
+.. _vcenter_wild_vms:
 
-Importing running Virtual Machines
+Wild Virtual Machines
 --------------------------------------------------------------------------------
 
-Once a vCenter cluster is monitored, OpenNebula will display any existing VM as Wild. These VMs can be imported and managed through OpenNebula once the Host has been successfully acquired.
-
-*Requirements*
-
-* **Before** you import a Wild VM you must have imported the datastores where the VM's hard disk files are located, as was explained before. OpenNebula requires the datastores to exist before the image that represents an existing virtual hard disk is created.
-* Running VM cannot have snapshots. Please remove them before importing.
-
-In the command line we can list wild VMs with the one Host show command:
-
-.. prompt:: text $ auto
-
-    $ onehost show 0
-      HOST 0 INFORMATION
-      ID                    : 0
-      NAME                  : MyvCenterHost
-      CLUSTER               : -
-      [....]
-
-      WILD VIRTUAL MACHINES
-
-                NAME                                                      IMPORT_ID  CPU     MEMORY
-                test-rp-removeme - Cluster                                  vm-2184    1        256
-
-      [....]
+Once a vCenter cluster is monitored, OpenNebula will display any existing VM as Wild.
 
 In Sunstone we have the Wild tab in the Host's information:
 
 .. image:: /images/vcenter_wild_vm_list.png
     :width: 70%
     :align: center
-
-VMs in running state can be imported as well as VMs defined in vCenter that are not in Power On state (this will import the VMs in OpenNebula in the poweroff state).
-
-.. _vcenter_wild_vm_nic_disc_import:
-
-A Wild VM import process creates images to represent the VM disks as well as new Virtual Networks if they are not already represented. If a Virtual Network exists already in OpenNebula, a network lease (IP/MAC) is requested for each IP reported for the VM by the VMware tools. If no AR contains the IP address space of the IP reported by the VM, a new AR is created and a lease requested. If the same NIC in the vCenter VM reports more than one IP, this is represented using NIC_ALIAS.
-
-It is important to clarify that in the event that a VM Template has multiple NICs and NIC ALIAS, they will be imported during this process.
-
-To import existing VMs you can use the 'onehost importvm' command.
-
-.. prompt:: text $ auto
-
-    $ onehost importvm 0 "test-rp-removeme - Cluster"
-    $ onevm list
-    ID USER     GROUP    NAME            STAT UCPU    UMEM HOST               TIME
-     3 oneadmin oneadmin test-rp-removem runn 0.00     20M [vcenter.v     0d 01h02
-
-Also, the Sunstone user interface can be used from the Host's Wilds tab. Select a VM from the list and click on the Import button.
-
-.. image:: /images/vcenter_wild_vm_list_import_sunstone.png
-    :width: 70%
-    :align: center
-
-Once a Wild VM is imported, OpenNebula will reconfigure the vCenter VM so VNC connections can be established once the VM is monitored.
-
-Also, network management operations are present, like the ability to attach/detach network interfaces, as well as capacity (CPU and MEMORY) resizing operations and VNC connections if the ports are opened beforehand.
-
-.. _vcenter_reimport_wild_vms:
-
-After a VM has been imported, it can be removed from OpenNebula and imported again. OpenNebula sets information in the vCenter VM metadata that needs to be removed, which can be done with the ``onevcenter cleartags`` command:
-
-- opennebula.vm.running
-- opennebula.vm.id
-- opennebula.disk.*
-- remotedisplay
-
-The following procedure is useful if the VM has been changed in vCenter and OpenNebula needs to "rescan" its disks and NICs:
-
-* Use onevcenter cleartags on the VM that will be removed:
-
-.. prompt:: bash $ auto
-
-    $ onevcenter cleartags <vmid>
-
-**vmid** is the id of the VM whose attributes will be cleared.
-
-* Un-register VM
-
-.. prompt:: bash $ auto
-
-    $ onevm recover --delete-db <vmid>
-
-* Re-import VM: on the Host's next monitoring cycle you will find this VM under **Wilds** tab and it can be safely imported.
-
-.. _vcenter_import_ip:
-
-If you want to set specific IPv4/6 when importing the VM, you can use the parameters ``--ipv4`` and ``--ipv6``, giving a list of IP addresses separated by commas.
-
-.. prompt:: bash $ auto
-
-    $ onehost importvm <host> <vm> --ipv4 ip1,ip2
-
-.. important:: You need to provide the IPs depending on your interfaces order, as they are going to be assigned in that order.
 
 .. _vcenter_import_networks:
 
@@ -791,10 +696,6 @@ Some aspects of the driver's behavior can be configured in */var/lib/one/remotes
 * **memory_dumps**: Create snapshots with memory dumps. Default: **true**.
 
 * **keep_non_persistent_disks**: Detach non-persistent disks from VMs on VM terminate but avoid deleting them afterwards. Default: **false**.
-
-* **keep_mac_on_imported**: Avoid change MAC from imported Wild. Default: **false**.
-
-* **wild_vm_persistent_images**: Wild VM disks imported as persistent (true) or non-persistent (false) images. Default: **true**.
 
 * **vm_template_persistent_images**: VM Template disks imported as persistent (true) or non-persistent (false) images. Default: **false**.
 
