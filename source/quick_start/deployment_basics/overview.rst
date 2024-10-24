@@ -16,6 +16,7 @@ Each section builds on the previous one, to take you from a bare install to quic
 
 First, to install your Front-end, please select your preferred infrastructure:
 
+- :ref:`Deploy OpenNebula Front-end On-prem <try_opennebula_onprem>`.
 - :ref:`Deploy OpenNebula Front-end on AWS <try_opennebula_on_kvm>`.
 - :ref:`Deploy OpenNebula Front-end on VMware <try_opennebula_on_vmware>`.
 - :ref:`Try OpenNebula Hosted Front-end  <try_opennebula_hosted>`.
