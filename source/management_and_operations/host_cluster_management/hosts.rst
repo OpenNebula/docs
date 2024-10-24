@@ -356,6 +356,8 @@ After a Virtual Machine is imported, its life-cycle (including creation of snaps
 
 .. warning:: Wild VMs’ support and limitations may differ depending on the virtualization driver used (e.g KVM or LXC). In order to find more specific information for the virtualization driver you’re using, please check the corresponding driver guide.
 
+.. note:: This command is deprecated and will be removed in future release. Imported VMs will be removed from OpenNebula management and will appear again as wild VMs on the host.
+
 Using Sunstone to Manage Hosts
 ================================================================================
 
