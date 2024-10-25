@@ -564,9 +564,161 @@ Sunstone exposes the above functionality in the Templates > VM Templates tab:
 Operating System Profiles
 ================================================================================
 
-Sunstone allows for the use of Operating System Profiles.
+In Sunstone you can quickly flavor a VM template by using a Operating System Profile, which will pre-fill part of the template for you. By default Sunstone ships with a default "Windows Optimized" profile which contains some basic windows specific optimization settings.
+
+.. _define_os_profile:
+
+Defining a Profile
+------------------------------------
+
+1. **Navigate to the profiles directory**
+
+   By default found in ``etc/one/fireedge/sunstone/profiles``.
+
+2. **Create a new YAML file**
+
+   Name your profile by defining a new ``.yaml`` file
+
+   .. note:: The filename is used to identify the profile in Sunstone. The filename is sentence cased and all ``_`` characters are displayed as spaces. For example ``windows_optimized.yaml`` becomes ``Windows Optimized``.
+
+3. **Configure the profile**
+
+   Define the profile according to the :ref:`Operating System Profiles schema <os_profile_schema>`.
+
+   .. important:: All values are case-sensitive
+
+
+   Here's an example of a profile that fills in the name of the VM template, the CPU & memory configuration and sets up the backup strategy.
+
+   .. code-block:: yaml
+
+      ---
+      # basic_profile.yaml
+      "General":
+        NAME: "Example profile"
+        CPU: 4
+        VCPU: 4
+        MEMORY: 8
+        MEMORYUNIT: "GB"
+
+      "Advanced options":
+        Backup:
+          BACKUP_CONFIG:
+           MODE: "INCREMENT"
+           INCREMENT_MODE: "CBT"
+           BACKUP_VOLATILE: "Yes"
+           FS_FREEZE: "AGENT"
+           KEEP_LAST: 7
+
+
+   The profile can then be saved and accessed in Sunstone from the first step in the VM Templates Create/Update dialog:
+
+   |os_profile_selector|
+
+
+.. important:: Sunstone also ships with a ``base.template`` file (found in the default profiles directory), which includes examples for majority of the inputs for a VM template. This base template should only be used as a reference when creating new profiles and not directly used as-is.
+
+
+Profile Chain Loading
+---------------------
+
+It's also possible to chain-load profiles by referencing one profile from another. This allows you to more efficiently combine snippets of profiles together, combining different optimizations for specialized use cases.
+
+Take for example, the default windows profile that ships with Sunstone:
+
+.. code-block:: yaml
+
+   ---
+   # Windows profile
+   "General":
+     NAME: "Optimized Windows Profile"
+
+   "Advanced options":
+     OsCpu:
+       OS:
+         ARCH: X86_64
+         SD_DISK_BUS: scsi
+         MACHINE: host-passthrough
+         FIRMWARE: BIOS
+       FEATURES:
+         ACPI: "Yes"
+         PAE: "Yes"
+         APIC: "Yes"
+         HYPERV: "Yes"
+         LOCALTIME: "Yes"
+         GUEST_AGENT: "Yes"
+         VIRTIO_SCSI_QUEUES: "auto"
+         VIRTIO_BLK_QUEUES: "auto"
+         # IOTHREADS:
+       CPU_MODEL:
+         MODEL: "host-passthrough"
+           # FEATURES:
+           # - Tunable depending on host CPU support
+           # -
+       RAW:
+         DATA: |-
+           <features>
+             <hyperv>
+               <evmcs state='off'/>
+               <frequencies state='on'/>
+               <ipi state='on'/>
+               <reenlightenment state='off'/>
+               <relaxed state='on'/>
+               <reset state='off'/>
+               <runtime state='on'/>
+               <spinlocks state='on' retries='8191'/>
+               <stimer state='on'/>
+               <synic state='on'/>
+               <tlbflush state='on'/>
+               <vapic state='on'/>
+               <vpindex state='on'/>
+             </hyperv>
+           </features>
+           <clock offset='utc'>
+             <timer name='hpet' present='no'/>
+             <timer name='hypervclock' present='yes'/>
+             <timer name='pit' tickpolicy='delay'/>
+             <timer name='rtc' tickpolicy='catchup'/>
+           </clock>
+         VALIDATE: "Yes"
+
+
+Now say you want to combine this profile with the ``basic profile`` from the :ref:`previous section <define_os_profile>`. Then you just add the ``OS_PROFILE`` attribute to the basic profile's configuration and reference the other profile from it:
+
+.. note:: The ``OS_PROFILE`` value being referenced should match the one on disk exactly, excluding the ``.yaml`` extension
+
+
+.. code-block:: yaml
+
+   ---
+   # basic_profile.yaml
+   "General":
+     NAME: "Example profile"
+     OS_PROFILE: "windows_optimized"
+     CPU: 4
+     VCPU: 4
+     MEMORY: 8
+     MEMORYUNIT: "GB"
+
+   "Advanced options":
+     Backup:
+       BACKUP_CONFIG:
+        MODE: "INCREMENT"
+        INCREMENT_MODE: "CBT"
+        BACKUP_VOLATILE: "Yes"
+        FS_FREEZE: "AGENT"
+        KEEP_LAST: 7
+
+
+Sunstone now sequentially loads each profile and applies them on top of each other. This means that if two fields modify the same values, e.g., ``NAME``, the last profile to modify that field will be used.
+
+|chain_loaded_profiles|
+
 
 .. _os_profile_schema:
+
+Profiles Schema
+---------------------------------------------
 
 .. note:: All parent attributes are annotated in **bold** and child attributes are prefixed with a `→` depending on their level.
 
@@ -1165,3 +1317,5 @@ Backup Configuration
 .. |sunstone_user_inputs_convention_mysql_2| image:: /images/sunstone_user_inputs_convention_mysql_2.png
 .. |sunstone_user_inputs_metadata_1| image:: /images/sunstone_user_inputs_metadata_1.png
 .. |sunstone_user_inputs_metadata_2| image:: /images/sunstone_user_inputs_metadata_2.png
+.. |os_profile_selector| image:: /images/os_profile_selector.png
+.. |chain_loaded_profiles| image:: /images/os_profile_chain_loaded.png
