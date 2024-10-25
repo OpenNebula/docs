@@ -8,3 +8,4 @@ Guest Operating Systems
     Contextualization <kvm_contextualization>
     Creating Disk Images <creating_images>
     Windows Best Practices <windows_best_practice>
+    Operating System Profiles <os_profile>

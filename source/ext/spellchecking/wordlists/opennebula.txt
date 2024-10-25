@@ -1,3 +1,4 @@
+AAVMF
 ACL
 Acknowledgements
 Airgapped
@@ -93,10 +94,10 @@ Multicast
 Multicluster
 Multus
 NSX
+NVMe
 Netplan
 Nokogiri
 Numa
-NVMe
 Onecfg
 Oneflow
 Opennebula
@@ -299,8 +300,10 @@ detachpci
 detachsg
 dev
 devel
+dhcp
 dialogs
 dir
+directsync
 diskresize
 disksaveas
 disksnapshotcreate
@@ -397,6 +400,7 @@ instantiation
 integrations
 integrators
 interoperable
+io
 iommu
 ionice
 iops
@@ -430,6 +434,7 @@ libvirts
 lifecycle
 lighttpd
 linux
+listMultiple
 livemigration
 ln
 localhost
@@ -487,6 +492,7 @@ npm
 num
 numCoresPerSocket
 numad
+numberFloat
 oXXX
 ocurrer
 offlines
@@ -554,6 +560,7 @@ performant
 persisent
 persistency
 pluggable
+png
 postmigrate
 poweroff
 poweron
@@ -576,6 +583,7 @@ quiesced
 raftstatus
 ramdisk
 ramdisks
+rangeFloat
 rb
 rbd
 rdm
@@ -614,6 +622,7 @@ rubygems
 runnning
 runtime
 rx
+sata
 saveas
 scalability
 scalable
@@ -662,6 +671,7 @@ subdirectories
 subfolder
 subfolders
 subformat
+subnet
 subprotocols
 sudo
 sudoers
@@ -681,6 +691,7 @@ tasker
 templatepool
 terraform
 th
+theming
 tm
 tmp
 toolchain
@@ -709,6 +720,7 @@ unencrypted
 unimported
 unix
 unmanaged
+unmap
 unmounting
 unregister
 unresched
@@ -721,7 +733,9 @@ updatenic
 uplink
 uplinks
 uri
+uring
 url
+usb
 userA
 userpool
 userquota
@@ -752,6 +766,7 @@ vdcpool
 vdnscope
 ve
 vfio
+vga
 vhost
 vid
 virsh
@@ -803,6 +818,7 @@ xml
 xmlrpc
 xpath
 xsd
+xvd
 xvdc
 xxxxxxxx
 yaml
