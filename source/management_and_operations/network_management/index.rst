@@ -13,3 +13,4 @@ Virtual Network Management
    Security Groups <security_groups>
    Self Provision <self_provision>
    Virtual Routers <vrouter>
+   Transparent Proxies <tproxy>
