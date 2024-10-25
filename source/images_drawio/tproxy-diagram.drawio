@@ -1,0 +1,164 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36" scale="1" border="0" version="24.7.17">
+  <diagram name="Page-1" id="-BR6f6naHNur6uy_jY3p">
+    <mxGraphModel dx="819" dy="469" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="500" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="GtZhCGzV1kUGfuRWRD5H-3" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="470.03" y="240" width="290" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-32" value="NETNS2: one_tproxy_onebr2&lt;br&gt;ip r a default dev&amp;nbsp;&lt;span style=&quot;text-wrap: nowrap;&quot;&gt;onebr2b&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;" parent="GtZhCGzV1kUGfuRWRD5H-3" vertex="1">
+          <mxGeometry width="290" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" parent="GtZhCGzV1kUGfuRWRD5H-3" source="VRzvLRjz2sGENCwRI0ut-34" target="VRzvLRjz2sGENCwRI0ut-39" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-34" value="VETH2: onebr2b&lt;br&gt;169.254.16.9/32" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#505050;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.devices.nic;" parent="GtZhCGzV1kUGfuRWRD5H-3" vertex="1">
+          <mxGeometry x="60" y="56.39999999999998" width="57" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-39" value="PROXY2:&lt;br&gt;TCP-&amp;gt;UNIX&lt;br&gt;169.254.16.9:5030" style="pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#4495D1;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam.2d.proxy;" parent="GtZhCGzV1kUGfuRWRD5H-3" vertex="1">
+          <mxGeometry x="200" y="53" width="44.8" height="44.8" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-27" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="70.03" y="106" width="317" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-1" value="VM1: one-1&lt;br&gt;ip r a 169.254.16.9 dev eth0" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/VM_Linux.svg;" parent="VRzvLRjz2sGENCwRI0ut-27" vertex="1">
+          <mxGeometry y="2" width="50" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" parent="VRzvLRjz2sGENCwRI0ut-27" source="VRzvLRjz2sGENCwRI0ut-3" target="VRzvLRjz2sGENCwRI0ut-14" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-3" value="BR1: onebr1&lt;div&gt;(VNET1)&lt;/div&gt;" style="sketch=0;points=[[0.015,0.015,0],[0.985,0.015,0],[0.985,0.985,0],[0.015,0.985,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];verticalLabelPosition=bottom;html=1;verticalAlign=top;aspect=fixed;align=center;pointerEvents=1;shape=mxgraph.cisco19.rect;prIcon=l2_switch;fillColor=#FAFAFA;strokeColor=#005073;" parent="VRzvLRjz2sGENCwRI0ut-27" vertex="1">
+          <mxGeometry x="130" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-14" value="VETH1: onebr1a" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#505050;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.devices.nic;" parent="VRzvLRjz2sGENCwRI0ut-27" vertex="1">
+          <mxGeometry x="260" y="6" width="57" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;" parent="VRzvLRjz2sGENCwRI0ut-27" source="VRzvLRjz2sGENCwRI0ut-1" target="VRzvLRjz2sGENCwRI0ut-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-71" value="&amp;nbsp;eth0&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="VRzvLRjz2sGENCwRI0ut-15" vertex="1" connectable="0">
+          <mxGeometry x="-0.0361" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;" parent="1" source="VRzvLRjz2sGENCwRI0ut-1" target="VRzvLRjz2sGENCwRI0ut-7" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="10.03" y="131" />
+              <mxPoint x="10.03" y="220" />
+              <mxPoint x="227.03" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-72" value="&amp;nbsp;eth1&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="VRzvLRjz2sGENCwRI0ut-28" vertex="1" connectable="0">
+          <mxGeometry x="0.1846" y="-1" relative="1" as="geometry">
+            <mxPoint x="1" y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" parent="1" source="VRzvLRjz2sGENCwRI0ut-24" target="VRzvLRjz2sGENCwRI0ut-34" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-50" value="" style="group;strokeColor=none;" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="470.03" y="60" width="290" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-6" value="NETNS1: one_tproxy_onebr1&lt;br&gt;ip r a default dev&amp;nbsp;&lt;span style=&quot;text-wrap: nowrap;&quot;&gt;onebr1b&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=center;" parent="VRzvLRjz2sGENCwRI0ut-50" vertex="1">
+          <mxGeometry width="290" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-13" value="PROXY1:&lt;br&gt;TCP-&amp;gt;UNIX&lt;br&gt;169.254.16.9:5030&lt;br&gt;169.254.16.9:1234" style="pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#4495D1;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam.2d.proxy;" parent="VRzvLRjz2sGENCwRI0ut-50" vertex="1">
+          <mxGeometry x="200" y="48.599999999999994" width="44.8" height="44.8" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" parent="VRzvLRjz2sGENCwRI0ut-50" source="VRzvLRjz2sGENCwRI0ut-17" target="VRzvLRjz2sGENCwRI0ut-13" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-17" value="VETH1: onebr1b&lt;br&gt;169.254.16.9/32" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#505050;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.devices.nic;" parent="VRzvLRjz2sGENCwRI0ut-50" vertex="1">
+          <mxGeometry x="60" y="52" width="57" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" parent="1" source="VRzvLRjz2sGENCwRI0ut-14" target="VRzvLRjz2sGENCwRI0ut-17" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;dashed=1;" parent="1" source="VRzvLRjz2sGENCwRI0ut-39" target="VRzvLRjz2sGENCwRI0ut-43" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="780.03" y="315" />
+              <mxPoint x="780.03" y="420" />
+              <mxPoint x="710.03" y="420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;dashed=1;" parent="1" target="VRzvLRjz2sGENCwRI0ut-43" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="714.8299999999999" y="140.0044827586207" as="sourcePoint" />
+            <mxPoint x="729.9955172413793" y="468.97" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="800.03" y="140" />
+              <mxPoint x="800.03" y="440" />
+              <mxPoint x="730.03" y="440" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;dashed=1;" parent="1" source="VRzvLRjz2sGENCwRI0ut-13" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="690.0293103448276" y="108.60000000000002" as="sourcePoint" />
+            <mxPoint x="742.4499999999999" y="482" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="820.03" y="120" />
+              <mxPoint x="820.03" y="482" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-63" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="360.03" y="424.8" width="384.79999999999995" height="165.2" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-43" value="PROXY0:&lt;br&gt;UNIX-&amp;gt;TCP&lt;br&gt;/var/run/one_tproxy_5030.socket&lt;br&gt;/var/run/one_tproxy_1234.socket" style="pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#4495D1;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam.2d.proxy;" parent="VRzvLRjz2sGENCwRI0ut-63" vertex="1">
+          <mxGeometry x="340" y="35.19999999999999" width="44.8" height="44.8" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" parent="VRzvLRjz2sGENCwRI0ut-63" source="VRzvLRjz2sGENCwRI0ut-44" target="VRzvLRjz2sGENCwRI0ut-43" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="310" y="45.19999999999999" />
+              <mxPoint x="310" y="45.19999999999999" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-44" value="OneGate&lt;br&gt;0.0.0.0:5030" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" parent="VRzvLRjz2sGENCwRI0ut-63" vertex="1">
+          <mxGeometry width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" parent="VRzvLRjz2sGENCwRI0ut-63" source="VRzvLRjz2sGENCwRI0ut-56" target="VRzvLRjz2sGENCwRI0ut-43" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="125.19999999999999" />
+              <mxPoint x="170" y="65.19999999999999" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-56" value="0.0.0.0:1234" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" parent="VRzvLRjz2sGENCwRI0ut-63" vertex="1">
+          <mxGeometry y="85.19999999999999" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="GtZhCGzV1kUGfuRWRD5H-2" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="70.03" y="290" width="317" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" parent="GtZhCGzV1kUGfuRWRD5H-2" source="VRzvLRjz2sGENCwRI0ut-2" target="VRzvLRjz2sGENCwRI0ut-7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-70" value="&amp;nbsp;eth0&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="VRzvLRjz2sGENCwRI0ut-16" vertex="1" connectable="0">
+          <mxGeometry x="-0.026" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-2" value="VM2: one-2&lt;br&gt;ip r a 169.254.16.9 dev eth0" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/VM_Linux.svg;" parent="GtZhCGzV1kUGfuRWRD5H-2" vertex="1">
+          <mxGeometry y="2" width="50" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" parent="GtZhCGzV1kUGfuRWRD5H-2" source="VRzvLRjz2sGENCwRI0ut-7" target="VRzvLRjz2sGENCwRI0ut-24" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-7" value="BR2: onebr2&lt;br&gt;(VNET2)" style="sketch=0;points=[[0.015,0.015,0],[0.985,0.015,0],[0.985,0.985,0],[0.015,0.985,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];verticalLabelPosition=bottom;html=1;verticalAlign=top;aspect=fixed;align=center;pointerEvents=1;shape=mxgraph.cisco19.rect;prIcon=l2_switch;fillColor=#FAFAFA;strokeColor=#005073;" parent="GtZhCGzV1kUGfuRWRD5H-2" vertex="1">
+          <mxGeometry x="132" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="VRzvLRjz2sGENCwRI0ut-24" value="VETH2: onebr2a" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#505050;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.devices.nic;" parent="GtZhCGzV1kUGfuRWRD5H-2" vertex="1">
+          <mxGeometry x="260" y="6.399999999999977" width="57" height="38" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
