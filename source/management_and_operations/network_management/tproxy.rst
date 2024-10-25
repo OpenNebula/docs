@@ -4,19 +4,19 @@
 Transparent Proxies
 ================================================================================
 
-Transparent Proxies allow for connecting to management services like OneGate by utilizing the existing Datacenter backbone networking implicitly. The OneGate service lives normally on the leader Front-end machine, this makes it notoriously difficult for Virtual Machines running in isolated Virtual Networks to contact it. It's ultimately required from OpenNebula users to design Virtual Networking in advance in such a way that OneGate can be reached securely, Transparent Proxies have been designed to remove that requirement.
+Transparent Proxies make it possible to connect to management services, such as OneGate, by implicitly using the existing data center backbone networking. The OneGate service usually runs on the leader Front-end machine, which makes it difficult for Virtual Machines running in isolated virtual networks to contact it. This situation forces OpenNebula users to design virtual networking in advance, to ensure that VMs can securely reach OneGate. Transparent Proxies have been designed to remove that requirement.
 
 About the Design
 ================================================================================
 
 |tproxy_diagram|
 
-Virtual networking in OpenNebula is bridge-based. Each Hypervisor host that's running Virtual Machines inside a specific Virtual Network pre-creates such a bridge before deploying those machines. Transparent Proxies extend that design by introducing a pair of VETH devices, where one of "ends" is inserted into the bridge and the other one is boxed inside the dedicated network namespace. That allows for deployment of proxy processes that can be reached by Virtual Machine guests via TCP/IP securely, i.e. without compromising internal networking of Hypervisor hosts. Proxy processes themselves form a "mesh" of daemons interconnected with UNIX sockets, it allows for complete isolation of the two involved TCP/IP stacks, we call that environment the "String-Phone Proxy". The final part of the solution requires from Virtual Machine guests to contact services over proxy via ``169.254.16.9`` link-local address on specific ports, instead of their real endpoints.
+Virtual networking in OpenNebula is bridge-based. Each Hypervisor that runs Virtual Machines in a specific Virtual Network pre-creates such a bridge before deploying the VMs. Transparent Proxies extend that design by introducing a pair of VETH devices, where one of two "ends" is inserted into the bridge and the other is boxed inside the dedicated network namespace. This makes it possible to deploy proxy processes that can be reached by Virtual Machine guests via TCP/IP securely, i.e. without compromising the internal networking of Hypervisor hosts. Proxy processes themselves form a "mesh" of daemons interconnected with UNIX sockets, which allows for complete isolation of the two involved TCP/IP stacks; we call this environment the "String-Phone Proxy." The final part of the solution requires that Virtual Machine guests contact services over proxy via the ``169.254.16.9`` link-local address on specific ports, instead of their real endpoints.
 
 Hypervisor Configuration
 ================================================================================
 
-Transparent Proxies are configured from the ``~oneadmin/remotes/etc/vnm/OpenNebulaNetwork.conf`` file on the Front-end machines with the following syntax:
+Transparent Proxies read their config from the ``~oneadmin/remotes/etc/vnm/OpenNebulaNetwork.conf`` file on the Front-end machines. The file uses the following syntax:
 
 .. code::
 
@@ -34,21 +34,21 @@ Transparent Proxies are configured from the ``~oneadmin/remotes/etc/vnm/OpenNebu
 
 .. note::
 
-    The YAML snippet above defines two distinct proxies, where the first one is the usual OneGate proxy and the second is a completely custom service.
+    The YAML snippet above defines two distinct proxies, where the first is the usual OneGate proxy and the second is a completely custom service.
 
 .. important::
 
-    When the ``:networks:`` YAML key is missing or empty, it's assumed that the particular proxy should be applied to **all** available Virtual Networks. Defining multiple entries with the identical ``:service_port:`` values will have no effect as the subsequent duplicates will be ignored by networking drivers.
+    If the ``:networks:`` YAML key is missing or empty, the particular proxy will be applied to *all* available Virtual Networks. Defining multiple entries with the identical ``:service_port:`` values will have no effect as the subsequent duplicates will be ignored by networking drivers.
 
-**To apply the configuration two steps need to be performed:**
+**To apply the configuration, you need to perform two steps:**
 
-1. The ``OpenNebulaNetwork.conf`` file needs to be synced into Hypervisor hosts with ``onehost sync -f`` (executed by the ``oneadmin`` system user on the leader Front-end machine).
-2. Any already running guests have to be power-cycled (for example with ``onevm poweroff`` followed by ``onevm resume`` CLI commands), otherwise the desired configuration changes may show no effect.
+1. On the leader Front-end machine: as the ``oneadmin`` system user, sync the ``OpenNebulaNetwork.conf`` file with the Hypervisor hosts, by running ``onehost sync -f``.
+2. Power-cycle any running guests (for example by running ``onevm poweroff`` followed by ``onevm resume``); otherwise the desired configuration changes may show no effect.
 
 Guest Configuration
 ================================================================================
 
-The most common use case of Transparent Proxies seems to be communication with OneGate, an example Virtual Machine template could look like:
+The most common use case of Transparent Proxies is for communication with OneGate. Below is an example Virtual Machine template:
 
 .. code::
 
@@ -73,7 +73,7 @@ The most common use case of Transparent Proxies seems to be communication with O
     OS = [
       ARCH = "x86_64" ]
 
-In the simplest (but still instructive) case to make the resulting Virtual Machine connect to OneGate using Transparent Proxies the following settings need to be present inside:
+In the simplest (but still instructive) case, a Virtual Machine needs the following settings to connect to OneGate using Transparent Proxies:
 
 .. code::
 
@@ -91,9 +91,9 @@ In the simplest (but still instructive) case to make the resulting Virtual Machi
 Debugging
 ================================================================================
 
-Driver logs can be located per each guest in ``/var/log/one/*.log`` on Front-end machines.
+You can find driver logs for each guest on the Front-end machines, in ``/var/log/one/*.log``.
 
-Proxy logs can be located in ``/var/log/`` on Hypervisor hosts, for example:
+Proxy logs are found on Hypervisor hosts, in ``/var/log/``. For example:
 
 .. code::
 
@@ -101,14 +101,14 @@ Proxy logs can be located in ``/var/log/`` on Hypervisor hosts, for example:
     /var/log/one_tproxy.log
     /var/log/one_tproxy_br0.log
 
-Transparent Proxies internal implementation involves several networking primitives combined together:
+The internal implementation of Transparent Proxies involves several networking primitives combined together:
 
 * ``nft`` (``nftables``) to store the service mapping and manage ARP resolutions
 * ``ip netns`` / ``nsenter`` family of commands to manage and use network namespaces
 * ``ip link`` / ``ip address`` / ``ip route`` commands
 * ``/var/tmp/one/vnm/tproxy`` the actual implementation of the "String-Phone" daemon mesh
 
-Let's go here over several example command invocations to get familiar with the environment.
+Below are several example command invocations, to gain familiarity with the environment.
 
 **Listing service mappings in nftables:**
 
@@ -125,7 +125,7 @@ Let's go here over several example command invocations to get familiar with the 
 
 .. note::
 
-    The ``nftables`` config is not persisted across Hypervisor host reboots as it is the default behavior in OpenNebula in general.
+    The ``nftables`` config is not persisted across Hypervisor host reboots, as it is the default behavior in OpenNebula in general.
 
 **Listing all custom network namespaces:**
 
@@ -154,7 +154,7 @@ Let's go here over several example command invocations to get familiar with the 
 
 .. note::
 
-    In case multiple Hypervisor hosts participate in the Virtual Network's traffic the ``169.254.16.9`` address stays the same regardless, the closest Hypervisor host is supposed to answer guest requests.
+    In case multiple Hypervisor hosts participate in the Virtual Network's traffic, the ``169.254.16.9`` address stays the same regardless, the closest Hypervisor host is supposed to answer guest requests.
 
 **Checking if the default route for sending packets back into the bridge has been configured:**
 
@@ -181,9 +181,9 @@ Let's go here over several example command invocations to get familiar with the 
 
 .. note::
 
-    There is no PID file management implemented, for simplicity all proxy processes are found by looking at the ``/proc/PID/cmdline`` process attributes.
+    There is no PID file management implemented. For simplicity, all proxy processes may be found by looking at the ``/proc/PID/cmdline`` process attributes.
 
-**Restarting / Reloading config of proxy daemons:**
+**Restarting/reloading config of proxy daemons:**
 
 .. code::
 
@@ -192,12 +192,12 @@ Let's go here over several example command invocations to get familiar with the 
 
 .. important::
 
-    Start, stop, restart and reload commands can be executed manually by the user as a part of debugging process, but in the normal circumstances proxy daemons are completely managed by networking drivers. The command line interface here is very minimal and does not require any extra parameters as all the relevant config is stored in ``nftables``.
+    While you can manually run the ``start``, ``stop``, ``restart`` and ``reload`` commands as part of a debugging process, under normal circumstances the proxy daemons are completely managed by networking drivers. The command-line interface here is very minimal and does not require any extra parameters, as all the relevant config is stored in ``nftables``.
 
 Security Groups
 ================================================================================
 
-Transparent Proxies can be used together with OpenNebula Security Groups, an example security group template could look like:
+Transparent Proxies can be used together with OpenNebula Security Groups. Below is an example of a security group template:
 
 .. code::
 
