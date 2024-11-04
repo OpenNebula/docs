@@ -32,3 +32,5 @@ The following issues has been solved in 6.10.1:
 - `Fix reset backup failed after restore individual disk on the VM <https://github.com/OpenNebula/one/issues/6741>`__.
 - `Fix reconfiguration process for VMs using context disk of block type <https://github.com/OpenNebula/one/issues/6689>`__.
 - `Fix Ceph VM restore ignoring EC_POOL_NAME <https://github.com/OpenNebula/one/issues/6749>`__.
+- `Fix QEMU Guest Agent VM Monitoring <https://github.com/OpenNebula/one/issues/6758>`__.
+- `Fix host name not validated <https://github.com/OpenNebula/one/issues/6712>`__.

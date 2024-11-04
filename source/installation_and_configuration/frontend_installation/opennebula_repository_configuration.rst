@@ -38,32 +38,32 @@ To add the OpenNebula enterprise repository, execute the following as user ``roo
 .. prompt:: bash # auto
    :substitutions:
 
-    # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
-    [opennebula]
-    name=OpenNebula Enterprise Edition
-    baseurl=https://<token>@enterprise.opennebula.io/repo/|version|/RedHat/$releasever/$basearch
-    enabled=1
-    gpgkey=https://downloads.opennebula.io/repo/repo2.key
-    gpgcheck=1
-    repo_gpgcheck=1
-    EOT
-    # yum makecache
+   # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
+   [opennebula]
+   name=OpenNebula Enterprise Edition
+   baseurl=https://<token>@enterprise.opennebula.io/repo/|version|/RedHat/$releasever/$basearch
+   enabled=1
+   gpgkey=https://downloads.opennebula.io/repo/repo2.key
+   gpgcheck=1
+   repo_gpgcheck=1
+   EOT
+   # yum makecache
 
 **AlmaLinux 8, 9**
 
 .. prompt:: bash # auto
    :substitutions:
 
-    # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
-    [opennebula]
-    name=OpenNebula Enterprise Edition
-    baseurl=https://<token>@enterprise.opennebula.io/repo/|version|/AlmaLinux/$releasever/$basearch
-    enabled=1
-    gpgkey=https://downloads.opennebula.io/repo/repo2.key
-    gpgcheck=1
-    repo_gpgcheck=1
-    EOT
-    # yum makecache
+   # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
+   [opennebula]
+   name=OpenNebula Enterprise Edition
+   baseurl=https://<token>@enterprise.opennebula.io/repo/|version|/AlmaLinux/$releasever/$basearch
+   enabled=1
+   gpgkey=https://downloads.opennebula.io/repo/repo2.key
+   gpgcheck=1
+   repo_gpgcheck=1
+   EOT
+   # yum makecache
 
 
 Debian/Ubuntu
