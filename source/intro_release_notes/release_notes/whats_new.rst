@@ -19,8 +19,7 @@ Storage & Backups
 FireEdge Sunstone
 ================================================================================
 
-- Feature 1
-- Feature 2
+- Removed Provision/Provider as application :ref:`FireEdge Sunstone <fireedge_sunstone>`.
 
 API and CLI
 ================================================================================
