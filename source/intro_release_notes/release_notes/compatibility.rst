@@ -40,3 +40,9 @@ Labels on Sunstone
 Only :ref:`persistent user labels <ruby_suns_views_user_labels>` that were created in old Sunstone will be showed :ref:`in new Sunstone <sunstone_labels>`. We are working to offer you a better experience in new Sunstone with the system and user labels in future versions of OpenNebula.
 
 Remember that in new Sunstone you need to create the user label in the Settings section before apply a label to a resource. See :ref:`Sunstone labels guide <sunstone_labels>` to get more information.
+
+OneProvision on Sunstone
+================================================================================
+We have integrated the OneProvision app into the sunstone, as it has more coherence. Now users don't have to log out of one app and log into the other to be able to see their resources.
+
+Both the Provision and the Provider can be found in the Infrastructure menu.

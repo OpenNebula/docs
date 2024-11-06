@@ -70,6 +70,8 @@ Networks
 Infrastructure
 --------------------------------------------------------------------------------
 
+- **Providers Tab**: Users can see all their Providers and can create and edit them.
+- **Provisions Tab**: Users can see all their Provisions and can create and edit them.
 - **Clusters Tab**: Users can see all their Clusters, and perform managing operations such as updating and deleting.
 - **Hosts Tab**: Users can see all their Hosts, and perform managing operations such as enabling, disabling, and more. Also, users can create a new Host from this tab.
 - **Zone Tab**: Users can see all their Zones and see all the information about a zone.
