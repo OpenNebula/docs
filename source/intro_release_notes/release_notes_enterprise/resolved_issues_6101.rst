@@ -36,3 +36,6 @@ The following issues has been solved in 6.10.1:
 - `Fix host name not validated <https://github.com/OpenNebula/one/issues/6712>`__.
 - `Fix several CLI parameters, which converts resource name always to ID 0 <https://github.com/OpenNebula/one/issues/6726>`__.
 - `Fix Groupadmin view not accessible with multiple admins <https://github.com/OpenNebula/one/issues/6730>`__.
+- `Fix Restic backup is still labeled EE only in sunstone <https://github.com/OpenNebula/one/issues/6717>`__.
+- `Fix host requirements expression regex <https://github.com/OpenNebula/one/issues/6744>`__.
+- `Fix FireEdge Sunstone cannot set deployment mode <https://github.com/OpenNebula/one/issues/6761>`__.
