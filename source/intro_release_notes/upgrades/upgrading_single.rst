@@ -95,9 +95,7 @@ If for any reason you need to restore your previous OpenNebula, simply uninstall
 .. _upgrading_from_previous_extended_steps:
 
 
-
-
-Upgrading from 5.6 and higher
+Upgrading from 6.x and higher
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Step 1. Check Virtual Machine Status
