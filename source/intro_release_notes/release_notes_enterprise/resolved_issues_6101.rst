@@ -35,3 +35,4 @@ The following issues has been solved in 6.10.1:
 - `Fix QEMU Guest Agent VM Monitoring <https://github.com/OpenNebula/one/issues/6758>`__.
 - `Fix host name not validated <https://github.com/OpenNebula/one/issues/6712>`__.
 - `Fix several CLI parameters, which converts resource name always to ID 0 <https://github.com/OpenNebula/one/issues/6726>`__.
+- `Fix Groupadmin view not accessible with multiple admins <https://github.com/OpenNebula/one/issues/6730>`__.
