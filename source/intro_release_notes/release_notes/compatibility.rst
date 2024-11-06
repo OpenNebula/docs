@@ -43,6 +43,4 @@ Remember that in new Sunstone you need to create the user label in the Settings 
 
 OneProvision on Sunstone
 ================================================================================
-We have integrated the OneProvision app into the sunstone, as it has more coherence. Now users don't have to log out of one app and log into the other to be able to see their resources.
-
-Both the Provision and the Provider can be found in the Infrastructure menu.
+We have integrated the OneProvision app into Sunstone, for convenience. Now users don't have to switch sessions to be able to manage provisions and see the equivalent resources in Sunstone. Both the Provision and the Provider can be found in the Sunstone Infrastructure left-side menu category.
