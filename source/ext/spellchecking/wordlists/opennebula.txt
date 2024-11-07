@@ -308,6 +308,7 @@ disksnapshotcreate
 disksnapshotdelete
 disksnapshotrename
 disksnapshotrevert
+distros
 dns
 dockerfile
 dockerfiles
@@ -326,6 +327,7 @@ ee
 eebc
 eht
 entrypoint
+epil
 epilog
 eth
 ethernet
@@ -449,6 +451,7 @@ mem
 memcached
 microVM
 microVMs
+migr
 migratelocal
 migrator
 migrators
