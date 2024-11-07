@@ -117,10 +117,11 @@ The backup datastore drivers are responsible to store the generate ``backup`` fo
    -  ``backupjob_id`` if defined '-' otherwise
    -  ``vm_id`` is the id of the VM
    -  ``ds_id`` is the target datastore (the system datastore).
-   -  **STDIN**: ``datastore_action_dump`` See a decoded :ref:`example <sd_dump>`.
-   -  **RETURNS**: ``backup_id size_mb``
-   -  ``backup_id`` driver reference for the backup.
+   -  **STDIN**: ``datastore_backup_dump`` See an :ref:`example <ds_backup_dump>`.
+   -  **RETURNS**: ``backup_id size_mb format``
+   -  ``backup_id`` driver reference for the backup
    -  ``size_mb`` size that the backup takes
+   -  ``format`` value of the backup image's FORMAT attribute (values: `raw`, `rbd`)
 
 -  **restore**: Restore the OpenNebula objects (VM Template and Images). Note that the actual download of the images will be made by the Image Datastore using the reference uri. The specific mechanism for download images of a given protocol are coded in the ``downloader.sh`` script. The pseudo-URL takes the form: ``<backup_proto>://<datastore_id>/<backup_job_id>/<driver_snapshot_id_chain>/<disk filename>`` (example: ``restic://100/23/0:25f4b298,1:6968545c//var/lib/one/datastores/0/0/backup/disk.0``, the backup job id can be empty):
 
@@ -661,6 +662,228 @@ Decoded Example
         <DATASTORE_LOCATION>/var/lib/one//datastores</DATASTORE_LOCATION>
         <MONITOR_VM_DISKS>1</MONITOR_VM_DISKS>
     </DS_DRIVER_ACTION_DATA>
+
+Datastore Backup STDIN Example
+================================================================================
+
+.. _ds_backup_dump:
+
+.. code-block:: xml
+
+    <DS_DRIVER_ACTION_DATA>
+      <DATASTORE>
+        <ID>100</ID>
+        <UID>0</UID>
+        <GID>0</GID>
+        <UNAME>oneadmin</UNAME>
+        <GNAME>oneadmin</GNAME>
+        <NAME>rsync</NAME>
+        <PERMISSIONS>
+          <OWNER_U>1</OWNER_U>
+          <OWNER_M>1</OWNER_M>
+          <OWNER_A>0</OWNER_A>
+          <GROUP_U>1</GROUP_U>
+          <GROUP_M>0</GROUP_M>
+          <GROUP_A>0</GROUP_A>
+          <OTHER_U>0</OTHER_U>
+          <OTHER_M>0</OTHER_M>
+          <OTHER_A>0</OTHER_A>
+        </PERMISSIONS>
+        <DS_MAD>rsync</DS_MAD>
+        <TM_MAD>-</TM_MAD>
+        <BASE_PATH>/var/lib/one//datastores/100</BASE_PATH>
+        <TYPE>3</TYPE>
+        <DISK_TYPE>0</DISK_TYPE>
+        <STATE>0</STATE>
+        <CLUSTERS>
+          <ID>0</ID>
+        </CLUSTERS>
+        <TOTAL_MB>19663</TOTAL_MB>
+        <FREE_MB>6457</FREE_MB>
+        <USED_MB>13191</USED_MB>
+        <IMAGES/>
+        <TEMPLATE>
+          <DS_MAD>rsync</DS_MAD>
+          <RESTRICTED_DIRS>/</RESTRICTED_DIRS>
+          <RSYNC_HOST>192.168.150.1</RSYNC_HOST>
+          <RSYNC_USER>oneadmin</RSYNC_USER>
+          <SAFE_DIRS>/var/tmp</SAFE_DIRS>
+          <TM_MAD>-</TM_MAD>
+          <TYPE>BACKUP_DS</TYPE>
+        </TEMPLATE>
+      </DATASTORE>
+      <VM>
+        <ID>800</ID>
+        <UID>0</UID>
+        <GID>0</GID>
+        <UNAME>oneadmin</UNAME>
+        <GNAME>oneadmin</GNAME>
+        <NAME>alpine-800</NAME>
+        <PERMISSIONS>
+          <OWNER_U>1</OWNER_U>
+          <OWNER_M>1</OWNER_M>
+          <OWNER_A>0</OWNER_A>
+          <GROUP_U>0</GROUP_U>
+          <GROUP_M>0</GROUP_M>
+          <GROUP_A>0</GROUP_A>
+          <OTHER_U>0</OTHER_U>
+          <OTHER_M>0</OTHER_M>
+          <OTHER_A>0</OTHER_A>
+        </PERMISSIONS>
+        <LAST_POLL>0</LAST_POLL>
+        <STATE>3</STATE>
+        <LCM_STATE>69</LCM_STATE>
+        <PREV_STATE>3</PREV_STATE>
+        <PREV_LCM_STATE>69</PREV_LCM_STATE>
+        <RESCHED>0</RESCHED>
+        <STIME>1727952499</STIME>
+        <ETIME>0</ETIME>
+        <DEPLOY_ID>7c657ee7-166b-46d3-bf5f-53886f0b77dd</DEPLOY_ID>
+        <MONITORING/>
+        <SCHED_ACTIONS/>
+        <TEMPLATE>
+          <AUTOMATIC_DS_REQUIREMENTS>("CLUSTERS/ID" @> 0)</AUTOMATIC_DS_REQUIREMENTS>
+          <AUTOMATIC_NIC_REQUIREMENTS>("CLUSTERS/ID" @> 0)</AUTOMATIC_NIC_REQUIREMENTS>
+          <AUTOMATIC_REQUIREMENTS>(CLUSTER_ID = 0)</AUTOMATIC_REQUIREMENTS>
+          <CONTEXT>
+            <DISK_ID>1</DISK_ID>
+            <ETH0_DNS/>
+            <ETH0_EXTERNAL/>
+            <ETH0_GATEWAY>192.168.150.1</ETH0_GATEWAY>
+            <ETH0_IP>192.168.150.100</ETH0_IP>
+            <ETH0_IP6/>
+            <ETH0_IP6_GATEWAY/>
+            <ETH0_IP6_METHOD/>
+            <ETH0_IP6_METRIC/>
+            <ETH0_IP6_PREFIX_LENGTH/>
+            <ETH0_IP6_ULA/>
+            <ETH0_MAC>02:00:c0:a8:96:64</ETH0_MAC>
+            <ETH0_MASK/>
+            <ETH0_METHOD/>
+            <ETH0_METRIC/>
+            <ETH0_MTU/>
+            <ETH0_NETWORK/>
+            <ETH0_SEARCH_DOMAIN/>
+            <ETH0_VLAN_ID/>
+            <ETH0_VROUTER_IP/>
+            <ETH0_VROUTER_IP6/>
+            <ETH0_VROUTER_MANAGEMENT/>
+            <NETWORK>YES</NETWORK>
+            <SSH_PUBLIC_KEY>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCYz+lkZoNyspRhrtXDKFN3cIEwN3w08mz0YGKpVDIiV0+/vgG8dAUQ70Irs3m83W9BHN+vNjKPgKcF+X+sSfxniOtavahxGCRjAhhs1IVm196C5ODbSgXVUWULdtmMHelXbLBJ8X340h/UO+eQ6eRLaRfslXUsgRqremVcvCCPz4LIuRiliGWiELAmqYcY+1zJLeg3QV2Pgn5vschM9e/A4AseKO+HnbGB/I5tnoeZT/Gc3FGfUZLNFVB2XsVGAEEzkqO8VI2msB7MCAZBHffIK6WfLIYgGP6Ha2JT1NWJU7Ncj9Xuql0ElF01VwWMDWzqc0DOiVSsTL89ugJKU6+h one</SSH_PUBLIC_KEY>
+            <TARGET>hda</TARGET>
+          </CONTEXT>
+          <CPU>0.1</CPU>
+          <DISK>
+            <ALLOW_ORPHANS>mixed</ALLOW_ORPHANS>
+            <CEPH_HOST>ubuntu2204-kvm-ceph-quincy-6-99-0c08-0.test</CEPH_HOST>
+            <CEPH_SECRET>7ebb2445-e96e-44c6-b7c7-07dc7a50f311</CEPH_SECRET>
+            <CEPH_USER>oneadmin</CEPH_USER>
+            <CLONE>YES</CLONE>
+            <CLONE_TARGET>SELF</CLONE_TARGET>
+            <CLUSTER_ID>0</CLUSTER_ID>
+            <DATASTORE>default</DATASTORE>
+            <DATASTORE_ID>1</DATASTORE_ID>
+            <DEV_PREFIX>vd</DEV_PREFIX>
+            <DISK_ID>0</DISK_ID>
+            <DISK_SNAPSHOT_TOTAL_SIZE>0</DISK_SNAPSHOT_TOTAL_SIZE>
+            <DISK_TYPE>RBD</DISK_TYPE>
+            <DRIVER>raw</DRIVER>
+            <FORMAT>raw</FORMAT>
+            <IMAGE>alpine</IMAGE>
+            <IMAGE_ID>0</IMAGE_ID>
+            <IMAGE_STATE>2</IMAGE_STATE>
+            <LN_TARGET>NONE</LN_TARGET>
+            <ORIGINAL_SIZE>256</ORIGINAL_SIZE>
+            <POOL_NAME>one</POOL_NAME>
+            <READONLY>NO</READONLY>
+            <SAVE>NO</SAVE>
+            <SIZE>256</SIZE>
+            <SOURCE>one/one-0</SOURCE>
+            <TARGET>vda</TARGET>
+            <TM_MAD>ceph</TM_MAD>
+            <TYPE>RBD</TYPE>
+          </DISK>
+          <GRAPHICS>
+            <LISTEN>0.0.0.0</LISTEN>
+            <PORT>6700</PORT>
+            <TYPE>vnc</TYPE>
+          </GRAPHICS>
+          <MEMORY>96</MEMORY>
+          <NIC>
+            <AR_ID>0</AR_ID>
+            <BRIDGE>br0</BRIDGE>
+            <BRIDGE_TYPE>linux</BRIDGE_TYPE>
+            <CLUSTER_ID>0</CLUSTER_ID>
+            <GATEWAY>192.168.150.1</GATEWAY>
+            <IP>192.168.150.100</IP>
+            <MAC>02:00:c0:a8:96:64</MAC>
+            <MODEL>virtio</MODEL>
+            <NAME>NIC0</NAME>
+            <NETWORK>public</NETWORK>
+            <NETWORK_ID>0</NETWORK_ID>
+            <NIC_ID>0</NIC_ID>
+            <SECURITY_GROUPS>0</SECURITY_GROUPS>
+            <TARGET>one-800-0</TARGET>
+            <VN_MAD>dummy</VN_MAD>
+          </NIC>
+          <NIC_DEFAULT>
+            <MODEL>virtio</MODEL>
+          </NIC_DEFAULT>
+          <OS>
+            <UUID>7c657ee7-166b-46d3-bf5f-53886f0b77dd</UUID>
+          </OS>
+          <SECURITY_GROUP_RULE>
+            <PROTOCOL>ALL</PROTOCOL>
+            <RULE_TYPE>OUTBOUND</RULE_TYPE>
+            <SECURITY_GROUP_ID>0</SECURITY_GROUP_ID>
+            <SECURITY_GROUP_NAME>default</SECURITY_GROUP_NAME>
+          </SECURITY_GROUP_RULE>
+          <SECURITY_GROUP_RULE>
+            <PROTOCOL>ALL</PROTOCOL>
+            <RULE_TYPE>INBOUND</RULE_TYPE>
+            <SECURITY_GROUP_ID>0</SECURITY_GROUP_ID>
+            <SECURITY_GROUP_NAME>default</SECURITY_GROUP_NAME>
+          </SECURITY_GROUP_RULE>
+          <TEMPLATE_ID>0</TEMPLATE_ID>
+          <TM_MAD_SYSTEM>ceph</TM_MAD_SYSTEM>
+          <VMID>800</VMID>
+        </TEMPLATE>
+        <USER_TEMPLATE>
+          <ARCH>x86_64</ARCH>
+        </USER_TEMPLATE>
+        <HISTORY_RECORDS>
+          <HISTORY>
+            <OID>800</OID>
+            <SEQ>1</SEQ>
+            <HOSTNAME>ubuntu2204-kvm-ceph-quincy-6-99-0c08-2.test</HOSTNAME>
+            <HID>62</HID>
+            <CID>0</CID>
+            <STIME>1727952516</STIME>
+            <ETIME>0</ETIME>
+            <VM_MAD>kvm</VM_MAD>
+            <TM_MAD>ceph</TM_MAD>
+            <DS_ID>0</DS_ID>
+            <PSTIME>0</PSTIME>
+            <PETIME>0</PETIME>
+            <RSTIME>1727952516</RSTIME>
+            <RETIME>0</RETIME>
+            <ESTIME>0</ESTIME>
+            <EETIME>0</EETIME>
+            <ACTION>0</ACTION>
+            <UID>-1</UID>
+            <GID>-1</GID>
+            <REQUEST_ID>-1</REQUEST_ID>
+          </HISTORY>
+        </HISTORY_RECORDS>
+        <BACKUPS>
+          <BACKUP_CONFIG>
+            <LAST_DATASTORE_ID>100</LAST_DATASTORE_ID>
+          </BACKUP_CONFIG>
+          <BACKUP_IDS/>
+        </BACKUPS>
+      </VM>
+    </DS_DRIVER_ACTION_DATA>
+
 
 Export XML
 ================================================================================

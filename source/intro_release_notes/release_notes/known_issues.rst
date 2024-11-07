@@ -23,9 +23,9 @@ Sunstone
 
 - Guacamole RDP as is currently shipped in OpenNebula does not support NLA authentication. You can follow `these instructions <https://www.parallels.com/blogs/ras/disabling-network-level-authentication/>`__ in order to disable NLA in the Windows box to use Guacamole RDP within Sunstone.
 
-- When instantiate a vrouter, the values filled in the form `are not used to replace the corresponding variables in the CONTEXT section <https://github.com/OpenNebula/one/issues/6725>`_ of the corresponding virtual machine.
-
 - `'Groupadmin' view fails to load for groups with multiple admin users <https://github.com/OpenNebula/one/issues/6730>`__.
+
+- The current configuration for both Sunstone and One-Provision contain a mismatch in the `keep_me_logged` configuration option. This issue has been fixed but the new configuration files need to be downloaded in order for this fix to take effect, refer to :ref:`the following section <fireedge_install_configuration>` for instructions on how to do this.
 
 Install Linux Graphical Desktop on KVM Virtual Machines
 ================================================================================

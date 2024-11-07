@@ -29,6 +29,9 @@ Main Features
 
 
 .. _fireedge_install_configuration:
+.. note::
+
+    We are continually expanding the feature set of FireEdge Sunstone, and hence its configuration files are in constant change. In versions 6.10.1 and later, configuration files in ``/etc/one/fireedge/`` can be replaced by the ones that can be downloaded from `here <https://bit.ly/6101-config>`__ in order to activate the latest features.
 
 Configuration
 ================================================================================
@@ -154,16 +157,17 @@ The FireEdge server configuration file can be found in ``/etc/one/fireedge-serve
 +-------------------------------------------+-------------------------------------------+------------------------------------------------------+
 | ``keep_me_logged_in``                     | ``true``                                  | True to display 'Keep me logged in' option           |
 +-------------------------------------------+-------------------------------------------+------------------------------------------------------+
+| ``currentTimeZone``                       |                                           | Time Zone                                            |
++-------------------------------------------+-------------------------------------------+------------------------------------------------------+
+| ``rowStyle``                              |                                           | Changes the style of rows in datatables, values can  |
+|                                           |                                           | be ``card`` or ``list``.                             |
++-------------------------------------------+-------------------------------------------+------------------------------------------------------+
 
 Once the server is initialized, it creates the file ``/var/lib/one/.one/fireedge_key``, used to encrypt communication with Guacd.
 
 .. _fireedge_in_ha:
 
 In HA environments, ``fireedge_key`` needs to be copied from the first leader to the followers. Optionally, in order to have the provision logs available in all the HA nodes, ``/var/lib/one/fireedge`` need to be shared between nodes.
-
-.. _fireedge_ssl_without_nginx:
-
-If you need to execute the FireEdge with SSL Certificate, in the following path: ``/usr/lib/one/fireedge`` you must create a folder called ``cert`` and inside it place the files ``cert.pem`` and ``key.pem``. After doing that you need to restart ``opennebula-fireedge``.
 
 .. _fireedge_configuration_for_sunstone:
 
@@ -204,6 +208,16 @@ The following example shows how you can change the logo to a generic linux one (
 |fireedge_sunstone_linux_login_logo| |fireedge_sunstone_linux_drawer_logo|
 
 .. _fireedge_conf_guacamole:
+
+Configure DataTables
+--------------------------------------------------------------------------------
+You can change the style of the rows depending on your preferences. in case they are changed in the fireedge-server.conf file. this change will be priority. and it will adjust the view to all users. 
+
+|fireedge_sunstone_list_datatable|
+
+Each user can also do it from his configuration.
+
+|fireedge_sunstone_setting_list_datatable|
 
 Configure Guacamole
 --------------------------------------------------------------------------------
@@ -282,3 +296,5 @@ If another service is using the port, you can change FireEdge configuration (``/
    :width: 45%
 .. |fireedge_sunstone_linux_drawer_logo| image:: /images/fireedge_drawer_linux_logo.png
    :width: 45%
+.. |fireedge_sunstone_list_datatable| image:: /images/sunstone_list_datatable.png
+.. |fireedge_sunstone_setting_list_datatable| image:: /images/sunstone_setting_list_datatable.png

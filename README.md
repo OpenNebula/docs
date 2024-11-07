@@ -18,7 +18,7 @@ Building
 
 Also the following Python dependencies:
 
-``pip install sphinx sphinx_rtd_theme sphinx-prompt sphinx_substitution_extensions pyyaml``.
+``pip install sphinx sphinx_rtd_theme sphinx-prompt sphinx_substitution_extensions sphinxcontrib-spelling pyyaml``.
 
 Build the documentation by running ``make html``.
 [More information](http://sphinx-doc.org/).
