@@ -12,7 +12,7 @@ If you are upgrading from a 6.10.x installation you only need to follow a reduce
 
 .. important:: If you haven't done so, please enable the :ref:`OpenNebula and needed 3rd party repositories <setup_opennebula_repos>` before attempting the upgrade process.
 
-.. _upgrade_68:
+.. _upgrade_610:
 
 Upgrading from 6.10.x
 ^^^^^^^^^^^^^^^^^^^^^
