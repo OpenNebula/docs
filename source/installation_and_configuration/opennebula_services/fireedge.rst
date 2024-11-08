@@ -31,7 +31,7 @@ Main Features
 .. _fireedge_install_configuration:
 .. note::
 
-    We are continually expanding the feature set of FireEdge Sunstone, and hence its configuration files are in constant change. In versions 6.10.1 and later, configuration files in ``/etc/one/fireedge/`` can be replaced by the ones that can be downloaded from `here <https://bit.ly/6101-config>`__ in order to activate the latest features.
+    We are continually expanding the feature set of FireEdge Sunstone, and hence its configuration files are in constant change. In versions 6.10.2 and later, configuration files in ``/etc/one/fireedge/`` can be replaced by the ones that can be downloaded from `here <https://bit.ly/6101-config>`__ in order to activate the latest features.
 
 Configuration
 ================================================================================
