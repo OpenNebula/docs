@@ -763,27 +763,33 @@ onevrouter
 onezone
 --------------------------------------------------------------------------------
 
-+-----------------+-------------------+---------------+
-| onezone command |   XML-RPC Method  | Auth. Request |
-+=================+===================+===============+
-| create          | one.zone.allocate | ZONE:CREATE   |
-+-----------------+-------------------+---------------+
-| rename          | one.zone.rename   | ZONE:MANAGE   |
-+-----------------+-------------------+---------------+
-| update          | one.zone.update   | ZONE:MANAGE   |
-+-----------------+-------------------+---------------+
-| delete          | one.zone.delete   | ZONE:ADMIN    |
-+-----------------+-------------------+---------------+
-| enable          | one.zone.enable   | ZONE:ADMIN    |
-|                 |                   |               |
-| disable         |                   |               |
-+-----------------+-------------------+---------------+
-| show            | one.zone.info     | ZONE:USE      |
-+-----------------+-------------------+---------------+
-| list            | one.zonepool.info | ZONE:USE      |
-+-----------------+-------------------+---------------+
-| set             | --                | ZONE:USE      |
-+-----------------+-------------------+---------------+
++-----------------+----------------------+---------------+
+| onezone command |   XML-RPC Method     | Auth. Request |
++=================+======================+===============+
+| create          | one.zone.allocate    | ZONE:CREATE   |
++-----------------+----------------------+---------------+
+| rename          | one.zone.rename      | ZONE:MANAGE   |
++-----------------+----------------------+---------------+
+| update          | one.zone.update      | ZONE:MANAGE   |
++-----------------+----------------------+---------------+
+| delete          | one.zone.delete      | ZONE:ADMIN    |
++-----------------+----------------------+---------------+
+| enable          | one.zone.enable      | ZONE:ADMIN    |
+|                 |                      |               |
+| disable         |                      |               |
++-----------------+----------------------+---------------+
+| server-add      | one.zone.addserver   | ZONE:ADMIN    |
++-----------------+----------------------+---------------+
+| server-del      | one.zone.delserver   | ZONE:ADMIN    |
++-----------------+----------------------+---------------+
+| server-reset    | one.zone.resetserver | ZONE:ADMIN    |
++-----------------+----------------------+---------------+
+| show            | one.zone.info        | ZONE:USE      |
++-----------------+----------------------+---------------+
+| list            | one.zonepool.info    | ZONE:USE      |
++-----------------+----------------------+---------------+
+| set             | --                   | ZONE:USE      |
++-----------------+----------------------+---------------+
 
 onesecgroup
 --------------------------------------------------------------------------------
@@ -985,7 +991,7 @@ onehook
 --------------------------------------------------------------------------------
 
 +-----------------------+----------------------------+---------------------------+
-| onevntemplate command |      XML-RPC Method        |      Auth. Request        |
+| onehook command       |      XML-RPC Method        |      Auth. Request        |
 +=======================+============================+===========================+
 | update                | one.hook.update            | HOOK:MANAGE               |
 +-----------------------+----------------------------+---------------------------+
@@ -1005,7 +1011,7 @@ onehook
 +-----------------------+----------------------------+---------------------------+
 | unlock                | one.hook.unlock            | HOOK:MANAGE               |
 +-----------------------+----------------------------+---------------------------+
-| retry                 | one.hook.unlock            | HOOK:MANAGE               |
+| retry                 | one.hook.retry             | HOOK:MANAGE               |
 +-----------------------+----------------------------+---------------------------+
 | log                   | one.hooklog.info           | HOOK:-                    |
 +-----------------------+----------------------------+---------------------------+
@@ -7195,6 +7201,60 @@ one.zone.rename
 +------+------------+---------------------------------------------+
 | OUT  | Int        | ID of the object that caused the error.     |
 +------+------------+---------------------------------------------+
+
+one.zone.addserver
+------------------
+
+-  **Description**: Add server to zone.
+-  **Parameters**
+
+====  ==========  ============================================
+Type  Data Type   Description
+====  ==========  ============================================
+IN    String      The session string.
+IN    Int         The object ID.
+IN    String      A string containing the template of the server. Syntax can be the usual ``attribute=value`` or XML.                               |
+OUT   Boolean     True or false whenever is successful or not.
+OUT   Int/String  The resource ID / The error string.
+OUT   Int         Error code.
+OUT   Int         ID of the object that caused the error.
+====  ==========  ============================================
+
+one.zone.delserver
+------------------
+
+-  **Description**: Delete a server from zone.
+-  **Parameters**
+
+====  ==========  ============================================
+Type  Data Type   Description
+====  ==========  ============================================
+IN    String      The session string.
+IN    Int         The object ID.
+IN    Int         The server ID.
+OUT   Boolean     true or false whenever is successful or not
+OUT   Int/String  The resource ID / The error string.
+OUT   Int         Error code.
+OUT   Int         ID of the object that caused the error.
+====  ==========  ============================================
+
+one.zone.resetserver
+--------------------
+
+-  **Description**: Reset follower log index. This should be trigger when a follower DB has been reset.
+-  **Parameters**
+
+====  ==========  ============================================
+Type  Data Type   Description
+====  ==========  ============================================
+IN    String      The session string.
+IN    Int         The object ID.
+IN    Int         The server ID.
+OUT   Boolean     true or false whenever is successful or not
+OUT   Int/String  The resource ID / The error string.
+OUT   Int         Error code.
+OUT   Int         ID of the object that caused the error.
+====  ==========  ============================================
 
 one.zone.info
 --------------
