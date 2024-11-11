@@ -854,10 +854,10 @@ To explain that, we are gonna use an example:
   leases:
     terminate:
       edit: false
-      execute_after_weeks: 3      
+      execute_after_weeks: 3
     poweroff:
       edit: true
-      execute_after_minutes: 5      
+      execute_after_minutes: 5
 
 The previous example will create two schedule actions:
 
@@ -1017,7 +1017,7 @@ There are some ``onevm`` commands operations meant for the cloud administrators:
 **Deployment:**
 
 -  ``deploy``: Starts an existing VM in a specific Host.
--  ``migrate --live``: The Virtual Machine is transferred between Hosts with no noticeable downtime.
+-  ``migrate --live``: The Virtual Machine is transferred between Hosts with no noticeable downtime. The VM storage cannot be migrated to other system datastores.
 -  ``migrate``: The VM gets stopped and resumed in the target host. In an infrastructure with :ref:`multiple system datastores <sched_ds>`, the VM storage can be also migrated (the datastore id can be specified).
 
 Note: By default, the above operations do not check the target host capacity. You can use the ``--enforce`` option to be sure that the host capacity is not overcommitted.
@@ -1186,7 +1186,7 @@ After that you can access the VM and configure the SSH service:
 .. |sunstone_guac_rdp| image:: /images/sunstone_guac_rdp.png
 .. |sunstone_guac_rdp_interface| image:: /images/sunstone_guac_rdp_interface.png
 .. |sunstone_guac_nic_1| image:: /images/sunstone_guac_nic_1.png
-.. |sunstone_guac_nic_2| image:: /images/sunstone_guac_nic_2.png    
+.. |sunstone_guac_nic_2| image:: /images/sunstone_guac_nic_2.png
 .. |sunstone_sg_main_view| image:: /images/sunstone_sg_main_view.png
 .. |sunstone_sg_attach| image:: /images/sunstone_sg_attach.png
 .. |fireedge_sunstone_ssh_list| image:: /images/fireedge_sunstone_ssh_list.png
