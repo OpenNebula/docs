@@ -190,9 +190,9 @@ In order to improve the user experience, Sunstone can render this user inputs in
 
 .. _sunstone_layout_rules:
 
-- User input name has to meet the following convention ``ONEAPP_<APP>_<GROUP>_<FIELD>`` where all the user inputs that meet this convention will be grouped by APP and GROUP. An APP will be render as a tab in Sunstone and a GROUP will group the user inputs that belong to this group.
-- If ``FIELD`` is the word ``ENABLED`` and the user input type is boolean, all the user inputs that has the same APP and GROUP will be hidden until the ENABLED user input is turn on.
-- If a user input not meet the convention, will be placed in a tab called Others.
+- User input name has to meet the following convention ``ONEAPP_<APP>_<GROUP>_<FIELD>`` where all the user inputs that meet this convention will be grouped by APP and GROUP. An APP will be rendered as a tab in Sunstone and a GROUP will group the user inputs that belong to this group.
+- If ``FIELD`` is the word ``ENABLED`` and the user input type is boolean, all the user inputs that have the same APP and GROUP will be hidden until the ENABLED user input is turn on.
+- If a user input not meet the convention, it will be placed in a tab called Others.
 - If all the user inputs do not meet the convention name, no tabs will be rendered (as the previous example).
 
 So, if the previous template is modified as follows:

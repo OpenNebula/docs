@@ -1312,9 +1312,9 @@ In Sunstone, the ``USER_INPUTS`` can be ordered with the mouse.
 +-----------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``NAME``        | Yes       | Name of the user input. It has to be an existing user input name in the same template.                                                                                           |
 +-----------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``TITLE``       | No        | In the case of ``APP`` is the text that will be showed to the user in a Sunstone tab. In the case of ``GROUP`` is the text that will be showed to the user in a Sunstone group.  |
+| ``TITLE``       | No        | In the case of ``APP`` is the text that will be shown to the user in a Sunstone tab. In the case of ``GROUP`` is the text that will be showed to the user in a Sunstone group.   |
 +-----------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DESCRIPTION`` | No        | In the case of ``APP`` is a text info note that will be showed in the APP tab. In the case of ``GROUP`` is the text that will be showed as info text in the Sunstone group.      |
+| ``DESCRIPTION`` | No        | In the case of ``APP`` is a text info note that will be shown in the APP tab. In the case of ``GROUP`` is the text that will be showed as info text in the Sunstone group.       |
 +-----------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Example:
