@@ -11,6 +11,7 @@ The following new features have been backported to 6.10.1:
 - Add a "disk-snapshot-list" option to :ref:`onevm cli <cli>`.
 - `Optimize handling of VM history records, it greatly improves perfomance of all VM operations for VMs with many history records <https://github.com/OpenNebula/one/issues/2111>`__.
 - `Add support for incremental backups in Ceph <https://github.com/OpenNebula/one/issues/6411>`__.
+- :ref:`New Transparent Proxies for VMs to simplify access to external services (e.g. OneGate) <tproxy>`
 
 The following issues has been solved in 6.10.1:
 
