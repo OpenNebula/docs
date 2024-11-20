@@ -11,3 +11,4 @@ The following new features have been backported to 6.10.2:
 The following issues has been solved in 6.10.2:
 
 - `Fix bug in the DS Ceph driver: set the value for the --keyfile to CEPH_KEY instead of CEPH_USER in the export operation <https://github.com/OpenNebula/one/issues/6791>.`__.
+- `Fix GOCA OS vector attribute to include FIRMWARE, FIRMWARE_SECURE, UUID and SD_DISK_BUS <https://github.com/OpenNebula/one/issues/6782>.`__.
