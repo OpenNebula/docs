@@ -7,7 +7,7 @@ What’s New in |version|
 OpenNebula Core
 ================================================================================
 
-- Removed `onehost importvm` command for importing wild VMs.
+- The ability to import wild VMs into OpenNebula has been removed from code to provide a more coherent management experience across all interfaces and APIs.
 - Feature 2
 
 Storage & Backups
