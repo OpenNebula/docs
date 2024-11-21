@@ -613,7 +613,7 @@ At the top of the console you can find the buttons for the following actions:
 - **Reconnect**: Reconnect the VNC console.
 - **Configurations**: 
     - **SSH Command**: Reconnect the console, by executing the command placed
-    - **Schema**: Changes the colour scheme to be used for the terminal session. It consists of a series of name-value pairs separated by semicolons. Each name-value pair is separated by a colon and assigns a value to a colour in the terminal emulator palette. For example. 
+    - **Schema**: Changes the color scheme to be used for the terminal session. It consists of a series of name-value pairs separated by semicolons. Each name-value pair is separated by a colon and assigns a value to a color in the terminal emulator palette. For example. 
 
         .. code-block:: bash
 
@@ -636,7 +636,7 @@ At the top of the console you can find the buttons for the following actions:
             - **green-black**: Green text over a black background.
             - **white-black**: White text over a black background.
 
-    - **Font Name**: The name of the font to use. This parameter is optional. If not specified, the default of “monospace” will be used instead.
+    - **Font Name**: The name of the font to use. This parameter is optional. If not specified, the default of “mono-space” will be used instead.
     - **Font Size**: The size of the font to use, in points. This parameter is optional. If not specified, the default of 12 will be used instead.
 
 
