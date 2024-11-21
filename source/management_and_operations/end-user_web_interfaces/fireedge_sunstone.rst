@@ -546,6 +546,20 @@ To set these VNC connection configurations, we must:
 
     To have the correct layout on your Virtual Machine, you must set the same keymap inside the Virtual Machine as the ``KEYMAP`` attribute configured in the OpenNebula VM graphics section, and it must be the same as your keyboard layout.
 
+.. note:: Due to hypervisor limitations it is not possible to share the clipboard with the VM. For this we recommend the use of RDP or SSH.
+
+|fireedge_sunstone_vnc|
+
+Actions in VNC console
+----------------------
+At the top of the console you can find the buttons for the following actions:
+
+- **Full Screen**: Set the console to full screen mode.
+- **Screenshot**: Take a screenshot from the VNC console.
+- **Reconnect**: Reconnect the VNC console.
+- **Lock/Unlock**: Lock/Unlock the use of the keyboard and mouse.
+
+
 OpenNebula RDP remote connection.
 --------------------------------------------------------------------------------
 
@@ -557,7 +571,20 @@ Sunstone also admits direct connections using RDP. This kind of connection is bo
 4. Click on attach nic or update an existing one.
 5. Go to the "Advanced options" step, and enable the RDP connection and all the desired configuration parameters for the connection.
 
+|fireedge_sunstone_rdp|
+
 .. note:: To enable them on a running VM, you must follow steps 3 to 5 once you click the VM you want to have it.
+
+Actions in RDP console
+----------------------
+At the top of the console you can find the buttons for the following actions:
+
+- **Full Screen**: Set the console to full screen mode.
+- **Screenshot**: Take a screenshot from the VNC console.
+- **Reconnect**: Reconnect the VNC console.
+- **Download connection file**: Download the connection file for use with `Microsoft Remote Desktop <https://apps.microsoft.com/detail/9wzdncrfj3ps?hl=es-es&gl=ES>`__.
+
+    .. note:: In order to be able to connect from an external application, you must have access to the IP address that appears in the file.
 
 OpenNebula SSH remote connection.
 --------------------------------------------------------------------------------
@@ -570,9 +597,57 @@ Sunstone also allows direct connections using SSH. This kind of connection is bo
 4. Click on attach nic or update an existing one.
 5. Go to the "Advanced options" step, and enable the SSH connection.
 
+|fireedge_sunstone_ssh|
+
 .. note:: To enable them on a running VM, you must follow steps 3 to 5 once you click the VM you want to have it.
+
+.. note:: To make the connection by this means, it must be done with username and password. it is not possible to send the SSH key.
+
+Actions in SSH console
+----------------------
+
+At the top of the console you can find the buttons for the following actions:
+
+- **Full Screen**: Set the console to full screen mode.
+- **Screenshot**: Take a screenshot from the VNC console.
+- **Reconnect**: Reconnect the VNC console.
+- **Configurations**: 
+    - **SSH Command**: Reconnect the console, by executing the command placed
+    - **Schema**: Changes the color scheme to be used for the terminal session. It consists of a series of name-value pairs separated by semicolons. Each name-value pair is separated by a colon and assigns a value to a color in the terminal emulator palette. For example. 
+
+        .. code-block:: bash
+
+            foreground: rgb:00/00/ff;
+            background: rgb:ff/ff/ff;
+            color9: rgb:80/00/80
+
+        Possible color names are:
+
+            - **foreground**: Set the default foreground color
+            - **background**: Set the default background color.
+            - **colorN**: Set the color at index N on the Xterm 256-color palette. For example, color9 refers to the red color.
+                - **rgb:RR/GG/BB**: Use the specified color in RGB format, with each component in hexadecimal. For example, ``rgb:ff/00/00``
+                - **colorN**: Use the color currently assigned to index ``N`` on the Xterm 256-color palette.
+
+        For backward compatibility, Will also accept four special values as the color scheme parameter:
+
+            - **black-white**: Black text over a white background.
+            - **gray-black**: Gray text over a black background. This is the default color scheme.
+            - **green-black**: Green text over a black background.
+            - **white-black**: White text over a black background.
+
+    - **Font Name**: The name of the font to use. This parameter is optional. If not specified, the default of “mono-space” will be used instead.
+    - **Font Size**: The size of the font to use, in points. This parameter is optional. If not specified, the default of 12 will be used instead.
+
+
+- **Download connection file**: Download the connection file for use with `TigerVNC Viewer <https://tigervnc.org/>`__.
+
+    .. note:: In order to be able to connect from an external application, you must have access to the IP address that appears in the file.
 
 .. |fireedge_sunstone_admin_view| image:: /images/fireedge_sunstone_admin_view.png
 .. |fireedge_sunstone_change_view_dropdown| image:: /images/fireedge_sunstone_change_view_dropdown.png
 .. |fireedge_sunstone_settings| image:: /images/fireedge_sunstone_settings.png
 .. |fireedge_sunstone_user_view| image:: /images/fireedge_sunstone_user_view.png
+.. |fireedge_sunstone_vnc| image:: /images/sunstone-vnc.png
+.. |fireedge_sunstone_ssh| image:: /images/sunstone-ssh.png
+.. |fireedge_sunstone_rdp| image:: /images/sunstone-rdp.png
