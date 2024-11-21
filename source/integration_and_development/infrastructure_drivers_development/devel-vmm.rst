@@ -57,59 +57,6 @@ These arguments are specified in the :ref:`oned.conf file <oned_conf>`, ``argume
 .. code::
 
     VM_MAD = [
-        name       = "kvm",
-        executable = "one_vmm_exec",
-        arguments  = "-t 15 -r 0 -l migrate,save kvm",
-        default    = "vmm_exec/vmm_exec_kvm.conf",
-        ...
-
-Each driver can define a list of supported actions for :ref:`imported VMs <import_wild_vms>`. The complete list of actions is:
-
-.. _devel_actions:
-
-- migrate
-- live-migrate
-- shutdown
-- shutdown-hard
-- undeploy
-- undeploy-hard
-- hold
-- release
-- stop
-- suspend
-- resume
-- delete
-- delete-recreate
-- reboot
-- reboot-hard
-- resched
-- unresched
-- poweroff
-- poweroff-hard
-- disk-attach
-- disk-detach
-- nic-attach
-- nic-detach
-- disk-snapshot-create
-- disk-snapshot-delete
-- disk-snapshot-rename
-- disk-snapshot-revert
-- disk-resize
-- disk-saveas
-- resize
-- update
-- updateconf
-- snapshot-create
-- snapshot-delete
-- snapshot-revert
-- recover
-- retry
-
-These supported actions are specified in the :ref:`oned.conf file <oned_conf>`, ``imported_vms_actions`` variable:
-
-.. code::
-
-    VM_MAD = [
         sunstone_name = "KVM",
         name           = "kvm",
         executable     = "one_vmm_exec",
@@ -118,8 +65,7 @@ These supported actions are specified in the :ref:`oned.conf file <oned_conf>`, 
         type           = "kvm",
         keep_snapshots = "no",
         live_resize    = "yes",
-        support_shareable    = "yes",
-        imported_vms_actions = "shutdown,shutdown-hard,hold,release,suspend,resume,delete,reboot,reboot-hard,resched,unresched,disk-attach,disk-detach,nic-attach,nic-detach,snap-create,snap-delete"
+        support_shareable  = "yes",
     ]
 
 The hypervisor may preserve system snapshots across power on/off cycles and live migrations, in that case you can set ``keep_snapshots`` variable to ``yes``.
