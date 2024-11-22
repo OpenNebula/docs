@@ -262,6 +262,8 @@ conf
 config
 cooldown
 cpu
+cpuset
+cputune
 cryptographic
 css
 customizable
@@ -328,6 +330,7 @@ edk
 ee
 eebc
 eht
+emulatorpin
 entrypoint
 epil
 epilog
