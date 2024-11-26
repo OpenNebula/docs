@@ -39,7 +39,7 @@ To create a new System Datastore, you need to set following (template) parameter
 +---------------+-------------------------------------------------+
 | ``TYPE``      | ``SYSTEM_DS``                                   |
 +---------------+-------------------------------------------------+
-| ``TM_MAD``    | ``ssh``                                         |
+| ``TM_MAD``    | ``local``                                       |
 +---------------+-------------------------------------------------+
 
 This can be done either in Sunstone or through the CLI; for example, to create a local System Datastore simply enter:
@@ -48,7 +48,7 @@ This can be done either in Sunstone or through the CLI; for example, to create a
 
     $ cat systemds.txt
     NAME    = local_system
-    TM_MAD  = ssh
+    TM_MAD  = local
     TYPE    = SYSTEM_DS
 
     $ onedatastore create systemds.txt
@@ -68,7 +68,7 @@ To create a new Image Datastore, you need to set the following (template) parame
 +---------------+-----------------------------------------------------------------+
 | ``DS_MAD``    | ``fs``                                                          |
 +---------------+-----------------------------------------------------------------+
-| ``TM_MAD``    | ``ssh``                                                         |
+| ``TM_MAD``    | ``local``                                                       |
 +---------------+-----------------------------------------------------------------+
 | ``CONVERT``   |  ``yes`` (default) or ``no``. Change Image format to ``DRIVER`` |
 +---------------+-----------------------------------------------------------------+
@@ -80,7 +80,7 @@ For example, the following illustrates the creation of a Local Datastore:
  $ cat ds.conf
  NAME   = local_images
  DS_MAD = fs
- TM_MAD = ssh
+ TM_MAD = local
 
  $ onedatastore create ds.conf
  ID: 100
@@ -101,12 +101,22 @@ Additional Configuration
 
 .. note:: When using a Local Storage Datastore the ``QCOW2_OPTIONS`` attribute is ignored since the cloning script uses the ``tar`` command instead of ``qemu-img``.
 
+Datastore Drivers
+================================================================================
+
+.. _local_ds_drivers:
+
+There are currently two Local transfer drivers:
+
+- **local**: reference Local driver since OpenNebula 6.10.2, used by default for newly created datastores. Supports operations such as thin provisioning for images in qcow2 format.
+- **ssh**: legacy but still supported for compatibility reasons. Unable to leverage advanced qcow2 features.
+
 Datastore Internals
 ================================================================================
 
 .. include:: internals_fs_common.txt
 
-In this case, the System Datastore is distributed among the Hosts. The **ssh** transfer driver uses the Hosts' local storage to place the images of running Virtual Machines. All the operations are then performed locally but images have to always be copied to the Hosts, which in turn can be a very resource-demanding operation.
+In this case, the System Datastore is distributed among the Hosts. The **local** transfer driver uses the Hosts' local storage to place the images of running Virtual Machines. All the operations are then performed locally but images have to always be copied to the Hosts, which in turn can be a very resource-demanding operation.
 
 |image2|
 

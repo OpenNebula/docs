@@ -326,7 +326,7 @@ Action scripts needed when the TM is used for the system datastore:
   ]
   ...
 
--  **monitor_ds**: monitors a **ssh-like** system datastore. Distributed system datastores should ``exit 0`` on the previous monitor script. Arguments and return values are the same as the monitor script.
+-  **monitor_ds**: monitors a **local-like** system datastore. Distributed system datastores should ``exit 0`` on the previous monitor script. Arguments and return values are the same as the monitor script.
 
 -  **pre_backup** and **pre_backup_live**: These actions needs to generate disk backup images, as well as the VM XML representation in the folder ``remote_system_ds/backup``. Each disk is created in the form ``disk.<disk_id>.<increment_id>``. The VM representation is stored in a file named ``vm.xml``. The live version needs to pause/snapshot the VM to create consistent backup images.
 
@@ -386,16 +386,16 @@ The driver plugin ``<tm_mad>/monitor`` will report the information for two thing
 - Total storage metrics for the datastore (``USED_MB`` ``FREE_MB`` ``TOTAL_MB``)
 - Disk usage metrics (all disks: volatile, persistent and non-persistent)
 
-Non-shared System Datastores (SSH-like)
+Local System Datastores (SSH-like)
 --------------------------------------------------------------------------------
-Non-shared SSH datastores are labeled by including a ``.monitor`` file in the datastore directory in any of the clone or ln operations. Only those datastores are monitored remotely by the monitor_ds.sh probe. The datastore is monitored with ``<tm_mad>/monitor_ds``, but ``tm_mad`` is obtained by the probes reading from the .monitor file.
+Local datastores are labeled by including a ``.monitor`` file in the datastore directory in any of the clone or ln operations. Only those datastores are monitored remotely by the monitor_ds.sh probe. The datastore is monitored with ``<tm_mad>/monitor_ds``, but ``tm_mad`` is obtained by the probes reading from the .monitor file.
 
 The plugins <tm_mad>/monitor_ds + kvm-probes.d/monitor_ds.sh will report the information for two things:
 
 - Total storage metrics for the datastore (``USED_MB`` ``FREE_MB`` ``TOTAL_MB``)
 - Disk usage metrics (all disks volatile, persistent and non-persistent)
 
-.. note:: ``.monitor`` will be only present in SSH datastores to be monitored in the nodes.  System Datastores that need to be monitored in the nodes will need to provide a ``monitor_ds`` script and not the ``monitor`` one. This is to prevent errors, and not invoke the shared mechanism for local datastores.
+.. note:: ``.monitor`` will be only present in Local datastores to be monitored in the nodes.  System Datastores that need to be monitored in the nodes will need to provide a ``monitor_ds`` script and not the ``monitor`` one. This is to prevent errors, and not invoke the shared mechanism for local datastores.
 
 The monitor_ds script.
 --------------------------------------------------------------------------------

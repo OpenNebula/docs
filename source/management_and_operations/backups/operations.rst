@@ -237,10 +237,10 @@ The ``SOURCE`` attribute in the backup images (and increments) is an opaque refe
 
     $ restic snapshots
     repository d5b1499c opened (repository version 2) successfully, password is correct
-    ID        Time                 Host                                Tags        Paths
+    ID        Time                 Host                                  Tags        Paths
     -----------------------------------------------------------------------------------------------------------------
-    25f4b298  2022-12-01 13:36:51  ubuntu2204-kvm-ssh-6-5-e795-2.test  one-0       /var/lib/one/datastores/0/0/backup
-    6968545c  2022-12-01 14:22:44  ubuntu2204-kvm-ssh-6-5-e795-2.test  one-0       /var/lib/one/datastores/0/0/backup
+    25f4b298  2022-12-01 13:36:51  ubuntu2204-kvm-local-6-5-e795-2.test  one-0       /var/lib/one/datastores/0/0/backup
+    6968545c  2022-12-01 14:22:44  ubuntu2204-kvm-local-6-5-e795-2.test  one-0       /var/lib/one/datastores/0/0/backup
     -----------------------------------------------------------------------------------------------------------------
 
 **Note**: with the restic driver each snapshot is labeled with the VM id in OpenNebula.

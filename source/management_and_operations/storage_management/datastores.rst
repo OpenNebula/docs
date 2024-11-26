@@ -21,9 +21,9 @@ By default, OpenNebula will create an image (``default``), system (``system``), 
 
     $ onedatastore list
       ID NAME                SIZE AVA CLUSTERS IMAGES TYPE DS      TM      STAT
-       2 files                50G 86% 0             0 fil  fs      ssh     on
-       1 default              50G 86% 0             2 img  fs      ssh     on
-       0 system                 - -   0             0 sys  -       ssh     on
+       2 files                50G 86% 0             0 fil  fs      local   on
+       1 default              50G 86% 0             2 img  fs      local   on
+       0 system                 - -   0             0 sys  -       local   on
 
 .. _datastore_common:
 
@@ -46,7 +46,7 @@ You can access the information about each datastore using the ``onedatastore sho
     CLUSTERS       : 0
     TYPE           : IMAGE
     DS_MAD         : fs
-    TM_MAD         : ssh
+    TM_MAD         : local
     BASE PATH      : /var/lib/one//datastores/1
     DISK_TYPE      : FILE
     STATE          : READY
@@ -70,7 +70,7 @@ You can access the information about each datastore using the ``onedatastore sho
     LN_TARGET="SYSTEM"
     RESTRICTED_DIRS="/"
     SAFE_DIRS="/"
-    TM_MAD="ssh"
+    TM_MAD="local"
     TYPE="IMAGE_DS"
 
     IMAGES
@@ -79,7 +79,7 @@ You can access the information about each datastore using the ``onedatastore sho
 
 There are four important sections:
 
-  * **General Information**, it includes basic information like the name, the file path of the datastore or its type (``IMAGE``). It includes also the set of drivers (``DS_MAD`` and ``TM_MAD``) used to store and transfer images. In this example, the datastores uses a file based driver (``DS_MAD="fs"``) and the SSH protocol for transfers (``TM_MAD=ssh``).
+  * **General Information**, it includes basic information like the name, the file path of the datastore or its type (``IMAGE``). It includes also the set of drivers (``DS_MAD`` and ``TM_MAD``) used to store and transfer images. In this example, the datastores uses a file based driver (``DS_MAD="fs"``) and the Local protocol for transfers (``TM_MAD=local``).
   * **Capacity**, including basic usage metrics like total, used, and free space.
   * **Generic Attributes**, under ``DATASTORE TEMPLATE`` you can find configuration attributes and custom tags (see below).
   * **Images**, the list of images currently stored in this datastore.
@@ -102,7 +102,7 @@ In the case of System Datastore the information is similar:
     CLUSTERS       : 0
     TYPE           : SYSTEM
     DS_MAD         : -
-    TM_MAD         : ssh
+    TM_MAD         : local
     BASE PATH      : /var/lib/one//datastores/0
     DISK_TYPE      : FILE
     STATE          : READY
@@ -125,14 +125,14 @@ In the case of System Datastore the information is similar:
     RESTRICTED_DIRS="/"
     SAFE_DIRS="/var/tmp"
     SHARED="NO"
-    TM_MAD="ssh"
+    TM_MAD="local"
     TYPE="SYSTEM_DS"
 
     IMAGES
 
 Note the differences in this case:
   * Only the transfer driver (``TM_MAD``) is defined.
-  * For the datastore of this example, there are no overall usage figures. The ``ssh`` driver use the local storage area of each Host. To check the available space in a specific host you need to check the host details with ``onehost show`` command. Note that this behavior may be different for other drivers.
+  * For the datastore of this example, there are no overall usage figures. The ``local`` driver uses the local storage area of each Host. To check the available space in a specific host you need to check the host details with ``onehost show`` command. Note that this behavior may be different for other drivers.
   * Images cannot be registered in System Datastores.
 
 Basic Configuration

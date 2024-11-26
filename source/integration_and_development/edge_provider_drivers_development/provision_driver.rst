@@ -261,12 +261,12 @@ You need to add templates to create your provider instances as well as the edge 
       - name: "${provision}-image"
         type: 'image_ds'
         ds_mad: 'fs'
-        tm_mad: 'ssh'
+        tm_mad: 'local'
         safe_dirs: "/var/tmp /tmp"
 
       - name: "${provision}-system"
         type: 'system_ds'
-        tm_mad: 'ssh'
+        tm_mad: 'local'
         safe_dirs: "/var/tmp
         replica_host: "use-first-host"
     ---
