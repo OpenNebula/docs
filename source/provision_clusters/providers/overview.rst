@@ -11,6 +11,7 @@ In this chapter you can find a guide on how to create Providers based on the sup
 
   - :ref:`Equinix Provider <equinix_provider>`
   - :ref:`Amazon AWS Provider <aws_provider>`
+  - :ref:`Scaleway Provider <scaleway_provider>`
   - :ref:`On-Premise Provider <onprem_provider>`
 
 Note, the on-premise provider is a convenient abstraction to represent your own resources on your datacenter.
