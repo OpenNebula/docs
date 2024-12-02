@@ -289,6 +289,7 @@ decrypted
 deduplicate
 deduplication
 defaultquota
+del
 deladmin
 delcluster
 deldatastore
@@ -501,6 +502,7 @@ numberFloat
 oXXX
 ocurrer
 offlines
+offscreen
 ok
 oneacct
 oneacl
@@ -581,6 +583,7 @@ prepend
 programme
 prolog
 prometheus
+ps
 ptional
 qcow
 qemu
