@@ -81,9 +81,9 @@ After some time, the datastore should be monitored:
    $ onedatastore list
    ID  NAME                                         SIZE AVA CLUSTERS IMAGES TYPE DS      TM      STAT
    100 RBackups                                     1.5T 91% 0             0 bck  restic  -       on
-     2 files                                       19.8G 84% 0             0 fil  fs      ssh     on
-     1 default                                     19.8G 84% 0             1 img  fs      ssh     on
-     0 system                                          - -   0             0 sys  -       ssh     on
+     2 files                                       19.8G 84% 0             0 fil  fs      local   on
+     1 default                                     19.8G 84% 0             1 img  fs      local   on
+     0 system                                          - -   0             0 sys  -       local   on
 
 That's it, we are all set to make VM backups!
 

@@ -72,7 +72,7 @@ The following section configures the vCenter datastore drivers, used to copy ima
 
     DATASTORE_MAD = [
         EXECUTABLE = "one_datastore",
-        ARGUMENTS  = "-t 15 -d dummy,fs,lvm,ceph,dev,iscsi_libvirt,vcenter -s shared,ssh,ceph,fs_lvm,qcow2,vcenter"
+        ARGUMENTS  = "-t 15 -d dummy,fs,lvm,ceph,dev,iscsi_libvirt,vcenter -s shared,ssh,local,ceph,fs_lvm,qcow2,vcenter"
     ]
 
 
@@ -82,7 +82,7 @@ The following section configures the vCenter datastore transfer drivers, used to
 
     TM_MAD = [
         EXECUTABLE = "one_tm",
-        ARGUMENTS = "-t 15 -d dummy,lvm,shared,fs_lvm,qcow2,ssh,ceph,dev,vcenter,iscsi_libvirt"
+        ARGUMENTS = "-t 15 -d dummy,lvm,shared,fs_lvm,qcow2,ssh,local,ceph,dev,vcenter,iscsi_libvirt"
     ]
 
     TM_MAD_CONF = [

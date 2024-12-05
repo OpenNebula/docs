@@ -117,7 +117,7 @@ Example of datastore defined from regular template:
 
     $ cat ds.tpl
     NAME="myprovision-images"
-    TM_MAD="ssh"
+    TM_MAD="local"
     DS_MAD="fs"
 
     $ onedatastore create ds.tpl
@@ -130,7 +130,7 @@ Example of the same datastore defined in provision template:
     datastores:
       - name: "myprovision-images"
         ds_mad: fs
-        tm_mad: ssh
+        tm_mad: local
 
 OpenNebula virtual objects
 --------------------------------------------------------------------------------

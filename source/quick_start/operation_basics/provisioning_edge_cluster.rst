@@ -248,8 +248,8 @@ List datastores: ``oneprovision datastore list``.
 
     $ oneprovision datastore list
      ID NAME         SIZE AVA CLUSTERS IMAGES TYPE DS      TM      STAT
-    101 aws-cluste      - -   100           0 sys  -       ssh     on
-    100 aws-cluste  71.4G 90% 100           0 img  fs      ssh     o
+    101 aws-cluste      - -   100           0 sys  -       local   on
+    100 aws-cluste  71.4G 90% 100           0 img  fs      local   on
 
 List networks: ``oneprovision network list``.
 

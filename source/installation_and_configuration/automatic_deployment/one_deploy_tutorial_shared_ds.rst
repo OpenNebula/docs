@@ -471,7 +471,7 @@ Output should be similar to the following:
 
    oneadmin@ubuntu2404fsn:~$ onedatastore list
      ID NAME                                               SIZE AVA CLUSTERS IMAGES TYPE DS      TM      STAT
-      2 files                                               28G 87% 0             0 fil  fs      ssh     on
+      2 files                                               28G 87% 0             0 fil  fs      local   on
       1 default                                             28G 87% 0             0 img  fs      shared  on
       0 system                                                - -   0             0 sys  -       shared  on
 
