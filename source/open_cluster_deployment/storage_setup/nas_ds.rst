@@ -4,13 +4,15 @@
 NFS/NAS Datastores
 ================================================================================
 
-This storage configuration assumes that your Hosts can access and mount a shared volume located on a NAS (Network Attached Storage) server. You will use this shared volumes to store VM disk images files. The Virtual Machines will boot also from the shared volume.
+This storage configuration assumes that your Hosts can access and mount a shared volume located on a NAS (Network Attached Storage) server. You will use this shared volume to store VM disk images files. The Virtual Machines will boot also from the shared volume.
 
-The scalability of this solution is bounded to the performance of your NAS server. However you can use multiple NAS server simultaneously to improve the scalability of your OpenNebula cloud. The use of multiple NFS/NAS datastores will let you:
+The scalability of this solution will be bound to the performance of your NAS server. However, you can use multiple NAS server simultaneously to improve the scalability of your OpenNebula cloud. The use of multiple NFS/NAS datastores will allow you to:
 
 * Balance I/O operations between storage servers.
-* Apply different SLA policies (e.g., backup) to different VM types or users.
+* Apply different SLA policies (e.g. backup) to different VM types or users.
 * Easily add new storage.
+
+Using an NFS/NAS Datastore provides a straightforward solution for implementing thin provisioning for VMs, which is enabled by default when using the **qcow2** image format.
 
 Front-end Setup
 ================================================================================
@@ -19,7 +21,7 @@ Simply mount the **Image** Datastore directory in the Front-end in ``/var/lib/on
 
 .. note:: The Front-end only needs to mount the Image Datastores and **not** the System Datastores.
 
-.. note::  **NFS volumes mount tips**. The following options are recommended to mount NFS shares:``soft, intr, rsize=32768, wsize=32768``. With the documented configuration of libvirt/kvm the image files are accessed as ``oneadmin`` user. If the files must be read by ``root``, the option ``no_root_squash`` must be added.
+.. note::  **NFS volumes mount tips**. The following options are recommended to mount NFS shares:``soft, intr, rsize=32768, wsize=32768``. With the documented configuration of libvirt/kvm, the image files can be accessed as the ``oneadmin`` user. If the files must be read by ``root``, the option ``no_root_squash`` must be added.
 
 Host Setup
 ================================================================================
@@ -30,7 +32,7 @@ The configuration is the same as for the Front-end above: simply mount in each H
 
 OpenNebula Configuration
 ================================================================================
-Once the Host and Front-end storage is setup, the OpenNebula configuration comprises the creation of an Image and System Datastores.
+Once Host and Front-end storage have been is set up, the OpenNebula configuration comprises the creation of an Image and System Datastores.
 
 Create System Datastore
 --------------------------------------------------------------------------------
