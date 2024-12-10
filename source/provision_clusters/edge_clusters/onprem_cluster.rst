@@ -42,7 +42,7 @@ OpenNebula Resources
 
 The following resources, associated to each Edge Cluster, will be created in OpenNebula:
 
-* Image and System datastore for the cluster. The storage is configured to use the Hosts :ref:`local storage through OneStor drivers <onestor_ds>`. On-Premises clusters also include access to the default datastore, so you can easily share images across clusters.
+* Image and System datastore for the cluster. The storage is configured to use the hosts' :ref:`Local storage system datastore <local_ds>`. On-Premises clusters also include access to the default datastore, so you can easily share images across clusters.
 * Public Network, bound to the Internet interface through a Linux Bridge.
 * Private Networking, implemented using a VXLAN overlay on the management network.
 

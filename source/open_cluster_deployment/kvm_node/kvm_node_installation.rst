@@ -66,7 +66,7 @@ Disable AppArmor on Ubuntu/Debian
 ------------------------------------------
 .. include:: ../common_node/apparmor.txt
 
-.. _kvm_ssh:
+.. _kvm_local:
 
 Step 4. Configure Passwordless SSH
 ==================================
