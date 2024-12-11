@@ -17,3 +17,4 @@ The following issues has been solved in 6.10.2:
 - `Fix a rare crash in 'onedb fsck' caused by a locked MarketPlaceApp in a federated environment <https://github.com/OpenNebula/one/issues/6793>`__.
 - `Fix Sunstone filter VMs on "Locked" gives empty white page <https://github.com/OpenNebula/one/issues/6768>`__.
 - `Fix Sunstone host graph not showing information <https://github.com/OpenNebula/one/issues/6788>`__.
+- `Fix SecurityGroup rule validation logic to include additional checks for port ranges <https://github.com/OpenNebula/one/issues/6759>`__.
