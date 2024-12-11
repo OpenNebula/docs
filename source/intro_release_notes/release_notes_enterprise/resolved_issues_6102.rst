@@ -18,4 +18,5 @@ The following issues has been solved in 6.10.2:
 - `Fix iotune attributes not being passed to VM if value is a big number <https://github.com/OpenNebula/one/issues/6750>`__.
 - `Fix Sunstone filter VMs on "Locked" gives empty white page <https://github.com/OpenNebula/one/issues/6768>`__.
 - `Fix Sunstone host graph not showing information <https://github.com/OpenNebula/one/issues/6788>`__.
+- `Fix missing boot order selector <https://github.com/OpenNebula/one/issues/6757>`__.
 - `Fix SecurityGroup rule validation logic to include additional checks for port ranges <https://github.com/OpenNebula/one/issues/6759>`__.
