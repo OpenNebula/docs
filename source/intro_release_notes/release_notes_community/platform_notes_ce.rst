@@ -50,7 +50,7 @@ vCenter Nodes
 +-----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 | NSX-T     | 2.4.1+                                | `VMware compatiblity <https://www.vmware.com/resources/compatibility/sim/interop_matrix.php>`__. :ref:`NSX Documentation <nsx_setup>`. |
 +-----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
-| NSX-V     | 6.4.7+                                | `VMware compatiblity <https://www.vmware.com/resources/compatibility/sim/interop_matrix.php>`__. :ref:`NSX Documentation <nsx_setup>`  |
+| NSX-V     | 6.4.8+                                | `VMware compatiblity <https://www.vmware.com/resources/compatibility/sim/interop_matrix.php>`__. :ref:`NSX Documentation <nsx_setup>`  |
 +-----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 
 .. note:: Debian front-ends are not certified to manage VMware infrastructures with OpenNebula.
