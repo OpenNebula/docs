@@ -1,7 +1,7 @@
 .. _rn_enterprise:
 
 ================================================================================
-Release Notes 6.4.6 Enterprise Edition
+Release Notes 6.4.7 Enterprise Edition
 ================================================================================
 
 .. toctree::
@@ -17,3 +17,4 @@ Release Notes 6.4.6 Enterprise Edition
    Resolved Issues in 6.4.4 <resolved_issues_644>
    Resolved Issues in 6.4.5 <resolved_issues_645>
    Resolved Issues in 6.4.6 <resolved_issues_646>
+   Resolved Issues in 6.4.7 <resolved_issues_647>
