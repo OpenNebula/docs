@@ -8,7 +8,7 @@ A complete list of solved issues for 6.4.7 can be found in the `project developm
 
 The following new features has been backported to 6.4.7:
 
-- `Fix Allow resize of QCOW2 disks with snapshots <https://github.com/OpenNebula/one/issues/6292>`__.
+- `Allow resize of QCOW2 disks with snapshots <https://github.com/OpenNebula/one/issues/6292>`__.
 
 The following issues has been solved in 6.4.7:
 
