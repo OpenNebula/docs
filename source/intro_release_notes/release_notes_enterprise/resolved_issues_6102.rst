@@ -21,4 +21,4 @@ The following issues has been solved in 6.10.2:
 - `Fix missing boot order selector <https://github.com/OpenNebula/one/issues/6757>`__.
 - `Fix SecurityGroup rule validation logic to include additional checks for port ranges <https://github.com/OpenNebula/one/issues/6759>`__.
 - `Fix KVM domain definition to set up CPU affinity to the auto-selected NUMA node when using huge pages without CPU pinning <https://github.com/OpenNebula/one/issues/6759>`__.
-- `Fix multiple problems with QEMU Guest Agent monitoring <https://github.com/OpenNebula/one/issues/6765>`__.
+- `Fix multiple problems with QEMU Guest Agent monitoring <https://github.com/OpenNebula/one/issues/6765>`__. Additional monitor commands for the qemu-agent probe are `shown here <https://github.com/OpenNebula/one/blob/master/src/im_mad/remotes/kvm-probes.d/guestagent.conf>`__. You can add them to your existing 6.10 configuration files.
