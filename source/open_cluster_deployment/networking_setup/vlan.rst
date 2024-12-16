@@ -100,3 +100,88 @@ For example, you can define a *802.1Q Network* with the following template:
     VLAN_ID = 50            # Optional. If not setting VLAN_ID set AUTOMATIC_VLAN_ID = "YES"
 
 In this example, the driver will check for the existence of the ``br0`` bridge. If it doesn't exist it will be created. ``eth0`` will be tagged (``eth0.50``) and attached to ``br0`` (unless it's already attached).
+
+Using 802.1Q driver with Q-in-Q
+================================================================================
+
+Q-in-Q is not natively supported by Linux bridges, as compared to Open vSwitch, and presents some limitations:
+
+- The service VLAN tag (also referred as transport or outer) cannot be preserved in the VMs,
+- The bridge cannot be fully configured using both VLAN tags.
+
+However, for the most common scenarios the 802.1Q driver can produce the double tag and filter out VLANs not included in the customer VLAN set. In this configuration the bridge works as follow:
+
+- Untagged traffic from the VM will be tagged using the transport VLAN.
+- Tagged traffic from the VM using the CVLANS will be also tagged with the transport VLAN.
+- Tagged traffic from the VM using any other VLAN ID will be discarded.
+
+.. note::
+
+   When ``CVLANS`` is not configured the bridge will add the VLAN ID tag to any traffic comming from the VM (tagged or not). There is no filtering of the VLAN IDs used by the VM.
+
+OpenNebula Configuration
+------------------------
+
+There is no configuration specific for this use case, just consider the general options specified above.
+
+Defining a Q-in-Q Network
+----------------------------------------
+
+The Q-in-Q behavior is controlled by the following attributes (**please, also refer to the attributes defined above**):
+
++-----------------------+----------------------------------------------------------------+----------------------------------------+
+|       Attribute       |                                       Value                    |               Mandatory                |
++=======================+================================================================+========================================+
+| ``VLAN_ID``           | The VLAN ID for the transport/outer VLAN.                      | **YES** (unless ``AUTOMATIC_VLAN_ID``) |
++-----------------------+----------------------------------------------------------------+----------------------------------------+
+| ``CVLANS``            | The customer VLAN set. A comma separated list, supports ranges | **YES**                                |
++-----------------------+----------------------------------------------------------------+----------------------------------------+
+
+For example, you can define an *QinQ aware Network* with the following template:
+
+.. code::
+
+    NAME     = "qinq_net"
+    VN_MAD   = "802.1Q"
+    PHYDEV   = eth0
+    VLAN_ID  = 50                 # Service VLAN ID
+    CVLANS   = "101,103,110-113"  # Customer VLAN ID list
+
+.. note::
+
+   ``CVLANS`` can be updated and will be dynamically reconfigured in any existing bridge
+
+Implementation Details
+----------------------
+
+When the ``CVLANS`` attribute is defined the 802.1Q perform the following configurations on the bridge:
+
+- Activate the VLAN filtering flag
+- Installs a VLAN filter that includes all the VLANs in the ``CVLANS`` set in all VM ports in the network. In this way only tagged traffic in the customer set will be allowed in the bridge.
+- All untagged traffic is associated to the transport (outer) VLAN.
+- As in the other configurations, a tagged link for the transport VLAN is added to the bridge. This link is the one that will add the transport tag.
+
+The following example shows the main configurations performed in the bridge:
+
+.. code::
+
+    # - Transport / outer / S-VLAN : 100
+    # - Customer / inner / C-VLAN  : 200,300
+
+    # "Transport" link
+    ip link add link eth1 name eth1.100 type vlan id 100
+    ip link set eth1.100 master onebr.23
+    ip link set eth1.100 up
+
+    # Bridge Configuration:
+    ip link set dev onebr.23 type bridge vlan_filtering 1
+
+    # VM port configuration (NIC 1 of VM 20, and transport link):
+    bridge vlan add dev one-20-1 vid 100 pvid untagged
+    bridge vlan add dev one-20-1 vid 200
+    bridge vlan add dev one-20-1 vid 300
+
+    bridge vlan add dev eth1.100 vid 100 pvid untagged
+    bridge vlan add dev eth1.100 vid 200
+    bridge vlan add dev eth1.100 vid 300
+
