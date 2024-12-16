@@ -7,6 +7,7 @@ A complete list of solved issues for 6.10.2 can be found in the `project develop
 
 The following new features have been backported to 6.10.2:
 
+- Add support for VLAN filtering to the Linux bridge drivers. This allows to limit the VLANs in trunk mode, as well as in QinQ mode. For more information check the :ref:`bridge driver <bridged>` and the :ref:`802.1Q VLAN driver <hm-vlan>` documentation guides.
 
 The following issues has been solved in 6.10.2:
 
