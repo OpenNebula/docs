@@ -67,7 +67,7 @@ By default the Linux bridge driver does not performs any filtering on the VLAN t
 | Attribute                     | Value                                                         | Mandatory |
 +===============================+===============================================================+===========+
 |                               | Specify a range of VLANs that are allowed for the VM traffic. |           |
-|  ``VLAN_TAGGED_ID``           | Comman separated list of tags, ranges are supported.          |  NO       |
+|  ``VLAN_TAGGED_ID``           | Comma separated list of tags, ranges are supported.           |  NO       |
 +-------------------------------+---------------------------------------------------------------+-----------+
 
 For example to only allow a VM to use the VLANS IDs 100, 105, 106 and 107, add to the network:

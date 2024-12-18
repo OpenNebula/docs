@@ -117,7 +117,7 @@ However, for the most common scenarios the 802.1Q driver can produce the double 
 
 .. note::
 
-   When ``CVLANS`` is not configured the bridge will add the VLAN ID tag to any traffic comming from the VM (tagged or not). There is no filtering of the VLAN IDs used by the VM.
+   When ``CVLANS`` is not configured the bridge will add the VLAN ID tag to any traffic coming from the VM (tagged or not). There is no filtering of the VLAN IDs used by the VM.
 
 OpenNebula Configuration
 ------------------------

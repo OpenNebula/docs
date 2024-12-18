@@ -116,6 +116,7 @@ PublicIP
 Pyone
 Qcow
 Qemu
+QinQ
 QoS
 Qos
 RSync
@@ -150,6 +151,7 @@ Unassigns
 Uncomment
 Unmanaged
 Unregister
+Untagged
 Uplink
 VID
 VMs
@@ -652,6 +654,7 @@ securetty
 serveradmin
 serverless
 serveruser
+server-del
 sftp
 sg
 sgID
@@ -735,6 +738,7 @@ unregister
 unresched
 unshare
 unsynced
+untagged
 untar
 updatear
 updateconf
