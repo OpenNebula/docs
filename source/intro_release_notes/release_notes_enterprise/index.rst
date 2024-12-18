@@ -9,3 +9,4 @@ Release Notes |version| Enterprise Edition
 
    What is OpenNebula EE<what_is>
    Resolved Issues 6.10.1 <resolved_issues_6101>
+   Resolved Issues 6.10.2 <resolved_issues_6102>

@@ -16,7 +16,7 @@ Considerations & Limitations
 
 Try to use :ref:`virtio <kvmg_virtio>` whenever possible, both for networks and disks. Using emulated hardware, both for networks and disks, will have an impact on performance and will not expose all the available functionality. For instance, if you don't use ``virtio`` for the disk drivers, you will not be able to exceed a small number of devices connected to the controller, meaning that you have a limit when attaching disks and it will not work while the VM is running (live disk-attach).
 
-When **updating the VM configuration live** using ``one.vm.updateconf`` although the all of the VM configuration will get updated on the VM instance template, only the CONTEXT and BACKUP_CONFIG will take effect immediately. The rest of the configuration will not take effect until the next VM reboot because it changes the VM virtual hardware.
+When **updating the VM configuration live** using ``one.vm.updateconf`` although all of the VM configuration will get updated on the VM instance template, only the CONTEXT and BACKUP_CONFIG will take effect immediately. The rest of the configuration will not take effect until the next VM reboot because it changes the VM virtual hardware.
 
 The full list of configuration attributes are:
 
@@ -50,22 +50,30 @@ The KVM driver is enabled by default in OpenNebula ``/etc/one/oned.conf`` on you
 Driver Defaults
 --------------------------------------------------------------------------------
 
-There are some attributes required for KVM to boot a VM. You can set a suitable default for them so all the VMs get the required values. These attributes are set in ``/etc/one/vmm_exec/vmm_exec_kvm.conf``. The following can be set for KVM:
+There are some attributes required for KVM to boot a VM. You can set a suitable default for them so all the VMs get the required values. These attributes are set in ``/etc/one/vmm_exec/vmm_exec_kvm.conf``. Default values from the configuration file can be overriden in the Cluster, Host or VM Template. The following attributes can be set for KVM:
 
 * ``EMULATOR``: path to the kvm executable.
-* ``OS``: attributes ``KERNEL``, ``INITRD``, ``BOOT``, ``ROOT``, ``KERNEL_CMD``, ``MACHINE``,  ``ARCH`` and ``SD_DISK_BUS``.
+* ``OS``: attributes ``KERNEL``, ``INITRD``, ``ROOT``, ``KERNEL_CMD``, ``MACHINE``,  ``ARCH``, ``SD_DISK_BUS``, ``FIRMWARE``, ``FIMRWARE_SECURE`` and ``BOOTLOADER``
 * ``VCPU``
-* ``FEATURES``: attributes ``ACPI``, ``PAE``, ``APIC``, ``HEPRV``, ``GUEST_AGENT``, ``VIRTIO_SCSI_QUEUES``, ``VIRTIO_BLK_QUEUES``, ``IOTHREADS``.
-* ``CPU_MODEL``: attribute ``MODEL``.
-* ``DISK``: attributes ``DRIVER``, ``CACHE``, ``IO``, ``DISCARD``, ``TOTAL_BYTES_SEC``, ``TOTAL_IOPS_SEC``, ``READ_BYTES_SEC``, ``WRITE_BYTES_SEC``, ``READ_IOPS_SEC``, ``WRITE_IOPS_SEC``, ``SIZE_IOPS_SEC``.
+* ``VCPU_MAX``
+* ``MEMORY_SLOTS``
+* ``FEATURES``: attributes ``ACPI``, ``PAE``, ``APIC``, ``HEPRV``, ``LOCALTIME``, ``GUEST_AGENT``, ``VIRTIO_SCSI_QUEUES``, ``VIRTIO_BLK_QUEUES``, ``IOTHREADS``.
+* ``CPU_MODEL``: attribute ``MODEL``, ``FEATURES``.
+* ``DISK``: attributes ``DRIVER``, ``CACHE``, ``IO``, ``DISCARD``, ``TOTAL_BYTES_SEC``, ``TOTAL_BYTES_SEC_MAX``, ``TOTAL_BYTES_SEC_MAX_LENGTH``, ``TOTAL_IOPS_SEC``, ``TOTAL_IOPS_SEC_MAX``, ``TOTAL_IOPS_SEC_MAX_LENGTH``, ``READ_BYTES_SEC``, ``READ_BYTES_SEC_MAX``, ``READ_BYTES_SEC_MAX_LENGTH``, ``WRITE_BYTES_SEC``, ``WRITE_BYTES_SEC_MAX``, ``WRITE_BYTES_SEC_MAX_LENGTH``, ``READ_IOPS_SEC``, ``READ_IOPS_SEC_MAX``, ``READ_IOPS_SEC_MAX_LENGTH``, ``WRITE_IOPS_SEC``, ``WRITE_IOPS_SEC_MAX``, ``WRITE_IOPS_SEC_MAX_LENGTH``, ``SIZE_IOPS_SEC``.
 * ``NIC``: attribute ``FILTER``, ``MODEL``.
 * ``GRAPHICS``: attributes ``TYPE``, ``LISTEN``, ``PASSWD``, ``KEYMAP``, ``RANDOM_PASSWD``. The VM instance must have at least empty ``GRAPHICS = []`` section to read these default attributes from the config file and to generate cluster unique ``PORT`` attribute.
 * ``VIDEO``: attributes: ``TYPE``, ``IOMMU``, ``ATS``, ``VRAM``, ``RESOLUTION``.
 * ``RAW``: to add libvirt attributes to the domain XML file.
 * ``HYPERV_OPTIONS``: to enable hyperv extensions.
+* ``HYPERV_TIMERS``: timers added when HYPERV is set to yes in FEATURES.
 * ``SPICE_OPTIONS``: to add default devices for SPICE.
+
+The following attributes can be overridden at Cluster and Host level, but not within individual VM configuration:
+
 * ``OVMF_UEFIS``: to add allowed file paths for Open Virtual Machine Firmware.
 * ``Q35_ROOT_PORTS``: to modify the number of PCI devices that can be attached in q35 VMs (defaults to 16)
+* ``CGROUPS_VERSION``: Use '2' to use Cgroup V2, all other values or undefined: use Cgroup V1
+* ``EMULATOR_CPUS``: Value used for kvm option <cputune><emulatorpin cpuset=...>
 
 .. warning:: These values are only used during VM creation; for other actions like nic or disk attach/detach the default values must be set in ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc``. For more info check :ref:`Files and Parameters <kvmg_files_and_parameters>` section.
 
@@ -88,10 +96,6 @@ For example (check the actual state in the configuration file on your Front-end)
         <redirdev bus='usb' type='spicevmc'/>
         <redirdev bus='usb' type='spicevmc'/>
         <redirdev bus='usb' type='spicevmc'/>"
-
-.. note::
-
-  These values can be overriden in the Cluster, Host and VM Template
 
 **Since OpenNebula 6.0** you should no longer need to modify the ``EMULATOR`` variable to point to the kvm executable; instead, ``EMULATOR`` now points to the symlink ``/usr/bin/qemu-kvm-one`` which should link the correct KVM binary for the given OS on a Host.
 
@@ -526,77 +530,85 @@ And the following driver configuration files:
 
 The parameters that can be changed here are as follows:
 
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|        Parameter                              |                                                                                                   Description                                                                                                   |
-+===============================================+=================================================================================================================================================================================================================+
-| ``LIBVIRT_URI``                               | Connection string to libvirtd                                                                                                                                                                                   |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``QEMU_PROTOCOL``                             | Protocol used for live migrations                                                                                                                                                                               |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``SHUTDOWN_TIMEOUT``                          | Seconds to wait after shutdown until timeout                                                                                                                                                                    |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``VIRSH_RETRIES``                             | Number of "virsh" command retries when required. Currently used in detach-interface and restore.                                                                                                                |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``SYNC_TIME``                                 | Trigger VM time synchronization from RTC on resume and after migration. QEMU guest agent must be running. Valid values: ``no`` or ``yes`` (default).                                                            |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``FORCE_DESTROY``                             | Force VM cancellation after shutdown timeout                                                                                                                                                                    |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``CANCEL_NO_ACPI``                            | Force VMs without ACPI enabled to be destroyed on shutdown                                                                                                                                                      |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``MIGRATE_OPTIONS``                           | Set options for the virsh migrate command                                                                                                                                                                       |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``CLEANUP_MEMORY_ON_START``                   | Compact memory before running the VM. Values ``yes`` or ``no`` (default)                                                                                                                                        |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``CLEANUP_MEMORY_ON_STOP``                    | Compact memory after VM stops. Values ``yes`` (default) or ``no``                                                                                                                                               |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_CACHE``                      | This parameter will set the default cache type for new attached disks. It will be used in case the attached disk does not have a specific cache method set (can be set using templates when attaching a disk).  |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_DISCARD``                    | Default discard option for newly attached disks, if the attribute is missing in the template.                                                                                                                   |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_IO``                         | Default I/O policy for newly attached disks, if the attribute is missing in the template.                                                                                                                       |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_TOTAL_BYTES_SEC``            | Default total bytes/s I/O throttling for newly attached disks, if the attribute is missing in the template.                                                                                                     |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_TOTAL_BYTES_SEC_MAX``        | Default Maximum total bytes/s I/O throttling for newly attached disks, if the attribute is missing in the template.                                                                                             |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_TOTAL_BYTES_SEC_MAX_LENGTH`` | Default Maximum length total bytes/s I/O throttling for newly attached disks, if the attribute is missing in the template.                                                                                      |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_READ_BYTES_SEC``             | Default read bytes/s I/O throttling for newly attached disks, if the attribute is missing in the template.                                                                                                      |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_READ_BYTES_SEC_MAX``         | Default Maximum read bytes/s I/O throttling for newly attached disks, if the attribute is missing in the template.                                                                                              |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_READ_BYTES_SEC_MAX_LENGTH``  | Default Maximum length read bytes/s I/O throttling for newly attached disks, if the attribute is missing in the template.                                                                                       |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_WRITE_BYTES_SEC``            | Default write bytes/s I/O throttling for newly attached disks, if the attribute is missing in the template.                                                                                                     |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_WRITE_BYTES_SEC_MAX``        | Default Maximum write bytes/s I/O throttling for newly attached disks, if the attribute is missing in the template.                                                                                             |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_WRITE_BYTES_SEC_MAX_LENGTH`` | Default Maximum length write bytes/s I/O throttling for newly attached disks, if the attribute is missing in the template.                                                                                      |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_TOTAL_IOPS_SEC``             | Default total IOPS throttling for newly attached disks, if the attribute is missing in the template.                                                                                                            |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_TOTAL_IOPS_SEC_MAX``         | Default Maximum total IOPS throttling for newly attached disks, if the attribute is missing in the template.                                                                                                    |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_TOTAL_IOPS_SEC_MAX_LENGTH``  | Default Maximum length total IOPS throttling for newly attached disks, if the attribute is missing in the template.                                                                                             |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_READ_IOPS_SEC``              | Default read IOPS throttling for newly attached disks, if the attribute is missing in the template.                                                                                                             |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_READ_IOPS_SEC_MAX``          | Default Maximum read IOPS throttling for newly attached disks, if the attribute is missing in the template.                                                                                                     |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_READ_IOPS_SEC_MAX_LENGTH``   | Default Maximum length read IOPS throttling for newly attached disks, if the attribute is missing in the template.                                                                                              |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_WRITE_IOPS_SEC``             | Default write IOPS throttling for newly attached disks, if the attribute is missing in the template.                                                                                                            |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_WRITE_IOPS_SEC_MAX``         | Default Maximum write IOPS throttling for newly attached disks, if the attribute is missing in the template.                                                                                                    |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_WRITE_IOPS_SEC_MAX_LENGTH``  | Default Maximum length write IOPS throttling for newly attached disks, if the attribute is missing in the template.                                                                                             |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_SIZE_IOPS_SEC``              | Default size of IOPS throttling for newly attached disks, if the attribute is missing in the template.                                                                                                          |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_NIC_MODEL``                  | Default NIC model for newly attached NICs, if the attribute is missing in the template.                                                                                                                         |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DEFAULT_ATTACH_NIC_FILTER``                 | Default NIC libvirt filter for newly attached NICs, if the attribute is missing in the template.                                                                                                                |
-+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+|        Parameter                              |                                                 Description                                                                |
++===============================================+============================================================================================================================+
+| ``LIBVIRT_URI``                               | Connection string to libvirtd                                                                                              |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``QEMU_PROTOCOL``                             | Protocol used for live migrations                                                                                          |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``SHUTDOWN_TIMEOUT``                          | Seconds to wait after shutdown until timeout                                                                               |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``VIRSH_RETRIES``                             | Number of "virsh" command retries when required. Currently used in detach-interface and restore.                           |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``VIRSH_TIMEOUT``                             | Default "virsh" timeout for operations which might block indefinitely.                                                     |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``SYNC_TIME``                                 | Trigger VM time synchronization from RTC on resume and after migration. QEMU guest agent must be running.                  |
+|                                               | Valid values: ``no`` or ``yes`` (default).                                                                                 |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``FORCE_DESTROY``                             | Force VM cancellation after shutdown timeout                                                                               |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``CANCEL_NO_ACPI``                            | Force VMs without ACPI enabled to be destroyed on shutdown                                                                 |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``MIGRATE_OPTIONS``                           | Set options for the virsh migrate command                                                                                  |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``CLEANUP_MEMORY_ON_START``                   | Compact memory before running the VM. Values ``yes`` or ``no`` (default)                                                   |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``CLEANUP_MEMORY_ON_STOP``                    | Compact memory after VM stops. Values ``yes`` or ``no`` (default)                                                          |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_CACHE``                      | This parameter will set the default cache type for new attached disks. It will be used in case the attached disk does      |
+|                                               | not have a specific cache method set (can be set using templates when attaching a disk).                                   |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_DISCARD``                    | Default discard option for newly attached disks, if the attribute is missing in the template.                              |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_IO``                         | Default I/O policy for newly attached disks, if the attribute is missing in the template.                                  |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_VIRTIO_BLK_QUEUES``                 | The default number of queues for virtio-blk driver.                                                                        |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_TOTAL_BYTES_SEC``            | Default total bytes/s I/O throttling for newly attached disks, if the attribute is missing in the template.                |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_TOTAL_BYTES_SEC_MAX``        | Default Maximum total bytes/s I/O throttling for newly attached disks, if the attribute is missing in the template.        |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_TOTAL_BYTES_SEC_MAX_LENGTH`` | Default Maximum length total bytes/s I/O throttling for newly attached disks, if the attribute is missing in the template. |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_READ_BYTES_SEC``             | Default read bytes/s I/O throttling for newly attached disks, if the attribute is missing in the template.                 |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_READ_BYTES_SEC_MAX``         | Default Maximum read bytes/s I/O throttling for newly attached disks, if the attribute is missing in the template.         |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_READ_BYTES_SEC_MAX_LENGTH``  | Default Maximum length read bytes/s I/O throttling for newly attached disks, if the attribute is missing in the template.  |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_WRITE_BYTES_SEC``            | Default write bytes/s I/O throttling for newly attached disks, if the attribute is missing in the template.                |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_WRITE_BYTES_SEC_MAX``        | Default Maximum write bytes/s I/O throttling for newly attached disks, if the attribute is missing in the template.        |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_WRITE_BYTES_SEC_MAX_LENGTH`` | Default Maximum length write bytes/s I/O throttling for newly attached disks, if the attribute is missing in the template. |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_TOTAL_IOPS_SEC``             | Default total IOPS throttling for newly attached disks, if the attribute is missing in the template.                       |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_TOTAL_IOPS_SEC_MAX``         | Default Maximum total IOPS throttling for newly attached disks, if the attribute is missing in the template.               |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_TOTAL_IOPS_SEC_MAX_LENGTH``  | Default Maximum length total IOPS throttling for newly attached disks, if the attribute is missing in the template.        |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_READ_IOPS_SEC``              | Default read IOPS throttling for newly attached disks, if the attribute is missing in the template.                        |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_READ_IOPS_SEC_MAX``          | Default Maximum read IOPS throttling for newly attached disks, if the attribute is missing in the template.                |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_READ_IOPS_SEC_MAX_LENGTH``   | Default Maximum length read IOPS throttling for newly attached disks, if the attribute is missing in the template.         |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_WRITE_IOPS_SEC``             | Default write IOPS throttling for newly attached disks, if the attribute is missing in the template.                       |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_WRITE_IOPS_SEC_MAX``         | Default Maximum write IOPS throttling for newly attached disks, if the attribute is missing in the template.               |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_WRITE_IOPS_SEC_MAX_LENGTH``  | Default Maximum length write IOPS throttling for newly attached disks, if the attribute is missing in the template.        |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_SIZE_IOPS_SEC``              | Default size of IOPS throttling for newly attached disks, if the attribute is missing in the template.                     |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_NIC_MODEL``                  | Default NIC model for newly attached NICs, if the attribute is missing in the template.                                    |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``DEFAULT_ATTACH_NIC_FILTER``                 | Default NIC libvirt filter for newly attached NICs, if the attribute is missing in the template.                           |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| ``OVMF_NVRAM``                                | Virtual Machine Firmware path to the NVRAM file.                                                                           |
++-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
 
 See the :ref:`Virtual Machine drivers reference <devel-vmm>` for more information.
 
