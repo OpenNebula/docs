@@ -14,7 +14,9 @@ The scalability of this solution will be bound to the performance of your NAS se
 
 Using an NFS/NAS Datastore provides a straightforward solution for implementing thin provisioning for VMs, which is enabled by default when using the **qcow2** image format.
 
-Front-end Setup
+Datastore setup can be done either manually or automatically:
+
+Manual Front-end Setup
 ================================================================================
 
 Simply mount the **Image** Datastore directory in the Front-end in ``/var/lib/one/datastores/<datastore_id>``. Note that if all the Datastores are of the same type you can mount the whole ``/var/lib/one/datastores`` directory.
@@ -23,12 +25,21 @@ Simply mount the **Image** Datastore directory in the Front-end in ``/var/lib/on
 
 .. note::  **NFS volumes mount tips**. The following options are recommended to mount NFS shares:``soft, intr, rsize=32768, wsize=32768``. With the documented configuration of libvirt/kvm, the image files can be accessed as the ``oneadmin`` user. If the files must be read by ``root``, the option ``no_root_squash`` must be added.
 
-Host Setup
+Manual Host Setup
 ================================================================================
 
 The configuration is the same as for the Front-end above: simply mount in each Host the datastore directories in ``/var/lib/one/datastores/<datastore_id>``.
 
-.. _fs_ds_templates:
+Automatic Setup
+================================================================================
+
+Automatic NFS setup is is available since OpenNebula version 6.10.3 as an opt-in feature. It's controlled via the ``NFS_AUTO_*`` family of datastore attributes documented :ref:`below <anfs-attributes>`. If enabled, OpenNebula will lazily mount the NFS share on demand (either on hosts or the frontend) before an operation requires it. Also, for the transfer operations where it makes sense (for example, when deploying a VM which uses a NFS-backed system image) the mounting information is persisted to the host's ``/etc/fstab``.
+
+Also, for the moment, umounting/fstab cleanup is performed in a lazy way, similar to mounting. So, rutine operations will check whether the current machine has mounted a datastore which either has ``NFS_AUTO_ENABLE`` set to ``no``, or does not exist anymore, and clean it up.
+
+.. warning:: This also means that the user must be careful not to delete the filesystem from the NFS server until being sure that there are no hosts still having it mounted.
+
+Other than that, the system state at the end will be similar to the way specified in the Manual Setup sections; each datastore will mount its own NFS share in ``/var/lib/one/datastores/<datastore_id>``. In fact, there is no issue in mixing operation between datastores (i.e., managing some of them manually and some others automatically).
 
 OpenNebula Configuration
 ================================================================================
@@ -117,6 +128,15 @@ Additional Configuration
 * ``FS_OPTS_<FS>``: Options for creating the filesystem for formatted datablocks. Can be set in ``/var/lib/one/remotes/etc/datastore/datastore.conf`` for each filesystem type.
 * ``SPARSE``: If set to ``NO`` the images and disks in the image and system Datastore, respectively, wont be sparsed (i.e. the files will use all assigned space on the Datastore filesystem). It is mandatory to set ``QCOW2_STANDALONE = YES`` on the system Datastore for this setting to apply.
 * ``QCOW2_STANDALONE``: If set to ``YES`` the standalone qcow2 disk is created during :ref:`CLONE <clone>` operation (default: QCOW2_STANDALONE="NO"). Unlike previous options, this one is defined in image datastore template and inherited by the disks.
+
+.. _anfs-attributes:
+
+Attributes related to NFS auto configuration. Can't be changed after datastore creation unless the it is empty:
+
+* ``NFS_AUTO_ENABLE``: If set to ``YES`` the automatic NFS mounting functionality is enabled (default: ``no``).
+* ``NFS_AUTO_HOST``: (Required if ``NFS_AUTO_ENABLE=yes``) Hostname or IP address of the NFS server.
+* ``NFS_AUTO_PATH``: (Required if ``NFS_AUTO_ENABLE=yes``) NFS share path.
+* ``NFS_AUTO_OPTS``: Comma separated options (fstab-like) used for mounting the NFS shares (default: ``defaults``).
 
 .. warning:: Before adding a new filesystem to the ``SUPPORTED_FS`` list make sure that the corresponding ``mkfs.<fs_name>`` command is available in the Front-end and hypervisor Hosts. If an unsupported FS is used by the user the default one will be used.
 
