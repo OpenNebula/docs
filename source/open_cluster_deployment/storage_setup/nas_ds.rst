@@ -35,7 +35,7 @@ Automatic Setup
 
 Automatic NFS setup is is available since OpenNebula version 6.10.3 as an opt-in feature. It's controlled via the ``NFS_AUTO_*`` family of datastore attributes documented :ref:`below <anfs-attributes>`. If enabled, OpenNebula will lazily mount the NFS share on demand (either on hosts or the frontend) before an operation requires it. Also, for the transfer operations where it makes sense (for example, when deploying a VM which uses a NFS-backed system image) the mounting information is persisted to the host's ``/etc/fstab``.
 
-Also, for the moment, umounting/fstab cleanup is performed in a lazy way, similar to mounting. So, rutine operations will check whether the current machine has mounted a datastore which either has ``NFS_AUTO_ENABLE`` set to ``no``, or does not exist anymore, and clean it up.
+Also, for the moment, unmounting/fstab cleanup is performed in a lazy way, similar to mounting. So, routine operations will check whether the current machine has mounted a datastore which either has ``NFS_AUTO_ENABLE`` set to ``no``, or does not exist anymore, and clean it up.
 
 .. warning:: This also means that the user must be careful not to delete the filesystem from the NFS server until being sure that there are no hosts still having it mounted.
 
