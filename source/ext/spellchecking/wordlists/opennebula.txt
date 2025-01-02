@@ -637,6 +637,7 @@ sata
 saveas
 scalability
 scalable
+scaleway
 sched
 schedadd
 scheddelete
