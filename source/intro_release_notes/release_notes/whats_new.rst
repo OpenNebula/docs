@@ -8,7 +8,7 @@ OpenNebula Core
 ================================================================================
 
 - The ability to import wild VMs into OpenNebula has been removed from code to provide a more coherent management experience across all interfaces and APIs.
-- Feature 2
+- The enforce parameter has been restored for the resize operation. In this context, it only manages capacity enforcement checks (memory and CPU), while the NUMA topology is always verified independently.
 
 Storage & Backups
 ================================================================================
