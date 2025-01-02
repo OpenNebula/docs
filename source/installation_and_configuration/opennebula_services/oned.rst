@@ -419,7 +419,7 @@ Sample configuration:
 
     TM_MAD = [
         EXECUTABLE = "one_tm",
-        ARGUMENTS = "-t 15 -d dummy,lvm,shared,fs_lvm,qcow2,ssh,ceph,dev,vcenter,iscsi_libvirt"
+        ARGUMENTS = "-t 15 -d dummy,lvm,shared,fs_lvm,qcow2,ssh,local,ceph,dev,vcenter,iscsi_libvirt"
     ]
 
 The configuration for each driver is defined in the ``TM_MAD_CONF`` section.
@@ -489,7 +489,7 @@ Sample configuration:
 
     DATASTORE_MAD = [
         EXECUTABLE = "one_datastore",
-        ARGUMENTS  = "-t 15 -d dummy,fs,lvm,ceph,dev,iscsi_libvirt,vcenter -s shared,ssh,ceph,fs_lvm"
+        ARGUMENTS  = "-t 15 -d dummy,fs,lvm,ceph,dev,iscsi_libvirt,vcenter -s shared,local,ceph,fs_lvm"
     ]
 
 For more information on this driver and how to customize it, please visit the :ref:`storage configuration <sm>` guide.

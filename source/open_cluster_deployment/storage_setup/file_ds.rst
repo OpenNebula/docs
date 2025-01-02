@@ -20,7 +20,7 @@ The specific attributes for Kernels & Files Datastore are listed in the followin
 +------------+---------------------------+
 | ``DS_MAD`` | ``fs``                    |
 +------------+---------------------------+
-| ``TM_MAD`` | ``ssh``                   |
+| ``TM_MAD`` | ``local``                 |
 +------------+---------------------------+
 
 .. note:: The recommended ``DS_MAD`` and ``TM_MAD`` are the ones stated above but any other can be used to fit specific use cases. Regarding this, the same :ref:`configuration guidelines <datastores>` defined for Image and System Datastores applies for the Kernels & Files Datastore.
@@ -32,7 +32,7 @@ For example, the following illustrates the creation of Kernels & Files.
     > cat kernels_ds.conf
     NAME = kernels
     DS_MAD = fs
-    TM_MAD = ssh
+    TM_MAD = local
     TYPE = FILE_DS
     SAFE_DIRS = /var/tmp/files
 
@@ -43,14 +43,14 @@ For example, the following illustrates the creation of Kernels & Files.
       ID NAME                      CLUSTER         IMAGES TYPE DS       TM
        0 system                    -                    0 sys  -        dummy
        1 default                   -                    0 img  dummy    dummy
-       2 files                     -                    0 fil  fs       ssh
-     100 kernels                   -                    0 fil  fs       ssh
+       2 files                     -                    0 fil  fs       local
+     100 kernels                   -                    0 fil  fs       local
 
 You can check more details of the datastore by issuing the ``onedatastore show <ds_id>`` command.
 
 Host Configuration
 ==================
 
-The recommended ``ssh`` driver for the File Datastore does not need any special configuration for the Hosts. Just make sure that there is enough space under the datastore location (``/var/lib/one/datastores`` by default) to hold the VM files in the Front-end and Hosts.
+The recommended ``local`` driver for the File Datastore does not need any special configuration for the Hosts. Just make sure that there is enough space under the datastore location (``/var/lib/one/datastores`` by default) to hold the VM files in the Front-end and Hosts.
 
 If different ``DS_MAD`` or ``TM_MAD`` attributes are used, refer to the corresponding node set up guide of the corresponding driver.

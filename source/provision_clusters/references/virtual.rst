@@ -255,10 +255,10 @@ For example:
     datastores:
       - name: "test_images"
         ds_mad: fs
-        tm_mad: ssh
+        tm_mad: local
       - name: "test_system"
         type: system_ds
-        tm_mad: ssh
+        tm_mad: local
         safe_dirs: "/var/tmp /tmp"
 
     images:

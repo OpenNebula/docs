@@ -412,9 +412,9 @@ Output should be similar to the following:
 
    oneadmin@front-end:~$ onedatastore list
      ID NAME                                               SIZE AVA CLUSTERS IMAGES TYPE DS      TM      STAT
-      2 files                                             57.1G 94% 0             0 fil  fs      ssh     on
-      1 default                                           57.1G 94% 0             0 img  fs      ssh     on
-      0 system                                                - -   0             0 sys  -       ssh     on
+      2 files                                             57.1G 94% 0             0 fil  fs      local   on
+      1 default                                           57.1G 94% 0             0 img  fs      local   on
+      0 system                                                - -   0             0 sys  -       local   on
 
 Again, verify that the last column, ``STAT``, displays ``on`` and not ``err``.
 

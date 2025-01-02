@@ -13,6 +13,11 @@ Resize Operation
 ================================================================================
 The enforcement parameter was deprecated to ensure NUMA consistency for the VM during a resize. Instead, it has been reinstated to control capacity attributes, such as memory and CPU.
 
+New default Local datastore driver
+================================================================================
+
+Since OpenNebula 6.10.2, the default Local driver is ``local`` instead of ``ssh`` (see :ref:`Local Storage datastore drivers <local_ds_drivers>`). The legacy ``ssh`` driver is still supported and nothing needs to be done for already existing datastores to keep working. As supporting qcow2 features such as thin provisioning required breaking compatibility with existing datastores, we decided to take the opportunity to write the ``local`` driver from scratch, making the driver more maintainable and easing new feature development.
+
 Check Datastore Capacity During Image Create
 ================================================================================
 

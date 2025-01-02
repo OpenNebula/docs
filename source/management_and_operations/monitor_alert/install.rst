@@ -75,8 +75,8 @@ The OpenNebula Prometheus package comes with a simple script that automatically 
 
    $ onehost list
    ID NAME                          CLUSTER    TVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
-    1 kvm-ssh-uimw3-2.test          default      0       0 / 100 (0%)     0K / 1.2G (0%) on
-    0 kvm-ssh-uimw3-1.test          default      0       0 / 100 (0%)     0K / 1.2G (0%) on
+    1 kvm-local-uimw3-2.test        default      0       0 / 100 (0%)     0K / 1.2G (0%) on
+    0 kvm-local-uimw3-1.test        default      0       0 / 100 (0%)     0K / 1.2G (0%) on
 
 Now, we will generate the prometheus configuration in ``/etc/one/prometheus/prometheus.yml``, as ``root`` (or ``oneadmin``) execute:
 
@@ -118,21 +118,21 @@ This command connects to your cloud as oneadmin to gather the relevant informati
      - targets:
        - 127.0.0.1:9100
      - targets:
-       - kvm-ssh-uimw3-2.test:9100
+       - kvm-local-uimw3-2.test:9100
        labels:
          one_host_id: '1'
      - targets:
-       - kvm-ssh-uimw3-1.test:9100
+       - kvm-local-uimw3-1.test:9100
        labels:
          one_host_id: '0'
    - job_name: libvirt_exporter
      static_configs:
      - targets:
-       - kvm-ssh-uimw3-2.test:9926
+       - kvm-local-uimw3-2.test:9926
        labels:
          one_host_id: '1'
      - targets:
-       - kvm-ssh-uimw3-1.test:9926
+       - kvm-local-uimw3-1.test:9926
        labels:
          one_host_id: '0'
 

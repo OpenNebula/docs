@@ -252,7 +252,7 @@ The complete list of operating system services provided by OpenNebula:
 | **opennebula-ssh-socks-cleaner**      | Periodic cleaner of SSH persistent connections                         | opennebula                |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
 
-.. note:: Since 5.12, the OpenNebula comes with an integrated SSH agent as the ``opennebula-ssh-agent`` service which removes the need to copy oneadmin's SSH private key across your Hosts. For more information, you can look at the :ref:`passwordless login <kvm_ssh>` section of the manual. You can opt to disable this service and configure your environment the old way.
+.. note:: Since 5.12, the OpenNebula comes with an integrated SSH agent as the ``opennebula-ssh-agent`` service which removes the need to copy oneadmin's SSH private key across your Hosts. For more information, refer to the :ref:`passwordless login <kvm_local>` section of the manual.
 
 You are ready to **start** all OpenNebula services with the following command (NOTE: you might want to remove the services from the command arguments if you skipped their configuration steps above):
 

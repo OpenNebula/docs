@@ -8,7 +8,6 @@ Open Cloud Storage Setup
    Overview <overview>
    NFS/NAS Datastore <nas_ds>
    Local Storage Datastore <local_ds>
-   OneStor Datastore <onestor_ds>
    Ceph Datastore <ceph_ds>
    SAN Datastore <lvm_drivers>
    Raw Device Mapping Datastore <dev_ds>

@@ -187,9 +187,9 @@ For example, in the case of ``onevm list``, by default it looks like this
     root@supermicro9:~# onevm list
       ID USER     GROUP    NAME                                                                        STAT  CPU     MEM HOST                                                     TIME
     9234 oneadmin oneadmin alma8-alma8-6-7-80-e3f1f4b2-6a26f4bd-1825.build                             unde  0.5      8G                                                      0d 05h57
-    9233 nhansen  users    alma8-kvm-ssh-6-6-pkofu-2.test                                              runn  0.5    1.3G localhost                                            0d 07h04
-    9232 nhansen  users    alma8-kvm-ssh-6-6-pkofu-1.test                                              runn  0.5    1.3G localhost                                            0d 07h04
-    9231 nhansen  users    alma8-kvm-ssh-6-6-pkofu-0.test                                              runn  0.5    1.8G localhost                                            0d 07h04
+    9233 nhansen  users    alma8-kvm-local-6-6-pkofu-2.test                                            runn  0.5    1.3G localhost                                            0d 07h04
+    9232 nhansen  users    alma8-kvm-local-6-6-pkofu-1.test                                            runn  0.5    1.3G localhost                                            0d 07h04
+    9231 nhansen  users    alma8-kvm-local-6-6-pkofu-0.test                                            runn  0.5    1.8G localhost                                            0d 07h04
 
 But you can change the default columns, increase the column width and disable expansion to make it look like this
 
