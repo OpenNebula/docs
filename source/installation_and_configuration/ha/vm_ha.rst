@@ -78,7 +78,7 @@ The following is a an example configuration
     UserKnownHostsFile /dev/null
     ConnectTimeout 15
 
-.. warning:: Consider that a temporary network/host problem or a small hiccup combined with short timers can lead to an overkill situation where the HA hook gets triggered too fast when waiting a few more seconds could have been fine. This is a tradeoff you'll have to be aware of when implementing HA.
+.. warning:: Consider that a temporary network/host problem or a small hiccup combined with short timers can lead to an overkill situation where the HA hook gets triggered too fast when waiting a few more seconds could have been fine. This is a trade-off you'll have to be aware of when implementing HA.
 
 Enabling Fencing
 ================================================================================
