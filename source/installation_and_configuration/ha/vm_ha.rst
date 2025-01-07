@@ -56,6 +56,30 @@ More information on hooks :ref:`here <hooks>`.
 
 .. warning:: Note that spurious network errors may lead to a VM being started twice on different hosts and possibly clashing on shared resources. The previous script needs to fence the error host to prevent split brain VMs. You may use any fencing mechanism for the host and invoke it within the error hook.
 
+Tuning HA responsiveness
+================================================================================
+
+This HA mechanism is based on the host state monitoring. How long the host the host takes to be reported in ``ERROR`` is crucial for how quickly you want the VMs to be available.
+
+There are multiple timers that you can adjust on ``/etc/one/monitord.conf`` to adjust this. ``BEACON_HOST`` dictates how often the host is checked to make sure it is responding. If it doesn't respond past ``MONITORING_INTERVAL_HOST`` then the frontend will attempt to restart the monitoring on the host.
+
+This process tries to connect to the host via SSH, synchronize the probes and start their execution. It might be possible that this SSH connection hangs if the host is not responsive. This can lead to a situation where the VM workloads running on said host will be unavailable and the HA will not be present during this process. You can adjust how much are you comfortable with waiting for this ssh to fail by setting the parameter ``ConnectTimeout`` on the oneadmin ssh configuration at ``/var/lib/one/.ssh/config``.
+
+The following is a an example configuration
+
+.. code-block:: language
+
+    Host *
+    ServerAliveInterval 10
+    ControlMaster no
+    ControlPersist 70s
+    ControlPath /run/one/ssh-socks/ctl-M-%C.sock
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+    ConnectTimeout 15
+
+.. warning:: Consider that a temporary network/host problem or a small hiccup combined with short timers can lead to an overkill situation where the HA hook gets triggered too fast when waiting a few more seconds could have been fine. This is a tradeoff you'll have to be aware of when implementing HA.
+
 Enabling Fencing
 ================================================================================
 
