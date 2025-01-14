@@ -264,9 +264,7 @@ In order to develop a new tab, you need to make sure it has the correct webpack 
 
   .. note::  Notice how we import from the ``@ComponentsModule`` instead of using a relative path to the ``src/modules/components`` directory. This is because the import goes through the module federation and is resolved dynamically at runtime, as opposed to being bundled within our new module directly. 
 
-.. _cross_module_imports:
-
-.. important:: Cross-module imports should *NEVER* be done relative to one another, only inside subdirectories of the module itself should you use relative import paths like ``import ... from @modules/<moduleName>``. Any cross-module dependencies should be resolved through ``@<ModuleName>``.
+.. important:: Cross-module imports should *NEVER* be done relative to one another, only inside subdirectories of the module itself should you use relative import paths like ``import ... from @modules/<moduleName>``. See :ref:`importing from other modules <importing_remote_modules>` for more information.
 
 7. Now lets rename our component to "UsersAndGroups" and modify the code so that we return a 2 column grid with both our tables inside
 
@@ -348,8 +346,8 @@ In order to develop a new tab, you need to make sure it has the correct webpack 
 
     export * from '@modules/customContainers/Users/Users'
 
-  .. note:: Here the ``@modules`` name is an alias we use in our webpack configuration, which gets resolved to the ``src/modules`` directory when building. You can examine this more closely inside the ``webpack.config.prod.customcontainer.js`` file. In this case, exporting relative to our parent directory is fine as we are not doing any cross-module referencing.
-
+  .. note:: Here the ``@modules`` name is an alias we use in our webpack configuration, which gets resolved to the ``src/modules`` directory when building. You can examine this more closely inside the ``webpack.config.prod.customcontainer.js`` file. In this case, exporting relative to our parent directory is fine as we are not doing any cross-module referencing. See the :ref:`module webpack configuration <module_webpack_configuration>` section for more information.
+  
 9. Time to build our module (for convenience sake, we will save the build command inside our ``package.json`` file)
 
   .. code-block:: javascript
@@ -479,6 +477,8 @@ Now open up your Sunstone web UI (should be reachable at ``http://localhost:2616
 |users_and_groups_tab|
 
 Note that all of this was done with the FireEdge Sunstone server up and running in production mode, as the new modularized architecture does not require us to rebuild the client nor the server in order to bring in new changes.
+
+.. _module_webpack_configuration:
 
 Module Webpack Configuration
 ================================================================================
@@ -633,6 +633,8 @@ Shared module dependencies
 When building your modules you should review the shared dependency configuration, which by default is defined in the ``src/modules/sharedDeps.js`` file. This script imports the ``package.json`` file for resolving different dependency versions and should be sufficient in most cases.
 
 .. note:: Not all dependencies are shared between modules. For more information on which dependencies should be shared and how to configure them, you can refer to the official `Module Federation documentation <https://module-federation.io/configure/shared.html>`_.
+
+.. _importing_remote_modules:
 
 Importing from other modules
 --------------------------------------------------------------------------------
