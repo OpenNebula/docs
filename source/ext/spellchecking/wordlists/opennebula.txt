@@ -153,6 +153,7 @@ Unmanaged
 Unregister
 Untagged
 Uplink
+Utils
 VID
 VMs
 VMware
@@ -165,6 +166,7 @@ Virtualized
 Vms
 Vnet
 Vrouter
+Webpack
 Webserver
 XPath
 Xeon
@@ -298,8 +300,8 @@ deldatastore
 delgroup
 delhost
 delrule
-delvnet
 delserver
+delvnet
 desc
 detachdisk
 detachnic
@@ -652,10 +654,10 @@ seSparse
 secgroup
 secgrouppool
 securetty
+server-del
 serveradmin
 serverless
 serveruser
-server-del
 sftp
 sg
 sgID
@@ -820,6 +822,7 @@ vrouter
 vrouterpool
 vxlan
 webhook
+webpack
 webrick
 webserver
 websockets

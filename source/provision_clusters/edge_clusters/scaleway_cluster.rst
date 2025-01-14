@@ -48,5 +48,5 @@ You can also manage AWS and Equinix Clusters using the OneProvision GUI in Sunst
 
 |image_fireedge|
 
-.. |image_cluster| image:: /images/scaleway_deployment.png
+.. |image_cluster| image:: /images/scaleway-deployment.jpg
 .. |image_fireedge| image:: /images/oneprovision_fireedge.png
