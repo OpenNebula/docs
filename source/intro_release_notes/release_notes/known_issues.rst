@@ -27,6 +27,8 @@ Sunstone
 
 - The current configuration for both Sunstone and One-Provision contain a mismatch in the `keep_me_logged` configuration option. This issue has been fixed but the new configuration files need to be downloaded in order for this fix to take effect, refer to :ref:`the following section <fireedge_install_configuration>` for instructions on how to do this.
 
+- The `Update VM Configuration` dialog contains a bug which will result in a blank screen if one tries to update the configuration of a virtual machine with less than 2 total disks attached. The quickest workaround for this is to attach another minimal disk to the VM.
+
 Install Linux Graphical Desktop on KVM Virtual Machines
 ================================================================================
 
