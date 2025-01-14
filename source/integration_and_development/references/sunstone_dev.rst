@@ -28,7 +28,7 @@ You can read more about this in the :ref:`FireEdge configuration guide <fireedge
 Architecture
 ================================================================================
 
-In our latest generation of FireEdge Sunstone, we have done a architectural revamp, moving from our previously Monolithic architecture towards a more modern and streamlined Micro-Frontend like architecture.This new architecture is based on the latest Module Federation implementation in Webpack. Which allows us to dynamically, and remotely, load different modules in our baseline Sunstone client.
+In our latest generation of FireEdge Sunstone, we have done a architectural revamp, moving from our previously Monolithic architecture towards a more modern and streamlined Micro-Frontend like architecture. This new architecture is based on the latest Module Federation implementation in `Webpack <https://webpack.js.org/concepts/module-federation/>`_. Which allows us to dynamically, and remotely, load different modules in our baseline Sunstone client.
 
 .. _base_modules:
 
