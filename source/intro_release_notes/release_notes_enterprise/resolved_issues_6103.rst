@@ -19,3 +19,4 @@ The following issues have been solved in the Sunstone Web UI:
 - `Fix currency symbol not displaying <https://github.com/OpenNebula/one/issues/6846>`__.
 - `Fix making available "Flush" button on FSunstone to resched all VMs in another hosts <https://github.com/OpenNebula/one/issues/6763>`__.
 - `Fix dettach disk or nic is disabled in regular users <https://github.com/OpenNebula/one/issues/6820>`__.
+- `Fix wrong user groups being displayed <https://github.com/OpenNebula/one/issues/6794>`__.
