@@ -168,7 +168,7 @@ To add OpenNebula repository, execute the following as user ``root``:
 **RHEL 8, 9**
 
 .. prompt:: bash # auto
-   :substitutions:
+    :substitutions:
 
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
@@ -184,7 +184,7 @@ To add OpenNebula repository, execute the following as user ``root``:
 **AlmaLinux 8, 9**
 
 .. prompt:: bash # auto
-   :substitutions:
+    :substitutions:
 
     # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
