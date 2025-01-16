@@ -20,3 +20,4 @@ The following issues have been solved in the Sunstone Web UI:
 - `Fix making available "Flush" button on FSunstone to resched all VMs in another hosts <https://github.com/OpenNebula/one/issues/6763>`__.
 - `Fix dettach disk or nic is disabled in regular users <https://github.com/OpenNebula/one/issues/6820>`__.
 - `Fix wrong user groups being displayed <https://github.com/OpenNebula/one/issues/6794>`__.
+- `Fix service template role name validation <https://github.com/OpenNebula/one/issues/6816>`__.
