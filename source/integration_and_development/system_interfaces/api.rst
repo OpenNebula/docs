@@ -2105,7 +2105,7 @@ The supported attributes are:
 | ``OS``             | ``ARCH``, ``MACHINE``, ``KERNEL``, ``INITRD``, ``BOOTLOADER``, ``BOOT``,       |
 |                    | ``KERNEL_CMD``, ``ROOT``, ``SD_DISK_BUS``, ``UUID``, ``FIRMWARE``              |
 +--------------------+--------------------------------------------------------------------------------+
-|  ``CPU_MODEL``     | ``MODEL``                                                                      |
+|  ``CPU_MODEL``     | ``MODEL``, ``FEATURES``                                                        |
 +--------------------+--------------------------------------------------------------------------------+
 | ``FEATURES``       | ``ACPI``, ``PAE``, ``APIC``, ``LOCALTIME``, ``HYPERV``, ``GUEST_AGENT``,       |
 |                    | ``VIRTIO_SCSI_QUEUES``, ``VIRTIO_BLK_QUEUES``, ``IOTHREADS``                   |
