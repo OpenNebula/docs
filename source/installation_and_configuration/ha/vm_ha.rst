@@ -67,7 +67,7 @@ This process tries to connect to the host via SSH, synchronize the probes and st
 
 The following is a an example configuration
 
-.. code-block:: language
+.. code-block::
 
     Host *
     ServerAliveInterval 10
