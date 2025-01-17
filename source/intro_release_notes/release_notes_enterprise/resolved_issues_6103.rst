@@ -14,6 +14,7 @@ The following new features have been backported to 6.10.3:
 The following issues has been solved in 6.10.3:
 
 - `Fix an error when downloading images from HTTP-based marketplaces caused by a missing trailing slash in the ENDPOINT attribute <https://github.com/OpenNebula/one/issues/6619>`__.
+- `Fix an error with mapping qcow2 overlays with the LXC driver <https://github.com/OpenNebula/one/issues/6848>`__.
 - `Fix VM cluster ID after moving host to different cluster <https://github.com/OpenNebula/one/issues/2226>`__.
 - `Fix corrupted quota after VM deploy and recover --recreate actions, in case RUNNING quota is exceeded <https://github.com/OpenNebula/one/issues/6823>`__.
 
