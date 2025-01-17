@@ -28,7 +28,7 @@ The full list of configuration attributes are:
     GRAPHICS  = ["TYPE", "LISTEN", "PASSWD", "KEYMAP", "COMMAND" ]
     VIDEO     = ["TYPE", "IOMMU", "ATS", "VRAM", "RESOLUTION"]
     RAW       = ["DATA", "DATA_VMX", "TYPE", "VALIDATE"]
-    CPU_MODEL = ["MODEL"]
+    CPU_MODEL = ["MODEL", "FEATURES"]
     BACKUP_CONFIG = ["FS_FREEZE", "KEEP_LAST", "BACKUP_VOLATILE", "MODE", "INCREMENT_MODE"]
     CONTEXT (any value, except ETH*, **variable substitution will be made**)
 
