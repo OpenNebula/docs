@@ -139,4 +139,40 @@ Finally, add the following udev rule:
 Using the vGPU
 --------------------------------------------------------------------------------
 
-Once everything is set up, you can follow :ref:`these steps <pci_config>`.
+Once the setup is complete, you can follow the :ref:`general steps <pci_config>` for adding PCI devices to a VM. For NVIDIA GPUs, please consider the following:
+
+- OpenNebula supports both the legacy mediated device interface and the new vendor-specific interface introduced with Ubuntu 24.04. The vGPU device configuration is handled automatically by the virtualization and monitoring drivers. The monitoring process automatically sets the appropriate mode for each device using the ``MDEV_MODE`` attribute.
+
+- NVIDIA vGPUs can be configured using different profiles, which define the vGPU's characteristics and hardware capabilities. These profiles are retrieved from the drivers by the monitoring process, allowing you to easily select the one that best suits your application's requirements.
+
+The following example shows the monitoring information for a NVIDIA vGPU device:
+
+.. prompt:: bash $ auto
+
+    $ onehost show -j 13
+    ...
+        "PCI_DEVICES": {
+        "PCI": [
+          {
+            "ADDRESS": "0000:41:00:4",
+            "BUS": "41",
+            "CLASS": "0302",
+            "CLASS_NAME": "3D controller",
+            "DEVICE": "2236",
+            "DEVICE_NAME": "NVIDIA Corporation GA102GL [A10]",
+            "DOMAIN": "0000",
+            "FUNCTION": "4",
+            "MDEV_MODE": "nvidia",
+            "NUMA_NODE": "-",
+            "PROFILES": "588 (NVIDIA A10-1B),589 (NVIDIA A10-2B),590 (NVIDIA A10-1Q),591 (NVIDIA A10-2Q),592 (NVIDIA A10-3Q),593 (NVIDIA A10-4Q),594 (NVIDIA A10-6Q),595 (NVIDIA A10-8Q),596 (NVIDIA A10-12Q),597 (NVIDIA A10-24Q),598 (NVIDIA A10-1A),599 (NVIDIA A10-2A),600 (NVIDIA A10-3A),601 (NVIDIA A10-4A),602 (NVIDIA A10-6A),603 (NVIDIA A10-8A),604 (NVIDIA A10-12A),605 (NVIDIA A10-24A)",
+            "SHORT_ADDRESS": "41:00.4",
+            "SLOT": "00",
+            "TYPE": "10de:2236:0302",
+            "UUID": "e4042b96-e63d-56cf-bcc8-4e6eecccc12e",
+            "VENDOR": "10de",
+            "VENDOR_NAME": "NVIDIA Corporation",
+            "VMID": "-1"
+          }
+
+.. important::
+    When using NVIDIA cards, ensure that only the GPU (for PCI passthrough) or vGPUs (for SR-IOV) are exposed through the PCI monitoring probe. Do not mix both types of devices in the same configuration.
