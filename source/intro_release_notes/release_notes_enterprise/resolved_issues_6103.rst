@@ -9,6 +9,7 @@ The following new features have been backported to 6.10.3:
 
 - Added support for the new NVIDIA mediated devices framework introduced in Ubuntu 24.04. The legacy method remains unaffected by this new feature. For more details, see the :ref:`NVIDIA vGPU documentation <kvm_vgpu>`.
 - `Added capability to change CPU_MODEL/FEATURES with one.vm.updateconf request <https://github.com/OpenNebula/one/issues/6636>`__.
+- `Added new cli command onevm snapshot-list <https://github.com/OpenNebula/one/issues/6623>`__.
 
 The following issues has been solved in 6.10.3:
 
