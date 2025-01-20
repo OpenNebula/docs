@@ -217,9 +217,9 @@ System Datastore also requires these attributes:
 +=================+===========================================================+===========+
 | ``TYPE``        | ``SYSTEM_DS``                                             | **YES**   |
 +-----------------+-----------------------------------------------------------+-----------+
-| ``TM_MAD``      | ``ceph``  to use the full Ceph mode, see below            | **YES**   |
+| ``TM_MAD``      | ``ceph``  to use the full Ceph mode, see Ceph mode below  | **YES**   |
 |                 +-----------------------------------------------------------+           |
-|                 | ``ssh`` to use local Host storage, SSH mode below         |           |
+|                 | ``ssh`` to use local Host storage, see SSH mode below     |           |
 +-----------------+-----------------------------------------------------------+-----------+
 | ``DISK_TYPE``   | ``RBD`` (used for volatile disks)                         | **NO**    |
 +-----------------+-----------------------------------------------------------+-----------+
