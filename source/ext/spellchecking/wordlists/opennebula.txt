@@ -93,6 +93,7 @@ Mountpoints
 Multicast
 Multicluster
 Multus
+NFS
 NSX
 NVMe
 Netplan
