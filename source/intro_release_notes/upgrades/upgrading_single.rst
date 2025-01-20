@@ -170,7 +170,7 @@ If upgrading OpenNebula CE, you will need to install the ``opennebula-migration-
 
 If you are upgrading to the *latest* version, you will need to download the package from the `Get Migration Packages <https://opennebula.io/get-migration>`__ page.
 
-If you are upgrading to any prior version (such as upgrading from 6.8 to 6.10), then the migration package is already included in the OpenNebula repositories.
+If you are upgrading to any prior version (such as upgrading from 6.6 to 6.8), then the migration package is already included in the OpenNebula repositories.
 
 To install the migration package:
 
