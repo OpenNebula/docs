@@ -30,6 +30,8 @@ Manual Host Setup
 
 The configuration is the same as for the Front-end above: simply mount in each Host the datastore directories in ``/var/lib/one/datastores/<datastore_id>``.
 
+.. _automatic_nfs_setup:
+
 Automatic Setup
 ================================================================================
 

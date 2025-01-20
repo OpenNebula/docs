@@ -14,8 +14,7 @@ OpenNebula Core
 Storage & Backups
 ================================================================================
 
-- Feature 1
-- Feature 2
+- :ref:`Integrated NFS life-cycle setup <automatic_nfs_setup>` for volumes in shared datastore.
 
 FireEdge Sunstone
 ================================================================================
