@@ -44,6 +44,8 @@ The attribute name is ``DATASTORE``.
 | IMAGES              | Maximum number of images that can be created in the datastore |
 +---------------------+---------------------------------------------------------------+
 
+.. _compute_quotas:
+
 Compute Quotas
 --------------------------------------------------------------------------------
 
@@ -52,6 +54,9 @@ The attribute name is ``VM``
 +------------------+------------------------------------------------------------------------------+
 |   VM Attribute   |                                 Description                                  |
 +==================+==============================================================================+
+| CLUSTER_IDS      | An optional attribute used to define which clusters are included in this     |
+|                  | quota. Leave this attribute empty to apply the quota globally.               |
++------------------+------------------------------------------------------------------------------+
 | VMS              | Maximum number of VMs that can be created                                    |
 +------------------+------------------------------------------------------------------------------+
 | MEMORY           | Maximum memory in MB that can be requested by user/group VMs                 |
@@ -97,6 +102,35 @@ Subsequently, a quota can be enforced for a user, e.g. ``GOLD_QOS = 5``, signify
 Each generic quota is also automatically prefixed with ``RUNNING_``. For instance, ``RUNNING_GOLD_QOS`` would specify the number of VMs in an ``ACTIVE`` state with the GOLD_QOS attribute. This allows the establishment of quotas specifically tailored for running VMs.
 
 Additionally, it's important to note that each generic quota defined via ``QUOTA_VM_ATTRIBUTE`` is automatically included in the ``VM_RESTRICTED_ATTR`` set. This inclusion prevents regular users from circumventing the quota system by altering the attributes related to these generic quotas.
+
+Per Cluster Quotas
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Use the ``CLUSTER_IDS`` attribute to achieve more granular control over Compute Quotas. This optional attribute specifies which clusters the quota applies to. If left empty, the quota will be applied globally. The value should be a comma-separated list of cluster IDs, and the quota will only affect VMs running in the specified clusters. Note that each cluster can be assigned to only one quota.
+
+.. code-block:: bash
+    :caption: Example of per cluster quotas
+
+    # Global quota to allow 4 VMs
+    VM = [
+      VMS = 4
+    ]
+    # Quota for cluster 0 to allow 2 VMs
+    VM = [
+      CLUSTER_IDS = "0",
+      VMS = 2
+    ]
+    # Quota for clusters 100 and 101 to allow 3 VMs
+    VM = [
+      CLUSTER_IDS = "100,101",
+      VMS = 3
+    ]
+
+In this setup, the user can run:
+
+* Up to **2 VMs** in **cluster 0**
+* Up to **3 VMs** in **clusters 100 and 101** combined
+* No more than **4 VMs** in total across all clusters
 
 Network Quotas
 --------------------------------------------------------------------------------
@@ -214,6 +248,8 @@ Use the ``oneuser/onegroup defaultquota`` command.
 
 By default, the defaultquota is set to unlimited. Once the editor opens after issuing ``oneuser defaultquota`` you'll see comments regarding how to set the quotas and no quota template. Setting a quota with a template using unlimited values will translate to a blank quota. If you issue ``oneuser defaultquota`` again, you'll see the same comments with blank quota. If you set a non unlimited quota, you'll see the value of the quota that is established as default.
 
+The Default Quotas doesn't apply for Cluster Quotas, you need to set them manually.
+
 Checking User/Group Quotas
 ================================================================================
 
@@ -235,13 +271,15 @@ Quota limits and usage for each user/group is included as part of its standard i
 
     VMS USAGE & QUOTAS
 
-              VMS               MEMORY                  CPU     SYSTEM_DISK_SIZE
-      1 /       4        1M /        -      2.00 /        -        0M /        -
+    CLUSTERS         VMS              MEMORY                 CPU    SYSTEM_DISK_SIZE
+                   1 / 4        1M /       -      2.00 /        -      0M /        -
+         100       0 /          0M /   128G       0.00 /    10.00      0M /        -
 
     VMS USAGE & QUOTAS - RUNNING
 
-        RUNNING VMS       RUNNING MEMORY          RUNNING CPU
-        1 /       -        1M /       2M      2.00 /        -
+    CLUSTERS       RUNNING VMS       RUNNING MEMORY          RUNNING CPU
+                   1 /       -        1M /        -      2.00 /        -
+         100       0 /       2        0M /     128G      0.00 /        -
 
     DATASTORE USAGE & QUOTAS
 
