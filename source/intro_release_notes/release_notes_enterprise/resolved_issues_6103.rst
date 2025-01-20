@@ -26,3 +26,4 @@ The following issues have been solved in the Sunstone Web UI:
 - `Fix dettach disk or nic is disabled in regular users <https://github.com/OpenNebula/one/issues/6820>`__.
 - `Fix wrong user groups being displayed <https://github.com/OpenNebula/one/issues/6794>`__.
 - `Fix service template role name validation <https://github.com/OpenNebula/one/issues/6816>`__.
+- `Fix missing IP/MAC spoofing switch <https://github.com/OpenNebula/one/issues/6806>`__.
