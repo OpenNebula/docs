@@ -28,3 +28,4 @@ The following issues have been solved in the Sunstone Web UI:
 - `Fix service template role name validation <https://github.com/OpenNebula/one/issues/6816>`__.
 - `Fix missing IP/MAC spoofing switch <https://github.com/OpenNebula/one/issues/6806>`__.
 - `Fix datastore, host and vnets tables in provision <https://github.com/OpenNebula/one/issues/6815>`__.
+- `Fix spoofing and security groups filters for traffic addressed to the hypervisor <https://github.com/OpenNebula/one/issues/6704>`__.
