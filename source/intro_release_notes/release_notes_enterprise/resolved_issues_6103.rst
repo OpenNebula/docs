@@ -30,3 +30,4 @@ The following issues have been solved in the Sunstone Web UI:
 - `Fix datastore, host and vnets tables in provision <https://github.com/OpenNebula/one/issues/6815>`__.
 - `Fix actions in apps when the user select an app from Marketplace <https://github.com/OpenNebula/one/issues/6714>`__.
 - `Fix spoofing and security groups filters for traffic addressed to the hypervisor <https://github.com/OpenNebula/one/issues/6704>`__.
+- `Fix select datastore when importing app after validation error <https://github.com/OpenNebula/one/issues/6724>`__.
