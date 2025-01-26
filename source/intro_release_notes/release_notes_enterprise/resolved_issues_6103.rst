@@ -32,3 +32,4 @@ The following issues have been solved in the Sunstone Web UI:
 - `Fix spoofing and security groups filters for traffic addressed to the hypervisor <https://github.com/OpenNebula/one/issues/6704>`__.
 - `Fix select datastore when importing app after validation error <https://github.com/OpenNebula/one/issues/6724>`__.
 - `Fix info about costs when instantiate a vm in Sunstone <https://github.com/OpenNebula/one/issues/6639>`__.
+- `Fix vnet review in Sunstone <https://github.com/OpenNebula/one/issues/6833>`__.
