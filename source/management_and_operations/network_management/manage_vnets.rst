@@ -461,5 +461,8 @@ You can also manage your Virtual Networks using the :ref:`Sunstone GUI <fireedge
 
 |image1|
 
+|image2|
+
 .. |image0| image:: /images/sunstone_vnets.png
-.. |image1| image:: /images/sunstone_vnet_create.png
+.. |image1| image:: /images/sunstone_vnet_create_general.png
+.. |image2| image:: /images/sunstone_vnet_create_advanced.png

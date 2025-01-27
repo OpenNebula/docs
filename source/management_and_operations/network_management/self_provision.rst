@@ -74,8 +74,6 @@ A Reservation can be also extended with new addresses. This is, you can add a ne
 
 .. note:: The reservation interface is exposed by Sunstone in a very convenient way.
 
-.. |image0| image:: /images/sunstone_vnet_create.png
-
 
 Virtual Network Templates
 ================================================================================
