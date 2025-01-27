@@ -8,6 +8,11 @@ A complete list of `known issues for OpenNebula is maintained here <https://gith
 
 This page will be updated with relevant information about bugs affecting OpenNebula, as well as possible workarounds until a patch is officially published.
 
+Drivers - Virtualization
+================================================================================
+
+- `libvirtd restarts in cycles each 10 minutes with error message in system logs <https://github.com/OpenNebula/one/issues/6463>`_, due to the way libvirtd gets activated per interaction by systemd in 120-second slices. As the default interval for the OpenNebula monitor probe is 600 seconds (10 minutes), each time a probe reactivates libvirtd, it sends those messages to syslog.
+
 Drivers - Network
 ================================================================================
 
