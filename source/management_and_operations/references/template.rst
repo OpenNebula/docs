@@ -802,14 +802,16 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 |                                   | ``USERNAME`` is not set.                                                                        |                              |         |
 |                                   | Requires OpenSSH server installed on Windows, user automatically detected. ``USERNAME`` ignored.|                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
-| ``WINADMIN``                      | Set to ``NO`` to treat the Windows user as standard user for setting ``SSH_PUBLIC_KEY``         | Windows                      | Windows |
+| ``ENABLE_SSH``                    | Set to ``NO`` to disable the automatic startup of the ``sshd`` service (if installed).          | Windows                      | Windows |
++-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
+| ``WINADMIN``                      | Set to ``NO`` to treat the Windows user as standard user for setting ``SSH_PUBLIC_KEY``.        | Windows                      | Windows |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``SECURETTY``                     | If set to ``NO`` it will disable securetty validation on PAM. If set to ``YES``                 | Linux                        | Linux   |
 |                                   | it will restore system defaults. Defaults: LXC -> ``YES``, KVM -> ``NO``.                       |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``TIMEZONE``                      | Time zone to set. On Linux, the name must match the zone file name relative to                  | O                            | O       |
 |                                   | ``/usr/share/zoneinfo/`` (e.g. ``US/Central``). On Windows, the name must match                 |                              |         |
-|                                   | supported zone listed by ``tzutil /l`` (e.g. ``Central Standard Time``)                         |                              |         |
+|                                   | supported zone listed by ``tzutil /l`` (e.g. ``Central Standard Time``).                        |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 | ``GROW_ROOTFS``                   | If set to ``NO``, the automatic growing of the root filesystem or disk ``C:`` on Windows will   | O                            | O       |
 |                                   | be disabled.                                                                                    |                              |         |
