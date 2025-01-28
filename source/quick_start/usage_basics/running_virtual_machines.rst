@@ -138,7 +138,6 @@ Sunstone will display a wizard with network parameters:
 
 .. image:: /images/sunstone-vm_instantiate-attach_nic1.png
    :align: center
-   :scale: 70%
 
 |
 
@@ -149,11 +148,17 @@ Click **Next**. Sunstone displays the **Select a network** screen:
 
 |
 
-Select ``aws-cluster-public``, then click **Next**. Sunstone displays the final screen, **Select QoS**:
+Select ``aws-cluster-public``, then click **Next**. Sunstone displays the **Network values** screen:
+
+.. image:: /images/sunstone-vm_instantiate-attach_nic1_network_values.png
+   :align: center
+
+|
+
+Click **Next**. Sunstone displays the final screen, **Select QoS**:
 
 .. image:: /images/sunstone-vm_instantiate-attach_nic3.png
    :align: center
-   :scale: 70%
 
 |
 
