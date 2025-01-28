@@ -35,3 +35,6 @@ The following issues have been solved in the Sunstone Web UI:
 - `Fix info about costs when instantiate a vm in Sunstone <https://github.com/OpenNebula/one/issues/6639>`__.
 - `Fix vnet review in Sunstone <https://github.com/OpenNebula/one/issues/6833>`__.
 - `Fix allowed VM action states <https://github.com/OpenNebula/one/issues/6830>`__.
+- `Fix select a network should be first than Advanced options when attaching a NIC <https://github.com/OpenNebula/one/issues/6728>`__.
+- `Fix VM host placement <https://github.com/OpenNebula/one/issues/6845>`__.
+- `Fix VM update configuration dialog <https://github.com/OpenNebula/one/issues/6844>`__.
