@@ -117,9 +117,13 @@ You should be able to see the configuration of the VM by showing its information
    LAST_INCREMENT_ID="-1"
    MODE="INCREMENT"
 
-To configure using the Sunstone GUI, select the **Backup** tab:
+To configure using the Sunstone GUI, click on the virtual machine, select the **Configuration** tab and click on the **Update VM Configuration** button:
 
 |vm_cfg|
+
+Sunstone will display the screen to update the VM Configuration. Select the **Backup** tab to update the backup configuration.
+
+|vm_cfg_tab|
 
 .. _vm_backups_config_attributes:
 
@@ -163,6 +167,11 @@ You can take backups (one-shot) using the ``onevm backup`` operation (or the equ
 
    $ onevm backup --schedule now -d 100 0
    VM 0: backup scheduled at 2022-12-01 13:28:44 +0000
+
+
+Using Sunstone to take one-shot backup:
+
+|vm_backup_action|
 
 After the backup is complete you should see: the backup information in the VM details, as well as the associated backup image. For example:
 
@@ -470,9 +479,17 @@ If you are using ``FULL`` backups you can schedule backups in different servers 
     :width: 700
     :align: middle
 
-.. |vm_cfg| image:: /images/backup_template_cfg.png
+.. |vm_cfg| image:: /images/backup_vm_configuration.png
     :width: 700
     :align: middle
+
+.. |vm_cfg_tab| image:: /images/backup_vm_configuration_tab.png
+    :width: 700
+    :align: middle
+
+.. |vm_backup_action| image:: /images/vm_backup_action.png
+    :width: 700
+    :align: middle    
 
 .. |vm_schedule| image:: /images/backup_schedule.png
     :width: 700
