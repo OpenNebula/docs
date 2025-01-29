@@ -85,6 +85,15 @@ Located under ``/var/lib/one/remotes/datastore/<ds_mad>``
    -  **RETURNS**: ``-``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`. This dump, in addition to the elements in the example, contains a ROOT element: ``TARGET_SNAPSHOT``, with the ID of the snapshot.
 
+-  **increment_flatten**: Flattens one or several snapshots. The operation results in a shortened chain of snapshots, committing from the beginning to only preserve the amount specified by KEEP_LAST.
+
+   -  **ARGUMENTS**: ``image_id``
+   -  **STDIN**: ``datastore_image_dump``
+   -  **RETURNS**: ``size chain``
+   -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`. This dump, in addition to the elements in the example, contains a ROOT element: ``TARGET_SNAPSHOT``, with the ID of the snapshot.
+   -  ``size`` the size in MB.
+   -  ``chain`` chain spec in format <base_id>:<base_hash>[,<inc_id>:<inc_hash>]*.
+
 -  **export**: Generates an XML file required to export an image from a datastore. This script represents only the first part of the export process, it only generates metadata (an xml). The information returned by this script is then fed to ``downloader.sh`` which completes the export process.
 
    -  **ARGUMENTS**: ``image_id``
