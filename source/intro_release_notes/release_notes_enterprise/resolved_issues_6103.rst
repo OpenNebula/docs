@@ -38,3 +38,4 @@ The following issues have been solved in the Sunstone Web UI:
 - `Fix select a network should be first than Advanced options when attaching a NIC <https://github.com/OpenNebula/one/issues/6728>`__.
 - `Fix VM host placement <https://github.com/OpenNebula/one/issues/6845>`__.
 - `Fix VM update configuration dialog <https://github.com/OpenNebula/one/issues/6844>`__.
+- `Fix missing vGPU profile selector <https://github.com/OpenNebula/one/issues/6293>`__.
