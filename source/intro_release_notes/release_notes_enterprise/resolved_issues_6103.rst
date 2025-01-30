@@ -18,7 +18,7 @@ The following issues has been solved in 6.10.3:
 - `Fix an error with mapping qcow2 overlays with the LXC driver <https://github.com/OpenNebula/one/issues/6848>`__.
 - `Fix VM cluster ID after moving host to different cluster <https://github.com/OpenNebula/one/issues/2226>`__.
 - `Fix corrupted quota after VM deploy and recover --recreate actions, in case RUNNING quota is exceeded <https://github.com/OpenNebula/one/issues/6823>`__.
-- `Fix onetemplate instantiate cli options override template CONTEXT <https://github.com/OpenNebula/one/issues/6828>`__.
+- `Fix onetemplate instantiate cli options to not override the whole CONTEXT attribute <https://github.com/OpenNebula/one/issues/6828>`__.
 
 The following issues have been solved in the Sunstone Web UI:
 
