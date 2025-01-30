@@ -192,7 +192,7 @@ NIC
 
     $ virsh -c qemu:///system nwfilter-list
 
-* ``VIRTIO_QUEUES`` to define how many queues will be used for the communication between CPUs and Network drivers. This attribute is only available with ``MODEL="virtio"``.
+* ``VIRTIO_QUEUES`` to define how many queues will be used for the communication between CPUs and Network drivers. This attribute is only available with ``MODEL="virtio"``. The ``auto`` keyword automatically set the number of queues to the number of vCPUs.
 
 Graphics
 ~~~~~~~~
