@@ -19,6 +19,7 @@ The following issues has been solved in 6.10.3:
 - `Fix VM cluster ID after moving host to different cluster <https://github.com/OpenNebula/one/issues/2226>`__.
 - `Fix corrupted quota after VM deploy and recover --recreate actions, in case RUNNING quota is exceeded <https://github.com/OpenNebula/one/issues/6823>`__.
 - `Fix onetemplate instantiate cli options to not override the whole CONTEXT attribute <https://github.com/OpenNebula/one/issues/6828>`__.
+- `Fix VM save duplicate disks in target template <https://github.com/OpenNebula/one/issues/6831>`__.
 
 The following issues have been solved in the Sunstone Web UI:
 
@@ -32,3 +33,11 @@ The following issues have been solved in the Sunstone Web UI:
 - `Fix actions in apps when the user select an app from Marketplace <https://github.com/OpenNebula/one/issues/6714>`__.
 - `Fix spoofing and security groups filters for traffic addressed to the hypervisor <https://github.com/OpenNebula/one/issues/6704>`__.
 - `Fix select datastore when importing app after validation error <https://github.com/OpenNebula/one/issues/6724>`__.
+- `Fix info about costs when instantiate a vm in Sunstone <https://github.com/OpenNebula/one/issues/6639>`__.
+- `Fix vnet review in Sunstone <https://github.com/OpenNebula/one/issues/6833>`__.
+- `Fix allowed VM action states <https://github.com/OpenNebula/one/issues/6830>`__.
+- `Fix select a network should be first than Advanced options when attaching a NIC <https://github.com/OpenNebula/one/issues/6728>`__.
+- `Fix VM host placement <https://github.com/OpenNebula/one/issues/6845>`__.
+- `Fix VM update configuration dialog <https://github.com/OpenNebula/one/issues/6844>`__.
+- `Fix missing vGPU profile selector <https://github.com/OpenNebula/one/issues/6293>`__.
+- `Fix list view crash in images tab <https://github.com/OpenNebula/one/issues/6839>`__.
