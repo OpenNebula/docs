@@ -11,6 +11,7 @@ The following new features have been backported to 6.10.3:
 - `Added capability to change CPU_MODEL/FEATURES with one.vm.updateconf request <https://github.com/OpenNebula/one/issues/6636>`__.
 - `Added new cli command onevm snapshot-list <https://github.com/OpenNebula/one/issues/6623>`__.
 - `Added support for auto keywork to set NIC virtio queues, same as DISK attribute <https://github.com/OpenNebula/one/issues/6435>`__.
+- `Increment_flatten operation is executed using qemu-img commit instead of qemu-img convert <https://github.com/OpenNebula/one/issues/6547>`__.
 
 The following issues has been solved in 6.10.3:
 
@@ -21,6 +22,9 @@ The following issues has been solved in 6.10.3:
 - `Fix corrupted quota after VM deploy and recover --recreate actions, in case RUNNING quota is exceeded <https://github.com/OpenNebula/one/issues/6823>`__.
 - `Fix onetemplate instantiate cli options to not override the whole CONTEXT attribute <https://github.com/OpenNebula/one/issues/6828>`__.
 - `Fix VM save duplicate disks in target template <https://github.com/OpenNebula/one/issues/6831>`__.
+- `Fix reset backup failed after restore individual disk on the VM <https://github.com/OpenNebula/one/issues/6741>`__.
+- `Fix SPARSE attribute ignored on resize operation <https://github.com/OpenNebula/one/issues/6583>`__.
+- `Fix incorrect error message when registering a non-existing or non-accessible image file <https://github.com/OpenNebula/one/issues/2109>`__.
 
 The following issues have been solved in the Sunstone Web UI:
 
