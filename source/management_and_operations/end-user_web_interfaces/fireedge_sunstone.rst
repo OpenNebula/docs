@@ -528,6 +528,8 @@ The attributes described here indicate the available actions on each dialog on t
 | ``vm_group``             | VM groups section will be displayed.                                        |
 +--------------------------+-----------------------------------------------------------------------------+
 
+.. _fireedge_remote_connections:
+
 Remote connections
 ================================================================================
 
@@ -559,6 +561,7 @@ At the top of the console you can find the buttons for the following actions:
 - **Reconnect**: Reconnect the VNC console.
 - **Lock/Unlock**: Lock/Unlock the use of the keyboard and mouse.
 
+.. note:: Sunstone does not connect directly to the VNC port, located in the VM template. Sunstone creates an SSH tunnel to the VNC port on any available port.
 
 OpenNebula RDP remote connection.
 --------------------------------------------------------------------------------

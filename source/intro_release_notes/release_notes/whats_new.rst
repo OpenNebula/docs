@@ -21,6 +21,7 @@ FireEdge Sunstone
 
 - Removed Provision/Provider as application :ref:`FireEdge Sunstone <fireedge_sunstone>`.
 - Architectural shift to Micro-Frontend as part of the Dynamic Tabs update :ref:`Sunstone development guide <sunstone_dev>`.
+- Guacamole/OpenNebula VDI over SSH tunnel :ref:`Remote connections guide <fireedge_remote_connections>`.
 
 API and CLI
 ================================================================================
