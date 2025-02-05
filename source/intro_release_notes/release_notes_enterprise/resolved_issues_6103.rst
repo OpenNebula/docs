@@ -48,3 +48,4 @@ The following issues have been solved in the Sunstone Web UI:
 - `Fix list view crash in images tab <https://github.com/OpenNebula/one/issues/6839>`__.
 - `Fix add auto switch for NIC transmission queues <https://github.com/OpenNebula/one/issues/6435>`__.
 - `Fix creating security group within Virtual Network <https://github.com/OpenNebula/one/issues/6786>`__.
+- `Fix PCI tab errors on host details <https://github.com/OpenNebula/one/issues/6814>`__.
