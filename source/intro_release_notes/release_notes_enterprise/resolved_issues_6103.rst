@@ -50,4 +50,5 @@ The following issues have been solved in the Sunstone Web UI:
 - `Fix creating security group within Virtual Network <https://github.com/OpenNebula/one/issues/6786>`__.
 - `Fix PCI tab errors on host details <https://github.com/OpenNebula/one/issues/6814>`__.
 - `Fix Add PCI tab when instantiate a vm <https://github.com/OpenNebula/one/issues/6799>`__.
+- `Fix VNC button appears on VMs without VNC configuration <https://github.com/OpenNebula/one/issues/6861>`__.
 - `Fix VM template update does not modify IMAGE_ID <https://github.com/OpenNebula/one/issues/6895>`__.
