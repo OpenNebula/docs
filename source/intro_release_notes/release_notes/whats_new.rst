@@ -52,6 +52,7 @@ Features Backported to 6.10.x
 Additionally, the following functionalities are present that were not in OpenNebula 6.10.0, although they debuted in subsequent maintenance releases of the 6.10.x series:
 
 - `Fix de-selecting hidden datatable entries <https://github.com/OpenNebula/one/issues/6781>`__.
+- `Text of selection in schedule action <https://github.com/OpenNebula/one/issues/6410>`__.
 
 Other Issues Solved
 ================================================================================
