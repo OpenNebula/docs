@@ -3,12 +3,8 @@
 OpenNebula Systems Marketplace
 ================================================================================
 
-The OpenNebula Marketplace is a catalog of virtual appliances ready to run in OpenNebula environments available at `http://marketplace.opennebula.io/appliance <http://marketplace.opennebula.io/appliance>`__.
+OpenNebula Systems maintains two marketplaces, one is the `public <http://marketplace.opennebula.io/appliance>`__ one with appliance maintained by OpenNebula Systems and the second is the `community <http://community-marketplace.opennebula.io/appliance>`__ one, with appliances maintained by external contributors.
 
-Requirements
---------------------------------------------------------------------------------
-
-No additional requirements needed.
 
 Configuration Attributes
 --------------------------------------------------------------------------------
@@ -18,8 +14,9 @@ Configuration Attributes
 +================+==============================================================+
 | ``NAME``       | The name of the Marketplace. Default: OpenNebula Public      |
 +----------------+--------------------------------------------------------------+
-| ``MARKET_MAD`` | ``one``.                                                     |
+| ``MARKET_MAD`` | ``one``                                                      |
 +----------------+--------------------------------------------------------------+
 | ``ENDPOINT``   | The Marketplace endpoint URL                                 |
 +----------------+--------------------------------------------------------------+
 
+Please, find particular steps on how to add the OpenNebula Community Marketplace into your OpenNebula installation on `that <https://github.com/OpenNebula/marketplace-community/wiki/marketplace_start>`__ page.
