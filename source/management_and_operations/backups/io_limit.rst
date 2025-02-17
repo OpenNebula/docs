@@ -31,6 +31,6 @@ Disk images backups are generated within a local folder in the host where the VM
 
 However, it's possible to modify this path to utilize alternative locations, such as different local volumes, or to opt out of using the shared VM folder entirely.
 
-To change the base folder to store disk backups for **all** hosts edit ``/var/lib/one/remotes/etc/datastore.conf`` and set the ``BACKUP_BASE_PATH`` variable. Please note this file uses shell syntax.
+To change the base folder to store disk backups for **all** hosts edit ``/var/lib/one/remotes/etc/datastore/datastore.conf`` and set the ``BACKUP_BASE_PATH`` variable. Please note this file uses shell syntax.
 
 
