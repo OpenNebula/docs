@@ -54,6 +54,7 @@ Additionally, the following functionalities are present that were not in OpenNeb
 - `Fix de-selecting hidden datatable entries <https://github.com/OpenNebula/one/issues/6781>`__.
 - `Text of selection in schedule action <https://github.com/OpenNebula/one/issues/6410>`__.
 - `Fix Filter datastore type when deploy a VM <https://github.com/OpenNebula/one/issues/6927>`__.
+- `Fix show more labels in cards <https://github.com/OpenNebula/one/issues/6643>`__.
 
 Other Issues Solved
 ================================================================================
