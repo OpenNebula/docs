@@ -30,7 +30,7 @@ We’ll follow these high-level steps:
    #. Run the playbooks.
    #. Verify the installation.
 
-.. important:: This tutorial was designed and tested using Ubuntu 24.04 and 22.04 for all servers involved (i.e. OpenNebula front-end and hypervisor nodes) using a virtual environment with `Poetry <https://python-poetry.org/>`__. For information on other installation methods and OSes, please refer to the `OneDeploy Wiki <https://github.com/OpenNebula/one-deploy/wiki>`__.
+.. important:: This tutorial was designed and tested using Ubuntu 24.04 and 22.04 for all servers involved (i.e. OpenNebula front-end and hypervisor nodes) using a virtual environment with `Hatch <https://hatch.pypa.io/>`__. For information on other installation methods and OSes, please refer to the `OneDeploy Wiki <https://github.com/OpenNebula/one-deploy/wiki>`__.
 
 Requirements
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -76,19 +76,27 @@ Installing OneDeploy in the Front-end
 First, in the Front-end we’ll install two packages for Python:
 
    * ``pip``, the Python package installer
-   * Poetry, a Python dependency manager
+   * Hatch, a Python project manager
 
 To install the packages, run:
 
 .. code::
 
-   sudo apt install python3-pip python3-poetry
+   sudo apt install python3-pip pipx
 
 Once the packages are installed, clone the ``one-deploy`` repository:
 
 .. code::
 
    git clone https://github.com/OpenNebula/one-deploy.git
+
+Install hatch:
+
+.. code::
+
+   pipx install hatch
+   pipx ensurepath
+   source ~/.bashrc
 
 Go to the ``one-deploy`` directory:
 
@@ -102,64 +110,55 @@ Install the necessary components for the installation, by running:
 
    make requirements
 
-Poetry will create the virtual environment and install the necessary components:
+Hatch will create two virtual environments and install the necessary components:
 
 .. prompt:: bash # auto
 
    front-end:~/one-deploy$ make requirements
-   poetry update --directory /home/basedeployer/one-deploy/
-   Creating virtualenv one-deploy-Yw-1D8Id-py3.12 in /home/basedeployer/.cache/pypoetry/virtualenvs
-   Updating dependencies
-   Resolving dependencies... (3.6s)
-
-   Package operations: 40 installs, 0 updates, 0 removals
-
-     - Installing attrs (24.2.0)
-     - Installing pycparser (2.22)
-     - Installing rpds-py (0.20.0)
-     - Installing cffi (1.17.0)
-     - Installing markupsafe (2.1.5)
-     - Installing mdurl (0.1.2)
-     - Installing referencing (0.35.1)
-     - Installing cryptography (43.0.0)
-     - Installing jinja2 (3.1.4)
-     - Installing jsonschema-specifications (2023.12.1)
-     - Installing markdown-it-py (3.0.0)
-     - Installing packaging (24.1)
-     - Installing pygments (2.18.0)
-     - Installing pyyaml (6.0.2)
-     - Installing resolvelib (1.0.1)
-     - Installing ansible-core (2.15.12)
-     - Installing bracex (2.5)
-
+   hatch env create default
+   hatch env run -e default -- ansible-galaxy collection install --requirements-file /home/frontend/one-deploy/requirements.yml
 
 To list the available environments, run:
 
 .. code::
 
-   poetry env list
+   hatch env show
 
-Poetry should display the newly-created environment:
+Hatch should display the newly-created environments, ``default`` and ``ceph`` (which isolates the ceph-ansible dependencies in a different virtual environment):
 
 .. prompt:: bash # auto
 
-   front-end:~/one-deploy$ poetry env list
-   one-deploy-Yw-1D8Id-py3.12 (Activated)
+   front-end:~/one-deploy$ hatch env show
+               Standalone
+   ┏━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┓
+   ┃ Name    ┃ Type    ┃ Dependencies      ┃
+   ┡━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━┩
+   │ default │ virtual │ ansible-core<2.17 │
+   │         │         │ ansible-lint      │
+   │         │         │ molecule          │
+   │         │         │ netaddr           │
+   │         │         │ pyone             │
+   ├─────────┼─────────┼───────────────────┤
+   │ ceph    │ virtual │ ansible-core<2.16 │
+   │         │         │ molecule          │
+   │         │         │ netaddr           │
+   │         │         │ pyone             │
+   │         │         │ setuptools        │
+   └─────────┴─────────┴───────────────────┘
 
-Now you can switch to the virtual environment:
+Now you can switch to the default virtual environment:
 
 .. code::
 
-   poetry shell
+   hatch shell
 
-After switching to the virtual environment, the string ``(one-deploy-py3.12)`` is included in your terminal prompt:
+After switching to the virtual environment, the string ``(one-deploy)`` is included in your terminal prompt:
 
 .. prompt:: bash # auto
 
-   front-end:~/one-deploy$ poetry shell
-   Spawning shell within /home/basedeployer/.cache/pypoetry/virtualenvs/one-deploy-Yw-1D8Id-py3.12
-   front-end:~/one-deploy$ . /home/basedeployer/.cache/pypoetry/virtualenvs/one-deploy-Yw-1D8Id-py3.12/bin/activate
-   (one-deploy-py3.12) front-end:~/one-deploy$
+   front-end:~/one-deploy$ hatch shell
+   source "/home/frontend/.local/share/hatch/env/virtual/one-deploy/RdxhOVxs/one-deploy/bin/activate"
+   (one-deploy) frontend:~/one-deploy$
 
 Configuring Cloud Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -281,7 +280,7 @@ Example command and output:
 
 .. prompt:: bash # auto
 
-   (one-deploy-py3.12) front-end:~/one-deploy$ ansible -i shared.yml all -m ping -b 
+   (one-deploy) front-end:~/one-deploy$ ansible -i shared.yml all -m ping -b 
    f1 | SUCCESS => {
        "ansible_facts": {
            "discovered_interpreter_python": "/usr/bin/python3"
@@ -319,7 +318,7 @@ Running the Playbooks
 
 Once you have edited the files, it’s time to run the Ansible playbooks.
 
-First, ensure you are in the Poetry environment by verifying that your terminal prompt begins with ``(one-deploy-py3.12)``.
+First, ensure you are in the Hatch environment by verifying that your terminal prompt begins with ``(one-deploy)``.
 
 To run the playbooks, in the ``my-one`` directory, run this command:
 
@@ -333,7 +332,7 @@ Sample installation output:
 
 .. prompt:: bash # auto
 
-   (one-deploy-py3.12) front-end:~/my-one$ ansible-playbook -v opennebula.deploy.main
+   (one-deploy) front-end:~/my-one$ ansible-playbook -v opennebula.deploy.main
    Using /home/basedeployer/my-one/ansible.cfg as config file
    running playbook inside collection opennebula.deploy
    [WARNING]: Could not match supplied host pattern, ignoring: bastion
