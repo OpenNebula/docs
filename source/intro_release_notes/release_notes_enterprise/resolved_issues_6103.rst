@@ -25,6 +25,9 @@ The following issues has been solved in 6.10.3:
 - `Fix reset backup failed after restore individual disk on the VM <https://github.com/OpenNebula/one/issues/6741>`__.
 - `Fix SPARSE attribute ignored on resize operation <https://github.com/OpenNebula/one/issues/6583>`__.
 - `Fix incorrect error message when registering a non-existing or non-accessible image file <https://github.com/OpenNebula/one/issues/2109>`__.
+- `Fix Issues with Host template on onehost CLI tool <https://github.com/OpenNebula/one/issues/6790>`__.
+
+
 
 The following issues have been solved in the Sunstone Web UI:
 
@@ -46,9 +49,9 @@ The following issues have been solved in the Sunstone Web UI:
 - `Fix VM update configuration dialog <https://github.com/OpenNebula/one/issues/6844>`__.
 - `Fix missing vGPU profile selector <https://github.com/OpenNebula/one/issues/6293>`__.
 - `Fix list view crash in images tab <https://github.com/OpenNebula/one/issues/6839>`__.
-- `Fix add auto switch for NIC transmission queues <https://github.com/OpenNebula/one/issues/6435>`__.
 - `Fix creating security group within Virtual Network <https://github.com/OpenNebula/one/issues/6786>`__.
 - `Fix PCI tab errors on host details <https://github.com/OpenNebula/one/issues/6814>`__.
 - `Fix Add PCI tab when instantiate a vm <https://github.com/OpenNebula/one/issues/6799>`__.
 - `Fix VNC button appears on VMs without VNC configuration <https://github.com/OpenNebula/one/issues/6861>`__.
 - `Fix VM template update does not modify IMAGE_ID <https://github.com/OpenNebula/one/issues/6895>`__.
+- `Fix Issues with Host template on FireEdge and Sunstone <https://github.com/OpenNebula/one/issues/6790>`__.
