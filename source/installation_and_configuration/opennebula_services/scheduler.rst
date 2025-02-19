@@ -35,11 +35,15 @@ The policy used to place a VM can be configured in two places:
 Configuration
 =============
 
-The Scheduler configuration file is in ``/etc/one/sched.conf`` on the Front-end and can be adapted to your needs with the following parameters:
+The Scheduler configuration file is ``/etc/one/sched.conf`` on the Front-end, and can be customized with the parameters listed in the table below.
 
 .. note::
 
     After a configuration change, the OpenNebula Scheduler must be :ref:`restarted <sched_conf_service>` to take effect.
+
+.. tip::
+
+    For a quick view of any changes in configuration file options in maintenance releases, check the Resolved Issues page in the :ref:`Release Notes <rn_enterprise>` for the release. Please note that even in the case of changes (such as a new option available), you do *not* need to update your configuration files unless you wish to change the application's behavior.
 
 * ``MESSAGE_SIZE``: Buffer size in bytes for XML-RPC responses (Default: ``1073741824``).
 * ``TIMEOUT``: Seconds to timeout XML-RPC calls to oned (Default: ``60``).
