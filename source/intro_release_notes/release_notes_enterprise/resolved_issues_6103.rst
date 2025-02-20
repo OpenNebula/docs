@@ -51,7 +51,26 @@ The following issues have been solved in the Sunstone Web UI:
 - `Fix list view crash in images tab <https://github.com/OpenNebula/one/issues/6839>`__.
 - `Fix creating security group within Virtual Network <https://github.com/OpenNebula/one/issues/6786>`__.
 - `Fix PCI tab errors on host details <https://github.com/OpenNebula/one/issues/6814>`__.
-- `Fix Add PCI tab when instantiate a vm <https://github.com/OpenNebula/one/issues/6799>`__.
+- `Fix Add PCI tab when instantiate a vm <https://github.com/OpenNebula/one/issues/6799>`__. In order to activate the PCI tab, please see :ref:`Changes in Configuration Files <resolved_issues_6103_changes_config_files>`
 - `Fix VNC button appears on VMs without VNC configuration <https://github.com/OpenNebula/one/issues/6861>`__.
 - `Fix VM template update does not modify IMAGE_ID <https://github.com/OpenNebula/one/issues/6895>`__.
 - `Fix Issues with Host template on FireEdge and Sunstone <https://github.com/OpenNebula/one/issues/6790>`__.
+
+.. _resolved_issues_6103_changes_config_files:
+
+Changes in Configuration Files
+--------------------------------------------------------------------------------
+
+Since version 6.10.3 the following changes apply to OpenNebula services configuration files:
+
+
+.. warning:: The following attributes are not included in the configuration files distributed with 6.10.3. If you wish to use these attributes, add them manually to the corresponding file.
+
+FireEdge Service
+==================
+
++----------------------+-----------------------------------------------+-----------------------------------------------------+-------------+
+| Config file          | Description                                   | Action                                              | Values      |
++======================+===============================================+=====================================================+=============+
+| vm-template-tab.yaml | New attribute: dialogs.instantiate_dialog.pci | Sets the PCI tab when instantiate a virtual machine | true, false |
++----------------------+-----------------------------------------------+-----------------------------------------------------+-------------+
