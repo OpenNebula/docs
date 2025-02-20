@@ -15,6 +15,11 @@ Each VM Template can optionally define a cost (see the :ref:`syntax here <templa
 
 There is a default cost that will be applied to VM Templates without a cost defined. It can be set in the :ref:`oned.conf file <oned_conf_default_showback>`.
 
+Using this cost schema allows the users to resize the Virtual Machine instances.
+
+|sunstone_showback_memory|
+|sunstone_showback_disks|
+
 .. warning::
 
     If your users can access the :ref:`Sunstone 'user' view <fireedge_suns_views>`, it's important to set a default cost. These users can manage their own Templates, which won't have a specific cost assigned.
@@ -154,3 +159,5 @@ Developers interacting with OpenNebula using the Ruby bindings can use the `Virt
 .. |showback_instantiate| image:: /images/showback_instantiate.png
 .. |showback_showback| image:: /images/sunstone_showback.png
 .. |sunstone_showback_calculate| image:: /images/sunstone_showback_calculate.png
+.. |sunstone_showback_memory| image:: /images/sunstone_showback_memory.png
+.. |sunstone_showback_disks| image:: /images/sunstone_showback_disks.png

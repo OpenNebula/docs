@@ -18,8 +18,8 @@ Step 1. Add OpenNebula Repositories
 Step 2. Installing the Software
 ===============================
 
-Installing on CentOS/RHEL
--------------------------
+Installing on AlmaLinux/RHEL
+----------------------------
 
 .. include:: ../common_node/epel.txt
 
@@ -57,7 +57,7 @@ Step 3. Host OS Security Configuration (Optional)
 
     If you are performing an upgrade skip this and the next steps and go back to the upgrade document.
 
-Disable SELinux on CentOS/RHEL
+Disable SELinux on AlmaLinux/RHEL
 ------------------------------------------
 
 .. include:: ../common_node/selinux.txt

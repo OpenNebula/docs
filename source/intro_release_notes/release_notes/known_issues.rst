@@ -34,6 +34,8 @@ Sunstone
 
 - The `Update VM Configuration` dialog contains a bug which will result in a blank screen if one tries to update the configuration of a virtual machine with less than 2 total disks attached. The quickest workaround for this is to attach another minimal disk to the VM.
 
+- When deleting an element in the datatable. such as running the terminate in a VM, we recommend refreshing the window. as there is an error in the client code discussed in the following `issue <https://github.com/OpenNebula/one/issues/6781>`__.
+
 Install Linux Graphical Desktop on KVM Virtual Machines
 ================================================================================
 

@@ -129,6 +129,8 @@ onevm
 +----------------------+---------------------------+-------------------+
 | disk-snapshot-rename | one.vm.disksnapshotrename | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
+| disk-snapshot-list   | one.vmpool.info           | VM:USE            |
++----------------------+---------------------------+-------------------+
 | disk-attach*         | one.vm.attach             | VM:MANAGE         |
 |                      |                           |                   |
 |                      |                           | IMAGE:USE         |
@@ -172,6 +174,8 @@ onevm
 | snapshot-delete*     | one.vm.snapshotdelete     | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
 | snapshot-revert*     | one.vm.snapshotrevert     | VM:MANAGE         |
++----------------------+---------------------------+-------------------+
+| snapshot-list        | one.vmpool.info           | VM:USE            |
 +----------------------+---------------------------+-------------------+
 | resize*              | one.vm.resize             | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
@@ -2105,7 +2109,7 @@ The supported attributes are:
 | ``OS``             | ``ARCH``, ``MACHINE``, ``KERNEL``, ``INITRD``, ``BOOTLOADER``, ``BOOT``,       |
 |                    | ``KERNEL_CMD``, ``ROOT``, ``SD_DISK_BUS``, ``UUID``, ``FIRMWARE``              |
 +--------------------+--------------------------------------------------------------------------------+
-|  ``CPU_MODEL``     | ``MODEL``                                                                      |
+|  ``CPU_MODEL``     | ``MODEL``, ``FEATURES``                                                        |
 +--------------------+--------------------------------------------------------------------------------+
 | ``FEATURES``       | ``ACPI``, ``PAE``, ``APIC``, ``LOCALTIME``, ``HYPERV``, ``GUEST_AGENT``,       |
 |                    | ``VIRTIO_SCSI_QUEUES``, ``VIRTIO_BLK_QUEUES``, ``IOTHREADS``                   |

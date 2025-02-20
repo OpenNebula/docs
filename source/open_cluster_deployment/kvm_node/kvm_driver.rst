@@ -9,6 +9,8 @@ Requirements
 
 The Hosts will need a CPU with `Intel VT <http://www.intel.com/content/www/us/en/virtualization/virtualization-technology/intel-virtualization-technology.html>`__ or `AMD's AMD-V <http://www.amd.com/en-us/solutions/servers/virtualization>`__ features in order to support virtualization. KVM's `Preparing to use KVM <http://www.linux-kvm.org/page/FAQ#Preparing_to_use_KVM>`__ guide will clarify any doubts you may have regarding whether your hardware supports KVM.
 
+Also, since OpenNebula 6.10.3-EE and 6.10.0.1-CE ARM64 architecture is supported (in beta mode).
+
 KVM will be installed and configured after following the :ref:`KVM Host Installation <kvm_node>` section.
 
 Considerations & Limitations
@@ -28,7 +30,7 @@ The full list of configuration attributes are:
     GRAPHICS  = ["TYPE", "LISTEN", "PASSWD", "KEYMAP", "COMMAND" ]
     VIDEO     = ["TYPE", "IOMMU", "ATS", "VRAM", "RESOLUTION"]
     RAW       = ["DATA", "DATA_VMX", "TYPE", "VALIDATE"]
-    CPU_MODEL = ["MODEL"]
+    CPU_MODEL = ["MODEL", "FEATURES"]
     BACKUP_CONFIG = ["FS_FREEZE", "KEEP_LAST", "BACKUP_VOLATILE", "MODE", "INCREMENT_MODE"]
     CONTEXT (any value, except ETH*, **variable substitution will be made**)
 
@@ -192,7 +194,7 @@ NIC
 
     $ virsh -c qemu:///system nwfilter-list
 
-* ``VIRTIO_QUEUES`` to define how many queues will be used for the communication between CPUs and Network drivers. This attribute is only available with ``MODEL="virtio"``.
+* ``VIRTIO_QUEUES`` to define how many queues will be used for the communication between CPUs and Network drivers. This attribute is only available with ``MODEL="virtio"``. The ``auto`` keyword automatically set the number of queues to the number of vCPUs.
 
 Graphics
 ~~~~~~~~
@@ -614,6 +616,38 @@ The parameters that can be changed here are as follows:
 +-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
 
 See the :ref:`Virtual Machine drivers reference <devel-vmm>` for more information.
+
+
+.. _arm64specifics:
+
+ARM64 Specifics
+===============
+
+We suggest the following adjustments for the ARM64 architecture. In ``/etc/one/oned.conf``, switch to ``sd`` or ``vd`` for the CD-ROM device:
+
+.. code::
+
+    DEFAULT_CDROM_DEVICE_PREFIX = "sd"
+
+This is necessary as IDE disk support is usually missing in ARM64.
+
+Additionally, we recommend adding a virtio keyboard using the ``RAW`` attribute in ``/etc/one/vmm_exec/vmm_exec_kvm.conf`` to ensure keyboard functionality over VNC:
+
+.. code::
+
+    RAW = "<devices><input type='keyboard' bus='virtio'/></devices>"
+
+The following OS section is recommended for an ARM64 host template. Here, ``virt`` is typically an alias for the most recent ``QEMU ARM Virtual Machine``:
+
+.. code::
+
+   OS=[
+     ARCH="aarch64",
+     FIRMWARE="/usr/share/AAVMF/AAVMF_CODE.fd",
+     FIRMWARE_SECURE="no",
+     MACHINE="virt"
+   ]
+
 
 Troubleshooting
 ===============

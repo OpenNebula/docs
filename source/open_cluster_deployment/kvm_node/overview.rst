@@ -4,7 +4,7 @@
 Overview
 ================================================================================
 
-`KVM <https://www.linux-kvm.org/>`__ (Kernel-based Virtual Machine) is the main virtualization solution for Linux on x86 hardware that contains virtualization extensions (Intel VT or AMD-V). It consists of the loadable KVM kernel modules (one that provides the core virtualization infrastructure and several processor-specific modules), but the complete KVM virtualization stack usually also contains the user-space machine hardware emulator `QEMU <https://www.qemu.org>`__ accelerated by the KVM and virtual machines management tool `libvirt <https://libvirt.org>`__.
+`KVM <https://www.linux-kvm.org/>`__ (Kernel-based Virtual Machine) is the main virtualization solution for Linux on x86 hardware that contains virtualization extensions (Intel VT or AMD-V) and on ARM64 (currently in beta mode). It consists of the loadable KVM kernel modules (one that provides the core virtualization infrastructure and several processor-specific modules), but the complete KVM virtualization stack usually also contains the user-space machine hardware emulator `QEMU <https://www.qemu.org>`__ accelerated by the KVM and virtual machines management tool `libvirt <https://libvirt.org>`__.
 
 By using KVM, you can run multiple Virtual Machines with unmodified Linux or Windows images. Each Virtual Machine has private virtualized hardware - network card, disk, graphics adapter, etc.
 
