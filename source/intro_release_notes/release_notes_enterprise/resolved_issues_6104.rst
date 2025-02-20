@@ -15,18 +15,17 @@ The following issues has been solved in 6.10.3:
 
 The following issues have been solved in the Sunstone Web UI:
 
-.. _resolved_issues_6104_changes_config_files:
-
 Changes in Configuration Files
---------------------------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Since version 6.10.4 the following changes apply to OpenNebula services configuration files:
+Since version 6.10.3 the following changes apply to OpenNebula services configuration files:
 
 
 .. warning:: The following attributes are not included in the configuration files distributed with 6.10.4. If you wish to use these attributes, add them manually to the corresponding file.
 
+
 FireEdge Service
-==================
+^^^^^^^^^^^^^^^^
 
 +----------------------+-----------------------------------------------+-----------------------------------------------------+-------------+
 | Config file          | Description                                   | Action                                              | Values      |
