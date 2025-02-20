@@ -1,7 +1,7 @@
-.. _arm64_beta:
+.. _arm64:
 
 ================================================================================
-Beta Release of ARM64 packages
+ARM64 packages
 ================================================================================
 
 6.10.3-EE and 6.10.0.1-CE release includes ARM64 packages for all supported operating systems.
