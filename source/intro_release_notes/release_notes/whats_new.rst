@@ -55,6 +55,7 @@ Additionally, the following functionalities are present that were not in OpenNeb
 - `Text of selection in schedule action <https://github.com/OpenNebula/one/issues/6410>`__.
 - `Fix Filter datastore type when deploy a VM <https://github.com/OpenNebula/one/issues/6927>`__.
 - `Fix show more labels in cards <https://github.com/OpenNebula/one/issues/6643>`__.
+- `Fix host tab does not validate Enable/Disable button states <https://github.com/OpenNebula/one/issues/6792>`__.
 
 Other Issues Solved
 ================================================================================
