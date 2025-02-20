@@ -10,6 +10,7 @@ Release Notes |version|
    What's New <whats_new>
    Platform Notes <platform_notes>
    Secondary Platforms <secondary>
+   Beta Release of ARM64 packages <arm64_beta>
    Compatibility Guide <compatibility>
    Known Issues <known_issues>
    Acknowledgements <acknowledgements>
