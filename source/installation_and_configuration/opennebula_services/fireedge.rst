@@ -31,7 +31,7 @@ Main Features
 .. _fireedge_install_configuration:
 .. note::
 
-    We are continually expanding the feature set of FireEdge Sunstone, and hence its configuration files are in constant change. In versions 6.10.3 and later, configuration files in ``/etc/one/fireedge/`` can be replaced by the ones that can be downloaded from `here <https://bit.ly/one-6103-config>`__ in order to activate the latest features.
+    We are continually expanding the feature set of FireEdge Sunstone, and hence its configuration files are in constant change. In versions 6.10.3 and later, configuration files in ``/etc/one/fireedge/`` can be replaced by the ones that can be downloaded from `here <https://bit.ly/one-6103-sunstone-config>`__ in order to activate the latest features.
 
 Configuration
 ================================================================================
@@ -215,7 +215,7 @@ The following example shows how you can change the logo to a generic linux one (
 
 Configure DataTables
 --------------------------------------------------------------------------------
-You can change the style of the rows depending on your preferences. in case they are changed in the fireedge-server.conf file. this change will be priority. and it will adjust the view to all users. 
+You can change the style of the rows depending on your preferences. in case they are changed in the fireedge-server.conf file. this change will be priority. and it will adjust the view to all users.
 
 |fireedge_sunstone_list_datatable|
 
