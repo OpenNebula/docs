@@ -62,3 +62,4 @@ Other Issues Solved
 
 - Issue 1
 - Issue 2
+- `Restic passwords: remove quotes and sanitize <https://github.com/OpenNebula/one/issues/6666>`__.
