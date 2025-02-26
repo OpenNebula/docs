@@ -8,8 +8,9 @@ A complete list of solved issues for 6.10.4 can be found in the `project develop
 The following new features have been backported to 6.10.4:
 
 
-The following issues has been solved in 6.10.3:
+The following issues has been solved in 6.10.4:
 
+- `Restic passwords: remove quotes and sanitize <https://github.com/OpenNebula/one/issues/6666/>`__.
 
 
 
