@@ -56,7 +56,7 @@ Step 3. Upgrade Hypervisors to the New Version
 
 You can skip this section for vCenter Hosts.
 
-Upgrade the OpenNebula node KVM or LXD packages, using the package manager of your OS.
+Upgrade the OpenNebula node KVM or LXC packages, using the package manager of your OS.
 
 For example, in a rpm-based Linux distribution simply execute:
 
@@ -71,7 +71,7 @@ For deb-based distros use:
    # apt-get update
    # apt-get install --only-upgrade opennebula-node-kvm
 
-.. note:: If you are using LXD the package is ``opennebula-node-lxd``.
+.. note:: If you are using LXC the package is ``opennebula-node-lxc``.
 
 Step 4. Update the Drivers
 ==========================
@@ -189,7 +189,7 @@ On Debian/Ubuntu:
 .. note::
 
     Before downloading the migration package, it's a good idea to double-check the URL in your software repository file. Ensure that the URL includes the software major and minor version (in ``<major>.<minor>`` format), but not the exact release.
-    
+
     For example, for OpenNebula version 6.10, the file should point to ``https://downloads.opennebula.io/repo/6.10`` and not ``https://downloads.opennebula.io/repo/6.10.0``. The first case will include migration packages for 6.10.*, whereas the second case will exclude minor versions such as 6.10.0.1.
 
 Step 7. Update Configuration Files
