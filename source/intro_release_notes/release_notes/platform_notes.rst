@@ -131,6 +131,18 @@ Authentication
 | openssl                      | Version included in the Linux distribution | :ref:`x509 Authentication <x509_auth>` |
 +------------------------------+--------------------------------------------+----------------------------------------+
 
+Monitoring and Backups
+--------------------------------------------------------------------------------
+
++-------------------------------+---------+---------------------------------------------------------------------------+
+|             Component         | Version |            More information                                               |
++===============================+=========+===========================================================================+
+| Prometheus monitoring toolkit | 2.53.1  |  :ref:`Monitoring and Alerting Installation <monitor_alert_installation>` |
++-------------------------------+---------+----------------------------------+----------------------------------------+
+| Restic backup backend         | 0.65.0  |  :ref:`Backup Datastore: Restic <vm_backups_restic>`                      |
++-------------------------------+---------+----------------------------------+----------------------------------------+
+
+
 Sunstone
 --------------------------------------------------------------------------------
 
@@ -146,8 +158,8 @@ Sunstone
 
     For Windows desktops using **Chrome** or **Firefox** you should disable the option ``touch-events`` for your browser:
 
-    **Chrome**: chrome://flags -> #touch-events: disabled.
-    **Firefox**: about:config -> dom.w3c_touch_events: disabled.
+    **Chrome**: ``chrome://flags`` -> ``#touch-events:`` ``disabled``.
+    **Firefox**: ``about:config`` -> ``dom.w3c_touch_events:`` ``disabled``.
 
 .. _edge_cluster_provision_workloads_compatibility:
 
