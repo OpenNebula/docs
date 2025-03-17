@@ -1,0 +1,1 @@
+- `Add support of using defined timezone by oneacct utility with flag -t/--timezone  <https://github.com/OpenNebula/one/issues/821>`__.
