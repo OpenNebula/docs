@@ -7,6 +7,7 @@ A complete list of solved issues for 6.10.4 can be found in the `project develop
 
 The following new features have been backported to 6.10.4:
 
+- `Add support of using defined timezone by oneacct utility with flag -t/--timezone  <https://github.com/OpenNebula/one/issues/821>`__.
 
 The following issues has been solved in 6.10.4:
 
