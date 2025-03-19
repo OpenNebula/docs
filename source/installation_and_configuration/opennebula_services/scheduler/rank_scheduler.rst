@@ -1,11 +1,12 @@
 .. _schg:
 .. _sched_conf:
+.. _scheduler_rank:
 
-=======================
-Scheduler Configuration
-=======================
+==============
+Rank Scheduler
+==============
 
-The OpenNebula Scheduler is responsible for **planning of the pending Virtual Machines on available hypervisor Nodes**. It's a dedicated daemon installed alongside the OpenNebula Daemon (``oned``), but can be deployed independently on a different machine. The Scheduler is distributed as an operating system package ``opennebula`` with the system service ``opennebula-scheduler``.
+The OpenNebula Rank Scheduler is responsible for **planning of the pending Virtual Machines on available hypervisor Nodes**. It's a dedicated daemon installed alongside the OpenNebula Daemon (``oned``), but can be deployed independently on a different machine. The Scheduler is distributed as an operating system package ``opennebula`` with the system service ``opennebula-scheduler``.
 
 .. _schg_the_match_making_scheduler:
 

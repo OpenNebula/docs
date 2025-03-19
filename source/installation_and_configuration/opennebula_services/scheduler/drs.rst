@@ -29,9 +29,9 @@ Explain how to configure linear combinations of objectives and what they represe
 Solvers
 =======
 
-OpenNebula DRS uses the Python package PuLP to communicate with ILP solvers. It can use any solver supported by PuLP (https://coin-or.github.io/pulp/technical/solvers.html).
+OpenNebula DRS uses the Python package PuLP to communicate with ILP solvers. It can use any `solver supported by PuLP <https://coin-or.github.io/pulp/technical/solvers.html>`_.
 
-Currently, DRS comes with GLPK Solver (https://www.gnu.org/software/glpk/), but a user can also install and apply CBC Solver (https://coin-or.github.io/Cbc/), or some commercial solver like Gurobi Optimizer (https://www.gurobi.com/).
+Currently, DRS comes with `GLPK Solver <https://www.gnu.org/software/glpk/>`_, but a user can also install and apply `CBC Solver <https://coin-or.github.io/Cbc/>`_, or some commercial solver like `Gurobi Optimizer <https://www.gurobi.com/>`_.
 
 Explain configuring the solver.
 
