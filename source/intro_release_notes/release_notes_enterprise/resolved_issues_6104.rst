@@ -13,6 +13,7 @@ The following issues has been solved in 6.10.4:
 
 - `Restic passwords: remove quotes and sanitize <https://github.com/OpenNebula/one/issues/6666/>`__.
 - `Fix onevrouter instantiate command prompts for user input unnecessarily <https://github.com/OpenNebula/one/issues/6948/>`__.
+- `Support user-input values containing commas and equal signs <https://github.com/OpenNebula/one/issues/6975/>`__.
 
 
 
