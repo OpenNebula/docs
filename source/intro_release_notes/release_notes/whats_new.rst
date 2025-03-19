@@ -61,5 +61,4 @@ Additionally, the following functionalities are present that were not in OpenNeb
 Other Issues Solved
 ================================================================================
 
-- Issue 1
-- Issue 2
+- `Added check for password's upper limit <https://github.com/OpenNebula/one/issues/6892>`__.
