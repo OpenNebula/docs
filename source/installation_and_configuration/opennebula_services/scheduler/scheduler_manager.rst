@@ -145,7 +145,9 @@ The result of a scheduling action is an XML plan document. This plan specifies t
     - ``NETWORK_ID``: The associated virtual network.
 
 Example of an XML Plan:
+
 .. code-block:: xml
+
 <PLAN>
   <ID>-1</ID>
   <ACTION>
