@@ -67,8 +67,39 @@ Solver options are configured in the ``DEFAULT_SCHED`` section of the configurat
 Scheduling Policies
 ===================
 
-Explain packing and load balancing.
-Explain how to configure linear combinations of objectives and what they represent.
+Scheduling policies define the objective of the optimization process.
+
+They are specified in the sections ``PLACE`` and ``OPTIMIZE``, with the attribute ``POLICY``. Currently supported policies are:
+
+* ``"PACK"``: Packing policy that minimizes the number of running hosts, to reduce the fragmentation of virtual machines.
+* ``"BALANCE"``: Load balancing policy that tends to spread virtual machines accross hosts. It minimizes the utilization of the host with the highest usage. DRS can consider several metrics when balancing the load using their relative weights with the attribute ``WEIGHTS`` and the options:
+
+  * ``"CPU_USAGE"`` for the current or forecasted CPU usage of the hosts
+  * ``"CPU"``: for the requested CPU ratio of the hosts
+  * ``"MEMORY"``: for the requested memory amount of the hosts
+  * ``"DISK"``: for the disk usage
+  * ``"NET"``: for the network usage
+
+For example, to balance the CPU usage of all the hosts in a cluster, one can specify the policy as:
+
+.. code-block:: yaml
+
+    OPTIMIZE:
+      POLICY: "BALANCE"
+      WEIGHTS:
+        CPU_USAGE: 1.0
+
+To balance the ratio of requested CPU and memory of all the hosts in a cluster simultaneously, the following setting can be used:
+
+.. code-block:: yaml
+
+    OPTIMIZE:
+      POLICY: "BALANCE"
+      WEIGHTS:
+        CPU: 0.6
+        MEMORY: 0.4
+
+In the previous example, the CPU requirement is weighted with 60% and memory with 40%.
 
 Service Control and Logs
 ========================
