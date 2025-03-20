@@ -148,30 +148,30 @@ Example of an XML Plan:
 
 .. code-block:: xml
 
-<PLAN>
-  <ID>-1</ID>
-  <ACTION>
-    <VM_ID>23</VM_ID>
-    <OPERATION>deploy</OPERATION>
-    <HOST_ID>12</HOST_ID>
-    <DS_ID>100</DS_ID>
-    <NIC>
-      <NIC_ID>0</NIC_ID>
-      <NETWORK_ID>101</NETWORK_ID>
-    </NIC>
-    <NIC>
-      <NIC_ID>1</NIC_ID>
-      <NETWORK_ID>100</NETWORK_ID>
-    </NIC>
-  </ACTION>
-  <ACTION>
-    <VM_ID>24</VM_ID>
-    <OPERATION>migrate</OPERATION>
-    <HOST_ID>15</HOST_ID>
-    <DS_ID>200</DS_ID>
-  </ACTION>
-  <ACTION>
-    <VM_ID>25</VM_ID>
-    <OPERATION>poweroff</OPERATION>
-  </ACTION>
-</PLAN>
+    <PLAN>
+    <ID>-1</ID>
+    <ACTION>
+        <VM_ID>23</VM_ID>
+        <OPERATION>deploy</OPERATION>
+        <HOST_ID>12</HOST_ID>
+        <DS_ID>100</DS_ID>
+        <NIC>
+        <NIC_ID>0</NIC_ID>
+        <NETWORK_ID>101</NETWORK_ID>
+        </NIC>
+        <NIC>
+        <NIC_ID>1</NIC_ID>
+        <NETWORK_ID>100</NETWORK_ID>
+        </NIC>
+    </ACTION>
+    <ACTION>
+        <VM_ID>24</VM_ID>
+        <OPERATION>migrate</OPERATION>
+        <HOST_ID>15</HOST_ID>
+        <DS_ID>200</DS_ID>
+    </ACTION>
+    <ACTION>
+        <VM_ID>25</VM_ID>
+        <OPERATION>poweroff</OPERATION>
+    </ACTION>
+    </PLAN>
