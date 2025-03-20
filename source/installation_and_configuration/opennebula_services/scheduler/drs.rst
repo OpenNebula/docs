@@ -9,10 +9,44 @@ The **OpenNebula Distributed Resource Scheduler** (DRS) is responsible for:
 * Initial placement of virtual machines according to the system requirements, including: capacity control, resource compatibility, and affinity groups
 * Cluster-wise workload optimization, according to the balancing policies specified by the user
 
+To run DRS from Sunstone, ... .
+
+[Image: Triggering DRS from Sunstone]
+
+OpenNebula DRS supports workload optimization within a :ref:`cluster <cluster_guide>`. DRS migrates virtual machines across the hosts of a cluster according to the preferences of a user, i.e. user-defined :ref:`scheduling policy <scheduler_drs_policies>`. Available policies are:
+
+* **Packing:** reducing the number of running physical servers when the workload requirements are low, which can contribute to energy savings.
+* **Load balancing:** scattering virtual machines across the available hosts to reduce contention and interference, and improve the performance of hosts and virtual machines. A user can choose to perform balancing according to:
+
+  * CPU usage of all virtual machines allocated to a host,
+  * CPU required by all virtual machines allocated to a host,
+  * Memory required by all virtual machines allocated to a host,
+  * Disk usage of all virtual machines allocated to a host,
+  * Network usage all virtual machines allocated to a host,
+  * Combination of multiple metrics.
+
+For example, when balancing CPU usage, DRS tends to reduce the load of the hosts with high CPU usage and move a part of the workload to the hosts with lower CPU usage. It is possible to balance load according to multiple metrics at once. For example, specifying that DRS should consider the CPU usage with 50% and the memory with 50%, takes into account both CPU and memory contention with equal weights.
+
+To define the scheduling policy from Sunstone, ... .
+
+[Image: Sunstone, scheduling policy]
+
+DRS can perform load balancing either using measured values of the metrics like CPU or memory or with the predicted values of these metrics. It is also possible to combine measured and predicted values by specifying the prediction weight.
+
+To define the prediction weight in Sunstone, ... .
+
+[Image: Sunstone, prediction weight]
+
+Workload optimization is realized by migrating virtual machines across the hosts of a cluster. However, the migrations contribute to CPU, memory, and network usage, as well as to the energy consumption. A user can specify the migration policy, that is migration threshold, and constrain the number of allowed migrations. An aggressive migration strategy could involve a large number of migrations and worsen the overall performance in some cases. A conservative approach might miss some good opportunities to improve the state of the system or result in late migrations.
+
+To define the migration threshold from Sunstone, ... .
+
+[Image: Sunstone, migration threshold]
+
 Scheduling Algorithm
 ====================
 
-OpenNebula DRS uses the integer linear programming (ILP) optimizer to determine the optimal or a nearly-optimal virtual machine placements according to `Scheduling Policies`_ and the obeying the constraints related to:
+OpenNebula DRS uses the integer linear programming (ILP) optimizer to determine the optimal or a nearly-optimal virtual machine placements according to the :ref:`scheduling policies <scheduler_drs_policies>` and the obeying the constraints related to:
 
 * CPU availability
 * Memory availability
@@ -64,12 +98,14 @@ This is an example of a configuration file:
 Solvers
 =======
 
-OpenNebula DRS uses the Python package PuLP to communicate with ILP solvers. It can use any `solver supported by PuLP <https://coin-or.github.io/pulp/technical/solvers.html>`_. Currently, DRS comes with `GLPK Solver <https://www.gnu.org/software/glpk/>`_, but a user can also install and apply `CBC Solver <https://coin-or.github.io/Cbc/>`_, or some commercial solver like `Gurobi Optimizer <https://www.gurobi.com/>`_.
+OpenNebula DRS uses the Python package PuLP to communicate with ILP solvers. It can use `the solvers supported by PuLP <https://coin-or.github.io/pulp/technical/solvers.html>`_. Currently, DRS uses `CBC Solver <https://coin-or.github.io/Cbc/>`_ by default, but it can also use `GLPK <https://www.gnu.org/software/glpk/>`_. Commercial solutions supported by PuLP, like `Gurobi Optimizer <https://www.gurobi.com/>`_, are also applicable. Commercial solvers might have significantly better performance, especially for larger problems, with a lot of virtual machines and hosts.
 
 Solver options are configured in the ``DEFAULT_SCHED`` section of the configuration file. The available settings are:
 
-* ``SOLVER``: Name of the solver, e.g. ``"GLPK"``, ``"CBC"``, or ``"COINMP"``.
+* ``SOLVER``: Name of the solver, e.g. ``"CBC"``, ``"GLPK"``, or ``"COINMP"``.
 * ``SOLVER_PATH``: Path to the solver library.
+
+.. _scheduler_drs_policies:
 
 Scheduling Policies
 ===================
@@ -124,4 +160,3 @@ Using Distributed Resource Scheduler from Sunstone
 ==================================================
 
 Is this applicable already?
-
