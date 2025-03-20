@@ -4,6 +4,12 @@
 Scheduler Configuration
 =======================
 
+The OpenNebula scheduling framework for virtual machine allocation and cluster optimization is designed to:
+
+- **Perform initial placement** of VMs by enforcing capacity control, resource compatibility, affinity groups, and specific placement requirements.
+- **Enable cluster-wide load balancing** by dynamically generating placement plans that evenly distribute workloads across available hypervisor nodes.
+- **Support user-driven optimization** by allowing administrators to modify or review optimization plans, as well as define custom policies and parameters for workload management.
+
 There are three main components related to **OpenNebula virtual machine allocation**:
 
 1. :ref:`scheduler_scheduler_manager`
