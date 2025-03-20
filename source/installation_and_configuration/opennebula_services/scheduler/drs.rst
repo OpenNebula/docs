@@ -12,8 +12,15 @@ The **OpenNebula Distributed Resource Scheduler** (DRS) is responsible for:
 Scheduling Algorithm
 ====================
 
-OpenNebula DRS uses the integer linear programming (ILP) optimizer.
-Details about host filtering, storage, VNets, PCI devices, etc.
+OpenNebula DRS uses the integer linear programming (ILP) optimizer to determine the optimal or a nearly-optimal virtual machine placements according to `Scheduling Policies`_ and the obeying the constraints related to:
+
+* CPU availability
+* Memory availability
+* Local or shared storage availability
+* PCI devices
+* Virtual networks
+* Affinity rules
+* Allowed number of migrations
 
 Configuration
 =============
@@ -100,6 +107,8 @@ To balance the ratio of requested CPU and memory of all the hosts in a cluster s
         MEMORY: 0.4
 
 In the previous example, the CPU requirement is weighted with 60% and memory with 40%.
+
+The option ``MIGRATION_THRESHOLD`` is used only for workload optimization and can be used to specify the maximal allowed number of virtual machine migrations.
 
 Service Control and Logs
 ========================
