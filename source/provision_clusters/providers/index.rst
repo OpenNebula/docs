@@ -9,3 +9,4 @@ Edge and Cloud Providers
    AWS Provider <aws_provider>
    Equinix Provider <equinix_provider>
    On-Premise Provider <onprem_provider>
+   Scaleway Provider <scaleway_provider>

@@ -33,6 +33,8 @@ Front-End Components
 | Ruby Gems                | Versions installed by opennebula-rubygems   | Detailed information in ``/usr/share/one/Gemfile``    |
 +--------------------------+---------------------------------------------+-------------------------------------------------------+
 
+.. note:: Support for nodes' operating system ensures that the latest two LTS releases feature certified packages.
+
 .. _vcenter_nodes_platform_notes:
 
 vCenter Nodes
