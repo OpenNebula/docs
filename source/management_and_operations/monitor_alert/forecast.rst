@@ -95,6 +95,15 @@ The retention period for both Host and Virtual Machine databases is configurable
 
 For further details on configuring forecast retention or optimizing prediction accuracy, refer to the next section.
 
+Forecasting System Performance
+================================================================================
+ 
+ .. error:: TODO: This section will include detailed information about the forecasting system's resource consumption and performance characteristics:
+    
+    * Memory usage - Average and peak memory consumption of the forecasting system
+    * CPU utilization - Processing requirements for generating forecasts
+    * Execution time - Typical duration of forecast calculations based on retention periods
+
 .. _forecast_configuration:
 
 Configuration and Optimization
