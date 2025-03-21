@@ -13,3 +13,4 @@ Open Cloud Storage Setup
    Raw Device Mapping Datastore <dev_ds>
    iSCSI - Libvirt Datastore <iscsi_ds>
    Kernels and Files Datastore <file_ds>
+   NetApp SAN Datastore <netapp_ds>
