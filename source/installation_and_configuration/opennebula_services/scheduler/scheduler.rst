@@ -19,10 +19,9 @@ When a VM is instantiated, OpenNebula finds the most suitable host for deploymen
 - **Filtering Hosts**: Hosts that do not meet the VM's resource requirements (CPU, memory) or do not satisfy other constraints are excluded.
 - **Ranking Hosts**: The remaining hosts are ranked based on predefined policies or custom expressions, such as minimizing the number of running VMs.
 
-Alternatively, the :ref:`scheduler_drs` can be used for initial placement. DRS considers the current resource utilization and workload distribution across the cluster to make informed placement decisions.
+Alternatively, the :ref:`OpenNebula Distributed Resource Scheduler <scheduler_drs_placement>` (DRS) can be used for initial placement. DRS considers the current resource utilization and workload distribution across the cluster to make informed placement decisions.
 
-
-Cluster workload optimization
+Cluster Workload Optimization
 =============================
 
 Beyond initial placement, OpenNebula supports ongoing cluster workload optimization to maintain balanced resource utilization and improve overall cluster performance. The :ref:`scheduler_drs` is the exclusive scheduler for cluster optimization in OpenNebula. It provides:

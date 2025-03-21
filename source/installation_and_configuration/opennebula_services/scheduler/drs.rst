@@ -216,6 +216,8 @@ OpenNebula DRS uses integer linear programming (ILP) to determine the optimal or
 * Affinity rules
 * Allowed number of migrations
 
+.. _scheduler_drs_placement:
+
 Initial Placement
 =================
 
