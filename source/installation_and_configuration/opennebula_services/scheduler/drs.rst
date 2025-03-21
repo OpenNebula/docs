@@ -8,25 +8,30 @@ The main aim of OpenNebula **OpenNebula Distributed Resource Scheduler** (DRS) i
 DRS is integrated with the OpenNebula Built-in Monitoring [ref here] and Forecasting system [ref here], allowing to take into account real-time Virtual Machine and Host usage metrics as well as predictions of future resource consumption. OpenNebula DRS operates in a recommendatiom mode, meaning migrations are suggested but not automatically applied. Users can manually review and execute migrations based on system recommendations using the OpenNebula Sunstone GUI.
 
 Key Features
-==============================
+============
+
+The key features of OpenNebula DRS are:
+
 - **Cluster Load Balancing**: DRS operates optimizing the workload (i.e., allocation of Virtual Machines on Hosts) considering a single OpenNebula cluster.
 - **Migration Recommendations**: Suggested VM migrations are displayed in Sunstone GUI to be approved by the user.
 - **Customizable Balancing Metrics**: Users can define balancing strategies based on CPU, Memory, Network, and Disk usage and can assign weights to different metrics to fine-tune the load balancing and resource contention.
-- **Scheduling Policies**: packing and load balancing (TO IMPROVE)
-- **Predictive DRS**: Users can integrate monitoring forecasts of resource utilization to provide proactive recommendations when load balancing Virtual Machines within a cluster
-- **Integration within SUNSTONE** - Users can easily enable DRS, select policies, and review migration recommendations via the Sunstone GUI
+- **Scheduling Policies**: Users can specify a :ref:`scheduling policy <scheduler_drs_policies>` which either powers off some running hosts during the periods of low workload, or balances resource utilization across the host of a cluster.
+- **Predictive DRS**: Users can integrate monitoring forecasts of resource utilization to provide proactive recommendations when load balancing Virtual Machines within a cluster.
+- **Integration within Sunstone**: Users can easily enable DRS, select policies, and review migration recommendations via the Sunstone GUI.
 - **CLI**: Users can use the CLI to perform load balancing operations on the clusters and apply recommendatiom [TO CHECK]
 
 DRS Usage
-==============================
+=========
 
-**Step 1. Enable DRS on the Cluster**
+Step 1. Enable DRS on the Cluster
+---------------------------------
 
-To enable DRS, first go to the Cluster Tab in Sunstone and enable DRS as shown here
+To enable DRS, first go to the Cluster Tab in Sunstone and enable DRS as shown here:
 
 [Image: Enabling DRS in Sunstone]
 
-**Step 2. Configure DRS**
+Step 2. Configure DRS
+---------------------
 
 The DRS can be configured considering different options:
 
@@ -34,13 +39,13 @@ The DRS can be configured considering different options:
 - Virtual Machine usage metrics and predictions
 - Migration Threshold
 
-**Policy Configuration**
+Policy Configuration
+~~~~~~~~~~~~~~~~~~~~
 
-OpenNebula DRS supports workload optimization within a . DRS migrates virtual machines across the hosts of a cluster according to the preferences of a user, i.e. user-defined :ref:`scheduling policy <scheduler_drs_policies>`. Available policies are:
+OpenNebula DRS supports workload optimization within a cluster. DRS migrates virtual machines across the hosts of a cluster according to the preferences of a user, i.e. user-defined :ref:`scheduling policy <scheduler_drs_policies>`. Available policies are:
 
 * **Packing:** reducing the number of running physical servers when the workload requirements are low, which can contribute to energy savings.
 * **Load balancing:** scattering virtual machines across the available hosts to reduce contention and interference, and improve the performance of hosts and virtual machines. 
-
 
 To define the scheduling policy from Sunstone, ... .
 
@@ -48,7 +53,7 @@ To define the scheduling policy from Sunstone, ... .
 
 **Load Balance Metrics Configuration**
 
-A user can choose to perform balancing according to:
+A user can choose to perform load balancing according to different types of loads:
 
   * CPU usage of all virtual machines allocated to a host,
   * CPU required by all virtual machines allocated to a host,
@@ -59,42 +64,64 @@ A user can choose to perform balancing according to:
 
 For example, when balancing CPU usage, DRS tends to reduce the load of the hosts with high CPU usage and move a part of the workload to the hosts with lower CPU usage. It is possible to balance load according to multiple metrics at once. For example, specifying that DRS should consider the CPU usage with 50% and the memory with 50%, takes into account both CPU and memory contention with equal weights.
 
+By default, workload optimization will balance the CPU usage. [TODO: Check this!]
+
+To define the metric weights from Sunstone, ... .
+
 [IMAGE: Insert how to set weight for load balancing - CPU 50% and MEM 50%]
 
-**Predictive DRS Configuration**
+Predictive DRS Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 DRS can perform load balancing either using measured values of the metrics like CPU or memory or with the predicted values of these metrics. It is also possible to combine measured and predicted values by specifying the prediction weight.
+
+By default, DRS will use measured values for workload optimization. [TODO: Check this!]
 
 To define the prediction weight in Sunstone, ... .
 
 [Image: Sunstone, prediction weight set to 1.0]
 
-**Migration Threshold Configuration**
+Migration Threshold Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Workload optimization is realized by migrating virtual machines across the hosts of a cluster. However, the migrations contribute to CPU, memory, and network usage, as well as to the energy consumption. A user can specify the migration policy, that is migration threshold, and constrain the number of allowed migrations. An aggressive migration strategy could involve a large number of migrations and worsen the overall performance in some cases. A conservative approach might miss some good opportunities to improve the state of the system or result in late migrations.
+
+By default, the migration threshold is [TODO: Finish this!].
 
 To define the migration threshold from Sunstone, ... .
 
 [Image: Sunstone, migration threshold set to ???]
 
-**Step 3. Optimize Cluster Workload using DRS**
-(description + image)
+Step 3. Optimize Cluster Workload using DRS
+-------------------------------------------
 
-**Step 4. Review DRS recommendations**
-(description + image)
+After setting the scheduling options, a user can start optimizing the workload of a cluster from Sunstone, ... .
 
-**Step 5. Apply migrations**
-(description + image)
+[Image: Triggering optimization.]
+
+Step 4. Review DRS Recommendations
+----------------------------------
+
+Once the optimization is finished, a user can review the obtained migration recommendations with ... .
+
+[Image Recommendations from DRS]
+
+Step 5. Apply Migrations
+------------------------
+
+Finally, if satisfied with the recommended solution, a user can apply the migrations by clicking ... .
+
+[Image: Apply migrations]
 
 Advanced Configuration
 =======================
 
 The Front-End configuration file of DRS is ``/etc/one/schedulers/one_drs.conf``. Its options are:
 
-* ``DEFAULT_SCHED``: Default ILP solver used for scheduling. See `Solvers`_ for more details.
+* ``DEFAULT_SCHED``: Default ILP solver used for scheduling. See `Solver Configuration`_ for more details.
 * ``PLACE``: Settings for the initial placement of virtual machines. See `Scheduling Policies`_ for more details.
 * ``OPTIMIZE``: Settings for workload optimization. See `Scheduling Policies`_ for more details.
-* ``PREDICTIVE``: Weight of forecasted resource usage in the scheduling process. For example, the value ``0.3`` means that the predicted resource usage is accounted with 30% and current usage with 70%. See `Predictive DRS`_ for more details.
+* ``PREDICTIVE``: Weight of forecasted resource usage in the scheduling process. For example, the value ``0.3`` means that the predicted resource usage is accounted with 30% and current usage with 70%. See [LINK HERE] for more details.
 * ``MEMORY_SYSTEM_DS_SCALE``: Scaling factor for the system datastore usage by a virtual machine, according to the size of memory. It can be applied to force the scheduler to consider the overhead of checkpoint files.
 * ``DIFFERENT_VNETS``: Whether all NICs of a virtual machine should be assigned to different virtual networks. The allowed options are ``YES`` and ``NO``.
 
@@ -125,8 +152,8 @@ This is an example of a configuration file:
 
     DIFFERENT_VNETS: YES
 
-Solvers Configuration
------------------------
+Solver Configuration
+--------------------
 
 OpenNebula DRS uses the Python package PuLP to communicate with ILP solvers. It can use `the solvers supported by PuLP <https://coin-or.github.io/pulp/technical/solvers.html>`_. Currently, DRS uses `CBC Solver <https://coin-or.github.io/Cbc/>`_ by default, but it can also use `GLPK <https://www.gnu.org/software/glpk/>`_. Commercial solutions supported by PuLP, like `Gurobi Optimizer <https://www.gurobi.com/>`_, are also applicable. Commercial solvers might have significantly better performance, especially for larger problems, with a lot of virtual machines and hosts.
 
@@ -177,7 +204,7 @@ In the previous example, the CPU requirement is weighted with 60% and memory wit
 The option ``MIGRATION_THRESHOLD`` is used only for workload optimization and can be used to specify the maximal allowed number of virtual machine migrations.
 
 DRS Scheduling Algorithm
------------------------
+------------------------
 
 OpenNebula DRS uses integer linear programming (ILP) to determine the optimal or a nearly-optimal virtual machine placements according to the :ref:`scheduling policies <scheduler_drs_policies>` and the obeying the constraints related to:
 
@@ -190,4 +217,7 @@ OpenNebula DRS uses integer linear programming (ILP) to determine the optimal or
 * Allowed number of migrations
 
 Initial Placement
-==================
+=================
+
+TODO: Finish this
+
