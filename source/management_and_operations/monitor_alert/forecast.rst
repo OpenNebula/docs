@@ -131,11 +131,13 @@ Default Configuration Values
 --------------------------------------------------------------------------------
 
 **Host settings**:
+
 * DB retention: 4 weeks
 * Short-term forecast: 5 minutes
 * Long-term forecast: 720 hours (30 days)
 
 **Virtual Machine settings**:
+
 * DB retention: 2 weeks
 * Short-term forecast: 5 minutes
 * Long-term forecast: 48 hours (2 days)
@@ -149,6 +151,7 @@ The size of forecast databases depends on retention periods and monitoring frequ
 * **VM database**: ~6.5 MB for 2 weeks of data (8 metrics, 30-second interval)
 
 You may need to adjust these values based on:
+
 * Available storage capacity on hosts
 * Number of VMs per host
 * Accuracy requirements for forecasts
