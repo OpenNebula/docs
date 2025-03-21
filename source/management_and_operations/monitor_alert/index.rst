@@ -10,3 +10,5 @@ Monitoring and Alerting
    Grafana Visualization <grafana>
    Alert Manager <alerts>
    Exporter Metrics <metrics>
+   OpenNebula Built-in Monitoring <monitor>
+   Resource Forecast <forecast>
