@@ -73,7 +73,7 @@ To define the metric weights from Sunstone, ... .
 Predictive DRS Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-DRS can perform load balancing either using measured values of the metrics like CPU or memory or with the predicted values of these metrics. It is also possible to combine measured and predicted values by specifying the prediction weight.
+DRS can perform load balancing either using measured values of the metrics like CPU or memory or with the predicted values of these metrics. It is also possible to combine measured and predicted values by specifying the prediction weight. When the weight is ``0``, only the measured values are used. When the weight is ``1``, only the forecasts are used. A weight value between ``0`` and ``1`` means that DRS uses a linear combination of the past and predicted value.
 
 By default, DRS will use measured values for workload optimization. [TODO: Check this!]
 
@@ -86,7 +86,7 @@ Migration Threshold Configuration
 
 Workload optimization is realized by migrating virtual machines across the hosts of a cluster. However, the migrations contribute to CPU, memory, and network usage, as well as to the energy consumption. A user can specify the migration policy, that is migration threshold, and constrain the number of allowed migrations. An aggressive migration strategy could involve a large number of migrations and worsen the overall performance in some cases. A conservative approach might miss some good opportunities to improve the state of the system or result in late migrations.
 
-By default, the migration threshold is [TODO: Finish this!].
+By default, the number of migrations is not limited, that is the migration threshold is ``-1``.
 
 To define the migration threshold from Sunstone, ... .
 
@@ -116,7 +116,7 @@ Finally, if satisfied with the recommended solution, a user can apply the migrat
 Advanced Configuration
 =======================
 
-The Front-End configuration file of DRS is ``/etc/one/schedulers/one_drs.conf``. Its options are:
+The configuiration file of DRS that is available in the Front-End is ``/etc/one/schedulers/one_drs.conf``. This file defines the default behavior, which can be overridden by the user settings from Sunstone. Its options are:
 
 * ``DEFAULT_SCHED``: Default ILP solver used for scheduling. See `Solver Configuration`_ for more details.
 * ``PLACE``: Settings for the initial placement of virtual machines. See `Scheduling Policies`_ for more details.
@@ -232,11 +232,18 @@ Rank Scheduler, as a fast and stable approach, might be more convenient when:
 
 A user can specify DRS as the default option for initial placement by ... .
 
-[Setting DRS for initial placement]
+[Image: Setting DRS for initial placement]
 
-The initial placement can be started with DRS in Sunstone by clicking ... .
+Alternatively, this behavior can be specified in the OpenNebula Daemon configuration file (``/etc/one/oned.conf``) by changing the section ``SCHED_MAD`` and its attribute ``ARGUMENTS`` to include the option ``"-p one_drs"``, for example:
 
-[Image: Triggering initial placement]
+.. code-block:: ini
+
+    SCHED_MAD = [
+      EXECUTABLE = "one_sched",
+      ARGUMENTS  = "-t 15 -p one-drs -o one_drs"
+    ]
+
+For more information, see :ref:`Scheduler Manager <scheduler_manager>`.
 
 Selecting the options for the initial placement with DRS is similar as for the workload optimization, with the following differences:
 
@@ -244,19 +251,17 @@ Selecting the options for the initial placement with DRS is similar as for the w
 * Using Predictive DRS is not allowed, because forecasts are not available for pending Virtual Machines
 * Migrations are not allowed and consequently migration thresholds are not applicable.
 
-To define the policy and metric weights from Sunstone, ... .
-
-[IMAGE: Insert how to set weight for load balancing - CPU 50% and MEM 50%, for initial placement]
+By default, DRS uses the load-balancing policy with CPU only for the initial placement.
 
 In the configuration file, the options for the initial placement are given in the section ``PLACE``. For example, load balancing with respect to CPU and memory, weighting both of the equally, might look like this:
 
- .. code-block:: yaml
+.. code-block:: yaml
 
-     PLACE:
-       POLICY: "BALANCE"
-       WEIGHTS:
-         CPU: 0.5
-         MEMORY: 0.5
+    PLACE:
+      POLICY: "BALANCE"
+      WEIGHTS:
+        CPU: 0.5
+        MEMORY: 0.5
 
 The sections ``OPTIMIZE`` and ``PREDICTIVE`` [TODO: Check this] are not applicable for the initial placement and the other sections are common for both use cases.
 
