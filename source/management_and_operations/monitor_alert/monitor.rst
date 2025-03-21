@@ -48,6 +48,20 @@ The MONITOR information includes the following data:
 | NETTX         | Sent bytes to the network.                                                        |
 +---------------+-----------------------------------------------------------------------------------+
 
+Additionally, the following derived metrics are calculated and used for forecasting:
+
++---------------+-----------------------------------------------------------------------------------+
+| Key           | Description                                                                       |
++===============+===================================================================================+
+| NETRX_BW      | Network received bandwidth (rate of change of NETRX).                             |
++---------------+-----------------------------------------------------------------------------------+
+| NETTX_BW      | Network transmitted bandwidth (rate of change of NETTX).                          |
++---------------+-----------------------------------------------------------------------------------+
+| DISKRD_BW     | Disk read bandwidth (rate of change of DISKRDBYTES).                              |
++---------------+-----------------------------------------------------------------------------------+
+| DISKWR_BW     | Disk write bandwidth (rate of change of DISKWRBYTES).                             |
++---------------+-----------------------------------------------------------------------------------+
+
 Host Monitoring
 ================================================================================
 
@@ -122,3 +136,16 @@ In general, you can find the following monitoring information in a Host. Note th
 | ZOMBIES    | Comma-separated list of VMs running in the Host that were launched by                              |
 |            | OpenNebula but are not currently controlled by it.                                                 |
 +------------+----------------------------------------------------------------------------------------------------+
+
+Additionally, the following derived metrics are calculated and used for forecasting:
+
++---------------+-----------------------------------------------------------------------------------+
+| Key           | Description                                                                       |
++===============+===================================================================================+
++---------------+-----------------------------------------------------------------------------------+
+| NETRX_BW      | Network received bandwidth (rate of change of NETRX).                             |
++---------------+-----------------------------------------------------------------------------------+
+| NETTX_BW      | Network transmitted bandwidth (rate of change of NETTX).                          |
++---------------+-----------------------------------------------------------------------------------+
+
+For more information about resource forecasting, see the :ref:`Resource Forecast <monitor_alert_forecast>` section.

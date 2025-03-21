@@ -172,5 +172,3 @@ See Also
 --------------------------------------------------------------------------------
 
 * :ref:`OpenNebula Monitoring System <monitor_alert_monitor>`
-* :ref:`Distributed Resource Scheduling <drs>`
-* :ref:`VM Performance Monitoring <vm_monitoring>`
