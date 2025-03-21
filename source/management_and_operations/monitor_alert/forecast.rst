@@ -23,12 +23,12 @@ Key Benefits
 By integrating forecasting with the Distributed Resource Scheduler (DRS), cloud administrators gain access to a proactive tool for intelligent scheduling and resource optimization. This integration enables the system to anticipate potential issues in virtual machine workloads, facilitating dynamic adjustments to prevent performance bottlenecks, enhance workload balancing, and ensure optimal utilization of available resources. As a result, overall cluster efficiency, reliability, and performance can be significantly improved.
 
 Types of Forecasts
-================================================================================
+--------------------------------------------------------------------------------
 
 OpenNebula provides two types of resource forecasts:
 
 Long-term Forecast
---------------------------------------------------------------------------------
+================================================================================
 
 **Purpose**: Used for capacity planning, hardware provisioning, and resource allocation strategies.
 
@@ -43,7 +43,7 @@ You can also use the CLI to access information about the long-term forecast.
 By default, long-term forecast is performed for the next 30 days.
 
 Short-term Forecast
---------------------------------------------------------------------------------
+================================================================================
 
 **Purpose**: Used for immediate operational decisions and dynamic resource adjustments.
 
@@ -60,10 +60,10 @@ You can also use the CLI to access information about the short-term forecast.
 By default, short-term forecast is performed for the next 5 minutes.
 
 How Forecasting Works
-================================================================================
+--------------------------------------------------------------------------------
 
 Forecast Generation
---------------------------------------------------------------------------------
+================================================================================
 
 Forecasts are generated using the OpenNebula Built-in monitoring system (see :ref:`monitor_alert_monitor`). At defined intervals, a prediction probe is executed for both Hosts and Virtual Machines to analyze real-time resource usage metrics, including CPU, memory, disk, and network utilization.
 
@@ -80,7 +80,7 @@ The forecast computation process:
 5. Makes predictions accessible via Sunstone, CLI, or for use by the Predictive DRS
 
 Forecast Quality and Accuracy
---------------------------------------------------------------------------------
+================================================================================
 
 The accuracy of forecasts depends on several factors:
 
@@ -96,10 +96,10 @@ The retention period for both Host and Virtual Machine databases is configurable
 For further details on configuring forecast retention or optimizing prediction accuracy, refer to the next section.
 
 Configuration and Optimization
-================================================================================
+--------------------------------------------------------------------------------
 
 Configuration File
---------------------------------------------------------------------------------
+================================================================================
 
 The configuration file for the Resource Forecast can be found in ``/var/lib/one/remotes/kvm-probes.d/forecast.conf``.
 
@@ -160,7 +160,7 @@ You may need to adjust these values based on:
 After changing configuration values, monitoring will continue with the new settings without requiring a restart of OpenNebula services.
 
 Practical Usage Tips
-================================================================================
+--------------------------------------------------------------------------------
 
 * **Start with defaults**: The default configuration works well for most environments
 * **Increase retention gradually**: If you need more accurate long-term forecasts, increase retention periods incrementally
