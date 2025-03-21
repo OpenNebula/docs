@@ -6,9 +6,9 @@ Scheduler
 
 .. toctree::
    :maxdepth: 2
-   :caption: Scheduler
+   :caption: Scheduling Framework
 
-   Scheduler <scheduler>
+   Scheduling Framework <scheduler>
    Scheduler Manager <scheduler_manager>
    Plan Manager <plan_manager>
    Rank Scheduler <rank_scheduler>

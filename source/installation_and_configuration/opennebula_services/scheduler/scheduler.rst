@@ -42,7 +42,7 @@ The diagram below illustrates the architecture of the OpenNebula Scheduling Fram
 There are three main components related to **OpenNebula virtual machine allocation**:
 
 1. :ref:`scheduler_manager`
-2. Scheduler Plan Manager (internal component)
+2. :ref:`scheduler_plan_manager` (internal component)
 3. Schedulers (:ref:`scheduler_rank` and :ref:`scheduler_drs`)
 
 OpenNebula has two schedulers that allocate virtual machines on available hypervisor nodes:

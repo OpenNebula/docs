@@ -4,7 +4,7 @@
 Distributed Resource Scheduler
 ==============================
 
-The main aim of OpenNebula **OpenNebula Distributed Resource Scheduler** (DRS) is to optimize resource allocation and prevent resource contention within a OpenNebula :ref:`cluster <cluster_guide>`. 
+The main aim of OpenNebula **OpenNebula Distributed Resource Scheduler** (DRS) is to optimize resource allocation and prevent resource contention within a single OpenNebula :ref:`cluster <cluster_guide>`. 
 DRS is integrated with the OpenNebula Built-in Monitoring [ref here] and Forecasting system [ref here], allowing to take into account real-time Virtual Machine and Host usage metrics as well as predictions of future resource consumption. OpenNebula DRS operates in a recommendatiom mode, meaning migrations are suggested but not automatically applied. Users can manually review and execute migrations based on system recommendations using the OpenNebula Sunstone GUI.
 
 Key Features
