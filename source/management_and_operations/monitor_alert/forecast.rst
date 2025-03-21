@@ -10,7 +10,7 @@ Overview
 The OpenNebula Resource Forecast system provides short-term and long-term predictions for resource usage across hosts and virtual machines. By forecasting metric trends and performance related to CPU, memory, network, and disk usage, it enables administrators to proactively manage resources. This predictive capability helps optimize resource allocation, anticipate potential bottlenecks, and ensure the efficiency and stability of both infrastructure and virtual resources.
 
 .. note:: 
-   Resource forecasting works automatically once configured and requires no additional action from administrators to generate predictions.
+   Resource forecasting works automatically once the hypervisor package is installed and requires no additional action from administrators to generate predictions. For configuration options, see the :ref:`Configuration and Optimization <forecast_configuration>` section.
 
 Key Benefits
 --------------------------------------------------------------------------------
@@ -95,6 +95,8 @@ The retention period for both Host and Virtual Machine databases is configurable
 
 For further details on configuring forecast retention or optimizing prediction accuracy, refer to the next section.
 
+.. _forecast_configuration:
+
 Configuration and Optimization
 --------------------------------------------------------------------------------
 
@@ -128,7 +130,7 @@ The configuration file consists of two sections:
 2. **Virtual Machine section**: Controls forecast settings for VMs
 
 Default Configuration Values
---------------------------------------------------------------------------------
+================================================================================
 
 **Host settings**:
 
