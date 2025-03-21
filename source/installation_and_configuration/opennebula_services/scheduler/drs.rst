@@ -219,5 +219,44 @@ OpenNebula DRS uses integer linear programming (ILP) to determine the optimal or
 Initial Placement
 =================
 
-TODO: Finish this
+In addition to cluster-wise workload optimization, OpenNebula DRS can perform the **initial placement** of pending Virtual Machines to the most suitable Hosts.
+
+This is an alternative to the default approach that uses :ref:`Rank Scheduler <scheduler_rank>`. The main advantage of DRS is the fact that it considers all pending Virtual Machines at once and tries to allocate all of them to the suitable Hosts in the best possible way. Contrary, Rank Scheduler considers one Virtual Machine at the time and the quality of the solution might depend on the order of allocation.
+
+Rank Scheduler, as a fast and stable approach, might be more convenient when:
+
+* Performing the initial placement of one or a small number of Virtual Machines. In such cases, the order of placement is less important.
+* Working with a very high number of Virtual Machines, Hosts, PCI devices, affinity rules, an so on. In such cases, the DRS optimization problems might be to large for solving in an acceptable amount of time.
+
+[TODO: Consider putting here more specific details related to the scalability issues]
+
+A user can specify DRS as the default option for initial placement by ... .
+
+[Setting DRS for initial placement]
+
+The initial placement can be started with DRS in Sunstone by clicking ... .
+
+[Image: Triggering initial placement]
+
+Selecting the options for the initial placement with DRS is similar as for the workload optimization, with the following differences:
+
+* Only ``CPU``, ``MEMORY``, and their combinations are acceptable for load balancing, because the usage is not known for pending Virtual Machines
+* Using Predictive DRS is not allowed, because forecasts are not available for pending Virtual Machines
+* Migrations are not allowed and consequently migration thresholds are not applicable.
+
+To define the policy and metric weights from Sunstone, ... .
+
+[IMAGE: Insert how to set weight for load balancing - CPU 50% and MEM 50%, for initial placement]
+
+In the configuration file, the options for the initial placement are given in the section ``PLACE``. For example, load balancing with respect to CPU and memory, weighting both of the equally, might look like this:
+
+ .. code-block:: yaml
+
+     PLACE:
+       POLICY: "BALANCE"
+       WEIGHTS:
+         CPU: 0.5
+         MEMORY: 0.5
+
+The sections ``OPTIMIZE`` and ``PREDICTIVE`` [TODO: Check this] are not applicable for the initial placement and the other sections are common for both use cases.
 
