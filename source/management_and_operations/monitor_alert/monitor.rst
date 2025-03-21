@@ -5,8 +5,7 @@ OpenNebula Built-in Monitoring
 ================================================================================
 
 Virtual Machine Monitoring
-================================================================================
-
+--------------------------------------------------------------------------------
 The monitoring probes gather information attributes and insert them in the VM template. This information is mainly used for:
 
   * Monitoring the status of the VM.
@@ -48,7 +47,9 @@ The MONITOR information includes the following data:
 | NETTX         | Sent bytes to the network.                                                        |
 +---------------+-----------------------------------------------------------------------------------+
 
-Additionally, the following derived metrics are calculated and used for forecasting:
+The metrics above are directly read from and stored in the monitoring database.
+
+Additionally, the following derived metrics are calculated from the stored metrics and used for forecasting. These derived metrics are not stored in the database but are computed on-demand:
 
 +---------------+-----------------------------------------------------------------------------------+
 | Key           | Description                                                                       |
@@ -63,7 +64,7 @@ Additionally, the following derived metrics are calculated and used for forecast
 +---------------+-----------------------------------------------------------------------------------+
 
 Host Monitoring
-================================================================================
+--------------------------------------------------------------------------------
 
 The monitoring probes gather information attributes and insert them in the Host template. This information is mainly used for:
 
@@ -137,7 +138,9 @@ In general, you can find the following monitoring information in a Host. Note th
 |            | OpenNebula but are not currently controlled by it.                                                 |
 +------------+----------------------------------------------------------------------------------------------------+
 
-Additionally, the following derived metrics are calculated and used for forecasting:
+The metrics above are directly read from and stored in the monitoring database.
+
+Additionally, the following derived metrics are calculated from the stored metrics and used for forecasting. These derived metrics are not stored in the database but are computed on-demand:
 
 +---------------+-----------------------------------------------------------------------------------+
 | Key           | Description                                                                       |
@@ -148,4 +151,32 @@ Additionally, the following derived metrics are calculated and used for forecast
 | NETTX_BW      | Network transmitted bandwidth (rate of change of NETTX).                          |
 +---------------+-----------------------------------------------------------------------------------+
 
-For more information about resource forecasting, see the :ref:`Resource Forecast <monitor_alert_forecast>` section.
+Monitoring Database Structure
+--------------------------------------------------------------------------------
+
+OpenNebula uses a distributed database approach to store and process monitoring data, optimizing performance and scalability across your cloud infrastructure.
+
+Host Databases
+================================================================================
+
+Each physical host in your OpenNebula deployment maintains its own dedicated monitoring database:
+
+* **Location**: ``/var/tmp/one_db/host.db``
+* **Purpose**: Stores all historical monitoring metrics for the host
+* **Updates**: Continuously updated during regular monitoring cycles
+* **Processing**: The forecast computation occurs locally on each host, distributing the computational load across the cluster
+
+Virtual Machine Databases
+================================================================================
+
+Each VM has a dedicated database that tracks its specific metrics:
+
+* **Location**: ``/var/tmp/one_db/<VM_ID>.db`` on the host where the VM is running
+* **Purpose**: Stores all historical monitoring metrics for that specific VM
+* **Updates**: Continuously updated during regular monitoring cycles with VM-specific data
+* **Lifecycle**: If a VM is migrated to another host, a new database will be created from scratch on the destination host
+  
+.. note::
+   After VM migration, forecast accuracy may be temporarily reduced until sufficient monitoring data is collected on the new host.
+
+For more information about how these databases are used for resource forecasting, see the :ref:`Resource Forecast <monitor_alert_forecast>` section.
