@@ -45,7 +45,12 @@ Each host maintains a dedicated database ('/var/tmp/one_db/host.db') that is con
 
 The forecast computation process accesses the stored metrics and performs statistical analysis to identify trends, patterns, and seasonal variations. Using this analysis, the system computes predictive models that estimate future resource consumption. The generated predictions are then sent to the OpenNebula monitoring system, where they are integrated with existing monitoring data and made accessible via Sunstone, CLI or used by the Predictive DRS.
 
+Forecast quality and accuracy
+-----------------------------
+
 The retention period for both Host and Virtual Machine databases is configurable, enabling administrators to manage storage utilization efficiently while maintaining prediction accuracy. Database retention can impact the accuracy of predictions, particularly for long-term forecasts. The forecast module analyzes all historical data in the database to decompose time series data for different metrics into trends and seasonality. Depending on the data's seasonality and the duration of the long-term forecast, the database retention period should be appropriately configured, considering both the required storage size and prediction accuracy. 
+
+.. note:: The actual prediction module is sensible to outliers. This means that presence of outliers can have a bad effect on the predictions.
 
 For further details on configuring forecast retention or optimizing prediction accuracy, refer to the next section.
 
