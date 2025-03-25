@@ -94,6 +94,7 @@ Mountpoints
 Multicast
 Multicluster
 Multipath
+multipath
 Multus
 NFS
 NSX
