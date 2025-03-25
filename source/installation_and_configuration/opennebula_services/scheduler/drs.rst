@@ -172,13 +172,13 @@ Scheduling policies define the objective of the optimization process.
 They are specified in the sections ``PLACE`` and ``OPTIMIZE``, with the attribute ``POLICY``. Currently supported policies are:
 
 * ``"PACK"``: Packing policy that minimizes the number of running hosts, to reduce the fragmentation of virtual machines.
-* ``"BALANCE"``: Load balancing policy that tends to spread virtual machines accross hosts. It minimizes the utilization of the host with the highest usage. DRS can consider several metrics when balancing the load using their relative weights with the attribute ``WEIGHTS`` and the options:
+* ``"BALANCE"``: Load balancing policy that tends to spread virtual machines accross hosts. It minimizes the utilization of the host with the highest usage. DRS can consider several metrics when balancing the load using their relative weights with the attribute ``WEIGHTS``. It supports the following options:
 
-  * ``"CPU_USAGE"`` for the current or forecasted CPU usage of the hosts
-  * ``"CPU"``: for the requested CPU ratio of the hosts
-  * ``"MEMORY"``: for the requested memory amount of the hosts
-  * ``"DISK"``: for the disk usage
-  * ``"NET"``: for the network usage
+  * ``"CPU_USAGE"``: Relative importance of the **CPU usage** across the hosts
+  * ``"CPU"``: Relative importance of the **requested CPU** across the hosts
+  * ``"MEMORY"``: Relative importance of the **requested memory** across the hosts
+  * ``"DISK"``: Relative importance of the **disk usage** across the hosts
+  * ``"NET"``: Relative importance of the **network usage** across the hosts
 
 For example, to balance the CPU usage of all the hosts in a cluster, one can specify the policy as:
 
