@@ -16,6 +16,7 @@ The following issues has been solved in 6.10.4:
 - `Fix user-input option for CLI to support values containing commas and equal signs <https://github.com/OpenNebula/one/issues/6975/>`__.
 - `Fix VM migration not executed on vCenter when src host ID is 0 <https://github.com/OpenNebula/one/issues/6997/>`__.
 - `Fix VNet instance doesn't update BRIDGE_TYPE, when VN_MAD is updated <https://github.com/OpenNebula/one/issues/6858/>`__.
+- `Fix oneacl rules not being cleaned-up after removing a group admin <https://github.com/OpenNebula/one/issues/6993/>`__.
 
 The following issues have been solved in the Sunstone Web UI:
 
