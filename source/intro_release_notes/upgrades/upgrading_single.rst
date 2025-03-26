@@ -104,7 +104,7 @@ On Debian/Ubuntu:
 .. note::
 
     Before downloading the migration package, it's a good idea to double-check the URL in your software repository file. Ensure that the URL includes the software major and minor version (in ``<major>.<minor>`` format), but not the exact release.
-    
+
     For example, for OpenNebula version 6.8, the file should point to ``https://downloads.opennebula.io/repo/6.8`` and not ``https://downloads.opennebula.io/repo/6.8.0``. The first case will include migration packages for 6.8.*, whereas the second case will exclude minor versions such as 6.8.0.1.
 
 Step 7. Update Configuration Files
@@ -225,6 +225,7 @@ If you have any custom monitoring probes, follow :ref:`these instructions <devel
 
 Step 12. Update the Hypervisors
 ================================================================================
+.. warning:: The hypervisor node operating system must meet the minimum version required according to the :ref:`KVM <platform_notes_kvm>` or :ref:`LXC <platform_notes_lxc>` platform notes. Running a frontend node with a newer OpenNebula version controlling hypervisor nodes running in old unsupported platforms, like CentOS 7, can result in a myriad of dependency problems. A very common issue is the old ruby version shipped in CentOS 7 not being able to run the newer driver code.
 
 .. warning:: If you're using vCenter please skip to the next step.
 
