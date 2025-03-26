@@ -86,12 +86,15 @@ Libvirt
 Libvirtd
 Linuxcontainers
 Lustre
+LUNs
 Mhz
 MiniONE
 Morefs
 Mountpoints
 Multicast
 Multicluster
+Multipath
+multipath
 Multus
 NFS
 NSX
