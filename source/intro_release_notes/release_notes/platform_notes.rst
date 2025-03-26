@@ -55,6 +55,8 @@ vCenter Nodes
 
 .. note:: Debian front-ends are not certified to manage VMware infrastructures with OpenNebula.
 
+.. _platform_notes_kvm:
+
 KVM Nodes
 --------------------------------------------------------------------------------
 
@@ -72,6 +74,8 @@ KVM Nodes
 | KVM/Libvirt              | Support for version included in the Linux distribution. | :ref:`KVM Node Installation <kvm_node>` |
 |                          | For RHEL the packages from ``qemu-ev`` are used.        |                                         |
 +--------------------------+---------------------------------------------------------+-----------------------------------------+
+
+.. _platform_notes_lxc:
 
 LXC Nodes
 --------------------------------------------------------------------------------
