@@ -227,8 +227,6 @@ Step 12. Update the Hypervisors
 ================================================================================
 .. warning:: The hypervisor node operating system must meet the minimum version required according to the :ref:`KVM <platform_notes_kvm>` or :ref:`LXC <platform_notes_lxc>` platform notes. Running a frontend node with a newer OpenNebula version controlling hypervisor nodes running in old unsupported platforms, like CentOS 7, can result in a myriad of dependency problems. A very common issue is the old ruby version shipped in CentOS 7 not being able to run the newer driver code.
 
-.. warning:: If you're using vCenter please skip to the next step.
-
 Update the virtualization, storage and networking drivers.  As the ``oneadmin`` user, execute:
 
 .. prompt:: bash $ auto
