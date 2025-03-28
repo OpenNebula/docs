@@ -17,6 +17,7 @@ The following issues has been solved in 6.10.4:
 - `Fix VM migration not executed on vCenter when src host ID is 0 <https://github.com/OpenNebula/one/issues/6997/>`__.
 - `Fix VNet instance doesn't update BRIDGE_TYPE, when VN_MAD is updated <https://github.com/OpenNebula/one/issues/6858/>`__.
 - `Fix oneacl rules not being cleaned-up after removing a group admin <https://github.com/OpenNebula/one/issues/6993/>`__.
+- `Fix ability to add and remove existing users to existing groups and change main group from an user <https://github.com/OpenNebula/one/issues/6980/>`__. In order to add, remove or change main group from and user, please see **Changes in Configuration Files** section below.
 
 The following issues have been solved in the Sunstone Web UI:
 
@@ -32,7 +33,16 @@ Since version 6.10.3 the following changes apply to OpenNebula services configur
 FireEdge Service
 ^^^^^^^^^^^^^^^^
 
-+----------------------+-----------------------------------------------+-----------------------------------------------------+-------------+
-| Config file          | Description                                   | Action                                              | Values      |
-+======================+===============================================+=====================================================+=============+
-+----------------------+-----------------------------------------------+-----------------------------------------------------+-------------+
++----------------------+--------------------------------------------------------------+-------------------------------------------------------+-------------+
+| Config file          | Description                                                  | Action                                                | Values      |
++======================+==============================================================+=======================================================+=============+
+| group-tab.yaml       | New attribute: info-tabs.user.actions.add_users              | Sets the 'Add user' button in Groups page             | true, false |
++----------------------+--------------------------------------------------------------+-------------------------------------------------------+-------------+
+| group-tab.yaml       | New attribute: info-tabs.user.actions.remove_users           | Sets the 'Remove user' button in Groups page          | true, false |
++----------------------+--------------------------------------------------------------+-------------------------------------------------------+-------------+
+| user-tab.yaml        | New attribute: info-tabs.group.actions.add_to_group          | Sets the 'Add to group' button in Users page          | true, false |
++----------------------+--------------------------------------------------------------+-------------------------------------------------------+-------------+
+| user-tab.yaml        | New attribute: info-tabs.group.actions.remove_from_group     | Sets the 'Remove from group' button in Groups page    | true, false |
++----------------------+--------------------------------------------------------------+-------------------------------------------------------+-------------+
+| user-tab.yaml        | New attribute: info-tabs.group.actions.change_primary_group  | Sets the 'Change primary group' button in Groups page | true, false |
++----------------------+--------------------------------------------------------------+-------------------------------------------------------+-------------+
