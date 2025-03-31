@@ -18,6 +18,7 @@ The following issues has been solved in 6.10.4:
 - `Fix VNet instance doesn't update BRIDGE_TYPE, when VN_MAD is updated <https://github.com/OpenNebula/one/issues/6858/>`__.
 - `Fix oneacl rules not being cleaned-up after removing a group admin <https://github.com/OpenNebula/one/issues/6993/>`__.
 - `Fix ability to add and remove existing users to existing groups and change main group from an user <https://github.com/OpenNebula/one/issues/6980/>`__. In order to add, remove or change main group from and user, please see **Changes in Configuration Files** section below.
+- `Fix vGPU profile monitoring for legacy mode <https://github.com/OpenNebula/one/issues/7012/>`__.
 
 The following issues have been solved in the Sunstone Web UI:
 
