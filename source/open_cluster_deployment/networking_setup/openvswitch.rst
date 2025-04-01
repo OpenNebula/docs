@@ -184,7 +184,7 @@ For example, to configure default page size of **1G** and **250** hugepages with
 .. prompt:: bash # auto
 
     # grep GRUB_CMDLINE_LINUX_DEFAULT /etc/default/grub
-    GRUB_CMDLINE_LINUX_DEFAULT="quiet splash intel_iommu=on default_hugepagesz=2M hugepagesz=2M hugepages=1024"
+    GRUB_CMDLINE_LINUX_DEFAULT="quiet splash intel_iommu=on default_hugepagesz=1G hugepagesz=1G hugepages=250"
 
     # update-grub
 
