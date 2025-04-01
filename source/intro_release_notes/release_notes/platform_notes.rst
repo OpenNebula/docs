@@ -120,8 +120,8 @@ Open Cloud Storage Infrastructure
 +-----------+--------------------------------------------+-------------------------------------+
 | LVM2      | Version included in the Linux distribution | :ref:`LVM Drivers <lvm_drivers>`    |
 +-----------+--------------------------------------------+-------------------------------------+
-| Ceph      | Quincy v17.2.x                             | :ref:`The Ceph Datastore <ceph_ds>` |
-|           | Reef   v18.2.x                             |                                     |
+| Ceph      | Reef   v18.2.x                             | :ref:`The Ceph Datastore <ceph_ds>` |
+|           | Squid  v19.2.x                             |                                     |
 +-----------+--------------------------------------------+-------------------------------------+
 
 Authentication
