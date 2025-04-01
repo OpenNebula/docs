@@ -201,7 +201,7 @@ If you see the following, you don't need to setup a mount as the mounts are alre
     # systemctl list-units --type=mount | grep hugepages
     dev-hugepages.mount                                    loaded active mounted Huge Pages File System
 
-If not, you have to set it up yourself. To do this, create a mountpoint, for example, ``/mnt/hugepages1G`` and append ``nodev	/mnt/hugepages1G hugetlbfs pagesize=1GB 0 0`` as an entry to ``/etc/fstab``
+If not, you have to set it up yourself. To do this, create a mount point, for example, ``/mnt/hugepages1G`` and append ``nodev	/mnt/hugepages1G hugetlbfs pagesize=1GB 0 0`` as an entry to ``/etc/fstab``
 
 .. prompt:: bash # auto
 
