@@ -188,7 +188,7 @@ For example, to configure default page size of **1G** and **250** hugepages with
 
     # update-grub
 
-.. tip:: Use ``intel_iommu=on`` instead for hosts with an AMD CPU
+.. tip:: Use ``amd_iommu=on`` instead for hosts with an AMD CPU
 
 Then reboot the system. After rebooting, make sure that the hugepages mount can be seen so the applications can access them.
 
