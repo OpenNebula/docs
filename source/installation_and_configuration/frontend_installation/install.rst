@@ -172,7 +172,7 @@ Check how to :ref:`change oneadmin password <change_credentials>` for already ru
 
 .. note::
 
-    For advanced setup, follow the configuration references for OpenNebula :ref:`Daemon <oned_conf>` and :ref:`Scheduler <schg>`.
+    For advanced setup, follow the configuration references for OpenNebula :ref:`Daemon <oned_conf>`.
 
 FireEdge
 --------

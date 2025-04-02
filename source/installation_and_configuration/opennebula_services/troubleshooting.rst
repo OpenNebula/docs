@@ -15,7 +15,6 @@ Configure Logging System
 Follow the guides of each component to find the logs' location and configuration of log verbosity:
 
 - OpenNebula Daemon: :ref:`logs <oned_conf_service>`, :ref:`configuration <oned_conf>` (parameter ``LOG/DEBUG_LEVEL``)
-- Scheduler: :ref:`logs <sched_conf_service>`, :ref:`configuration <sched_conf>` (parameter ``LOG/DEBUG_LEVEL``)
 - Monitoring: :ref:`logs <mon_conf_service>`, :ref:`configuration <mon_conf>` (parameter ``LOG/DEBUG_LEVEL``)
 - FireEdge: :ref:`logs <fireedge_conf_service>`, :ref:`configuration <fireedge_conf>` (parameter ``log``)
 - OneFlow: :ref:`logs <oneflow_conf_service>`, :ref:`configuration <oneflow_conf>` (parameter ``:debug_level``)

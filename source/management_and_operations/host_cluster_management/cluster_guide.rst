@@ -88,7 +88,7 @@ Add Resources to Clusters
 
 Datastores and virtual networks can be added to multiple clusters. This means that any Host in those clusters is properly configured to run VMs using images from those datastores, or is using leases from those virtual networks.
 
-For instance, if you have several Hosts configured to use a given Open vSwitch network, you would group them in the same cluster. The :ref:`Scheduler <schg>` will know that VMs using these resources can be deployed in any of the Hosts of the cluster.
+For instance, if you have several Hosts configured to use a given Open vSwitch network, you would group them in the same cluster. The :ref:`Scheduler <scheduler_overview>` will know that VMs using these resources can be deployed in any of the Hosts of the cluster.
 
 These operations can be done with the ``onecluster`` ``addvnet/delvnet`` and ``adddatastore/deldatastore``, respectively:
 

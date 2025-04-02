@@ -9,8 +9,6 @@ OpenNebula Services
 
    Overview <overview>
    OpenNebula Configuration <oned>
-   Scheduler Configuration <scheduler>
-   Monitoring Configuration <monitoring>
    FireEdge Configuration <fireedge>
    OneFlow Configuration <oneflow>
    OneGate Configuration <onegate>

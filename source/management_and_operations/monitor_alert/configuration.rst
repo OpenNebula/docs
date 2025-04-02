@@ -1,9 +1,10 @@
+.. _monitor_alert_configuration:
 .. _mon:
 .. _mon_conf:
 
-========================
-Monitoring Configuration
-========================
+================================================================================
+The OpenNebula Monitoring System
+================================================================================
 
 The monitoring subsystem is represented by a dedicated daemon (``onemonitord``) running as part of the OpenNebula Daemon (``oned``), that **gathers information relevant to the Hosts and the Virtual Machines**, e.g. Host status, basic performance indicators, Virtual Machine status, and capacity consumption. This information is collected by executing a set of probe programs provided by OpenNebula. The output of these probes is sent to OpenNebula using a push mechanism. It's part of the operating system package ``opennebula``.
 
@@ -139,6 +140,30 @@ Monitoring daemon is started as part of OpenNebula Daemon (service ``opennebula`
 
 - ``/var/log/one/monitor.log``
 - ``/var/log/one/oned.log`` (relevant monitoring messages may appear also in OpenNebula log)
+
+
+Monitoring Storage and Database Structure
+=========================================
+
+The monitoring data collected by OpenNebula probes is processed by the monitoring module and stored in a time-series structure within the OpenNebula database. This data is accessed via the CLI and Sunstone UI through corresponding API calls. Additionally, OpenNebula employs a distributed database approach to efficiently store and process host and VM monitoring data, enabling resource usage forecasting and ensuring scalability.
+
+Host Time-Series Databases
+--------------------------
+
+Each physical host in an OpenNebula deployment maintains its own dedicated monitoring databases. These databases are updated through the regular host and VM monitoring cycles:
+
+- **Location**: ``/var/tmp/one_db/host.db``
+- **Purpose**: Stores historical monitoring metrics for the host
+
+Additionally, for each VM running on a host, a dedicated database tracks its specific metrics:
+
+- **Location**: ``/var/tmp/one_db/<VM_ID>.db`` (stored on the host where the VM is running)
+- **Purpose**: Stores historical monitoring metrics for the specific VM
+
+.. note::
+   Following a VM migration, forecast accuracy may be temporarily reduced until sufficient monitoring data is collected on the new host.
+
+For more details on how these databases contribute to resource forecasting, see the :ref:`Resource Forecast <monitor_alert_forecast>` section.
 
 Advanced Setup
 ==============

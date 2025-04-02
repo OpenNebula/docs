@@ -13,3 +13,4 @@ Infrastructure Integration
    Authentication Driver <devel-auth>
    Market Driver <devel-market>
    IPAM Driver <devel-ipam>
+   Scheduler Driver <devel-sched>

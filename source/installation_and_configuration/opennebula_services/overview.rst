@@ -12,7 +12,6 @@ How Should I Read This Chapter
 Read the sections for services you are interested in
 
 - :ref:`OpenNebula Daemon <oned_conf>`
-- :ref:`Scheduler <sched_conf>`
 - :ref:`Monitoring <mon_conf>`
 - :ref:`Sunstone <sunstone_conf>`
 - :ref:`FireEdge <fireedge_conf>`

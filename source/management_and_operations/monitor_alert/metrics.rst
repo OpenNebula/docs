@@ -1,228 +1,159 @@
-.. _monitor_alert_metrics:
+.. _monitor_alert_resource:
 
 ================================================================================
-Exporter Metrics
+OpenNebula Resouce Metrics
 ================================================================================
 
-OpenNebula Exporter
-================================================================================
+This document provides an overview of the metrics collected by OpenNebula's default probes for each resource type and explains how this data is utilized within the system
 
-.. list-table::
-    :widths: auto
-    :header-rows: 1
+Virtual Machine
+--------------------------------------------------------------------------------
+The monitoring probes gather information attributes and insert them in the VM template. This information is mainly used for:
 
-    * - Name
-      - Description
-      - Type
-    * - opennebula_host_total
-      - Total number of hosts defined in OpenNebula
-      - gauge
-    * - opennebula_host_state
-      - Host state 0:init 2:monitored 3:error 4:disabled 8:offline
-      - gauge
-    * - opennebula_host_mem_total_bytes
-      - Total memory capacity
-      - gauge
-    * - opennebula_host_mem_maximum_bytes
-      - Total memory capacity considering overcommitment
-      - gauge
-    * - opennebula_host_mem_usage_bytes
-      - Total memory capacity allocated to VMs
-      - gauge
-    * - opennebula_host_cpu_total_ratio
-      - Total CPU capacity
-      - gauge
-    * - opennebula_host_cpu_maximum_ratio
-      - Total CPU capacity considering overcommitment
-      - gauge
-    * - opennebula_host_cpu_usage_ratio
-      - Total CPU capacity allocated to VMs
-      - gauge
-    * - opennebula_host_vms
-      - Number of VMs allocated to the host
-      - gauge
-    * - opennebula_datastore_total
-      - Total number of datastores defined in OpenNebula
-      - gauge
-    * - opennebula_datastore_total_bytes
-      - Total capacity of the datastore
-      - gauge
-    * - opennebula_datastore_used_bytes
-      - Capacity being used in the datastore
-      - gauge
-    * - opennebula_datastore_free_bytes
-      - Available capacity in the datastore
-      - gauge
-    * - opennebula_datastore_images
-      - Number of images stored in the datastore
-      - gauge
-    * - opennebula_vm_total
-      - Total number of VMs defined in OpenNebula
-      - gauge
-    * - opennebula_vm_host_id
-      - Host ID where the VM is allocated
-      - gauge
-    * - opennebula_vm_state
-      - VM state 0:init 1:pending 2:hold 3:active 4:stopped 5:suspended 6:done 8:poweroff 9:undeployed 10:cloning
-      - gauge
-    * - opennebula_vm_lcm_state
-      - VM LCM state, only relevant for state 3 (active)
-      - gauge
-    * - opennebula_vm_mem_total_bytes
-      - Total memory capacity
-      - gauge
-    * - opennebula_vm_cpu_ratio
-      - Total CPU capacity requested by the VM
-      - gauge
-    * - opennebula_vm_cpu_vcpus
-      - Total number of virtual CPUs
-      - gauge
-    * - opennebula_vm_disks
-      - Total number of disks
-      - gauge
-    * - opennebula_vm_disk_size_bytes
-      - Size of the VM disk
-      - gauge
-    * - opennebula_vm_nics
-      - Total number of network interfaces
-      - gauge
-    * - opennebula_oned_state
-      - OpenNebula oned service state 0:down 1:up
-      - gauge
-    * - opennebula_scheduler_state
-      - OpenNebula scheduler service state 0:down 1:up
-      - gauge
-    * - opennebula_flow_state
-      - OpenNebula Flow service state 0:down 1:up
-      - gauge
-    * - opennebula_hem_state
-      - OpenNebula hook manager service state 0:down 1:up
-      - gauge
-    * - opennebula_gate_state
-      - OpenNebula Gate service state 0:down 1:up
-      - gauge
+  * Monitoring the status of the VM.
+  * Gathering the resource usage data of the VM.
 
-Libvirt Exporter
-================================================================================
+In general, you can find the following monitoring information for a VM. Note that each hypervisor may include additional attributes:
 
-.. list-table::
-    :widths: auto
-    :header-rows: 1
++---------------+-----------------------------------------------------------------------------------+
+| Key           | Description                                                                       |
++===============+===================================================================================+
+| ID            | ID of the VM in OpenNebula.                                                       |
++---------------+-----------------------------------------------------------------------------------+
+| UUID          | Unique ID, must be unique across all hosts.                                       |
++---------------+-----------------------------------------------------------------------------------+
+| MONITOR       | Base64 encoded monitoring information (see details below).                        |
++---------------+-----------------------------------------------------------------------------------+
 
-    * - Name
-      - Description
-      - Type
-    * - opennebula_libvirt_requests_total
-      - The total number of HTTP requests handled by the Rack application.
-      - counter
-    * - opennebula_libvirt_request_duration_seconds
-      - The HTTP response duration of the Rack application.
-      - histogram
-    * - opennebula_libvirt_exceptions_total
-      - The total number of exceptions raised by the Rack application.
-      - counter
-    * - opennebula_libvirt_state
-      - State of the domain 0:no_state, 1:running, 2:blocked, 3:paused, 4:shutdown, 5:shutoff, 6:crashed, 7:suspended (PM)
-      - gauge
-    * - opennebula_libvirt_cpu_seconds_total
-      - Total CPU time used by the domain
-      - gauge
-    * - opennebula_libvirt_cpu_system_seconds_total
-      - System CPU time used by the domain
-      - gauge
-    * - opennebula_libvirt_cpu_user_seconds_total
-      - User CPU time used by the domain
-      - gauge
-    * - opennebula_libvirt_memory_total_bytes
-      - Total memory currently used by the domain
-      - gauge
-    * - opennebula_libvirt_memory_maximum_bytes
-      - Total memory currently used by the domain
-      - gauge
-    * - opennebula_libvirt_memory_swapin_bytes_total
-      - Amount of data read from swap space
-      - gauge
-    * - opennebula_libvirt_memory_swapout_bytes_total
-      - Amount of data written out to swap space
-      - gauge
-    * - opennebula_libvirt_memory_unused_bytes
-      - Amount of memory left unused by the system
-      - gauge
-    * - opennebula_libvirt_memory_available_bytes
-      - Amount of usable memory as seen by the domain
-      - gauge
-    * - opennebula_libvirt_memory_rss_bytes
-      - Resident Set Size of running domain's process
-      - gauge
-    * - opennebula_libvirt_vcpu_online
-      - Current number of online virtual CPUs
-      - gauge
-    * - opennebula_libvirt_vcpu_maximum
-      - Maximum number of online virtual CPUs
-      - gauge
-    * - opennebula_libvirt_vcpu_state
-      - State of the virtual CPU 0:offline, 1:running, 2:blocked
-      - gauge
-    * - opennebula_libvirt_vcpu_time_seconds_total
-      - virtual cpu time spent by virtual CPU
-      - gauge
-    * - opennebula_libvirt_vcpu_wait_seconds_total
-      - Time the vCPU wants to run, but the host scheduler has something else running ahead of it
-      - gauge
-    * - opennebula_libvirt_net_devices
-      - Total number of network interfaces on this domain
-      - gauge
-    * - opennebula_libvirt_net_rx_total_bytes
-      - Total bytes received by the vNIC
-      - gauge
-    * - opennebula_libvirt_net_rx_packets
-      - Total number of packets received by the vNIC
-      - gauge
-    * - opennebula_libvirt_net_rx_errors
-      - Total number of receive errors
-      - gauge
-    * - opennebula_libvirt_net_rx_drops
-      - Total number of receive packets dropped by the vNIC
-      - gauge
-    * - opennebula_libvirt_net_tx_total_bytes
-      - Total bytes transmitted by the vNIC
-      - gauge
-    * - opennebula_libvirt_net_tx_packets
-      - Total number of packets transmitted by the vNIC
-      - gauge
-    * - opennebula_libvirt_net_tx_errors
-      - Total number of transmission errors
-      - gauge
-    * - opennebula_libvirt_net_tx_drops
-      - Total number of transmit packets dropped by the vNIC
-      - gauge
-    * - opennebula_libvirt_block_devices
-      - Total number of block devices on this domain
-      - gauge
-    * - opennebula_libvirt_block_rd_requests
-      - Total number of read requests
-      - gauge
-    * - opennebula_libvirt_block_rd_bytes
-      - Total number of read bytes
-      - gauge
-    * - opennebula_libvirt_block_rd_time_seconds
-      - Total time spent on reads
-      - gauge
-    * - opennebula_libvirt_block_wr_requests
-      - Total number of write requests
-      - gauge
-    * - opennebula_libvirt_block_wr_bytes
-      - Total number of written bytes
-      - gauge
-    * - opennebula_libvirt_block_wr_time_seconds
-      - Total time spent on writes
-      - gauge
-    * - opennebula_libvirt_block_virtual_bytes
-      - Virtual size of the device
-      - gauge
-    * - opennebula_libvirt_block_physical_bytes
-      - Physical size of the container of the backing image
-      - gauge
-    * - opennebula_libvirt_daemon_up
-      - State of the libvirt daemon 0:down 1:up
-      - gauge
+The MONITOR information includes the following data:
+
++---------------+-----------------------------------------------------------------------------------+
+| Key           | Description                                                                       |
++===============+===================================================================================+
+| TIMESTAMP     | Timestamp of the measurement.                                                     |
++---------------+-----------------------------------------------------------------------------------+
+| CPU           | Percentage of 1 CPU consumed (two fully consumed CPUs is 2.0).                    |
++---------------+-----------------------------------------------------------------------------------+
+| MEMORY        | MEMORY consumption in kilobytes.                                                  |
++---------------+-----------------------------------------------------------------------------------+
+| DISKRDBYTES   | Amount of bytes read from disk.                                                   |
++---------------+-----------------------------------------------------------------------------------+
+| DISKRDIOPS    | Number of IO read operations.                                                     |
++---------------+-----------------------------------------------------------------------------------+
+| DISKWRBYTES   | Amount of bytes written to disk.                                                  |
++---------------+-----------------------------------------------------------------------------------+
+| DISKWRIOPS    | Number of IO write operations.                                                    |
++---------------+-----------------------------------------------------------------------------------+
+| NETRX         | Received bytes from the network.                                                  |
++---------------+-----------------------------------------------------------------------------------+
+| NETTX         | Sent bytes to the network.                                                        |
++---------------+-----------------------------------------------------------------------------------+
+
+The metrics above are directly read from and stored in the monitoring database.
+
+Additionally, the following derived metrics are calculated from the stored metrics and used for forecasting. These derived metrics are not stored in the database but are computed on-demand:
+
++---------------+-----------------------------------------------------------------------------------+
+| Key           | Description                                                                       |
++===============+===================================================================================+
+| NETRX_BW      | Network received bandwidth (rate of change of NETRX).                             |
++---------------+-----------------------------------------------------------------------------------+
+| NETTX_BW      | Network transmitted bandwidth (rate of change of NETTX).                          |
++---------------+-----------------------------------------------------------------------------------+
+| DISKRD_BW     | Disk read bandwidth (rate of change of DISKRDBYTES).                              |
++---------------+-----------------------------------------------------------------------------------+
+| DISKWR_BW     | Disk write bandwidth (rate of change of DISKWRBYTES).                             |
++---------------+-----------------------------------------------------------------------------------+
+| DISKRDIOPS_BW | Rate of change of disk read IOPS.                                                 |
++---------------+-----------------------------------------------------------------------------------+
+| DISKWRIOPS_BW | Rate of change of disk write IOPS.                                                |
++---------------+-----------------------------------------------------------------------------------+
+
+Host
+--------------------------------------------------------------------------------
+
+The monitoring probes gather information attributes and insert them in the Host template. This information is mainly used for:
+
+  * Monitoring the status of the Host to detect any error condition.
+  * Gathering the configuration of the Host (e.g., capacity, PCI devices, or NUMA nodes). This information is used to control VM resource assignments.
+  * Creating placement constraints for allocation of VMs, :ref:`see more details here <scheduler_overview>`.
+
+In general, you can find the following monitoring information in a Host. Note that each hypervisor may include additional attributes:
+
++------------+----------------------------------------------------------------------------------------------------+
+|    Key     |                                            Description                                             |
++============+====================================================================================================+
+| HYPERVISOR | Name of the hypervisor of the Host, useful for selecting the Hosts with a specific technology.     |
++------------+----------------------------------------------------------------------------------------------------+
+| ARCH       | Architecture of the Host CPUs, e.g., x86_64.                                                       |
++------------+----------------------------------------------------------------------------------------------------+
+| MODELNAME  | Model name of the Host CPU, e.g., Intel(R) Core(TM) i7-2620M CPU @ 2.70GHz.                        |
++------------+----------------------------------------------------------------------------------------------------+
+| CPUSPEED   | Speed in MHz of the CPUs.                                                                          |
++------------+----------------------------------------------------------------------------------------------------+
+| HOSTNAME   | As returned by the ``hostname`` command.                                                           |
++------------+----------------------------------------------------------------------------------------------------+
+| VERSION    | This is the version of the monitoring probes. Used to control local changes and the update process.|
++------------+----------------------------------------------------------------------------------------------------+
+| MAX_CPU    | Number of CPUs multiplied by 100. For example, a 16-core machine will have a value of 1600.        |
+|            | The value of RESERVED_CPU will be subtracted from the information reported by the                  |
+|            | monitoring system. This value is displayed as ``TOTAL CPU`` by the                                 |
+|            | ``onehost show`` command under the ``HOST SHARE`` section.                                         |
++------------+----------------------------------------------------------------------------------------------------+
+| MAX_MEM    | Maximum memory that can be used for VMs. It is advised to discount the memory                      |
+|            | used by the hypervisor using RESERVED_MEM. This value is subtracted from the memory                |
+|            | amount reported. The value is displayed as ``TOTAL MEM`` by the ``onehost show``                   |
+|            | command under the ``HOST SHARE`` section.                                                          |
++------------+----------------------------------------------------------------------------------------------------+
+| MAX_DISK   | Total space in megabytes in the DATASTORE LOCATION.                                                |
++------------+----------------------------------------------------------------------------------------------------+
+| USED_CPU   | Percentage of used CPU multiplied by the number of cores. This value is displayed                  |
+|            | as ``USED CPU (REAL)`` by the ``onehost show`` command under the ``HOST SHARE`` section.           |
++------------+----------------------------------------------------------------------------------------------------+
+| USED_MEMORY| Memory used, in kilobytes. This value is displayed as ``USED MEMORY (REAL)``                       |
+|            | by the ``onehost show`` command under the ``HOST SHARE`` section.                                  |
++------------+----------------------------------------------------------------------------------------------------+
+| USED_DISK  | Used space in megabytes in the DATASTORE LOCATION.                                                 |
++------------+----------------------------------------------------------------------------------------------------+
+| FREE_CPU   | Percentage of idling CPU multiplied by the number of cores. For example,                           |
+|            | if 50% of the CPU is idling in a 4-core machine, the value will be 200.                            |
++------------+----------------------------------------------------------------------------------------------------+
+| FREE_MEMORY| Available memory for VMs at that moment, in kilobytes.                                             |
++------------+----------------------------------------------------------------------------------------------------+
+| FREE_DISK  | Free space in megabytes in the DATASTORE LOCATION.                                                 |
++------------+----------------------------------------------------------------------------------------------------+
+| CPU_USAGE  | Total CPU allocated to VMs running on the Host as requested in ``CPU``                             |
+|            | in each VM template. This value is displayed as ``USED CPU (ALLOCATED)``                           |
+|            | by the ``onehost show`` command under the ``HOST SHARE`` section.                                  |
++------------+----------------------------------------------------------------------------------------------------+
+| MEM_USAGE  | Total MEM allocated to VMs running on the Host as requested in ``MEMORY``                          |
+|            | in each VM template. This value is displayed as ``USED MEM (ALLOCATED)``                           |
+|            | by the ``onehost show`` command under the ``HOST SHARE`` section.                                  |
++------------+----------------------------------------------------------------------------------------------------+
+| DISK_USAGE | Total size allocated to disk images of VMs running on the Host; computed                           |
+|            | using the ``SIZE`` attribute of each image and considering the datastore characteristics.          |
++------------+----------------------------------------------------------------------------------------------------+
+| NETRX      | Received bytes from the network.                                                                   |
++------------+----------------------------------------------------------------------------------------------------+
+| NETTX      | Transferred bytes to the network.                                                                  |
++------------+----------------------------------------------------------------------------------------------------+
+| WILD       | Comma-separated list of VMs running in the Host that were not launched                             |
+|            | and are not currently controlled by OpenNebula.                                                    |
++------------+----------------------------------------------------------------------------------------------------+
+| ZOMBIES    | Comma-separated list of VMs running in the Host that were launched by                              |
+|            | OpenNebula but are not currently controlled by it.                                                 |
++------------+----------------------------------------------------------------------------------------------------+
+
+The metrics above are directly read from and stored in the monitoring database.
+
+Additionally, the following derived metrics are calculated from the stored metrics and used for forecasting. These derived metrics are not stored in the database but are computed on-demand:
+
++---------------+-----------------------------------------------------------------------------------+
+| Key           | Description                                                                       |
++===============+===================================================================================+
++---------------+-----------------------------------------------------------------------------------+
+| NETRX_BW      | Network received bandwidth (rate of change of NETRX).                             |
++---------------+-----------------------------------------------------------------------------------+
+| NETTX_BW      | Network transmitted bandwidth (rate of change of NETTX).                          |
++---------------+-----------------------------------------------------------------------------------+
+

@@ -101,7 +101,7 @@ By default, the VM will be deployed in the datastore that the OpenNebula's sched
 
 The policy is set in the /etc/one/sched.conf configuration file and by default OpenNebula will try to deploy the VMs trying to distribute them across the available datastores.
 
-You can force that OpenNebula uses specific datastores overriding the scheduler's policy with the SCHED_DS_REQUIREMENTS as explained :ref:`here <sched_ds>`.
+You can force that OpenNebula uses specific datastores overriding the scheduler's policy with the SCHED_DS_REQUIREMENTS as explained :ref:`here <scheduler_overview>`.
 
 It's compulsory that you import vCenter datastores before trying to deploy a VM and you must be sure that the datastores are shared by every ESX host in the cluster.
 

@@ -950,44 +950,6 @@ Custom attributes can be added to a VM to store metadata related to this specifi
     USER TEMPLATE
     ROOT_GENERATED_PASSWORD="1234"
 
-Virtual Machine Monitoring
-================================================================================
-
-The monitoring probes gathers information attributes and insert them in the VM template. This information is mainly used for:
-
-  * Monitor the status of the VM.
-  * Gather the resource usage data of the VM.
-
-In general, you can find the following monitoring information for a VM, note that each hypervisor may include additional attributes:
-
-+---------------+----------------------------------------------------------------------------------------------+
-| Key           | Description                                                                                  |
-+===============+==============================================================================================+
-| ID            | ID of the VM in OpenNebula.                                                                  |
-+---------------+----------------------------------------------------------------------------------------------+
-| UUID          | Unique ID, must be unique across all hosts.                                                  |
-+---------------+----------------------------------------------------------------------------------------------+
-| MONITOR       | Base64 encoded monitoring information, the monitoring information includes following data:   |
-+---------------+----------------------------------------------------------------------------------------------+
-| TIMESTAMP     | Timestamp of the measurement.                                                                |
-+---------------+----------------------------------------------------------------------------------------------+
-| CPU           | Percentage of 1 CPU consumed (two fully consumed cpu is 2.0).                                |
-+---------------+----------------------------------------------------------------------------------------------+
-| MEMORY        | MEMORY consumption in kilobytes.                                                             |
-+---------------+----------------------------------------------------------------------------------------------+
-| DISKRDBYTES   | Amount of bytes read from disk.                                                              |
-+---------------+----------------------------------------------------------------------------------------------+
-| DISKRDIOPS    | Number of IO read operations.                                                                |
-+---------------+----------------------------------------------------------------------------------------------+
-| DISKWRBYTES   | Amount of bytes written to disk.                                                             |
-+---------------+----------------------------------------------------------------------------------------------+
-| DISKWRIOPS    | Number of IO write operations.                                                               |
-+---------------+----------------------------------------------------------------------------------------------+
-| NETRX         | Received bytes from the network.                                                             |
-+---------------+----------------------------------------------------------------------------------------------+
-| NETTX         | Sent bytes to the network.                                                                   |
-+---------------+----------------------------------------------------------------------------------------------+
-
 Virtual Machine VM Permissions
 ================================================================================
 
@@ -1022,14 +984,14 @@ There are some ``onevm`` commands operations meant for the cloud administrators:
 
 **Scheduling:**
 
--  ``resched``: Sets the reschedule flag for the VM. The Scheduler will migrate (or migrate --live, depending on the :ref:`Scheduler configuration <schg_configuration>`) the VM in the next monitorization cycle to a Host that better matches the requirements and rank restrictions. Read more in the :ref:`Scheduler documentation <schg_re-scheduling_virtual_machines>`.
+-  ``resched``: Sets the reschedule flag for the VM. The Scheduler will migrate (or migrate --live, depending on the :ref:`Scheduler configuration <scheduler_configuration>`) the VM in the next monitorization cycle to a Host that better matches the requirements and rank restrictions. Read more in the :ref:`Scheduler documentation <scheduler_overview>`.
 -  ``unresched``: Clears the reschedule flag for the VM, canceling the rescheduling operation.
 
 **Deployment:**
 
 -  ``deploy``: Starts an existing VM in a specific Host.
 -  ``migrate --live``: The Virtual Machine is transferred between Hosts with no noticeable downtime. The VM storage cannot be migrated to other system datastores.
--  ``migrate``: The VM gets stopped and resumed in the target host. In an infrastructure with :ref:`multiple system datastores <sched_ds>`, the VM storage can be also migrated (the datastore id can be specified).
+-  ``migrate``: The VM gets stopped and resumed in the target host. In an infrastructure with multiple system datastores, the VM storage can be also migrated (the datastore id can be specified).
 
 Note: By default, the above operations do not check the target host capacity. You can use the ``--enforce`` option to be sure that the host capacity is not overcommitted.
 

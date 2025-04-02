@@ -6,7 +6,7 @@ Monitoring and Alerting
    :maxdepth: 2
 
    Overview <overview>
-   Installation and Configuration <install>
-   Grafana Visualization <grafana>
-   Alert Manager <alerts>
-   Exporter Metrics <metrics>
+   OpenNebula Monitoring System<configuration>
+   Resource Metrics<metrics>
+   Resource Usage Forecast <forecast>
+   Prometheus Integration<prometheus/index>

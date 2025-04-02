@@ -6,8 +6,7 @@ Capacity Planning
    :maxdepth: 2
 
    Overview <overview>
+   Resource Scheduler <scheduler/index>
    Host Overcommitment <overcommitment>
-   Scheduling Policies <scheduling>
    Usage Quotas <quotas>
-   Virtual Machine Affinity <affinity>
-   External Schedulers <external>
+   Affinity Groups<affinity>

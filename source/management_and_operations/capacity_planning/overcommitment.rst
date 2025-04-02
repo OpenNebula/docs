@@ -33,15 +33,13 @@ The capacity of a Host is obtained by the monitor probes. You may alter the over
 
 In particular the following capacity attributes can be reserved:
 
-+------------------------+--------------------------------------------------------------------------+
-|       Attribute        |                               Description                                |
-+========================+==========================================================================+
-| ``RESERVED_CPU``       | (CPU percentage) It will be                                              |
-|                        | subtracted from the TOTAL CPU. See :ref:`scheduler <schg_limit>`.        |
-+------------------------+--------------------------------------------------------------------------+
-| ``RESERVED_MEM``       | (KB). It will be subtracted                                              |
-|                        | from the TOTAL MEM. See :ref:`scheduler <schg_limit>`.                   |
-+------------------------+--------------------------------------------------------------------------+
++------------------------+------------------------------------------------------------+
+|       Attribute        |                               Description                  |
++========================+============================================================+
+| ``RESERVED_CPU``       | (CPU percentage) It will be subtracted from the TOTAL CPU. |
++------------------------+------------------------------------------------------------+
+| ``RESERVED_MEM``       | (KB). It will be subtracted from the TOTAL MEM.            |
++------------------------+------------------------------------------------------------+
 
 .. important:: These values can be negative, in that case you'll be actually increasing the overall capacity so overcommitting host capacity.
 

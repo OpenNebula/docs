@@ -1,30 +1,29 @@
 .. _monitor_alert_overview:
 
+.. _monitoring_alerting:
+
 ================================================================================
 Monitoring and Alerting
 ================================================================================
 
-This chapter contains documentation on how to configure OpenNebula to work with `Prometheus monitoring and alerting toolkit <http://prometheus.io>`_. The integration consists of four components:
+This chapter provides documentation on how different resources are monitored in OpenNebula. There are two primary monitoring mechanisms:
 
-  - A Libvirt Exporter, that provides information about VM (KVM domains) running on an OpenNebula host.
-  - An OpenNebula Exporter, that provides basic information about the overall OpenNebula cloud.
-  - Alert rules sample files based on the provided metrics
-  - `Grafana <https://grafana.com/>`_ dashboards to visualize VM, Host and OpenNebula information in a convenient way.
+- **OpenNebula Built-in Monitoring**: This system provides essential information about hosts and virtual machines, which is utilized for the lifecycle management of each resource.
+- **Integration with Prometheus**: OpenNebula can be integrated with the `Prometheus monitoring and alerting toolkit <http://prometheus.io>`_ to enable seamless data center monitoring.
 
-How Should I Read This Chapter
+How to Use This Chapter
 ================================================================================
 
-Before reading this chapter, you should have already installed your :ref:`Frontend <frontend_installation>`, the :ref:`KVM Hosts <kvm_node>` and have an OpenNebula cloud up and running with at least one virtualization node.
+Before proceeding with this chapter, ensure you have already installed your :ref:`Frontend <frontend_installation>`, configured :ref:`KVM Hosts <kvm_node>`, and set up an OpenNebula cloud with at least one virtualization node.
 
-This Chapter is structured as follows:
+This chapter is organized as follows:
 
-  - The :ref:`installation guide <monitor_alert_installation>` describes the installation and basic configuration of the integration.
-  - How to :ref:`visualize monitor data with Grafana <monitor_alert_grafana>` explained in a dedicated Section.
-  - Specific procedures to :ref:`set up alarms <monitor_alert_alarms>` is also addressed in this Chapter.
-
-Finally you can find a reference of the :ref:`metrics gathered by the exporters here <monitor_alert_metrics>`.
+- The :ref:`OpenNebula Monitoring guide <monitor_alert_configuration>` covers the setup and operation of the built-in monitoring system.
+- The :ref:`Resource Monitoring guide <monitor_alert_resource>` outlines the metrics collected for each resource type.
+- The :ref:`Resource Forecasting guide <monitor_alert_forecast>` explains how to configure the monitoring system to generate resource usage forecasts.
+- Lastly, the :ref:`Prometheus Integration Guide <monitor_alert_prom_overview>` provides instructions for setting up Prometheus to monitor your OpenNebula cloud.
 
 Hypervisor Compatibility
 ================================================================================
 
-These guides are compatible with the KVM hypervisor.
+The monitoring and alerting features described in this guide are compatible with the KVM hypervisor.
