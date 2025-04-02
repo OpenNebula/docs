@@ -13,13 +13,29 @@ Additionally, each VXLAN has an associated multicast address to encapsulate L2 b
 Considerations & Limitations
 ================================================================================
 
-This driver works with the default UDP server port 8472.
+By default, this driver uses the default linux UDP server port 8472 to transfer VXLAN traffic between host. 
+
+.. important::
+
+   Please note that the official IANA port for VXLAN transport is UDP 4789. If you will use hardware equipment take this in consideration
 
 VXLAN traffic is forwarded to a physical device; this device can be set (optionally) to be a VLAN tagged interface, but in that case you must make sure that the tagged interface is manually created first in all the Hosts.
 
 .. important::
 
     The network interface that will act as the physical device **must** have an IP.
+
+The bridge ``${PHYSDEV}.${VXLAN_ID}`` (PHYSDEV is the physical interface and VXLAN_ID is the VxLAN VNI) will be created and the VM NICs will be attached to it. This has a very important implication: **the amount of characters for a bridge name that iproute2 allows is 15**
+
+.. important::
+
+   If the physical interface name and the VNI are longer than 15 characters the deploy of any VM with that virtual network will fail. The solution can be creating an alternative name (alias) for the interface. For instance, if you have the interface ``en0s0f0p0``, you can execute
+
+   ``sudo ip link set en0s0f0p0 alias vx``
+
+   and use the physical device ``vx`` for the Virtual Network. 
+
+   This change DOES NOT PERSIST after a reboot (the command must be issued again or you should use netplan or some other software to make it persistent.
 
 Limited Count of VXLANs on Host
 --------------------------------------------------------------------------------
