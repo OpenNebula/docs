@@ -487,6 +487,7 @@ natively
 ncurses
 netaddr
 netmask
+netplan
 networkd
 nginx
 nic
