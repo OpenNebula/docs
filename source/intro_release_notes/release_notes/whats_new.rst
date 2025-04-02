@@ -63,3 +63,4 @@ Other Issues Solved
 
 - `Limit password size for each authentication driver to prevent DoS attacks <https://github.com/OpenNebula/one/issues/6892>`__.
 - `For 'list' and 'top' commadns fix filter flag G exposing resources of other group members <https://github.com/OpenNebula/one/issues/6952>`__.
+- `The 'onedb purge-history' command now removes history records only within the specified --start, --end range for the --id, instead of deleting all records <https://github.com/OpenNebula/one/issues/6699>`__.
