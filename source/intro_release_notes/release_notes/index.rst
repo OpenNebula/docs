@@ -9,7 +9,7 @@ Release Notes |version|
 
    What's New <whats_new>
    Platform Notes <platform_notes>
-   ARM64 packages <arm64_beta>
+   ARM64 packages <arm64>
    Compatibility Guide <compatibility>
    Known Issues <known_issues>
    Acknowledgements <acknowledgements>
