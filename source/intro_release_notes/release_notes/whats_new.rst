@@ -26,7 +26,7 @@ FireEdge Sunstone
 API and CLI
 ================================================================================
 
-- Feature 1
+- `The 'onedb purge-history' command now removes history records only within the specified --start, --end range for the --id, instead of deleting all records <https://github.com/OpenNebula/one/issues/6699>`__.
 - Feature 2
 
 KVM
