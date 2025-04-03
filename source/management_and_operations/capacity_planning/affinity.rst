@@ -4,19 +4,19 @@
 Virtual Machine Affinity
 ================================================================================
 
-A VM Group defines a set of related VMs, and associated placement constraints for the VMs in the group. A VM Group allows you to place together (or separately) certain VMs (or VM classes, called roles). VMGroups will help you to optimize the performance (e.g. not placing all the CPU bound VMs in the same host) or improve the fault tolerance (e.g. not placing all your front-ends in the same host) of your multi-VM applications.
+A VM Group defines a set of related VMs and associated placement constraints for the VMs in the group. A VM Group allows you to place together (or separately) certain VMs (or VM classes, called roles). VMGroups will help you to optimize the performance (e.g. not placing all the CPU-bound VMs in the same host) or improve the fault tolerance (e.g. not placing all your front-ends in the same host) of your multi-VM applications.
 
 Defining a VM Group
 ================================================================================
 
-A VM Group consists of two parts: a set of roles, and a set of placement constraints for the roles. In a VM Group, a role defines a class of virtual machines that are subject to the same placement constraints and rules. Usually, you will put in the same role VMs implementing a given functionality of a multi-VM application, e.g. the front-ends or the database VMs. Additionally, you can define placement constraints for the VMs in the VM-Group, this placement rules can refer to the VMs within a role or VMs across roles.
+A VM Group consists of two parts: a set of roles, and a set of placement constraints for the roles. In a VM Group, a role defines a class of virtual machines that are subject to the same placement constraints and rules. Usually, you will put in the same role VMs implementing a given functionality of a multi-VM application, e.g. the front-ends or the database VMs. Additionally, you can define placement constraints for the VMs in the VM Group, with placement rules that can refer to the VMs within a role or VMs across roles.
 
 A role is defined with the following attributes:
 
 +-----------------------+-----------+----------------------------------------------------------------------------------------------------------------------+
 | Attribute             | Mandatory | Description                                                                                                          |
 +=======================+===========+======================================================================================================================+
-| ``NAME``              | **YES**   | The name of the role, it needs to be unique within the VM Group .                                                    |
+| ``NAME``              | **YES**   | The name of the role. It must be unique within the VM Group.                                                         |
 +-----------------------+-----------+----------------------------------------------------------------------------------------------------------------------+
 | ``POLICY``            | **NO**    | Placement policy for the VMs of the role. Possible values are: ``AFFINED`` and ``ANTI_AFFINED``.                     |
 +-----------------------+-----------+----------------------------------------------------------------------------------------------------------------------+
@@ -25,14 +25,14 @@ A role is defined with the following attributes:
 | ``HOST_ANTI_AFFINED`` | **NO**    | Defines a set of hosts (by their ID) where the VMs of the role cannot be executed.                                   |
 +-----------------------+-----------+----------------------------------------------------------------------------------------------------------------------+
 
-Additional placement constraints can be imposed to the VMs of a role with the following attributes:
+You can impose additional placement constraints on the VMs of a role, by using the following attributes:
 
 +-----------------------+-----------+----------------------------------------------------------------------------------------------------------------------+
 | Attribute             | Mandatory | Description                                                                                                          |
 +=======================+===========+======================================================================================================================+
-| ``AFFINED``           | **NO**    | List of roles (comma separated) whose VMs has to be placed in the same host.                                         |
+| ``AFFINED``           | **NO**    | List of roles (comma-separated) whose VMs has to be placed in the same host.                                         |
 +-----------------------+-----------+----------------------------------------------------------------------------------------------------------------------+
-| ``ANTI_AFFINED``      | **NO**    | List of roles (comma separated) whose VMs cannot be placed in the same host.                                         |
+| ``ANTI_AFFINED``      | **NO**    | List of roles (comma-separated) whose VMs cannot be placed in the same host.                                         |
 +-----------------------+-----------+----------------------------------------------------------------------------------------------------------------------+
 
 To create a VM Group, use the Sunstone web interface, or create a template file following this example:
@@ -68,7 +68,7 @@ The following placement policies can be applied to the VMs of a VM Group.
 VM to Host Affinity
 --------------------------------------------------------------------------------
 
-Specifies a set of hosts where the VMs of a role can be allocated. This policy is set in a role basis using the ``HOST_AFFINED`` and ``HOST_ANTI_AFFINED`` attributes. The host affinity rules are compatible with any other rules applied to the role VMs.
+Specifies a set of hosts where the VMs of a role can be allocated. This policy is set on a role basis using the ``HOST_AFFINED`` and ``HOST_ANTI_AFFINED`` attributes. Host affinity rules are compatible with any other rules applied to the role VMs.
 
 For example, if you want to place the VMs implementing the database for your application in high performance hosts you could use:
 
@@ -121,7 +121,7 @@ For example, consider that you need the VMs of a database to run together so the
 Scheduler Configuration and Remarks
 --------------------------------------------------------------------------------
 
-VMGroups are placed by dynamically generating the requirement (``SCHED_REQUIREMENTS``) of each VM an re-evaluating these expressions. Moreover, the following is also considered:
+VMGroups are placed by dynamically generating the requirement (``SCHED_REQUIREMENTS``) of each VM and re-evaluating these expressions. Moreover, the following is also considered:
 
 * The scheduler will look for a host with enough capacity for an affined set of VMs. If there is no such host all the affined VMs will remain pending.
 * If new VMs are added to an affined role, it will pick one of the hosts where the VMs are running. By default, all should be running in the same host but if you manually migrate a VM to another host it will be considered feasible for the role.
@@ -146,7 +146,7 @@ You can also specify the ``VM_GROUP`` by its id (``VMGROUP_ID``), and in case of
 VM Group Management
 ================================================================================
 
-VM Groups can be updated to edit or add new rules. Currently only role to role rules can be updated if there are no VMs in the roles. All base operations are supported for the VMGroup object: ``create``, ``delete``, ``chgrp``, ``chown``, ``chmod``, ``update``, ``rename``, ``list``, ``show``, ``lock`` and ``unlock``. For managing roles use ``onevmgroup`` commands ``role-add``, ``role-delete`` and ``role-update``.
+VM Groups can be updated to edit or add new rules. Currently only role-to-role rules can be updated if there are no VMs in the roles. All base operations are supported for the VMGroup object: ``create``, ``delete``, ``chgrp``, ``chown``, ``chmod``, ``update``, ``rename``, ``list``, ``show``, ``lock`` and ``unlock``. For managing roles use ``onevmgroup`` commands ``role-add``, ``role-delete`` and ``role-update``.
 
 Note also that the same ACL/permission system is applied to VM Groups, so use access is required to place VMs in a group.
 
