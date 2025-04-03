@@ -4,17 +4,17 @@
 Monitoring and Alerting
 ================================================================================
 
-This chapter contains documentation on how to configure OpenNebula to work with `Prometheus monitoring and alerting toolkit <http://prometheus.io>`_. The integration consists of four components:
+This chapter contains documentation on how to configure OpenNebula to work with the `Prometheus monitoring and alerting toolkit <http://prometheus.io>`_. The integration consists of four components:
 
   - A Libvirt Exporter, that provides information about VM (KVM domains) running on an OpenNebula host.
   - An OpenNebula Exporter, that provides basic information about the overall OpenNebula cloud.
-  - Alert rules sample files based on the provided metrics
+  - Alert rules sample files based on the provided metrics.
   - `Grafana <https://grafana.com/>`_ dashboards to visualize VM, Host and OpenNebula information in a convenient way.
 
 How Should I Read This Chapter
 ================================================================================
 
-Before reading this chapter, you should have already installed your :ref:`Frontend <frontend_installation>`, the :ref:`KVM Hosts <kvm_node>` and have an OpenNebula cloud up and running with at least one virtualization node.
+Before reading this chapter, you should have already installed your :ref:`Front-end <frontend_installation>` and :ref:`KVM Hosts <kvm_node>`, and have an OpenNebula cloud up and running with at least one virtualization node.
 
 This Chapter is structured as follows:
 
