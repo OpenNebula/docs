@@ -13,9 +13,9 @@ Overview
 
 Each host periodically sends monitoring data via the network to the Front-end, which collects and processes it in a dedicated module. This distributed monitoring system resembles the architecture of dedicated monitoring systems, using a lightweight communication protocol and a push model.
 
-As part of the regular start process, OpenNebula starts a ``onemonitord`` daemon running in the Front-end, that listens for network connections on port 4124 (both UDP and TCP). Initially, OpenNebula connects to the hosts using SSH and starts a light agent that executes the probe scripts to collect and send data back to the ``onemonitord`` daemon in the Front-end.
+As part of the regular start process, OpenNebula starts the ``onemonitord`` daemon running in the Front-end, that listens for network connections on port 4124 (both UDP and TCP). Initially, OpenNebula connects to the hosts using SSH and starts a light agent that executes the probe scripts to collect and send data back to the ``onemonitord`` daemon in the Front-end.
 
-Probes are structured in information categories for host and virtual machine information. At regular intervals (in seconds) (configurable per category in the ``monitord.conf``) the data is transmitted, so the monitoring subsystem doesn't need to make any additional connections to gather it.
+Probes are structured in information categories for host and virtual machine information. At regular intervals (in seconds, configurable per category in the ``monitord.conf``) the data is transmitted, so the monitoring subsystem doesn't need to make any additional connections to gather it.
 
 |image0|
 
@@ -145,7 +145,7 @@ Monitoring daemon is started as part of OpenNebula Daemon (service ``opennebula`
 Monitoring Storage and Database Structure
 =========================================
 
-The monitoring data collected by OpenNebula probes is processed by the monitoring module and stored in a time-series structure within the OpenNebula database. This data is accessed via the CLI and Sunstone UI through corresponding API calls. Additionally, OpenNebula employs a distributed database approach to efficiently store and process host and VM monitoring data, enabling resource usage forecasting and ensuring scalability.
+The monitoring data collected by OpenNebula probes is processed by the monitoring module and stored in a time-series structure within the OpenNebula database. This data is accessed via the CLI and Sunstone UI through designated API calls. Additionally, OpenNebula employs a distributed database approach to efficiently store and process host and VM monitoring data, enabling resource usage forecasting and ensuring scalability.
 
 Host Time-Series Databases
 --------------------------
@@ -168,7 +168,7 @@ For more details on how these databases contribute to resource forecasting, see 
 Advanced Setup
 ==============
 
-The following sections present optional advanced setups, improving the security or performance of the monitoring subsystem:
+The following sections present optional advanced setups which can improve the security or performance of the monitoring subsystem:
 
 Encryption of Monitoring Messages
 ---------------------------------
@@ -238,7 +238,7 @@ Troubleshooting
 Healthy Monitoring System
 -------------------------
 
-The default location for monitoring the log file is ``/var/log/one/monitor.log``. Approximately every configured monitor period OpenNebula receives the monitoring data of every Virtual Machine and of a Host as follows:
+The default location for the monitoring log file is ``/var/log/one/monitor.log``. Approximately every configured monitor period OpenNebula receives the monitoring data of every Virtual Machine and of a Host as follows:
 
 .. code::
 
@@ -256,12 +256,12 @@ However, if in ``/var/log/one/monitor.log`` a Host is being monitored **actively
     Sun Mar 15 22:35:10 2020 [Z0][HMM][D]: Monitoring host localhost(0)
     Sun Mar 15 22:35:19 2020 [Z0][HMM][D]: Start monitor success, host: 0
 
-If this is the case, it's probably because the Monitor Daemon isn't receiving any data from probes and it could be caused by the wrong UDP settings. You should not see a restarting of the ``onemonitord`` process.
+If this is the case, it's probably because the Monitor Daemon isn't receiving any data from probes, which could be caused by the wrong UDP settings. You should not see a restart of the ``onemonitord`` process.
 
 Monitoring Probes
 -----------------
 
-To troubleshoot errors produced during the execution of the monitoring probes, try to execute them directly through the command line as oneadmin in the Hosts. Information about malformed messages should be reported in ``/var/log/one/oned.log`` or ``/var/log/one/monitor.log``
+To troubleshoot errors produced during the execution of the monitoring probes, try to execute them directly through the command line as user ``oneadmin`` in the Hosts. Information about malformed messages should be reported in ``/var/log/one/oned.log`` or ``/var/log/one/monitor.log``
 
 
 .. |image0| image:: /images/collector.png
