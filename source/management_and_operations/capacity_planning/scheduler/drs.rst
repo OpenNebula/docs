@@ -4,7 +4,7 @@
 OpenNebula Distributed Resource Scheduler (DRS)
 ================================================================================
 
-The **OpenNebula Distributed Resource Scheduler (DRS)** optimizes resource allocation and prevents resource contention within a single OpenNebula :ref:`cluster <cluster_guide>`. It integrates with OpenNebula’s built-in monitoring and forecasting systems, considering real-time Virtual Machine (VM) and Host usage metrics, as well as predictions of future resource consumption.
+The **OpenNebula Distributed Resource Scheduler (DRS)** optimizes resource allocation and prevents resource contention within a single OpenNebula :ref:`cluster <cluster_guide>`. It integrates with OpenNebula’s built-in monitoring and forecasting systems, considering real-time Virtual Machine (VM) and Host usage metrics as well as predictions of future resource consumption.
 
 OpenNebula DRS offers flexible automation levels, allowing recommendations to be generated and applied either automatically or manually. Administrators can review and execute migration suggestions through the OpenNebula Sunstone GUI.
 
@@ -14,13 +14,15 @@ Overview
 OpenNebula DRS employs an integer linear programming (ILP) solver to optimize cluster workload distribution. Key features include:
 
 - **Cluster Load Balancing**: Distributes VM workloads across hosts to balance resource usage, reducing contention and improving performance.
-- **Predictive DRS**: Uses forecasted resource utilization to provide proactive migration recommendations.
+- **Predictive DRS**: Uses resource usage forecasts to provide proactive migration recommendations.
 - **Migration Recommendations**: Generates migration suggestions, allowing administrators to manually approve or automate actions.
 
 Configuration and Usage
 ================================================================================
 
-To enable OneDRS, navigate to the **Cluster Tab** in Sunstone and enable OneDRS, or alternatively set the ``ONE_DRS`` configuration attribute in the Cluster template. The configuration of OneDRS for the cluster requires setting the following options:
+To enable OneDRS: In Sunstone, select the **Cluster** tab, then enable **OneDRS**. Alternatively, in the Cluster template set the ``ONE_DRS`` configuration attribute.
+
+Configuring OneDRS for the cluster requires setting the following options:
 
 - **Policies**: Defines how workloads are distributed across hosts.
 - **Usage Metrics and Predictions**: Specifies which resource metrics (CPU, Memory, Network, Disk) to consider for balancing.
@@ -29,7 +31,7 @@ To enable OneDRS, navigate to the **Cluster Tab** in Sunstone and enable OneDRS,
 Policy Configuration
 --------------------------------------------------------------------------------
 
-OpenNebula DRS migrates VMs according to the defined policy:
+OneNebula DRS migrates VMs according to the defined policy:
 
 - **Packing**: Minimizes the number of active hosts to save energy or prepare for maintenance.
 - **Load Balancing**: Distributes VMs across available hosts to prevent resource contention.
@@ -45,16 +47,16 @@ The load balancing goal can combine multiple performance indicators:
 - **Disk I/O**: Consideration of read/write operations.
 - **Network Traffic**: Optimization based on network throughput.
 
-For example, you can balance CPU and disk usage equally, setting CPU and disk associated weights to 50% each.
+For example, you can balance CPU and disk usage equally, setting CPU- and disk-associated weights to 50% each.
 
 Predictive DRS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-OneDRS allows balancing based on monitored or predicted values. A **prediction weight** between `0` and `1` determines the influence of forecasts:
+OneDRS allows balancing based on monitored or predicted values. A **prediction weight** between ``0`` and ``1`` determines the influence of forecasts:
 
-- `0`: Only monitored values are used.
-- `1`: Only forecasted values are used.
-- Between `0` and `1` a linear combination of both is used.
+- ``0``: Only monitored values are used.
+- ``1``: Only forecasted values are used.
+- Between ``0`` and ``1`` a linear combination of both is used.
 
 By default, DRS uses only monitored values.
 
@@ -62,12 +64,12 @@ Migration Threshold Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Since migrations add overhead, administrators can set a **migration threshold** to limit the number of migrations per optimization cycle. You need to balance this setting: an aggressive threshold may negatively impact performance, while a conservative approach could overlook opportunities for improving the performance of the cluster.
 
-By default, the number of migrations is not limited, that is the migration threshold is `-1`.
+By default, the number of migrations is not limited (i.e. the migration threshold is ``-1``).
 
 Automation Levels
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Administrators can choose different automation levels:
+Administrators can choose between different automation levels:
 
 - **Manual**: Recommendations are displayed, but migrations must be manually approved.
 - **Partial**: Migrations are periodically generated and require approval before execution.
@@ -96,7 +98,7 @@ When using OneDRS for placement, the following differences from workload optimiz
 OneDRS Configuration File
 ================================================================================
 
-The main DRS configuration file is ``/etc/one/schedulers/one_drs.conf``. This file defines default behavior, which can be overridden per cluster.The following options can be defined:
+The main DRS configuration file is ``/etc/one/schedulers/one_drs.conf``. This file defines default behavior, which can be overridden per cluster. The following options can be defined:
 
 - ``DEFAULT_SCHED``: Defines the ILP solver used.
 - ``PLACE``: Configures initial VM placement policies.
@@ -116,7 +118,7 @@ OneDRS uses the **PuLP** library for ILP solvers, supporting:
 
 Configuration:
 
-- ``SOLVER``: Defines the solver (e.g., ``CBC``, ``GLPK``, ``Gurobi``).
+- ``SOLVER``: Defines the solver (e.g. ``CBC``, ``GLPK``, ``Gurobi``).
 - ``SOLVER_PATH``: Specifies the path to the solver binary.
 
 Scheduling Policies

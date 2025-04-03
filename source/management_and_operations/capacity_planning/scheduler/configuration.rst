@@ -4,16 +4,16 @@
 Scheduler Configuration
 ================================================================================
 
-The OpenNebula scheduler is a configurable component that determines how Virtual Machines (VMs) are allocated and migrated across the infrastructure. This section describes the relevant configuration parameters found in ``oned.conf`` that control the scheduler behavior.
+The OpenNebula scheduler is a configurable component that determines how Virtual Machines (VMs) are allocated and migrated across the infrastructure. This section describes the relevant configuration parameters found in ``oned.conf`` that control the scheduler's behavior.
 
 Scheduler Driver Configuration
 --------------------------------------------------------------------------------
 The ``SCHED_MAD`` parameter specifies the scheduler driver responsible for managing scheduling operations. The configuration includes:
 
-- **EXECUTABLE**: The path to the scheduler driver executable. This can be either an absolute path or a relative path to ``/usr/lib/one/mads/``.
-- **ARGUMENTS**: A set of arguments passed to the scheduler driver:
+- ``EXECUTABLE``: The path to the scheduler driver executable. This can be either an absolute path or a path relative to ``/usr/lib/one/mads/``.
+- ``ARGUMENTS``: A set of arguments passed to the scheduler driver:
 
-  - ``-t``: Number of threads, i.e., the number of concurrent scheduling operations.
+  - ``-t``: Number of threads, i.e. the number of concurrent scheduling operations.
   - ``-p``: Scheduler used for initial VM placement:
 
     - ``rank``: The default OpenNebula matchmaking algorithm.
@@ -60,7 +60,7 @@ Example configuration:
 
 Action Limits
 --------------------------------------------------------------------------------
-The scheduler limits the number of deploy and migration actions that can be performed simultaneously on a given host or cluster to prevent resource overload.
+To prevent resource overload, the scheduler limits the number of deploy and migration actions that can be performed simultaneously on a given host or cluster.
 
 - ``MAX_ACTIONS_PER_HOST``: Maximum number of scheduled actions per host.
 - ``MAX_ACTIONS_PER_CLUSTER``: Maximum number of scheduled actions per cluster.
@@ -86,6 +86,7 @@ Live and Cold Migrations
 --------------------------------------------------------------------------------
 - ``LIVE_RESCHEDS``: Defines whether VM rescheduling should use live migrations (``1``) or cold migrations (``0``).
 - ``COLD_MIGRATE_MODE``: Specifies the type of cold migration:
+
   - ``0`` = Save (default)
   - ``1`` = Power off
   - ``2`` = Hard power off

@@ -4,30 +4,30 @@
 Rank Scheduler
 ================================================================================
 
-The OpenNebula Rank Scheduler is responsible for **planning of the pending Virtual Machines on available hypervisor Nodes**. It's a dedicated daemon installed alongside the OpenNebula Daemon (``oned``), but can be deployed independently on a different machine. The Scheduler is distributed as an operating system package ``opennebula`` with the system service ``opennebula-scheduler``.
+The OpenNebula Rank Scheduler is responsible for **allocating pending Virtual Machines to available hypervisor Nodes**. It's a dedicated daemon installed alongside the OpenNebula Daemon (``oned``), but can be deployed independently on a different machine. The Scheduler is distributed as part of the operating system package ``opennebula`` with the system service ``opennebula-scheduler``.
 
 .. _scheduler_rank_matchmaking:
 
 Overview
 ================================================================================
 
-The Rank Scheduler implements a **match-making** algorithm for VM allocation. The goal of this policy is to prioritize those resources more suitable for the VM.
+The Rank Scheduler implements a **match-making** algorithm for VM allocation. The goal of this policy is to prioritize the resources that are more suitable for the VM.
 
 The match-making algorithm works as follows:
 
-* Each disk of a running VM consumes storage from an Image Datastore. The VMs that require more storage than it is currently available are filtered out and will remain in the ``pending`` state.
-* The hosts that do not meet the VM requirements (see the :ref:`SCHED_REQUIREMENTS attribute <template_placement_section>`) or do not have enough resources (available CPU and memory) to run the VM are filtered out (see below for more information).
-* The same happens for System Datastores: the ones that do not meet the DS requirements (see the :ref:`SCHED_DS_REQUIREMENTS attribute <template>`) or do not have enough free storage are filtered out.
+* Each disk of a running VM uses storage from an Image Datastore. VMs that require more storage than is currently available are filtered out, and will remain in the ``pending`` state.
+* Hosts that do not meet VM requirements (see the :ref:`SCHED_REQUIREMENTS attribute <template_placement_section>`) or do not have enough resources (available CPU and memory) to run the VM are filtered out (see below for more information).
+* The same happens for System Datastores: those that do not meet the DS requirements (see the :ref:`SCHED_DS_REQUIREMENTS attribute <template>`) or do not have enough free storage are filtered out.
 * Finally, if the VM uses automatic network selection, the Virtual Networks that do not meet the NIC requirements (see the :ref:`SCHED_REQUIREMENTS attribute for NICs <template>`) or do not have enough free leases are filtered out.
 * The :ref:`SCHED_RANK and SCHED_DS_RANK expressions <template_placement_section>` are evaluated upon the Host and Datastore list using the information gathered by the monitor drivers. Also, the :ref:`NIC/SCHED_RANK expressions <template_network_section>` are evaluated upon the Network list using the information in the Virtual Network template. Any variable reported by the monitor driver (or manually set in the Host, Datastore, or Network template) can be included in the rank expressions.
-* The resources with a higher rank are used first to allocate VMs.
+* Resources with a higher rank are used first to allocate VMs.
 
-The Scheduling algorithm easily allows us to implement several placement heuristics (see below) depending on the selected ``RANK`` expressions.
+The Scheduling algorithm allows us to easily implement several placement heuristics (see below) depending on the selected ``RANK`` expressions.
 
-The policy used to place a VM can be configured in two places:
+You can define the policy to place a VM in one of two places:
 
-* Globally, for all the VMs in the configuration file ``/etc/one/schedulers/rank.conf`` of the scheduler.
-* For each VM, as defined by the general ``SCHED_RANK`` and ``SCHED_DS_RANK`` and NIC-specific ``SCHED_RANK`` in the VM template.
+* Globally, for all VMs: in the configuration file ``/etc/one/schedulers/rank.conf`` for the scheduler.
+* For each VM: as defined by the general ``SCHED_RANK`` and ``SCHED_DS_RANK``, and the NIC-specific ``SCHED_RANK`` in the VM template.
 
 .. _scheduler_rank_configuration:
 
@@ -37,15 +37,15 @@ Configuration
 The Scheduler configuration file is ``/etc/one/schedulers/rank.conf`` on the Front-end, and can be customized with the parameters listed in the table below.
 
 * ``MAX_HOST``: Maximum number of Virtual Machines dispatched to a given host in each scheduling action (Default: 1)
-* ``MEMORY_SYSTEM_DS_SCALE``: This factor scales the VM usage of the system DS with the memory size. This factor can be use to make the scheduler consider the overhead of checkpoint files (*system_ds_usage = system_ds_usage + memory_system_ds_scale * memory*).
-* ``DIFFERENT_VNETS``: When set (``YES``) the NICs of a VM will be forced to be in different Virtual Networks.
+* ``MEMORY_SYSTEM_DS_SCALE``: This factor scales the VM’s usage of the system DS according to memory size. This factor can be used to make the scheduler consider the overhead caused by checkpoint files (*system_ds_usage = system_ds_usage + memory_system_ds_scale * memory*).
+* ``DIFFERENT_VNETS``: When set (``YES``) the NICs of a VM will be assigned to different Virtual Networks.
 
 The default scheduling policies for hosts, datastores and virtual networks are defined as follows:
 
 * ``DEFAULT_SCHED``: Definition of the default scheduling algorithm.
 
-   * ``RANK``: Arithmetic expression to rank suitable **hosts** based on their attributes.
-   * ``POLICY``: A predefined policy, it can be set to:
+   * ``RANK``: Arithmetic expression to rank suitable *hosts* based on their attributes.
+   * ``POLICY``: A predefined policy, can be set to:
 
 +--------+--------------------------------------------------------------------------------------------------------------------------------------------+
 | Policy |                                                 Description                                                                                |
@@ -61,10 +61,10 @@ The default scheduling policies for hosts, datastores and virtual networks are d
 |      4 | :ref:`Fixed <sched_conf_fixed>`: Hosts will be ranked according to the PRIORITY attribute found in the Host or Cluster template            |
 +--------+--------------------------------------------------------------------------------------------------------------------------------------------+
 
-* ``DEFAULT_DS_SCHED``: Definition of the default storage scheduling algorithm. **IMPORTANT:** storage policies works only for shared datastores.
+* ``DEFAULT_DS_SCHED``: Definition of the default storage scheduling algorithm. **IMPORTANT:** storage policies work only for shared datastores.
 
   * ``RANK``: Arithmetic expression to rank suitable **datastores** based on their attributes.
-  * ``POLICY``: A predefined policy, it can be set to:
+  * ``POLICY``: A predefined policy, can be set to:
 
 +--------+--------------------------------------------------------------------------------------------------------------------------------------------+
 | Policy |                                               Description                                                                                  |
@@ -81,7 +81,7 @@ The default scheduling policies for hosts, datastores and virtual networks are d
 * ``DEFAULT_NIC_SCHED``: Definition of the default virtual network scheduling algorithm.
 
   * ``RANK``: Arithmetic expression to rank suitable **networks** based on their attributes.
-  * ``POLICY``: A predefined policy, it can be set to:
+  * ``POLICY``: A predefined policy, can be set to:
 
 +--------+----------------------------------------------------------------------------------------------------------+
 | Policy |                                               Description                                                |
@@ -101,10 +101,10 @@ The default scheduling policies for hosts, datastores and virtual networks are d
    * ``PROXY``, if needed to contact the external scheduler
    * ``TIMEOUT``, how long to wait for a response
 
-* ``VM_ATTRIBUTE``: Attributes serialized to External Scheduler, the format is 'XPATH<:NAME>' where:
+* ``VM_ATTRIBUTE``: Attributes serialized to External Scheduler. The format is ``XPATH:<NAME>`` where:
 
-    * XPATH, is the xpath of the attribute
-    * NAME, (optional) is the name of the attribute used in the JSON doc sent to the external scheduler, if not set the original name will be used.
+    * ``XPATH`` is the xpath of the attribute
+    * ``NAME`` (optional) is the name of the attribute used in the JSON doc sent to the external scheduler (if not set, the original name will be used).
     * Examples:
 
         - ``VM_ATTRIBUTE = "/VM/TEMPLATE/CPU"``
@@ -113,14 +113,14 @@ The default scheduling policies for hosts, datastores and virtual networks are d
 
 * ``LOG``: Configuration for the logging system.
 
-  * ``SYSTEM``: Defines logging system. Use ``file`` to log in the ``sched.log`` file, ``syslog`` to use syslog, ``std`` to use default log stream (stderr).
+  * ``SYSTEM``: Defines the logging system. Use ``file`` to log to the ``sched.log`` file, ``syslog`` to use syslog, ``std`` to use the default log stream (stderr).
   * ``DEBUG_LEVEL``: Logging level. Use ``0`` for ERROR, ``1`` for WARNING, ``2`` for INFO, ``3`` for DEBUG, ``4`` for DDEBUG, ``5`` for DDDEBUG.
 
 The optimal values of the scheduler parameters depend on the hypervisor, storage subsystem, and a number of physical hosts. The values can be derived by finding out the max. number of VMs that can be started in your setup without getting hypervisor-related errors.
 
 User Policies
 --------------------------------------------------------------------------------
-VMs are dispatched to hosts in a FIFO fashion. You can alter this behavior by giving each VM (or the base template) a priority. Just set the attribute ``USER_PRIORITY`` to sort the VMs based on this attribute and so alter the dispatch order. The ``USER_PRIORITY`` can be set for example in the VM templates for a user group if you want to prioritize those templates. Note that this priority is also used for rescheduling.
+VMs are dispatched to hosts in a FIFO fashion. You can alter this behavior by giving each VM (or the base template) a priority. Just set the attribute ``USER_PRIORITY`` to sort the VMs based on this attribute and so alter the dispatch order. For example, the ``USER_PRIORITY`` can be set in the VM templates for a specific user group if you want to prioritize the templates in that group. Note that this priority is also used for rescheduling.
 
 
 Pre-defined Placement Policies
@@ -173,8 +173,8 @@ Fixed Policy
 --------------------------------------------------------------------------------
 
 * **Target**: Sort the hosts manually
-* **Heuristic**: Use the PRIORITY attribute
-* **Implementation**: Use those nodes with more PRIORITY first
+* **Heuristic**: Use the ``PRIORITY`` attribute
+* **Implementation**: Use those nodes with more ``PRIORITY`` first
 
 .. code::
 
@@ -219,8 +219,8 @@ Fixed Policy
 --------------------------------------------------------------------------------
 
 * **Target**: Sort the datastores manually
-* **Heuristic**: Use the PRIORITY attribute
-* **Implementation**: Use those datastores with more PRIORITY first
+* **Heuristic**: Use the ``PRIORITY`` attribute
+* **Implementation**: Use those datastores with more ``PRIORITY`` first
 
 .. code::
 
@@ -229,5 +229,5 @@ Fixed Policy
 Logging
 ================================================================================
 
-Rank scheduler **logs** are located in ``/var/log/one/rank_sched.log``. This file is truncated in each scheduler invocation.
+The Rank Scheduler **logs** are located in ``/var/log/one/rank_sched.log``. This file is truncated on each scheduler invocation.
 
