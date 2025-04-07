@@ -25,7 +25,7 @@ Follow these simple steps to install the OpenNebula software:
 
 .. note::
 
-    scons can parallelize the build with the `-j NUM_THREADS` parameter. For instance, to compile the with 4 parallel processes execute
+    scons can parallelize the build with the `-j NUM_THREADS` parameter. For instance, to compile the with 4 parallel processes execute:
 
     .. code::
 
@@ -144,29 +144,6 @@ The packages do a ``system-wide`` installation. To create a similar environment,
     [ lots of compiling information ]
     scons: done building targets.
     oneadmin@frontend:~/opennebula-x.y.z $> sudo ./install.sh -u oneadmin -g oneadmin
-
-.. warning::
-
-   An error as below might occur during building process:
-    .. prompt:: bash # auto
-
-        # scons -j2 mysql=yes syslog=yes
-        /usr/bin/ld: src/common/libnebula_common.a(HttpRequest.o): undefined reference to symbol 'curl_easy_cleanup'
-        /usr/bin/ld: /usr/lib64/libcurl.so.4: error adding symbols: DSO missing from command line
-        collect2: error: ld returned 1 exit status
-        scons: *** [src/scheduler/src/sched/mm_sched] Error 1
-        scons: building terminated because of errors.
-
-    In that case one needs to patch ``src/scheduler/src/sched/SConstruct`` file:
-
-    .. prompt:: bash # auto
-
-       # diff one/src/scheduler/src/sched/SConstruct one-orig/src/scheduler/src/sched/SConstruct
-       48c48,49
-       <     'xml2'
-       ---
-       >     'xml2',
-       >     'curl'
 
 Ruby Dependencies
 ================================================================================

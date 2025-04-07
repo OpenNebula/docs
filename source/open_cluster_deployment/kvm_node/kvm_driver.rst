@@ -481,10 +481,10 @@ Tuning & Extending
 
 .. _kvm_multiple_actions:
 
-Multiple Actions per Host
+Multiple Actions per Host or Cluster
 --------------------------------------------------------------------------------
 
-By default the VMM driver is configured to allow more than one action to be executed per Host. Make sure the parameter ``-p`` is added to the driver executable. This is done in ``/etc/one/oned.conf`` in the VM_MAD configuration section:
+By default the VMM driver is configured to allow more than one action to be executed per Host. Make sure the parameter ``-p`` is added to the driver executable. This is done in ``/etc/one/oned.conf``, in the ``VM_MAD`` configuration section:
 
 .. code::
 
@@ -495,23 +495,27 @@ By default the VMM driver is configured to allow more than one action to be exec
         DEFAULT    = "vmm_exec/vmm_exec_kvm.conf",
         TYPE       = "kvm" ]
 
-Restart the main OpenNebula service if changes were made to the mentioned file:
+Additionally, also in ``/etc/one/oned.conf``, increase the value of the ``MAX_ACTIONS_PER_HOST`` (default = ``1``), for example:
+
+.. prompt:: bash $ auto
+
+  MAX_ACTIONS_PER_HOST = 10
+
+To increase the maximum number of allowed actions per cluster, increase the value of the ``MAX_ACTIONS_PER_CLUSTER`` parameter (default = ``30``).
+
+After changing ``/etc/one/oned.conf``, restart the main OpenNebula service:
 
 .. prompt:: bash $ auto
 
     $ sudo systemctl restart opennebula
 
-The scheduler configuration should be changed to let it deploy more than one VM per Host. The file is located at ``/etc/one/sched.conf`` and the value to change is ``MAX_HOST`` For example, to let the scheduler submit 10 VMs per Host use this line:
+Additionally, if you are using the Rank Scheduler, you will need to change the configuration to let the scheduler deploy more than one VM per Host. In the file ``/etc/one/schedulers/rank.conf``, change the value of the ``MAX_HOST`` parameter. For example, to let the scheduler submit 10 VMs per Host:
 
 .. code::
 
     MAX_HOST = 10
 
-Restart the scheduler service for this change to take effect:
-
-.. prompt:: bash $ auto
-
-    $ sudo systemctl restart opennebula-scheduler
+Changes in ``rank.conf`` do not require a restart.
 
 .. _kvmg_files_and_parameters:
 
