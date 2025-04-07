@@ -31,7 +31,7 @@ Long-Term Forecast
 
 **Purpose**: Supports capacity planning, hardware provisioning, and resource allocation strategies.
 
-Long-term forecasts are accessible via CLI and Sunstone. The "Monitoring" tab in Sunstone displays predicted trends alongside real-time usage data, aiding administrators in effective planning.
+Long-term forecasts are accessible via the CLI and Sunstone. In Sunstone, the **Monitoring** tab displays predicted trends alongside real-time usage data, aiding administrators in effective planning.
 
 [INSERT SUNSTONE IMAGE HERE]
 
@@ -48,7 +48,7 @@ Short-Term Forecast
 
 Short-term forecasts power the Predictive DRS, optimizing cluster load distribution. To enable predictive scheduling, refer to :ref:`Distributed Resource Scheduling <scheduler_drs>`.
 
-Sunstone’s "Monitoring" tab also provides short-term forecast data.
+Sunstone’s **Monitoring** tab also provides short-term forecast data.
 
 [INSERT SUNSTONE IMAGE HERE]
 
@@ -126,7 +126,7 @@ To optimize storage:
 - Monitor ``/var/tmp/one_db/`` usage.
 - Tailor settings to workload cycles (daily, weekly, monthly).
 
-Changes take effect immediately without requiring service restarts.
+Changes take effect immediately, without requiring service restarts.
 
 Usage Tips
 --------------------------------------------------------------------------------

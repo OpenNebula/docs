@@ -45,7 +45,7 @@ Alerts Rules
 
 We provide some pre-defined alert rules that cover the most common use cases for an OpenNebula cloud. These rules are not intended to use as-is, but as a starting point to define the alert situations for your specific use case.  Please `review the Prometheus documentation <https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/>`_ to adapt the provided alert rules.
 
-Alert Rules can be found in ``/etc/one/prometheus/rules.yml``
+Alert Rules can be found in ``/etc/one/prometheus/rules.yml``.
 
 Group: AllInstances
 --------------------------------------------------------------------------------

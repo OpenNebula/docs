@@ -8,13 +8,13 @@ Monitoring and Alerting
 
 This chapter provides documentation on how different resources are monitored in OpenNebula. There are two primary monitoring mechanisms:
 
-- **OpenNebula Built-in Monitoring**: This system provides essential information about hosts and virtual machines, which is utilized for the lifecycle management of each resource.
+- **OpenNebula Built-in Monitoring**: This system provides essential information about hosts and virtual machines, which is utilized for managing the life cycle of each resource.
 - **Integration with Prometheus**: OpenNebula can be integrated with the `Prometheus monitoring and alerting toolkit <http://prometheus.io>`_ to enable seamless data center monitoring.
 
 How to Use This Chapter
 ================================================================================
 
-Before proceeding with this chapter, ensure you have already installed your :ref:`Frontend <frontend_installation>`, configured :ref:`KVM Hosts <kvm_node>`, and set up an OpenNebula cloud with at least one virtualization node.
+Before proceeding with this chapter, ensure you have already installed your :ref:`Front-end <frontend_installation>`, configured :ref:`KVM Hosts <kvm_node>`, and set up an OpenNebula cloud with at least one virtualization node.
 
 This chapter is organized as follows:
 

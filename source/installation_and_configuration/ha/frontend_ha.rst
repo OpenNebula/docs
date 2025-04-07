@@ -5,7 +5,7 @@
 OpenNebula Front-end HA
 ================================================================================
 
-OpenNebula provides a built-in mechanism to ensure high availability (HA) of the core Front-end services - ``opennebula`` (i.e., daemon ``oned``) and ``opennebula-scheduler`` (i.e., daemon ``mm_sched``). Services need to be deployed and configured across several hosts and a distributed consensus protocol to provide fault-tolerance and state consistency across them. Such deployment is resilient to the failure of at least a single host (it depends on the total number of hosts).
+OpenNebula provides a built-in mechanism to ensure high availability (HA) of the core Front-end daemon, ``oned``. Services need to be deployed and configured across several hosts, and a distributed consensus protocol enforced to provide fault-tolerance and state consistency across them. Such deployment is resilient to the failure of at least a single host, depending on the total number of hosts.
 
 In this section, you learn the basics of how to bootstrap a distributed highly available OpenNebula Front-end.
 
@@ -414,7 +414,6 @@ Individual files:
 - ``/etc/one/monitord.conf``
 - ``/etc/one/oneflow-server.conf``
 - ``/etc/one/onegate-server.conf``
-- ``/etc/one/sched.conf``
 - ``/etc/one/vcenter_driver.default``
 
 

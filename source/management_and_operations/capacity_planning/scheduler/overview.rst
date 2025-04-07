@@ -13,8 +13,8 @@ The OpenNebula resource scheduler framework is a modular system that applies dif
 This scheduling mechanism is used for the following cloud operations:
 
 - **Initial VM placement** – Ensures efficient resource allocation based on capacity, compatibility, affinity rules, and placement constraints.
-- **VM re-scheduling** - Administrators or high level tools can request the re-schedule of a single VM.
-- **Cluster-wide load balancing** – Dynamically generates optimization plans to distribute workloads evenly across hypervisor nodes, according to custom-defined policies.
+- **VM re-scheduling** - Administrators or high-level tools can request the re-schedule of a single VM.
+- **Cluster-wide load balancing** – Dynamically generates optimization plans to distribute workloads evenly across hypervisor nodes, following custom-defined policies.
 
 Resource Requirements
 ================================================================================
@@ -30,7 +30,7 @@ OpenNebula prevents incompatible resources from being used to run a VM. When a V
     [...]
     AUTOMATIC_REQUIREMENTS="CLUSTER_ID = 100"
 
-If resources from different Clusters are used together, the VM creation will fail with an error message like:
+If resources from different Clusters are used together, VM creation will fail with an error message like:
 
 .. prompt:: bash $ auto
 
@@ -46,9 +46,9 @@ These automatic requirements are combined with any additional requirements speci
 Host Requirements
 --------------------------------------------------------------------------------
 
-VM allocation requirements can be specified using the ``SCHED_REQUIREMENTS`` attribute in the Virtual Machine Template. This attribute defines a boolean expression that determines whether a Host is suitable for deployment (i.e., the expression evaluates to `true`).
+You can specify VM allocation requirements with the ``SCHED_REQUIREMENTS`` attribute in the Virtual Machine Template. This attribute defines a boolean expression that determines whether a Host is suitable for deployment (i.e., the expression evaluates to ``true``).
 
-The ``SCHED_REQUIREMENTS`` expression can reference attributes from both the Host and its associated Cluster templates. Host attributes are regularly updated by monitoring probes running on the nodes. Administrators can add custom attributes by either :ref:`creating a probe in the host <devel-im>` or manually updating Host information using:
+The ``SCHED_REQUIREMENTS`` expression can reference attributes from both the Host and its associated Cluster templates. Host attributes are regularly updated by monitoring probes that run on the nodes. Administrators can add custom attributes by either :ref:`creating a probe in the host <devel-im>` or manually updating Host information using:
 
 .. prompt:: bash
 
@@ -89,7 +89,7 @@ Datastore Requirements
 
 To optimize I/O performance across multiple disks, LUNs, or storage backends, OpenNebula allows multiple System Datastores per Cluster. Scheduling algorithms factor in VM disk requirements to select the best execution host based on storage capacity and performance metrics.
 
-Administrators can control which Datastores a VM uses via ``SCHED_DS_REQUIREMENTS``, a boolean expression that evaluates to `true` for valid System Datastores.
+Administrators can control which Datastores a VM uses via ``SCHED_DS_REQUIREMENTS``, a boolean expression that evaluates to ``true`` for valid System Datastores.
 
 For example, to prioritize Datastores labeled as *Production*:
 
@@ -97,7 +97,7 @@ For example, to prioritize Datastores labeled as *Production*:
 
    SCHED_DS_REQUIREMENTS="MODE=Production"
 
-.. note:: Administrators must manually assign `MODE` labels to Datastores.
+.. note:: Administrators must manually assign ``MODE`` labels to Datastores.
 
 Virtual Networks Requirements
 --------------------------------------------------------------------------------
@@ -113,7 +113,7 @@ For example, a VM template may contain:
 
 The first NIC will attach to a *public* network, while the second will connect to a *private* network.
 
-.. note:: Administrators must manually label Virtual Networks with `TRAFFIC_TYPE`.
+.. note:: Administrators must manually label Virtual Networks with ``TRAFFIC_TYPE``.
 
 Resource Selection
 ================================================================================
@@ -134,9 +134,9 @@ VM Re-scheduling
 When a Virtual Machine is in the ``running`` or ``poweroff`` state, it can be rescheduled to a different host. By issuing the ``onevm resched`` command, the VM is labeled for rescheduling. In the next scheduling interval, the VM will be rescheduled to a different host, if:
 
 * There is a suitable host for the VM.
-* The VM is not already running in it.
+* The VM is not already running on it.
 
-This feature can be used by other components to trigger rescheduling action when certain conditions are met.
+This feature can be used by other components to trigger the rescheduling action when certain conditions are met.
 
 Cluster Workload Optimization
 --------------------------------------------------------------------------------
@@ -156,14 +156,14 @@ The diagram below outlines the OpenNebula Scheduling Framework, showing key comp
 
 Main components:
 
-1. **:ref:`scheduler_manager`** – Integrated with OpenNebula’s core daemon (``oned``), requesting placement and optimization plans.
-2. **:ref:`scheduler_plan_manager`** – Executes placement and optimization plans by deploying or migrating VMs.
+1. **Scheduler Manager** – Integrated with OpenNebula’s core daemon (``oned``), requesting placement and optimization plans.
+2. **Scheduler Plan Manager** – Executes placement and optimization plans by deploying or migrating VMs.
 3. **Schedulers** – External components generating placement and optimization plans using different policies.
 
 OpenNebula includes two built-in schedulers:
 
-- **:ref:`Rank Scheduler <scheduler_rank>`** – Default option for initial VM placement.
-- **:ref:`OpenNebula Distributed Resource Scheduler <scheduler_drs>`** – It can be used for the initial VM placement, and cluster workload optimization.
+- :ref:`Rank Scheduler <scheduler_rank>` – Default option for initial VM placement.
+- :ref:`OpenNebula Distributed Resource Scheduler <scheduler_drs>` – It can be used for the initial VM placement, and cluster workload optimization.
 
 .. |scheduler_architecture| image:: /images/scheduler_architecture.png
 

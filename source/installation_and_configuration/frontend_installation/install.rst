@@ -233,8 +233,6 @@ The complete list of operating system services provided by OpenNebula:
 +=======================================+========================================================================+===========================+
 | **opennebula**                        | Main OpenNebula Daemon (oned), XML-RPC API endpoint                    |                           |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
-| **opennebula-scheduler**              | Scheduler                                                              | opennebula                |
-+---------------------------------------+------------------------------------------------------------------------+---------------------------+
 | **opennebula-hem**                    | Hook Execution Service                                                 | opennebula                |
 +---------------------------------------+------------------------------------------------------------------------+---------------------------+
 | **opennebula-fireedge**               | Next-generation GUI server :ref:`FireEdge <fireedge_setup>`            |                           |
@@ -305,7 +303,7 @@ If you get an error message then the OpenNebula Daemon could not be started prop
     $ oneuser show
     Failed to open TCP connection to localhost:2633 (Connection refused - connect(2) for "localhost" port 2633)
 
-You can investigate the OpenNebula logs in ``/var/log/one``, check files ``/var/log/one/oned.log`` (main OpenNebula Daemon log) and ``/var/log/one/sched.log`` (OpenNebula Scheduler log). Check for any error messages marked with ``[E]``.
+To check for errors, you can search in the main OpenNebula Daemon log file, ``/var/log/one/oned.log``. Check for any error messages marked with ``[E]``.
 
 .. _verify_frontend_section_sunstone:
 
@@ -332,7 +330,7 @@ The following table lists few significant directories on your OpenNebula Front-e
 +=====================================+======================================================================================+
 | ``/etc/one/``                       | **Configuration files**                                                              |
 +-------------------------------------+--------------------------------------------------------------------------------------+
-| ``/var/log/one/``                   | Log files, e.g. ``oned.log``, ``sched.log``, ``fireedge.log`` and ``<vmid>.log``     |
+| ``/var/log/one/``                   | Log files, e.g. ``oned.log``, ``fireedge.log`` and ``<vmid>.log``                    |
 +-------------------------------------+--------------------------------------------------------------------------------------+
 | ``/var/lib/one/``                   | ``oneadmin`` home directory                                                          |
 +-------------------------------------+--------------------------------------------------------------------------------------+
@@ -415,28 +413,27 @@ Use following command to **stop all** OpenNebula services:
 
 .. prompt:: bash # auto
 
-    # systemctl stop opennebula opennebula-scheduler opennebula-hem \
-        opennebula-fireedge opennebula-gate opennebula-flow \
-        opennebula-guacd opennebula-novnc opennebula-showback.timer \
+    # systemctl stop opennebula opennebula-hem opennebula-fireedge \
+        opennebula-gate opennebula-flow opennebula-guacd \
+        opennebula-novnc opennebula-showback.timer \
         opennebula-ssh-agent opennebula-ssh-socks-cleaner.timer
 
 Use the following command to **restart all** already running OpenNebula services:
 
 .. prompt:: bash # auto
 
-    # systemctl try-restart opennebula opennebula-scheduler opennebula-hem \
-        opennebula-fireedge opennebula-gate opennebula-flow \
-        opennebula-guacd opennebula-novnc opennebula-ssh-agent
+    # systemctl try-restart opennebula-hem opennebula-fireedge \
+        opennebula-gate opennebula-flow opennebula-guacd \
+        opennebula-novnc opennebula-ssh-agent
 
 Learn more about `Managing Services with Systemd <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/managing-services-with-systemd_configuring-basic-system-settings#managing-system-services_managing-services-with-systemd>`__.
 
 In production environments the services should be stopped in a specific order and with extra manual safety checks:
 
-1. Stop **opennebula-scheduler** to stop planning deployment of VMs.
-2. Stop **opennebula-fireedge** to disable GUI access to users.
-3. Stop **openenbula-flow** to disable unattended multi-VM options.
-4. Check and wait until there are no active operations with VMs and images.
-5. Stop **opennebula** and rest services.
+1. Stop **opennebula-fireedge** to disable GUI access to users.
+2. Stop **openenbula-flow** to disable unattended multi-VM options.
+3. Check and wait until there are no active operations with VMs and images.
+4. Stop **opennebula** and rest services.
 
 Step 8. Next steps
 ================================================================================

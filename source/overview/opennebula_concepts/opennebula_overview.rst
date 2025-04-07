@@ -112,7 +112,7 @@ The main components of an OpenNebula installation are listed below.
 
 * **Database**: OpenNebula persists the state of the cloud to a user-selected SQL database. This key component should be monitored and tuned for best performance, following best practices for the particular database product.
 
-* **Scheduler**: The OpenNebula Scheduler is responsible for planning deployment of pending Virtual Machines on available hypervisor nodes. It’s a dedicated daemon (``mm_sched``) installed alongside the OpenNebula Daemon, but can be deployed independently on a different machine.
+* **Scheduler**: The OpenNebula Scheduler framework is a modular system for optimal resource allocation. It is started automatically with the OpenNebula Daemon, and can apply different scheduling algorithms to allocate hosts, storage and virtual networks.
 
 * **Edge Cluster Provision**: This component creates fully functional OpenNebula Clusters on public cloud or edge providers. The Provision module integrates Edge Clusters into your OpenNebula cloud by utilizing these three core technologies: Terraform, Ansible and the OpenNebula Services.
 

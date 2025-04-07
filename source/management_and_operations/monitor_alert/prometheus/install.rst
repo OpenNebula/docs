@@ -138,12 +138,12 @@ This command connects to your cloud as oneadmin to gather the relevant informati
 
 You can adjust scrape intervals or other configuration attributes in this file.
 
-.. note:: You can easily add or remove hosts by copying or deleting the corresponding targets, or simply re-run the script. In that case you'll have a backup in `/etc/one/prometheus/` to recover any additional configurations.
+.. note:: You can easily add or remove hosts by copying or deleting the corresponding targets, or simply re-run the script. In that case you'll have a backup in ``/etc/one/prometheus/`` to recover any additional configurations.
 
 Step 5. Start the Prometheus Service [Front-end]
 ================================================================================
 
-Prometheus service is controlled with a Systemd unit file (`/usr/lib/systemd/system/opennebula-prometheus.service`). We recommend that you take a look to the default options set in that file, and add any flags of interest for your setup (e.g. run `prometheus -h` to get a complete list).
+Prometheus service is controlled with a Systemd unit file (``/usr/lib/systemd/system/opennebula-prometheus.service``). We recommend that you take a look to the default options set in that file, and add any flags of interest for your setup (e.g. run ``prometheus -h`` to get a complete list).
 
 Once you are happy with the options, start and enable prometheus:
 
@@ -216,9 +216,9 @@ Using an Existing Prometheus Installation
 
 If you already have an existing Prometheus installation, you just need to adapt Steps 4, 5 and 6 as follows:
 
-  - You can use `/usr/share/one/prometheus/patch_datasources.rb` as described in Step 4 to copy the scrape configurations into your current Prometheus configuration file.
-  - You just need to enable and start the `opennebula-exporter` as described in Step 5, but not the Prometheus service.
-  - You will be already running the official node exporter, so in Step 6 only enable the `opennebula-libvirt-exporter`
+  - You can use ``/usr/share/one/prometheus/patch_datasources.rb`` as described in Step 4 to copy the scrape configurations into your current Prometheus configuration file.
+  - You just need to enable and start the ``opennebula-exporter`` as described in Step 5, but not the Prometheus service.
+  - You will be already running the official node exporter, so in Step 6 only enable the ``opennebula-libvirt-exporter``
 
 .. _monitor_alert_ha:
 
@@ -259,8 +259,7 @@ Let's assume your existing OpenNebula instance consists of three front-ends and 
    1 kvm-ha-xqhnt-5.test  default    2  20 / 100 (20%)  192M / 1.4G (13%)  on
    0 kvm-ha-xqhnt-4.test  default    1  10 / 100 (10%)   96M / 1.4G (6%)   on
 
-Executing the `/usr/share/one/prometheus/patch_datasources.rb` script on the "first" (192.168.150.1) front-end
-should produce the following prometheus configuration:
+Executing the ``/usr/share/one/prometheus/patch_datasources.rb`` script on the "first" (192.168.150.1) Front-end should produce the following Prometheus configuration:
 
 .. code-block:: yaml
 
@@ -314,8 +313,7 @@ should produce the following prometheus configuration:
        labels:
          one_host_id: '0'
 
-You can spot that all front-ends and all hosts are included in various scrape jobs.
-You can also see configuration for alerting
+You can spot that all Front-ends and all hosts are included in various scrape jobs. You can also see configuration for alerting:
 
 .. code-block:: yaml
 
@@ -327,17 +325,14 @@ You can also see configuration for alerting
          - 192.168.150.3:9093
          - 192.168.150.1:9093
 
-which points to **all** alertmanager instances that are supposed to be configured
-in `HA mode <https://prometheus.io/docs/alerting/latest/alertmanager/#high-availability>`_ as well
-(to deduplicate alert notifications).
+which points to *all* alertmanager instances that are supposed to be configured in `HA mode <https://prometheus.io/docs/alerting/latest/alertmanager/#high-availability>`_ as well (to deduplicate alert notifications).
 
 .. important::
 
-   Services **opennebula-prometheus**, **opennebula-alertmanager**, **opennebula-node-exporter**
-   and **opennebula-exporter** should be configured, enabled and started on **all** front-end machines.
+   Services ``opennebula-prometheus``, ``opennebula-alertmanager``, ``opennebula-node-exporter`` and ``opennebula-exporter`` should be configured, enabled and started on *all* Front-end machines.
 
-To configure each alertmanager as a cluster peer, you need to override (or modify) the `opennebula-alertmanager` systemd service.
-For example on the "second" front-end:
+To configure each alertmanager as a cluster peer, you need to override (or modify) the ``opennebula-alertmanager`` systemd service.
+For example on the "second" Front-end:
 
 .. prompt:: bash # auto
 
@@ -355,5 +350,4 @@ For example on the "second" front-end:
 
 .. note::
 
-   You can create the `opennebula-alertmanager.service.d/override.conf` file yourself
-   or automatically with ``systemctl edit opennebula-alertmanager.service``.
+   You can create the ``opennebula-alertmanager.service.d/override.conf`` file yourself or automatically with ``systemctl edit opennebula-alertmanager.service``.
