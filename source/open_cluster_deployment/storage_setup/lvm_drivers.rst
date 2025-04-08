@@ -4,16 +4,16 @@
 SAN Datastore
 ================================================================================
 
-This storage configuration assumes that Hosts have access to storage devices (LUNs) exported by an Storage Area Network (SAN) server using a suitable protocol like iSCSI or Fiber Channel. The Hosts will interface the devices through the LVM abstraction layer. Virtual Machines run from a LV (logical volume) device instead of plain files. This reduces the overhead of having a filesystem in place and thus it may increase I/O performance.
+This storage configuration assumes that Hosts have access to storage devices (LUNs) exported by an Storage Area Network (SAN) server using a suitable protocol like iSCSI or Fiber Channel. The Hosts will interface the devices through the LVM abstraction layer. Virtual Machines run from an LV (logical volume) device instead of plain files. This reduces the overhead of having a filesystem in place and thus it may increase I/O performance.
 
-Disk images are stored in file format in the Image Datastore and then dumped into a LV when a Virtual Machine is created. The image files are transferred to the Host through the SSH protocol. Additionally, :ref:`LVM Thin <lvm_thin>` can be enabled to support creating thin snapshots of the VM disks.
+Disk images are stored in file format in the Image Datastore and then dumped into an LV when a Virtual Machine is created. The image files are transferred to the Host through the SSH protocol. Additionally, :ref:`LVM Thin <lvm_thin>` can be enabled to support creating thin snapshots of the VM disks.
 
 Front-end Setup
 ================================================================================
 
 The Front-end needs to have access to the Image Datastores by mounting the associated directory in ``/var/lib/one/datastores/<datastore_id>``. You can mount any storage medium in the datastore directory.
 
-The Front-end needs also to have access to the shared LVM either directly (see the configuration requirements below) or through a Host by specifying the ``BRIDGE_LIST`` attribute in the datastore template.
+The Front-end also needs access to the shared LVM, either directly (see the configuration requirements below) or through a Host by specifying the ``BRIDGE_LIST`` attribute in the datastore template.
 
 Hosts Setup
 ================================================================================
@@ -157,7 +157,7 @@ Images are stored as regular files (under the usual path: ``/var/lib/one/datasto
 
 |image0|
 
-.. note:: files are directly dumped from the front-end to the LVs in the Host using SSH protocol.
+.. note:: Files are dumped directly from the Front-end to the LVs in the Host, using the SSH protocol.
 
 This is the recommended driver to be used when a high-end SAN is available. The same LUN can be exported to all the Hosts while Virtual Machines will be able to run directly from the SAN.
 
