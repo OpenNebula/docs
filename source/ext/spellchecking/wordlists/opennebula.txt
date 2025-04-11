@@ -323,6 +323,7 @@ disksnapshotcreate
 disksnapshotdelete
 disksnapshotrename
 disksnapshotrevert
+distro
 dns
 dockerfile
 dockerfiles
@@ -347,6 +348,7 @@ eth
 ethernet
 etime
 ev
+exe
 externalToken
 extraConfig
 extraconfig
@@ -535,6 +537,7 @@ onemarketapp
 oneprovision
 onesecgroup
 oneshowback
+oneswap
 onetemplate
 oneuser
 onevcenter
@@ -561,6 +564,7 @@ overcommitted
 overcommitting
 overprovision
 overriden
+ovf
 ovmf
 ovswitch
 parallelize
@@ -626,6 +630,7 @@ resched
 resetserver
 restic
 resubmission
+rhsrvany
 rke
 rmar
 roleadd
@@ -656,6 +661,7 @@ scsi
 sd
 sdb
 sdc
+sdX
 seSparse
 secgroup
 secgrouppool
@@ -688,6 +694,7 @@ storages
 stunnel
 subcommand
 subcommands
+subdir
 subdirectories
 subfolder
 subfolders
@@ -836,6 +843,7 @@ wr
 writeback
 writethrough
 wss
+Xen
 xfs
 xml
 xmlrpc
