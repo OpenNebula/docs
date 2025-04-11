@@ -7,7 +7,7 @@ OVA Import
 Requirements
 ================================================================================
 
-The import tool will asume that the provided OVA has been exported from a VMware environment, user must make sure that the provided OVA is compatible with VMware environments. Other sources are currently not supported (i.e. Xen or VirtualBox).
+The import tool will assume that the provided OVA has been exported from a VMware environment, user must make sure that the provided OVA is compatible with VMware environments. Other sources are currently not supported (i.e. Xen or VirtualBox).
 
 When converting an OVA you will need enough space both in the ``/tmp`` folder and in the destination DS where the disk images are going to be imported.
 
@@ -136,6 +136,8 @@ Context injection will be performed following these steps:
     Running: virt-customize -q -a /tmp/vm-alma9/conversions/vm-alma9-sda --firstboot-install epel-release --copy-in /var/lib/one/context//one-context-6.10.0-3.el9.noarch.rpm:/tmp --firstboot-install /tmp/one-context-6.10.0-3.el9.noarch.rpm --run-command 'systemctl enable network.service || exit 0'
     Success (42.24s)
     Context will install on first boot, you may need to boot it twice.
+
+.. note:: If context injection does not work after importing, it is also possible to install one-context **before exporting the OVA** from VMware using the packages available in the one-apps repository and uninstalling VMware Tools. In this case it is important to be aware that the one-context service will get rid of any manual network configurations done to the guest OS and the VM won't be able to get the network configuration from VMware anymore.
 
 Additional virt-v2v options
 ================================================================================
