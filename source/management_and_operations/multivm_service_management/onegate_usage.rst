@@ -55,8 +55,6 @@ When this Template is instantiated, OpenNebula will automatically add the ``ONEG
       TARGET="hdb",
       TOKEN="YES" ]
 
-In vCenter this information is available in the extraConfig section of the VM metadata, available in the guest OS through the VMware tools as explained in the :ref:`contextualization guide <vcenter_contextualization>`.
-
 Using the OneGate Client inside the Guest VM
 --------------------------------------------------------------------------------
 

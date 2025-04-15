@@ -376,7 +376,6 @@ There are some non-mandatory attributes:
 For more information on configuring and setting up the Virtual Machine Manager Driver please check the section relevant to you:
 
 * :ref:`KVM Driver <kvmg>`
-* :ref:`vCenter Driver <vcenterg>`
 
 Sample configuration:
 

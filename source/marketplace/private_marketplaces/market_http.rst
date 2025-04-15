@@ -65,8 +65,6 @@ which is created by passing the following command:
     $ onemarket create market.conf
     ID: 100
 
-.. note:: In order to use the :ref:`download <marketapp_download>` functionality, make sure you read the :ref:`Sunstone Advanced Guide <sunstone_advance_marketplace>`.
-
 Tuning & Extending
 ================================================================================
 

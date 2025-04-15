@@ -508,7 +508,7 @@ The following is an example of the previous procedure from the command line:
 Live Resize of Capacity
 --------------------------------------------------------------------------------
 
-If you need to resize the capacity in the RUNNING state you have to set up some extra attributes in the VM template. These attributes **must be set before the VM is started**. These attributes are driver-specific, more info for :ref:`KVM <kvm_live_resize>` and :ref:`vCenter <vcenter_live_resize>`.
+If you need to resize the capacity in the RUNNING state you have to set up some extra attributes in the VM template. These attributes **must be set before the VM is started**. These attributes are driver-specific, more info for :ref:`KVM <kvm_live_resize>`.
 
 .. warning:: Hotplug is only implemented only for KVM and vCenter. Added CPUs will be in offline state after the resize. Enable them with ``echo 1 > /sys/devices/system/cpu/cpu<ID>/online``
 

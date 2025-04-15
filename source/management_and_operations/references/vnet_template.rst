@@ -34,24 +34,19 @@ It defines the **underlying networking infrastructure** that will support the Vi
 |                        | different technologies or require host setups.   |          |                                  | vxlan    |
 |                        |                                                  |          |                                  | ovswitch |
 |                        |                                                  |          |                                  | fw       |
-|                        |                                                  |          |                                  | vcenter  |
 +------------------------+--------------------------------------------------+----------+----------------------------------+----------+
 | ``VLAN_ID``            | Identifier for the VLAN.                         | Integer  | ``YES`` unless                   | 802.1Q   |
 |                        |                                                  |          | ``AUTOMATIC_VLAN_ID`` for 802.1Q | vxlan    |
 |                        |                                                  |          |                                  | ovswitch |
-|                        |                                                  |          |                                  | vcenter  |
 +------------------------+--------------------------------------------------+----------+----------------------------------+----------+
 | ``AUTOMATIC_VLAN_ID``  | If set to YES, OpenNebula will generate a VLAN ID| String   | ``YES`` unless ``VLAN_ID``       | 802.1Q   |
 |                        | automatically if VLAN_ID is not defined.         |          | for 802.1Q                       | vxlan    |
 |                        | Mandatory YES for 802.1Q if VLAN_ID is not       |          |                                  | ovswitch |
-|                        | defined, optional otherwise.                     |          |                                  | vcenter  |
+|                        | defined, optional otherwise.                     |          |                                  |          |
 +------------------------+--------------------------------------------------+----------+----------------------------------+----------+
 | ``PHYDEV``             | Name of the physical network device that will be | String   | ``YES``                          | 802.1Q   |
 |                        | attached to the bridge.                          |          |                                  | vxlan    |
-|                        |                                                  |          | Optional for vCenter             | vcenter  |
 +------------------------+--------------------------------------------------+----------+----------------------------------+----------+
-
-More information about the attributes used by the vCenter network driver are available in the :ref:`vCenter Network Overview <vcenter_network_attributes>` section.
 
 .. important:: The vCenter driver is a legacy component, and no longer receives updates or bug fixes.
 

@@ -17,4 +17,4 @@ Before reading this chapter, you should have already installed and configured yo
 Hypervisor Compatibility
 ================================================================================
 
-Virtual Networks are common to all hypervisors. For details on NSX-Based networks for the legacy vCenter driver, see the :ref:`NSX Networks <nsx_networks>` section.
+Virtual Networks are common to all hypervisors.

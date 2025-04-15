@@ -237,8 +237,6 @@ You can also download an app to a standalone file in your desktop:
 
 .. warning:: This command requires that the `ONE_SUNSTONE` environment variable is set. Read :ref:`here <manage_users_shell>` for more information.
 
-.. warning:: Make sure Sunstone is properly deployed to handle this feature. Read :ref:`here <sunstone_advance_marketplace>` for more information.
-
 
 Additional Commands
 ================================================================================

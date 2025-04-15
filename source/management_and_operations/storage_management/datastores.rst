@@ -138,7 +138,7 @@ Note the differences in this case:
 Basic Configuration
 ================================================================================
 
-Configuring a Datastore usually requires adding some specific attributes that depends on the storage driver and your infrastructure, check the :ref:`Open Cloud Storage Guide <storage>` and :ref:`vCenter Storage Guide <vcenter_ds>` for specific details.
+Configuring a Datastore usually requires adding some specific attributes that depends on the storage driver and your infrastructure, check the :ref:`Open Cloud Storage Guide <storage>` for specific details.
 
 Also, there are a set of common attributes that can be used in any Datastore to tune its behavior. The following table describes each attribute:
 
