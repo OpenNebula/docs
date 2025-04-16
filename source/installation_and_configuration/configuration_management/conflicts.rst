@@ -58,7 +58,9 @@ Each different type of file you can find :ref:`here <cfg_files>` has the followi
 | oned.conf-like          | ``skip``               |
 +-------------------------+------------------------+
 
-These default patching modes can be used in the upgrade process (``onecfg upgrade``) using the parameter ``--patch-safe``.
+Safe patching is enabled by default, allowing the ``onecfg upgrade`` command to run in best effort mode, which prevents failures in non-critical situations.
+
+To enforce strict patching, you can use the ``--patch-strict`` parameter.
 
 Examples
 --------
