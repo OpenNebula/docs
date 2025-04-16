@@ -559,15 +559,16 @@ In this case you can manually instruct the VMs to report ``READY`` to the OneGat
           3 oneadmin oneadmin OneKE 1.29                                                         08/30 12:35:21 RUNNING
 
 
-One or more VMs is Ready, but unreachable
-+++++++++++++++++++++++++++++++++++++++++
+One or more VMs is Ready, but Unreachable
++++++++++++++++++++++++++++++++++++++++++++++
 
-In a similar situation as above when `onevm list`` shows all VMs running, but the service is still in ``DEPLOYING`` state, but the VM is not reachable through SSH (e.g. to run the ``onegate vm update`` command).
+In a similar situation as above when ``onevm list`` shows all VMs running, but the service is still in ``DEPLOYING`` state and the VM is not reachable through SSH (e.g. to run the ``onegate vm update`` command).
 
-In this case, we can try to scale down and up the role of the problematic VM from the Front-end UI:
-   #. Go to Services in the Front-end UI and select the OneKE Service
-   #. In the Roles tab choose the problematic VM's role (e.g. worker)
-   #. Scale the role to 0
-   #. Wait until shutdown of the VM, the scaling and cooldown period of the service finishes
-   #. Scale the role to 1
-   #. Verify if the problem is solved and the ``oneflow list`` reports the ``RUNNING`` state
+In this case, we can try to scale down and up the role of the problematic VM from Sunstone, the Front-end UI:
+
+   #. In Sunstone, go to **Services**, then select the **OneKE** Service.
+   #. In the **Roles** tab, choose the problematic VM's role (e.g. ``worker``).
+   #. Scale the role to ``0``.
+   #. Wait until VM shuts down and the scaling and cooldown period of the service finishes.
+   #. Scale the role to ``1``.
+   #. Verify if the problem is solved and ``oneflow list`` reports the ``RUNNING`` state.
