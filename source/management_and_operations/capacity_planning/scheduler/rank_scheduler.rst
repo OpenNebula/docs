@@ -4,7 +4,7 @@
 Rank Scheduler
 ================================================================================
 
-The OpenNebula Rank Scheduler is responsible for **allocating pending Virtual Machines to available hypervisor Nodes**. It's a dedicated daemon installed alongside the OpenNebula Daemon (``oned``), but can be deployed independently on a different machine. The Scheduler is distributed as part of the operating system package ``opennebula`` with the system service ``opennebula-scheduler``.
+The OpenNebula Rank Scheduler is responsible for **allocating pending Virtual Machines to available hypervisor Nodes**. As part of the OpenNebula Scheduler framework, it is started automatically with the OpenNebula daemon. It’s the default scheduler option for VM placement.
 
 .. _scheduler_rank_matchmaking:
 
