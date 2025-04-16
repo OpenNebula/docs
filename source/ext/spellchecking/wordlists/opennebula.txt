@@ -158,6 +158,7 @@ Unregister
 Untagged
 Uplink
 Utils
+Veeam
 VID
 VMs
 VMware
