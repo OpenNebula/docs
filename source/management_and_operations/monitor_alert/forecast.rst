@@ -131,7 +131,7 @@ Changes take effect immediately, without requiring service restarts.
 Far Predictions and Slots
 --------------------------------------------------------------------------------
 
-Far predictions are more expensive to compute than near predicitons because they analyze more historical data to forecast further into the future. To keep things efficient, the system does not generate far predictions every time the monitoring probe runs.
+Far predictions are more expensive to compute than near predictions because they analyze more historical data to forecast further into the future. To keep things efficient, the system does not generate far predictions every time the monitoring probe runs.
 
 Each entity (host or virtual machine) is assigned a “slot” based on time. When the monitoring probe runs and matches an entity’s slot, a new far prediction is made for that entity. If multiple entities share the same slot, they will all get their far predictions at the same time.
 
