@@ -110,9 +110,9 @@ Example:
 Hotplug Resize VM Capacity
 --------------------------------------------------------------------------------
 
-.. important:: Hotplug implemented only for KVM and vCenter
+.. important:: Hotplug implemented only for KVM
 
-If you need to resize the capacity in ``RUNNING`` state you have to setup some extra attributes in the VM template. These attributes must be set before the VM is started. They are driver-specific, more info for :ref:`KVM <kvm_live_resize>` and :ref:`vCenter <vcenter_live_resize>`.
+If you need to resize the capacity in ``RUNNING`` state you have to setup some extra attributes in the VM template. These attributes must be set before the VM is started. They are driver-specific, more info for :ref:`KVM <kvm_live_resize>`.
 
 .. _template_showback_section:
 
@@ -831,8 +831,6 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 |                                   | (re)contextualization is finished.                                                              |                              |         |
 +-----------------------------------+-------------------------------------------------------------------------------------------------+------------------------------+---------+
 
-.. note::  Limitations apply in vCenter alias for :ref:`attach/detach NIC operations <vcenter_networking_limitations>`.
-
 .. note::   If more than one of the password changing attributes listed above is defined, only the one with highest priority will be applied. The priority is the same as the order of appearance in this table.
 
 The values referred to by ``VARIABLE`` can be defined as:
@@ -1057,13 +1055,6 @@ Examples:
 
     # Consider also the CPU temperature
       SCHED_RANK = "FREE_CPU * 100 - TEMPERATURE"
-
-vCenter Section
-================================================================================
-
-.. tip::
-  For more information about vCenter attributes, see also the :ref:`vCenter Specifics Section <vm_template_definition_vcenter>`.
-
 
 .. _template_requirement_expression_syntax:
 

@@ -13,7 +13,6 @@ Read the sections for services you are interested in
 
 - :ref:`OpenNebula Daemon <oned_conf>`
 - :ref:`Monitoring <mon_conf>`
-- :ref:`Sunstone <sunstone_conf>`
 - :ref:`FireEdge <fireedge_conf>`
 - :ref:`OneFlow <oneflow_conf>`
 - :ref:`OneGate <onegate_conf>`

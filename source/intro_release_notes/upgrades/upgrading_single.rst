@@ -68,16 +68,6 @@ RHEL
 
     $ yum upgrade opennebula opennebula-gate opennebula-flow opennebula-provision opennebula-fireedge python3-pyone
 
-.. warning:: Sunstone on Apache
-
-    If upgrading a Front-end where Sunstone is deployed through an **Apache web server**, bear in mind that the upgrade may cause :ref:`filesystem permissions <sunstone_fs_permissions>` to be reset. If this happens Apache will be unable to access Sunstone files, and users be unable to access the Sunstone UI. The Apache log will show an entry like below:
-
-    .. code-block::
-
-        [Mon Feb 14 11:10:09.133702 2022] [core:error] [pid 668659:tid 140354620548864] [client 10.141.18.116:60062] AH00037: Symbolic link not allowed or link target not accessible: /usr/lib/one/sunstone/public/dist/main.js, referer:
-
-    To prevent this problem, reapply the correct file permissions after upgrading.
-
 Community Edition
 --------------------------------------------------------------------------------
 

@@ -35,25 +35,6 @@ Front-End Components
 
 .. note:: Support for nodes' operating system ensures that the latest two LTS releases feature certified packages.
 
-.. _vcenter_nodes_platform_notes:
-
-vCenter Nodes
---------------------------------------------------------------------------------
-
-.. important:: The legacy vCenter driver is included in the distribution, but no longer receives updates or bug fixes.
-
-+-----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
-| Component |                Version                |                                                            More information                                                            |
-+===========+=======================================+========================================================================================================================================+
-| vCenter   | 7.0.x, managing ESX 7.0.x             | :ref:`vCenter Node Installation <vcenter_node>`                                                                                        |
-+-----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
-| NSX-T     | 2.4.1+                                | `VMware compatiblity <https://www.vmware.com/resources/compatibility/sim/interop_matrix.php>`__. :ref:`NSX Documentation <nsx_setup>`. |
-+-----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
-| NSX-V     | 6.4.5+                                | `VMware compatiblity <https://www.vmware.com/resources/compatibility/sim/interop_matrix.php>`__. :ref:`NSX Documentation <nsx_setup>`  |
-+-----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
-
-.. note:: Debian front-ends are not certified to manage VMware infrastructures with OpenNebula.
-
 .. _platform_notes_kvm:
 
 KVM Nodes

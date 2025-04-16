@@ -135,7 +135,7 @@ If you are using a template file instead of Sunstone, the modification is define
 
 .. note:: Use float types for CPU, and integer types for MEMORY and VCPU. More information in :ref:`the Template reference documentation <template_user_inputs>`.
 
-.. note:: This capacity customization can be forced to be disabled for any Template in the cloud view. Read more in the :ref:`Cloud View Customization documentation <cloud_view_config>`.
+.. note:: This capacity customization can be forced to be disabled for any Template in the cloud view. Read more in the :ref:`Cloud View Customization documentation <cloud_view>`.
 
 .. _vm_guide_user_inputs:
 
@@ -307,7 +307,7 @@ End-users can select the VM network interfaces when launching new VMs. You can c
 
 When users add network interfaces, you need to define a default NIC model in case the VM guest needs a specific one (e.g. virtio for KVM). This can be done with the :ref:`NIC_DEFAULT <nic_default_template>` attribute, or through the Template wizard. Alternatively, you could change the default value for all VMs in the driver configuration file (see the :ref:`KVM one <kvmg_default_attributes>` for example).
 
-.. note:: This networking customization can be forced to be disabled for any Template in the cloud view. Read more in the :ref:`Cloud View Customization documentation <cloud_view_config>`.
+.. note:: This networking customization can be forced to be disabled for any Template in the cloud view. Read more in the :ref:`Cloud View Customization documentation <cloud_view>`.
 
 Instantiating Templates
 ================================================================================
@@ -421,7 +421,7 @@ The ``onetemplate instantiate`` command accepts option ``--as_uid`` and ``--as_g
 Managing Templates
 ================================================================================
 
-Users can manage the VM Templates using the command ``onetemplate``, or the graphical interface :ref:`Sunstone <sunstone>`. For each user, the actual list of templates available are determined by the ownership and permissions of the templates.
+Users can manage the VM Templates using the command ``onetemplate``, or the graphical interface :ref:`Sunstone <fireedge_sunstone>`. For each user, the actual list of templates available are determined by the ownership and permissions of the templates.
 
 Adding and Deleting Templates
 --------------------------------------------------------------------------------
