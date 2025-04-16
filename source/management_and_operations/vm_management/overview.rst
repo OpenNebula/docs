@@ -19,8 +19,6 @@ This Chapter is structured as follows:
   - Then you can create :ref:`VM instances <vm_instances>` out of the VM Template definition.
   - Specific procedures to :ref:`backup your VMs <vm_backup>` are explained in a dedicated Section.
 
-For infrastructures based on vCenter, please read the :ref:`VMware vCenter Virtual Machine <vcenter_specifics>` Section first.
-
 Hypervisor Compatibility
 ================================================================================
 

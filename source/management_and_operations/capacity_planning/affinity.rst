@@ -154,7 +154,7 @@ Note also that the same ACL/permission system is applied to VM Groups, so use ac
 Managing VM Groups with Sunstone
 ================================================================================
 
-You can also manage VM Groups using :ref:`Sunstone <sunstone>`, through the VM Group tab.
+You can also manage VM Groups using Sunstone, through the VM Group tab.
 
 |vmg_wizard_create|
 |vmg_wizard_create-2|

@@ -71,5 +71,4 @@ The core daemon understands a request with this authentication session token as 
 Two Factor Authentication
 -------------------------
 
-To use 2FA in Sunstone see the following :ref:`link <2f_auth>`
 To use 2FA in FireEdge see the following :ref:`link <sunstone_2f_auth>`

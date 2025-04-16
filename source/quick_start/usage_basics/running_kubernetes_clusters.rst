@@ -34,30 +34,30 @@ Follow these steps:
 
    #. Log in to Sunstone as user ``oneadmin``.
    #. Open the left-hand pane (by hovering your mouse over the icons on the left), then select **Storage** -> **Datastores**.
-   
+
       .. image:: /images/sunstone-storage-datastores.png
          :align: center
          :scale: 50%
 
    #. Select the **system** datastore for the AWS cluster. (If you began this Quick Start Guide on a clean install, it will probably display ID ``100``.)
-   
+
       .. image:: /images/sunstone-aws_edge_cluster_sys_ds.png
          :align: center
-         
+
    #. Sunstone will display the **Info** panel for the datastore. Scroll down to the **Attributes** section and find the ``REPLICA_HOST`` attribute. Hover your mouse to the right, to display the **Copy**/**Edit**/**Delete** icons |icon3| for the attribute value:
-   
+
       .. image:: /images/sunstone-aws_cluster_replica_host.png
          :align: center
          :scale: 50%
-      
+
       |
-   
+
    #. Click the **Delete** icon |icon4|.
    #. When Sunstone requests to confirm the action, click **Yes**.
 
 You have deleted the ``REPLICA_HOST`` parameter from the datastore. In the next step we’ll download the OneKE appliance.
 
-..      .. image:: /images/kubernetes-replica_host_param.png   
+..      .. image:: /images/kubernetes-replica_host_param.png
 
 Step 1. Download the OneKE Service from the OpenNebula Marketplace
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -180,7 +180,7 @@ You can use a public DNS server or add the custom domain to your local ``/etc/ho
 
    127.0.0.1 localhost
    1.2.3.4 k8s.yourdomain.it
-   
+
 .. important::
 
    When using a custom SAN, to access the cluster using a kubeconfig file you will need to modify the variable ``clusters[0].cluster.server`` in the file to include the name of the cluster, e.g. ``server: https://k8s.yourdomain.it:6443``. The path of the kubeconfig file is set in the ``KUBECONFIG`` variable in the Kubernetes master node.
@@ -235,7 +235,7 @@ To verify the deployment using the command line, log in to the Front-end node as
 .. prompt:: bash $ auto
 
    [oneadmin@FN]$ oneflow list
-   ID USER     GROUP    NAME                                 STARTTIME STAT    
+   ID USER     GROUP    NAME                                 STARTTIME STAT
    3 oneadmin oneadmin Service OneKE 1.29              04/29 08:18:17 RUNNING
 
 To verify that the VMs for the cluster were correctly deployed, you can use the ``onevm list`` command. In the example below, the command lists the VMs for the cluster (and, in this case, the WordPress VM deployed in the previous tutorial):
@@ -445,7 +445,7 @@ In this scenario only the VNF node is successfully deployed, but no Kubernetes n
 To troubleshoot, follow these steps:
 
    #. Find out the IP address of the VNF node, as described :ref:`above <check_vnf>`.
-   #. Log in to the VNF node via ssh as root. 
+   #. Log in to the VNF node via ssh as root.
    #. Check if the VNF node is able to contact the OneGate server on the Front-end node, by running this command:
 
    .. prompt:: bash $ auto
@@ -467,7 +467,7 @@ To troubleshoot, follow these steps:
        [root@VNF]$ onegate vm show
        Timeout while connected to server (Failed to open TCP connection to <AWS elastic IP of FN>:5030 (execution expired)).
        Server: <AWS elastic IP of FN>:5030
-       
+
    In this case, the VNF node cannot communicate with the OneGate service on the Front-end node. Possible causes include:
 
       * **Wrong Front-end node for the AWS IP**: The VNF node may be trying to connect to the OneGate server on the wrong IP address. In the VNF node, the IP address for the Front-end node is defined by the value of ``ONEGATE_ENDPOINT``, in the scripts found in the ``/run/one-context`` directory. You can check the value with:
@@ -506,56 +506,56 @@ Yet ``oneflow list`` shows:
 
 .. prompt::
 
-  ID USER     GROUP    NAME                                                                   STARTTIME STAT     
+  ID USER     GROUP    NAME                                                                   STARTTIME STAT
    3 oneadmin oneadmin OneKE 1.29                                                        08/30 12:30:07 DEPLOYING
 
 In this case you can manually instruct the VMs to report ``READY`` to the OneGate server. Follow these steps:
 
    #. From the Front-end node, log in to the VNF node by running:
-   
+
       .. prompt::
-      
+
          ssh root@<VNF IP>
 
       (To find out the IP address of the VNF node, see :ref:`above <check_vnf>`.)
-      
+
    #. For each VM in the OneKE service, run the following command:
-   
+
       .. prompt::
-      
+
          onegate vm update <ID> --data "READY=YES"
-         
+
       For example, ``onegate vm update 2 --data "READY=YES"``.
-      
+
       Then, you can check the status of the service with ``onegate vm show``:
-      
+
       .. prompt::
-      
+
          onegate service show
-         SERVICE 3                                                                       
-         NAME                : OneKE 1.29          
-         STATE               : RUNNING             
-         
-         ROLE vnf                                                                        
-         VM 1                                                                            
-         NAME                : vnf_0_(service_3)   
-         
-         ROLE master                                                                     
-         VM 2                                                                            
+         SERVICE 3
+         NAME                : OneKE 1.29
+         STATE               : RUNNING
+
+         ROLE vnf
+         VM 1
+         NAME                : vnf_0_(service_3)
+
+         ROLE master
+         VM 2
          NAME                : master_0_(service_3)
-         
-         ROLE worker                                                                     
-         VM 3                                                                            
+
+         ROLE worker
+         VM 3
          NAME                : worker_0_(service_3)
-         
+
          ROLE storage
-         
+
    #. On the Front-end, run ``oneflow list`` again to verify that the service reports ``RUNNING``:
-   
+
       .. prompt::
-      
+
          [oneadmin@FN]$ oneflow list
-         ID USER     GROUP    NAME                                                                    STARTTIME STAT     
+         ID USER     GROUP    NAME                                                                    STARTTIME STAT
           3 oneadmin oneadmin OneKE 1.29                                                         08/30 12:35:21 RUNNING
 
 

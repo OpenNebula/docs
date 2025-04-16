@@ -60,8 +60,6 @@ Other sections in the documentation provide detailed explanations, guides and re
    +------------------------------------------+------------------------------------------------------------------------------------------+
    | :ref:`Release Notes <rn>`                | New features, improvements and fixes, and the upgrade process in each version            |
    +------------------------------------------+------------------------------------------------------------------------------------------+
-   | :ref:`Legacy Components <lc>`            | No longer maintained, legacy & deprecated component documentation                        |
-   +------------------------------------------+------------------------------------------------------------------------------------------+
 
 The full contents of the documentation are listed below.
 
@@ -79,7 +77,6 @@ The full contents of the documentation are listed below.
    Automatic Cluster Deployment <provision_clusters/index>
    Integration and Development <integration_and_development/index>
    Release Notes <intro_release_notes/index>
-   Legacy Components <legacy_components/index>
 
 .. raw:: html
    :file: toc.html

@@ -188,10 +188,3 @@ Building Sunstone from Source
     root@frontend:~/ $> cd ~/one
     root@frontend:~/ $> scons fireedge=yes
     root@frontend:~/ $> ./install.sh -F -u oneadmin -g oneadmin
-
-Building Ruby Sunstone from Source
-================================================================================
-
-Ruby Sunstone is a legacy component, which no longer receives updates or bug fixes. Sunstone UI functionality is now provided by the FireEdge server.
-
-Please check the :ref:`Ruby Sunstone Development guide <ruby_sunstone_dev>` for detailed information.
