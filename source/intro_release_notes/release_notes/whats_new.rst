@@ -4,6 +4,11 @@
 What’s New in |version|
 ================================================================================
 
+OpenNebula 7.0 “XXXX” is the first stable release of the OpenNebula 7 series. This release comes with many exciting features: integration with enterprise components (Veeam backup software, dedicated NetApp drivers, OVA import, LVM-thin drivers supporting any SAN vendor, revamped Sunstone interface (it's lush!), and many more.
+
+
+
+
 OpenNebula Core
 ================================================================================
 
@@ -16,10 +21,10 @@ Storage & Backups
 
 - :ref:`Integrated NFS life-cycle setup <automatic_nfs_setup>` for volumes in shared datastore.
 
-FireEdge Sunstone
+Sunstone
 ================================================================================
 
-- Removed Provision/Provider as application :ref:`FireEdge Sunstone <fireedge_sunstone>`.
+- Removed Provision/Provider as application :ref:`Sunstone <fireedge_sunstone>`.
 - Architectural shift to Micro-Frontend as part of the Dynamic Tabs update :ref:`Sunstone development guide <sunstone_dev>`.
 - Guacamole VDI over SSH tunnel :ref:`Remote connections guide <fireedge_remote_connections>`.
 
@@ -28,6 +33,12 @@ API and CLI
 
 - `The 'onedb purge-history' command now removes history records only within the specified --start, --end range for the --id, instead of deleting all records <https://github.com/OpenNebula/one/issues/6699>`__.
 - Feature 2
+
+
+Ecosystem
+=========
+
+- :ref:`OVA import <import_ova>`, a new CLI command, oneswap, allows to ingest VMs in OVA format that can be exported directly from VMware vCenter. Stay tuned for Sunstone support!
 
 KVM
 ================================================================================
