@@ -52,7 +52,7 @@ Step 1: Configure AWS
 
 As a first step, if you don’t already have one, create an account in AWS. AWS publishes a complete guide: `How do I create and activate a new AWS account? <https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/>`__
 
-After you have created your account, you’ll need to obtain the ``access_key`` and ``secret_key`` of a user with the necessary permissions to manage instances. The relevant AWS guide is `Configure tool authentication with AWS <https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html>`__.
+After you have created your account, you’ll need to obtain the ``access_key`` and ``secret_key`` of a user with the necessary permissions to manage instances. The relevant AWS guide is `Configure tool authentication with AWS <https://docs.aws.amazon.com/IAM/latest/UserGuide/access-keys-admin-managed.html>`__.
 
 Next, you need to choose the region where you want to deploy the new resources. You can check the available regions in AWS’s documentation: `Regions, Availability Zones, and Local Zones <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html>`__.
 
@@ -71,7 +71,7 @@ To log in, point your browser to the OneProvision address:
 
     https://<FRONT-END IP>:2616/fireedge/provision
 
-In the log in screen, enter the credentials for user ``oneadmin``.
+In the log-in screen, enter the credentials for user ``oneadmin``.
 
 Sunstone will display the **OneProvision** screen:
 
@@ -105,7 +105,7 @@ Sunstone displays the **Provider template** screen, showing the **Provision type
 
 |image_provider_create_step1|
 
-Click **Next**. In the next screen you can enter a description for your provider:
+Click **Next**. In the next screen, you can enter a description for your provider:
 
 |image_provider_create_step2|
 
@@ -155,7 +155,7 @@ OneProvision now displays the **Provider** screen showing the available provider
 
 |
 
-In the next screen you can enter a description for your cluster, if desired:
+In the next screen, you can enter a description for your cluster, if desired:
 
 .. image:: /images/fireedge_cpi_provision_create3.png
     :align: center
@@ -212,7 +212,7 @@ To see a running log of the provision, click **Log**:
     
 Provisioning will take a few minutes. When it’s finished, the log will display the message ``Provision successfully created``, followed by the provision’s ID.
 
-At this point the Edge Cluster has been created, and is up and running. In the next step, we’ll verify that all of the specified resources for the provision (the host, datastore, network, and the cluster itself) have been correctly created and registered with OpenNebula.
+At this point, the Edge Cluster has been created and is up and running. In the next step, we’ll verify that all of the specified resources for the provision (the host, datastore, network, and the cluster itself) have been correctly created and registered with OpenNebula.
 
 
 Step 4: Validate the New Infrastructure
