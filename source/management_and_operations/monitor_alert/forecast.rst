@@ -128,6 +128,19 @@ To optimize storage:
 
 Changes take effect immediately, without requiring service restarts.
 
+Far Predictions and Slots
+--------------------------------------------------------------------------------
+
+Far predictions are more expensive to compute than near predictions because they analyze more historical data to forecast further into the future. To keep things efficient, the system does not generate far predictions every time the monitoring probe runs.
+
+Each entity (host or virtual machine) is assigned a “slot” based on time. When the monitoring probe runs and matches an entity’s slot, a new far prediction is made for that entity. If multiple entities share the same slot, they will all get their far predictions at the same time.
+
+To optimize far predictions and the slots, consider:
+
+- A **shorter lookback** means you will get far predictions **more often**.
+- A **longer lookback** means far predictions will come **less often** (you will always get at least one far prediction every **60 minutes**).
+- Avoid using far predictions for near-future events (e.g., the next 5–30 minutes), as they can take up to 60 minutes to be updated.
+
 Usage Tips
 --------------------------------------------------------------------------------
 
