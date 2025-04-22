@@ -21,4 +21,4 @@ A Marketplace stores Marketplace Appliances. A MarketPlace Appliance includes on
    Private Marketplaces <private_marketplaces/index>
    Managing Marketplaces in Sunstone <sunstone_marketplaces/index>
    Appliances <appliances/index>
-   OVA Management <ova_management/index>
+   OVA / VMDK Management <ova_management/index>
