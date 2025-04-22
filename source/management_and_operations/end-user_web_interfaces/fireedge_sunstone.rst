@@ -577,6 +577,7 @@ Sunstone also admits direct connections using RDP. This kind of connection is bo
 |fireedge_sunstone_rdp|
 
 .. note:: To enable them on a running VM, you must follow steps 3 to 5 once you click the VM you want to have it.
+.. note:: For RDP connections to work, a service such as `XRPD <https://www.xrdp.org/>`_ is required on the VM to which you want to connect.
 
 Actions in RDP console
 ----------------------
