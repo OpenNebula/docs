@@ -1,7 +1,7 @@
 .. _import_ova:
 
 ================
-OVA Import
+OVA / VMDK Import
 ================
 
 Requirements
@@ -9,7 +9,7 @@ Requirements
 
 The import tool will assume that the provided OVA has been exported from a VMware environment, user must make sure that the provided OVA is compatible with VMware environments. Other sources are currently not supported (i.e. Xen or VirtualBox).
 
-When converting an OVA you will need enough space both in the ``/tmp`` folder and in the destination DS where the disk images are going to be imported.
+When converting an OVA or VMDK you will need enough space both in the ``/tmp`` folder (can be changed by ``--work-dir``) and in the destination DS where the disk images are going to be imported.
 
 Windows VirtIO drivers
 --------------------------------------------------------------------------------
@@ -28,6 +28,8 @@ It is possible to specify the target Datastore and VNET for the OVA to be import
 +============================================+=======================================================================+
 | ``--ova file.ova | /path/to/ovf/files/``   | Path to the OVA file or folder containing the OVF files.              |
 +--------------------------------------------+-----------------------------------------------------------------------+
+| ``--vmdk file.ova | /path/to/disk.vmdk``   | Path to the VMDK disk file.                                           |
++--------------------------------------------+-----------------------------------------------------------------------+
 | ``--datastore name | ID``                  | Name/ID of the Datastore to store the new Image. Accepts one or more  |
 |                                            | Datastores (i.e. ``--datastore 101,102``). When more than one         |
 |                                            | Datastore is provided, each disk will be allocated in a different one.|
@@ -35,9 +37,16 @@ It is possible to specify the target Datastore and VNET for the OVA to be import
 | ``--network name | ID``                    | Name/ID of the VNET to assign in the VM Template. Accepts one or more |
 |                                            | VNETs (i.e. ``--network 0,1``). When more than one VNET is provided,  |
 |                                            | each interface from the OVA will be assigned to each VNET.            |
+|                                            | **Not supported for VMDK**.                                           |
 +--------------------------------------------+-----------------------------------------------------------------------+
 | ``--virtio /path/to/virtio.iso``           | Path to the ISO file with the VirtIO drivers for the Windows version. |
 +--------------------------------------------+-----------------------------------------------------------------------+
+| ``--skip-context``                         | Skips the injection of the context package.                           |
++--------------------------------------------+-----------------------------------------------------------------------+
+| ``--remove_vmtools``                       | Add contextualization script to force remove VMware tools from the VM.|
++--------------------------------------------+-----------------------------------------------------------------------+
+
+.. note:: The options ``--ova`` and ``--vmdk`` are mutually exclusive, they cannot be used together.
 
 If multiple network interfaces are detected when importing an OVA and only one VNET ID or not enough VNET IDs are provided for all interfaces, using ``--network ID``, the last one will be used for the rest of the interfaces after the last coincidence. The same will apply to Datastores using the ``--datastore ID`` option.
 
@@ -96,7 +105,7 @@ Example command on how to import an OVA with two disks and two network interface
     (...)
 
     $ onetemplate list
-    ID USER     GROUP    NAME                  REGTIME
+    ID  USER     GROUP    NAME                  REGTIME
     101 onepoc   oneadmin ubuntu2404    04/10 12:55:03
 
 The OS Image is imported in Datastore 1 and the Datablock Image is imported in Datastore 101, and the VM Template has one NIC using VNET 1 and a second NIC using VNET 0.
@@ -104,15 +113,40 @@ The OS Image is imported in Datastore 1 and the Datablock Image is imported in D
 .. prompt:: text $ auto
 
     $ oneimage list
-    ID USER     GROUP    NAME            DATASTORE     SIZE TYPE PER STAT RVMS
-    151 onepoc   oneadmin ubuntu2404_1   NFS image       2G DB    No rdy     0
-    150 onepoc   oneadmin ubuntu2404_0   default         8G OS    No rdy     0
+    ID  USER     GROUP    NAME            DATASTORE     SIZE TYPE PER STAT RVMS
+    151 onepoc   oneadmin ubuntu2404_1    NFS image       2G DB    No rdy     0
+    150 onepoc   oneadmin ubuntu2404_0    default         8G OS    No rdy     0
 
     $ onetemplate show 101 | grep NIC -A 1
     NIC=[
         NETWORK_ID="1" ]
     NIC=[
         NETWORK_ID="0" ]
+
+Example on importing VMDK uninstalling VMware Tools
+--------------------------------------------------------------------------------
+
+Example command on how to import a VMDK disk using the Datastore ID 101:
+
+.. prompt:: text $ auto
+
+    [onepoc@nebulito ~]$ oneswap import --vmdk /home/onepoc/ovas/vm-debian125/vm-debian125-1.vmdk --datastore 101 --remove_vmtools
+    Converting the Image => Converting disk /home/onepoc/ovas/vm-debian125/vm-debian125-1.vmdk to qcow2...
+        (100.00/100%)
+    Disk converted successfully in 58.15 seconds.
+    Converted image: /tmp/vm-debian125-1/conversions/vm-debian125-1.qcow2
+
+    (...)
+
+    Allocating image 0 in OpenNebula
+    Waiting for image to be ready. Timeout: 120 seconds.
+    Created image: 174
+    Deleting password files.
+    No such file or directory @ apply2files - /tmp/vm-debian125-1/vpassfile
+
+    [onepoc@nebulito ~]$ oneimage list
+    ID  USER     GROUP    NAME                DATASTORE     SIZE TYPE PER STAT RVMS
+    174 onepoc   oneadmin vm-debian125-1_0    NFS image       5G OS    No rdy     0
 
 Context injection
 ================================================================================

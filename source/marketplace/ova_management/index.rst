@@ -1,12 +1,11 @@
 .. _ova_management:
 
 ====================
-OVA Management
+OVA / VMDK Management
 ====================
 
 .. toctree::
    :maxdepth: 2
 
    Overview <overview>
-   OVA Import <import_ova>
-
+   OVA / VMDK Import <import_ova>
