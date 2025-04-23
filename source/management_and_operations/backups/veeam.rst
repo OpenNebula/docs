@@ -4,21 +4,28 @@
 Veeam Backups
 ================================================================================
 
-Veeam is a backup and recovery software that provides data protection and disaster recovery solutions for virtualized environments. OpenNebula offers support for this tool through the oVirtAPI module.
+Veeam is a backup and recovery software that provides data protection and disaster recovery solutions for virtualized environments. The OpenNebula oVirtAPI server allows to backup OpenNebula VMs from the Veaam interface.
 
 Compatiblity
 ================================================================================
 
-The oVirtAPI module is compatible with Veeam Backup & Replication 12.0 and OpenNebula 7.0.
+The oVirtAPI module is compatible with Veeam Backup & Replication 12.0.
 
-Architecture
+Requirements & Architecture
 ================================================================================
 
-A simple OpenNebula and Veeam Backup deployment contains the following architecture and components:
+In order to achieve a setup compatible with the OpenNebula and Veeam Backup integration, the following requirements must be met:
 
-* A backup server that is going to host an Rsync backup datastore and the oVirtAPI module. This backup server should be accessible from any of the clusters that you want to back up.
+* An OpenNebula backup server hosting an OpenNebula backup datastore and the OpenNebula oVirtAPI server. This OpenNebula backup server must be accessible from any of the clusters that you want to back up.
 * The Veeam Backup Appliance, deployed by Veeam when adding OpenNebula as a hypervisor.
-* A management network must be setup that connects the previous components as well as the hosts that contain VMs that need to be backed up. 
+* A management network must be in place connecting the following components:
+     * OpenNebula backup server
+     * OpenNebula Front-end
+     * All Host running VMs to be backed up by Veeam
+     * Veeam Server
+     * Veeam Backup Appliance
+
+previous components as well as the hosts that contain VMs that need to be backed up. 
 
 |veeam_architecture|
 
