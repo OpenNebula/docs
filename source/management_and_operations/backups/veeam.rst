@@ -4,7 +4,7 @@
 Veeam Backups
 ================================================================================
 
-Veeam is a backup and recovery software that provides data protection and disaster recovery solutions for virtualized environments. The OpenNebula oVirtAPI server allows to backup OpenNebula VMs from the Veaam interface.
+Veeam is a backup and recovery software that provides data protection and disaster recovery solutions for virtualized environments. The OpenNebula oVirtAPI Server allows to backup OpenNebula VMs from the Veaam interface.
 
 Compatiblity
 ================================================================================
@@ -16,7 +16,7 @@ Requirements & Architecture
 
 In order to achieve a setup compatible with the OpenNebula and Veeam Backup integration, the following requirements must be met:
 
-* An OpenNebula backup server hosting an OpenNebula backup datastore and the OpenNebula oVirtAPI server. This OpenNebula backup server must be accessible from any of the clusters that you want to back up.
+* A Backup Server hosting an OpenNebula backup datastore and the OpenNebula oVirtAPI Server.
 * The Veeam Backup Appliance, deployed by Veeam when adding OpenNebula as a hypervisor.
 * A management network must be in place connecting the following components:
      * OpenNebula backup server
@@ -25,18 +25,16 @@ In order to achieve a setup compatible with the OpenNebula and Veeam Backup inte
      * Veeam Server
      * Veeam Backup Appliance
 
-previous components as well as the hosts that contain VMs that need to be backed up. 
-
 |veeam_architecture|
 
 .. |veeam_architecture| image:: /images/backup_veeam_architecture.png
     :width: 700
     :align: middle
 
-Step 1: Prepare the environment for the oVirtAPI module
+Step 1: Prepare the environment for the oVirtAPI Server
 ================================================================================
 
-A server should be configured as a host to later expose both the Rsync backup datastore and the oVirtAPI module. This server should be accessible from all the clusters that you want to be able to back up.
+A server should be configured to expose both the Rsync backup datastore and the oVirtAPI Server. This server should be accessible from all the clusters that you want to be able to back up.
 
 First, the oneadmin user should be created in the backup server. This user will be used to run the oVirtAPI module and should have passwordless access to qemu-nbd commands. You must also enable the NBD kernel module and change the ownership of the NBD devices to the oneadmin user. This can be done by running the following commands:
 
