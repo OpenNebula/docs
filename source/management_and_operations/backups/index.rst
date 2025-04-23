@@ -12,3 +12,4 @@ Virtual Machine Backups
    Backup Datastore: Rsync <rsync>
    VM Backup Operations <operations>
    Backup Jobs <backup_jobs>
+   Veeam Backups <veeam>
