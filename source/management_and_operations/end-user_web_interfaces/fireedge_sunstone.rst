@@ -577,7 +577,22 @@ Sunstone also admits direct connections using RDP. This kind of connection is bo
 |fireedge_sunstone_rdp|
 
 .. note:: To enable them on a running VM, you must follow steps 3 to 5 once you click the VM you want to have it.
-.. note:: For RDP connections to work, a service such as `XRPD <https://www.xrdp.org/>`_ is required on the VM to which you want to connect.
+.. note:: 
+
+    For RDP connections to work, a service such as `XRPD <https://www.xrdp.org/>`_ is required on the VM to which you want to connect.
+    Also, depending on the configuration of your RDP service, the following parameters can be added in the context of the VM:
+
+    +---------------------------+-----------------------------------------------------------------+
+    | Attribute                 | Description                                                     |
+    +===========================+=================================================================+
+    | RDP_SECURITY              | You can change the type of security that the opennebula-guacd   |
+    |                           | service will use, this must be the same as the one configured in|
+    |                           | the RDP service of the VM. By default ir use `rdp`              |
+    +---------------------------+-----------------------------------------------------------------+
+    | RDP_PORT                  | You can change the port that the opennebula-guacd service will  |
+    |                           | use. By default it uses port `3389`                             |
+    +---------------------------+-----------------------------------------------------------------+
+
 
 Actions in RDP console
 ----------------------
