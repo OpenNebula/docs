@@ -14,12 +14,13 @@ When converting an OVA or VMDK you will need enough space both in the ``/tmp`` f
 Supported platforms
 --------------------------------------------------------------------------------
 
-This procedure is supported on all platforms listed in the `Platform Notes <https://docs.opennebula.io/|version|/intro_release_notes/release_notes/platform_notes.html>`_.
+This procedure is supported on all platforms listed in the :ref:`Platform Notes <uspng>`.
 
 .. warning::
     The following platforms listed in the Platform Notes are **not supported** for this procedure:
 
     - Debian 11
+    - Debian 12
     - AlmaLinux 8
 
     Attempting to import an OVA or VMDK on these systems may result in unexpected issues.
