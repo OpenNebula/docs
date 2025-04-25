@@ -493,6 +493,7 @@ nTOTAL
 namespace
 namespaces
 natively
+nbd
 ncurses
 netaddr
 netmask
@@ -566,6 +567,8 @@ overcommitting
 overprovision
 overriden
 ovf
+oVirt
+oVirtAPI
 ovmf
 ovswitch
 parallelize

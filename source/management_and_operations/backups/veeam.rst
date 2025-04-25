@@ -6,7 +6,7 @@ Veeam Backups
 
 Veeam is a backup and recovery software that provides data protection and disaster recovery solutions for virtualized environments. The OpenNebula oVirtAPI Server allows to backup OpenNebula VMs from the Veaam interface.
 
-Compatiblity
+Compatibility
 ================================================================================
 
 The oVirtAPI module is compatible with Veeam Backup & Replication 12.0.
@@ -34,51 +34,18 @@ In order to achieve a setup compatible with the OpenNebula and Veeam Backup inte
 Step 1: Prepare the environment for the oVirtAPI Server
 ================================================================================
 
-A server should be configured to expose both the Rsync backup datastore and the oVirtAPI Server. This server should be accessible from all the clusters that you want to be able to back up.
+A server should be configured to expose both the Rsync backup datastore and the oVirtAPI Server. This server should be accessible from all the clusters that you want to be able to back up via the management network shown in the architecture diagram. The oVirtAPI Server is going to act as the communication gateway between Veeam and OpenNebula.
 
-First, the oneadmin user should be created in the backup server. This user will be used to run the oVirtAPI module and should have passwordless access to qemu-nbd commands. You must also enable the NBD kernel module and change the ownership of the NBD devices to the oneadmin user. This can be done by running the following commands:
-
-.. prompt:: bash $ auto
-
-    # Create oneadmin user and allow it to run passwordless qemu-nbd commands
-    useradd -m oneadmin && echo "oneadmin ALL=(ALL) NOPASSWD: /usr/bin/qemu-nbd" >> /etc/sudoers
-
-    # Enable NBD and change ownership to oneadmin
-    modprobe nbd && mkdir -p /etc/modules-load.d && echo "nbd" > /etc/modules-load.d/nbd.conf && chown oneadmin:oneadmin /dev/nbd*
-
-Then, some additional packages and steps will be needed depending on the distribution of the backup server:
-
-**AlmaLinux 9**
-
-.. prompt:: bash $ auto
-
-    # Install the required dependencies
-    dnf update && dnf install -y gcc make ruby-devel libyaml-devel ruby qemu-img curl dnf-utils httpd opennebula-rubygems opennebula-common opennebula-libs
-
-    # Install Passenger
-    curl --fail -sSLo /etc/yum.repos.d/passenger.repo https://oss-binaries.phusionpassenger.com/yum/definitions/el-passenger.repo dnf install -y passenger mod_passenger mod_ssl || { dnf config-manager --enable cr && dnf install -y passenger mod_passenger mod_ssl; }
-    systemctl restart httpd 
-    systemctl stop httpd
-
-    # Disable SELinux
-    setenforce 0
-
-**Ubuntu 24**
-
-.. prompt:: bash $ auto
-
-    # Install the required dependencies
-    apt update && apt install -y build-essential ruby ruby-dev libyaml-dev qemu-utils curl gnupg apache2 libapache2-mod-passenger openssl ruby-bundler opennebula-rubygems opennebula-common opennebula-libs
-
-    # Enable the passenger mods
-    a2enmod passenger ssl rewrite
-
-.. note:: TODO: These steps will probably change once packaging is finished.
-
-Step 2: Create the Rsync backup datastore
+Step 2: Create a backup datastore
 ================================================================================
 
-The steps to configure an Rsync datastore are detailed in :ref:`Backup Datastore: Rsync <vm_backups_rsync>`. This datastore should be deployed in the backup server configured in step 1. Also remember to add this datastore to any cluster that you want to be able to back up.
+The next step is to create a backup datastore in OpenNebula. This datastore will be used by the oVirtAPI module to handle the backup of the virtual machines before sending the backup data to Veeam. You can choose to use either a :ref:`Rsync Datastore <vm_backups_rsync>` or an :ref:`Restic Datastore <vm_backups_restic>`. The following sections will describe how to create each of them.
+
+.. note::
+
+    The backup datastore must be created in the backup server configured in step 1. Also remember to add this datastore to any cluster that you want to be able to back up.
+
+**Rsync Datastore**
 
 Here is an example to create an Rsync datastore in a host named "backup-host" and then add it to a given cluster:
 
@@ -103,13 +70,19 @@ Here is an example to create an Rsync datastore in a host named "backup-host" an
     # Add the datastore to the cluster with "onecluster adddatastore <cluster-name> <datastore-name>"
     onecluster adddatastore somecluster VeeamDS
 
+You can find more details regarding the Rsync datastore in :ref:`Backup Datastore: Rsync <vm_backups_rsync>`.
+
+**Restic Datastore**
+
+TODO
+
 Step 3: Install and configure the oVirtAPI module
 ================================================================================
 
 In order to install the oVirtAPI module, you need to have the OpenNebula repository configured in the backups server. You can do this by following the instructions in :ref:`OpenNebula Repositories <repositories>`. Then, follow the steps below:
 
 1. Install the ``opennebula-ovirtapi`` package in the backup server.
-2. Change the ``f_ip`` variable in the configuration file ``/etc/one/ovirtapi/ovirtapi-server.yml`` and make sure it points to your OpenNebula front-end address.
+2. Change the ``one_xmlrpc`` variable in the configuration file ``/etc/one/ovirtapi/ovirtapi-server.yml`` and make sure it points to your OpenNebula front-end address.
 3. You must also place a certificate at ``/etc/one/ovirtapi/ovirtapi-ssl.crt`` or generate one with:
 
 .. prompt:: bash $ auto
@@ -130,5 +103,5 @@ To add OpenNebula as a hypervisor to Veeam, configure it as an oVirt KVM Manager
 Current limitations
 ================================================================================
 
-- Only persistent images can be backed up.
+- Volatile disks cannot be backed up. 
 - Only in-place restores are supported.
