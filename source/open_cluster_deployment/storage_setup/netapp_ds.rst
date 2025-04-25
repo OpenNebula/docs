@@ -13,59 +13,35 @@ The `NetApp ONTAP documentation <https://docs.netapp.com/us-en/ontap/>`_ may be 
 NetApp ONTAP Setup
 ================================================================================
 
-The NetApp system requires specific configurations. This driver operates using a Storage VM that provides iSCSI connections, with volumes/LUNs mapped directly to each host after API creation. Configure and enable the iSCSI protocol according to your infrastructure requirements.
+The NetApp system requires specific configurations. This driver operates using a Storage VM that provides iSCSI connections, with volumes/LUNs mapped directly to each host after creation. Configure and enable the iSCSI protocol according to your infrastructure requirements.
 
 1. Define Aggregates/Local Tiers for your Storage VM:
 
    - In ONTAP System Manager: **Storage > Storage VMs > Select your SVM > Edit > Limit volume creation to preferred local tiers**
-   - Assign at least one aggregate/tier and note their UUID(s) for later use
+   - Assign at least one aggregate/tier and note their UUID(s) from the URL for later use
 
 2. To enable capacity monitoring:
 
    - Enable *Enable maximum capacity limit* on the same Edit Storage VM screen
    - If not configured, set ``DATASTORE_CAPACITY_CHECK=no`` in both of the OpenNebula datastores' attributes
 
-3. No automated snapshot configuration is required - OpenNebula handles this.
+3. This driver will manage the snapshots so do not enable any automated snapshots for this SVM, they will not be picked up by OpenNebula automatically unless made through OpenNebula.
+
+4. If you do not plan to use the administrator account, you should create a new user with all API permissions and assign it to the SVM.
 
 Frontend Setup
 ================================================================================
 
-The frontend requires network access to the NetApp ONTAP API endpoint and proper NFS/iSCSI configuration:
+The frontend requires network access to the NetApp ONTAP API endpoint:
 
 1. API Access:
 
-   - Ensure network connectivity to the NetApp ONTAP API interface
+   - Ensure network connectivity to the NetApp ONTAP API interface, the datastore will be in ERROR state if the API is not accessible or the SVM cannot be monitored properly.
 
-2. NFS Exports:
-
-   - Add to ``/etc/exports`` on the frontend:
-
-     - Per-datastore: ``/var/lib/one/datastores/101``
-     - Shared datastores: ``/var/lib/one/datastores``
-
-.. note:: The frontend only needs to mount System Datastores, **not** Image Datastores.
-
-3. iSCSI Initiators:
-
-   - Configure initiator security in NetApp Storage VM:
-
-     - **Storage VM > Settings > iSCSI Protocol > Initiator Security**
-     - Add initiators from ``/etc/iscsi/initiatorname.conf`` (all nodes and frontend)
-
-   - Discover and login to the iSCSI targets
-
-     - ``iscsiadm -m discovery -t sendtargets -p <target_ip>`` for each iSCSI target
-     - ``iscsiadm -m node -l`` to login to all discovered targets
-
-4. Persistent iSCSI Configuration:
-
-   - Set ``node.startup = automatic`` in ``/etc/iscsi/iscsid.conf``
-
-
-Node Setup
+Frontend & Node Setup
 ================================================================================
 
-Configure nodes with persistent iSCSI connections and NFS mounts:
+Configure both the frontend and nodes with persistent iSCSI connections:
 
 1. iSCSI Initiators:
 
@@ -76,13 +52,24 @@ Configure nodes with persistent iSCSI connections and NFS mounts:
 
    - Discover and login to the iSCSI targets
 
-     - ``iscsiadm -m discovery -t sendtargets -p <target_ip>`` for each iSCSI target
+     - ``iscsiadm -m discovery -t sendtargets -p <target_ip>`` for each iSCSI target IP from NetApp
      - ``iscsiadm -m node -l`` to login to all discovered targets
 
 2. Persistent iSCSI Configuration:
 
    - Set ``node.startup = automatic`` in ``/etc/iscsi/iscsid.conf``
    - Add frontend NFS mounts to ``/etc/fstab``
+
+3. Multipath Configuration:
+
+   - Update ``/etc/multipath.conf`` to use something like the following:
+
+     .. code-block::
+
+        defaults {
+          user_friendly_names yes
+          find_multipaths yes
+        }
 
 OpenNebula Configuration
 ================================================================================
@@ -122,6 +109,8 @@ Template parameters:
 +-----------------------+-------------------------------------------------+
 | ``NETAPP_IGROUP``     | Initiator group UUID                            |
 +-----------------------+-------------------------------------------------+
+| ``NETAPP_TARGET``     | iSCSI Target name                               |
++-----------------------+-------------------------------------------------+
 
 Example template:
 
@@ -139,6 +128,7 @@ Example template:
     NETAPP_SVM = "c9dd74bc-8e3e-47f0-b274-61be0b2ccfe3"
     NETAPP_AGGREGATES = "280f5971-3427-4cc6-9237-76c3264543d5"
     NETAPP_IGROUP = "27702521-68fb-4d9a-9676-efa3018501fc"
+    NETAPP_TARGET = "iqn.1993-08.org.debian:01:1234"
 
     $ onedatastore create netapp_system.ds
     ID: 101
@@ -173,6 +163,8 @@ Template parameters:
 +-----------------------+-------------------------------------------------+
 | ``NETAPP_IGROUP``     | Initiator group UUID                            |
 +-----------------------+-------------------------------------------------+
+| ``NETAPP_TARGET``     | iSCSI Target name                               |
++-----------------------+-------------------------------------------------+
 
 Example template:
 
@@ -189,6 +181,7 @@ Example template:
     NETAPP_SVM = "c9dd74bc-8e3e-47f0-b274-61be0b2ccfe3"
     NETAPP_AGGREGATES = "280f5971-3427-4cc6-9237-76c3264543d5"
     NETAPP_IGROUP = "27702521-68fb-4d9a-9676-efa3018501fc"
+    NETAPP_TARGET = "iqn.1993-08.org.debian:01:1234"
 
     $ onedatastore create netapp_image.ds
     ID: 102
@@ -206,28 +199,39 @@ Storage architecture details:
 
 - **Operations**:
 
-  - Non-persistent: FlexClone
+  - Non-persistent: FlexClone, then split
   - Persistent: Rename
 
-Symbolic links from the system datastore will be created for each virtual machine disk by the frontend and shared via NFS with the compute nodes.
+Symbolic links from the system datastore will be created for each virtual machine on it's host once the LUN's have been mapped.
 
-.. important:: The system datastore requires a shared filesystem (e.g., NFS mount from frontend to nodes) for device link management and VM metadata distribution.
-
-
-Additional Configuration
-================================================================================
-
-+-----------------------+-------------------------------------------------+
-|    Attribute          |                   Description                   |
-+=======================+=================================================+
-| ``NETAPP_MULTIPATH``  | ``yes`` or ``no``, Default: ``yes``             |
-|                       | Set to ``no`` to disable multipath              |
-+-----------------------+-------------------------------------------------+
-
+.. note:: The minimum size for a NetApp Volume is 20MB, so any disk smaller than that will result in a 20MB Volume, however the LUN inside will be the correct size.
 
 System Considerations
 ================================================================================
 
 Occasionally, under network interruptions or if a volume is deleted directly from NetApp, the iSCSI connection may drop or fail. This can cause the system to hang on a ``sync`` command, which in turn may lead to OpenNebula operation failures on the affected host. Although the driver is designed to manage these issues automatically, it's important to be aware of these potential iSCSI connection challenges.
 
+Here are a few tips to get these cleaned up:
+
+- If you just have extra devices from some failures leftover, running ``rescan_scsi_bus.sh -r -m`` may help to remove these devices.
+- If you have the entire multipath setup leftover, running ``multipath -f <multipath_device>`` may help to remove these devices, be very careful to run this on the correct multipath device.
+
 .. note:: This behavior stems from the inherent complexities of iSCSI connections and is not exclusive to OpenNebula or NetApp.
+
+If the devices persists then there are some steps to examine the issue:
+
+1. Run ``dmsetup ls --tree`` or ``lsblk`` to see if the mapped devices is still connected to the block devices. You may see devices not attached to a mapper entry in ``lsblk``.
+2. For the devices that are not connected in ``lsblk`` that you know are *not your own devices* (e.g. ``/dev/sda`` is often the root device with the OS), run ``echo 1 > /sys/bus/scsi/devices/sdX/device/delete`` where sdX is the device for each of the devices that were involved in the multipath.
+3. Once those disk devices are gone, you may have leftover device mapper entries that you can often remove by running ``dmsetup remove /dev/mapper/<device_name>``. 
+4. If the devices are unable to be removed, you can double check that a process is still not using them with ``fuser -v  $(realpath /dev/mapper/<device_name>)``. 
+
+   - If you see the kernel is using it as swap, you can remove it by running ``swapoff /dev/mapper/<device_name>`` and then ``dmsetup remove /dev/mapper/<device_name>``.
+   - If you see another process using it, examine and if necessary kill the process and the run ``dmsetup remove /dev/mapper/<device_name>``
+   - If you are unable to kill the process or there is nothing visibly using the mapper entry, then do the following commands:
+
+      1. Run ``dmsetup suspend /dev/mapper/<device_name>``
+      2. Run ``dmsetup wipe_table /dev/mapper/<device_name>``
+      3. Run ``dmsetup resume /dev/mapper/<device_name>``
+      4. Run ``dmsetup remove /dev/mapper/<device_name>``
+
+This should take care of most of the I/O lockups you may see due to some failures.  Please contact OpenNebula Support team if you need additional assistance with this.
