@@ -4,7 +4,7 @@
 Veeam Backups
 ================================================================================
 
-Veeam is a backup and recovery software that provides data protection and disaster recovery solutions for virtualized environments. The OpenNebula oVirtAPI Server allows to backup OpenNebula VMs from the Veaam interface.
+Veeam is a backup and recovery software that provides data protection and disaster recovery solutions for virtualized environments. The OpenNebula oVirtAPI Server allows to backup OpenNebula VMs from the Veeam interface.
 
 Compatibility
 ================================================================================
