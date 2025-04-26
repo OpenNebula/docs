@@ -454,6 +454,7 @@ The configuration for each driver is defined in the ``TM_MAD_CONF`` section.
    -  ``NO``: The snapshot will not be attempted to be deleted if it has children
    -  ``MIXED``: Creates children snapshots from the current active(last recovered) snapshot.  This also takes into account some dependencies which can appear after a revert snapshot action in Ceph datastores.
    -  ``FORMAT``: Allows orphans based on the image format in a ``SHARED`` datastore. For ``QCOW2`` this acts as ``NO`` and for ``RAW`` this acts as ``YES``
+   -  ``LINEAR``: Snapshots are independent, but ordered in time; reverting to a snapshot automatically deletes all snapshots after it
 
 Sample configuration:
 
