@@ -654,6 +654,7 @@ scsi
 sd
 sdb
 sdc
+sdX
 seSparse
 secgroup
 secgrouppool
