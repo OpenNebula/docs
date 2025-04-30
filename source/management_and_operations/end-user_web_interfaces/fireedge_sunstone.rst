@@ -585,12 +585,12 @@ Sunstone also admits direct connections using RDP. This kind of connection is bo
     +---------------------------+-----------------------------------------------------------------+
     | Attribute                 | Description                                                     |
     +===========================+=================================================================+
-    | RDP_SECURITY              | You can change the type of security that the opennebula-guacd   |
+    | ``RDP_SECURITY``          | You can change the type of security that the opennebula-guacd   |
     |                           | service will use, this must be the same as the one configured in|
-    |                           | the RDP service of the VM. By default it uses `rdp`              |
+    |                           | the RDP service of the VM. By default it uses ``rdp``.          |
     +---------------------------+-----------------------------------------------------------------+
-    | RDP_PORT                  | You can change the port that the opennebula-guacd service will  |
-    |                           | use. By default it uses port `3389`                             |
+    | ``RDP_PORT``              | You can change the port that the opennebula-guacd service will  |
+    |                           | use. By default it uses port ``3389``.                          |
     +---------------------------+-----------------------------------------------------------------+
 
 
