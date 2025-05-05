@@ -9,6 +9,7 @@ The following new features have been backported to 6.10.4:
 
 - `Add support of using defined timezone by oneacct utility with flag -t/--timezone  <https://github.com/OpenNebula/one/issues/821>`__.
 - Console logging for :ref:`LXC Driver <lxc_logs>`.
+- Add architecture and hypervisor scheduling requirements to public marketplaces :ref:`public marketplaces <public_marketplaces>`
 
 The following issues has been solved in 6.10.4:
 
