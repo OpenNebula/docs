@@ -23,6 +23,7 @@ The following issues has been solved in 6.10.4:
 - `Fix vGPU profile monitoring for legacy mode <https://github.com/OpenNebula/one/issues/7012/>`__.
 - `Fix README.md links to old paths <https://github.com/OpenNebula/one/issues/7032>`__.
 - `Fix a silent LXC container start fail <https://github.com/OpenNebula/one/issues/7028>`__.
+- `Fix the use of hardcoded DNS for linuxcontainers marketplace <https://github.com/OpenNebula/one/issues/7041>`__.
 
 The following issues have been solved in the Sunstone Web UI:
 
