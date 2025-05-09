@@ -20,6 +20,7 @@ The following issues has been solved in 6.10.4:
 - `Fix ability to add and remove existing users to existing groups and change main group from an user <https://github.com/OpenNebula/one/issues/6980/>`__. In order to add, remove or change main group from and user, please see **Changes in Configuration Files** section below.
 - `Fix vGPU profile monitoring for legacy mode <https://github.com/OpenNebula/one/issues/7012/>`__.
 - `Fix README.md links to old paths <https://github.com/OpenNebula/one/issues/7032>`__.
+- `Fix Restic backup driver when the server is not deployed together with the frontend <https://github.com/OpenNebula/one/issues/7054>`__.
 
 The following issues have been solved in the Sunstone Web UI:
 
