@@ -18,6 +18,7 @@ Perform the following steps:
 * Verify that the front-end and ALL hosts can SSH to the `RSYNC_HOST` as the `RSYNC_USER` without a password.
 * Create the folder `/var/lib/one/datastores` on the rsync server, and change ownership to the `RSYNC_USER`.
 * (Optional) Mount a storage volume to `/var/lib/one/datastores`, or to the Datastore ID directory under that.
+* Finally make sure **rsync** and **qemu-img** commands are installed in the backup server.
 
 Step 1. Create OpenNebula Datastore
 ================================================================================
