@@ -92,9 +92,9 @@ Example of multiple patch modes for multiple files:
         --patch-modes skip,replace:/etc/one/oned.conf:5.10.0 \
         --patch-modes force:/etc/one/fireedge/sunstone-views.yaml:5.6.0 \
         --patch-modes replace:/etc/one/fireedge-server.conf \
-        --patch-modes skip:/etc/one/fireedge/sunstone/admin/acl-tab.yaml:5.4.1 \
-        --patch-modes skip:/etc/one/fireedge/sunstone/admin/vm-tab.yaml:5.4.2 \
-        --patch-modes skip:/etc/one/fireedge/sunstone/admin/vm-template-tab.yaml
+        --patch-modes skip:/etc/one/fireedge/sunstone/views/admin/acl-tab.yaml:5.4.1 \
+        --patch-modes skip:/etc/one/fireedge/sunstone/views/admin/vm-tab.yaml:5.4.2 \
+        --patch-modes skip:/etc/one/fireedge/sunstone/views/admin/vm-template-tab.yaml
 
 Restore from Backup
 ===================

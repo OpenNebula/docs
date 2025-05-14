@@ -132,7 +132,7 @@ Default Views
 Admin View
 --------------------------------------------------------------------------------
 
-This view provides complete control of the Virtual Machines, Templates, and Marketplace apps. Details can be configured in the ``/etc/one/fireedge/sunstone/admin/`` directory.
+This view provides complete control of the Virtual Machines, Templates, and Marketplace apps. Details can be configured in the ``/etc/one/fireedge/sunstone/views/admin/`` directory.
 
 |fireedge_sunstone_admin_view|
 
@@ -141,7 +141,7 @@ This view provides complete control of the Virtual Machines, Templates, and Mark
 User View
 --------------------------------------------------------------------------------
 
-Based on the Admin View. It is an advanced user view intended for users with fewer privileges than an admin user, allowing them to manage Virtual Machines and Templates. Users will not be able to manage or retrieve the hosts and clusters of the cloud. Details can be configured in the ``/etc/one/fireedge/sunstone/user/`` directory.
+Based on the Admin View. It is an advanced user view intended for users with fewer privileges than an admin user, allowing them to manage Virtual Machines and Templates. Users will not be able to manage or retrieve the hosts and clusters of the cloud. Details can be configured in the ``/etc/one/fireedge/sunstone/views/user/`` directory.
 
 |fireedge_sunstone_user_view|
 
@@ -150,25 +150,25 @@ Based on the Admin View. It is an advanced user view intended for users with few
 Groupadmin View
 --------------------------------------------------------------------------------
 
-This view it's like a limited version of the cloud administrator view to be used by the administrators of a group. Details can be configured in the ``/etc/one/fireedge/sunstone/groupadmin/`` directory. More details on :ref:`Group admin view <group_admin_view>`
+This view it's like a limited version of the cloud administrator view to be used by the administrators of a group. Details can be configured in the ``/etc/one/fireedge/sunstone/views/groupadmin/`` directory. More details on :ref:`Group admin view <group_admin_view>`
 
 .. _fireedge_sunstone_cloud_view:
 
 Cloud View
 --------------------------------------------------------------------------------
 
-This is a simplified view intended for cloud consumers that just require a portal where they can provision new VMs easily. Details can be configured in the ``/etc/one/fireedge/sunstone/cloud/`` directory. More details on :ref:`Cloud view <cloud_view>`
+This is a simplified view intended for cloud consumers that just require a portal where they can provision new VMs easily. Details can be configured in the ``/etc/one/fireedge/sunstone/views/cloud/`` directory. More details on :ref:`Cloud view <cloud_view>`
 
 .. _fireedge_sunstone_new_view:
 
 Defining a New View
 --------------------------------------------------------------------------------
 
-The views definitions are placed in the ``/etc/one/fireedge/sunstone/`` directory. Each view is defined by a folder (named as the view) with the needed configuration files inside.
+The views definitions are placed in the ``/etc/one/fireedge/sunstone/views`` directory. Each view is defined by a folder (named as the view) with the needed configuration files inside.
 
 .. code::
 
-    /etc/one/fireedge/sunstone/
+    /etc/one/fireedge/sunstone/views
     ...
     |-- admin/
     |   |-- backup-tab.yaml           <--- the Backup tab configuration file
@@ -194,7 +194,7 @@ The views definitions are placed in the ``/etc/one/fireedge/sunstone/`` director
         `-- vm-template-tab.yaml      <--- the VM Template tab configuration file
     ...
 
-The easiest way to create a custom view is to copy the ``admin`` or ``user`` folder and modify its content as needed. After that, add the new view into ``/etc/one/fireedge/sunstone/sunstone-views.yaml``.
+The easiest way to create a custom view is to copy the ``admin`` or ``user`` folder and modify its content as needed. After that, add the new view into ``/etc/one/fireedge/sunstone/views/sunstone-views.yaml``.
 
 View Customization
 --------------------------------------------------------------------------------
