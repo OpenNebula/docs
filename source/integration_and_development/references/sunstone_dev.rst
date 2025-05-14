@@ -462,7 +462,7 @@ In order to develop a new tab, you need to make sure it has the correct webpack 
 
     .. prompt:: bash
         
-        cp /etc/one/fireedge/sunstone/admin/user-tab.yaml /etc/one/fireedge/sunstone/admin/usersgroups-tab.yaml
+        cp /etc/one/fireedge/sunstone/views/admin/user-tab.yaml /etc/one/fireedge/sunstone/views/admin/usersgroups-tab.yaml
 
     
     And then we update the resource name inside the new ``usersandgroups-tab.yaml`` view file to match the path of our component
