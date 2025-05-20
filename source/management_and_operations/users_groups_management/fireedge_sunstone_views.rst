@@ -11,7 +11,7 @@ Using the OpenNebula FireEdge Sunstone Views you will be able to provide a simpl
 - :ref:`Group Admin View <fireedge_groupadmin_view>`.
 - :ref:`Cloud View <fireedge_cloud_view>`.
 
-Each of these views is defined on a folder in ``/etc/one/fireedge/sunstone`` that contains many yaml as tabs are enabled in this view. On this path, there is also a file ``/etc/one/fireedge/sunstone/sunstone-views.yaml`` where is defined the default configuration (see :ref:`Defining a New OpenNebula Sunstone View or Customizing an Existing one <fireedge_sunstone_views_define_new>` to more information about configure or create a view).
+Each of these views is defined on a folder in ``/etc/one/fireedge/sunstone`` that contains many yaml as tabs are enabled in this view. On this path, there is also a file ``/etc/one/fireedge/sunstone/views/sunstone-views.yaml`` where is defined the default configuration (see :ref:`Defining a New OpenNebula Sunstone View or Customizing an Existing one <fireedge_sunstone_views_define_new>` to more information about configure or create a view).
 
 .. _fireedge_suns_views_default_views:
 
@@ -23,7 +23,7 @@ Default Views
 Admin View
 --------------------------------------------------------------------------------
 
-This view provides full control of the cloud. Details can be configured in the ``/etc/one/fireedge/sunstone/admin/*.yaml`` files.
+This view provides full control of the cloud. Details can be configured in the ``/etc/one/fireedge/sunstone/views/admin/*.yaml`` files.
 
 |fireedge_sunstone_admin_dashboard|
 
@@ -32,7 +32,7 @@ This view provides full control of the cloud. Details can be configured in the `
 User View
 --------------------------------------------------------------------------------
 
-Based on the Admin View; it is an advanced user view. It is intended for users that need access to more actions than the limited set available in the cloud view. Users will not be able to manage nor retrieve the hosts and clusters of the cloud. They will be able to see Datastores and Virtual Networks in order to use them when creating a new Image or Virtual Machine, but they will not be able to create new ones. Details can be configured in the ``/etc/one/fireedge/sunstone/user/*.yaml`` file.
+Based on the Admin View; it is an advanced user view. It is intended for users that need access to more actions than the limited set available in the cloud view. Users will not be able to manage nor retrieve the hosts and clusters of the cloud. They will be able to see Datastores and Virtual Networks in order to use them when creating a new Image or Virtual Machine, but they will not be able to create new ones. Details can be configured in the ``/etc/one/fireedge/sunstone/views/user/*.yaml`` file.
 
 |fireedge_sunstone_view_dashboard|
 
@@ -41,7 +41,7 @@ Based on the Admin View; it is an advanced user view. It is intended for users t
 Group Admin View
 --------------------------------------------------------------------------------
 
-Based on Users View; this view has the same tabs as the User View plus the Groups and Users tabs to manage the group and the users of the groups that this user is administrator. Details can be configured in the ``/etc/one/fireedge/sunstone/groupadmin/*.yaml`` files.
+Based on Users View; this view has the same tabs as the User View plus the Groups and Users tabs to manage the group and the users of the groups that this user is administrator. Details can be configured in the ``/etc/one/fireedge/sunstone/views/groupadmin/*.yaml`` files.
 
 |fireedge_sunstone_groupadmin_dashboard|
 
@@ -50,7 +50,7 @@ Based on Users View; this view has the same tabs as the User View plus the Group
 Cloud View
 --------------------------------------------------------------------------------
 
-This is a simplified view, mainly intended for end-users that just require a portal where they can provision new virtual machines easily from pre-defined Templates. For more information about this view, please check the ``/etc/one/fireedge/sunstone/cloud/*.yaml`` files.
+This is a simplified view, mainly intended for end-users that just require a portal where they can provision new virtual machines easily from pre-defined Templates. For more information about this view, please check the ``/etc/one/fireedge/sunstone/views/cloud/*.yaml`` files.
 
 |fireedge_sunstone_cloud_dashboard|
 
@@ -72,7 +72,7 @@ FireEdge Sunstone users can change their current view from the top-right drop-do
 
 |fireedge_sunstone_views_change|
 
-These options are saved in the group template, as well as other hidden settings. If not defined, defaults views from ``/etc/one/fireedge/sunstone/sunstone-views.yaml`` are taken.
+These options are saved in the group template, as well as other hidden settings. If not defined, defaults views from ``/etc/one/fireedge/sunstone/views/sunstone-views.yaml`` are taken.
 
 .. _fireedge_sunstone_views_define_new:
 

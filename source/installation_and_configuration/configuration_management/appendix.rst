@@ -33,7 +33,7 @@ Name                                                               Type
 ``/etc/one/fireedge/provision/provision-server.conf``              YAML
 ``/etc/one/fireedge/sunstone/*/*.yaml``                            YAML
 ``/etc/one/fireedge/sunstone/sunstone-server.conf``                YAML
-``/etc/one/fireedge/sunstone/sunstone-views.yaml``                 YAML
+``/etc/one/fireedge/sunstone/views/sunstone-views.yaml``           YAML
 ``/etc/one/guacd``                                                 Shell
 ``/etc/one/monitord.conf``                                         oned.conf-like
 ``/etc/one/oned.conf``                                             oned.conf-like
