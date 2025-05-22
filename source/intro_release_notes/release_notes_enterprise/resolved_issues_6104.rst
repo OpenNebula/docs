@@ -21,6 +21,8 @@ The following issues has been solved in 6.10.4:
 - `Fix vGPU profile monitoring for legacy mode <https://github.com/OpenNebula/one/issues/7012/>`__.
 - `Fix README.md links to old paths <https://github.com/OpenNebula/one/issues/7032>`__.
 - `Fix Restic backup driver when the server is not deployed together with the frontend <https://github.com/OpenNebula/one/issues/7054>`__.
+- `Fix resource names to not allow special characters '\\t', '\\n', '\\v', '\\f', '\\r' <https://github.com/OpenNebula/one/issues/6950>`__.
+- `Fix HA in case of wrong SQL query <https://github.com/OpenNebula/one/issues/7025>`__.
 
 The following issues have been solved in the Sunstone Web UI:
 
