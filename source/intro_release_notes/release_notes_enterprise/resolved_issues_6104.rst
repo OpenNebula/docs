@@ -8,6 +8,8 @@ A complete list of solved issues for 6.10.4 can be found in the `project develop
 The following new features have been backported to 6.10.4:
 
 - `Add support of using defined timezone by oneacct utility with flag -t/--timezone  <https://github.com/OpenNebula/one/issues/821>`__.
+- Console logging for :ref:`LXC Driver <lxc_logs>`.
+- Add architecture and hypervisor scheduling requirements to public marketplaces :ref:`public marketplaces <public_marketplaces>`
 
 The following issues has been solved in 6.10.4:
 
@@ -20,6 +22,8 @@ The following issues has been solved in 6.10.4:
 - `Fix ability to add and remove existing users to existing groups and change main group from an user <https://github.com/OpenNebula/one/issues/6980/>`__. In order to add, remove or change main group from and user, please see **Changes in Configuration Files** section below.
 - `Fix vGPU profile monitoring for legacy mode <https://github.com/OpenNebula/one/issues/7012/>`__.
 - `Fix README.md links to old paths <https://github.com/OpenNebula/one/issues/7032>`__.
+- `Fix a silent LXC container start fail <https://github.com/OpenNebula/one/issues/7028>`__.
+- `Fix the use of hardcoded DNS for linuxcontainers marketplace <https://github.com/OpenNebula/one/issues/7041>`__.
 - `Fix Restic backup driver when the server is not deployed together with the frontend <https://github.com/OpenNebula/one/issues/7054>`__.
 - `Fix resource names to not allow special characters '\\t', '\\n', '\\v', '\\f', '\\r' <https://github.com/OpenNebula/one/issues/6950>`__.
 - `Fix HA in case of wrong SQL query <https://github.com/OpenNebula/one/issues/7025>`__.
