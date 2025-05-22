@@ -26,6 +26,7 @@ To setup the server perform the following steps:
 - Check that ``oneadmin`` can SSH access the server **without being prompt for a password** from the front-end and hosts.
 - Create the following folder in the backup server ``/var/lib/one/datastores``, change the ownership to ``oneadmin``.
 - Mount the storage volume in ``/var/lib/one/datastores``.
+- Finally make sure **rsync** and **qemu-img** commands are installed in the backup server.
 
 The following example showcases this setup using a dedicated 1.5T volume for backups:
 
