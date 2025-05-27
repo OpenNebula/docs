@@ -43,7 +43,7 @@ Ecosystem
 KVM
 ================================================================================
 
-- Feature 1
+- Add support for the ``SERIAL`` disk attribute. This allows specifying a ``SERIAL`` value in :ref:`Image <img_template>` and :ref:`VM Templates <template>`, including support for automatic generation (SERIAL="auto").
 - Feature 2
 
 
