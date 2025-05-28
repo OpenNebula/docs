@@ -38,8 +38,6 @@ A security issue has been identified when using OpenvSwitch with VLAN Trunking e
 
     VM_RESTRICTED_ATTR = "NIC/VLAN_TAGGED_ID"
 
-This will prevent unauthorized use and enforce proper privilege separation within the cloud environment.
-
 Changes in Configuration Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
