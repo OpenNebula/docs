@@ -11,6 +11,10 @@ The following new features have been backported to 6.10.4:
 - Console logging for :ref:`LXC Driver <lxc_logs>`.
 - Add architecture and hypervisor scheduling requirements to public marketplaces :ref:`public marketplaces <public_marketplaces>`
 
+The following new features have been backported in the Sunstone Web UI to 6.10.4:
+
+- `Update backup configuration on a virtual machine <https://github.com/OpenNebula/one/issues/6880/>`__.
+
 The following issues has been solved in 6.10.4:
 
 - `Fix a bug when Restic passwords include quotes <https://github.com/OpenNebula/one/issues/6666/>`__.
@@ -19,7 +23,6 @@ The following issues has been solved in 6.10.4:
 - `Fix VM migration not executed on vCenter when src host ID is 0 <https://github.com/OpenNebula/one/issues/6997/>`__.
 - `Fix VNet instance doesn't update BRIDGE_TYPE, when VN_MAD is updated <https://github.com/OpenNebula/one/issues/6858/>`__.
 - `Fix oneacl rules not being cleaned-up after removing a group admin <https://github.com/OpenNebula/one/issues/6993/>`__.
-- `Fix ability to add and remove existing users to existing groups and change main group from an user <https://github.com/OpenNebula/one/issues/6980/>`__. In order to add, remove or change main group from and user, please see **Changes in Configuration Files** section below.
 - `Fix vGPU profile monitoring for legacy mode <https://github.com/OpenNebula/one/issues/7012/>`__.
 - `Fix README.md links to old paths <https://github.com/OpenNebula/one/issues/7032>`__.
 - `Fix a silent LXC container start fail <https://github.com/OpenNebula/one/issues/7028>`__.
@@ -29,6 +32,10 @@ The following issues has been solved in 6.10.4:
 - `Fix HA in case of wrong SQL query <https://github.com/OpenNebula/one/issues/7025>`__.
 
 The following issues have been solved in the Sunstone Web UI:
+
+- `Fix ability to add and remove existing users to existing groups and change main group from an user <https://github.com/OpenNebula/one/issues/6980/>`__. In order to add, remove or change main group from and user, please see **Changes in Configuration Files** section below.
+- `Fix image upload not working <https://github.com/OpenNebula/one/issues/6426/>`__.
+- `Fix Sunstone has issues with Disk IDs when updating boot order <https://github.com/OpenNebula/one/issues/7014/>`__.
 
 Security Advisory: VLAN Trunking Exposure via VLAN_TAGGED_ID
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
