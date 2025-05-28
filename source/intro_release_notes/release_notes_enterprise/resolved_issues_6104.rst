@@ -30,6 +30,16 @@ The following issues has been solved in 6.10.4:
 
 The following issues have been solved in the Sunstone Web UI:
 
+Security Advisory: VLAN Trunking Exposure via VLAN_TAGGED_ID
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+A security issue has been identified when using OpenvSwitch with VLAN Trunking enabled. The ``VLAN_TAGGED_ID`` attribute allows users to specify a range of VLANs accessible from their virtual ``NIC``. If not properly restricted, non-privileged users can exploit this attribute (e.g., by setting ``VLAN_TAGGED_ID = 1-4096``) to gain access to all VLANs available on the OpenvSwitch bridge, potentially exposing critical network segments. To mitigate this risk, it is strongly recommended to restrict this attribute by adding the following line to the ``oned.conf`` configuration file:
+
+.. code::
+
+    VM_RESTRICTED_ATTR = "NIC/VLAN_TAGGED_ID"
+
+This will prevent unauthorized use and enforce proper privilege separation within the cloud environment.
+
 Changes in Configuration Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
