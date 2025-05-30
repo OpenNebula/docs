@@ -143,11 +143,20 @@ onedb change history
 
 Change the CLUSTER_ID of a previous VM sequence in a non interactive way. This is useful when accidentally deleting a cluster. You might be unable to attach disks or NICs to the VM due to the VM being reported in a non existing cluster.
 
-The following command changes the the sequence 0 of the VM 224 to have the CLUSTER_ID set to 0.
+.. warning::
+
+    When dealing with history records one needs to take into account that the oldest index of the history records equals 0 whereas the latest one has the largest index. So in order to modify the latest history record one needs to get the largest index first, e.g. with help of the following command:
+
+    .. prompt:: text $ auto
+
+        $ onevm show -j <vm_id>| jq -r '.VM.HISTORY_RECORDS.HISTORY[-1].SEQ'
+
+
+The following command changes the sequence 10 (let's assume it's the latest history record for that example) of the VM 224 to have the CLUSTER_ID set to 0.
 
 .. prompt:: text $ auto
 
-    $ onedb change-history --id 224 --seq 0 '/HISTORY/CID' 0
+    $ onedb change-history --id 224 --seq 10 '/HISTORY/CID' 0
 
 .. _onedb_update_history:
 
