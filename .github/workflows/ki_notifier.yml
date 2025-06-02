@@ -1,0 +1,71 @@
+name: KI update notifier
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'source/intro_release_notes/release_notes/known_issues.rst'
+      - 'source/intro_release_notes/release_notes_enterprise/resolved_issues*.rst'
+
+jobs:
+  notify_slack_on_file_update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v46.0.5
+        with:
+          files: |
+            source/intro_release_notes/release_notes/known_issues.rst
+            source/intro_release_notes/release_notes_enterprise/resolved_issues*.rst
+
+      - name: Prepare Slack message content
+        id: slack_message_content
+        run: |
+          MESSAGE_TEXT_CONTENT=""
+
+          if [[ "${{ steps.changed-files.outputs.any_changed }}" == "true" ]]; then
+            MESSAGE_TEXT_CONTENT="@channel *Known Issues or Resolved Issues change detected!*
+            *Repository:* ${{ github.repository }}
+            *Branch:* ${{ github.ref_name }}
+            *Author:* ${{ github.actor }}
+            *Commit Message:* \`${{ github.event.head_commit.message }}\`
+            *Files Changed:*
+            \`\`\`
+            ${{ steps.changed-files.outputs.all_changed_files }}
+            \`\`\`
+            <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Action Run>"
+          fi
+
+          ESCAPED_MESSAGE_TEXT=""
+          if [[ -n "$MESSAGE_TEXT_CONTENT" ]]; then
+              ESCAPED_MESSAGE_TEXT=$(jq -R -s '.' <<< "$MESSAGE_TEXT_CONTENT")
+          fi
+
+          echo "slack_message_text=${ESCAPED_MESSAGE_TEXT}" >> "$GITHUB_OUTPUT"
+
+      - name: Send Slack Notification
+        if: success() && steps.slack_message_content.outputs.slack_message_text != ''
+        uses: slackapi/slack-github-action@v2.1.0
+        with:
+          webhook: ${{ secrets.KI_SLACK_WEBHOOK_URL }}
+          webhook-type: incoming-webhook
+          payload: |
+            {
+              "text": "Known Issues / Resolved Issues change detected",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ${{ steps.slack_message_content.outputs.slack_message_text }}
+                  }
+                }
+              ]
+            }
