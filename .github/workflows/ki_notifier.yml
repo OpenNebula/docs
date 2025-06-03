@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - one-6.10-maintenance
     paths:
       - 'source/intro_release_notes/release_notes/known_issues.rst'
       - 'source/intro_release_notes/release_notes_enterprise/resolved_issues*.rst'
