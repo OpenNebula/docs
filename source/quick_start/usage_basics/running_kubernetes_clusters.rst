@@ -578,7 +578,7 @@ In this case you can manually instruct the VMs to report ``READY`` to the OneGat
 
 
 One or more VMs is Ready, but unreachable
-++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++
 
 In a similar situation as above when `onevm list`` shows all VMs running, but the service is still in ``DEPLOYING`` state, but the VM is not reachable through SSH (e.g. to run the ``onegate vm update`` command).
 
