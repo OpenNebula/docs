@@ -33,6 +33,8 @@ Front-End Components
 | Ruby Gems                | Versions installed by opennebula-rubygems   | Detailed information in ``/usr/share/one/Gemfile``    |
 +--------------------------+---------------------------------------------+-------------------------------------------------------+
 
+.. note:: Support for nodes' operating system ensures that the latest two LTS releases feature certified packages.
+
 .. _vcenter_nodes_platform_notes:
 
 vCenter Nodes
@@ -43,7 +45,8 @@ vCenter Nodes
 +-----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 | Component |                Version                |                                                            More information                                                            |
 +===========+=======================================+========================================================================================================================================+
-| vCenter   | 7.0.x, managing ESX 7.0.x             | :ref:`vCenter Node Installation <vcenter_node>`                                                                                        |
+| vCenter   | 7.0.x managing ESX 7.0.x &            | :ref:`vCenter Node Installation <vcenter_node>`                                                                                        |
+|           | 8.0.x managing ESX 8.0.x              |                                                                                                                                        |
 +-----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 | NSX-T     | 2.4.1+                                | `VMware compatiblity <https://www.vmware.com/resources/compatibility/sim/interop_matrix.php>`__. :ref:`NSX Documentation <nsx_setup>`. |
 +-----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+

@@ -24,7 +24,7 @@ The cloud environment installed by miniONE is mainly intended for evaluation, de
 .. note::
 
     To complete this tutorial, you will need to log in to a remote Linux machine via SSH. If you follow this tutorial on a Windows machine, you will need to use an SSH client application such as `PuTTY <https://www.putty.org/>`__.
-   
+
 .. tip::
 
     For a list of options supported by the script, run ``bash minione -h``. The script supports several types of installations (such as installing a Front-end and a KVM hypervisor node) which are not covered in this tutorial.
@@ -61,15 +61,15 @@ To run the miniONE script on AWS, you will need to instantiate a virtual machine
       - 2616 (for the FireEdge GUI)
       - 5030 (for the OneGate service)
 
-.. tip:: To quickly deploy a suitable VM, browse the AWS AMI Catalog and select ``Ubuntu Server 22.04 LTS (HVM), SSD Volume Type``:
+.. tip:: To quickly deploy a suitable VM, browse the AWS AMI Catalog and select **Ubuntu Server 24.04 LTS (HVM), SSD Volume Type**:
 
-   .. image:: /images/minione-aws-ubuntu22.04.png
+   .. image:: /images/minione-aws-ubuntu24.04.png
       :align: center
 
 Below is an example of a successfully-tested configuration (though by no means the only possible one):
 
 - Region: Frankfurt
-- Operating System: Ubuntu Server 22.04 LTS (HVM)
+- Operating System: Ubuntu Server 24.04 LTS (HVM)
 - Tier: ``t2.medium``
 - Open ports: 22, 80, 2616, 5030
 - Storage: 80 GB SSD
@@ -111,7 +111,7 @@ For example:
 .. warning::
 
    Ensure you have set the appropriate permissions for the PEM file, or for security reasons SSH will refuse to connect.
-   
+
 
 Step 1.2. Update the VM Operating System
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -120,13 +120,42 @@ Once you have logged in to the VM as user ``ubuntu``, use the ``sudo`` command t
 
 .. prompt::
 
-    sudo su -
+    sudo -i
 
 Then, update the system to its latest software packages by running the following command:
 
 .. prompt::
 
    apt update && apt upgrade
+
+After updating, you will probably need to restart the VM to run the latest kernel. Check the output of the ``apt upgrade`` command for lines similar to the following:
+
+.. prompt::
+
+   Pending kernel upgrade!
+   Running kernel version:
+     6.8.0-1012-aws
+   Diagnostics:
+     The currently running kernel version is not the expected kernel version 6.8.0-1014-aws.
+
+In this example, you need to restart the VM in order to upgrade to kernel 6.8.0-1014-aws. To restart the VM, run:
+
+.. prompt::
+
+   shutdown -r now
+
+You will be immediately logged out of the VM as it restarts. Wait a few moments for the VM to finish rebooting, then log in again using the same procedure as before. After logging back into the VM, you can check the running kernel version with:
+
+.. prompt::
+
+   uname -a
+
+For example, in this case:
+
+.. prompt::
+
+   $ uname -a
+   Linux ip-172-31-3-252 6.8.0-1014-aws #15-Ubuntu SMP Thu Aug  8 19:13:06 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
 
 Your AWS VM is now ready. In the next steps, we’ll download the miniONE script, upload it to the VM, and run the installation.
 
@@ -141,20 +170,20 @@ Step 3.1. Copy the miniONE script to the AWS VM
 After downloading miniONE, you will need to copy it to your AWS VM.
 
 - On Linux and Mac:
-    
+
     If you’re on Linux, you can copy it with the ``scp`` command, providing the same user and PEM file as when logging in via SSH. For example, the command below copies the miniONE script to the ``ubuntu`` user’s home directory:
 
         .. prompt::
-   
+
           scp -i <path to PEM file> <path to minione script> ubuntu@<public IP of the VM>:~
 
 - On Windows:
 
     You can use either of two methods:
-    
+
     * The GUI tool `WinSCP <https://winscp.net/eng/download.php>`__, which allows you to copy files by drag-and-drop
     * The command-line tool `PuTTY Secure Copy <https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html>`__, which emulates the Unix ``scp`` tool.
-    
+
     For both methods you will need to provide the private key file for authentication.
 
 Step 3.2. Run the miniONE script on the AWS VM
@@ -162,11 +191,25 @@ Step 3.2. Run the miniONE script on the AWS VM
 
 After copying the miniONE script to the VM, log in to the VM (as described :ref:`above <minione_log_in_to_ec2>`).
 
-Use the ``sudo`` command to become the ``root`` user.
+Use the ``sudo`` command to become the ``root`` user:
 
-If necessary, use the ``cd`` command to navigate to the folder where you copied the miniONE script. For example, if you copied it to the home directory of user ``ubuntu`` run ``cd ~ubuntu``.
+.. prompt::
 
-To install miniONE, run:
+   sudo -i
+
+If necessary, use the ``cd`` command to navigate to the folder where you copied the miniONE script. For example, if you copied it to the home directory of user ``ubuntu`` run:
+
+.. prompt::
+
+   cd ~ubuntu
+
+Next, ensure that the ``minione`` file has execute permissions, by running:
+
+.. prompt::
+
+   chmod +x minione
+
+To install miniONE, run as root:
 
 .. prompt::
 
@@ -177,7 +220,7 @@ The miniONE script will begin the installation, logging output to the terminal. 
 .. prompt::
 
    ### Report
-   OpenNebula 6.8 was installed
+   OpenNebula 6.10 was installed
    Sunstone is running on:
    http://<omitted>/
    FireEdge is running on:
@@ -185,7 +228,7 @@ The miniONE script will begin the installation, logging output to the terminal. 
    Use following to login:
       user: oneadmin
       password: lCmPUb5Gwk
-   
+
 At this point, you have successfully installed miniONE. OpenNebula services should be running, and the system should be ready for your first login.
 
 .. important::
@@ -224,7 +267,7 @@ This is the default view for cloud administrators. From this view in Sunstone, y
 
 |
 
-Congratulations — you have deployed an OpenNebula Front-end node, which is ready to provision resources on cloud infrastructure. 
+Congratulations — you have deployed an OpenNebula Front-end node, which is ready to provision resources on cloud infrastructure.
 
 
 Next Steps

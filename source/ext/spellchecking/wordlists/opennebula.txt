@@ -474,6 +474,7 @@ monitorization
 moref
 morefs
 mountpoints
+msi
 multicast
 multicluster
 multitenant
@@ -486,6 +487,7 @@ natively
 ncurses
 netaddr
 netmask
+netplan
 networkd
 nginx
 nic

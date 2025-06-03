@@ -215,7 +215,7 @@ The following example shows how you can change the logo to a generic linux one (
 
 Configure DataTables
 --------------------------------------------------------------------------------
-You can change the style of the rows depending on your preferences. in case they are changed in the fireedge-server.conf file. this change will be priority. and it will adjust the view to all users. 
+You can change the style of the rows depending on your preferences. in case they are changed in the fireedge-server.conf file. this change will be priority. and it will adjust the view to all users.
 
 |fireedge_sunstone_list_datatable|
 
