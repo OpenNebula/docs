@@ -11,4 +11,5 @@ Release Notes |version| Enterprise Edition
    Resolved Issues 6.10.1 <resolved_issues_6101>
    Resolved Issues 6.10.2 <resolved_issues_6102>
    Resolved Issues 6.10.3 <resolved_issues_6103>
-   Resolved Issues 6.10.4 <resolved_issues_6104>
+   Resolved Issues 6.10.5 <resolved_issues_6104>
+   Resolved Issues 6.10.5 <resolved_issues_6105>

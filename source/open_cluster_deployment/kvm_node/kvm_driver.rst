@@ -9,7 +9,7 @@ Requirements
 
 The Hosts will need a CPU with `Intel VT <http://www.intel.com/content/www/us/en/virtualization/virtualization-technology/intel-virtualization-technology.html>`__ or `AMD's AMD-V <http://www.amd.com/en-us/solutions/servers/virtualization>`__ features in order to support virtualization. KVM's `Preparing to use KVM <http://www.linux-kvm.org/page/FAQ#Preparing_to_use_KVM>`__ guide will clarify any doubts you may have regarding whether your hardware supports KVM.
 
-Also, since OpenNebula 6.10.4-EE and 6.10.0.1-CE ARM64 architecture is supported (in beta mode).
+Also, since OpenNebula 6.10.5-EE and 6.10.0.1-CE ARM64 architecture is supported (in beta mode).
 
 KVM will be installed and configured after following the :ref:`KVM Host Installation <kvm_node>` section.
 
