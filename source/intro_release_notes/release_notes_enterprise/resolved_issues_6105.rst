@@ -13,6 +13,7 @@ The following new features have been backported in the Sunstone Web UI to 6.10.5
 
 The following issues has been solved in 6.10.5:
 
+- `Fix an issue with fs_lvm_ssh not honoring BRIDGE_LIST in the image datastore <https://github.com/OpenNebula/one/issues/7070>`__.
 
 The following issues have been solved in the Sunstone Web UI:
 
