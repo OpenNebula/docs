@@ -90,12 +90,21 @@ rc = run("ssh #{ssh_op} #{host} 'test -L #{branch_symlink_path} || " <<
              " echo \"#{branch_symlink_path} is not a symlink\" >&2'")
 error(rc)
 
+# cleanup old versions
+
+rc = run("ssh #{ssh_op} #{host} 'find #{host_path} -maxdepth 1 -type d -name \"#{branch_dir}.*\" -printf \"%f\\n\" | sort'")
+error(rc)
+
 builds = rc[0].split
 
-exit(0) if builds.length <= 3
+puts "Total builds found: #{builds.length}"
+puts "Builds: #{builds.join("\n")}"
 
-builds = builds[0..-3] # Keep two latest ones
+exit(0) if builds.length <= 2
 
-builds.each do |build|
-    run("ssh #{ssh_op} #{host} rm -rf #{host_path}/#{build}")
+# List all builds except the two most recent
+old_builds = builds[0...-2]
+old_builds.each do |build|
+  puts "Removing old build folder: #{build}"
+  run("ssh #{ssh_op} #{host} rm -rf #{host_path}/#{build}")
 end
