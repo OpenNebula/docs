@@ -15,6 +15,7 @@ The following issues has been solved in 6.10.5:
 
 - `Fix validation issue during Group + Group Admin creation at the same time <https://github.com/OpenNebula/one/issues/6873>`__.
 - `Fix scheduler allocation for VMs with NUMA pinning enabled <https://github.com/OpenNebula/one/issues/7071>`__.
+- `Fix user_inputs order not considered when instantiating a template through the CLI <https://github.com/OpenNebula/one/issues/7040>`__.
 
 
 The following issues have been solved in the Sunstone Web UI:
