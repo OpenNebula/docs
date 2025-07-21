@@ -14,6 +14,11 @@ The following new features have been backported in the Sunstone Web UI to 6.10.5
 The following issues has been solved in 6.10.5:
 
 - `Fix an issue with fs_lvm_ssh not honoring BRIDGE_LIST in the image datastore <https://github.com/OpenNebula/one/issues/7070>`__.
+- `Fix validation issue during Group + Group Admin creation at the same time <https://github.com/OpenNebula/one/issues/6873>`__.
+- `Fix scheduler allocation for VMs with NUMA pinning enabled <https://github.com/OpenNebula/one/issues/7071>`__.
+- `Fix user_inputs order not considered when instantiating a template through the CLI <https://github.com/OpenNebula/one/issues/7040>`__.
+- `Fix the KVMRC Ruby parser regexp that was preventing more than one parameter <https://github.com/OpenNebula/one/issues/7069>`__.
+
 
 The following issues have been solved in the Sunstone Web UI:
 
