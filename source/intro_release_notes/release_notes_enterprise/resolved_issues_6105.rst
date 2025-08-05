@@ -19,6 +19,7 @@ The following issues has been solved in 6.10.5:
 - `Fix user_inputs order not considered when instantiating a template through the CLI <https://github.com/OpenNebula/one/issues/7040>`__.
 - `Fix the KVMRC Ruby parser regexp that was preventing more than one parameter <https://github.com/OpenNebula/one/issues/7069>`__.
 - `Fix Sunstone should prioritize user views <https://github.com/OpenNebula/one/issues/7082>`__.
+- `Fix Sunstone Update VM Configuration wizard doesn't scale correctly <https://github.com/OpenNebula/one/issues/7062>`__.
 
 
 The following issues have been solved in the Sunstone Web UI:
