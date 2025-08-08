@@ -22,6 +22,7 @@ The following issues has been solved in 6.10.5:
 - `Fix Sunstone Update VM Configuration wizard doesn't scale correctly <https://github.com/OpenNebula/one/issues/7062>`__.
 - `Fix Sunstone VM search leads to blank page <https://github.com/OpenNebula/one/issues/7060>`__.
 - `Fix Don't let add the ssh key more than one time <https://github.com/OpenNebula/one/issues/7140>`__.
+- `Fix VIRTIO_QUEUES not applying to hot plugged virtio NICs <https://github.com/OpenNebula/one/issues/7195>`__.
 
 Changes in Configuration Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
