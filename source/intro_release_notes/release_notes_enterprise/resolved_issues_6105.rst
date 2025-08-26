@@ -7,6 +7,7 @@ A complete list of solved issues for 6.10.5 can be found in the `project develop
 
 The following new features have been backported to 6.10.5:
 
+- `Change ETH* context parameters on live VMs <https://github.com/OpenNebula/one/issues/6606>`__.
 
 The following new features have been backported in the Sunstone Web UI to 6.10.5:
 
@@ -31,3 +32,12 @@ Since version 6.10.5 the following changes apply to OpenNebula services configur
 
 
 .. warning:: The following attributes are not included in the configuration files distributed with 6.10.5. If you wish to use these attributes, add them manually to the corresponding file.
+
+OpenNebula Service
+^^^^^^^^^^^^^^^^^^
+
++----------------------+--------------------------------------------------------------+-------------------------------------------------------+-------------+
+| Config file          | Description                                                  | Action                                                | Values      |
++======================+==============================================================+=======================================================+=============+
+| oned.conf            | New attribute: CONTEXT_ALLOW_ETH_UPDATES                     | Allow manual updates of CONTEXT->ETH* values.         | NO, YES     |
++----------------------+--------------------------------------------------------------+-------------------------------------------------------+-------------+
