@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: 3.11
       - name: Install dependencies
@@ -19,4 +19,4 @@ jobs:
           pip install sphinx==5.0.0 sphinx_rtd_theme==1.2.0 sphinx-prompt pyyaml Sphinx-Substitution-Extensions[prompt]
       - name: Make html
         run: |
-          make html
+          make SPHINXBUILD="python -m sphinx" html
