@@ -25,6 +25,8 @@ The following issues has been solved in 6.10.5:
 - `Fix Don't let add the ssh key more than one time <https://github.com/OpenNebula/one/issues/7140>`__.
 - `Fix VIRTIO_QUEUES not applying to hot plugged virtio NICs <https://github.com/OpenNebula/one/issues/7195>`__.
 - `Fix Fix ownership issue when instanciate Vm as a different user <https://github.com/OpenNebula/one/issues/7013>`
+- `Fix Fix Ethernet text on Address Ranges when create VMs <https://github.com/OpenNebula/one/issues/6955>`
+- `Fix re-arrange time orders when adding a scheduled action in Creating VMs. <https://github.com/OpenNebula/one/issues/7031>`
 
 Changes in Configuration Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
