@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v5
@@ -27,8 +27,9 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install "Sphinx==1.8.6" "sphinx_bootstrap_theme==0.4.0" \
-                      "Jinja2<3.1" "docutils<0.17"
+          pip install "setuptools<58" "wheel<1.0"
+          pip install --no-use-pep517 sphinx_bootstrap_theme==0.4.0
+          pip install "Sphinx==1.8.6" "Jinja2<3.1" "docutils<0.17"
           gem install yaml open3
 
 # ------------------------------------------------------------------------------
