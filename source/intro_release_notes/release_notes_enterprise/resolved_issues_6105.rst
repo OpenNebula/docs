@@ -29,6 +29,7 @@ The following issues has been solved in 6.10.5:
 - `Fix Fix Ethernet text on Address Ranges when create VMs <https://github.com/OpenNebula/one/issues/6955>` __.
 - `Fix re-arrange time orders when adding a scheduled action in Creating VMs <https://github.com/OpenNebula/one/issues/7031>` __.
 - `Fix fsck to update history ETIME using EETIME or RETIME.<https://github.com/OpenNebula/one/issues/7250>` __.
+- `Fix VM placement expression parsing in Sunstone.<https://github.com/OpenNebula/one/issues/7158>` __.
 
 Changes in Configuration Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
