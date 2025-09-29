@@ -29,7 +29,7 @@ The following issues has been solved in 6.10.5:
 - `Fix Fix Ethernet text on Address Ranges when create VMs <https://github.com/OpenNebula/one/issues/6955>` __.
 - `Fix re-arrange time orders when adding a scheduled action in Creating VMs <https://github.com/OpenNebula/one/issues/7031>` __.
 - `Fix fsck to update history ETIME using EETIME or RETIME.<https://github.com/OpenNebula/one/issues/7250>` __.
-- `Fix remove tmp files after creating Image. <https://github.com/OpenNebula/one/issues/7252>`
+- `Fix remove temporary files after creating Image. <https://github.com/OpenNebula/one/issues/7252>`
 
 Changes in Configuration Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
