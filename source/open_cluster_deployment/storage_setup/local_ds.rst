@@ -21,7 +21,12 @@ Host Setup
 
 Just make sure that there is enough space under ``/var/lib/one/datastores`` to store the disks of running VMs on that Host.
 
-.. warning:: Make sure all the Hosts, including the Front-end, can SSH to any other host (including themselves), otherwise migrations will not work.
+.. warning:: Local datastore requires that:
+
+   * The **Frontend hostnames are resolvable** from all Hosts.  
+   * Every Host (including the Front-end) can **SSH to every other Host**, including themselves.  
+
+   Otherwise, migrations and image transfers may fail.
 
 OpenNebula Configuration
 ================================================================================
