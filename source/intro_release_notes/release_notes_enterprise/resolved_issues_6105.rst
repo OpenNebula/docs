@@ -31,8 +31,9 @@ The following issues has been solved in 6.10.5:
 - `Fix fsck to update history ETIME using EETIME or RETIME <https://github.com/OpenNebula/one/issues/7250>` __.
 - `Fix VM placement expression parsing in Sunstone <https://github.com/OpenNebula/one/issues/7158>` __.
 - `Fix physical CPU tooltip in Sunstone <https://github.com/OpenNebula/one/issues/6867>` __.
-- `Fix remove temporary files after creating Image <https://github.com/OpenNebula/one/issues/7252>`
+- `Fix remove temporary files after creating Image <https://github.com/OpenNebula/one/issues/7252>` __.
 - `Fix errors when canceling a backup operation <https://github.com/OpenNebula/one/issues/6981>` __.
+- `Fix add edit/delete buttons for VM attributes <https://github.com/OpenNebula/one/issues/7201>` __.
 
 Changes in Configuration Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
