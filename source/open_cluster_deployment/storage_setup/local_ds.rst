@@ -26,8 +26,6 @@ Just make sure that there is enough space under ``/var/lib/one/datastores`` to s
    * The **Frontend hostnames are resolvable** from all Hosts.  
    * Every Host (including the Front-end) can **SSH to every other Host**, including themselves.  
 
-   Otherwise, migrations and image transfers may fail.
-
 OpenNebula Configuration
 ================================================================================
 Once the Hosts and Front-end storage is setup, the OpenNebula configuration comprises the creation of an Image and System Datastores.
