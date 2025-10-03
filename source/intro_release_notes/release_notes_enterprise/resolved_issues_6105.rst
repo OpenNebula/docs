@@ -35,6 +35,7 @@ The following issues has been solved in 6.10.5:
 - `Fix errors when canceling a backup operation <https://github.com/OpenNebula/one/issues/6981>` __.
 - `Fix add edit/delete buttons for VM attributes <https://github.com/OpenNebula/one/issues/7201>` __.
 - `Fix rule addition for security group creation. <https://github.com/OpenNebula/one/issues/7206>` __.
+- `Fix Security Group Role Description for IPs <https://github.com/OpenNebula/one/issues/7186>` __.
 
 Changes in Configuration Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
