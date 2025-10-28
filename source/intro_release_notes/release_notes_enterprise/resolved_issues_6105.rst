@@ -26,21 +26,22 @@ The following issues has been solved in 6.10.5:
 - `Fix Sunstone does not cast placement constraints into update/instantiate dialog <https://github.com/OpenNebula/one/issues/7158>`__.
 - `Fix Don't let add the ssh key more than one time <https://github.com/OpenNebula/one/issues/7140>`__.
 - `Fix VIRTIO_QUEUES not applying to hot plugged virtio NICs <https://github.com/OpenNebula/one/issues/7195>`__.
-- `Fix translation text when creating VMs <https://github.com/OpenNebula/one/issues/7222>` __.
-- `Fix Fix ownership issue when instanciate Vm as a different user <https://github.com/OpenNebula/one/issues/7013>` __.
-- `Fix Fix Ethernet text on Address Ranges when create VMs <https://github.com/OpenNebula/one/issues/6955>` __.
-- `Fix re-arrange time orders when adding a scheduled action in Creating VMs <https://github.com/OpenNebula/one/issues/7031>` __.
-- `Fix fsck to update history ETIME using EETIME or RETIME <https://github.com/OpenNebula/one/issues/7250>` __.
-- `Fix VM placement expression parsing in Sunstone <https://github.com/OpenNebula/one/issues/7158>` __.
-- `Fix physical CPU tooltip in Sunstone <https://github.com/OpenNebula/one/issues/6867>` __.
-- `Fix remove temporary files after creating Image <https://github.com/OpenNebula/one/issues/7252>` __.
-- `Fix errors when canceling a backup operation <https://github.com/OpenNebula/one/issues/6981>` __.
-- `Fix add edit/delete buttons for VM attributes <https://github.com/OpenNebula/one/issues/7201>` __.
-- `Fix rule addition for security group creation. <https://github.com/OpenNebula/one/issues/7206>` __.
-- `Fix Security Group Role Description for IPs <https://github.com/OpenNebula/one/issues/7186>` __.
-- `Fix history ETIME after resize, disk-resize and pci-(de)attach for VMs in undeployed state <https://github.com/OpenNebula/one/issues/7249>` __.
-- `Fix  cluster assignment when creating Virtual Network <https://github.com/OpenNebula/one/issues/7063>` __.
-- `Fix UI issue on VM Instantiation when Memory or CPU modification is set to 'range' within a VM template <https://github.com/OpenNebula/one/issues/6872>` __.
+- `Fix translation text when creating VMs <https://github.com/OpenNebula/one/issues/7222>`__.
+- `Fix Fix ownership issue when instanciate Vm as a different user <https://github.com/OpenNebula/one/issues/7013>`__.
+- `Fix Fix Ethernet text on Address Ranges when create VMs <https://github.com/OpenNebula/one/issues/6955>`__.
+- `Fix re-arrange time orders when adding a scheduled action in Creating VMs <https://github.com/OpenNebula/one/issues/7031>`__.
+- `Fix fsck to update history ETIME using EETIME or RETIME <https://github.com/OpenNebula/one/issues/7250>`__.
+- `Fix VM placement expression parsing in Sunstone <https://github.com/OpenNebula/one/issues/7158>`__.
+- `Fix physical CPU tooltip in Sunstone <https://github.com/OpenNebula/one/issues/6867>`__.
+- `Fix remove temporary files after creating Image <https://github.com/OpenNebula/one/issues/7252>`__.
+- `Fix errors when canceling a backup operation <https://github.com/OpenNebula/one/issues/6981>`__.
+- `Fix add edit/delete buttons for VM attributes <https://github.com/OpenNebula/one/issues/7201>`__.
+- `Fix rule addition for security group creation. <https://github.com/OpenNebula/one/issues/7206>`__.
+- `Fix Security Group Role Description for IPs <https://github.com/OpenNebula/one/issues/7186>`__.
+- `Fix history ETIME after resize, disk-resize and pci-(de)attach for VMs in undeployed state <https://github.com/OpenNebula/one/issues/7249>`__.
+- `Fix cluster assignment when creating Virtual Network <https://github.com/OpenNebula/one/issues/7063>`__.
+- `Fix UI issue on VM Instantiation when Memory or CPU modification is set to 'range' within a VM template <https://github.com/OpenNebula/one/issues/6872>`__.
+- `Fix change password button wrong displayed on FireEdge <https://github.com/OpenNebula/one/issues/7003>`__.
 
 Changes in Configuration Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
