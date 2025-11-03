@@ -23,6 +23,23 @@ This authentication mechanism is enabled by default. If it doesn't work, make su
         AUTHN = "ssh,x509,ldap,server_cipher,server_x509"
     ]
 
+If you want to enable LDAP users auto-creation in the OpenNebula then you need to add ``default`` method in the ``AUTHN`` attribute of the ``AUTH_MAD`` section as shown below:
+
+.. code-block:: bash
+
+    AUTH_MAD = [
+        EXECUTABLE = "one_auth_mad",
+        AUTHN = "default,ssh,x509,ldap,server_cipher,server_x509"
+    ]
+
+and create a symlink as `root` user on the OpenNebula front-end node:
+
+.. code-block:: bash
+
+    ln -s /var/lib/one/remotes/auth/ldap /var/lib/one/remotes/auth/default
+
+
+
 Authentication driver ``ldap`` can be customized in ``/etc/one/auth/ldap_auth.conf``. This is the default configuration:
 
 .. code-block:: yaml
@@ -188,7 +205,7 @@ To enable ``ldap`` authentication the described parameters should be configured.
 User Management
 ===============
 
-Using the LDAP authentication module, the administrator doesn't need to create users with the ``oneuser`` command, as this will be done automatically.
+Enabling LDAP users auto-creation in the OpenNebula as described above eliminates the need for the administrator to create users with the ``oneuser`` command manually.
 
 Users can store their credentials into a file referenced by environment variable ``$ONE_AUTH`` (usually ``$HOME/.one/one_auth``) in this fashion:
 
