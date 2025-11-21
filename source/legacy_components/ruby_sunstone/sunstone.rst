@@ -20,6 +20,18 @@ The Sunstone configuration file can be found in ``/etc/one/sunstone-server.conf`
 
     After a configuration change, the Sunstone server must be :ref:`restarted <sunstone_conf_service>` to take effect.
 
+.. tip::
+
+    If you update the ``tmpdir`` value make sure you add this new value to systemd's unit by running ``systemctl edit opennebula-sunstone.service``,
+    and adding in a new section at the empty top area:
+
+    .. code::
+
+        [Service]
+        ReadWriteDirectories=/path/to/new/tmp
+
+    where ``/path/to/new/tmp`` is the new value of ``tmpdir``. Then run ``systemctl daemon-reload``, and ``systemctl restart opennebula-sunstone``
+
 +------------------------------------+-----------------------------------------------------------------------------------------------------+
 |          Parameter                 |                                          Description                                                |
 +====================================+=====================================================================================================+
