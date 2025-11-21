@@ -245,6 +245,8 @@ Users can easily create escaped ``$ONE_AUTH`` tokens with the command ``oneuser 
 
 The output of this command should be put in the ``$ONE_AUTH`` file.
 
+
+
 .. _active_directory:
 
 Active Directory
@@ -342,3 +344,14 @@ And you want users whose login ends with ``a.example.com`` to be searched in ``l
     :match_user_regex:
       "^(.*)@a.example.com$": ldap-a.example.com
       "^(.*)@b.example.com$": ldap-b.example.com
+
+DB backend and case sensitivity
+============================================
+
+As LDAP, in general, is case insensitive there could be some oddities in the way how OpenNebula manages LDAP users. Moreover, it depends on the used DB backend.
+
+If you use SQLite or PostgreSQL, then users are always case-sensitive. Any further login with the same user but in a different casing will cause auth failure.
+
+However, when MySQL database is used (with the default configuration) it is case insensitive. Therefore, you can still log in with any casing of the username, such as jsmith, JSmith, JSMITH, etc.
+
+In any case, LDAP users are created in OpenNebula DB in lower-case. This is mainly to prevent multiple (case different) users to bypass quotas.
