@@ -1,4 +1,4 @@
-.. _resolved_issues_6105:
+.. _resolved_issues_6106:
 
 Resolved Issues in 6.10.6
 --------------------------------------------------------------------------------
@@ -7,41 +7,12 @@ A complete list of solved issues for 6.10.6 can be found in the `project develop
 
 The following new features have been backported to 6.10.6:
 
-- `Change ETH* context parameters on live VMs <https://github.com/OpenNebula/one/issues/6606>`__.
+
 
 The following issues has been solved in 6.10.6:
 
-- `Fix an issue with fs_lvm_ssh not honoring BRIDGE_LIST in the image datastore <https://github.com/OpenNebula/one/issues/7070>`__.
-- `Fix validation issue during Group + Group Admin creation at the same time <https://github.com/OpenNebula/one/issues/6873>`__.
-- `Fix scheduler allocation for VMs with NUMA pinning enabled <https://github.com/OpenNebula/one/issues/7071>`__.
-- `Fix user_inputs order not considered when instantiating a template through the CLI <https://github.com/OpenNebula/one/issues/7040>`__.
-- `Fix the KVMRC Ruby parser regexp that was preventing more than one parameter <https://github.com/OpenNebula/one/issues/7069>`__.
-- `Fix Sunstone should prioritize user views <https://github.com/OpenNebula/one/issues/7082>`__.
-- `Fix Sunstone Update VM Configuration wizard doesn't scale correctly <https://github.com/OpenNebula/one/issues/7062>`__.
-- `Fix Sunstone VM search leads to blank page <https://github.com/OpenNebula/one/issues/7060>`__.
-- `Fix wrong QCOW2_STANDALONE option in NFS System Datastore <https://github.com/OpenNebula/one/issues/7212>`__.
-- `Fix Sunstone does not cast placement constraints into update/instantiate dialog <https://github.com/OpenNebula/one/issues/7158>`__.
-- `Fix Don't let add the ssh key more than one time <https://github.com/OpenNebula/one/issues/7140>`__.
-- `Fix VIRTIO_QUEUES not applying to hot plugged virtio NICs <https://github.com/OpenNebula/one/issues/7195>`__.
-- `Fix translation text when creating VMs <https://github.com/OpenNebula/one/issues/7222>`__.
-- `Fix ownership issue when instanciate Vm as a different user <https://github.com/OpenNebula/one/issues/7013>`__.
-- `Fix Ethernet text on Address Ranges when create VMs <https://github.com/OpenNebula/one/issues/6955>`__.
-- `Fix re-arrange time orders when adding a scheduled action in Creating VMs <https://github.com/OpenNebula/one/issues/7031>`__.
-- `Fix fsck to update history ETIME using EETIME or RETIME <https://github.com/OpenNebula/one/issues/7250>`__.
-- `Fix VM placement expression parsing in Sunstone <https://github.com/OpenNebula/one/issues/7158>`__.
-- `Fix physical CPU tooltip in Sunstone <https://github.com/OpenNebula/one/issues/6867>`__.
-- `Fix errors when canceling a backup operation <https://github.com/OpenNebula/one/issues/6981>`__.
-- `Fix add edit/delete buttons for VM attributes <https://github.com/OpenNebula/one/issues/7201>`__.
-- `Fix rule addition for security group creation. <https://github.com/OpenNebula/one/issues/7206>`__.
-- `Fix Security Group Role Description for IPs <https://github.com/OpenNebula/one/issues/7186>`__.
-- `Fix history ETIME after resize, disk-resize and pci-(de)attach for VMs in undeployed state <https://github.com/OpenNebula/one/issues/7249>`__.
-- `Fix cluster assignment when creating Virtual Network <https://github.com/OpenNebula/one/issues/7063>`__.
-- `Fix UI issue on VM Instantiation when Memory or CPU modification is set to 'range' within a VM template <https://github.com/OpenNebula/one/issues/6872>`__.
-- `Fix VM configuration for Single VM Backup configuration <https://github.com/OpenNebula/one/issues/7164>`__.
-- `Fix UI overlay issue on Fireedge VNC on 1280*760 resolution <https://github.com/OpenNebula/one/issues/7175>`__.
-- `Fix 2FA reset in FireEdge after UI changes are made <https://github.com/OpenNebula/one/issues/7105>`__.
-- `Fix LDAP authentication by removeing password encoding <https://github.com/OpenNebula/one/issues/7344>`__.
-- `Fix Change password button wrong displayed on FireEdge <https://github.com/OpenNebula/one/issues/7033>`__. 
+- `Fix [FSunstone] CPU_MODEL removed on VM configuration update <https://github.com/OpenNebula/one/issues/6860>`__.
+
 
 Changes in Configuration Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -53,9 +24,3 @@ Since version 6.10.6 the following changes apply to OpenNebula services configur
 
 OpenNebula Service
 ^^^^^^^^^^^^^^^^^^
-
-+----------------------+--------------------------------------------------------------+-------------------------------------------------------+-------------+
-| Config file          | Description                                                  | Action                                                | Values      |
-+======================+==============================================================+=======================================================+=============+
-| oned.conf            | New attribute: CONTEXT_ALLOW_ETH_UPDATES                     | Allow manual updates of CONTEXT->ETH* values.         | NO, YES     |
-+----------------------+--------------------------------------------------------------+-------------------------------------------------------+-------------+
