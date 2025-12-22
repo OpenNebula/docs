@@ -13,6 +13,28 @@ Drivers - Virtualization
 
 - `libvirtd restarts in cycles each 10 minutes with error message in system logs <https://github.com/OpenNebula/one/issues/6463>`_, due to the way libvirtd gets activated per interaction by systemd in 120-second slices. As the default interval for the OpenNebula monitor probe is 600 seconds (10 minutes), each time a probe reactivates libvirtd, it sends those messages to syslog.
 
+- Due to `Missing automation for enabling vTPM support <https://github.com/OpenNebula/one/issues/7422>`_ issue one needs to perform several additional steps on hypervisor nodes to make the vTPM work with OpenNebula. Please, find these steps below.
+
+Add the following lines into the ``/etc/libvirt/qemu.conf`` file:
+
+.. prompt:: bash $ auto
+
+   swtpm_user = "oneadmin"
+   swtpm_group = "oneadmin"
+
+and restart libvirtd.service:
+
+.. prompt:: bash $ auto
+   
+   systemctl restart libvirtd.service
+
+Change thei ownership of ``/run/libvirt/qemu/swtpm/`` and ``/var/lib/swtpm-localca`` directories:
+
+.. prompt:: bash $ auto
+   
+   chown oneadmin:oneadmin -R /run/libvirt/qemu/swtpm/ /var/lib/swtpm-localca
+
+
 Drivers - Network
 ================================================================================
 
