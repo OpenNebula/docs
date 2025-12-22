@@ -25,13 +25,13 @@ Add the following lines into the ``/etc/libvirt/qemu.conf`` file:
 and restart libvirtd.service:
 
 .. prompt:: bash $ auto
-   
+
    systemctl restart libvirtd.service
 
-Change thei ownership of ``/run/libvirt/qemu/swtpm/`` and ``/var/lib/swtpm-localca`` directories:
+Change the ownership of ``/run/libvirt/qemu/swtpm/`` and ``/var/lib/swtpm-localca`` directories:
 
 .. prompt:: bash $ auto
-   
+
    chown oneadmin:oneadmin -R /run/libvirt/qemu/swtpm/ /var/lib/swtpm-localca
 
 
