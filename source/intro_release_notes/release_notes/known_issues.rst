@@ -28,7 +28,7 @@ and restart libvirtd.service:
    
    systemctl restart libvirtd.service
 
-Change the ownership of ``/run/libvirt/qemu/swtpm/`` and ``/var/lib/swtpm-localca`` dirs:
+Change thei ownership of ``/run/libvirt/qemu/swtpm/`` and ``/var/lib/swtpm-localca`` directories:
 
 .. prompt:: bash $ auto
    
