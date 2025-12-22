@@ -166,6 +166,10 @@ If you have a physical TPM device on your host, you can pass through the TPM to 
 
 If you do not have a physical TPM device on your host you can emulate one.  There are two options for the model, `tpm-tis` is the default and will work with both TPM 1.2 and 2.0  while `tpm-crb` will only work when the TPM version is 2.0.
 
+.. warning:: 
+   | Please, be aware that current implementation of vTPM support in the OpenNebula 6.10 has the following critical limitations:  power off -> on cycle as well as backup operations trigger TPM state loss. It means for example if the VM disk was encrypted with a key protected by the TPM the VM will typically no longer be able to unseal the disk key and thus unable to access the disk data. Although VM migration works since the corresponding vTPM operations are implemented on the libvirt level.
+   | For the best vTPM experiace we recommend to `upgrade <https://docs.opennebula.io/7.0/software/upgrade_process/upgrade_guide/>`__ to 7.0 OpenNebula release. To use vTPM on the OpenNebula 6.10, please, check :ref:`Known Issues <known_issues>` for the details on required steps to make hypervisor nodes working properly with OpenNebula.
+
 .. note:: If using an emulated TPM device, ensure you have installed swtpm and swtpm-tools packages on all hypervisors.
 
 .. code::
