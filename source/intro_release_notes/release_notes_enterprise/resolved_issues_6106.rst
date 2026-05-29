@@ -12,6 +12,7 @@ The following new features have been backported to 6.10.6:
 The following issues has been solved in 6.10.6:
 
 - `Fix [FSunstone] CPU_MODEL removed on VM configuration update <https://github.com/OpenNebula/one/issues/6860>`__.
+- `Fix [FSunstone] Refresh view when change group or zone <https://github.com/OpenNebula/one/issues/7554>`__.
 
 
 Changes in Configuration Files
