@@ -14,6 +14,7 @@ The following issues has been solved in 6.10.6:
 - `Fix [FSunstone] CPU_MODEL removed on VM configuration update <https://github.com/OpenNebula/one/issues/6860>`__.
 - `Fix [FSunstone] Refresh view when change group or zone <https://github.com/OpenNebula/one/issues/7554>`__.
 - `Fix persistent image creation when saving a VM as a template in Sunstone <https://github.com/OpenNebula/one/issues/7425>`__.
+- `Fix VM template instantiation to allow precise memory values to be entered directly when memory modification is configured as a range <https://github.com/OpenNebula/one/issues/7426>`__.
 
 
 Changes in Configuration Files
