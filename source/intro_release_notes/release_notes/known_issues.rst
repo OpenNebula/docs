@@ -56,6 +56,72 @@ Sunstone
 
 - When deleting an element in the datatable. such as running the terminate in a VM, we recommend refreshing the window. as there is an error in the client code discussed in the following `issue <https://github.com/OpenNebula/one/issues/6781>`__.
 
+VM Actions Missing in the Group Admin View
+------------------------------------------
+
+Some VM actions are not displayed in the **Group Admin** view because ``/etc/one/fireedge/sunstone/groupadmin/vm-tab.yaml`` uses legacy action names.
+
+As a workaround, edit the file and replace the legacy action names as follows, preserving all other existing entries:
+
+.. code-block:: diff
+
+  actions:
+   -  migrate_live: true
+   +  live-migrate: true
+
+   info-tabs:
+     info:
+       capacity_panel:
+         actions:
+   -        resize_capacity: true
+   +        resize: true
+     storage:
+       actions:
+   -      attach_disk:
+   +      disk-attach:
+           enabled: true
+         disk-detach: true
+   -      snapshot_disk_create: true
+   -      snapshot_disk_rename: true
+   -      snapshot_disk_revert: true
+   -      snapshot_disk_delete: true
+   -      resize_disk: true
+   -      disk_saveas:
+   +      disk-snapshot-create: true
+   +      disk-snapshot-rename: true
+   +      disk-snapshot-revert: true
+   +      disk-snapshot-delete: true
+   +      disk-resize: true
+   +      disk-saveas:
+           enabled: true
+     network:
+       actions:
+   -      attach_nic: true
+   -      detach_nic: true
+   -      update_nic: true
+   -      attach_secgroup: true
+   -      detach_secgroup: true
+   +      nic-attach: true
+   +      nic-detach: true
+   +      nic-update: true
+   +      sg-attach: true
+   +      sg-detach: true
+     sched_actions:
+       actions:
+   -      sched_action_create: true
+   -      sched_action_update: true
+   -      sched_action_delete: true
+   +      sched-add: true
+   +      sched-update: true
+   +      sched-delete: true
+         charter_create: true
+
+After saving the file, restart FireEdge:
+
+.. prompt:: bash # auto
+
+   systemctl restart opennebula-fireedge
+
 Install Linux Graphical Desktop on KVM Virtual Machines
 ================================================================================
 
