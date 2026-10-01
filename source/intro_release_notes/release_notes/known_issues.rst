@@ -56,31 +56,61 @@ Sunstone
 
 - When deleting an element in the datatable. such as running the terminate in a VM, we recommend refreshing the window. as there is an error in the client code discussed in the following `issue <https://github.com/OpenNebula/one/issues/6781>`__.
 
-VM Actions Missing in the Group Admin View
-------------------------------------------
+Legacy Configuration Keys in Sunstone Views
+-------------------------------------------
 
-Some VM actions are not displayed in the **Group Admin** view because ``/etc/one/fireedge/sunstone/groupadmin/vm-tab.yaml`` uses legacy action names.
+Several Sunstone view files use legacy action names or incorrect keys. These mismatches can hide or disable controls.
 
-As a workaround, edit the file and replace the legacy action names as follows, preserving all other existing entries:
+As a workaround, edit the affected files and replace the legacy or incorrect action names as follows, preserving all other existing entries. Paths are relative to ``/etc/one/fireedge/sunstone/``.
+
+``admin/backupjobs-tab.yaml``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: diff
 
-  actions:
-   -  migrate_live: true
-   +  live-migrate: true
+    info-tabs:
+      sched_actions:
+        actions:
+   -      sched_action_create: true
+   -      sched_action_update: true
+   -      sched_action_delete: true
+   +      sched-add: true
+   +      sched-update: true
+   +      sched-delete: true
 
-   info-tabs:
-     info:
-       capacity_panel:
-         actions:
+``admin/vm-group-tab.yaml``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: diff
+
+    info-tabs:
+      info:
+        ownership_panel:
+          actions:
+   -        cgrp: true
+   +        chgrp: true
+
+``cloud/vm-tab.yaml``
+~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: diff
+
+    actions:
+   -  migrate_live: false
+   +  live-migrate: false
+
+    info-tabs:
+      info:
+        capacity_panel:
+          actions:
    -        resize_capacity: true
    +        resize: true
-     storage:
-       actions:
+      storage:
+        actions:
    -      attach_disk:
    +      disk-attach:
-           enabled: true
-         disk-detach: true
+            enabled: true
+          disk-detach: true
    -      snapshot_disk_create: true
    -      snapshot_disk_rename: true
    -      snapshot_disk_revert: true
@@ -93,9 +123,9 @@ As a workaround, edit the file and replace the legacy action names as follows, p
    +      disk-snapshot-delete: true
    +      disk-resize: true
    +      disk-saveas:
-           enabled: true
-     network:
-       actions:
+            enabled: true
+      network:
+        actions:
    -      attach_nic: true
    -      detach_nic: true
    -      update_nic: true
@@ -106,17 +136,85 @@ As a workaround, edit the file and replace the legacy action names as follows, p
    +      nic-update: true
    +      sg-attach: true
    +      sg-detach: true
-     sched_actions:
-       actions:
+      sched_actions:
+        actions:
    -      sched_action_create: true
    -      sched_action_update: true
    -      sched_action_delete: true
    +      sched-add: true
    +      sched-update: true
    +      sched-delete: true
-         charter_create: true
+          charter_create: true
 
-After saving the file, restart FireEdge:
+``groupadmin/vm-group-tab.yaml``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: diff
+
+    info-tabs:
+      info:
+        ownership_panel:
+          actions:
+   -        cgrp: true
+   +        chgrp: true
+
+``groupadmin/vm-tab.yaml``
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: diff
+
+    actions:
+   -  migrate_live: true
+   +  live-migrate: true
+
+    info-tabs:
+      info:
+        capacity_panel:
+          actions:
+   -        resize_capacity: true
+   +        resize: true
+      storage:
+        actions:
+   -      attach_disk:
+   +      disk-attach:
+            enabled: true
+          disk-detach: true
+   -      snapshot_disk_create: true
+   -      snapshot_disk_rename: true
+   -      snapshot_disk_revert: true
+   -      snapshot_disk_delete: true
+   -      resize_disk: true
+   -      disk_saveas:
+   +      disk-snapshot-create: true
+   +      disk-snapshot-rename: true
+   +      disk-snapshot-revert: true
+   +      disk-snapshot-delete: true
+   +      disk-resize: true
+   +      disk-saveas:
+            enabled: true
+      network:
+        actions:
+   -      attach_nic: true
+   -      detach_nic: true
+   -      update_nic: true
+   -      attach_secgroup: true
+   -      detach_secgroup: true
+   +      nic-attach: true
+   +      nic-detach: true
+   +      nic-update: true
+   +      sg-attach: true
+   +      sg-detach: true
+      sched_actions:
+        actions:
+   -      sched_action_create: true
+   -      sched_action_update: true
+   -      sched_action_delete: true
+   +      sched-add: true
+   +      sched-update: true
+   +      sched-delete: true
+          charter_create: true
+
+After updating and saving the affected files, restart FireEdge:
 
 .. prompt:: bash # auto
 
